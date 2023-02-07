@@ -1,10 +1,12 @@
-# Screen Hopping
+# @ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)
 
-The Screen Hopping module enables two or more networked devices to share the keyboard and mouse for collaborative operations.
+The **inputDeviceCooperate** module enables two or more networked devices to share the keyboard and mouse for collaborative operations.
 
-> **Description**
+> **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
+
 
 ## Modules to Import
 
@@ -18,7 +20,7 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Specifies whether to enable screen hopping. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -52,7 +54,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 Specifies whether to enable screen hopping. This API uses a promise to return the result.
 
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -90,7 +92,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 Starts screen hopping. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -133,7 +135,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 Starts screen hopping. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -181,7 +183,7 @@ stop(callback: AsyncCallback\<void>): void
 
 Stops screen hopping. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -213,9 +215,9 @@ stop(): Promise\<void>
 
 Stops screen hopping. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
-**Parameters**
+**Return value**
 
 | Name               | Description                           |
 | --------             | ----------------------------   |
@@ -241,7 +243,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 
 Checks whether screen hopping is enabled. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -273,7 +275,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 Checks whether screen hopping is enabled. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -311,7 +313,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 Enables listening for screen hopping events.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
@@ -340,14 +342,14 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 Disables listening for screen hopping events.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
 
 | Name               | Type                                                             | Mandatory   | Description                          |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
 | type                 | string                                                           |  Yes   | Event type. The value is **cooperation**.        |
-| callback             | AsyncCallback<void> |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
+| callback             | AsyncCallback\<void> |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
 
 
@@ -384,7 +386,7 @@ try {
 
 Enumerates screen hopping event.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 | Name                       | Value       | Description                             |
 | --------                     | --------- |  -----------------               |

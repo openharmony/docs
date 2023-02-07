@@ -1,9 +1,12 @@
 # FAQs
 
+- [Programming Languages](faqs-language.md)
 - [Ability Framework Development](faqs-ability.md)
 - [Bundle Management Development](faqs-bundle.md)
-- [ArkUI (eTS) Development](faqs-ui-ets.md)
+- [ArkUI (ArkTS) Development](faqs-ui-ets.md)
+- [ArkUI Web Component (ArkTS) Development](faqs-web-arkts.md)
 - [ArkUI (JavaScript) Development](faqs-ui-js.md)
+- [Common Event and Notification Development](faqs-event-notification.md)
 - [Graphics and Image Development](faqs-graphics.md)
 - [File Management Development](faqs-file-management.md)
 - [Media Development](faqs-media.md)

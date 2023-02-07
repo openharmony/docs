@@ -117,7 +117,7 @@ insert(element: T, index: number): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -276,7 +276,7 @@ removeByIndex(index: number): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -351,7 +351,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByRange method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
 
 **示例：**
 
@@ -527,7 +527,7 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The subArrayList method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
 
 **示例：**
 

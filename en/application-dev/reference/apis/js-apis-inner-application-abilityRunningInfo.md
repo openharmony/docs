@@ -8,7 +8,7 @@ The **AbilityRunningInfo** module defines the running information and state of a
 
 ## Usage
 
-The ability running information is obtained by using the **getAbilityRunningInfos** API in **abilityManager**.
+The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos) in **abilityManager**.
 
 ## Attributes
 
@@ -28,7 +28,8 @@ The ability running information is obtained by using the **getAbilityRunningInfo
 **Example**
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
+
 abilitymanager.getAbilityRunningInfos((err,data) => { 
     console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
     for (let i = 0; i < data.length; i++) {

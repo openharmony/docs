@@ -30,7 +30,7 @@
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   - [Graphics](subsystems/subsys-graphics-overview.md)	
   - [Multimedia](subsystems/subsys-multimedia-camera-overview.md)	
-  - [Utils](subsystems/subsys-utils-overview.md)
+  - [Utils](subsystems/subsys-utils-guide.md)
   - [AI Framework](subsystems/subsys-ai-aiframework-devguide.md)	
   - [Data Management](subsystems/subsys-data-relational-database-overview.md)
   - [Sensor](subsystems/subsys-sensor-overview.md)
@@ -47,10 +47,10 @@
     - [Mini- and Small-System Devices](guide/device-wlan-led-control.md)	
     - [Standard-System Devices](guide/device-clock-guide.md)
 - Debugging
-  - [Test Case Development](subsystems/subsys-testguide-test.md)	
+  - [Test Case Development](device-test/developer_test.md)	
   - [R&D Tools](subsystems/subsys-toolchain-hdc-guide.md)
 - XTS Certification	
-  - [XTS Test Case Development](subsystems/subsys-xts-guide.md)	
+  - [XTS Test Case Development](device-test/xts.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)

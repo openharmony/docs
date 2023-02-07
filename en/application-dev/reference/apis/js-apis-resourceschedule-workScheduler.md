@@ -1,4 +1,4 @@
-# @ohos.resourceschedule.workScheduler
+# @ohos.resourceschedule.workScheduler (Work Scheduler)
 
 The **workScheduler** module provides the APIs for registering, canceling, and querying Work Scheduler tasks, which do not have real-time constraints.
 

@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-应用包的信息，未做特殊说明的属性，均通过[GET_BUNDLE_DEFAULT](js-apis-Bundle.md)获取。
+应用包的信息，通过[bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated)获取。
 
 ## BundleInfo<sup>(deprecated)<sup>
 
@@ -20,9 +20,9 @@
 | installTime                      | number                                                       | 是   | 否   | HAP安装时间。                                                |
 | updateTime                       | number                                                       | 是   | 否   | HAP更新时间。                                                |
 | appInfo                          | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)         | 是   | 否   | 应用程序的配置信息。                                         |
-| abilityInfos                     | Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>         | 是   | 否   | Ability的配置信息<br />通过传入GET_BUNDLE_WITH_ABILITIES获取。 |
-| reqPermissions                   | Array\<string>                                               | 是   | 否   | 应用运行时需向系统申请的权限集合<br />通过传入GET_BUNDLE_WITH_REQUESTED_PERMISSION获取。 |
-| reqPermissionDetails             | Array\<[ReqPermissionDetail](#reqpermissiondetaildeprecated)> | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息<br />通过传入GET_BUNDLE_WITH_REQUESTED_PERMISSION获取。 |
+| abilityInfos                     | Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>         | 是   | 否   | Ability的配置信息<br />通过调用[bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated)接口时，传入GET_BUNDLE_WITH_ABILITIES获取。 |
+| reqPermissions                   | Array\<string>                                               | 是   | 否   | 应用运行时需向系统申请的权限集合<br />通过调用[bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated)接口时，传入GET_BUNDLE_WITH_REQUESTED_PERMISSION获取。 |
+| reqPermissionDetails             | Array\<[ReqPermissionDetail](#reqpermissiondetaildeprecated)> | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息<br />通过调用[bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated)接口时，传入GET_BUNDLE_WITH_REQUESTED_PERMISSION获取。 |
 | vendor                           | string                                                       | 是   | 否   | 应用包的供应商。                                             |
 | versionCode                      | number                                                       | 是   | 否   | 应用包的版本号。                                             |
 | versionName                      | string                                                       | 是   | 否   | 应用包的版本文本描述信息。                                   |

@@ -46,33 +46,77 @@ struct bindPopupPage {
 
 ## 状态变量数据类型声明使用限制
 
-@State、@Provide、 @Link和@Consume四种状态变量的数据类型声明只能由简单数据类型或引用数据类型的其中一种构成。
+1. 所有的状态装饰器变量需要显式声明变量类型，不允许声明any，不支持Date数据类型。
 
-示例：
+    示例：
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct IndexPage {
-  //错误写法: @State message: string | Resource = 'Hello World'
-  @State message: string = 'Hello World'
+    ```ts
+    // xxx.ets
+    @Entry
+    @Component
+    struct DatePickerExample {
+      //错误写法: @State isLunar: any = false
+      @State isLunar: boolean = false
+      //错误写法: @State selectedDate: Date = new Date('2021-08-08')
+      private selectedDate: Date = new Date('2021-08-08')
 
-  build() {
-    Row() {
-      Column() {
-        Text(`${this.message}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+      build() {
+        Column() {
+          Button('切换公历农历')
+            .margin({ top: 30 })
+            .onClick(() => {
+              this.isLunar = !this.isLunar
+            })
+          DatePicker({
+            start: new Date('1970-1-1'),
+            end: new Date('2100-1-1'),
+            selected: this.selectedDate
+          })
+            .lunar(this.isLunar)
+            .onChange((value: DatePickerResult) => {
+              this.selectedDate.setFullYear(value.year, value.month, value.day)
+              console.info('select current date is: ' + JSON.stringify(value))
+            })
+
+        }.width('100%')
       }
-      .width('100%')
     }
-    .height('100%')
-  }
-}
-```
+    ```
 
-![hello](figures/hello.PNG)
+    ![datePicker](../../application-dev/reference/arkui-ts/figures/datePicker.gif)
+
+2. @State、@Provide、 @Link和@Consume四种状态变量的数据类型声明只能由简单数据类型或引用数据类型的其中一种构成。
+
+    类型定义中的Length、ResourceStr、ResourceColor三个类型是简单数据类型或引用数据类型的组合，所以不能被以上四种状态装饰器变量使用。
+    Length、ResourceStr、ResourceColor的定义请看文档[arkui-ts类型定义](../../application-dev/reference/arkui-ts/ts-types.md)。
+
+    示例：
+
+    ```ts
+    // xxx.ets
+    @Entry
+    @Component
+    struct IndexPage {
+      //错误写法: @State message: string | Resource = 'Hello World'
+      @State message: string = 'Hello World'
+      //错误写法: @State message: ResourceStr = $r('app.string.hello')
+      @State resourceStr: Resource = $r('app.string.hello')
+
+      build() {
+        Row() {
+          Column() {
+            Text(`${this.message}`)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```
+
+    ![hello](figures/hello.PNG)
 
 ## 自定义组件成员变量初始化的方式与约束
 
@@ -98,6 +142,8 @@ struct IndexPage {
 | @Link        | 禁止    | 必须          |
 | @StorageLink | 必须    | 禁止          |
 | @StorageProp | 必须    | 禁止          |
+| @LocalStorageLink | 必须    | 禁止          |
+| @LocalStorageProp | 必须    | 禁止          |
 | @Provide     | 必须    | 可选          |
 | @Consume     | 禁止    | 禁止          |
 | @ObjectLink  | 禁止    | 必须          |
@@ -111,25 +157,77 @@ struct IndexPage {
 
 通过构造函数方法初始化成员变量，需要遵循如下规则：
 
-| 从父组件中的变量（下）到子组件中的变量（右） | @State | @Link  | @Prop  | 常规变量 |
-| -------------------------------------------- | ------ | ------ | ------ | -------- |
-| @State                                       | 不允许 | 允许   | 允许   | 允许     |
-| @Link                                        | 不允许 | 允许   | 不推荐 | 允许     |
-| @Prop                                        | 不允许 | 不允许 | 允许   | 允许     |
-| @StorageLink                                 | 不允许 | 允许   | 不允许 | 不允许   |
-| @StorageProp                                 | 不允许 | 不允许 | 不允许 | 允许     |
-| 常规变量                                     | 允许   | 不允许 | 不允许 | 允许     |
+| **从父组件中的变量(右)到子组件中的变量(下)** | **regular** | **@State** | **@Link** | **@Prop** | **@Provide** | **@Consume** | **@ObjectLink** |
+|---------------------------------|----------------------------|------------|-----------|-----------|--------------|--------------|------------------|
+| **regular**                    | 支持                         | 支持         | 支持        | 支持        | 不支持            | 不支持            | 支持               |
+| **@State**                     | 支持                         | 支持         | 支持        | 支持        | 支持           | 支持           | 支持               |
+| **@Link**                      | 不支持                          | 支持(1)      | 支持(1)     | 支持(1)     | 支持(1)        | 支持(1)        | 支持(1)            |
+| **@Prop**                      | 支持                         | 支持         | 支持        | 支持        | 支持           | 支持           | 支持               |
+| **@Provide**                   | 支持                         | 支持         | 支持        | 支持        | 支持           | 支持           | 支持               |
+| **@Consume**                   | 不支持                          | 不支持          | 不支持         | 不支持         | 不支持            | 不支持            | 不支持                |
+| **@ObjectLink**                | 不支持                          | 不支持      | 不支持         | 不支持         | 不支持            | 不支持            | 不支持                |
+
+| **从父组件中的变量(右)到子组件中的变量(下)** | **@StorageLink** | **@StorageProp** | **@LocalStorageLink** | **@LocalStorageProp** |
+|------------------|------------------|------------------|-----------------------|------------------------|
+| **regular**                   | 支持               | 不支持                | 不支持                     | 不支持              |
+| **@State**                    | 支持               | 支持               | 支持                    | 支持                     |
+| **@Link**                     | 支持(1)            | 支持(1)            | 支持(1)                 | 支持(1)                  |
+| **@Prop**                     | 支持               | 支持               | 支持                    | 支持                     |
+| **@Provide**                  | 支持               | 支持               | 支持                    | 支持                     |
+| **@Consume**                  | 不支持             | 不支持              | 不支持                  | 不支持                   |
+| **@ObjectLink**               | 不支持             | 不支持              | 不支持                  | 不支持                   |
+
+> **说明**
+>
+> **支持(1)**：必须使用`$`, 例如 `this.$varA`。  
+> **regular**：未加修饰的常规变量。
 
 从上表中可以看出：
 
-- 父组件的常规变量可以用于初始化子组件的@State变量，但不能用于初始化@Link或@Prop变量。
+- 子组件的@ObjectLink变量不支持父组件装饰器变量的直接赋值，其父组件的源必须是数组的项或对象的属性，该数组或对象必现用`@State`、`@Link`、`@Provide`、`@Consume`或`@ObjectLink`装饰器修饰。
 
-- 父组件的@State变量可以初始化子组件的@Prop、@Link（通过$）或常规变量，但不能初始化子组件的@State变量。
+- 父组件的常规变量可以用于初始化子组件的`@State`变量，但不能用于初始化`@Link`、`@Consume`和`@ObjectLink`变量。
 
-- 父组件的@Link变量可以初始化子组件的@Link或常规变量。但是初始化子组件的@State成员是语法错误，此外不建议初始化@Prop。
+- 父组件的@State变量可以初始化子组件的`@Prop`、`@Link`（通过$）或常规变量，但不能初始化子组件的@Consume变量。
 
-- 父组件的@Prop变量可以初始化子组件的常规变量或@Prop变量，但不能初始化子组件的@State或@Link变量。
+- 父组件的@Link变量不可以初始化子组件的`@Consume`和`@ObjectLink`变量。
 
-- @StorageLink和@StorageProp不允许由父组件中传递到子组件。
+- 父组件的@Prop变量不可以初始化子组件的`@Consume`和`@ObjectLink`变量。
+
+- 不允许从父组件初始化`@StorageLink`, `@StorageProp`, `@LocalStorageLink`, `@LocalStorageProp`修饰的变量。
 
 - 除了上述规则外，还需要遵循TS的强类型规则。
+
+示例：
+```ts
+@Entry
+@Component
+struct Parent {
+  message: string = "Hello World"
+  build() {
+    Column() {
+      Child({
+        stateMessage: this.message,
+        /* ArkTS:ERROR The regular property 'message' cannot be assigned  
+           to the @Link property 'linkMessage'.*/
+        linkMessage: this.$message
+      })
+    }
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @State stateMessage: string = "Hello World"
+  @Link linkMessage: string
+  build() {
+    Column() {
+      Text(this.stateMessage)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+  }
+}
+```

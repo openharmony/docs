@@ -1,4 +1,4 @@
-# @ohos.inputmethodextensioncontext (InputMethodExtensionContext)
+# @ohos.InputMethodExtensionContext (InputMethodExtensionContext)
 
 InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环境，继承自ExtensionContext。
 
@@ -11,7 +11,7 @@ InputMethodExtensionContext模块提供InputMethodExtensionAbility具有的能�
 ## 导入模块
 
 ```
-import InputMethodExtensionContext from '@ohos.inputmethodextensioncontext';
+import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 ```
 
 ## 使用说明
@@ -19,8 +19,8 @@ import InputMethodExtensionContext from '@ohos.inputmethodextensioncontext';
 在使用InputMethodExtensionContext的功能前，需要通过InputMethodExtensionAbility子类实例获取。
 
 ```js
-import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
-class MainAbility extends InputMethodExtensionAbility {
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+class EntryAbility extends InputMethodExtensionAbility {
     onCreate() {
         let context = this.context;
     }
@@ -66,9 +66,9 @@ destroy(): Promise<void&gt;
 **示例：**
 
 ```js
-this.context.destroy().then((data) => {
-    console.log('success:' + JSON.stringify(data));
+this.context.destroy().then(() => {
+    console.log('Succeed in destoring context.');
 }).catch((error) => {
-    console.log('failed:' + JSON.stringify(error));
+    console.log('Failed to destory context: ' + JSON.stringify(error));
 });
 ```

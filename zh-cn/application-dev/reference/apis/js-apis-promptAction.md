@@ -32,7 +32,7 @@ showToast(options: ShowToastOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **示例：**
 
@@ -40,7 +40,7 @@ showToast(options: ShowToastOptions): void
 try {
   promptAction.showToast({            
     message: 'Message Info',
-    duration: 2000,      
+    duration: 2000 
   });
 } catch (error) {
   console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
@@ -88,7 +88,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **示例：**
 
@@ -100,11 +100,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ],
   })
@@ -142,7 +142,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **示例：**
 
@@ -154,11 +154,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ]
   }, (err, data) => {
@@ -218,7 +218,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **示例：**
 
@@ -229,11 +229,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   }, (err, data) => {
@@ -276,7 +276,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **示例：**
 
@@ -287,11 +287,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   })

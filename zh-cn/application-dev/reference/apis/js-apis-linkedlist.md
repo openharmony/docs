@@ -7,7 +7,7 @@ LinkedList底层通过双向链表实现，双向链表的每个节点都包含�
 
 LinkedList和[List](js-apis-list.md)相比，LinkedList是双向链表，可以快速地在头尾进行增删，而List是单向链表，无法双向操作。
 
-LinkedList和[ArrayList](js-apis-arraylist.md)相比，存取数据的效率不如ArrayList。
+LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedList优于ArrayList，而查询效率ArrayList优于LinkedList。
 
 **推荐使用场景：** 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
 
@@ -153,7 +153,7 @@ insert(index: number, element: T): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -354,7 +354,7 @@ removeByIndex(index: number): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -389,7 +389,7 @@ removeFirst(): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeFirst method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 
@@ -424,7 +424,7 @@ removeLast(): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeLast method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 
@@ -504,7 +504,7 @@ removeFirstFound(element: T): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeFirstFound method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 
@@ -544,7 +544,7 @@ removeLastFound(element: T): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeLastFound method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 
@@ -690,7 +690,7 @@ set(index: number, element: T): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The set method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 

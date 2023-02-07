@@ -1,4 +1,4 @@
-# @ohos.application.Configuration
+# @ohos.application.Configuration (Configuration)
 
 The **Configuration** module defines environment change information.
 
@@ -16,7 +16,7 @@ import Configuration from '@ohos.application.Configuration'
 
   | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| language<sup>8+</sup> | string | Yes| Yes| Language of the application.|
+| language<sup>8+</sup> | string | Yes| Yes| Language of the application, for example, **zh**.|
 | colorMode<sup>8+</sup> | [ColorMode](js-apis-application-configurationConstant.md#configurationconstantcolormode) | Yes| Yes| Color mode, which can be **COLOR_MODE_LIGHT** or **COLOR_MODE_DARK**. The default value is **COLOR_MODE_LIGHT**.|
 | direction<sup>9+</sup> | [Direction](js-apis-application-configurationConstant.md#configurationconstantdirection9) | Yes| No| Screen orientation, which can be **DIRECTION_HORIZONTAL** or **DIRECTION_VERTICAL**.|
 | screenDensity<sup>9+</sup>  | [ScreenDensity](js-apis-application-configurationConstant.md#configurationconstantscreendensity9) | Yes| No| Screen resolution, which can be **SCREEN_DENSITY_SDPI** (120), **SCREEN_DENSITY_MDPI** (160), **SCREEN_DENSITY_LDPI** (240), **SCREEN_DENSITY_XLDPI** (320), **SCREEN_DENSITY_XXLDPI** (480), or **SCREEN_DENSITY_XXXLDPI** (640).|
@@ -26,13 +26,12 @@ import Configuration from '@ohos.application.Configuration'
 For details about the fields, see the **ohos.application.Configuration.d.ts** file.
 
 **Example**
-    
   ```ts
 import hilog from '@ohos.hilog';
-import Ability from '@ohos.application.Ability'
-import Window from '@ohos.window'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
     }
 

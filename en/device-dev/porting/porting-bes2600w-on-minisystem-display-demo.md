@@ -1,6 +1,4 @@
-
-
-# Mini-System Devices with Screens — Bestechnic SoC Porting Case
+# Mini-System Devices with Screens – Bestechnic SoC Porting Case
 
 This document exemplifies the porting procedure for a development board on a mini-system device with a screen – an intelligent switch panel. It uses the BES multi-modal V200Z-R development board powered by the Bestechnic BES2600W SoC as an example. Components such as `ace_engine_lite`, `graphic_ui`, `aafwk_lite`, `appexecfwk_lite`, and `HDF` are adapted based on the OpenHarmony LiteOS-M kernel. This example uses the board-SoC separation solution as the porting architecture, the Newlib C or Musl C library as the toolchain, and GN and Kconfig graphical configuration for LiteOS-M kernel compilation.
 
@@ -1395,7 +1393,7 @@ To adapt the `aafwk` subsystem, you need to add the `aafwk_lite` component in th
 For details about the `aafwk_lite` use cases, see the `vendor/bestechnic/display_demo/tests/ability` directory, which includes the `launcher` and `js app` applications. The function invocation process of the applications is described as follows:
 
 1. `launcher` application: Use `InstallLauncher` to install the `native ui` application, whose `BundleName` is `"com.example.launcher"`. After `AbilityMgrSliteFeature` is started, `AbilityMgrHandler::StartLauncher()` is invoked to start the `launcher` application.
-   
+  
 2. `StartJSApp` application: Use `StartAbility` to start any `Want` and pass `want data` to `JS_APP_PATH`,
    `SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`.
 
@@ -1422,7 +1420,7 @@ For details about product compatibility specifications, see [Introduction to Pro
 
 ### XTS Test Cases
 
-For details about the `XTS` test cases, see [XTS](../subsystems/subsys-xts-guide.md). To adapt the `XTS` subsystem, you need to add the `xts_acts`/`xts_tools` component in the `config.json` file, as shown below:
+For details about the `XTS` test cases, see [XTS](../device-test/xts.md). To adapt the `XTS` subsystem, you need to add the `xts_acts`/`xts_tools` component in the `config.json` file, as shown below:
 
     {
       "subsystem": "xts",

@@ -1,7 +1,6 @@
 # @ohos.util.Queue (Linear Container Queue)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **Queue** follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. **Queue** is implemented based on the queue data structure.
@@ -41,7 +40,7 @@ A constructor used to create a **Queue** instance.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -76,7 +75,7 @@ Adds an element at the end of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -110,7 +109,7 @@ Removes the first element from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -144,7 +143,7 @@ Obtains the first element of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -187,7 +186,7 @@ callbackfn
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -222,7 +221,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |

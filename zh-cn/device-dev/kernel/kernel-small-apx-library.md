@@ -15,21 +15,23 @@ musl libc库支持POSIX标准，涉及的系统调用相关接口由OpenHarmony�
 标准库支持接口的详细情况请参考C库的API文档，其中也涵盖了与POSIX标准之间的差异说明。
 
 
-## 操作实例
+### 编程实例
+
+
+####  实例描述
 
 在本示例中，主线程创建了THREAD_NUM个子线程，每个子线程启动后等待被主线程唤醒，主线程成功唤醒所有子线程后，子线程继续执行直至生命周期结束，同时主线程通过pthread_join方法等待所有线程执行结束。
 
-  
+####  编程示例
+
+本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数ExamplePosix。
+
+示例代码如下：  
+
 ```
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
-
-#ifdef __cplusplus
-#if __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-#endif /* __cplusplus */
 
 #define THREAD_NUM 3
 int g_startNum = 0; /* 启动的线程数 */
@@ -40,10 +42,8 @@ struct testdata {
     pthread_cond_t cond;
 } g_td;
 
-/*
- * 子线程入口函数
- */
-static void *ChildThreadFunc(void *arg)
+/* 子线程入口函数 */
+static VOID *ChildThreadFunc(VOID *arg)
 {
     int rc;
     pthread_t self = pthread_self();
@@ -51,7 +51,7 @@ static void *ChildThreadFunc(void *arg)
     /* 获取mutex锁 */
     rc = pthread_mutex_lock(&g_td.mutex);
     if (rc != 0) {
-        printf("ERROR:take mutex lock failed, error code is %d!\n", rc);
+        dprintf("ERROR:take mutex lock failed, error code is %d!\n", rc);
         goto EXIT;
     }
 
@@ -61,7 +61,7 @@ static void *ChildThreadFunc(void *arg)
     /* 等待cond条件变量 */
     rc = pthread_cond_wait(&g_td.cond, &g_td.mutex);
     if (rc != 0) {
-        printf("ERROR: pthread condition wait failed, error code is %d!\n", rc);
+        dprintf("ERROR: pthread condition wait failed, error code is %d!\n", rc);
         (void)pthread_mutex_unlock(&g_td.mutex);
         goto EXIT;
     }
@@ -69,7 +69,7 @@ static void *ChildThreadFunc(void *arg)
     /* 尝试获取mutex锁，正常场景，此处无法获取锁 */
     rc = pthread_mutex_trylock(&g_td.mutex);
     if (rc == 0) {
-        printf("ERROR: mutex gets an abnormal lock!\n");
+        dprintf("ERROR: mutex gets an abnormal lock!\n");
         goto EXIT;
     }
 
@@ -79,14 +79,14 @@ static void *ChildThreadFunc(void *arg)
     /* 释放mutex锁 */
     rc = pthread_mutex_unlock(&g_td.mutex);
     if (rc != 0) {
-        printf("ERROR: mutex release failed, error code is %d!\n", rc);
+        dprintf("ERROR: mutex release failed, error code is %d!\n", rc);
         goto EXIT;
     }
 EXIT:
     return NULL;
 }
 
-static int testcase(void)
+static int ExamplePosix(VOID)
 {
     int i, rc;
     pthread_t thread[THREAD_NUM];
@@ -94,14 +94,14 @@ static int testcase(void)
     /* 初始化mutex锁 */
     rc = pthread_mutex_init(&g_td.mutex, NULL);
     if (rc != 0) {
-        printf("ERROR: mutex init failed, error code is %d!\n", rc);
+        dprintf("ERROR: mutex init failed, error code is %d!\n", rc);
         goto ERROROUT;
     }
 
     /* 初始化cond条件变量 */
     rc = pthread_cond_init(&g_td.cond, NULL);
     if (rc != 0) {
-        printf("ERROR: pthread condition init failed, error code is %d!\n", rc);
+        dprintf("ERROR: pthread condition init failed, error code is %d!\n", rc);
         goto ERROROUT;
     }
 
@@ -109,10 +109,11 @@ static int testcase(void)
     for (i = 0; i < THREAD_NUM; i++) {
         rc = pthread_create(&thread[i], NULL, ChildThreadFunc, NULL);
         if (rc != 0) {
-            printf("ERROR: pthread create failed, error code is %d!\n", rc);
+            dprintf("ERROR: pthread create failed, error code is %d!\n", rc);
             goto ERROROUT;
         }
     }
+    dprintf("pthread_create ok\n");
 
     /* 等待所有子线程都完成mutex锁的获取 */
     while (g_startNum < THREAD_NUM) {
@@ -122,14 +123,14 @@ static int testcase(void)
     /* 获取mutex锁，确保所有子线程都阻塞在pthread_cond_wait上 */
     rc = pthread_mutex_lock(&g_td.mutex);
     if (rc != 0) {
-        printf("ERROR: mutex lock failed, error code is %d\n", rc);
+        dprintf("ERROR: mutex lock failed, error code is %d\n", rc);
         goto ERROROUT;
     }
 
     /* 释放mutex锁 */
     rc = pthread_mutex_unlock(&g_td.mutex);
     if (rc != 0) {
-        printf("ERROR: mutex unlock failed, error code is %d!\n", rc);
+        dprintf("ERROR: mutex unlock failed, error code is %d!\n", rc);
         goto ERROROUT;
     }
 
@@ -137,7 +138,7 @@ static int testcase(void)
         /* 在cond条件变量上广播信号 */
         rc = pthread_cond_signal(&g_td.cond);
         if (rc != 0) {
-            printf("ERROR: pthread condition failed, error code is %d!\n", rc);
+            dprintf("ERROR: pthread condition failed, error code is %d!\n", rc);
             goto ERROROUT;
         }
     }
@@ -146,52 +147,42 @@ static int testcase(void)
 
     /* 检查是否所有子线程都已被唤醒 */
     if (g_wakenNum != THREAD_NUM) {
-        printf("ERROR: not all threads awaken, only %d thread(s) awaken!\n", g_wakenNum);
+        dprintf("ERROR: not all threads awaken, only %d thread(s) awaken!\n", g_wakenNum);
         goto ERROROUT;
     }
+    dprintf("all threads awaked\n");
 
     /* join所有子线程，即等待其结束 */
     for (i = 0; i < THREAD_NUM; i++) {
         rc = pthread_join(thread[i], NULL);
         if (rc != 0) {
-            printf("ERROR: pthread join failed, error code is %d!\n", rc);
+            dprintf("ERROR: pthread join failed, error code is %d!\n", rc);
             goto ERROROUT;
         }
     }
+    dprintf("all threads join ok\n");
 
     /* 销毁cond条件变量 */
     rc = pthread_cond_destroy(&g_td.cond);
     if (rc != 0) {
-        printf("ERROR: pthread condition destroy failed, error code is %d!\n", rc);
+        dprintf("ERROR: pthread condition destroy failed, error code is %d!\n", rc);
         goto ERROROUT;
     }
     return 0;
 ERROROUT:
     return -1;
 }
-
-/*
- * 示例代码主函数
- */
-int main(int argc, char *argv[])
-{
-    int rc;
-
-    /* 启动测试函数 */
-    rc = testcase();
-    if (rc != 0) {
-        printf("ERROR: testcase failed!\n");
-    }
-
-    return 0;
-}
-#ifdef __cplusplus
-#if __cplusplus
-}
-#endif /* __cplusplus */
-#endif /* __cplusplus */
 ```
 
+#### 验证结果
+
+  输出结果如下：
+
+```
+pthread_create ok
+all threads awaked
+all threads join ok
+```
 
 ## 与Linux标准库差异
 
@@ -209,20 +200,17 @@ int main(int argc, char *argv[])
 
 ### 内存
 
-**h2与Linux mmap的差异**
+**与Linux mmap的差异**
 
 mmap接口原型为：void \*mmap (void \*addr, size_t length, int prot, int flags, int fd, off_t offset)。
 
 其中，参数fd的生命周期实现与Linux glibc存在差异。具体体现在，glibc在成功调用mmap进行映射后，可以立即释放fd句柄。在OpenHarmony内核中，不允许用户在映射成功后立即关闭相关fd，只允许在取消映射munmap后再进行fd的close操作。如果用户不进行fd的close操作，操作系统将在进程退出时对该fd进行回收。
 
-
-**h2代码举例**
+**代码举例**
 
 
 Linux目前支持的情况如下：
 
-
-  
 ```
 int main(int argc, char *argv[])
 {
@@ -239,7 +227,7 @@ int main(int argc, char *argv[])
         perror("mmap");
         exit(EXIT_FAILURE);
     }
-    close(fd); /*  OpenHarmony does not support closing fd immediately after the mapping is successful. */ 
+    close(fd);  /* OpenHarmony does not support closing fd immediately after the mapping is successful. */ 
     ...
     exit(EXIT_SUCCESS);
 }
@@ -247,7 +235,7 @@ int main(int argc, char *argv[])
 
 
   OpenHarmony支持的情况如下：
-  
+
 ```
 int main(int argc, char *argv[])
 {
@@ -266,7 +254,7 @@ int main(int argc, char *argv[])
     }
     ...
     munmap(addr, length);
-    close(fd); /* Close fd after the munmap is canceled. */
+    close(fd);  /* Close fd after the munmap is canceled. */
     exit(EXIT_SUCCESS);
 }
 ```

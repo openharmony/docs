@@ -1,12 +1,12 @@
-# Permission Verification Guide
+# API Access Permission Verification
 
 ## When to Use
 
-To protect sensitive data and eliminate security threads on core abilities, you can use the permissions in the [App Permission List](permission-list.md) to protect the related API from unauthorized calling. Each time before the API is called, a permission verification is performed to check whether the caller has the required permission.
+To protect sensitive data and eliminate security threads on core abilities, you can use the permissions in the [Application Permission List](permission-list.md) to protect the related API from unauthorized calling. Each time before the API is called, a permission verification is performed to check whether the caller has the required permission.
 
 ## Available APIs
 
-The table below lists only the API used in this guide. For more information, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
+The table below lists only the API used for access permission verification. For more information, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
 
 | API                                                      | Description                                            |
 | ------------------------------------------------------------ | --------------------------------------------------- |
@@ -18,8 +18,11 @@ The table below lists only the API used in this guide. For more information, see
 The procedure is as follows:
 
 1. Obtain the caller's identity (**tokenId**).
+   > **NOTE**
+   > 
+   > You can use **getCallingTokenId** to obtain the caller's **tokenId**. For details, see [RPC](../reference/apis/js-apis-rpc.md#getcallingtokenid8).
 2. Determine the permission to verify, which is **ohos.permission.PERMISSION** in this example.
-3. Call **verifyAccessToken()** to perform a permission verification of the caller.
+3. Call **verifyAccessToken()** to perform a permission verification for the caller.
 4. Proceed based on the permission verification result.
 
 ```js
@@ -42,5 +45,3 @@ The procedure is as follows:
   }
 
 ```
-> **NOTE**<br>
-> You can use **getCallingTokenId** to obtain the caller's **tokenId**. For details, see [RPC](../reference/apis/js-apis-rpc.md#getcallingtokenid8).

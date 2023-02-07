@@ -180,6 +180,7 @@
          - [异常调测](kernel/kernel-mini-memory-exception.md)
          - [Trace调测](kernel/kernel-mini-memory-trace.md)
          - [LMS调测](kernel/kernel-mini-memory-lms.md)
+         - [SHELL](kernel/kernel-mini-debug-shell.md)
        - 附录
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
@@ -289,7 +290,7 @@
            - [魔法键使用方法](kernel/kernel-small-debug-shell-magickey.md)
            - [用户态异常信息说明](kernel/kernel-small-debug-shell-error.md)
          - [Trace调测](kernel/kernel-small-debug-trace.md)
-         - [Perf调测](kernel/kernel-mini-memory-perf.md)
+         - [Perf调测](kernel/kernel-small-debug-perf.md)
          - [LMS调测](kernel/kernel-small-memory-lms.md)
          - [进程调测](kernel/kernel-small-debug-process-cpu.md)
          - 内核态内存调测
@@ -415,10 +416,7 @@
        - [音视频开发概述](subsystems/subsys-multimedia-video-overview.md)
        - [音视频播放开发指导](subsystems/subsys-multimedia-video-play-guide.md)
        - [音视频录制开发指导](subsystems/subsys-multimedia-video-record-guide.md)
-  -  公共基础
-     - [公共基础库概述](subsystems/subsys-utils-overview.md)
-     - [公共基础库开发指导](subsystems/subsys-utils-guide.md)
-     - [公共基础库常见问题](subsystems/subsys-utils-faqs.md)
+  -  [公共基础库开发指导](subsystems/subsys-utils-guide.md)
   -  [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
   -  数据管理
      - 关系型数据库

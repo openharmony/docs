@@ -1,6 +1,6 @@
-# @ohos.ability.dataUriUtils
+# @ohos.ability.dataUriUtils (dataUriUtils)
 
-The **DataUriUtils** module provides APIs to handle utility classes for objects using the **DataAbilityHelper** schema. You can use the APIs to attach an ID to the end of a given URI and obtain, delete, or update the ID attached to the end of a given URI. This module will be replaced by the **app.ability.dataUriUtils** module in the near future. You are advised to use the **[@ohos.app.ability.dataUriUtils](js-apis-app-ability-dataUriUtils.md)** module.
+The **DataUriUtils** module provides APIs to process URI objects. You can use the APIs to attach an ID to the end of a given URI and obtain, delete, or update the ID attached to the end of a given URI. This module will be replaced by the **app.ability.dataUriUtils** module in the near future. You are advised to use the **[@ohos.app.ability.dataUriUtils](js-apis-app-ability-dataUriUtils.md)** module.
 
 > **NOTE**
 > 
@@ -24,18 +24,18 @@ Obtains the ID attached to the end of a given URI.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | URI object from which the ID is to be obtained.|
+| uri  | string | Yes  | Target URI object.|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | ID obtained from the URI object.|
+| number | ID obtained.|
 
 **Example**
 
 ```ts
-dataUriUtils.getId("com.example.dataUriUtils/1221")
+let id = dataUriUtils.getId("com.example.dataUriUtils/1221");
 ```
 
 
@@ -52,7 +52,7 @@ Attaches an ID to the end of a given URI.
 
 | Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | Yes  | URI object to which an ID is to be attached.|
+| uri  | string | Yes  | Target URI object.|
 | id   | number | Yes  | ID to be attached.           |
 
 **Return value**
@@ -64,10 +64,10 @@ Attaches an ID to the end of a given URI.
 **Example**
 
 ```ts
-var idint = 1122;
-dataUriUtils.attachId(
+let id = 1122;
+let uri = dataUriUtils.attachId(
     "com.example.dataUriUtils",
-	idint,
+	id,
 )
 ```
 
@@ -96,8 +96,10 @@ Deletes the ID from the end of a given URI.
 **Example**
 
 ```ts
-dataUriUtils.deleteId("com.example.dataUriUtils/1221")
+let uri = dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 ```
+
+
 
 ## dataUriUtils.updateId
 
@@ -111,7 +113,7 @@ Updates the ID in a given URI.
 
 | Name| Type  | Mandatory| Description               |
 | ---- | ------ | ---- | ------------------- |
-| uri  | string | Yes  | URI object to be updated.|
+| uri  | string | Yes  | Target URI object.|
 | id   | number | Yes  | New ID.           |
 
 **Return value**
@@ -123,9 +125,9 @@ Updates the ID in a given URI.
 **Example**
 
 ```ts
-var idint = 1122;
-dataUriUtils.updateId(
-    "com.example.dataUriUtils",
-	idint
+let id = 1122;
+let uri = dataUriUtils.updateId(
+    "com.example.dataUriUtils/1221",
+	id
 )
 ```

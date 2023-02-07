@@ -122,9 +122,13 @@ isPointerVisible(): Promise&lt;boolean&gt;
 **示例**：
 
 ```js
-pointer.isPointerVisible().then((visible) => {
-  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-});
+try {
+  pointer.isPointerVisible().then((visible) => {
+    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+  });
+} catch (error) {
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
 ```
 
 ## pointer.setPointerSpeed<sup>9+</sup>
@@ -275,7 +279,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -318,7 +322,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -357,7 +361,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -395,7 +399,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);

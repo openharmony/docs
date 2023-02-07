@@ -24,7 +24,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | WantAgentInfo              | 是   | WantAgent信息。           |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | 是   | WantAgent信息。           |
 | callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
 **示例：**
@@ -34,27 +34,31 @@ import WantAgent from '@ohos.wantAgent';
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+    if (err.code) {
+        console.info('getWantAgent Callback err:' + JSON.stringify(err))
+    } else { 
+        console.info('getWantAgent Callback success')
+    }
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -64,10 +68,8 @@ var wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 ```
-
-
 
 ## WantAgent.getWantAgent
 
@@ -81,7 +83,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 | 参数名 | 类型          | 必填 | 说明          |
 | ---- | ------------- | ---- | ------------- |
-| info | WantAgentInfo | 是   | WantAgent信息。 |
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | 是   | WantAgent信息。 |
 
 **返回值：**
 
@@ -96,24 +98,24 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -124,11 +126,9 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
 });
 ```
-
-
 
 ## WantAgent.getBundleName
 
@@ -152,36 +152,43 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //getBundleName回调
+    function getBundleNameCallback(err, data) {
+        console.info('==========================>getBundleNameCallback=======================>');
+    }
+    WantAgent.getBundleName(wantAgent, getBundleNameCallback);
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -192,12 +199,6 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getBundleName回调
-function getBundleNameCallback(err, data) {
-	console.info("==========================>getBundleNameCallback=======================>");
-}
-WantAgent.getBundleName(wantAgent, getBundleNameCallback)
 ```
 
 
@@ -228,27 +229,27 @@ getBundleName(agent: WantAgent): Promise\<string\>
 import WantAgent from '@ohos.wantAgent';
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -259,12 +260,13 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.getBundleName(wantAgent).then((data) => {
-	console.info("==========================>getBundleNameCallback=======================>");
+    if (wantAgent) {
+        WantAgent.getBundleName(wantAgent).then((data) => {
+            console.info('==========================>getBundleNameCallback=======================>');
+        });
+    }
 });
 ```
 
@@ -292,36 +294,43 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //getUid回调
+    function getUidCallback(err, data) {
+        console.info('==========================>getUidCallback=======================>');
+    }
+    WantAgent.getUid(wantAgent, getUidCallback);
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -332,12 +341,6 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getUid回调
-function getUidCallback(err, data) {
-	console.info("==========================>getUidCallback=======================>");
-}
-WantAgent.getUid(wantAgent, getUidCallback)
 ```
 
 
@@ -369,27 +372,27 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -400,160 +403,15 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.getUid(wantAgent).then((data) => {
-	console.info("==========================>getUidCallback=======================>");
-});
-```
-
-
-
-## WantAgent.getWant
-
-getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
-
-获取WantAgent对象的want（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名     | 类型                  | 必填 | 说明                            |
-| -------- | --------------------- | ---- | ------------------------------- |
-| agent    | WantAgent             | 是   | WantAgent对象。                   |
-| callback | AsyncCallback\<Want\> | 是   | 获取WantAgent对象want的回调方法。 |
-
-**示例：**
-
-```ts
-import WantAgent from '@ohos.wantAgent';
-
-
-//wantAgent对象
-var wantAgent;
-
-//getWantAgent回调
-function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
-    if (err.code == 0) {
-    	wantAgent = data;
-    } else {
-        console.info('----getWantAgent failed!----');
+    if (wantAgent) {
+        WantAgent.getUid(wantAgent).then((data) => {
+        console.info('==========================>getUidCallback=======================>');
+    });
     }
-}
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//getWant回调
-function getWantCallback(err, data) {
-	console.info("==========================>getWantCallback=======================>");
-}
-WantAgent.getWant(wantAgent, getWantCallback)
-```
-
-
-
-## WantAgent.getWant
-
-getWant(agent: WantAgent): Promise\<Want\>
-
-获取WantAgent对象的want（Promise形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名  | 类型      | 必填 | 说明          |
-| ----- | --------- | ---- | ------------- |
-| agent | WantAgent | 是   | WantAgent对象。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
-
-**示例：**
-
-```ts
-import WantAgent from '@ohos.wantAgent';
-
-
-//wantAgent对象
-var wantAgent;
-
-//WantAgentInfo对象
-var wantAgentInfo = {
-    wants: [
-        {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
-                mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
-    wantAgent = data;
-});
-
-WantAgent.getWant(wantAgent).then((data) => {
-	console.info("==========================>getWantCallback=======================>");
 });
 ```
-
 
 
 ## WantAgent.cancel
@@ -578,36 +436,43 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //cancel回调
+    function cancelCallback(err, data) {
+        console.info('==========================>cancelCallback=======================>');
+    }
+    WantAgent.cancel(wantAgent, cancelCallback);
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -618,12 +483,6 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//cancel回调
-function cancelCallback(err, data) {
-	console.info("==========================>cancelCallback=======================>");
-}
-WantAgent.cancel(wantAgent, cancelCallback)
 ```
 
 
@@ -655,27 +514,27 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -686,12 +545,13 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.cancel(wantAgent).then((data) => {
-	console.info("==========================>cancelCallback=======================>");
+    if (wantAgent) {        
+        WantAgent.cancel(wantAgent).then((data) => {
+            console.info('==========================>cancelCallback=======================>');
+        });
+    }
 });
 ```
 
@@ -720,36 +580,47 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //trigger回调
+    function triggerCallback(data) {
+        console.info('==========================>triggerCallback=======================>');
+    }
+
+    var triggerInfo = {
+        code:0
+    }
+    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -760,16 +631,6 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//trigger回调
-function triggerCallback(data) {
-	console.info("==========================>triggerCallback=======================>");
-}
-
-var triggerInfo = {
-    code:0
-}
-WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 ```
 
 
@@ -778,7 +639,7 @@ WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-判断两个WantAgent实例是否相等（callback形式）。
+判断两个WantAgent实例是否相等（callback形式）,以此来判断是否是来自同一应用的相同操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -797,38 +658,45 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent1;
-var wantAgent2;
+let wantAgent1;
+let wantAgent2;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    //equal回调
+    function equalCallback(err, data) {
+        console.info('==========================>equalCallback=======================>');
+    }
+    WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -839,12 +707,6 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-//equal回调
-function equalCallback(err, data) {
-	console.info("==========================>equalCallback=======================>");
-}
-WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 ```
 
 
@@ -853,7 +715,7 @@ WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-判断两个WantAgent实例是否相等（Promise形式）。
+判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -877,28 +739,28 @@ import WantAgent from '@ohos.wantAgent';
 
 
 //wantAgent对象
-var wantAgent1;
-var wantAgent2;
+let wantAgent1;
+let wantAgent2;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -909,13 +771,18 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent1 = data;
     wantAgent2 = data;
+    if (data) {
+        WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
+            console.info('==========================>equalCallback=======================>');
+        });
+    }
 });
 
 WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
-	console.info("==========================>equalCallback=======================>");
+	console.info('==========================>equalCallback=======================>');
 });
 ```
 
@@ -940,27 +807,27 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 import WantAgent from '@ohos.wantAgent';
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -971,13 +838,14 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
+    if (data) {
+        WantAgent.getOperationType(wantAgent, (OperationType) => {
+            console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
+        })
+    }
 });
-
-WantAgent.getOperationType(wantAgent, (OperationType) => {
-    console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
-})
 ```
 
 ## WantAgent.getOperationType<sup>9+</sup>
@@ -1006,27 +874,27 @@ getOperationType(agent: WantAgent): Promise\<number>;
 import WantAgent from '@ohos.wantAgent';
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1037,17 +905,15 @@ var wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
+    WantAgent.getOperationType(wantAgent).then((OperationType) => {
+        console.log('getOperationType success, OperationType: ' + OperationType);
+    }).catch((err) => {
+        console.log('getOperationType fail, err: ' + err);
+    })
 });
-
-WantAgent.getOperationType(wantAgent).then((OperationType) => {
-    console.log('getOperationType success, OperationType: ' + OperationType);
-}).catch((err) => {
-    console.log('getOperationType fail, err: ' + err);
-})
 ```
-
 
 ## WantAgentFlags
 
@@ -1087,5 +953,5 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 | info           | WantAgent                       | 是   | 触发的wantAgent。       |
 | want           | Want                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
-| finalData      | string                          | 否   | 公共事件收集的最终数据。  |
+| finalData      | string                          | 是   | 公共事件收集的最终数据。  |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |

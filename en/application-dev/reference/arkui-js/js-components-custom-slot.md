@@ -1,13 +1,15 @@
-# slot<a name="EN-US_TOPIC_0000001127284840"></a>
+# slot
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Default Slot<a name="section68133181214"></a>
 
-You can use the  **<slot\>**  tag to create a slot inside a custom component to fill the content defined in the parent component. The sample code is as follows:
+## Default Slot
 
-```
+You can use the **\<slot>** tag to create a slot inside a custom component to fill the content defined in the parent component. The sample code is as follows:
+
+```html
 <!-- comp.hml -->
 <div class="item">  
    <text class="text-style">The following uses the content defined in the parent component.</text> 
@@ -16,22 +18,22 @@ You can use the  **<slot\>**  tag to create a slot inside a custom component to 
 ```
 
 The following references the custom component:
-
-```
+```html
 <!-- xxx.hml --> 
  <element name='comp' src='../../common/component/comp.hml'></element>  
  <div class="container">  
    <comp>
-     <text class="text-style">Content defined in the parent component</text> 
+     <text class="text-style">Content defined in the parent component</text>
    </comp>  
  </div>
 ```
 
-## Named Slot<a name="section18337143291211"></a>
 
-When multiple slots are need inside a custom component, you can name them, so that you can specify the slot in which you want to fill content by setting the  **<name\>**  attribute.
+## Named Slot
 
-```
+When multiple slots are need inside a custom component, you can name them, so that you can specify the slot in which you want to fill content by setting the **<name>** attribute.
+
+```html
 <!-- comp.hml -->
 <div class="item">  
    <text class="text-style">The following uses the content defined in the parent component.</text> 
@@ -41,8 +43,7 @@ When multiple slots are need inside a custom component, you can name them, so th
 ```
 
 The following references the custom component:
-
-```
+```html
 <!-- xxx.hml --> 
  <element name='comp' src='../../common/component/comp.hml'></element>  
  <div class="container">  
@@ -53,6 +54,6 @@ The following references the custom component:
  </div>
 ```
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->**<name\>**  and  **<slot\>**  do not support dynamic data binding.
-
+>  **NOTE**
+>
+>  **\<name>** and **\<slot>** do not support dynamic data binding.

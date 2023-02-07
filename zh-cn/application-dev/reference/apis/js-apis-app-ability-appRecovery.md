@@ -8,7 +8,7 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 
 ## 导入模块
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery'
+import appRecovery from '@ohos.app.ability.appRecovery';
 ```
 
 
@@ -18,13 +18,12 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                          | 值   | 说明                                                         |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| ALWAYS_RESTART           | 0    | 总是重启应用。 |
-| CPP_CRASH_NO_RESTART           | 0x0001    | 发生CPP_CRASH时不重启应用。 |
-| JS_CRASH_NO_RESTART           | 0x0002    | 发生JS_CRASH时不重启应用。 |
-| APP_FREEZE_NO_RESTART           | 0x0004    | 发生APP_FREEZE时不重启应用。 |
-| NO_RESTART           | 0xFFFF  | 总是不重启应用。 |
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| ALWAYS_RESTART   | 0    | 总是重启应用。 |
+| RESTART_WHEN_JS_CRASH   | 0x0001    | 发生JS_CRASH时重启应用。 |
+| RESTART_WHEN_APP_FREEZE   | 0x0002    | 发生APP_FREEZE时重启应用。 |
+| NO_RESTART           | 0xFFFF    | 总是不重启应用。 |
 
 ## appRecovery.SaveOccasionFlag
 
@@ -67,10 +66,16 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 **示例：**
     
 ```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
-        appRecovery.enableAppRecovery(RestartFlag::ALWAYS_RESTART, SaveOccasionFlag::SAVE_WHEN_ERROR, SaveModeFlag::SAVE_WITH_FILE);
+        appRecovery.enableAppRecovery(
+            appRecovery.RestartFlag::ALWAYS_RESTART,
+            appRecovery.SaveOccasionFlag::SAVE_WHEN_ERROR,
+            appRecovery.SaveModeFlag::SAVE_WITH_FILE
+        );
     }
 }
 ```
@@ -87,12 +92,20 @@ restartApp(): void;
 **示例：**
     
 ```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
-var observer = {
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.restartApp();
     }
+};
+
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
 ```
 
@@ -113,11 +126,19 @@ saveAppState(): boolean;
 **示例：**
     
 ```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
-var observer = {
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.saveAppState();
     }
+};
+
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
 ```

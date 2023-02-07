@@ -1,4 +1,4 @@
-# @ohos.application.formBindingData
+# @ohos.application.formBindingData (formBindingData)
 
 The **FormBindingData** module provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
 
@@ -48,16 +48,17 @@ Creates a **FormBindingData** object.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
-let context=featureAbility.getContext();
-context.getOrCreateLocalDir((err,data)=>{
-  let path=data+"/xxx.jpg";
-  let fd = fileio.openSync(path);
+import formBindingData from '@ohos.application.formBindingData';
+import fs from '@ohos.file.fs';
+
+try {
+  let fd = fs.openSync('/path/to/form.png')
   let obj = {
     "temperature": "21°",
-    "formImages": {"image": fd}
+    "formImages": { "image": fd }
   };
-  let formBindingDataObj = formBindingData.createFormBindingData(obj);
-})
+  formBindingData.createFormBindingData(obj);
+} catch (error.code) {
+  console.log('catch error, error:' + JSON.stringify(error));
+}
 ```

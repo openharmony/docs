@@ -3,7 +3,7 @@
 ## When to Use
 
 If an application has a perceivable task that needs to run in an extended period of time in the background, it can request a continuous task so that it will not be suspended. Examples of continuous tasks include music playback, navigation, device connection, and VoIP.
-There is no time limit for a continuous task running in the background. To prevent abuse, the system limits the number of continuous tasks that can be requested. It also attaches a notification to the task so that the task is perceivable. In addition, the system verifies whether the application is actually executing the continuous task.
+There is no time limit for a continuous task running in the background. To prevent abuse, the system limits the number of continuous tasks that can be requested. It also attaches a notification to each of the tasks so that the tasks are perceivable. In addition, the system verifies whether the application is actually executing a continuous task.
 
 ## Available APIs
 
@@ -15,7 +15,7 @@ There is no time limit for a continuous task running in the background. To preve
 | stopBackgroundRunning(context: Context): Promise&lt;void&gt; | Cancels the continuous task.                |
 
 
-For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantAgent.md).
+For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md).
 
 **Table 2** Background modes
 
@@ -34,9 +34,262 @@ For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantA
 
 ## How to Develop
 
-### Development on the FA Model
+### Development in the Stage Model
 
-For details about how to use the Service ability in the FA model, see [Service Ability Development](../ability/fa-serviceability.md).
+For details about the stage model, see [Stage Model Development Overview](../application-models/stage-model-development-overview.md).
+
+1. Create an API version 9 project. Then right-click the project directory and choose **New > Ability** to create an ability. Configure the continuous task permission (ohos.permission.KEEP_BACKGROUND_RUNNING) and background mode type in the **module.json5** file.
+
+```
+"module": {
+    "abilities": [
+        {
+            "backgroundModes": [
+            "dataTransfer",
+            "location"
+            ], // Background mode
+        }
+    ],
+    "requestPermissions": [
+        {
+            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING" // Continuous task permission
+        }
+    ]
+}
+```
+
+2. If an application needs to execute a continuous task for its own, include the execution logic in the Page ability. This is because an application cannot use **startAbilityByCall** to create and run its own ability in the background due to the restriction of ability startup controls.  For details, see [UIAbility Component Overview](../application-models/uiability-overview.md).
+
+```ts
+import wantAgent from '@ohos.app.ability.wantAgent';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'test'
+  // Use getContext to obtain the context of the Page ability.
+  private context: any = getContext(this)
+
+  startContinuousTask() {
+    let wantAgentInfo = {
+      // List of operations to be executed after the notification is clicked.
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility",
+        }
+      ],
+      // Type of the operation to perform after the notification is clicked.
+      operationType: wantAgent.OperationType.START_ABILITY,
+      // Custom request code.
+      requestCode: 0,
+      // Execution attribute of the operation to perform after the notification is clicked.
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
+
+    // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(this.context,
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((err) => {
+                    console.error("Operation startBackgroundRunning failed Cause: " + err);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
+  }
+
+  stopContinuousTask() {
+    try {
+        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+        console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text("Index")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+
+        Button() { Text('Request continuous task').fontSize(25).fontWeight(FontWeight.Bold) }.type(ButtonType.Capsule)
+        .margin({ top: 10 }).backgroundColor('#0D9FFB').width(250).height(40)
+        .onClick(() => {
+          // Request a continuous task by clicking a button.
+          this.startContinuousTask();
+
+          // Execute the continuous task logic, for example, music playback.
+        })
+
+        Button() {Text('Cancel continuous task') .fontSize(25).fontWeight(FontWeight.Bold) }.type(ButtonType.Capsule)
+        .margin({ top: 10 }).backgroundColor('#0D9FFB').width(250).height(40)
+        .onClick(() => {
+          // Stop the continuous task.
+
+          // Cancel the continuous task by clicking a button.
+          this.stopContinuousTask();
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+3. If a continuous task needs to be executed in the background for another application or on another device, you can create and run an ability in the background in Call mode. For details, see [Using Ability Call (Intra-Device)](../application-models/uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction) and [Using Ability Call (Inter-Device)](../application-models/hop-multi-device-collaboration.md#using-cross-device-ability-call).
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import wantAgent from '@ohos.app.ability.wantAgent';
+
+const MSG_SEND_METHOD: string = 'CallSendMsg';
+
+let mContext = null;
+
+function startContinuousTask() {
+    let wantAgentInfo = {
+        // List of operations to be executed after the notification is clicked.
+        wants: [
+            {
+                bundleName: "com.example.myapplication",
+                abilityName: "EntryAbility",
+            }
+        ],
+        // Type of the operation to perform after the notification is clicked.
+        operationType: wantAgent.OperationType.START_ABILITY,
+        // Custom request code.
+        requestCode: 0,
+        // Execution attribute of the operation to perform after the notification is clicked.
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
+
+    // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(mContext,
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((error) => {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
+}
+
+function stopContinuousTask() {
+    try {
+        backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((error) => {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
+}
+
+class MySequenceable {
+    num: number = 0;
+    str: String = "";
+
+    constructor(num, string) {
+        this.num = num;
+        this.str = string;
+    }
+
+    marshalling(messageParcel) {
+        messageParcel.writeInt(this.num);
+        messageParcel.writeString(this.str);
+        return true;
+    }
+
+    unmarshalling(messageParcel) {
+        this.num = messageParcel.readInt();
+        this.str = messageParcel.readString();
+        return true;
+    }
+}
+
+function sendMsgCallback(data) {
+    console.info('BgTaskAbility funcCallBack is called ' + data)
+    let receivedData = new MySequenceable(0, "")
+    data.readSequenceable(receivedData)
+    console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
+    // You can execute different methods based on the str value in the sequenceable data sent by the caller.
+    if (receivedData.str === 'start_bgtask') {
+        startContinuousTask()
+    } else if (receivedData.str === 'stop_bgtask') {
+        stopContinuousTask();
+    }
+    return new MySequenceable(10, "Callee test");
+}
+
+export default class BgTaskAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.info("[Demo] BgTaskAbility onCreate")
+        this.callee.on("test", sendMsgCallback);
+
+        try {
+            this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
+        } catch (error) {
+            console.error(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
+        }
+        mContext = this.context;
+    }
+
+    onDestroy() {
+        console.info("[Demo] BgTaskAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        console.info("[Demo] BgTaskAbility onWindowStageCreate")
+
+        windowStage.loadContent("pages/index").then((data)=> {
+            console.info(`load content succeed with data ${JSON.stringify(data)}`)
+        }).catch((error)=>{
+            console.error(`load content failed with error ${JSON.stringify(error)}`)
+        })
+    }
+
+    onWindowStageDestroy() {
+        console.info("[Demo] BgTaskAbility onWindowStageDestroy")
+    }
+
+    onForeground() {
+        console.info("[Demo] BgTaskAbility onForeground")
+    }
+
+    onBackground() {
+        console.info("[Demo] BgTaskAbility onBackground")
+    }
+};
+```
+
+### Development in the FA Model
+
+For details about how to use the ServiceAbility in the FA model, see [ServiceAbility Component Overview](../application-models/serviceability-overview.md).
 
 If an application does not need to interact with a continuous task in the background, you can use **startAbility()** to start the Service ability. In the **onStart** callback of the Service ability, call **startBackgroundRunning()** to declare that the Service ability needs to run in the background for a long time. After the task execution is complete, call **stopBackgroundRunning()** to release resources.
 
@@ -44,7 +297,7 @@ If an application needs to interact with a continuous task in the background (fo
 
 1. Create an API version 8 project. Then right-click the project directory and choose **New > Ability > Service Ability** to create a Service ability. Configure the continuous task permission (**ohos.permission.KEEP_BACKGROUND_RUNNING**) and background mode type in the **config.json** file, with the ability type set to **service**.
 
-```
+```json
 "module": {
     "package": "com.example.myapplication",
     "abilities": [
@@ -67,9 +320,9 @@ If an application needs to interact with a continuous task in the background (fo
 2. Call the APIs for requesting and canceling a continuous task in the Service ability.
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import rpc from "@ohos.rpc";
 
 function startContinuousTask() {
@@ -78,7 +331,7 @@ function startContinuousTask() {
         wants: [
             {
                 bundleName: "com.example.myapplication",
-                abilityName: "com.example.myapplication.MainAbility"
+                abilityName: "EntryAbility"
             }
         ],
         // Type of the operation to perform after the notification is clicked.
@@ -90,18 +343,22 @@ function startContinuousTask() {
     };
 
     // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
+    try {
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            try {
+                backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                    backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                    console.info("Operation startBackgroundRunning succeeded");
+                }).catch((err) => {
+                    console.error("Operation startBackgroundRunning failed Cause: " + err);
+                });
+            } catch (error) {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            }
+        });
+    } catch (error) {
+        console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 function stopContinuousTask() {
@@ -151,7 +408,7 @@ class MyStub extends rpc.RemoteObject {
 }
 
 export default {
-    onStart(want) {
+    onStart() {
         console.info('ServiceAbility onStart');
         mMyStub = new MyStub("ServiceAbility-test");
         // Call the API to start the task.
@@ -171,253 +428,8 @@ export default {
     onDisconnect() {
         console.info('ServiceAbility onDisconnect');
     },
-    onCommand(want, restart, startId) {
+    onCommand(want, startId) {
         console.info('ServiceAbility onCommand');
-    }
-};
-```
-
-### Development on the Stage Model
-
-For details about the stage model, see [Stage Model Overview](../ability/stage-brief.md).
-
-1. Create an API version 9 project. Then right-click the project directory and choose **New > Ability** to create an ability. Configure the continuous task permission (ohos.permission.KEEP_BACKGROUND_RUNNING) and background mode type in the **module.json5** file.
-
-```
-"module": {
-    "abilities": [
-        {
-            "backgroundModes": [
-            "dataTransfer",
-            "location"
-            ], // Background mode
-        }
-    ],
-    "requestPermissions": [
-        {
-            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING" // Continuous task permission
-        }
-    ]
-}
-```
-
-2. If an application needs to execute a continuous task for its own, include the execution logic in the Page ability. This is because an application cannot use **startAbilityByCall** to create and run its own ability in the background due to the restriction of ability startup controls. For details about how to use an ability in the stage model, see [Ability Development](../ability/stage-ability.md).
-
-```ts
-import wantAgent from '@ohos.wantAgent';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'test'
-  // Use getContext to obtain the context of the Page ability.
-  private context: any = getContext(this)
-
-  startContinuousTask() {
-    let wantAgentInfo = {
-      // List of operations to be executed after the notification is clicked.
-      wants: [
-        {
-          bundleName: "com.example.myapplication",
-          abilityName: "com.example.myapplication.MainAbility",
-        }
-      ],
-      // Type of the operation to perform after the notification is clicked.
-      operationType: wantAgent.OperationType.START_ABILITY,
-      // Custom request code.
-      requestCode: 0,
-      // Execution attribute of the operation to perform after the notification is clicked.
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-    };
-
-    // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(this.context,
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
-  }
-
-  stopContinuousTask() {
-    try {
-        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
-        }).catch((err) => {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-        });
-    } catch (error) {
-        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-    }
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Text("Index")
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-
-        Button() { Text('Request continuous task').fontSize(25).fontWeight(FontWeight.Bold) }.type(ButtonType.Capsule)
-        .margin({ top: 10 }).backgroundColor('#0D9FFB').width(250).height(40)
-        .onClick(() => {
-          // Request a continuous task by clicking a button.
-          this.startContinuousTask();
-
-          // Execute the continuous task logic, for example, music playback.
-        })
-
-        Button() {Text('Cancel continuous task') .fontSize(25).fontWeight(FontWeight.Bold) }.type(ButtonType.Capsule)
-        .margin({ top: 10 }).backgroundColor('#0D9FFB').width(250).height(40)
-        .onClick(() => {
-          // Stop the continuous task.
-
-          // Cancel the continuous task by clicking a button.
-          this.stopContinuousTask();
-        })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-3. If a continuous task needs to be executed in the background for another application or on another device, you can create and run an ability in the background in Call mode. For details, see [Call Development](../ability/stage-call.md).
-
-```ts
-import Ability from '@ohos.application.Ability'
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.wantAgent';
-
-const MSG_SEND_METHOD: string = 'CallSendMsg'
-
-let mContext = null;
-
-function startContinuousTask() {
-    let wantAgentInfo = {
-        // List of operations to be executed after the notification is clicked.
-        wants: [
-            {
-                bundleName: "com.example.myapplication",
-                abilityName: "com.example.myapplication.MainAbility",
-            }
-        ],
-        // Type of the operation to perform after the notification is clicked.
-        operationType: wantAgent.OperationType.START_ABILITY,
-        // Custom request code.
-        requestCode: 0,
-        // Execution attribute of the operation to perform after the notification is clicked.
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-    };
-
-    // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
-    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        try {
-            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((error) => {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            });
-        } catch (error) {
-            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        }
-    });
-}
-
-function stopContinuousTask() {
-    try {
-        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-            console.info("Operation stopBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-        });
-    } catch (error) {
-        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-    }
-}
-
-class MySequenceable {
-    num: number = 0;
-    str: String = "";
-
-    constructor(num, string) {
-        this.num = num;
-        this.str = string;
-    }
-
-    marshalling(messageParcel) {
-        messageParcel.writeInt(this.num);
-        messageParcel.writeString(this.str);
-        return true;
-    }
-
-    unmarshalling(messageParcel) {
-        this.num = messageParcel.readInt();
-        this.str = messageParcel.readString();
-        return true;
-    }
-}
-
-function sendMsgCallback(data) {
-    console.info('BgTaskAbility funcCallBack is called ' + data)
-    let receivedData = new MySequenceable(0, "")
-    data.readSequenceable(receivedData)
-    console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
-    // You can execute different methods based on the str value in the sequenceable data sent by the caller.
-    if (receivedData.str === 'start_bgtask') {
-        startContinuousTask()
-    } else if (receivedData.str === 'stop_bgtask') {
-        stopContinuousTask();
-    }
-    return new MySequenceable(10, "Callee test");
-}
-
-export default class BgTaskAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.info("[Demo] BgTaskAbility onCreate")
-        this.callee.on("test", sendMsgCallback);
-
-        try {
-            this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
-        } catch (error) {
-            console.error(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
-        }
-        mContext = this.context;
-    }
-
-    onDestroy() {
-        console.info("[Demo] BgTaskAbility onDestroy")
-    }
-
-    onWindowStageCreate(windowStage) {
-        console.info("[Demo] BgTaskAbility onWindowStageCreate")
-
-        windowStage.loadContent("pages/index").then((data)=> {
-            console.info(`load content succeed with data ${JSON.stringify(data)}`)
-        }).catch((error)=>{
-            console.error(`load content failed with error ${JSON.stringify(error)}`)
-        })
-    }
-
-    onWindowStageDestroy() {
-        console.info("[Demo] BgTaskAbility onWindowStageDestroy")
-    }
-
-    onForeground() {
-        console.info("[Demo] BgTaskAbility onForeground")
-    }
-
-    onBackground() {
-        console.info("[Demo] BgTaskAbility onBackground")
     }
 };
 ```

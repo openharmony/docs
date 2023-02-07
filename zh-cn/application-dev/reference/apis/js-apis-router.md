@@ -32,7 +32,7 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -40,32 +40,28 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
+  }
+})
+  .then(() => {
+    // success
   })
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -81,7 +77,7 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 | 参数名     | 类型                              | 必填   | 说明        |
 | ------- | ------------------------------- | ---- | --------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
 
@@ -89,32 +85,28 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, (err) => {
-    if (err) {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('pushUrl success');
-  });
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+})
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 ## router.pushUrl<sup>9+</sup>
 
@@ -135,7 +127,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -143,32 +135,28 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard)
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -185,7 +173,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
 | mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
 
@@ -193,32 +181,28 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
-| 100002    | If the uri is not exist. |
-| 100003    | If the pages are pushed too much. |
+| 100001    | if UI execution context not found. |
+| 100002    | if the uri is not exist. |
+| 100003    | if the pages are pushed too much. |
 
 **示例：**
 
 ```js
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
     }
-  }, router.RouterMode.Standard, (err) => {
-    if (err) {
-      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('pushUrl success');
-  });
-} catch (error) {
-  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('pushUrl success');
+})
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -239,7 +223,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -247,28 +231,24 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
   })
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -284,7 +264,7 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 | 参数名  | 类型                            | 必填 | 说明               |
 | ------- | ------------------------------- | ---- | ------------------ |
 | options | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
 
@@ -292,28 +272,24 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, (err) => {
-    if (err) {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('replaceUrl success');
-  });
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, (err) => {
+  if (err) {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceUrl success');
+})
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -336,7 +312,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果 |
+| Promise&lt;void&gt; | 异常返回结果。 |
 
 **错误码：**
 
@@ -344,28 +320,24 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard)
-    .then(() => {
-      // success
-    })
-    .catch(err => {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-    })
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -382,7 +354,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
 | mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
 
@@ -390,28 +362,25 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found, only throw in standard system. |
-| 200002    | If the uri is not exist. |
+| 100001    | if UI execution context not found, only throw in standard system. |
+| 200002    | if the uri is not exist. |
 
 **示例：**
 
 ```js
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
-  }, router.RouterMode.Standard, (err) => {
-    if (err) {
-      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    console.info('replaceUrl success');
-  });
-} catch (error) {
-  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-};
+router.replaceUrl({
+  url: 'pages/detail',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceUrl success');
+});
+
 ```
 
 ## router.back
@@ -524,7 +493,7 @@ enableBackPageAlert(options: EnableAlertOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **示例：**
 
@@ -571,9 +540,9 @@ getParams(): Object
 
 **返回值：**
 
-| 类型     | 说明                |
-| ------ | ----------------- |
-| Object | 发起跳转的页面往当前页传入的参数。 |
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
 
@@ -590,7 +559,7 @@ router.getParams();
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页。 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| params | object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
 
 
   > **说明：**
@@ -636,13 +605,13 @@ export default {
 ### 基于TS扩展的声明式开发范式
 
 ```ts
-//通过router.push跳转至目标页携带params参数
+// 通过router.pushUrl跳转至目标页携带params参数
 import router from '@ohos.router'
 
 @Entry
 @Component
 struct Index {
-  async  routePage() {
+  async routePage() {
     let options = {
       url: 'pages/second',
       params: {
@@ -653,7 +622,7 @@ struct Index {
       }
     }
     try {
-      await router.push(options)
+      await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${err.code}, msg: ${err.msg}`)
     }
@@ -661,18 +630,18 @@ struct Index {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Text('这是第一页')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+      Text('这是第一页')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
       Button() {
         Text('next page')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
-          .margin({ top: 20 })
-          .backgroundColor('#ccc')
-          .onClick(() => {
-            this.routePage()
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
       })
     }
     .width('100%')
@@ -682,7 +651,7 @@ struct Index {
 ```
 
 ```ts
-//在second页面中接收传递过来的参数
+// 在second页面中接收传递过来的参数
 import router from '@ohos.router'
 
 @Entry
@@ -704,7 +673,7 @@ struct Second {
           this.secondData = (this.data.array[1]).toString()
         })
       .margin({top:20})
-      Text('第一页传来的数值' + '  ' + this.secondData)
+      Text(`第一页传来的数值:${this.secondData}`)
         .fontSize(20)
         .margin({top:20})
         .backgroundColor('red')      
@@ -745,37 +714,6 @@ router.push({
   }
 });
 ```
-## router.push<sup>(deprecated)</sup>
-
-push(options: RouterOptions, mode: RouterMode): void
-
-跳转到应用内的指定页面。
-
-从API version9开始不再维护，建议使用[pushUrl<sup>9+</sup>](#routerpushurl9)
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-
-
-**示例：**
-
-```js
-router.push({
-  url: 'pages/routerpage2/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
-},router.RouterMode.Standard);
-```
 
 ## router.replace<sup>(deprecated)</sup>
 
@@ -785,7 +723,7 @@ replace(options: RouterOptions): void
 
 从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
 
@@ -802,34 +740,6 @@ router.replace({
     data1: 'message'
   }
 });
-```
-
-  ## router.replace<sup>(deprecated)</sup>
-
-replace(options: RouterOptions, mode: RouterMode): void
-
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
-
-从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
-
-**参数：**
-
-| 参数名     | 类型                              | 必填   | 说明         |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
-
-**示例：**
-
-```js
-router.replace({
-  url: 'pages/detail/detail',
-  params: {
-    data1: 'message'
-  }
-}, router.RouterMode.Standard);
 ```
 
 ## router.enableAlertBeforeBackPage<sup>(deprecated)</sup>

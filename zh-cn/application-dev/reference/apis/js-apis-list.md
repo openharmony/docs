@@ -15,7 +15,7 @@ List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，�
 ## 导入模块
 
 ```ts
-import List from '@ohos.util.List';  
+import List from '@ohos.util.List';
 ```
 
 
@@ -116,7 +116,7 @@ insert(element: T, index: number): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The insert method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -363,7 +363,7 @@ removeByIndex(index: number): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeByIndex method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -546,8 +546,8 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.sort((a: number, b: number) => a - b);
-list.sort((a: number, b: number) => b - a);
+list.sort((a: number, b: number) => a - b); // 结果为升序排列
+list.sort((a: number, b: number) => b - a); // 结果为降序排列
 ```
 
 ### getSubList
@@ -578,7 +578,7 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The getSubList method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
 
 **示例：**
 
@@ -648,7 +648,7 @@ set(index: number, element: T): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The set method cannot be bound. |
-| 10200001 | The parameter value is out of range. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 

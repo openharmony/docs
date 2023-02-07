@@ -30,21 +30,20 @@ Ability监听器
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
 
-var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
     console.info("addAbilityMonitor callback");
 });
 ```
-
 

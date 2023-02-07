@@ -40,7 +40,7 @@
   - **src > main > ets > MainAbility > pages > index.ets**: the first page in the **pages** list, also referred to as the entry to the application.
   - **src > main > ets > MainAbility > app.ets**: ability lifecycle file.
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
-  - **src > main > config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details about the configuration file, see [Application Package Structure Configuration File (FA Model)](package-structure.md).
+  - **src > main > config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md).
   - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
   - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
 
@@ -129,7 +129,7 @@
       > **NOTE**
       > 
       > You can also right-click the **pages** folder and choose **New** > **Page** from the shortcut menu. In this scenario, you do not need to manually configure page routes.
-   - Configure the route for the second page, by setting **pages/second** under **module - js - pages** in the **config.json** The sample code is as follows: The sample code is as follows:
+   - Configure the route for the second page, by setting **pages/second** under **module - js - pages** in the **config.json** file. The sample code is as follows:
      
       ```json
       {
@@ -224,6 +224,9 @@ You can implement page redirection through the [page router](../reference/apis/j
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
              router.push({ url: 'pages/second' })
+             // In a project of API version 9, you can use the API below instead:
+             // router.pushUrl({ url: 'pages/second' })
+
            })
          }
          .width('100%')

@@ -13,7 +13,7 @@ statfs [_directory_]
 
 ## 参数说明
 
-  **表1** 参数说明
+**表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -31,8 +31,8 @@ statfs [_directory_]
 
 statfs /nfs
 
-  **示例**：statfs输出说明
-  
+**示例** statfs输出说明
+
 ```
 OHOS # statfs ./nfs
 statfs got:

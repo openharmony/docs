@@ -20,7 +20,7 @@ The chipset solution directory structure is as follows:
                      └── config.gni         # LiteOS_A build configuration
 ```
 
-![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The **config.gni** file contains the configuration related to the build of the development board. The parameters in this file are used to compile all OS components and are globally visible during the build process.
+**CAUTION**<br>The **config.gni** file contains the configuration related to the build of the development board. The parameters in this file are used to compile all OS components and are globally visible during the build process.
 
 - The **config.gni** file contains the following key parameters:
 

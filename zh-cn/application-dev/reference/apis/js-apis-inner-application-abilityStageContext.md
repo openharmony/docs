@@ -1,6 +1,6 @@
 # AbilityStageContext
 
-AbilityStageContext是AbilityStage的上下文环境，继承自[Context](js-apis-application-context.md)。
+AbilityStageContext是AbilityStage的上下文环境，继承自[Context](js-apis-inner-application-context.md)。
 
 AbilityStageContext提供允许访问特定于abilityStage的资源的能力，包括获取AbilityStage对应的ModuleInfo对象、环境变化对象。
 
@@ -14,7 +14,8 @@ AbilityStageContext提供允许访问特定于abilityStage的资源的能力，�
 通过AbilityStage实例来获取。
 
 ```ts
-import AbilityStage from '@ohos.application.AbilityStage';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 class MyAbilityStage extends AbilityStage {
     onCreate() {
         let abilityStageContext = this.context;
@@ -28,5 +29,5 @@ class MyAbilityStage extends AbilityStage {
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | AbilityStage对应的ModuleInfo对象。 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | AbilityStage对应的ModuleInfo对象。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 环境变化对象。 |

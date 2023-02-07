@@ -29,6 +29,14 @@ onAbilityCreate(ability: UIAbility): void;
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onAbilityCreate(ability){
+        console.log("AbilityLifecycleCallback onAbilityCreate.");  
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onWindowStageCreate
 
@@ -45,6 +53,14 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onWindowStageCreate(ability, windowStage){
+        console.log("AbilityLifecycleCallback onWindowStageCreate.");
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onWindowStageActive
 
@@ -61,6 +77,14 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onWindowStageActive(ability, windowStage){
+        console.log("AbilityLifecycleCallback onWindowStageActive.");
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onWindowStageInactive
 
@@ -77,6 +101,14 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onWindowStageInactive(ability, windowStage){
+        console.log("AbilityLifecycleCallback onWindowStageInactive.");
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onWindowStageDestroy
 
@@ -93,6 +125,14 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
   | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onWindowStageDestroy(ability, windowStage){
+        console.log("AbilityLifecycleCallback onWindowStageDestroy.");
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onAbilityDestroy
 
@@ -108,6 +148,14 @@ onAbilityDestroy(ability: UIAbility): void;
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onAbilityDestroy(ability){
+        console.log("AbilityLifecycleCallback onAbilityDestroy.");
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onAbilityForeground
 
@@ -123,6 +171,14 @@ onAbilityForeground(ability: UIAbility): void;
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onAbilityForeground(ability){
+        console.log("AbilityLifecycleCallback onAbilityForeground.");
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onAbilityBackground
 
@@ -138,6 +194,14 @@ onAbilityBackground(ability: UIAbility): void;
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
 
+**示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onAbilityBackground(ability){
+        console.log("AbilityLifecycleCallback onAbilityBackground.");
+    }
+};
+```
 
 ## AbilityLifecycleCallback.onAbilityContinue
 
@@ -154,44 +218,56 @@ onAbilityContinue(ability: UIAbility): void;
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
 
 **示例：**
+```ts
+let abilityLifecycleCallback =  {
+    onAbilityContinue(ability){
+        console.log("AbilityLifecycleCallback onAbilityContinue.");
+    }
+};
+```
 
-MyAbilityStage.ts
+## AbilityLifecycleCallback使用
+
+**示例：**
+
+MyFirstAbility.ts
 ```ts
 import AbilityLifecycleCallback from "@ohos.app.ability.AbilityLifecycleCallback";
-import AbilityStage from "@ohos.app.ability.AbilityStage"
+import AbilityStage from "@ohos.app.ability.AbilityStage";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-// 声明ability生命周期回调
-let abilityLifecycleCallback  =  {
+// 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
+let abilityLifecycleCallback = {
     onAbilityCreate(ability){
-        console.log("AbilityLifecycleCallback onAbilityCreate.");        
+        console.log("AbilityLifecycleCallback onAbilityCreate.");  
     },
     onWindowStageCreate(ability, windowStage){
-        console.log("AbilityLifecycleCallback onWindowStageCreate.");          
+        console.log("AbilityLifecycleCallback onWindowStageCreate.");
     },
     onWindowStageActive(ability, windowStage){
-        console.log("AbilityLifecycleCallback onWindowStageActive.");          
+        console.log("AbilityLifecycleCallback onWindowStageActive.");
     },
     onWindowStageInactive(ability, windowStage){
         console.log("AbilityLifecycleCallback onWindowStageInactive.");
     },
     onWindowStageDestroy(ability, windowStage){
-        console.log("AbilityLifecycleCallback onWindowStageDestroy."); 
+        console.log("AbilityLifecycleCallback onWindowStageDestroy.");
     },
     onAbilityDestroy(ability){
-        console.log("AbilityLifecycleCallback onAbilityDestroy.");             
+        console.log("AbilityLifecycleCallback onAbilityDestroy.");
     },
     onAbilityForeground(ability){
-        console.log("AbilityLifecycleCallback onAbilityForeground.");             
+        console.log("AbilityLifecycleCallback onAbilityForeground.");
     },
     onAbilityBackground(ability){
-        console.log("AbilityLifecycleCallback onAbilityBackground.");              
+        console.log("AbilityLifecycleCallback onAbilityBackground.");
     },
     onAbilityContinue(ability){
         console.log("AbilityLifecycleCallback onAbilityContinue.");
     }
-}
+};
 
-export default class MyAbilityStage extends AbilityStage {
+export default class MyFirstAbility extends UIAbility {
     onCreate() {
         console.log("MyAbilityStage onCreate");
         // 1.通过context属性获取applicationContext
@@ -207,17 +283,17 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-MyAbility.ts
+MySecondAbility.ts
 ```ts
-import UIAbility from "ohos.app.ability.UIAbility"
+import UIAbility from "ohos.app.ability.UIAbility";
 
-export default class MyAbility extends UIAbility {
+export default class MySecondAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         // 3.通过applicationContext注销监听应用内生命周期
         applicationContext.off("abilityLifecycle", globalThis.lifecycleId, (error) => {
-            if (error.code != 0) {
-                console.log("unregisterAbilityLifecycleCallback failed, error: " + JSON.stringify(error));
+            if (error && error.code !== 0) {
+                console.log("unregisterAbilityLifecycleCallback fail, error: " + JSON.stringify(error));
             } else {
                 console.log("unregisterAbilityLifecycleCallback success.");
             }

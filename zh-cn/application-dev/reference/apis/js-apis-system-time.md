@@ -12,7 +12,7 @@
 import systemTime from '@ohos.systemTime';
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
@@ -29,21 +29,33 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 | time     | number                    | 是   | 目标时间戳（ms）。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
-systemTime.setTime(time, (error, data) => {
+try {
+  systemTime.setTime(time, (error) => {
     if (error) {
-        console.error(`Failed to set systemTime. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in setting systemTime. Data:` + JSON.stringify(data));
-});
+    }console.info(`Succeeded in setting time`);
+  });
+} catch(e) {
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number) : Promise&lt;void&gt;
 
@@ -65,23 +77,39 @@ setTime(time : number) : Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
-systemTime.setTime(time).then((data) => {
-    console.log(`Succeeded in setting systemTime. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to set systemTime. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.setTime(time).then(() => {
+    console.info(`Succeeded in setting time.`);
+  }).catch((error) => {
+    console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup>
+## systemTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自Unix纪元以来经过的时间，使用callback异步回调。
+
+>  **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getCurrentTime](./js-apis-system-date-time.md#systemdatetimegetcurrenttime)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -92,23 +120,39 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br>- true：表示返回结果为纳秒数（ns）。 <br>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。         |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getCurrentTime(true, (error, data) => {
+try {
+  systemTime.getCurrentTime(true, (error, time) => {
     if (error) {
-        console.error(`Failed to get systemTime. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting systemTime. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting currentTime: ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup>
+## systemTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 获取自Unix纪元以来经过的时间，使用callback异步回调。
+
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getCurrentTime](./js-apis-system-date-time.md#systemdatetimegetcurrenttime-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -118,23 +162,39 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 | -------- | ----------- | ---- | ---------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间。         |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getCurrentTime((error, data) => {
+try {
+  systemTime.getCurrentTime((error, time) => {
     if (error) {
-        console.error(`Succeeded in getting systemTime. Data:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Failed to get systemTime. Cause:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup>
+## systemTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自Unix纪元以来经过的时间，使用Promise异步回调。
+
+>  **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getCurrentTime](./js-apis-system-date-time.md#systemdatetimegetcurrenttime-2)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -150,21 +210,37 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 | --------------------- | --------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自Unix纪元以来经过的时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getCurrentTime().then((data) => {
-    console.log(`Succeeded in getting systemTime. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get systemTime. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getCurrentTime().then((time) => {
+    console.info(`Succeeded in getting currentTime : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting currentTime. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getRealActiveTime<sup>8+</sup>
+## systemTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用callback异步回调。
+
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getRealActiveTime](./js-apis-system-date-time.md#systemdatetimegetrealactivetime)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -175,23 +251,39 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getRealActiveTime(true, (error, data) => {
+try {
+  systemTime.getRealActiveTime(true, (error, time) => {
     if (error) {
-        console.error(`Failed to get real active time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real active time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getRealActiveTime<sup>8+</sup>
+## systemTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用callback异步回调。
+
+>  **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getRealActiveTime](./js-apis-system-date-time.md#systemdatetimegetrealactivetime-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -201,23 +293,39 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getRealActiveTime((error, data) => {
+try {
+  systemTime.getRealActiveTime((error, time) => {
     if (error) {
-        console.error(`Failed to get real active time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real active time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real active time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getRealActiveTime<sup>8+</sup>
+## systemTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用Promise异步回调。
+
+>  **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getRealActiveTime](./js-apis-system-date-time.md#systemdatetimegetrealactivetime-2)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -233,21 +341,37 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 | -------------- | -------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getRealActiveTime().then((data) => {
-    console.log(`Succeeded in getting real active time. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get real active time. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getRealActiveTime().then((time) => {
+    console.info(`Succeeded in getting real active time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting real active time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getRealTime<sup>8+</sup>
+## systemTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback异步回调。
+
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getRealTime](./js-apis-system-date-time.md#systemdatetimegetrealtime)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -258,23 +382,39 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getRealTime(true, (error, data) => {
+try {
+  systemTime.getRealTime(true, (error, time) => {
     if (error) {
-        console.error(`Failed to get real time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getRealTime<sup>8+</sup>
+## systemTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback异步回调。
+
+>  **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getRealTime](./js-apis-system-date-time.md#systemdatetimegetrealtime-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -284,23 +424,39 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getRealTime((error, data) => {
+try {
+  systemTime.getRealTime((error, time) => {
     if (error) {
-        console.error(`Failed to get real time. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting real time. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in getting real time : ${time}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getRealTime<sup>8+</sup>
+## systemTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getRealTime](./js-apis-system-date-time.md#systemdatetimegetrealtime-2)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -308,7 +464,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -316,17 +472,29 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，包括深度睡眠时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getRealTime().then((data) => {
-    console.log(`Succeeded in getting real time. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get real time. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getRealTime().then((time) => {
+    console.info(`Succeeded in getting real time : ${time}`);
+  }).catch((error) => {
+    console.info(`Failed to getting real time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
@@ -343,20 +511,32 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 | date     | Date                      | 是   | 目标日期。                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
-let data = new Date();
-systemTime.setDate(data,(error, data) => {       
-    if (error) {            
-    console.error('Failed to set system date. Cause:' + JSON.stringify(error));           
-    return;       
-}        
-    console.info('Succeeded in setting system date. Data:' + JSON.stringify(data));    
-});
+let date = new Date();
+try {
+  systemTime.setDate(date, (error) => {
+    if (error) {
+      console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting date.`);
+  });
+} catch(e) {
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
@@ -378,22 +558,38 @@ setDate(date: Date): Promise&lt;void&gt;
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
-let data = new Date(); 
-systemTime.setDate(data).then((value) => {        
-    console.log(`Succeeded in setting system date. Data:` + JSON.stringify(value));    
-}).catch((error) => {        
-    console.error(`Failed to set system date. Cause:` + JSON.stringify(error));
-});
+let date = new Date(); 
+try {
+  systemTime.setDate(date).then(() => {
+    console.info(`Succeeded in setting date.`);
+  }).catch((error) => {
+    console.info(`Failed to setting date. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getDate<sup>8+</sup>
+## systemTime.getDate<sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 获取当前系统日期，使用callback异步回调。
+
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getDate](./js-apis-system-date-time.md#systemdatetimegetdate)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -403,23 +599,39 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;Date&gt; | 是   | 回调函数，返回当前系统日期。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getDate((error, data) => {
+try {
+  systemTime.getDate((error, date) => {
     if (error) {
-        console.error(`Failed to get system date. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting system date. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in get date : ${date}`);;
+  });
+} catch(e) {
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getDate<sup>8+</sup>
+## systemTime.getDate<sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
 获取当前系统日期，使用Promise异步回调。
+
+>  **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getDate](./js-apis-system-date-time.md#systemdatetimegetdate-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -429,17 +641,29 @@ getDate(): Promise&lt;Date&gt;
 | ------------------- | ----------------------------------------- |
 | Promise&lt;Date&gt; | Promise对象，返回当前系统日期。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getDate().then((data) => {
-    console.log(`Succeeded in getting system date. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get system date. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getDate().then((date) => {
+    console.info(`Succeeded in getting date : ${date}`);
+  }).catch((error) => {
+    console.info(`Failed to getting date. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.setTimezone
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -456,19 +680,31 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 | timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
-systemTime.setTimezone('Asia/Shanghai', (error, data) => {       
-    if (error) {          
-        console.error('Failed to set system time zone. Cause:' + JSON.stringify(error));         
-        return;       
-    }       
-    console.info('Succeeded in setting system time zone. Data:' + JSON.stringify(data)); 
-});
+try {
+  systemTime.setTimezone('Asia/Shanghai', (error) => {
+    if (error) {
+      console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+      return;
+    }
+    console.info(`Succeeded in setting timezone.`);
+  });
+} catch(e) {
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.setTimezone
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 
@@ -490,21 +726,37 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| -1       | The parameter check failed or permission denied or system error. |
+
 **示例：**
 
 ```js
-systemTime.setTimezone('Asia/Shanghai').then((data) => {        
-    console.log(`Succeeded in setting system time zone. Data:` + JSON.stringify(data));     
-}).catch((error) => {        
-    console.error(`Failed to set system time zone. Cause:` + JSON.stringify(error));    
-});
+try {
+  systemTime.setTimezone('Asia/Shanghai').then(() => {
+    console.info(`Succeeded in setting timezone.`);
+  }).catch((error) => {
+    console.info(`Failed to setting timezone. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getTimezone<sup>8+</sup>
+## systemTime.getTimezone<sup>(deprecated)</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 获取系统时区，使用callback异步回调。
+
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getTimezone](./js-apis-system-date-time.md#systemdatetimegettimezone)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -514,23 +766,39 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 | -------- | --------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getTimezone((error, data) => {
+try {
+  systemTime.getTimezone((error, data) => {
     if (error) {
-        console.error(`Failed to get system time zone. Cause:` + JSON.stringify(error));
-        return;
+      console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    console.log(`Succeeded in getting system time zone. Data:` + JSON.stringify(data));
-});
+    console.info(`Succeeded in get timezone : ${data}`);;
+  });
+} catch(e) {
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
-## systemTime.getTimezone<sup>8+</sup>
+## systemTime.getTimezone<sup>(deprecated)</sup>
 
 getTimezone(): Promise&lt;string&gt;
 
 获取系统时区，使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[systemDateTime.getTimezone](./js-apis-system-date-time.md#systemdatetimegettimezone-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -540,14 +808,26 @@ getTimezone(): Promise&lt;string&gt;
 | --------------------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](../errorcodes/errorcode-time.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| -1       | The parameter check failed or system error. |
+
 **示例：**
 
 ```js
-systemTime.getTimezone().then((data) => {
-    console.log(`Succeeded in getting system time zone. Data:` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`Failed to get system time zone. Cause:` + JSON.stringify(error));
-});
+try {
+  systemTime.getTimezone().then((data) => {
+    console.info(`Succeeded in getting timezone: ${data}`);
+  }).catch((error) => {
+    console.info(`Failed to getting timezone. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+}
 ```
 
 ## 支持的系统时区

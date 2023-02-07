@@ -28,7 +28,8 @@ AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义�
 **示例：**
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
+import abilitymanager from '@ohos.app.ability.abilityManager';
+
 abilitymanager.getAbilityRunningInfos((err,data) => { 
     console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
     for (let i = 0; i < data.length; i++) {

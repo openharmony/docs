@@ -1,6 +1,6 @@
 # AbilityDelegatorArgs
 
-The **AbilityDelegatorArgs** module provides a global register to store the registered **AbilityDelegator** and **AbilityDelegatorArgs** instances during application startup.
+The **AbilityDelegatorArgs** module provides APIs to obtain an **AbilityDelegatorArgs** object during the execution of test cases.
 
 > **NOTE**
 > 
@@ -8,7 +8,7 @@ The **AbilityDelegatorArgs** module provides a global register to store the regi
 
 ## Usage
 
-The ability delegator arguments are obtained by calling **getArguments** in **AbilityDelegatorRegistry**.
+An **AbilityDelegatorArgs** object is obtained by calling [getArguments](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetarguments) in **AbilityDelegatorRegistry**.
 
 ## AbilityDelegatorArgs
 
@@ -26,7 +26,7 @@ Describes the ability delegator arguments.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 var args = AbilityDelegatorRegistry.getArguments();
 ```

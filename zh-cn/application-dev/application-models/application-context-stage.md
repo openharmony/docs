@@ -12,7 +12,7 @@
   <img src="figures/context-holding.png" alt="context-holding" style="zoom:50%;" />
 
 - 各类Context的获取方式
-  - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息、应用向用户申请授权等能力。
+  - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作Ability、获取Ability的配置信息等能力。
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -65,14 +65,9 @@
 
 
 - [获取应用开发路径](#获取应用开发路径)
-
 - [获取和修改加密分区](#获取和修改加密分区)
-
 - [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
-
-- [订阅进程内Ability生命周期变化](#订阅进程内ability生命周期变化)
-
-- [通过AbilityContext向用户申请授权](#通过uiabilitycontext向用户申请授权)
+- [订阅进程内UIAbility生命周期变化](#订阅进程内uiability生命周期变化)
 
 
 ### 获取应用开发路径
@@ -111,12 +106,12 @@
     | 属性 | 路径 |
   | -------- | -------- |
   | bundleCodeDir | {路径前缀}/el1/bundle/ |
-  | cacheDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}/**cache/ |
-  | filesDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}/**files/ |
-  | preferencesDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}/**preferences/ |
-  | tempDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}/**temp/ |
-  | databaseDir | {路径前缀}/{加密等级}/database/**{moduleName}/** |
-  | distributedFilesDir | {路径前缀}/el2/distributedFiles/**{moduleName}/** |
+  | cacheDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/cache/ |
+  | filesDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/files/ |
+  | preferencesDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/preferences/ |
+  | tempDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/temp/ |
+  | databaseDir | {路径前缀}/{加密等级}/database/**{moduleName}**/ |
+  | distributedFilesDir | {路径前缀}/el2/distributedFiles/**{moduleName}**/ |
 
 获取应用开发路径的示例代码如下所示。
 
@@ -138,6 +133,9 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+> **说明：**
+>
+> 示例代码获取到的是应用开发路径的沙箱路径。其对应的绝对路径，在创建或者修改文件之后，可以在`hdc shell`中，通过`find / -name <文件名称>`命令查找获取。
 
 ### 获取和修改加密分区
 
@@ -176,7 +174,7 @@ export default class EntryAbility extends UIAbility {
   > **说明：**
   > 当获取的是其他应用的Context时：
   > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
   > 
   > - 接口为系统接口，三方应用不支持调用。
 
@@ -199,7 +197,7 @@ export default class EntryAbility extends UIAbility {
   > **说明：**
   > 当获取的是其他应用的指定Module的Context时：
   > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
   > 
   > - 接口为系统接口，三方应用不支持调用。
 
@@ -231,16 +229,16 @@ export default class EntryAbility extends UIAbility {
   ```
 
 
-### 订阅进程内Ability生命周期变化
+### 订阅进程内UIAbility生命周期变化
 
-在应用内的DFX统计场景，如需要统计对应页面停留时间和访问频率等信息，可以使用订阅进程内Ability生命周期变化功能。
+在应用内的DFX统计场景，如需要统计对应页面停留时间和访问频率等信息，可以使用订阅进程内UIAbility生命周期变化功能。
 
-在进程内Ability生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发进入相应的回调，其中返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），以在[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)中使用为例进行说明。
+[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext)提供了订阅进程内UIAbility生命周期变化的能力。在进程内UIAbility生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发进入相应的回调，其中返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），以在[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)中使用为例进行说明。
 
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window';
+import window from '@ohos.window';
 
 const TAG: string = "[Example].[Entry].[EntryAbility]";
 
@@ -249,36 +247,36 @@ export default class EntryAbility extends UIAbility {
 
     onCreate(want, launchParam) {
         let abilityLifecycleCallback = {
-            onAbilityCreate(ability) {
-                console.info(TAG, "onAbilityCreate ability:" + JSON.stringify(ability));
+            onAbilityCreate(uiability) {
+                console.info(TAG, "onAbilityCreate uiability:" + JSON.stringify(uiability));
             },
-            onWindowStageCreate(ability, windowStage) {
-                console.info(TAG, "onWindowStageCreate ability:" + JSON.stringify(ability));
+            onWindowStageCreate(uiability, windowStage) {
+                console.info(TAG, "onWindowStageCreate uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageCreate windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageActive(ability, windowStage) {
-                console.info(TAG, "onWindowStageActive ability:" + JSON.stringify(ability));
+            onWindowStageActive(uiability, windowStage) {
+                console.info(TAG, "onWindowStageActive uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageActive windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageInactive(ability, windowStage) {
-                console.info(TAG, "onWindowStageInactive ability:" + JSON.stringify(ability));
+            onWindowStageInactive(uiability, windowStage) {
+                console.info(TAG, "onWindowStageInactive uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageInactive windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageDestroy(ability, windowStage) {
-                console.info(TAG, "onWindowStageDestroy ability:" + JSON.stringify(ability));
+            onWindowStageDestroy(uiability, windowStage) {
+                console.info(TAG, "onWindowStageDestroy uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));
             },
-            onAbilityDestroy(ability) {
-                console.info(TAG, "onAbilityDestroy ability:" + JSON.stringify(ability));
+            onAbilityDestroy(uiability) {
+                console.info(TAG, "onAbilityDestroy uiability:" + JSON.stringify(uiability));
             },
-            onAbilityForeground(ability) {
-                console.info(TAG, "onAbilityForeground ability:" + JSON.stringify(ability));
+            onAbilityForeground(uiability) {
+                console.info(TAG, "onAbilityForeground uiability:" + JSON.stringify(uiability));
             },
-            onAbilityBackground(ability) {
-                console.info(TAG, "onAbilityBackground ability:" + JSON.stringify(ability));
+            onAbilityBackground(uiability) {
+                console.info(TAG, "onAbilityBackground uiability:" + JSON.stringify(uiability));
             },
-            onAbilityContinue(ability) {
-                console.info(TAG, "onAbilityContinue ability:" + JSON.stringify(ability));
+            onAbilityContinue(uiability) {
+                console.info(TAG, "onAbilityContinue uiability:" + JSON.stringify(uiability));
             }
         }
         // 1. 通过context属性获取applicationContext
@@ -296,14 +294,3 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-
-
-### 通过UIAbilityContext向用户申请授权
-
-每个Ability中都包含了一个Context属性。Ability功能主要是处理生命周期，其余操作Ability的方法（例如startAbility()、connectServiceExtensionAbility()、terminateSelf()等）都是在对应的Context中实现的，同时Context也提供了获取Ability的配置信息、向用户申请授权等能力，如何获取Context请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
-
-
-应用需要获取用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，需要向用户申请授权，示意效果如下图所示。具体使用请参见[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
-
-**图2** 向用户申请日历访问授权
-<img src="figures/application-context-stage.png" alt="application-context-stage" style="zoom:50%;" />

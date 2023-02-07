@@ -3,7 +3,7 @@
 
 ## 基本概念
 
-LMS全称为Lite Memory Sanitizer，是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double Free), 在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
+LMS（Lite Memory Sanitizer）是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double free), 在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
 
 OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能：
 
@@ -51,7 +51,7 @@ OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能，接口详细信
 开启LMS调测的典型流程如下：
 
 1. 配置LMS模块相关宏。
-   配置LMS控制宏LOSCFG_KERNEL_LMS，默认关，在kernel/liteos_m目录下执行 make update_config命令配置"Kernel-&gt;Enable Lite Memory Sanitizer"中打开YES：
+   配置LMS控制宏LOSCFG_KERNEL_LMS，默认关，在kernel/liteos_m目录下执行 make menuconfig命令配置"Kernel-&gt;Enable Lite Memory Sanitizer"中打开YES（如果没有这个选项，需要先勾选Enable Backtrace）：
 
      | 宏 | menuconfig选项 | 含义 | 取值 | 
    | -------- | -------- | -------- | -------- |
@@ -65,7 +65,7 @@ OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能，接口详细信
    增加LMS检测编译选项-fsanitize=kernel-address。为避免编译器优化，增加-O0编译选项。
 
      gcc与clang编译选项存在差异，参照如下示例：
-     
+   
    ```
    if ("$ohos_build_compiler_specified" == "gcc") {
        cflags_c = [
@@ -103,7 +103,11 @@ OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能，接口详细信
 ### 示例代码
 
   实例代码如下：
-  
+
+  本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数Example_Lms_test。
+
+   请按上文避免编译器优化一节内容，修改osTest.c对应的 ./kernel/liteos_m/testsuites/BUILD.gn。
+
 ```
 #define PAGE_SIZE       (0x1000U)
 #define INDEX_MAX       20
@@ -162,65 +166,114 @@ UINT32 Example_Lms_test(VOID){
 
 ### 结果验证
 
-  输出结果如下：
-  
+  输出结果示例如下 (根据实际运行环境，数据会有差异)：
+
 ```
 ######LmsTestOsmallocOverflow start ######
-[ERR]*  Kernel Address Sanitizer Error Detected Start *
-[ERR]Heap buffer overflow error detected
-[ERR]Illegal READ address at: [0x4157a3c8]
-[ERR]Shadow memory address: [0x4157be3c : 4]  Shadow memory value: [2]
-OsBackTrace fp = 0x402c0f88
-runTask->taskName = LmsTestCaseTask
-runTask->taskID = 2
-***backtrace begin***
-traceback fp fixed, trace using   fp = 0x402c0fd0
-traceback 0 -- lr = 0x400655a4    fp = 0x402c0ff8
-traceback 1 -- lr = 0x40065754    fp = 0x402c1010
-traceback 2 -- lr = 0x40044bd0    fp = 0x402c1038
-traceback 3 -- lr = 0x40004e14    fp = 0xcacacaca
-[LMS] Dump info around address [0x4157a3c8]:
-        [0x4157a3a0]:  00  00  00  00  00  00  00  00 | [0x4157be3a |  0]:  1  1
-        [0x4157a3a8]:  ba  dc  cd  ab  00  00  00  00 | [0x4157be3a |  4]:  2  2
-        [0x4157a3b0]:  20  00  00  80  00  00  00  00 | [0x4157be3b |  0]:  2  0
-        [0x4157a3b8]:  00  00  00  00  00  00  00  00 | [0x4157be3b |  4]:  0  0
-        [0x4157a3c0]:  00  00  00  00  00  00  00  00 | [0x4157be3c |  0]:  0  0
-        [0x4157a3c8]: [ba] dc  cd  ab  a8  a3  57  41 | [0x4157be3c |  4]: [2] 2
-        [0x4157a3d0]:  2c  1a  00  00  00  00  00  00 | [0x4157be3d |  0]:  2  3
-        [0x4157a3d8]:  00  00  00  00  00  00  00  00 | [0x4157be3d |  4]:  3  3
-        [0x4157a3e0]:  00  00  00  00  00  00  00  00 | [0x4157be3e |  0]:  3  3
-        [0x4157a3e8]:  00  00  00  00  00  00  00  00 | [0x4157be3e |  4]:  3  3
-        [0x4157a3f0]:  00  00  00  00  00  00  00  00 | [0x4157be3f |  0]:  3  3
-[ERR]*  Kernel Address Sanitizer Error Detected End *
-str[20]=0xffffffba
+[ERR][TestLmsTsk]*****  Kernel Address Sanitizer Error Detected Start *****
+[ERR][TestLmsTsk]Heap buffer overflow error detected
+[ERR][TestLmsTsk]Illegal READ address at: [0x21040414]
+[ERR][TestLmsTsk]Shadow memory address: [0x21041e84 : 6]  Shadow memory value: [2]
+psp, start = 21057d88, end = 21057e80
+taskName = TestLmsTsk
+taskID   = 5
+----- traceback start -----
+traceback 0 -- lr = 0x210099f4
+traceback 1 -- lr = 0x2101da6e
+traceback 2 -- lr = 0x2101db38
+traceback 3 -- lr = 0x2101c494
+----- traceback end -----
+
+[LMS] Dump info around address [0x21040414]:
+
+        [0x21040390]:  00  00  00  00  00  00  00  00 | [0x21041e7c |  4]:  1  1
+        [0x21040398]:  00  00  00  00  00  00  00  00 | [0x21041e7d |  0]:  1  1
+        [0x210403a0]:  00  00  00  00  00  00  00  00 | [0x21041e7d |  4]:  1  1
+        [0x210403a8]:  00  00  00  00  00  00  00  00 | [0x21041e7e |  0]:  1  1
+        [0x210403b0]:  00  00  00  00  00  00  00  00 | [0x21041e7e |  4]:  1  1
+        [0x210403b8]:  00  00  00  00  00  00  00  00 | [0x21041e7f |  0]:  1  1
+        [0x210403c0]:  00  00  00  00  00  00  00  00 | [0x21041e7f |  4]:  1  1
+        [0x210403c8]:  00  00  00  00  00  00  00  00 | [0x21041e80 |  0]:  1  1
+        [0x210403d0]:  00  00  00  00  00  00  00  00 | [0x21041e80 |  4]:  1  1
+        [0x210403d8]:  00  00  00  00  00  00  00  00 | [0x21041e81 |  0]:  1  1
+        [0x210403e0]:  00  00  00  00  00  00  00  00 | [0x21041e81 |  4]:  1  1
+        [0x210403e8]:  00  00  00  00  00  00  00  00 | [0x21041e82 |  0]:  1  1
+        [0x210403f0]:  00  00  00  00  00  00  00  00 | [0x21041e82 |  4]:  1  1
+        [0x210403f8]:  40  1e  04  21  05  07  00  80 | [0x21041e83 |  0]:  2  2
+        [0x21040400]:  00  00  00  00  00  00  00  00 | [0x21041e83 |  4]:  0  0
+        [0x21040408]:  00  00  00  00  00  00  00  00 | [0x21041e84 |  0]:  0  0
+        [0x21040410]:  00  00  00  00 [f8] 03  04  21 | [0x21041e84 |  4]:  0 [2]
+        [0x21040418]:  00  8b  06  00  00  00  00  00 | [0x21041e85 |  0]:  2  3
+        [0x21040420]:  00  00  00  00  00  00  00  00 | [0x21041e85 |  4]:  3  3
+        [0x21040428]:  00  00  00  00  00  00  00  00 | [0x21041e86 |  0]:  3  3
+        [0x21040430]:  00  00  00  00  00  00  00  00 | [0x21041e86 |  4]:  3  3
+        [0x21040438]:  00  00  00  00  00  00  00  00 | [0x21041e87 |  0]:  3  3
+        [0x21040440]:  00  00  00  00  00  00  00  00 | [0x21041e87 |  4]:  3  3
+        [0x21040448]:  00  00  00  00  00  00  00  00 | [0x21041e88 |  0]:  3  3
+        [0x21040450]:  00  00  00  00  00  00  00  00 | [0x21041e88 |  4]:  3  3
+        [0x21040458]:  00  00  00  00  00  00  00  00 | [0x21041e89 |  0]:  3  3
+        [0x21040460]:  00  00  00  00  00  00  00  00 | [0x21041e89 |  4]:  3  3
+        [0x21040468]:  00  00  00  00  00  00  00  00 | [0x21041e8a |  0]:  3  3
+        [0x21040470]:  00  00  00  00  00  00  00  00 | [0x21041e8a |  4]:  3  3
+        [0x21040478]:  00  00  00  00  00  00  00  00 | [0x21041e8b |  0]:  3  3
+        [0x21040480]:  00  00  00  00  00  00  00  00 | [0x21041e8b |  4]:  3  3
+        [0x21040488]:  00  00  00  00  00  00  00  00 | [0x21041e8c |  0]:  3  3
+        [0x21040490]:  00  00  00  00  00  00  00  00 | [0x21041e8c |  4]:  3  3
+[ERR][TestLmsTsk]*****  Kernel Address Sanitizer Error Detected End *****
+str[20]=0xfffffff8
 ######LmsTestOsmallocOverflow stop ######
-###### LmsTestUseAfterFree start ######
-[ERR]*  Kernel Address Sanitizer Error Detected Start *
-[ERR]Use after free error detected
-[ERR]Illegal READ address at: [0x4157a3d4]
-[ERR]Shadow memory address: [0x4157be3d : 2]  Shadow memory value: [3]
-OsBackTrace fp = 0x402c0f90
-runTask->taskName = LmsTestCaseTask
-runTask->taskID = 2
-***backtrace begin***
-traceback fp fixed, trace using   fp = 0x402c0fd8
-traceback 0 -- lr = 0x40065680    fp = 0x402c0ff8
-traceback 1 -- lr = 0x40065758    fp = 0x402c1010
-traceback 2 -- lr = 0x40044bd0    fp = 0x402c1038
-traceback 3 -- lr = 0x40004e14    fp = 0xcacacaca
-[LMS] Dump info around address [0x4157a3d4]:
-        [0x4157a3a8]:  ba  dc  cd  ab  00  00  00  00 | [0x4157be3a |  4]:  2  2
-        [0x4157a3b0]:  20  00  00  80  00  00  00  00 | [0x4157be3b |  0]:  2  0
-        [0x4157a3b8]:  00  00  00  00  00  00  00  00 | [0x4157be3b |  4]:  0  0
-        [0x4157a3c0]:  00  00  00  00  00  00  00  00 | [0x4157be3c |  0]:  0  0
-        [0x4157a3c8]:  ba  dc  cd  ab  a8  a3  57  41 | [0x4157be3c |  4]:  2  2
-        [0x4157a3d0]:  2c  1a  00  00 [00] 00  00  00 | [0x4157be3d |  0]:  2 [3]
-        [0x4157a3d8]:  00  00  00  00  00  00  00  00 | [0x4157be3d |  4]:  3  3
-        [0x4157a3e0]:  00  00  00  00  00  00  00  00 | [0x4157be3e |  0]:  3  3
-        [0x4157a3e8]:  ba  dc  cd  ab  c8  a3  57  41 | [0x4157be3e |  4]:  2  2
-        [0x4157a3f0]:  0c  1a  00  00  00  00  00  00 | [0x4157be3f |  0]:  2  3
-        [0x4157a3f8]:  00  00  00  00  00  00  00  00 | [0x4157be3f |  4]:  3  3
-[ERR]*  Kernel Address Sanitizer Error Detected End *
+
+######LmsTestUseAfterFree start ######
+[ERR][TestLmsTsk]*****  Kernel Address Sanitizer Error Detected Start *****
+[ERR][TestLmsTsk]Use after free error detected
+[ERR][TestLmsTsk]Illegal READ address at: [0x2104041c]
+[ERR][TestLmsTsk]Shadow memory address: [0x21041e85 : 2]  Shadow memory value: [3]
+psp, start = 21057d90, end = 21057e80
+taskName = TestLmsTsk
+taskID   = 5
+----- traceback start -----
+traceback 0 -- lr = 0x210099f4
+traceback 1 -- lr = 0x2101daec
+traceback 2 -- lr = 0x2101db3c
+traceback 3 -- lr = 0x2101c494
+----- traceback end -----
+
+[LMS] Dump info around address [0x2104041c]:
+
+        [0x21040398]:  00  00  00  00  00  00  00  00 | [0x21041e7d |  0]:  1  1
+        [0x210403a0]:  00  00  00  00  00  00  00  00 | [0x21041e7d |  4]:  1  1
+        [0x210403a8]:  00  00  00  00  00  00  00  00 | [0x21041e7e |  0]:  1  1
+        [0x210403b0]:  00  00  00  00  00  00  00  00 | [0x21041e7e |  4]:  1  1
+        [0x210403b8]:  00  00  00  00  00  00  00  00 | [0x21041e7f |  0]:  1  1
+        [0x210403c0]:  00  00  00  00  00  00  00  00 | [0x21041e7f |  4]:  1  1
+        [0x210403c8]:  00  00  00  00  00  00  00  00 | [0x21041e80 |  0]:  1  1
+        [0x210403d0]:  00  00  00  00  00  00  00  00 | [0x21041e80 |  4]:  1  1
+        [0x210403d8]:  00  00  00  00  00  00  00  00 | [0x21041e81 |  0]:  1  1
+        [0x210403e0]:  00  00  00  00  00  00  00  00 | [0x21041e81 |  4]:  1  1
+        [0x210403e8]:  00  00  00  00  00  00  00  00 | [0x21041e82 |  0]:  1  1
+        [0x210403f0]:  00  00  00  00  00  00  00  00 | [0x21041e82 |  4]:  1  1
+        [0x210403f8]:  40  1e  04  21  05  07  00  80 | [0x21041e83 |  0]:  2  2
+        [0x21040400]:  00  00  00  00  00  00  00  00 | [0x21041e83 |  4]:  0  0
+        [0x21040408]:  00  00  00  00  00  00  00  00 | [0x21041e84 |  0]:  0  0
+        [0x21040410]:  00  00  00  00  f8  03  04  21 | [0x21041e84 |  4]:  0  2
+        [0x21040418]:  05  8b  06  00 [00] 00  00  00 | [0x21041e85 |  0]:  2 [3]
+        [0x21040420]:  00  00  00  00  00  00  00  00 | [0x21041e85 |  4]:  3  3
+        [0x21040428]:  00  00  00  00  00  00  00  00 | [0x21041e86 |  0]:  3  3
+        [0x21040430]:  14  04  04  21  00  84  06  00 | [0x21041e86 |  4]:  2  2
+        [0x21040438]:  00  00  00  00  00  00  00  00 | [0x21041e87 |  0]:  3  3
+        [0x21040440]:  00  00  00  00  00  00  00  00 | [0x21041e87 |  4]:  3  3
+        [0x21040448]:  00  00  00  00  00  00  00  00 | [0x21041e88 |  0]:  3  3
+        [0x21040450]:  00  00  00  00  00  00  00  00 | [0x21041e88 |  4]:  3  3
+        [0x21040458]:  00  00  00  00  00  00  00  00 | [0x21041e89 |  0]:  3  3
+        [0x21040460]:  00  00  00  00  00  00  00  00 | [0x21041e89 |  4]:  3  3
+        [0x21040468]:  00  00  00  00  00  00  00  00 | [0x21041e8a |  0]:  3  3
+        [0x21040470]:  00  00  00  00  00  00  00  00 | [0x21041e8a |  4]:  3  3
+        [0x21040478]:  00  00  00  00  00  00  00  00 | [0x21041e8b |  0]:  3  3
+        [0x21040480]:  00  00  00  00  00  00  00  00 | [0x21041e8b |  4]:  3  3
+        [0x21040488]:  00  00  00  00  00  00  00  00 | [0x21041e8c |  0]:  3  3
+        [0x21040490]:  00  00  00  00  00  00  00  00 | [0x21041e8c |  4]:  3  3
+        [0x21040498]:  00  00  00  00  00  00  00  00 | [0x21041e8d |  0]:  3  3
+[ERR][TestLmsTsk]*****  Kernel Address Sanitizer Error Detected End *****
 str[ 0]=0x 0
 ######LmsTestUseAfterFree stop ######
 ```

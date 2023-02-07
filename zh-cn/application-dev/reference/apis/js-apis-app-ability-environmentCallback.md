@@ -35,7 +35,7 @@ onConfigurationUpdated(config: Configuration): void;
   ```ts
 import UIAbility from "@ohos.app.ability.Ability";
 
-var callbackId;
+let callbackId;
 
 export default class MyAbility extends UIAbility {
     onCreate() {
@@ -44,7 +44,7 @@ export default class MyAbility extends UIAbility {
         let EnvironmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log("onConfigurationUpdated config:" + JSON.stringify(config));
-            },
+            }
         }
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;

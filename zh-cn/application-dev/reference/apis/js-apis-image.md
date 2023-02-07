@@ -152,7 +152,7 @@ pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图片数据，使用Promise形式返回读取结果。
+读取区域内的图片数据，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -735,9 +735,15 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function Demo() {
-	await pixelmap.rotate(90.0);
-}
+var angle = 90.0;
+pixelmap.rotate(angle, (err) => {
+	if (err) {
+        console.error("Failed to set rotation.");
+        return;
+    } else {
+        console.log("Succeeded in setting rotation.");
+	}
+})
 ```
 
 ### rotate<sup>9+</sup>

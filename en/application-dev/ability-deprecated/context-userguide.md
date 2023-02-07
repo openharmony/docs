@@ -4,11 +4,11 @@
 
 **Context** provides the capability of obtaining contextual information of an application.
 
- The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms. **application/BaseContext** is a common context base class. It uses the **stageMode** attribute to specify whether the context is used for the stage model.
+The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms. **application/BaseContext** is a common context base class. It uses the **stageMode** attribute to specify whether the context is used for the stage model.
 
-- FA model
+- FA model 
   
-Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
+  Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
   
 - Stage model 
   
@@ -54,6 +54,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise<void>;
 The methods are used to set the display orientation of the current ability.
 
 **Example**
+
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
 import bundle from '@ohos.bundle';
@@ -96,13 +97,13 @@ Obtain the context by calling **context.getApplicationContext()** in **Ability**
 **Example**
 
 ```javascript
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 var lifecycleid;
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         let AbilityLifecycleCallback  =  {
             onAbilityCreate(ability){
                 console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
@@ -191,25 +192,25 @@ Obtain the context from the **context** attribute in **Ability**.
 **Example**
 
 ```javascript
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
     }
 
     onWindowStageCreate(windowStage) {
         // Set the main page for this ability when the main window is created.
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
 
         // Obtain AbilityContext and print the ability information.
         let context = this.context;
-        console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
+        console.log("[Demo] EntryAbility bundleName " + context.abilityInfo.bundleName)
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -222,17 +223,17 @@ export default class MainAbility extends Ability {
 
     onWindowStageDestroy() {
         // Release the UI related resources when the main window is destroyed.
-        console.log("[Demo] MainAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy")
     }
 
     onForeground() {
         // The ability is switched to run in the foreground.
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground")
     }
 
     onBackground() {
         // The ability is switched to run in the background.
-        console.log("[Demo] MainAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground")
     }
 };
 ```
@@ -256,16 +257,16 @@ Use the API described in the table below to obtain the context associated with a
 **Example**
 
 ```ts
-// MainAbility.ts
-import Ability from '@ohos.application.Ability'
+// EntryAbility.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
     }
 
     onWindowStageCreate(windowStage) {
@@ -283,7 +284,7 @@ export default class MainAbility extends Ability {
 
 ```ts
 // pages/index.ets
-import context from '@ohos.application.context'
+import context from '@ohos.app.ability.context'
 
 type Context = context.Context
 

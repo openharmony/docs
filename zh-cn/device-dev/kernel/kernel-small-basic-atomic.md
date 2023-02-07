@@ -16,19 +16,17 @@ OpenHarmony系统通过对ARMv6架构中的LDREX和STREX进行封装，向用户
 
 - LDREX Rx, [Ry]
   读取内存中的值，并标记对该段内存的独占访问：
-
   - 读取寄存器Ry指向的4字节内存数据，保存到Rx寄存器中。
   - 对Ry指向的内存区域添加独占访问标记。
 
 - STREX Rf, Rx, [Ry]
   检查内存是否有独占访问标记，如果有则更新内存值并清空标记，否则不更新内存：
-
   - 有独占访问标记
-     - 将寄存器Rx中的值更新到寄存器Ry指向的内存。
-     - 标志寄存器Rf置为0。
+    - 将寄存器Rx中的值更新到寄存器Ry指向的内存。
+    - 标志寄存器Rf置为0。
   - 没有独占访问标记
-     - 不更新内存。
-     - 标志寄存器Rf置为1。
+    - 不更新内存。
+    - 标志寄存器Rf置为1。
 
 - 判断标志寄存器
   - 标志寄存器为0时，退出循环，原子操作结束。
@@ -40,36 +38,36 @@ OpenHarmony系统通过对ARMv6架构中的LDREX和STREX进行封装，向用户
 
 ### 接口说明
 
-OpenHarmony LiteOS-A内核的原子操作模块提供下面几种功能，接口详细信息可以查看API参考。
+OpenHarmony LiteOS-A内核的原子操作模块提供以下几种功能。
 
   **表1** 原子操作接口说明
 
-| 功能分类 | 接口**名称** | 描述 | 
-| -------- | -------- | -------- |
-| 读 | LOS_AtomicRead | 读取32bit原子数据 | 
-| 读 | LOS_Atomic64Read | 读取64bit原子数据 | 
-| 写 | LOS_AtomicSet | 设置32bit原子数据 | 
-| 写 | LOS_Atomic64Set | 设置64bit原子数据 | 
-| 加 | LOS_AtomicAdd | 对32bit原子数据做加法 | 
-| 加 | LOS_Atomic64Add | 对64bit原子数据做加法 | 
-| 加 | LOS_AtomicInc | 对32bit原子数据做加1 | 
-| 加 | LOS_Atomic64Inc | 对64bit原子数据做加1 | 
-| 加 | LOS_AtomicIncRet | 对32bit原子数据做加1并返回 | 
-| 加 | LOS_Atomic64IncRet | 对64bit原子数据做加1并返回 | 
-| 减 | LOS_AtomicSub | 对32bit原子数据做减法 | 
-| 减 | LOS_Atomic64Sub | 对64bit原子数据做减法 | 
-| 减 | LOS_AtomicDec | 对32bit原子数据做减1 | 
-| 减 | LOS_Atomic64Dec | 对64bit原子数据做减1 | 
-| 减 | LOS_AtomicDecRet | 对32bit原子数据做减1并返回 | 
-| 减 | LOS_Atomic64DecRet | 对64bit原子数据做减1并返回 | 
-| 交换 | LOS_AtomicXchgByte | 交换8bit内存数据 | 
-| 交换 | LOS_AtomicXchg16bits | 交换16bit内存数据 | 
-| 交换 | LOS_AtomicXchg32bits | 交换32bit内存数据 | 
-| 交换 | LOS_AtomicXchg64bits | 交换64bit内存数据 | 
-| 先比较后交换 | LOS_AtomicCmpXchgByte | 比较相同后交换8bit内存数据 | 
-| 先比较后交换 | LOS_AtomicCmpXchg16bits | 比较相同后交换16bit内存数据 | 
-| 先比较后交换 | LOS_AtomicCmpXchg32bits | 比较相同后交换32bit内存数据 | 
-| 先比较后交换 | LOS_AtomicCmpXchg64bits | 比较相同后交换64bit内存数据 | 
+| 功能分类     | 接口**名称**            | 描述                        |
+| ------------ | ----------------------- | --------------------------- |
+| 读           | LOS_AtomicRead          | 读取32bit原子数据           |
+| 读           | LOS_Atomic64Read        | 读取64bit原子数据           |
+| 写           | LOS_AtomicSet           | 设置32bit原子数据           |
+| 写           | LOS_Atomic64Set         | 设置64bit原子数据           |
+| 加           | LOS_AtomicAdd           | 对32bit原子数据做加法       |
+| 加           | LOS_Atomic64Add         | 对64bit原子数据做加法       |
+| 加           | LOS_AtomicInc           | 对32bit原子数据做加1        |
+| 加           | LOS_Atomic64Inc         | 对64bit原子数据做加1        |
+| 加           | LOS_AtomicIncRet        | 对32bit原子数据做加1并返回  |
+| 加           | LOS_Atomic64IncRet      | 对64bit原子数据做加1并返回  |
+| 减           | LOS_AtomicSub           | 对32bit原子数据做减法       |
+| 减           | LOS_Atomic64Sub         | 对64bit原子数据做减法       |
+| 减           | LOS_AtomicDec           | 对32bit原子数据做减1        |
+| 减           | LOS_Atomic64Dec         | 对64bit原子数据做减1        |
+| 减           | LOS_AtomicDecRet        | 对32bit原子数据做减1并返回  |
+| 减           | LOS_Atomic64DecRet      | 对64bit原子数据做减1并返回  |
+| 交换         | LOS_AtomicXchgByte      | 交换8bit内存数据            |
+| 交换         | LOS_AtomicXchg16bits    | 交换16bit内存数据           |
+| 交换         | LOS_AtomicXchg32bits    | 交换32bit内存数据           |
+| 交换         | LOS_AtomicXchg64bits    | 交换64bit内存数据           |
+| 先比较后交换 | LOS_AtomicCmpXchgByte   | 比较相同后交换8bit内存数据  |
+| 先比较后交换 | LOS_AtomicCmpXchg16bits | 比较相同后交换16bit内存数据 |
+| 先比较后交换 | LOS_AtomicCmpXchg32bits | 比较相同后交换32bit内存数据 |
+| 先比较后交换 | LOS_AtomicCmpXchg64bits | 比较相同后交换64bit内存数据 |
 
 
 ### 开发流程
@@ -77,7 +75,7 @@ OpenHarmony LiteOS-A内核的原子操作模块提供下面几种功能，接口
 有多个任务对同一个内存数据进行加减或交换等操作时，使用原子操作保证结果的可预知性。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 原子操作接口仅支持整型数据。
+>  原子操作接口仅支持整型数据。
 
 
 ### 编程实例
@@ -96,7 +94,7 @@ OpenHarmony LiteOS-A内核的原子操作模块提供下面几种功能，接口
 
 示例代码如下：
 
-  
+
 ```
 #include "los_hwi.h"
 #include "los_atomic.h"
@@ -159,7 +157,7 @@ UINT32 Example_AtomicTaskEntry(VOID)
 
 **结果验证**
 
-  
+
 ```
 g_sum = 0
 ```

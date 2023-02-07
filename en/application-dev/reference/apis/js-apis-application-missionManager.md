@@ -1,10 +1,10 @@
-# @ohos.application.missionManager
+# @ohos.application.missionManager (missionManager)
 
 The **missionManager** module provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.missionManager](js-apis-app-ability-missionManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -32,13 +32,13 @@ Registers a listener to observe the mission status.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | listener | [MissionListener](js-apis-inner-application-missionListener.md) | Yes| Listener to register.|
+  | listener | [MissionListener](js-apis-inner-application-missionListener.md) | Yes| Mission status listener to register.|
 
 **Return value**
 
   | Type| Description|
   | -------- | -------- |
-  | number | Returns the unique index of the mission status listener, which is created by the system and allocated when the listener is registered.|
+  | number | Index of the mission status listener, which is created by the system and allocated when the listener is registered.|
 
 **Example**
 
@@ -73,7 +73,7 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | Yes| Unique index of the mission status listener to unregister. It is returned by **registerMissionListener**.|
+  | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **registerMissionListener()**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -113,7 +113,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | Yes| Unique index of the mission status listener to unregister. It is returned by **registerMissionListener**.|
+  | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **registerMissionListener()**.|
 
 **Return value**
 
@@ -169,7 +169,12 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
   var allMissions=missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
       missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
-        console.log("getMissionInfo is called, error.code = " + error.code)
+        if (error.code) {
+          console.log("getMissionInfo failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+        }
+
         console.log("mission.missionId = " + mission.missionId);
         console.log("mission.runningState = " + mission.runningState);
         console.log("mission.lockedState = " + mission.lockedState);
@@ -242,7 +247,11 @@ Obtains information about all missions. This API uses an asynchronous callback t
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-      console.log("getMissionInfos is called, error.code = " + error.code);
+      if (error.code) {
+          console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+      }
       console.log("size = " + missions.length);
       console.log("missions = " + JSON.stringify(missions));
   })
@@ -311,14 +320,22 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
 
     missionManager.getMissionSnapShot("", id, (error, snapshot) => {
-  	console.log("getMissionSnapShot is called, error.code = " + error.code);
-  	console.log("bundleName = " + snapshot.ability.bundleName);
+      if (error.code) {
+          console.log("getMissionSnapShot failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+      }
+      console.log("bundleName = " + snapshot.ability.bundleName);
   })
   })
   ```
@@ -393,14 +410,22 @@ Obtains the low-resolution snapshot of a given mission. This API uses an asynchr
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
 
     missionManager.getLowResolutionMissionSnapShot("", id, (error, snapshot) => {
-  	console.log("getLowResolutionMissionSnapShot is called, error.code = " + error.code);
-  	console.log("bundleName = " + snapshot.ability.bundleName);
+      if (error.code) {
+          console.log("getLowResolutionMissionSnapShot failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+          return;
+      }
+  	  console.log("bundleName = " + snapshot.ability.bundleName);
   })
   })
   ```
@@ -475,7 +500,11 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -554,7 +583,11 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -637,7 +670,11 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -768,7 +805,11 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;
@@ -806,7 +847,11 @@ Switches a given mission to the foreground, with the startup parameters for the 
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
-    console.log("getMissionInfos is called, error.code = " + error.code);
+    if (error.code) {
+        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
+            "error.message:" + JSON.stringify(error.message));
+        return;
+    }
     console.log("size = " + missions.length);
     console.log("missions = " + JSON.stringify(missions));
     var id = missions[0].missionId;

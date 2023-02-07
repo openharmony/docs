@@ -113,10 +113,10 @@
 
    ```ts
    // 获取context
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let context = null;
    let preferences = null;
-   export default class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage){
            context = this.context;
        }
@@ -209,3 +209,5 @@
 针对首选项开发，有以下相关实例可供参考：
 
 - [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences)
+
+- [首选项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Preferences)

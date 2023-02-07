@@ -1,14 +1,16 @@
-# AVSession Management
+# @ohos.multimedia.avsession (AVSession Management)
 
 The **avSession** module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following common features related to media sessions:
-- [AVSession](#section652893): used to set session metadata, playback state information, and more.
-- [AVSessionController](#section974602): used to obtain session IDs, send commands and events to sessions, and obtain the session metadata and playback state information.
+- [AVSession](#avsession): used to set session metadata, playback state information, and more.
+- [AVSessionController](#avsessioncontroller): used to obtain session IDs, send commands and events to sessions, and obtain the session metadata and playback state information.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> All the APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -28,7 +30,7 @@ Creates a media session. This API uses a promise to return the result. An abilit
 
 | Name| Type                           | Mandatory| Description                          |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | Yes| Application context, which provides application environment information.|
+| context| [Context](js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.|
 | tag    | string                          | Yes  | Custom session name.            |
 | type   | [AVSessionType](#avsessiontype) | Yes  | Session type, which can be audio or video.|
 
@@ -39,13 +41,13 @@ Creates a media session. This API uses a promise to return the result. An abilit
 | --------------------------------- | ------------------------------------------------------------ |
 | Promise<[AVSession](#avsession)\> | Promise used to return the media session obtained, which can be used to obtain the session ID, set the metadata and playback state information, and send key events.|
 
-**Error codes**
 
+**Error codes**
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -76,18 +78,17 @@ Creates a media session. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../../ability/context-userguide.md) | Yes| Application context, which provides application environment information.    |
+| context| [Context](js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.    |
 | tag      | string                                  | Yes  | Custom session name.                                          |
 | type     | [AVSessionType](#avsessiontype)         | Yes  | Session type, which can be audio or video.                              |
 | callback | AsyncCallback<[AVSession](#avsession)\> | Yes  | Callback used to return the media session obtained, which can be used to obtain the session ID, set the metadata and playback state information, and send key events.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -127,12 +128,11 @@ Obtains the descriptors of all sessions. This API uses a promise to return the r
 | Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise used to return an array of **AVSessionDescriptor** objects, each of which is read only.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -168,12 +168,11 @@ Obtains the descriptors of all sessions. This API uses an asynchronous callback 
 | callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Yes  | Callback used to return an array of **AVSessionDescriptor** objects, each of which is read only.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  |Session service exception |
+| 6600101  |Session service exception. |
 
 **Example**
 
@@ -217,13 +216,12 @@ Creates a session controller based on the session ID. Multiple session controlle
 | Promise<[AVSessionController](#avsessioncontroller)\> | Promise used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -270,13 +268,12 @@ Creates a session controller based on the session ID. Multiple session controlle
 | callback  | AsyncCallback<[AVSessionController](#avsessioncontroller)\> | Yes  | Callback used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -333,14 +330,13 @@ Before calling this API, import the **ohos.multimedia.audio** module to obtain t
 | Promise<void\> | Promise used to return the result. If the cast is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600104  | The remote session  connection failed |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600104  | The remote session  connection failed. |
 
 **Example**
 
@@ -386,14 +382,13 @@ Before calling this API, import the **ohos.multimedia.audio** module to obtain t
 | callback     | AsyncCallback<void\>                       | Yes  | Callback used to return the result. If the casting is successful, **err** is **undefined**; otherwise, **err** is an error object.                       |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600104  | The remote session  connection failed |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600104  | The remote session  connection failed. |
 
 **Example**
 
@@ -438,12 +433,11 @@ Subscribes to session creation, session destruction, and top session change even
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | Yes  | Callback used to report the session descriptor.                              |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -487,12 +481,11 @@ Unsubscribes from session creation, session destruction, and top session change 
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **session** parameter in the callback describes a media session. The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                              |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -518,12 +511,11 @@ Subscribes to session service death events.
 | callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                               |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -549,12 +541,11 @@ Unsubscribes from session service death events.
 | callback | callback: () => void   | No   | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.           |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -587,13 +578,12 @@ Sends a system key event to the top session. This API uses a promise to return t
 | Promise<void\> | Promise used to return the result. If the event is sent, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
 
 **Example**
 
@@ -630,13 +620,12 @@ Sends a system key event to the top session. This API uses an asynchronous callb
 | callback | AsyncCallback<void\>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
 
 **Example**
 
@@ -678,14 +667,13 @@ Sends a system control command to the top session. This API uses a promise to re
 | Promise<void\> | Promise used to return the result. If the command is sent, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 
@@ -733,14 +721,13 @@ Sends a system control command to the top session. This API uses an asynchronous
 | callback | AsyncCallback<void\>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600105  | Invalid session command |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600105  | Invalid session command. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 
@@ -770,7 +757,7 @@ avSession.sendSystemControlCommand(avcommand, function (err) {
 });
 ```
 
-## AVSession<a name="section652893"></a>
+## AVSession
 
 An **AVSession** object is created by calling [avSession.createAVSession](#avsessioncreateavsession). The object enables you to obtain the session ID and set the metadata and playback state. 
 
@@ -810,13 +797,12 @@ Sets session metadata. This API uses a promise to return the result.
 | Promise<void\> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -860,13 +846,12 @@ Sets session metadata. This API uses an asynchronous callback to return the resu
 | callback | AsyncCallback<void\>      | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -917,13 +902,12 @@ Sets information related to the session playback state. This API uses a promise 
 | Promise<void\> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -959,13 +943,12 @@ Sets information related to the session playback state. This API uses an asynchr
 | callback | AsyncCallback<void\>                | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.         |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -997,9 +980,9 @@ Sets a launcher ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                             | Mandatory| Description                                                       |
-| ------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| ability | [WantAgent](js-apis-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID.|
+| Name | Type                                         | Mandatory| Description                                                       |
+| ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| ability | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID.|
 
 **Return value**
 
@@ -1008,26 +991,25 @@ Sets a launcher ability. This API uses a promise to return the result.
 | Promise<void\> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 // WantAgentInfo object
 let wantAgentInfo = {
     wants: [
         {
             deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
+            bundleName: "com.example.myapplication",
+            abilityName: "EntryAbility",
             action: "action1",
             entities: ["entity1"],
             type: "MIMETYPE",
@@ -1068,32 +1050,31 @@ Sets a launcher ability. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                             | Mandatory| Description                                                       |
-| -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| ability  | [WantAgent](js-apis-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID.|
-| callback | AsyncCallback<void\>              | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ability  | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID. |
+| callback | AsyncCallback<void\>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 // WantAgentInfo object
 let wantAgentInfo = {
     wants: [
         {
             deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
+            bundleName: "com.example.myapplication",
+            abilityName: "EntryAbility",
             action: "action1",
             entities: ["entity1"],
             type: "MIMETYPE",
@@ -1141,13 +1122,12 @@ Obtains the controller corresponding to this session. This API uses a promise to
 | Promise<[AVSessionController](#avsessioncontroller)> | Promise used to return the session controller.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1176,13 +1156,12 @@ Obtains the controller corresponding to this session. This API uses an asynchron
 | callback | AsyncCallback<[AVSessionController](#avsessioncontroller)\> | Yes  | Callback used to return the session controller.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1213,13 +1192,12 @@ Obtains information about the output device for this session. This API uses a pr
 | Promise<[OutputDeviceInfo](#outputdeviceinfo)> | Promise used to return the output device information.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1246,13 +1224,12 @@ Obtains information about the output device for this session. This API uses an a
 | callback | AsyncCallback<[OutputDeviceInfo](#outputdeviceinfo)\> | Yes  | Callback used to return the information obtained.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1281,13 +1258,12 @@ Activates this session. A session can be used only after being activated. This A
 | Promise<void\> | Promise used to return the result. If the session is activated, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1314,13 +1290,12 @@ Activates this session. A session can be used only after being activated. This A
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the session is activated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1349,13 +1324,12 @@ Deactivates this session. You can use [activate](#activate) to activate the sess
 | Promise<void\> | Promise used to return the result. If the session is deactivated, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1384,13 +1358,12 @@ Deactivates this session. You can use [activate](#activate) to activate the sess
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the session is deactivated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1419,13 +1392,12 @@ Destroys this session. This API uses a promise to return the result.
 | Promise<void\> | Promise used to return the result. If the session is destroyed, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1453,13 +1425,12 @@ Destroys this session. This API uses an asynchronous callback to return the resu
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the session is destroyed, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1489,13 +1460,12 @@ Subscribes to playback command events.
 | callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                                       |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1539,13 +1509,12 @@ Subscribes to the seek event.
 | callback | (time: number) => void | Yes  | Callback used for subscription. The **time** parameter in the callback indicates the time to seek to, in milliseconds.                  |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 The session does not exist
@@ -1571,13 +1540,12 @@ Subscribes to the event for setting the playback speed.
 | callback | (speed: number) => void | Yes  | Callback used for subscription. The **speed** parameter in the callback indicates the playback speed.                             |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1603,13 +1571,12 @@ Subscribes to the event for setting the loop mode.
 | callback | (mode: [LoopMode](#loopmode)) => void | Yes  | Callback used for subscription. The **mode** parameter in the callback indicates the loop mode.                              |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1635,13 +1602,12 @@ Subscribes to the event for favoriting a media asset.
 | callback | (assetId: string) => void | Yes  | Callback used for subscription. The **assetId** parameter in the callback indicates the media asset ID.                             |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1667,13 +1633,12 @@ Subscribes to the key event.
 | callback | (event: [KeyEvent](js-apis-keyevent.md)) => void | Yes  | Callback used for subscription. The **event** parameter in the callback indicates the key event.                             |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1699,13 +1664,12 @@ Subscribes to output device changes.
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.                        |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1731,13 +1695,12 @@ Unsubscribes from playback command events.
 | callback | callback: () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                           |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1767,13 +1730,12 @@ Unsubscribes from the seek event.
 | callback | (time: number) => void | No  | Callback used for unsubscription. The **time** parameter in the callback indicates the time to seek to, in milliseconds.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.       |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1797,13 +1759,12 @@ Unsubscribes from the event for setting the playback speed.
 | callback | (speed: number) => void | No  | Callback used for unsubscription. The **speed** parameter in the callback indicates the playback speed.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1827,13 +1788,12 @@ Unsubscribes from the event for setting loop mode.
 | callback | (mode: [LoopMode](#loopmode)) => void | No  | Callback used for unsubscription. The **mode** parameter in the callback indicates the loop mode.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1857,13 +1817,12 @@ Unsubscribes from the event for favoriting a media asset.
 | callback | (assetId: string) => void | No  | Callback used for unsubscription. The **assetId** parameter in the callback indicates the media asset ID.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                              |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1887,13 +1846,12 @@ Unsubscribes from the key event.
 | callback | (event: [KeyEvent](js-apis-keyevent.md)) => void | No  | Callback used for unsubscription. The **event** parameter in the callback indicates the key event.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                             |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1917,13 +1875,12 @@ Unsubscribes from playback device changes.
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                       |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
 
 **Example**
 
@@ -1933,7 +1890,7 @@ session.off('outputDeviceChange');
 
 
 
-## AVSessionController<a name="section974602"></a>
+## AVSessionController
 
 An AV session controller is created by calling [avSession.createController](#avsessioncreatecontroller). Through the AV session controller, you can query the session ID, send commands and events to a session, and obtain session metadata and playback state information.
 
@@ -1972,14 +1929,13 @@ Obtains the information related to the playback state. This API uses a promise t
 | Promise<[AVPlaybackState](#avplaybackstate)\> | Promise used to return the **AVPlaybackState** object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2005,14 +1961,13 @@ Obtains the information related to the playback state. This API uses an asynchro
 | callback | AsyncCallback<[AVPlaybackState](#avplaybackstate)\> | Yes  | Callback used to return the **AVPlaybackState** object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2040,14 +1995,13 @@ Obtains the session metadata. This API uses a promise to return the result.
 | Promise<[AVMetadata](#avmetadata)\> | Promise used to return the metadata obtained.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2073,14 +2027,13 @@ Obtains the session metadata. This API uses an asynchronous callback to return t
 | callback | AsyncCallback<[AVMetadata](#avmetadata)\> | Yes  | Callback used to return the metadata obtained.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2108,13 +2061,12 @@ Obtains the output device information. This API uses a promise to return the res
 | Promise<[OutputDeviceInfo](#outputdeviceinfo)\> | Promise used to return the information obtained.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 ```js
@@ -2140,13 +2092,12 @@ Obtains the output device information. This API uses an asynchronous callback to
 | callback | AsyncCallback<[OutputDeviceInfo](#outputdeviceinfo)\> | Yes  | Callback used to return the information obtained.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2175,16 +2126,15 @@ Sends a key event to the session corresponding to this controller. This API uses
 | event  | [KeyEvent](js-apis-keyevent.md) | Yes  | Key event.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
 
 **Return value**
 
@@ -2218,19 +2168,18 @@ Sends a key event to the session corresponding to this controller. This API uses
 | Name  | Type                                                        | Mandatory| Description      |
 | -------- | ------------------------------------------------------------ | ---- | ---------- |
 | event    | [KeyEvent](js-apis-keyevent.md) | Yes  | Key event.|
-| callback | AsyncCallback<void\>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback<void\>                                         | Yes  | Callback used to return the result. If the event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
 
 **Example**
 
@@ -2257,24 +2206,23 @@ Obtains the **WantAgent** object saved by the application in the session. This A
 
 **Return value**
 
-| Type                                       | Description                                                        |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[WantAgent](js-apis-wantAgent.md)\> | Promise used to return the object saved by calling [setLaunchAbility](#setlaunchability). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
+| Type                                                   | Description                                                        |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise<[WantAgent](js-apis-app-ability-wantAgent.md)\> | Promise used to return the object saved by calling [setLaunchAbility](#setlaunchability). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 controller.getLaunchAbility().then((agent) => {
     console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
@@ -2293,24 +2241,23 @@ Obtains the **WantAgent** object saved by the application in the session. This A
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[WantAgent](js-apis-wantAgent.md)\> | Yes  | Callback used to return the object saved by calling [setLaunchAbility](#setlaunchability). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[WantAgent](js-apis-app-ability-wantAgent.md)\> | Yes  | Callback used to return the object saved by calling [setLaunchAbility](#setlaunchability). The object includes the application attribute, such as the bundle name, ability name, and device ID.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
 ```js
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 controller.getLaunchAbility(function (err, agent) {
     if (err) {
@@ -2336,13 +2283,12 @@ Obtains the playback position.
 | number | Playback position, in milliseconds.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2365,14 +2311,13 @@ Checks whether the session is activated. This API uses a promise to return the r
 | Promise<boolean\> | Promise used to return the activation state. If the session is activated, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2399,14 +2344,13 @@ Checks whether the session is activated. This API uses an asynchronous callback 
 | callback | AsyncCallback<boolean\> | Yes  | Callback used to return the activation state. If the session is activated, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2435,13 +2379,12 @@ Destroys this controller. A controller can no longer be used after being destroy
 | Promise<void\> | Promise used to return the result. If the controller is destroyed, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2468,13 +2411,12 @@ Destroys this controller. A controller can no longer be used after being destroy
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the controller is destroyed, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2503,14 +2445,13 @@ Obtains valid commands supported by the session. This API uses a promise to retu
 | Promise<Array<[AVControlCommandType](#avcontrolcommandtype)\>\> | Promise used to return a set of valid commands.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2537,14 +2478,13 @@ Obtains valid commands supported by the session. This API uses an asynchronous c
 | callback | AsyncCallback\<Array\<[AVControlCommandType](#avcontrolcommandtype)\>\> | Yes  | Callback used to return a set of valid commands.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2579,17 +2519,16 @@ Sends a control command to the session through the controller. This API uses a p
 | Promise<void\> | Promise used to return the result. If the command is sent, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
-| 6600102  | The session does not exist |
-| 6600103  | The session controller does not exist |
-| 6600105  | Invalid session command |
-| 6600106  | The session not active |
-| 6600107  | Command or event overload |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
+| 6600107  | Too many commands or events. |
 
 **Example**
 
@@ -2628,17 +2567,16 @@ Sends a control command to the session through the controller. This API uses an 
 | callback | AsyncCallback<void\>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.                    |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------- |
-| 6600101  | Session service exception                |
-| 6600102  | The session does not exist      |
-| 6600103  | The session controller does not exist   |
-| 6600105  | Invalid session command           |
-| 6600106  | The session not active                |
-| 6600107  | Command or event overload       |
+| 6600101  | Session service exception.                |
+| 6600102  | The session does not exist.     |
+| 6600103  | The session controller does not exist.   |
+| 6600105  | Invalid session command.           |
+| 6600106  | The session is not activated.                |
+| 6600107  | Too many commands or events.      |
 
 **Example**
 
@@ -2680,13 +2618,12 @@ Subscribes to the metadata change event.
 | callback | (data: [AVMetadata](#avmetadata)) => void                    | Yes  | Callback used for subscription. The **data** parameter in the callback indicates the changed metadata.                        |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2718,13 +2655,12 @@ Subscribes to the playback state change event.
 | callback | (state: [AVPlaybackState](#avplaybackstate)) => void         | Yes  | Callback used for subscription. The **state** parameter in the callback indicates the changed playback state.                     |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2755,13 +2691,12 @@ Subscribes to the session destruction event.
 | callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                 |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2787,13 +2722,12 @@ Subscribes to the session activation state change event.
 | callback | (isActive: boolean) => void | Yes  | Callback used for subscription. The **isActive** parameter in the callback specifies whether the session is activated. The value **true** means that the service is activated, and **false** means the opposite.                  |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ----------------------------- |
-| 6600101  | Session service exception |
-| 6600103  |The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  |The session controller does not exist. |
 
 **Example**
 
@@ -2819,13 +2753,12 @@ Subscribes to valid command changes.
 | callback | (commands: Array<[AVControlCommandType](#avcontrolcommandtype)\>) => void | Yes  | Callback used for subscription. The **commands** parameter in the callback is a set of valid commands.                    |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2852,13 +2785,12 @@ Subscribes to output device changes.
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.                        |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ----------------------- |
-| 6600101  | Session service exception |
-| 6600103  | The session controller does not exist |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -2884,12 +2816,11 @@ Unsubscribes from metadata changes.
 | callback | (data: [AVMetadata](#avmetadata)) => void        | No  | Callback used for subscription. The **data** parameter in the callback indicates the changed metadata.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                        |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -2913,12 +2844,11 @@ Unsubscribes from playback state changes.
 | callback | (state: [AVPlaybackState](#avplaybackstate)) => void         | No  | Callback used for subscription. The **state** parameter in the callback indicates the changed playback state.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                     |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -2942,12 +2872,11 @@ Unsubscribes from the session destruction event.
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                                              |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -2971,12 +2900,11 @@ Unsubscribes from session activation state changes.
 | callback | (isActive: boolean) => void | No  | Callback used for unsubscription. The **isActive** parameter in the callback specifies whether the session is activated. The value **true** means that the session is activated, and **false** means the opposite.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                  |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -3000,12 +2928,11 @@ Unsubscribes from valid command changes.
 | callback | (commands: Array<[AVControlCommandType](#avcontrolcommandtype)\>) => void | No  | Callback used for unsubscription. The **commands** parameter in the command is a set of valid commands.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.         |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID| Error Message          |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -3029,12 +2956,11 @@ Unsubscribes from output device changes.
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>The callback parameter is optional. If it is not specified, the specified event is no longer listened for all sessions.                        |
 
 **Error codes**
-
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
 | ID | Error Message         |
 | -------- | ---------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -3132,7 +3058,7 @@ Describes the media metadata.
 | album           | string                  | No  | Album name.                                                              |
 | writer          | string                  | No  | Writer.                                                               |
 | composer        | string                  | No  | composer.                                                               |
-| duration        | string                  | No  | Media duration, in ms.                                                 |
+| duration        | number                  | No  | Media duration, in ms.                                                 |
 | mediaImage      | image.PixelMap &#124; string | No  | Pixel map or image path (local path or network path) of the image.                            |
 | publishDate     | Date                    | No  | Release date.                                                              |
 | subtitle        | string                  | No  | Subtitle.                                                               |
@@ -3217,10 +3143,10 @@ Enumerates the error codes used in the media session.
 
 | Name                          | Value     | Description                            |
 | ------------------------------ | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception                |
-| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist      |
-| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist   |
-| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed         |
-| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command           |
-| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session not active                |
-| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Command or event overload       |
+| ERR_CODE_SERVICE_EXCEPTION     | 6600101 | Session service exception.               |
+| ERR_CODE_SESSION_NOT_EXIST     | 6600102 | The session does not exist.      |
+| ERR_CODE_CONTROLLER_NOT_EXIST  | 6600103 | The session controller does not exist.   |
+| ERR_CODE_REMOTE_CONNECTION_ERR | 6600104 | The remote session  connection failed.         |
+| ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command.           |
+| ERR_CODE_SESSION_INACTIVE      | 6600106 | The session is not activated.                |
+| ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Too many commands or events.       |

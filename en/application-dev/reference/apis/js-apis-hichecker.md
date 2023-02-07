@@ -1,8 +1,9 @@
-# HiChecker
+# @ohos.hichecker (HiChecker)
 
-HiChecker is provided for you to check issues that may be easily ignored during development of OpenHarmony applications (including system-built and third-party applications). Such issues include calling of time-consuming functions by key application threads, event distribution and execution timeout in application processes, and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
+The HiChecker module allows you to check issues that may be easily ignored during development of applications (including system-built and third-party applications). Such issues include calling of time-consuming functions by key application threads, event distribution and execution timeout in application processes, and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,7 +14,7 @@ import hichecker from '@ohos.hichecker';
 ```
 
 
-## Constant
+## Constants
 
 Provides the constants of all rule types.
 
@@ -26,10 +27,8 @@ Provides the constants of all rule types.
 | RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
 | RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
 
-
 ## hichecker.addCheckRule<sup>9+</sup>
 
-## hichecker.addRule
 addCheckRule(rule: bigint): void
 
 Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
@@ -121,11 +120,9 @@ catch (err) {
 
 ## hichecker.addRule<sup>(deprecated)</sup>
 
-## hichecker.addRule
+addRule(rule: bigint): void
 
 > **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hichecker.addCheckRule](#hicheckeraddcheckrule9) instead.
-
-addRule(rule: bigint): void
 
 Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
 

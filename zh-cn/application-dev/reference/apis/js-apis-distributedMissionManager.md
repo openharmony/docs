@@ -394,11 +394,11 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
       missionId: 1,
       wantParam: {"key": "value"}
   };
-  function OnContinueDone(resultCode) {
-      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  function onContinueDone(resultCode) {
+      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   var options = {
-      OnContinueDone: OnContinueDone
+      onContinueDone: onContinueDone
   };
   try {
       distributedMissionManager.continueMission(parameter, options, (error) => {
@@ -457,11 +457,11 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
       missionId: 1,
       wantParam: {"key": "value"}
   };
-  function OnContinueDone(resultCode) {
-      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  function onContinueDone(resultCode) {
+      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   var options = {
-      OnContinueDone: OnContinueDone
+      onContinueDone: onContinueDone
   };
   try {
       distributedMissionManager.continueMission(parameter, options)

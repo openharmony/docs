@@ -773,7 +773,7 @@ Clears the content in a rectangle on the canvas.
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffffff')
+          .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.fillStyle = 'rgb(0,0,255)'
             this.context.fillRect(20,20,200,200)
@@ -1583,7 +1583,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.context.fillStyle = 'green'
+          this.context.fillStyle = '#00ff00'
           this.context.fill(region, "evenodd")
         })
     }
@@ -1749,7 +1749,7 @@ Rotates a canvas clockwise around its coordinate axes.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.rotate(45 * Math.PI / 180) // Rotate the rectangle 45 degrees
+            this.context.rotate(45 * Math.PI / 180)
             this.context.fillRect(70, 20, 50, 50)
           })
       }
@@ -2417,7 +2417,7 @@ Restores the saved drawing context.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2455,7 +2455,7 @@ Saves all states of the canvas in the stack. This API is usually called when the
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2502,9 +2502,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
@@ -2553,9 +2553,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })

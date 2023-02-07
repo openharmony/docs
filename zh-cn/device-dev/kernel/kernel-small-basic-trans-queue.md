@@ -7,7 +7,7 @@
 
 任务能够从队列里面读取消息，当队列中的消息为空时，挂起读取任务；当队列中有新消息时，挂起的读取任务被唤醒并处理新消息。任务也能够往队列里写入消息，当队列已经写满消息时，挂起写入任务；当队列中有空闲消息节点时，挂起的写入任务被唤醒并写入消息。
 
-可以通过调整读队列和写队列的超时时间来调整读写接口的阻塞模式，如果将读队列和写队列的超时时间设置为0，就不会挂起任务，接口会直接返回，这就是非阻塞模式。反之，如果将都队列和写队列的超时时间设置为大于0的时间，就会以阻塞模式运行。
+可以通过调整读队列和写队列的超时时间来调整读写接口的阻塞模式，如果将读队列和写队列的超时时间设置为0，就不会挂起任务，接口会直接返回，这就是非阻塞模式。反之，如果将读队列和写队列的超时时间设置为大于0的时间，就会以阻塞模式运行。
 
 消息队列提供了异步处理机制，允许将一个消息放入队列，但不立即处理。同时队列还有缓冲消息的作用，可以使用队列实现任务异步通信，队列具有如下特性：
 
@@ -31,7 +31,7 @@
 
 ### 队列控制块
 
-  
+
 ```
 /**
   * 队列控制块数据结构
@@ -137,9 +137,12 @@ typedef struct {
 
 ### 编程示例
 
+本演示代码在./kernel/liteos_a/testsuites/kernel/src/osTest.c中编译验证，在TestTaskEntry中调用验证入口函数ExampleQueue，
+
+为方便用户观察，建议调用ExampleQueue前先调用 LOS_Msleep(5000) 进行短时间延时，避免其他打印过多。
+
 示例代码如下：
 
-  
 ```
 #include "los_task.h"
 #include "los_queue.h"
@@ -154,7 +157,7 @@ VOID SendEntry(VOID)
 
     ret = LOS_QueueWriteCopy(g_queue, abuf, len, 0);
     if(ret != LOS_OK) {
-        printf("send message failure, error: %x\n", ret);
+        dprintf("send message failure, error: %x\n", ret);
     }
 }
 
@@ -164,29 +167,35 @@ VOID RecvEntry(VOID)
     CHAR readBuf[BUFFER_LEN] = {0};
     UINT32 readLen = BUFFER_LEN;
 
-    //休眠1s
-    usleep(1000000);
+    LOS_Msleep(1000);
     ret = LOS_QueueReadCopy(g_queue, readBuf, &readLen, 0);
     if(ret != LOS_OK) {
-        printf("recv message failure, error: %x\n", ret);
+        dprintf("recv message failure, error: %x\n", ret);
     }
 
-    printf("recv message: %s\n", readBuf);
+    dprintf("recv message: %s\n", readBuf);
 
     ret = LOS_QueueDelete(g_queue);
     if(ret != LOS_OK) {
-        printf("delete the queue failure, error: %x\n", ret);
+        dprintf("delete the queue failure, error: %x\n", ret);
     }
 
-    printf("delete the queue success!\n");
+    dprintf("delete the queue success!\n");
 }
 
 UINT32 ExampleQueue(VOID)
 {
-    printf("start queue example\n");
+    dprintf("start queue example\n");
     UINT32 ret = 0;
     UINT32 task1, task2;
     TSK_INIT_PARAM_S initParam = {0};
+
+    ret = LOS_QueueCreate("queue", 5, &g_queue, 0, 50);
+    if(ret != LOS_OK) {
+        dprintf("create queue failure, error: %x\n", ret);
+    }
+
+    dprintf("create the queue success!\n");
 
     initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)SendEntry;
     initParam.usTaskPrio = 9;
@@ -196,7 +205,8 @@ UINT32 ExampleQueue(VOID)
     LOS_TaskLock();
     ret = LOS_TaskCreate(&task1, &initParam);
     if(ret != LOS_OK) {
-        printf("create task1 failed, error: %x\n", ret);
+        dprintf("create task1 failed, error: %x\n", ret);
+        LOS_QueueDelete(g_queue);
         return ret;
     }
 
@@ -204,17 +214,13 @@ UINT32 ExampleQueue(VOID)
     initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)RecvEntry;
     ret = LOS_TaskCreate(&task2, &initParam);
     if(ret != LOS_OK) {
-        printf("create task2 failed, error: %x\n", ret);
+        dprintf("create task2 failed, error: %x\n", ret);
+        LOS_QueueDelete(g_queue);
         return ret;
     }
 
-    ret = LOS_QueueCreate("queue", 5, &g_queue, 0, 50);
-    if(ret != LOS_OK) {
-        printf("create queue failure, error: %x\n", ret);
-    }
-
-    printf("create the queue success!\n");
     LOS_TaskUnlock();
+    LOS_Msleep(5000);
     return ret;
 }
 ```
@@ -224,9 +230,9 @@ UINT32 ExampleQueue(VOID)
 
 编译运行得到的结果为：
 
-  
+
 ```
-start test example
+start queue example
 create the queue success!
 recv message: test message
 delete the queue success!

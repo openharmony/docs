@@ -1,6 +1,6 @@
 # ListItem
 
-The **\<ListItem>** component displays specific items in the list. Its width occupies the **\<List>** component by default and must be used together with **\<List>**.
+The **\<ListItem>** component displays specific items in the list. It must be used together with **\<List>**.
 
 >  **NOTE**
 >
@@ -22,20 +22,21 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| sticky | [Sticky](#sticky)| Sticky effect of the list item.<br>Default value: **Sticky.None**|
-| editable  | boolean \| [EditMode](#editmode)| Whether to enter editing mode, where the list item can be deleted or moved.<br>Default value: **false**|
+| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This API is deprecated since API version 9. You are advised to use **sticky** of the [\<List>](ts-container-list.md#attributes) component.|
+| editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmodedeprecated) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9.<br>Default value: **false**|
 | selectable<sup>8+</sup> | boolean | Whether the current list item is selectable by mouse drag.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.<br>Default value: **true**|
 | swipeAction<sup>9+</sup> | {<br>start?: CustomBuilder,<br>end?:CustomBuilder,<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Component displayed when the list item is swiped out from the screen edge.<br>- **start**: component on the left of the list item when the item is swiped to the right (in vertical list layout) or component above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: component on the right of the list item when the item is swiped to the left (in vertical list layout) or component below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>|
 
-## Sticky
+## Sticky<sup>(deprecated)</sup>
+This API is deprecated since API version 9. You are advised to use [stickyStyle](ts-container-list.md#stickystyle9) of the **\<List>** component.
 | Name| Description|
 | -------- | -------- |
 | None | The list item is not sticky.|
 | Normal | The list item is sticky with no special effects.|
 | Opacity | The list item is sticky with opacity changes.|
 
-## EditMode
-
+## EditMode<sup>(deprecated)</sup>
+This API is deprecated since API version 9.
 | Name    | Description       |
 | ------ | --------- |
 | None   | The editing operation is not restricted.   |
@@ -63,41 +64,24 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 @Component
 struct ListItemExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State editFlag: boolean = false
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ListItem() {
-          Text('sticky:Normal , click me edit list')
-            .width('100%').height(40).fontSize(12).fontColor(0xFFFFFF)
-            .textAlign(TextAlign.Center).backgroundColor(0x696969)
-            .onClick(() => {
-              this.editFlag = !this.editFlag
-            })
-        }.sticky(Sticky.Normal)
-
         ForEach(this.arr, (item) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }.editable(this.editFlag)
+          }
         }, item => item)
-      }
-      .editMode(true)
-      .onItemDelete((index: number) => {
-        console.info(this.arr[index - 1] + 'Delete')
-        this.arr.splice(index - 1,1)
-        this.editFlag = false
-        return true
-      }).width('90%')
+      }.width('90%')
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001257138339](figures/en-us_image_0000001257138339.gif)
+![en-us_image_0000001219864159](figures/en-us_image_0000001219864159.gif)
 
 ```ts
 // xxx.ets

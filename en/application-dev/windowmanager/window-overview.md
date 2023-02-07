@@ -56,7 +56,7 @@ The application window mode refers to the display mode of the main window when i
 
 The window implementation and development vary according to the application development model, that is, FA model and stage model.
 
-For details about the overall architecture and design ideas of the two models, see [FA Model Overview](../ability/fa-brief.md) and [Stage Model Overview](../ability/stage-brief.md).
+For details about the overall architecture and design ideas of the two models, see [Interpretation of the Application Model](../application-models/application-model-description.md).
 
 You are advised to use the stage model for window development.
 

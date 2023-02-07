@@ -16,7 +16,7 @@
  * 子组件可以将容器或者其他子组件设为锚点：  
    * 参与相对布局的容器内组件必须设置id，不设置id的组件不显示，容器id固定为__container__。
    * 此子组件某一方向上的三个位置可以将容器或其他子组件的同方向三个位置为锚点，同方向上两个以上位置设置锚点以后会跳过第三个。
-   * 前端页面设置的子组件尺寸大小不会受到相对布局规则的影响。
+   * 前端页面设置的子组件尺寸大小不会受到相对布局规则的影响。子组件某个方向上设置两个或以上alignRules时不建议设置此方向尺寸大小。
    * 对齐后需要额外偏移可设置offset。
  * 特殊情况
    * 互相依赖，环形依赖时容器内子组件全部不绘制。
@@ -39,62 +39,60 @@ RelativeContainer()
 struct Index {
   build() {
     Row() {
-      Button("Extra button").width(100).height(50)
 
       RelativeContainer() {
-        Button("Button 1")
-          .width(120)
-          .height(30)
+        Row().width(100).height(100)
+          .backgroundColor("#FF3333")
           .alignRules({
-            middle: { anchor: "__container__", align: HorizontalAlign.Center },
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            left: {anchor: "__container__", align: HorizontalAlign.Start}
           })
-          .id("bt1")
-          .borderWidth(1)
-          .borderColor(Color.Black)
+          .id("row1")
 
-        Text("This is text 2")
-          .fontSize(20)
-          .padding(10)
+        Row().width(100).height(100)
+          .backgroundColor("#FFCC00")
           .alignRules({
-            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
-            top: { anchor: "bt1", align: VerticalAlign.Bottom },
-            right: { anchor: "bt1", align: HorizontalAlign.Center }
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            right: {anchor: "__container__", align: HorizontalAlign.End}
           })
-          .id("tx2")
-          .borderWidth(1)
-          .borderColor(Color.Black)
-          .height(30)
+          .id("row2")
 
-        Button("Button 3")
-          .width(100)
-          .height(100)
+        Row().height(100)
+          .backgroundColor("#FF6633")
           .alignRules({
-            left: { anchor: "bt1", align: HorizontalAlign.End },
-            top: { anchor: "tx2", align: VerticalAlign.Center },
-            bottom: { anchor: "__container__", align: VerticalAlign.Bottom }
+            top: {anchor: "row1", align: VerticalAlign.Bottom},
+            left: {anchor: "row1", align: HorizontalAlign.End},
+            right: {anchor: "row2", align: HorizontalAlign.Start}
           })
-          .id("bt3")
-          .borderWidth(1)
-          .borderColor(Color.Black)
+          .id("row3")
 
-        Text("This is text 4")
-          .fontSize(20)
-          .padding(10)
+        Row()
+          .backgroundColor("#FF9966")
           .alignRules({
-            left: { anchor: "tx2", align: HorizontalAlign.End },
-            right: { anchor: "__container__", align: HorizontalAlign.End },
-            top: { anchor: "__container__", align: VerticalAlign.Top },
-            bottom: { anchor: "bt3", align: VerticalAlign.Top }
+            top: {anchor: "row3", align: VerticalAlign.Bottom},
+            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
+            left: {anchor: "__container__", align: HorizontalAlign.Start},
+            right: {anchor: "row1", align: HorizontalAlign.End}
           })
-          .id("tx4")
-          .borderWidth(1)
-          .borderColor(Color.Black)
+          .id("row4")
+
+        Row()
+          .backgroundColor("#FF66FF")
+          .alignRules({
+            top: {anchor: "row3", align: VerticalAlign.Bottom},
+            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
+            left: {anchor: "row2", align: HorizontalAlign.Start},
+            right: {anchor: "__container__", align: HorizontalAlign.End}
+          })
+          .id("row5")
       }
-      .width(200).height(200)
-      .backgroundColor(Color.Orange)
+      .width(300).height(300)
+      .margin({left: 100})
+      .border({width:2, color: "#6699FF"})
     }
     .height('100%')
   }
 }
+
 ```
 ![relative container](figures/relativecontainer.png)

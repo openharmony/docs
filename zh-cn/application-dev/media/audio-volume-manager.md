@@ -16,7 +16,7 @@ AudioVolumeManager提供了音量管理的方法。开发者可以通过本指�
 
 ## 约束与限制
 
-开发者在进行麦克风管理开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE），如果要设置麦克风状态，则需要配置音频管理配置权限（ohos.permission.MANAGE_AUDIO_CONFIG），需注意该权限为系统级别权限。权限配置相关内容可参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)
+开发者在进行麦克风管理开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE），如果要设置麦克风状态，则需要配置音频管理配置权限（ohos.permission.MANAGE_AUDIO_CONFIG），需注意该权限为系统级别权限。配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 ## 开发指导
 
@@ -89,27 +89,27 @@ AudioVolumeManager提供了音量管理的方法。开发者可以通过本指�
      var audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
      console.info('audioVolumeGroupManager create success.');
    }
-
+   
    async on() {   //监听麦克风状态变化
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
        console.info(`Current microphone status is: ${micStateChange.mute} `);
      });
    }
-
+   
    async isMicrophoneMute() { //查询麦克风是否静音
      await audioVolumeGroupManager.audioVolumeGroupManager.isMicrophoneMute().then((value) => {
        console.info(`isMicrophoneMute is: ${value}.`);
      });
    }
- 
+    
    async setMicrophoneMuteTrue() { //设置麦克风静音
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
        console.info('setMicrophoneMute to mute.');
      });
    }
- 
+    
    async setMicrophoneMuteFalse() { //取消麦克风静音
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
@@ -123,5 +123,5 @@ AudioVolumeManager提供了音量管理的方法。开发者可以通过本指�
      await isMicrophoneMute();
      await setMicrophoneMuteFalse();
    }
-   ```   
+   ```
 

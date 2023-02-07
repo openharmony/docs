@@ -1,6 +1,6 @@
 # HapModuleInfo
 
-The **HapModuleInfo** module provides information about an HAP module. Unless otherwise specified, the information is obtained through [GET_BUNDLE_DEFAULT](js-apis-Bundle.md).
+The **HapModuleInfo** module provides information about an HAP module. Unless otherwise specified, the information is obtained through [bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated).
 
 > **NOTE**
 >

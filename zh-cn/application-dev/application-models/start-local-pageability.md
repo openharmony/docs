@@ -23,7 +23,7 @@ import featureAbility from '@ohos.ability.featureAbility'
       want: {
         bundleName: "com.example.myapplication",
         moduleName: "entry",
-        abilityName: "com.example.myapplication.MainAbility"
+        abilityName: "com.example.myapplication.EntryAbility"
       }
     }
     await featureAbility.startAbility(param)

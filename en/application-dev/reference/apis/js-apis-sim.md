@@ -1,6 +1,6 @@
-# SIM Management
+# @ohos.telephony.sim (SIM Management)
 
-The SIM management module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN number, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
+The **sim** module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN number, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
 
 >**NOTE**
 >
@@ -687,7 +687,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
 setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): void
 
@@ -716,7 +716,7 @@ sim.setShowName(0, name, (err, data) => {
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
 setShowName\(slotId: number, name: string\): Promise\<void\>
 
@@ -753,7 +753,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number, callback: AsyncCallback<string\>): void
 
@@ -781,7 +781,7 @@ sim.getShowName(0, (err, data) => {
 ```
 
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number): Promise<string\>
 
@@ -816,7 +816,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
 setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\): void
 
@@ -846,7 +846,7 @@ sim.setShowNumber(0, number, (err, data) => {
 ```
 
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
 setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
@@ -883,7 +883,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
 getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
@@ -911,7 +911,7 @@ sim.getShowNumber(0, (err, data) => {
 ```
 
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
 getShowNumber(slotId: number): Promise<string\>
 
@@ -946,7 +946,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number, callback: AsyncCallback<void\>): void
 
@@ -974,7 +974,7 @@ sim.activateSim(0, (err, data) => {
 ```
 
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number): Promise\<void\>
 
@@ -1009,7 +1009,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 
@@ -1037,7 +1037,7 @@ sim.deactivateSim(0, (err, data) => {
 ```
 
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number): Promise\<void\>
 
@@ -1346,7 +1346,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
 unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1376,7 +1376,7 @@ sim.unlockPin(0, pin, (err, data) => {
 ```
 
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
 unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
@@ -1413,7 +1413,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
 unlockPuk(slotId: number, newPin: string, puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1445,7 +1445,7 @@ sim.unlockPuk(0, newPin, puk, (err, data) => {
 ```
 
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
 unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusResponse\>
 
@@ -1484,7 +1484,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
 unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1514,7 +1514,7 @@ sim.unlockPin2(0, pin2, (err, data) => {
 ```
 
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
 unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
@@ -1551,7 +1551,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPuk**2<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1583,7 +1583,7 @@ sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
 ```
 
 
-## sim.**unlockPuk2**<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
@@ -2847,10 +2847,10 @@ Defines the lock status response.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type  | Description              |
-| --------------- | ------ | ------------------ |
-| result          | number | Operation result.    |
-| remain?: number | number | Remaining attempts (can be null).|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| result          | number | Yes | Operation result.    |
+| remain?: number | number | Yes | Remaining attempts (can be null).|
 
 ## LockInfo<sup>8+</sup>
 
@@ -2860,11 +2860,11 @@ Defines the lock information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type                    | Description  |
-| -------- | ------------------------ | ------ |
-| lockType | [LockType](#locktype8)   | Lock type.|
-| password | string                   | Password.  |
-| state    | [LockState](#lockstate8) | Lock state.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| lockType | [LockType](#locktype8)   | Yes | Lock type.|
+| password | string                   | Yes | Password.  |
+| state    | [LockState](#lockstate8) | Yes | Lock state.|
 
 ## PersoLockInfo<sup>8+</sup>
 
@@ -2874,10 +2874,10 @@ Defines the personalized lock information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type                            | Description        |
-| -------- | -------------------------------- | ------------ |
-| lockType | [PersoLockType](#persolocktype8) | Personalized lock type.|
-| password | string                           | Password.        |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| lockType | [PersoLockType](#persolocktype8) | Yes | Personalized lock type.|
+| password | string                           | Yes | Password.        |
 
 ## IccAccountInfo<sup>7+</sup>
 
@@ -2887,15 +2887,15 @@ Defines the ICC account information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name      | Type   | Description            |
-| ---------- | ------- | ---------------- |
-| simId      | number  | SIM card ID.         |
-| slotIndex  | number  | Card slot ID.          |
-| isEsim     | boolean | Whether the SIM card is an eSim card.|
-| isActive   | boolean | Whether the card is activated.    |
-| iccId      | string  | ICCID number.       |
-| showName   | string  | SIM card display name.   |
-| showNumber | string  | SIM card display number.   |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| simId      | number  | Yes | SIM card ID.         |
+| slotIndex  | number  | Yes | Card slot ID.          |
+| isEsim     | boolean | Yes | Whether the SIM card is an eSim card.|
+| isActive   | boolean | Yes | Whether the card is activated.    |
+| iccId      | string  | Yes | ICCID number.       |
+| showName   | string  | Yes | SIM card display name.   |
+| showNumber | string  | Yes | SIM card display number.   |
 
 ## OperatorConfig<sup>8+</sup>
 
@@ -2905,10 +2905,10 @@ Defines the carrier configuration.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name | Type  | Description|
-| ----- | ------ | ---- |
-| field | string | Field|
-| value | string | Value  |
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| field | string | Yes | Field. |
+| value | string | Yes | Value. |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 
@@ -2918,12 +2918,12 @@ Defines the contact number information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name        | Type  | Description    |
-| ------------ | ------ | -------- |
-| alphaTag     | string | Alpha tag.    |
-| number       | string | Contact number.    |
-| recordNumber | number | Record number.|
-| pin2         | string | PIN 2.|
+| Name     | Type    | Mandatory | Description |
+| -------- | ------- | --------- | ----------- |
+| alphaTag     | string | Yes | Alpha tag.    |
+| number       | string | Yes | Contact number.    |
+| recordNumber | number | Yes | Record number.|
+| pin2         | string | Yes | PIN 2.|
 
 ## ContactType<sup>8+</sup>
 
@@ -2934,6 +2934,37 @@ Enumerates contact types.
 **System capability**: SystemCapability.Telephony.CoreService
 
 | Name           | Value  | Description      |
-| :-------------- | ---- | ---------- |
+| -------------- | ---- | ---------- |
 | GENERAL_CONTACT | 1    | Common contact number.|
 | FIXED_DIALING   | 2    | Fixed dialing number.  |
+
+## OperatorConfigKey<sup>9+</sup>
+
+Enumerates carrier configuration keys.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+|                             Name                       |                             Value                      |         Description        |
+| ------------------------------------------------------- | ---------------------------------------------------- | -------------------- |
+| KEY_VOICE_MAIL_NUMBER_STRING                            | "voice_mail_number_string"                             | Voice mailbox number.      |
+| KEY_IMS_SWITCH_ON_BY_DEFAULT_BOOL                       | "ims_switch_on_by_default_bool"                        | Fixed dialing number.          |
+| KEY_HIDE_IMS_SWITCH_BOOL                                | "hide_ims_switch_bool"                                 | Whether to hide the IMS switch.   |
+| KEY_VOLTE_SUPPORTED_BOOL                                | "volte_supported_bool"                                 | Whether to support VoLTE. |
+| KEY_NR_MODE_SUPPORTED_LIST_INT_ARRAY                    | "nr_mode_supported_list_int_array"                     | List of supported NR modes.  |
+| KEY_VOLTE_PROVISIONING_SUPPORTED_BOOL                   | "volte_provisioning_supported_bool"                    | Whether to support VoLTE provisioning. |
+| KEY_SS_OVER_UT_SUPPORTED_BOOL                           | "ss_over_ut_supported_bool"                            | Whether SS over UT is supported.  |
+| KEY_IMS_GBA_REQUIRED_BOOL                               | "ims_gba_required_bool"                                | Whether GBA is required for IMS.    |
+| KEY_UT_PROVISIONING_SUPPORTED_BOOL                      | "ut_provisioning_supported_bool"                       | Whether to support UT provisioning.    |
+| KEY_IMS_PREFER_FOR_EMERGENCY_BOOL                       | "ims_prefer_for_emergency_bool"                        | IMS preferences for emergency.     |
+| KEY_CALL_WAITING_SERVICE_CLASS_INT                      | "call_waiting_service_class_int"                       | Call waiting service.      |
+| KEY_CALL_TRANSFER_VISIBILITY_BOOL                       | "call_transfer_visibility_bool"                        | Call transfer visibility.    |
+| KEY_IMS_CALL_DISCONNECT_REASONINFO_MAPPING_STRING_ARRAY | "ims_call_disconnect_reasoninfo_mapping_string_array"  | List of IMS call disconnection reasons.|
+| KEY_FORCE_VOLTE_SWITCH_ON_BOOL                          | "force_volte_switch_on_bool"                           | Whether to forcibly turn on VoLTE.     |
+| KEY_ENABLE_OPERATOR_NAME_CUST_BOOL                      | "enable_operator_name_cust_bool"                       | Whether to display the carrier name.|
+| KEY_OPERATOR_NAME_CUST_STRING                           | "operator_name_cust_string"                            | Carrier name.        |
+| KEY_SPN_DISPLAY_CONDITION_CUST_INT                      | "spn_display_condition_cust_int"                       | SPN display rule.       |
+| KEY_PNN_CUST_STRING_ARRAY                               | "pnn_cust_string_array"                                | PLMN name          |
+| KEY_OPL_CUST_STRING_ARRAY                               | "opl_cust_string_array"                                | PLMN information of the carrier.    |
+| KEY_EMERGENCY_CALL_STRING_ARRAY                         | "emergency_call_string_array"                          | Emergency call list.      |

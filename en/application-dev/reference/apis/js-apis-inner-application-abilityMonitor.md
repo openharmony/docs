@@ -8,7 +8,7 @@ The **AbilityMonitor** module provides monitors for abilities that meet specifie
 
 ## Usage
 
-The ability monitor can be set by calling **addAbilityMonitor** in **abilityDelegator**.
+**AbilityMonitor** can be used as an input parameter of [addAbilityMonitor](js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) in **abilityDelegator** to listen for lifecycle changes of an ability.
 
 ## AbilityMonitor
 
@@ -30,8 +30,7 @@ Describes an ability monitor.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-var abilityDelegator;
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
@@ -42,7 +41,7 @@ var monitor = {
     onAbilityCreate: onAbilityCreateCallback
 }
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
     console.info("addAbilityMonitor callback");
 });

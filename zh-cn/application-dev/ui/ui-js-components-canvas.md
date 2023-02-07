@@ -60,6 +60,8 @@ Canvas组件设置宽（width）、高（height）、背景色（background-colo
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  width: 100%;
+  height: 100%;
 }
 canvas{
   width: 500px;

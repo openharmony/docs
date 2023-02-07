@@ -4,7 +4,7 @@
 
 **错误信息**
 
-Input error. The specified ability name does not exist.
+Incorrect Ability name. The specified Ability name does not exist.
 
 **错误描述**
 
@@ -23,7 +23,7 @@ Input error. The specified ability name does not exist.
 
 **错误信息**
 
-Ability type error. The specified ability type is wrong.
+Incorrect Ability type.
 
 **错误描述**
 
@@ -42,7 +42,7 @@ Ability type error. The specified ability type is wrong.
 
 **错误信息**
 
-Input error. The specified id does not exist.
+Input error. The specified ID does not exist.
 
 **错误描述**
 
@@ -78,7 +78,7 @@ Visibility verification failed.
 
 **错误信息**
 
-Can not cross user operations.
+Cross-user operations are not allowed.
 
 **错误描述**
 
@@ -96,7 +96,7 @@ Can not cross user operations.
 
 **错误信息**
 
-Service busyness. There are concurrent tasks, waiting for retry.
+Service busy, please wait and try again.
 
 **错误描述**
 
@@ -114,7 +114,7 @@ Service busyness. There are concurrent tasks, waiting for retry.
 
 **错误信息**
 
-Crowdtest App Expiration.
+Crowdtest App Expired.
 
 **错误描述**
 
@@ -132,7 +132,7 @@ Crowdtest App Expiration.
 
 **错误信息**
 
-Can not start ability in wukong mode.
+Ability cannot be started or sotpped in Wukong mode.
 
 **错误描述**
 
@@ -150,7 +150,7 @@ wukong模式，不允许启动/停止ability。
 
 **错误信息**
 
-Can not operation with continue flag.
+The call with the continuation flag is forbidden.
 
 **错误描述**
 
@@ -168,7 +168,7 @@ Can not operation with continue flag.
 
 **错误信息**
 
-Context does not exist.
+The context does not exist.
 
 **错误描述**
 
@@ -186,7 +186,7 @@ Context does not exist.
 
 **错误信息**
 
-Internal Error.
+Internal error.
 
 **错误描述**
 
@@ -204,7 +204,7 @@ Internal Error.
 
 **错误信息**
 
-Network error. The network is abnormal.
+Network error.
 
 **错误描述**
 
@@ -222,7 +222,7 @@ Network error. The network is abnormal.
 
 **错误信息**
 
-Free install not support. The applicaiotn dose not support free install.
+Installation-free is not supported.
 
 **错误描述**
 
@@ -240,7 +240,7 @@ Free install not support. The applicaiotn dose not support free install.
 
 **错误信息**
 
-Not top ability. The application is not top ability.
+The ability is not on the top of UI.
 
 **错误描述**
 
@@ -258,7 +258,7 @@ Not top ability. The application is not top ability.
 
 **错误信息**
 
-Free install busyness. There are concurrent tasks, waiting for retry.
+Installation-free service is busy, please wait and try again later.
 
 **错误描述**
 
@@ -276,7 +276,7 @@ Free install busyness. There are concurrent tasks, waiting for retry.
 
 **错误信息**
 
-Free install timeout.
+Installation-free time out.
 
 **错误描述**
 
@@ -294,7 +294,7 @@ Free install timeout.
 
 **错误信息**
 
-Can not free install other ability.
+Installation-free is not allowed for other applications.
 
 **错误描述**
 
@@ -312,7 +312,7 @@ Can not free install other ability.
 
 **错误信息**
 
-Not support cross device free install.
+Cross-device installation-free is not supported.
 
 **错误描述**
 
@@ -330,7 +330,7 @@ Not support cross device free install.
 
 **错误信息**
 
-execute shell command failed.
+Failed to run the shell command.
 
 **错误描述**
 
@@ -348,7 +348,7 @@ execute shell command failed.
 
 **错误信息**
 
-Invalid wantagent object.
+Invalid wantAgent object.
 
 **错误描述**
 
@@ -366,7 +366,7 @@ Invalid wantagent object.
 
 **错误信息**
 
-wantAgent object not found.
+the wantAgent object does not exist.
 
 **错误描述**
 
@@ -384,7 +384,7 @@ wantAgent object not found.
 
 **错误信息**
 
-wangAgent object canceled.
+wangAgent object has been canceled.
 
 **错误描述**
 
@@ -402,7 +402,7 @@ wangAgent object canceled.
 
 **错误信息**
 
-Input error. The specified uri does not exist.
+The ability with the specified URI does not exist.
 
 **错误描述**
 
@@ -420,7 +420,7 @@ Input error. The specified uri does not exist.
 
 **错误信息**
 
-Ability type error. The specified ability type is wrong.
+Incorrect ability type.
 
 **错误描述**
 
@@ -439,7 +439,7 @@ Ability type error. The specified ability type is wrong.
 
 **错误信息**
 
-Caller released. The caller has been released.
+The caller has been released.
 
 **错误描述**
 
@@ -457,7 +457,7 @@ Caller released. The caller has been released.
 
 **错误信息**
 
-Callee Invalid. The callee does not exist.
+The callee does not exist.
 
 **错误描述**
 
@@ -493,7 +493,7 @@ Release error. The caller does not call any callee.
 
 **错误信息**
 
-Method registered. The method has registered.
+The method has registered.
 
 **错误描述**
 
@@ -511,7 +511,7 @@ Method registered. The method has registered.
 
 **错误信息**
 
-Method not registered. The method has not registered.
+The method is not registered.
 
 **错误描述**
 
@@ -529,7 +529,7 @@ Method not registered. The method has not registered.
 
 **错误信息**
 
-Mission id error. The specified mission id does not exist.
+The specified mission id does not exist.
 
 **错误描述**
 
@@ -547,7 +547,7 @@ Mission id error. The specified mission id does not exist.
 
 **错误信息**
 
-Input  error. The specified mission listener id does not exist.
+The specified mission listener does not exist.
 
 **错误描述**
 
@@ -565,7 +565,7 @@ Input  error. The specified mission listener id does not exist.
 
 **错误信息**
 
-The specified bundleName is invalid.
+Invalid bundle name.
 
 **错误描述**
 
@@ -583,7 +583,7 @@ The specified bundleName is invalid.
 
 **错误信息**
 
-The specified hqf is invalid. Hqf may not exist or inaccessible.
+Invalid patch package.
 
 **错误描述**
 
@@ -602,7 +602,7 @@ The specified hqf is invalid. Hqf may not exist or inaccessible.
 
 **错误信息**
 
-Deploy hqf failed.
+Failed to deploy the patch.
 
 **错误描述**
 
@@ -626,7 +626,7 @@ Deploy hqf failed.
 
 **错误信息**
 
-Switch hqf failed.
+Failed to enable the patch package.
 
 **错误描述**
 
@@ -644,7 +644,7 @@ Switch hqf failed.
 
 **错误信息**
 
-Delete hqf failed.
+Failed to enable the patch package.
 
 **错误描述**
 
@@ -662,7 +662,7 @@ Delete hqf failed.
 
 **错误信息**
 
-Load patch failed.
+Failed to load the patch.
 
 **错误描述**
 
@@ -680,7 +680,7 @@ Load patch failed.
 
 **错误信息**
 
-Unload patch failed.
+Failed to unload the patch.
 
 **错误描述**
 
@@ -688,7 +688,7 @@ Unload patch failed.
 
 **可能原因**
 
-方舟引擎加载补丁失败。
+方舟引擎卸载补丁失败。
 
 **处理步骤**
 

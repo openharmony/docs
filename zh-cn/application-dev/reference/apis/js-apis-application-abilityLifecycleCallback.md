@@ -1,6 +1,6 @@
 # @ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)
 
-AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onWindowStageCreate、onWindowStageDestroy等方法，可以作为[registerAbilityLifecycleCallback](js-apis-inner-application-applicationContext.md#applicationcontextregisterabilitylifecyclecallback)的入参。
+AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onWindowStageCreate、onWindowStageDestroy等方法，可以作为[on(type: "abilityLifecycle", callback: AbilityLifecycleCallback)](js-apis-inner-application-applicationContext.md#applicationcontextontype-abilitylifecycle-callback-abilitylifecyclecallback)的入参。
 
 > **说明：**
 > 
@@ -156,9 +156,9 @@ onAbilityContinue(ability: Ability): void;
 **示例：**
 
 ```ts
-import AbilityStage from "@ohos.application.AbilityStage";
+import AbilityStage from "@ohos.app.ability.AbilityStage";
 
-var lifecycleId;
+let lifecycleId;
 
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -211,3 +211,4 @@ export default class MyAbilityStage extends AbilityStage {
     }
 }
 ```
+<!--no_check-->

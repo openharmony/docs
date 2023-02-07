@@ -1,4 +1,4 @@
-# @ohos.app.ability.appRecovery
+# @ohos.app.ability.appRecovery (appRecovery)
 
 The **appRecovery** module provides APIs for recovering faulty applications.
 
@@ -8,13 +8,13 @@ The **appRecovery** module provides APIs for recovering faulty applications.
 
 ## Modules to Import
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery'
+import appRecovery from '@ohos.app.ability.appRecovery';
 ```
 
 
 ## appRecovery.RestartFlag
 
-Enumerates the application restart options used in [enableAppRecovery](#apprecoveryenableapprecovery).
+Enumerates the application restart flags. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,7 +28,7 @@ Enumerates the application restart options used in [enableAppRecovery](#apprecov
 
 ## appRecovery.SaveOccasionFlag
 
-Enumerates the scenarios for saving the application state, which is used in [enableAppRecovery](#apprecoveryenableapprecovery).
+Enumerates the scenarios for saving the application state. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -39,7 +39,7 @@ Enumerates the scenarios for saving the application state, which is used in [ena
 
 ## appRecovery.SaveModeFlag  
 
-Enumerates the application state saving modes used in [enableAppRecovery](#apprecoveryenableapprecovery).
+Enumerates the application state saving modes. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -50,7 +50,7 @@ Enumerates the application state saving modes used in [enableAppRecovery](#appre
 
 ## appRecovery.enableAppRecovery
 
-enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void;
+enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void;
 
 Enables application recovery.
 
@@ -67,9 +67,17 @@ Enables application recovery.
 **Example**
     
 ```ts
-export default class MyAbilityStage extends AbilityStage {
+import appRecovery from '@ohos.app.ability.appRecovery';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
     onCreate() {
-        appRecovery.enableAppRecovery(RestartFlag::ALWAYS_RESTART, SaveOccasionFlag::SAVE_WHEN_ERROR, SaveModeFlag::SAVE_WITH_FILE);
+        appRecovery.enableAppRecovery(
+            appRecovery.RestartFlag::ALWAYS_RESTART,
+            appRecovery.SaveOccasionFlag::SAVE_WHEN_ERROR,
+            appRecovery.SaveModeFlag::SAVE_WITH_FILE
+        );
     }
 }
 ```
@@ -86,13 +94,21 @@ Restarts the application. This API can be used together with APIs of [errorManag
 **Example**
     
 ```ts
-var observer = {
+import appRecovery from '@ohos.app.ability.appRecovery';
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.restartApp();
     }
-}
+};
 
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 ## appRecovery.saveAppState
@@ -107,15 +123,24 @@ Saves the application state. This API can be used together with APIs of [errorMa
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the saving is successful.|
+| boolean | Whether the application state is saved. The value **true** is returned if the application state is saved, and **false** is returned otherwise.|
 
 **Example**
     
 ```ts
-var observer = {
+import appRecovery from '@ohos.app.ability.appRecovery';
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.saveAppState();
     }
+};
+
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
 ```

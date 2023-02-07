@@ -1,4 +1,4 @@
-#  HarmonyAppProvision配置文件的说明
+#  HarmonyAppProvision配置文件说明
 在应用的开发过程中，应用的权限、签名信息等需要在HarmonyAppProvision配置文件（该文件在部分文档中也称为profile文件）中声明。
 
 ## 配置文件的内部结构
@@ -16,7 +16,7 @@ HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对
 | acls        | 表示授权的acl权限信息。参考[acls对象内部结构](#acls对象内部结构)。                           | 对象     | 可选 | 可缺省    |
 | permissions | 表示允许使用的受限敏感权限信息。参考[permissions对象内部结构](#permissions对象内部结构)。      | 对象     | 可选 | 可缺省    |
 | debug-info  | 表示应用调试场景下的额外信息。参考[debug-info对象内部结构](#debug-info对象内部结构)。          | 对象     | 可选 | 可缺省         |
-| app-privilege-capabilities | 表示应用包所需要的特权信息。可以参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)    | 字符串数组 | 可选 | 可缺省         |
+| app-privilege-capabilities | 表示应用包所需要的特权信息。可以参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。   | 字符串数组 | 可选 | 可缺省         |
 
 HarmonyAppProvision文件示例：
 ```json
@@ -74,14 +74,14 @@ HarmonyAppProvision文件示例：
 
 
 ### acls对象内部结构
-acls对象包含已授权的[ACL权限](accesstoken-overview.md)。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将acls权限信息填写到reqPermissions属性中。
+acls对象包含已授权的[ACL权限](accesstoken-overview.md)。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将acls权限信息填写到requestPermissions属性中。
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
 | allowed-acls | 表示已授权的[acl权限](accesstoken-overview.md)列表。 | 字符串数组    | 可选 | 不可缺省   |
 
 ### permissions对象内部结构
-permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将permissions权限信息填写到reqPermissions属性中。
+permissions对象包含允许使用的受限敏感权限。不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在[应用包配置文件](../quick-start/module-configuration-file.md#requestpermissions标签)将permissions权限信息填写到requestPermissions属性中。
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |

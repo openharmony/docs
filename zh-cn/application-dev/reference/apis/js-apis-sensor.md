@@ -3179,7 +3179,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 try {
     let gravity = [-0.27775216, 0.5351276, 9.788099];
     let geomagnetic = [210.87253, -78.6096, -111.44444];
-    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) => {
+    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) {
         if (err) {
             console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
             return;
@@ -3496,9 +3496,9 @@ try {
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                 |
 | ---- | ------ | ---- | ---- | ------------------------------------ |
-| x    | number | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s2。 |
-| y    | number | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s2。 |
-| z    | number | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s2。 |
+| x    | number | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s²。 |
+| y    | number | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s²。 |
+| z    | number | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s²。 |
 
 
 ## LinearAccelerometerResponse
@@ -3510,9 +3510,9 @@ try {
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s2。 |
-| y    | number | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s2。 |
-| z    | number | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s2。 |
+| x    | number | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s²。 |
+| y    | number | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s²。 |
+| z    | number | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s²。 |
 
 
 ## AccelerometerUncalibratedResponse
@@ -3524,12 +3524,12 @@ try {
 
 | 名称  | 类型   | 可读 | 可写 | 说明                                             |
 | ----- | ------ | ---- | ---- | ------------------------------------------------ |
-| x     | number | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s2。       |
-| y     | number | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s2。       |
-| z     | number | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s2。       |
-| biasX | number | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。   |
-| biasY | number | 是   | 是   | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
-| biasZ | number | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。   |
+| x     | number | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s²。       |
+| y     | number | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s²。       |
+| z     | number | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s²。       |
+| biasX | number | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s²。   |
+| biasY | number | 是   | 是   | 施加在设备上y轴未校准的加速度偏量，单位 : m/s²。 |
+| biasZ | number | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s²。   |
 
 
 ## GravityResponse
@@ -3541,9 +3541,9 @@ try {
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s2。 |
-| y    | number | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s2。 |
-| z    | number | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s2。 |
+| x    | number | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s²。 |
+| y    | number | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s²。 |
+| z    | number | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s²。 |
 
 
 ## OrientationResponse

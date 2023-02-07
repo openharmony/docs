@@ -1,6 +1,7 @@
 # @system.app (应用上下文)
 
 > **说明：**
+>
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -9,8 +10,8 @@
 ## 导入模块
 
 
-```
-import app from '@system.app';
+```ts
+import app from '@system.app'
 ```
 
 
@@ -20,7 +21,7 @@ getInfo(): AppResponse
 
 获取当前应用配置文件中声明的信息。
 
-> **说明：** 从API Version 7开始，推荐使用[`@ohos.bundle`](js-apis-Bundle.md)。
+从API Version 7开始，推荐使用[`@ohos.bundle`](js-apis-Bundle.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -32,14 +33,14 @@ getInfo(): AppResponse
 
 **示例：**
 
-  ```
-  export default {    
-    getInfo(){        
-      var info = app.getInfo();        
-        console.log(JSON.stringify(info));    
-    } 
+```ts
+export default {
+  getInfo() {
+    let info = app.getInfo()
+    console.log(JSON.stringify(info))
   }
-  ```
+}
+```
 
 ## app.terminate
 
@@ -47,45 +48,46 @@ terminate(): void
 
 退出当前Ability。
 
-> **说明：** 从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-ability-featureAbility.md)。
+从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-ability-featureAbility.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **示例：**
 
-  ```
-  export default {    
-    terminate(){        
-      app.terminate();    
-    }}
-  ```
+```ts
+export default {
+  terminate() {
+    app.terminate()
+  }
+}
+```
 ## app.requestFullWindow
 
 requestFullWindow(options?: RequestFullWindowOptions): void
 
 请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。
 
-此接口为系统接口，三方应用不支持调用。
-
-> **说明：** 从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
+从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options | [RequestFullWindowOptions](#requestfullwindowoptions) | 否 | 请求全屏时，设定非全屏到全屏的过渡时间，单位为毫秒，默认时间与非全屏到全屏的距离成正比。 |
 
 **示例：**
 
-  ```
-  export default {    
-    requestFullWindow(){        
-      app.requestFullWindow({            
-        duration: 200});    
-    }
+```ts
+export default {
+  requestFullWindow() {
+    app.requestFullWindow({
+      duration: 200
+    })
   }
-  ```
+}
+```
 
 ## app.setImageCacheCount<sup>7+</sup>
 
@@ -96,26 +98,27 @@ setImageCacheCount(value: number): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 内存中解码后图片的缓存数量。 |
+| value | number | 是 | 内存中解码后图片的缓存数量。 |
 
 **示例：**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {
-      onCreate() { 
-          app.setImageCacheCount(100)    // 设置解码后图片内存缓存上限为100张
-          console.info('Application onCreate')
-      },
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
-  ```
+```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageCacheCount(100) // 设置解码后图片内存缓存上限为100张
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
+```
 
 ## app.setImageRawDataCacheSize<sup>7+</sup>
 
@@ -126,27 +129,28 @@ setImageRawDataCacheSize(value: number): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 内存中解码前图片数据的缓存大小，单位为字节。 |
+| value | number | 是 | 内存中解码前图片数据的缓存大小，单位为字节。 |
 
 **示例：**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {
-      onCreate() {
-          app.setImageRawDataCacheSize(104857600) 
-          // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
-          console.info('Application onCreate')
-      },
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
-  ```
+```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageRawDataCacheSize(104857600)
+    // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
+```
 
 ## app.setImageFileCacheSize<sup>7+</sup>
 
@@ -157,27 +161,28 @@ setImageFileCacheSize(value: number): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 图片文件的缓存大小，单位为字节。 |
+| value | number | 是 | 图片文件的缓存大小，单位为字节。 |
 
 **示例：**
 
-  ```
-  // app.ets
-  import app from '@system.app';
-  
-  export default {  
-      onCreate() {    
-          app.setImageFileCacheSize(209715200) 
-          // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
-          console.info('Application onCreate')
-      },  
-      onDestroy() {
-          console.info('Application onDestroy')
-      },
-  }
-  ```
+```ts
+// app.ets
+import app from '@system.app'
+
+export default {
+  onCreate() {
+    app.setImageFileCacheSize(209715200)
+    // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
+```
 
 ## AppResponse
 
@@ -185,12 +190,26 @@ setImageFileCacheSize(value: number): void
 
 **系统能力：**  以下各项对应的系统能力有所不同，详见下表。
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- |-------- |
 | appID<sup>6+</sup> | string | 是 | 表示应用的包名，用于标识应用的唯一性。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Full|
 | appName | string | 是 | 表示应用的名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
 | versionName | string | 是 | 表示应用的版本名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
 | versionCode | number | 是 | 表示应用的版本号。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
+
+## ScreenOnVisible<sup>(deprecated)</sup>
+
+screenOnVisible(options?: ScreenOnVisibleOptions)
+
+定义屏幕唤醒时是否保持应用可见。
+
+该接口从API Version 8 开始废弃。
+
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- |-------- |
+| options | ScreenOnVisibleOptions | 否 |  当启动保活时，锁屏时将阻止系统返回桌面显示，以保持屏幕唤醒时应用可见。  |
 
 ## ScreenOnVisibleOptions
 
@@ -198,7 +217,7 @@ setImageFileCacheSize(value: number): void
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | visible | boolean | 否 | 是否启动保活，默认值false。 |
 | success | () => void | 否 | 接口调用成功的回调函数。 |
@@ -211,7 +230,7 @@ setImageFileCacheSize(value: number): void
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| duration | number | 是 | 定义动画选项的数量。 |
+| duration | number | 是 | 定义动画选项的持续时间，单位为毫秒。 |
 

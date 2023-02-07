@@ -1,7 +1,6 @@
 # @ohos.util.Stack (Linear Container Stack)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **Stack** is implemented based on the array data structure. It follows the principle Last Out First In (LOFI) and supports data insertion and removal at one end.
@@ -40,7 +39,7 @@ A constructor used to create a **Stack** instance.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -75,7 +74,7 @@ Adds an element at the top of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -109,7 +108,7 @@ Removes the top element from this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -143,7 +142,7 @@ Obtains the top element of this container.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -182,7 +181,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -225,7 +224,7 @@ callbackfn
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -260,7 +259,7 @@ Checks whether this container is empty (contains no elements).
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -293,7 +292,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [containers Error Codes](../errorcodes/errorcode-containers.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |

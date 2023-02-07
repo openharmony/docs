@@ -67,8 +67,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
         console.info("Request suspension delay will time out.");
     })
-    var id = delayInfo.requestId;
-    var time = delayInfo.actualDelayTime;
+    let id = delayInfo.requestId;
+    let time = delayInfo.actualDelayTime;
     console.info("The requestId is: " + id);
     console.info("The actualDelayTime is: " + time);
   } catch (error) {
@@ -236,7 +236,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 | callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
 
 **Error codes**
@@ -256,9 +256,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(error, data) {
     if (error) {
@@ -268,13 +268,13 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -282,14 +282,18 @@ export default class MainAbility extends Ability {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -310,7 +314,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
 
 **Return value**
 
@@ -335,17 +339,17 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -353,18 +357,22 @@ export default class MainAbility extends Ability {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-                    console.info("Operation startBackgroundRunning succeeded");
-                }).catch((error) => {
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                        console.info("Operation startBackgroundRunning succeeded");
+                    }).catch((error) => {
+                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
                     console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                });
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -401,7 +409,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 function callback(error, data) {
@@ -412,7 +420,7 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context, callback);
@@ -462,10 +470,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {

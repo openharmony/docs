@@ -219,3 +219,57 @@ Buffer的属性${propertyName}只读，不能进行设置。
 **处理步骤**
 
 不要对Buffer只读属性进行相关设置。
+
+## 10200014 非Concurrent函数错误
+
+**错误信息**
+
+The function is not mark as concurrent.
+
+**错误描述**
+
+Function未被标记为concurrent。
+
+**可能原因**
+
+任务池执行的任务所需的函数未添加@Concurrent。
+
+**处理步骤**
+
+检查任务池执行的任务所需的函数，并补上@Concurrent装饰器。
+
+## 10200015 取消不存在的任务错误
+
+**错误信息**
+
+The task is not exist when cancel it.
+
+**错误描述**
+
+取消一个不存在的任务。
+
+**可能原因**
+
+取消任务时，该任务并不存在于任务池中。
+
+**处理步骤**
+
+取消任务前，确保任务已被taskpool.execute调用进入任务池。
+
+## 10200016 取消已执行的任务错误
+
+**错误信息**
+
+The task is running when cancel it.
+
+**错误描述**
+
+取消已经执行的任务。
+
+**可能原因**
+
+取消任务时，该任务已经处于执行状态。
+
+**处理步骤**
+
+取消任务前，确保任务已被执行完毕。

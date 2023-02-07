@@ -8,11 +8,11 @@ Internal Error.
 
 **Description**
 
-This error code is reported when an internal processing error occurs, such as a memory allocation or multi-thread processing error.
+This error code is reported when an internal error occurs, such as a memory allocation or multi-thread processing error.
 
 **Possible Causes**
 
-1. Common kernel errors such as memory allocation and multi-thread processing errors occur.
+A common kernel error, such as a memory allocation or multi-thread processing error, occurs.
 
 **Solution**
 
@@ -36,8 +36,9 @@ This error code is reported when a serialization or deserialization error occurs
 
 **Solution**
 
-1. Make sure the input parameter value is within the valid range.
-2. Make sure the notification subsystem is not being started.
+1. Make sure the input parameter value length is within the valid range.
+2. Make sure the input parameter value is valid.
+3. Make sure the notification subsystem has been started.
 
 ## 1600003 Failed to Connect to the Service
 
@@ -47,7 +48,7 @@ Failed to connect to service.
 
 **Description**
 
-This error code is reported when the notification subsystem is abnormal due to a service connection failure.
+This error code is reported when the connection with the notification subsystem fails.
 
 **Possible Causes**
 
@@ -66,15 +67,15 @@ Notification is not enabled.
 
 **Description**
 
-This error code is reported when the notification function is disabled.
+This error code is reported when the notification feature is disabled.
 
 **Possible Causes**
 
-The notification function is set to its default state (default) or manually disabled.
+The notification feature is not enabled manually. By default, this feature is disabled.
 
 **Solution**
 
-Enable the notification function.
+Enable the notification feature.
 
 ## 1600005 Notification Slot Is Disabled
 
@@ -102,16 +103,16 @@ Notification is not allowed to remove.
 
 **Description**
 
-This error code is reported when **isUnremoveable** is set to **true** and an attempt is made to remove all notifications or when **isRemoveAllowed** is set to **false** and an attempt is made to remove a specific notification.
+This error code is reported when the notification removal does not comply with the permission settings.
 
 **Possible Causes**
 
-1. When **isUnremoveable** is set to **true**, notifications can only be removed on a one-by-one basis.
-2. When **isRemoveAllowed** is set to **false**, no notification can be deleted.
+1. When **isUnremovable** is set to **true**, notifications can only be removed on a one-by-one basis.
+2. When **isRemoveAllowed** is set to **false**, no notification can be removed.
 
 **Solution**
 
-1. Check whether **unremovable** is set to **true**.
+1. Check whether **isUnremovable** is set to **true**
 2. Check whether **isRemoveAllowed** is set to **false**.
 
 ## 1600007 Notification Not Found
@@ -131,7 +132,7 @@ This error code is reported when the target notification is not found.
 
 **Solution**
 
-Make sure the notification exists.
+1. Make sure the notification exists.
 
 ## 1600008 User Not Found
 
@@ -208,7 +209,7 @@ This error code is reported when the template configuration file fails to be rea
 **Solution**
 
 1. Check for the **/system/etc/notification_template/external.json** file.
-2. Update the version to 3.2 or later.
+2. Update the system version to 3.2 or later.
 
 ## 17700001 Bundle Name Not Found
 
@@ -228,4 +229,5 @@ This error code is reported when the specified bund name is not found.
 **Solution**
 
 1. Verify the bundle name.
+
 2. Make sure the application has been installed.

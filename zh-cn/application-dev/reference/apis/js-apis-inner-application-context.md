@@ -22,7 +22,7 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 | preferencesDir | string | 是    | 否    | preferences目录。 |
 | bundleCodeDir | string | 是    | 否    | 安装包目录。 |
 | distributedFilesDir | string | 是    | 否    | 分布式文件目录。 |
-| eventHub | string | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
+| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
 | area | [AreaMode](#areamode) | 是    | 否    | 文件分区信息。 |
 
 ## Context.createBundleContext
@@ -52,7 +52,8 @@ createBundleContext(bundleName: string): Context;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -91,7 +92,8 @@ createModuleContext(moduleName: string): Context;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -129,7 +131,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

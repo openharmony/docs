@@ -7,10 +7,8 @@ AudioEncoder模块提供用于音频编码功能的函数。
 
 @syscap SystemCapability.Multimedia.Media.AudioEncoder
 
-**Since:**
+**起始版本：**
 9
-**Version:**
-1.0
 
 ## 汇总
 

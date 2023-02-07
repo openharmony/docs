@@ -1,339 +1,335 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
-|新增||模块名：ohos.data.distributedDataObject<br>类名:distributedDataObject<br>方法名 or 属性名:create|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：setSessionId|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：setSessionId|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：setSessionId|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：on_change|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：off_change|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：on_status|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：off_status|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：save|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：save|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：revokeSave|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：revokeSave|@ohos.data.distributedDataObject.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: distributedKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManagerConfig|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManagerConfig<br>方法名 or 属性名： bundleName|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManagerConfig<br>方法名 or 属性名： context|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Constants|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_KEY_LENGTH|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_VALUE_LENGTH|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_KEY_LENGTH_DEVICE|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_STORE_ID_LENGTH|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_QUERY_LENGTH|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_BATCH_SIZE|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ValueType|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： STRING|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： INTEGER|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： FLOAT|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： BYTE_ARRAY|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： BOOLEAN|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： DOUBLE|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Value|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Value<br>方法名 or 属性名： type|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Value<br>方法名 or 属性名： value|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Entry|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Entry<br>方法名 or 属性名： key|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Entry<br>方法名 or 属性名： value|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： insertEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： updateEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： deleteEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： deviceId|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SyncMode|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SyncMode<br>方法名 or 属性名： PULL_ONLY|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SyncMode<br>方法名 or 属性名： PUSH_ONLY|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SyncMode<br>方法名 or 属性名： PUSH_PULL|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SubscribeType|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SubscribeType<br>方法名 or 属性名： SUBSCRIBE_TYPE_LOCAL|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SubscribeType<br>方法名 or 属性名： SUBSCRIBE_TYPE_REMOTE|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SubscribeType<br>方法名 or 属性名： SUBSCRIBE_TYPE_ALL|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreType|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreType<br>方法名 or 属性名： DEVICE_COLLABORATION|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreType<br>方法名 or 属性名： SINGLE_VERSION|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S1|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S2|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S3|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S4|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： createIfMissing|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： encrypt|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： backup|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： autoSync|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： kvStoreType|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： securityLevel|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： schema|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Schema|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： root|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： indexes|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： mode|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： skip|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: FieldNode|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： ructor(name|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： appendChild|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： default|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： nullable|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： type|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： getCount|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： getPosition|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToFirst|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToLast|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToNext|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToPrevious|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： move|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToPosition|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isFirst|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isLast|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isBeforeFirst|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isAfterLast|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： getEntry|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： reset|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： equalTo|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： notEqualTo|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： greaterThan|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： lessThan|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： greaterThanOrEqualTo|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： lessThanOrEqualTo|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： isNull|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： inNumber|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： inString|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： notInNumber|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： notInString|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： like|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： unlike|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： and|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： or|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： orderByAsc|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： orderByDesc|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： limit|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： isNotNull|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： beginGroup|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： endGroup|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： prefixKey|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： setSuggestIndex|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： deviceId|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： getSqlLike|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： put|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： put|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBatch|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBatch|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： removeDeviceData|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： removeDeviceData|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： closeResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： closeResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： backup|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： backup|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： restore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： restore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBackup|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBackup|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： startTransaction|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： startTransaction|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： commit|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： commit|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： rollback|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： rollback|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： enableSync|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： enableSync|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncRange|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncRange|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncParam|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncParam|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： sync|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： sync|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： on_dataChange|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： on_syncComplete|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： off_dataChange|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： off_syncComplete|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getSecurityLevel|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getSecurityLevel|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: distributedKVStore<br>方法名 or 属性名： createKVManager|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: distributedKVStore<br>方法名 or 属性名： createKVManager|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： closeKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： closeKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： deleteKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： deleteKVStore|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getAllKVStoreId|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getAllKVStoreId|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： on_distributedDataServiceDie|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： off_distributedDataServiceDie|@ohos.data.distributedKVStore.d.ts|
-|新增||模块名：ohos.data.rdb<br>类名:rdb<br>方法名 or 属性名:getRdbStoreV9|@ohos.data.rdb.d.ts|
-|新增||模块名：ohos.data.rdb<br>类名:rdb<br>方法名 or 属性名:getRdbStoreV9|@ohos.data.rdb.d.ts|
-|新增||模块名：ohos.data.rdb<br>类名:rdb<br>方法名 or 属性名:deleteRdbStoreV9|@ohos.data.rdb.d.ts|
-|新增||模块名：ohos.data.rdb<br>类名:rdb<br>方法名 or 属性名:deleteRdbStoreV9|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: SecurityLevel|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S1|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S2|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S3|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S4|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：insert|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：insert|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：batchInsert|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：batchInsert|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：remoteQuery|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：remoteQuery|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：querySql|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：querySql|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：executeSql|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：executeSql|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：beginTransaction|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：commit|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：rollBack|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：backup|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：backup|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：restore|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：restore|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：setDistributedTables|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：setDistributedTables|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：obtainDistributedTableName|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：obtainDistributedTableName|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：sync|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：sync|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：on_dataChange|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：off_dataChange|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: StoreConfigV9|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: StoreConfigV9<br>方法名 or 属性名：name|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: StoreConfigV9<br>方法名 or 属性名：securityLevel|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: StoreConfigV9<br>方法名 or 属性名：encrypt|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：ructor(name|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：inDevices|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：inAllDevices|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：equalTo|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：notEqualTo|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：beginWrap|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：endWrap|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：or|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：and|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：contains|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：beginsWith|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：endsWith|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：isNull|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：isNotNull|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：like|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：glob|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：between|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：notBetween|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：greaterThan|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：lessThan|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：greaterThanOrEqualTo|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：lessThanOrEqualTo|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：orderByAsc|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：orderByDesc|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：distinct|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：limitAs|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：offsetAs|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：groupBy|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：indexedBy|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：in|@ohos.data.rdb.d.ts|
-|新增||模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：notIn|@ohos.data.rdb.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：columnNames|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：columnCount|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：rowCount|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：rowIndex|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isAtFirstRow|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isAtLastRow|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isEnded|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isStarted|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isClosed|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getColumnIndex|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getColumnName|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goTo|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToRow|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToFirstRow|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToLastRow|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToNextRow|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToPreviousRow|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getBlob|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getString|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getLong|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getDouble|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isColumnNull|resultSet.d.ts|
-|新增||模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：close|resultSet.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVManagerConfig<br>方法名 or 属性名:context||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:backup||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:backup||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:restore||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:restore||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:deleteBackup||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:deleteBackup||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:off_syncComplete||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:SingleKVStore<br>方法名 or 属性名:on_dataChange||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:SingleKVStore<br>方法名 or 属性名:off_dataChange||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:DeviceKVStore<br>方法名 or 属性名:on_dataChange||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedData<br>类名:DeviceKVStore<br>方法名 or 属性名:off_dataChange||@ohos.data.distributedData.d.ts|
-|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:save||@ohos.data.distributedDataObject.d.ts|
-|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:save||@ohos.data.distributedDataObject.d.ts|
-|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:revokeSave||@ohos.data.distributedDataObject.d.ts|
-|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:revokeSave||@ohos.data.distributedDataObject.d.ts|
-|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:remoteQuery||@ohos.data.rdb.d.ts|
-|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:remoteQuery||@ohos.data.rdb.d.ts|
-|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:backup||@ohos.data.rdb.d.ts|
-|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:backup||@ohos.data.rdb.d.ts|
-|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:restore||@ohos.data.rdb.d.ts|
-|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:restore||@ohos.data.rdb.d.ts|
-|删除|模块名：ohos.data.rdb<br>类名:StoreConfig<br>方法名 or 属性名:encrypt||@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：setSessionId|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：setSessionId|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：setSessionId|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：on_change|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：off_change|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：on_status|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：off_status|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：save|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：save|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：revokeSave|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedDataObject<br>类名: DistributedObjectV9<br>方法名 or 属性名：revokeSave|@ohos.data.distributedDataObject.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: distributedKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManagerConfig|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManagerConfig<br>方法名 or 属性名： bundleName|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManagerConfig<br>方法名 or 属性名： context|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Constants|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_KEY_LENGTH|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_VALUE_LENGTH|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_KEY_LENGTH_DEVICE|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_STORE_ID_LENGTH|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_QUERY_LENGTH|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Constants<br>方法名 or 属性名： MAX_BATCH_SIZE|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ValueType|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： STRING|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： INTEGER|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： FLOAT|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： BYTE_ARRAY|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： BOOLEAN|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ValueType<br>方法名 or 属性名： DOUBLE|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Value|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Value<br>方法名 or 属性名： type|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Value<br>方法名 or 属性名： value|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Entry|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Entry<br>方法名 or 属性名： key|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Entry<br>方法名 or 属性名： value|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： insertEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： updateEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： deleteEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: ChangeNotification<br>方法名 or 属性名： deviceId|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SyncMode|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SyncMode<br>方法名 or 属性名： PULL_ONLY|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SyncMode<br>方法名 or 属性名： PUSH_ONLY|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SyncMode<br>方法名 or 属性名： PUSH_PULL|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SubscribeType|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SubscribeType<br>方法名 or 属性名： SUBSCRIBE_TYPE_LOCAL|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SubscribeType<br>方法名 or 属性名： SUBSCRIBE_TYPE_REMOTE|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SubscribeType<br>方法名 or 属性名： SUBSCRIBE_TYPE_ALL|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreType|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreType<br>方法名 or 属性名： DEVICE_COLLABORATION|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreType<br>方法名 or 属性名： SINGLE_VERSION|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S1|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S2|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S3|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SecurityLevel<br>方法名 or 属性名： S4|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： createIfMissing|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： encrypt|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： backup|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： autoSync|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： kvStoreType|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： securityLevel|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Options<br>方法名 or 属性名： schema|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Schema|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： root|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： indexes|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： mode|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Schema<br>方法名 or 属性名： skip|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: FieldNode|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： ructor(name|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： appendChild|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： default|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： nullable|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: FieldNode<br>方法名 or 属性名： type|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： getCount|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： getPosition|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToFirst|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToLast|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToNext|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToPrevious|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： move|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： moveToPosition|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isFirst|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isLast|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isBeforeFirst|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： isAfterLast|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVStoreResultSet<br>方法名 or 属性名： getEntry|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： reset|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： equalTo|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： notEqualTo|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： greaterThan|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： lessThan|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： greaterThanOrEqualTo|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： lessThanOrEqualTo|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： isNull|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： inNumber|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： inString|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： notInNumber|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： notInString|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： like|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： unlike|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： and|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： or|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： orderByAsc|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： orderByDesc|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： limit|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： isNotNull|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： beginGroup|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： endGroup|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： prefixKey|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： setSuggestIndex|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： deviceId|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: Query<br>方法名 or 属性名： getSqlLike|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： put|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： put|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： putBatch|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： delete|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBatch|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBatch|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： removeDeviceData|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： removeDeviceData|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： closeResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： closeResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： backup|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： backup|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： restore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： restore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBackup|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： deleteBackup|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： startTransaction|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： startTransaction|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： commit|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： commit|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： rollback|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： rollback|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： enableSync|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： enableSync|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncRange|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncRange|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncParam|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： setSyncParam|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： sync|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： sync|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： on_dataChange|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： on_syncComplete|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： off_dataChange|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： off_syncComplete|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getSecurityLevel|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: SingleKVStore<br>方法名 or 属性名： getSecurityLevel|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： get|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getEntries|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSet|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: DeviceKVStore<br>方法名 or 属性名： getResultSize|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: distributedKVStore<br>方法名 or 属性名： createKVManager|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: distributedKVStore<br>方法名 or 属性名： createKVManager|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： closeKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： closeKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： deleteKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： deleteKVStore|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getAllKVStoreId|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： getAllKVStoreId|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： on_distributedDataServiceDie|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.distributedKVStore<br>类名: KVManager<br>方法名 or 属性名： off_distributedDataServiceDie|@ohos.data.distributedKVStore.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: SecurityLevel|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S1|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S2|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S3|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: SecurityLevel<br>方法名 or 属性名：S4|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：insert|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：insert|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：batchInsert|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：batchInsert|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：update|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：delete|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：query|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：remoteQuery|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：remoteQuery|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：querySql|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：querySql|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：executeSql|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：executeSql|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：beginTransaction|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：commit|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：rollBack|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：backup|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：backup|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：restore|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：restore|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：setDistributedTables|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：setDistributedTables|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：obtainDistributedTableName|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：obtainDistributedTableName|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：sync|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：sync|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：on_dataChange|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbStoreV9<br>方法名 or 属性名：off_dataChange|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: StoreConfigV9|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: StoreConfigV9<br>方法名 or 属性名：name|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: StoreConfigV9<br>方法名 or 属性名：securityLevel|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: StoreConfigV9<br>方法名 or 属性名：encrypt|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：ructor(name|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：inDevices|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：inAllDevices|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：equalTo|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：notEqualTo|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：beginWrap|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：endWrap|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：or|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：and|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：contains|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：beginsWith|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：endsWith|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：isNull|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：isNotNull|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：like|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：glob|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：between|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：notBetween|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：greaterThan|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：lessThan|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：greaterThanOrEqualTo|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：lessThanOrEqualTo|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：orderByAsc|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：orderByDesc|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：distinct|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：limitAs|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：offsetAs|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：groupBy|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：indexedBy|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：in|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: ohos.data.rdb<br>类名: RdbPredicatesV9<br>方法名 or 属性名：notIn|@ohos.data.rdb.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：columnNames|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：columnCount|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：rowCount|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：rowIndex|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isAtFirstRow|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isAtLastRow|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isEnded|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isStarted|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isClosed|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getColumnIndex|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getColumnName|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goTo|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToRow|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToFirstRow|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToLastRow|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToNextRow|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：goToPreviousRow|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getBlob|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getString|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getLong|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：getDouble|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：isColumnNull|resultSet.d.ts|
+|新增|NA|模块名: resultSet<br>类名: ResultSetV9<br>方法名 or 属性名：close|resultSet.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVManagerConfig<br>方法名 or 属性名:context|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:backup|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:backup|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:restore|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:restore|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:deleteBackup|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:deleteBackup|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:KVStore<br>方法名 or 属性名:off_syncComplete|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:SingleKVStore<br>方法名 or 属性名:on_dataChange|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:SingleKVStore<br>方法名 or 属性名:off_dataChange|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:DeviceKVStore<br>方法名 or 属性名:on_dataChange|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedData<br>类名:DeviceKVStore<br>方法名 or 属性名:off_dataChange|NA|@ohos.data.distributedData.d.ts|
+|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:save|NA|@ohos.data.distributedDataObject.d.ts|
+|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:save|NA|@ohos.data.distributedDataObject.d.ts|
+|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:revokeSave|NA|@ohos.data.distributedDataObject.d.ts|
+|删除|模块名：ohos.data.distributedDataObject<br>类名:DistributedObject<br>方法名 or 属性名:revokeSave|NA|@ohos.data.distributedDataObject.d.ts|
+|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:remoteQuery|NA|@ohos.data.rdb.d.ts|
+|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:remoteQuery|NA|@ohos.data.rdb.d.ts|
+|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:backup|NA|@ohos.data.rdb.d.ts|
+|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:backup|NA|@ohos.data.rdb.d.ts|
+|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:restore|NA|@ohos.data.rdb.d.ts|
+|删除|模块名：ohos.data.rdb<br>类名:RdbStore<br>方法名 or 属性名:restore|NA|@ohos.data.rdb.d.ts|
 |model有变化|类名：dataShare<br>model:|类名：dataShare<br>model:@StageModelOnly|@ohos.data.dataShare.d.ts|
+|model有变化|方法名 or 属性名：createDataShareHelper<br>model:|方法名 or 属性名：createDataShareHelper<br>model:@StageModelOnly|@ohos.data.dataShare.d.ts|
+|model有变化|方法名 or 属性名：createDataShareHelper<br>model:|方法名 or 属性名：createDataShareHelper<br>model:@StageModelOnly|@ohos.data.dataShare.d.ts|
 |访问级别有变化|类名：dataShare<br>访问级别：公开API|类名：dataShare<br>访问级别：系统API|@ohos.data.dataShare.d.ts|
 |废弃版本有变化|类名：distributedData<br>废弃版本：N/A|类名：distributedData<br>废弃版本：9<br>代替接口：ohos.data.distributedKVStore |@ohos.data.distributedData.d.ts|
 |废弃版本有变化|类名：KVManagerConfig<br>废弃版本：N/A|类名：KVManagerConfig<br>废弃版本：9<br>代替接口：ohos.data.distributedKVStore.KVManagerConfig     |@ohos.data.distributedData.d.ts|

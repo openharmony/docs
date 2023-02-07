@@ -10,8 +10,8 @@
 ## 导入模块
 
 
-```
-import configuration from '@system.configuration';
+```ts
+import Configuration from '@system.configuration';
 ```
 
 
@@ -50,4 +50,3 @@ static getLocale(): LocaleResponse
 | language | string | 是    | 否    | 语言。例如：zh。 |
 | countryOrRegion | string | 是    | 否    | 国家或地区。例如：CN。 |
 | dir | string | 是    | 否    | 文字布局方向。取值范围：<br/>-&nbsp;ltr：从左到右；<br/>-&nbsp;rtl：从右到左。 |
-| unicodeSetting<sup>5+</sup> | string | 是    | 否    | 语言环境定义的Unicode语言环境键集，如果此语言环境没有特定键集，则返回空集。<br/>例如：{"nu":"arab"}，表示当前环境下的数字采用阿拉伯语的数字。 |

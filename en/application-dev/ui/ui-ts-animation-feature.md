@@ -111,7 +111,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
    }
    ```
 
-5. After the splash screen animation plays for 1 second, the **FoodCategoryList** page is displayed. Set the **onFinish** callback of **animateTo**. Invoke the **setTimeout** API of the timer. After a delay of 1s, call **router.replace** to display the **FoodCategoryList** page.
+5. After the splash screen animation plays for 1 second, the **FoodCategoryList** page is displayed. Set the **onFinish** callback of **animateTo**. Invoke the **setTimeout** API of the timer. After a delay of 1s, call **router.replaceUrl** to display the **FoodCategoryList** page.
 
    ```ts
    import router from '@ohos.router'
@@ -137,7 +137,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
           delay: 100, 
           onFinish: () => {
             setTimeout(() => {
-              router.replace({ url: "pages/FoodCategoryList" })
+              router.replaceUrl({ url: "pages/FoodCategoryList" })
             }, 1000);
           }
         }, () => {
@@ -201,7 +201,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
              delay: 100,
              onFinish: () => {
                setTimeout(() => {
-                 router.replace({ url: "pages/FoodCategoryList" })
+                 router.replaceUrl({ url: "pages/FoodCategoryList" })
                }, 1000);
              }
            }, () => {
@@ -305,7 +305,7 @@ Implement the shared element transition between the food list page and the food 
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ url: 'pages/FoodDetail', params: { foodId: this.foodItem } })
+         router.pushUrl({ url: 'pages/FoodDetail', params: { foodData: this.foodItem } })
        })
      }
    }

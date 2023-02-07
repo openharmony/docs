@@ -1,4 +1,4 @@
-# @ohos.fileExtensionInfo (公共文件访问与管理属性信息)
+# @ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)
 
 该模块提供公共文件访问和管理模块中RootInfo与FileInfo中部分属性值的定义。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import fileExtensionInfo from '@ohos.fileExtensionInfo';
+import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 ```
 
 ## fileExtensionInfo.DeviceType
@@ -39,8 +39,8 @@ import fileExtensionInfo from '@ohos.fileExtensionInfo';
 
   | 名称 | 类型   | 可读 | 可写 | 说明     |
   | ------ | ------ | ---- | ---- | -------- |
-  | SUPPORTS_READ   | number | 是   | 否   | 支持读 |
-  | SUPPORTS_WRITE   | number | 是   | 否   | 支持写 |
+  | SUPPORTS_READ   | number | 是   | 否   | 此设备支持读 |
+  | SUPPORTS_WRITE   | number | 是   | 否   | 此设备支持写 |
 
 ## fileExtensionInfo.DocumentFlag
 
@@ -54,5 +54,5 @@ import fileExtensionInfo from '@ohos.fileExtensionInfo';
   | ------ | ------ | ---- | ---- | -------- |
   | REPRESENTS_FILE   | number | 是   | 否   | 代表文件 |
   | REPRESENTS_DIR   | number | 是   | 否   | 代表目录 |
-  | SUPPORTS_READ   | number | 是   | 否   | 支持读 |
-  | SUPPORTS_WRITE   | number | 是   | 否   | 支持写 |
+  | SUPPORTS_READ   | number | 是   | 否   | 此文件支持读 |
+  | SUPPORTS_WRITE   | number | 是   | 否   | 此文件支持写 |

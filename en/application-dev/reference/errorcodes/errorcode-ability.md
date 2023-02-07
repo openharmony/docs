@@ -4,7 +4,7 @@
 
 **Error Message**
 
-Input error. The specified ability name does not exist.
+Incorrect Ability name. The specified Ability name does not exist.
 
 **Description**
 
@@ -23,7 +23,7 @@ The ability to query does not exist.
 
 **Error Message**
 
-Ability type error. The specified ability type is wrong.
+Incorrect Ability type.
 
 **Description**
 
@@ -42,7 +42,7 @@ The ability with the specified type does not support the API invocation.
 
 **Error Message**
 
-Input error. The specified id does not exist.
+Input error. The specified ID does not exist.
 
 **Description**
 
@@ -78,7 +78,7 @@ Check whether the application meets the visibility restriction of the started ap
 
 **Error Message**
 
-Can not cross user operations.
+Cross-user operations are not allowed.
 
 **Description**
 
@@ -96,7 +96,7 @@ Do not perform a cross-user operation.
 
 **Error Message**
 
-Service busyness. There are concurrent tasks, waiting for retry.
+Service busy, please wait and try again.
 
 **Description**
 
@@ -114,7 +114,7 @@ Try again later.
 
 **Error Message**
 
-Crowdtest App Expiration.
+Crowdtest App Expired.
 
 **Description**
 
@@ -132,7 +132,7 @@ Check whether the crowdtesting application has expired.
 
 **Error Message**
 
-Can not start ability in wukong mode.
+Ability cannot be started or sotpped in Wukong mode.
 
 **Description**
 
@@ -150,7 +150,7 @@ Do not start or stop an ability in Wukong mode.
 
 **Error Message**
 
-Can not operation with continue flag.
+The call with the continuation flag is forbidden.
 
 **Description**
 
@@ -168,7 +168,7 @@ Remove the continuation flag.
 
 **Error Message**
 
-Context does not exist.
+The context does not exist.
 
 **Description**
 
@@ -186,7 +186,7 @@ Use the correct context.
 
 **Error Message**
 
-Internal Error.
+Internal error.
 
 **Description**
 
@@ -204,7 +204,7 @@ Ensure sufficient sytem memory.
 
 **Error Message**
 
-Network error. The network is abnormal.
+Network error.
 
 **Description**
 
@@ -222,7 +222,7 @@ Try again later or reconnect to the network.
 
 **Error Message**
 
-Free install not support. The applicaiotn dose not support free install.
+Installation-free is not supported.
 
 **Description**
 
@@ -240,7 +240,7 @@ Check whether the application supports installation-free.
 
 **Error Message**
 
-Not top ability. The application is not top ability.
+The ability is not on the top of UI.
 
 **Description**
 
@@ -258,7 +258,7 @@ Ensure that the ability is displayed on the top of the UI.
 
 **Error Message**
 
-Free install busyness. There are concurrent tasks, waiting for retry.
+Installation-free service is busy, please wait and try again later.
 
 **Description**
 
@@ -276,7 +276,7 @@ Try again later.
 
 **Error Message**
 
-Free install timeout.
+Installation-free time out.
 
 **Description**
 
@@ -294,7 +294,7 @@ Try again later.
 
 **Error Message**
 
-Can not free install other ability.
+Installation-free is not allowed for other applications.
 
 **Description**
 
@@ -312,7 +312,7 @@ Apply installation-free only for the current application.
 
 **Error Message**
 
-Not support cross device free install.
+Cross-device installation-free is not supported.
 
 **Description**
 
@@ -330,7 +330,7 @@ Use installation-free on the same device.
 
 **Error Message**
 
-execute shell command failed.
+Failed to run the shell command.
 
 **Description**
 
@@ -348,7 +348,7 @@ Use a valid shell command.
 
 **Error Message**
 
-Invalid wantagent object.
+Invalid wantAgent object.
 
 **Description**
 
@@ -366,7 +366,7 @@ Pass a valid **wantAgent** object in the API.
 
 **Error Message**
 
-wantAgent object not found.
+the wantAgent object does not exist.
 
 **Description**
 
@@ -384,7 +384,7 @@ Pass a valid **wantAgent** object in the API.
 
 **Error Message**
 
-wangAgent object canceled.
+wangAgent object has been canceled.
 
 **Description**
 
@@ -402,7 +402,7 @@ Pass a valid **wantAgent** object in the API.
 
 **Error Message**
 
-Input error. The specified uri does not exist.
+The ability with the specified URI does not exist.
 
 **Description**
 
@@ -420,7 +420,7 @@ Check the ability with the specified URI.
 
 **Error Message**
 
-Ability type error. The specified ability type is wrong.
+Incorrect ability type.
 
 **Description**
 
@@ -428,7 +428,7 @@ This error code is reported when the ability type invoked by the API is incorrec
 
 **Possible Causes**
 
-The ability with the specified type does not support the API call.
+The ability with the specified type does not support the API invocation.
 
 **Solution**
 
@@ -439,7 +439,7 @@ The ability with the specified type does not support the API call.
 
 **Error Message**
 
-Caller released. The caller has been released.
+The caller has been released.
 
 **Description**
 
@@ -457,7 +457,7 @@ Register a valid caller again.
 
 **Error Message**
 
-Callee Invalid. The callee does not exist.
+The callee does not exist.
 
 **Description**
 
@@ -493,7 +493,7 @@ Check whether the caller has registered.
 
 **Error Message**
 
-Method registered. The method has registered.
+The method has registered.
 
 **Description**
 
@@ -511,7 +511,7 @@ Check whether the method has been registered.
 
 **Error Message**
 
-Method not registered. The method has not registered.
+The method is not registered.
 
 **Description**
 
@@ -529,7 +529,7 @@ Check whether the method has been registered.
 
 **Error Message**
 
-Mission id error. The specified mission id does not exist.
+The specified mission id does not exist.
 
 **Description**
 
@@ -547,7 +547,7 @@ Check the mission ID.
 
 **Error Message**
 
-Input  error. The specified mission listener id does not exist.
+The specified mission listener does not exist.
 
 **Description**
 
@@ -565,7 +565,7 @@ Check the mission listener ID.
 
 **Error Message**
 
-The specified bundleName is invalid.
+Invalid bundle name.
 
 **Description**
 
@@ -583,7 +583,7 @@ Check whether the bundle has been installed.
 
 **Error Message**
 
-The specified hqf is invalid. Hqf may not exist or inaccessible.
+Invalid patch package.
 
 **Description**
 
@@ -602,7 +602,7 @@ The patch package does not exist or is inaccessible.
 
 **Error Message**
 
-Deploy hqf failed.
+Failed to deploy the patch.
 
 **Description**
 
@@ -626,7 +626,7 @@ Check whether the patch package complies with the deployment rules.
 
 **Error Message**
 
-Switch hqf failed.
+Failed to enable the patch package.
 
 **Description**
 
@@ -644,7 +644,7 @@ Check the state of the patch package.
 
 **Error Message**
 
-Delete hqf failed.
+Failed to enable the patch package.
 
 **Description**
 
@@ -662,7 +662,7 @@ Check the state of the patch package.
 
 **Error Message**
 
-Load patch failed.
+Failed to load the patch.
 
 **Description**
 
@@ -680,7 +680,7 @@ Check whether the patch package is correct.
 
 **Error Message**
 
-Unload patch failed.
+Failed to unload the patch.
 
 **Description**
 
@@ -702,7 +702,7 @@ Internal error.
 
 **Description**
 
-This error code is returned when an error occurs during internal processing, such as memory application or multi-thread processing.
+This error code is reported when an error occurs during internal processing, such as memory application or multi-thread processing.
 
 **Possible Causes**
 
@@ -710,4 +710,4 @@ Common kernel errors such as memory application and multi-thread processing erro
 
 **Solution**
 
-Ensure sufficient system memory.
+Ensure sufficient sytem memory.

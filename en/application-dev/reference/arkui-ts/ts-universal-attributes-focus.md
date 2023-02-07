@@ -201,7 +201,7 @@ Sample code for **focusControl.requestFocus**:
 Use the **focusContrl.requestFocus** API to enable a specified component to obtain focus.
 ```ts
 // requestFocus.ets
-import prompt from '@ohos.prompt'
+import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
@@ -253,9 +253,9 @@ struct RequestFocusExample {
           .onClick(() => {
             var res = focusControl.requestFocus(this.selectId)      // Enable the component selected by this.selectId to obtain focus.
             if (res) {
-              prompt.showToast({message: 'Request success'})
+              promptAction.showToast({message: 'Request success'})
             } else {
-              prompt.showToast({message: 'Request failed'})
+              promptAction.showToast({message: 'Request failed'})
             }
           })
       }

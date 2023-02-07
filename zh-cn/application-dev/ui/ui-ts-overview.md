@@ -76,11 +76,13 @@ ArkTS语言的基础知识请参考[学习ArkTS语言](../quick-start/arkts-get-
 
 - [`TransitionAnimation`：转场动画(ArkTS)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/TransitionAnimation)
 
+- [基础组件Slider的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderExample)
+
+- [转场动画的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimation)
+
 - [极简声明式UI范式（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
 
 - [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
-
-- [转场动画的使用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)
 
 - [弹窗（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
 

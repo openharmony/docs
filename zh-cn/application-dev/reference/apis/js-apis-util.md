@@ -64,7 +64,7 @@ errnoToString(errno: number): string
 **示例：**
 
 ```js
-let errnum = 10; // 10 : a system error number
+let errnum = -1; // -1 : a system error number
 let result = util.errnoToString(errnum);
 console.log("result = " + result);
 ```
@@ -286,7 +286,7 @@ getErrorString(errno: number): string
 **示例：**
 
   ```js
-  let errnum = 10; // 10 : a system error number
+  let errnum = -1; // -1 : a system error number
   let result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
@@ -338,7 +338,7 @@ TextDecoder的构造函数。
 
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean },): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
 
 替代有参构造功能。
 
@@ -364,50 +364,6 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean },): T
 let textDecoder = new util.TextDecoder()
 textDecoder.create('utf-8', { ignoreBOM : true });
 ```
-
-### decode
-
-decode(input: Uint8Array, options?: { stream?: false }): string
-
-通过输入参数解码后输出对应文本。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | Object | 否 | 解码相关选项参数。 |
-
-**表2** options
-
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 解码后的数据。 |
-
-**示例：**
-
-  ```js
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decode( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
-
 
 ### decodeWithStream<sup>9+</sup>
 
@@ -454,13 +410,13 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 
 ### constructor<sup>(deprecated)</sup>
 
-constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean },)
+constructor(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean })
 
 TextDecoder的构造函数。
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[create<sup>9+</sup>](#create9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -482,6 +438,53 @@ TextDecoder的构造函数。
 
   ```js
   let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  ```
+
+### decode<sup>(deprecated)</sup>
+
+decode(input: Uint8Array, options?: { stream?: false }): string
+
+通过输入参数解码后输出对应文本。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeWithStream<sup>9+</sup>](#decodewithstream9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
+| options | Object | 否 | 解码相关选项参数。 |
+
+**表2** options
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 解码后的数据。 |
+
+**示例：**
+
+  ```js
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
+  result[0] = 0xEF;
+  result[1] = 0xBB;
+  result[2] = 0xBF;
+  result[3] = 0x61;
+  result[4] = 0x62;
+  result[5] = 0x63;
+  console.log("input num:");
+  let retStr = textDecoder.decode( result , {stream: false});
+  console.log("retStr = " + retStr);
   ```
 
 ## TextEncoder
@@ -507,6 +510,26 @@ TextEncoder的构造函数。
 
   ```js
   let textEncoder = new util.TextEncoder();
+  ```
+
+### constructor<sup>9+</sup>
+
+constructor(encoding?: string)
+
+TextEncoder的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ---- | ---- | ---- |
+| encoding | string | 否 | 编码格式 |
+
+**示例：**
+
+  ```js
+  let textEncoder = new util.TextEncoder("utf-8");
   ```
 
 ### encodeInto<sup>9+</sup>
@@ -566,7 +589,7 @@ let that = new util.TextEncoder()
 let buffer = new ArrayBuffer(4)
 let dest = new Uint8Array(buffer)
 let result = new Object()
-result = that.encodeInto('abcd', dest)
+result = that.encodeIntoUint8Array('abcd', dest)
   ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1464,7 +1487,7 @@ lru.afterRemoval(false,10,30,null);
 
 ### contains<sup>9+</sup>
 
-contains(key: object): boolean
+contains(key: K): boolean
 
 检查当前缓冲区是否包含指定的键。
 
@@ -1474,7 +1497,7 @@ contains(key: object): boolean
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| key    | object | 是   | 表示要检查的键。 |
+| key    | K | 是   | 表示要检查的键。 |
 
 **返回值：**
 
@@ -1564,6 +1587,65 @@ pro.put(2,10);
 let result = pro[Symbol.iterator]();
   ```
 
+## ScopeComparable<sup>8+</sup>
+
+ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### compareTo<sup>8+</sup>
+
+compareTo(other: ScopeComparable): boolean;
+
+比较两个值的大小，返回一个布尔值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| other  | [ScopeComparable](#scopecomparable8) | 是  | 表示要比较的值。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| boolean | 调用compareTo的值大于等于传入的值返回true，否则返回false。|
+
+**示例：**
+
+构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
+
+```js
+class Temperature{
+    constructor(value){
+       // 当使用ts语言开发时，需要补充以下代码：
+       // private readonly _temp: Temperature;
+       this._temp = value;
+    }
+    compareTo(value){
+       return this._temp >= value.getTemp();
+    }
+    getTemp(){
+       return this._temp;
+    }
+    toString(){
+       return this._temp.toString();
+    }
+}
+```
+
+## ScopeType<sup>8+</sup>
+
+用于表示范围中的值的类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 表示值的类型为数字。 |
+| [ScopeComparable](#scopecomparable8) | 表示值的类型为ScopeComparable。|
 
 ## ScopeHelper<sup>9+</sup>
 
@@ -1644,7 +1726,7 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-range.intersect(rangeFir );
+range.intersect(rangeFir);
   ```
 
 
@@ -2121,45 +2203,7 @@ that.decode(array).then(val=>{
 })
   ```
 
-## ScopeType<sup>8+</sup>
-
-用于表示范围中的值的类型。该类型的值，类型可以为ScopeComparable或number。
-
-ScopeComparable类型的值需要实现compareTo方法，确保传入的数据具有可比性。
-
-```js
-interface ScopeComparable{
-    compareTo(other: ScopeComparable): boolean;
-}
-type ScopeType = ScopeComparable | number;
-```
-
-
-构造新类，实现compareTo方法。后续示例代码中，均通过Temperature，获取[ScopeType](#scopetype8)的实例化对象。
-
-
-示例：
-```js
-class Temperature{
-    constructor(value){
-       // 当使用ts语言开发时，需要补充以下代码：
-       // private readonly _temp: Temperature;
-       this._temp = value;
-    }
-    compareTo(value){
-       return this._temp >= value.getTemp();
-    }
-    getTemp(){
-       return this._temp;
-    }
-    toString(){
-       return this._temp.toString();
-    }
-}
-```
-
 ## types<sup>8+</sup>
-
 
 ### constructor<sup>8+</sup>
 
@@ -3315,7 +3359,7 @@ constructor(capacity?: number)
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.constructor<sup>9+</sup>](#constructor9-3)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3339,7 +3383,7 @@ updateCapacity(newCapacity: number): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[updateCapacity<sup>9+</sup>](#updatecapacity9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.updateCapacity<sup>9+</sup>](#updatecapacity9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3364,7 +3408,7 @@ toString(): string
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[toString<sup>9+</sup>](#tostring9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.toString<sup>9+</sup>](#tostring9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3392,7 +3436,7 @@ getCapacity(): number
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getCapacity<sup>9+</sup>](#getcapacity9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getCapacity<sup>9+</sup>](#getcapacity9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3416,7 +3460,7 @@ clear(): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[clear<sup>9+</sup>](#clear9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.clear<sup>9+</sup>](#clear9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3437,7 +3481,7 @@ getCreateCount(): number
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getCreateCount<sup>9+</sup>](#getcreatecount9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getCreateCount<sup>9+</sup>](#getcreatecount9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3463,7 +3507,7 @@ getMissCount(): number
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getMissCount<sup>9+</sup>](#getmisscount9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getMissCount<sup>9+</sup>](#getmisscount9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3490,7 +3534,7 @@ getRemovalCount(): number
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getRemovalCount<sup>9+</sup>](#getremovalcount9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getRemovalCount<sup>9+</sup>](#getremovalcount9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3518,7 +3562,7 @@ getMatchCount(): number
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getMatchCount<sup>9+</sup>](#getmatchcount9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getMatchCount<sup>9+</sup>](#getmatchcount9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3545,7 +3589,7 @@ getPutCount(): number
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getPutCount<sup>9+</sup>](#getputcount9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.getPutCount<sup>9+</sup>](#getputcount9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3571,7 +3615,7 @@ isEmpty(): boolean
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[isEmpty<sup>9+</sup>](#isempty9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.isEmpty<sup>9+</sup>](#isempty9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3597,7 +3641,7 @@ get(key: K): V | undefined
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[get<sup>9+</sup>](#get9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.get<sup>9+</sup>](#get9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3629,7 +3673,7 @@ put(key: K,value: V): V
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[put<sup>9+</sup>](#put9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.put<sup>9+</sup>](#put9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3661,7 +3705,7 @@ values(): V[]
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[values<sup>9+</sup>](#values9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.values<sup>9+</sup>](#values9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3689,7 +3733,7 @@ keys(): K[]
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[keys<sup>9+</sup>](#keys9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.keys<sup>9+</sup>](#keys9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3700,6 +3744,7 @@ keys(): K[]
 | K&nbsp;[] | 按升序返回当前缓冲区中所有键的列表，从最近访问到最近最少访问。 |
 
 **示例：**
+
   ```js
   let pro = new util.LruBuffer();
   pro.put(2,10);
@@ -3714,7 +3759,7 @@ remove(key: K): V | undefined
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[remove<sup>9+</sup>](#remove9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.remove<sup>9+</sup>](#remove9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3745,7 +3790,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[afterRemoval<sup>9+</sup>](#afterremoval9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.afterRemoval<sup>9+</sup>](#afterremoval9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3789,7 +3834,7 @@ contains(key: K): boolean
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[contains<sup>9+</sup>](#contains9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.contains<sup>9+</sup>](#contains9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3821,7 +3866,7 @@ createDefault(key: K): V
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[createDefault<sup>9+</sup>](#createdefault9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.createDefault<sup>9+</sup>](#createdefault9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3852,7 +3897,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[entries<sup>9+</sup>](#entries9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.entries<sup>9+</sup>](#entries9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3878,7 +3923,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[Symbol.iterator<sup>9+</sup>](#symboliterator9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[LRUCache.Symbol.iterator<sup>9+</sup>](#symboliterator9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3910,7 +3955,7 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.constructor<sup>9+</sup>](#constructor9-4)替代。
 
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -3937,7 +3982,7 @@ toString(): string
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[toString<sup>9+</sup>](#tostring9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.toString<sup>9+</sup>](#tostring9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3964,7 +4009,7 @@ intersect(range: Scope): Scope
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[intersect<sup>9+</sup>](#intersect9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.intersect<sup>9+</sup>](#intersect9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4000,7 +4045,7 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[intersect<sup>9+</sup>](#intersect9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.intersect<sup>9+</sup>](#intersect9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4036,7 +4081,7 @@ getUpper(): ScopeType
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getUpper<sup>9+</sup>](#getupper9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.getUpper<sup>9+</sup>](#getupper9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4063,7 +4108,7 @@ getLower(): ScopeType
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getLower<sup>9+</sup>](#getlower9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.getLower<sup>9+</sup>](#getlower9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4090,7 +4135,7 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[expand<sup>9+</sup>](#expand9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.expand<sup>9+</sup>](#expand9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4126,7 +4171,7 @@ expand(range: Scope): Scope
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[expand<sup>9+</sup>](#expand9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.expand<sup>9+</sup>](#expand9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4162,7 +4207,7 @@ expand(value: ScopeType): Scope
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[expand<sup>9+</sup>](#expand9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.expand<sup>9+</sup>](#expand9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4196,7 +4241,7 @@ contains(value: ScopeType): boolean
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[contains<sup>9+</sup>](#contains9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.contains<sup>9+</sup>](#contains9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4230,7 +4275,7 @@ contains(range: Scope): boolean
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[contains<sup>9+</sup>](#contains9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.contains<sup>9+</sup>](#contains9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4267,7 +4312,7 @@ clamp(value: ScopeType): ScopeType
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[clamp<sup>9+</sup>](#clamp9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[ScopeHelper.clamp<sup>9+</sup>](#clamp9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4308,7 +4353,7 @@ Base64的构造函数。
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[constructor<sup>9+</sup>](#constructor9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.constructor<sup>9+</sup>](#constructor9-5)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4326,7 +4371,7 @@ encodeSync(src: Uint8Array): Uint8Array
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[encodeSync<sup>9+</sup>](#encodesync9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.encodeSync<sup>9+</sup>](#encodesync9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4358,7 +4403,7 @@ encodeToStringSync(src: Uint8Array): string
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[encodeToStringSync<sup>9+</sup>](#encodetostringsync9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.encodeToStringSync<sup>9+</sup>](#encodetostringsync9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4390,7 +4435,7 @@ decodeSync(src: Uint8Array | string): Uint8Array
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[decodeSync<sup>9+</sup>](#decodesync9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.decodeSync<sup>9+</sup>](#decodesync9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4422,7 +4467,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[encode<sup>9+</sup>](#encode9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.encode<sup>9+</sup>](#encode9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4459,7 +4504,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[encodeToString<sup>9+</sup>](#encodetostring9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.encodeToString<sup>9+</sup>](#encodetostring9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4494,7 +4539,7 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[decode<sup>9+</sup>](#decode9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[Base64Helper.decode<sup>9+</sup>](#decode9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4522,5 +4567,3 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
       }
   })
   ```
-
-  <!--no_check-->

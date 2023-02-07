@@ -31,8 +31,9 @@ ExtensionContext主要用于查询所属Extension的信息、Module的配置信�
 
 三个Module内都定义一个相同名称的ServiceExtension：
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
-import Want from '@ohos.application.Want'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
         console.log('ServiceAbility onCreate, want: ' + want.abilityName);
@@ -61,10 +62,11 @@ export default class TheServiceExtension extends ServiceExtension {
 
 在entry的MainAbility的onCreate回调内启动ServiceExtension
 ```ts
-import Ability from '@ohos.app.ability.Ability'
-export default class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
+        console.log("[Demo] EntryAbility onCreate");
         let wantExt = {
             deviceId: "",
             bundleName: "com.example.TheServiceExtension",
@@ -88,7 +90,7 @@ export default class ServiceModel {
             return;
         }
 
-        var moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
+        let moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
         this.moduleName = moduleInfo.name;
         // 根据moduleName执行不同的业务逻辑，实现对不同性能设备的区分
         switch (this.moduleName) {

@@ -21,7 +21,7 @@ This following figure shows the audio capturer state transitions.
 
 ## Constraints
 
-Before developing the audio data collection feature, configure the **ohos.permission.MICROPHONE** permission for your application. For details about permission configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+Before developing the audio data collection feature, configure the **ohos.permission.MICROPHONE** permission for your application. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
 ## How to Develop
 
@@ -178,16 +178,16 @@ For details about the APIs, see [AudioCapturer in Audio Management](../reference
    
    // Obtain the audio capturer information.
    let audioCapturerInfo : audio.AuduioCapturerInfo = await audioCapturer.getCapturerInfo();
-
+   
    // Obtain the audio stream information.
    let audioStreamInfo : audio.AudioStreamInfo = await audioCapturer.getStreamInfo();
-
+   
    // Obtain the audio stream ID.
    let audioStreamId : number = await audioCapturer.getAudioStreamId();
-
+   
    // Obtain the Unix timestamp, in nanoseconds.
    let audioTime : number = await audioCapturer.getAudioTime();
-
+   
    // Obtain a proper minimum buffer size.
    let bufferSize : number = await audioCapturer.getBuffersize();
    ```

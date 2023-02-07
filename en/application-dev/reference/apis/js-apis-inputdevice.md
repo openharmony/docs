@@ -1,16 +1,11 @@
-# Input Device
+# @ohos.multimodalInput.inputDevice (Input Device)
 
+The **inputDevice** module implements listening for connection, disconnection, and update events of input devices and displays information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
 
-The Input Device module implements listening for connection, disconnection, and update events of input devices and displays information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
-
-
-> **NOTE**
-> 
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 ## Modules to Import
-
 
 ```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';
@@ -33,7 +28,7 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 
 ```js
 try {
-  inputDevice.getDeviceList((error, ids) => {
+  inputDevice.getDeviceIds((error, ids) => {
     if (error) {
       console.log(`Failed to get device list.
          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
@@ -65,7 +60,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids) => {
+  inputDevice.getDeviceIds().then((ids) => {
     console.log("The device ID list is: " + ids);
   });
 } catch (error) {
@@ -245,9 +240,14 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds((ids)=>{
-    console.log("The device ID list is: " + ids);
+inputDevice.getDeviceIds((error, ids) => {
+  if (error) {
+    console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    return;
+  }
+  console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
+```
 ```
 
 ## inputDevice.getDeviceIds<sup>(deprecated)</sup>
@@ -269,8 +269,8 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds().then((ids)=>{
-    console.log("The device ID list is: " + ids);
+inputDevice.getDeviceIds().then((ids) => {
+  console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
 
@@ -295,8 +295,12 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1, (inputDevice)=>{
-    console.log("The device name is: " + inputDevice.name);
+inputDevice.getDevice(1, (error, deviceData) => {
+  if (error) {
+    console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    return;
+  }
+  console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
 
@@ -326,8 +330,8 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 
 ```js
 // Obtain the name of the device whose ID is 1.
-inputDevice.getDevice(1).then((inputDevice)=>{
-    console.log("The device name is: " + inputDevice.name);
+inputDevice.getDevice(1).then((deviceData) => {
+  console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
 
@@ -460,10 +464,10 @@ Defines the listener for hot swap events of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name      | Type                     | Description                               |
-| -------- | ------------------------- | --------------------------------- |
-| type     | [ChangedType](#changedtype) | Device change type, which indicates whether an input device is inserted or removed.                    |
-| deviceId | number                    | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| type     | [ChangedType](#changedtype) | Yes| No| Device change type, which indicates whether an input device is inserted or removed.|
+| deviceId | number                      | Yes| No| Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
 
 ## InputDeviceData
 
@@ -471,18 +475,18 @@ Defines the information about an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name                  | Type                                  | Description                                      |
-| -------------------- | -------------------------------------- | ---------------------------------------- |
-| id                   | number                                 | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.       |
-| name                 | string                                 | Name of the input device.                                |
-| sources              | Array&lt;[SourceType](#sourcetype)&gt; | Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
-| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device.                               |
-| bus<sup>9+</sup>     | number                                 | Bus type of the input device.                              |
-| product<sup>9+</sup> | number                                 | Product information of the input device.                              |
-| vendor<sup>9+</sup>  | number                                 | Vendor information of the input device.                              |
-| version<sup>9+</sup> | number                                 | Version information of the input device.                              |
-| phys<sup>9+</sup>    | string                                 | Physical address of the input device.                              |
-| uniq<sup>9+</sup>    | string                                 | Unique ID of the input device.                              |
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| id                   | number                                 | Yes| No| Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| name                 | string                                 | Yes| No| Name of the input device.                                            |
+| sources              | Array&lt;[SourceType](#sourcetype)&gt; | Yes| No| Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
+| axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | Yes| No| Axis information of the input device.                                          |
+| bus<sup>9+</sup>     | number                                 | Yes| No| Bus type of the input device.                                        |
+| product<sup>9+</sup> | number                                 | Yes| No| Product information of the input device.                                        |
+| vendor<sup>9+</sup>  | number                                 | Yes| No| Vendor information of the input device.                                        |
+| version<sup>9+</sup> | number                                 | Yes| No| Version information of the input device.                                        |
+| phys<sup>9+</sup>    | string                                 | Yes| No| Physical address of the input device.                                        |
+| uniq<sup>9+</sup>    | string                                 | Yes| No| Unique ID of the input device.                                        |
 
 ## AxisType<sup>9+</sup>
 
@@ -490,17 +494,17 @@ Defines the axis type of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name         | Type  | Description             |
-| ----------- | ------ | --------------- |
-| touchMajor  | string | touchMajor axis. |
-| touchMinor  | string | touchMinor axis. |
-| toolMinor   | string | toolMinor axis.  |
-| toolMajor   | string | toolMajor axis.  |
-| orientation | string | Orientation axis.|
-| pressure    | string | Pressure axis.   |
-| x           | string | X axis.          |
-| y           | string | Y axis.          |
-| NULL        | string | None.             |
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| touchMajor  | string | Yes| No| touchMajor axis. |
+| touchMinor  | string | Yes| No| touchMinor axis. |
+| toolMinor   | string | Yes| No| toolMinor axis.  |
+| toolMajor   | string | Yes| No| toolMajor axis.  |
+| orientation | string | Yes| No| Orientation axis.|
+| pressure    | string | Yes| No| Pressure axis.   |
+| x           | string | Yes| No| X axis.          |
+| y           | string | Yes| No| Y axis.          |
+| NULL        | string | Yes| No| None.             |
 
 ## AxisRange
 
@@ -508,41 +512,41 @@ Defines the axis range of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name                     | Type                     | Description      |
-| ----------------------- | ------------------------- | -------- |
-| source                  | [SourceType](#sourcetype) | Input source type of the axis.|
-| axis                    | [AxisType](#axistype9)      | Axis type.   |
-| max                     | number                    | Maximum value of the axis.  |
-| min                     | number                    | Minimum value of the axis.  |
-| fuzz<sup>9+</sup>       | number                    | Fuzzy value of the axis.  |
-| flat<sup>9+</sup>       | number                    | Benchmark value of the axis.  |
-| resolution<sup>9+</sup> | number                    | Resolution of the axis.  |
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| source                  | [SourceType](#sourcetype) | Yes| No| Input source type of the axis.|
+| axis                    | [AxisType](#axistype9)    | Yes| No| Axis type.   |
+| max                     | number                    | Yes| No| Maximum value of the axis.  |
+| min                     | number                    | Yes| No| Minimum value of the axis.  |
+| fuzz<sup>9+</sup>       | number                    | Yes| No| Fuzzy value of the axis.  |
+| flat<sup>9+</sup>       | number                    | Yes| No| Benchmark value of the axis.  |
+| resolution<sup>9+</sup> | number                    | Yes| No| Resolution of the axis.  |
 
-## SourceType
+## SourceType<sup>9+</sup>
 
 Enumerates the input source types. For example, if a mouse reports an x-axis event, the source of the x-axis is the mouse.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name         | Type  | Description         |
-| ----------- | ------ | ----------- |
-| keyboard    | string | The input device is a keyboard. |
-| touchscreen | string | The input device is a touchscreen.|
-| mouse       | string | The input device is a mouse. |
-| trackball   | string | The input device is a trackball.|
-| touchpad    | string | The input device is a touchpad.|
-| joystick    | string | The input device is a joystick.|
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| keyboard    | string | Yes| No| The input device is a keyboard. |
+| touchscreen | string | Yes| No| The input device is a touchscreen.|
+| mouse       | string | Yes| No| The input device is a mouse. |
+| trackball   | string | Yes| No| The input device is a trackball.|
+| touchpad    | string | Yes| No| The input device is a touchpad.|
+| joystick    | string | Yes| No| The input device is a joystick.|
 
-## ChangedType
+## ChangedType<sup>9+</sup>
 
 Defines the change type for the hot swap event of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name    | Type  | Description       |
-| ------ | ------ | --------- |
-| add    | string | An input device is inserted.|
-| remove | string | An input device is removed.|
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| add    | string | Yes| No| An input device is inserted.|
+| remove | string | Yes| No| An input device is removed.|
 
 ## KeyboardType<sup>9+</sup>
 
@@ -550,11 +554,11 @@ Enumerates the keyboard types.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name                 | Type  | Value   | Description       |
-| ------------------- | ------ | ---- | --------- |
-| NONE                | number | 0    | Keyboard without keys. |
-| UNKNOWN             | number | 1    | Keyboard with unknown keys.|
-| ALPHABETIC_KEYBOARD | number | 2    | Full keyboard. |
-| DIGITAL_KEYBOARD    | number | 3    | Keypad. |
-| HANDWRITING_PEN     | number | 4    | Stylus. |
-| REMOTE_CONTROL      | number | 5    | Remote control. |
+| Name                 | Value   | Description       |
+| ------------------- | ---- | --------- |
+| NONE                | 0    | Keyboard without keys. |
+| UNKNOWN             | 1    | Keyboard with unknown keys.|
+| ALPHABETIC_KEYBOARD | 2    | Full keyboard. |
+| DIGITAL_KEYBOARD    | 3    | Keypad. |
+| HANDWRITING_PEN     | 4    | Stylus. |
+| REMOTE_CONTROL      | 5    | Remote control. |

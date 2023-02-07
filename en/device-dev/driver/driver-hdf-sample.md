@@ -51,7 +51,7 @@ root {
 Write the driver code based on the HDF. For more details, see [Driver Development](../driver/driver-hdf-development.md).
 
   
-```
+```c
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
@@ -59,34 +59,34 @@ Write the driver code based on the HDF. For more details, see [Driver Developmen
 #include "hdf_base.h"
 #include "hdf_device_desc.h"
 
-#define HDF_LOG_TAG "sample_driver"
+#define HDF_LOG_TAG sample_driver
 
 #define SAMPLE_WRITE_READ 123
 
-int32_t HdfSampleDriverDispatch(
-    struct HdfDeviceObject *deviceObject, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
+static int32_t HdfSampleDriverDispatch(
+    struct HdfDeviceIoClient *client, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
 {
-    HDF_LOGE("%s: received cmd %d", __func__, id);
+    HDF_LOGI("%{public}s: received cmd %{public}d", __func__, id);
     if (id == SAMPLE_WRITE_READ) {
         const char *readData = HdfSbufReadString(data);
         if (readData != NULL) {
-            HDF_LOGE("%s: read data is: %s", __func__, readData);
+            HDF_LOGE("%{public}s: read data is: %{public}s", __func__, readData);
         }
         if (!HdfSbufWriteInt32(reply, INT32_MAX)) {
-            HDF_LOGE("%s: reply int32 fail", __func__);
+            HDF_LOGE("%{public}s: reply int32 fail", __func__);
         }
-        return HdfDeviceSendEvent(deviceObject, id, data);
+        return HdfDeviceSendEvent(client->device, id, data);
     }
     return HDF_FAILURE;
 }
 
-void HdfSampleDriverRelease(struct HdfDeviceObject *deviceObject)
+static void HdfSampleDriverRelease(struct HdfDeviceObject *deviceObject)
 {
     // Release resources.
     return;
 }
 
-int HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
+static int HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
 {
     if (deviceObject == NULL) {
         return HDF_FAILURE;
@@ -98,17 +98,17 @@ int HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
     return HDF_SUCCESS;
 }
 
-int HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
+static int HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
 {
     if (deviceObject == NULL) {
-        HDF_LOGE("%s::ptr is null!", __func__);
+        HDF_LOGE("%{public}s::ptr is null!", __func__);
         return HDF_FAILURE;
     }
-    HDF_LOGE("Sample driver Init success");
+    HDF_LOGI("Sample driver Init success");
     return HDF_SUCCESS;
 }
 
-struct HdfDriverEntry g_sampleDriverEntry = {
+static struct HdfDriverEntry g_sampleDriverEntry = {
     .moduleVersion = 1,
     .moduleName = "sample_driver",
     .Bind = HdfSampleDriverBind,
@@ -122,10 +122,10 @@ HDF_INIT(g_sampleDriverEntry);
 
 ## Implementing Interaction Between the Application and the Driver 
 
-Write the code for interaction between the user-mode application and the driver. Place the code in the **drivers/adapter/uhdf** directory for compilation. For details about **build.gn**, see **drivers/framework/sample/platform/uart/dev/build.gn**.
+Write the code for interaction between the user-mode application and the driver. Place the code in the **drivers/hdf_core/adapter/uhdf** directory for compilation. For details about **BUILD.gn**, see **drivers/hdf_core/framework/sample/platform/uart/dev/BUILD.gn**.
 
   
-```
+```c
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
@@ -134,7 +134,7 @@ Write the code for interaction between the user-mode application and the driver.
 #include "hdf_sbuf.h"
 #include "hdf_io_service_if.h"
 
-#define HDF_LOG_TAG "sample_test"
+#define HDF_LOG_TAG sample_test
 #define SAMPLE_SERVICE_NAME "sample_service"
 
 #define SAMPLE_WRITE_READ 123
@@ -149,7 +149,7 @@ static int OnDevEventReceived(void *priv,  uint32_t id, struct HdfSBuf *data)
         g_replyFlag = 1;
         return HDF_FAILURE;
     }
-    HDF_LOGE("%s: dev event received: %u %s",  (char *)priv, id, string);
+    HDF_LOGI("%{public}s: dev event received: %{public}u %{public}s",  (char *)priv, id, string);
     g_replyFlag = 1;
     return HDF_SUCCESS;
 }
@@ -157,13 +157,13 @@ static int OnDevEventReceived(void *priv,  uint32_t id, struct HdfSBuf *data)
 static int SendEvent(struct HdfIoService *serv, char *eventData)
 {
     int ret = 0;
-    struct HdfSBuf *data = HdfSBufObtainDefaultSize();
+    struct HdfSBuf *data = HdfSbufObtainDefaultSize();
     if (data == NULL) {
         HDF_LOGE("fail to obtain sbuf data");
         return 1;
     }
 
-    struct HdfSBuf *reply = HdfSBufObtainDefaultSize();
+    struct HdfSBuf *reply = HdfSbufObtainDefaultSize();
     if (reply == NULL) {
         HDF_LOGE("fail to obtain sbuf reply");
         ret = HDF_DEV_ERR_NO_MEMORY;
@@ -188,10 +188,10 @@ static int SendEvent(struct HdfIoService *serv, char *eventData)
         ret = HDF_ERR_INVALID_OBJECT;
         goto out;
     }
-    HDF_LOGE("Get reply is: %d", replyData);
+    HDF_LOGI("Get reply is: %{public}d", replyData);
 out:
-    HdfSBufRecycle(data);
-    HdfSBufRecycle(reply);
+    HdfSbufRecycle(data);
+    HdfSbufRecycle(reply);
     return ret;
 }
 
@@ -237,8 +237,8 @@ int main()
 > 
 > deps = [
 > 
-> "//drivers/adapter/uhdf/manager:hdf_core",
+> "//drivers/hdf_core/adapter/uhdf/manager:hdf_core",
 > 
-> "//drivers/adapter/uhdf/posix:hdf_posix_osal",
+> "//drivers/hdf_core/adapter/uhdf/posix:hdf_posix_osal",
 > 
 > ]

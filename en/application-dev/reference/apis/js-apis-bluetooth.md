@@ -1,4 +1,4 @@
-# @ohos.bluetooth
+# @ohos.bluetooth (Bluetooth)
 
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 

@@ -13,7 +13,7 @@ cat [_pathname_]
 
 ## 参数说明
 
-  **表1** 参数说明
+**表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -32,8 +32,8 @@ cat用于显示文本文件的内容。
 
 ## 输出说明
 
-  **示例**：查看 hello-openharmony.txt 文件的信息
-  
+**示例** 查看 hello-openharmony.txt 文件的信息
+
 ```
 OHOS # cat hello-openharmony.txt
 OHOS # Hello openharmony ;)

@@ -26,6 +26,7 @@
             - [异常调测](kernel-mini-memory-exception.md)
             - [Trace调测](kernel-mini-memory-trace.md)
             - [LMS调测](kernel-mini-memory-lms.md)
+            - [SHELL](kernel-mini-debug-shell.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
             - [标准库支持](kernel-mini-appx-lib.md)
@@ -135,7 +136,7 @@
                 - [魔法键使用方法](kernel-small-debug-shell-magickey.md)
                 - [用户态异常信息说明](kernel-small-debug-shell-error.md)
             - [Trace调测](kernel-small-debug-trace.md)
-            - [Perf调测](kernel-mini-memory-perf.md)
+            - [Perf调测](kernel-small-debug-perf.md)
             - [LMS调测](kernel-small-memory-lms.md)
             - [进程调测](kernel-small-debug-process-cpu.md)
             - 内核态内存调测

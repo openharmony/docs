@@ -26,12 +26,22 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- |
   |AsyncCallback&lt;boolean&gt; |以回调方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。true: 处于稳定性测试场景，false：处于非稳定性测试场景。 | 
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRunningInStabilityTest((err, flag) => {
-    if (err.code != 0) {
-        conseole.log("isRunningInStabilityTest faile, err: " + JSON.stringify(err));
+    if (err && err.code !== 0) {
+        console.log("isRunningInStabilityTest fail, err: " + JSON.stringify(err));
     } else {
         console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
     }
@@ -53,9 +63,19 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。true: 处于稳定性测试场景，false：处于非稳定性测试场景。 | 
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRunningInStabilityTest().then((flag) => {
     console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
 }).catch((error) => {
@@ -78,9 +98,19 @@ isRamConstrainedDevice(): Promise\<boolean>;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前设备是否为ram受限设备，可进行错误处理或其他自定义处理。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。 | 
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRamConstrainedDevice().then((data) => {
     console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
 }).catch((error) => {
@@ -102,12 +132,22 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
   | -------- | -------- |
   | AsyncCallback&lt;boolean&gt; |以回调方式返回接口运行结果及当前设备是否为ram受限设备，可进行错误处理或其他自定义处理。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。 | 
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.isRamConstrainedDevice((err, data) => {
-    if (err.code != 0) {
-        console.log("isRamConstrainedDevice faile, err: " + JSON.stringify(err));
+    if (err && err.code !== 0) {
+        console.log("isRamConstrainedDevice fail, err: " + JSON.stringify(err));
     } else {
         console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
     }
@@ -128,9 +168,19 @@ getAppMemorySize(): Promise\<number>;
   | -------- | -------- |
   | Promise&lt;number&gt; | 以Promise方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getAppMemorySize().then((data) => {
     console.log("The size of app memory is:" + JSON.stringify(data));
 }).catch((error) => {
@@ -152,19 +202,29 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   | -------- | -------- |
   |AsyncCallback&lt;number&gt; |以回调方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getAppMemorySize((err, data) => {
-    if (err.code != 0) {
-        console.log("getAppMemorySize faile, err: " + JSON.stringify(err));
+    if (err && err.code !== 0) {
+        console.log("getAppMemorySize fail, err: " + JSON.stringify(err));
     } else {
         console.log("The size of app memory is:" + JSON.stringify(data));
     }
 })
 ```
 
-## appManager.getProcessRunningInformation<sup>9+</sup>
+## appManager.getProcessRunningInformation
 
 getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
@@ -182,9 +242,19 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 | -------- | -------- |
 | Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getProcessRunningInformation().then((data) => {
     console.log("The process running information is:" + JSON.stringify(data));
 }).catch((error) => {
@@ -210,12 +280,22 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 | -------- | -------- |
 |AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getProcessRunningInformation((err, data) => {
-    if (err.code != 0) {
-        console.log("getProcessRunningInformation faile, err: " + JSON.stringify(err));
+    if (err && err.code !== 0) {
+        console.log("getProcessRunningInformation fail, err: " + JSON.stringify(err));
     } else {
         console.log("The process running information is:" + JSON.stringify(data));
     }
@@ -247,31 +327,41 @@ on(type: "applicationState", observer: ApplicationStateObserver): number;
 | --- | --- |
 | number | 已注册观测器的数字代码，可用于off接口取消注册观测器。|
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
-```js
-var applicationStateObserver = {
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------' + JSON.stringify(appStateData));
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------' + JSON.stringify(abilityStateData));
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
     onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------' + JSON.stringify(processData));
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
     },
     onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------' + JSON.stringify(processData));
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
     },
     onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------' + JSON.stringify(processData));
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
 }
 try {
-    const observerCode = appManager.on(applicationStateObserver);
-    console.log('-------- observerCode: ---------' + observerCode);
+    const observerId = appManager.on('applicationState', applicationStateObserver);
+    console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
 ```
 
@@ -293,7 +383,7 @@ on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList:
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
 | observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
-| bundleNameList | Array<string> | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
+| bundleNameList | `Array<string>` | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
 
 **返回值：**
 
@@ -301,34 +391,44 @@ on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList:
 | --- | --- |
 | number | 已注册观测器的数字代码，可用于off接口注销观测器。|
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
-```js
-var applicationStateObserver = {
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------' + JSON.stringify(appStateData));
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------' + JSON.stringify(abilityStateData));
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
     onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------' + JSON.stringify(processData));
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
     },
     onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------' + JSON.stringify(processData));
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
     },
     onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------' + JSON.stringify(processData));
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
 }
-var bundleNameList = ['bundleName1', 'bundleName2'];
+let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
-    const observerCode = appManager.on("applicationState", applicationStateObserver, bundleNameList);
-    console.log('-------- observerCode: ---------', observerCode);
+    const observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
- ```
+```
 
 ## appManager.off
 
@@ -350,20 +450,57 @@ off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void
 | observerId | number | 是 | 表示观测器的编号代码。 |
 | callback | AsyncCallback\<void> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
-**示例：**
-    
-```ts
-var observerId = 100;
+**错误码**：
 
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+let observeId = 0;
+
+// 1.注册应用状态监听器
+let applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+    onProcessCreated(processData) {
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+    },
+    onProcessDied(processData) {
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+    },
+    onProcessStateChanged(processData) {
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    }
+}
+let bundleNameList = ['bundleName1', 'bundleName2'];
+try {
+    observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log(`[appManager] observerCode: ${observerId}`);
+} catch (paramError) {
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+}
+
+// 2.注销应用状态监听器
 function unregisterApplicationStateObserverCallback(err) {
-    if (err.code != 0) {
-        console.log("unregisterApplicationStateObserverCallback faile, err: " + JSON.stringify(err));
+    if (err && err.code !== 0) {
+        console.log("unregisterApplicationStateObserverCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("unregisterApplicationStateObserverCallback success.");
     }
 }
 try {
-    appManager.off(observerId, unregisterApplicationStateObserverCallback);
+    appManager.off("applicationState", observerId, unregisterApplicationStateObserverCallback);
 } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
@@ -394,16 +531,53 @@ off(type: "applicationState", observerId: number): Promise\<void>;
 | -------- | -------- |
 | Promise\<void> | 以Promise方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
-var observerId = 100;
-    
+import appManager from '@ohos.app.ability.appManager';
+
+let observeId = 0;
+
+// 1.注册应用状态监听器
+let applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+    onProcessCreated(processData) {
+        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+    },
+    onProcessDied(processData) {
+        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+    },
+    onProcessStateChanged(processData) {
+        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    }
+}
+let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
-    appManager.off(observerId).then((data) => {
+    observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    console.log(`[appManager] observerCode: ${observerId}`);
+} catch (paramError) {
+    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+}
+    
+// 2.注销应用状态监听器
+try {
+    appManager.off("applicationState", observerId).then((data) => {
         console.log("unregisterApplicationStateObserver success, data: " + JSON.stringify(data));
     }).catch((err) => {
-        console.log("unregisterApplicationStateObserver faile, err: " + JSON.stringify(err));
+        console.log("unregisterApplicationStateObserver fail, err: " + JSON.stringify(err));
     })
 } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
@@ -414,7 +588,7 @@ try {
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
+获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -422,40 +596,13 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
-**参数：**
+**错误码**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
 
-**示例：**
-    
-```ts
-function getForegroundApplicationsCallback(err, data) {
-    if (err.code != 0) {
-        console.log("getForegroundApplicationsCallback fail, err: " + JSON.stringify(err));
-    } else {
-        console.log("getForegroundApplicationsCallback success, data: " + JSON.stringify(data));
-    }
-}
-try {
-    appManager.getForegroundApplications(getForegroundApplicationsCallback);
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
-}
-```
-
-## appManager.getForegroundApplications
-
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
-
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **参数：**
 
@@ -464,10 +611,12 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 | callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以Promise方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 function getForegroundApplicationsCallback(err, data) {
-    if (err.code != 0) {
+    if (err && err.code !== 0) {
         console.log("getForegroundApplicationsCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("getForegroundApplicationsCallback success, data: " + JSON.stringify(data));
@@ -484,7 +633,7 @@ try {
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
+获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -498,9 +647,19 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 | -------- | -------- |
 | Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 返回前台进程应用程序的数组。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
+import appManager from '@ohos.app.ability.appManager';
+
 appManager.getForegroundApplications().then((data) => {
     console.log("getForegroundApplications success, data: " + JSON.stringify(data));
 }).catch((err) => {
@@ -527,11 +686,21 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 | bundleName | string | 是 | 应用Bundle名称。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+let accountId = 0;
 try {
     appManager.killProcessWithAccount(bundleName, accountId).then(() => {
         console.log("killProcessWithAccount success");
@@ -564,13 +733,23 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
   | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 | 
   | callback | AsyncCallback\<void\> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 | 
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
+let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
-    if (err.code != 0) {
+    if (err && err.code !== 0) {
         console.log("killProcessWithAccountCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("killProcessWithAccountCallback success.");
@@ -598,12 +777,22 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 | bundleName | string | 是 | 表示Bundle名称。 |
 | callback | AsyncCallback\<void> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
-var bundleName = 'bundleName';
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
 function killProcessesByBundleNameCallback(err, data) {
-    if (err.code != 0) {
+    if (err && err.code !== 0) {
         console.log("killProcessesByBundleNameCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("killProcessesByBundleNameCallback success.");
@@ -640,10 +829,20 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 | -------- | -------- |
 | Promise\<void> | 返回执行结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
-var bundleName = 'bundleName';
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
 try {
     appManager.killProcessesByBundleName(bundleName).then((data) => {
         console.log("killProcessesByBundleName success.");
@@ -674,12 +873,22 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 | bundleName | string | 是 | 表示Bundle名称。 |
 | callback | AsyncCallback\<void> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
-var bundleName = 'bundleName';
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
 function clearUpApplicationDataCallback(err, data) {
-    if (err) {
+    if (err && err.code !== 0) {
         console.log("clearUpApplicationDataCallback fail, err: " + JSON.stringify(err));
     } else {
         console.log("clearUpApplicationDataCallback success.");
@@ -716,10 +925,20 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 | -------- | -------- |
 | Promise\<void> | 以Promise方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
-    
+
 ```ts
-var bundleName = 'bundleName';
+import appManager from '@ohos.app.ability.appManager';
+
+let bundleName = 'bundleName';
 try {
     appManager.clearUpApplicationData(bundleName).then((data) => {
         console.log("clearUpApplicationData success.");

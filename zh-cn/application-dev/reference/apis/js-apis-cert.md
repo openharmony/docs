@@ -1,6 +1,6 @@
-# 证书模块
+# @ohos.security.cert (证书模块)
 
-crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](./js-apis-cryptoFramework.md)。
+crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
 
 > **说明：**
 > 
@@ -115,7 +115,7 @@ let encodingData = null;
 let encodingBlob = {
     data: encodingData,
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
 };
 cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
@@ -189,7 +189,6 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 ```js
 import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 证书二进制数据，需业务自行赋值
 let encodingData = null;
@@ -203,7 +202,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
         console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Cert success");
-        // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
+        // 业务需通过上级X509Cert证书对象的getPublicKey获取PubKey
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
@@ -250,7 +249,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
     console.log("createX509Cert success");
-    // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
+    // 业务可通过上级X509Cert证书对象的getPublicKey获取PubKey
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
         console.log("verify success");
@@ -355,8 +354,7 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | X509证书公钥对象 |
-
+| cryptoFramework.PubKey | X509证书公钥对象：仅用于X509Cert的verify接口 |
 
 **示例：**
 
@@ -398,8 +396,7 @@ checkValidityWithDate(date: string) : void
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期        |
-
+| date     | string         | 是   | 日期（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间必须以Z结尾：表示标准时间） |
 
 **示例：**
 
@@ -584,9 +581,9 @@ getNotBeforeTime() : string
 
 **返回值**：
 
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| string | 表示X509证书有效期起始时间 |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 表示X509证书有效期起始时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
 
 **示例：**
 
@@ -620,9 +617,9 @@ getNotAfterTime() : string
 
 **返回值**：
 
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| string | 表示X509证书有效期截止时间 |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 表示X509证书有效期截止时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
 
 **示例：**
 
@@ -1219,7 +1216,7 @@ cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-表示对X509证书吊销列表进行验签。
+表示对X509证书吊销列表进行验签。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1227,7 +1224,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey               | 是   | 表示用于验签的公钥对象                                       |
+| key      | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象                                       |
 | callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 
@@ -1266,7 +1263,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-表示对X509证书吊销列表进行验签。
+表示对X509证书吊销列表进行验签。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1274,7 +1271,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象 |
+| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象。 |
 
 **返回值**：
 
@@ -2063,7 +2060,7 @@ getCertIssuer() : DataBlob
 **返回值**：
 
 | 类型                  | 说明                     |
-| --------------------- | ---------------------- - |
+| --------------------- | ----------------------- |
 | [DataBlob](#datablob) | 表示被吊销证书的颁发者信息 |
 
 **示例：**

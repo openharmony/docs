@@ -528,7 +528,7 @@ async function createTonePlayerBefore(){
 | CONTENT_TYPE_SPEECH                | 1      | 语音。     |
 | CONTENT_TYPE_MUSIC                 | 2      | 音乐。     |
 | CONTENT_TYPE_MOVIE                 | 3      | 电影。     |
-| CONTENT_TYPE_SONIFICATION          | 4      | 加密类型。 |
+| CONTENT_TYPE_SONIFICATION          | 4      | 通知音。   |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | 铃声。     |
 
 ## StreamUsage
@@ -2320,10 +2320,6 @@ audioVolumeManager.on('volumeChange', (volumeEvent) => {
 ## AudioVolumeGroupManager<sup>9+</sup>
 
 管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](#getvolumegroupmanager9) 创建实例。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 ### setVolume<sup>9+</sup>
 

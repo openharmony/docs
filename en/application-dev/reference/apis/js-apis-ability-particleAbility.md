@@ -1,6 +1,6 @@
-# @ohos.ability.particleAbility
+# @ohos.ability.particleAbility (ParticleAbility)
 
-The **particleAbility** module provides APIs for Service abilities. You can use the APIs to start and terminate a Particle ability, obtain a **dataAbilityHelper** object, connect the current ability to a specific Service ability, and disconnect the current ability from a specific Service ability. 
+The **particleAbility** module provides APIs for operating a ServiceAbility. You can use the APIs to start and terminate a ParticleAbility, obtain a **dataAbilityHelper** object, and connect to or disconnect from a ServiceAbility.
 
 > **NOTE**
 > 
@@ -21,7 +21,12 @@ import particleAbility from '@ohos.ability.particleAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): void
 
-Starts a Particle ability. This API uses an asynchronous callback to return the result.
+Starts a ParticleAbility. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -48,7 +53,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example.Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -62,7 +67,12 @@ particleAbility.startAbility(
 
 startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
-Starts a Particle ability. This API uses a promise to return the result.
+Starts a ParticleAbility. This API uses a promise to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -94,7 +104,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example. Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -107,7 +117,7 @@ particleAbility.startAbility(
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Terminates this Particle ability. This API uses an asynchronous callback to return the result.
+Terminates this ParticleAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -133,7 +143,7 @@ particleAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-Terminates this Particle ability. This API uses a promise to return the result.
+Terminates this ParticleAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -161,6 +171,12 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 Obtains a **dataAbilityHelper** object.
 
+Observe the following when using this API:
+ - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
+ - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
@@ -173,7 +189,7 @@ Obtains a **dataAbilityHelper** object.
 
 | Type             | Description                                        |
 | ----------------- | -------------------------------------------- |
-| DataAbilityHelper | A utility class used to help other abilities access a Data ability.|
+| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | A utility class used to help other abilities access a DataAbility.|
 
 **Example**
 
@@ -208,7 +224,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -222,7 +238,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -277,13 +293,13 @@ Requests a continuous task from the system. This API uses a promise to return th
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -349,7 +365,7 @@ particleAbility.cancelBackgroundRunning(callback);
 
 cancelBackgroundRunning(): Promise&lt;void&gt;;
 
-Requests a continuous task from the system. This API uses a promise to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1).
+Requests to cancel a continuous task from the system. This API uses a promise to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -376,7 +392,13 @@ particleAbility.cancelBackgroundRunning().then(() => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-Connects this ability to a specific Service ability. This API uses a callback to return the result.
+Connects this ability to a specific ServiceAbility.
+
+Observe the following when using this API:
+ - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
+ - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -384,23 +406,14 @@ Connects this ability to a specific Service ability. This API uses a callback to
 
 | Name   | Type          | Mandatory| Description                        |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](js-apis-application-want.md)           | Yes  | Service ability to connect.|
-| options | ConnectOptions | Yes  | Callback used to return the result.          |
+| request | [Want](js-apis-application-want.md)           | Yes  | ServiceAbility to connect.|
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes  | Connection options.          |
 
-
-ConnectOptions
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name          | Type      | Mandatory  | Description                       |
-| ------------ | -------- | ---- | ------------------------- |
-| onConnect    | function | Yes   | Callback invoked when the connection is successful.              |
-| onDisconnect | function | Yes   | Callback invoked when the connection fails.              |
-| onFailed     | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
 
 **Example**
 
 ```ts
+import particleAbility from '@ohos.ability.particleAbility'
 import rpc from '@ohos.rpc'
 
 function onConnectCallback(element, remote) {
@@ -432,14 +445,13 @@ particleAbility.disconnectAbility(connId).then((data) => {
 }).catch((error) => {
     console.log('particleAbilityTest result errCode : ' + error.code)
 });
-    
 ```
 
 ## particleAbility.disconnectAbility
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-Disconnects this ability from the Service ability. This API uses a callback to return the result.
+Disconnects this ability from a specific ServiceAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -452,7 +464,8 @@ Disconnects this ability from the Service ability. This API uses a callback to r
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -477,10 +490,10 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
-}).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+
+particleAbility.disconnectAbility(connId, (err) => {
+    console.log("particleAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
 });
 ```
 
@@ -489,7 +502,7 @@ var result = particleAbility.disconnectAbility(connId).then((data) => {
 
 disconnectAbility(connection: number): Promise\<void>;
 
-Disconnects this ability from the Service ability. This API uses a promise to return the result.
+Disconnects this ability from a specific ServiceAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -502,7 +515,8 @@ Disconnects this ability from the Service ability. This API uses a promise to re
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -538,7 +552,7 @@ particleAbility.disconnectAbility(connId).then((data) => {
 
 ## ErrorCode
 
-Enumerates error codes.
+Enumerates the error codes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 

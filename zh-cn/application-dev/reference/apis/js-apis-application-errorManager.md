@@ -8,7 +8,7 @@ ErrorManager模块提供对错误观察器的注册和注销的能力。
 
 ## 导入模块
 ```ts
-import errorManager from '@ohos.application.errorManager'
+import errorManager from '@ohos.application.errorManager';
 ```
 
 ## ErrorManager.registerErrorObserver
@@ -20,7 +20,7 @@ registerErrorObserver(observer: ErrorObserver): number;
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
- 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 是 | 返回观察者的数字代码。 |
@@ -28,7 +28,7 @@ registerErrorObserver(observer: ErrorObserver): number;
 **示例：**
     
 ```ts
-var observer = {
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
     }
@@ -45,7 +45,7 @@ unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void>): vo
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
- 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | observerId | number | 是 | 返回观察者的数字代码。 |
@@ -54,7 +54,7 @@ unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void>): vo
 **示例：**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 
 function unregisterErrorObserverCallback(err) {
     if (err) {
@@ -74,7 +74,7 @@ unregisterErrorObserver(observerId: number): Promise\<void>;
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
- 
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | observerId | number | 是 | 返回观察者的数字代码。 |
@@ -88,7 +88,7 @@ unregisterErrorObserver(observerId: number): Promise\<void>;
 **示例：**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 errorManager.unregisterErrorObserver(observerId)
 .then((data) => {
     console.log('----------- unregisterErrorObserver success ----------', data);

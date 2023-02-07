@@ -1,6 +1,6 @@
-# Screen Brightness
+# @system.brightness (Screen Brightness)
 
-This module provides APIs for querying and adjusting the screen brightness and mode.
+The **brightness** module provides APIs for querying and adjusting the screen brightness and mode.
 
 > **NOTE**
 > - The APIs of this module are no longer maintained since API version 7. It is recommended that you use [`@ohos.brightness`](js-apis-brightness.md) instead.

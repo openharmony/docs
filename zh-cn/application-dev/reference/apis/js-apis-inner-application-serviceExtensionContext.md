@@ -2,7 +2,7 @@
 
 ServiceExtensionContext模块是ServiceExtensionAbility的上下文环境，继承自ExtensionContext。
 
-ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。
+ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包括启动、停止、绑定、解绑Ability。
 
 > **说明：**
 > 
@@ -17,7 +17,7 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接�
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
   let context = undefined;
-  class MainAbility extends ServiceExtensionAbility {
+  class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // 获取ServiceExtensionContext
     }
@@ -68,7 +68,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -95,7 +95,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
-启动Ability。通过Promise返回结果。
+启动Ability，结果以Promise的形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,7 +112,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | 返回一个Promise，包含启动的结果。 |
 
 **错误码：**
 
@@ -141,11 +141,11 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -171,7 +171,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。
+启动Ability，结果以Callback的形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -212,12 +212,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -244,6 +244,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
 
 根据account启动Ability（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -285,12 +290,12 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
@@ -315,6 +320,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
 根据account启动Ability（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -357,13 +367,13 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -391,6 +401,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
 
 根据account启动Ability（Promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -438,13 +453,13 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -503,10 +518,10 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -569,10 +584,10 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -635,12 +650,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -706,12 +721,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
@@ -765,10 +780,10 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -828,10 +843,10 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
 
   try {
@@ -890,12 +905,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -958,12 +973,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
@@ -1103,17 +1118,17 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1163,19 +1178,19 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1199,7 +1214,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectAbility中返回的number。 |
+| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
 | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -1217,7 +1232,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1251,7 +1266,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectAbility中返回的number。 |
+| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
 
 **返回值：**
 
@@ -1273,8 +1288,8 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  // connection为connectAbility中的返回值
-  var connection = 1;
+  // connection为connectServiceExtensionAbility中的返回值
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1299,6 +1314,11 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1335,13 +1355,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   后台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 后台启动Ability，不配置parameters
-  var wantBackground = {
+  let wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: ""
   };
 
@@ -1366,13 +1386,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   前台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
-  var wantForeground = {
+  let wantForeground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
-      abilityName: "MainAbility",
+      abilityName: "EntryAbility",
       deviceId: "",
       parameters: {
         "ohos.aafwk.param.callAbilityToForeground": true

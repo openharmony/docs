@@ -13,7 +13,7 @@ format &lt;_dev_inodename_&gt; &lt;_sectors_&gt; &lt;_option_&gt; [_label_]
 
 ## 参数说明
 
-  **表1** 参数说明
+**表1** 参数说明
 
 | 参数 | 参数说明 | 
 | -------- | -------- |
@@ -39,9 +39,8 @@ format &lt;_dev_inodename_&gt; &lt;_sectors_&gt; &lt;_option_&gt; [_label_]
 
 ## 输出说明
 
-**示例**:格式化mmc卡
+**示例** 格式化mmc卡
 
-  
 ```
 OHOS # format /dev/mmcblk1 128 2
 Format to FAT32, 128 sectors per cluster.

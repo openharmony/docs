@@ -23,6 +23,11 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 启动指定的particleAbility（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -48,7 +53,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example.Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -63,6 +68,11 @@ particleAbility.startAbility(
 startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
 启动指定的particleAbility（Promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -94,7 +104,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.Data",
-            abilityName: "com.example. Data.MainAbility",
+            abilityName: "EntryAbility",
             uri: ""
         },
     },
@@ -161,6 +171,12 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 获取dataAbilityHelper对象。
 
+使用规则：
+ - 跨应用访问dataAbility，对端应用需配置关联启动
+ - 调用方应用位于后台时，使用该接口访问dataAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标dataAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -180,7 +196,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 ```ts
 import particleAbility from '@ohos.ability.particleAbility'
 
-var uri = "";
+let uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
 ```
 
@@ -208,7 +224,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -222,7 +238,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -277,13 +293,13 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 ```ts
 import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -378,6 +394,12 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 将当前ability与指定的ServiceAbility进行连接（callback形式）。
 
+使用规则：
+ - 跨应用连接serviceAbility，对端应用需配置关联启动
+ - 调用方应用位于后台时，使用该接口连接serviceAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标serviceAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -391,6 +413,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 **示例**：
 
 ```ts
+import particleAbility from '@ohos.ability.particleAbility'
 import rpc from '@ohos.rpc'
 
 function onConnectCallback(element, remote) {
@@ -405,7 +428,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -422,7 +445,6 @@ particleAbility.disconnectAbility(connId).then((data) => {
 }).catch((error) => {
     console.log('particleAbilityTest result errCode : ' + error.code)
 });
-    
 ```
 
 ## particleAbility.disconnectAbility
@@ -442,7 +464,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 **示例**：
 
 ```ts
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -456,7 +479,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -467,10 +490,10 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
-}).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+
+particleAbility.disconnectAbility(connId, (err) => {
+    console.log("particleAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
 });
 ```
 
@@ -492,7 +515,8 @@ disconnectAbility(connection: number): Promise\<void>;
 **示例**：
 
 ```ts
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -506,7 +530,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -535,12 +559,3 @@ particleAbility.disconnectAbility(connId).then((data) => {
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | INVALID_PARAMETER         | -1    | 无效的参数。 |
-
-
-
-
-
-
-
-
-

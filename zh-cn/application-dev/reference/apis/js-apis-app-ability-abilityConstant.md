@@ -43,11 +43,11 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
-        if (launcherParam.launchReason == AbilityConstant.LaunchReason.START_ABILITY) {
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
             console.log("The ability has been started by the way of startAbility.");
         }
     }
@@ -69,11 +69,11 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
-        if (launcherParam.lastExitReason == AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
+        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
             console.log("The ability has exit last because the ability was not responding.");
         }
     }
@@ -95,7 +95,7 @@ Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-abilit
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam) {
@@ -114,16 +114,16 @@ class MyAbility extends UIAbility {
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
 | WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 分屏多窗口主要模式。   |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | 分屏多窗口次要模式。   |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。   |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。   |
 | WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
 
 **示例：**
 
 ```ts
 let want = {
-    bundleName: "com.test.example",
-    abilityName: "MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
 };
 let option = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
@@ -152,11 +152,11 @@ this.context.startAbility(want, option).then(()={
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onMemoryLevel(level) {
-        if (level == AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
+        if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
             console.log("The memory of device is critical, please release some memory.");
         }
     }
@@ -181,7 +181,7 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
@@ -204,11 +204,11 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility form '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
-        if (reason == AbilityConstant.StateType.CONTINUATION) {
+        if (reason === AbilityConstant.StateType.CONTINUATION) {
             console.log("Save the ability data when the ability continuation.");
         } 
         return AbilityConstant.OnSaveResult.ALL_AGREE;

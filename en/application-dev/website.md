@@ -1,42 +1,174 @@
 # Application Development
+
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
-
   - Getting Started
-    - [Preparations](quick-start/start-overview.md)
+    - [Before You Start](quick-start/start-overview.md)
     - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
     - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
     - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
   - Development Fundamentals
-    - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
-    - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
-    - [SysCap](quick-start/syscap.md)
-    - [HarmonyAppProvision Configuration File](quick-start/app-provision-structure.md)
+    - Application Package Fundamentals
+      - [Application Package Overview](quick-start/application-package-overview.md)
+      - Application Package Structure
+        - [Application Package Structure in Stage Model](quick-start/application-package-structure-stage.md)
+        - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
+        - [HAR File Structure](quick-start/har-structure.md)
+      - Multi-HAP Mechanism
+        - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
+        - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
+        - [Multi-HAP Development, Debugging, Release, and Deployment Process](quick-start/multi-hap-release-deployment.md)
+        - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
+        - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
+      - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
+    - Application Configuration Files in Stage Model
+      - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
+      - [app.json5 Configuration File](quick-start/app-configuration-file.md)
+      - [module.json5 Configuration File](quick-start/module-configuration-file.md)
+    - Application Configuration Files in FA Model
+      - [Application Configuration File Overview (FA Model)](quick-start/application-configuration-file-overview-fa.md)
+      - [Internal Structure of the app Tag](quick-start/app-structure.md)
+      - [Internal structure of deviceConfig Tag](quick-start/deviceconfig-structure.md)
+      - [Internal Structure of the module Tag](quick-start/module-structure.md)
+    - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
+    - Learning ArkTS
+      - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
+      - ArkTS Syntax (Declarative UI)
+        - [Basic UI Description](quick-start/arkts-basic-ui-description.md)
+        - State Management
+          - [Basic Concepts](quick-start/arkts-state-mgmt-concepts.md)
+          - [State Management with Page-level Variables](quick-start/arkts-state-mgmt-page-level.md)
+          - [State Management with Application-level Variables](quick-start/arkts-state-mgmt-application-level.md)
+        - [Dynamic UI Element Building](quick-start/arkts-dynamic-ui-elememt-building.md)
+        - [Rendering Control](quick-start/arkts-rendering-control.md)
+        - [Restrictions and Extensions](quick-start/arkts-restrictions-and-extensions.md)
 - Development
-  - Ability Development
-    - [Ability Framework Overview](ability/ability-brief.md)
-    - [Context Usage](ability/context-userguide.md)
-    - FA Model
-      - [FA Model Overview](ability/fa-brief.md)
-      - [Page Ability Development](ability/fa-pageability.md)
-      - [Service Ability Development](ability/fa-serviceability.md)
-      - [Data Ability Development](ability/fa-dataability.md)
-      - [FA Widget Development](ability/fa-formability.md)
-    - Stage Model
-      - [Stage Model Overview](ability/stage-brief.md)
-      - [Ability Development](ability/stage-ability.md)
-      - [Service Extension Ability Development](ability/stage-serviceextension.md)
-      - [Ability Continuation Development](ability/stage-ability-continuation.md)
-      - [Ability Call Development](ability/stage-call.md)
-      - [Stage Widget Development](ability/stage-formextension.md)
-    - Other
-      - [WantAgent Development](ability/wantagent.md)
-      - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
-      - [ContinuationManager Development](ability/continuationmanager.md)
-      - [Test Framework Usage](ability/ability-delegator.md)
-
-
-
+  - Application Models
+    - Application Model Overview
+      - [Elements of the Application Model](application-models/application-model-composition.md)
+      - [Interpretation of the Application Model](application-models/application-model-description.md)
+    - Stage Model Development
+      - [Stage Model Development Overview](application-models/stage-model-development-overview.md)
+      - Stage Mode Application Components
+        - [Application- or Component-Level Configuration](application-models/application-component-configuration-stage.md)
+        - UIAbility Component
+          - [UIAbility Component Overview](application-models/uiability-overview.md)
+          - [UIAbility Component Lifecycle](application-models/uiability-lifecycle.md)
+          - [UIAbility Component Launch Type](application-models/uiability-launch-type.md)
+          - [UIAbility Component Usage](application-models/uiability-usage.md)
+          - [Data Synchronization Between UIAbility and UI](application-models/uiability-data-sync-with-ui.md)
+          - [Intra-Device Interaction Between UIAbility Components](application-models/uiability-intra-device-interaction.md)
+        - ExtensionAbility Component
+          - [ExtensionAbility Component Overview](application-models/extensionability-overview.md)
+          - [ServiceExtensionAbility](application-models/serviceextensionability.md)
+          - [DataShareExtensionAbility](application-models/datashareextensionability.md)
+          - [FormExtensionAbility (Widget)](application-models/widget-development-stage.md)
+        - [AbilityStage Component Container](application-models/abilitystage.md)
+        - [Context](application-models/application-context-stage.md)
+        - Want
+          - [Want Overview](application-models/want-overview.md)
+          - [Matching Rules of Explicit Want and Implicit Want](application-models/explicit-implicit-want-mappings.md)
+          - [Common action and entities Values](application-models/actions-entities.md)
+          - [Using Explicit Want to Start an Ability](application-models/ability-startup-with-explicit-want.md)
+          - [Using Implicit Want to Open a Website](application-models/ability-startup-with-implicit-want.md)
+          - [Using Want to Share Data Between Applications](application-models/data-share-via-want.md)
+        - [Component Startup Rules](application-models/component-startup-rules.md)
+        - Inter-Device Application Component Interaction (Continuation) 
+          - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
+          - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
+          - [Multi-device Collaboration](application-models/hop-multi-device-collaboration.md)
+      - IPC
+        - [Process Model](application-models/process-model-stage.md)
+        - Common Events
+          - [Introduction to Common Events](application-models/common-event-overview.md)
+          - [Subscribing to Common Events](application-models/common-event-subscription.md)
+          - [Publishing Common Events](application-models/common-event-publish.md)
+          - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
+        - [Background Services](application-models/background-services.md)
+      - Inter-Thread Communication
+        - [Thread Model](application-models/thread-model-stage.md)
+        - [Using Emitter for Inter-Thread Communication](application-models/itc-with-emitter.md)
+        - [Using Worker for Inter-Thread Communication](application-models/itc-with-worker.md)
+      - Mission Management
+        - [Mission Management Scenarios](application-models/mission-management-overview.md)
+        - [Mission Management and Launch Type](application-models/mission-management-launch-type.md)
+        - [Page Stack and MissionList](application-models/page-mission-stack.md)
+    - FA Model Development
+      - [FA Model Development Overview](application-models/fa-model-development-overview.md)
+      - FA Mode Application Components
+        - [Application- or Component-Level Configuration](application-models/application-component-configuration-fa.md)
+        - PageAbility Component Development
+          - [PageAbility Component Overview](application-models/pageability-overview.md)
+          - [PageAbility Component Configuration](application-models/pageability-configuration.md)
+          - [PageAbility Lifecycle](application-models/pageability-lifecycle.md)
+          - [PageAbility Launch Type](application-models/pageability-launch-type.md)
+          - [Creating a PageAbility](application-models/create-pageability.md)
+          - [Starting a Local PageAbility](application-models/start-local-pageability.md)
+          - [Stopping a PageAbility](application-models/stop-pageability.md)
+          - [Starting a Remote PageAbility](application-models/start-remote-pageability.md)
+          - [Starting a Specified Page](application-models/start-page.md)
+          - [Window Properties](application-models/window-properties.md)
+          - [Requesting Permissions](application-models/request-permissions.md)
+          - [Redirection Rules](application-models/redirection-rules.md)
+        - ServiceAbility Component Development
+          - [ServiceAbility Component Overview](application-models/serviceability-overview.md)
+          - [ServiceAbility Component Configuration](application-models/serviceability-configuration.md)
+          - [ServiceAbility Lifecycle](application-models/serviceability-lifecycle.md)
+          - [Creating a ServiceAbility](application-models/create-serviceability.md)
+          - [Starting a ServiceAbility](application-models/start-serviceability.md)
+          - [Connecting to a ServiceAbility](application-models/connect-serviceability.md)
+        - DataAbility Component Development
+          - [DataAbility Component Overview](application-models/dataability-overview.md)
+          - [DataAbility Component Configuration](application-models/dataability-configuration.md)
+          - [DataAbility Lifecycle](application-models/dataability-lifecycle.md)
+          - [Creating a DataAbility](application-models/create-dataability.md)
+          - [Starting a DataAbility](application-models/start-dataability.md)
+          - [Accessing a DataAbility](application-models/access-dataability.md)
+          - [DataAbility Permission Control](application-models/dataability-permission-control.md)
+        - [Widget Development](application-models/widget-development-fa.md)
+        - [Context](application-models/application-context-fa.md)
+        - [Want](application-models/want-fa.md)
+      - IPC
+        - [Process Model](application-models/process-model-fa.md)
+        - [Common Events](application-models/common-event-fa.md)
+        - [Background Services](application-models/rpc.md)
+      - Inter-Thread Communication
+        - [Thread Model](application-models/thread-model-fa.md)
+        - [Inter-Thread Communication](application-models/itc-fa-overview.md)
+      - [Mission Management](application-models/mission-management-fa.md)
+    - Development of Component Interaction Between the FA Model and Stage Model
+      - [Component Interaction Between the FA Model and Stage Model](application-models/fa-stage-interaction-overview.md)
+      - [Starting a UIAbility from the FA Model](application-models/start-uiability-from-fa.md)
+      - [Connecting to a ServiceExtensionAbility from the FA Model](application-models/bind-serviceextensionability-from-fa.md)
+      - [Accessing a DataShareExtensionAbility from the FA Model](application-models/access-datashareextensionability-from-fa.md)
+      - [Starting a PageAbility from the Stage Model](application-models/start-pageability-from-stage.md)
+      - [Connecting to a ServiceAbility from the Stage Model](application-models/bind-serviceability-from-stage.md)
+    - Switching from the FA Model to the Stage Model
+      - [Model Switching Overview](application-models/model-switch-overview.md)
+      - Configuration File Switching
+        - [Differences in Configuration Files](application-models/configuration-file-diff.md)
+        - [Switching of app and deviceConfig](application-models/app-deviceconfig-switch.md)
+        - [Switching of module](application-models/module-switch.md)
+      - Component Switching
+        - [PageAbility Switching](application-models/pageability-switch.md)
+        - [ServiceAbility Switching](application-models/serviceability-switch.md)
+        - [DataAbility Switching](application-models/dataability-switch.md)
+      - [Widget Switching](application-models/widget-switch.md)
+      - API Switching
+        - [API Switching Overview](application-models/api-switch-overview.md)
+        - [Context Switching](application-models/context-switch.md)
+        - [featureAbility Switching](application-models/featureability-switch.md)
+        - [particleAbility Switching](application-models/particleability-switch.md)
+        - [LifecycleForm Switching](application-models/lifecycleform-switch.md)
+        - [LifecycleApp Switching](application-models/lifecycleapp-switch.md)
+        - [LifecycleService Switching](application-models/lifecycleservice-switch.md)
+        - [LifecycleData Switching](application-models/lifecycledata-switch.md)
+        - [DataAbilityHelper Switching](application-models/dataabilityhelper-switch.md)
+        - [mediaLibrary Switching](application-models/medialibrary-switch.md)
+        - [request Switching](application-models/request-switch.md)
+        - [resourceManager Switching](application-models/resourcemanager-switch.md)
+        - [window Switching](application-models/window-switch.md)
+        - [Storage Switching](application-models/storage-switch.md)
   - UI Development
     - [ArkUI Overview](ui/arkui-overview.md)
     - ArkTS-based Declarative Development Paradigm
@@ -192,6 +324,7 @@
     - hapsigner
       - [hapsigner Overview](security/hapsigntool-overview.md)
       - [hapsigner Guide](security/hapsigntool-guidelines.md)
+      - [HarmonyAppProvision Configuration File](security/app-provision-structure.md)
   - Connectivity
     - Network Management
       - [Network Management Overview](connectivity/net-mgmt-overview.md)
@@ -228,7 +361,8 @@
       - [Media Asset Management](file-management/medialibrary-resource-guidelines.md)
       - [File Path Management](file-management/medialibrary-filepath-guidelines.md)
       - [Album Management](file-management/medialibrary-album-guidelines.md)
-
+    - File Access Framework
+      - [File Access Framework Overview](file-management/file-access-framework-overview.md)
   - Task Management
     - Background Task Management
       - [Background Task Management Overview](task-management/background-task-overview.md)
@@ -236,6 +370,9 @@
       - [Continuous Task Development](task-management/continuous-task-dev-guide.md)
       - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)
       - [Efficiency Resource Request Development](task-management/efficiency-resources-apply-dev-guide.md)
+    - Agent-Powered Reminder
+      - [Agent-Powered Reminder Overview](task-management/reminder-agent-overview.md)
+      - [Agent-Powered Reminder Development](task-management/reminder-agent-development.md)
   - Device
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
@@ -250,9 +387,9 @@
     - Vibrator
       - [Vibrator Overview](device/vibrator-overview.md)
       - [Vibrator Development](device/vibrator-guidelines.md)
-    - Update Service
-      - [Sample Server Overview](device/sample-server-overview.md)
-      - [Sample Server Development](device/sample-server-guidelines.md)
+    - Multimodal Input
+      - [Input Device Development](device/inputdevice-guidelines.md)
+      - [Mouse Pointer Development](device/pointerstyle-guidelines.md)
     - Update Service
       - [Sample Server Overview](device/sample-server-overview.md)
       - [Sample Server Development](device/sample-server-guidelines.md)
@@ -265,10 +402,15 @@
     - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
     - Error Management
       - [Development of Error Manager](dfx/errormanager-guidelines.md)
+      - [Development of Application Recovery](dfx/apprecovery-guidelines.md)
   - Internationalization
     - [Internationalization Overview](internationalization/international-overview.md)
     - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
     - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
+  - Application Test
+    - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
+    - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
+    - [wukong User Guide](application-test/wukong-guidelines.md)
   - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
@@ -276,13 +418,23 @@
     - [Raw File Development](napi/rawfile-guidelines.md)
     - [Native Window Development](napi/native-window-guidelines.md)
     - [Using MindSpore Lite for Model Inference](napi/mindspore-lite-guidelines.md)
+    - [Connecting the Neural Network Runtime to an AI Inference Framework](napi/neural-network-runtime-guidelines.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  - Debugging Tools
+    - [Ability Assistant](tools/aa-tool.md)
+    - [Bundle Manager](tools/bm-tool.md)
+    - Packing and Unpacking Tools
+      - [Packing Tools](tools/packing-tool.md)
+      - [Unpacking Tools](tools/unpacking-tool.md)
+    - [Common Event Manager](tools/anm-tool.md)
+    - [Advanced Notification Manager](tools/cem-tool.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
-  - [SysCap List](reference/syscap-list.md)
+  - [SystemCapability](reference/syscap.md)
+  - [SystemCapability List](reference/syscap-list.md)
   - Component Reference (ArkTS-based Declarative Development Paradigm)
     - [Component Overview](reference/arkui-ts/ts-components-summary.md)
     - Universal Component Information
@@ -386,7 +538,6 @@
       - [Counter](reference/arkui-ts/ts-container-counter.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [FlowItem](reference/arkui-ts/ts-container-flowitem.md)
-      - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
       - [GridCol](reference/arkui-ts/ts-container-gridcol.md)
       - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
@@ -549,6 +700,7 @@
       - [Style Inheritance](reference/arkui-js/js-components-custom-style.md)
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
+    - [Dynamic Component Creation](reference/arkui-js/js-components-create-elements.md)
     - [Data Type Attributes](reference/arkui-js/js-appendix-types.md)
   - JS Service Widget UI Components
     - JS Service Widget UI Framework
@@ -611,7 +763,7 @@
         - [@ohos.application.AbilityLifecycleCallback](reference/apis/js-apis-application-abilityLifecycleCallback.md)
         - [@ohos.application.AbilityStage](reference/apis/js-apis-application-abilityStage.md)
         - [@ohos.application.context](reference/apis/js-apis-application-context.md)
-        - [@ohos.application.DataShareExtensionAbility](reference/apis/js-apis-application-DataShareExtensionAbility.md)
+        - [@ohos.application.DataShareExtensionAbility](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.EnvironmentCallback](reference/apis/js-apis-application-environmentCallback.md)
         - [@ohos.application.ExtensionAbility](reference/apis/js-apis-application-extensionAbility.md)
         - [@ohos.application.FormExtension](reference/apis/js-apis-application-formExtension.md)
@@ -713,10 +865,12 @@
           - [continuationExtraParams](reference/apis/js-apis-continuation-continuationExtraParams.md)
           - [continuationResult](reference/apis/js-apis-continuation-continuationResult.md)
     - Common Event and Notification
-      - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
+      - [@ohos.commonEventManager](reference/apis/js-apis-commonEventManager.md)
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
+      - [@ohos.notificationManager (Recommended)](reference/apis/js-apis-notificationManager.md)
+      - [@ohos.notificationSubscribe (Recommended)](reference/apis/js-apis-notificationSubscribe.md)
+      - [@ohos.commonEvent (To Be Deprecated Soon)](reference/apis/js-apis-commonEvent.md)
       - [@ohos.notification](reference/apis/js-apis-notification.md)
-      - [@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)
       - application
         - [EventHub](reference/apis/js-apis-inner-application-eventHub.md)
     - Bundle Management
@@ -745,6 +899,8 @@
         - [shortcutInfo](reference/apis/js-apis-bundleManager-shortcutInfo.md)
     - UI Page
       - [@ohos.animator](reference/apis/js-apis-animator.md)
+      - [@ohos.curves](reference/apis/js-apis-curve.md)
+      - [@ohos.matrix4](reference/apis/js-apis-matrix4.md)
       - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
       - [@ohos.promptAction](reference/apis/js-apis-promptAction.md)
       - [@ohos.router](reference/apis/js-apis-router.md)
@@ -794,7 +950,7 @@
       - [@ohos.data.distributedKVStore](reference/apis/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
-      - [@ohos.data.ValuesBucket](reference/apis/js-apis-data-ValuesBucket.md)
+      - [@ohos.data.ValuesBucket](reference/apis/js-apis-data-valuesBucket.md)
       - data/rdb
       - [resultSet](reference/apis/js-apis-data-resultset.md)
     - File Management
@@ -802,7 +958,7 @@
       - [@ohos.data.fileAccess](reference/apis/js-apis-fileAccess.md)
       - [@ohos.fileExtensionInfo](reference/apis/js-apis-fileExtensionInfo.md)
       - [@ohos.fileio](reference/apis/js-apis-fileio.md)
-      - [@ohos.filemanagement.userfile_manager](reference/apis/js-apis-userfilemanager.md)
+      - [@ohos.filemanagement.userFileManager](reference/apis/js-apis-userFileManager.md)
       - [@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)
       - [@ohos.securityLabel](reference/apis/js-apis-securityLabel.md)
       - [@ohos.statfs](reference/apis/js-apis-statfs.md)
@@ -831,13 +987,19 @@
       - [@ohos.nfc.controller](reference/apis/js-apis-nfcController.md)
       - [@ohos.nfc.tag](reference/apis/js-apis-nfcTag.md)
       - [@ohos.rpc](reference/apis/js-apis-rpc.md)
-      - [@ohos.wifi](reference/apis/js-apis-wifi.md)
-      - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
+      - [@ohos.wifiManager (Recommended)](reference/apis/js-apis-wifiManager.md)
+      - [@ohos.wifiManagerExt (Recommended)](reference/apis/js-apis-wifiManagerExt.md)
+      - [@ohos.wifi (To Be Deprecated Soon)](reference/apis/js-apis-wifi.md)
+      - [@ohos.wifiext (To Be Deprecated Soon)](reference/apis/js-apis-wifiext.md)
+      - tag
       - [nfctech](reference/apis/js-apis-nfctech.md)
       - [tagSession](reference/apis/js-apis-tagSession.md)
     - Basic Features
       - [@ohos.accessibility](reference/apis/js-apis-accessibility.md)
       - [@ohos.accessibility.config](reference/apis/js-apis-accessibility-config.md)
+      - [@ohos.accessibility.GesturePath](reference/apis/js-apis-accessibility-GesturePath.md)
+      - [@ohos.accessibility.GesturePoint](reference/apis/js-apis-accessibility-GesturePoint.md)
+      - [@ohos.application.AccessibilityExtensionAbility](reference/apis/js-apis-application-accessibilityExtensionAbility.md)
       - [@ohos.faultLogger](reference/apis/js-apis-faultLogger.md)
       - [@ohos.hichecker](reference/apis/js-apis-hichecker.md)
       - [@ohos.hidebug](reference/apis/js-apis-hidebug.md)
@@ -859,12 +1021,15 @@
       - [@ohos.web.webview](reference/apis/js-apis-webview.md)
       - [console](reference/apis/js-apis-logs.md)
       - [Timer](reference/apis/js-apis-timer.md)
+      - application
+        - [AccessibilityExtensionContext](reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)
     - Device Management
       - [@ohos.batteryInfo](reference/apis/js-apis-battery-info.md)
+      - [@ohos.batteryStatistics](reference/apis/js-apis-batteryStatistics.md)
       - [@ohos.brightness](reference/apis/js-apis-brightness.md)
       - [@ohos.deviceInfo](reference/apis/js-apis-device-info.md)
       - [@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)
-      - [@ohos.geolocation](reference/apis/js-apis-geolocation.md)
+      - [@ohos.geoLocationManager](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.inputConsumer](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice](reference/apis/js-apis-inputdevice.md)
       - [@ohos.multimodalInput.inputDeviceCooperate](reference/apis/js-apis-cooperate.md)
@@ -890,10 +1055,12 @@
       - [@ohos.account.appAccount](reference/apis/js-apis-appAccount.md)
       - [@ohos.account.distributedAccount](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount](reference/apis/js-apis-osAccount.md)
-
     - Custom Management
       - [@ohos.configPolicy](reference/apis/js-apis-configPolicy.md)
-      - [@ohos.EnterpriseAdminExtensionAbility](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterprise.deviceInfo](reference/apis/js-apis-enterprise-deviceInfo.md)
+      - [@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterprise.adminManager](reference/apis/js-apis-enterprise-adminManager.md)
+      - [@ohos.enterprise.dateTimeManager](reference/apis/js-apis-enterprise-dateTimeManager.md)
     - Language Base Class Library
       - [@ohos.buffer](reference/apis/js-apis-buffer.md)
       - [@ohos.convertxml](reference/apis/js-apis-convertxml.md)
@@ -970,13 +1137,19 @@
         - [remoteAbilityInfo](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
         - [shortcutInfo](reference/apis/js-apis-bundle-ShortcutInfo.md)
   - Error Codes
+    - [Universal Error Codes](reference/errorcodes/errorcode-universal.md)
     - Ability Framework
       - [Ability Error Codes](reference/errorcodes/errorcode-ability.md)
       - [Distributed Scheduler Error Codes](reference/errorcodes/errorcode-DistributedSchedule.md)
+      - [Form Error Codes](reference/errorcodes/errorcode-form.md)
     - Bundle Management
       - [Bundle Error Codes](reference/errorcodes/errorcode-bundle.md)
       - [zlib Error Codes](reference/errorcodes/errorcode-zlib.md)
+    - Common Events and Notification
+      - [Event Error Codes](reference/errorcodes/errorcode-CommonEventService.md)
+      - [DistributedNotificationService Error Codes](reference/errorcodes/errorcode-DistributedNotificationService.md)
     - UI Page
+      - [Animator Error Codes](reference/errorcodes/errorcode-animator.md)
       - [promptAction Error Codes](reference/errorcodes/errorcode-promptAction.md)
       - [Router Error Codes](reference/errorcodes/errorcode-router.md)
     - Graphics
@@ -1000,30 +1173,46 @@
       - [HUKS Error Codes](reference/errorcodes/errorcode-huks.md)
     - Data Management
       - [RDB Error Codes](reference/errorcodes/errorcode-data-rdb.md)
+      - [Distributed KV Store Error Codes](reference/errorcodes/errorcode-distributedKVStore.md)
       - [Preferences Error Codes](reference/errorcodes/errorcode-preferences.md)
+    - File Management
+      - [File Management Error Codes](reference/errorcodes/errorcode-filemanagement.md)
     - Network Management
       - [Upload and Download Error Codes](reference/errorcodes/errorcode-request.md)
+    - Connectivity
+      - [NFC Error Codes](reference/errorcodes/errorcode-nfc.md)
+      - [RPC Error Codes](reference/errorcodes/errorcode-rpc.md)
     - Basic Features
+      - [Accessibility Error Codes](reference/errorcodes/errorcode-accessibility.md)
       - [FaultLogger Error Codes](reference/errorcodes/errorcode-faultlogger.md)
       - [Application Event Logging Error Codes](reference/errorcodes/errorcode-hiappevent.md)
       - [HiSysEvent Error Codes](reference/errorcodes/errorcode-hisysevent.md)
       - [HiDebug Error Codes](reference/errorcodes/errorcode-hiviewdfx-hidebug.md)
       - [Input Method Framework Error Codes](reference/errorcodes/errorcode-inputmethod-framework.md)
       - [Pasteboard Error Codes](reference/errorcodes/errorcode-pasteboard.md)
+      - [Screen Lock Management Error Codes](reference/errorcodes/errorcode-screenlock.md)
       - [Webview Error Codes](reference/errorcodes/errorcode-webview.md)
     - Account Management
       - [Account Error Codes](reference/errorcodes/errorcode-account.md)
       - [App Account Error Codes](reference/errorcodes/errorcode-app-account.md)
     - Device Management
+      - [Power Consumption Statistics Error Codes](reference/errorcodes/errorcode-batteryStatistics.md)
+      - [Brightness Error Codes](reference/errorcodes/errorcode-brightness.md)
+      - [Power Manager Error Codes](reference/errorcodes/errorcode-power.md)
+      - [Running Lock Error Codes](reference/errorcodes/errorcode-runninglock.md)
+      - [Thermal Manager Error Codes](reference/errorcodes/errorcode-thermal.md)
       - [Device Management Error Codes](reference/errorcodes/errorcode-device-manager.md)
+      - [Location Subsystem Error Codes](reference/errorcodes/errorcode-geoLocationManager.md)
       - [Screen Hopping Error Codes](reference/errorcodes/errorcode-multimodalinput.md)
       - [Sensor Error Codes](reference/errorcodes/errorcode-sensor.md)
       - [Vibrator Error Codes](reference/errorcodes/errorcode-vibrator.md)
       - [System Parameter Error Codes](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB Error Codes](reference/errorcodes/errorcode-usb.md)
-    - Language Base Class Library 
-      - [Buffer Error Codes](reference/errorcodes/errorcode-buffer.md)
-      - [containers Error Codes](reference/errorcodes/errorcode-containers.md)
+      - [Update Error Codes](reference/errorcodes/errorcode-update.md)
+    - Customization Management
+      - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
+    - Test
+      - [UiTest Error Codes](reference/errorcodes/errorcode-uitest.md)
   - Native APIs
     - Standard Libraries Supported by Native APIs
       - [Node_API](reference/native-lib/third_party_napi/napi.md)
@@ -1035,17 +1224,21 @@
         - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
 - FAQs
   - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)
+  - [Programming Languages](faqs/faqs-language.md)
   - [Ability Framework Development](faqs/faqs-ability.md)
   - [Bundle Management Development](faqs/faqs-bundle.md)
   - [ArkUI (ArkTS) Development](faqs/faqs-ui-ets.md)
-
+  - [ArkUI Web Component (ArkTS) Development](faqs/faqs-web-arkts.md)
   - [ArkUI (JavaScript) Development](faqs/faqs-ui-js.md)
+  - [Common Event and Notification Development](faqs/faqs-event-notification.md)
   - [Graphics and Image Development](faqs/faqs-graphics.md)
   - [File Management Development](faqs/faqs-file-management.md)
   - [Media Development](faqs/faqs-media.md)
   - [Network and Connection Development](faqs/faqs-connectivity.md)
   - [Device Management Development](faqs/faqs-data-management.md)
   - [Device Management Development](faqs/faqs-device-management.md)
+  - [DFX Development](faqs/faqs-dfx.md)
+  - [Intl Development](faqs/faqs-international.md)
   - [Native API Usage](faqs/faqs-native.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-party-library.md)
   - [IDE Usage](faqs/faqs-ide.md)

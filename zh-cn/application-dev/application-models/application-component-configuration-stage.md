@@ -15,11 +15,11 @@
   
 - **应用图标和标签配置**
 
-  应用图标需要在工程的AppScope目录下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置icon标签。应用图标需配置为图片的资源索引，配置完成后，该图片即为应用的图标。应用图标通常用于显示在应用列表中，例如设置中的应用列表。
+  Stage模型的应用需要配置应用图标和应用标签。应用图标和标签是在设置应用中使用，例如设置应用中的应用列表，会显示出对应的图标和标签。
+
+  应用图标需要在工程的AppScope目录下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置icon标签。应用图标需配置为图片的资源索引，配置完成后，该图片即为应用的图标。
 
   应用标签需要在工程的AppScope模块下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置label标签。标识应用对用户显示的名称，需要配置为字符串资源的索引。
-
-  Stage模型的应用支持单独配置应用图标和标签，在[app.json5配置文件](../quick-start/app-configuration-file.md)中配置。应用图标和标签是在设置应用中使用，例如设置应用中的应用列表，会显示出对应的图标和标签。在app字段下面分别有icon和label字段，根据对应的规则进行配置。
 
   ```json
     {
@@ -33,7 +33,11 @@
 
 - **入口图标和标签配置**
   
-    入口图标和标签需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面分别有icon和label标签。例如希望在桌面上显示该UIAbility的图标和标签，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个图标和标签，分别对应各自的UIAbility。
+    Stage模型支持对组件配置入口图标和入口标签。入口图标和入口标签会显示在桌面上。
+
+    入口图标需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面有icon标签。例如希望在桌面上显示该UIAbility的图标，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个图标，分别对应各自的UIAbility。
+
+    入口标签需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面有label标签。例如希望在桌面上显示该UIAbility的图标，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个标签，分别对应各自的UIAbility。
   
   ```json
   {

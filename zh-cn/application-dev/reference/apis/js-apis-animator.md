@@ -40,10 +40,10 @@ create(options: AnimatorOptions): AnimatorResult
     easing: 'friction',
     delay: 0,
     fill: 'forwards',
-    direction: "normal",
+    direction: 'normal',
     iterations: 3,
     begin: 200.0,
-    end: 400.0,
+    end: 400.0
   };
   animator.create(options);
   ```
@@ -72,7 +72,7 @@ reset(options: AnimatorOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | If no page is found for pageId or fail to get object property list. |
+| 100001    | if no page is found for pageId or fail to get object property list. |
 
 
 **示例：**
@@ -83,10 +83,10 @@ let options = {
   easing: 'friction',
   delay: 0,
   fill: 'forwards',
-  direction: "normal",
+  direction: 'normal',
   iterations: 3,
   begin: 200.0,
-  end: 400.0,
+  end: 400.0
 };
 try {
   animator.reset(options);
@@ -283,7 +283,7 @@ export default {
       easing: 'friction',
       delay: 0,
       fill: 'forwards',
-      direction: "normal",
+      direction: 'normal',
       iterations: 2,
       begin: 200.0,
       end: 400.0
@@ -516,7 +516,7 @@ let options = {
   easing: 'friction',
   delay: 0,
   fill: 'forwards',
-  direction: "normal",
+  direction: 'normal',
   iterations: 3,
   begin: 200.0,
   end: 400.0,

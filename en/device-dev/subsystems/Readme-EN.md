@@ -8,6 +8,7 @@
       - [Building a Product](subsys-build-product.md)
       - [Building a Subsystem](subsys-build-subsystem.md)
       - [Building a Component](subsys-build-component.md)
+      - [Component Building Specifications](subsys-build-component-building-rules.md)
       - [Building a Module](subsys-build-module.md)
       - [Building a Chipset Solution](subsys-build-chip_solution.md)
       - [Configuring Features](subsys-build-feature.md)
@@ -18,6 +19,7 @@
       - [Viewing Ninja Build Information](subsys-build-reference.md)
       - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
       - [FAQs](subsys-build-FAQ.md)
+- [ArkCompiler Development](subsys-arkcompiler-guide.md)
 - [Distributed Remote Startup](subsys-remote-start.md)
 - Graphics
   - [Graphics Overview](subsys-graphics-overview.md)
@@ -35,10 +37,7 @@
     - [Audio/Video Overview](subsys-multimedia-video-overview.md)
     - [Audio/Video Playback Development](subsys-multimedia-video-play-guide.md)
     - [Audio/Video Recording Development](subsys-multimedia-video-record-guide.md)
-- Utils
-  - [Utils Overview](subsys-utils-overview.md)
-  - [Utils Development](subsys-utils-guide.md)
-  - [Utils FAQ](subsys-utils-faqs.md)
+- [Utils Development](subsys-utils-guide.md)
 - [AI Framework Development](subsys-ai-aiframework-devguide.md)
 - Data Management
   - RDB

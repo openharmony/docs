@@ -42,9 +42,9 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 2. 开发者在定义Service的目录下创建TS文件，自定义类继承ServiceExtensionAbility，重写基类回调函数，接口生成的默认相对路径：entry\src\main\ets\ServiceExtAbility\ServiceExtAbility.ts，示例如下：
 
     ```js
-    import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
-    import rpc from '@ohos.rpc'
-
+    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+    import rpc from '@ohos.rpc';
+    
     class StubTest extends rpc.RemoteObject {
         constructor(des) {
             super(des);
@@ -52,7 +52,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         onRemoteRequest(code, data, reply, option) {
         }
     }
-
+    
     class ServiceExtAbility extends ServiceExtensionAbility {
         onCreate(want) {
             console.log('onCreate, want:' + want.abilityName);
@@ -75,4 +75,6 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 ## 相关实例
 
 针对ServiceExtensionAbility开发，有以下相关实例可供参考：
+
+- [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityConnectServiceExtension)
 - [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceExtAbility)

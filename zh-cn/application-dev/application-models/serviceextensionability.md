@@ -65,7 +65,7 @@
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为serviceextability。
 
-2. 在serviceextability目录，右键选择“New &gt; ts File”，新建一个TS文件并命名为ServiceExtAbility.ts。
+2. 在serviceextability目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ServiceExtAbility.ts。
 
 3. 打开ServiceExtAbility.ts文件，导入[RPC通信模块](../reference/apis/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收客户端传递过来的消息，并将处理的结果返回给客户端。REQUEST_VALUE用于校验客户端发送的服务请求码。
    
@@ -287,4 +287,5 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
 针对ServiceExtensionAbility开发，有以下相关示例可供参考：
 
-[ServiceExtAbility：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceExtAbility)
+- [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityConnectServiceExtension)
+- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceExtAbility)

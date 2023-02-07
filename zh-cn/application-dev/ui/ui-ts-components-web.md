@@ -4,14 +4,16 @@ Web是提供网页显示能力的组件，具体用法请参考 [Web API](../ref
 
 ## 创建组件
 
-在main/ets/MainAbility/pages目录下的ets文件中创建一个Web组件。在web组件中通过src指定引用的网页路径，controller为组件的控制器，通过controller绑定Web组件，用于调用Web组件的方法。
+在main/ets/entryability/pages目录下的ets文件中创建一个Web组件。在web组件中通过src指定引用的网页路径，controller为组件的控制器，通过controller绑定Web组件，用于调用Web组件的方法。
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'https://www.example.com', controller: this.controller })
@@ -26,11 +28,13 @@ Web组件的使用需要添加丰富的页面样式和功能属性。设置heigh
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -54,13 +58,15 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -93,14 +99,17 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
+  @State webResult: string = ''
   fileAccess: boolean = true;
   // 定义Web组件的控制器controller
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -124,8 +133,23 @@ struct WebComponent {
         })
         .onPageEnd(e => {
           // test()在index.html中定义
-          this.controller.runJavaScript({ script: 'test()' });
-          console.info('url: ', e.url);
+          try {
+            this.controller.runJavaScript(
+              'test()',
+              (error, result) => {
+                if (error) {
+                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  return;
+                }
+                if (result) {
+                  this.webResult = result
+                  console.info(`The test() return value is: ${result}`)
+                }
+              });
+            console.info('url: ', e.url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
         })
       Text('End')
         .fontSize(20)
@@ -160,10 +184,12 @@ struct WebComponent {
 1、首先设置Web组件属性webDebuggingAccess为true。
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -189,20 +215,30 @@ struct WebComponent {
 
   ```ts
   // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Row() {
         Button('onActive').onClick(() => {
           console.info("Web Component onActive");
-          this.controller.onActive();
+          try {
+            this.controller.onActive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
         Button('onInactive').onClick(() => {
           console.info("Web Component onInactive");
-          this.controller.onInactive();
+          try {
+            this.controller.onInactive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
       }
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -231,3 +267,7 @@ struct WebComponent {
 针对Web开发，有以下相关实例可供参考：
 
 - [`Web`：Web（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Web)
+
+- [Web组件的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebCookie)
+
+- [Web组件抽奖案例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)

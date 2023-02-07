@@ -4,18 +4,20 @@
 虽然不同应用的页面千变万化，但对其进行拆分和分析，页面中的很多布局场景是相似的。本小节将介绍如何借助自适应布局、响应式布局以及常见的容器类组件，实现应用中的典型布局场景。
 
 
-  | 布局场景 | 实现方案 | 
+| 布局场景 | 实现方案 |
 | -------- | -------- |
-| [页签栏](#页签栏) | Tab组件&nbsp;+&nbsp;响应式布局 | 
-| [运营横幅（Banner）](#运营横幅banner) | Swiper组件&nbsp;+&nbsp;响应式布局 | 
-| [网格](#网格) | Grid组件&nbsp;/&nbsp;List组件&nbsp;+&nbsp;响应式布局 | 
-| [侧边栏](#侧边栏) | SiderBar组件&nbsp;+&nbsp;响应式布局 | 
-| [大图浏览](#大图浏览) | Image组件 | 
-| [操作入口](#操作入口) | Scroll组件+Row组件横向均分 | 
-| [顶部](#顶部) | 栅格组件 | 
-| [缩进布局](#缩进布局) | 栅格组件 | 
-| [挪移布局](#挪移布局) | 栅格组件 | 
-| [重复布局](#重复布局) | 栅格组件 | 
+| [页签栏](#页签栏) | Tab组件&nbsp;+&nbsp;响应式布局 |
+| [运营横幅（Banner）](#运营横幅banner) | Swiper组件&nbsp;+&nbsp;响应式布局 |
+| [网格](#网格) | Grid组件&nbsp;/&nbsp;List组件&nbsp;+&nbsp;响应式布局 |
+| [侧边栏](#侧边栏) | SiderBar组件&nbsp;+&nbsp;响应式布局 |
+| [单/双栏](#单/双栏) | Navigation组件&nbsp;+&nbsp;响应式布局 |
+| [自定义弹窗](#自定义弹窗) | CustomDialogController组件&nbsp;+&nbsp;响应式布局 |
+| [大图浏览](#大图浏览) | Image组件 |
+| [操作入口](#操作入口) | Scroll组件+Row组件横向均分 |
+| [顶部](#顶部) | 栅格组件 |
+| [缩进布局](#缩进布局) | 栅格组件 |
+| [挪移布局](#挪移布局) | 栅格组件 |
+| [重复布局](#重复布局) | 栅格组件 |
 
 
 > **说明：**
@@ -417,6 +419,239 @@ struct SideBarSample {
   }
 }
 ```
+
+## 单/双栏
+
+**布局效果**
+
+| sm                                                           | md                                               | lg                                               |
+| ------------------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| 单栏显示，在首页中点击选项可以显示详情。<br>点击详情上方的返回键图标或使用系统返回键可以返回到主页。 | 双栏显示，点击左侧不同的选项可以刷新右侧的显示。 | 双栏显示，点击左侧不同的选项可以刷新右侧的显示。 |
+| ![](figures/navigation_sm.png)                               | ![](figures/navigation_md.png)                   | ![](figures/navigation_lg.png)                   |
+
+**实现方案**
+
+单/双栏场景可以使用[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，Navigation组件可以根据窗口宽度自动切换单/双栏显示，减少开发工作量。
+
+**参考代码**
+
+```
+@Component
+struct Details {
+  private imageSrc: Resource
+  build() {
+    Column() {
+      Image(this.imageSrc)
+        .objectFit(ImageFit.Contain)
+        .height(300)
+        .width(300)
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Item {
+  private imageSrc: Resource
+  private label: string
+
+  build() {
+    NavRouter() {
+      Text(this.label)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+        .borderRadius(5)
+        .backgroundColor('#FFFFFF')
+        .textAlign(TextAlign.Center)
+        .width(180)
+        .height(36)
+      NavDestination() {
+        Details({imageSrc: this.imageSrc})
+      }.title(this.label)
+    }
+  }
+}
+
+@Entry
+@Component
+struct NavigationSample {
+  build() {
+    Navigation() {
+      Column({space: 30}) {
+        Item({label: 'moon', imageSrc: $r('app.media.my_image_moon')})
+        Item({label: 'sun', imageSrc: $r('app.media.my_image')})
+      }
+      .justifyContent(FlexAlign.Center)
+      .height('100%')
+      .width('100%')
+    }
+    .mode(NavigationMode.Auto)
+    .backgroundColor('#F1F3F5')
+    .height('100%')
+    .width('100%')
+    .navBarWidth('40%')
+    .hideToolBar(true)
+    .title('Sample')
+  }
+}
+```
+
+
+
+## 自定义弹窗
+
+**布局效果**
+
+| sm                                           | md                                      | lg                                      |
+| -------------------------------------------- | --------------------------------------- | --------------------------------------- |
+| 弹窗居中显示，<br>与窗口左右两侧各间距24vp。 | 弹窗居中显示，其宽度约为窗口宽度的1/2。 | 弹窗居中显示，其宽度约为窗口宽度的1/3。 |
+| ![](figures/custom_dialog_sm.png)            | ![](figures/custom_dialog_md.png)       | ![](figures/custom_dialog_lg.png)       |
+
+**实现方案**
+
+自定义弹窗通常通过[CustomDialogController](../../reference/arkui-ts/ts-methods-custom-dialog-box.md)实现，有两种方式实现本场景的目标效果：
+
+* 通过gridCount属性配置自定义弹窗的宽度。
+
+  系统默认对不同断点下的窗口进行了栅格化：sm断点下为4栅格，md断点下为8栅格，lg断点下为12栅格。通过gridCount属性可以配置弹窗占据栅格中的多少列，将该值配置为4即可实现目标效果。
+
+* 将customStyle设置为true，即弹窗的样式完全由开发者自定义。
+
+  开发者自定义弹窗样式时，开发者可以根据需要配置弹窗的宽高和背景色（非弹窗区域保持默认的半透明色）。自定义弹窗样式配合[栅格组件](../../reference/arkui-ts/ts-container-gridrow.md)同样可以实现目标效果。
+
+**参考代码**
+
+```
+@Entry
+@Component
+struct CustomDialogSample {
+  // 通过gridCount配置弹窗的宽度
+  dialogControllerA: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogA ({
+      cancel: this.onCancel,
+      confirm: this.onConfirm
+    }),
+    cancel: this.onCancel,
+    autoCancel: true,
+    gridCount: 4,
+    customStyle: false
+  })
+  // 自定义弹窗样式
+  dialogControllerB: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogB ({
+      cancel: this.onCancel,
+      confirm: this.onConfirm
+    }),
+    cancel: this.onCancel,
+    autoCancel: true,
+    customStyle: true
+  })
+
+  onCancel() {
+    console.info('callback when dialog is canceled')
+  }
+
+  onConfirm() {
+    console.info('callback when dialog is confirmed')
+  }
+
+  build() {
+    Column() {
+      Button('CustomDialogA').margin(12)
+        .onClick(() => {
+          this.dialogControllerA.open()
+        })
+      Button('CustomDialogB').margin(12)
+        .onClick(() => {
+          this.dialogControllerB.open()
+        })
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+  }
+}
+
+@CustomDialog
+struct CustomDialogA {
+  controller: CustomDialogController
+  cancel: () => void
+  confirm: () => void
+
+  build() {
+    Column() {
+      Text('是否删除此联系人?')
+        .fontSize(16)
+        .fontColor('#E6000000')
+        .margin({bottom: 8, top: 24, left: 24, right: 24})
+      Row() {
+        Text('取消')
+          .fontColor('#007DFF')
+          .fontSize(16)
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
+          .onClick(()=>{
+            this.controller.close()
+            this.cancel()
+          })
+        Line().width(1).height(24).backgroundColor('#33000000').margin({left: 4, right: 4})
+        Text('删除')
+          .fontColor('#FA2A2D')
+          .fontSize(16)
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
+          .onClick(()=>{
+            this.controller.close()
+            this.confirm()
+          })
+      }.height(40)
+      .margin({left: 24, right: 24, bottom: 16})
+    }.borderRadius(24)
+  }
+}
+
+@CustomDialog
+struct CustomDialogB {
+  controller: CustomDialogController
+  cancel: () => void
+  confirm: () => void
+
+  build() {
+    GridRow({columns: {sm: 4, md: 8, lg: 12}}) {
+      GridCol({span: 4, offset: {sm: 0, md: 2, lg: 4}}) {
+        Column() {
+          Text('是否删除此联系人?')
+            .fontSize(16)
+            .fontColor('#E6000000')
+            .margin({bottom: 8, top: 24, left: 24, right: 24})
+          Row() {
+            Text('取消')
+              .fontColor('#007DFF')
+              .fontSize(16)
+              .layoutWeight(1)
+              .textAlign(TextAlign.Center)
+              .onClick(()=>{
+                this.controller.close()
+                this.cancel()
+              })
+            Line().width(1).height(24).backgroundColor('#33000000').margin({left: 4, right: 4})
+            Text('删除')
+              .fontColor('#FA2A2D')
+              .fontSize(16)
+              .layoutWeight(1)
+              .textAlign(TextAlign.Center)
+              .onClick(()=>{
+                this.controller.close()
+                this.confirm()
+              })
+          }.height(40)
+          .margin({left: 24, right: 24, bottom: 16})
+        }.borderRadius(24).backgroundColor('#FFFFFF')
+      }
+    }.margin({left: 24, right: 24})
+  }
+}
+```
+
 
 
 ## 大图浏览

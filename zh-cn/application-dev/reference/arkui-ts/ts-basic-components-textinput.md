@@ -31,16 +31,16 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称                       | 参数类型                                     | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| type                     | InputType                                | 设置输入框类型。<br/>默认值：InputType.Normal        |
+| type                     | [InputType](#inputtype枚举说明)     | 设置输入框类型。<br/>默认值：InputType.Normal        |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | 设置placeholder文本颜色。|
 | placeholderFont          | [Font](ts-types.md#font) | 设置placeholder文本样式。 |
-| enterKeyType             | EnterKeyType                             | 设置输入法回车键类型，目前OpenHarmony输入法仅支持默认类型显示。<br/>默认值：EnterKeyType.Done |
+| enterKeyType             | [EnterKeyType](#enterkeytype枚举说明) | 设置输入法回车键类型，目前OpenHarmony输入法仅支持默认类型显示。<br/>默认值：EnterKeyType.Done |
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。 |
 | showPasswordIcon<sup>9+</sup> | boolean | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
-| style<sup>9+</sup> | TextInputStyle | 设置输入框为默认风格或内联输入风格。<br/>默认值：TextInputStyle.Default |
+| style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) | 设置输入框为默认风格或内联输入风格。<br/>默认值：TextInputStyle.Default |
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置输入文本在输入框中的对齐方式。<br/>默认值：TextAlign.Start  |
 
 ## EnterKeyType枚举说明
@@ -74,12 +74,12 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。              |
-| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调，返回值为当前输入法回车键的类型。          |
-| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 输入状态变化时，触发该回调。从API 8开始，建议使用onEditChange。          |
-| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。isEditing为true表示正在输入。        |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。<br/>value：输入的文本内容。 |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调，返回值为当前输入法回车键的类型。<br/>enterKeyType：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。 |
+| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 输入状态变化时，触发该回调。从API 8开始，建议使用onEditChange。 |
+| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。isEditing为true表示正在输入。    |
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 |
 | onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。<br/>value：剪切的文本内容。 |
 | onPaste(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>value：粘贴的文本内容。 |
@@ -92,7 +92,7 @@ TextInput组件的控制器。
 ```
 controller: TextInputController = new TextInputController()
 ```
-### caretPosition
+### caretPosition<sup>8+</sup>
 
 caretPosition(value:&nbsp;number): void
 

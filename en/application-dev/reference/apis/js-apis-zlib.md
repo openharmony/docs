@@ -1,6 +1,6 @@
-# @ohos.zlib
+# @ohos.zlib (Zip)
 
-The **zlib** module provides APIs for file compression and decompression.
+The **Zip** module provides APIs for file compression and decompression.
 
 > **NOTE**
 >
@@ -25,7 +25,7 @@ Zips a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to zip. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the folder or file to zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model] (js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the zipped file. The file name extension is .zip.                 |
 | options | [Options](#options) | Yes  | Optional parameters for the zip operation.                                            |
 
@@ -39,6 +39,7 @@ Zips a file. This API uses a promise to return the result.
 
 ```typescript
 // Zip a file.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -59,6 +60,7 @@ zlib.zipFile(inFile, outFile, options).then((data) => {
 
 ```typescript
 // Zip a folder.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/xxx';
 let outFile = '/xxx/xxx.zip';
@@ -89,7 +91,7 @@ Unzips a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to unzip. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the file to unzip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model] (js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the unzipped file.                                        |
 | options | [Options](#options) | Yes  | Optional parameters for the unzip operation.                                            |
 
@@ -103,6 +105,7 @@ Unzips a file. This API uses a promise to return the result.
 
 ```typescript
 // Unzip a file.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
 import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
@@ -131,7 +134,7 @@ Compresses a file. This API uses an asynchronous callback to return the result.
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the folder or file to compress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile                  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model] (js-apis-application-context.md).|
 | outFile                 | string              | Yes  | Path of the compressed file.                                          |
 | options                 | [Options](#options) | Yes  | Compression parameters.                                              |
 | AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
@@ -141,14 +144,14 @@ Compresses a file. This API uses an asynchronous callback to return the result.
 For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
 | ID| Error Message                              |
 | -------- | --------------------------------------|
-| 900001   | The Input source file is invalid.      |
-| 900002   | The Input destination file is invalid. |
+| 900001   | The input source file is invalid.      |
+| 900002   | The input destination file is invalid. |
 
 **Example**
 
 ```typescript
 // Compress a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -179,7 +182,7 @@ Compresses a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to compress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model] (js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the compressed file.                                          |
 | options | [Options](#options) | Yes  | Compression parameters.                                              |
 
@@ -189,12 +192,12 @@ For details about the error codes, see [zlib Error Codes](../errorcodes/errorcod
 
 | ID| Error Message                              |
 | -------- | ------------------------------------- |
-| 900001   | The Input source file is invalid.      |
-| 900002   | The Input destination file is invalid. |
+| 900001   | The input source file is invalid.      |
+| 900002   | The input destination file is invalid. |
 
 ```typescript
 // Compress a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
 import zlib from '@ohos.zlib';
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -229,7 +232,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile                  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model] (js-apis-application-context.md).|
 | outFile                 | string              | Yes  | Path of the decompressed file.                                      |
 | options                 | [Options](#options) | Yes  | Decompression parameters.                                              |
 | AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
@@ -240,14 +243,14 @@ For details about the error codes, see [zlib Error Codes](../errorcodes/errorcod
 
 | ID| Error Message
 | -------- | --------------------------------------|
-| 900001   | The Input source file is invalid.      |
-| 900002   | The Input destination file is invalid. |
+| 900001   | The input source file is invalid.      |
+| 900002   | The input destination file is invalid. |
 
 **Example**
 
 ```typescript
 // Decompress a file.
-// The path used in the code must be the application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
 import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
@@ -270,7 +273,7 @@ try {
 
 decompressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
-Decompress a file. This API uses a promise to return the result.
+Decompresses a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
@@ -278,7 +281,7 @@ Decompress a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to decompress. For details about the path, see [FA Model](js-apis-inner-app-context.md) or [Stage Model](js-apis-application-context.md).|
+| inFile  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model] (js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the decompressed file.                                      |
 | options | [Options](#options) | Yes  | Decompression parameters.                                            |
 
@@ -288,12 +291,12 @@ For details about the error codes, see [zlib Error Codes](../errorcodes/errorcod
 
 | ID| Error Message                              |
 | ------ | ------------------------------------- |
-| 900001 | The Input source file is invalid.      |
-| 900002 | The Input destination file is invalid. |
+| 900001 | The input source file is invalid.      |
+| 900002 | The input destination file is invalid. |
 
 ```typescript
 // Decompress a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through context.
+// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
 import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';

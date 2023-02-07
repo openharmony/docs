@@ -10,7 +10,7 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 ## 导入模块
 
 ```ts
-import abilityManager from '@ohos.application.abilityManager'
+import abilityManager from '@ohos.application.abilityManager';
 ```
 
 ## AbilityState
@@ -38,7 +38,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
- 
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -49,7 +49,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-var config = {
+let config = {
   language: 'chinese' 
 }
 
@@ -83,7 +83,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 **示例**：
 
 ```ts
-var config = {
+let config = {
   language: 'chinese' 
 }
 
@@ -142,111 +142,4 @@ abilityManager.getAbilityRunningInfos().then((data) => {
 }).catch((err) => {
   console.log("getAbilityRunningInfos err: "  + err)
 });
-```
-
-## getExtensionRunningInfos<sup>9+</sup>
-
-getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
-
-获取关于运行扩展能力的信息（callback形式）。
-
-**需要权限**: ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**参数**：
-
-| 参数名        | 类型                                       | 必填   | 说明             |
-| --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
-| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | 是    | 被指定的回调方法。      |
-
-**示例**：
-
-```ts
-var upperLimit = 0;
-
-abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => { 
-    console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
-});
-```
-
-## getExtensionRunningInfos<sup>9+</sup>
-
-getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
-
-获取关于运行扩展能力的信息（Promise形式）。
- 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**参数**：
-
-| 参数名        | 类型                                       | 必填   | 说明             |
-| --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | 是 | 获取消息数量的最大限制。 |
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | 返回执行结果。 |
-
-**示例**：
-
-```ts
-var upperLimit = 0;
-
-abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-  console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err);
-})
-```
-
-## getTopAbility<sup>9+</sup>
-
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
-
-获取窗口焦点的ability接口（callback形式）。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**参数**：
-
-| 参数名        | 类型                                       | 必填   | 说明             |
-| --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | 是    | 被指定的回调方法。      |
-
-**示例**：
-
-```ts
-abilityManager.getTopAbility((err,data) => { 
-    console.log("getTopAbility err: "  + err + " data: " + JSON.stringify(data));
-});
-```
-
-## getTopAbility<sup>9+</sup>
-
-getTopAbility(): Promise\<ElementName>;
-
-获取窗口焦点的ability接口（Promise形式）。
- 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| 返回执行结果。 |
-
-**示例**：
-
-```ts
-abilityManager.getTopAbility().then((data) => {
-  console.log("getTopAbility data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getTopAbility err: "  + err);
-})
 ```

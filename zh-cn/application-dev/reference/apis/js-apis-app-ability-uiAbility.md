@@ -217,7 +217,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-启动模式为单例的ability再次被拉起时会回调执行该方法。
+当传入新的Want，ability再次被拉起时会回调执行该方法。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -332,7 +332,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -358,11 +359,11 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
       return true;
     }
   };
-  var method = 'call_Function'; // 约定的通知消息字符串
-  var caller;
+  let method = 'call_Function'; // 约定的通知消息字符串
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
+      this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
         abilityName: "MainUIAbility",
         deviceId: ""
@@ -412,7 +413,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -438,11 +440,11 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
       return true;
     }
   };
-  var method = 'call_Function';
-  var caller;
+  let method = 'call_Function';
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
+      this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
         abilityName: "MainUIAbility",
         deviceId: ""
@@ -488,10 +490,10 @@ release(): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
+      this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
         abilityName: "MainUIAbility",
         deviceId: ""
@@ -528,10 +530,10 @@ release(): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
+      this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
         abilityName: "MainUIAbility",
         deviceId: ""
@@ -542,7 +544,7 @@ release(): void;
                 console.log(' Caller OnRelease CallBack is called ' + str);
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
+            console.log('Caller.onRelease catch error, error.code: ' + JSON.stringify(error.code) +
               ' error.message: ' + JSON.stringify(error.message));
           }
       }).catch((err) => {
@@ -573,15 +575,16 @@ release(): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
+      this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
         abilityName: "MainUIAbility",
         deviceId: ""
@@ -603,6 +606,108 @@ release(): void;
   }
   ```
 
+## Caller.off
+
+off(type: "release", callback: OnReleaseCallback): void;
+
+取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听releaseCall事件，固定为'release'。 |
+| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回off回调结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+**示例：**
+    
+  ```ts
+  let caller;
+  export default class MainUIAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainUIAbility",
+        deviceId: ""
+      }).then((obj) => {
+          caller = obj;
+          try {
+            let onReleaseCallBack = (str) => {
+                console.log(' Caller OnRelease CallBack is called ' + str);
+            };
+            caller.on("release", onReleaseCallBack);
+            caller.off("release", onReleaseCallBack);
+          } catch (error) {
+            console.log('Caller.on or Caller.off catch error, error.code: ' + JSON.stringify(error.code) +
+              ' error.message: ' + JSON.stringify(error.message));
+          }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
+  }
+  ```
+
+## Caller.off
+
+off(type: "release"): void;
+
+取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听releaseCall事件，固定为'release'。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+**示例：**
+    
+  ```ts
+  let caller;
+  export default class MainUIAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainUIAbility",
+        deviceId: ""
+      }).then((obj) => {
+          caller = obj;
+          try {
+            let onReleaseCallBack = (str) => {
+                console.log(' Caller OnRelease CallBack is called ' + str);
+            };
+            caller.on("release", onReleaseCallBack);
+            caller.off("release");
+          } catch (error) {  
+            console.error('Caller.on or Caller.off catch error, error.code: ' + JSON.stringify(error.code) +
+              ' error.message: ' + JSON.stringify(error.message));
+          }
+      }).catch((err) => {
+        console.error('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
+  }
+  ```
 
 ## Callee
 
@@ -628,7 +733,8 @@ on(method: string, callback: CalleeCallback): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -654,7 +760,7 @@ on(method: string, callback: CalleeCallback): void;
           return true;
       }
   };
-  var method = 'call_Function';
+  let method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble("test", "");
@@ -693,13 +799,14 @@ off(method: string): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 
 **示例：**
     
   ```ts
-  var method = 'call_Function';
+  let method = 'call_Function';
   export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');

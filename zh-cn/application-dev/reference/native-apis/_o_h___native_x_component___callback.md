@@ -5,7 +5,7 @@
 
 注册surface生命周期和触摸事件回调。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -21,7 +21,7 @@
 
   | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| [OnSurfaceCreated](_o_h___native_x_component.md#onsurfacecreated) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window) | 创建surface时调用。 | 
-| [OnSurfaceChanged](_o_h___native_x_component.md#onsurfacechanged) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window) | 当surface改变时调用。 | 
-| [OnSurfaceDestroyed](_o_h___native_x_component.md#onsurfacedestroyed) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window) | 当surface被破坏时调用。 | 
-| [DispatchTouchEvent](_o_h___native_x_component.md#dispatchtouchevent) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window) | 当触摸事件被触发时调用。 | 
+| [OnSurfaceCreated](_o_h___native_x_component.md#onsurfacecreated)| 创建surface时调用。 | 
+| [OnSurfaceChanged](_o_h___native_x_component.md#onsurfacechanged)| 当surface改变时调用。 | 
+| [OnSurfaceDestroyed](_o_h___native_x_component.md#onsurfacedestroyed)| 当surface被销毁时调用。 | 
+| [DispatchTouchEvent](_o_h___native_x_component.md#dispatchtouchevent)| 当触摸事件被触发时调用。 | 

@@ -95,7 +95,7 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 
 - 方法1：OpenHarmony定义了API canIUse帮助开发者来判断该工程是否支持某个特定的syscap。
 
-   ```
+   ```ts
    if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
    	   console.log("该应用支持SystemCapability.ArkUI.ArkUI.Full");
    } else {
@@ -122,7 +122,7 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 
 即使是相同的系统能力，在不同的设备下，也会有能力的差异。比如同是摄像头的能力，平板设备优于智能穿戴设备。
 
-```
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authenticator = userAuth.getAuthenticator();

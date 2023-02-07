@@ -1,6 +1,6 @@
 # ProcessRunningInfo
 
-本模块提供对进程运行信息进行设置和查询的能力。
+本模块提供对进程运行信息进行查询的能力。
 
 > **说明：** 
 > - 本模块接口从API version 9 开始废弃，建议使用[ProcessRunningInformation<sup>9+</sup>](js-apis-inner-application-processRunningInformation.md)替代。
@@ -23,7 +23,7 @@
 
 **示例：**
 ```ts
-import appManager from '@ohos.application.appManager';
+import appManager from '@ohos.app.ability.appManager';
 
 appManager.getProcessRunningInfos().then((data) => {
     console.log('success:' + JSON.stringify(data));

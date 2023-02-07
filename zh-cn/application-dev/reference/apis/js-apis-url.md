@@ -31,7 +31,7 @@ URLParams的构造函数。
 let objectParams = new Url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
 let objectParams1 = new Url.URLParams({"fod" : '1' , "bard" : '2'});
 let objectParams2 = new Url.URLParams('?fod=1&bard=2');
-let urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
 let params = new Url.URLParams(urlObject.search);
 ```
 
@@ -54,7 +54,7 @@ append(name: string, value: string): void
 **示例：**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1));
 paramsObject.append('fod', '3');
 ```
@@ -77,9 +77,9 @@ delete(name: string): void
 **示例：**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new Url.URLParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLParams(urlObject.search.slice(1));
+paramsObject.delete('fod');
 ```
 
 
@@ -87,7 +87,7 @@ paramsobject.delete('fod');
 
 getAll(name: string): string[]
 
-获取指定名称的所有键值对。
+获取指定名称的所有键对应值的集合。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -101,12 +101,12 @@ getAll(name: string): string[]
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string[] | 返回指定名称的所有键值对。 |
+| string[] | 返回指定名称的所有键对应值的集合。 |
 
 **示例：**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3'); // Add a second value for the fod parameter.
 console.log(params.getAll('fod').toString()) // Output ["1","3"].
@@ -131,7 +131,7 @@ entries(): IterableIterator<[string, string]>
 
 ```js
 let searchParamsObject = new Url.URLParams("keyName1=valueName1&keyName2=valueName2"); 
-for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
+for (var pair of searchParamsObject.entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
 ```
@@ -163,9 +163,9 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 **示例：**
 
 ```js
-const myURLObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.searchParams.forEach((value, name, searchParams) => {  
-    console.log(name, value, myURLObject.searchParams === searchParams);
+const myURLObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2'); 
+myURLObject.params.forEach((value, name, searchParams) => {  
+    console.log(name, value, myURLObject.params === searchParams);
 });
 ```
 
@@ -223,7 +223,7 @@ has(name: string): boolean
 **示例：**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1)); 
 paramsObject.has('bard') === true;
 ```
@@ -247,7 +247,7 @@ set(name: string, value: string): void
 **示例：**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1));
 paramsObject.set('baz', '3'); // Add a third parameter.
 ```
@@ -359,7 +359,7 @@ toString(): string
 **示例：**
 
 ```js
-let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let url = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLParams(url.search.slice(1)); 
 params.append('fod', '3');
 console.log(params.toString());
@@ -369,7 +369,7 @@ console.log(params.toString());
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -423,6 +423,14 @@ new Url.URL('https://www.example.com', ); // Output https://www.example.com/
 new Url.URL('https://www.example.com', b); // Output https://www.example.com/
 ```
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+URL的无参构造函数。parseURL调用后返回一个URL对象，不单独使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
 ### parseURL<sup>9+</sup>
 
 static parseURL(url : string, base?: string | URL): URL
@@ -438,11 +446,21 @@ URL静态成员函数。
 | url | string | 是 | 入参对象。 |
 | base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200002 | Invalid url string. |
+
+
 **示例：**
 
 ```js
 let mm = 'https://username:password@host:8080';
-Url.URL.parseURL(mm); // Output 'https://username:password@host:8080/';
+let url = Url.URL.parseURL(mm); 
+url.toString(); // Output 'https://username:password@host:8080/';
 ```
 
 ### tostring
@@ -462,7 +480,7 @@ toString(): string
 **示例：**
 
 ```js
-const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString();
 ```
 
@@ -482,7 +500,7 @@ toJSON(): string
 
 **示例：**
 ```js
-const url = new Url.URL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toJSON();
 ```
 
@@ -496,7 +514,7 @@ URLSearchParams的构造函数。
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>](#constructor9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.constructor<sup>9+</sup>](#constructor9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -524,7 +542,7 @@ append(name: string, value: string): void
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.append<sup>9+</sup>](#append9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.append<sup>9+</sup>](#append9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -551,7 +569,7 @@ delete(name: string): void
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.delete<sup>9+</sup>](#delete9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.delete<sup>9+</sup>](#delete9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -577,7 +595,7 @@ getAll(name: string): string[]
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.getAll<sup>9+</sup>](#getall9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.getAll<sup>9+</sup>](#getall9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -610,7 +628,7 @@ entries(): IterableIterator<[string, string]>
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.entries<sup>9+</sup>](#entries9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.entries<sup>9+</sup>](#entries9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -624,7 +642,7 @@ entries(): IterableIterator<[string, string]>
 
 ```js
 let searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
-for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
+for (var pair of searchParamsObject.entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
 ```
@@ -638,7 +656,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.forEach<sup>9+</sup>](#foreach9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.forEach<sup>9+</sup>](#foreach9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -675,7 +693,7 @@ get(name: string): string | null
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.get<sup>9+</sup>](#get9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.get<sup>9+</sup>](#get9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -709,7 +727,7 @@ has(name: string): boolean
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.has<sup>9+</sup>](#has9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.has<sup>9+</sup>](#has9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -742,7 +760,7 @@ set(name: string, value: string): void
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.set<sup>9+</sup>](#set9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.set<sup>9+</sup>](#set9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -770,7 +788,7 @@ sort(): void
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.sort<sup>9+</sup>](#sort9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.sort<sup>9+</sup>](#sort9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -791,7 +809,7 @@ keys(): IterableIterator&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.keys<sup>9+</sup>](#keys9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.keys<sup>9+</sup>](#keys9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -819,7 +837,7 @@ values(): IterableIterator&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams<sup>9+</sup>.values<sup>9+</sup>](#values9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.values<sup>9+</sup>](#values9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -847,7 +865,7 @@ for (var value of searchParams.values()) {
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[[Symbol.iterator]<sup>9+</sup>](#symboliterator9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.[Symbol.iterator]<sup>9+</sup>](#symboliterator9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -874,7 +892,7 @@ toString(): string
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[tostring<sup>9+</sup>](#tostring9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.tostring<sup>9+</sup>](#tostring9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 

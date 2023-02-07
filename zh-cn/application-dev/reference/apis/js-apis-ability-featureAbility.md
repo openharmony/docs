@@ -23,6 +23,11 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 启动新的Ability（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -36,7 +41,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -48,7 +53,7 @@ featureAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri: ""
         },
     },
@@ -65,6 +70,11 @@ featureAbility.startAbility(
 startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 启动新的Ability（Promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -84,7 +94,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -96,7 +106,7 @@ featureAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri: ""
         },
     }
@@ -110,6 +120,12 @@ featureAbility.startAbility(
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 获取dataAbilityHelper对象。
+
+使用规则：
+ - 跨应用访问dataAbility，对端应用需配置关联启动
+ - 调用方应用位于后台时，使用该接口访问dataAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标dataAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -129,7 +145,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 ```
@@ -138,7 +154,15 @@ var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
+启动一个Ability。Ability被启动后，有如下情况(callback形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -153,7 +177,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
    {
         want:
@@ -165,7 +189,7 @@ featureAbility.startAbilityForResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:""
         },
     },
@@ -179,7 +203,15 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（Promise形式）。
+启动一个Ability。Ability被启动后，有如下情况(Promise形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -199,7 +231,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
     {
         want:
@@ -211,7 +243,7 @@ featureAbility.startAbilityForResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:"",
             parameters:
             {
@@ -250,7 +282,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -263,7 +295,7 @@ featureAbility.terminateSelfWithResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -307,7 +339,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -320,7 +352,7 @@ featureAbility.terminateSelfWithResult(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
+            abilityName: "com.example.myapplication.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -449,7 +481,7 @@ getContext(): Context
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 context.getBundleName((err, data) => {
     console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
@@ -509,6 +541,12 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 将当前Ability与指定的ServiceAbility进行连接。
 
+使用规则：
+ - 跨应用连接serviceAbility，对端应用需配置关联启动
+ - 调用方应用位于后台时，使用该接口连接serviceAbility需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标serviceAbility的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
@@ -522,7 +560,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 连接的ServiceAbility的ID。 |
+| number | 连接的ServiceAbility的ID(ID从0开始自增，每连接成功一次ID加1)。 |
 
 **示例：**
 
@@ -538,11 +576,11 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -581,10 +619,10 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -592,11 +630,11 @@ var connectId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = featureAbility.disconnectAbility(connectId,
-    (error) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
-    },
-);
+
+featureAbility.disconnectAbility(connectId, (err) => {
+    console.log("featureAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
+});
 ```
 
 ## featureAbility.disconnectAbility<sup>7+</sup>
@@ -633,10 +671,10 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
     },
     {
         onConnect: onConnectCallback,
@@ -713,8 +751,8 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 | ---------------------------------------- | ---- | ---------------------------------------- |
 | WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。 |
 | WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。    |
-| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 分屏主屏。 |
-| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 分屏次屏。 |
+| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。 |
+| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。 |
 | WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。 |
 
 
