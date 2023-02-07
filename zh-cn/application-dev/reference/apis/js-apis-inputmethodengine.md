@@ -1495,6 +1495,172 @@ try {
 }
 ```
 
+### selectByRange<sup>10+</sup>
+
+selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
+
+根据索引范围选中文本。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| range    | Range                     | 是   | 选中文本的范围。                                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**示例：**
+
+```js
+try {
+    inputClient.selectByRange({start: 0, end: 1}, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to selectByRange: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in selecting by range.');
+    });
+} catch (err) {
+    console.error('Failed to selectByRange: ' + JSON.stringify(err));
+}
+```
+
+### selectByRange<sup>10+</sup>
+
+selectByRange(range: Range): Promise&lt;void&gt;
+
+根据索引范围选中文本。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明             |
+| ------ | ----- | ---- | ---------------- |
+| range  | Range | 是   | 选中文本的范围。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**示例：**
+
+```js
+try {
+    inputClient.selectByRange({start: 0, end:1}).then(() => {
+        console.log('Succeeded in selecting by range.');
+    }).catch((err) => {
+        console.error('Failed to selectByRange: ' + JSON.stringify(err));
+    });
+} catch (err) {
+    console.log('Failed to selectByRange: ' + JSON.stringify(err));
+}
+```
+
+### selectByMovement<sup>10+</sup>
+
+selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
+
+根据光标移动方向选中文本。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| movement | Movement                  | 是   | 选中时光标移动的方向。                                       |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**示例：**
+
+```js
+try {
+    inputClient.selectByMovement({direction: 1}, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to selectByMovement: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in selecting by movement.');
+    });
+} catch (err) {
+    console.error('Failed to selectByMovement: ' + JSON.stringify(err));
+}
+```
+
+### selectByMovement<sup>10+</sup>
+
+selectByMovement(range: Range): Promise&lt;void&gt;
+
+根据索引范围选中文本。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                   |
+| -------- | -------- | ---- | ---------------------- |
+| movement | Movement | 是   | 选中时光标移动的方向。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**示例：**
+
+```js
+try {
+    inputClient.selectByMovement({direction: 1}).then(() => {
+        console.log('Succeeded in selecting by movement.');
+    }).catch((err) => {
+        console.error('Failed to selectByMovement: ' + JSON.stringify(err));
+    });
+} catch (err) {
+    console.log('Failed to selectByMovement: ' + JSON.stringify(err));
+}
+```
+
 ## EditorAttribute
 
 编辑框属性值。

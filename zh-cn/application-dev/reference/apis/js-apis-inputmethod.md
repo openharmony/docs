@@ -839,6 +839,92 @@ inputMethodController.stopInput().then((result) => {
 })
 ```
 
+### on('selectByRange')<sup>10+</sup>
+
+on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
+
+订阅输入法应用按范围选中文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                | 是   | 设置监听类型。<br/>-type为‘selectByRange’时表示订阅输入法应用按范围选中文本事件监听。 |
+| callback | Callback&lt;Range&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的范围选中编辑框中相应文本。 |
+
+**示例：**
+
+```js
+inputMethodController.on('selectByRange', (range) => {
+    console.info('Succeeded in subscribing selectByRange: start: ' + range.start + " , end: " + range.end);
+});
+```
+
+### off('selectByRange')<sup>10+</sup>
+
+off(type: 'selectByRange'): void
+
+取消订阅输入法应用按范围选中文本事件。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>-type为‘selectByRange’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+
+**示例：**
+
+```js
+inputMethodController.off('selectByRange');
+```
+
+### on('selectByMovement')<sup>10+</sup>
+
+on(type: 'selectByMovement', callback: Callback&lt;Range&gt;): void
+
+订阅输入法应用按光标动作选中文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                         |
+| -------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                   | 是   | 设置监听类型。<br/>-type为‘selectByMovement’时表示订阅输入法应用按光标移动动作选中文本事件监听。 |
+| callback | Callback&lt;Movement&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的光标动作选中编辑框中相应文本。 |
+
+**示例：**
+
+```js
+inputMethodController.on('selectByMovement', (movement) => {
+    console.info('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+});
+```
+
+### off('selectByMovement')<sup>10+</sup>
+
+off(type: 'selectByMovement'): void
+
+取消订阅输入法应用按光标动作选中文本事件。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>-type为‘selectByMovement’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+
+**示例：**
+
+```js
+inputMethodController.off('selectByMovement');
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getSetting](#inputmethodgetsetting9)获取到InputMethodSetting实例，再通过此实例调用对应方法。
