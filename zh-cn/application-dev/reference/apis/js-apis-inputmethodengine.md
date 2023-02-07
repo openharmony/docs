@@ -1525,13 +1525,13 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 try {
     inputClient.selectByRange({start: 0, end: 1}, (err) => {
         if (err !== undefined) {
-            console.error('Failed to selectByRange: ' + JSON.stringify(err));
+            console.error('Failed to selectByRange: ${err.message}');
             return;
         }
         console.info('Succeeded in selecting by range.');
     });
 } catch (err) {
-    console.error('Failed to selectByRange: ' + JSON.stringify(err));
+    console.error('Failed to selectByRange: ${err.message}');
 }
 ```
 
@@ -1571,10 +1571,10 @@ try {
     inputClient.selectByRange({start: 0, end:1}).then(() => {
         console.log('Succeeded in selecting by range.');
     }).catch((err) => {
-        console.error('Failed to selectByRange: ' + JSON.stringify(err));
+        console.error('Failed to selectByRange: ${err.message}');
     });
 } catch (err) {
-    console.log('Failed to selectByRange: ' + JSON.stringify(err));
+    console.log('Failed to selectByRange: ${err.message}');
 }
 ```
 
@@ -1608,13 +1608,13 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 try {
     inputClient.selectByMovement({direction: 1}, (err) => {
         if (err !== undefined) {
-            console.error('Failed to selectByMovement: ' + JSON.stringify(err));
+            console.error('Failed to selectByMovement: ${err.message}');
             return;
         }
         console.info('Succeeded in selecting by movement.');
     });
 } catch (err) {
-    console.error('Failed to selectByMovement: ' + JSON.stringify(err));
+    console.error('Failed to selectByMovement: ${err.message}');
 }
 ```
 
@@ -1654,10 +1654,10 @@ try {
     inputClient.selectByMovement({direction: 1}).then(() => {
         console.log('Succeeded in selecting by movement.');
     }).catch((err) => {
-        console.error('Failed to selectByMovement: ' + JSON.stringify(err));
+        console.error('Failed to selectByMovement: ${err.message}');
     });
 } catch (err) {
-    console.log('Failed to selectByMovement: ' + JSON.stringify(err));
+    console.log('Failed to selectByMovement: ${err.message}');
 }
 ```
 
@@ -1690,7 +1690,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 ```js
 inputClient.getTextIndexAtCursor((err, index) => {
     if (err !== undefined) {
-        console.error('Failed to getTextIndexAtCursor: ' + JSON.stringify(err));
+        console.error('Failed to getTextIndexAtCursor: ${err.message}');
         return;
     }
     console.info('Succeeded in getTextIndexAtCursor: ' + index);
@@ -1726,7 +1726,7 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 inputClient.getTextIndexAtCursor().then((index) => {
     console.info('Succeeded in getTextIndexAtCursor: ' + index);
 }).catch((err) => {
-    console.error('Failed to getTextIndexAtCursor: ' + JSON.stringify(err));
+    console.error('Failed to getTextIndexAtCursor: ${err.message}');
 });
 ```
 
