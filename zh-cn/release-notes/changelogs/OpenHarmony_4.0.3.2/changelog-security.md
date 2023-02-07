@@ -38,6 +38,7 @@ interface ParamsSpec {
  ```
 
 **适配指导**
+
 对ParamsSpec以及其子类IvParamsSpec，GcmParamsSpec与CcmParamsSpec，使用这些对象作为参数或返回值时，其属性名需要从algoName更改为algName。
  ```ts
 function genGcmParamsSpec() {
