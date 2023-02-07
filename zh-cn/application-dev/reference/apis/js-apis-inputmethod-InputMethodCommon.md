@@ -9,7 +9,7 @@
 
 光标移动方向类型枚举。
 
-**系统能力：**SystemCapability.MiscServices.InputMethodFramework
+ **系统能力:**  SystemCapability.MiscServices.InputMethodFramework
 
 | 名称         | 值   | 说明       |
 | ------------ | ---- | ---------- |
