@@ -1505,10 +1505,10 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| range    | Range                     | 是   | 选中文本的范围。                                             |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| range    | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | 是   | 选中文本的范围。                                             |
+| callback | AsyncCallback&lt;void&gt;                                 | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1545,9 +1545,9 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型  | 必填 | 说明             |
-| ------ | ----- | ---- | ---------------- |
-| range  | Range | 是   | 选中文本的范围。 |
+| 参数名 | 类型                                                      | 必填 | 说明             |
+| ------ | --------------------------------------------------------- | ---- | ---------------- |
+| range  | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | 是   | 选中文本的范围。 |
 
 **返回值：**
 
@@ -1588,10 +1588,10 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| movement | Movement                  | 是   | 选中时光标移动的方向。                                       |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | 是   | 选中时光标移动的方向。                                       |
+| callback | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1628,9 +1628,9 @@ selectByMovement(range: Range): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                   |
-| -------- | -------- | ---- | ---------------------- |
-| movement | Movement | 是   | 选中时光标移动的方向。 |
+| 参数名   | 类型                                                         | 必填 | 说明                   |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | 是   | 选中时光标移动的方向。 |
 
 **返回值：**
 
