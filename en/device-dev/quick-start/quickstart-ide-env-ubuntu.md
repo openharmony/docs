@@ -13,9 +13,11 @@ The following describes how to set up the Ubuntu environment.
 
 ## System Requirements
 
-- Ubuntu: Ubuntu 18.04 to 21.10; version 20.04 with 16 GB or larger memory is recommended
+- Ubuntu: Ubuntu 18.04 to 21.10; version 20.04 with 16 GB or larger memory and a 100 GB or larger hard disk is recommended
 
 - User name (Ubuntu): cannot contain Chinese characters
+
+- DevEco Device Tool: latest and same version installed on both Ubuntu and Windows
 
 
 ## Procedure
@@ -28,6 +30,7 @@ The following describes how to set up the Ubuntu environment.
        ```
 
        ![en-us_image_0000001226764302](figures/en-us_image_0000001226764302.png)
+
    2. Start the command-line tool, run the following command, enter your password, and select **No** to set **Ubuntu shell** to **bash**.
       
        ```shell
@@ -36,24 +39,24 @@ The following describes how to set up the Ubuntu environment.
 
        ![ubuntu-dash-to-bash](figures/ubuntu-dash-to-bash.png)
 
-2. Download the [DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Linux edition.
+2. Download the latest version of [DevEco Device Tool](https://device.harmonyos.com/cn/ide#download) for Linux.
 
 3. Decompress the DevEco Device Tool software package and assign permission on the folder obtained from the decompression.
-   1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.1.0.300.zip** to the actual software package name.
+   1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, **devicetool-linux-tool-{Version}.zip** indicates the software package name.
       
        ```shell
-       unzip devicetool-linux-tool-3.1.0.300.zip
+       unzip devicetool-linux-tool-{Version}.zip
        ```
-   2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, change **devicetool-linux-tool-3.1.0.300.sh** to the actual installation file name.
+   2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, **devicetool-linux-tool-{Version}.sh** indicates the installation file name.
       
        ```shell
-       chmod u+x devicetool-linux-tool-3.1.0.300.sh
+       chmod u+x devicetool-linux-tool-{Version}.sh
        ```
 
-4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.1.0.300.sh** indicates the installation file name.
+4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-{Version}.sh** indicates the installation file name.
    
    ```shell
-   sudo ./devicetool-linux-tool-3.1.0.300.sh
+   sudo ./devicetool-linux-tool-{Version}.sh
    ```
 
 5. On the page for agreeing to the user agreement and privacy statement, read and agree to the user agreement and privacy statement. You can scroll through the options by pressing the up and down arrow keys on the keyboard.
