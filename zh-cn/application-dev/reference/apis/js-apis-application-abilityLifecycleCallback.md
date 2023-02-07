@@ -159,7 +159,7 @@ onAbilityContinue(ability: Ability): void;
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage";
 
-var lifecycleid;
+let lifecycleid;
 
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -211,3 +211,4 @@ export default class MyAbilityStage extends AbilityStage {
     }
 }
 ```
+<!--no_check-->

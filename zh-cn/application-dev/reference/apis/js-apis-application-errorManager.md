@@ -28,7 +28,7 @@ registerErrorObserver(observer: ErrorObserver): number;
 **示例：**
     
 ```ts
-var observer = {
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
     }
@@ -54,7 +54,7 @@ unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void>): vo
 **示例：**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 
 function unregisterErrorObserverCallback(err) {
     if (err) {
@@ -88,7 +88,7 @@ unregisterErrorObserver(observerId: number): Promise\<void>;
 **示例：**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 errorManager.unregisterErrorObserver(observerId)
 .then((data) => {
     console.log('----------- unregisterErrorObserver success ----------', data);

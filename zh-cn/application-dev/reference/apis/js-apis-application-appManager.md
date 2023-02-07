@@ -282,7 +282,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 **示例：**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -325,7 +325,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 **示例：**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -342,7 +342,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  var bundleNameList = ['bundleName1', 'bundleName2'];
+  let bundleNameList = ['bundleName1', 'bundleName2'];
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
   console.log('-------- observerCode: ---------', observerCode);
   ```
@@ -368,7 +368,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 **示例：**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   function unregisterApplicationStateObserverCallback(err) {
     if (err) {
@@ -405,7 +405,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 **示例：**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   app.unregisterApplicationStateObserver(observerId)
   .then((data) => {
@@ -499,8 +499,8 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 app.killProcessWithAccount(bundleName, accountId)
    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
@@ -534,8 +534,8 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
    if (err) {
        console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
@@ -568,7 +568,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function killProcessesByBundleNameCallback(err, data) {
     if (err) {
         console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
@@ -606,7 +606,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   app.killProcessesByBundleName(bundleName)
     .then((data) => {
         console.log('------------ killProcessesByBundleName success ------------', data);
@@ -638,7 +638,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function clearUpApplicationDataCallback(err, data) {
     if (err) {
         console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
@@ -676,7 +676,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   app.clearUpApplicationData(bundleName)
     .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);

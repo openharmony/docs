@@ -41,7 +41,7 @@ on(type: "abilityLifecycle", callback: AbilityLifecycleCallback): **number**;
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var lifecycleId;
+let lifecycleId;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
@@ -109,7 +109,7 @@ off(type: "abilityLifecycle", callbackId: **number**,  callback: AsyncCallback<*
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var lifecycleId;
+let lifecycleId;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
@@ -142,7 +142,7 @@ off(type: "abilityLifecycle", callbackId: **number**): **void**;
 ```ts
 import Ability from "@ohos.app.ability.UIAbility";
 
-var lifecycleId;
+let lifecycleId;
 
 export default class MyAbility extends Ability {
     onDestroy() {
@@ -179,7 +179,7 @@ on(type: "environment", callback: EnvironmentCallback): **number**;
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var callbackId;
+let callbackId;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
@@ -223,7 +223,7 @@ off(type: "environment", callbackId: **number**,  callback: AsyncCallback<**void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var callbackId;
+let callbackId;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
@@ -255,7 +255,7 @@ off(type: "environment", callbackId: **number**,  callback: AsyncCallback<**void
 ```ts
 import Ability from "@ohos.app.ability.UIAbility";
 
-var callbackId;
+let callbackId;
 
 export default class MyAbility extends Ability {
     onDestroy() {

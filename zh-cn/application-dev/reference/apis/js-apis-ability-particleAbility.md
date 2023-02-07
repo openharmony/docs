@@ -190,7 +190,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 ```ts
 import particleAbility from '@ohos.ability.particleAbility'
 
-var uri = "";
+let uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
 ```
 
@@ -416,7 +416,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -467,7 +467,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -518,7 +518,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
