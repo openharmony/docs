@@ -1636,7 +1636,7 @@
 
 ## ohos.permission.PRINT
 
-允许系统应用获取打印框架的能力。
+允许应用获取打印框架的能力。
 
 **权限级别**：normal
 
@@ -1646,7 +1646,7 @@
 
 ## ohos.permission.MANAGE_PRINT_JOB
 
-允许系统应用获取管理打印任务的能力。
+允许应用获取管理打印任务的能力。
 
 **权限级别**：system_basic
 
