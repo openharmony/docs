@@ -683,7 +683,7 @@ while(temp != undefined) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 avaScript对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
