@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-当应用需要获取当前设备状态时，可以调用Stationary模块，例如：需要判断当前设备是否处于绝对静止状态，或者相对静止状态。
+当应用需要获取当前设备状态时，可以调用Stationary模块，例如：需要判断当前设备处于绝对静止状态或者相对静止状态。
 
 详细的接口介绍请参考[Stationary接口](../reference/apis/js-apis-stationary.md)。
 
@@ -39,11 +39,11 @@
 
 ## 约束与限制
 
-设备需要支持加速度传感器
+设备需要支持加速度传感器。
 
 ## 开发步骤
 
-1. 订阅绝对静止的进入事件，1秒上报一次
+1. 订阅绝对静止的进入事件，1秒上报一次。
 
    ```js
    import stationary from '@ohos.stationary';
@@ -57,7 +57,7 @@
    }
    ```
 
-2. 查询绝对静止状态的进入事件
+2. 查询绝对静止状态的进入事件。
 
    ```js
    import stationary from '@ohos.stationary';
@@ -70,7 +70,7 @@
    }
    ```
 
-3. 取消订阅绝对静止状态的进入事件
+3. 取消订阅绝对静止状态的进入事件。
 
    ```js
    import stationary from '@ohos.stationary';
