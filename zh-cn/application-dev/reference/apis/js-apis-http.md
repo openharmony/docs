@@ -676,6 +676,8 @@ httpResponseCache.flush(err => {
     console.log('flush fail');
     return;
   }
+  console.log('flush success');
+});
 ```
 
 ### flush<sup>9+</sup>
