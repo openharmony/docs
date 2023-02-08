@@ -382,8 +382,8 @@ forEach(callbackfn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的元素。 |
-| key | T | 否 | 当前遍历到的元素（和value相同）。 |
+| value | T | 否 | 当前遍历到的value元素。 |
+| key | T | 否 | 当前遍历到的key元素。 |
 | set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
