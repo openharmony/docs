@@ -75,16 +75,6 @@ createHttp\(\): HttpRequest
 | :---------- | :----------------------------------------------------------- |
 | HttpRequest | 返回一个HttpRequest对象，里面包括request、destroy、on和off方法。 |
 
-**错误码:**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 2300999 | Unknown Other Error.                                  |
-
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
-
 **示例：**
 
 ```js
@@ -315,15 +305,6 @@ destroy\(\): void
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**错误码:**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
-
 **示例：**
 
 ```js
@@ -347,16 +328,6 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'headerReceive'。 |
 | callback | AsyncCallback\<Object\> | 是   | 回调函数。                        |
-
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
 
 **示例：**
 
@@ -391,16 +362,6 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 | type     | string                  | 是   | 取消订阅的事件类型，'headerReceive'。 |
 | callback | AsyncCallback\<Object\> | 否   | 回调函数。                            |
 
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
-
 **示例：**
 
 ```js
@@ -421,16 +382,6 @@ on\(type: 'headersReceive', callback: Callback<Object\>\): void
 | -------- | ------------------ | ---- | ---------------------------------- |
 | type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
 | callback | Callback\<Object\> | 是   | 回调函数。                         |
-
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
 
 **示例：**
 
@@ -458,16 +409,6 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 | type     | string             | 是   | 取消订阅的事件类型：'headersReceive'。 |
 | callback | Callback\<Object\> | 否   | 回调函数。                             |
 
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
-
 **示例：**
 
 ```js
@@ -488,16 +429,6 @@ once\(type: 'headersReceive', callback: Callback<Object\>\): void
 | -------- | ------------------ | ---- | ---------------------------------- |
 | type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
 | callback | Callback\<Object\> | 是   | 回调函数。                         |
-
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
 
 **示例：**
 
@@ -620,16 +551,6 @@ createHttpResponseCache(cacheSize?: number): HttpResponseCache
 | :---------- | :----------------------------------------------------------- |
 | [HttpResponseCache](#httpresponsecache9) | 返回一个存储HTTP访问请求响应的对象。 |
 
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
-
 **示例：**
 
 ```js
@@ -654,19 +575,6 @@ flush(callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void> | 是   | 回调函数返回写入结果。 |
-
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
 
 **示例：**
 
@@ -694,19 +602,6 @@ flush(): Promise\<void>
 | --------------------------------- | ------------------------------------- |
 | Promise\<void>> | 以Promise形式返回写入结果。 |
 
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
-
 **示例：**
 
 ```js
@@ -730,16 +625,6 @@ delete(callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void> | 是   | 回调函数返回删除结果。|
-
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
 
 **示例：**
 
@@ -765,16 +650,6 @@ delete(): Promise\<void>
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | 以Promise形式返回删除结果。 |
-
-**错误码：**
-
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 2300999 | Unknown Other Error.                                  |
-
->**错误码说明：**
->HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
 
 **示例：**
 
