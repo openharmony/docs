@@ -671,6 +671,43 @@ flush(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+httpResponseCache.flush(err => {
+  if (err) {
+    console.log('flush fail');
+    return;
+  }
+```
+
+### flush<sup>9+</sup>
+
+flush(): Promise\<void>
+
+将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                              | 说明                                  |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void>> | 以Promise形式返回写入结果。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                                                  |
+|---------|-------------------------------------------------------|
+| 401     | Parameter error.                                      |
+| 2300027 | Out of memory.                                        |
+| 2300028 | Timeout was reached.                                  |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300999 | Unknown Other Error.                                  |
+
+>**错误码说明：**
+>HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)。
+
+**示例：**
+
+```js
 httpResponseCache.flush().then(() => {
   console.log('flush success');
 }).catch(err => {
