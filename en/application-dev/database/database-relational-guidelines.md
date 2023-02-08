@@ -142,7 +142,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class      | API                                                      | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise\<Array\<[string, number]>> | Synchronizes data between devices. This API uses a promise to return the result.<br>- **mode**: synchronization mode.  **SYNC_MODE_PUSH** means to push data from the local device to a remote device. **SYNC_MODE_PULL** means to pull data from a remote device to the local device.<br>- **predicates**: specifies the data and devices to synchronize.<br>- **string**: device ID. <br>- **number**: synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure.|
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise\<Array\<[string, number]>> | Synchronizes data between devices. This API uses a promise to return the result.<br>- **mode**: synchronization mode. **SYNC_MODE_PUSH** means to push data from the local device to a remote device. **SYNC_MODE_PULL** means to pull data from a remote device to the local device.<br>- **predicates**: specifies the data and devices to synchronize.<br>- **string**: device ID. <br>- **number**: synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure.|
 
 **Registering an RDB Store Observer**
 
@@ -180,7 +180,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 ### Transaction
 
-Table 15 Transaction APIs
+**Table 15** Transaction APIs
 
 | Class    | API                 | Description                             |
 | -------- | ----------------------- | --------------------------------- |
@@ -202,44 +202,82 @@ Table 15 Transaction APIs
 
     ```js
    import data_rdb from '@ohos.data.relationalStore'
-    // Obtain the context.
    import featureAbility from '@ohos.ability.featureAbility'
+   
+   // Obtain the context.
    let context = featureAbility.getContext()
    
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+   const STORE_CONFIG = { 
+       name: "RdbTest.db",
+       securityLevel: data_rdb.SecurityLevel.S1
+   }
    
-   const STORE_CONFIG = { name: "RdbTest.db",
-                         securityLevel: data_rdb.SecurityLevel.S1}
+   // Assume that the current RDB store version is 3.
    data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-      rdbStore.executeSql(CREATE_TABLE_TEST)
-      console.info('create table done.')
+        // When an RDB store is created, the default version is 0.
+        if (rdbStore.version == 0) {
+            rdbStore.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null)
+            // Set the RDB store version. The input parameter must be an integer greater than 0.
+            rdbStore.version = 3
+        }
+        
+        // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
+        if (rdbStore.version != 3 && rdbStore.version == 1) {
+            // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
+            rdbStore.executeSql("ALTER TABLE student ADD COLUMN score REAL", null)
+            rdbStore.version = 2
+        }
+        
+        // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
+        if (rdbStore.version != 3 && rdbStore.version == 2) {
+            // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
+            rdbStore.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null)
+            rdbStore.version = 3
+        }
    })
     ```
     Stage model:
      ```ts
    import data_rdb from '@ohos.data.relationalStore'
-    // Obtain the context.
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   let context = null
+   import UIAbility from '@ohos.app.ability.UIAbility'
+   
    class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
-         context = this.context
+           const STORE_CONFIG = { 
+               name: "rdbstore.db",
+               securityLevel: data_rdb.SecurityLevel.S1
+           }
+   
+           // Assume that the current RDB store version is 3.
+           data_rdb.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+               // When an RDB store is created, the default version is 0.
+               if (rdbStore.version == 0) {
+                   rdbStore.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null)
+                   // Set the RDB store version. The input parameter must be an integer greater than 0.
+                   rdbStore.version = 3
+               }
+    
+               // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
+               if (rdbStore.version != 3 && rdbStore.version == 1) {
+                   // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
+                   rdbStore.executeSql("ALTER TABLE student ADD COLUMN score REAL", null)
+                   rdbStore.version = 2
+               }
+    
+               // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
+               if (rdbStore.version != 3 && rdbStore.version == 2) {
+                   // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
+                   rdbStore.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null)
+                   rdbStore.version = 3
+               }
+           })
        }
    }
-   
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-   
-   const STORE_CONFIG = { name: "rdbstore.db",
-                          securityLevel: data_rdb.SecurityLevel.S1}
-   data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-       rdbStore.executeSql(CREATE_TABLE_TEST)
-       console.info('create table done.')
-   })
      ```
 
 2. Insert data.
 
-   (1) Create a **ValuesBucket** to store the data you need to insert.
+   (1) Create a **ValuesBucket** instance to store the data you need to insert.
 
    (2) Call the **insert()** method to insert data into the RDB store.
 
@@ -384,14 +422,13 @@ Table 15 Transaction APIs
     
 8. Query data of a remote device.
    
-   
    (1) Construct a predicate object for querying distributed tables, and specify the remote distributed table name and the remote device.
    
    (2) Call the resultSet() API to obtain the result.
    
    The sample code is as follows:
-   
-    ```js
+
+   ```js
     let rdbPredicate = new data_rdb.RdbPredicates('employee')
     predicates.greaterThan("id", 0) 
     let promiseQuery = rdbStore.remoteQuery('12345678abcde', 'employee', rdbPredicate)
@@ -406,31 +443,32 @@ Table 15 Transaction APIs
     }).catch((err) => {
         console.info("failed to remoteQuery, err: " + err)
     })
-    ```
-   
+   ```
+
 9. Back up and restore an RDB store.
 
    (1) Back up the current RDB store.
 
-    The sample code is as follows:
+   The sample code is as follows:
 
-    ```js
+   ```js
     let promiseBackup = rdbStore.backup("dbBackup.db")
     promiseBackup.then(() => {
-        console.info('Backup success.')
+       console.info('Backup success.')
     }).catch((err) => {
-        console.info('Backup failed, err: ' + err)
+       console.info('Backup failed, err: ' + err)
     })
-    ```
-   (2) Restore the RDB store using the backup file.
+   ```
    
-    The sample code is as follows:
+   (2) Restore the RDB store using the backup file.
 
-    ```js
+   The sample code is as follows:
+
+   ```js
     let promiseRestore = rdbStore.restore("dbBackup.db")
     promiseRestore.then(() => {
-        console.info('Restore success.')
+       console.info('Restore success.')
     }).catch((err) => {
-        console.info('Restore failed, err: ' + err)
+       console.info('Restore failed, err: ' + err)
     })
-    ```
+   ```
