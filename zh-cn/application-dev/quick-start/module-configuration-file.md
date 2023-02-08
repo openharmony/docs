@@ -81,8 +81,8 @@ module.json5配置文件包含以下标签。
 | deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，表示该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>- 当应用的entry类型Module的该字段配置为true时，该应用的feature类型的该字段也需要配置为true。<br/>- 当应用的entry类型Module的该字段配置为false时，该应用的feature类型的该字段根据业务需求配置true或false。 | 布尔值 | 该标签不可缺省。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。<br/>该标签值为字符串。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
-| uiSyntax（deprecated） | 标识当前Module&nbsp;syntax定义该JS&nbsp;Component的语法类型。<br/>-&nbsp;hml：标识该JS&nbsp;Component使用hml/css/js进行开发。<br/>-&nbsp;ets：标识该JS&nbsp;Component使用ArkTS声明式语法进行开发。 | 字符串 | 该标签可缺省，默认值为hml，该标签从API9开始废弃。 |
-| [pages](#pages标签) | 标识当前Module的profile资源，用于列举JS&nbsp;Component中每个页面信息。该标签最大长度为255个字节。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
+| uiSyntax（deprecated） | 标识当前Module&nbsp;syntax定义该组件的语法类型。<br/>-&nbsp;hml：标识该组件使用hml/css/js进行开发。<br/>-&nbsp;ets：标识该组件使用ArkTS声明式语法进行开发。 | 字符串 | 该标签可缺省，默认值为hml，该标签从API9开始废弃。 |
+| [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息。该标签最大长度为255个字节。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
 | [metadata](#metadata标签) | 标识当前Module的自定义元信息，标签值为数组类型，只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，标签值为数组类型，只对当前UIAbility生效。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，标签值为数组类型，只对当前ExtensionAbility生效。 | 对象 | 该标签可缺省，缺省值为空。 |
