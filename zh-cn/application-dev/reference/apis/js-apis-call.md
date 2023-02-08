@@ -151,7 +151,7 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 
 拨打电话，可设置通话参数。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -196,7 +196,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 
 拨打电话，可设置通话参数。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -743,7 +743,7 @@ muteRinger\(callback: AsyncCallback<void\>\): void
 
 如果来电铃声响起，设备将停止铃声。否则，此方法不起作用。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -780,7 +780,7 @@ muteRinger\(\): Promise<void\>
 
 如果来电铃声响起，设备将停止铃声。否则，此方法不起作用。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -821,7 +821,7 @@ answer\(callId: number, callback: AsyncCallback<void\>\): void
 
 接听来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -860,7 +860,7 @@ answer(callId?: number\): Promise<void\>
 
 接听来电。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -907,7 +907,7 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -946,7 +946,7 @@ answer\(callback: AsyncCallback<void\>\): void
 
 接听来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -984,7 +984,7 @@ hangup\(callId?: number\): Promise<void\>
 
 挂断电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1031,7 +1031,7 @@ hangup\(callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1070,7 +1070,7 @@ reject(callId: number, callback: AsyncCallback\<void>): void
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1110,7 +1110,7 @@ reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<v
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1153,7 +1153,7 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
 拒绝来电。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1204,7 +1204,7 @@ reject\(callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1242,7 +1242,7 @@ reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1284,7 +1284,7 @@ holdCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 保持通话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1323,7 +1323,7 @@ holdCall\(callId: number\): Promise<void\>
 
 保持通话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1369,7 +1369,7 @@ unHoldCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 取消保持通话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1408,7 +1408,7 @@ unHoldCall\(callId: number\): Promise<void\>
 
 取消保持通话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1454,7 +1454,7 @@ switchCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 切换呼叫。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1493,7 +1493,7 @@ switchCall\(callId: number\): Promise<void\>
 
 切换呼叫。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1539,7 +1539,7 @@ combineConference\(callId: number, callback: AsyncCallback<void\>\): void
 
 合并通话，将两通电话合并成会议电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1575,7 +1575,7 @@ combineConference\(callId: number\): Promise<void\>
 
 合并通话，将两通电话合并成会议电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1618,7 +1618,7 @@ getMainCallId\(callId: number, callback: AsyncCallback<number\>\): void
 
 获取主呼叫Id。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1655,7 +1655,7 @@ getMainCallId\(callId: number\): Promise<number\>
 
 获取主呼叫Id。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1698,7 +1698,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback<Array<string\>\>\): vo
 
 获取子呼叫Id列表。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1734,7 +1734,7 @@ getSubCallIdList\(callId: number\): Promise<Array<string\>\>
 
 获取子呼叫Id列表。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1777,7 +1777,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback<Array<string
 
 获取会议的呼叫Id列表。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1813,7 +1813,7 @@ getCallIdListForConference\(callId: number\): Promise<Array<string\>\>
 
 获取会议的呼叫Id列表。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1856,7 +1856,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback<CallWaitingStatus\
 
 获取呼叫等待状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1895,7 +1895,7 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 
 获取呼叫等待状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1941,7 +1941,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback<void\
 
 设置呼叫等待。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1981,7 +1981,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 
 设置呼叫等待。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2028,7 +2028,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback<void\>\): 
 
 启动双音多频。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2065,7 +2065,7 @@ startDTMF\(callId: number, character: string\): Promise<void\>
 
 启动双音多频。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2109,7 +2109,7 @@ stopDTMF\(callId: number, callback: AsyncCallback<void\>\): void
 
 停止双音多频。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2145,7 +2145,7 @@ stopDTMF\(callId: number\): Promise<void\>
 
 停止双音多频。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2188,7 +2188,7 @@ isInEmergencyCall\(callback: AsyncCallback<boolean\>\): void
 
 判断是否正在处于紧急呼叫。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2226,7 +2226,7 @@ isInEmergencyCall\(\): Promise<boolean\>
 
 判断是否正在处于紧急呼叫。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2266,7 +2266,7 @@ on\(type: 'callDetailsChange', callback: Callback<CallAttributeOptions\>\): void
 
 订阅callDetailsChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2304,7 +2304,7 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 
 订阅callEventChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2342,7 +2342,7 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 
 订阅callDisconnectedCause事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2380,7 +2380,7 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 
 订阅mmiCodeResult事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2418,7 +2418,7 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 
 取消订阅callDetailsChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2456,7 +2456,7 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 
 取消订阅callEventChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2494,7 +2494,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 
 取消订阅callDisconnectedCause事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2532,7 +2532,7 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 
 取消订阅mmiCodeResult事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2570,7 +2570,7 @@ isNewCallAllowed\(callback: AsyncCallback<boolean\>\): void
 
 判断是否允许再拨打一通新电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2605,7 +2605,7 @@ isNewCallAllowed\(\): Promise<boolean\>
 
 判断是否允许再拨打一通新电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2642,7 +2642,7 @@ separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 
 分离会议电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2678,7 +2678,7 @@ separateConference\(callId: number\): Promise<void\>
 
 分离会议电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2721,7 +2721,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 
 获取呼叫限制状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2761,7 +2761,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 
 获取呼叫限制状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2808,7 +2808,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 
 设置呼叫限制状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2853,7 +2853,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 
 设置呼叫限制状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2905,7 +2905,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 
 获取呼叫转移信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2945,7 +2945,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 
 获取呼叫转移信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2992,7 +2992,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 
 设置呼叫转移信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3037,7 +3037,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 
 设置呼叫转移信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3089,7 +3089,7 @@ isRinging\(callback: AsyncCallback<boolean\>\): void
 
 判断是否正在响铃。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3127,7 +3127,7 @@ isRinging\(\): Promise<boolean\>
 
 判断是否正在响铃。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3167,7 +3167,7 @@ setMuted\(callback: AsyncCallback<void\>\): void
 
 设置通话中的静音。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3202,7 +3202,7 @@ setMuted\(\): Promise<void\>
 
 设置通话中的静音。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3239,7 +3239,7 @@ cancelMuted(callback: AsyncCallback<void\>): void
 
 取消通话中的静音。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3274,7 +3274,7 @@ cancelMuted(): Promise<void\>
 
 取消通话中的静音。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3311,7 +3311,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 
 设置通话音频设备。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3347,7 +3347,7 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 
 设置通话音频设备。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3387,7 +3387,7 @@ setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions): Promise<void\
 
 设置通话音频设备。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3434,7 +3434,7 @@ joinConference(mainCallId: number, callNumberList: Array<string\>, callback: Asy
 
 加入会议。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3473,7 +3473,7 @@ joinConference(mainCallId: number, callNumberList: Array<string\>): Promise<void
 
 加入会议。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3520,7 +3520,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<voi
 
 更新Ims呼叫模式。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3556,7 +3556,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void\>
 
 更新Ims呼叫模式。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3600,7 +3600,7 @@ enableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 
 启用Ims开关。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3638,7 +3638,7 @@ enableImsSwitch(slotId: number): Promise<void\>
 
 启用Ims开关。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3684,7 +3684,7 @@ disableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 
 禁用Ims开关。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3722,7 +3722,7 @@ disableImsSwitch(slotId: number): Promise<void\>
 
 禁用Ims开关。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3768,7 +3768,7 @@ isImsSwitchEnabled(slotId: number, callback: AsyncCallback<boolean\>): void
 
 判断Ims开关是否启用。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3803,7 +3803,7 @@ isImsSwitchEnabled(slotId: number): Promise<boolean\>
 
 判断Ims开关是否启用。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -3904,7 +3904,7 @@ promise.then(data => {
 
 IP多媒体系统调用模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3920,7 +3920,7 @@ IP多媒体系统调用模式。
 
 音频设备。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3936,7 +3936,7 @@ IP多媒体系统调用模式。
 
 呼叫限制类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3955,7 +3955,7 @@ IP多媒体系统调用模式。
 
 呼叫转移信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3973,7 +3973,7 @@ IP多媒体系统调用模式。
 
 呼叫转移类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3988,7 +3988,7 @@ IP多媒体系统调用模式。
 
 设置呼叫转移类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4003,7 +4003,7 @@ IP多媒体系统调用模式。
 
 调用属性选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4024,7 +4024,7 @@ IP多媒体系统调用模式。
 
 会议状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4039,7 +4039,7 @@ IP多媒体系统调用模式。
 
 通话类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4054,7 +4054,7 @@ IP多媒体系统调用模式。
 
 视频状态类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4067,7 +4067,7 @@ IP多媒体系统调用模式。
 
 详细的呼叫状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4087,7 +4087,7 @@ IP多媒体系统调用模式。
 
 呼叫限制信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4101,7 +4101,7 @@ IP多媒体系统调用模式。
 
 呼叫限制模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4114,7 +4114,7 @@ IP多媒体系统调用模式。
 
 呼叫事件的可选参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4126,7 +4126,7 @@ IP多媒体系统调用模式。
 
 呼叫能力事件Id。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4139,7 +4139,7 @@ IP多媒体系统调用模式。
 
 拨号场景。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4153,7 +4153,7 @@ IP多媒体系统调用模式。
 
 拨号类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4167,7 +4167,7 @@ IP多媒体系统调用模式。
 
 拒绝消息可选参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4179,7 +4179,7 @@ IP多媒体系统调用模式。
 
 呼叫转移结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4196,7 +4196,7 @@ IP多媒体系统调用模式。
 
 呼叫等待状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4209,7 +4209,7 @@ IP多媒体系统调用模式。
 
 限制状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4222,7 +4222,7 @@ IP多媒体系统调用模式。
 
 转移状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4235,7 +4235,7 @@ IP多媒体系统调用模式。
 
 通话结束原因。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4248,7 +4248,7 @@ IP多媒体系统调用模式。
 
 断开连接的详细信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4338,7 +4338,7 @@ IP多媒体系统调用模式。
 
 MMI码结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4351,7 +4351,7 @@ MMI码结果。
 
 MMI码结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -4364,7 +4364,7 @@ MMI码结果。
 
 音频设备选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
