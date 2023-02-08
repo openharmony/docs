@@ -1,4 +1,4 @@
-# 网络策略管理
+# @ohos.net.policy (网络策略管理)
 
 网络策略管理通过对用户使用数据流量进行控制管理，采用防火墙技术实现网络策略的管理。
 
@@ -92,7 +92,7 @@ policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))).then((error
 
 ## policy.isBackgroundAllowed
 
-isBackgroundAllowed(callback: AsyncCallback\<boolean>): void;
+isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 
 获取后台网络策略，使用callback方式作为异步方法。
 
@@ -138,7 +138,7 @@ isBackgroundAllowed(): Promise\<boolean>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回设定结果。失败返回错误码错误信息。 |
+| Promise\<boolean> | 以Promise形式返回设定结果。 返回true代表后台策略为允许。失败返回错误码错误信息。|
 
 **错误码：**
 
@@ -160,7 +160,7 @@ policy.isBackgroundAllowed().then((error, data) {
 
 ## policy.setPolicyByUid
 
-setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>): void;
+setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>): void
 
 设置对应uid应用的访问计量网络的策略，使用callback方式作为异步方法。
 
@@ -245,7 +245,7 @@ policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.cur
 
 ## policy.getPolicyByUid
 
-getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void;
+getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
 通过应用uid获取策略，使用callback方式作为异步方法。
 
@@ -322,7 +322,7 @@ policy.getPolicyByUid(Number.parseInt(this.firstParam)).then((error, data) {
 
 ## policy.getUidsByPolicy
 
-getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>): void;
+getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>): void
 
 通过策略获取设置这一策略的应用uid数组，使用callback方式作为异步方法。
 
@@ -399,7 +399,7 @@ policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then((error, data) {
 
 ## policy.getNetQuotaPolicies
 
-getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void;
+getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 
 获取计量网络策略，使用callback方式作为异步方法。
 
@@ -465,7 +465,7 @@ policy.getNetQuotaPolicies().then((error, data) {
 
 ## policy.setNetQuotaPolicies
 
-setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallback\<void>): void;
+setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallback\<void>): void
 
 设置计量网络策略，使用callback方式作为异步方法。
 
@@ -549,7 +549,7 @@ policy.setNetQuotaPolicies(this.netQuotaPolicyList).then((error, data) {
 
 ## policy.restoreAllPolicies
 
-restoreAllPolicies(iccid: string, callback: AsyncCallback\<void>): void;
+restoreAllPolicies(iccid: string, callback: AsyncCallback\<void>): void
 
 重置对应sim卡id的蜂窝网络、后台网络策略、防火墙策略、应用对应的策略，使用callback方式作为异步方法。
 
@@ -628,7 +628,7 @@ policy.restoreAllPolicies(this.firstParam).then((error, data){
 
 ## policy.isUidNetAllowed
 
-isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolean>): void;
+isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolean>): void
 
 获取对应uid能否访问计量或非计量网络，使用callback方式作为异步方法。
 
@@ -715,7 +715,7 @@ policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt
 
 ## policy.isUidNetAllowed
 
-isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): void;
+isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): void
 
 获取对应uid能否访问指定的iface的网络，使用callback方式作为异步方法。
 
@@ -801,7 +801,7 @@ policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(
 
 ## policy.setDeviceIdleAllowList
 
-setDeviceIdleAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<void>): void;
+setDeviceIdleAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 设置指定uid应用是否在休眠防火墙的白名单，使用callback方式作为异步方法。
 
@@ -886,7 +886,7 @@ policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.p
 
 ## policy.getDeviceIdleAllowList
 
-getDeviceIdleAllowList(callback: AsyncCallback\<Array\<number>>): void;
+getDeviceIdleAllowList(callback: AsyncCallback\<Array\<number>>): void
 
 获取休眠模式白名单所包含的uid数组，使用callback方式作为异步方法。
 
@@ -951,7 +951,7 @@ policy.getDeviceIdleAllowList().then((error, data) {
 
 ## policy.getBackgroundPolicyByUid
 
-getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPolicy>): void;
+getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPolicy>): void
 
 获取指定uid能否访问后台网络，使用callback方式作为异步方法。
 
@@ -1029,7 +1029,7 @@ policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then((error, d
 
 ## policy.resetPolicies
 
-resetPolicies(iccid: string, callback: AsyncCallback\<void>): void;
+resetPolicies(iccid: string, callback: AsyncCallback\<void>): void
 
 重置对应sim卡id的蜂窝网络、后台网络策略、防火墙策略、应用对应的策略，使用callback方式作为异步方法。
 
@@ -1111,7 +1111,7 @@ policy.resetPolicies(this.firstParam).then((error, data) {
 
 ## policy.updateRemindPolicy
 
-updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType, callback: AsyncCallback\<void>): void;
+updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType, callback: AsyncCallback\<void>): void
 
 更新提醒策略，使用callback方式作为异步方法。
 
@@ -1198,7 +1198,7 @@ policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number
 
 ## policy.setPowerSaveAllowList
 
-setPowerSaveAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<void>): void;
+setPowerSaveAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 设置指定uid应用是否在省电防火墙的白名单，使用callback方式作为异步方法。
 
@@ -1283,7 +1283,7 @@ policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.pa
 
 ## policy.getPowerSaveAllowList
 
-getPowerSaveAllowList(callback: AsyncCallback\<Array\<number>>): void;
+getPowerSaveAllowList(callback: AsyncCallback\<Array\<number>>): void
 
 获取省电模式白名单所包含的uid数组，使用callback方式作为异步方法。
 
@@ -1352,7 +1352,7 @@ policy.getPowerSaveAllowList().then((error, data) {
 
 ### on('netUidPolicyChange')
 
-on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUidPolicy }>): void;
+on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUidPolicy }>): void
 
 注册policy发生改变时的回调，使用callback方式作为异步方法。
 
@@ -1377,7 +1377,7 @@ policy.on('netUidPolicyChange', (data) => {
 
 ### on('netUidRuleChange')
 
-on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule }>): void;
+on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule }>): void
 
 注册rule发生改变时的回调，使用callback方式作为异步方法。
 
@@ -1402,7 +1402,7 @@ policy.on('netUidRuleChange', (data) => {
 
 ### on('netMeteredIfacesChange')
 
-on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void;
+on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 注册计量iface发生改变时的回调，使用callback方式作为异步方法。
 
@@ -1427,7 +1427,7 @@ policy.on('netMeteredIfacesChange', (data) => {
 
 ### on('netQuotaPolicyChange')
 
-on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): void;
+on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): void
 
 注册计量网络策略发生改变时的回调，使用callback方式作为异步方法。
 
@@ -1452,7 +1452,7 @@ policy.on('netQuotaPolicyChange', (data) => {
 
 ### on('netBackgroundPolicyChange')
 
-on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void;
+on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 注册后台网络策略发生改变时的回调，使用callback方式作为异步方法。
 

@@ -20,7 +20,7 @@ Socket连接主要是通过Socket进行数据传输，支持TCP/UDP/TLS协议。
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[Socket连接](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-socket.md)。
+完整的JS API说明以及实例代码请参考：[Socket连接](../reference/apis/js-apis-socket.md)。
 
 Socket连接主要由socket模块提供。具体接口说明如下表。
 
@@ -69,8 +69,6 @@ TLS Socket连接主要由tls_socket模块提供。具体接口说明如下表。
 | setExtraOptions() | 设置TLSSocket连接的其他属性。 |
 
 ## 应用TCP/UDP协议进行通信
-
-### 开发步骤
 
 UDP与TCP流程大体类似，下面以TCP为例：
 

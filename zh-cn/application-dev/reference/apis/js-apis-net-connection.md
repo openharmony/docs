@@ -1,8 +1,8 @@
-# 网络连接管理
+# @ohos.net.connection (网络连接管理)
 
 网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 
-> ![](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -112,7 +112,7 @@ connection.getDefaultNet().then(function (data) {
 
 ## connection.getGlobalHttpProxy<sup>10+</sup>
 
-getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;
+getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 获取网络的全局代理配置信息，使用callback方式作为异步方法。
 
@@ -173,7 +173,7 @@ connection.getGlobalHttpProxy().then((data) => {
 
 ## connection.setGlobalHttpProxy<sup>10+</sup>
 
-setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;
+setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 
 设置网络全局Http代理配置信息，使用callback方式作为异步方法。
 
@@ -265,7 +265,7 @@ connection.setGlobalHttpProxy(httpProxy).then((error, data) => {
 
 ## connection.getAppNet<sup>9+</sup>
 
-getAppNet(callback: AsyncCallback\<NetHandle>): void;
+getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 获取App绑定的网络信息，使用callback方式作为异步方法。
 
@@ -326,7 +326,7 @@ connection.getAppNet().then((data) => {
 
 ## connection.SetAppNet<sup>9+</sup>
 
-setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;
+setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 
 绑定App到指定网络，绑定后的App只能通过指定网络访问外网，使用callback方式作为异步方法。
 
@@ -1472,7 +1472,7 @@ netCon.unregister(function (error) {
 
 ### bindSocket<sup>9+</sup>
 
-bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void;
+bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void
 
 将TCPSocket或UDPSocket绑定到当前网络，使用callback方式作为异步方法。
 

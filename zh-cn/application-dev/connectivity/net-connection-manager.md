@@ -4,7 +4,7 @@
 网络连接管理提供管理网络一些基础能力，包括WiFi/蜂窝/Ethernet等多网络连接优先级管理、网络质量评估、订阅默认/指定网络连接状态变化、查询网络连接信息、DNS解析等功能。
 
 > **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-connection.md)。
 
 ## 基本概念
 -  网络生产者：数据网络的提供方，比如WiFi、蜂窝、Ethernet等。
@@ -15,6 +15,7 @@
 ## 约束
 -   开发语言：C++ JS
 -   系统：linux内核
+-   本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 场景介绍
 网络连接管理的典型场景有：
@@ -25,48 +26,30 @@
 
 以下分别介绍具体开发方式。
 ## 接口说明
-完整的JS API说明以及实例代码请参考：[网络连接管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-connection.md)。
+完整的JS API说明以及实例代码请参考：[网络连接管理](../reference/apis/js-apis-net-connection.md)。
 
 | 类型 | 接口 | 功能说明 |
 | ---- | ---- | ---- |
 | ohos.net.connection | function getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |获取一个含有默认网络的netId的NetHandle对象，使用callback回调 |
-| ohos.net.connection | function getDefaultNet(): Promise\<NetHandle>; |获取一个含有默认网络的netId的NetHandle对象，使用Promise回调 |
 | ohos.net.connection | function getGlobalHttpProxy<sup>10+</sup>(callback: AsyncCallback\<HttpProxy>): void;| 获取网络的全局代理设置，使用callback回调 |
-| ohos.net.connection | function getGlobalHttpProxy<sup>10+</sup>(): Promise\<HttpProxy>;| 获取网络的全局代理设置，使用Promise回调 |
 | ohos.net.connection | function setGlobalHttpProxy<sup>10+</sup>(httpProxy: HttpProxy, callback: AsyncCallback<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
-| ohos.net.connection | function setGlobalHttpProxy<sup>10+</sup>(httpProxy: HttpProxy): Promise<void>;| 设置网络全局Http代理配置信息，使用Promise回调 |
 | ohos.net.connection | function getAppNet<sup>9+</sup>(callback: AsyncCallback\<NetHandle>): void;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用callback回调 |
-| ohos.net.connection | function getAppNet<sup>9+</sup>(): Promise\<NetHandle>;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用Promise回调 |
 | ohos.net.connection | function setAppNet<sup>9+</sup>(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调 |
-| ohos.net.connection | function setAppNet<sup>9+</sup>(netHandle: NetHandle): Promise\<void>;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用Promise回调 |
 | ohos.net.connection | function getDefaultNetSync<sup>9+</sup>(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|
 | ohos.net.connection | function hasDefaultNet(callback: AsyncCallback\<boolean>): void; |查询是否有默认网络，使用callback回调 |
-| ohos.net.connection | function hasDefaultNet(): Promise\<boolean>; |查询是否有默认网络，使用Promise回调 |
 | ohos.net.connection | function getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的MetHandle对象列表，使用callback回调 |
-| ohos.net.connection | function getAllNets(): Promise\<Array\<NetHandle>>;| 获取所有处于连接状态的网络的NetHandle对象列表，使用Promise回调 |
 | ohos.net.connection | function getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |查询默认网络的链路信息，使用callback回调 |
-| ohos.net.connection | function getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>; |查询默认网络的链路信息，使用Promise回调 |
 | ohos.net.connection | function getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |查询默认网络的能力集信息，使用callback回调 |
-| ohos.net.connection | function getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>; |查询默认网络的能力集信息，使用Promise回调 |
 | ohos.net.connection | function isDefaultNetMetered<sup>9+</sup>(callback: AsyncCallback<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法 |
-| ohos.net.connection | function isDefaultNetMetered<sup>9+</sup>(): Promise<boolean>; |检查当前网络上的数据流量使用是否被计量，使用Promise方式作为异步方法 |
 | ohos.net.connection | function reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
-| ohos.net.connection | function reportNetConnected(netHandle: NetHandle): Promise\<void>;| 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用Promise回调 |
 | ohos.net.connection | function reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
-| ohos.net.connection | function reportNetDisconnected(netHandle: NetHandle): Promise\<void>;| 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用Promise回调 |
 | ohos.net.connection | function getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调 |
-| ohos.net.connection | function getAddressesByName(host: string): Promise\<Array\<NetAddress>>; |使用默认网络解析域名，获取所有IP，使用Promise回调 |
 | ohos.net.connection | function enableAirplaneMode(callback: AsyncCallback\<void>): void; | 设置网络为飞行模式，使用callback回调 |
-| ohos.net.connection | function enableAirplaneMode(): Promise\<void>;|设置网络为飞行模式，使用Promise回调 |
 | ohos.net.connection | function disableAirplaneMode(callback: AsyncCallback\<void>): void;| 关闭网络飞行模式，使用callback回调 |
-| ohos.net.connection | function disableAirplaneMode(): Promise\<void>;| 关闭网络飞行模式，使用Promise回调 |
 | ohos.net.connection | function createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | 返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征，timeout是超时时间(单位是毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络 |
 | ohos.net.connection.NetHandle | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | 将TCPSocket或UDPSockett绑定到当前网络，使用callback回调 |
-| ohos.net.connection.NetHandle | bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;| 将TCPSocket或UDPSockett绑定到当前网络，使用Promise回调 |
 | ohos.net.connection.NetHandle | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用默认网络解析域名，获取所有IP，使用callback回调 |
-| ohos.net.connection.NetHandle | getAddressesByName(host: string): Promise\<Array\<NetAddress>>; |使用对应网络解析域名，获取所有IP，使用Promise回调 |
 | ohos.net.connection.NetHandle | getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |使用对应网络解析域名，获取一个IP，调用callbac |
-| ohos.net.connection.NetHandle | getAddressByName(host: string): Promise\<NetAddress>; |使用对应网络解析域名，获取一个IP，使用Promise回调 |
 | ohos.net.connection.NetConnection | on(type: 'netAvailable', callback: Callback\<NetHandle>): void; |监听收到网络可用的事件 |
 | ohos.net.connection.NetConnection | on(type: 'netCapabilitiesChange', callback: Callback\<{ netHandle: NetHandle, netCap: NetCapabilities }>): void; |监听网络能力变化的事件 |
 | ohos.net.connection.NetConnection | on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |监听网络连接信息变化的事件 |
@@ -77,8 +60,6 @@
 | ohos.net.connection.NetConnection | unregister(callback: AsyncCallback\<void>): void; |注销默认网络或者createNetConnection中指定的网络的监听 |
 
 ## 接收指定网络的状态变化通知
-
-### 开发步骤
 
 1. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
