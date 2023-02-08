@@ -36,6 +36,8 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -86,6 +88,8 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -134,6 +138,8 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -176,6 +182,8 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -222,6 +230,8 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -264,6 +274,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -318,6 +330,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -364,6 +378,8 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -408,6 +424,8 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -445,6 +463,8 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 删除指定应用的所有通知回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -489,6 +509,8 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -529,6 +551,8 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -565,6 +589,8 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback\<void\> | 是   | 删除指定用户所有通知回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -608,6 +634,8 @@ removeAll(userId: number): Promise\<void>
 | userId | number | 是   | 用户ID。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -945,6 +973,46 @@ let subscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
+### onBadgeChanged<sup>10+</sup>
+
+ onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata)) => void
+
+监听应用角标个数变化。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata)\> | 是   | 回调返回监听到的应用信息。 |
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err) {
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onBadgeChangedCallback(data) {
+    console.info("bundle: ", data.bundle);
+    console.info("uid: ", data.uid);
+    console.info("badgeNumber: ", data.badgeNumber);
+};
+
+let subscriber = {
+    onBadgeChanged: onBadgeChangedCallback
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
+
 ## BundleOption
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -1054,3 +1122,15 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
 | CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
+
+## BadgeNumberCallbackData<sup>10+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 名称        | 类型   | 可读 | 可写 | 描述         |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundle      | string | 是   | 否   | 应用的包名。 |
+| uid         | number | 是   | 否   | 应用的uid。  |
+| badgeNumber | number | 是   | 否   | 角标个数。   |
