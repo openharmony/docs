@@ -8,7 +8,7 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
 
-开发者可以在[SysCap列表](../reference/syscap-list.md)中查询OpenHarmony的能力集。
+开发者可以在[SysCap列表](syscap-list.md)中查询OpenHarmony的能力集。
 
 ### 支持能力集，联想能力集与要求能力集
 
@@ -93,19 +93,19 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 
 ### 判断 API 是否可以使用
 
-- 方法1：OpenHarmony定义了API canIUse帮助开发者来判断该工程是否支持某个特定的syscap。
+- 方法1：OpenHarmony定义了API canIUse帮助开发者来判断该设备是否支持某个特定的syscap。
 
    ```
    if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
-   	   console.log("该应用支持SystemCapability.ArkUI.ArkUI.Full");
+   	   console.log("该设备支持SystemCapability.ArkUI.ArkUI.Full");
    } else {
-	   console.log("该应用不支持SystemCapability.ArkUI.ArkUI.Full");
+	   console.log("该设备不支持SystemCapability.ArkUI.ArkUI.Full");
    }
    ```
 
-- 方法2：开发者可通过 import 的方式将模块导入，若当前设备不支持该模块，import 的结果为 undefined，开发者在使用其 API 时，需要判断其是否存在。
+- 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。
 
-   ```
+   ```ts
    import geolocation from '@ohos.geolocation';
 
    if (geolocation) {
@@ -148,16 +148,16 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 
 1. 一套 OpenHarmony 源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与 SysCap 之间映射关系。
 
-2. 发布归一化的 SDK，API 与 SysCap 之间存在映射关系。
+2. 发布归一化的SDK，API与SysCap之间存在映射关系。
 
 3. 产品解决方案厂商按硬件能力和产品诉求，可按需拼装部件。
 
-4. 产品配置的部件可以是 OpenHarmony 的部件，也可以是三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
+4. 产品配置的部件可以是OpenHarmony的部件，也可以是三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
 
-5. SysCap集编码生成 PCID (Product Compatibility ID， 产品兼容性标识)，应用开发者可将 PCID 导入 IDE解码成SysCap ，开发时对设备的SysCap差异做兼容性处理。
+5. SysCap集编码生成 PCID (Product Compatibility ID， 产品兼容性标识)，应用开发者可将PCID导入IDE解码成SysCap，开发时对设备的SysCap差异做兼容性处理。
 
-6. 部署到设备上的系统参数中包含了 SysCap 集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个 SysCap 是否存在。
+6. 部署到设备上的系统参数中包含了SysCap集，系统提供了native的接口和应用接口，可供系统内的部件和应用查询某个SysCap是否存在。
 
-7. 应用开发过程中，应用必要的 SysCap 将被编码成 RPCID（Required Product Compatibility ID），并写入应用安装包中。应用安装时，包管理器将解码 RPCID 得到应用需要的 SysCap，与设备当前具备的 SysCap 比较，若应用要求的 SysCap 都被满足，则安装成功。
+7. 应用开发过程中，应用必要的SysCap将被编码成RPCID（Required Product Compatibility ID），并写入应用安装包中。应用安装时，包管理器将解码RPCID得到应用需要的 SysCap，与设备当前具备的SysCap比较，若应用要求的SysCap都被满足，则安装成功。
 
-8. 应用运行时，可通过 canIUse 接口查询设备的 SysCap，保证在不同设备上的兼容性。
+8. 应用运行时，可通过canIUse接口查询设备的SysCap，保证在不同设备上的兼容性。
