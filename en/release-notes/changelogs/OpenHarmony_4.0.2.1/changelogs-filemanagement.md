@@ -2,7 +2,7 @@
 
 ## cl.filemanagement.1 Changed environment
 
-The file management subsystem **d.ts** file has been moved to the **file** directory. The **environment** module supports error code processing.
+The file management subsystem **d.ts** file has been archived and moved to the **file** directory. The **environment** module supports error code processing.
 
 **Change Impacts**
 
@@ -24,7 +24,7 @@ import environment from '@ohos.file.environment';
 
 ## cl.filemanagement.2 Changed securityLabel
 
-The file management subsystem **d.ts** file has been moved to the **file** directory. The **securityLabel** module supports error code processing.
+The file management subsystem **d.ts** file has been archived and moved to the **file** directory. The **securityLabel** module supports error code processing.
 
 **Change Impacts**
 
@@ -50,7 +50,7 @@ The **ino** attribute type of the **Stat** API under the **fs** module is change
 
 **Change Impacts**
 
-The **ino** attribute type is changed from number to BigInt, to adapt to the inode range of all types of files in the file system.
+The **ino** attribute type is changed from number to BigInt, to adapt the inode range of all types of files in the file system.
 
 **Key API/Component Changes**
 
@@ -58,7 +58,7 @@ The type of the **ino** attribute of the **Stat** API is changed from number to 
 
 ## cl.filemanagement.4 Changed fileAccess
 
-The file management subsystem **d.ts** file has been moved to the **file** directory. The **fileAccess** module supports error code processing.
+The file management subsystem **d.ts** file has been archived and moved to the **file** directory. The **fileAccess** module supports error code processing.
 
 **Change Impacts**
 
@@ -80,7 +80,7 @@ import fileAccess from '@ohos.file.fileAccess';
 
 ## cl.filemanagement.5 Changed fileExtensionInfo
 
-The file management subsystem **d.ts** file has been moved to the **file** directory. The **fileExtensionInfo** module supports error code processing.
+The file management subsystem **d.ts** file has been archived and moved to the **file** directory. The **fileExtensionInfo** module supports error code processing.
 
 **Change Impacts**
 
@@ -102,7 +102,7 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 ## cl.filemanagement.6 Changed storageStatistics
 
-The file management subsystem **d.ts** file has been moved to the **file** directory. The **fileExtensionInfo** module supports error code processing.
+The file management subsystem **d.ts** file has been archived and moved to the **file** directory. The **fileExtensionInfo** module supports error code processing.
 
 **Change Impacts**
 
@@ -124,7 +124,7 @@ import storageStatistics from '@ohos.file.storageStatistics';
 
 ## cl.filemanagement.7 Changed volumeManager
 
-The file management subsystem **d.ts** file has been moved to the **file** directory. The **fileExtensionInfo** module supports error code processing.
+The file management subsystem **d.ts** file has been archived moved to the **file** directory. The **volumeManager** module supports error code processing.
 
 **Change Impacts**
 

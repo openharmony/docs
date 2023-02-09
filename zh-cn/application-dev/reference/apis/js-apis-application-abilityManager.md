@@ -49,7 +49,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-var config = {
+let config = {
   language: 'chinese' 
 }
 
@@ -83,7 +83,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 **示例**：
 
 ```ts
-var config = {
+let config = {
   language: 'chinese' 
 }
 

@@ -47,6 +47,8 @@
   - [文件管理子系统错误码](errorcode-filemanagement.md)
 - 网络管理
   - [上传下载错误码](errorcode-request.md)
+  - [HTTP错误码](errorcode-http.md)
+  - [Socket错误码](errorcode-socket.md)
 - 通信与连接
   - [NFC错误码](errorcode-nfc.md)
   - [RPC错误码](errorcode-rpc.md)

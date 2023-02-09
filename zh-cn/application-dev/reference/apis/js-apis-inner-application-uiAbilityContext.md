@@ -230,7 +230,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
+启动一个Ability。Ability被启动后，有如下情况(callback形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -295,7 +298,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
+启动一个Ability。Ability被启动后，有如下情况(callback形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -365,7 +371,10 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（promise形式）。
+启动一个Ability。Ability被启动后，有如下情况(promise形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -1584,8 +1593,6 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -2122,4 +2129,106 @@ isTerminating(): boolean;
   ```ts
   let isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
+  ```
+
+## UIAbilityContext.requestDialogService
+
+requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void;
+
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want |[Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | 是 | 执行结果回调函数。 |
+
+**示例：**
+
+  ```ts
+  import dialogRequest from '@ohos.app.ability.dialogRequest';
+
+  let want = {
+    deviceId: "",
+    bundleName: "com.example.myapplication",
+    abilityName: "AuthAccountServiceExtension"
+  };
+
+  try {
+    this.context.requestDialogService(want, (error, result) => {
+      if (error && error.code) {
+        // 处理业务逻辑错误
+        console.log('requestDialogService failed, error.code: ' + JSON.stringify(error.code) +
+        ' error.message: ' + JSON.stringify(error.message));
+        return;
+      }
+      // 执行正常业务
+      console.log("requestDialogService succeed, result = " + JSON.stringify(result));
+    });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.log('requestDialogService failed, error.code: ' + JSON.stringify(paramError.code) +
+    ' error.message: ' + JSON.stringify(paramError.message));
+  }
+  ```
+
+  ## UIAbilityContext.requestDialogService
+
+requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
+
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者（promise形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise形式返回执行结果。
+
+**示例：**
+
+  ```ts
+import dialogRequest from '@ohos.app.ability.dialogRequest';
+
+let want = {
+    bundleName: "com.example.myapplication",
+    abilityName: "AuthAccountServiceExtension"
+};
+
+try {
+    this.context.requestDialogService(want)
+        .then((result) => {
+        // 执行正常业务
+        console.log("requestDialogService succeed, result = " + JSON.stringify(result));
+    })
+        .catch((error) => {
+        // 处理业务逻辑错误
+        console.log('requestDialogService failed, error= ' + JSON.stringify(error));
+    });
+} catch (paramError) {
+    // 处理入参错误异常
+    console.log('requestDialogService failed, error.code: ' + JSON.stringify(paramError.code) +
+                ' error.message: ' + JSON.stringify(paramError.message));
+}
   ```

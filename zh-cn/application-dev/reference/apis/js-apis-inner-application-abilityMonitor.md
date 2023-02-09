@@ -36,12 +36,12 @@ function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
 }
 
-var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
     console.info("addAbilityMonitor callback");
 });

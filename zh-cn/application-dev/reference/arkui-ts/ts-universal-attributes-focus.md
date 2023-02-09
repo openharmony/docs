@@ -38,6 +38,7 @@ requestFocus(value: string): boolean
 | boolean | 返回是否成功给目标组件申请到焦点。若参数指向的目标组件存在，且目标组件可获焦，则返回true，否则返回false。 |
 
 >  **说明：**
+>
 >  支持焦点控制的组件：Button、Text、Image、List、Grid。焦点事件当前仅支持在真机上显示运行效果。
 
 ## 示例
@@ -47,6 +48,7 @@ requestFocus(value: string): boolean
 defaultFocus/groupDefaultFocus/focusOnTouch示例代码：
 
 defaultFocus可以使绑定的组件成为页面创建后首次获焦的焦点。groupDefaultFocus可以使绑定的组件成为tabIndex容器创建后首次获焦的焦点。focusOnTouch可以使绑定的组件点击后立即获焦。
+
 ```ts
 // focusTest.ets
 @Entry

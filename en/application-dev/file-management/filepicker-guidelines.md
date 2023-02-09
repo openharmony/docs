@@ -33,7 +33,7 @@ ArkTS sample code:
 globalThis.context.startAbilityForResult(
     {
         bundleName: "com.ohos.filepicker",
-        abilityName: "EntryAbility",
+        abilityName: "MainAbility",
         parameters: {
             'startMode': 'choose', //choose or save
         }
@@ -45,7 +45,7 @@ globalThis.context.startAbilityForResult(
 globalThis.context.startAbilityForResult(
     {
         bundleName: "com.ohos.filepicker",
-        abilityName: "EntryAbility",
+        abilityName: "MainAbility",
         parameters: {
             'startMode': 'save', //choose or save
             'saveFile': 'test.jpg',

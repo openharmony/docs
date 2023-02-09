@@ -359,8 +359,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
       return true;
     }
   };
-  var method = 'call_Function'; // 约定的通知消息字符串
-  var caller;
+  let method = 'call_Function'; // 约定的通知消息字符串
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -440,8 +440,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
       return true;
     }
   };
-  var method = 'call_Function';
-  var caller;
+  let method = 'call_Function';
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -490,7 +490,7 @@ release(): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -530,7 +530,7 @@ release(): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -581,7 +581,7 @@ release(): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -631,7 +631,7 @@ off(type: "release", callback: OnReleaseCallback): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -682,7 +682,7 @@ off(type: "release"): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -760,7 +760,7 @@ on(method: string, callback: CalleeCallback): void;
           return true;
       }
   };
-  var method = 'call_Function';
+  let method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble("test", "");
@@ -806,7 +806,7 @@ off(method: string): void;
 **示例：**
     
   ```ts
-  var method = 'call_Function';
+  let method = 'call_Function';
   export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');

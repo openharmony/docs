@@ -35,10 +35,10 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var mode = "rw";
+let mode = "rw";
 DAHelper.openFile("dataability:///com.example.DataAbility", mode, (err, data) => {
     console.info("openFile err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
 });
@@ -69,10 +69,10 @@ openFile(uri: string, mode: string): Promise\<number>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var mode = "rw";
+let mode = "rw";
 DAHelper.openFile("dataability:///com.example.DataAbility", mode).then((data) => {
     console.info("openFile data: " + JSON.stringify(data));
 });
@@ -98,7 +98,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 function onChangeNotify() {
@@ -131,7 +131,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 function onChangeNotify() {
@@ -167,7 +167,7 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getType("dataability:///com.example.DataAbility", (err, data) => {
@@ -199,7 +199,7 @@ getType(uri: string): Promise\<string>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getType("dataability:///com.example.DataAbility").then((data) => {
@@ -227,7 +227,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getFileTypes( "dataability:///com.example.DataAbility", "image/*", (err, data) => {
@@ -260,7 +260,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.getFileTypes("dataability:///com.example.DataAbility", "image/*").then((data) => {
@@ -287,7 +287,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.normalizeUri("dataability:///com.example.DataAbility", (err, data) => {
@@ -319,7 +319,7 @@ normalizeUri(uri: string): Promise\<string>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.normalizeUri("dataability:///com.example.DataAbility",).then((data) => {
@@ -346,7 +346,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri("dataability:///com.example.DataAbility", (err, data) => {
@@ -378,7 +378,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.denormalizeUri("dataability:///com.example.DataAbility",).then((data) => {
@@ -405,7 +405,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.notifyChange("dataability:///com.example.DataAbility", (err) => {
@@ -437,7 +437,7 @@ notifyChange(uri: string): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 DAHelper.notifyChange("dataability:///com.example.DataAbility").then(() => {
@@ -465,7 +465,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const valueBucket = {
@@ -504,7 +504,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const valueBucket = {
@@ -538,10 +538,10 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
+let cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
 DAHelper.batchInsert("dataability:///com.example.DataAbility", cars, (err, data) => {
@@ -574,10 +574,10 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
+let cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
                      {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
 DAHelper.batchInsert("dataability:///com.example.DataAbility", cars).then((data) => {
@@ -606,7 +606,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
@@ -641,7 +641,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
@@ -672,7 +672,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const va = {
@@ -714,7 +714,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
 const va = {
@@ -751,10 +751,10 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars=new Array("value1", "value2", "value3", "value4");
+let cars=new Array("value1", "value2", "value3", "value4");
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query("dataability:///com.example.DataAbility", cars, da, (err, data) => {
     console.info("query err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
@@ -790,10 +790,10 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars = new Array("value1", "value2", "value3", "value4");
+let cars = new Array("value1", "value2", "value3", "value4");
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query("dataability:///com.example.DataAbility", cars, da).then((data) => {
     console.info("query data: " + JSON.stringify(data));

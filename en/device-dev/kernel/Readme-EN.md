@@ -26,6 +26,7 @@
             - [Exception Debugging](kernel-mini-memory-exception.md)
             - [Trace](kernel-mini-memory-trace.md)
             - [LMS](kernel-mini-memory-lms.md)
+           - [Shell](kernel-mini-debug-shell.md)
         - Appendix
             - [Kernel Coding Specification](kernel-mini-appx-code.md)
             - [Standard Libraries](kernel-mini-appx-lib.md)

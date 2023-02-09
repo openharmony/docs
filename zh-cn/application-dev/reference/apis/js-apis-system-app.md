@@ -1,6 +1,7 @@
 # @system.app (应用上下文)
 
 > **说明：**
+>
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -20,7 +21,7 @@ getInfo(): AppResponse
 
 获取当前应用配置文件中声明的信息。
 
-> **说明：** 从API Version 7开始，推荐使用[`@ohos.bundle`](js-apis-Bundle.md)。
+从API Version 7开始，推荐使用[`@ohos.bundle`](js-apis-Bundle.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -32,14 +33,14 @@ getInfo(): AppResponse
 
 **示例：**
 
-  ```ts
+```ts
 export default {
   getInfo() {
     let info = app.getInfo()
     console.log(JSON.stringify(info))
   }
 }
-  ```
+```
 
 ## app.terminate
 
@@ -47,37 +48,38 @@ terminate(): void
 
 退出当前Ability。
 
-> **说明：** 从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-ability-featureAbility.md)。
+从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](js-apis-ability-featureAbility.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **示例：**
 
-  ```ts
+```ts
 export default {
   terminate() {
     app.terminate()
   }
 }
-  ```
+```
 ## app.requestFullWindow
 
 requestFullWindow(options?: RequestFullWindowOptions): void
 
 请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。
 
-> **说明：** 从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
+从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options | [RequestFullWindowOptions](#requestfullwindowoptions) | 否 | 请求全屏时，设定非全屏到全屏的过渡时间，单位为毫秒，默认时间与非全屏到全屏的距离成正比。 |
 
 **示例：**
 
-  ```ts
+```ts
 export default {
   requestFullWindow() {
     app.requestFullWindow({
@@ -85,7 +87,7 @@ export default {
     })
   }
 }
-  ```
+```
 
 ## app.setImageCacheCount<sup>7+</sup>
 
@@ -96,13 +98,14 @@ setImageCacheCount(value: number): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 内存中解码后图片的缓存数量。 |
 
 **示例：**
 
-  ```ts
+```ts
 // app.ets
 import app from '@system.app'
 
@@ -115,7 +118,7 @@ export default {
     console.info('Application onDestroy')
   },
 }
-  ```
+```
 
 ## app.setImageRawDataCacheSize<sup>7+</sup>
 
@@ -126,13 +129,14 @@ setImageRawDataCacheSize(value: number): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 内存中解码前图片数据的缓存大小，单位为字节。 |
 
 **示例：**
 
-  ```ts
+```ts
 // app.ets
 import app from '@system.app'
 
@@ -146,7 +150,7 @@ export default {
     console.info('Application onDestroy')
   },
 }
-  ```
+```
 
 ## app.setImageFileCacheSize<sup>7+</sup>
 
@@ -157,13 +161,14 @@ setImageFileCacheSize(value: number): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 图片文件的缓存大小，单位为字节。 |
 
 **示例：**
 
-  ```ts
+```ts
 // app.ets
 import app from '@system.app'
 
@@ -177,7 +182,7 @@ export default {
     console.info('Application onDestroy')
   },
 }
-  ```
+```
 
 ## AppResponse
 
@@ -198,7 +203,7 @@ screenOnVisible(options?: ScreenOnVisibleOptions)
 
 定义屏幕唤醒时是否保持应用可见。
 
-**说明：**  该接口从API Version 8 开始废弃。
+该接口从API Version 8 开始废弃。
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
