@@ -3476,7 +3476,7 @@ try {
 | 名称            | 类型 | 可读 | 可写 | 说明                   |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
 | sensorName      | string   | 是  | 是  | 传感器名称。           |
-| venderName      | string   | 是  | 是  | 传感器供应商。         |
+| vendorName      | string   | 是  | 是  | 传感器供应商。         |
 | firmwareVersion | string   | 是  | 是  | 传感器固件版本。       |
 | hardwareVersion | string   | 是  | 是  | 传感器硬件版本。       |
 | sensorId        | number   | 是  | 是  | 传感器类型id。         |
