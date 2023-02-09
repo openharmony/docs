@@ -31,7 +31,7 @@ Enumerates the match patterns supported for component attributes.
 
 | Name       | Value  | Description          |
 | ----------- | ---- | -------------- |
-| EQUALS      | 0    | Equal to the given value.  |
+| EQUALS      | 0    | Equals the given value.  |
 | CONTAINS    | 1    | Contains the given value.  |
 | STARTS_WITH | 2    | Starts with the given value.|
 | ENDS_WITH   | 3    | Ends with the given value.|
@@ -70,12 +70,12 @@ Provides bounds information of a component.
 
 **System capability**: SystemCapability.Test.UiTest
 
-| Name   | Type  | Readable| Writable| Description                     |
-| ------- | ------ | ---- | ---- | ------------------------- |
-| leftX   | number | Yes  | No  | X-coordinate of the upper left corner of the component bounds.|
-| topY    | number | Yes  | No  | Y-coordinate of the upper left corner of the component bounds.|
-| rightX  | number | Yes  | No  | X-coordinate of the lower right corner of the component bounds.|
-| bottomY | number | Yes  | No  | Y-coordinate of the lower right corner of the component bounds.|
+| Name  | Type  | Readable| Writable| Description                     |
+| ------ | ------ | ---- | ---- | ------------------------- |
+| left   | number | Yes  | No  | X-coordinate of the upper left corner of the component bounds.|
+| top    | number | Yes  | No  | Y-coordinate of the upper left corner of the component bounds.|
+| right  | number | Yes  | No  | X-coordinate of the lower right corner of the component bounds.|
+| bottom | number | Yes  | No  | Y-coordinate of the lower right corner of the component bounds.|
 
 ## WindowMode<sup>9+</sup>
 
@@ -219,7 +219,7 @@ Specifies the clickable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br> Default value: **true**|
+| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br>Default value: **true** |
 
 **Return value**
 
@@ -245,7 +245,7 @@ Specifies the long-clickable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Long-clickable status of the target component.<br>**true**: long-clickable.<br>**false**: not long-clickable.<br> Default value: **true**|
+| b      | boolean | No  | Long-clickable status of the target component.<br>**true**: long-clickable.<br>**false**: not long-clickable.<br>Default value: **true** |
 
 **Return value**
 
@@ -272,7 +272,7 @@ Specifies the scrollable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br> Default value: **true**|
+| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br>Default value: **true** |
 
 **Return value**
 
@@ -298,7 +298,7 @@ Specifies the enabled status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: disabled.<br> Default value: **true**|
+| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br>Default value: **true** |
 
 **Return value**
 
@@ -324,7 +324,7 @@ Specifies the focused status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                 |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br> Default value: **true**|
+| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br>Default value: **true** |
 
 **Return value**
 
@@ -350,7 +350,7 @@ Specifies the selected status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br> Default value: **true**|
+| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br>Default value: **true** |
 
 **Return value**
 
@@ -376,7 +376,7 @@ Specifies the checked status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Checked status of the target component.<br>**true**: checked.<br>**false**: not checked.<br> Default value: **false**|
+| b      | boolean | No  | Checked status of the target component.<br>**true**: checked.<br>**false**: not checked.<br>Default value: **false** |
 
 **Return value**
 
@@ -402,7 +402,7 @@ Specifies the checkable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Checkable status of the target component.<br>**true**: checkable.<br>**false**: not checkable.<br> Default value: **false**|
+| b      | boolean | No  | Checkable status of the target component.<br>**true**: checkable.<br>**false**: not checkable.<br>Default value: **false** |
 
 **Return value**
 
@@ -2788,7 +2788,7 @@ This API is deprecated since API version 9. You are advised to use [clickable<su
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br> Default value: **true**|
+| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br>Default value: **true** |
 
 **Return value**
 
@@ -2817,7 +2817,7 @@ This API is deprecated since API version 9. You are advised to use [scrollable<s
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br> Default value: **true**|
+| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br>Default value: **true** |
 
 **Return value**
 
@@ -2845,7 +2845,7 @@ This API is deprecated since API version 9. You are advised to use [enabled<sup>
 
 | Name| Type   | Mandatory| Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not disabled.<br> Default value: **true**|
+| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br>Default value: **true** |
 
 **Return value**
 
@@ -2873,7 +2873,7 @@ This API is deprecated since API version 9. You are advised to use [focused<sup>
 
 | Name| Type   | Mandatory| Description                                                 |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br> Default value: **true**|
+| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br>Default value: **true** |
 
 **Return value**
 
@@ -2901,7 +2901,7 @@ This API is deprecated since API version 9. You are advised to use [selected<sup
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br> Default value: **true**|
+| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br>Default value: **true** |
 
 **Return value**
 
