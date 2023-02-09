@@ -185,121 +185,6 @@ import settings from '@ohos.settings';
 | WIFI_STATUS                       | string | 是   | 是   | Wi-Fi是否可用。<br>值为true表示Wi-Fi可用；<br/>值为false表示Wi-Fi不可用。 |
 | WIFI_WATCHDOG_STATUS              | string | 是   | 是   | Wi-Fi的WatchDog是否可用。 <br>值为true表示可用；<br/>值为false表示不可用。 |
 
-## setting.getURI
-
-getURI(name: string, callback: AsyncCallback\<object>): void
-
-获取数据项的URI。使用callback异步回调。
-
-**系统能力**：SystemCapability.Applications.settings.Core
-
-**参数**：
-
-| 参数名   | 类型                   | 必填 | 说明                                                         |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| callback | AsyncCallback\<object> | 是   | 回调函数。获取数据项的URI。                                  |
-
-**示例**：
-
-```js
-settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri) => {
-    console.log(`callback:uri -> ${JSON.stringify(uri)}`)
-})
-```
-
-## setting.getURI
-
-getURI(name: string): Promise\<object>
-
-获取数据项的URI。使用Promise异步回调。
-
-**系统能力**：SystemCapability.Applications.settings.Core
-
-**参数**：
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-
-**返回值**：
-
-| 类型             | 说明                                 |
-| ---------------- | ------------------------------------ |
-| Promise\<object> | Promise对象。返回获取的数据项的URI。 |
-
-**示例**：
-
-```js
-settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
-    console.log(`promise:uri -> ${JSON.stringify(uri)}`)
-})
-```
-
-## setting.getValue
-
-getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
-
-获取数据库中指定数据项的值。使用callback异步回调。
-
-**系统能力**：SystemCapability.Applications.settings.Core
-
-**参数**：
-
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| callback          | AsyncCallback\<object>                            | 是   | 使用callback方式获取数据项的值。                             |
-
-**示例**：
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
-    if (err) {
-        console.error(`Failed to get the setting. ${err.message} `);
-        return;
-    }
-    console.log(`callback:value -> ${JSON.stringify(value)}`)
-});
-```
-
-## setting.getValue
-
-getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
-
-获取数据库中指定数据项的值。使用Promise异步回调。
-
-**系统能力**：SystemCapability.Applications.settings.Core
-
-**参数**：
-
-| 参数名            | 类型                                              | 必填 | 说明                                                         |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
-| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-
-**返回值**：
-
-| 类型             | 说明                                |
-| ---------------- | ----------------------------------- |
-| Promise\<object> | Promise对象。返回获得的数据项的值。 |
-
-**示例**：
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-    console.log(`promise:value -> ${JSON.stringify(value)}`)
-});
-```
 
 ## settings.setValue
 
@@ -504,11 +389,153 @@ getUriSync(name: string): string
 let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
-## settings.getValueSync<sup>8+</sup>
+## setting.getURI<sup>(deprecated)</sup>
+
+getURI(name: string, callback: AsyncCallback\<object>): void
+
+获取数据项的URI。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| callback | AsyncCallback\<object> | 是   | 回调函数。获取数据项的URI。                                  |
+
+**示例**：
+
+```js
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri) => {
+    console.log(`callback:uri -> ${JSON.stringify(uri)}`)
+})
+```
+
+## setting.getURI<sup>(deprecated)</sup>
+
+getURI(name: string): Promise\<object>
+
+获取数据项的URI。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| name   | string | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+
+**返回值**：
+
+| 类型             | 说明                                 |
+| ---------------- | ------------------------------------ |
+| Promise\<object> | Promise对象。返回获取的数据项的URI。 |
+
+**示例**：
+
+```js
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
+    console.log(`promise:uri -> ${JSON.stringify(uri)}`)
+})
+```
+
+## setting.getValue<sup>(deprecated)</sup>
+
+getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
+
+获取数据库中指定数据项的值。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃。
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名            | 类型                                              | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+| callback          | AsyncCallback\<object>                            | 是   | 使用callback方式获取数据项的值。                             |
+
+**示例**：
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+    if (err) {
+        console.error(`Failed to get the setting. ${err.message} `);
+        return;
+    }
+    console.log(`callback:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## setting.getValue<sup>(deprecated)</sup>
+
+getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
+
+获取数据库中指定数据项的值。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃。
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+**系统能力**：SystemCapability.Applications.settings.Core
+
+**参数**：
+
+| 参数名            | 类型                                              | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
+
+**返回值**：
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| Promise\<object> | Promise对象。返回获得的数据项的值。 |
+
+**示例**：
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+    console.log(`promise:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## settings.getValueSync<sup>(deprecated)</sup>
 
 getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
 获取数据项的值。此方法相较getValue为同步方法。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 9开始废弃。
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -537,13 +564,19 @@ let helper = featureAbility.acquireDataAbilityHelper(uri);
 let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
-## settings.setValueSync<sup>8+</sup>
+## settings.setValueSync<sup>(deprecated)</sup>
 
 setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
 设置数据项的值。此方法相较setValue为同步方法。
 
 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 9开始废弃。
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
