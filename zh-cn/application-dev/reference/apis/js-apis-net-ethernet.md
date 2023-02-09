@@ -32,6 +32,19 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | ic       | [InterfaceConfiguration](#interfaceconfiguration) | 是   | 要设置的网络接口配置信息                   |
 | callback | AsyncCallback\<void>                     | 是   | 回调函数，成功无返回，失败返回对应错误码。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+| 2201006 | Device disconnected.                    |
+| 2201007 | Failed to write the user configuration.    |
+
 **示例：**
 
 ```js
@@ -71,6 +84,19 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | ------------------- | ----------------------------------------------------------- |
 | Promise\<void>       | 以Promise形式返回执行结果。成功无返回，失败返回对应错误码。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+| 2201006 | Device disconnected.                   |
+| 2201007 | Failed to write the user configuration.    |
+
 **示例：**
 
 ```js
@@ -100,6 +126,17 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | -------- | ----------------------------------------------- | ----- | ------------ |
 | iface    | string                                          | 是    | 指定网络接口 |
 | callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration)> | 是    | 回调函数，返回指定网络接口信息   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
 
 **示例：**
 
@@ -143,6 +180,17 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | --------------------------------- | ---------------------------------- |
 | Promise\<[InterfaceConfiguration](#interfaceconfiguration)>   | 以Promise形式返回接口信息。        |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+
 **示例：**
 
 ```js
@@ -177,6 +225,17 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | -------- | --------------------------- | ---- | -------------------------------------------------- |
 | iface    | string                      | 是   | 接口名。为空时代表查询是否存在激活接口             |
 | callback | AsyncCallback\<number>       | 是   | 回调函数，已激活:1,未激活:0,其他为获取失败错误码。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
 
 **示例：**
 
@@ -214,6 +273,17 @@ isIfaceActive(iface: string): Promise\<number>
 | ----------------| ------------------------------------------------------------------ |
 | Promise\<number> | 以Promise形式返回获取结果。已激活:1,未激活:0,其他为获取失败错误码。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+
 **示例：**
 
 ```js
@@ -241,6 +311,14 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | 参数名   | 类型                                 | 必填 | 说明                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
 | callback | AsyncCallback\<Array\<string>>         | 是   | 回调函数，返回值为对应接口名。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
 
 **示例：**
 
@@ -274,6 +352,14 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | 类型                           | 说明                                            |
 | ------------------------------ | ----------------------------------------------- |
 | Promise\<Array\<string>>         | 以Promise形式返回获取结果。返回值为对应接口名。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
 
 **示例：**
 
