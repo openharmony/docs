@@ -1,8 +1,5 @@
 # @ohos.util.TreeMap (非线性容器TreeMap) 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 TreeMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 
 TreeMap底层使用红黑树实现，可以利用二叉树特性快速查找键值对。key值有序存储，可以实现快速的插入和删除。
@@ -11,9 +8,15 @@ TreeMap和[HashMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 一般需要存储有序键值对的场景，可以使用TreeMap。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
-- K: Key, 键<br>
+文档中存在泛型的使用，涉及以下泛型标记符:
+
+- K: Key, 键
+
 - V: Value, 值
+
+> **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -563,7 +566,7 @@ while(temp != undefined) {
 
 values(): IterableIterator&lt;V&gt;
 
-返回包含此映射中包含的键值的新迭代器对象。
+返回包含此映射中键值对的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -609,9 +612,9 @@ forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | V | 否 | 当前遍历到的元素键值对的值。 |
@@ -642,7 +645,7 @@ treeMap.forEach((value, key) => {
 
 entries(): IterableIterator<[K, V]>
 
-返回包含此映射中包含的键值对的新迭代器对象。
+返回包含此映射中键值对的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -680,7 +683,7 @@ while(temp != undefined) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
