@@ -4520,9 +4520,12 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | 表示键名，必需的标签。    |
 | KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | 表示键名，布尔返回值。    |
 
-## ResultCode<sup>8+</sup>
+## ResultCode<sup>(deprecated)</sup>
 
 表示返回码的枚举。
+
+> **说明：**<br/>
+> 从API version 8开始支持，从API version 9开始废弃。建议查看[错误码文档](../errorcodes/errorcode-app-account.md)替代。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
