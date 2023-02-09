@@ -68,11 +68,11 @@
     grantPermission();
    
     // Stage模型
-    import AbilityStage from '@ohos.application.Ability';
+    import UIAbility from '@ohos.app.ability.UIAbility';
   
     let context = null;
   
-    class MainAbility extends AbilityStage {
+    class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
         let context = this.context;
       }
@@ -103,9 +103,9 @@
    let context = featureAbility.getContext();
    
    // Stage模型获取context
-   import AbilityStage from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let context = null;
-   class MainAbility extends AbilityStage{
+   class EntryAbility extends UIAbility{
       onWindowStageCreate(windowStage){
         context = this.context;
       }
