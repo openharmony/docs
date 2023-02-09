@@ -46,11 +46,11 @@ addCheckRule(rule: bigint): void
 ```js
 try {
     // 添加一条规则
-    hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);}
+    hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
     // 添加多条规则
-    hichecker.addCheckRule(
-        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
-catch (err) {
+    // hichecker.addCheckRule(
+    //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -76,9 +76,9 @@ try {
     // 删除一条规则
     hichecker.removeCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
     // 删除多条规则
-    hichecker.removeCheckRule(
-        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
-catch (err) {
+    // hichecker.removeCheckRule(
+    //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -113,7 +113,7 @@ try {
     // 查询是否包含
     hichecker.containsCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
     hichecker.containsCheckRule(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
-catch (err) {
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```

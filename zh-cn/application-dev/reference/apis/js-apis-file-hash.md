@@ -92,6 +92,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：**
   ```js
+  let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256", (err, str) => {
     if (err) {
       console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
