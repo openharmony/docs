@@ -534,9 +534,9 @@ Allows an application to change the telephone state.
 
 **Enable ACL**: TRUE
 
-## ohos.permission.START_ABILIIES_FROM_BACKGROUND
+## ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
-Allows an application to start Feature abilities in the background.
+Allows an application to start or access other components from the background.
 
 **Permission level**: system_basic
 
