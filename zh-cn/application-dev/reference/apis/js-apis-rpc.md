@@ -6117,7 +6117,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendMessageRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendRequest接口方法发送消息
   
   ```ts
   let option = new rpc.MessageOption();
@@ -6265,7 +6265,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendMessageRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6424,7 +6424,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendMessageRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6671,7 +6671,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用addDeathRecipient接口方法新增死亡回调
+  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用addDeathRecippient接口方法新增死亡回调
 
   ```ts
   class MyDeathRecipient {
