@@ -200,12 +200,13 @@
 通过调用[requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7)接口向用户动态申请授权。
 
 ```js
-// Ability的onWindowStageCreate()生命周期
-onWindowStageCreate() {
-    let context = this.context;
+import featureAbility from '@ohos.ability.featureAbility';
+
+reqPermissions() {
+    let context = featureAbility.getContext();
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    context.requestPermissionsFromUser(array).then(function(data) {
+    context.requestPermissionsFromUser(array, 1).then(function(data) {
         console.log("data:" + JSON.stringify(data));
         console.log("data permissions:" + JSON.stringify(data.permissions));
         console.log("data result:" + JSON.stringify(data.authResults));
