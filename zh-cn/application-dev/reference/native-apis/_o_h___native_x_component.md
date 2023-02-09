@@ -69,8 +69,8 @@
 | [OH_XCOMPONENT_ID_LEN_MAX](#oh_xcomponent_id_len_max) = 128  | ArkUI XComponent的id最大长度。            |
 | [OH_MAX_TOUCH_POINTS_NUMBER](#oh_max_touch_points_number) = 10 | 触摸事件中的可识别的触摸点个数最大值。    |
 | [OH_NativeXComponent_TouchPoint::id](#id-12) = 0             | 手指的唯一标识符。                        |
-| [OH_NativeXComponent_TouchPoint::screenX](#screenx-13) = 0.0 | 触摸点相对于屏幕左边缘的x坐标。           |
-| [OH_NativeXComponent_TouchPoint::screenY](#screeny-13) = 0.0 | 触摸点相对于屏幕上边缘的y坐标。           |
+| [OH_NativeXComponent_TouchPoint::screenX](#screenx-13) = 0.0 | 触摸点相对于应用窗口左上角的x坐标。           |
+| [OH_NativeXComponent_TouchPoint::screenY](#screeny-13) = 0.0 | 触摸点相对于应用窗口左上角的y坐标。           |
 | [OH_NativeXComponent_TouchPoint::x](#x-13) = 0.0             | 触摸点相对于XComponent组件左边缘的x坐标。 |
 | [OH_NativeXComponent_TouchPoint::y](#y-13) = 0.0             | 触摸点相对于XComponent组件上边缘的y坐标。 |
 | [OH_NativeXComponent_TouchPoint::type](#type-12) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。                      |
@@ -79,8 +79,8 @@
 | [OH_NativeXComponent_TouchPoint::timeStamp](#timestamp-12) = 0 | 当前触摸事件的时间戳。                    |
 | [OH_NativeXComponent_TouchPoint::isPressed](#ispressed) = false | 当前点是否被按下。                        |
 | [OH_NativeXComponent_TouchEvent::id](#id-22) = 0             | 手指的唯一标识符。                        |
-| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23) = 0.0 | 触摸点相对于屏幕左边缘的x坐标。           |
-| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23) = 0.0 | 触摸点相对于屏幕上边缘的y坐标。           |
+| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23) = 0.0 | 触摸点相对于应用窗口左上角的x坐标。           |
+| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23) = 0.0 | 触摸点相对于应用窗口左上角的y坐标。           |
 | [OH_NativeXComponent_TouchEvent::x](#x-23) = 0.0             | 触摸点相对于XComponent组件左边缘的x坐标。 |
 | [OH_NativeXComponent_TouchEvent::y](#y-23) = 0.0             | 触摸点相对于XComponent组件上边缘的y坐标。 |
 | [OH_NativeXComponent_TouchEvent::type](#type-22) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。                      |
@@ -92,8 +92,8 @@
 | [OH_NativeXComponent_TouchEvent::numPoints](#numpoints) = 0  | 当前接触点的数量。                        |
 | [OH_NativeXComponent_MouseEvent::x](#x-33) = 0.0             | 点击触点相对于当前组件左上角的x轴坐标。   |
 | [OH_NativeXComponent_MouseEvent::y](#y-33) = 0.0             | 点击触点相对于当前组件左上角的y轴坐标。   |
-| [OH_NativeXComponent_MouseEvent::screenX](#screenx-33) = 0.0 | 点击触点相对于屏幕左上角的x轴坐标。       |
-| [OH_NativeXComponent_MouseEvent::screenY](#screeny-33) = 0.0 | 点击触点相对于屏幕左上角的y轴坐标。       |
+| [OH_NativeXComponent_MouseEvent::screenX](#screenx-33) = 0.0 | 触摸点相对于应用窗口左上角的x坐标。       |
+| [OH_NativeXComponent_MouseEvent::screenY](#screeny-33) = 0.0 | 触摸点相对于应用窗口左上角的y坐标。       |
 | [OH_NativeXComponent_MouseEvent::timestamp](#timestamp) = 0  | 当前鼠标事件的时间戳。                    |
 | [OH_NativeXComponent_MouseEvent::action](#action) = [OH_NativeXComponent_MouseEventAction::OH_NATIVEXCOMPONENT_MOUSE_NONE](#oh_nativexcomponent_mouseeventaction) | 当前鼠标事件动作。                        |
 | [OH_NativeXComponent_MouseEvent::button](#button) = [OH_NativeXComponent_MouseEventButton::OH_NATIVEXCOMPONENT_NONE_BUTTON](#oh_nativexcomponent_mouseeventbutton) | 鼠标事件按键。                            |
@@ -739,7 +739,7 @@ float OH_NativeXComponent_TouchPoint::screenX = 0.0
 
 **描述：**
 
-触摸点相对于屏幕左边缘的x坐标。
+触摸点相对于应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -755,7 +755,7 @@ float OH_NativeXComponent_TouchEvent::screenX = 0.0
 
 **描述：**
 
-触摸点相对于屏幕左边缘的x坐标。
+触摸点相对于应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -771,7 +771,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 **描述：**
 
-点击触点相对于屏幕左上角的x轴坐标。
+点击触点相对于应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -787,7 +787,7 @@ float OH_NativeXComponent_TouchPoint::screenY = 0.0
 
 **描述：**
 
-触摸点相对于屏幕上边缘的y坐标。
+触摸点相对于应用窗口左上角的y坐标。
 
 **起始版本：**
 
@@ -803,7 +803,7 @@ float OH_NativeXComponent_TouchEvent::screenY = 0.0
 
 **描述：**
 
-触摸点相对于屏幕上边缘的y坐标。
+触摸点相对于应用窗口左上角的y坐标。
 
 **起始版本：**
 
@@ -819,7 +819,7 @@ float OH_NativeXComponent_MouseEvent::screenY
 
 **描述：**
 
-点击触点相对于屏幕左上角的y轴坐标。
+点击触点相对于应用窗口左上角的y轴坐标。
 
 **起始版本：**
 
