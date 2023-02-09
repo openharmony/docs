@@ -105,7 +105,7 @@
    // Stage模型获取context
    import UIAbility from '@ohos.app.ability.UIAbility';
    let context = null;
-   class EntryAbility extends UIAbility{
+   class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage){
         context = this.context;
       }
