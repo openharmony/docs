@@ -1107,6 +1107,89 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
 });
 ```
 
+### setSessionEvent<sup>10+</sup>
+
+setSessionEvent(event: string, args: {[key: string]: any}): Promise\<void>
+
+媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名  | 类型                                          | 必填 | 说明                                                        |
+| ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| event | string | 是   | 需要设置的会话事件的名称 |
+| args | {[key: string]: any} | 是   | 需要传递的会话事件键值对 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise<void\> | Promise对象。当事件设置成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let eventName = "dynamic_lyric";
+let args = {
+    lyric : "This is lyric"
+}
+await session.setSessionEvent(eventName, args).catch((err) => {
+    console.info(`SetSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+})
+```
+
+### setSessionEvent<sup>10+</sup>
+
+setSessionEvent(event: string, args: {[key: string]: any}, callback: AsyncCallback<void>): void
+
+媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名  | 类型                                          | 必填 | 说明                                                        |
+| ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| event | string | 是   | 需要设置的会话事件的名称 |
+| args | {[key: string]: any} | 是   | 需要传递的会话事件键值对 |
+| callback | AsyncCallback<void\>                          | 是   | 回调函数。当会话事件设置成功，err为undefined，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let eventName = "dynamic_lyric";
+let args = {
+    lyric : "This is lyric"
+}
+await session.setSessionEvent(eventName, args, (err) => {
+    if(err) {
+        console.info(`SetSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+    }
+})
+```
+
 ### getController
 
 getController(): Promise\<AVSessionController>
@@ -2675,6 +2758,39 @@ controller.on('playbackStateChange', playbackFilter, (playbackState) => {
 });
 ```
 
+### on('sessionEventChange')<sup>10+</sup>
+
+on(type: 'sessionEventChange', callback: (sessionEvent: string, args: {[key:string]: any}) => void): void
+
+媒体控制器设置会话自定义事件变化的监听器。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'sessionEventChange'`：当会话事件变化时，触发该事件。 |
+| callback | (sessionEvent: string, args: {[key:string]: any}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+
+```js
+controller.on('sessionEventChange', (sessionEvent, args) => {
+    console.info(`OnSessionEventChange, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+});
+```
+
 ### on('sessionDestroy')
 
 on(type: 'sessionDestroy', callback: () => void)
@@ -2854,6 +2970,36 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
 ```js
 controller.off('playbackStateChange');
+```
+
+### off('sessionEventChange')<sup>10+</sup>
+
+off(type: 'sessionEventChange', callback?: (sessionEvent: string, args: {[key:string]: any}) => void): void
+
+控制器取消监听播放状态变化的事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'sessionEventChange'`。    |
+| callback | (sessionEvent: string, args: {[key:string]: any}) => void         | 否   | 回调函数，参数sessionEvent是变化的事件名，args为事件的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对sessionEventChange事件的监听。                      |
+
+**错误码：**
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
+controller.off('sessionEventChange');
 ```
 
 ### off('sessionDestroy')
