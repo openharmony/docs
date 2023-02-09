@@ -1,4 +1,4 @@
-# @system.router
+# @system.router (Page Routing)
 
 The **Router** module provides APIs to access pages through URIs.
 
@@ -127,7 +127,7 @@ Returns to the previous page or a specified page.
 
 | Name    | Type                                     | Mandatory  | Description                     |
 | ------- | --------------------------------------- | ---- | ----------------------- |
-| options | [BackRouterOptions](#backrouteroptions) | Yes   | For details, see **BackRouterOptions**.|
+| options | [BackRouterOptions](#backrouteroptions) | No   | For details, see **BackRouterOptions**.|
 
 **Example**
 
@@ -136,7 +136,7 @@ Returns to the previous page or a specified page.
 export default {    
   indexPushPage() {        
     router.push({            
-      uri: 'pages/detail/detail'     
+      uri: 'pages/detail/detail'      
     });        
   }
 }
@@ -188,7 +188,7 @@ export default {
 >
 > In the example, the **uri** field indicates the page route, which is specified by the **pages** list in the **config.json** file.
 
-## router.getParams
+## router.getParams<sup>7+</sup>
 
 getParams(): ParamsInterface
 
@@ -298,7 +298,7 @@ export default {
       },            
       cancel: function() {                
         console.log('cancel');            
-      }     
+      }   
     });    
   }
 }
@@ -329,7 +329,7 @@ export default {
       },            
       cancel: function() {                
         console.log('cancel');            
-      }       
+      } 
     });    
   }
 }
@@ -397,6 +397,6 @@ Defines the **DisableAlertBeforeBackPage** parameters.
 
 ## ParamsInterface
 
-| Name           | Type  | Description     |
-| ------------- | ------ | ------- |
-| [key: string] | Object | List of routing parameters.|
+| Name         | Type| Description          |
+| ------------- | -------- | -------------- |
+| [key: string] | object   | List of routing parameters.|

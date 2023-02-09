@@ -1,4 +1,6 @@
-# Prompt
+# @system.prompt (Prompt)
+
+The **PromptAction** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
 
 > **NOTE**
 >
@@ -73,7 +75,7 @@ export default {
          },            
        ],            
        success: function(data) {                
-         console.log('dialog success callback, click button : ' + data.index);           
+         console.log('dialog success callback£¬click button : ' + data.index);            
        },            
        cancel: function() {                
          console.log('dialog cancel callback');            
