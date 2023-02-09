@@ -92,7 +92,7 @@ TextInput组件的控制器。
 ```
 controller: TextInputController = new TextInputController()
 ```
-### caretPosition
+### caretPosition<sup>8+</sup>
 
 caretPosition(value:&nbsp;number): void
 

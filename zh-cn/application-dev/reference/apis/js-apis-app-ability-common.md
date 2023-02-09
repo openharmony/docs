@@ -24,9 +24,8 @@ import common from '@ohos.app.ability.common'
 | Context   | [Context](js-apis-inner-application-context.md)               | Context二级模块。 |
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | ExtensionContext二级模块。 |
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | FormExtensionContext二级模块。 |
-| AreaMode   | [AreaMode](#areamode)               | AreaMode枚举值。 |
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。 |
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | EventHub二级模块。 |
-| PermissionRequestResult   | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | PermissionRequestResult二级模块。 |
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | PacMap二级模块。 |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
@@ -42,21 +41,8 @@ let baseContext: common.BaseContext;
 let context: common.Context;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
-let areaMode: common.AreaMode;
 let eventHub: common.EventHub;
-let permissionRequestResult: common.PermissionRequestResult;
 let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let connectOptions: common.ConnectOptions;
 ```
-
-## AreaMode
-
-数据加密等级的枚举。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称            | 值    | 说明            |
-| --------------- | ---- | --------------- |
-| EL1             | 0    | 设备级加密区，设备开机后可访问的数据区。   |
-| EL2             | 1    | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。 |

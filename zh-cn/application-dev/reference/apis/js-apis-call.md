@@ -4,7 +4,7 @@
 
 如需订阅通话状态请使用[`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange)。
 
->**说明：** 
+>**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -20,7 +20,7 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 拨打电话。使用callback异步回调。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -46,7 +46,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 拨打电话，可设置通话参数。使用callback异步回调。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -75,7 +75,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 拨打电话，可设置通话参数。使用Promise异步回调。
 
-**需要权限**：ohos.permission.PLACE\_CALL，该权限为系统权限
+**需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -105,6 +105,133 @@ promise.then(data => {
 });
 ```
 
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
+
+拨打电话。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                    |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | 是   | 电话号码。                              |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true为成功，false为失败。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.dialCall("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback<void\>\): void
+
+拨打电话，可设置通话参数。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      |                    类型             | 必填 | 说明                                 |
+| ----------- | ----------------------------------- | ---- | ------------------------------------ |
+| phoneNumber | string                              | 是   | 电话号码。                           |
+| options     | [DialCallOptions](#dialcalloptions9)| 是   | 通话参数，携带呼叫的其他配置信息。 |
+| callback    | AsyncCallback&lt;boolean&gt;        | 是   | 回调函数，返回true为成功，false为失败。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.dialCall("138xxxxxxxx", {
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
+
+拨打电话，可设置通话参数。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      |                 类型                | 必填 |                说明                    |
+| ----------- | ----------------------------------- | ---- | -------------------------------------- |
+| phoneNumber | string                              | 是   | 电话号码。                             |
+| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，选择为语音通话还是视频通话。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+try {
+    call.dialCall('138xxxxxxxx');
+    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
+} catch (error) {
+    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
+}
+```
+
+
 ## call.makeCall<sup>7+</sup>
 
 makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
@@ -120,11 +247,21 @@ makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
 | phoneNumber | string                    | 是   | 电话号码。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回跳转拨号界面的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-call.makeCall("138xxxxxxxx", err => { 
-    console.log(`makeCall callback: err->${JSON.stringify(err)}`); 
+call.makeCall("138xxxxxxxx", err => {
+    console.log(`makeCall callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -149,14 +286,24 @@ makeCall(phoneNumber: string): Promise\<void\>
 | ------------------- | --------------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回拨号的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-let promise = call.makeCall("138xxxxxxxx"); 
-promise.then(() => { 
-    console.log(`makeCall success`); 
-}).catch(err => { 
-    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`); 
+let promise = call.makeCall("138xxxxxxxx");
+promise.then(() => {
+    console.log(`makeCall success`);
+}).catch(err => {
+    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -291,6 +438,16 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\)
 | phoneNumber | string                       | 是   | 电话号码。                                                   |
 | callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示是紧急电话号码，返回false表示不是紧急电话号码。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -315,6 +472,16 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 | phoneNumber | string                                             | 是   | 电话号码。                                                   |
 | options     | [EmergencyNumberOptions](#emergencynumberoptions7) | 是   | 电话号码参数。                                               |
 | callback    | AsyncCallback&lt;boolean&gt;                       | 是   | 回调函数。返回true表示是紧急电话号码，返回false表示不是紧急电话号码。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -346,6 +513,16 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 | ---------------------- | --------------------------------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -374,6 +551,16 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 | phoneNumber | string                      | 是   | 电话号码。                           |
 | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回格式化电话号码的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -399,6 +586,16 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 | phoneNumber | string                                       | 是   | 电话号码。                           |
 | options     | [NumberFormatOptions](#numberformatoptions7) | 是   | 格式化参数，如国家码。               |
 | callback    | AsyncCallback&lt;string&gt;                  | 是   | 回调函数，返回格式化电话号码的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -434,6 +631,16 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 | --------------------- | ------------------------------------------- |
 | Promise&lt;string&gt; | 以Promise形式异步返回格式化电话号码的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -464,6 +671,16 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 | phoneNumber | string                      | 是   | 电话号码。                                            |
 | countryCode | string                      | 是   | 国家码，支持所有国家码，如：中国（CN）。              |
 | callback    | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回将电话号码格式化为E.164表示形式的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -499,6 +716,16 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 | --------------------- | ------------------------------------------------------------ |
 | Promise&lt;string&gt; | 以Promise形式异步返回将电话号码格式化为E.164表示形式的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -516,7 +743,7 @@ muteRinger\(callback: AsyncCallback<void\>\): void
 
 如果来电铃声响起，设备将停止铃声。否则，此方法不起作用。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -527,6 +754,16 @@ muteRinger\(callback: AsyncCallback<void\>\): void
 | 参数名      | 类型                      | 必填 | 说明       |
 | ----------- | ------------------------- | ---- | ---------- |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -543,7 +780,7 @@ muteRinger\(\): Promise<void\>
 
 如果来电铃声响起，设备将停止铃声。否则，此方法不起作用。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -554,6 +791,17 @@ muteRinger\(\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -573,7 +821,7 @@ answer\(callId: number, callback: AsyncCallback<void\>\): void
 
 接听来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -585,6 +833,17 @@ answer\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -601,7 +860,7 @@ answer(callId?: number\): Promise<void\>
 
 接听来电。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -618,6 +877,17 @@ answer(callId?: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -637,7 +907,7 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -649,6 +919,17 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -665,7 +946,7 @@ answer\(callback: AsyncCallback<void\>\): void
 
 接听来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -676,6 +957,17 @@ answer\(callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -692,7 +984,7 @@ hangup\(callId?: number\): Promise<void\>
 
 挂断电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -709,6 +1001,17 @@ hangup\(callId?: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -728,7 +1031,7 @@ hangup\(callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -739,6 +1042,18 @@ hangup\(callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 
 **示例：**
 
@@ -755,7 +1070,7 @@ reject(callId: number, callback: AsyncCallback\<void>): void
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -767,6 +1082,18 @@ reject(callId: number, callback: AsyncCallback\<void>): void
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 
 **示例：**
 
@@ -783,7 +1110,7 @@ reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<v
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -796,6 +1123,17 @@ reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<v
 | callId   | number                                         | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。                                  |
 | callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -815,7 +1153,7 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
 拒绝来电。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -833,6 +1171,17 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -855,7 +1204,7 @@ reject\(callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -866,6 +1215,17 @@ reject\(callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -882,7 +1242,7 @@ reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -894,6 +1254,17 @@ reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 | -------- | ---------------------------------------------- | ---- | -------------- |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。 |
 | callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。     |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -913,7 +1284,7 @@ holdCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 保持通话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -925,6 +1296,17 @@ holdCall\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -941,7 +1323,7 @@ holdCall\(callId: number\): Promise<void\>
 
 保持通话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -958,6 +1340,17 @@ holdCall\(callId: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -976,7 +1369,7 @@ unHoldCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 取消保持通话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -988,6 +1381,17 @@ unHoldCall\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1004,7 +1408,7 @@ unHoldCall\(callId: number\): Promise<void\>
 
 取消保持通话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1021,6 +1425,17 @@ unHoldCall\(callId: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1039,7 +1454,7 @@ switchCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 切换呼叫。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1051,6 +1466,17 @@ switchCall\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1067,7 +1493,7 @@ switchCall\(callId: number\): Promise<void\>
 
 切换呼叫。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
 
@@ -1084,6 +1510,17 @@ switchCall\(callId: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1102,7 +1539,7 @@ combineConference\(callId: number, callback: AsyncCallback<void\>\): void
 
 合并通话，将两通电话合并成会议电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1112,6 +1549,16 @@ combineConference\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1128,7 +1575,7 @@ combineConference\(callId: number\): Promise<void\>
 
 合并通话，将两通电话合并成会议电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1143,6 +1590,16 @@ combineConference\(callId: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1161,7 +1618,7 @@ getMainCallId\(callId: number, callback: AsyncCallback<number\>\): void
 
 获取主呼叫Id。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1171,6 +1628,17 @@ getMainCallId\(callId: number, callback: AsyncCallback<number\>\): void
 | -------- | --------------------------- | ---- | ------------------------ |
 | callId   | number                      | 是   | 呼叫Id。                 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回主呼叫Id。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 
 **示例：**
 
@@ -1187,7 +1655,7 @@ getMainCallId\(callId: number\): Promise<number\>
 
 获取主呼叫Id。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1202,6 +1670,16 @@ getMainCallId\(callId: number\): Promise<number\>
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回主呼叫Id。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1220,7 +1698,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback<Array<string\>\>\): vo
 
 获取子呼叫Id列表。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1230,6 +1708,16 @@ getSubCallIdList\(callId: number, callback: AsyncCallback<Array<string\>\>\): vo
 | -------- | ------------------------------ | ---- | ---------------------------- |
 | callId   | number                         | 是   | 呼叫Id。                     |
 | callback | AsyncCallback<Array<string\>\> | 是   | 回调函数。返回子呼叫Id列表。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1246,7 +1734,7 @@ getSubCallIdList\(callId: number\): Promise<Array<string\>\>
 
 获取子呼叫Id列表。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1261,6 +1749,16 @@ getSubCallIdList\(callId: number\): Promise<Array<string\>\>
 | 类型                          | 说明                                |
 | ----------------------------- | ----------------------------------- |
 | Promise&lt;Array<string\>&gt; | 以Promise形式异步返回子呼叫Id列表。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1279,7 +1777,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback<Array<string
 
 获取会议的呼叫Id列表。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1289,6 +1787,16 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback<Array<string
 | -------- | ----------------------------------- | ---- | -------------------------------- |
 | callId   | number                              | 是   | 呼叫Id。                         |
 | callback | AsyncCallback&lt;Array<string\>&gt; | 是   | 回调函数。返回会议的呼叫Id列表。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1305,7 +1813,7 @@ getCallIdListForConference\(callId: number\): Promise<Array<string\>\>
 
 获取会议的呼叫Id列表。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1320,6 +1828,16 @@ getCallIdListForConference\(callId: number\): Promise<Array<string\>\>
 | 类型                          | 说明                                    |
 | ----------------------------- | --------------------------------------- |
 | Promise&lt;Array<string\>&gt; | 以Promise形式异步返回会议的呼叫Id列表。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1338,7 +1856,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback<CallWaitingStatus\
 
 获取呼叫等待状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1350,6 +1868,17 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback<CallWaitingStatus\
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | 是   | 回调函数。<br/>返回呼叫等待状态。<br/>- 0：禁用呼叫等待 <br/>- 1：启用呼叫等待 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1366,7 +1895,7 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 
 获取呼叫等待状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1383,6 +1912,17 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 | 类型                                                    | 说明                                                         |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;[CallWaitingStatus](#callwaitingstatus7)&gt; | 以Promise形式异步返回呼叫等待状态。<br/>- 0：禁用呼叫等待 <br/>- 1：启用呼叫等待 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1401,7 +1941,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback<void\
 
 设置呼叫等待。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1414,6 +1954,17 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback<void\
 | slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | activate | boolean              | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待<br/>- true：启用呼叫等待 |
 | callback | AsyncCallback<void\> | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1430,7 +1981,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 
 设置呼叫等待。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1449,6 +2000,17 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1466,7 +2028,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback<void\>\): 
 
 启动双音多频。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1477,6 +2039,16 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback<void\>\): 
 | callId    | number               | 是   | 呼叫Id。   |
 | character | string               | 是   | DTMF码。   |
 | callback  | AsyncCallback<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1493,7 +2065,7 @@ startDTMF\(callId: number, character: string\): Promise<void\>
 
 启动双音多频。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1509,6 +2081,16 @@ startDTMF\(callId: number, character: string\): Promise<void\>
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1527,7 +2109,7 @@ stopDTMF\(callId: number, callback: AsyncCallback<void\>\): void
 
 停止双音多频。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1537,6 +2119,16 @@ stopDTMF\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1553,7 +2145,7 @@ stopDTMF\(callId: number\): Promise<void\>
 
 停止双音多频。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1568,6 +2160,16 @@ stopDTMF\(callId: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1586,7 +2188,7 @@ isInEmergencyCall\(callback: AsyncCallback<boolean\>\): void
 
 判断是否正在处于紧急呼叫。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1597,6 +2199,17 @@ isInEmergencyCall\(callback: AsyncCallback<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1613,7 +2226,7 @@ isInEmergencyCall\(\): Promise<boolean\>
 
 判断是否正在处于紧急呼叫。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1624,6 +2237,17 @@ isInEmergencyCall\(\): Promise<boolean\>
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1642,7 +2266,7 @@ on\(type: 'callDetailsChange', callback: Callback<CallAttributeOptions\>\): void
 
 订阅callDetailsChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1654,6 +2278,17 @@ on\(type: 'callDetailsChange', callback: Callback<CallAttributeOptions\>\): void
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
 | type     | string                                                  | 是   | 通话时监听通话详情的变化。 |
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是   | 回调函数。                 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1669,7 +2304,7 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 
 订阅callEventChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1681,6 +2316,17 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                           | 是   | 通话时监听通话事件的变化。 |
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 回调函数。                 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1696,7 +2342,7 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 
 订阅callDisconnectedCause事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1708,6 +2354,17 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | 是   | 通话时监听断开连接的原因。 |
 | callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 回调函数。                 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1723,7 +2380,7 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 
 订阅mmiCodeResult事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1735,6 +2392,17 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 | -------- | -------------------------------------------- | ---- | --------------------- |
 | type     | string                                       | 是   | 通话时监听MMI码结果。 |
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 是   | 回调函数。            |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1750,7 +2418,7 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 
 取消订阅callDetailsChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1762,6 +2430,17 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 | -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                   | 是   | 通话结束时取消监听通话详情的变化。 |
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 否   | 回调函数。                         |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1777,7 +2456,7 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 
 取消订阅callEventChange事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1789,6 +2468,17 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
 | type     | string                                           | 是   | 通话结束时取消监听通话事件的变化。 |
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | 否   | 回调函数。                         |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1804,7 +2494,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 
 取消订阅callDisconnectedCause事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1816,6 +2506,17 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 | -------- | ---------------------------------------------------------- | ---- | -------------------- |
 | type     | 'callDisconnectedCause'                                    | 是   | 调用断开连接的原因。 |
 | callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | 否   | 回调函数。           |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1831,7 +2532,7 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 
 取消订阅mmiCodeResult事件。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1843,6 +2544,17 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 | -------- | ------------------------------------------------ | ---- | ----------- |
 | type     | 'mmiCodeResult'                                  | 是   | MMI码结果。 |
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 否   | 回调函数。  |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1858,7 +2570,7 @@ isNewCallAllowed\(callback: AsyncCallback<boolean\>\): void
 
 判断是否允许再拨打一通新电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1867,6 +2579,16 @@ isNewCallAllowed\(callback: AsyncCallback<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1883,7 +2605,7 @@ isNewCallAllowed\(\): Promise<boolean\>
 
 判断是否允许再拨打一通新电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1892,6 +2614,16 @@ isNewCallAllowed\(\): Promise<boolean\>
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1910,7 +2642,7 @@ separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 
 分离会议电话。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1920,6 +2652,16 @@ separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1936,7 +2678,7 @@ separateConference\(callId: number\): Promise<void\>
 
 分离会议电话。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -1951,6 +2693,16 @@ separateConference\(callId: number\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1969,7 +2721,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 
 获取呼叫限制状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1982,6 +2734,17 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | type     | [CallRestrictionType](#callrestrictiontype8)                 | 是   | 呼叫限制类型。                        |
 | callback | AsyncCallback&lt;[RestrictionStatus](#restrictionstatus8)&gt; | 是   | 回调函数。返回限制状态。               |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1998,7 +2761,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 
 获取呼叫限制状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2017,6 +2780,17 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 | ------------------------------------------------------- | --------------------------- |
 | Promise&lt;[RestrictionStatus](#restrictionstatus8)&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2034,7 +2808,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 
 设置呼叫限制状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2047,6 +2821,17 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | slotId   | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
 | callback | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2068,7 +2853,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 
 设置呼叫限制状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2086,6 +2871,17 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2109,7 +2905,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 
 获取呼叫转移信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2122,6 +2918,17 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | type     | [CallTransferType](#calltransfertype8)                       | 是   | 呼叫转移类型。                         |
 | callback | AsyncCallback&lt;[CallTransferResult](#calltransferresult8)&gt; | 是   | 回调函数。返回呼叫转移信息。           |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2138,7 +2945,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 
 获取呼叫转移信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2157,6 +2964,17 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 | --------------------------------------------------------- | --------------------------- |
 | Promise&lt;[CallTransferResult](#calltransferresult8)&gt; | 以Promise形式异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -2174,7 +2992,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 
 设置呼叫转移信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2187,6 +3005,17 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2208,7 +3037,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 
 设置呼叫转移信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2226,6 +3055,17 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2249,7 +3089,7 @@ isRinging\(callback: AsyncCallback<boolean\>\): void
 
 判断是否正在响铃。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2260,6 +3100,17 @@ isRinging\(callback: AsyncCallback<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2276,7 +3127,7 @@ isRinging\(\): Promise<boolean\>
 
 判断是否正在响铃。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2287,6 +3138,17 @@ isRinging\(\): Promise<boolean\>
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2305,7 +3167,7 @@ setMuted\(callback: AsyncCallback<void\>\): void
 
 设置通话中的静音。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2314,6 +3176,16 @@ setMuted\(callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2330,7 +3202,7 @@ setMuted\(\): Promise<void\>
 
 设置通话中的静音。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2339,6 +3211,16 @@ setMuted\(\): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2357,7 +3239,7 @@ cancelMuted(callback: AsyncCallback<void\>): void
 
 取消通话中的静音。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2366,6 +3248,16 @@ cancelMuted(callback: AsyncCallback<void\>): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2382,7 +3274,7 @@ cancelMuted(): Promise<void\>
 
 取消通话中的静音。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2391,6 +3283,16 @@ cancelMuted(): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2409,7 +3311,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 
 设置通话音频设备。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2419,6 +3321,16 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 | -------- | ---------------------------- | ---- | ---------- |
 | device   | [AudioDevice](#audiodevice8) | 是   | 音频设备。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2435,7 +3347,7 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 
 设置通话音频设备。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2446,6 +3358,16 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 | device   | [AudioDevice](#audiodevice8)               | 是   | 音频设备。     |
 | options  | [AudioDeviceOptions](#audiodeviceoptions9) | 是   | 音频设备参数。 |
 | callback | AsyncCallback&lt;void&gt;                  | 是   | 回调函数。     |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2465,7 +3387,7 @@ setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions): Promise<void\
 
 设置通话音频设备。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2481,6 +3403,16 @@ setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions): Promise<void\
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回设置结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2502,7 +3434,7 @@ joinConference(mainCallId: number, callNumberList: Array<string\>, callback: Asy
 
 加入会议。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2513,6 +3445,16 @@ joinConference(mainCallId: number, callNumberList: Array<string\>, callback: Asy
 | mainCallId     | number                    | 是   | 主通话Id。      |
 | callNumberList | Array<string\>            | 是   | 呼叫号码列表。 |
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。      |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2531,7 +3473,7 @@ joinConference(mainCallId: number, callNumberList: Array<string\>): Promise<void
 
 加入会议。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2547,6 +3489,16 @@ joinConference(mainCallId: number, callNumberList: Array<string\>): Promise<void
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2568,7 +3520,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<voi
 
 更新Ims呼叫模式。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2579,6 +3531,16 @@ updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<voi
 | callId   | number                       | 是   | 呼叫Id。       |
 | mode     | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。     |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2594,7 +3556,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void\>
 
 更新Ims呼叫模式。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2610,6 +3572,16 @@ updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2628,7 +3600,7 @@ enableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 
 启用Ims开关。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2640,6 +3612,17 @@ enableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2655,7 +3638,7 @@ enableImsSwitch(slotId: number): Promise<void\>
 
 启用Ims开关。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2672,6 +3655,17 @@ enableImsSwitch(slotId: number): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2690,7 +3684,7 @@ disableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 
 禁用Ims开关。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2702,6 +3696,17 @@ disableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2717,7 +3722,7 @@ disableImsSwitch(slotId: number): Promise<void\>
 
 禁用Ims开关。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2734,6 +3739,17 @@ disableImsSwitch(slotId: number): Promise<void\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2752,7 +3768,7 @@ isImsSwitchEnabled(slotId: number, callback: AsyncCallback<boolean\>): void
 
 判断Ims开关是否启用。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2762,6 +3778,16 @@ isImsSwitchEnabled(slotId: number, callback: AsyncCallback<boolean\>): void
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2777,7 +3803,7 @@ isImsSwitchEnabled(slotId: number): Promise<boolean\>
 
 判断Ims开关是否启用。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -2792,6 +3818,16 @@ isImsSwitchEnabled(slotId: number): Promise<boolean\>
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -2810,13 +3846,26 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
+|        名称              | 类型                               | 必填 | 说明                                                                                             |
+| ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
+| extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
+| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。                                    |
+| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                                                                 |
+| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                                                     |
+| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                                                     |
+
+## DialCallOptions<sup>9+</sup>
+
+拨打电话的可选参数。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+
 |        名称              | 类型                               | 必填 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
-| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。                                   |
-| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                             |
-| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                 |
-| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                 |
+| accountId <sup>9+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。|
+| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                             |
+| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                 |
+| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                 |
 
 ## CallState
 
@@ -2855,7 +3904,7 @@ promise.then(data => {
 
 IP多媒体系统调用模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2871,7 +3920,7 @@ IP多媒体系统调用模式。
 
 音频设备。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2887,7 +3936,7 @@ IP多媒体系统调用模式。
 
 呼叫限制类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2906,7 +3955,7 @@ IP多媒体系统调用模式。
 
 呼叫转移信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2924,7 +3973,7 @@ IP多媒体系统调用模式。
 
 呼叫转移类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2939,7 +3988,7 @@ IP多媒体系统调用模式。
 
 设置呼叫转移类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2954,7 +4003,7 @@ IP多媒体系统调用模式。
 
 调用属性选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2975,7 +4024,7 @@ IP多媒体系统调用模式。
 
 会议状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -2990,7 +4039,7 @@ IP多媒体系统调用模式。
 
 通话类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3005,7 +4054,7 @@ IP多媒体系统调用模式。
 
 视频状态类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3018,7 +4067,7 @@ IP多媒体系统调用模式。
 
 详细的呼叫状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3038,7 +4087,7 @@ IP多媒体系统调用模式。
 
 呼叫限制信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3052,7 +4101,7 @@ IP多媒体系统调用模式。
 
 呼叫限制模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3065,7 +4114,7 @@ IP多媒体系统调用模式。
 
 呼叫事件的可选参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3077,7 +4126,7 @@ IP多媒体系统调用模式。
 
 呼叫能力事件Id。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3090,7 +4139,7 @@ IP多媒体系统调用模式。
 
 拨号场景。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3104,7 +4153,7 @@ IP多媒体系统调用模式。
 
 拨号类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3118,7 +4167,7 @@ IP多媒体系统调用模式。
 
 拒绝消息可选参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3130,7 +4179,7 @@ IP多媒体系统调用模式。
 
 呼叫转移结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3147,7 +4196,7 @@ IP多媒体系统调用模式。
 
 呼叫等待状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3160,7 +4209,7 @@ IP多媒体系统调用模式。
 
 限制状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3173,7 +4222,7 @@ IP多媒体系统调用模式。
 
 转移状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3186,7 +4235,7 @@ IP多媒体系统调用模式。
 
 通话结束原因。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3199,7 +4248,7 @@ IP多媒体系统调用模式。
 
 断开连接的详细信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3289,7 +4338,7 @@ IP多媒体系统调用模式。
 
 MMI码结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3302,7 +4351,7 @@ MMI码结果。
 
 MMI码结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
@@ -3315,7 +4364,7 @@ MMI码结果。
 
 音频设备选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 

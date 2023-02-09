@@ -122,7 +122,7 @@
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
-  
+
 - Common Event and Notification
   - [@ohos.commonEventManager (Common Event) (Recommended)](js-apis-commonEventManager.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
@@ -203,7 +203,6 @@
   - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
-
 - Data Management
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (DataShare)](js-apis-data-dataShare.md)
@@ -215,11 +214,15 @@
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
   - data/rdb
-    - [resultSet](js-apis-data-resultset.md)
+    - [resultSet (Result Set)](js-apis-data-resultset.md)
 - File Management
-  - [@ohos.environment](js-apis-environment.md)
+  - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
+  - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
+  - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
+  - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
+  - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
   - [@ohos.storageStatistics (Application Storage Statistics)](js-apis-storage-statistics.md)

@@ -68,8 +68,11 @@
 ``` shell
   ohos_shared_library("example") {
     sanitize = {
-      cfi = true
-      integer_overflow = true                
+      cfi = true                             # 开启控制流完整性检测
+      integer_overflow = true                # 开启整数溢出检测
+      boundary_sanitize = true               # 开启边界检测
+      ubsan = true                           # 开启部分ubsan选项
+      all_ubsan = true                       # 开启全量ubsan选项
       debug = true                           # 可选，调测模式，默认是不开启
       blocklist = "./blocklist.txt"          # 可选，屏蔽名单路径
     }
@@ -83,6 +86,9 @@
 
 - 整数溢出排错：unsigned_integer_overflow/signed_integer_overflow/integer_overflow(同时包括无符号和有符号整数溢出两种检查)
 - 控制流完整性：cfi
+- 边界检测：boundary_sanitize
+- 部分未定义行为检测：ubsan(bool,integer-divide-by-zero,return,returns-nonnull-attribute,shift-exponent,unreachable,vla-bound等编译选项)
+- 全量未定义行为检测：all_ubsan(全量undefined behavior sanitizer编译选项)
 
 **发布、调测模式**
 

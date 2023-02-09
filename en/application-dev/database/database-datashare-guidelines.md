@@ -34,11 +34,9 @@ There are two roles in **DataShare**:
 - Data provider: adds, deletes, modifies, and queries data, opens files, and shares data.
 - Data consumer: accesses the data provided by the provider using **DataShareHelper**.
 
-Examples are given below.
-
 ### Data Provider Application Development (Only for System Applications)
 
-[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override the APIs as required.
+[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
 
 - **onCreate**
 
@@ -82,14 +80,14 @@ Before implementing a **DataShare** service, create a **DataShareExtensionAbilit
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
-   import rdb from '@ohos.data.rdb';
+   import rdb from '@ohos.data.relationalStore';
    import fileIo from '@ohos.fileio';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
 
-4. Override the **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only **query()**.
+5. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only **query()**.
 
-5. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
+6. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
 
    ```ts
    const DB_NAME = "DB00.db";
@@ -97,28 +95,31 @@ Before implementing a **DataShare** service, create a **DataShareExtensionAbilit
    const DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
    + TBL_NAME
    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)";
-   
+
    let rdbStore;
    let result;
-   
+
    export default class DataShareExtAbility extends Extension {
        private rdbStore_;
-   
+
    	// Override onCreate().
        onCreate(want, callback) {
-           result = this.context.cacheDir + '/datashare.txt'
+           result = this.context.cacheDir + '/datashare.txt';
            // Create an RDB store.
-           rdb.getRdbStore(this.context, {
-               name: DB_NAME
-           }, 1, function (err, data) {
-               rdbStore = data;
-               rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                   console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
+            rdb.getRdbStore(this.context, {
+                name: DB_NAME,
+                securityLevel: rdb.SecurityLevel.S1
+            }, function (err, data) {
+                rdbStore = data;
+                rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
+                    console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
                });
-               callback();
+               if (callbakc) {
+                    callback();
+               }
            });
        }
-   
+
    	// Override query().
        query(uri, predicates, columns, callback) {
            if (predicates == null || predicates == undefined) {
@@ -142,17 +143,14 @@ Before implementing a **DataShare** service, create a **DataShareExtensionAbilit
    };
    ```
 
-   
+7. Define **DataShareExtensionAbility** in **module.json5**.
 
-6. Define **DataShareExtensionAbility** in **module.json5**.
-
-   | Field     | Description                                                  |
-   | --------- | ------------------------------------------------------------ |
-   | "name"    | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**. |
-   | "type"    | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template. |
-   | "uri"     | URI used for communication. It is the unique identifier for the data consumer to connect to the provider. |
-   | "visible" | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**. |
-   |           |                                                              |
+   | Field| Description                                                    |
+   | ------------ | ------------------------------------------------------------ |
+   | "name"       | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.        |
+   | "type"       | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template.|
+   | "uri"        | URI used for communication. It is the unique identifier for the data consumer to connect to the provider.               |
+   | "visible"    | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.|
 
    **module.json5 example**
 
@@ -169,8 +167,6 @@ Before implementing a **DataShare** service, create a **DataShareExtensionAbilit
      }
    ]
    ```
-
-   
 
 ### Data Consumer Application Development
 
@@ -212,7 +208,7 @@ Before implementing a **DataShare** service, create a **DataShareExtensionAbilit
    let valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
    let updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
    let predicates = new dataSharePredicates.DataSharePredicates();
-   let valArray = new Array("*");
+   let valArray = ['*'];
    // Insert a piece of data.
    dsHelper.insert(dseUri, valuesBucket, (err, data) => {
      console.log("dsHelper insert result: " + data);

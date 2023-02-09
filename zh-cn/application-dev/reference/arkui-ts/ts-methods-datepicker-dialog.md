@@ -20,7 +20,7 @@ show(options?: DatePickerDialogOptions)
 | start | Date | 否 | Date('1970-1-1') | 设置选择器的起始日期。 |
 | end | Date | 否 | Date('2100-12-31') | 设置选择器的结束日期。 |
 | selected | Date | 否 | 当前系统日期 | 设置当前选中的日期。 |
-| lunar | boolean | 否 | false | 日期是否显示为农历。 |确定
+| lunar | boolean | 否 | false | 日期是否显示为农历。 |
 | onAccept | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult对象说明)) => void | 否 | - | 点击弹窗中的“确定”按钮时触发该回调。 |
 | onCancel | () => void | 否 | - | 点击弹窗中的“取消”按钮时触发该回调。 |
 | onChange | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult对象说明)) => void | 否 | - | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。 |

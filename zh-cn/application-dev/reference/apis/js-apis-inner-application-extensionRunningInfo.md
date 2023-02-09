@@ -29,7 +29,7 @@ ExtensionRunningInfo模块封装了Extension运行的相关信息，可以通过
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager'
 
-var upperLimit = 1;
+let upperLimit = 1;
 function getExtensionInfos() {
     abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
         if (error && error.code) {

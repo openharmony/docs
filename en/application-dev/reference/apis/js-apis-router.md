@@ -563,6 +563,7 @@ Describes the page routing options.
 
 
   > **NOTE**
+  >
   > The page routing stack supports a maximum of 32 pages.
 
 ## RouterMode<sup>9+</sup>

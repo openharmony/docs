@@ -306,7 +306,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
 
 **示例：**
 
@@ -330,7 +330,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+  | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
   | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
@@ -414,8 +414,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
       return true;
     }
   };
-  var method = 'call_Function'; // 约定的通知消息字符串
-  var caller;
+  let method = 'call_Function'; // 约定的通知消息字符串
+  let caller;
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -499,8 +499,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
       return true;
     }
   };
-  var method = 'call_Function';
-  var caller;
+  let method = 'call_Function';
+  let caller;
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -551,7 +551,7 @@ release(): void;
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
-  var caller;
+  let caller;
   
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
@@ -594,7 +594,7 @@ release(): void;
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
-  var caller;
+  let caller;
   
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
@@ -673,7 +673,7 @@ on(method: string, callback: CalleeCallBack): void;
           return true;
       }
   };
-  var method = 'call_Function';
+  let method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble("test", "");
@@ -720,7 +720,7 @@ off(method: string): void;
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
-  var method = 'call_Function';
+  let method = 'call_Function';
   
   export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {

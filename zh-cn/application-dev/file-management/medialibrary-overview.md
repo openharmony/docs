@@ -109,19 +109,19 @@ let media = mediaLibrary.getMediaLibrary(context);
    import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
    
    export default class EntryAbility extends UIAbility {
-       onWindowStageCreate(windowStage) {
-           let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
-           let permissionRequestResult;
-           let atManager = abilityAccessCtrl.createAtManager();
-           atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
-               if (err) {
-                   console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
-               } else {
-                   permissionRequestResult=result;
-                   console.log('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
-               }    
-           });       
-       }
-   }
+        onWindowStageCreate(windowStage) {
+            let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
+            let permissionRequestResult;
+            let atManager = abilityAccessCtrl.createAtManager();
+            atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
+                if (err) {
+                    console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
+                } else {
+                    permissionRequestResult=result;
+                    console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+                }    
+            });       
+        }
+    }
    ```
 

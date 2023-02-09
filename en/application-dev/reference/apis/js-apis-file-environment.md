@@ -1,16 +1,17 @@
-# @ohos.environment (Directory Environment Capability)
+# @ohos.file.environment (Directory Environment Capability)
 
 The **Environment** module provides APIs for obtaining the root directories of the storage and public files.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
+> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
 ```js
-import environment from '@ohos.environment';
+import environment from '@ohos.file.environment';
 ```
 
 ## environment.getStorageDataDir
@@ -30,10 +31,10 @@ Obtains the root directory of the storage. This API uses a promise to return the
 **Example**
 
   ```js
-  environment.getStorageDataDir().then(function(path){
-      console.info("getStorageDataDir successfully:"+ path);
-  }).catch(function(error){
-      console.info("getStorageDataDir failed with error:"+ error);
+  environment.getStorageDataDir().then((path) => {
+      console.info("getStorageDataDir successfully, Path: " + path);
+  }).catch((err) => {
+      console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -54,8 +55,12 @@ Obtains the root directory of the storage. This API uses an asynchronous callbac
 **Example**
 
   ```js
-  environment.getStorageDataDir(function(error, path){
-      // do something
+  environment.getStorageDataDir((err, path) => {
+    if (err) {
+      console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("getStorageDataDir successfully, Path: " + path);
+    }
   });
   ```
 
@@ -76,10 +81,10 @@ Obtains the root directory of public files. This API uses a promise to return th
 **Example**
 
   ```js
-  environment.getUserDataDir().then(function(path){
-      console.info("getUserDataDir successfully:"+ path);
-  }).catch(function(error){
-      console.info("getUserDataDir failed with error:"+ error);
+  environment.getUserDataDir().then((path) => {
+    console.info("getUserDataDir successfully, Path: " + path);
+  }).catch((err) => {
+    console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -100,7 +105,11 @@ Obtains the root directory of public files. This API uses an asynchronous callba
 **Example**
 
   ```js
-  environment.getUserDataDir(function(error, path){
-      // do something
+  environment.getUserDataDir((err, path) => {
+    if (err) {
+      console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("getUserDataDir successfully, Path: " + path);
+    }
   });
   ```

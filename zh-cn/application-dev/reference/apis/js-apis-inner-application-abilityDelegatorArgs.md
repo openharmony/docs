@@ -28,5 +28,5 @@ AbilityDelegatorArgs模块提供在应用程序执行测试用例期间，获取
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-var args = AbilityDelegatorRegistry.getArguments();
+let args = AbilityDelegatorRegistry.getArguments();
 ```

@@ -16,6 +16,7 @@
 GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
 **参数：**
+
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 |gutter|Length \| GutterOption|   否  |栅格布局间距，x代表水平方向。|

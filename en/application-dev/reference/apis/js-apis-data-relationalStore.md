@@ -48,25 +48,20 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 FA model:
 
 ```js
-// Obtain the context.
+
 import featureAbility from '@ohos.ability.featureAbility'
+
+// Obtain the context.
 let context = featureAbility.getContext()
 
-// Call getRdbStore.
 const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
+
 data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
     if (err) {
         console.info("Failed to get RdbStore, err: " + err)
-        return
-    }    
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
         return
     }
     console.log("Got RdbStore successfully.")
@@ -76,36 +71,24 @@ data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
 Stage model:
 
 ```ts
-// Obtain the context.
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        const STORE_CONFIG = {
+            name: "RdbTest.db",
+            securityLevel: data_rdb.SecurityLevel.S1
+        }
+        
+        data_rdb.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+            if (err) {
+                console.info("Failed to get RdbStore, err: " + err)
+                return
+            }
+            console.log("Got RdbStore successfully.")
+        })
     }
 }
-
-// Call getRdbStore.
-const STORE_CONFIG = {
-    name: "RdbTest.db",
-    securityLevel: data_rdb.SecurityLevel.S1
-}
-data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-    if (err) {
-        console.info("Failed to get RdbStore, err: " + err)
-        return
-    }
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
-    console.log("Got RdbStore successfully.")
-})
 ```
 
 ## data_rdb.getRdbStore
@@ -143,24 +126,18 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 FA model:
 
 ```js
-// Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
+
+// Obtain the context.
 let context = featureAbility.getContext()
 
-// Call getRdbStore.
 const STORE_CONFIG = {
     name: "RdbTest.db",
     securityLevel: data_rdb.SecurityLevel.S1
 }
+
 let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
     console.log("Got RdbStore successfully.")
 }).catch((err) => {
     console.log("Failed to get RdbStore, err: " + err)
@@ -170,35 +147,23 @@ promise.then(async (rdbStore) => {
 Stage model:
 
 ```ts
-// Obtain the context.
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        const STORE_CONFIG = {
+            name: "RdbTest.db",
+            securityLevel: data_rdb.SecurityLevel.S1
+        }
+        
+        let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG);
+        promise.then(async (rdbStore) => {
+            console.log("Got RdbStore successfully.")
+        }).catch((err) => {
+            console.log("Failed to get RdbStore, err: " + err)
+        })
     }
 }
-
-// Call getRdbStore.
-const STORE_CONFIG = {
-    name: "RdbTest.db",
-    securityLevel: data_rdb.SecurityLevel.S1
-}
-let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
-    if (rdbStore.openStatus == data_rdb.OpenStatus.ON_CREATE) {
-        console.log("RdbStore status is ON_CREATE")
-    } else if (rdbStore.openStatus == data_rdb.OpenStatus.ON_OPEN) {
-        console.log("RdbStore status is ON_OPEN")
-    } else {
-        return
-    }
-    console.log("Got RdbStore successfully.")
-}).catch((err) => {
-    console.log("Failed to get RdbStore, err: " + err)
-})
 ```
 
 ## data_rdb.deleteRdbStore
@@ -230,11 +195,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 FA model:
 
 ```js
-// Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
+
+// Obtain the context.
 let context = featureAbility.getContext()
 
-// Call deleteRdbStore.
 data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
     if (err) {
         console.info("Failed to delete RdbStore, err: " + err)
@@ -247,25 +212,19 @@ data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
 Stage model:
 
 ```ts
-// Obtain the context.
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err) {
+            if (err) {
+                console.info("Failed to delete RdbStore, err: " + err)
+                return
+            }
+            console.log("Deleted RdbStore successfully.")
+        })
     }
 }
-
-// Call deleteRdbStore.
-data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
-    if (err) {
-        console.info("Failed to delete RdbStore, err: " + err)
-        return
-    }
-    console.log("Deleted RdbStore successfully.")
-})
 ```
 
 ## data_rdb.deleteRdbStore
@@ -302,11 +261,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 FA model:
 
 ```js
-// Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
+
+// Obtain the context.
 let context = featureAbility.getContext()
 
-// Call deleteRdbStore.
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
     console.log("Deleted RdbStore successfully.")
@@ -318,24 +277,18 @@ promise.then(()=>{
 Stage model:
 
 ```ts
-// Obtain the context.
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-let context;
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+        promise.then(()=>{
+            console.log("Deleted RdbStore successfully.")
+        }).catch((err) => {
+            console.info("Failed to delete RdbStore, err: " + err)
+        })
     }
 }
-
-// Call deleteRdbStore.
-let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
-promise.then(()=>{
-    console.log("Deleted RdbStore successfully.")
-}).catch((err) => {
-    console.info("Failed to delete RdbStore, err: " + err)
-})
 ```
 
 ## StoreConfig
@@ -422,17 +375,6 @@ Defines the resolution to use when **insert()** and **update()** conflict.
 | ON_CONFLICT_FAIL     | 3    | Abort the current SQL statement. The **FAIL** resolution does not revert previous changes made by the failed SQL statement or end the transaction.|
 | ON_CONFLICT_IGNORE   | 4    | Skip the rows that contain constraint violations and continue to process the subsequent rows of the SQL statement.|
 | ON_CONFLICT_REPLACE  | 5    | Delete pre-existing rows that cause the constraint violation before inserting or updating the current row, and continue to execute the command normally.|
-
-## OpenStatus<sup>10+</sup>
-
-Enumerates the RDB store status.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Name      | Value  | Description                                                |
-| --------- | ---- | --------------------------------------------------- |
-| ON_CREATE | 0    | The RDB store is created for the first time.              |
-| ON_OPEN   | 1    | The RDB store is already created.               |
 
 ## RdbPredicates
 
@@ -1283,7 +1225,16 @@ Before using the following APIs, use [executeSql](#executesql) to initialize the
 
 | Name        | Type           | Mandatory| Description                            |
 | ------------ | ----------- | ---- | -------------------------------- |
-| openStatus<sup>10+</sup>  | number | Yes  | RDB store status. The value **0** indicates the **ON_CREATE** state, which means the RDB store is created for the first time. The value **1** indicates the **ON_OPEN** state, which means the RDB store is already created.      |
+| version<sup>10+</sup>  | number | Yes  | RDB store version, which is an integer greater than 0.      |
+
+**Example**
+
+```js
+// Set the RDB store version.
+rdbStore.version = 3
+// Obtain the RDB store version.
+console.info("Get RdbStore version is " + rdbStore.version)
+```
 
 ### insert
 
