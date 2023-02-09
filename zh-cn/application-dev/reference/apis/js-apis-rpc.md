@@ -2415,7 +2415,7 @@ readException(): void
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendMessageRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -4871,7 +4871,7 @@ readException(): void
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendMessageRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -5678,7 +5678,7 @@ asObject(): IRemoteObject
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用asObject接口方法获取代理或远端对象
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的asObject接口方法获取代理或远端对象
   
   ```ts
   class TestProxy {
@@ -5846,7 +5846,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在callback回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6117,7 +6117,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
   
   ```ts
   let option = new rpc.MessageOption();
@@ -6187,7 +6187,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendMessageRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6265,7 +6265,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6349,7 +6349,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendMessageRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6424,7 +6424,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用sendRequest接口方法发送消息
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6489,7 +6489,7 @@ getLocalInterface(interface: string): IRemoteBroker
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用getLocalInterface接口方法查询接口对象
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
 
   ```ts
   try {
@@ -6549,7 +6549,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用queryLocalInterface接口获取接口对象
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
 
   ```ts
   let broker = proxy.queryLocalInterface("testObject");
@@ -6605,7 +6605,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用registerDeathRecipient接口注册死亡回调
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
   
   ```ts
   class MyDeathRecipient {
@@ -6671,7 +6671,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用addDeathRecippient接口方法新增死亡回调
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecippient接口方法新增死亡回调
 
   ```ts
   class MyDeathRecipient {
@@ -6732,7 +6732,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用unregisterDeathRecipient接口方法注销死亡回调
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
 
   ```ts
   class MyDeathRecipient {
@@ -6799,7 +6799,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用removeDeathRecipient接口方法去注册死亡回调
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
 
   ```ts
   class MyDeathRecipient {
@@ -6860,7 +6860,7 @@ getDescriptor(): string
   };
   FA.connectAbility(want, connect);
   ```
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用getDescriptor接口方法获取对象的接口描述符
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
 
   ```ts
   try {
@@ -6914,7 +6914,7 @@ getInterfaceDescriptor(): string
   FA.connectAbility(want, connect);
   ```
   
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
 
   ```ts
   let descriptor = proxy.getInterfaceDescriptor();
@@ -6961,7 +6961,7 @@ isObjectDead(): boolean
   FA.connectAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等等ability异步连接成功后才会被赋值，进而调用isObjectDead接口方法判断当前对象是否已经死亡
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
 
   ```ts
   let isDead = proxy.isObjectDead();
@@ -7705,7 +7705,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7761,7 +7761,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendMessageRequest返回时收到回调，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendMessageRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
