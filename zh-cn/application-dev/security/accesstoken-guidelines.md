@@ -161,12 +161,13 @@
 
 ### FA模型下的示例代码
 ```js
-  //ability的onWindowStageCreate生命周期
-  onWindowStageCreate() {
-    var context = this.context
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  reqPermissions() {
+    let context = featureAbility.getContext();
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    context.requestPermissionsFromUser(array).then(function(data) {
+    context.requestPermissionsFromUser(array, 1).then(function(data) {
       console.log("data type:" + typeof(data));
       console.log("data:" + data);
       console.log("data permissions:" + data.permissions);
