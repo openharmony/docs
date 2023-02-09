@@ -113,10 +113,10 @@
 
    ```ts
    // 获取context
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility'
    let context = null;
    let preferences = null;
-   export default class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage){
            context = this.context;
        }
