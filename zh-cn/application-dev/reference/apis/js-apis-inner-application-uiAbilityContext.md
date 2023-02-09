@@ -1593,8 +1593,6 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |

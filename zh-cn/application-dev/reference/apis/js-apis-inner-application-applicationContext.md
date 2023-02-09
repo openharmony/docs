@@ -325,9 +325,9 @@ applicationContext.getProcessRunningInformation((err, data) => {
 })
 ```
 
-## ApplicationContext.killProcessesBySelf<sup>9+</sup>
+## ApplicationContext.killAllProcesses<sup>9+</sup>
 
-killProcessesBySelf(): Promise<void>;
+killAllProcesses(): Promise\<void\>;
 
 杀死应用所在的进程。
 
@@ -337,22 +337,18 @@ killProcessesBySelf(): Promise<void>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void>> | 以Promise方式返回杀死应用所在的进程结果。 |
+| Promise\<void\> | 以Promise方式返回杀死应用所在的进程结果。 |
 
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.killProcessesBySelf().then((data) => {
-    console.log("The process running information is:" + JSON.stringify(data));
-}).catch((error) => {
-    console.error("error:" + JSON.stringify(error));
-});
+applicationContext.killAllProcesses()
 ```
 
-## ApplicationContext.killProcessesBySelf<sup>9+</sup>
+## ApplicationContext.killAllProcesses<sup>9+</sup>
 
-killProcessesBySelf(callback: AsyncCallback<void>);
+killAllProcesses(callback: AsyncCallback\<void\>);
 
 杀死应用所在的进程。
 
@@ -362,15 +358,13 @@ killProcessesBySelf(callback: AsyncCallback<void>);
 
 | 类型 | 说明 |
 | -------- | -------- |
-|AsyncCallback\<void> | 以callback方式返回杀死应用所在的进程结果。 |
+|AsyncCallback\<void\> | 以callback方式返回杀死应用所在的进程结果。 |
 
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.killProcessesBySelf(err => {
-    if (err.code !== 0) {
-        console.error("killProcessesBySelf faile, err: " + JSON.stringify(err));
-    }
+applicationContext.killAllProcesses(err => {
+    console.error("killAllProcesses result: " + JSON.stringify(err));
 })
 ```
