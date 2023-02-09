@@ -532,7 +532,7 @@ request方法回调函数的返回值类型。
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
-| cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
+| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
 
 ## http.createHttpResponseCache<sup>9+</sup>
 

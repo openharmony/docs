@@ -3,7 +3,6 @@
 以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS等信息
 
 > **说明：**
->
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -48,8 +47,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 **示例：**
 
 ```js
-ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", routeAddr:"192.168.1.1",
-    gateAddr:"192.168.1.1", maskAddr:"255.255.255.0", dnsAddr0:"1.1.1.1", dnsAddr1:"2.2.2.2"},
+ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.xx.xx", routeAddr:"192.168.xx.xx",
+    gateAddr:"192.168.xx.xx", maskAddr:"255.255.xx.xx", dnsAddr0:"1.1.xx.xx", dnsAddr1:"2.2.xx.xx"},
     (error) => {
         if (error) {
             console.log("setIfaceConfig callback error = " + error);
@@ -100,8 +99,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 **示例：**
 
 ```js
-ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", routeAddr:"192.168.1.1",
-    gateAddr:"192.168.1.1", maskAddr:"255.255.255.0", dnsAddr0:"1.1.1.1", dnsAddr1:"2.2.2.2"}).then(() => {
+ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.xx.xx", routeAddr:"192.168.xx.xx",
+    gateAddr:"192.168.xx.xx", maskAddr:"255.255.xx.xx", dnsAddr0:"1.1.xx.xx", dnsAddr1:"2.2.xx.xx"}).then(() => {
     console.log("setIfaceConfig promiss ok ");
 }).catch((error) => {
     console.log("setIfaceConfig promiss error = " + error);
