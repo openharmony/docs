@@ -95,54 +95,6 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
   }
   ```
 
-   也可以使用want格式绑定参数跳转到目标应用，want定义了ability名称、包名、携带的参数字段等。
-
-  | 选择器    | 类型     | 默认值      | 样例描述                                     |
-  | ------ | ------ | -------- | ---------------------------------------- |
-  | action | string | "router" | 事件类型。<br>- "router"：用于应用跳转。<br>- "message"：自定义点击事件。 |
-  | want   | Object | -        | 跳转目标应用的信息，参考want格式表。                     |
-
-    **表1** want格式
-
-  | 选择器         | 类型                   | 默认值          | 样例描述                                     |
-  | ----------- | -------------------- | ------------ | ---------------------------------------- |
-  | bundleName  | string               | -            | 表示包描述。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
-  | abilityName | string               | -            | 表示待启动的Ability名称。                         |
-  | action      | string               | -            | 表示action选项描述。                            |
-  | uri         | string               | -            | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-  | type        | string               | "text/plain" | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。 |
-  | flags       | number               | -            | 表示处理Want的方式。默认传数字，具体参考[flags说明](../apis/js-apis-featureAbility.md#flags说明)。 |
-  | entities    | Array\<string>       | -            | 类别，用于指定Intent的操作类别。                      |
-  | parameters  | {[key: string]: any} | -            | 表示WantParams描述。                          |
-
-
-    ```json
-    // xxx.json
-    {
-      "data": {
-        "mainAbility": "xxx.xxx.xxx"
-      },
-      "actions": {
-        "routerEventName1": { 
-          "action": "router",
-          "want": {
-            "bundleName": "com.example.myapplication",
-            "abilityName": "com.example.entry.MainAbility"
-          }
-        },
-        "routerEventName2": { 
-          "action": "router",
-          "want": {
-            "action": "xxx.intent.action.DIAL",
-            "uri": "tel:12345678"
-          }
-        }  
-      }
-    }
-    ```
-
-    在API Version 8，want参数需要在app.js或app.ets文件的onCreate方法中调用[featureAbility.getWant](../apis/js-apis-featureAbility.md#featureabilitygetwant-1)接口接收相关参数。
-
 - 消息事件格式
 
   | 选择器    | 样例     | 默认值     | 样例描述         |
