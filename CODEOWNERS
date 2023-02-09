@@ -476,6 +476,7 @@ zh-cn/application-dev/reference/apis/js-apis-wifiext.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-window.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-worker.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-taskpool.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-xml.md @ge-yafang
