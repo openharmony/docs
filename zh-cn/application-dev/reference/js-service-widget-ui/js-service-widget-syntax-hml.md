@@ -94,40 +94,6 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
   }
   ```
 
-   也可以使用want格式绑定参数跳转到目标应用，want定义了ability名称、包名、携带的参数字段等。
-
-  | 选择器    | 类型     | 默认值      | 样例描述                                     |
-  | ------ | ------ | -------- | ---------------------------------------- |
-  | action | string | "router" | 事件类型。<br>- "router"：用于应用跳转。<br>- "message"：自定义点击事件。 |
-  | want   | [Want](../apis/js-apis-app-ability-want.md) | -        | 跳转目标应用的信息，参考want格式表。                     |
-
-
-    ```json
-  {
-      "data": {
-        "mainAbility": "xxx.xxx.xxx"
-      },
-      "actions": {
-        "routerEventName1": { 
-          "action": "router",
-          "want": {
-            "bundleName": "com.example.myapplication",
-            "abilityName": "com.example.entry.MainAbility"
-          }
-        },
-        "routerEventName2": { 
-          "action": "router",
-          "want": {
-            "action": "xxx.intent.action.DIAL",
-            "uri": "tel:12345678"
-          }
-        }  
-      }
-    }
-    ```
-
-    在API Version 8，want参数需要在app.js或app.ets文件的onCreate方法中调用[featureAbility.getWant](../apis/js-apis-ability-featureAbility.md)接口接收相关参数。
-
 - 消息事件格式
 
   | 选择器    | 样例     | 默认值     | 样例描述         |
