@@ -1,9 +1,11 @@
-# Internal Structure of deviceConfig Tag
+# Internal structure of deviceConfig Tag
 
 
 The **deviceConfig** tag contains device-specific configuration of the application, including attributes such as **default**, **tv**, **car**, and **wearable**. The **default** configuration applies to all types of devices. You need to declare the peculiar configuration of a specific device type in the associated sub-tag of this type.
 
-###   Table 1 Internal Structure of the deviceConfig Tag
+## Internal Structure of the deviceConfig Tag
+
+**Table 1** Internal structure of the deviceConfig tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -16,7 +18,9 @@ The **deviceConfig** tag contains device-specific configuration of the applicati
 
 Table 2 describes the internal structure of the **deviceConfig** attributes.
 
-####   Table 2 Internal Structure of the deviceConfig Attributes
+## Internal Structure of the deviceConfig Attributes
+
+**Table 2** Internal structure of the deviceConfig attributes
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -26,27 +30,33 @@ Table 2 describes the internal structure of the **deviceConfig** attributes.
 | compressNativeLibs | Whether the **libs** libraries are packaged in the HAP file after being compressed. The value **false** means that the **libs** libraries are stored without being compressed and will be directly loaded during the installation of the HAP file.| Boolean| Yes (initial value: **false**)|
 | network | Network security configuration. You can customize the network security settings of the application in the security statement of the configuration file without modifying the application code.| Object| Yes (initial value: left empty)|
 
-####   Table 3 Internal Structure of the network Attribute
+## Internal Structure of the network Attribute
+
+**Table 3** Internal structure of the network attribute
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | cleartextTraffic | Whether to allow the application to use plaintext traffic, for example, plaintext HTTP traffic.<br>**true**: The application is allowed to use plaintext traffic. **false**: The application is not allowed to use plaintext traffic.| Boolean| Yes (initial value: **false**)|
 | securityConfig | Network security configuration of the application.| Object| Yes (initial value: left empty)|
 
-####   Table 4 Internal Structure of the securityConfig Attribute
+## Internal Structure of the securityConfig Attribute
+
+**Table 4** Internal structure of the securityConfig attribute
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | domainSettings | Security settings of the custom network domain. This attribute allows nested domains. That is, the **domainSettings** object of a network domain can be nested with the **domainSettings** objects of smaller network domains.| Object| Yes (initial value: left empty)|
 
-####   Table 5 Internal Structure of the domainSettings Attribute
+## Internal Structure of the domainSettings Attribute
+
+**Table 5** Internal structure of the domainSettings attribute
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | cleartextPermitted | Whether plaintext traffic can be transmitted in the custom network domain. If both **cleartextTraffic** and **security** are declared, whether plaintext traffic can be transmitted in the custom network domain is determined by the **cleartextPermitted** attribute. **true**: Plaintext traffic can be transmitted. **false**: Plaintext traffic cannot be transmitted.| Boolean| Yes (initial value: left empty)|
 | domains | Domain name. This attribute consists of two sub-attributes: **subdomains** and **name**. **subdomains** (boolean): specifies whether the domain name contains subdomains. If this sub-attribute is set to **true**, the domain naming convention applies to all related domains and subdomains (including the lower-level domains of the subdomains). Otherwise, the convention applies only to exact matches. **name** (string): indicates the domain name.| Object array| Yes (initial value: left empty)|
 
-### Example of the deviceConfig Tag
+Example of the **deviceConfig** tag:
 
 ```json
 "deviceConfig": {
