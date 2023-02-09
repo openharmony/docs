@@ -363,7 +363,7 @@ Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-pla
 | surfaceId<sup>9+</sup>                              | string                                                 | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置，静态属性。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
 | loop<sup>9+</sup>                                   | boolean                                                | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                     | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT_CROP，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
-| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型，默认INDEPENDENT_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
+| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                       | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
 | currentTime<sup>9+</sup>                            | number                                                 | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                 | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
@@ -1691,7 +1691,9 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 **需要权限：** ohos.permission.MICROPHONE
 
-不涉及音频录制时，可以不需要获取ohos.permission.MICROPHONE权限。涉及相机视频录制则需要额外获取相机权限ohos.permission.CAMERA。
+不涉及音频录制时，可以不需要获取ohos.permission.MICROPHONE权限。
+
+使用相机视频录制还需要与相机模块配合，权限获取以及接口使用详见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1754,7 +1756,9 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 **需要权限：** ohos.permission.MICROPHONE
 
-不涉及音频录制时，可以不需要获ohos.permission.MICROPHONE权限。涉及相机视频录制则需要额外获取相机权限ohos.permission.CAMERA。
+不涉及音频录制时，可以不需要获ohos.permission.MICROPHONE权限。
+
+使用相机视频录制还需要与相机模块配合，权限获取以及接口使用详见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2478,7 +2482,7 @@ AVRecorder.off('error');
 | audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。                   |
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。                                    |
-| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](https://gitee.com/huang-xl/docs/raw/20221216_avplayer_doc/zh-cn/application-dev/reference/apis/figures/zh-cn_image_url.png)，必要参数。 |
+| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
 | rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270。                  |
 | location        | [Location](#location)                    | 否   | 录制的地理位置。                                             |
 
