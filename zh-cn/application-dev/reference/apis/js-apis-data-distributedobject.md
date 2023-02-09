@@ -53,10 +53,10 @@ Stage模型示例：
 ```ts
 // 导入模块
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -156,10 +156,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -218,10 +218,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -294,10 +294,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -357,10 +357,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -413,10 +413,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -463,10 +463,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -517,10 +517,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject'; 
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -579,10 +579,10 @@ g_object.save("local", (result) => {
 Stage模型示例
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -627,6 +627,8 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 
 **示例：**
 
+FA模型示例
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -643,13 +645,14 @@ g_object.save("local").then((result) => {
     console.error("save failed");
 });
 ```
+Stage模型示例
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -712,10 +715,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability {
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         context = this.context
     }
@@ -786,10 +789,10 @@ Stage模型示例
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // 获取context
 let context;
-class MainAbility extends Ability {
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         context = this.context
     }
