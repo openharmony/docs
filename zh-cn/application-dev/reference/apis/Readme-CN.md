@@ -22,7 +22,6 @@
     - [@ohos.application.Ability (Ability)](js-apis-application-ability.md)
     - [@ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-application-abilityLifecycleCallback.md)
     - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
-    - [@ohos.application.FormExtension (FormExtension)](js-apis-application-formExtension.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
@@ -108,6 +107,7 @@
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
+      - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
