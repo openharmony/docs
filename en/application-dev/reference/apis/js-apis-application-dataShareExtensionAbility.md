@@ -1,4 +1,4 @@
-# @ohos.application.DataShareExtensionAbility
+# @ohos.application.DataShareExtensionAbility (DataShare Extension Ability)
 
 The **DataShareExtensionAbility** module provides data share services based on the Extension ability.
 
@@ -22,12 +22,11 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 The URIs are in the following format:
 
 **Scheme://authority/path** 
-
 - *Scheme*: scheme name, which has a fixed value of **datashare** for the **DataShare** module.
 - *authority*: [userinfo@]host[:port]
-  - *userinfo*: login information, which can be left unspecified.
-  - *host*: server address. It is the target device ID for cross-device access and empty for local device access.
-  - *port*: port number of the server, which can be left unspecified.
+    - *userinfo*: login information, which can be left unspecified.
+    - *host*: server address. It is the target device ID for cross-device access and empty for local device access.
+    - *port*: port number of the server, which can be left unspecified.
 - *path*: **DataShare** identifier and the resource path. The **DataShare** identifier is mandatory, and the resource path is optional.
 
 Example:
@@ -76,7 +75,8 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
-            name: DB_NAME
+            name: DB_NAME,
+            securityLevel: rdb.SecurityLevel.S1
         }, function (err, data) {
             console.log('getRdbStore done, data : ' + data);
             rdbStore = data;
