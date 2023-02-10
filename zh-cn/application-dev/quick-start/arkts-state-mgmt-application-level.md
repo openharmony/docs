@@ -120,7 +120,7 @@ export default class MainAbility extends Ability {
 
     onWindowStageCreate(windowStage) {
         // storage作为参数传递给loadContent接口
-        windowStage.loadContent('pages/index', this.storage)
+        windowStage.loadContent('pages/Index', this.storage)
     }
 
     onWindowStageDestroy() {
@@ -140,7 +140,7 @@ export default class MainAbility extends Ability {
 @Component组件获取数据
 
 ```ts
-// index.ets
+// Index.ets
 let storage = LocalStorage.GetShared()
 
 @Entry(storage)
