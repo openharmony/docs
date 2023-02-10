@@ -21,8 +21,7 @@ The following figure shows the basic concepts used in the stage model.
 
 - [Context](application-context-stage.md)
 
-  In the stage model, Context and its derived classes provide a variety of capabilities that can be called during the runtime. The UIAbility component and ExtensionAbility derived classes have different Context classes. These classes, which all inherit from the base class Context, provide different capabilities.
-
+  In the stage model, Context and its derived classes provide a variety of resources and capabilities that can be called during the runtime. The UIAbility component and ExtensionAbility derived classes have different Context classes. These classes, which all inherit from the base class Context, provide different capabilities.
 - [AbilityStage](abilitystage.md)
 
   Each HAP of the Entry or Feature type has an AbilityStage class instance during the runtime. When the code in the HAP is loaded to the process for the first time, the system creates an AbilityStage class instance first. Each UIAbility class defined in the HAP is associated with this class instance after instantiation. Through this class instance, you can obtain the runtime information of the UIAbility instances in the HAP.
