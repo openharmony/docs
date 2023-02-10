@@ -76,7 +76,7 @@ Not supported
 }
 .spanTxt{
   color: chartreuse;
-  font-size: 100px;
+  font-size: 80px;
 }
 ```
 

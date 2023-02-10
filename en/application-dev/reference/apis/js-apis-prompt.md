@@ -33,7 +33,7 @@ Shows a toast.
 ```js
 prompt.showToast({            
   message: 'Message Info',
-    duration: 2000,      
+    duration: 2000
 });
 ```
 
@@ -47,7 +47,7 @@ Describes the options for showing the toast.
 
 | Name      | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Text to display.                                |
+| message  | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Text to display.                                |
 | duration | number                                   | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
 | bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen. It does not have an upper limit. The default unit is vp.               |
 
@@ -80,11 +80,11 @@ prompt.showDialog({
   buttons: [
     {
       text: 'button1',
-      color: '#000000',
+      color: '#000000'
     },
     {
       text: 'button2',
-      color: '#000000',
+      color: '#000000'
     }
   ],
 })
@@ -122,11 +122,11 @@ prompt.showDialog({
   buttons: [
     {
       text: 'button1',
-      color: '#000000',
+      color: '#000000'
     },
     {
       text: 'button2',
-      color: '#000000',
+      color: '#000000'
     }
   ]
 }, (err, data) => {
@@ -148,8 +148,8 @@ Describes the options for showing the dialog box.
 
 | Name   | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No  | Title of the dialog box.                                                  |
-| message | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No  | Text body.                                                  |
+| title   | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No  | Title of the dialog box.                                                  |
+| message | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No  | Text body.                                                  |
 | buttons | [[Button](#button),[Button](#button)?,[Button](#button)?]    | No  | Array of buttons in the dialog box. The array structure is **{text:'button', color: '\#666666'}**. Up to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
 
 ## ShowDialogSuccessResponse 
@@ -186,11 +186,11 @@ prompt.showActionMenu({
   buttons: [
     {
       text: 'item1',
-      color: '#666666',
+      color: '#666666'
     },
     {
       text: 'item2',
-      color: '#000000',
+      color: '#000000'
     },
   ]
 }, (err, data) => {
@@ -232,11 +232,11 @@ prompt.showActionMenu({
   buttons: [
     {
       text: 'item1',
-      color: '#666666',
+      color: '#666666'
     },
     {
       text: 'item2',
-      color: '#000000',
+      color: '#000000'
     },
   ]
 })
@@ -257,7 +257,7 @@ Describes the options for showing the action menu.
 
 | Name   | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No  | Title of the text to display.                                                  |
+| title   | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | No  | Title of the text to display.                                                  |
 | buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | Yes  | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
 
 ## ActionMenuSuccessResponse
@@ -278,5 +278,5 @@ Describes the menu item button in the action menu.
 
 | Name   | Type                                      | Mandatory  | Description     |
 | ----- | ---------------------------------------- | ---- | ------- |
-| text  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Button text.|
-| color | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Text color of the button.|
+| text  | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Button text.|
+| color | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | Yes   | Text color of the button.|
