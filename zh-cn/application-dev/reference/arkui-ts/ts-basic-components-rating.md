@@ -39,8 +39,9 @@ Rating(options?: { rating: number, indicator?: boolean })
 | -------- | -------- |
 | onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 操作评分条的评星发生改变时触发该回调。 |
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -95,3 +96,37 @@ struct RatingExample {
 ```
 
 ![rating](figures/rating.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RatingExample {
+  @State rating: number = 3.5
+
+  build() {
+    Column() {
+      Rating({ rating: this.rating, indicator: false })
+        .stars(5)
+        .stepSize(0.5)
+        .starStyle({
+          backgroundUri: '/common/imag1.png', // common目录与pages同级
+          foregroundUri: '/common/imag2.png',
+          secondaryUri: '/common/imag3.png'
+        })
+        .margin({ top: 24 })
+        .onChange((value: number) => {
+          this.rating = value
+        })
+      Text('current score is ' + this.rating)
+        .fontSize(16)
+        .fontColor('rgba(24,36,49,0.60)')
+        .margin({ top: 16 })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![rating1](figures/rating1.gif)
