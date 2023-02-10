@@ -60,6 +60,7 @@
   - [DataPanel](ts-basic-components-datapanel.md)
   - [DatePicker](ts-basic-components-datepicker.md)
   - [Divider](ts-basic-components-divider.md)
+  - [Formcomponent](ts-basic-components-formcomponent.md)
   - [Gauge](ts-basic-components-gauge.md)
   - [Image](ts-basic-components-image.md)
   - [ImageAnimator](ts-basic-components-imageanimator.md)
@@ -101,7 +102,6 @@
   - [ColumnSplit](ts-container-columnsplit.md)
   - [Counter](ts-container-counter.md)
   - [Flex](ts-container-flex.md)
-  - [FlowItem](ts-container-flowitem.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
@@ -121,7 +121,6 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
-  - [WaterFlow](ts-container-waterflow.md)
 - 媒体组件
   - [Video](ts-media-components-video.md)
 - 绘制组件
