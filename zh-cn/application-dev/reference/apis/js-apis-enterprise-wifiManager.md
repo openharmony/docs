@@ -1,6 +1,6 @@
 # @ohos.enterprise.wifiManager（WiFi管理）
 
-本模块提供企业设备信息管理能力，包括获取设备序列号等。仅企业设备管理员应用才能调用。
+本模块提供企业设备WiFi管理能力，包括查询WiFi开启状态等。仅企业设备管理员应用才能调用。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ import wifiManager from '@ohos.enterprise.wifiManager';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-查询wifi开启状态，使用callback形式返回设备序列号。
+查询wifi开启状态，使用callback形式返回wifi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -60,7 +60,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-获取wifi开启状态，使用callback形式返回设备序列号。
+获取wifi开启状态，使用callback形式返回wifi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 

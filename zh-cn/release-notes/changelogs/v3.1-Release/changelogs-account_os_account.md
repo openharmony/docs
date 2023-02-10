@@ -33,25 +33,25 @@
 **适配指导**
 ```ts
 import account_osAccount from "@ohos.account.osAccount"
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 let accountMgr = account_osAccount.getAccountManager();
-accountMgr.createOsAccount('account_test', account_osAccount.OsAccountType.GUEST).then((accountInfo) => {
-  expect(accountInfo.type).assertEqual(account_osAccount.OsAccountType.GUEST);
+accountMgr.createOsAccount("account_test", account_osAccount.OsAccountType.GUEST).then((accountInfo) => {
+  if (accountInfo.type == account_osAccount.OsAccountType.GUEST) {
+    console.log("createOsAccount successfully");
+  }
   accountMgr.activateOsAccount(accountInfo.localId).then(() => {
-    console.log('activateOsAccount successfully');
+    console.log("activateOsAccount successfully");
     accountMgr.getOsAccountTypeFromProcess().then((accountType) => {
-      expect(accountType).assertEqual(account_osAccount.OsAccountType.GUEST);
+      if (accountType == account_osAccount.OsAccountType.GUEST) {
+        console.log("getOsAccountTypeFromProcess successfully");
+      }
     }).catch((err) => {
-      console.log('activateOsAccount err: ' + JSON.stringify(err));
-      expect().assertFail();
+      console.log("activateOsAccount err: " + JSON.stringify(err));
     });
   }).catch((err) => {
-    console.log('activateOsAccount err: ' + JSON.stringify(err));
-    expect().assertFail();
+    console.log("activateOsAccount err: " + JSON.stringify(err));
   });
 }).catch((err) => {
-  console.log('createOsAccount err: ' + JSON.stringify(err));
-  expect().assertFail();
+  console.log("createOsAccount err: " + JSON.stringify(err));
 });
 ```
