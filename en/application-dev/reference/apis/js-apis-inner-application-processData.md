@@ -17,7 +17,7 @@ The **ProcessData** module defines process data. If a lifecycle change listener 
 
 **Example**
 ```ts
-import appManager from '@ohos.application.appManager'
+import appManager from '@ohos.app.ability.appManager';
 
 let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {

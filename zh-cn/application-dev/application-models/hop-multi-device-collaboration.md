@@ -93,7 +93,7 @@
    }
    ```
 
-4. 设置目标组件参数，调用startAbility()接口，启动UIAbility或ServiceExtensionAbility。
+4. 设置目标组件参数，调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
    
    ```ts
    let want = {

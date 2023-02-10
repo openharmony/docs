@@ -67,9 +67,9 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256").then(function (str) {
+  Hash.hash(filePath, "sha256").then((str) => {
     console.info("calculate file hash succeed:" + str);
-  }).catch(function (err) {
+  }).catch((err) => {
     console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -92,7 +92,8 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：**
   ```js
-  Hash.hash(filePath, "sha256", function (err, str) {
+  let filePath = pathDir + "/test.txt";
+  Hash.hash(filePath, "sha256", (err, str) => {
     if (err) {
       console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
     } else {

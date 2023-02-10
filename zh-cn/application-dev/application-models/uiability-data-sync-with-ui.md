@@ -106,10 +106,10 @@ globalThis是ArkTS引擎实例内部的一个全局对象，引擎内部的UIAbi
 
 globalThis为[ArkTS引擎实例](thread-model-stage.md)下的全局对象，可以通过globalThis绑定属性/方法来进行UIAbility组件与UI的数据同步。例如在UIAbility组件中绑定want参数，即可在UIAbility对应的UI界面上使用want参数信息。
 
-1. 调用startAbility()方法启动一个UIAbility实例时，被启动的UIAbility创建完成后会进入onCreate()生命周期回调，且在onCreate()生命周期回调中能够接受到传递过来的want参数，可以将want参数绑定到globalThis上。
+1. 调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility实例时，被启动的UIAbility创建完成后会进入onCreate()生命周期回调，且在onCreate()生命周期回调中能够接受到传递过来的want参数，可以将want参数绑定到globalThis上。
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility'
+   import UIAbility from '@ohos.app.ability.UIAbility';
 
    export default class EntryAbility extends UIAbility {
        onCreate(want, launch) {

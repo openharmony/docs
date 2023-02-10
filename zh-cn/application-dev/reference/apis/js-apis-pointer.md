@@ -279,7 +279,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -322,7 +322,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -361,7 +361,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -399,7 +399,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);

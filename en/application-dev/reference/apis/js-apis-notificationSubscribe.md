@@ -1,6 +1,6 @@
-# @ohos.notificationSubscribe
+# @ohos.notificationSubscribe (NotificationSubscribe)
 
-The **NotificationSubscribe** module provides APIs for notification subscription, notification unsubscription, subscription removal, and more. In general cases, only system applications can call these APIs.
+The **notificationSubscribe** module provides APIs for notification subscription, notification unsubscription, subscription removal, and more. In general cases, only system applications can call these APIs.
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ The **NotificationSubscribe** module provides APIs for notification subscription
 ## Modules to Import
 
 ```js
-import NotificationSubscribe from '@ohos.notificationSubscribe';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
 
@@ -56,16 +56,14 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
-var info = {
+};
+let info = {
     bundleNames: ["bundleName1","bundleName2"]
-}
-NotificationSubscribe.subscribe(subscriber, info, subscribeCallback);
+};
+notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
-
-
 
 ## NotificationSubscribe.subscribe
 
@@ -107,10 +105,10 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+};
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 
@@ -148,10 +146,10 @@ Subscribes to a notification with the subscription information specified. This A
 function onConsumeCallback(data) {
     console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
-NotificationSubscribe.subscribe(subscriber).then(() => {
+notificationSubscribe.subscribe(subscriber).then(() => {
 	console.info("subscribe success");
 });
 ```
@@ -198,13 +196,11 @@ function unsubscribeCallback(err) {
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
-}
-NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
+};
+notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
-
-
 
 ## NotificationSubscribe.unsubscribe
 
@@ -238,15 +234,13 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
 };
-NotificationSubscribe.unsubscribe(subscriber).then(() => {
+notificationSubscribe.unsubscribe(subscriber).then(() => {
 	console.info("unsubscribe success");
 });
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -289,15 +283,15 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
+};
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
 
@@ -335,20 +329,18 @@ Removes a notification for a specified application. This API uses a promise to r
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
+};
+let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -382,7 +374,7 @@ Removes a specified notification. This API uses an asynchronous callback to retu
 **Example**
 
 ```js
-var hashCode = 'hashCode'
+let hashCode = 'hashCode';
 
 function removeCallback(err) {
     if (err) {
@@ -391,11 +383,9 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
-NotificationSubscribe.remove(hashCode, reason, removeCallback);
+let reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -428,14 +418,12 @@ Removes a specified notification. This API uses a promise to return the result.
 **Example**
 
 ```js
-var hashCode = 'hashCode'
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(hashCode, reason).then(() => {
+let hashCode = 'hashCode';
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -475,13 +463,11 @@ function removeAllCallback(err) {
         console.info("removeAll success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 NotificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -520,10 +506,8 @@ function removeAllCallback(err) {
     }
 }
 
-NotificationSubscribe.removeAll(removeAllCallback);
+notificationSubscribe.removeAll(removeAllCallback);
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -556,7 +540,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 ```js
 // If no application is specified, notifications of all applications are deleted.
-NotificationSubscribe.removeAll().then(() => {
+notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
 });
 ```
@@ -600,9 +584,9 @@ function removeAllCallback(err) {
     }
 }
 
-var userId = 1
+let userId = 1;
 
-NotificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
 ## Notification.removeAll
@@ -643,12 +627,10 @@ function removeAllCallback(err) {
     }
 }
 
-var userId = 1
+let userId = 1;
 
-NotificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
-
-
 
 ## NotificationSubscriber
 
@@ -689,11 +671,11 @@ function onConsumeCallback(data) {
     console.info('===> onConsume callback req.id:' + req.id);
 };
 
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onCancel
@@ -729,11 +711,11 @@ function onCancelCallback(data) {
     console.info('===> onCancel callback req.id:' + req.id);
 }
 
-var subscriber = {
+let subscriber = {
     onCancel: onCancelCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onUpdate
@@ -767,11 +749,11 @@ function onUpdateCallback(map) {
     console.info('===> onUpdateCallback map:' + JSON.stringify(map));
 }
 
-var subscriber = {
+let subscriber = {
     onUpdate: onUpdateCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onConnect
@@ -799,11 +781,11 @@ function onConnectCallback() {
     console.info('===> onConnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onDisconnect
@@ -841,15 +823,15 @@ function onDisconnectCallback() {
     console.info('===> onDisconnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback,
     onDisconnect: onDisconnectCallback
 };
 
 // The onConnect callback is invoked when subscription to the notification is complete.
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 // The onDisconnect callback is invoked when unsubscription to the notification is complete.
-NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
+notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
 ### onDestroy
@@ -877,11 +859,11 @@ function onDestroyCallback() {
     console.info('===> onDestroy in test');
 }
 
-var subscriber = {
+let subscriber = {
     onDestroy: onDestroyCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onDoNotDisturbDateChange
@@ -915,11 +897,11 @@ function onDoNotDisturbDateChangeCallback(mode) {
     console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
-var subscriber = {
+let subscriber = {
     onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 
@@ -956,11 +938,11 @@ function onEnabledNotificationChangedCallback(callbackData) {
     console.info("enable: ", callbackData.enable);
 };
 
-var subscriber = {
+let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ## BundleOption
@@ -1011,7 +993,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSorting
 
-Provides sorting information of activity notifications.
+Provides sorting information of active notifications.
 
 **System capability**: SystemCapability.Notification.Notification
 

@@ -3,8 +3,8 @@ OpenHarmony provides a comprehensive auto-test framework for designing test case
 
 This document describes how to use the OpenHarmony test framework.
 ## Setting Up the Environment
-The test framework depends on the Python running environment. Before using the test framework, set up the environment as follows:
- - [Setting Up the Environment](../device-dev/subsystems/subsys-testguide-test.md#setting-up-the-environment)
+The test framework depends on Python. Before using the test framework, set up the environment as follows:
+ - [Configuring the Environment](../device-dev/device-test/xdevice.md)
  - [Obtaining Source Code](../device-dev/get-code/sourcecode-acquire.md)
 
 
@@ -14,7 +14,7 @@ The directory structure of the test framework is as follows:
 test # Test subsystem
 ├── developertest             # Developer test module
 │   ├── aw                    # Static library of the test framework
-│   ├── config  # Test framework configuration
+│   ├── config                # Test framework configuration
 │   │   │ ...
 │   │   └── user_config.xml   # User configuration
 │   ├── examples              # Examples of test cases
@@ -30,30 +30,30 @@ test # Test subsystem
 ###  Designing the Test Case Directory
 Design the test case directory as follows:
 ```
-subsystem                                # Subsystem
-├── partA                                # Part A
-│   ├── moduleA                          # Module A
+subsystem                                  # Subsystem
+├── partA                                  # Part A
+│   ├── moduleA                            # Module A
 │   │   ├── include       
-│   │   ├── src                          # Service code
-│   │   └── test                         # Test directory
-│   │       ├── unittest                 # Unit test
-│   │       │   ├── common               # Common test cases
-│   │       │   │   ├── BUILD.gn         # Build file of test cases
-│   │       │   │   └── testA_test.cpp   # Source code of unit test cases
-│   │       │   ├── phone                # Test cases for mobile phones
-│   │       │   ├── ivi                  # Test cases for head units
-│   │       │   └── liteos-a             # Test cases for the IP cameras that use the LiteOS kernel
-│   │       ├── moduletest               # Module test
+│   │   ├── src                            # Service code
+│   │   └── test                           # Test directory
+│   │       ├── unittest                   # Unit tests
+│   │       │   ├── common                 # Common test cases
+│   │       │   │   ├── BUILD.gn           # Build file of test cases
+│   │       │   │   └── testA_test.cpp     # Source code of unit test cases
+│   │       │   ├── phone                  # Test cases for smart phones
+│   │       │   ├── ivi                    # Test cases for head units
+│   │       │   └── liteos-a               # Test cases for IP cameras that use the LiteOS kernel
+│   │       ├── moduletest                 # Module tests
 │   │       ...
 │   │            
-│   ├── moduleB                   # Module B  
+│   ├── moduleB                      # Module B   
 │   ├── test               
-│   │   └── resource              # Dependency resources   
-│   │       ├── moduleA           # Module A
-│   │       │   ├── ohos_test.xml # Resource configuration file
-│   │       ... └── 1.txt         # Resource file  
+│   │   └── resource                 # Dependency resources
+│   │       ├── moduleA              # Module A
+│   │       │   ├── ohos_test.xml    # Resource configuration file
+│   │       ... └── 1.txt            # Resource file  
 │   │            
-│   ├── ohos_build                # Build entry configuration 
+│   ├── ohos_build                   # Build entry configuration  
 │   ...
 │
 ...
@@ -111,7 +111,7 @@ Example:
     
     /**
      * @tc.name: integer_sub_001
-     * @tc.desc: Verify the sub-function.
+     * @tc.desc: Verify the sub function.
      * @tc.type: FUNC
      * @tc.require: Issue Number
      */
@@ -119,7 +119,7 @@ Example:
     {
         // Step 1 Call the function to obtain the result.
         int actual = Sub(4, 0);
-
+    
         // Step 2 Use an assertion to compare the obtained result with the expected result.
         EXPECT_EQ(4, actual);
     }
@@ -127,20 +127,22 @@ Example:
     The procedure is as follows:
     1. Add comment information to the test case file header.
 
-        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+        Enter the header comment in the standard format. For details, see [Code Specifications] (https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
 
     2. Add the test framework header file and namespace.
 	    ```
     	#include <gtest/gtest.h>
-    
+    	
     	using namespace testing::ext;
     	```
-    3. Add the header file of the test class.
-	    ```
+    	
+	3. Add the header file of the test class.
+        ```
     	#include "calculator.h"
     	```
+		
     4. Define the test suite (test class).
-	    ```
+        ```
     	class CalculatorSubTest : public testing::Test {
     	public:
     	    static void SetUpTestCase(void);
@@ -148,73 +150,84 @@ Example:
     	    void SetUp();
     	    void TearDown();
     	};
-    
+        
     	void CalculatorSubTest::SetUpTestCase(void)
     	{
     	    // Set a setup function, which will be called before all test cases.
     	}
-    
+        
     	void CalculatorSubTest::TearDownTestCase(void)
     	{
     	    // Set a teardown function, which will be called after all test cases.
     	}
-    
+        
     	void CalculatorSubTest::SetUp(void)
     	{
     	    // Set a setup function, which will be called before each test case.
     	}
-    
+        
     	void CalculatorSubTest::TearDown(void)
     	{
     	    // Set a teardown function, which will be called after each test case.
-    	}
-    	```
-	    > **NOTE**<br>When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
-
-    5. Add implementation of the test cases, including test case comments and logic.
-	    ```
-    	/**
-    	 * @tc.name: integer_sub_001
-    	 * @tc.desc: Verify the sub function.
-    	 * @tc.type: FUNC
-    	 * @tc.require: Issue Number
-    	 */
-    	HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
-    	{
-    	    // Step 1 Call the function to obtain the test result.
-    	    int actual = Sub(4, 0);
-
-    	    // Step 2 Use an assertion to compare the obtained result with the expected result.
-    	    EXPECT_EQ(4, actual);
-    	}
-    	```
-	    The following test case templates are provided for your reference.
+		}
+		```
+    	> **NOTE**<br>When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
 	
-	    |      Template|    Description|
-    	| ------------| ------------|
-    	| HWTEST(A,B,C)| Use this template if the test case execution does not depend on setup or teardown.|
-    	| HWTEST_F(A,B,C)| Use this template if the test case execution (excluding parameters) depends on setup and teardown.|
-    	| HWTEST_P(A,B,C)| Use this template if the test case execution (including parameters) depends on setup and teardown.|
-
-	    In the template names: 
-	- *A* indicates the test suite name.
-	- *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
-	- *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
-
-	    **NOTE**<br>
-	- The expected result of each test case must have an assertion.
-	- The test case level must be specified.
-	- It is recommended that the test be implemented step by step according to the template.
-	- The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case description must be in the @tc.xxx format. The test case type @tc.type can be any of the following:
-
-	    | Test Case Type|Code|
-    	| ------------|------------|
-    	|Function test     |FUNC|
-        |Performance test     |PERF|
-        |Reliability test   |RELI|
-        |Security test     |SECU|
-        |Fuzz test      |FUZZ|
+    5. Add implementation of the test cases, including test case comments and logic.
     
+       ```
+       /**
+       
+        * @tc.name: integer_sub_001
+       
+        * @tc.desc: Verify the sub function.
+       
+        * @tc.type: FUNC
+       
+        * @tc.require: Issue Number
+          */
+          HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
+          {
+	      // Step 1 Call the function to obtain the test result.
+	      int actual = Sub(4, 0);
+	   
+          // Step 2 Use an assertion to compare the obtained result with the expected result.
+          EXPECT_EQ(4, actual);
+          }
+       ```
+	
+	   The following test case templates are provided for your reference.
+	
+	   | Template        | Description                                                  |
+	   | --------------- | ------------------------------------------------------------ |
+       | HWTEST(A,B,C)   | Use this template if the test case execution does not depend on setup or teardown. |
+	   | HWTEST_F(A,B,C) | Use this template if the test case execution (excluding parameters) depends on setup and teardown. |
+	   | HWTEST_P(A,B,C) | Use this template if the test case execution (including parameters) depends on setup and teardown. |
+	
+	   In the template names:
+	
+       - *A* indicates the test suite name.
+	   
+       - *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
+    
+       - *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
+       
+         
+       
+       > **NOTE**
+       >
+       > - The expected result of each test case must have an assertion.
+       >- The test case level must be specified.
+       > - It is recommended that the test be implemented step by step according to the template.
+       >- The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case description must be in the @tc.xxx format. The test case type @tc.type can be any of the following:
+
+       | Test Case Type   | Code |
+       | ---------------- | ---- |
+       | Function test    | FUNC |
+       | Performance test | PERF |
+       | Reliability test | RELI |
+       | Security test    | SECU |
+       | Fuzz test        | FUZZ |
 
 #### JavaScript Test Case Example
 
@@ -262,7 +275,7 @@ Example:
         it("appInfoTest001", 0, function () {
             // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-
+    
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
         })
@@ -271,12 +284,12 @@ Example:
     The procedure is as follows:
     1. Add comment information to the test case file header.
 
-        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+        Enter the header comment in the standard format. For details, see [Code Specifications] (https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
 
     2. Import the APIs and JSUnit test library to test.
 	    ```
     	import app from '@system.app'
-    
+    	
     	import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
     	```
     3. Define the test suite (test class).
@@ -313,7 +326,7 @@ Example:
     	 it("appInfoTest001", 0, function () {
     	    // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-
+    	
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
     	 })
@@ -362,12 +375,13 @@ The following provides templates for different languages for your reference.
 
     1. Add comment information for the file header.
 
-        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+        Enter the header comment in the standard format. For details, see [Code Specifications] (https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
 
     2. Import the build template.
 	    ```
     	import("//build/test.gni")
     	```
+    	
     3. Specify the file output path.
     	```
     	module_output_path = "subsystem_examples/calculator"
@@ -391,7 +405,9 @@ The following provides templates for different languages for your reference.
     	ohos_unittest("CalculatorSubTest") {
     	}
     	```
+    	
     6. Write the build script (add the source file, configuration, and dependencies) for the test cases.
+    	
     	```
     	ohos_unittest("CalculatorSubTest") {
     	  module_out_path = module_output_path
@@ -402,30 +418,35 @@ The following provides templates for different languages for your reference.
     	  ]
     	  sources += [ "calculator_sub_test.cpp" ]
     	  configs = [ ":module_private_config" ]
-    	  deps = [ "//third_party/googletest:gtest_main" ]
-    	}
+	    deps = [ "//third_party/googletest:gtest_main" ]
+		}
     	```
-
-	    > **NOTE**<br>Set the test type based on actual requirements. The following test types are available:
-    	 >
-    	 > - **ohos_unittest**: unit test
-    	 > - **ohos_moduletest**: module test
-    	 > - **ohos_systemtest**: system test
-    	 > - **ohos_performancetest**: performance test
-    	 > - **ohos_securitytest**: security test
-    	 > - **ohos_reliabilitytest**: reliability test
-         > - **ohos_distributedtest**: distributed test
     	
+    	> **NOTE**
+    	>
+    	> - **ohos_unittest**: unit test
+    	> - **ohos_moduletest**: module test
+    	> - **ohos_systemtest**: system test
+    	> - **ohos_performancetest**: performance test
+    	> - **ohos_securitytest**: security test
+		> - **ohos_reliabilitytest**: reliability test
+    	> - **ohos_distributedtest**: distributed test
+		
     7. Group the test case files by test type.
+       
+       ```
+        group("unittest") {
+               	  testonly = true
+               	  deps = [":CalculatorSubTest"]
+               	}
+       ```
+       
+       > **NOTE**
+       >
+       > Grouping test cses by test type allows you to execute a specific type of test cases when required.
     
-    	```
-    	group("unittest") {
-    	  testonly = true
-    	  deps = [":CalculatorSubTest"]
-    	}
-    	```
-    	> **NOTE**<br>Grouping test cases by test type allows you to execute a specific type of test cases when required.
-    
+    ​    
+
 - **Test case build file example (JavaScript)**
 
     ```
@@ -451,7 +472,7 @@ The following provides templates for different languages for your reference.
 
     1. Add comment information for the file header.
 
-        Enter the header comment in the standard format. For details, see [Code Specifications](https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
+        Enter the header comment in the standard format. For details, see [Code Specifications] (https://gitee.com/openharmony/docs/blob/master/en/contribute/code-contribution.md).
 
     2. Import the build template.
     
@@ -485,7 +506,7 @@ The following provides templates for different languages for your reference.
     	  certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
     	}
     	```
-    	 **config.json** is the configuration file required for HAP build. You need to set **target** based on the tested SDK version. Default values can be retained for other items. The following is an example:
+    	**config.json** is the configuration file required for HAP build. You need to set **target** based on the tested SDK version. Default values can be retained for other items. The following is an example:
     
     	```
     	{
@@ -677,8 +698,9 @@ When the build is complete, the test cases are automatically saved in **out/hisp
 
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
 	
->**NOTE**<br>Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
-
+	> **NOTE**<br>
+	>
+	> Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
 3. Modify the **user_config.xml** file.
 	```
 	<build>
@@ -745,7 +767,7 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 
     The test framework locates the test cases based on the command, and automatically builds and executes the test cases.
 	```
-	run -t UT -ts CalculatorSubTest -tc integer_sub_00l
+	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
 	```
 	In the command:
 	```

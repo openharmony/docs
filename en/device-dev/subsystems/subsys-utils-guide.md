@@ -31,9 +31,9 @@ The **commonlibrary** subsystem stores basic OpenHarmony components which provid
 
 ## Development Guidelines<a name="section1633115419401"></a>
 
-[Development Guidelines for c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/docs/en/c-utils-guide.md)
+[Related Documents for c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README.md)
 
 
 # Commonlibrary Subsystem FAQ
 ## c_utils FAQ
-See [Development Guidelines for c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/docs/en/c-utils-guide.md), including FAQs for several scenarios.
+See [Related Documents for c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README.md), including FAQs for several scenarios.

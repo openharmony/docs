@@ -667,6 +667,12 @@ Socket的连接信息。
 | port    | number | 是   | 端口号，范围0~65535。                                        |
 | size    | number | 是   | 服务器响应信息的字节长度。                                   |
 
+## UDP 错误码说明
+
+UDP 错误码映射形式为：2301000 + 内核错误码。
+
+错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-socket.md)
+
 ## socket.constructTCPSocketInstance
 
 constructTCPSocketInstance\(\): TCPSocket
@@ -1452,6 +1458,12 @@ TCPSocket连接的其他属性。
 | sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。                               |
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。                                  |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。                             |
+
+## TCP 错误码说明
+
+TCP 错误码映射形式为：2301000 + 内核错误码。
+
+错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-socket.md)
 
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 

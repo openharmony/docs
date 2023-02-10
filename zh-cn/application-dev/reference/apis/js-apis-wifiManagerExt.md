@@ -22,12 +22,13 @@ enableHotspot(): boolean;
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | 操作结果， true: 成功， false: 失败。 |
-
+| 2701000  | Operation failed.|
 
 ## wifiext.disableHotspot
 
@@ -39,12 +40,13 @@ disableHotspot(): boolean;
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | 操作结果， true: 成功， false: 失败。 |
-
+| 2701000  | Operation failed.|
 
 ## wifiext.getSupportedPowerModel
 
@@ -62,6 +64,13 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
   | -------- | -------- |
   | Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise对象。表示功率模式。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
 
 ## PowerModel
 
@@ -92,6 +101,13 @@ getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
 
 ## wifiext.getPowerModel
 
@@ -109,6 +125,13 @@ getPowerModel(): Promise&lt;PowerModel&gt;
   | -------- | -------- |
   | Promise&lt;[PowerModel](#powermodel)&gt; | Promise对象。表示功率模式。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
 
 ## wifiext.getPowerModel
 
@@ -126,6 +149,13 @@ getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
 
 ## wifiext.setPowerModel
 
@@ -143,8 +173,10 @@ setPowerModel(model: PowerModel) : boolean;
   | -------- | -------- | -------- | -------- |
   | model | [PowerModel](#powermodel) | 是 | 功率模式。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | 操作结果， true: 成功， false: 失败。 |
+| 2701000  | Operation failed.|

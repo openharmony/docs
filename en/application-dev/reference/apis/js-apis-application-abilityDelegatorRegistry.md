@@ -9,7 +9,7 @@ The **AbilityDelegatorRegistry** module provides APIs for storing the global reg
 ## Modules to Import
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 ```
 
 ## AbilityLifecycleState

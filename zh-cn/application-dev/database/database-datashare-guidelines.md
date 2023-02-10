@@ -85,7 +85,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
-   import rdb from '@ohos.data.rdb';
+   import rdb from '@ohos.data.relationalStore';
    import fileIo from '@ohos.fileio';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
@@ -109,16 +109,19 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 
    	// 重写onCreate接口
        onCreate(want, callback) {
-           result = this.context.cacheDir + '/datashare.txt'
+           result = this.context.cacheDir + '/datashare.txt';
            // 业务实现使用RDB
-           rdb.getRdbStore(this.context, {
-               name: DB_NAME
-           }, 1, function (err, data) {
-               rdbStore = data;
-               rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                   console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
+            rdb.getRdbStore(this.context, {
+                name: DB_NAME,
+                securityLevel: rdb.SecurityLevel.S1
+            }, function (err, data) {
+                rdbStore = data;
+                rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
+                    console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
                });
-               callback();
+               if (callbakc) {
+                    callback();
+               }
            });
        }
 
@@ -210,7 +213,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
    let valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
    let updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
    let predicates = new dataSharePredicates.DataSharePredicates();
-   let valArray = new Array("*");
+   let valArray = ['*'];
    // 插入一条数据
    dsHelper.insert(dseUri, valuesBucket, (err, data) => {
      console.log("dsHelper insert result: " + data);

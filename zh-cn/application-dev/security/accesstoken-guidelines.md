@@ -134,8 +134,7 @@
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    
    export default class EntryAbility extends UIAbility {
        // ...
@@ -143,10 +142,10 @@
        onWindowStageCreate(windowStage: window.WindowStage) {
            // Main window is created, set main page for this ability
            let context = this.context;
-           let AtManager = abilityAccessCtrl.createAtManager();
+           let atManager = abilityAccessCtrl.createAtManager();
            // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
            const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-           AtManager.requestPermissionsFromUser(context, permissions).then((data) => {
+           atManager.requestPermissionsFromUser(context, permissions).then((data) => {
                console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
                let grantStatus: Array<number> = data.authResults;
                if (grantStatus[0] === -1) {
@@ -165,8 +164,7 @@
    
    在UI界面中向用户申请授权。
    ```typescript
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    import common from '@ohos.app.ability.common';
    
    @Entry
@@ -174,10 +172,10 @@
    struct Index {
      reqPermissions() {
        let context = getContext(this) as common.UIAbilityContext;
-       let AtManager = abilityAccessCtrl.createAtManager();
+       let atManager = abilityAccessCtrl.createAtManager();
        // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
        const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-       AtManager.requestPermissionsFromUser(context, permissions).then((data) => {
+       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
          console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
          let grantStatus: Array<number> = data.authResults;
          if (grantStatus[0] === -1) {
@@ -202,12 +200,13 @@
 通过调用[requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7)接口向用户动态申请授权。
 
 ```js
-// Ability的onWindowStageCreate()生命周期
-onWindowStageCreate() {
-    let context = this.context;
+import featureAbility from '@ohos.ability.featureAbility';
+
+reqPermissions() {
+    let context = featureAbility.getContext();
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    context.requestPermissionsFromUser(array).then(function(data) {
+    context.requestPermissionsFromUser(array, 1).then(function(data) {
         console.log("data:" + JSON.stringify(data));
         console.log("data permissions:" + JSON.stringify(data.permissions));
         console.log("data result:" + JSON.stringify(data.authResults));
@@ -249,5 +248,5 @@ onWindowStageCreate() {
 
 针对访问控制，有以下相关实例可供参考：
 
-- [AbilityAccessCtrl：访问权限控制（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
-- [为应用添加运行时权限（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
+- [AbilityAccessCtrl：访问权限控制（ArkTS）（Full SDK）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [为应用添加运行时权限（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

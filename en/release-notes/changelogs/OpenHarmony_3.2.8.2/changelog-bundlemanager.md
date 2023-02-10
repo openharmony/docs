@@ -273,6 +273,7 @@ Use the **HapModuleInfo** structure of API version 9 for modules imported for bu
 ## cl.bundlemanager.7 ModuleInfo Structure Changes
 
 The original **bundle/hapModuleInfo.d.ts** and **moduleInfo.d.ts** fields in the bundle manager are deprecated, and the files are changed to [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts), involving field changes.
+
 The **ModuleInfo** structure is deprecated and replaced by **HapModuleInfo** in [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts).
 
 **Change Impacts**
@@ -759,3 +760,5 @@ The import module does not change. The new API is directly used to adapt excepti
 ```
 import zlib form '@ohos.zlib'
 ```
+
+ <!--no_check--> 

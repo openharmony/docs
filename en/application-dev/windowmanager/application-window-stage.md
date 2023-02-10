@@ -67,9 +67,9 @@ In the stage model, the main window of an application is created and maintained 
    Call **loadContent** to load the page content to the main window.
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         // 1. Obtain the main window of the application.
         let windowClass = null;
@@ -127,11 +127,11 @@ You can create an application subwindow, such as a dialog box, and set its prope
    When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
 
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
    let windowStage_ = null;
    let sub_windowClass = null;
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        showSubWindow() {
            // 1. Create a subwindow.
            windowStage_.createSubWindow("mySubWindow", (err, data) => {
@@ -220,9 +220,9 @@ To create a better video watching and gaming experience, you can use the immersi
    Call **loadContent** to load the content to the immersive window.
 
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 1. Obtain the main window of the application.
            let windowClass = null;
@@ -303,7 +303,7 @@ A floating window is created based on an existing task. It is always displayed i
            "name" : "ohos.permission.SYSTEM_FLOAT_WINDOW",
            "usedScene": {
              "abilities": [
-               "MainAbility"
+               "EntryAbility"
              ],
              "when":"inuse"
            }
@@ -330,11 +330,11 @@ A floating window is created based on an existing task. It is always displayed i
    When the floating window is no longer needed, you can call **destroyWindow** to destroy it.
 
    ```ts
-   import Ability from '@ohos.application.Ability'
-   import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
    import window from '@ohos.window';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 2. Create a floating window.
            let windowClass = null;
@@ -390,4 +390,3 @@ A floating window is created based on an existing task. It is always displayed i
    };
    ```
 
- <!--no_check--> 

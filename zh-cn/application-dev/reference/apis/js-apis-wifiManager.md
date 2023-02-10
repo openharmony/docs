@@ -29,6 +29,14 @@ enableWifi(): void
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
 
 ## wifi.disableWifi<sup>9+</sup>
 
@@ -48,6 +56,13 @@ disableWifi(): void
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.isWifiActive<sup>9+</sup>
 
@@ -65,6 +80,13 @@ isWifiActive(): boolean
   | -------- | -------- |
   | boolean | true:已使能，&nbsp;false:未使能。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.scan<sup>9+</sup>
 
@@ -82,6 +104,13 @@ scan(): void
   | -------- | -------- |
   | boolean | true:扫描操作执行成功，&nbsp;false:扫描操作执行失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getScanResults<sup>9+</sup>
 
@@ -99,6 +128,13 @@ getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
   | -------- | -------- |
   | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getScanResults<sup>9+</sup>
 
@@ -115,6 +151,14 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **示例：**
   ```js
@@ -249,6 +293,13 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 扫描结果数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.addDeviceConfig<sup>9+</sup>
 
@@ -273,6 +324,14 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise对象。返回添加的网络配置ID，如果值为-1表示添加失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## WifiDeviceConfig<sup>9+</sup>
 
@@ -416,6 +475,13 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.addCandidateConfig<sup>9+</sup>
 
@@ -439,6 +505,13 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise对象。表示网络配置ID。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.addCandidateConfig<sup>9+</sup>
 
@@ -457,6 +530,13 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。如果操作出现错误，err为非0值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
@@ -480,6 +560,13 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
@@ -498,6 +585,13 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
   | networkId | number | 是 | 网络配置ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当操作成功时，err为0。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
 
@@ -515,6 +609,13 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 候选网络配置数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.connectToCandidateConfig<sup>9+</sup>
 
@@ -532,6 +633,14 @@ connectToCandidateConfig(networkId: number): void
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 候选网络配置的ID。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.connectToNetwork<sup>9+</sup>
 
@@ -551,12 +660,14 @@ connectToNetwork(networkId: number): void
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 待连接的网络配置ID。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.connectToDevice<sup>9+</sup>
 
@@ -577,12 +688,14 @@ connectToDevice(config: WifiDeviceConfig): void
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.disconnect<sup>9+</sup>
 
@@ -597,12 +710,13 @@ disconnect(): void
 **系统能力：**
   SystemCapability.Communication.WiFi.STA
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
 
 ## wifi.getSignalLevel<sup>9+</sup>
 
@@ -627,6 +741,13 @@ getSignalLevel(rssi: number, band: number): number
   | -------- | -------- |
   | number | 信号强度，取值范围为[0,&nbsp;4]。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getLinkedInfo<sup>9+</sup>
 
@@ -644,6 +765,14 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
   | -------- | -------- |
   | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise对象。表示WLAN连接信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.getLinkedInfo<sup>9+</sup>
 
@@ -660,6 +789,15 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果error为非0，表示处理出现错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 **示例：**
   ```js
@@ -765,6 +903,13 @@ isConnected(): boolean
   | -------- | -------- |
   | boolean | true:已连接，&nbsp;false:未连接。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getSupportedFeatures<sup>9+</sup>
 
@@ -799,6 +944,13 @@ getSupportedFeatures(): number
 | 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
 | 0x20000000 | 增强开放特性。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2401000  | Operation failed.|
 
 ## wifi.isFeatureSupported<sup>9+</sup>
 
@@ -823,6 +975,13 @@ isFeatureSupported(featureId: number): boolean
   | -------- | -------- |
   | boolean | true:支持，&nbsp;false:不支持。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2401000  | Operation failed.|
 
 ## wifi.getDeviceMacAddress<sup>9+</sup>
 
@@ -842,6 +1001,13 @@ getDeviceMacAddress(): string[]
   | -------- | -------- |
   | string[] | MAC地址。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getIpInfo<sup>9+</sup>
 
@@ -859,6 +1025,13 @@ getIpInfo(): IpInfo
   | -------- | -------- |
   | [IpInfo](#ipinfo9) | IP信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## IpInfo<sup>9+</sup>
 
@@ -893,6 +1066,13 @@ getCountryCode(): string
   | -------- | -------- |
   | string | 国家码。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2401000  | Operation failed.|
 
 ## wifi.reassociate<sup>9+</sup>
 
@@ -906,12 +1086,14 @@ reassociate(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.reconnect<sup>9+</sup>
 
@@ -925,12 +1107,14 @@ reconnect(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.getDeviceConfigs<sup>9+</sup>
 
@@ -950,6 +1134,13 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 网络配置信息的数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.updateNetwork<sup>9+</sup>
 
@@ -975,6 +1166,13 @@ updateNetwork(config: WifiDeviceConfig): number
   | -------- | -------- |
   | number | 返回更新的网络配置ID，如果值为-1表示更新失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.disableNetwork<sup>9+</sup>
 
@@ -994,12 +1192,13 @@ disableNetwork(netId: number): void
   | -------- | -------- | -------- | -------- |
   | netId | number | 是 | 网络配置ID。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
 
 ## wifi.removeAllNetwork<sup>9+</sup>
 
@@ -1013,12 +1212,13 @@ removeAllNetwork(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
 
 ## wifi.removeDevice<sup>9+</sup>
 
@@ -1038,12 +1238,13 @@ removeDevice(id: number): void
   | -------- | -------- | -------- | -------- |
   | id | number | 是 | 网络配置ID。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2501000  | Operation failed.|
 
 ## wifi.enableHotspot<sup>9+</sup>
 
@@ -1057,12 +1258,13 @@ enableHotspot(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。|
-
+| 2601000  | Operation failed.|
 
 ## wifi.disableHotspot<sup>9+</sup>
 
@@ -1076,12 +1278,13 @@ disableHotspot(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。|
-
+| 2601000  | Operation failed.|
 
 ## wifi.isHotspotDualBandSupported<sup>9+</sup>
 
@@ -1099,8 +1302,15 @@ isHotspotDualBandSupported(): boolean
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:支持，&nbsp;false:不支持。|
+  | boolean | true:支持，&nbsp;false:不支持.|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.isHotspotActive<sup>9+</sup>
 
@@ -1118,8 +1328,15 @@ isHotspotActive(): boolean
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:已使能，&nbsp;false:未使能。|
+  | boolean | true:已使能，&nbsp;false:未使能.|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.setHotspotConfig<sup>9+</sup>
 
@@ -1139,12 +1356,13 @@ setHotspotConfig(config: HotspotConfig): void
   | -------- | -------- | -------- | -------- |
   | config | [HotspotConfig](#hotspotconfig9) | 是 | 热点配置信息。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2601000  | Operation failed.|
 
 ## HotspotConfig<sup>9+</sup>
 
@@ -1181,6 +1399,13 @@ getHotspotConfig(): HotspotConfig
   | -------- | -------- |
   | [HotspotConfig](#hotspotconfig9) | 热点的配置信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.getStations<sup>9+</sup>
 
@@ -1200,6 +1425,13 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
   | -------- | -------- |
   | &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | 连接的设备数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## StationInfo<sup>9+</sup>
 
@@ -1232,7 +1464,13 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
   | -------- | -------- |
   | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Promise对象。表示P2P连接信息。 |
 
+**错误码：**
 
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## WifiP2pLinkedInfo<sup>9+</sup>
 
@@ -1292,6 +1530,13 @@ getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
   | -------- | -------- |
   | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise对象。表示当前组信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getCurrentGroup<sup>9+</sup>
 
@@ -1309,6 +1554,13 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示当前组信息。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pPeerDevices<sup>9+</sup>
 
@@ -1326,6 +1578,13 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise对象。表示对端设备列表信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pPeerDevices<sup>9+</sup>
 
@@ -1343,6 +1602,13 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## WifiP2pDevice<sup>9+</sup>
 
@@ -1390,6 +1656,13 @@ getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Promise对象。表示本端设备信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pLocalDevice<sup>9+</sup>
 
@@ -1424,12 +1697,13 @@ createGroup(config: WifiP2PConfig): void
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#wifip2pconfig9) | 是 | 群组配置信息。 |
 
-**返回值：**
+**错误码：**
 
-  | 类型 | 说明 |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
-
+| 2801000  | Operation failed.|
 
 ## WifiP2PConfig<sup>9+</sup>
 
@@ -1469,12 +1743,13 @@ removeGroup(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-**返回值：**
+**错误码：**
 
-  | 类型 | 说明 |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
-
+| 2801000  | Operation failed.|
 
 ## wifi.p2pConnect<sup>9+</sup>
 
@@ -1493,12 +1768,13 @@ p2pConnect(config: WifiP2PConfig): void
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#wifip2pconfig9) | 是 | 连接配置信息。 |
 
-**返回值：**
+**错误码：**
 
-  | 类型 | 说明 |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
-
+| 2801000  | Operation failed.|
 
 **示例：**
   ```js
@@ -1577,12 +1853,13 @@ p2pCancelConnect(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-**返回值：**
+**错误码：**
 
-  | 类型 | 说明 |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
-
+| 2801000  | Operation failed.|
 
 ## wifi.startDiscoverDevices<sup>9+</sup>
 
@@ -1594,12 +1871,13 @@ startDiscoverDevices(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-**返回值：**
+**错误码：**
 
-  | 类型 | 说明 |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
-
+| 2801000  | Operation failed.|
 
 ## wifi.stopDiscoverDevices<sup>9+</sup>
 
@@ -1611,12 +1889,13 @@ stopDiscoverDevices(): void
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
-**返回值：**
+**错误码：**
 
-  | 类型 | 说明 |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作执行成功，操作执行失败。 |
-
+| 2801000  | Operation failed.|
 
 ## wifi.deletePersistentGroup<sup>9+</sup>
 
@@ -1637,12 +1916,13 @@ deletePersistentGroup(netId: number): void
   | -------- | -------- | -------- | -------- |
   | netId | number | 是 | 组的ID。 |
 
-**返回值：**
+**错误码：**
 
-  | 类型 | 说明 |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作执行成功，操作执行失败。 |
-
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pGroups<sup>9+</sup>
 
@@ -1662,6 +1942,13 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
   | -------- | -------- |
   | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&nbsp;&gt; | Promise对象。表示所有群组信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## WifiP2pGroupInfo<sup>9+</sup>
 
@@ -1700,6 +1987,13 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示所有群组信息。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.setDeviceName<sup>9+</sup>
 
@@ -1719,12 +2013,13 @@ setDeviceName(devName: string): void
   | -------- | -------- | -------- | -------- |
   | devName | string | 是 | 设备名称。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
+| 2801000  | Operation failed.|
 
 ## wifi.on('wifiStateChange')<sup>9+</sup>
 
@@ -1742,6 +2037,14 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **状态改变事件的枚举：**
 
@@ -1769,6 +2072,14 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **示例：**
   ```js
@@ -1810,6 +2121,13 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 | 0 | 已断开。 |
 | 1 | 已连接。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiConnectionChange')<sup>9+</sup>
 
@@ -1828,6 +2146,13 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"wifiConnectionChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.on('wifiScanStateChange')<sup>9+</sup>
 
@@ -1853,6 +2178,13 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 | 0 | 扫描失败。 |
 | 1 | 扫描成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiScanStateChange')<sup>9+</sup>
 
@@ -1871,6 +2203,13 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | type | string | 是 | 固定填"wifiScanStateChange"字符串。 |
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.on('wifiRssiChange')<sup>9+</sup>
 
@@ -1889,6 +2228,13 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回以dBm为单位的RSSI值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiRssiChange')<sup>9+</sup>
 
@@ -1907,6 +2253,13 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.on('hotspotStateChange')<sup>9+</sup>
 
@@ -1934,6 +2287,13 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | 2 | 激活中。 |
 | 3 | 去激活中。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.off('hotspotStateChange')<sup>9+</sup>
 
@@ -1952,6 +2312,13 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.on('p2pStateChange')<sup>9+</sup>
 
@@ -1980,6 +2347,14 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 | 4 | 关闭中。 |
 | 5 | 已关闭。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
 ## wifi.off('p2pStateChange')<sup>9+</sup>
 
 off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
@@ -1997,6 +2372,13 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"p2pStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
   ## wifi.on('p2pConnectionChange')<sup>9+</sup>
 
@@ -2015,6 +2397,13 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
   | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 是 | 状态改变回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pConnectionChange')<sup>9+</sup>
 
@@ -2033,6 +2422,13 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
   | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pDeviceChange')<sup>9+</sup>
 
@@ -2051,6 +2447,13 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
   | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | 是 | 状态改变回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pDeviceChange')<sup>9+</sup>
 
@@ -2069,6 +2472,13 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
   | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2087,6 +2497,13 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
   | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 状态改变回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2105,6 +2522,13 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
   | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2123,6 +2547,13 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
   | callback | Callback&lt;void&gt; | 是 | 状态改变回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2141,6 +2572,13 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
   | callback | Callback&lt;void&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2166,6 +2604,13 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 | 0 | 初始状态。 |
 | 1 | 发现成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2184,3 +2629,10 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"p2pDiscoveryChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|

@@ -497,6 +497,7 @@ Decodes the input content.
 | -------- | -------- | -------- | -------- | -------- |
 | encoding | string | Yes| No| Encoding format. The default format is **utf-8**.|
 
+
 ### constructor
 
 constructor()
@@ -1456,7 +1457,7 @@ Performs subsequent operations after a value is removed.
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isEvict  | boolean | Yes  | Whether the cache capacity is insufficient. If the value is **true**, this method is called due to insufficient capacity.   |
+| isEvict  | boolean | Yes  | Whether the cache capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.   |
 | key      | K       | Yes  | Key removed.                                              |
 | value    | V       | Yes  | Value removed.                                              |
 | newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
@@ -3358,7 +3359,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor<sup>9+</sup>](#constructor9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.constructor<sup>9+</sup>](#constructor9-3) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3382,7 +3383,7 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [updateCapacity<sup>9+</sup>](#updatecapacity9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.updateCapacity<sup>9+</sup>](#updatecapacity9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3407,7 +3408,7 @@ Obtains the string representation of this **LruBuffer** object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [toString<sup>9+</sup>](#tostring9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.toString<sup>9+</sup>](#tostring9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3435,7 +3436,7 @@ Obtains the capacity of this buffer.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getCapacity<sup>9+</sup>](#getcapacity9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.getCapacity<sup>9+</sup>](#getcapacity9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3459,7 +3460,7 @@ Clears key-value pairs from this buffer. The **afterRemoval()** method will be c
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [clear<sup>9+</sup>](#clear9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.clear<sup>9+</sup>](#clear9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3480,7 +3481,7 @@ Obtains the number of return values for **createDefault()**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getCreateCount<sup>9+</sup>](#getcreatecount9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.getCreateCount<sup>9+</sup>](#getcreatecount9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3506,7 +3507,7 @@ Obtains the number of times that the queried values are mismatched.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getMissCount<sup>9+</sup>](#getmisscount9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.getMissCount<sup>9+</sup>](#getmisscount9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3533,7 +3534,7 @@ Obtains the number of removals from this buffer.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getRemovalCount<sup>9+</sup>](#getremovalcount9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.getRemovalCount<sup>9+</sup>](#getremovalcount9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3561,7 +3562,7 @@ Obtains the number of times that the queried values are matched.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getMatchCount<sup>9+</sup>](#getmatchcount9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.getMatchCount<sup>9+</sup>](#getmatchcount9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3588,7 +3589,7 @@ Obtains the number of additions to this buffer.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getPutCount<sup>9+</sup>](#getputcount9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.getPutCount<sup>9+</sup>](#getputcount9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3614,7 +3615,7 @@ Checks whether this buffer is empty.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [isEmpty<sup>9+</sup>](#isempty9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.isEmpty<sup>9+</sup>](#isempty9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3640,7 +3641,7 @@ Obtains the value of the specified key.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [get<sup>9+</sup>](#get9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.get<sup>9+</sup>](#get9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3672,7 +3673,7 @@ Adds a key-value pair to this buffer.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [put<sup>9+</sup>](#put9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.put<sup>9+</sup>](#put9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3704,7 +3705,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [values<sup>9+</sup>](#values9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.values<sup>9+</sup>](#values9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3732,7 +3733,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [keys<sup>9+</sup>](#keys9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.keys<sup>9+</sup>](#keys9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3743,6 +3744,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 | K&nbsp;[] | All keys in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
+
   ```js
   let pro = new util.LruBuffer();
   pro.put(2,10);
@@ -3757,7 +3759,7 @@ Removes the specified key and its value from this buffer.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [remove<sup>9+</sup>](#remove9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.remove<sup>9+</sup>](#remove9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3788,7 +3790,7 @@ Performs subsequent operations after a value is removed.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [afterRemoval<sup>9+</sup>](#afterremoval9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.afterRemoval<sup>9+</sup>](#afterremoval9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3796,7 +3798,7 @@ Performs subsequent operations after a value is removed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isEvict | boolean | Yes| Whether the buffer capacity is insufficient. If the value is **true**, this method is called due to insufficient capacity.|
+| isEvict | boolean | Yes| Whether the buffer capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.|
 | key | K | Yes| Key removed.|
 | value | V | Yes| Value removed.|
 | newValue | V | Yes| New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
@@ -3832,7 +3834,7 @@ Checks whether this buffer contains the specified key.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [contains<sup>9+</sup>](#contains9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.contains<sup>9+</sup>](#contains9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3864,7 +3866,7 @@ Creates a value if the value of the specified key is not available.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [createDefault<sup>9+</sup>](#createdefault9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.createDefault<sup>9+</sup>](#createdefault9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3895,7 +3897,7 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [entries<sup>9+</sup>](#entries9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.entries<sup>9+</sup>](#entries9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3921,7 +3923,7 @@ Obtains a two-dimensional array in key-value pairs.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Symbol.iterator<sup>9+</sup>](#symboliterator9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [LRUCache.Symbol.iterator<sup>9+</sup>](#symboliterator9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3953,7 +3955,7 @@ A constructor used to create a **Scope** object with the specified upper and low
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor<sup>9+</sup>](#constructor9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.constructor<sup>9+</sup>](#constructor9-4) instead.
 
 
 **System capability**: SystemCapability.Utils.Lang
@@ -3980,7 +3982,7 @@ Obtains a string representation that contains this **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [toString<sup>9+</sup>](#tostring9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.toString<sup>9+</sup>](#tostring9-1) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4007,7 +4009,7 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [intersect<sup>9+</sup>](#intersect9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.intersect<sup>9+</sup>](#intersect9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4043,7 +4045,7 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [intersect<sup>9+</sup>](#intersect9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.intersect<sup>9+</sup>](#intersect9-1) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4079,7 +4081,7 @@ Obtains the upper limit of this **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getUpper<sup>9+</sup>](#getupper9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.getUpper<sup>9+</sup>](#getupper9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4106,7 +4108,7 @@ Obtains the lower limit of this **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getLower<sup>9+</sup>](#getlower9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.getLower<sup>9+</sup>](#getlower9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4133,7 +4135,7 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [expand<sup>9+</sup>](#expand9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.expand<sup>9+</sup>](#expand9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4169,7 +4171,7 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [expand<sup>9+</sup>](#expand9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.expand<sup>9+</sup>](#expand9-1) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4205,7 +4207,7 @@ Obtains the union set of this **Scope** and the given value.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [expand<sup>9+</sup>](#expand9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.expand<sup>9+</sup>](#expand9-2) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4239,7 +4241,7 @@ Checks whether a value is within this **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [contains<sup>9+</sup>](#contains9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.contains<sup>9+</sup>](#contains9-1) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4273,7 +4275,7 @@ Checks whether a range is within this **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [contains<sup>9+</sup>](#contains9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.contains<sup>9+</sup>](#contains9-2) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4310,7 +4312,7 @@ Limits a value to this **Scope**.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [clamp<sup>9+</sup>](#clamp9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [ScopeHelper.clamp<sup>9+</sup>](#clamp9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4351,7 +4353,7 @@ A constructor used to create a **Base64** object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor<sup>9+</sup>](#constructor9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Base64Helper.constructor<sup>9+</sup>](#constructor9-5) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4369,7 +4371,7 @@ Encodes the input content.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [encodeSync<sup>9+</sup>](#encodesync9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Base64Helper.encodeSync<sup>9+</sup>](#encodesync9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4401,7 +4403,7 @@ Encodes the input content.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [encodeToStringSync<sup>9+</sup>](#encodetostringsync9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Base64Helper.encodeToStringSync<sup>9+</sup>](#encodetostringsync9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4433,7 +4435,7 @@ Decodes the input content.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [decodeSync<sup>9+</sup>](#decodesync9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Base64Helper.decodeSync<sup>9+</sup>](#decodesync9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4465,7 +4467,7 @@ Encodes the input content asynchronously.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [encode<sup>9+</sup>](#encode9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Base64Helper.encode<sup>9+</sup>](#encode9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4502,7 +4504,7 @@ Encodes the input content asynchronously.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [encodeToString<sup>9+</sup>](#encodetostring9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Base64Helper.encodeToString<sup>9+</sup>](#encodetostring9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4537,7 +4539,7 @@ Decodes the input content asynchronously.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [decode<sup>9+</sup>](#decode9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [Base64Helper.decode<sup>9+</sup>](#decode9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4565,5 +4567,3 @@ Decodes the input content asynchronously.
       }
   })
   ```
-
-  <!--no_check-->

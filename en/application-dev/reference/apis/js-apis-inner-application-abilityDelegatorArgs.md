@@ -26,7 +26,7 @@ Describes the ability delegator arguments.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 var args = AbilityDelegatorRegistry.getArguments();
 ```

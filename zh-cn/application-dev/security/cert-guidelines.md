@@ -260,7 +260,7 @@ function crlSample() {
            console.log("isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
         }
 
-        // 业务需通过AsyKeyGenerator的generateKeyPair或convertKey接口获取PubKey对象，此处省略
+        // 业务需通过将public key二进制数据输入 @ohos.security.cryptoFramework的convertKey接口获取PubKey对象，此处省略
         let pubKey = null;
         
         // 证书吊销列表验签

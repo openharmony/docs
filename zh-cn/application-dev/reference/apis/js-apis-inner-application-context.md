@@ -23,7 +23,7 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 | bundleCodeDir | string | 是    | 否    | 安装包目录。 |
 | distributedFilesDir | string | 是    | 否    | 分布式文件目录。 |
 | eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
-| area | [AreaMode](#areamode) | 是    | 否    | 文件分区信息。 |
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 是    | 否    | 文件分区信息。 |
 
 ## Context.createBundleContext
 
@@ -172,13 +172,3 @@ try {
 }
 ```
 
-## AreaMode
-
-文件分区
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| EL1 | 0 | 设备级加密区，设备开机后可访问的数据区。 |
-| EL2 | 1 | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。 |

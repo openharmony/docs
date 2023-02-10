@@ -28,12 +28,12 @@ You can use DevEco Studio to build code into one or more HAP files. Then, you ca
     uninstall bundle successfully.
     ```
 
-* Using Bundle Manager (bm) for debugging
+* Using [Bundle Manager (bm)](../../application-dev/tools/bm-tool.md) for debugging
 
     When using bm to install or update an HAP file, the HAP file path is the one on the real device. The command reference is as follows:
     ```
     // Installation and update: Multiple file paths can be specified.
-    bm install -p /data/app/entry.hap /data/app/    feature.hap
+    bm install -p /data/app/entry.hap /data/app/feature.hap
     // The execution result is as follows:
     install bundle successfully.
     // Uninstall

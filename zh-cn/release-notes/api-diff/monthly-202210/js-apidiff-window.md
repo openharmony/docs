@@ -1,60 +1,22 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
-|新增||模块名：ohos.display<br>类名:display<br>方法名 or 属性名:getAllDisplays|@ohos.display.d.ts|
-|新增||模块名：ohos.display<br>类名:display<br>方法名 or 属性名:getAllDisplays|@ohos.display.d.ts|
-|新增||模块名: ohos.window<br>类名: Configuration|@ohos.window.d.ts|
-|新增||模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：name|@ohos.window.d.ts|
-|新增||模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：windowType|@ohos.window.d.ts|
-|新增||模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：ctx|@ohos.window.d.ts|
-|新增||模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：displayId|@ohos.window.d.ts|
-|新增||模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：parentId|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:window<br>方法名 or 属性名:createWindow|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:window<br>方法名 or 属性名:createWindow|@ohos.window.d.ts|
-|新增||方法名 or 属性名：create<br>函数：function create(ctx: BaseContext, id: string, type: WindowType): Promise<Window>;|@ohos.window.d.ts|
-|新增||方法名 or 属性名：create<br>函数：function create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback<Window>): void;|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:window<br>方法名 or 属性名:findWindow|@ohos.window.d.ts|
-|新增||方法名 or 属性名：getTopWindow<br>函数：function getTopWindow(ctx: BaseContext): Promise<Window>;|@ohos.window.d.ts|
-|新增||方法名 or 属性名：getTopWindow<br>函数：function getTopWindow(ctx: BaseContext, callback: AsyncCallback<Window>): void;|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:window<br>方法名 or 属性名:getLastWindow|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:window<br>方法名 or 属性名:getLastWindow|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:showWindow|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:showWindow|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:destroyWindow|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:destroyWindow|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:moveWindowTo|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:moveWindowTo|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:resize|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:resize|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowMode|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowMode|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:getWindowProperties|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:getWindowAvoidArea|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowLayoutFullScreen|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowLayoutFullScreen|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowSystemBarEnable|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowSystemBarEnable|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowSystemBarProperties|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowSystemBarProperties|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setUIContent|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setUIContent|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:isWindowShowing|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:isWindowSupportWideGamut|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:isWindowSupportWideGamut|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowColorSpace|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowColorSpace|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:getWindowColorSpace|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowBackgroundColor|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowBrightness|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowBrightness|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowFocusable|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowFocusable|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowKeepScreenOn|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowKeepScreenOn|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowPrivacyMode|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowPrivacyMode|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowTouchable|@ohos.window.d.ts|
-|新增||模块名：ohos.window<br>类名:Window<br>方法名 or 属性名:setWindowTouchable|@ohos.window.d.ts|
-|新增||模块名: ohos.window<br>类名: WindowStage<br>方法名 or 属性名：getMainWindowSync|@ohos.window.d.ts|
+|新增|NA|方法名 or 属性名：onConnect<br>函数：onConnect(want: Want): void;|@ohos.application.WindowExtensionAbility.d.ts|
+|新增|NA|方法名 or 属性名：onWindowReady<br>函数：onWindowReady(window: window.Window): void;|@ohos.application.WindowExtensionAbility.d.ts|
+|新增|NA|方法名 or 属性名：save<br>函数：function save(options: ScreenshotOptions, callback: AsyncCallback<image.PixelMap>): void;|@ohos.screenshot.d.ts|
+|新增|NA|方法名 or 属性名：save<br>函数：function save(callback: AsyncCallback<image.PixelMap>): void;|@ohos.screenshot.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: WindowProperties<br>方法名 or 属性名：id|@ohos.window.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: Configuration|@ohos.window.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：name|@ohos.window.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：windowType|@ohos.window.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：ctx|@ohos.window.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：displayId|@ohos.window.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: Configuration<br>方法名 or 属性名：parentId|@ohos.window.d.ts|
+|新增|NA|方法名 or 属性名：create<br>函数：function create(ctx: BaseContext, id: string, type: WindowType): Promise<Window>;|@ohos.window.d.ts|
+|新增|NA|方法名 or 属性名：create<br>函数：function create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback<Window>): void;|@ohos.window.d.ts|
+|新增|NA|方法名 or 属性名：getTopWindow<br>函数：function getTopWindow(ctx: BaseContext): Promise<Window>;|@ohos.window.d.ts|
+|新增|NA|方法名 or 属性名：getTopWindow<br>函数：function getTopWindow(ctx: BaseContext, callback: AsyncCallback<Window>): void;|@ohos.window.d.ts|
+|新增|NA|方法名 or 属性名：bindDialogTarget<br>函数：bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback<void>, callback: AsyncCallback<void>): void;|@ohos.window.d.ts|
+|新增|NA|模块名: ohos.window<br>类名: WindowStage<br>方法名 or 属性名：getMainWindowSync|@ohos.window.d.ts|
 |废弃版本有变化|方法名 or 属性名：getDefaultDisplay<br>废弃版本：N/A|方法名 or 属性名：getDefaultDisplay<br>废弃版本：9<br>代替接口：ohos.display|@ohos.display.d.ts|
 |废弃版本有变化|方法名 or 属性名：getDefaultDisplay<br>废弃版本：N/A|方法名 or 属性名：getDefaultDisplay<br>废弃版本：9<br>代替接口：ohos.display|@ohos.display.d.ts|
 |废弃版本有变化|方法名 or 属性名：getAllDisplay<br>废弃版本：N/A|方法名 or 属性名：getAllDisplay<br>废弃版本：9<br>代替接口：ohos.display|@ohos.display.d.ts|

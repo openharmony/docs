@@ -1,6 +1,6 @@
 # @ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-AbilityDelegatorRegistry模块提供用于存储已注册的AbilityDelegator和AbilityDelegatorArgs对象的全局寄存器的能力，包括获取应用程序的AbilityDelegator对象、获取单元测试参数AbilityDelegatorArgs对象。
+AbilityDelegatorRegistry模块提供用于存储已注册的AbilityDelegator和AbilityDelegatorArgs对象的全局寄存器的能力，包括获取应用程序的AbilityDelegator对象、获取单元测试参数AbilityDelegatorArgs对象。该模块中的接口只能用于测试框架中。
 
 > **说明：**
 > 
@@ -43,7 +43,7 @@ getAbilityDelegator(): AbilityDelegator
 **示例：**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
@@ -65,7 +65,7 @@ getArguments(): AbilityDelegatorArgs
 **示例：**
 
 ```ts
-var args = AbilityDelegatorRegistry.getArguments();
+let args = AbilityDelegatorRegistry.getArguments();
 console.info("getArguments bundleName:" + args.bundleName);
 console.info("getArguments testCaseNames:" + args.testCaseNames);
 console.info("getArguments testRunnerClassName:" + args.testRunnerClassName);

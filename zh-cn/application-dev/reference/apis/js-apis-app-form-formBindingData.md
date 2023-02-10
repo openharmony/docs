@@ -48,8 +48,8 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
 import formBindingData from '@ohos.app.form.formBindingData';
+import fs from '@ohos.file.fs';
 
 try {
   let fd = fs.openSync('/path/to/form.png')

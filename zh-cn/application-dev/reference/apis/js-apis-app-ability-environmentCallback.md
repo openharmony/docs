@@ -35,7 +35,7 @@ onConfigurationUpdated(config: Configuration): void;
   ```ts
 import UIAbility from "@ohos.app.ability.Ability";
 
-var callbackId;
+let callbackId;
 
 export default class MyAbility extends UIAbility {
     onCreate() {

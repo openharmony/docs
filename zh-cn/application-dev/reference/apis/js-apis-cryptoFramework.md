@@ -91,7 +91,7 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 ### init
 
-init(key : SymKey, callback : AsyncCallback\<void>) : void;	
+init(key : SymKey, callback : AsyncCallback\<void>) : void;
 
 使用对称密钥初始化Mac计算
 
@@ -324,7 +324,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);  
+    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
 }
 var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
 symKeyGenerator.convertKey(KeyBlob, (err, symKey) => {
@@ -382,7 +382,7 @@ var mac;
 try {
     mac = cryptoFramework.createMac("SHA256");
 } catch (error) {
-    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);  
+    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
 }
 console.error("Mac algName is: " + mac.algName);
 
@@ -769,7 +769,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 try {
     var rand = cryptoFramework.createRandom();
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message); 
+    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
 }
 ```
 
@@ -808,7 +808,7 @@ var rand;
 try {
     rand = cryptoFramework.createRandom();
 } catch (error) {
-    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);    
+    console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
 }
 rand.generateRandom(12, (err, randData) => {
     if (err) {
@@ -918,10 +918,10 @@ rand.generateRandom(12, (err, randData) => {
 
 | 名称     | 类型   | 可读 | 可写 | 说明                    |
 | -------- | ------ | ---- | ---- | ----------------------- |
-| algoName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
+| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
 
-> **说明：** 
-> 由于[init()](#init-2)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algoName参数，使算法库在init()时知道传入的是哪种子类对象。
+> **说明：**
+> 由于[init()](#init-2)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algName参数，使算法库在init()时知道传入的是哪种子类对象。
 
 ## IvParamsSpec
 
@@ -933,8 +933,8 @@ rand.generateRandom(12, (err, randData) => {
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv   | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节 |
 
-> **说明：** 
-> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> **说明：**
+> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## GcmParamsSpec
 
@@ -948,8 +948,8 @@ rand.generateRandom(12, (err, randData) => {
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节                               |
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag |
 
-> **说明：** 
-> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> **说明：**
+> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CcmParamsSpec
 
@@ -963,8 +963,8 @@ rand.generateRandom(12, (err, randData) => {
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节                               |
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag |
 
-> **说明：** 
-> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> **说明：**
+> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CryptoMode
 
@@ -983,7 +983,7 @@ rand.generateRandom(12, (err, randData) => {
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework 
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -1055,7 +1055,7 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // 输出全
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework 
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -1099,7 +1099,7 @@ console.info("key encoded:" + uint8ArrayToShowStr(encodedKey.data));
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework 
+**系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -1228,8 +1228,8 @@ generateSymKey(callback : AsyncCallback\<SymKey>) : void
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey((err, symKey) => {
   if (err) {
     console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
@@ -1263,8 +1263,8 @@ generateSymKey() : Promise\<SymKey>
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
-let symAlgoName = 'AES128';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = 'AES128';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey()
 .then(symKey => {
   console.info(`Generate symKey success, algName: ${symKey.algName}`);
@@ -1308,8 +1308,8 @@ function genKeyMaterialBlob() {
   return {data : keyMaterial};
 }
 
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 let keyMaterialBlob = genKeyMaterialBlob();
 symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
   if (err) {
@@ -1360,8 +1360,8 @@ function genKeyMaterialBlob() {
   return {data : keyMaterial};
 }
 
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 let keyMaterialBlob = genKeyMaterialBlob();
 symKeyGenerator.convertKey(keyMaterialBlob)
 .then(symKey => {
@@ -1582,7 +1582,7 @@ createCipher(transformation : string) : Cipher
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
 | transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。<br/>具体取值详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“字符串参数”。 |
 
-> **说明：** 
+> **说明：**
 > 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。<br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
 > 2. 使用RSA进行非对称加解密时，必须创建两个Cipher对象分别进行加密和解密操作，而不能对同一个Cipher对象进行加解密。对称加解密没有此要求（即只要算法规格一样，可以对同一个Cipher对象进行加解密操作）。
 
@@ -1597,10 +1597,10 @@ createCipher(transformation : string) : Cipher
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let cipherAlgoName = '3DES192|ECB|PKCS7';
+let cipherAlgName = '3DES192|ECB|PKCS7';
 var cipher;
 try {
-  cipher = cryptoFramework.createCipher(cipherAlgoName);
+  cipher = cryptoFramework.createCipher(cipherAlgName);
   console.info(`cipher algName: ${cipher.algName}`);
 } catch (error) {
   console.error(`createCipher failed, ${error.code}, ${error.message}`);
@@ -1718,7 +1718,7 @@ update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。 <br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
 
-> **说明：** 
+> **说明：**
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。
 > 3. RSA非对称加解密不支持update操作。
@@ -1775,7 +1775,7 @@ update(data : DataBlob) : Promise\<DataBlob>
 
 分段更新加密或者解密数据操作，通过通过Promise获取加/解密数据。<br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
 
-> **说明：** 
+> **说明：**
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。
 > 3. RSA非对称加解密不支持update操作。
@@ -1841,7 +1841,7 @@ doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 （2）在RSA非对称加解密中，doFinal加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
 
->  **说明：** 
+>  **说明：**
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 
@@ -1893,7 +1893,7 @@ doFinal(data : DataBlob) : Promise\<DataBlob>
 
 （2）在RSA非对称加解密中，doFinal加/解密本次传入的数据，通过Promise获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
 
->  **说明：** 
+>  **说明：**
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 
@@ -1993,7 +1993,7 @@ keyGenPromise.then(rsaKeyPair => {
 });
 ```
 
-> **说明：** 
+> **说明：**
 > 更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
 
 ## cryptoFramework.createSign

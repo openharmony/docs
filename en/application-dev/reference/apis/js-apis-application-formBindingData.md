@@ -48,7 +48,7 @@ Creates a **FormBindingData** object.
 **Example**
 
 ```ts
-import formBindingData from @ohos.application.formBindingData;
+import formBindingData from '@ohos.application.formBindingData';
 import fs from '@ohos.file.fs';
 
 try {

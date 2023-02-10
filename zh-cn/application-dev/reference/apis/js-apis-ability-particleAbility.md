@@ -196,7 +196,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 ```ts
 import particleAbility from '@ohos.ability.particleAbility'
 
-var uri = "";
+let uri = "";
 particleAbility.acquireDataAbilityHelper(uri)
 ```
 
@@ -428,7 +428,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -445,7 +445,6 @@ particleAbility.disconnectAbility(connId).then((data) => {
 }).catch((error) => {
     console.log('particleAbilityTest result errCode : ' + error.code)
 });
-    
 ```
 
 ## particleAbility.disconnectAbility
@@ -480,7 +479,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -491,10 +490,10 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
-}).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+
+particleAbility.disconnectAbility(connId, (err) => {
+    console.log("particleAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
 });
 ```
 
@@ -531,7 +530,7 @@ function onFailedCallback(code) {
     console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -560,12 +559,3 @@ particleAbility.disconnectAbility(connId).then((data) => {
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | INVALID_PARAMETER         | -1    | 无效的参数。 |
-
-
-
-
-
-
-
-
-

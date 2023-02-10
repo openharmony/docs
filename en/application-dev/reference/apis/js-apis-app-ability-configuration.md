@@ -9,7 +9,7 @@ The **Configuration** module defines environment change information.
 ## Modules to Import
 
 ```ts
-import Configuration from '@ohos.app.ability.Configuration'
+import Configuration from '@ohos.app.ability.Configuration';
 ```
 
 **System capability**: SystemCapability.Ability.AbilityBase
@@ -26,30 +26,30 @@ import Configuration from '@ohos.app.ability.Configuration'
 For details about the fields, see the **ohos.app.ability.Configuration.d.ts** file.
 
 **Example**
-    
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
 
-  export default class EntryAbility extends UIAbility {
+  ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-      let envCallback = {
-        onConfigurationUpdated(config) {
-          console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
-          let language = config.language;
-          let colorMode = config.colorMode;
-          let direction = config.direction;
-          let screenDensity = config.screenDensity;
-          let displayId = config.displayId;
-          let hasPointerDevice = config.hasPointerDevice;
+        let envCallback = {
+            onConfigurationUpdated(config) {
+                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
+                let language = config.language;
+                let colorMode = config.colorMode;
+                let direction = config.direction;
+                let screenDensity = config.screenDensity;
+                let displayId = config.displayId;
+                let hasPointerDevice = config.hasPointerDevice;
+            }
+        };
+        try {
+            let applicationContext = this.context.getApplicationContext();
+            let callbackId = applicationContext.on("environment", envCallback);
+            console.log("callbackId: " + callbackId);
+        } catch (paramError) {
+            console.log("error: " + paramError.code + ", " + paramError.message);
         }
-      };
-      try {
-        let applicationContext = this.context.getApplicationContext();
-        let callbackId = applicationContext.on("environment", envCallback);
-        console.log("callbackId: " + callbackId);
-      } catch (paramError) {
-        console.log("error: " + paramError.code + ", " + paramError.message);
-      }
     }
-  }
+}
   ```

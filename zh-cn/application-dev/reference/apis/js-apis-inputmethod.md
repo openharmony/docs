@@ -1,4 +1,4 @@
-# @ohos.inputmethod (输入法框架)
+# @ohos.inputMethod (输入法框架)
 
 本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import inputMethod from '@ohos.inputmethod';
+import inputMethod from '@ohos.inputMethod';
 ```
 
 ## 常量<sup>8+</sup>
@@ -837,6 +837,92 @@ inputMethodController.stopInput().then((result) => {
 }).catch((err) => {
     console.error('Failed to stopInput: ' + err);
 })
+```
+
+### on('selectByRange')<sup>10+</sup>
+
+on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
+
+订阅输入法应用按范围选中文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 设置监听类型。<br/>-type为‘selectByRange’时表示订阅输入法应用按范围选中文本事件监听。 |
+| callback | Callback&lt;[Range](./js-apis-inputmethod-InputMethodCommon.md#range)&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的范围选中编辑框中相应文本。 |
+
+**示例：**
+
+```js
+inputMethodController.on('selectByRange', (range) => {
+    console.info('Succeeded in subscribing selectByRange: start: ' + range.start + " , end: " + range.end);
+});
+```
+
+### off('selectByRange')<sup>10+</sup>
+
+off(type: 'selectByRange'): void
+
+取消订阅输入法应用按范围选中文本事件。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>-type为‘selectByRange’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+
+**示例：**
+
+```js
+inputMethodController.off('selectByRange');
+```
+
+### on('selectByMovement')<sup>10+</sup>
+
+on(type: 'selectByMovement', callback: Callback&lt;Range&gt;): void
+
+订阅输入法应用按光标动作选中文本事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 设置监听类型。<br/>-type为‘selectByMovement’时表示订阅输入法应用按光标移动动作选中文本事件监听。 |
+| callback | Callback&lt;[Movement](./js-apis-inputmethod-InputMethodCommon.md#movement)&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的光标动作选中编辑框中相应文本。 |
+
+**示例：**
+
+```js
+inputMethodController.on('selectByMovement', (movement) => {
+    console.info('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+});
+```
+
+### off('selectByMovement')<sup>10+</sup>
+
+off(type: 'selectByMovement'): void
+
+取消订阅输入法应用按光标动作选中文本事件。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型。<br/>-type为‘selectByMovement’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+
+**示例：**
+
+```js
+inputMethodController.off('selectByMovement');
 ```
 
 ## InputMethodSetting<sup>8+</sup>
