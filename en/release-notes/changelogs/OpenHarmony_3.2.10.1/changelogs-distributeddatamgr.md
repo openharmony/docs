@@ -79,8 +79,8 @@ function getRdbStoreV9(context: Context, config: StoreConfigV9, version: number)
 ```
 The APIs are migrated from **@ohos.data.rdb.d.ts** to **@ohos.data.relationalStore.d.ts**.
 ```
-function getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback<RdbStore>): void;
-function getRdbStore(context: Context, config: StoreConfig, version: number): Promise<RdbStore>;
+function getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<RdbStore>): void;
+function getRdbStore(context: Context, config: StoreConfig): Promise<RdbStore>;
 ```
 
 **Adaptation Guide**
