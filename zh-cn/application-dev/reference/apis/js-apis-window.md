@@ -4572,7 +4572,7 @@ try {
             console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
             return;
         }
-        console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+        console.info('Succeeded in setting the aspect ratio of window.');
     });
 } catch (exception) {
     console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
