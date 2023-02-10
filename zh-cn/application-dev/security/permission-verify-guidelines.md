@@ -6,11 +6,14 @@
 
 ## 接口说明
 
-以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-ability-context.md)。
+以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl)。
 
-| 接口名                                                       | 描述                                             |
-| ------------------------------------------------------------ | --------------------------------------------------- |
-| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | 校验指定的应用进程是否已被授权指定的权限。 |
+checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](../reference/apis/js-apis-bundleManager-applicationInfo.md)获得。             |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](permission-list.md)中查询。 |
 
 
 ## 完整示例
@@ -20,8 +23,8 @@
 1. 获取调用者的身份标识：tokenId。
    > **说明：**<br>
    > 获取访问者身份标识tokenId的方法 getCallingTokenId 可参考[API参考](../reference/apis/js-apis-rpc.md)。
-2. 待校验的权限名：ohos.permission.PERMISSION。
-3. 使用verifyAccessToken接口对当前调用者进行权限校验。
+2. 待校验的权限名：ohos.permission.ACCELEROMETER。
+3. 使用checkAccessToken接口对当前调用者进行权限校验。
 4. 根据权限校验结果采取对应的措施。
 
 ```js
@@ -33,11 +36,14 @@
           let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
           console.log("RpcServer: getCallingTokenId result: " + callerTokenId);
           var atManager = abilityAccessCtrl.createAtManager();
-          var result = await atManager.verifyAccessToken(tokenID, "ohos.permission.PERMISSION");
-          if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-            // 允许访问者调用当前应用提供的接口
-          } else {
-            // 不允许访问者调用当前应用提供的接口
+          try {
+              atManager.checkAccessToken(callerTokenId, "ohos.permission.ACCELEROMETER").then((data) => {
+                  console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
+              }).catch((err) => {
+                  console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
+              });
+          } catch(err) {
+              console.log(`catch err->${JSON.stringify(err)}`);
           }
           return true;
       }
