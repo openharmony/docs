@@ -188,10 +188,10 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px。 |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 是   | 窗口宽度。 |
-| height | number   | 是   | 是   | 窗口高度。 |
+| width  | number   | 是   | 是   | 窗口宽度，单位为px。 |
+| height | number   | 是   | 是   | 窗口高度，单位为px。 |
 
 ## WindowProperties
 
