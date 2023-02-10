@@ -72,7 +72,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
      }
      await audioCapturer.start();
 
-     let state = audioCapturer.state;
+     state = audioCapturer.state;
      if (state == audio.AudioState.STATE_RUNNING) {
        console.info('AudioRecLog: Capturer started');
      } else {
@@ -112,6 +112,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
       
    let numBuffersToCapture = 150; // 循环写入150次
    while (numBuffersToCapture) {
+     let bufferSize = await audioCapturer.getBuffersize();
      let buffer = await audioCapturer.read(bufferSize, true);
      if (typeof(buffer) == undefined) {
        console.info('AudioRecLog: read buffer failed');
