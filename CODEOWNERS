@@ -275,6 +275,8 @@ zh-cn/application-dev/reference/apis/js-apis-application-StartOptions.md @little
 zh-cn/application-dev/reference/apis/js-apis-application-staticSubscriberExtensionAbility.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-Want.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
+zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
+zh-cn/application-dev/reference/apis/js-apis-inner-application-windowExtensionContext.md @ge-yafang @zhouyaoying @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-appmanager.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-audio.md @liuyuehua1 @zengyawen @magekkkk @currydavids
@@ -476,6 +478,7 @@ zh-cn/application-dev/reference/apis/js-apis-wifiext.md @cheng_guohong @RayShih 
 zh-cn/application-dev/reference/apis/js-apis-window.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
+zh-cn/application-dev/reference/apis/js-apis-taskpool.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
