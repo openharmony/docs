@@ -137,5 +137,38 @@ The form can not be operated by the current application.
 1. 检查传入卡片ID所有权
 2. 升级权限为SystemApp
 
+## 16501004 指定的ability未安装
 
+**错误信息**
 
+The ability is not installed.
+
+**错误描述**
+
+当指定的ability未安装时，系统会报此错误码。
+
+**可能原因**
+
+指定的ability未安装。
+
+**处理步骤**
+
+检查传入的abilityName与bundleName是否有效。
+
+## 16501005 连接卡片渲染服务失败
+
+**错误信息**
+
+Connect FormRenderService failed, please try again later.
+
+**错误描述**
+
+连接卡片渲染服务失败时，系统会报此错误码。
+
+**可能原因**
+
+服务繁忙。
+
+**处理步骤**
+
+服务繁忙，请稍后重试。
