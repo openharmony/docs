@@ -16,7 +16,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-创建WantAgent（callback形式）。
+创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -77,7 +77,7 @@ try {
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-创建WantAgent（Promise形式）。
+创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
