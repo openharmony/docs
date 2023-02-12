@@ -11,6 +11,7 @@
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ## 需要权限
+
 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 导入模块
@@ -248,7 +249,7 @@ export default class MainAbility extends Ability {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
 
 @Entry
 @Component
@@ -1438,7 +1439,7 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
@@ -1452,7 +1453,7 @@ struct WebComponent {
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
-**示例：** 
+**示例：**
 
   ```ts
 // xxx.ets
@@ -1536,7 +1537,7 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2、在应用侧的消息端口(如端口1)上注册回调事件。
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                var msg = 'Got msg from HTML:';    
+                let msg = 'Got msg from HTML:';
                 if (typeof(result) == "string") {
                   console.log("received string message from html5, string is:" + result);
                   msg = msg + result;
@@ -3495,7 +3496,7 @@ static existCookie(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
@@ -4228,133 +4229,6 @@ struct WebComponent {
 }
 ```
 
-## WebAsyncController
-
-通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
-
-### 创建对象
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    webAsyncController: web_webview.WebAsyncController = new web_webview.WebAsyncController(this.controller)
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### constructor<sup>9+</sup>
-
-constructor(controller: WebController)
-
-WebAsyncController的创建需要与一个[WebController](../arkui-ts/ts-basic-components-web.md#webcontroller)进行绑定。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名| 类型 | 必填 | 说明 |
-| ----- | ---- | ---- | --- |
-| controller | [WebController](../arkui-ts/ts-basic-components-web.md#webcontroller) | 是 | 所绑定的WebviewController。|
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
-
-以回调方式异步保存当前页面。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名      | 类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-| callback | AsyncCallback\<string> | 是    | 返回文件存储路径，保持网页失败会返回null。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller)
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
-              if (filename != null) {
-                console.info(`save web archive success: ${filename}`)
-              }
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
-
-以Promise方式异步保存当前页面。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名      | 类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-
-**返回值：**
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller);
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
-              .then(filename => {
-                if (filename != null) {
-                  console.info(`save web archive success: ${filename}`)
-                }
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
 ## GeolocationPermissions
 
 web组件地理位置权限管理对象。
@@ -4844,7 +4718,6 @@ struct WebComponent {
 | historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 是   | 否   | 历史记录项的标题。           |
-
 
 ## WebCustomScheme
 
