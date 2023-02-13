@@ -1,13 +1,13 @@
-# @system.geolocation (Geographic Location)
+# @system.geolocation (Geolocation)
+
+The **geolocation** module provides only basic functions such as GNSS positioning and network positioning.
 
 > **NOTE**
-> 
-> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.geolocation`](js-apis-geolocation.md).
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md) instead.
 
 
 ## Modules to Import
-
 
 ```
 import geolocation from '@system.geolocation';
@@ -19,43 +19,46 @@ import geolocation from '@system.geolocation';
 ohos.permission.LOCATION
 
 
-## geolocation.getLocation
+## geolocation.getLocation<sup>(deprecated)</sup>
 
 getLocation(Object): void
 
 Obtains the geographic location.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
+
 **System capability**: SystemCapability.Location.Location.Lite
 
 **Parameters**
 
-| Parameter | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| timeout | number | No | Timeout&nbsp;duration,&nbsp;in&nbsp;milliseconds.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**30000**.<br>The&nbsp;timeout&nbsp;duration&nbsp;is&nbsp;necessary&nbsp;in&nbsp;case&nbsp;the&nbsp;request&nbsp;to&nbsp;obtain&nbsp;the&nbsp;geographic&nbsp;location&nbsp;is&nbsp;rejected&nbsp;for&nbsp;the&nbsp;lack&nbsp;of&nbsp;the&nbsp;required&nbsp;permission,&nbsp;weak&nbsp;positioning&nbsp;signal,&nbsp;or&nbsp;incorrect&nbsp;location&nbsp;settings.&nbsp;After&nbsp;the&nbsp;timeout&nbsp;duration&nbsp;expires,&nbsp;the&nbsp;fail&nbsp;function&nbsp;will&nbsp;be&nbsp;called.<br>The&nbsp;value&nbsp;is&nbsp;a&nbsp;32-digit&nbsp;positive&nbsp;integer.&nbsp;If&nbsp;the&nbsp;value&nbsp;set&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**,&nbsp;the&nbsp;default&nbsp;value&nbsp;will&nbsp;be&nbsp;used. |
-| coordType | string | No | Coordinate&nbsp;system&nbsp;type.&nbsp;Available&nbsp;types&nbsp;can&nbsp;be&nbsp;obtained&nbsp;by&nbsp;**getSupportedCoordTypes**.&nbsp;The&nbsp;default&nbsp;type&nbsp;is&nbsp;**wgs84**. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete |
+| timeout | number | No| Timeout duration, in ms. The default value is **30000**.<br>The timeout duration is necessary in case the request to obtain the geographic location is rejected for the lack of the required permission, weak positioning signal, or incorrect location settings. After the timeout duration expires, the fail function will be called.<br>The value is a 32-digit positive integer. If the specified value is less than or equal to **0**, the default value will be used.|
+| coordType | string | No| Coordinate system type. Available types can be obtained by **getSupportedCoordTypes**. The default type is **wgs84**.|
+| success | Function | No| Called when API call is successful.|
+| fail | Function | No| Called when API call has failed.|
+| complete | Function | No| Called when API call is complete.|
 
-The following values will be returned when the operation is successful.
+**Return value of success()**
 
-| Parameter | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| longitude | number | Longitude |
-| latitude | number | Latitude |
-| altitude | number | Altitude |
-| accuracy | number | Location&nbsp;accuracy |
-| time | number | Time&nbsp;when&nbsp;the&nbsp;location&nbsp;is&nbsp;obtained |
+| longitude | number | Longitude.|
+| latitude | number | Latitude.|
+| altitude | number | Altitude.|
+| accuracy | number | Location accuracy.|
+| time | number | Time when the location is obtained.|
 
-One of the following error codes will be returned if the operation fails.
+**Return value of fail()**
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 601 | Failed&nbsp;to&nbsp;obtain&nbsp;the&nbsp;required&nbsp;permission&nbsp;because&nbsp;the&nbsp;user&nbsp;rejected&nbsp;the&nbsp;request. |
-| 602 | Permission&nbsp;not&nbsp;declared. |
-| 800 | Operation&nbsp;times&nbsp;out&nbsp;due&nbsp;to&nbsp;a&nbsp;poor&nbsp;network&nbsp;condition&nbsp;or&nbsp;unavailable&nbsp;GPS. |
-| 801 | System&nbsp;location&nbsp;disabled. |
-| 802 | The&nbsp;method&nbsp;is&nbsp;called&nbsp;again&nbsp;while&nbsp;the&nbsp;previous&nbsp;execution&nbsp;result&nbsp;is&nbsp;not&nbsp;returned&nbsp;yet. |
+| 601 | Failed to obtain the required permission because the user rejected the request.|
+| 602 | Permission not declared.|
+| 800 | Operation times out due to a poor network condition or GNSS unavailability.|
+| 801 | System location disabled.|
+| 802 | API called again while the previous execution result is not returned yet.|
 
 **Example**
 
@@ -75,27 +78,30 @@ export default {
 ```
 
 
-## geolocation.getLocationType
+## geolocation.getLocationType<sup>(deprecated)</sup>
 
 getLocationType(Object): void
 
 Obtains the supported location types.
 
+> **NOTE**
+> This API is deprecated since API version 9. The location subsystem supports only two location types: GNSS positioning and network positioning. No APIs will be provided to query the supported location types.
+
 **System capability**: SystemCapability.Location.Location.Lite
 
 **Parameters**
 
-| Parameter | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete |
+| success | Function | No| Called when API call is successful.|
+| fail | Function | No| Called when API call has failed.|
+| complete | Function | No| Called when API call is complete.|
 
-The following values will be returned when the operation is successful.
+**Return value of success()**
 
-| Parameter | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| types | Array&lt;string&gt; | Available&nbsp;location&nbsp;types,&nbsp;['gps',&nbsp;'network'] |
+| types | Array&lt;string&gt; | Available location types, ['gnss', 'network']|
 
 **Example**
 
@@ -115,39 +121,42 @@ export default {
 ```
 
 
-## geolocation.subscribe
+## geolocation.subscribe<sup>(deprecated)</sup>
 
 subscribe(Object): void
 
-Listens to the geographical location. If this method is called multiple times, the last call takes effect.
+Listens to the geographic location. If this method is called multiple times, the last call takes effect.
+
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
 **Parameters**
 
-| Parameter | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| coordType | string | No | Coordinate&nbsp;system&nbsp;type.&nbsp;Available&nbsp;types&nbsp;can&nbsp;be&nbsp;obtained&nbsp;by&nbsp;**getSupportedCoordTypes**.&nbsp;The&nbsp;default&nbsp;type&nbsp;is&nbsp;**wgs84**. |
-| success | Function | Yes | Called&nbsp;when&nbsp;the&nbsp;geographical&nbsp;location&nbsp;changes |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;listening&nbsp;fails |
+| coordType | string | No| Coordinate system type. Available types can be obtained by **getSupportedCoordTypes**. The default type is **wgs84**.|
+| success | Function | Yes| Called when the geographic location changes.|
+| fail | Function | No| Called when API call has failed.|
 
-The following values will be returned when the network type is obtained.
+**Return value of success()**
 
-| Parameter | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| longitude | number | Longitude |
-| latitude | number | Latitude |
-| altitude | number | Altitude |
-| accuracy | number | Location&nbsp;accuracy |
-| time | number | Time&nbsp;when&nbsp;the&nbsp;location&nbsp;is&nbsp;obtained |
+| longitude | number | Longitude.|
+| latitude | number | Latitude.|
+| altitude | number | Altitude.|
+| accuracy | number | Location accuracy.|
+| time | number | Time when the location is obtained.|
 
-One of the following error codes will be returned if the operation fails.
+**Return value of fail()**
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 601 | Failed&nbsp;to&nbsp;obtain&nbsp;the&nbsp;required&nbsp;permission&nbsp;because&nbsp;the&nbsp;user&nbsp;rejected&nbsp;the&nbsp;request. |
-| 602 | Permission&nbsp;not&nbsp;declared. |
-| 801 | System&nbsp;location&nbsp;disabled. |
+| 601 | Failed to obtain the required permission because the user rejected the request.|
+| 602 | Permission not declared.|
+| 801 | System location disabled.|
 
 **Example**
 
@@ -167,11 +176,14 @@ export default {
 ```
 
 
-## geolocation.unsubscribe
+## geolocation.unsubscribe<sup>(deprecated)</sup>
 
 unsubscribe(): void
 
-Cancels listening to the geographical location.
+Cancels listening to the geographic location.
+
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('locationChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationchange).
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -186,19 +198,22 @@ export default {
 ```
 
 
-## geolocation.getSupportedCoordTypes
+## geolocation.getSupportedCoordTypes<sup>(deprecated)</sup>
 
 getSupportedCoordTypes(): Array&lt;string&gt;
 
 Obtains coordinate system types supported by the device.
 
+> **NOTE**
+> This API is deprecated since API version 9. The location subsystem supports only the wgs84 coordinate system. No APIs will be provided to query the supported coordinate system types.
+
 **System capability**: SystemCapability.Location.Location.Lite
 
-**Return Value**
+**Return value**
 
-| Type | Non-Null | Description |
+| Type| Not empty| Description|
 | -------- | -------- | -------- |
-| Array&lt;string&gt; | Yes | Coordinate&nbsp;system&nbsp;types,&nbsp;for&nbsp;example,&nbsp;**[wgs84,&nbsp;gcj02]**. |
+| Array&lt;string&gt; | Yes| Coordinate system types, for example, **[wgs84, gcj02]**.|
 
 **Example**
 
