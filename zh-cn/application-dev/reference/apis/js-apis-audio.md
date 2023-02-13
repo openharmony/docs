@@ -74,7 +74,7 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -129,7 +129,7 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -4536,7 +4536,7 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let ss = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
 audioRenderer.write(buf, (err, writtenbytes) => {
@@ -4579,7 +4579,7 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let ss = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
 audioRenderer.write(buf).then((writtenbytes) => {
