@@ -122,7 +122,6 @@ struct StepperExample {
             .itemTextStyle()
         }.itemStyle()
       }
-      .nextLabel('Finish')
     }
     .backgroundColor('#F1F3F5')
     .onFinish(() => {

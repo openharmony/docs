@@ -55,6 +55,7 @@ struct AspectRatioExample {
             Text(item)
               .backgroundColor(0xbbb2cb)
               .fontSize(40)
+              .height(160)
               .aspectRatio(1.5)
           }
         }, item => item)
