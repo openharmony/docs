@@ -88,9 +88,9 @@ The following is an example of **MainAbility**:
 #### Importing the Service Package
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager'
-import appRecovery from '@ohos.app.ability.appRecovery'
-import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import errorManager from '@ohos.app.ability.errorManager';
+import appRecovery from '@ohos.app.ability.appRecovery';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 ```
 
 #### Actively Saving Status and Restoring Data

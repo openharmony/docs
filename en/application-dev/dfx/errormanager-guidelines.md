@@ -36,8 +36,8 @@ When an asynchronous callback is used, the return value can be processed directl
 
 ## Development Example
 ```ts
-import Ability from '@ohos.application.Ability'
-import errorManager from '@ohos.application.errorManager'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import errorManager from '@ohos.app.ability.errorManager';
 
 var registerId = -1;
 var callback = {

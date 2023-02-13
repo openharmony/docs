@@ -85,7 +85,7 @@ getLocationType(Object): void
 Obtains the supported location types.
 
 > **NOTE**
-> This API is deprecated since API version 9. The location subsystem supports only two location types: GNSS positioning and network positioning. No APIs will be provided to query the supported location types.
+> This API is deprecated since API version 9. The location subsystem supports only two location types: GPS positioning and network positioning. No APIs will be provided to query the supported location types.
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -101,7 +101,7 @@ Obtains the supported location types.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| types | Array&lt;string&gt; | Available location types, ['gnss', 'network']|
+| types | Array&lt;string&gt; | Available location types, ['gps', 'network']|
 
 **Example**
 
