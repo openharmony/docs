@@ -54,7 +54,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Canvas](#oh_drawing_canvas) | OH_Drawing_Canvas定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 |
 | [OH_Drawing_Pen](#oh_drawing_pen) | OH_Drawing_Pen定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 |
 | [OH_Drawing_Brush](#oh_drawing_brush) | OH_Drawing_Brush定义为画刷，画刷用于描述填充图形的样式和颜色。 |
-| [OH_Drawing_Path](#oh_drawing_path) | OH_Drawing_Path定义为路径，路径用于自定义各种形状。 |
+| [OH_Drawing_Path](#oh_drawing_path) | OH_Drawing_Path定义为路径，路径用于自定义设置各种形状。 |
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) | OH_Drawing_Bitmap定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据。 |
 
 
@@ -78,56 +78,56 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | 函数用于创建一个位图对象。 |
-| [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于销毁位图对象并回收该对象占有内存。 |
-| [OH_Drawing_BitmapBuild](#oh_drawing_bitmapbuild) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | 函数用于初始化位图对象的宽度和高度，并且为该位图设置像素格式。 |
-| [OH_Drawing_BitmapGetWidth](#oh_drawing_bitmapgetwidth) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 该函数用于获取指定位图的宽度。 |
-| [OH_Drawing_BitmapGetHeight](#oh_drawing_bitmapgetheight) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于获取指定位图的高度。 |
-| [OH_Drawing_BitmapGetPixels](#oh_drawing_bitmapgetpixels) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据。 |
-| [OH_Drawing_BrushCreate](#oh_drawing_brushcreate) (void) | 函数用于创建一个画刷对象。 |
-| [OH_Drawing_BrushDestroy](#oh_drawing_brushdestroy) ([OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于销毁画刷对象并回收该对象占有的内存。 |
-| [OH_Drawing_BrushIsAntiAlias](#oh_drawing_brushisantialias) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_BrushSetAntiAlias](#oh_drawing_brushsetantialias) ([OH_Drawing_Brush](#oh_drawing_brush) \*, bool) | 函数用于设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_BrushGetColor](#oh_drawing_brushgetcolor) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_BrushSetColor](#oh_drawing_brushsetcolor) ([OH_Drawing_Brush](#oh_drawing_brush) \*, uint32_t color) | 函数用于设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate) (void) | 函数用于创建一个画布对象。 |
-| [OH_Drawing_CanvasDestroy](#oh_drawing_canvasdestroy) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于销毁画布对象并回收该对象占有的内存。 |
-| [OH_Drawing_CanvasBind](#oh_drawing_canvasbind) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。 |
-| [OH_Drawing_CanvasAttachPen](#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。 |
-| [OH_Drawing_CanvasDetachPen](#oh_drawing_canvasdetachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。 |
-| [OH_Drawing_CanvasAttachBrush](#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 |
-| [OH_Drawing_CanvasDetachBrush](#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于去除掉画布中的画刷，使用后画布将不去填充图形形状。 |
-| [OH_Drawing_CanvasSave](#oh_drawing_canvassave) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
-| [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于恢复保存在栈顶的画布状态（画布矩阵）。 |
-| [OH_Drawing_CanvasDrawLine](#oh_drawing_canvasdrawline) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float x1, float y1, float x2, float y2) | 函数用于画一条直线段。 |
-| [OH_Drawing_CanvasDrawPath](#oh_drawing_canvasdrawpath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于画一个自定义路径。 |
-| [OH_Drawing_CanvasClear](#oh_drawing_canvasclear) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, uint32_t color) | 函数用于使用指定颜色去清空画布。 |
-| [OH_Drawing_ColorSetArgb](#oh_drawing_colorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | 函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量。 |
+| [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | 创建一个位图对象。 |
+| [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 销毁位图对象并回收该对象占有内存。 |
+| [OH_Drawing_BitmapBuild](#oh_drawing_bitmapbuild) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | 初始化位图对象的宽度和高度，并且为该位图设置像素格式。 |
+| [OH_Drawing_BitmapGetWidth](#oh_drawing_bitmapgetwidth) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 获取指定位图的宽度。 |
+| [OH_Drawing_BitmapGetHeight](#oh_drawing_bitmapgetheight) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 获取指定位图的高度。 |
+| [OH_Drawing_BitmapGetPixels](#oh_drawing_bitmapgetpixels) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据。 |
+| [OH_Drawing_BrushCreate](#oh_drawing_brushcreate) (void) | 创建一个画刷对象。 |
+| [OH_Drawing_BrushDestroy](#oh_drawing_brushdestroy) ([OH_Drawing_Brush](#oh_drawing_brush) \*) | 销毁画刷对象并回收该对象占有的内存。 |
+| [OH_Drawing_BrushIsAntiAlias](#oh_drawing_brushisantialias) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_BrushSetAntiAlias](#oh_drawing_brushsetantialias) ([OH_Drawing_Brush](#oh_drawing_brush) \*, bool) | 设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_BrushGetColor](#oh_drawing_brushgetcolor) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_BrushSetColor](#oh_drawing_brushsetcolor) ([OH_Drawing_Brush](#oh_drawing_brush) \*, uint32_t color) | 设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate) (void) | 创建一个画布对象。 |
+| [OH_Drawing_CanvasDestroy](#oh_drawing_canvasdestroy) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 销毁画布对象并回收该对象占有的内存。 |
+| [OH_Drawing_CanvasBind](#oh_drawing_canvasbind) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。 |
+| [OH_Drawing_CanvasAttachPen](#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。 |
+| [OH_Drawing_CanvasDetachPen](#oh_drawing_canvasdetachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。 |
+| [OH_Drawing_CanvasAttachBrush](#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 |
+| [OH_Drawing_CanvasDetachBrush](#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 去除掉画布中的画刷，使用后画布将不去填充图形形状。 |
+| [OH_Drawing_CanvasSave](#oh_drawing_canvassave) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 保存当前画布的状态（画布矩阵）到一个栈顶。 |
+| [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 恢复保存在栈顶的画布状态（画布矩阵）。 |
+| [OH_Drawing_CanvasDrawLine](#oh_drawing_canvasdrawline) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float x1, float y1, float x2, float y2) | 画一条直线段。 |
+| [OH_Drawing_CanvasDrawPath](#oh_drawing_canvasdrawpath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Path](#oh_drawing_path) \*) | 画一个自定义路径。 |
+| [OH_Drawing_CanvasClear](#oh_drawing_canvasclear) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, uint32_t color) | 使用指定颜色去清空画布。 |
+| [OH_Drawing_ColorSetArgb](#oh_drawing_colorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | 将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量。 |
 | [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建OH_Drawing_FontCollection。 |
 | [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 释放被OH_Drawing_FontCollection对象占据的内存。 |
-| [OH_Drawing_PathCreate](#oh_drawing_pathcreate) (void) | 函数用于创建一个路径对象。 |
-| [OH_Drawing_PathDestroy](#oh_drawing_pathdestroy) ([OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于销毁路径对象并回收该对象占有的内存。 |
-| [OH_Drawing_PathMoveTo](#oh_drawing_pathmoveto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 函数用于设置自定义路径的起始点位置。 |
-| [OH_Drawing_PathLineTo](#oh_drawing_pathlineto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 函数用于添加一条从路径的最后点位置到目标点位置的线段。 |
-| [OH_Drawing_PathArcTo](#oh_drawing_patharcto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x1, float y1, float x2, float y2, float startDeg, float sweepDeg) | 函数用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。 |
-| [OH_Drawing_PathQuadTo](#oh_drawing_pathquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 函数用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。 |
-| [OH_Drawing_PathCubicTo](#oh_drawing_pathcubicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY) | 函数用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。 |
-| [OH_Drawing_PathClose](#oh_drawing_pathclose) ([OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。 |
-| [OH_Drawing_PathReset](#oh_drawing_pathreset) ([OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于重置自定义路径数据。 |
-| [OH_Drawing_PenCreate](#oh_drawing_pencreate) (void) | 函数用于创建一个画笔对象。 |
-| [OH_Drawing_PenDestroy](#oh_drawing_pendestroy) ([OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于销毁画笔对象并回收该对象占有的内存。 |
-| [OH_Drawing_PenIsAntiAlias](#oh_drawing_penisantialias) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_PenSetAntiAlias](#oh_drawing_pensetantialias) ([OH_Drawing_Pen](#oh_drawing_pen) \*, bool) | 函数用于设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_PenGetColor](#oh_drawing_pengetcolor) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_PenSetColor](#oh_drawing_pensetcolor) ([OH_Drawing_Pen](#oh_drawing_pen) \*, uint32_t color) | 函数用于设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_PenGetWidth](#oh_drawing_pengetwidth) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
-| [OH_Drawing_PenSetWidth](#oh_drawing_pensetwidth) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float width) | 函数用于设置画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
-| [OH_Drawing_PenGetMiterLimit](#oh_drawing_pengetmiterlimit) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
-| [OH_Drawing_PenSetMiterLimit](#oh_drawing_pensetmiterlimit) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float miter) | 函数用于设置折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
-| [OH_Drawing_PenGetCap](#oh_drawing_pengetcap) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔笔帽的样式。 |
-| [OH_Drawing_PenSetCap](#oh_drawing_pensetcap) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle)) | 函数用于设置画笔笔帽样式。 |
-| [OH_Drawing_PenGetJoin](#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔绘制折线转角的样式。 |
-| [OH_Drawing_PenSetJoin](#oh_drawing_pensetjoin) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)) | 函数用于设置画笔绘制转角的样式。 |
+| [OH_Drawing_PathCreate](#oh_drawing_pathcreate) (void) | 创建一个路径对象。 |
+| [OH_Drawing_PathDestroy](#oh_drawing_pathdestroy) ([OH_Drawing_Path](#oh_drawing_path) \*) | 销毁路径对象并回收该对象占有的内存。 |
+| [OH_Drawing_PathMoveTo](#oh_drawing_pathmoveto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 设置自定义路径的起始点位置。 |
+| [OH_Drawing_PathLineTo](#oh_drawing_pathlineto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 添加一条从路径的最后点位置到目标点位置的线段。 |
+| [OH_Drawing_PathArcTo](#oh_drawing_patharcto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x1, float y1, float x2, float y2, float startDeg, float sweepDeg) | 给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。 |
+| [OH_Drawing_PathQuadTo](#oh_drawing_pathquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。 |
+| [OH_Drawing_PathCubicTo](#oh_drawing_pathcubicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY) | 添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。 |
+| [OH_Drawing_PathClose](#oh_drawing_pathclose) ([OH_Drawing_Path](#oh_drawing_path) \*) | 闭合路径，会添加一条从路径起点位置到最后点位置的线段。 |
+| [OH_Drawing_PathReset](#oh_drawing_pathreset) ([OH_Drawing_Path](#oh_drawing_path) \*) | 重置自定义路径数据。 |
+| [OH_Drawing_PenCreate](#oh_drawing_pencreate) (void) | 创建一个画笔对象。 |
+| [OH_Drawing_PenDestroy](#oh_drawing_pendestroy) ([OH_Drawing_Pen](#oh_drawing_pen) \*) | 销毁画笔对象并回收该对象占有的内存。 |
+| [OH_Drawing_PenIsAntiAlias](#oh_drawing_penisantialias) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_PenSetAntiAlias](#oh_drawing_pensetantialias) ([OH_Drawing_Pen](#oh_drawing_pen) \*, bool) | 设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_PenGetColor](#oh_drawing_pengetcolor) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 获取画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_PenSetColor](#oh_drawing_pensetcolor) ([OH_Drawing_Pen](#oh_drawing_pen) \*, uint32_t color) | 设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_PenGetWidth](#oh_drawing_pengetwidth) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 获取画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
+| [OH_Drawing_PenSetWidth](#oh_drawing_pensetwidth) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float width) | 设置画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
+| [OH_Drawing_PenGetMiterLimit](#oh_drawing_pengetmiterlimit) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 获取折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
+| [OH_Drawing_PenSetMiterLimit](#oh_drawing_pensetmiterlimit) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float miter) | 设置折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
+| [OH_Drawing_PenGetCap](#oh_drawing_pengetcap) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 获取画笔笔帽的样式。 |
+| [OH_Drawing_PenSetCap](#oh_drawing_pensetcap) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle)) | 设置画笔笔帽样式。 |
+| [OH_Drawing_PenGetJoin](#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 获取画笔绘制折线转角的样式。 |
+| [OH_Drawing_PenSetJoin](#oh_drawing_pensetjoin) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)) | 设置画笔绘制转角的样式。 |
 | [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle) (void) | 创建OH_Drawing_TypographyStyle。 |
 | [OH_Drawing_DestroyTypographyStyle](#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 释放被OH_Drawing_TypographyStyle对象占据的内存。 |
 | [OH_Drawing_SetTypographyTextDirection](#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本方向。 |
@@ -235,7 +235,7 @@ typedef struct OH_Drawing_Path OH_Drawing_Path
 
 **描述：**
 
-OH_Drawing_Path定义为路径，路径用于自定义各种形状
+OH_Drawing_Path定义为路径，路径用于自定义设置各种形状
 
 **起始版本：**
 
@@ -568,7 +568,7 @@ void OH_Drawing_BitmapBuild (OH_Drawing_Bitmap * , const uint32_t width, const u
 
 **描述：**
 
-函数用于初始化位图对象的宽度和高度，并且为该位图设置像素格式
+设置初始化位图对象的宽度和高度，并且为该位图设置像素格式
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -595,7 +595,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreate (void )
 
 **描述：**
 
-函数用于创建一个位图对象。
+创建一个位图对象。
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -617,7 +617,7 @@ void OH_Drawing_BitmapDestroy (OH_Drawing_Bitmap * )
 
 **描述：**
 
-函数用于销毁位图对象并回收该对象占有内存。
+销毁位图对象并回收该对象占有内存。
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -641,7 +641,7 @@ uint32_t OH_Drawing_BitmapGetHeight (OH_Drawing_Bitmap * )
 
 **描述：**
 
-函数用于获取指定位图的高度
+获取指定位图的高度
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -669,7 +669,7 @@ void* OH_Drawing_BitmapGetPixels (OH_Drawing_Bitmap * )
 
 **描述：**
 
-函数用于获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据
+获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -697,7 +697,7 @@ uint32_t OH_Drawing_BitmapGetWidth (OH_Drawing_Bitmap * )
 
 **描述：**
 
-该函数用于获取指定位图的宽度
+获取指定位图的宽度
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -725,7 +725,7 @@ OH_Drawing_Brush* OH_Drawing_BrushCreate (void )
 
 **描述：**
 
-函数用于创建一个画刷对象
+创建一个画刷对象
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -747,7 +747,7 @@ void OH_Drawing_BrushDestroy (OH_Drawing_Brush * )
 
 **描述：**
 
-函数用于销毁画刷对象并回收该对象占有的内存。
+销毁画刷对象并回收该对象占有的内存。
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -771,7 +771,7 @@ uint32_t OH_Drawing_BrushGetColor (const OH_Drawing_Brush * )
 
 **描述：**
 
-函数用于获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示
+获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -799,7 +799,7 @@ bool OH_Drawing_BrushIsAntiAlias (const OH_Drawing_Brush * )
 
 **描述：**
 
-函数用于获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理
+获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -827,7 +827,7 @@ void OH_Drawing_BrushSetAntiAlias (OH_Drawing_Brush * , bool  )
 
 **描述：**
 
-函数用于设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理
+设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -852,7 +852,7 @@ void OH_Drawing_BrushSetColor (OH_Drawing_Brush * , uint32_t color )
 
 **描述：**
 
-函数用于设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示
+设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -877,7 +877,7 @@ void OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas * , const OH_Drawing_Brush 
 
 **描述：**
 
-函数用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状
+设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -902,7 +902,7 @@ void OH_Drawing_CanvasAttachPen (OH_Drawing_Canvas * , const OH_Drawing_Pen *  )
 
 **描述：**
 
-函数用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓
+设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -927,7 +927,7 @@ void OH_Drawing_CanvasBind (OH_Drawing_Canvas * , OH_Drawing_Bitmap *  )
 
 **描述：**
 
-函数用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）
+将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -952,7 +952,7 @@ void OH_Drawing_CanvasClear (OH_Drawing_Canvas * , uint32_t color )
 
 **描述：**
 
-函数用于使用指定颜色去清空画布
+使用指定颜色去清空画布
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -977,7 +977,7 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreate (void )
 
 **描述：**
 
-函数用于创建一个画布对象
+创建一个画布对象
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -999,7 +999,7 @@ void OH_Drawing_CanvasDestroy (OH_Drawing_Canvas * )
 
 **描述：**
 
-函数用于销毁画布对象并回收该对象占有的内存
+销毁画布对象并回收该对象占有的内存
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1023,7 +1023,7 @@ void OH_Drawing_CanvasDetachBrush (OH_Drawing_Canvas * )
 
 **描述：**
 
-函数用于去除掉画布中的画刷，使用后画布将不去填充图形形状
+去除掉画布中的画刷，使用后画布将不去填充图形形状
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1047,7 +1047,7 @@ void OH_Drawing_CanvasDetachPen (OH_Drawing_Canvas * )
 
 **描述：**
 
-函数用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓
+去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1071,7 +1071,7 @@ void OH_Drawing_CanvasDrawLine (OH_Drawing_Canvas * , float x1, float y1, float 
 
 **描述：**
 
-函数用于画一条直线段
+画一条直线段
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1099,7 +1099,7 @@ void OH_Drawing_CanvasDrawPath (OH_Drawing_Canvas * , const OH_Drawing_Path *  )
 
 **描述：**
 
-函数用于画一个自定义路径
+画一个自定义路径
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1124,7 +1124,7 @@ void OH_Drawing_CanvasRestore (OH_Drawing_Canvas * )
 
 **描述：**
 
-函数用于恢复保存在栈顶的画布状态（画布矩阵）
+恢复保存在栈顶的画布状态（画布矩阵）
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1148,7 +1148,7 @@ void OH_Drawing_CanvasSave (OH_Drawing_Canvas * )
 
 **描述：**
 
-函数用于保存当前画布的状态（画布矩阵）到一个栈顶
+保存当前画布的状态（画布矩阵）到一个栈顶
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1172,7 +1172,7 @@ uint32_t OH_Drawing_ColorSetArgb (uint32_t alpha, uint32_t red, uint32_t green, 
 
 **描述：**
 
-函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量
+将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1446,7 +1446,7 @@ void OH_Drawing_PathArcTo (OH_Drawing_Path * , float x1, float y1, float x2, flo
 
 **描述：**
 
-函数用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段
+给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1500,7 +1500,7 @@ OH_Drawing_Path* OH_Drawing_PathCreate (void )
 
 **描述：**
 
-函数用于创建一个路径对象
+创建一个路径对象
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1522,7 +1522,7 @@ void OH_Drawing_PathCubicTo (OH_Drawing_Path * , float ctrlX1, float ctrlY1, flo
 
 **描述：**
 
-函数用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线
+添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1552,7 +1552,7 @@ void OH_Drawing_PathDestroy (OH_Drawing_Path * )
 
 **描述：**
 
-函数用于销毁路径对象并回收该对象占有的内存
+销毁路径对象并回收该对象占有的内存
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1576,7 +1576,7 @@ void OH_Drawing_PathLineTo (OH_Drawing_Path * , float x, float y )
 
 **描述：**
 
-函数用于添加一条从路径的最后点位置到目标点位置的线段
+添加一条从路径的最后点位置到目标点位置的线段
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1602,7 +1602,7 @@ void OH_Drawing_PathMoveTo (OH_Drawing_Path * , float x, float y )
 
 **描述：**
 
-函数用于设置自定义路径的起始点位置
+设置自定义路径的起始点位置
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1628,7 +1628,7 @@ void OH_Drawing_PathQuadTo (OH_Drawing_Path * , float ctrlX, float ctrlY, float 
 
 **描述：**
 
-函数用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线
+添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1656,7 +1656,7 @@ void OH_Drawing_PathReset (OH_Drawing_Path * )
 
 **描述：**
 
-函数用于重置自定义路径数据
+重置自定义路径数据
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1680,7 +1680,7 @@ OH_Drawing_Pen* OH_Drawing_PenCreate (void )
 
 **描述：**
 
-函数用于创建一个画笔对象
+创建一个画笔对象
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1702,7 +1702,7 @@ void OH_Drawing_PenDestroy (OH_Drawing_Pen * )
 
 **描述：**
 
-函数用于销毁画笔对象并回收该对象占有的内存
+销毁画笔对象并回收该对象占有的内存
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1726,7 +1726,7 @@ OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap (const OH_Drawing_Pen * )
 
 **描述：**
 
-函数用于获取画笔笔帽的样式
+获取画笔笔帽的样式
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1754,7 +1754,7 @@ uint32_t OH_Drawing_PenGetColor (const OH_Drawing_Pen * )
 
 **描述：**
 
-函数用于获取画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示
+获取画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1782,7 +1782,7 @@ OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin (const OH_Drawing_Pen * )
 
 **描述：**
 
-函数用于获取画笔绘制折线转角的样式
+获取画笔绘制折线转角的样式
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1810,7 +1810,7 @@ float OH_Drawing_PenGetMiterLimit (const OH_Drawing_Pen * )
 
 **描述：**
 
-函数用于获取折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角
+获取折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1838,7 +1838,7 @@ float OH_Drawing_PenGetWidth (const OH_Drawing_Pen * )
 
 **描述：**
 
-函数用于获取画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度
+获取画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1866,7 +1866,7 @@ bool OH_Drawing_PenIsAntiAlias (const OH_Drawing_Pen * )
 
 **描述：**
 
-函数用于获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理
+获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1894,7 +1894,7 @@ void OH_Drawing_PenSetAntiAlias (OH_Drawing_Pen * , bool  )
 
 **描述：**
 
-函数用于设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理
+设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1919,7 +1919,7 @@ void OH_Drawing_PenSetCap (OH_Drawing_Pen * , OH_Drawing_PenLineCapStyle  )
 
 **描述：**
 
-函数用于设置画笔笔帽样式
+设置画笔笔帽样式
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1944,7 +1944,7 @@ void OH_Drawing_PenSetColor (OH_Drawing_Pen * , uint32_t color )
 
 **描述：**
 
-函数用于设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示
+设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1969,7 +1969,7 @@ void OH_Drawing_PenSetJoin (OH_Drawing_Pen * , OH_Drawing_PenLineJoinStyle  )
 
 **描述：**
 
-函数用于设置画笔绘制转角的样式
+设置画笔绘制转角的样式
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1994,7 +1994,7 @@ void OH_Drawing_PenSetMiterLimit (OH_Drawing_Pen * , float miter )
 
 **描述：**
 
-函数用于设置折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角
+设置折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2019,7 +2019,7 @@ void OH_Drawing_PenSetWidth (OH_Drawing_Pen * , float width )
 
 **描述：**
 
-函数用于设置画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度
+设置画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度
 
 @syscap SystemCapability.Graphic.Graphic2D.NativeDrawing
 
