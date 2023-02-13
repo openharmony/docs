@@ -217,10 +217,11 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
 
    ![drawing-feature4](figures/drawing-feature4.png)
 
-   填充颜色为白色。
+   填充颜色为白色，线条颜色为透明。
 
    ```ts
    .fill(Color.White)
+   .stroke(Color.Transparent)
    ```
 
    ```ts
@@ -233,6 +234,7 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
            Path()
              .commands('M162 128.7 a222 222 0 0 1 100.8 374.4 H198 a36 36 0 0 3 -36 -36')
              .fill(Color.White)
+             .stroke(Color.Transparent)
          }
          .height('630px')
          .width('630px')
@@ -256,6 +258,7 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
    Path()
      .commands('M319.5 128.1 c103.5 0 187.5 84 187.5 187.5 v15 a172.5 172.5 0 0 3 -172.5 172.5 H198 a36 36 0 0 3 -13.8 -1 207 207 0 0 0 87 -372 h48.3 z')
      .fill('none')
+     .stroke(Corlor.Transparent)
      .linearGradient(
      {
        angle: 30,
@@ -276,6 +279,7 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
            Path()
              .commands(this.pathCommands1)
              .fill('none')
+             .stroke(Color.Transparent)
              .linearGradient(
              {
                angle: 30,
@@ -303,10 +307,12 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
            Path()
              .commands('M162 128.7 a222 222 0 0 1 100.8 374.4 H198 a36 36 0 0 3 -36 -36')
              .fill(Color.White)
+             .stroke(Color.Transparent)
    
            Path()
              .commands(this.pathCommands1)
              .fill('none')
+             .stroke(Color.Transparent)
              .linearGradient(
              {
                angle: 30,
@@ -317,6 +323,7 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
            Path()
              .commands(this.pathCommands2)
              .fill('none')
+             .stroke(Color.Transparent)
              .linearGradient(
              {
                angle: 50,
@@ -348,33 +355,37 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
    @Entry
    @Component
    struct Logo {
-     private pathCommands1:string = 'M319.5 128.1 c103.5 0 187.5 84 187.5 187.5 v15 a172.5 172.5 0 0 3 -172.5 172.5 H198 a36 36 0 0 3 -13.8 -1 207 207 0 0 0 87 -372 h48.3 z'
-     private pathCommands2:string = 'M270.6 128.1 h48.6 c51.6 0 98.4 21 132.3 54.6 a411 411 0 0 3 -45.6 123 c-25.2 45.6 -56.4 84 -87.6 110.4 a206.1 206.1 0 0 0 -47.7 -288 z'
+     private pathCommands1: string = 'M319.5 128.1 c103.5 0 187.5 84 187.5 187.5 v15 a172.5 172.5 0 0 3 -172.5 172.5 H198 a36 36 0 0 3 -13.8 -1 207 207 0 0 0 87 -372 h48.3 z'
+     private pathCommands2: string = 'M270.6 128.1 h48.6 c51.6 0 98.4 21 132.3 54.6 a411 411 0 0 3 -45.6 123 c-25.2 45.6 -56.4 84 -87.6 110.4 a206.1 206.1 0 0 0 -47.7 -288 z'
+   
      build() {
        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
          Shape() {
            Path()
              .commands('M162 128.7 a222 222 0 0 1 100.8 374.4 H198 a36 36 0 0 3 -36 -36')
              .fill(Color.White)
+             .stroke(Color.Transparent)
    
            Path()
              .commands(this.pathCommands1)
              .fill('none')
+             .stroke(Color.Transparent)
              .linearGradient(
-             {
-               angle: 30,
-               colors: [["#C4FFA0", 0],  ["#ffffff", 1]]
-             })
+               {
+                 angle: 30,
+                 colors: [["#C4FFA0", 0], ["#ffffff", 1]]
+               })
              .clip(new Path().commands(this.pathCommands1))
    
            Path()
              .commands(this.pathCommands2)
              .fill('none')
+             .stroke(Color.Transparent)
              .linearGradient(
-             {
-               angle: 50,
-               colors: [['#8CC36A', 0.1], ["#B3EB90", 0.4],  ["#ffffff", 0.7]]
-             })
+               {
+                 angle: 50,
+                 colors: [['#8CC36A', 0.1], ["#B3EB90", 0.4], ["#ffffff", 0.7]]
+               })
              .clip(new Path().commands(this.pathCommands2))
          }
          .height('630px')
@@ -383,22 +394,22 @@ FoodDetail页面的食物成分表里，给每一项成分名称前都加上一�
          Text('Healthy Diet')
            .fontSize(26)
            .fontColor(Color.White)
-           .margin({ top:300 })
+           .margin({ top: 300 })
    
          Text('Healthy life comes from a balanced diet')
            .fontSize(17)
            .fontColor(Color.White)
-           .margin({ top:4 })
+           .margin({ top: 4 })
        }
        .width('100%')
        .height('100%')
        .linearGradient(
          {
            angle: 180,
-           colors: [['#BDE895', 0.1], ["#95DE7F", 0.6],  ["#7AB967", 1]]
-         })
+           colors: [['#BDE895', 0.1], ["#95DE7F", 0.6], ["#7AB967", 1]]
+        })
      }
    }
    ```
-
+   
    ![drawing-feature8](figures/drawing-feature8.png)
