@@ -38,7 +38,7 @@ AudioPlayer支持的src媒体源输入类型可参考：[src属性说明](../ref
 
 ```js
 import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
+import fileIO from '@ohos.fileio'
 
 // 打印码流轨道信息
 function printfDescription(obj) {
@@ -112,8 +112,14 @@ async function audioPlayerDemo() {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/01.mp3'
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
+    await fileIO.open(path).then((fdNumber) => {
+        fdPath = fdPath + '' + fdNumber;
+        console.info('open fd success fd is' + fdPath);
+    }, (err) => {
+        console.info('open fd failed err is' + err);
+    }).catch((err) => {
+        console.info('open fd failed err is' + err);
+    });
     audioPlayer.src = fdPath; // 设置src属性，并触发'dataLoad'事件回调
 }
 ```
@@ -122,7 +128,7 @@ async function audioPlayerDemo() {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
+import fileIO from '@ohos.fileio'
 
 export class AudioDemo {
   // 设置播放器回调函数
@@ -148,8 +154,14 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/01.mp3'
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd success fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
     audioPlayer.src = fdPath; // 设置src属性，并触发'dataLoad'事件回调
   }
 }
@@ -159,7 +171,7 @@ export class AudioDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
+import fileIO from '@ohos.fileio'
 
 export class AudioDemo {
 // 设置播放器回调函数
@@ -190,8 +202,14 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
     let nextpath = pathDir  + '/02.mp3'
-    let file = await fs.open(path);
-    nextFdPath = nextFdPath + '' + file.fd;
+    await fileIO.open(nextpath).then((fdNumber) => {
+      nextFdPath = nextFdPath + '' + fdNumber;
+      console.info('open fd success fd is' + nextFdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
     audioPlayer.src = nextFdPath; // 设置src属性，并重新触发触发'dataLoad'事件回调
   }
 
@@ -202,8 +220,14 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/01.mp3'
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd success fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
     audioPlayer.src = fdPath; // 设置src属性，并触发'dataLoad'事件回调
   }
 }
@@ -213,7 +237,7 @@ export class AudioDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
+import fileIO from '@ohos.fileio'
 
 export class AudioDemo {
   // 设置播放器回调函数
@@ -235,8 +259,14 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/01.mp3'
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd success fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
     audioPlayer.src = fdPath; // 设置src属性，并触发'dataLoad'事件回调
   }
 }
