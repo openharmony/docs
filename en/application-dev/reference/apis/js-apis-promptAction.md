@@ -32,7 +32,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -40,7 +40,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 try {
   promptAction.showToast({            
     message: 'Message Info',
-    duration: 2000,      
+    duration: 2000 
   });
 } catch (error) {
   console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
@@ -88,7 +88,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -100,11 +100,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ],
   })
@@ -142,7 +142,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -154,11 +154,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ]
   }, (err, data) => {
@@ -218,7 +218,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -229,11 +229,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   }, (err, data) => {
@@ -276,7 +276,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If UI execution context not found. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -287,11 +287,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   })

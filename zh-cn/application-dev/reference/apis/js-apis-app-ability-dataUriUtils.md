@@ -36,7 +36,7 @@ getId(uri: string): number
 
 ```ts
 try {
-    var id = dataUriUtils.getId("com.example.dataUriUtils/1221")
+    let id = dataUriUtils.getId("com.example.dataUriUtils/1221")
     console.info('get id: ' + id)
 } catch(err) {
     console.error('get id err ,check the uri' + err)
@@ -69,9 +69,9 @@ attachId(uri: string, id: number): string
 **示例：**
 
 ```ts
-var id = 1122;
+let id = 1122;
 try {
-    var uri = dataUriUtils.attachId(
+    let uri = dataUriUtils.attachId(
         "com.example.dataUriUtils",
         id,
     )
@@ -108,7 +108,7 @@ deleteId(uri: string): string
 
 ```ts
 try {
-    var uri = dataUriUtils.deleteId("com.example.dataUriUtils/1221")
+    let uri = dataUriUtils.deleteId("com.example.dataUriUtils/1221")
     console.info('delete id with the uri is: ' + uri)
 } catch(err) {
     console.error('delete uri err, check the input uri' + err)
@@ -144,8 +144,8 @@ updateId(uri: string, id: number): string
 ```ts
 
 try {
-    var id = 1122;
-    var uri = dataUriUtils.updateId(
+    let id = 1122;
+    let uri = dataUriUtils.updateId(
         "com.example.dataUriUtils/1221",
         id
     )

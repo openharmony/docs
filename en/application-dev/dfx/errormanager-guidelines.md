@@ -45,15 +45,15 @@ var callback = {
         console.log(errMsg);
     }
 }
-export default class MainAbility extends Ability {
+export default class EntryAbility extends Ability {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         registerId = errorManager.registerErrorObserver(callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
         errorManager.unregisterErrorObserver(registerId, (result) => {
             console.log("[Demo] result " + result.code + ";" + result.message)
         });
@@ -61,7 +61,7 @@ export default class MainAbility extends Ability {
 
     onWindowStageCreate(windowStage) {
         // Main window is created for this ability.
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -74,17 +74,17 @@ export default class MainAbility extends Ability {
 
     onWindowStageDestroy() {
         // Main window is destroyed to release UI resources.
-        console.log("[Demo] MainAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy")
     }
 
     onForeground() {
         // Ability is brought to the foreground.
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground")
     }
 
     onBackground() {
         // Ability is brought back to the background.
-        console.log("[Demo] MainAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground")
     }
 };
 ```

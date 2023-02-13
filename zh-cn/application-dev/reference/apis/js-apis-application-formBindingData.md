@@ -58,7 +58,7 @@ try {
     "formImages": { "image": fd }
   };
   formBindingData.createFormBindingData(obj);
-} catch (error.code) {
+} catch (error) {
   console.log('catch error, error:' + JSON.stringify(error));
 }
 ```

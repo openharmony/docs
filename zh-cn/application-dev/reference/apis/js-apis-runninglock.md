@@ -476,7 +476,7 @@ RunningLock锁的类型。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
-| 名称                     | 值   | 说明                                   |
-| ------------------------ | ---- | -------------------------------------- |
-| BACKGROUND               | 1    | 阻止系统休眠的锁。                     |
-| PROXIMITY_SCREEN_CONTROL | 2    | 通过接近或者远离状态来控制亮灭屏的锁。 |
+| 名称                              | 值   | 说明                                                         |
+| --------------------------------- | ---- | ------------------------------------------------------------ |
+| BACKGROUND<sup>(deprecated)</sup> | 1    | 阻止系统休眠的锁。<br>**说明：** 从API version 7开始支持，从API version 10开始废弃。 |
+| PROXIMITY_SCREEN_CONTROL          | 2    | 通过接近或者远离状态来控制亮灭屏的锁。                       |

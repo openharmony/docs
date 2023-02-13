@@ -72,7 +72,7 @@ For details about the error codes, see [Animator Error Codes](../errorcodes/erro
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | If no page is found for pageId or fail to get object property list. |
+| 100001    | if no page is found for pageId or fail to get object property list. |
 
 
 **Example**

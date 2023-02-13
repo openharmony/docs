@@ -90,7 +90,7 @@ export default class ServiceModel {
             return;
         }
 
-        var moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
+        let moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
         this.moduleName = moduleInfo.name;
         // 根据moduleName执行不同的业务逻辑，实现对不同性能设备的区分
         switch (this.moduleName) {

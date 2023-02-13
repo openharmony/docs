@@ -30,7 +30,7 @@ Openharmony上用户数据统一由媒体库进行管理，用户数据用户数
 **前提条件** 
 
 - 获取媒体库mediaLibrary实例。
-- 申请媒体库读权限“ohos.permission.READ_MEDIA。
+- 申请媒体库读权限"ohos.permission.READ_MEDIA"。
 
 下面以获取Camera文件保存的公共目录为例。
 
@@ -43,7 +43,7 @@ async function example(){
     if (dicResult == 'Camera/') {
         console.info('mediaLibraryTest : getPublicDirectory passed');
     } else {
-        console.info('mediaLibraryTest : getPublicDirectory failed');
+        console.error('mediaLibraryTest : getPublicDirectory failed');
     }
 }
 ```
@@ -58,47 +58,52 @@ OpenHarmony提供应用沙箱机制，增加目录可见性数据访问防线，
 
 通过接口[mediaLibrary.FileAsset.open](../reference/apis/js-apis-medialibrary.md#open8-1)可以打开公共路径文件。
 
-通过接口[fileio.open](../reference/apis/js-apis-fileio.md#fileioopen7)可以打开沙箱路径文件，沙箱路径必须通过应用上下文context进行访问。
+通过接口[fs.open](../reference/apis/js-apis-file-fs.md#fsopen)可以打开沙箱路径文件，沙箱路径必须通过应用上下文context进行访问。
 
 **前提条件**
 
 - 获取媒体库mediaLibrary实例。
-- 申请媒体库读写权限“ohos.permission.WRITE_MEDIA。
-- 除了@ohos.multimedia.mediaLibrary外，还需要导入模块[@ohos.fileio](../reference/apis/js-apis-fileio.md)。
+- 申请媒体库读写权限"ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA"。
+- 除了@ohos.multimedia.mediaLibrary外，还需要导入模块[@ohos.file.fs](../reference/apis/js-apis-file-fs.md)。
+- 测试文件 "testFile.txt" 已创建且有文件内容。
 
 **开发步骤**
 
-1. 调用[context.filesDir](../reference/apis/js-apis-inner-app-context.md#contextgetfilesdir)获取应用沙箱路径。
+1. 调用[context.filesDir](../reference/apis/js-apis-file-fs.md)获取应用沙箱路径。
 2. 调用MediaLibrary.getFileAssets和FetchFileResult.getFirstObject获取公共目录中的FileAsset实例。
-3. 调用fileio.open打开沙箱路径文件。
+3. 调用fs.open打开沙箱路径文件。
 4. 调用fileAsset.open打开公共路径文件。
-5. 调用fileio.copyfile复制文件。
-6. 调用fileAsset.close和fileio.close关闭文件。
+5. 调用[fs.copyfile](../reference/apis/js-apis-file-fs.md#fscopyfile)复制文件。
+6. 调用fileAsset.close和[fs.close](../reference/apis/js-apis-file-fs.md#fsclose)关闭文件。
 
 **示例1 将公共路径文件复制到沙箱路径下**
 
 ```ts
 async function copyPublic2Sandbox() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let sandboxDirPath = globalThis.context.filesDir;
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?',
-        selectionArgs: ['testFile.txt'],
-    };
-    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-    let fileAsset = await fetchResult.getFirstObject();
+    try {
+        const context = getContext(this);
+        let media = mediaLibrary.getMediaLibrary(context);
+        let sandboxDirPath = context.filesDir;
+        let fileKeyObj = mediaLibrary.FileKey;
+        let fileAssetFetchOp = {
+            selections: fileKeyObj.DISPLAY_NAME + '= ?',
+            selectionArgs: ['testFile.txt'],
+        };
+        let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+        let fileAsset = await fetchResult.getFirstObject();
 
-    let fdPub = await fileAsset.open('rw');
-    let fdSand = await fileio.open(sandboxDirPath + '/testFile.txt', 0o2 | 0o100, 0o666);
-    await fileio.copyFile(fdPub, fdSand);
+        let fdPub = await fileAsset.open('rw');
+        let fdSand = await fs.open(sandboxDirPath + '/testFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+        await fs.copyFile(fdPub, fdSand.fd);
 
-    await fileAsset.close(fdPub);
-    await fileio.close(fdSand);
+        await fileAsset.close(fdPub);
+        await fs.close(fdSand.fd);
 
-    let content_sand = await fileio.readText(sandboxDirPath + '/testFile.txt');
-    console.log('content read from sandbox file: ', content_sand)
+        let content_sand = await fs.readText(sandboxDirPath + '/testFile.txt');
+        console.info('content read from sandbox file: ', content_sand)
+    } catch (err) {
+        console.info('[demo] copyPublic2Sandbox fail, err: ', err);
+    }
 }
 ```
 
@@ -108,7 +113,7 @@ async function copyPublic2Sandbox() {
 async function copySandbox2Public() {
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
-    let sandboxDirPath = globalThis.context.filesDir;
+    let sandboxDirPath = context.filesDir;
 
     let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
     const publicDirPath = await media.getPublicDirectory(DIR_DOCUMENTS);
@@ -116,7 +121,7 @@ async function copySandbox2Public() {
         let fileAsset = await media.createAsset(mediaLibrary.MediaType.FILE, 'testFile02.txt', publicDirPath);
         console.info('createFile successfully, message = ' + fileAsset);
     } catch (err) {
-        console.info('createFile failed, message = ' + err);
+        console.error('createFile failed, message = ' + err);
     }
     try {
         let fileKeyObj = mediaLibrary.FileKey;
@@ -127,35 +132,35 @@ async function copySandbox2Public() {
         let fetchResult = await media.getFileAssets(fileAssetFetchOp);
         var fileAsset = await fetchResult.getFirstObject();
     } catch (err) {
-        console.info('file asset get failed, message = ' + err);
+        console.error('file asset get failed, message = ' + err);
     }
     let fdPub = await fileAsset.open('rw');
-    let fdSand = await fileio.open(sandboxDirPath + 'testFile.txt', 0o2);
-    await fileio.copyFile(fdSand, fdPub);
-    await fileio.close(fdPub);
-    await fileio.close(fdSand);
+    let fdSand = await fs.open(sandboxDirPath + 'testFile.txt', OpenMode.READ_WRITE);
+    await fs.copyFile(fdSand.fd, fdPub);
+    await fileAsset.close(fdPub);
+    await fs.close(fdSand.fd);
     let fdPubRead = await fileAsset.open('rw');
     try {
         let arrayBuffer = new ArrayBuffer(4096);
-        await fileio.read(fdPubRead, arrayBuffer);
+        await fs.read(fdPubRead, arrayBuffer);
         var content_pub = String.fromCharCode(...new Uint8Array(arrayBuffer));
         fileAsset.close(fdPubRead);
     } catch (err) {
-        console.log('read text failed, message = ', err);
+        console.error('read text failed, message = ', err);
     }
-    console.log('content read from public file: ', content_pub);
+    console.info('content read from public file: ', content_pub);
 }
 ```
 
 ### 读写文件内容
 
-通过[mediaLibrary](../reference/apis/js-apis-medialibrary.md)的接口FileAsset.open和FileAsset.close可以打开和关闭文件。通过[fileio](../reference/apis/js-apis-fileio.md)的接口fileio.read和fileio.write可以读写文件。
+通过[mediaLibrary](../reference/apis/js-apis-medialibrary.md)的接口FileAsset.open和FileAsset.close可以打开和关闭文件。通过[file.fs](../reference/apis/js-apis-file-fs.md)中的接口fs.read和fs.write可以读写文件。
 
 **前提条件**
 
 - 获取媒体库mediaLibrary实例。
-- 申请媒体库读写权限“ohos.permission.WRITE_MEDIA。
-- 除了@ohos.multimedia.mediaLibrary外，还需要导入模块[@ohos.fileio](../reference/apis/js-apis-fileio.md)。
+- 申请媒体库读写权限"ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA"。
+- 除了@ohos.multimedia.mediaLibrary外，还需要导入模块[@ohos.file.fs](../reference/apis/js-apis-file-fs.md)。
 
 **开发步骤**
 
@@ -168,19 +173,19 @@ async function copySandbox2Public() {
        const context = getContext(this);
        let media = mediaLibrary.getMediaLibrary(context);
        const path = await media.getPublicDirectory(DIR_DOCUMENTS);
-       media.createAsset(mediaType, "testFile.text", path).then (function (asset) {
+       media.createAsset(mediaType, "testFile.text", path).then((asset) => {
            console.info("createAsset successfully:" + JSON.stringify(asset));
-       }).catch(function(err){
-           console.info("createAsset failed with error: " + err);
+       }).catch((err) => {
+           console.error("createAsset failed with error: " + err);
        });
    }
    ```
 
 2. 使用open打开文件。
 
-3. 使用fileio.write写入文件，以string形式传入写入数据。
+3. 使用[fs.write](../reference/apis/js-apis-file-fs.md#fswrite)写入文件，以string形式传入写入数据。
 
-4. 使用fileio.read读取文件，以 ArrayBuffer 形式保存读取结果。
+4. 使用[fs.read](../reference/apis/js-apis-file-fs.md#fsread)读取文件，以 ArrayBuffer 形式保存读取结果。
 
 5. 将ArrayBuffer转化为string，以string形式得到文件内容。
 
@@ -204,10 +209,10 @@ async function writeOnlyPromise() {
     try {
         let fd = await fileAsset.open('w');
         console.info('file descriptor: ', fd);
-        await fileio.write(fd, "Write file test content.");
+        await fs.write(fd, "Write file test content.");
         await fileAsset.close(fd);
     } catch (err) {
-        console.info('write file failed, message = ', err);
+        console.error('write file failed, message = ', err);
     }
 }
 ```
@@ -230,14 +235,14 @@ async function readOnlyPromise() {
     try {
         let fd = await fileAsset.open('r');
         let arrayBuffer = new ArrayBuffer(4096);
-        await fileio.read(fd, arrayBuffer);
+        await fs.read(fd, arrayBuffer);
         let fileContent = String.fromCharCode(...new Uint8Array(arrayBuffer));
         globalThis.fileContent = fileContent;
         globalThis.fileName = fileAsset.displayName;
         console.info('file content: ', fileContent);
         await fileAsset.close(fd);
     } catch (err) {
-        console.info('read file failed, message = ', err);
+        console.error('read file failed, message = ', err);
     }
 }
 ```

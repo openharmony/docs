@@ -1,17 +1,21 @@
 # Startup in User Mode
 
-## Startup of the Root Process in User Mode<a name="section79911135647"></a>
+
+## Startup of the Root Process in User Mode
 
 The root process is the first user-mode process in the system. The process ID is 1. The root process is the ancestor of all user-mode processes.
 
-**Figure  1**  Process tree<a name="fig427516409375"></a>  
+**Figure 1** Process tree
+
 ![](figures/process-tree.png "process-tree")
 
-### Startup Process of the Root Process<a name="section1184317581349"></a>
+
+### Startup Process of the Root Process
 
 Use the link script to place the following init startup code to the specified location in the system image.
 
-```
+
+```c
 #define LITE_USER_SEC_ENTRY   __attribute__((section(".user.entry")))
 LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 {
@@ -23,38 +27,38 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 }
 ```
 
-During system startup,  **OsUserInitProcess**  is called to start the  **init**  process. The procedure is as follows:
+> **NOTE**
+>
+> The preceeding code is in **kernel/liteos_a/kernel/user/src/los_user_init.c**. The value of **g_initPath** can be **/dev/shm/init** or **/bin/init**, depending on the startup settings.
 
-1.  The kernel calls  **OsLoadUserInit**  to load the code.
-2.  A process space is created to start the  **/bin/init**  process.
+Use **OsUserInitProcess** to start the **init** process. The procedure is as follows:
 
-### Responsibilities of the Root Process<a name="section1590220321759"></a>
+1. The kernel calls **OsLoadUserInit** to load the code for startup.
 
--   Starts key system programs or services, such as shell.
-
-    >![](../public_sys-resources/icon-note.gif) **NOTE**
-    >
-    >In OpenHarmony, the  **init**  process reads the  **/etc/init.cfg**  file and runs specified commands or starts specified processes based on configurations. For details, see [init Module](../subsystems/subsys-boot-init-cfg.md).
+2. A process space is created to start the **/bin/init** process.
 
 
--   Monitors the process for reclaiming the orphan process and clears the zombie processes in child processes.
+### Responsibilities of the Root Process
 
-## Running Programs in User Mode<a name="section194576310611"></a>
+- The root process starts key system programs or services, such as shell.
+  > **NOTE**
+  > In OpenHarmony, the **init** process reads **/etc/init.cfg** and runs commands or starts processes based on the configuration. For details, see [init Configuration File](../subsystems/subsys-boot-init-cfg.md).
 
+- The root process monitors the process for reclaiming the orphan process and clears the zombie processes in child processes.
+
+
+## Running Programs in User Mode
 
 A user-mode program can be started in either of the following ways:
 
--   Run the shell command to start the process.
+- Using shell commands
 
-    ```
-    OHOS $ exec helloworld
-    OHOS $ ./helloworld
-    OHOS $ /bin/helloworld
-    ```
+  ```
+  OHOS $ exec helloworld
+  OHOS $ ./helloworld
+  OHOS $ /bin/helloworld
+  ```
 
-
--   Start a new process by calling the POSIX API.
-
-    Use the  **Fork\(\)**  method to create a process, and call the  **exec\(\)**  method to execute a new process.
-
+- Using POSIX APIs
+  Use **Fork()** to create a process, and call **exec()** to execute a process.
 

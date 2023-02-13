@@ -70,38 +70,19 @@ struct ImageAnimatorExample {
       ImageAnimator()
         .images([
           {
-            src: $r('app.media.img1'),
-            duration: 500,
-            width: 170,
-            height: 120,
-            top: 0,
-            left: 0
+            src: $r('app.media.img1')
           },
           {
-            src: $r('app.media.img2'),
-            duration: 500,
-            width: 170,
-            height: 120,
-            top: 0,
-            left: 170
+            src: $r('app.media.img2')
           },
           {
-            src: $r('app.media.img3'),
-            duration: 500,
-            width: 170,
-            height: 120,
-            top: 120,
-            left: 170
+            src: $r('app.media.img3')
           },
           {
-            src: $r('app.media.img4'),
-            duration: 500,
-            width: 170,
-            height: 120,
-            top: 120,
-            left: 0
+            src: $r('app.media.img4')
           }
         ])
+        .duration(2000)
         .state(this.state).reverse(this.reverse).fixedSize(false)
         .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
         .margin({ top: 100 })

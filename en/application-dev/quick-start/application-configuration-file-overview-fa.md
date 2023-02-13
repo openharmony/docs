@@ -49,7 +49,7 @@ Example of the **config.json** file:
     ],
     "commonEvents": [
       {
-        "name": ".MainAbility",
+        "name": ".EntryAbility",
         "permission": "ohos.permission.GET_BUNDLE_INFO",
         "data": [
           "com.example.demo",

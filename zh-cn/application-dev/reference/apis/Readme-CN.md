@@ -20,15 +20,8 @@
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
   - Stage模型能力的接口(待停用)
     - [@ohos.application.Ability (Ability)](js-apis-application-ability.md)
-    - [@ohos.application.AbilityConstant (AbilityConstant)](js-apis-application-abilityConstant.md)
     - [@ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-application-abilityLifecycleCallback.md)
-    - [@ohos.application.AbilityStage (AbilityStage)](js-apis-application-abilityStage.md)
-    - [@ohos.application.context (Context)](js-apis-application-context.md)
     - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
-    - [@ohos.application.ExtensionAbility (ExtensionAbility)](js-apis-application-extensionAbility.md)
-    - [@ohos.application.FormExtension (FormExtension)](js-apis-application-formExtension.md)
-    - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-application-serviceExtensionAbility.md)
-    - [@ohos.application.StartOptions (StartOptions)](js-apis-application-startOptions.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
@@ -114,6 +107,7 @@
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
+      - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
@@ -341,6 +335,7 @@
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
+  - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)

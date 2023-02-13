@@ -120,7 +120,7 @@ getAppMemorySize(): Promise\<number>;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 应用程序内存大小。 | 
+  | Promise&lt;number&gt; | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -144,7 +144,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -231,7 +231,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 **示例：**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   function unregisterApplicationStateObserverCallback(err) {
     if (err) {
@@ -268,7 +268,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 **示例：**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   appManager.unregisterApplicationStateObserver(observerId)
   .then((data) => {
@@ -362,8 +362,8 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 appManager.killProcessWithAccount(bundleName, accountId)
    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
@@ -397,8 +397,8 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
    if (err) {
        console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
@@ -431,7 +431,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function killProcessesByBundleNameCallback(err, data) {
     if (err) {
         console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
@@ -469,7 +469,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 **示例：**
 
   ```ts
-  var bundleName = 'com.example.myapplication';
+  let bundleName = 'com.example.myapplication';
   appManager.killProcessesByBundleName(bundleName)
     .then((data) => {
         console.log('------------ killProcessesByBundleName success ------------', data);
@@ -501,7 +501,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function clearUpApplicationDataCallback(err, data) {
     if (err) {
         console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
@@ -539,7 +539,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   appManager.clearUpApplicationData(bundleName)
     .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);

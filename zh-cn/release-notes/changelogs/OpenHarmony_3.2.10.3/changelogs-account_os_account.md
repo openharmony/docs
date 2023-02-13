@@ -20,7 +20,6 @@
 
 ```ts
 import account_osAccount from "@ohos.account.osAccount"
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 let accountMgr = account_osAccount.getAccountManager();
 let domainInfo = {
@@ -31,6 +30,67 @@ try {
   await accountMgr.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo);
   await accountMgr.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo);
 } catch (err) {
-  expect(err.code).assertEqual(12300004);
+  console.log("activateOsAccount err: " + JSON.stringify(err)); // error.code = 12300004;
 }
 ```
+
+## cl.account_os_account.2 应用帐号getAllAccounts接口权限场景变更
+
+应用使用getAllAccounts接口查询自己可访问的帐号列表时，不需要申请权限ohos.permission.GET_ALL_APP_ACCOUNTS。
+
+**变更影响**
+
+基于此后版本开发的应用，查询自己可访问的帐号列表时，无需申请权限。
+
+**关键接口/组件变更**
+- AccountManager
+  - getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void;
+  - getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;;
+
+**适配指导**
+
+应用未申请ohos.permission.GET_ALL_APP_ACCOUNTS，查询自己可访问的帐号列表示例代码如下：
+
+```ts
+import account_appAccount from "@ohos.account.appAccount"
+
+let accountMgr = account_appAccount.createAppAccountManager();
+try {
+  await accountMgr.addAccount("accessibleAccount_promise_nopermission");
+  var data = await accountMgr.getAllAccounts();
+  if (data[0].name == "accessibleAccount_promise_nopermission") {
+    console.log("getAllAccounts successfully");
+  }
+} catch (err) {
+  console.log("getAllAccounts err: " + JSON.stringify(err));
+}
+``` 
+
+## cl.account_os_account.3 应用帐号getAccountsByOwner接口权限场景变更
+
+应用使用getAccountsByOwner接口查询可访问的指定应用的帐号列表时，不需要申请权限ohos.permission.GET_ALL_APP_ACCOUNTS。
+
+**变更影响**
+
+基于此后版本开发的应用，查询指定应用可访问的帐号列表时，无需申请权限。
+
+**关键接口/组件变更**
+- AccountManager
+  - getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void;
+  - getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;;
+
+**适配指导**
+
+应用未申请ohos.permission.GET_ALL_APP_ACCOUNTS，查询指定应用可访问的帐号列表示例代码如下：
+
+```ts
+import account_appAccount from "@ohos.account.appAccount"
+
+let accountMgr = account_appAccount.createAppAccountManager();
+try {
+  var ownerName = "com.example.owner";
+  var data = await accountMgr.getAllAccounts(ownerName);
+} catch (err) {
+  console.log("getAllAccounts err: " + JSON.stringify(err));
+}
+``` 

@@ -58,7 +58,7 @@ System service operation failed.
 
 **错误信息**
 
-IPC communication failed.
+IPC failed.
 
 **错误描述**
 
@@ -94,7 +94,7 @@ The application is not installed.
 
 **错误信息**
 
-Get application info failed.
+Failed to get the application information.
 
 **错误描述**
 
@@ -114,11 +114,11 @@ Get application info failed.
 
 **错误信息**
 
-Get system or actual time operation failed.
+Failed to get the system time.
 
 **错误描述**
 
-系统服务获取系统事件或者实际事件操作失败。
+系统服务获取系统时间或者实际时间操作失败。
 
 **可能原因**
 
@@ -132,7 +132,7 @@ Get system or actual time operation failed.
 
 **错误信息**
 
-Application group operation failed. The application group are the the same or do not need te be updated.
+Repeated operation on the application group.
 
 **错误描述**
 
@@ -150,7 +150,7 @@ Application group operation failed. The application group are the the same or do
 
 **错误信息**
 
-Get application group info failed. The application group infomation cannot be found.
+Failed to get the application group information.
 
 **错误描述**
 
