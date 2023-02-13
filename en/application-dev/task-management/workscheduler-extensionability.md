@@ -44,7 +44,7 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
     Import the module.
 
     ```ts
-    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
+    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
     ```
 
     Implement the lifecycle callbacks for the WorkSchedulerExtensionAbility.
@@ -53,27 +53,27 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
     export default class workAbility extends WorkSchedulerExtensionAbility {
       // Callback invoked when the Work Scheduler task starts.
       onWorkStart(workInfo) {
-        console.log(`onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`)
+        console.log(`onWorkStart CommonEvent publish start ${JSON.stringify(workInfo)}`);
         // Publish an upgrade notification.
-        let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '')
+        let notificationRequest = notification.getNotificationContentBasic('upgrade', upgradeMessage, '');
         notification.publish(notificationRequest, (err) => {
           if (err) {
-            console.log(`onWorkStart notification publish err ${JSON.stringify(err)}`)
+            console.log(`onWorkStart notification publish err ${JSON.stringify(err)}`);
           }
-          console.log(`onWorkStart notification publish success`)
-        })
+          console.log(`onWorkStart notification publish success`);
+        });
       }
 
       // Callback invoked when the Work Scheduler task stops.
       onWorkStop(workInfo) {
         // Publish an upgrade completion notification.
-        let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '')
+        let notificationRequest = notification.getNotificationContentBasic('upgrade', 'upgrade success', '');
         notification.publish(notificationRequest, (err) => {
           if (err) {
-            console.log(`onWorkStop notification publish err ${JSON.stringify(err)}`)
+            console.log(`onWorkStop notification publish err ${JSON.stringify(err)}`);
           }
-          console.log(`onWorkStop notification publish success`)
-        })
+          console.log(`onWorkStop notification publish success`);
+        });
       }
     }
     ```
@@ -82,25 +82,25 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
 
 Import the module.
 
- ```ts
-    import { workAbility } from '@ohos/library'
- ```
+    ```ts
+    import { workAbility } from '@ohos/library';
+    ```
 
 Inherit from **workAbility** and implement the lifecycle callbacks for the WorkSchedulerExtensionAbility.
 
- ```ts
+    ```ts
     export default class WorkTest extends workAbility {
       onWorkStart(workInfo) {
-        console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`)
-        super.onWorkStart(workInfo)
+        console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`);
+        super.onWorkStart(workInfo);
       }
-   
-   onWorkStopTest(workInfo) {
-        super.onWorkStop(workInfo)
-        console.log(`onWorkStop value`)
+
+      onWorkStopTest(workInfo) {
+        super.onWorkStop(workInfo);
+        console.log(`onWorkStop value`);
       }
     }
- ```
+    ```
 
 ### Implementing Work Scheduler
 
@@ -109,7 +109,7 @@ Inherit from **workAbility** and implement the lifecycle callbacks for the WorkS
     Import the module.
 
     ```ts
-    import workScheduler from '@ohos.resourceschedule.workScheduler'
+    import workScheduler from '@ohos.resourceschedule.workScheduler';
     ```
 
     Encapsulate the APIs for starting and stopping Work Scheduler tasks.
@@ -124,13 +124,13 @@ Inherit from **workAbility** and implement the lifecycle callbacks for the WorkS
       }
       // Start the Work Scheduler task.
       startWork(bundleName: string, abilityName: string) {
-        this.workInfo.bundleName = bundleName
-        this.workInfo.abilityName = abilityName
+        this.workInfo.bundleName = bundleName;
+        this.workInfo.abilityName = abilityName;
         try {
-          workScheduler.startWork(this.workInfo)
-          console.log(`startWork success`)
+          workScheduler.startWork(this.workInfo);
+          console.log(`startWork success`);
         } catch (error) {
-          Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`)
+          Logger.error(TAG, `startWork startwork failed. code is ${error.code} message is ${error.message}`);
           prompt.showToast({
             message: `${error.message}`
           })
@@ -139,10 +139,10 @@ Inherit from **workAbility** and implement the lifecycle callbacks for the WorkS
 
       // Stop the Work Scheduler task.
       stopWork(bundleName: string, abilityName: string) {
-        this.workInfo.bundleName = bundleName
-        this.workInfo.abilityName = abilityName
-        workScheduler.stopWork(this.workInfo, false)
-        console.log(`stopWork`)
+        this.workInfo.bundleName = bundleName;
+        this.workInfo.abilityName = abilityName;
+        workScheduler.stopWork(this.workInfo, false);
+        console.log(`stopWork`);
       }
     }
     ```
@@ -152,7 +152,7 @@ Inherit from **workAbility** and implement the lifecycle callbacks for the WorkS
     Import the module.
 
     ```ts
-    import { workAbility } from '@ohos/library'
+    import { workAbility } from '@ohos/library';
     ```
 
     Add the **Upgrade** button, which, when being clicked, will call the API encapsulated in **library** to start the Work Scheduler task. In the API, **bundleName** and **abilityName** are passed in, where the value of **abilityName** is **WorkTest**.
@@ -163,7 +163,7 @@ Inherit from **workAbility** and implement the lifecycle callbacks for the WorkS
       .height(40)
       .fontSize(30)
       .onClick(() => {
-        this.work.startWork('ohos.samples.workscheduler', 'WorkTest')
+        this.work.startWork('ohos.samples.workscheduler', 'WorkTest');
       })
     ```
 
@@ -171,7 +171,7 @@ Inherit from **workAbility** and implement the lifecycle callbacks for the WorkS
 
     ```ts
     aboutToDisappear() {
-      this.work.stopWork('ohos.samples.workscheduler', 'WorkTest')
+      this.work.stopWork('ohos.samples.workscheduler', 'WorkTest');
     }
     ```
 
