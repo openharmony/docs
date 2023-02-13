@@ -306,9 +306,7 @@ struct CanvasExample {
         this.context.moveTo(140, 10)
         this.context.lineTo(140, 160)
         this.context.stroke()
-
         this.context.font = '18px sans-serif'
-
         this.context.textAlign = 'start'
         this.context.fillText('textAlign=start', 140, 60)
         this.context.textAlign = 'end'
@@ -351,9 +349,7 @@ struct TextBaseline {
           this.context.moveTo(0, 120)
           this.context.lineTo(400, 120)
           this.context.stroke()
-
           this.context.font = '20px sans-serif'
-
           this.context.textBaseline = 'top'
           this.context.fillText('Top', 10, 120)
           this.context.textBaseline = 'bottom'
@@ -392,11 +388,11 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-        this.context.fillStyle = 'rgb(255,0,0)'
-        this.context.fillRect(0, 0, 50, 50)
-        this.context.globalAlpha = 0.4
-        this.context.fillStyle = 'rgb(0,0,255)'
-        this.context.fillRect(50, 50, 50, 50)
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(0, 0, 50, 50)
+          this.context.globalAlpha = 0.4
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(50, 50, 50, 50)
       })
     }
     .width('100%')
