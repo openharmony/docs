@@ -125,18 +125,11 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
          }
        })
      })	
-     if (audioRenderer.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
-       fs.close(file)
-       await audioRenderer.stop();
-     }
-     if (audioRenderer.state == audio.AudioState.STATE_RUNNING) {
-       if (i == len - 1) { // 如果音频文件已经被读取完，停止渲染
-         fs.close(file)
-         await audioRenderer.stop();
-       }
-     }
    }
 
+   fs.close(file)
+   await audioRenderer.stop(); //停止渲染
+   await audioRenderer.release(); //释放资源
    ```
 
 4. （可选）调用pause()方法或stop()方法暂停/停止渲染音频数据。
@@ -440,17 +433,10 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
              }
            })
          })	
-         if (audioRenderer1.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
-           fs.close(file1)
-           await audioRenderer1.stop();
-         }
-         if (audioRenderer1.state == audio.AudioState.STATE_RUNNING) {
-           if (i == len - 1) { // 如果音频文件已经被读取完，停止渲染
-             fs.close(file1)
-             await audioRenderer1.stop();
-           }
-         }
        }
+       fs.close(file1)
+       await audioRenderer1.stop(); //停止渲染
+       await audioRenderer1.release(); //释放资源
      }
 
      async runningAudioRender2(){
@@ -519,17 +505,10 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
              }
            })
          })	
-         if (audioRenderer2.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
-           fs.close(file2)
-           await audioRenderer2.stop();
-         }
-         if (audioRenderer2.state == audio.AudioState.STATE_RUNNING) {
-           if (i == len - 1) { // 如果音频文件已经被读取完，停止渲染
-             fs.close(file2)
-             await audioRenderer1.stop();
-           }
-         }
        }
+       fs.close(file2)
+       await audioRenderer2.stop(); //停止渲染
+       await audioRenderer2.release(); //释放资源
      }
 
      async writeBuffer(buf, audioRender) {
