@@ -83,7 +83,7 @@ export default class MyAbilityStage extends AbilityStage {
 ### Saving and Restoring Data
 
 After enabling **appRecovery**, you can use this function by either actively or passively saving the status and restoring data in the ability.
-The following is an example of **MainAbility**:
+The following is an example of **EntryAbility**:
 
 #### Importing the Service Package
 
@@ -109,7 +109,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
   onWindowStageCreate(windowStage) {
       // Main window is created. Set a main page for this ability.
-      console.log("[Demo] MainAbility onWindowStageCreate")
+      console.log("[Demo] EntryAbility onWindowStageCreate")
 
       globalThis.registerObserver = (() => {
           registerId = errorManager.registerErrorObserver(callback);
@@ -121,12 +121,12 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 - Save data.
 
-After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state, wantParams)** of **MainAbility** is triggered.
+After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state, wantParams)** of **EntryAbility** is triggered.
 
 ```ts
   onSaveState(state, wantParams) {
       // Save application data.
-      console.log("[Demo] MainAbility onSaveState")
+      console.log("[Demo] EntryAbility onSaveState")
       wantParams["myData"] = "my1234567";
       return AbilityConstant.onSaveResult.ALL_AGREE;
   }
@@ -134,12 +134,12 @@ After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state,
 
 - Restore data.
 
-After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onSaveState(state, wantParams)** of **MainAbility** is called, and the saved data is in **parameters** of **want**.
+After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onSaveState(state, wantParams)** of **EntryAbility** is called, and the saved data is in **parameters** of **want**.
 
 ```ts
 storage: LocalStorage
 onCreate(want, launchParam) {
-    console.log("[Demo] MainAbility onCreate")
+    console.log("[Demo] EntryAbility onCreate")
     globalThis.abilityWant = want;
     if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
         this.storage = new LocalStorage();
@@ -155,7 +155,7 @@ onCreate(want, launchParam) {
 ```ts
 onWindowStageDestroy() {
     // Main window is destroyed to release UI resources.
-    console.log("[Demo] MainAbility onWindowStageDestroy")
+    console.log("[Demo] EntryAbility onWindowStageDestroy")
 
     globalThis.unRegisterObserver = (() => {
         errorManager.unregisterErrorObserver(registerId, (result) => {
@@ -170,10 +170,10 @@ onWindowStageDestroy() {
 This is triggered by the recovery framework. You do not need to register **ErrorObserver callback**. You only need to implement **onSaveState** of the ability for status saving and **onCreate** of the ability for data restoration.
 
 ```ts
-export default class MainAbility extends Ability {
+export default class EntryAbility extends Ability {
     storage: LocalStorage
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         globalThis.abilityWant = want;
         if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
             this.storage = new LocalStorage();
@@ -185,7 +185,7 @@ export default class MainAbility extends Ability {
 
     onSaveState(state, wantParams) {
         // Save application data.
-        console.log("[Demo] MainAbility onSaveState")
+        console.log("[Demo] EntryAbility onSaveState")
         wantParams["myData"] = "my1234567";
         return AbilityConstant.onSaveResult.ALL_AGREE;
     }
