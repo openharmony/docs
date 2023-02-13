@@ -16,7 +16,7 @@ For more targeted management of background applications, OpenHarmony classifies 
 
 - **Work Scheduler task**: The Work Scheduler provides a mechanism for applications to execute non-real-time tasks when the system is idle. If the preset conditions are met, the tasks will be placed in the execution queue and scheduled when the system is idle.
 
-- **Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including CPU, WORK_SCHEDULER, software, and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and the WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
+- **Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including software and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and the WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
 
 ## Selecting a Background Task
 
@@ -101,14 +101,14 @@ The use of the Work Scheduler must comply with the following restrictions and ru
   - The carried parameters can be of the number, string, or boolean type.
 
 ## Efficiency Resources
-Efficiency resources are classified into CPU, WORK_SCHEDULER, software, and hardware resources.
+Efficiency resources are classified into software (WORK_SCHEDULER, COMMON_EVENT, and TIMER) and hardware resources (CPU, GPS, BLUETOOTH, and AUDIO).
 
-An application or process is assigned the privileges associated with the obtained efficiency resources.
+An application can perform different operations based on the requested efficiency resources.
   * With the CPU resources, the application or process will not be suspended.
-  * With the WORK_SCHEDULER resources, the application or process has more time to execute a task and is not restricted by the execution frequency.
+  * With the WORK_SCHEDULER resources, the application has more time to execute a task and is not restricted by the execution frequency.
   * With the COMMON_EVENT resources, the application can still receive common events when it is suspended in the background.
   * With the TIMER resources, the application can use the timer to execute precise scheduled tasks.
-  * With the hardware resources, the application can still be woken up by related services to execute tasks when it is suspended in the background.
+  * With the GPS, BLUETOOTH, and AUDIO resources, the application can still be woken up by related services to execute tasks when it is suspended in the background.
 
 
 **Table 2** Efficiency resource types
@@ -116,15 +116,15 @@ An application or process is assigned the privileges associated with the obtaine
 | Name           | Value | Description                 |
 | -------------- | ---- | ------------------- |
 | CPU            | 1    | CPU resources, which prevent the application from being suspended.      |
-| COMMON_EVENT   | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
-| TIMER          | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.  |
+| COMMON_EVENT   | 2    | COMMON_EVENT resources, which prevent common events from being proxied when the application is suspended. |
+| TIMER          | 4    | TIMER resources, which prevent timers from being proxied when the application is suspended.  |
 | WORK_SCHEDULER | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.   |
-| BLUETOOTH      | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
-| GPS            | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended.|
-| AUDIO          | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended. |
+| BLUETOOTH      | 16   | BLUETOOTH resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
+| GPS            | 32   | GPS resources, which prevent GPS resources from being proxied when the application is suspended.|
+| AUDIO          | 64   | AUDIO resources, which prevent audio resources from being proxied when the application is suspended. |
 
 ### Restrictions on Using Efficiency Resources
 - Applications or processes are responsible for requesting and releasing efficiency resources. A process can release the resources requested by itself, whereas an application can release the resources requested by both itself and its processes. For example, an application requests CPU resources, and its process requests CPU and WORK_SCHEDULER resources. If the application initiates CPU resource release, the CPU resources requested by the process are also released. However, the WORK_SCHEDULER resources are not released. If the process initiates CPU resource release, the CPU resources requested by the application are retained until being released by the application.
 - If persistent resources and non-persistent resources of the same type are requested, the persistent resources overwrite the non-persistent resources and they will not be released upon a timeout. For example, if an application first requests 10-second CPU resources and then requests persistent CPU resources at the 5th second, the CPU resources become persistent and will not be released at the tenth second. If the application releases the CPU resources at the 8th second, both types of CPU resources are released.
 - The WORK_SCHEDULER resources can be requested and released by applications, but not by processes.
-- To use efficiency resources, an application must first submit a request to the application center to obtain corresponding privileges.
+- To use efficiency resources, an application must be a system application that submits a request to the application center to configure the corresponding privileges.

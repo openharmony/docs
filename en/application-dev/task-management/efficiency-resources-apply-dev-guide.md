@@ -23,7 +23,7 @@ To upgrade your application as a privileged application, you must evaluate your 
 2. When the task is complete, release the resources in time. You can choose whether to release some or all resources.
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 
 // Request efficiency resources.
 let request = {
@@ -35,8 +35,14 @@ let request = {
     isPersist: true,
     isProcess: true,
 };
-let res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+
+let res;
+try {
+    res = backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("the result of request is: " + res);
+} catch (error) {
+    console.error(`Operation applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 
 // Release some efficiency resources.
 request = {
@@ -44,10 +50,20 @@ request = {
     isApply: false,
     timeOut: 0,
     reason: "reset",
+    isPersist: true,
+    isProcess: true,
 };
-res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+try {
+    res = backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("the result of request is: " + res);
+} catch (error) {
+    console.error(`Operation applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 
 // Release all efficiency resources.
-backgroundTaskManager.resetAllEfficiencyResources();
+try {
+    backgroundTaskManager.resetAllEfficiencyResources();
+} catch (error) {
+    console.error(`Operation resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 ```

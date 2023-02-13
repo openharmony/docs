@@ -11,8 +11,7 @@ If an application has a service that can be intuitively perceived by users and n
 If a privileged system application needs to use certain system resources (for example, it wants to receive common events when suspended), it can request efficiency resources.
 
 >  **NOTE**
->
->  The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
