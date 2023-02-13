@@ -402,7 +402,7 @@
     ```js
     function storeObserver(devices) {
       for (let i = 0; i < devices.length; i++) {
-        console.info(`device= ${device[i]} data changed`);
+        console.info(`device= ${devices[i]} data changed`);
       }
     }
     
