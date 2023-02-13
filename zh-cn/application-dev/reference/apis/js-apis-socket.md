@@ -1813,7 +1813,7 @@ let options = {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
-    passwd: "xxxx",
+    password: "xxxx",
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
@@ -1913,7 +1913,7 @@ let options = {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
-    passwd: "xxxx",
+    password: "xxxx",
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
@@ -2515,7 +2515,7 @@ TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参
 | ca                    | string \| Array\<string>                               | 是 | 服务端的ca证书，用于认证校验服务端的数字证书。|
 | cert                  | string                                                  | 否 | 本地客户端的数字证书。                 |
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
-| passwd                | string                                                  | 否 | 读取私钥的密码。                      |
+| password                | string                                                  | 否 | 读取私钥的密码。                      |
 | protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)> | 否 | TLS的协议版本。                  |
 | useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。          |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法。               |

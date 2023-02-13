@@ -49,9 +49,9 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 ```js
 ethernet.setIfaceConfig("eth0", {
     mode: 0,
-    ipAddr: "192.168.1.123",
-    route: "192.168.1.1",
-    gateway: "192.168.1.1",
+    ipAddr: "192.168.xx.xxx",
+    route: "192.168.xx.xxx",
+    gateway: "192.168.xx.xxx",
     netMask: "255.255.255.0",
     dnsServers: "1.1.1.1",
     domain: "2.2.2.2"
@@ -107,9 +107,9 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 ```js
 ethernet.setIfaceConfig("eth0", {
     mode: 0,
-    ipAddr: "192.168.1.123",
-    route: "192.168.1.1",
-    gateway: "192.168.1.1",
+    ipAddr: "192.168.xx.xxx",
+    route: "192.168.xx.xxx",
+    gateway: "192.168.xx.xxx",
     netMask: "255.255.255.0",
     dnsServers: "1.1.1.1",
     domain: "2.2.2.2"
