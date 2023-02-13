@@ -250,7 +250,7 @@
     ```js
     function storeObserver(devices) {
         for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + ' data changed')
+            console.log('device=' + devices[i] + ' data changed')
         }
     }
     try {
