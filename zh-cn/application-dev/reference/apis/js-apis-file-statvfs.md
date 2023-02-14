@@ -42,7 +42,7 @@ getFreeSize(path:string):Promise&lt;number&gt;
   });
   ```
 
-## statfs.getFreeSize
+## statvfs.getFreeSize
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -70,7 +70,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statfs.getTotalSize
+## statvfs.getTotalSize
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
@@ -101,7 +101,7 @@ getTotalSize(path: string): Promise&lt;number&gt;
   });
   ```
 
-## statfs.getTotalSize
+## statvfs.getTotalSize
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
