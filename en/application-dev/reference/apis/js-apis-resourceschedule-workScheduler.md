@@ -39,7 +39,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 | 9700005 | StartWork failed. |
 
 
@@ -80,7 +80,7 @@ Instructs the **WorkSchedulerService** to stop the specified task.
 | Name       | Type                   | Mandatory  | Description        |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | Yes   | Task to stop. |
-| needCancel | boolean               | Yes   | Whether to cancel the task.|
+| needCancel | boolean               | No   | Whether to cancel the task.|
 
 **Error codes**
 
@@ -91,7 +91,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **Example**
 
@@ -141,7 +141,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **Example**
 
@@ -189,7 +189,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **Example**
 

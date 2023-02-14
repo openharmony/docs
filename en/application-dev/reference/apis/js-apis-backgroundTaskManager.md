@@ -187,7 +187,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
+            abilityName: "com.example.myapplication.MainAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -207,7 +207,7 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -276,7 +276,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
+            abilityName: "com.example.myapplication.MainAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -299,7 +299,7 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
