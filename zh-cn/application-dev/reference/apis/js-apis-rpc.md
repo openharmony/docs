@@ -8148,10 +8148,10 @@ getLocalInterface(descriptor: string): IRemoteBroker
           super(descriptor);
       }
       registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          return true;
+          // 方法逻辑需开发者根据业务需要实现
       }
       unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          return true;
+          // 方法逻辑需开发者根据业务需要实现
       }
       isObjectDead(): boolean {
           return false;
@@ -8249,10 +8249,10 @@ getDescriptor(): string
           super(descriptor);
       }
       registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          return true;
+          // 方法逻辑需开发者根据业务需要实现
       }
       unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          return true;
+          // 方法逻辑需开发者根据业务需要实现
       }
       isObjectDead(): boolean {
           return false;
@@ -8345,10 +8345,10 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
           }
       }
       registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          return true;
+          // 方法逻辑需开发者根据业务需要实现
       }
       unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          return true;
+          // 方法逻辑需开发者根据业务需要实现
       }
       isObjectDead(): boolean {
           return false;
