@@ -102,7 +102,7 @@ Creates an **X509Cert** instance. This API uses an asynchronous callback to retu
 | Name  | Type                         | Mandatory| Description                      |
 | -------- | ----------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob) | Yes  | X.509 certificate serialization data.        |
-| callback | AsyncCallback\<X509Cert>      | Yes  | Callback invoked to return the result. **X509Cer** instance created.|
+| callback | AsyncCallback\<X509Cert>      | Yes  | Callback invoked to return the result. **X509Cert** instance created.|
 
 
 **Example**
@@ -115,7 +115,7 @@ let encodingData = null;
 let encodingBlob = {
     data: encodingData,
     // Set the encoding format, which can be FORMAT_PEM or FORMAT_DER.
-    encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
 };
 cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
@@ -144,7 +144,7 @@ Creates an **X509Cert** instance. This API uses a promise to return the result.
 
 | Type    | Description            |
 | ------- | ---------------- |
-| Promise\<X509Cert> | **X509Cer** instance created.|
+| Promise\<X509Cert> | **X509Cert** instance created.|
 
 **Example**
 
@@ -189,7 +189,6 @@ Verifies the certificate signature. This API uses an asynchronous callback to re
 
 ```js
 import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // Certificate binary data, which must be set based on the service.
 let encodingData = null;
@@ -250,7 +249,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
     console.log("createX509Cert success");
-    // Generate a public key by AsyKeyGenerator or obtain the public key by using getPublicKey() of the X509Cert instance.
+    // The service can call getPublicKey() of the upper-level X509Cert object to obtain the public key.
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
         console.log("verify success");
@@ -1217,7 +1216,7 @@ cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-Verifies the signature of the X.509 CRL. This API uses an asynchronous callback to return the result.
+Verifies the signature of the X.509 CRL. This API uses an asynchronous callback to return the result. The RSA algorithm is supported.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1225,7 +1224,7 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey               | Yes  | Public key used for signature verification.                                      |
+| key      | cryptoFramework.PubKey | Yes  | Public key used for signature verification.                                      |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 
@@ -1264,7 +1263,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-Verifies the signature of the X.509 CRL. This API uses a promise to return the result.
+Verifies the signature of the X.509 CRL. This API uses a promise to return the result. The RSA algorithm is supported.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -2061,7 +2060,7 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 **Return value**
 
 | Type                 | Description                    |
-| --------------------- | ---------------------- - |
+| --------------------- | ----------------------- |
 | [DataBlob](#datablob) | Promise used to return the issuer of the revoked certificate obtained.|
 
 **Example**
