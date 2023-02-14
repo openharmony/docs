@@ -1,4 +1,4 @@
-# @ohos.uitest (UiTest)
+# @ohos.UiTest (UiTest)
 
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
 
@@ -61,8 +61,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 | 名称 | 类型   | 可读 | 可写 | 说明             |
 | ---- | ------ | ---- | ---- | ---------------- |
-| X    | number | 是   | 否   | 坐标点的横坐标。 |
-| Y    | number | 是   | 否   | 坐标点的纵坐标。 |
+| x    | number | 是   | 否   | 坐标点的横坐标。 |
+| y    | number | 是   | 否   | 坐标点的纵坐标。 |
 
 ## Rect<sup>9+</sup>
 
