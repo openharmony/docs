@@ -16,7 +16,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | 权限                                 | 权限等级    | 描述                           |
 | ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_core | 可监听应用的安装，卸载，更新。 |
+| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | 可监听应用的安装，卸载，更新。 |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md)
 
