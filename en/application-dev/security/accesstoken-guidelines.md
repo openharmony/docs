@@ -200,12 +200,13 @@ Example: Request the permission for an application to access calendar informatio
 Call [requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7) to request user authorization.
 
 ```js
-// onWindowStageCreate() of Ability
-onWindowStageCreate() {
-    let context = this.context;
+import featureAbility from '@ohos.ability.featureAbility';
+
+reqPermissions() {
+    let context = featureAbility.getContext();
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
-    context.requestPermissionsFromUser(array).then(function(data) {
+    context.requestPermissionsFromUser(array, 1).then(function(data) {
         console.log("data:" + JSON.stringify(data));
         console.log("data permissions:" + JSON.stringify(data.permissions));
         console.log("data result:" + JSON.stringify(data.authResults));
