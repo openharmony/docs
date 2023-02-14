@@ -9,7 +9,7 @@ An [ExtensionAbilityType](../reference/apis/js-apis-bundleManager.md#extensionab
 
 - [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md): ExtensionAbility component of the form type, which provides APIs related to widgets.
 
-- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-resourceschedule-workScheduler.md): ExtensionAbility component of the work_scheduler type, which provides APIs for registering, canceling, and querying Work Scheduler tasks.
+- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-resourceschedule-workScheduler.md): ExtensionAbility component of the work_scheduler type, which provides callbacks for Work Scheduler tasks.
 
 - [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md): ExtensionAbility component of the input_method type, which provides an input method framework that can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
 
@@ -33,6 +33,7 @@ All types of ExtensionAbility components are started by the corresponding system
 The following uses [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md) as an example. As shown in the figure below, when an application calls the InputMethodExtensionAbility component, the input method management service is called first. The input method management service starts the InputMethodExtensionAbility component, returns the component to the application, and starts to manage its lifecycle.
 
 **Figure 1** Using the InputMethodExtensionAbility component
+
 ![ExtensionAbility-start](figures/ExtensionAbility-start.png)
 
 
@@ -48,11 +49,11 @@ You do not need to care when to add or delete a widget. The lifecycle of the For
 > **NOTE**
 >
 > For an application, all ExtensionAbility components of the same type run in an independent process, whereas UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility run in another independent process. For details, see [Process Model (Stage Model)](process-model-stage.md).
->
+> 
 > For example, an application has one UIAbility component, one ServiceExtensionAbility, one DataShareExtensionAbility, two FormExtensionAbility, and one ImeExtensionAbility. When the application is running, there are three processes:
->
+> 
 > - UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility run in an independent process.
->
+> 
 > - The two FormExtensionAbility components run in an independent process.
->
+> 
 > - The two ImeExtensionAbility components run in an independent process.
