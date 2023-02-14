@@ -11,7 +11,7 @@ Host模式下，可以获取到已经连接的USB设备列表，并根据需要�
 
 USB服务主要提供的功能有：查询USB设备列表、批量数据传输、控制命令传输、权限控制等。
 
-USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js-apis-usb.md)。
+USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js-apis-usbManager.md)。
 
 **表1** USB类的开放能力接口
 
@@ -22,7 +22,7 @@ USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js
 | removeRight(deviceName: string): boolean | 移除软件包对设备的访问权限。|
 | connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |
 | getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。                                            |
-| setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | 设置设备的配置。                                             |
+| setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number | 设置设备的配置。                                             |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number   | 设置设备的接口。                                             |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | 注册通信接口。                                                   |
 | bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt; | 批量传输。                                                   |
@@ -42,7 +42,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
    ```js
    // 导入USB接口api包。
-   import usb from '@ohos.usbV9';
+   import usb from '@ohos.usbManager';
    // 获取设备列表。
    let deviceList = usb.getDevices();
    /*
