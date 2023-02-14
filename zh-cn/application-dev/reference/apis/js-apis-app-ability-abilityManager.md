@@ -24,7 +24,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
 | INITIAL | 0 | 表示ability为初始化状态。| 
-| ACTIVE | 2 | 表示ability为获焦状态。 | 
+| FOCUS | 2 | 表示ability为获焦状态。 |
 | FOREGROUND | 9 | 表示ability为前台状态。  | 
 | BACKGROUND | 10 | 表示ability为后台状态。  | 
 | FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
@@ -143,7 +143,7 @@ try {
 
 getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
-获取Ability运行相关信息（callback形式）。
+获取UIAbility运行相关信息（callback形式）。
 
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
@@ -186,7 +186,7 @@ try {
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
-获取Ability运行相关信息（Promise形式）。
+获取UIAbility运行相关信息（Promise形式）。
 
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
