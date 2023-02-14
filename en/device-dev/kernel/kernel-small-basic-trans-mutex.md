@@ -9,29 +9,25 @@ A mutex has three attributes: protocol attribute, priority upper limit attribute
 
 - LOS_MUX_PRIO_NONE
   
-
-Do not inherit or protect the priority of the task requesting the mutex.
+  Do not inherit or protect the priority of the task requesting the mutex.
 
 - LOS_MUX_PRIO_INHERIT
   
-
-Inherits the priority of the task that requests the mutex. This is the default protocol attribute. When the mutex protocol attribute is set to this value: If a task with a higher priority is blocked because the mutex is already held by a task, the priority of the task holding the mutex will be backed up to the priority bitmap of the task control block, and then set to be the same as that of the task of a higher priority. When the task holding the mutex releases the mutex, its task priority is restored to its original value.
+  Inherits the priority of the task that requests the mutex. This is the default protocol attribute. When the mutex protocol attribute is set to this value: If a task with a higher priority is blocked because the mutex is already held by a task, the priority of the task holding the mutex will be backed up to the priority bitmap of the task control block, and then set to be the same as that of the task of a higher priority. When the task holding the mutex releases the mutex, its task priority is restored to its original value.
 
 - LOS_MUX_PRIO_PROTECT
   
   Protects the priority of the task that requests the mutex. When the mutex protocol attribute is set to this value: If the priority of the task that requests the mutex is lower than the upper limit of the mutex priority, the task priority will be backed up to the priority bitmap of the task control block, and then set to the upper limit value of the mutex priority. When the mutex is released, the task priority is restored to its original value.
-
-The type attribute of a mutex specifies whether to check for deadlocks and whether to support recursive holding of the mutex. The type attribute can be any of the following:
+  
+  The type attribute of a mutex specifies whether to check for deadlocks and whether to support recursive holding of the mutex. The type attribute can be any of the following:
 
 - LOS_MUX_NORMAL
   
-
-Common mutex, which does not check for deadlocks. If a task repeatedly attempts to hold a mutex, the thread will be deadlocked. If the mutex type attribute is set to this value, a task cannot release a mutex held by another task or repeatedly release a mutex. Otherwise, unexpected results will be caused.
+  Common mutex, which does not check for deadlocks. If a task repeatedly attempts to hold a mutex, the thread will be deadlocked. If the mutex type attribute is set to this value, a task cannot release a mutex held by another task or repeatedly release a mutex. Otherwise, unexpected results will be caused.
 
 - LOS_MUX_RECURSIVE
   
-
-Recursive mutex, which is the default attribute. If the type attribute of a mutex is set to this value, a task can hold the mutex for multiple times. Another task can hold this mutex only when the number of lock holding times is the same as the number of lock release times. However, any attempt to hold a mutex held by another task or attempt to release a mutex that has been released will return an error code.
+  Recursive mutex, which is the default attribute. If the type attribute of a mutex is set to this value, a task can hold the mutex for multiple times. Another task can hold this mutex only when the number of lock holding times is the same as the number of lock release times. However, any attempt to hold a mutex held by another task or attempt to release a mutex that has been released will return an error code.
 
 - LOS_MUX_ERRORCHECK
   
@@ -44,7 +40,7 @@ In a multi-task environment, multiple tasks may access the same shared resources
 
 When non-shared resources are accessed by a task, the mutex is locked. Other tasks will be blocked until the mutex is released by the task. The mutex allows only one task to access the shared resources at a time, ensuring integrity of operations on the shared resources.
 
- **Figure 1** Mutex working mechanism for the small system
+**Figure 1** Mutex working mechanism for the small system
 
 ![](figures/mutex-working-mechanism-for-small-systems.png "mutex-working-mechanism-for-small-systems")
 

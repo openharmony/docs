@@ -1,26 +1,31 @@
 # reboot
 
-## Command Function<a name="section20643141481314"></a>
+
+## Command Function
 
 This command is used to restart a device.
 
-## Syntax<a name="section1075441721316"></a>
+
+## Syntax
 
 reboot
 
-## Parameters<a name="section1472810220135"></a>
 
-None
+## Parameters
 
-## Usage<a name="section186772414131"></a>
+None.
 
-After the  **reboot**  command is executed, the device restarts immediately.
 
-## Example<a name="section4764192791314"></a>
+## Usage Guidelines
+
+After the **reboot** command is executed, the device restarts immediately.
+
+
+## Example
 
 reboot
 
-## Output<a name="section5791253155517"></a>
 
-None
+## Output
 
+None.
