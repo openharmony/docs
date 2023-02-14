@@ -319,8 +319,8 @@
 | startAbilityByCall(want:&nbsp;Want):&nbsp;Promise&lt;Caller&gt;; | 启动指定UIAbility至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。 |
 | on(method:&nbsp;string,&nbsp;callback:&nbsp;CalleeCallBack):&nbsp;void | 通用组件Callee注册method对应的callback方法。 |
 | off(method:&nbsp;string):&nbsp;void | 通用组件Callee解注册method的callback方法。 |
-| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
-| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;rpc.MessageParcel&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
+| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
+| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;rpc.MessageSequence&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
 | release():&nbsp;void | 释放通用组件的Caller通信接口。 |
 | on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | 注册通用组件通信断开监听通知。 |
 
@@ -377,7 +377,7 @@
 
        
        ```ts
-       export default class MySequenceable {
+       export default class MyParcelable {
            num: number = 0;
            str: string = "";
        
@@ -386,15 +386,15 @@
                this.str = string;
            }
        
-           marshalling(messageParcel) {
-               messageParcel.writeInt(this.num);
-               messageParcel.writeString(this.str);
+           marshalling(messageSequence) {
+               messageSequence.writeInt(this.num);
+               messageSequence.writeString(this.str);
                return true;
            }
        
-           unmarshalling(messageParcel) {
-               this.num = messageParcel.readInt();
-               this.str = messageParcel.readString();
+           unmarshalling(messageSequence) {
+               this.num = messageSequence.readInt();
+               this.str = messageSequence.readString();
                return true;
            }
        }
@@ -410,13 +410,13 @@
            console.info('CalleeSortFunc called');
        
            // 获取Caller发送的序列化数据
-           let receivedData = new MySequenceable(0, '');
-           data.readSequenceable(receivedData);
+           let receivedData = new MyParcelable(0, '');
+           data.readParcelable(receivedData);
            console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
        
            // 作相应处理
            // 返回序列化数据result给Caller
-           return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+           return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
        }
        
        export default class CalleeAbility extends Ability {
@@ -476,13 +476,13 @@
        getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
 5. 向被调用端UIAbility发送约定序列化数据。
-   1. 向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。
+   1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。
       
        ```ts
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        async onButtonCall() {
            try {
-               let msg = new MySequenceable(1, 'origin_Msg');
+               let msg = new MyParcelable(1, 'origin_Msg');
                await this.caller.call(MSG_SEND_METHOD, msg);
            } catch (error) {
                console.info(`caller call failed with ${error}`);
@@ -497,12 +497,12 @@
        backMsg: string = '';
        async onButtonCallWithResult(originMsg, backMsg) {
            try {
-               let msg = new MySequenceable(1, originMsg);
+               let msg = new MyParcelable(1, originMsg);
                const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
                console.info('caller callWithResult succeed');
        
-               let result = new MySequenceable(0, '');
-               data.readSequenceable(result);
+               let result = new MyParcelable(0, '');
+               data.readParcelable(result);
                backMsg(result.str);
                console.info(`caller result is [${result.num}, ${result.str}]`);
            } catch (error) {

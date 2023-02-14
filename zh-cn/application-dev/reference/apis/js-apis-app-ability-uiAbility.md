@@ -308,7 +308,7 @@ class MyUIAbility extends UIAbility {
 
 ## Caller.call
 
-call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 向通用组件服务端发送约定序列化数据。
 
@@ -319,7 +319,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
@@ -338,7 +338,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 **示例：**
     
   ```ts
-  class MyMessageAble{ // 自定义的Sequenceable数据结构
+  class MyMessageAble{ // 自定义的Parcelable数据结构
     name:""
     str:""
     num: 1
@@ -346,15 +346,15 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
@@ -369,7 +369,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
         deviceId: ""
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble("msg", "world"); // 参考Sequenceable数据定义
+        let msg = new MyMessageAble("msg", "world"); // 参考Parcelable数据定义
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -389,7 +389,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
 
 向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
 
@@ -400,13 +400,13 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)&gt; | Promise形式返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise形式返回通用组件服务端应答数据。 |
 
 **错误码：**
 
@@ -427,15 +427,15 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
@@ -455,7 +455,7 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
           .then((data) => {
             console.log('Caller callWithResult() called');
             let retmsg = new MyMessageAble(0, "");
-            data.readSequenceable(retmsg);
+            data.readParcelable(retmsg);
           })
           .catch((callErr) => {
             console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
@@ -726,7 +726,7 @@ on(method: string, callback: CalleeCallback): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 与客户端约定的通知消息字符串。 |
-| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated)数据对象,&nbsp;其他视为函数执行错误。 |
+| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
 
 **错误码：**
 
@@ -747,15 +747,15 @@ on(method: string, callback: CalleeCallback): void;
         this.name = name;
         this.str = str;
       }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
           console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
           return true;
       }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
           console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
           return true;
       }
@@ -764,7 +764,7 @@ on(method: string, callback: CalleeCallback): void;
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble("test", "");
-      pdata.readSequenceable(msg);
+      pdata.readParcelable(msg);
       return new MyMessageAble("test1", "Callee test");
   }
   export default class MainUIAbility extends UIAbility {
@@ -832,10 +832,10 @@ off(method: string): void;
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Sequenceable;
+(indata: rpc.MessageSequence): rpc.Parcelable;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 |
+| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |

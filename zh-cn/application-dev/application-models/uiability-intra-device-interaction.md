@@ -471,8 +471,8 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 | startAbilityByCall(want:&nbsp;Want):&nbsp;Promise&lt;Caller&gt; | 启动指定UIAbility并获取其Caller通信接口，默认为后台启动，通过配置want可实现前台启动，详见[接口文档](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall)。AbilityContext与ServiceExtensionContext均支持该接口。 |
 | on(method:&nbsp;string,&nbsp;callback:&nbsp;CalleeCallBack):&nbsp;void | 通用组件Callee注册method对应的callback方法。 |
 | off(method:&nbsp;string):&nbsp;void | 通用组件Callee解注册method的callback方法。 |
-| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
-| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;rpc.MessageParcel&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
+| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
+| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;rpc.MessageSequence&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
 | release():&nbsp;void | 释放通用组件的Caller通信接口。 |
 | on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | 注册通用组件通信断开监听通知。 |
 
@@ -520,7 +520,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
    
    ```ts
-   export default class MySequenceable {
+   export default class MyParcelable {
        num: number = 0
        str: string = ""
    
@@ -529,15 +529,15 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
            this.str = string
        }
    
-       marshalling(messageParcel) {
-           messageParcel.writeInt(this.num)
-           messageParcel.writeString(this.str)
+       marshalling(messageSequence) {
+           messageSequence.writeInt(this.num)
+           messageSequence.writeString(this.str)
            return true
        }
    
-       unmarshalling(messageParcel) {
-           this.num = messageParcel.readInt()
-           this.str = messageParcel.readString()
+       unmarshalling(messageSequence) {
+           this.num = messageSequence.readInt()
+           this.str = messageSequence.readString()
            return true
        }
    }
@@ -555,13 +555,13 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        console.info('CalleeSortFunc called');
    
        // 获取Caller发送的序列化数据
-       let receivedData = new MySequenceable(0, '');
-       data.readSequenceable(receivedData);
+       let receivedData = new MyParcelable(0, '');
+       data.readParcelable(receivedData);
        console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
    
        // 作相应处理
        // 返回序列化数据result给Caller
-       return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+       return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
    }
    
    export default class CalleeAbility extends Ability {
