@@ -916,7 +916,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuild (OH_AI_ModelHandle model, const void * m
 **描述：**
 
 从内存缓冲区加载并编译MindSpore模型。 
-注意，同一个{@link OH_AI_ContextHandle}变量仅能传递给[OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的{@link OH_AI_ContextHandle}。
+注意，同一个[OH_AI_ContextHandle](#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](#oh_ai_contexthandle)。
 
 **参数:**
 
@@ -943,7 +943,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const 
 **描述：**
 
 通过模型文件加载并编译MindSpore模型。
-注意，同一个{@link OH_AI_ContextHandle}变量仅能传递给[OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的{@link OH_AI_ContextHandle}。
+注意，同一个[OH_AI_ContextHandle](#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](#oh_ai_contexthandle)。
 
 **参数:**
 
