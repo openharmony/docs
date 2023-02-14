@@ -1,6 +1,7 @@
 # @system.app (Application Context)
 
 > **NOTE**
+>
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use the new APIs.
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -20,9 +21,7 @@ getInfo(): AppResponse
 
 Obtains the declared information in the **config.json** file of an application.
 
-> **NOTE** 
->
-> You are advised to use [@ohos.bundle](js-apis-Bundle.md) since API version 7.
+You are advised to use [@ohos.bundle](js-apis-Bundle.md) since API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -34,14 +33,14 @@ Obtains the declared information in the **config.json** file of an application.
 
 **Example**
 
-  ```ts
+```ts
 export default {
   getInfo() {
     let info = app.getInfo()
     console.log(JSON.stringify(info))
   }
 }
-  ```
+```
 
 ## app.terminate
 
@@ -49,43 +48,38 @@ terminate(): void
 
 Terminates the current ability.
 
-> **NOTE** 
->
-> You are advised to use [@ohos.ability.featureAbility](js-apis-ability-featureAbility.md) since API version 7.
+You are advised to use [@ohos.ability.featureAbility](js-apis-ability-featureAbility.md) since API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 **Example**
 
-  ```ts
+```ts
 export default {
   terminate() {
     app.terminate()
   }
 }
-  ```
+```
 ## app.requestFullWindow
 
 requestFullWindow(options?: RequestFullWindowOptions): void
 
 Requests the application to run in full window. You can call this API when the FA runs in a non-full window, for example, semi-modal FA. This API is invalid for an application already in full-window mode.
 
-This is a system API and cannot be called by third-party applications.
-
-> **NOTE** 
->
-> You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
+You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | options | [RequestFullWindowOptions](#requestfullwindowoptions) | No| Duration for transition from the non-full window to the full window, in milliseconds. By default, the value is in direct proportion to the distance between the non-full window and the full window.|
 
 **Example**
 
-  ```ts
+```ts
 export default {
   requestFullWindow() {
     app.requestFullWindow({
@@ -93,7 +87,7 @@ export default {
     })
   }
 }
-  ```
+```
 
 ## app.setImageCacheCount<sup>7+</sup>
 
@@ -104,13 +98,14 @@ Sets the maximum number of decoded images that can be cached in the memory to sp
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Number of decoded images that are cached in the memory.|
+| value | number | Yes| Number of decoded images that are cached in the memory.|
 
 **Example**
 
-  ```ts
+```ts
 // app.ets
 import app from '@system.app'
 
@@ -123,7 +118,7 @@ export default {
     console.info('Application onDestroy')
   },
 }
-  ```
+```
 
 ## app.setImageRawDataCacheSize<sup>7+</sup>
 
@@ -134,13 +129,14 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Size of the image data cached before decoding, in bytes.|
+| value | number | Yes| Size of the image data cached before decoding, in bytes.|
 
 **Example**
 
-  ```ts
+```ts
 // app.ets
 import app from '@system.app'
 
@@ -154,7 +150,7 @@ export default {
     console.info('Application onDestroy')
   },
 }
-  ```
+```
 
 ## app.setImageFileCacheSize<sup>7+</sup>
 
@@ -165,13 +161,14 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Size of the image file cache, in bytes.|
+| value | number | Yes| Size of the image file cache, in bytes.|
 
 **Example**
 
-  ```ts
+```ts
 // app.ets
 import app from '@system.app'
 
@@ -185,7 +182,7 @@ export default {
     console.info('Application onDestroy')
   },
 }
-  ```
+```
 
 ## AppResponse
 
@@ -199,6 +196,20 @@ Defines the application response information.
 | appName | string | Yes| Application name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 | versionName | string | Yes| Application version name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 | versionCode | number | Yes| Application version number.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+
+## ScreenOnVisible<sup>(deprecated)</sup>
+
+screenOnVisible(options?: ScreenOnVisibleOptions)
+
+Defines whether to keep the application visible when the screen is woken up.
+
+This API is deprecated since API Version 8.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- |-------- |
+| options | ScreenOnVisibleOptions | No|  With keep-alive, the system is prevented from returning to the home screen when the screen is locked, so that the application is visible when the screen is woken up. |
 
 ## ScreenOnVisibleOptions
 
