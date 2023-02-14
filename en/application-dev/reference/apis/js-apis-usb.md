@@ -2,8 +2,7 @@
 
 This module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control.
 
-> **NOTE**
-> 
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

@@ -1,7 +1,7 @@
 # Geolocation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -481,7 +481,7 @@ Obtains the current location. This API uses a promise to return the result.
   
   ```
   var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  locationEventListener.getCurrentLocation(requestInfo).then((result) => {
+  geolocation.getCurrentLocation(requestInfo).then((result) => {
       console.log('current location: ' + JSON.stringify(result));
   });
   ```

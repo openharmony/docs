@@ -4,9 +4,8 @@
 
 The [I18N](js-apis-i18n.md) module provides enhanced I18N capabilities through supplementary APIs that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
 
->  **NOTE**
->
->  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
