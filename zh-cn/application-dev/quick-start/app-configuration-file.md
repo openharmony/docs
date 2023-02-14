@@ -46,7 +46,7 @@ app.json5配置文件包含以下标签。
 | minAPIVersion | 标识应用运行需要的SDK的API最小版本。 | 数值 | 由build-profile.json5中的compatibleSdkVersion生成。 |
 | targetAPIVersion | 标识应用运行需要的API目标版本。 | 数值 | 由build-profile.json5中的compileSdkVersion生成。 |
 | apiReleaseType | 标识应用运行需要的API目标版本的类型，采用字符串类型表示。取值为“CanaryN”、“BetaN”或者“Release”，其中，N代表大于零的整数。<br/>-&nbsp;Canary：受限发布的版本。<br/>-&nbsp;Beta：公开发布的Beta版本。<br/>-&nbsp;Release：公开发布的正式版本。<br/>该字段由DevEco&nbsp;Studio读取当前使用的SDK的Stage来生成。 | 字符串 | 该标签可缺省，由IDE生成并覆盖。 |
-| distributedNotificationEnabled | 标识应用是否开启分布式通知，当开启分布式通知时，同一分布式组网下的两个设备(A和B)，当设备A收到一条消息时，设备B会收到一天分布式消息用于设备B的使用者去查看设备A的消息。<br/>-&nbsp;true：开启。<br/>-&nbsp;false：不开启。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| distributedNotificationEnabled | 标识应用是否开启分布式通知，当开启分布式通知时，同一分布式组网下的两个设备(A和B)，当设备A收到一条消息时，设备B会收到一条分布式消息用于设备B的使用者去查看设备A的消息。<br/>-&nbsp;true：开启。<br/>-&nbsp;false：不开启。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | entityType | 标识应用的类别，分别有：<br/>-&nbsp;game：游戏类。<br/>-&nbsp;media：影音类。<br/>-&nbsp;communication：社交通信类。<br/>-&nbsp;news：新闻类。<br/>-&nbsp;travel：出行类。<br/>-&nbsp;utility：工具类。<br/>-&nbsp;shopping：购物类。<br/>-&nbsp;education：教育类。<br/>-&nbsp;kids：少儿类。<br/>-&nbsp;business：商务类。<br/>-&nbsp;photography：拍摄类。<br/>-&nbsp;unspecified：不属于上述的任何一类。 | 字符串 | 该标签可以缺省，缺省为unspecified。 |
 | multiProjects | 标识当前工程是否支持多个工程的联合开发。<br/>-&nbsp;true：当前工程支持多个工程的联合开发。<br/>-&nbsp;false：当前工程不支持多个工程的联合开发。 | 布尔值 | 可缺省，缺省值为false。 |
 | tablet | 标识对tablet设备做的特殊配置，可以配置的属性字段有上文提到的：minAPIVersion、distributedNotificationEnabled。<br/>如果使用该属性对tablet设备做了特殊配置，则应用在tablet设备中会采用此处配置的属性值，并忽略在app.json5公共区域配置的属性值。 | 对象 | 该标签可缺省，缺省时tablet设备使用app.json5公共区域配置的属性值。 |

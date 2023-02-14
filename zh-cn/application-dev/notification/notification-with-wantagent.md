@@ -96,7 +96,7 @@
 
    ```typescript
    // 构造NotificationRequest对象
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
        content: {
            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
            normal: {

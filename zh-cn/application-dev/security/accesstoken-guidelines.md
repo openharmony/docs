@@ -148,11 +148,14 @@
            atManager.requestPermissionsFromUser(context, permissions).then((data) => {
                console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
                let grantStatus: Array<number> = data.authResults;
-               if (grantStatus[0] === -1) {
-                   // 授权失败
-               } else {
-                   // 授权成功
+               let length: number = grantStatus.length;
+               for (let i = 0; i < length; i++) {
+                   if (grantStatus[i] !== 0) {
+                       // 授权失败
+                       return;
+                   }
                }
+               // 授权成功
            }).catch((err) => {
                console.error(`[requestPermissions] Failed to start request permissions. Error: ${JSON.stringify(err)}`);
            })
@@ -178,11 +181,14 @@
        atManager.requestPermissionsFromUser(context, permissions).then((data) => {
          console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
          let grantStatus: Array<number> = data.authResults;
-         if (grantStatus[0] === -1) {
-           // 授权失败
-         } else {
-           // 授权成功
+         let length: number = grantStatus.length;
+         for (let i = 0; i < length; i++) {
+           if (grantStatus[i] !== 0) {
+             // 授权失败
+             return;
+           }
          }
+         // 授权成功
        }).catch((err) => {
          console.error(`[requestPermissions] Failed to start request permissions. Error: ${JSON.stringify(err)}`);
        })

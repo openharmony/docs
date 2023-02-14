@@ -50,7 +50,7 @@ function publishCallback(err) {
     }
 }
 //通知Request对象
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -93,7 +93,7 @@ publish(request: NotificationRequest): Promise\<void\>
 
 ```ts
 // 通知Request对象
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     notificationId: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -156,7 +156,7 @@ function publishCallback(err) {
 // 用户ID
 let userId = 1;
 // 通知Request对象
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -204,7 +204,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 **示例：**
 
 ```ts
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     notificationId: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
