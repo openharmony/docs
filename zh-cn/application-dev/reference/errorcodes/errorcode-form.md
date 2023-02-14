@@ -137,5 +137,20 @@ The form can not be operated by the current application.
 1. 检查传入卡片ID所有权
 2. 升级权限为SystemApp
 
+## 16501004 指定的ability未安装
 
+**错误信息**
 
+The ability is not installed.
+
+**错误描述**
+
+当指定的ability未安装时，系统会报此错误码。
+
+**可能原因**
+
+指定的ability未安装。
+
+**处理步骤**
+
+检查传入的abilityName与bundleName是否有效。
