@@ -53,6 +53,13 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 | address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
 | callback | AsyncCallback\<void\>              | 是   | 回调函数。                                             |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -83,6 +90,12 @@ bind\(address: NetAddress\): Promise<void\>
 | ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **返回值：**
 
@@ -122,6 +135,13 @@ send\(options: UDPSendOptions, callback: AsyncCallback<void\>\): void
 | options  | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -160,6 +180,13 @@ send\(options: UDPSendOptions\): Promise<void\>
 | 参数名  | 类型                                     | 必填 | 说明                                                         |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **返回值：**
 
@@ -265,6 +292,12 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 | -------- | ------------------------------------------------------ | ---- | ---------- |
 | callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -345,6 +378,12 @@ setExtraOptions\(options: UDPExtraOptions, callback: AsyncCallback<void\>\): voi
 | options  | [UDPExtraOptions](#udpextraoptions) | 是   | UDPSocket连接的其他属性，参考[UDPExtraOptions](#udpextraoptions)。 |
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -398,6 +437,13 @@ setExtraOptions\(options: UDPExtraOptions\): Promise<void\>
 | :-------------- | :--------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回设置UDPSocket连接的其他属性的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -438,6 +484,12 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```js
@@ -465,6 +517,12 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -494,6 +552,12 @@ on\(type: 'listening' | 'close', callback: Callback<void\>\): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -525,6 +589,12 @@ off\(type: 'listening' | 'close', callback?: Callback<void\>\): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 否   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -562,6 +632,11 @@ on\(type: 'error', callback: ErrorCallback\): void
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                           |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -590,6 +665,12 @@ off\(type: 'error', callback?: ErrorCallback\): void
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -669,7 +750,7 @@ Socket的连接信息。
 
 ## UDP 错误码说明
 
-UDP 错误码映射形式为：2301000 + 内核错误码。
+UDP 其余错误码映射形式为：2301000 + 内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-socket.md)
 
@@ -715,6 +796,12 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 | address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
 | callback | AsyncCallback\<void\>              | 是   | 回调函数。                                             |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -752,6 +839,13 @@ bind\(address: NetAddress\): Promise<void\>
 | :-------------- | :------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回TCPSocket绑定本机的IP地址和端口的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -781,6 +875,13 @@ connect\(options: TCPConnectOptions, callback: AsyncCallback<void\>\): void
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPConnectOptions](#tcpconnectoptions) | 是   | TCPSocket连接的参数，参考[TCPConnectOptions](#tcpconnectoptions)。 |
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -818,6 +919,13 @@ connect\(options: TCPConnectOptions\): Promise<void\>
 | :-------------- | :--------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回TCPSocket连接到指定的IP地址和端口的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -850,6 +958,13 @@ send\(options: TCPSendOptions, callback: AsyncCallback<void\>\): void
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocket发送请求的参数，参考[TCPSendOptions](#tcpsendoptions)。 |
 | callback | AsyncCallback\<void\>                   | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -898,6 +1013,13 @@ send\(options: TCPSendOptions\): Promise<void\>
 | :-------------- | :------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回通过TCPSocket连接发送数据的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -935,6 +1057,11 @@ close\(callback: AsyncCallback<void\>\): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -965,6 +1092,12 @@ close\(\): Promise<void\>
 | 类型            | 说明                                       |
 | :-------------- | :----------------------------------------- |
 | Promise\<void\> | 以Promise形式返回关闭TCPSocket连接的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -997,6 +1130,12 @@ getRemoteAddress\(callback: AsyncCallback<NetAddress\>\): void
 | 参数名   | 类型                                              | 必填 | 说明       |
 | -------- | ------------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback<[NetAddress](#netaddress)> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -1037,6 +1176,12 @@ getRemoteAddress\(\): Promise<NetAddress\>
 | :------------------------------------------ | :------------------------------------------ |
 | Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -1075,6 +1220,11 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 | -------- | ------------------------------------------------------ | ---- | ---------- |
 | callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -1115,6 +1265,11 @@ getState\(\): Promise<SocketStateBase\>
 | :----------------------------------------------- | :----------------------------------------- |
 | Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -1154,6 +1309,13 @@ setExtraOptions\(options: TCPExtraOptions, callback: AsyncCallback<void\>\): voi
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
 | callback | AsyncCallback\<void\>                     | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -1209,6 +1371,12 @@ setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
 | :-------------- | :--------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -1253,6 +1421,12 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```js
@@ -1280,6 +1454,12 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1310,6 +1490,11 @@ on\(type: 'connect' | 'close', callback: Callback<void\>\): void
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。                                                   |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1341,6 +1526,12 @@ off\(type: 'connect' | 'close', callback?: Callback<void\>\): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 否   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1378,6 +1569,12 @@ on\(type: 'error', callback: ErrorCallback\): void
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                           |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```js
@@ -1405,6 +1602,12 @@ off\(type: 'error', callback?: ErrorCallback\): void
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1461,7 +1664,7 @@ TCPSocket连接的其他属性。
 
 ## TCP 错误码说明
 
-TCP 错误码映射形式为：2301000 + 内核错误码。
+TCP 其余错误码映射形式为：2301000 + 内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-socket.md)
 

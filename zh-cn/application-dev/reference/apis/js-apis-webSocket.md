@@ -106,9 +106,10 @@ connect\(url: string, callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -145,9 +146,10 @@ connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<
 
 **错误码：**
 
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -194,9 +196,10 @@ connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
 
 **错误码：**
 
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -231,9 +234,10 @@ send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -276,9 +280,10 @@ send\(data: string | ArrayBuffer\): Promise<boolean\>
 
 **错误码：**
 
-| 错误码ID  | 错误信息                      |
-|--------|---------------------------|
-| 401    | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -314,9 +319,10 @@ close\(callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -352,9 +358,10 @@ close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
-| 错误码ID  | 错误信息                      |
-|--------|---------------------------|
-| 401    | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -398,9 +405,10 @@ close\(options?: WebSocketCloseOptions\): Promise<boolean\>
 
 **错误码：**
 
-| 错误码ID  | 错误信息                      |
-|--------|---------------------------|
-| 401    | Parameter error.          |
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
