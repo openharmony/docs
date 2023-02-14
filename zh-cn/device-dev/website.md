@@ -178,6 +178,7 @@
          - [异常调测](kernel/kernel-mini-memory-exception.md)
          - [Trace调测](kernel/kernel-mini-memory-trace.md)
          - [LMS调测](kernel/kernel-mini-memory-lms.md)
+         - [SHELL](kernel/kernel-mini-debug-shell.md)
        - 附录
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
@@ -217,6 +218,7 @@
            - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
            - [支持的文件系统](kernel/kernel-small-bundles-fs-support.md)
            - [适配新的文件系统](kernel/kernel-small-bundles-fs-new.md)
+           - [Plimitsfs文件系统](kernel/kernel-small-plimits.md)
        - 调测与工具
          - Shell
            - [Shell介绍](kernel/kernel-small-debug-shell-overview.md)
@@ -286,7 +288,7 @@
            - [魔法键使用方法](kernel/kernel-small-debug-shell-magickey.md)
            - [用户态异常信息说明](kernel/kernel-small-debug-shell-error.md)
          - [Trace调测](kernel/kernel-small-debug-trace.md)
-         - [Perf调测](kernel/kernel-mini-memory-perf.md)
+         - [Perf调测](kernel/kernel-small-debug-perf.md)
          - [LMS调测](kernel/kernel-small-memory-lms.md)
          - [进程调测](kernel/kernel-small-debug-process-cpu.md)
          - 内核态内存调测

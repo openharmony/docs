@@ -18,8 +18,8 @@ ipdebug
 
 ## 输出说明
 
-  **示例：**ipdebug打印信息如下：
-  
+**示例** ipdebug打印信息如下：
+
 ```
 OHOS # ipdebug
 =================
