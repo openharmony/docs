@@ -1669,12 +1669,19 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
+let audioRecorderConfig = {
+    audioEncoder : media.AudioEncoder.AAC_LC,
+    audioEncodeBitRate : 22050,
+    audioSampleRate : 22050,
+    numberOfChannels : 2,
+    format : media.AudioOutputFormat.AAC_ADTS,
+    uri : 'fd://xx',                                                     // 文件需先由调用者创建，并给予适当的权限
+    location : { latitude : 30, longitude : 130},
+}
 audioRecorder.on('error', (error) => {                                  // 设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
-    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
-    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
+    console.info(`audio error called, error: ${error}`); 
 });
-audioRecorder.prepare();                                                  // prepare不设置参数，触发'error'事件
+audioRecorder.prepare(audioRecorderConfig);                            // prepare设置错误参数，触发'error'事件
 ```
 
 ## AudioRecorderConfig
