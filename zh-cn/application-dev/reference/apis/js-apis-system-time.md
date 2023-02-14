@@ -48,7 +48,7 @@ try {
       console.info(`Failed to setting time. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    }console.info(`Succeeded in setting time`);
+    console.info(`Succeeded in setting time`);
   });
 } catch(e) {
   console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
@@ -735,7 +735,7 @@ try {
       console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in get timezone : ${data}`);;
+    console.info(`Succeeded in get timezone : ${data}`);
   });
 } catch(e) {
   console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
