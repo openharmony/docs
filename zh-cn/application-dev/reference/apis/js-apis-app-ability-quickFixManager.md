@@ -3,7 +3,7 @@
 quickFixManager模块提供快速修复的能力，快速修复是OpenHarmony提供给开发者的一种技术手段，支持开发者以远快于（小时级、分钟级）应用升级的方式进行缺陷修复。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -57,13 +57,15 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 | 
-  | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 | 
+  | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 |
+  | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+
+> 说明：调用applyQuickFix接口时，补丁文件所在路径为应用沙箱路径。沙箱路径的获取参考[获取应用的沙箱路径](js-apis-bundle-BundleInstaller.md#获取应用的沙箱路径)，映射到设备上的路径为/proc/&lt;应用进程Id&gt;/root/沙箱路径。
 
 **示例：**
-    
+
 ```ts
   import quickFixManager from '@ohos.app.ability.quickFixManager'
 
@@ -95,18 +97,18 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 | 
+  | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
+  | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<void> | 返回相应结果。 | 
+  | Promise\<void> | 返回相应结果。 |
 
 **示例：**
-    
+
 ```ts
   import quickFixManager from '@ohos.app.ability.quickFixManager'
 
@@ -142,7 +144,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
   | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 应用的快速修复信息。 | 
 
 **示例：**
-    
+
 ```ts
   import quickFixManager from '@ohos.app.ability.quickFixManager'
 
@@ -157,7 +159,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
     })
   } catch (paramError) {
     console.log("error: " + paramError.code + ", " + paramError.message);
-  }  
+  }
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -180,9 +182,9 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
 **返回值：**
 
-  | 类型 | 说明 | 
+  | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 返回应用的快速修复信息。 | 
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 返回应用的快速修复信息。 |
 
 **示例：**
     
