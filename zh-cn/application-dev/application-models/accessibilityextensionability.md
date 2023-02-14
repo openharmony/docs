@@ -74,7 +74,9 @@ onAccessibilityEvent(accessibilityEvent) {
     }
 }
 ```
-此外，也可在相应的无障碍事件中，使用[辅助功能扩展上下文（AccessibilityExtensionContext）](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)提供的接口进行扩展开发，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等。
+在相应的无障碍事件中，可以使用[辅助功能扩展上下文（AccessibilityExtensionContext）](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)提供的接口进行扩展开发，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等。
+
+此外，还可在无障碍扩展服务中对物理按键事件进行处理，具体可参考[onKeyEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityextensionabilityonkeyevent)。
 
 ## 如何声明无障碍扩展服务具备的能力
 
