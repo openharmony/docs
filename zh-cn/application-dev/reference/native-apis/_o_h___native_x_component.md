@@ -16,7 +16,7 @@
 
 | 文件名称                                                     | 描述                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native XComponent的API。 |
+| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native XComponent的API。<br>引用文件：<ace/xcomponent/native_interface_xcomponent.h> |
 
 
 ### 结构体
