@@ -1,25 +1,29 @@
 # lsfd
 
 
-## Command Function<a name="section2053406181716"></a>
+## Command Function
 
 This command is used to display the file descriptors and names of the files that are open.
 
-## Syntax<a name="section523771017172"></a>
+
+## Syntax
 
 lsfd
 
-## Usage<a name="section27241213201719"></a>
 
-Run the  **lsfd**  command to display file descriptors and names of the opened files.
+## Usage Guidelines
 
-## Example<a name="section442617197173"></a>
+Run the **lsfd** command to display file descriptors and names of the opened files.
 
-Run  **lsfd**.
 
-## Output<a name="section42491639151813"></a>
+## Example
 
-Example:  **lsfd**  command output
+Run **lsfd**.
+
+
+## Output
+
+Example: **lsfd** command output
 
 ```
 OHOS # lsfd
@@ -57,4 +61,3 @@ OHOS # lsfd
    33   /dev/lite_ipc
    34   /dev/lite_ipc
 ```
-

@@ -59,23 +59,20 @@ The user mode provides only the LMS check library. It does not provide external 
 The typical process for enabling LMS is as follows:
 
 1. Configure the macros related to the LMS module.
-   
    Configure the LMS macro **LOSCFG_KERNEL_LMS**, which is disabled by default. Run the **make update_config** command in the **kernel/liteos_a** directory, choose **Kernel**, and select **Enable Lite Memory Sanitizer**.
-   
-   | Macro| menuconfig Option| Description| Value:|
+
+   | Macro| menuconfig Option| Description| Value |
    | -------- | -------- | -------- | -------- |
    | LOSCFG_KERNEL_LMS | Enable Lms Feature | Whether to enable LMS.| YES/NO |
    | LOSCFG_LMS_MAX_RECORD_POOL_NUM | Lms check pool max num | Maximum number of memory pools that can be checked by LMS.| INT |
    | LOSCFG_LMS_LOAD_CHECK | Enable lms read check | Whether to enable LMS read check.| YES/NO |
    | LOSCFG_LMS_STORE_CHECK | Enable lms write check | Whether to enable LMS write check.| YES/NO |
    | LOSCFG_LMS_CHECK_STRICT | Enable lms strict check, byte-by-byte | Whether to enable LMS byte-by-byte check.| YES/NO |
-   
-   
-2. Modify the build script of the target module.
 
+2. Modify the build script of the target module.
    Add **-fsanitize=kernel-address** to insert memory access checks, and add the  **-O0**  option to disable optimization performed by the compiler.
 
-   The modifications vary depending on the compiler (GCC or Clang) used. The following is an example:
+     The modifications vary depending on the compiler (GCC or Clang) used. The following is an example:
 
    ```
    if ("$ohos_build_compiler_specified" == "gcc") {
@@ -113,9 +110,10 @@ This example implements the following:
 
 #### Kernel-Mode Sample Code
 
-  The sample code is as follows:
+The functions of the sample code can be added to **TestTaskEntry** in **kernel /liteos_a/testsuites /kernel /src /osTest.c** for testing.
+The sample code is as follows:
 
-```
+```c
 #define PAGE_SIZE       (0x1000U)
 #define INDEX_MAX       20
 UINT32 g_lmsTestTaskId;
@@ -141,31 +139,32 @@ static VOID LmsTestUseAfterFree(VOID)
     PRINTK("\n######%s start ######\n", __FUNCTION__);
     UINT32 i;
     CHAR *str = (CHAR *)LOS_MemAlloc(g_testLmsPool, INDEX_MAX);
-    LOS_MemFree(g_testLmsPool, str);
+    (VOID)LOS_MemFree(g_testLmsPool, str);
     PRINTK("str[%2d]=0x%2x ", 0, str[0]); /* trigger use after free at str[0] */
     PRINTK("\n######%s stop ######\n", __FUNCTION__);
 }
 VOID LmsTestCaseTask(VOID)
-{ 
+{
     testPoolInit();
     LmsTestOsmallocOverflow();
     LmsTestUseAfterFree();
 }
-UINT32 Example_Lms_test(VOID){
-    UINT32 ret;    
-    TSK_INIT_PARAM_S lmsTestTask;    
-    /* Create a task for LMS. */   
-    memset(&lmsTestTask, 0, sizeof(TSK_INIT_PARAM_S));    
+UINT32 Example_Lms_test(VOID)
+{
+    UINT32 ret;
+    TSK_INIT_PARAM_S lmsTestTask;
+    /* Create a task for LMS. */
+    memset(&lmsTestTask, 0, sizeof(TSK_INIT_PARAM_S));
     lmsTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)LmsTestCaseTask;
-    lmsTestTask.pcName       = "TestLmsTsk";  /* Test task name. */   				     
-    lmsTestTask.uwStackSize  = 0x800;    
-    lmsTestTask.usTaskPrio   = 5;    
-    lmsTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;    
-    ret = LOS_TaskCreate(&g_lmsTestTaskId, &lmsTestTask);    
-    if(ret != LOS_OK){        
-        PRINT_ERR("LmsTestTask create failed .\n");        
-        return LOS_NOK;    
-    } 
+    lmsTestTask.pcName       = "TestLmsTsk";  /* Test task name. */
+    lmsTestTask.uwStackSize  = 0x800; // 0x800: LMS test task stack size
+    lmsTestTask.usTaskPrio   = 5; // 5: LMS test task priority
+    lmsTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;
+    ret = LOS_TaskCreate(&g_lmsTestTaskId, &lmsTestTask);
+    if (ret != LOS_OK) {
+        PRINT_ERR("LmsTestTask create failed .\n");
+        return LOS_NOK;
+    }
     return LOS_OK;
 }
 LOS_MODULE_INIT(Example_Lms_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
@@ -260,7 +259,7 @@ The key output information is as follows:
 
 ### User-Mode Development Process
 
-Add the following to the build script of the app to be checked. For details about the complete code, see **/kernel/liteos_a/apps/lms/BUILD.gn**.
+Add the following to the app build script to be checked. For details about the sample code, see [/kernel/liteos_a/apps/lms/BUILD.gn](https://gitee.com/openharmony/kernel_liteos_a/blob/master/apps/lms/BUILD.gn).
 
 
 ```
@@ -318,7 +317,7 @@ This example implements the following:
 
   The code is as follows:
 
-```
+```c
 static void BufWriteTest(void *buf, int start, int end)
 {
     for (int i = start; i <= end; i++) {
@@ -335,7 +334,7 @@ static void BufReadTest(void *buf, int start, int end)
 static void LmsMallocTest(void)
 {
     printf("\n-------- LmsMallocTest Start --------\n");
-    char *buf = (char *)malloc(16);
+    char *buf = (char *)malloc(16); // 16: buffer size for test
     BufReadTest(buf, -1, 16);
     free(buf);
     printf("\n-------- LmsMallocTest End --------\n");
@@ -343,7 +342,7 @@ static void LmsMallocTest(void)
 static void LmsFreeTest(void)
 {
     printf("\n-------- LmsFreeTest Start --------\n");
-    char *buf = (char *)malloc(16);
+    char *buf = (char *)malloc(16); // 16: buffer size for test
     free(buf);
     BufReadTest(buf, 1, 1);
     free(buf);
@@ -352,7 +351,7 @@ static void LmsFreeTest(void)
 int main(int argc, char * const * argv)
 {
     printf("\n############### Lms Test start ###############\n");
-    char *tmp = (char *)malloc(5000);
+    char *tmp = (char *)malloc(5000); // 5000: temp buffer size
     LmsMallocTest();
     LmsFreeTest();
     printf("\n############### Lms Test End ###############\n");

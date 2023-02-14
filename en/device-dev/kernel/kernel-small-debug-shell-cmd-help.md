@@ -1,36 +1,43 @@
 # help
 
-## Command Function<a name="section991211345413"></a>
+
+## Command Function
 
 This command is used to display all commands in the OS and some Toybox commands.
 
-## Syntax<a name="section19103204016410"></a>
+
+## Syntax
 
 help
 
-## Parameters<a name="section1533416233432"></a>
 
-None
+## Parameters
 
-## Usage<a name="section4156445417"></a>
+None.
 
-You can run  **help**  to display all commands in the current OS.
 
-## Example<a name="section12776124712417"></a>
+## Usage Guidelines
 
-Run  **help**.
+You can run **help** to display all commands in the current OS.
 
-## Output<a name="section092662412544"></a>
+
+## Example
+
+Run **help**.
+
+
+## Output
 
 All commands in the system:
 
+  
 ```
 After shell prompt "OHOS # ":
 Use `<cmd> [args ...]` to run built-in shell commands listed above.
 Use `exec <cmd> [args ...]` or `./<cmd> [args ...]` to run external commands.
 
 OHOS:/$ help
-*******************shell commands:*************************
+***shell commands:*
 arp          cat          cat_logmpp   cd           chgrp        chmod
 chown        cp           cpup         date         dhclient     dmesg
 dns          format       free         help         hi3881       hwi
@@ -44,11 +51,10 @@ watch        writeproc
 After shell prompt "OHOS # ":
 Use `<cmd> [args ...]` to run built-in shell commands listed above.
 Use `exec <cmd> [args ...]` or `./<cmd> [args ...]` to run external commands.
-*******************toybox commands:************************
+***toybox commands:
 chgrp chmod chown cp date du free help ifconfig kill ls mkdir mount
 mv ping ps reboot rm rmdir top touch umount uname
 Use `toybox help [command]` to show usage information for a specific command.
 Use `shell` to enter interactive legacy shell.
 Use `alias` to display command aliases.
 ```
-
