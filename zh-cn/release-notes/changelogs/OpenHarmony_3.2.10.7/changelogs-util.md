@@ -34,7 +34,7 @@ console.log("RFC 4122 Version 4 UUID:" + uuid);
 // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
 ```
 
-## cl.util.2.generateRandomBinaryUUID接口名变更
+## cl.util.2.randomBinaryUUID接口名变更
 util子系统randomBinaryUUID函数名存在变更：
 
 function randomBinaryUUID(entropyCache?: boolean): Uint8Array 改为 function generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array 函数名由原来的randomBinaryUUID改为generateRandomBinaryUUID。
@@ -69,7 +69,8 @@ console.log(JSON.stringify(uuid));
 ## cl.util.3.LRUCache类contains接口参数类型变更
 util子系统LRUCache类contains接口参数类型变更：
 
-contains(key: object): boolean; 改为 contains(key: K): boolean; 参数类型由原来的object改为K
+contains(key: object): boolean 改为 contains(key: K): boolean 参数类型由原来的object改为K。
+
 开发者需要根据以下说明对应用进行适配。 
 
  **变更影响**
