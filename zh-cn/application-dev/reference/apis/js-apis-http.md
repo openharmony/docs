@@ -108,6 +108,7 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 | 错误码ID   | 错误信息                                                  |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
 | 2300003 | URL using bad/illegal format or missing URL.          |
 | 2300007 | Couldn't connect to server.                           |
 | 2300028 | Timeout was reached.                                  |
@@ -156,6 +157,7 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 | 错误码ID   | 错误信息                                                  |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
 | 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
 | 2300005 | Couldn't resolve proxy name.                          |
@@ -243,6 +245,7 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 | 错误码ID   | 错误信息                                                  |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
 | 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
 | 2300005 | Couldn't resolve proxy name.                          |
