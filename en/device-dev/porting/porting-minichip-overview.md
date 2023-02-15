@@ -42,6 +42,4 @@ The adaptation process is divided into four steps: porting preparation, kernel p
 | Subsystem| A subsystem, as a logical concept, consists of one or more components. OpenHarmony is designed with a layered architecture, which consists of the kernel layer, system service layer, framework layer, and application layer from the bottom up. System functions are built from components, subsystems, and then to the system. In a multi-device deployment, you can customize subsystems and components as required.|
 | Component| A component is a reusable, configurable, and tailorable function unit. Each component has an independent directory, and can be built and tested independently and developed concurrently. |
 | hb | hb is an OpenHarmony command line tool used to execute build commands.|
-| HOBT | HOBT is short for HiLink SDK OHOS Basic Test. It is used to test the basic functions of the interfaces on which the HiLink SDK depends.|
-| Kit&nbsp;Framework | Kit Framework is the basic framework of Kit. It contains the security components of OpenHarmony and cannot be tailored.|
 | KV | A key-value pair (KV) is a format of data storage.|
