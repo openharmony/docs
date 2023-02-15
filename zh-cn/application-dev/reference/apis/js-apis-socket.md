@@ -1998,7 +1998,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void>): void
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2009,14 +2009,14 @@ let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
     address: "192.168.xx.xxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
-    passwd: "xxxx",
+    password: "xxxx",
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
@@ -2024,12 +2024,12 @@ let options = {
   },
 };
 tlsTwoWay.connect(options, (err, data) => {
-  console.error(err);
-  console.log(data);
+  console.error("connect callback error"+err);
+  console.log(JSON.stringify(data));
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+  tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2039,7 +2039,7 @@ tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
 let oneWayOptions = {
   address: {
     address: "192.168.xxx.xxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
@@ -2048,8 +2048,8 @@ let oneWayOptions = {
   },
 };
 tlsOneWay.connect(oneWayOptions, (err, data) => {
-  console.error(err);
-  console.log(data);
+  console.error("connect callback error"+err);
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -2098,7 +2098,7 @@ connect(options: TLSConnectOptions): Promise\<void>
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2109,14 +2109,14 @@ let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
     address: "xxxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
-    passwd: "xxxx",
+    password: "xxxx",
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
@@ -2124,13 +2124,13 @@ let options = {
   },
 };
 tlsTwoWay.connect(options).then(data => {
-  console.log(data);
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.error(err);
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2140,7 +2140,7 @@ tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
 let oneWayOptions = {
   address: {
     address: "192.168.xxx.xxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
@@ -2149,7 +2149,7 @@ let oneWayOptions = {
   },
 };
 tlsOneWay.connect(oneWayOptions).then(data => {
-  console.log(data);
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.error(err);
 });
@@ -2478,7 +2478,7 @@ getCipherSuite(): Promise\<Array\<string>>
 
 ```js
 tls.getCipherSuite().then(data => {
-  console.log(data);
+  console.log('getCipherSuite success:' + JSON.stringify(data));
 }).catch(err => {
   console.error(err);
 });
@@ -2542,7 +2542,7 @@ getSignatureAlgorithms(): Promise\<Array\<string>>
 
 ```js
 tls.getSignatureAlgorithms().then(data => {
-  console.log(data);
+  console.log("getSignatureAlgorithms success" + data);
 }).catch(err => {
   console.error(err);
 });
@@ -2718,7 +2718,7 @@ TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参
 | ca                    | string \| Array\<string>                               | 是 | 服务端的ca证书，用于认证校验服务端的数字证书。|
 | cert                  | string                                                  | 否 | 本地客户端的数字证书。                 |
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
-| passwd                | string                                                  | 否 | 读取私钥的密码。                      |
+| password                | string                                                  | 否 | 读取私钥的密码。                      |
 | protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)> | 否 | TLS的协议版本。                  |
 | useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。          |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法。               |

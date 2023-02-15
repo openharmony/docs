@@ -1498,18 +1498,18 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 
 ```js
 import socket from "@ohos.net.socket";
-connection.getDefaultNet().then((netHandle)=>{
+connection.getDefaultNet().then((netHandle) => {
     var tcp = socket.constructTCPSocketInstance();
     var udp = socket.constructUDPSocketInstance();
     let socketType = "TCPSocket";
     if (socketType == "TCPSocket") {
         tcp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
-            netHandle.bindSocket(tcp, (error, data)=>{
+            netHandle.bindSocket(tcp, (error, data) => {
                 if (error) {
                     console.log(JSON.stringify(error));
                 } else {
@@ -1519,19 +1519,19 @@ connection.getDefaultNet().then((netHandle)=>{
         })
     } else {
         let callback = value => {
-            console.log(TAG + "on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+            console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
         }
         udp.on('message', callback);
         udp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
             udp.on('message', (data) => {
                 console.log(JSON.stringify(data))
             });
-            netHandle.bindSocket(udp,(error, data)=>{
+            netHandle.bindSocket(udp, (error, data) => {
                 if (error) {
                     console.log(JSON.stringify(error));
                 } else {
@@ -1576,45 +1576,41 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 ```js
 import socket from "@ohos.net.socket";
-connection.getDefaultNet().then((netHandle)=>{
+connection.getDefaultNet().then((netHandle) => {
     var tcp = socket.constructTCPSocketInstance();
     var udp = socket.constructUDPSocketInstance();
     let socketType = "TCPSocket";
     if (socketType == "TCPSocket") {
         tcp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
-            netHandle.bindSocket(tcp).then((err, data) => {
-                if (err) {
-                    console.log(JSON.stringify(err));
-                } else {
-                    console.log(JSON.stringify(data));
-                }
+            netHandle.bindSocket(tcp).then((data) => {
+                console.log(JSON.stringify(data));
+            }).catch(error => {
+                console.log(JSON.stringify(error));
             })
         })
     } else {
         let callback = value => {
-            console.log(TAG + "on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+            console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
         }
         udp.on('message', callback);
         udp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
             udp.on('message', (data) => {
                 console.log(JSON.stringify(data));
             })
-            netHandle.bindSocket(udp).then((err, data) => {
-                if (err) {
-                    console.log(JSON.stringify(err));
-                } else {
-                    console.log(JSON.stringify(data));
-                }
+            netHandle.bindSocket(udp).then((data) => {
+                console.log(JSON.stringify(data));
+            }).catch(error => {
+                console.log(JSON.stringify(error));
             })
         })
     }
