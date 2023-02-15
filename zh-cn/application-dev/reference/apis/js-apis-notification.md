@@ -35,7 +35,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 // publish回调
 function publishCallback(err) {
     if (err.code) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}`);
     } else {
         console.info("publish success");
     }
@@ -54,8 +54,6 @@ let notificationRequest = {
 };
 Notification.publish(notificationRequest, publishCallback);
 ```
-
-
 
 ## Notification.publish
 
@@ -118,7 +116,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 // publish回调
 function publishCallback(err) {
     if (err.code) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}`);
     } else {
         console.info("publish success");
     }
@@ -298,8 +296,6 @@ function cancelAllCallback(err) {
 Notification.cancelAll(cancelAllCallback);
 ```
 
-
-
 ## Notification.cancelAll
 
 cancelAll(): Promise\<void\>
@@ -315,8 +311,6 @@ Notification.cancelAll().then(() => {
 	console.info("cancelAll success");
 });
 ```
-
-
 
 ## Notification.addSlot
 
@@ -355,8 +349,6 @@ let notificationSlot = {
 Notification.addSlot(notificationSlot, addSlotCallBack);
 ```
 
-
-
 ## Notification.addSlot
 
 addSlot(slot: NotificationSlot): Promise\<void\>
@@ -387,8 +379,6 @@ Notification.addSlot(notificationSlot).then(() => {
 });
 ```
 
-
-
 ## Notification.addSlot
 
 addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
@@ -418,8 +408,6 @@ function addSlotCallBack(err) {
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
 ```
 
-
-
 ## Notification.addSlot
 
 addSlot(type: SlotType): Promise\<void\>
@@ -441,8 +429,6 @@ Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
 	console.info("addSlot success");
 });
 ```
-
-
 
 ## Notification.addSlots
 
@@ -485,8 +471,6 @@ notificationSlotArray[0] = notificationSlot;
 Notification.addSlots(notificationSlotArray, addSlotsCallBack);
 ```
 
-
-
 ## Notification.addSlots
 
 addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
@@ -521,8 +505,6 @@ Notification.addSlots(notificationSlotArray).then(() => {
 });
 ```
 
-
-
 ## Notification.getSlot
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
@@ -553,8 +535,6 @@ let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType, getSlotCallback);
 ```
 
-
-
 ## Notification.getSlot
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
@@ -584,8 +564,6 @@ Notification.getSlot(slotType).then((data) => {
 });
 ```
 
-
-
 ## Notification.getSlots
 
 getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
@@ -614,8 +592,6 @@ function getSlotsCallback(err, data) {
 Notification.getSlots(getSlotsCallback);
 ```
 
-
-
 ## Notification.getSlots
 
 getSlots(): Promise\<Array\<NotificationSlot\>>
@@ -637,8 +613,6 @@ Notification.getSlots().then((data) => {
 	console.info("getSlots success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.removeSlot
 
@@ -670,8 +644,6 @@ let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType,removeSlotCallback);
 ```
 
-
-
 ## Notification.removeSlot
 
 removeSlot(slotType: SlotType): Promise\<void\>
@@ -694,8 +666,6 @@ Notification.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
 });
 ```
-
-
 
 ## Notification.removeAllSlots
 
@@ -724,8 +694,6 @@ function removeAllCallBack(err) {
 Notification.removeAllSlots(removeAllCallBack);
 ```
 
-
-
 ## Notification.removeAllSlots
 
 removeAllSlots(): Promise\<void\>
@@ -741,8 +709,6 @@ Notification.removeAllSlots().then(() => {
 	console.info("removeAllSlots success");
 });
 ```
-
-
 
 ## Notification.subscribe
 
@@ -787,8 +753,6 @@ let info = {
 Notification.subscribe(subscriber, info, subscribeCallback);
 ```
 
-
-
 ## Notification.subscribe
 
 subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
@@ -827,8 +791,6 @@ let subscriber = {
 Notification.subscribe(subscriber, subscribeCallback);
 ```
 
-
-
 ## Notification.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
@@ -861,8 +823,6 @@ Notification.subscribe(subscriber).then(() => {
 	console.info("subscribe success");
 });
 ```
-
-
 
 ## Notification.unsubscribe
 
@@ -902,8 +862,6 @@ let subscriber = {
 Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
-
-
 ## Notification.unsubscribe
 
 unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
@@ -935,8 +893,6 @@ Notification.unsubscribe(subscriber).then(() => {
 	console.info("unsubscribe success");
 });
 ```
-
-
 
 ## Notification.enableNotification
 
@@ -974,8 +930,6 @@ let bundle = {
 Notification.enableNotification(bundle, false, enableNotificationCallback);
 ```
 
-
-
 ## Notification.enableNotification
 
 enableNotification(bundle: BundleOption, enable: boolean): Promise\<void\>
@@ -1005,8 +959,6 @@ Notification.enableNotification(bundle, false).then(() => {
 	console.info("enableNotification success");
 });
 ```
-
-
 
 ## Notification.isNotificationEnabled
 
@@ -1043,8 +995,6 @@ let bundle = {
 Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
-
-
 ## Notification.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
@@ -1080,8 +1030,6 @@ Notification.isNotificationEnabled(bundle).then((data) => {
 });
 ```
 
-
-
 ## Notification.isNotificationEnabled
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
@@ -1114,8 +1062,6 @@ function isNotificationEnabledCallback(err, data) {
 Notification.isNotificationEnabled(isNotificationEnabledCallback);
 ```
 
-
-
 ## Notification.isNotificationEnabled
 
 isNotificationEnabled(): Promise\<boolean\>
@@ -1147,8 +1093,6 @@ Notification.isNotificationEnabled().then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.displayBadge
 
@@ -1186,8 +1130,6 @@ let bundle = {
 Notification.displayBadge(bundle, false, displayBadgeCallback);
 ```
 
-
-
 ## Notification.displayBadge
 
 displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
@@ -1217,8 +1159,6 @@ Notification.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
 });
 ```
-
-
 
 ## Notification.isBadgeDisplayed
 
@@ -1255,8 +1195,6 @@ let bundle = {
 Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
 
-
-
 ## Notification.isBadgeDisplayed
 
 isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
@@ -1291,8 +1229,6 @@ Notification.isBadgeDisplayed(bundle).then((data) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.setSlotByBundle
 
@@ -1333,8 +1269,6 @@ let notificationSlot = {
 Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
 
-
-
 ## Notification.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
@@ -1367,8 +1301,6 @@ Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 });
 ```
-
-
 
 ## Notification.getSlotsByBundle
 
@@ -1405,8 +1337,6 @@ let bundle = {
 Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
 
-
-
 ## Notification.getSlotsByBundle
 
 getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
@@ -1441,8 +1371,6 @@ Notification.getSlotsByBundle(bundle).then((data) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.getSlotNumByBundle
 
@@ -1479,8 +1407,6 @@ let bundle = {
 Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
-
-
 ## Notification.getSlotNumByBundle
 
 getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
@@ -1515,8 +1441,6 @@ Notification.getSlotNumByBundle(bundle).then((data) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.remove
 
@@ -1560,8 +1484,6 @@ let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
-
-
 ## Notification.remove
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
@@ -1597,8 +1519,6 @@ Notification.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## Notification.remove
 
@@ -1636,8 +1556,6 @@ let reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
 Notification.remove(hashCode, reason, removeCallback);
 ```
 
-
-
 ## Notification.remove
 
 remove(hashCode: string, reason: RemoveReason): Promise\<void\>
@@ -1666,8 +1584,6 @@ Notification.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## Notification.removeAll
 
@@ -1704,8 +1620,6 @@ let bundle = {
 Notification.removeAll(bundle, removeAllCallback);
 ```
 
-
-
 ## Notification.removeAll
 
 removeAll(callback: AsyncCallback\<void\>): void
@@ -1737,8 +1651,6 @@ function removeAllCallback(err) {
 
 Notification.removeAll(removeAllCallback);
 ```
-
-
 
 ## Notification.removeAll
 
@@ -1861,8 +1773,6 @@ function getAllActiveNotificationsCallback(err, data) {
 Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
 ```
 
-
-
 ## Notification.getAllActiveNotifications
 
 getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
@@ -1888,8 +1798,6 @@ Notification.getAllActiveNotifications().then((data) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.getActiveNotificationCount
 
@@ -1919,8 +1827,6 @@ function getActiveNotificationCountCallback(err, data) {
 Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
 ```
 
-
-
 ## Notification.getActiveNotificationCount
 
 getActiveNotificationCount(): Promise\<number\>
@@ -1942,8 +1848,6 @@ Notification.getActiveNotificationCount().then((data) => {
 	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.getActiveNotifications
 
@@ -1973,8 +1877,6 @@ function getActiveNotificationsCallback(err, data) {
 Notification.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
-
-
 ## Notification.getActiveNotifications
 
 getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
@@ -1996,8 +1898,6 @@ Notification.getActiveNotifications().then((data) => {
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.cancelGroup<sup>8+</sup>
 
@@ -2030,8 +1930,6 @@ let groupName = "GroupName";
 Notification.cancelGroup(groupName, cancelGroupCallback);
 ```
 
-
-
 ## Notification.cancelGroup<sup>8+</sup>
 
 cancelGroup(groupName: string): Promise\<void\>
@@ -2054,8 +1952,6 @@ Notification.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
 });
 ```
-
-
 
 ## Notification.removeGroupByBundle<sup>8+</sup>
 
@@ -2094,8 +1990,6 @@ let groupName = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
 
-
-
 ## Notification.removeGroupByBundle<sup>8+</sup>
 
 removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
@@ -2124,8 +2018,6 @@ Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
 });
 ```
-
-
 
 ## Notification.setDoNotDisturbDate<sup>8+</sup>
 
@@ -2165,8 +2057,6 @@ let doNotDisturbDate = {
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 ```
-
-
 
 ## Notification.setDoNotDisturbDate<sup>8+</sup>
 
@@ -2241,8 +2131,6 @@ let userId = 1
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
-
-
 ## Notification.setDoNotDisturbDate<sup>8+</sup>
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
@@ -2311,8 +2199,6 @@ function getDoNotDisturbDateCallback(err, data) {
 Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 ```
 
-
-
 ## Notification.getDoNotDisturbDate<sup>8+</sup>
 
 getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
@@ -2374,8 +2260,6 @@ let userId = 1;
 
 Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
-
-
 
 ## Notification.getDoNotDisturbDate<sup>8+</sup>
 
@@ -2444,8 +2328,6 @@ function supportDoNotDisturbModeCallback(err,data) {
 Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
 ```
 
-
-
 ## Notification.supportDoNotDisturbMode<sup>8+</sup>
 
 supportDoNotDisturbMode(): Promise\<boolean\>
@@ -2471,8 +2353,6 @@ Notification.supportDoNotDisturbMode().then((data) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.isSupportTemplate<sup>8+</sup>
 
@@ -2504,8 +2384,6 @@ function isSupportTemplateCallback(err, data) {
 Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
-
-
 ## Notification.isSupportTemplate<sup>8+</sup>
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
@@ -2536,8 +2414,6 @@ Notification.isSupportTemplate(templateName).then((data) => {
 });
 ```
 
-
-
 ## Notification.requestEnableNotification<sup>8+</sup>
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
@@ -2565,8 +2441,6 @@ function requestEnableNotificationCallback(err) {
 
 Notification.requestEnableNotification(requestEnableNotificationCallback);
 ```
-
-
 
 ## Notification.requestEnableNotification<sup>8+</sup>
 
@@ -2619,8 +2493,6 @@ let enable = true;
 
 Notification.enableDistributed(enable, enabledNotificationCallback);
 ```
-
-
 
 ## Notification.enableDistributed<sup>8+</sup>
 
@@ -2677,8 +2549,6 @@ function isDistributedEnabledCallback(err, data) {
 
 Notification.isDistributedEnabled(isDistributedEnabledCallback);
 ```
-
-
 
 ## Notification.isDistributedEnabled<sup>8+</sup>
 
@@ -2742,8 +2612,6 @@ let enable = true;
 
 Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundleCallback);
 ```
-
-
 
 ## Notification.enableDistributedByBundle<sup>8+</sup>
 
@@ -2814,8 +2682,6 @@ let bundle = {
 Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
-
-
 ## Notification.isDistributedEnabledByBundle<sup>8+</sup>
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
@@ -2884,8 +2750,6 @@ function getDeviceRemindTypeCallback(err,data) {
 
 Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
 ```
-
-
 
 ## Notification.getDeviceRemindType<sup>8+</sup>
 
@@ -3381,8 +3245,6 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 });
 ```
 
-
-
 ## NotificationSubscriber
 
 作为订阅通知接口[subscribe](#notificationsubscribe)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
@@ -3796,8 +3658,6 @@ Notification.enableNotification(bundle, false).then(() => {
 | ------ | ------ |---- | --- |  ------ |
 | bundle | string | 是  | 是  | 应用的包信息。 |
 | uid    | number | 是  | 是  | 用户ID。 |
-
-
 
 ## NotificationKey
 

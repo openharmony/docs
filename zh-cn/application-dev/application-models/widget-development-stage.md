@@ -594,6 +594,17 @@ onUpdateForm(formId) {
   };
   ```
 
+## 限制
+
+为了降低FormExtensionAbility能力被三方应用滥用的风险，在FormExtensionAbility中限制以下接口的调用
+
+- @ohos.ability.particleAbility.d.ts
+- @ohos.backgroundTaskManager.d.ts
+- @ohos.resourceschedule.backgroundTaskManager.d.ts
+- @ohos.multimedia.camera.d.ts
+- @ohos.multimedia.audio.d.ts
+- @ohos.multimedia.media.d.ts
+
 ## 相关实例
 
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：

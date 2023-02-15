@@ -81,8 +81,8 @@ module.json5配置文件包含以下标签。
 | deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，表示该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>- 当应用的entry类型Module的该字段配置为true时，该应用的feature类型的该字段也需要配置为true。<br/>- 当应用的entry类型Module的该字段配置为false时，该应用的feature类型的该字段根据业务需求配置true或false。 | 布尔值 | 该标签不可缺省。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。<br/>该标签值为字符串。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
-| uiSyntax（deprecated） | 标识当前Module&nbsp;syntax定义该JS&nbsp;Component的语法类型。<br/>-&nbsp;hml：标识该JS&nbsp;Component使用hml/css/js进行开发。<br/>-&nbsp;ets：标识该JS&nbsp;Component使用ArkTS声明式语法进行开发。 | 字符串 | 该标签可缺省，默认值为hml，该标签从API9开始废弃。 |
-| [pages](#pages标签) | 标识当前Module的profile资源，用于列举JS&nbsp;Component中每个页面信息。该标签最大长度为255个字节。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
+| uiSyntax（deprecated） | 标识当前Module&nbsp;syntax定义该组件的语法类型。<br/>-&nbsp;hml：标识该组件使用hml/css/js进行开发。<br/>-&nbsp;ets：标识该组件使用ArkTS声明式语法进行开发。 | 字符串 | 该标签可缺省，默认值为hml，该标签从API9开始废弃。 |
+| [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息。该标签最大长度为255个字节。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
 | [metadata](#metadata标签) | 标识当前Module的自定义元信息，标签值为数组类型，只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，标签值为数组类型，只对当前UIAbility生效。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，标签值为数组类型，只对当前ExtensionAbility生效。 | 对象 | 该标签可缺省，缺省值为空。 |
@@ -302,7 +302,7 @@ abilities示例：
 | host | 标识URI的主机地址部分，该字段要在schema存在时才有意义。常见的方式：<br/>-&nbsp;域名方式，如example.com。<br/>-&nbsp;IP地址方式，如10.10.10.1。 | 字符串 | 可缺省，缺省值为空。 |
 | port | 标识URI的端口部分。如http默认端口为80，https默认端口是443，ftp默认端口是21。该字段要在schema和host都存在时才有意义。 | 字符串 | 可缺省，缺省值为空。 |
 | path&nbsp;\|&nbsp;pathStartWith&nbsp;\|&nbsp;pathRegex | 标识URI的路径部分，path、pathStartWith和pathRegex配置时三选一。path标识URI与want中的路径部分全匹配，pathStartWith标识URI与want中的路径部分允许前缀匹配，pathRegex标识URI与want中的路径部分允许正则匹配。该字段要在schema和host都存在时才有意义。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识与Want相匹配的数据类型，使用[MIME](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com%E3%80%82)（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型规范。可与schema同时配置，也可以单独配置。 | 字符串 | 可缺省，缺省值为空。 |
+| type | 标识与Want相匹配的数据类型，使用MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型规范。可与schema同时配置，也可以单独配置。 | 字符串 | 可缺省，缺省值为空。 |
 
 skills示例：
 
@@ -510,7 +510,7 @@ metadata中指定shortcut信息，其中：
 | screenShape | 标识屏幕形状的支持策略。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | screenWindow | 标识应用运行时窗口的分辨率支持策略。该字段仅支持对轻量级智能穿戴设备进行配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | screenDensity | 标识屏幕的像素密度（dpi：Dot&nbsp;Per&nbsp;Inch）。该字段可选，如果配置了该字段，取值必须合法。该标签为字符串数组，字符串范围如下。<br/>-&nbsp;sdpi：表示小规模的屏幕密度（Small-scale&nbsp;Dots&nbsp;per&nbsp;Inch），适用于dpi取值为(0,120]的设备。<br/>-&nbsp;mdpi：表示中规模的屏幕密度（Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(120,160]的设备。<br/>-&nbsp;ldpi：表示大规模的屏幕密度（Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(160,240]的设备。<br/>-&nbsp;xldpi：表示大规模的屏幕密度（Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(240,320]的设备。<br/>-&nbsp;xxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(320，480]的设备。<br/>-&nbsp;xxxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(480,&nbsp;640]的设备。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| countryCode | 表示应用需要分发的国家地区码，具体值以[ISO-3166-1](resource-categories-and-access.md)标准为准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| countryCode | 表示应用需要分发的国家地区码，具体值以ISO-3166-1标准为准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
   **表10** **apiVersion标签说明**
 

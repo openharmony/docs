@@ -25,6 +25,7 @@ ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: B
 | state | [BarState](ts-appendix-enums.md#barstate) | 否 | 滚动条状态。<br/>默认值：BarState.Auto |
 
 >  **说明：**
+>
 > ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。
 > 
 > 滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。

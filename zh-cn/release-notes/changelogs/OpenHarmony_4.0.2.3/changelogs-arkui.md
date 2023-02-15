@@ -213,3 +213,142 @@
 1. 构造子组件时，不对子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量进行。
 如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
 2. @ObjectLink的使用指导请参考文档[@ObjectLink使用指导](../../../application-dev/quick-start/arkts-state-mgmt-page-level.md)。
+
+## cl.arkui.3 List组件和Scroll组件onScrollBegin事件变更
+
+List组件和Scroll组件onScrollBegin事件更名为onScrollFrameBegin事件，onScrollBegin事件中dx和dy参数分别表示X轴和Y轴方向滚动偏移量，更变为onScrollFrameBegin事件后使用offset参数表示滚动偏移量。onScrollFrameBegin事件新增ScrollState参数，用于表示当前时手指拖动滑动状态还是惯性滑动状态。
+
+**变更影响**
+
+onScrollBegin事件不能再使用，需要使用onScrollFrameBegin事件。
+
+**关键接口/组件变更**
+
+|       旧事件定义        |    新事件定义           |
+|------------------  | ------------------- | 
+| onScrollBegin(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number }) |
+
+onScrollFrameBegin事件说明参考API接口文档：
+- [Scroll组件事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-scroll.md#%E4%BA%8B%E4%BB%B6)
+- [List组件事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md#%E4%BA%8B%E4%BB%B6)
+
+**适配指导**
+
+onScrollBegin改成使用onScrollFrameBegin事件，onScrollBegin事件的dx/dy参数改成onScrollFrameBegin事件的offset参数。原本需要更滚动组件的滚动轴来确定是使用dx还dy参数，使用onScrollFrameBegin事件后，只需要直接使用offset参数。
+
+onScrollBegin事件典型使用示例：
+```ts
+@Entry
+@Component
+struct NestedScroll {
+  @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  private scrollerForScroll: Scroller = new Scroller()
+  private scrollerForList: Scroller = new Scroller()
+
+  build() {
+    Flex() {
+      Scroll(this.scrollerForScroll) {
+        Column() {
+          Text("Scroll Area")
+            .width("100%").height("40%").backgroundColor(0X330000FF)
+            .fontSize(16).textAlign(TextAlign.Center)
+            .onClick(() => {
+              this.scrollerForList.scrollToIndex(5)
+            })
+
+          List({ space: 20, scroller: this.scrollerForList }) {
+            ForEach(this.arr, (item) => {
+              ListItem() {
+                Text("ListItem" + item)
+                  .width("100%").height("100%").borderRadius(15)
+                  .fontSize(16).textAlign(TextAlign.Center).backgroundColor(Color.White)
+              }.width("100%").height(100)
+            }, item => item)
+          }
+          .width("100%")
+          .height("50%")
+          .edgeEffect(EdgeEffect.None)
+          .onReachStart(() => {
+            this.listPosition = 0
+          })
+          .onReachEnd(() => {
+            this.listPosition = 2
+          })
+          .onScrollBegin((dx: number, dy: number) => {
+            if ((this.listPosition == 0 && dy >= 0) || (this.listPosition == 2 && dy <= 0)) {
+              this.scrollerForScroll.scrollBy(0, -dy)
+              return { dxRemain: dx, dyRemain: 0 }
+            }
+            this.listPosition = 1
+            return { dxRemain: dx, dyRemain: dy };
+          })
+
+          Text("Scroll Area")
+            .width("100%").height("40%").backgroundColor(0X330000FF)
+            .fontSize(16).textAlign(TextAlign.Center)
+        }
+      }
+      .width("100%").height("100%")
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding(20)
+  }
+}
+```
+改成onScrollFrameBegin事件参考代码如下：
+```ts
+@Entry
+@Component
+struct NestedScroll {
+  @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  private scrollerForScroll: Scroller = new Scroller()
+  private scrollerForList: Scroller = new Scroller()
+
+  build() {
+    Flex() {
+      Scroll(this.scrollerForScroll) {
+        Column() {
+          Text("Scroll Area")
+            .width("100%").height("40%").backgroundColor(0X330000FF)
+            .fontSize(16).textAlign(TextAlign.Center)
+            .onClick(() => {
+              this.scrollerForList.scrollToIndex(5)
+            })
+
+          List({ space: 20, scroller: this.scrollerForList }) {
+            ForEach(this.arr, (item) => {
+              ListItem() {
+                Text("ListItem" + item)
+                  .width("100%").height("100%").borderRadius(15)
+                  .fontSize(16).textAlign(TextAlign.Center).backgroundColor(Color.White)
+              }.width("100%").height(100)
+            }, item => item)
+          }
+          .width("100%")
+          .height("50%")
+          .edgeEffect(EdgeEffect.None)
+          .onReachStart(() => {
+            this.listPosition = 0
+          })
+          .onReachEnd(() => {
+            this.listPosition = 2
+          })
+          .onScrollFrameBegin((offset: number, state: ScrollState) => {
+            if ((this.listPosition == 0 && offset >= 0) || (this.listPosition == 2 && offset <= 0)) {
+              this.scrollerForScroll.scrollBy(0, -offset)
+              return { offsetRemain: 0 }
+            }
+            this.listPosition = 1
+            return { offsetRemain: offset };
+          })
+
+          Text("Scroll Area")
+            .width("100%").height("40%").backgroundColor(0X330000FF)
+            .fontSize(16).textAlign(TextAlign.Center)
+        }
+      }
+      .width("100%").height("100%")
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding(20)
+  }
+}
+```

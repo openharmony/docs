@@ -74,6 +74,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    > **说明：**
    >
    > 调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
+   
+4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的killProcessBySelf()方法实现关闭应用所有的进程。
 
 
 ## 启动应用内的UIAbility并获取返回结果
@@ -149,11 +151,11 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 - 显式Want启动：启动一个确定应用的UIAbility，在want参数中需要设置该应用bundleName和abilityName，当需要拉起某个明确的UIAbility时，通常使用显式Want启动方式。
 
-- 隐式Want启动：根据匹配条件由用户选择启动哪一个UIAbility，即不明确指出要启动哪一个UIAbility（abilityName参数未设置），在调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，其入参want中指定了一系列的[entities](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantentity)字段（表示目标UIAbility额外的类别信息，如浏览器、视频播放器）和[actions](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantaction)字段（表示要执行的通用操作，如查看、分享、应用详情等）等参数信息，然后由系统去分析want，并帮助找到合适的UIAbility来启动。当需要拉起其他应用的UIAbility时，开发者通常不知道用户设备中应用的安装情况，也无法确定目标应用的bundleName和abilityName，通常使用隐式Want启动方式。
+- 隐式Want启动：根据匹配条件由用户选择启动哪一个UIAbility，即不明确指出要启动哪一个UIAbility（abilityName参数未设置），在调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，其入参want中指定了一系列的entities字段（表示目标UIAbility额外的类别信息，如浏览器、视频播放器）和actions字段（表示要执行的通用操作，如查看、分享、应用详情等）等参数信息，然后由系统去分析want，并帮助找到合适的UIAbility来启动。当需要拉起其他应用的UIAbility时，开发者通常不知道用户设备中应用的安装情况，也无法确定目标应用的bundleName和abilityName，通常使用隐式Want启动方式。
 
 本章节主要讲解如何通过隐式Want启动其他应用的UIAbility。
 
-1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills的[entities](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantentity)字段和[actions](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantaction)字段。
+1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills的entities字段和actions字段。
    
    ```json
    {
@@ -217,7 +219,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 当使用隐式Want启动其他应用的UIAbility并希望获取返回结果时，调用方需要使用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动目标UIAbility。例如主应用中需要启动三方支付并获取支付结果。
 
-1. 在支付应用对应UIAbility的module.json5配置文件中，配置skills的[entities](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantentity)字段和[actions](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantaction)字段。
+1. 在支付应用对应UIAbility的module.json5配置文件中，配置skills的entities字段和actions字段。
    
    ```json
    {

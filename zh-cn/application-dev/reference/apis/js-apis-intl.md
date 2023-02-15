@@ -48,9 +48,9 @@ constructor()
 **示例：** 
   ```js
   // 默认构造函数使用系统当前locale创建Locale对象
-  let locale = new Intl.Locale()
+  let locale = new Intl.Locale();
   // 返回系统当前localel
-  let localeID = locale.toString()
+  let localeID = locale.toString();
   ```
 
 
@@ -72,8 +72,8 @@ constructor(locale: string, options?: LocaleOptions)
 **示例：** 
   ```js
   // 创建 "zh-CN" Locale对象
-  let locale = new Intl.Locale("zh-CN")
-  let localeID = locale.toString() // localeID = "zh-CN"
+  let locale = new Intl.Locale("zh-CN");
+  let localeID = locale.toString(); // localeID = "zh-CN"
   ```
 
 
@@ -429,7 +429,7 @@ resolvedOptions(): NumberOptions
   // 获取NumberFormat对象配置项
   let options = numfmt.resolvedOptions();
   let style = options.style; // style = decimal
-  let notation = options.notation // notation = scientific
+  let notation = options.notation; // notation = scientific
   ```
 
 
@@ -552,7 +552,7 @@ resolvedOptions(): CollatorOptions
   // 获取Collator对象的配置项
   let options = collator.resolvedOptions();
   let usage = options.usage; // usage = "sort"
-  let ignorePunctuation = options.ignorePunctuation // ignorePunctuation = true
+  let ignorePunctuation = options.ignorePunctuation; // ignorePunctuation = true
   ```
 
 

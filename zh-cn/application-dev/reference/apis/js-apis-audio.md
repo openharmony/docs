@@ -74,7 +74,7 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -129,7 +129,7 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -348,7 +348,10 @@ async function createTonePlayerBefore(){
 | VOICE_CALL<sup>8+</sup>      | 0      | 语音电话。 |
 | RINGTONE                     | 2      | 铃声。     |
 | MEDIA                        | 3      | 媒体。     |
+| ALARM<sup>10+</sup>          | 4      | 闹钟。     |
+| ACCESSIBILITY<sup>10+</sup>  | 5      | 无障碍。   |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
+| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。<br/>此接口为系统接口。|
 | ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
 
 ## InterruptRequestResultType<sup>9+</sup>
@@ -530,7 +533,7 @@ async function createTonePlayerBefore(){
 | CONTENT_TYPE_MOVIE                 | 3      | 电影。     |
 | CONTENT_TYPE_SONIFICATION          | 4      | 通知音。   |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | 铃声。     |
-
+| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | 超声波。<br/>此接口为系统接口。|
 ## StreamUsage
 
 枚举，音频流使用类型。
@@ -541,9 +544,12 @@ async function createTonePlayerBefore(){
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。 |
 | STREAM_USAGE_MEDIA                        | 1      | 音频。     |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。 |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。 | 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。     |
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | 通知铃声。 |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | 无障碍。   |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。 |
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -4530,16 +4536,27 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf, (err, writtenbytes) => {
-  if (writtenbytes < 0) {
-    console.error('write failed.');
-  } else {
-    console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-});
+let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * this.bufferSize,
+      length: this.bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    let writeSize = await new Promise((resolve,reject)=>{
+      this.audioRenderer.write(buf,(err,writeSize)=>{
+        if(err){
+          reject(err)
+        }else{
+          resolve(writeSize)
+        }
+      })
+    })	  
+}
+
 ```
 
 ### write<sup>8+</sup>
@@ -4573,18 +4590,22 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf).then((writtenbytes) => {
-  if (writtenbytes < 0) {
-      console.error('write failed.');
-  } else {
-      console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-}).catch((err) => {
-    console.error(`ERROR: ${err}`);
-});
+let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * this.bufferSize,
+      length: this.bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    try{
+       let writeSize = await this.audioRenderer.write(buf);
+    } catch(err) {
+       console.error(`audioRenderer.write err: ${err}`);
+    }   
+}
 ```
 
 ### getAudioTime<sup>8+</sup>

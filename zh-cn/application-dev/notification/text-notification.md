@@ -45,7 +45,7 @@
    - 普通文本类型通知由标题、文本内容和附加信息三个字段组成，其中标题和文本内容是必填字段，大小均需要小于200字节。
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
@@ -59,10 +59,10 @@
       
       notificationManager.publish(notificationRequest, (err) => {
           if (err) {
-              console.error(`[ANS] failed to publish, error[${err}]`);
+              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
               return;
           }
-          console.info(`[ANS] publish success`);
+          console.info(`[ANS] publish success.`);
       });
       ```
 
@@ -71,7 +71,7 @@
    - 长文本类型通知继承了普通文本类型的字段，同时新增了长文本内容、内容概要和通知展开时的标题，其中长文本内容不超过1024字节，其他字段小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，内容为长文本内容。
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
@@ -89,10 +89,10 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err) => {
           if (err) {
-              console.error(`[ANS] failed to publish, error[${err}]`);
+              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
               return;
           }
-          console.info(`[ANS] publish success`);
+          console.info(`[ANS] publish success.`);
       });
       ```
    
@@ -101,7 +101,7 @@
    - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题，其字段均小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，多行文本内容多行显示。
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
@@ -118,7 +118,7 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err) => {
         if (err) {
-      	console.error(`[ANS] failed to publish, error[${err}]`);
+      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
       	return;
         }
         console.info(`[ANS] publish success`);
@@ -131,7 +131,7 @@
      
       ```ts
       let notificationPicture: PixelMap = undefined; // 需要获取图片PixelMap信息
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
           content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
@@ -149,10 +149,10 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err) => {
           if (err) {
-      	console.error(`[ANS] failed to publish, error[${err}]`);
+      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
       	return;
           }
-          console.info(`[ANS] publish success `);
+          console.info(`[ANS] publish success.`);
       });
       ```
    

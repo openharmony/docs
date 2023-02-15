@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-[isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
+[isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationmanagerissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
 
 | **接口名** | **描述** |
 | -------- | -------- |
@@ -35,7 +35,7 @@
      let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持支持downloadTemplate模板类通知，false表示不支持
      // ...
    }).catch((err) => {
-     console.error(`[ANS] isSupportTemplate failed, error[${err}]`);
+     console.error(`[ANS] isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -45,7 +45,7 @@
 4. 构造进度条模板对象，并发布通知。
    
    ```ts
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
      id: 1,
      content: {
        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -65,7 +65,7 @@
    // 发布通知
    notificationManager.publish(notificationRequest, (err) => {
      if (err) {
-       console.error(`[ANS] failed to publish, error[${err}]`);
+       console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
        return;
      }
      console.info(`[ANS] publish success `);

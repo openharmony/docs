@@ -1,28 +1,28 @@
-# ChangeLog of JS API Changes in the URL Subsystem
+# Utils Subsystem Changelog
 
-Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.1(Mr) has the following API changes in the URL subsystem:
+Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.1(MR) has the following API changes in the URL module of the utils subsystem.
 
-## cl.url.1 URLParams Class API Changes
-APIs in the **URLParams** class in the URL subsystem are changed:
+## cl.commonlibrary.1 URLParams Class Changes
+The constructor function of the **URLParams** class in the URL module of the utils subsystem is changed.
 
-**constructor(init?: string[][] | Record<string, string> | string | URLSearchParams)** is changed to **constructor(init?: string[][] | Record<string, string> | string | URLParams)**, and the parameter type is changed from URLSearchParams to URLParams.
+Specifically, **constructor(init?: string[][] | Record<string, string> | string | URLSearchParams)** is changed to **constructor(init?: string[][] | Record<string, string> | string | URLParams)**, and the parameter type is changed from **URLSearchParams** to **URLParams**.
 
-You need to adapt your application based on the following information.
+You need to adapt your application.
 
 **Change Impacts**
 
-JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement functions in the SDK environment of the new version.
+JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement features in the SDK environment of the new version.
 
 **Key API/Component Changes**
 
-| Module   | Class     | Method/Attribute/Enumeration/Constant                                         | Change Type|
-| :-------- | --------- | ------------------------------------------------------------ | -------- |
-| @ohos.url | URLParams | constructor(string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams) | Deleted    |
-| @ohos.url         | URLParams       | constructor(string[][] \| Record&lt;string, string&gt; \| string \| URLParams)| Changed|
+| Module                   | Class               | Method/Attribute/Enum/Constant                                         | Change Type|
+| :------------------------ | ------------------- | ------------------------------------------------------------ | -------- |
+| @ohos.url        | URLParams         | constructor(string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams) | Deleted |
+| @ohos.url         | URLParams       | constructor(string[][] \| Record&lt;string, string&gt; \| string \| URLParams)| Changed
 
 **Adaptation Guide**
 
-The following illustrates how to create a **URLParams** object in your application:
+The following illustrates how to create a **URLParams** object in your application.
 
 Example:
 
@@ -37,27 +37,27 @@ try {
     console.error(`Fail to ceate URLParams.codeis${err.code},message is ${err.message}`);
 }
 ```
-## cl.url.2 URL Attribute Changes of URLParams Class APIs
-URL attributes in the URL subsystem are changed:
+## cl.commonlibrary.2 URL Attribute Changes of URLParams Class APIs
+The URL attributes of the URL module in the utils subsystem are changed.
 
-The **searchParams: URLSearchParams** attribute is deprecated, and the **params: URLParams** attribute is added.
+Specifically, the **searchParams: URLSearchParams** attribute is deprecated, and the **params: URLParams** attribute is added.
 
-You need to adapt your application based on the following information.
+You need to adapt your application.
 
 **Change Impacts**
 
-JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement functions in the SDK environment of the new version.
+JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement features in the SDK environment of the new version.
 
 **Key API/Component Changes**
 
-| Module   | Class| Method/Attribute/Enumeration/Constant           | Change Type       |
-| :-------- | ---- | ------------------------------ | --------------- |
-| @ohos.url | URL  | searchParams: URLSearchParams; | Deprecated (in API version 9)<br>|
-| @ohos.url | URL  | params: URLParams;             | Added           |
+| Module                   | Class               | Method/Attribute/Enum/Constant                                         | Change Type|
+| :------------------------ | ------------------- | ------------------------------------------------------------ | -------- |
+| @ohos.url        | URL         |  searchParams: URLSearchParams; |Deprecated (in API version 9)<br>   |
+| @ohos.url        | URL         |  params: URLParams; | Added    |
 
 **Adaptation Guide**
 
-The following illustrates how to create a **URLParams** object in your application:
+The following illustrates how to create a **URLParams** object in your application.
 
 Example:
 

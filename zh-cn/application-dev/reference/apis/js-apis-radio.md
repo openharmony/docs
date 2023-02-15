@@ -30,6 +30,17 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | 是   | 回调函数。                             |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -62,6 +73,17 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 | ------------------------------------------------------------ | ----------------------------------------------- |
 | Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | 以Promise形式返回获取当前接入的CS域和PS域技术。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -91,6 +113,17 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 | -------- | ---------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -116,6 +149,17 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -149,6 +193,17 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 | ---------------------------------------- | --------------------------- |
 | Promise\<[NetworkState](#networkstate)\> | 以Promise形式返回网络状态。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -176,6 +231,16 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -207,6 +272,16 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 | -------------------------------------------------------- | ------------------------------- |
 | Promise\<[NetworkSelectionMode](#networkselectionmode)\> | 以Promise形式返回当前选网模式。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -234,6 +309,16 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -265,6 +350,16 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -292,6 +387,16 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<number\> | 是   | 回调函数 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -314,6 +419,16 @@ getPrimarySlotId\(\): Promise\<number\>
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | 以Promise形式返回获取设备主卡所在卡槽的索引号的结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -341,6 +456,16 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回[SignalInformation](#signalinformation)对象的数组。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -371,6 +496,16 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -509,6 +644,17 @@ isRadioOn\(callback: AsyncCallback<boolean\>\): void
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -534,6 +680,17 @@ isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                  |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -567,6 +724,17 @@ isRadioOn\(slotId?: number\): Promise<boolean\>
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回判断Radio是否打开的结果。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -594,6 +762,16 @@ getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 | callback | AsyncCallback\<string\> | 是   | 回调函数，返回运营商名称，例如：中国移动。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -625,6 +803,16 @@ getOperatorName\(slotId: number\): Promise<string\>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回运营商名称，例如：中国移动。                |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -655,6 +843,18 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -690,6 +890,18 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -720,6 +932,17 @@ getIMEI(callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -747,6 +970,17 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -782,6 +1016,17 @@ getIMEI(slotId?: number): Promise<string\>
 | ----------------- | ------------------------------------------ |
 | Promise\<string\> | 以Promise形式异步返回IMEI；如果IMEI不存在，则返回空字符串。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -812,6 +1057,17 @@ getMEID(callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -839,6 +1095,17 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -874,6 +1141,17 @@ getMEID(slotId?: number): Promise<string\>
 | ----------------- | --------------------------------------- |
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的MEID。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -904,6 +1182,17 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -931,6 +1220,17 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -966,6 +1266,17 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 | ----------------- | --------------------------------------------- |
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的唯一设备ID。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -996,6 +1307,17 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1022,6 +1344,17 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 | -------- | --------------------- | ---- | ---------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1056,6 +1389,17 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1086,6 +1430,17 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1113,6 +1468,17 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。               |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1148,6 +1514,17 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 | ------------------------------------------------------- | ----------------------- |
 | Promise\<Array<[CellInformation](#cellinformation8)\>\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1178,6 +1555,17 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 | -------- | ----------------------------------------------------------- | ---- | ------------------ |
 | options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | 是   | 网络选择模式选项。 |
 | callback | AsyncCallback\<void\>                                       | 是   | 回调函数。         |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1223,6 +1611,17 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1265,6 +1664,17 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。           |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1297,6 +1707,17 @@ getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 | ------------------------------------------------------ | ----------------------- |
 | Promise\<[NetworkSearchResult](#networksearchresult)\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1324,6 +1745,16 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 | -------- | ----------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1349,6 +1780,16 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 | -------- | ----------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1382,6 +1823,16 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 | ----------------------------------------- | ----------------------- |
 | Promise\<[NrOptionMode](#nroptionmode8)\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1412,6 +1863,17 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1439,6 +1901,17 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1474,6 +1947,17 @@ turnOnRadio(slotId?: number): Promise<void\>
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1504,6 +1988,17 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1531,6 +2026,17 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1566,6 +2072,17 @@ turnOffRadio(slotId?: number): Promise<void\>
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1597,6 +2114,17 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 | slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式。                       |
 | callback    | AsyncCallback\<void\>                          | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1631,6 +2159,17 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1656,10 +2195,21 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                   |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1693,6 +2243,17 @@ getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1723,6 +2284,17 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 | slotId   | number                                     | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | imsType  | [ImsServiceType](#imsservicetype9)         | 是   | IMS服务类型。                          |
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1757,6 +2329,17 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 | ------------------------------------- | ----------------------- |
 | Promise\<[ImsRegInfo](#imsreginfo9)\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1789,6 +2372,17 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 | imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 是   | 回调函数。                             |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1817,6 +2411,17 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 | slotId   | number                               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1855,11 +2460,11 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-|    名称     |           类型              | 必填 |      说明          |
-| ----------- | --------------------------- | ---- | ----------------- |
-| signalType  | [NetworkType](#networktype) | 是   | 网络信号强度类型。 |
-| signalLevel | number                      | 是   | 网络信号强度等级。 |
-
+|      名称       |           类型              | 必填 |      说明          |
+| --------------- | --------------------------- | ---- | ------------------ |
+| signalType      | [NetworkType](#networktype) | 是   | 网络信号强度类型。 |
+| signalLevel     | number                      | 是   | 网络信号强度等级。 |
+| dBm<sup>9+</sup>| number                      | 是   | 网络信号强度。     |
 
 ## NetworkType
 

@@ -36,6 +36,8 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -48,7 +50,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 //subscribe回调
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe success");
     }
@@ -86,6 +88,8 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -97,7 +101,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 ```js
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe success");
     }
@@ -133,6 +137,8 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息。   |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -177,6 +183,8 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -188,7 +196,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 ```js
 function unsubscribeCallback(err) {
     if (err) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("unsubscribe success");
     }
@@ -221,6 +229,8 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 | subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -265,6 +275,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -278,7 +290,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 ```js
 function removeCallback(err) {
     if (err) {
-        console.info("remove failed " + JSON.stringify(err));
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("remove success");
     }
@@ -317,6 +329,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | reason          | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -364,6 +378,8 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -378,7 +394,7 @@ let hashCode = 'hashCode';
 
 function removeCallback(err) {
     if (err) {
-        console.info("remove failed " + JSON.stringify(err));
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("remove success");
     }
@@ -407,6 +423,8 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -446,6 +464,8 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -458,7 +478,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -489,6 +509,8 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -500,7 +522,7 @@ removeAll(callback: AsyncCallback\<void\>): void
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -528,6 +550,8 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 | bundle | [BundleOption](#bundleoption) | 否   | 指定应用的包信息。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -566,6 +590,8 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -578,7 +604,7 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -609,6 +635,8 @@ removeAll(userId: number): Promise\<void>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -621,7 +649,7 @@ removeAll(userId: number): Promise\<void>
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -659,7 +687,7 @@ onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -699,7 +727,7 @@ onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -739,7 +767,7 @@ onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -771,7 +799,7 @@ onConnect?:() => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -803,14 +831,14 @@ onDisconnect?:() => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
 };
 function unsubscribeCallback(err) {
     if (err.code) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("unsubscribeCallback");
     }
@@ -849,7 +877,7 @@ onDestroy?:() => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -887,7 +915,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -926,7 +954,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -940,6 +968,46 @@ function onEnabledNotificationChangedCallback(callbackData) {
 
 let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
+
+### onBadgeChanged<sup>10+</sup>
+
+ onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata)) => void
+
+监听应用角标个数变化。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata)\> | 是   | 回调返回监听到的应用信息。 |
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err) {
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onBadgeChangedCallback(data) {
+    console.info("bundle: ", data.bundle);
+    console.info("uid: ", data.uid);
+    console.info("badgeNumber: ", data.badgeNumber);
+};
+
+let subscriber = {
+    onBadgeChanged: onBadgeChangedCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -1054,3 +1122,15 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
 | CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
+
+## BadgeNumberCallbackData<sup>10+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 名称        | 类型   | 可读 | 可写 | 描述         |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundle      | string | 是   | 否   | 应用的包名。 |
+| uid         | number | 是   | 否   | 应用的uid。  |
+| badgeNumber | number | 是   | 否   | 角标个数。   |

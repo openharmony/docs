@@ -35,12 +35,12 @@ on(type: "error", observer: ErrorObserver): number;
 **示例：**
     
 ```ts
-var observer = {
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
     }
 }
-var observerId = -1;
+let observerId = -1;
 try {
     observerId = errorManager.on("error", observer);
 } catch (paramError) {
@@ -67,7 +67,7 @@ off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
 **示例：**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 
 function unregisterErrorObserverCallback(err) {
     if (err) {
@@ -105,7 +105,7 @@ off(type: "error", observerId: number): Promise\<void>;
 **示例：**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 try {
     errorManager.off("error", observerId)
         .then((data) => {

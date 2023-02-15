@@ -441,7 +441,7 @@ function crlEntrySample() {
     }
 
     // 获取被吊销证书的序列号
-    let serialNumber = crlEntry.getSerialNumber();
+    serialNumber = crlEntry.getSerialNumber();
     
     // 获取被吊销证书的吊销日期
     try {

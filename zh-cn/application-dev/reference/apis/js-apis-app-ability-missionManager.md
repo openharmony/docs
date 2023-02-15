@@ -46,7 +46,7 @@ on(type:"mission", listener: MissionListener): number;
 import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var listener = {
+let listener = {
     onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
     onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
     onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
@@ -56,7 +56,7 @@ var listener = {
     onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
 };
 
-var listenerId = -1;
+let listenerId = -1;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -128,7 +128,7 @@ off(type: "mission", listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var listener = {
+let listener = {
     onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
     onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
     onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
@@ -138,7 +138,7 @@ var listener = {
     onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
 };
 
-var listenerId = -1;
+let listenerId = -1;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -215,7 +215,7 @@ off(type: "mission", listenerId: number): Promise&lt;void&gt;;
 import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var listener = {
+let listener = {
     onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
     onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
     onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
@@ -225,7 +225,7 @@ var listener = {
     onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
 };
 
-var listenerId = -1;
+let listenerId = -1;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -299,7 +299,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
   let testMissionId = 1;
   try {
-    var allMissions=await missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
+    let allMissions=await missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
     if (allMissions && allMissions.length > 0) {
         testMissionId = allMissions[0].missionId;
     }

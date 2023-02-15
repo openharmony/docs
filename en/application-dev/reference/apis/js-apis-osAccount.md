@@ -84,13 +84,13 @@ Activates an OS account. This API uses an asynchronous callback to return the re
   try {
     accountManager.activateOsAccount(localId, (err)=>{
       if (err) {
-        console.log("activateOsAccount failed, error:" + JSON.stringify(err));
+        console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
         console.log("activateOsAccount successfully");
       }
     });
   } catch (err) {
-    console.log("activateOsAccount exception:" + JSON.stringify(err));
+    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -170,13 +170,13 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
   try {
     accountManager.checkMultiOsAccountEnabled((err, isEnabled) => {
       if (err) {
-        console.log("checkMultiOsAccountEnabled failed, error: " + JSON.stringify(err));
+        console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
       } else {
       console.log("checkMultiOsAccountEnabled successfully, isEnabled: " + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkMultiOsAccountEnabled exception: " + JSON.stringify(err));
+    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -208,10 +208,10 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
     accountManager.checkMultiOsAccountEnabled().then((isEnabled) => {
       console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err) => {
-      console.log('checkMultiOsAccountEnabled failed, error: '  + JSON.stringify(err));
+      console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.log('checkMultiOsAccountEnabled exception: ' + JSON.stringify(err));
+    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -3604,7 +3604,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the ID of the distributed virtual device. This API uses an asynchronous callback to return the result.
+Obtains the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3634,7 +3634,7 @@ Obtains the ID of the distributed virtual device. This API uses an asynchronous 
 
 getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
-Obtains the ID of the distributed virtual device. This API uses a promise to return the result.
+Obtains the ID of this distributed virtual device. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4323,13 +4323,13 @@ Unregisters this PIN inputer.
   pinAuth.unregisterInputer();
   ```
 
-### InputerManager <sup>10+</sup>
+## InputerManager <sup>9+</sup>
 
 Provides APIs for managing credential inputers.
 
-### registerInputer<sup>10+</sup>
+### registerInputer<sup>9+</sup>
 
-registerInputer(authType: AuthType, inputer: IInputer): void;
+static registerInputer(authType: AuthType, inputer: IInputer): void
 
 Register a credential inputer.
 
@@ -4357,11 +4357,10 @@ Register a credential inputer.
 
 **Example**
   ```js
-  let inputerMgr = new account_osAccount.InputerManager();
   let authType = account_osAccount.AuthType.DOMAIN;
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    inputerMgr.registerInputer(authType, {
+    account_osAccount.InputerManager.registerInputer(authType, {
         onGetData: (authSubType, callback) => {
           callback.onSetData(authSubType, password);
         }
@@ -4372,9 +4371,9 @@ Register a credential inputer.
   }
   ```
 
-### unregisterInputer<sup>10+</sup>
+### unregisterInputer<sup>9+</sup>
 
-unregisterInputer(authType: AuthType): void;
+static unregisterInputer(authType: AuthType): void
 
 Unregisters this credential inputer.
 
@@ -4398,13 +4397,126 @@ Unregisters this credential inputer.
 
 **Example**
   ```js
-  let inputerMgr = new account_osAccount.InputerManager();
   let authType = account_osAccount.AuthType.DOMAIN;
   try {
-    inputerMgr.unregisterInputer(authType);
+    account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
     console.log("unregisterInputer err:" + JSON.stringify(err));
+  }
+  ```
+
+## DomainPlugin<sup>9+</sup>
+
+Provides APIs for domain account authentication.
+
+**System API**: This is a system API.
+
+### auth<sup>9+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+Authenticates a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| credential   | Uint8Array  | Yes  | Credentials of the domain account.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainInfo, credential, callback) => {
+      // mock authentication
+      callback.onResult(0, {});
+    }
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin);
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, {
+      onResult: (resultCode, authResult) => {
+          console.log('auth resultCode = ' + resultCode);
+          console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+## DomainAccountManager <sup>9+</sup>
+Provides APIs for domain account management.
+
+### registerPlugin<sup>9+</sup>
+
+static registerPlugin(plugin: DomainPlugin): void
+
+Registers a domain plug-in.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| plugin   | [DomainPlugin](#domainplugin9)  | Yes | Domain plug-in to register.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300201 | The domain plugin has been registered. |
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainInfo, credential, callback) => {
+      // mock authentication
+      callback.onResult(0, {});
+    }
+  }
+  try {
+    account_osAccount.DomainAccountManager.registerPlugin(plugin);
+    console.log('registerPlugin success.');
+  } catch(err) {
+    console.log("registerPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### unregisterPlugin<sup>9+</sup>
+
+static unregisterPlugin(): void
+
+Unregisters this domain plug-in.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Example**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.unregisterPlugin();
+    console.log('unregisterPlugin success.');
+  } catch(err) {
+    console.log("unregisterPlugin err:" + JSON.stringify(err));
   }
   ```
 

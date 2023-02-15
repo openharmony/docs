@@ -69,7 +69,7 @@ This topic describes how to use the context in the following scenarios:
 - [Obtaining the Application Development Path](#obtaining-the-application-development-path)
 - [Obtaining and Modifying Encrypted Areas](#obtaining-and-modifying-encrypted-areas)
 - [Creating Context of Another Application or Module](#creating-context-of-another-application-or-module)
-- [Subscribing to Ability Lifecycle Changes in a Process](#subscribing-to-ability-lifecycle-changes-in-a-process)
+- [Subscribing to UIAbility Lifecycle Changes in a Process](#subscribing-to-uiability-lifecycle-changes-in-a-process)
 
 
 ### Obtaining the Application Development Path
@@ -111,7 +111,7 @@ The capability of obtaining the application development path is provided by the 
   | bundleCodeDir | {Path prefix}/el1/bundle/|
   | cacheDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/cache/|
   | filesDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/files/|
-  | preferencesDir | {path prefix}/{encryption level}/base/**haps/{moduleName}**/preferences/|
+  | preferencesDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/preferences/|
   | tempDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/temp/|
   | databaseDir | {Path prefix}/{Encryption level}/database/**{moduleName}**/|
   | distributedFilesDir | {Path prefix}/el2/distributedFiles/**{moduleName}**/|
@@ -136,6 +136,9 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+> **NOTE**
+>
+> The sample code obtains the sandbox path of the application development path. The absolute path can be obtained by running the **find / -name <fileName>** command in the hdc shell after file creation or modification.
 
 ### Obtaining and Modifying Encrypted Areas
 
@@ -177,8 +180,10 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   >
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
   >
+  > - This is a system API and cannot be called by third-party applications. 
+  > 
   > - This is a system API and cannot be called by third-party applications.
-  
+
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
   
   ```ts
@@ -194,6 +199,7 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   }
   ```
   
+
 - Call **createModuleContext(bundleName:string, moduleName:string)** to obtain the context of a specified module of another application. After obtaining the context, you can obtain the resource information of that module.
   > **NOTE**
   >
@@ -202,7 +208,9 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
   >
   > - This is a system API and cannot be called by third-party applications.
-  
+  > 
+  > - This is a system API and cannot be called by third-party applications.
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -231,11 +239,11 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   ```
 
 
-### Subscribing to Ability Lifecycle Changes in a Process
+### Subscribing to UIAbility Lifecycle Changes in a Process
 
-In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to ability lifecycle changes.
+In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to UIAbility lifecycle changes.
 
-When the ability lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered, and a listener ID is returned. The ID is incremented by 1 each time the listener is registered. When the number of listeners exceeds the upper limit (2^63-1), -1 is returned. The following uses [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) as an example.
+[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered, and a listener ID is returned. The ID is incremented by 1 each time the listener is registered. When the number of listeners exceeds the upper limit (2^63-1), -1 is returned. The following uses [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) as an example.
 
 
 ```ts
@@ -249,36 +257,36 @@ export default class EntryAbility extends UIAbility {
 
     onCreate(want, launchParam) {
         let abilityLifecycleCallback = {
-            onAbilityCreate(ability) {
-                console.info(TAG, "onAbilityCreate ability:" + JSON.stringify(ability));
+            onAbilityCreate(uiability) {
+                console.info(TAG, "onAbilityCreate uiability:" + JSON.stringify(uiability));
             },
-            onWindowStageCreate(ability, windowStage) {
-                console.info(TAG, "onWindowStageCreate ability:" + JSON.stringify(ability));
+            onWindowStageCreate(uiability, windowStage) {
+                console.info(TAG, "onWindowStageCreate uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageCreate windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageActive(ability, windowStage) {
-                console.info(TAG, "onWindowStageActive ability:" + JSON.stringify(ability));
+            onWindowStageActive(uiability, windowStage) {
+                console.info(TAG, "onWindowStageActive uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageActive windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageInactive(ability, windowStage) {
-                console.info(TAG, "onWindowStageInactive ability:" + JSON.stringify(ability));
+            onWindowStageInactive(uiability, windowStage) {
+                console.info(TAG, "onWindowStageInactive uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageInactive windowStage:" + JSON.stringify(windowStage));
             },
-            onWindowStageDestroy(ability, windowStage) {
-                console.info(TAG, "onWindowStageDestroy ability:" + JSON.stringify(ability));
+            onWindowStageDestroy(uiability, windowStage) {
+                console.info(TAG, "onWindowStageDestroy uiability:" + JSON.stringify(uiability));
                 console.info(TAG, "onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));
             },
-            onAbilityDestroy(ability) {
-                console.info(TAG, "onAbilityDestroy ability:" + JSON.stringify(ability));
+            onAbilityDestroy(uiability) {
+                console.info(TAG, "onAbilityDestroy uiability:" + JSON.stringify(uiability));
             },
-            onAbilityForeground(ability) {
-                console.info(TAG, "onAbilityForeground ability:" + JSON.stringify(ability));
+            onAbilityForeground(uiability) {
+                console.info(TAG, "onAbilityForeground uiability:" + JSON.stringify(uiability));
             },
-            onAbilityBackground(ability) {
-                console.info(TAG, "onAbilityBackground ability:" + JSON.stringify(ability));
+            onAbilityBackground(uiability) {
+                console.info(TAG, "onAbilityBackground uiability:" + JSON.stringify(uiability));
             },
-            onAbilityContinue(ability) {
-                console.info(TAG, "onAbilityContinue ability:" + JSON.stringify(ability));
+            onAbilityContinue(uiability) {
+                console.info(TAG, "onAbilityContinue uiability:" + JSON.stringify(uiability));
             }
         }
         // 1. Obtain the application context through the context attribute.

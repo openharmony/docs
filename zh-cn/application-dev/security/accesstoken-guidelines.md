@@ -149,11 +149,14 @@
            atManager.requestPermissionsFromUser(context, permissions).then((data) => {
                console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
                let grantStatus: Array<number> = data.authResults;
-               if (grantStatus[0] === -1) {
-                   // 授权失败
-               } else {
-                   // 授权成功
+               let length: number = grantStatus.length;
+               for (let i = 0; i < length; i++) {
+                   if (grantStatus[i] !== 0) {
+                       // 授权失败
+                       return;
+                   }
                }
+               // 授权成功
            }).catch((err) => {
                console.error(`[requestPermissions] Failed to start request permissions. Error: ${JSON.stringify(err)}`);
            })
@@ -179,11 +182,14 @@
        atManager.requestPermissionsFromUser(context, permissions).then((data) => {
          console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
          let grantStatus: Array<number> = data.authResults;
-         if (grantStatus[0] === -1) {
-           // 授权失败
-         } else {
-           // 授权成功
+         let length: number = grantStatus.length;
+         for (let i = 0; i < length; i++) {
+           if (grantStatus[i] !== 0) {
+             // 授权失败
+             return;
+           }
          }
+         // 授权成功
        }).catch((err) => {
          console.error(`[requestPermissions] Failed to start request permissions. Error: ${JSON.stringify(err)}`);
        })
@@ -201,12 +207,13 @@
 通过调用[requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7)接口向用户动态申请授权。
 
 ```js
-// Ability的onWindowStageCreate()生命周期
-onWindowStageCreate() {
-    let context = this.context;
+import featureAbility from '@ohos.ability.featureAbility';
+
+reqPermissions() {
+    let context = featureAbility.getContext();
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    context.requestPermissionsFromUser(array).then(function(data) {
+    context.requestPermissionsFromUser(array, 1).then(function(data) {
         console.log("data:" + JSON.stringify(data));
         console.log("data permissions:" + JSON.stringify(data.permissions));
         console.log("data result:" + JSON.stringify(data.authResults));

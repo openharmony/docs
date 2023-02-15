@@ -31,7 +31,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。                              |
 | updateEnabled  | boolean               | 是    | 否     | 卡片是否使能更新。                    |
 | formVisibleNotify  | boolean        | 是    | 否     | 卡片是否使能可见通知。            |
-| relatedBundleName | string               | 是    | 否     | 卡片所属的相关联Bundle名称。           |
 | scheduledUpdateTime        | string               | 是    | 否     | 卡片更新时间。     |
 | formConfigAbility | string               | 是    | 否     | 卡片配置ability。指定长按卡片弹出的选择框内，编辑选项所对应的ability。   |
 | updateDuration        | number       | 是    | 否     | 卡片更新周期。 |

@@ -29,7 +29,7 @@
 
 **restartApp:** 调用后框架会杀死当前应用进程，并重新拉起处于前台的Ability，其中启动原因为APP_RECOVERY。
 
-### 框架故障管理理流程示意
+### 框架故障管理流程示意
 
 故障管理是应用提升用户体验的重要手段。应用程序框架为开发者提供了故障监听、故障恢复、以及故障查询三种方式来管理应用的故障。
 
@@ -39,7 +39,7 @@
 
 - 故障查询指的是[faultLogger](../reference/apis/js-apis-faultLogger.md)通过其查询接口获取当前的故障信息。
 
-下图中并没有标记[faultLogger](../reference/apis/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis/js-apis-application-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis/js-apis-faultLogger.md)查询上次的故障信息。
+下图中并没有标记[faultLogger](../reference/apis/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis/js-apis-faultLogger.md)查询上次的故障信息。
 ![故障处理流程示意](./figures/20221106203527.png)
 这里建议应用开发者使用[errorManager](../reference/apis/js-apis-application-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。
 如果开发者没有注册[ErrorObserver](../reference/apis/js-apis-application-errorManager.md#errorobserver)也没有使能自动恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。
@@ -133,7 +133,7 @@ callback触发appRecovery.saveAppState()调用后，会触发EntryAbility的onSa
 
 - 数据恢复
 
-callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到EntryAbility的onSaveState(state, wantParams)函数，保存的数据会在want参数的parameters里。
+callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到EntryAbility的onCreate(want, launchParam)函数，保存的数据会在want参数的parameters里。
 
 ```ts
 storage: LocalStorage

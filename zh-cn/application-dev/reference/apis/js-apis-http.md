@@ -103,6 +103,22 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 | url      | string                                         | 是   | 发起网络请求的URL地址。 |
 | callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。              |
 
+**错误码：**
+
+| 错误码ID   | 错误信息                                                  |
+|---------|-------------------------------------------------------|
+| 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
+| 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300007 | Couldn't connect to server.                           |
+| 2300028 | Timeout was reached.                                  |
+| 2300052 | Server returned nothing (no headers, no data).        |
+| 2300999 | Unknown Other Error.                                  |
+
+>**错误码说明：**
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-http.md)。
+> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+
 **示例：**
 
 ```js
@@ -135,6 +151,46 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 | url      | string                                         | 是   | 发起网络请求的URL地址。                         |
 | options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
 | callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                                                  |
+|---------|-------------------------------------------------------|
+| 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
+| 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
+| 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
+| 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
+| 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
+| 2300999 | Unknown Other Error.                                  |
+
+>**错误码说明：**
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-http.md)。
+> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
 
@@ -184,6 +240,45 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 | :------------------------------------- | :-------------------------------- |
 | Promise<[HttpResponse](#httpresponse)> | 以Promise形式返回发起请求的结果。 |
 
+**错误码：**
+
+| 错误码ID   | 错误信息                                                  |
+|---------|-------------------------------------------------------|
+| 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
+| 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
+| 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
+| 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
+| 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
+| 2300999 | Unknown Other Error.                                  |
+
+>**错误码说明：**
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-http.md)。
+> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html) 
 
 **示例：**
 
@@ -438,9 +533,9 @@ request方法回调函数的返回值类型。
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>6+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
-| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response常用错误码)。 |
+| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
-| cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
+| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
 
 ## http.createHttpResponseCache<sup>9+</sup>
 
@@ -571,17 +666,6 @@ httpResponseCache.delete().then(() => {
   console.log('delete fail');
 });
 ```
-
-## Response常用错误码
-
-| 错误码 | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| -1     | 参数错误。检查参数的个数与类型是否正确。                           |
-| 3      | URL格式错误。检查URL的格式与语法是否正确。                         |
-| 4      | 构建时无法找到内置的请求功能、协议或选项。一个功能或选项是不启用或明确禁用时，为了得到它的功能，你需要得到一个重建的libcurl。              |
-| 5      | 无法解析代理，指定的代理服务器主机无法解析。建议排查：1、url地址是否正确。2、联网是否正常，网络是否可以和外部进行通信。3、是否有网络访问权限。  |
-| 6      | 无法解析主机，指定的远程主机无法解析。建议排查：1、url地址是否正确。2、联网是否正常，网络是否可以和外部进行通信。3、是否有网络访问权限。       |
-| 7      | 无法连接代理或主机。建议排查：1、端口号是否有问题。 2、查看本地是否开启http的代理影响的。                                    |
 
 ## HttpDataType<sup>9+</sup>
 

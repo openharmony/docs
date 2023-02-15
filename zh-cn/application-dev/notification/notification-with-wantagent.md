@@ -96,7 +96,7 @@
 
    ```typescript
    // 构造NotificationRequest对象
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
        content: {
            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
            normal: {
@@ -112,7 +112,7 @@
    
    notificationManager.publish(notificationRequest, (err) => {
        if (err) {
-           console.error(`[ANS] failed to publish, error[${err}]`);
+           console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
            return;
        }
        console.info(`[ANS] publish success`);

@@ -78,6 +78,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | deviceType             | [DeviceType](#devicetype) | 是    | 设备类型。    |
 | networkId<sup>8+</sup> | string                    | 是    | 设备网络标识。  |
 | range<sup>9+</sup>     | number                    | 是    | 发现设备的距离。  |
+| authForm<sup>10+</sup> | [AuthForm](#authform)     | 是    | 设备认证类型  |
 
 ## DeviceType
 
@@ -95,6 +96,18 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | CAR          | 0x83 | 车    |
 | UNKNOWN_TYPE | 0    | 未知设备 |
 
+## AuthForm
+
+表示设备认证类型的枚举类。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+
+| 名称                 | 值  | 说明             |
+| ------------------- | ---- | --------------- |
+| INVALID_TYPE        | -1   | 设备没有认证 |
+| PEER_TO_PEER        | 0    | 无账号设备点对点认证   |
+| IDENTICAL_ACCOUNT   | 1    | 设备同账号认证   |
+| ACROSS_ACCOUNT      | 2    | 设备跨账号认证 |
 
 ## DeviceStateChangeAction
 
