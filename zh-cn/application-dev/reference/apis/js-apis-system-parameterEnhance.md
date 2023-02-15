@@ -1,4 +1,4 @@
-# @ohos.systemParameterV9 (系统属性)
+# @ohos.systemParameterEnhance (系统参数)
 
 系统参数（SystemParameter）是为各系统服务提供的简单易用的键值对访问接口，各个系统服务可以定义系统参数来描述该服务的状态信息，或者通过系统参数来改变系统服务的行为。其基本操作原语为get和set，通过get可以查询系统参数的值，通过set可以修改系统参数的值。
 详细的系统参数设计原理及定义可参考
@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemParameterV9'
+import systemparameter from '@ohos.systemParameterEnhance'
 ```
 
 ## systemparameter.getSync
