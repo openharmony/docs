@@ -321,6 +321,7 @@ zh-cn/application-dev/reference/apis/js-apis-data-DataShareResultSet.md @feng-ai
 zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-preferences.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-rdb.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-data-relationStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-resultset.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-ValuesBucket.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
@@ -462,7 +463,9 @@ zh-cn/application-dev/reference/apis/js-apis-uitest.md @inter515 @ningningW @int
 zh-cn/application-dev/reference/apis/js-apis-update.md @hughes802 @ningningW @zhangzhengxue @mamba-ting
 zh-cn/application-dev/reference/apis/js-apis-uri.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-url.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
+zh-cn/application-dev/reference/apis/js-apis-usbManager.md @jasonyujia @ge-yafang @andeszhang @liuhonggang123
 zh-cn/application-dev/reference/apis/js-apis-usb.md @jasonyujia @ge-yafang @andeszhang @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-usb-deprecated.md @jasonyujia @ge-yafang @andeszhang @liuhonggang123
 zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-util.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-vector.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
@@ -548,7 +551,6 @@ zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @ningnin
 zh-cn/application-dev/reference/apis/js-apis-system-capability.md taiyipei  taiyipei BlackStone
 zh-cn/application-dev/reference/apis/js-apis-system-parameterV9.md @mupceet @zengyawen @handyohos @nan-xiansen
 zh-cn/application-dev/reference/apis/js-apis-tagSession.md @cheng_guohong @RayShih @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-usb-deprecated.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-userFileManager.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 
