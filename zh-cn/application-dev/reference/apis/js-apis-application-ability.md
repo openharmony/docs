@@ -326,7 +326,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+  | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
   | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
@@ -411,8 +411,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
       return true;
     }
   };
-  var method = 'call_Function'; // 约定的通知消息字符串
-  var caller;
+  let method = 'call_Function'; // 约定的通知消息字符串
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -495,8 +495,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
       return true;
     }
   };
-  var method = 'call_Function';
-  var caller;
+  let method = 'call_Function';
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -546,7 +546,7 @@ release(): void;
     
   ```ts
   import Ability from '@ohos.application.Ability';
-  var caller;
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -587,7 +587,7 @@ release(): void;
     
   ```ts
   import Ability from '@ohos.application.Ability';
-  var caller;
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -665,7 +665,7 @@ on(method: string, callback: CalleeCallBack): void;
           return true;
       }
   };
-  var method = 'call_Function';
+  let method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble("test", "");
@@ -712,7 +712,7 @@ off(method: string): void;
     
   ```ts
   import Ability from '@ohos.application.Ability';
-  var method = 'call_Function';
+  let method = 'call_Function';
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');

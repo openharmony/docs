@@ -51,7 +51,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 ```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
-var config = {
+let config = {
   language: 'chinese' 
 }
 
@@ -87,7 +87,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 ```ts
 import abilitymanager from '@ohos.application.abilityManager';
 
-var config = {
+let config = {
   language: 'chinese' 
 }
 
