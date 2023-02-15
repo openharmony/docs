@@ -64,6 +64,7 @@ function func(args) {
     console.log("func: " + args);
     return args;
 }
+
 let task = new taskpool.Task(func, "this is my first Task");
 ```
 
@@ -116,7 +117,12 @@ function func(args) {
     return args;
 }
 
-let value = taskpool.execute(func, 100);
+async function taskpoolTest() {
+  let value = await taskpool.execute(func, 100);
+  console.log("taskpool result: " + value);
+}
+
+taskpoolTest();
 ```
 
 ## taskpool.execute
@@ -158,8 +164,14 @@ function func(args) {
     console.log("func: " + args);
     return args;
 }
-let task = new taskpool.Task(func, "this is my first Task");
-let value = taskpool.execute(task);
+
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+  let value = await taskpool.execute(task);
+  console.log("taskpool result: " + value);
+}
+
+taskpoolTest();
 ```
 
 ## taskpool.cancel
@@ -193,9 +205,14 @@ function func(args) {
     console.log("func: " + args);
     return args;
 }
-let task = new taskpool.Task(func, "this is first Task");
-let value = taskpool.execute(task);
-taskpool.cancel(task);
+
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+  let value = await taskpool.execute(task);
+  taskpool.cancel(task);
+}
+
+taskpoolTest();
 ```
 
 ## 其他说明
@@ -214,10 +231,18 @@ function func(args) {
     return args;
 }
 
-let task = new taskpool.Task(func, "create task, then execute");
-let val1 = taskpool.execute(task);
+async function taskpoolTest() {
+  // taskpool.execute(task)
+  let task = new taskpool.Task(func, "create task, then execute");
+  let val1 = await taskpool.execute(task);
+  console.log("taskpool.execute(task) result: " + val1);
 
-let val2 = taskpool.execute(func, "execute task by func");
+  // taskpool.execute(function)
+  let val2 = await taskpool.execute(func, "execute task by func");
+  console.log("taskpool.execute(function) result: " + val2);
+}
+
+taskpoolTest();
 ```
 
 ```js
@@ -226,7 +251,7 @@ let val2 = taskpool.execute(func, "execute task by func");
 // b.ts
 export var c = 2000;
 
-// a.ts
+// a.ts(与b.ts同目录)
 import { c } from './b'
 
 function test(a) {
@@ -236,8 +261,16 @@ function test(a) {
     return a;
 }
 
-let task = new taskpool.Task(test, "create task, then execute");
-let val1 = taskpool.execute(task);
+async function taskpoolTest() {
+  // taskpool.execute(task)
+  let task = new taskpool.Task(test, "create task, then execute");
+  let val1 = await taskpool.execute(task);
+  console.log("taskpool.execute(task) result: " + val1);
 
-let val2 = taskpool.execute(test, "execute task by func");
+  // taskpool.execute(function)
+  let val2 = await taskpool.execute(test, "execute task by func");
+  console.log("taskpool.execute(function) result: " + val2);
+}
+
+taskpoolTest();
 ```

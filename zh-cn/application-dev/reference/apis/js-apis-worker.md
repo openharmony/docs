@@ -81,19 +81,19 @@ ThreadWorker构造函数。
 import worker from '@ohos.worker';
 // worker线程创建
 
-// FA模型-目录同级
+// FA模型-目录同级（entry模块下，workers目录与pages目录同级）
 const workerFAModel01 = new worker.ThreadWorker("workers/worker.js", {name:"first worker in FA model"});
-// FA模型-目录不同级（以workers目录放置pages目录前一级为例）
+// FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
 const workerFAModel02 = new worker.ThreadWorker("../workers/worker.js");
 
-// Stage模型-目录同级
+// Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// Stage模型-目录不同级（以workers目录放置pages目录后一级为例）
+// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
 const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
 
 // 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
-// entry: 为module.json5文件中module的name属性对应的值；
-// ets: 表明当前使用的语言。
+// entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
+// scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
 ```
 
 同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
@@ -585,6 +585,15 @@ dispatchEvent(event: Event): boolean
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
+```
+
+分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
 //用法一:
 workerInstance.on("alert_on", (e)=>{
     console.log("alert listener callback");
@@ -751,6 +760,15 @@ dispatchEvent(event: Event): boolean
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
+```
+
+分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
 //用法一:
 workerInstance.on("alert_on", (e)=>{
     console.log("alert listener callback");
@@ -1589,6 +1607,14 @@ dispatchEvent(event: Event): boolean
 | boolean | 分发的结果，false表示分发失败。 |
 
 **示例：**
+
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
+```
+
+分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
