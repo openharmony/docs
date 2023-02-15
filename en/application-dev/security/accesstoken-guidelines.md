@@ -117,7 +117,8 @@ For example, if an application needs to access audio files of a user and capture
 ## Requesting User Authorization
 
 If an application needs to access user privacy information or use system abilities, for example, accessing location or calendar information or using the camera to take photos or record videos, it must request the permission from users. A permission verification is performed first to determine whether the current invoker has the corresponding permission. If the application has not obtained that permission, a dialog box will be displayed to request user authorization. The following figure shows an example.
-<img src="figures/permission-read_calendar.png" width="40%;" />
+
+![](figures/permission-read_calendar.png)
 
 > **NOTE**<br>Each time before an API protected by a permission is accessed, [**requestPermissionsFromUser()**](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) will be called to request user authorization. After a permission is dynamically granted, the user may revoke the permission. Therefore, the previously granted authorization status cannot be persistent.
 

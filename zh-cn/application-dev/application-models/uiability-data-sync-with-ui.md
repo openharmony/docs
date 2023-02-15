@@ -92,7 +92,8 @@
 globalThis是ArkTS引擎实例内部的一个全局对象，引擎内部的UIAbility/ExtensionAbility/Page都可以使用，因此可以使用globalThis全局对象进行数据同步。
 
   **图1** 使用globalThis进行数据同步
-<img src="figures/globalThis1.png" alt="globalThis1" style="zoom:67%;" />
+
+  ![globalThis1](figures/globalThis1.png)
 
 
 如上图所示，下面从如下三个场景和一个注意点来介绍globalThis的使用：
@@ -209,6 +210,7 @@ globalThis为[ArkTS引擎实例](thread-model-stage.md)下的全局对象，可�
 ### globalThis使用的注意事项
 
   **图2** globalThis注意事项
+
 ![globalThis2](figures/globalThis2.png)
 
 - Stage模型下进程内的UIAbility组件共享ArkTS引擎实例，使用globalThis时需要避免存放相同名称的对象。例如AbilityA和AbilityB可以使用globalThis共享数据，在存放相同名称的对象时，先存放的对象会被后存放的对象覆盖。
