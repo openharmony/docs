@@ -2750,7 +2750,7 @@ try {
 }
 ```
 
-### on('dialogTargetTouch')<sup>9+</sup>
+### on('dialogTargetTouch')<sup>10+</sup>
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
@@ -2777,7 +2777,7 @@ try {
 }
 ```
 
-### off('dialogTargetTouch')<sup>9+</sup>
+### off('dialogTargetTouch')<sup>10+</sup>
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
