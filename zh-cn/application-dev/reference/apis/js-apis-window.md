@@ -2735,58 +2735,6 @@ try {
 }
 ```
 
-### on('dialogTargetTouch')<sup>9+</sup>
-
-on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
-
-开启模态窗口目标窗口的点击事件的监听。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                                                          |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
-
-**示例：**
-
-```js
-try {
-    windowClass.on('dialogTargetTouch', () => {
-        console.info('touch dialog target');
-    });
-} catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-}
-```
-
-### off('dialogTargetTouch')<sup>9+</sup>
-
-off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
-
-关闭模态窗口目标窗口的点击事件的监听。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                                                          |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;      | 否   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
-
-**示例：**
-
-```js
-try {
-    windowClass.off('dialogTargetTouch');
-} catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-}
-```
-
 ### bindDialogTarget<sup>9+</sup>
 
 bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
