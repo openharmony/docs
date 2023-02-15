@@ -65,9 +65,9 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/hpm-part-a
 ### How to Use<a name="section429012478331"></a>
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
->
->Download the release code, which is more stable, if you want to develop commercial functionalities. Download the master code if you want to get quick access to the latest features for your development. 
+> **NOTE**
+> 
+> Download the release code, which is more stable, if you want to develop commercial functionalities. Download the master code if you want to get quick access to the latest features for your development. 
 
 -   **Obtaining OpenHarmony release code**
 
@@ -168,7 +168,7 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
-The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release Notes]([Release Notes](../../release-notes/Readme.md). 
+The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release Notes](../../release-notes/Readme.md). 
 
 **Table 1**  Sites for acquiring source code 
 
@@ -181,7 +181,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 | Hi3516 solution-LiteOS (binary)| 3.0 | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus.tar.gz)| 248.9 MB |
 | Hi3516 solution-Linux (binary)| 3.0 | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 418.1 MB |
 | RELEASE-NOTES | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/en/release-notes/OpenHarmony-v3.0-LTS.md)| - | - |
-| **Source code of the Latest Release**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
+| **Source Code of the Latest Release**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
 | Full code base (for mini, small, and standard systems)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/code-v3.2-Beta4.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/code-v3.2-Beta4.tar.gz.sha256) | 19.0 GB |
 | RK3568 standard system solution (binary)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/dayu200_standard_arm32.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/dayu200_standard_arm32.tar.gz.sha256) | 3.2 GB |
 | Hi3861 solution (binary)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_pegasus.tar.gz.sha256) | 22.6 MB |
@@ -193,8 +193,8 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 
 ## Method 4: Acquiring Source Code from the GitHub Image Repository<a name="section23448418360"></a>
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
->
+> **NOTE**
+> 
 > The image repository is synchronized at 23:00 (UTC +8:00) every day.
 
 Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)
