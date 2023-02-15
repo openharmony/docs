@@ -934,6 +934,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_SET_WIFI
+
+允许设备管理员应用设置和查询WiFi信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_GET_NETWORK_INFO
+
+允许设备管理员应用查询网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
