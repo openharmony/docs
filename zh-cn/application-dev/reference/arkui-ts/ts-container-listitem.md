@@ -101,8 +101,7 @@ struct ListItemExample2 {
     Column() {
       List({space:10}) {
         ListItem() {
-          Text(this.message) {
-          }
+          Text(this.message)
           .width('100%')
           .height(100)
           .fontSize(16)
@@ -113,8 +112,7 @@ struct ListItemExample2 {
         .swipeAction({ end:this.itemEnd})
 
         ListItem() {
-          Text(this.message) {
-          }
+          Text(this.message)
           .width('100%')
           .height(100)
           .fontSize(16)
