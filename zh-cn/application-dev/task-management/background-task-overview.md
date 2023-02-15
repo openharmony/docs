@@ -57,7 +57,7 @@ OpenHarmony提供了九种后台模式，供需要在后台做长时任务的业
 | audioRecording        | 音频输入                      | 正在运行录音任务     | -                         |
 | location              | 定位、导航                     | 正在运行定位任务     | -                         |
 | bluetoothInteraction  | 蓝牙传输                      | 正在运行蓝牙相关任务   | -                         |
-| multiDeviceConnection | 分布式互联任务                   | 正在运行分布式任务    | -                         |
+| multiDeviceConnection | 应用跨设备多端协同                   | 正在运行分布式任务    | -                         |
 | wifiInteraction       | WLAN传输                    | 正在运行WLAN相关任务 | System API，仅对System权限应用开放 |
 | voip                  | 音视频电话、VOIP                | 正在运行通话相关任务   | System API，仅对System权限应用开放 |
 | taskKeeping           | 计算任务                      | 正在运行计算任务     | 仅在特定设备生效                  |

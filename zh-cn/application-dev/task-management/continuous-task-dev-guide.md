@@ -38,7 +38,7 @@
 
 Stage模型的相关信息参考[Stage模型开发概述](../application-models/stage-model-development-overview.md)。
 
-1、新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、后台模式类型。
+1、在module.json5文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、同时为需要使用长时任务的ability声明相应的后台模式类型。
 
 ```
 "module": {
@@ -295,7 +295,7 @@ export default class BgTaskAbility extends UIAbility {
 
 当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接Service Ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
 
-1、新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、后台模式类型，其中Ability类型为“service”。
+1、在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING、同时为需要使用长时任务的Service Ability声明相应的后台模式类型。
 
 ```json
 "module": {
