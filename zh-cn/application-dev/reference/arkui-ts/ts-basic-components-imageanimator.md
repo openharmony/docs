@@ -103,6 +103,7 @@ struct ImageAnimatorExample {
           }
         ])
         .state(this.state).reverse(this.reverse).fixedSize(false)
+        .duration(2000)
         .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
         .margin({ top: 100 })
         .onStart(() => {

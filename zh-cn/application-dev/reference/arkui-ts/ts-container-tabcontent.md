@@ -28,7 +28,6 @@ TabContent()
 >  **说明：**
 > - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
 > - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
-> - TabContent组件不支持[触摸热区设置](ts-universal-attributes-touch-target.md)。
 
 
 ## 示例
