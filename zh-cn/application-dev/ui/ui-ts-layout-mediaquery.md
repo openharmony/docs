@@ -106,7 +106,7 @@ listener.on('change', onPortrait)
 | min-device-height | 设备的最小高度。                                             |
 | max-device-height | 设备的最大高度。                                             |
 | device-width      | 设备的宽度。                                                 |
-| device-type       | 设备的类型。<br/>可选值：<br/>-&nbsp;default                 |
+| device-type       | 设备的类型。<br/>可选值：default                 |
 | min-device-width  | 设备的最小宽度。                                             |
 | max-device-width  | 设备的最大宽度。                                             |
 | round-screen      | 屏幕类型，圆形屏幕为true，&nbsp; 非圆形屏幕为&nbsp; false。  |
