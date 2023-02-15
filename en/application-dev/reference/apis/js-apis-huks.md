@@ -75,7 +75,7 @@ Generates a key. This API uses an asynchronous callback to return the result.
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key.                                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
-| callback | AsyncCallback\<void>        | Yes  | Callback that returns no value.|
+| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation fails, **err** is returned.|
 
 **Example**
 
@@ -186,7 +186,7 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | Yes  | Key alias passed in when the key was generated.          |
 | options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).                     |
-| callback | AsyncCallback\<void>        | Yes  | Callback that returns no value.|
+| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation fails, **err** is returned.|
 
 **Example**
 
@@ -289,7 +289,7 @@ Imports a key in plaintext. This API uses an asynchronous callback to return the
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key.                                   |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import. The algorithm, key purpose, and key length are mandatory.|
-| callback | AsyncCallback\<void>        | Yes  | Callback that returns no value.|
+| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation fails, **err** is returned.|
 
 **Example**
 
@@ -426,7 +426,7 @@ Obtains the certificate used to verify a key. This API uses an asynchronous call
 | -------- | ---------------------------------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                                               | Yes  | Alias of the key. The certificate to be obtained stores the key.         |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for obtaining the certificate.           |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation fails, **err** is returned.|
 
 **Example**
 
@@ -553,7 +553,7 @@ Obtains the certificate used to verify a key. This API uses a promise to return 
 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation fails, **err** is returned.|
 
 **Example**
 
@@ -676,7 +676,7 @@ Imports a wrapped key. This API uses an asynchronous callback to return the resu
 | keyAlias         | string                      | Yes  | Alias of the wrapped key to import.             |
 | wrappingKeyAlias | string                      | Yes  | Alias of the data used to unwrap the key imported.   |
 | options          | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and the wrapped key to import. The algorithm, key purpose, and key length are mandatory.|
-| callback         | AsyncCallback\<void>        | Yes  | Callback that returns no value.|
+| callback         | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation fails, **err** is returned.|
 
 **Example**
 
@@ -1097,9 +1097,9 @@ let emptyOptions = {
 try {
     huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
         if (error) {
-            console.info(`callback: isKeyItemExist success, data = ${JSON.stringify(data)}`);
-        } else {
             console.error(`callback: isKeyItemExist failed, code: ${error.code}, msg: ${error.message}`);
+        } else {
+            console.info(`callback: isKeyItemExist success, data = ${JSON.stringify(data)}`);
         }
     });
 } catch (error) {
@@ -1312,14 +1312,14 @@ Aborts the use of the key. This API uses an asynchronous callback to return the 
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | handle   | number                      | Yes  | Handle of the **Abort** operation.                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Abort** operation.                      |
-| callback | AsyncCallback\<void>        | Yes  | Callback that returns no value.|
+| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation fails, **err** is returned.|
 
 **Example**
 
 ```js
 /* huks.initSession, huks.updateSession, and huks.finishSession must be used together.
  * If an error occurs in any of huks.initSession, huks.updateSession,
- * and huks.finishSession operations,
+ * and huks.finishSession operation,
  * huks.abortSession must be called to terminate the use of the key.
  *
  * The following uses the callback of an RSA1024 key as an example.
@@ -1469,7 +1469,7 @@ Aborts the use of the key. This API uses a promise to return the result.
 ```js
 /* huks.initSession, huks.updateSession, and huks.finishSession must be used together.
  * If an error occurs in any of huks.initSession, huks.updateSession,
- * and huks.finishSession operations,
+ * and huks.finishSession operation,
  * huks.abortSession must be called to terminate the use of the key.
  *
  * The following uses the callback of an RSA1024 key as an example.
@@ -1602,26 +1602,26 @@ For details about the error codes, see [KUKS Error Codes](../errorcodes/errorcod
 
 **System capability**: SystemCapability.Security.Huks
 
-| Name                                          | Value|  Description                       | 
-| ---------------------------------------------- | -------- |--------------------------- | 
-| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | Permission verification failed.         | 
-| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | Invalid parameters are detected.         | 
-| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | The API is not supported.              | 
-| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | The feature is not supported.        | 
-| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | Key algorithm parameters are missing.         | 
-| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | Invalid key algorithm parameters are detected.         | 
-| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | The file operation failed.             | 
-| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | The communication failed.                 | 
-| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | Failed to operate the algorithm library.           | 
-| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | Failed to access the key because the key has expired.| 
-| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | Failed to access the key because the authentication has failed.| 
-| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | Key access timed out.| 
-| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | The number of key operation sessions has reached the limit.   | 
-| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | The target object does not exist.           | 
-| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | An external error occurs.                 | 
-| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | The credential does not exist.             | 
-| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | The memory is insufficient.                 | 
-| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | Failed to call other system services.     | 
+| Name                                          | Value|  Description                       |
+| ---------------------------------------------- | -------- |--------------------------- |
+| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | Permission verification failed.         |
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | Invalid parameters are detected.         |
+| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | The API is not supported.              |
+| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | The feature is not supported.        |
+| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | Key algorithm parameters are missing.         |
+| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | Invalid key algorithm parameters are detected.         |
+| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | The file operation failed.             |
+| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | The communication failed.                 |
+| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | Failed to operate the algorithm library.           |
+| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | Failed to access the key because the key has expired.|
+| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | Failed to access the key because the authentication has failed.|
+| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | Key access timed out.|
+| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | The number of key operation sessions has reached the limit.   |
+| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | The target object does not exist.           |
+| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | An external error occurs.                 |
+| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | The credential does not exist.             |
+| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | The memory is insufficient.                 |
+| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | Failed to call other system services.     |
 
 ## HuksKeyPurpose
 
@@ -1789,7 +1789,7 @@ Enumerates the tag transfer modes.
 
 ## HuksUnwrapSuite<sup>9+</sup>
 
-Enumerates the algorithm suites required for encrypted imports.
+Enumerates the algorithm suites used for importing an encrypted key.
 
 **System capability**: SystemCapability.Security.Huks
 

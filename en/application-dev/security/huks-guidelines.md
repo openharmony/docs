@@ -6,7 +6,7 @@ OpenHarmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for ap
 >
 > This document is based on API version 9 and applies only to ArkTS development.
 
-### **Prerequisites**
+### Prerequisites
 
 The HUKS module must have been imported.
 
@@ -32,14 +32,14 @@ The following lists the mandatory parameters for key generation, including the k
 | ------------------ | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | HUKS_ALG_RSA       | HUKS_RSA_KEY_SIZE_512 HUKS_RSA_KEY_SIZE_768  HUKS_RSA_KEY_SIZE_1024  HUKS_RSA_KEY_SIZE_2048  HUKS_RSA_KEY_SIZE_3072 HUKS_RSA_KEY_SIZE_4096 | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY |
 | HUKS_ALG_AES       | HUKS_AES_KEY_SIZE_128 HUKS_AES_KEY_SIZE_192 HUKS_AES_KEY_SIZE_256 | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT HUKS_KEY_PURPOSE_DERIVE |
-| HUKS_ALG_ECC       | HUKS_ECC_KEY_SIZE_224, HUKS_ECC_KEY_SIZE_256, HUKS_ECC_KEY_SIZE_384, HUKS_ECC_KEY_SIZE_521| HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY               |
+| HUKS_ALG_ECC       | HUKS_ECC_KEY_SIZE_224 HUKS_ECC_KEY_SIZE_256 HUKS_ECC_KEY_SIZE_384 HUKS_ECC_KEY_SIZE_521 | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY               |
 | HUKS_ALG_X25519    | HUKS_CURVE25519_KEY_SIZE_256                                 | HUKS_KEY_PURPOSE_AGREE                                       |
 | HUKS_ALG_ED25519   | HUKS_CURVE25519_KEY_SIZE_256                                 | HUKS_KEY_PURPOSE_SIGN   HUKS_KEY_PURPOSE_VERIFY              |
 | HUKS_ALG_DSA       | HUKS_RSA_KEY_SIZE_1024                                       | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY               |
-| HUKS_ALG_DH        | HUKS_DH_KEY_SIZE_2048, HUKS_DH_KEY_SIZE_3072, HUKS_DH_KEY_SIZE_4096| HUKS_KEY_PURPOSE_AGREE                                       |
-| HUKS_ALG_ECDH      | HUKS_ECC_KEY_SIZE_224, HUKS_ECC_KEY_SIZE_256, HUKS_ECC_KEY_SIZE_384, HUKS_ECC_KEY_SIZE_521| HUKS_KEY_PURPOSE_AGREE                                       |
+| HUKS_ALG_DH        | HUKS_DH_KEY_SIZE_2048 HUKS_DH_KEY_SIZE_3072 HUKS_DH_KEY_SIZE_4096 | HUKS_KEY_PURPOSE_AGREE                                       |
+| HUKS_ALG_ECDH      | HUKS_ECC_KEY_SIZE_224 HUKS_ECC_KEY_SIZE_256 HUKS_ECC_KEY_SIZE_384 HUKS_ECC_KEY_SIZE_521 | HUKS_KEY_PURPOSE_AGREE                                       |
 | HUKS_ALG_SM2       | HUKS_SM2_KEY_SIZE_256                                        | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY               |
-| HUKS_ALG_SM4       | HUKS_SM4_KEY_SIZE_128                                        | HUKS_KEY_PURPOSE_ENCRYPT or HUKS_KEY_PURPOSE_DECRYPT          |
+| HUKS_ALG_SM4       | HUKS_SM4_KEY_SIZE_128                                        | HUKS_KEY_PURPOSE_ENCRYPT or HUKS_KEY_PURPOSE_DECRYPT         |
 
 Before you get started, understand the following variables:
 
@@ -2032,7 +2032,9 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-let signVerifyInData = 'signVerifyInDataForTest';
+let signVerifyInData1 = 'signVerifyInDataForTestFirstText';
+let signVerifyInData2 = 'signVerifyInDataForTestSecondText';
+let signVerifyInData = [signVerifyInData1, signVerifyInData2];
 let generateKeyAlias = 'generateKeyAliasForTest';
 let importKeyAlias = 'importKeyAliasForTest';
 let handle;
@@ -2121,8 +2123,10 @@ async function testSm2SignVerify() {
     await publicInitFunc(generateKeyAlias, signOptions);
 
     signHandle = handle;
-    signOptions.inData = StringToUint8Array(signVerifyInData)
-    await publicUpdateFunc(signHandle, signOptions);
+    for (var index = 0; index < signVerifyInData.length; index++) {
+        signOptions.inData = StringToUint8Array(signVerifyInData[index]);
+        await publicUpdateFunc(signHandle, signOptions);
+    }
 
     signOptions.inData = new Uint8Array(new Array());
     await publicFinishFunc(signHandle, signOptions);
@@ -2141,8 +2145,10 @@ async function testSm2SignVerify() {
 
     verifyHandle = handle;
 
-    verifyOptions.inData = StringToUint8Array(signVerifyInData)
-    await publicUpdateFunc(verifyHandle, verifyOptions);
+    for (var index = 0; index < signVerifyInData.length; index++) {
+        verifyOptions.inData = StringToUint8Array(signVerifyInData[index]);
+        await publicUpdateFunc(verifyHandle, verifyOptions);
+    }
 
     verifyOptions.inData = signFinishOutData;
     await publicFinishFunc(verifyHandle, verifyOptions);
