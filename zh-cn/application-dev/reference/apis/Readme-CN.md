@@ -318,7 +318,7 @@
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - [@ohos.stationary (设备状态感知框架)](js-apis-stationary.md)
   - [@ohos.systemCapability (系统能力)](js-apis-system-capability.md)
-  - [@ohos.systemParameterV9 (系统属性)](js-apis-system-parameterV9.md)
+  - [@ohos.systemParameterEnhance (系统参数)](js-apis-system-parameterEnhance.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.update (升级)](js-apis-update.md)
   - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
