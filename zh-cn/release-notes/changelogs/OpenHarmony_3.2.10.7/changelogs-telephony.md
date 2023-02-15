@@ -1,0 +1,76 @@
+# 电话子系统ChangeLog
+
+
+
+## cl.telephony.1 call模块dial接口变更
+
+从API9开始，废弃此接口，改为使用dialCall接口。
+
+开发者需要根据以下说明对应用进行适配。
+
+
+**变更影响**
+
+该接口删除无法再使用，请使用新增的接口dialCall替换，否则会影响原有功能。
+
+
+**关键的接口/组件变更**
+
+- 涉及接口
+
+```js
+  dial(phoneNumber: string, callback: AsyncCallback<boolean>): void;
+  dial(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean>): void;
+  dial(phoneNumber: string, options?: DialOptions): Promise<boolean>;
+```
+
+- 变更前：
+
+```js
+function dial(phoneNumber: string, callback: AsyncCallback<boolean>): void;
+function dial(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean>): void;
+function dial(phoneNumber: string, options?: DialOptions): Promise<boolean>;
+```
+
+- 变更后：
+
+```js
+function dialCall(phoneNumber: string, callback: AsyncCallback<void>): void;
+function dialCall(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback<void>): void;
+function dialCall(phoneNumber: string, options?: DialCallOptions): Promise<void>;
+```
+
+
+
+**适配指导**
+
+该接口删除无法再使用，请使用新增的接口dialCall替换。
+使用变更后的接口，示例代码如下：
+
+```js
+call.dialCall("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+```js
+call.dialCall("138xxxxxxxx", {
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+```js
+try {
+    call.dialCall('138xxxxxxxx');
+    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
+} catch (error) {
+    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
+}
+```
