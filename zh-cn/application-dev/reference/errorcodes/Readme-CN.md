@@ -47,8 +47,12 @@
   - [文件管理子系统错误码](errorcode-filemanagement.md)
 - 网络管理
   - [上传下载错误码](errorcode-request.md)
-  - [HTTP错误码](errorcode-http.md)
-  - [Socket错误码](errorcode-socket.md)
+  - [HTTP错误码](errorcode-net-http.md)
+  - [Socket错误码](errorcode-net-socket.md)
+  - [网络连接管理错误码](errorcode-net-connection.md)
+  - [以太网连接错误码](errorcode-net-ethernet.md)
+  - [网络共享错误码](errorcode-net-sharing.md)
+  - [策略管理错误码](errorcode-net-policy.md)
 - 通信与连接
   - [NFC错误码](errorcode-nfc.md)
   - [RPC错误码](errorcode-rpc.md)

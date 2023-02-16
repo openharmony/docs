@@ -716,7 +716,7 @@ Socket的连接信息。
 
 UDP 其余错误码映射形式为：2301000 + 内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-socket.md)
+错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
 ## socket.constructTCPSocketInstance
 
@@ -1594,7 +1594,7 @@ TCPSocket连接的其他属性。
 
 TCP 其余错误码映射形式为：2301000 + 内核错误码。
 
-错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-socket.md)
+错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 
@@ -1909,7 +1909,6 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void>): void
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303113 | System permission denied.                    |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
@@ -2009,7 +2008,6 @@ connect(options: TLSConnectOptions): Promise\<void>
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303113 | System permission denied.                    |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
