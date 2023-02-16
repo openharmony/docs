@@ -484,12 +484,6 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
 
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-
 **示例：**
 
 ```js
@@ -517,12 +511,6 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
@@ -552,12 +540,6 @@ on\(type: 'listening' | 'close', callback: Callback<void\>\): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。                                                   |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
@@ -589,12 +571,6 @@ off\(type: 'listening' | 'close', callback?: Callback<void\>\): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 否   | 回调函数。                                                   |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
@@ -632,12 +608,6 @@ on\(type: 'error', callback: ErrorCallback\): void
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                           |
 
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-
 **示例：**
 
 ```js
@@ -665,12 +635,6 @@ off\(type: 'error', callback?: ErrorCallback\): void
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                           |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1421,12 +1385,6 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
 
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-
 **示例：**
 
 ```js
@@ -1454,12 +1412,6 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1489,12 +1441,6 @@ on\(type: 'connect' | 'close', callback: Callback<void\>\): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。                                                   |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1526,12 +1472,6 @@ off\(type: 'connect' | 'close', callback?: Callback<void\>\): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 否   | 回调函数。                                                   |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
@@ -1569,12 +1509,6 @@ on\(type: 'error', callback: ErrorCallback\): void
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                           |
 
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-
 **示例：**
 
 ```js
@@ -1602,12 +1536,6 @@ off\(type: 'error', callback?: ErrorCallback\): void
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                           |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
 
 **示例：**
 
