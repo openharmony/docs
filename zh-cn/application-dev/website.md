@@ -72,7 +72,7 @@
           - [使用显式Want启动Ability](application-models/ability-startup-with-explicit-want.md)
           - [使用隐式Want打开网址](application-models/ability-startup-with-implicit-want.md)
           - [应用间使用Want分享数据](application-models/data-share-via-want.md)
-        - [组件启动规则](application-models/component-startup-rules.md)
+        - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
         - 应用组件跨设备交互（流转）
           - [流转概述](application-models/inter-device-interaction-hop-overview.md)
           - [跨端迁移（仅对系统应用开放）](application-models/hop-cross-device-migration.md)
@@ -128,6 +128,7 @@
         - [服务卡片开发指导](application-models/widget-development-fa.md)
         - [FA模型的Context](application-models/application-context-fa.md)
         - [信息传递载体Want](application-models/want-fa.md)
+        - [组件启动规则（FA模型）](application-models/component-startup-rules-fa.md)
       - 进程间通信
         - [进程模型](application-models/process-model-fa.md)
         - [公共事件](application-models/common-event-fa.md)
@@ -286,10 +287,8 @@
     - [WebGL开发概述](webgl/webgl-overview.md)
     - [WebGL开发指导](webgl/webgl-guidelines.md)
   - 媒体
-    - 音频
+    - 音视频
       - [音频开发概述](media/audio-overview.md)
-      - [音频播放开发指导](media/audio-playback.md)
-      - [音频录制开发指导](media/audio-recorder.md)
       - [音频渲染开发指导](media/audio-renderer.md)
       - [音频流管理开发指导](media/audio-stream-manager.md)
       - [音频采集开发指导](media/audio-capturer.md)
@@ -298,9 +297,12 @@
       - [音频焦点模式开发指导](media/audio-interruptmode.md)
       - [音量管理开发指导](media/audio-volume-manager.md)
       - [路由、设备管理开发指导](media/audio-routing-manager.md)
-    - 视频
-      - [视频播放开发指导](media/video-playback.md)
-      - [视频录制开发指导](media/video-recorder.md)
+      - [音视频播放器开发指导(推荐使用)](media/avplayer-playback.md)
+      - [音视频录制开发指导(推荐使用)](media/avrecorder.md)
+      - [音频播放开发指导(待停用)](media/audio-playback.md)
+      - [音频录制开发指导(待停用)](media/audio-recorder.md)
+      - [视频播放开发指导(待停用)](media/video-playback.md)
+      - [视频录制开发指导(待停用)](media/video-recorder.md)
     - 媒体会话
       - [AVSession开发概述](media/avsession-overview.md)
       - [AVSession开发指导](media/avsession-guidelines.md)
@@ -311,19 +313,22 @@
       - [分布式相机开发指导](media/remote-camera.md)
   - 安全
     - 访问控制
-      - [访问控制开发概述](security/accesstoken-overview.md)
+      - [访问控制（权限）开发概述](security/accesstoken-overview.md)
       - [访问控制授权申请指导](security/accesstoken-guidelines.md)
       - [访问控制权限校验指导](security/permission-verify-guidelines.md)
-      - [权限定义列表](security/permission-list.md)
+      - [应用权限列表](security/permission-list.md)
     - 用户认证
       - [用户认证开发概述](security/userauth-overview.md)
       - [用户认证开发指导](security/userauth-guidelines.md)
     - 密钥管理
       - [HUKS开发概述](security/huks-overview.md)
       - [HUKS开发指导](security/huks-guidelines.md)
-    - 加密算法库框架
-      - [加密算法库框架概述](security/cryptoFramework-overview.md)
-      - [加密算法框架开发指导](security/cryptoFramework-guidelines.md)
+    - 加解密算法库框架
+      - [加解密算法库框架概述](security/cryptoFramework-overview.md)
+      - [加解密算法框架开发指导](security/cryptoFramework-guidelines.md)
+    - 证书
+      - [证书概述](security/cert-overview.md)
+      - [证书开发指导](security/cert-guidelines.md)
     - Hap包签名工具
       - [Hap包签名工具概述](security/hapsigntool-overview.md)
       - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
@@ -366,12 +371,14 @@
       - [相册资源使用指导](file-management/medialibrary-album-guidelines.md)
     - 文件访问框架
       - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
+    - [文件选择器使用指导](file-management/filepicker-guidelines.md)
   - 任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
       - [长时任务开发指导](task-management/continuous-task-dev-guide.md)
       - [延迟任务开发指导](task-management/work-scheduler-dev-guide.md)
+      - [延迟任务回调能力开发指导](task-management/workscheduler-extensionability.md)
       - [申请能效资源开发指导](task-management/efficiency-resources-apply-dev-guide.md)
     - 后台代理提醒
       - [后台代理提醒开发概述](task-management/reminder-agent-overview.md)
@@ -381,9 +388,7 @@
       - [USB服务开发概述](device/usb-overview.md)
       - [USB服务开发指导](device/usb-guidelines.md)
     - 位置
-      - [位置开发概述](device/device-location-overview.md)
-      - [获取设备的位置信息](device/device-location-info.md)
-      - [（逆）地理编码转化](device/device-location-geocoding.md)
+      - [位置开发指南](device/location-guidelines.md)
     - 传感器
       - [传感器开发概述](device/sensor-overview.md)
       - [传感器开发指导](device/sensor-guidelines.md)
@@ -396,6 +401,8 @@
     - 升级服务
       - [示例服务器开发概述](device/sample-server-overview.md)
       - [示例服务器开发指导](device/sample-server-guidelines.md)
+    - 设备状态
+      - [设备状态开发指导](device/stationary-guidelines.md)
   - 设备使用信息统计
     - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
     - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-use-guide.md)
@@ -465,7 +472,7 @@
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     - [Drawing开发指导](napi/drawing-guidelines.md)
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
-    - [Window开发指导](napi/native-window-guidelines.md)
+    - [NativeWindow开发指导](napi/native-window-guidelines.md)
     - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
     - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
 - 工具
@@ -806,19 +813,19 @@
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
         - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis/js-apis-app-ability-uiAbility.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis/js-apis-app-form-formExtensionAbility.md)
+        - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
+        - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
       - Stage模型能力的接口（待停用）
         - [@ohos.application.Ability (Ability)](reference/apis/js-apis-application-ability.md)
         - [@ohos.application.AbilityConstant (AbilityConstant)](reference/apis/js-apis-application-abilityConstant.md)
         - [@ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis/js-apis-application-abilityLifecycleCallback.md)
         - [@ohos.application.AbilityStage (AbilityStage)](reference/apis/js-apis-application-abilityStage.md)
         - [@ohos.application.context (Context)](reference/apis/js-apis-application-context.md)
-        - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-application-environmentCallback.md)
         - [@ohos.application.ExtensionAbility (ExtensionAbility)](reference/apis/js-apis-application-extensionAbility.md)
         - [@ohos.application.FormExtension (FormExtension)](reference/apis/js-apis-application-formExtension.md)
         - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-application-serviceExtensionAbility.md)
         - [@ohos.application.StartOptions (StartOptions)](reference/apis/js-apis-application-startOptions.md)
-        - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
       - FA模型能力的接口
         - [@ohos.ability.ability (Ability)](reference/apis/js-apis-ability-ability.md)
         - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-ability-featureAbility.md)
@@ -830,7 +837,6 @@
         - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis/js-apis-app-ability-appRecovery.md)
         - [@ohos.app.ability.Configuration (Configuration)](reference/apis/js-apis-app-ability-configuration.md)
         - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](reference/apis/js-apis-app-ability-configurationConstant.md)
-        - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-app-ability-dataUriUtils.md)
         - [@ohos.app.ability.errorManager (ErrorManager)](reference/apis/js-apis-app-ability-errorManager.md)
         - [@ohos.app.ability.missionManager (missionManager)](reference/apis/js-apis-app-ability-missionManager.md)
         - [@ohos.app.ability.quickFixManager (quickFixManager)](reference/apis/js-apis-app-ability-quickFixManager.md)
@@ -898,7 +904,6 @@
           - [MissionListener](reference/apis/js-apis-inner-application-missionListener.md)
           - [MissionParameter](reference/apis/js-apis-inner-application-missionParameter.md)
           - [MissionSnapshot](reference/apis/js-apis-inner-application-missionSnapshot.md)
-          - [PermissionRequestResult](reference/apis/js-apis-inner-application-permissionRequestResult.md)
           - [ProcessData](reference/apis/js-apis-inner-application-processData.md)
           - [ProcessRunningInfo](reference/apis/js-apis-inner-application-processRunningInfo.md)
           - [ProcessRunningInformation](reference/apis/js-apis-inner-application-processRunningInformation.md)
@@ -975,7 +980,7 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    - 资源调度
+    - 后台任务
       - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
@@ -985,11 +990,14 @@
     - 安全
       - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager (隐私管理)](reference/apis/js-apis-privacyManager.md)
+      - [@ohos.security.cert (证书模块)](reference/apis/js-apis-cert.md)
       - [@ohos.security.cryptoFramework (加解密算法库框架)](reference/apis/js-apis-cryptoFramework.md)
       - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
       - [@ohos.userIAM.faceAuth (人脸认证)](reference/apis/js-apis-useriam-faceauth.md)
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
+      - security
+        -  [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - 数据管理
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.dataShare (数据共享)](reference/apis/js-apis-data-dataShare.md)
@@ -998,19 +1006,20 @@
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
-      - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
+      - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
       - data/rdb
         - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
-      - [@ohos.environment (目录环境能力)](reference/apis/js-apis-environment.md)
-      - [@ohos.data.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
-      - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](reference/apis/js-apis-fileExtensionInfo.md)
-      - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
+      - [@ohos.file.environment (目录环境能力)](reference/apis/js-apis-file-environment.md)
+      - [@ohos.file.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
+      - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](reference/apis/js-apis-fileExtensionInfo.md)
+      - [@ohos.file.fs (文件管理)](reference/apis/js-apis-file-fs.md)
+      - [@ohos.file.hash (文件哈希处理)](reference/apis/js-apis-file-hash.md)
+      - [@ohos.file.securityLabel (数据标签)](reference/apis/js-apis-file-securityLabel.md)
+      - [@ohos.file.statvfs (文件系统空间统计)](reference/apis/js-apis-file-statvfs.md)
       - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
-      - [@ohos.securityLabel (数据标签)](reference/apis/js-apis-securityLabel.md)
-      - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
       - [@ohos.storageStatistics (应用空间统计)](reference/apis/js-apis-storage-statistics.md)
       - [@ohos.volumeManager (卷管理)](reference/apis/js-apis-volumemanager.md)
     - 电话服务
@@ -1064,7 +1073,7 @@
       - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis/js-apis-inputmethod-subtype.md)
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
-      - [@ohos.systemTime (系统时间、时区)](reference/apis/js-apis-system-time.md)
+      - [@ohos.systemDateTime (系统时间、时区)](reference/apis/js-apis-system-date-time.md)
       - [@ohos.systemTimer (系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
@@ -1107,7 +1116,6 @@
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-configPolicy.md)
-      - [@ohos.enterprise.deviceInfo (设备信息管理)](reference/apis/js-apis-enterprise-deviceInfo.md)
       - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
       - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis/js-apis-enterprise-adminManager.md)
       - [@ohos.enterprise.dateTimeManager (系统时间管理)](reference/apis/js-apis-enterprise-dateTimeManager.md)
@@ -1115,6 +1123,7 @@
       - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
       - [@ohos.convertxml (xml转换JavaScript)](reference/apis/js-apis-convertxml.md)
       - [@ohos.process (获取进程相关的信息)](reference/apis/js-apis-process.md)
+      - [@ohos.taskpool (启动任务池)](reference/apis/js-apis-taskpool.md)
       - [@ohos.uri (URI字符串解析)](reference/apis/js-apis-uri.md)
       - [@ohos.url (URL字符串解析)](reference/apis/js-apis-url.md)
       - [@ohos.util (util工具函数)](reference/apis/js-apis-util.md)
@@ -1143,15 +1152,19 @@
       - [@ohos.bundle.innerBundleManager (innerBundleManager模块)](reference/apis/js-apis-Bundle-InnerBundleManager.md)
       - [@ohos.bundleState (设备使用信息统计)](reference/apis/js-apis-deviceUsageStatistics.md)
       - [@ohos.bytrace (性能打点)](reference/apis/js-apis-bytrace.md)
-      - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
       - [@ohos.data.distributedData (分布式数据管理)](reference/apis/js-apis-distributed-data.md)
+      - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
+      - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
       - [@ohos.distributedBundle (分布式包管理)](reference/apis/js-apis-Bundle-distributedBundle.md)
       - [@ohos.document (文件交互)](reference/apis/js-apis-document.md)
+      - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
       - [@ohos.geolocation (位置服务)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
+      - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
       - [@ohos.systemParameter (系统属性)](reference/apis/js-apis-system-parameter.md)
+      - [@ohos.systemTime (系统时间、时区)](reference/apis/js-apis-system-time.md)
       - [@ohos.usb (USB管理)](reference/apis/js-apis-usb-deprecated.md)
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)
       - [@system.battery (电量信息)](reference/apis/js-apis-system-battery.md)
@@ -1215,12 +1228,13 @@
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)
     - 资源调度
       - [backgroundTaskManager错误码](reference/errorcodes/errorcode-backgroundTaskMgr.md)
-      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager错误码](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/errorcodes/errorcode-workScheduler.md)
     - 安全
       - [AccessToken错误码](reference/errorcodes/errorcode-access-token.md)
       - [HUKS错误码](reference/errorcodes/errorcode-huks.md)
+      - [crypto framework错误码](reference/errorcodes/errorcode-crypto-framework.md)
+      - [cert错误码](reference/errorcodes/errorcode-cert.md)
       - [用户认证错误码](reference/errorcodes/errorcode-useriam.md)
     - 数据管理
       - [关系型数据库错误码](reference/errorcodes/errorcode-data-rdb.md)
@@ -1243,7 +1257,7 @@
       - [Hidebug错误码](reference/errorcodes/errorcode-hiviewdfx-hidebug.md)
       - [输入法框架错误码](reference/errorcodes/errorcode-inputmethod-framework.md)
       - [剪贴板错误码](reference/errorcodes/errorcode-pasteboard.md)
-      - [锁屏服务错误码](reference/errorcodes/errorcode-screenlock.md)
+      - [时间时区服务错误码](reference/errorcodes/errorcode-time.md)
       - [Webview错误码](reference/errorcodes/errorcode-webview.md)
     - 帐号管理
       - [Account错误码](reference/errorcodes/errorcode-account.md)
@@ -1262,6 +1276,7 @@
       - [系统参数错误码](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB服务错误码](reference/errorcodes/errorcode-usb.md)
       - [升级错误码](reference/errorcodes/errorcode-update.md)
+      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
     - 定制管理
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
@@ -1287,6 +1302,9 @@
       - [VideoDecoder](reference/native-apis/_video_decoder.md)
       - [VideoEncoder](reference/native-apis/_video_encoder.md)
       - [Core](reference/native-apis/_core.md)
+      - [HuksKeyApi](reference/native-apis/_huks_key_api.md)
+      - [HuksParamSetApi](reference/native-apis/_huks_param_set_api.md)
+      - [HuksTypeApi](reference/native-apis/_huks_type_api.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
       - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
@@ -1325,6 +1343,9 @@
       - [native_averrors.h](reference/native-apis/native__averrors_8h.md)
       - [native_avformat.h](reference/native-apis/native__avformat_8h.md)
       - [native_avmemory.h](reference/native-apis/native__avmemory_8h.md)
+      - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
+      - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
+      - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
       - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
@@ -1348,6 +1369,18 @@
       - [OH_NN_UInt32Array](reference/native-apis/_o_h___n_n___u_int32_array.md)
       - [OH_AVCodecAsyncCallback](reference/native-apis/_o_h___a_v_codec_async_callback.md)
       - [OH_AVCodecBufferAttr](reference/native-apis/_o_h___a_v_codec_buffer_attr.md)
+      - [OH_Huks_Blob](reference/native-apis/_o_h___huks___blob.md)
+      - [OH_Huks_CertChain](reference/native-apis/_o_h___huks___cert_chain.md)
+      - [OH_Huks_KeyInfo](reference/native-apis/_o_h___huks___key_info.md)
+      - [OH_Huks_KeyMaterial25519](reference/native-apis/_o_h___huks___key_material25519.md)
+      - [OH_Huks_KeyMaterialDh](reference/native-apis/_o_h___huks___key_material_dh.md)
+      - [OH_Huks_KeyMaterialDsa](reference/native-apis/_o_h___huks___key_material_dsa.md)
+      - [OH_Huks_KeyMaterialEcc](reference/native-apis/_o_h___huks___key_material_ecc.md)
+      - [OH_Huks_KeyMaterialRsa](reference/native-apis/_o_h___huks___key_material_rsa.md)
+      - [OH_Huks_Param](reference/native-apis/_o_h___huks___param.md)
+      - [OH_Huks_ParamSet](reference/native-apis/_o_h___huks___param_set.md)
+      - [OH_Huks_PubKeyInfo](reference/native-apis/_o_h___huks___pub_key_info.md)
+      - [OH_Huks_Result](reference/native-apis/_o_h___huks___result.md)
     - 标准库
       - [Node_API](reference/native-lib/third_party_napi/napi.md)
       - [libuv](reference/native-lib/third_party_libuv/libuv.md)
