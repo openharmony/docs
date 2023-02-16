@@ -68,16 +68,16 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 ```ts
   try {
-    let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
+    let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
       if (error) {
-          console.info( `applyQuickFix failed with error + ${error}`)
+          console.info( `applyQuickFix failed with error + ${error}`);
       } else {
-          console.info( 'applyQuickFix success')
+          console.info( 'applyQuickFix success');
       }
-    })
+    });
   } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
 ```
 
@@ -108,15 +108,15 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 **示例：**
 
 ```ts
-  let hapModuleQuickFixFiles = ["/data/storage/el2/base/entry.hqf"]
+  let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
   try {
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-      console.info('applyQuickFix success')
+      console.info('applyQuickFix success');
     }).catch((error) => {
-      console.info(`applyQuickFix err: + ${error}`)
-    })
+      console.info(`applyQuickFix err: + ${error}`);
+    });
   } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
 ```
 
@@ -143,16 +143,16 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 
 ```ts
   try {
-    let bundleName = "bundleName"
+    let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
       if (error) {
-        console.info(`getApplicationQuickFixInfo error: + ${error}`)
+        console.info(`getApplicationQuickFixInfo error: + ${error}`);
       } else {
-        console.info(`getApplicationQuickFixInfo success: + ${data}`)
+        console.info(`getApplicationQuickFixInfo success: + ${data}`);
       }
     })
   } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
 ```
 
@@ -184,13 +184,13 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
   ```ts
   try {
-    let bundleName = "bundleName"
+    let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
-      console.info(`getApplicationQuickFixInfo success: + ${data}`)
+      console.info(`getApplicationQuickFixInfo success: + ${data}`);
     }).catch((error) => {
-      console.info(`getApplicationQuickFixInfo err: + ${error}`)
-    })
+      console.info(`getApplicationQuickFixInfo err: + ${error}`);
+    });
   } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
   ```

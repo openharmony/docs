@@ -15,7 +15,7 @@
 **示例：**
 
 ```ts
-import appManager from "@ohos.app.ability.appManager"
+import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundAppInfos() {
     appManager.getForegroundApplications((error, data) => {

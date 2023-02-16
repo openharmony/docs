@@ -14,14 +14,14 @@
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
 
   let continueDeviceInfo = {
-      srcDeviceId: "123",
-      dstDeviceId: "456",
+      srcDeviceId: '123',
+      dstDeviceId: '456',
       missionId: 123,
       wantParam: {
-          "key":"value"
+          'key':'value'
       }
   };
 
@@ -37,5 +37,5 @@
           ' error.message: ' + JSON.stringify(error.message));
       }
       console.log('continueMission finished');
-  })
+  });
   ```

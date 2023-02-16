@@ -43,7 +43,7 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.deleteForm(formId, (error) => {
   if (error) {
     console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -92,7 +92,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
   }).catch((error) => {
@@ -133,7 +133,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.releaseForm(formId, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -175,7 +175,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.releaseForm(formId, true, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -222,7 +222,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
   }).catch((error) => {
@@ -263,7 +263,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.requestForm(formId, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -309,7 +309,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
   }).catch((error) => {
@@ -351,7 +351,7 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.castToNormalForm(formId, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -397,7 +397,7 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = "12400633174999288";
+  let formId = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
   }).catch((error) => {
@@ -438,7 +438,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.notifyVisibleForms(formId, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -484,7 +484,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
   }).catch((error) => {
@@ -525,7 +525,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -571,7 +571,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
   }).catch((error) => {
@@ -612,7 +612,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.enableFormsUpdate(formId, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -658,7 +658,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
   }).catch((error) => {
@@ -699,7 +699,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.disableFormsUpdate(formId, (error) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -745,7 +745,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formId = ["12400633174999288"];
+  let formId = ['12400633174999288'];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
   }).catch((error) => {
@@ -912,7 +912,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -955,7 +955,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1003,7 +1003,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
     console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
   }).catch((error) => {
     console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -1036,7 +1036,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formIds = new Array("12400633174999288", "12400633174999289");
+  let formIds = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds, (error, data) => {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
@@ -1077,7 +1077,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 import formHost from '@ohos.app.form.formHost';
 
 try {
-  let formIds = new Array("12400633174999288", "12400633174999289");
+  let formIds = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds).then((data) => {
     console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
   }).catch((error) => {
@@ -1118,13 +1118,13 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 import formHost from '@ohos.app.form.formHost';
 
 let want = {
-  "deviceId": "",
-  "bundleName": "ohos.samples.FormApplication",
-  "abilityName": "FormAbility",
-  "parameters": {
-    "ohos.extra.param.key.module_name": "entry",
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.form_dimension": 2
+  'deviceId': '',
+  'bundleName': 'ohos.samples.FormApplication',
+  'abilityName': 'FormAbility',
+  'parameters': {
+    'ohos.extra.param.key.module_name': 'entry',
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.form_dimension': 2
   }
 };
 try {
@@ -1175,13 +1175,13 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 import formHost from '@ohos.app.form.formHost';
 
 let want = {
-  "deviceId": "",
-  "bundleName": "ohos.samples.FormApplication",
-  "abilityName": "FormAbility",
-  "parameters": {
-    "ohos.extra.param.key.module_name": "entry",
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.form_dimension": 2
+  'deviceId': '',
+  'bundleName': 'ohos.samples.FormApplication',
+  'abilityName': 'FormAbility',
+  'parameters': {
+    'ohos.extra.param.key.module_name': 'entry',
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.form_dimension': 2
   }
 };
 try {
@@ -1195,9 +1195,9 @@ try {
 }
 ```
 
-## on("formUninstall")
+## on('formUninstall')
 
-on(type: "formUninstall", callback: Callback&lt;string&gt;): void
+on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
 订阅卡片卸载事件。使用callback异步回调。
 
@@ -1207,7 +1207,7 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写"formUninstall"，表示卡片卸载事件。 |
+| type | string | 是   | 填写'formUninstall'，表示卡片卸载事件。 |
 | callback | Callback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
 **示例：**
@@ -1218,12 +1218,12 @@ import formHost from '@ohos.app.form.formHost';
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
-formHost.on("formUninstall", callback);
+formHost.on('formUninstall', callback);
 ```
 
-## off("formUninstall")
+## off('formUninstall')
 
-off(type: "formUninstall", callback?: Callback&lt;string&gt;): void
+off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
 取消订阅卡片卸载事件。使用callback异步回调。
 
@@ -1233,8 +1233,8 @@ off(type: "formUninstall", callback?: Callback&lt;string&gt;): void
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写"formUninstall"，表示卡片卸载事件。 |
-| callback | Callback&lt;string&gt; | 否 | 回调函数。返回卡片标识。缺省时，表示注销所有已注册事件回调。<br> 需与对应on("formUninstall")的callback一致。|
+| type | string | 是   | 填写'formUninstall'，表示卡片卸载事件。 |
+| callback | Callback&lt;string&gt; | 否 | 回调函数。返回卡片标识。缺省时，表示注销所有已注册事件回调。<br> 需与对应on('formUninstall')的callback一致。|
 
 **示例：**
 
@@ -1244,7 +1244,7 @@ import formHost from '@ohos.app.form.formHost';
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
-formHost.off("formUninstall", callback);
+formHost.off('formUninstall', callback);
 ```
 
 ## notifyFormsVisible
@@ -1277,7 +1277,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true, (error) => {
     if (error) {
@@ -1324,7 +1324,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
@@ -1366,7 +1366,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true, (error) => {
     if (error) {
@@ -1413,7 +1413,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
@@ -1454,8 +1454,8 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formId = "12400633174999288";
-let deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+let formId = '12400633174999288';
+let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId, (error) => {
     if (error) {
@@ -1502,8 +1502,8 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formId = "12400633174999288";
-let deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+let formId = '12400633174999288';
+let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
@@ -1545,7 +1545,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true, (error) => {
     if (error) {
@@ -1590,7 +1590,7 @@ function notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: bool
 ```ts
 import formHost from '@ohos.app.form.formHost';
 
-let formIds = new Array("12400633174999288", "12400633174999289");
+let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');

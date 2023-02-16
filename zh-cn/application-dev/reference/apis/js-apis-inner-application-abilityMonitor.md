@@ -33,17 +33,17 @@ Ability监听器
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
 let monitor = {
-    abilityName: "abilityname",
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info("addAbilityMonitor callback");
+    console.info('addAbilityMonitor callback');
 });
 ```
 

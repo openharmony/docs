@@ -207,12 +207,12 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 **示例：**
 
   ```ts
-  import AbilityConstant from "@ohos.app.ability.AbilityConstant";
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   export default class EntryAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
-          wantParams["myData"] = "my1234567";
+          wantParams['myData'] = 'my1234567';
           return AbilityConstant.OnContinueResult.AGREE;
       }
   }
@@ -289,7 +289,7 @@ dump(params: Array\<string>): Array\<string>;
   export default class EntryAbility extends UIAbility {
       dump(params) {
           console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          return ['params'];
       }
   }
   ```
@@ -347,7 +347,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 export default class EntryAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
-        wantParam["myData"] = "my1234567";
+        wantParam['myData'] = 'my1234567';
         return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
     }
 }
@@ -394,8 +394,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   class MyMessageAble { // 自定义的Sequenceable数据结构
-    name:""
-    str:""
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
@@ -419,12 +419,12 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "EntryAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'EntryAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble("msg", "world"); // 参考Sequenceable数据定义
+        let msg = new MyMessageAble('msg', 'world'); // 参考Sequenceable数据定义
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -479,8 +479,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   class MyMessageAble{
-    name:""
-    str:""
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
@@ -504,16 +504,16 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "EntryAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'EntryAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, "world");
+        let msg = new MyMessageAble(1, 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, "");
+            let retmsg = new MyMessageAble(0, '');
             data.readSequenceable(retmsg);
           })
           .catch((callErr) => {
@@ -556,9 +556,9 @@ release(): void;
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "EntryAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'EntryAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
         try {
@@ -599,9 +599,9 @@ release(): void;
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "EntryAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'EntryAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
@@ -653,8 +653,8 @@ on(method: string, callback: CalleeCallBack): void;
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
-      name:""
-      str:""
+      name:''
+      str:''
       num: 1
       constructor(name, str) {
         this.name = name;
@@ -676,9 +676,9 @@ on(method: string, callback: CalleeCallBack): void;
   let method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
-      let msg = new MyMessageAble("test", "");
+      let msg = new MyMessageAble('test', '');
       pdata.readSequenceable(msg);
-      return new MyMessageAble("test1", "Callee test");
+      return new MyMessageAble('test1', 'Callee test');
   }
   export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {

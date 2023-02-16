@@ -9,7 +9,7 @@ missionManager模块提供系统任务管理能力，包括对系统任务执行
 ## 导入模块
 
 ```ts
-import missionManager from '@ohos.application.missionManager'
+import missionManager from '@ohos.application.missionManager';
 ```
 
 ## 权限列表
@@ -44,15 +44,15 @@ registerMissionListener(listener: MissionListener): number;
 
 ```ts
 let listener = {
-    onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
-    onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
-    onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
-    onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
-    onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-    onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")},
-    onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
 };
-console.log("registerMissionListener")
+console.log('registerMissionListener');
 let listenerid = missionManager.registerMissionListener(listener);
 ```
 
@@ -80,19 +80,19 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 ```ts
   let listener = {
-      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
-      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
-      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
-      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
-      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")},
-      onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
+      onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+      onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+      onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+      onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+      onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+      onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+      onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
   };
-  console.log("registerMissionListener")
+  console.log('registerMissionListener');
   let listenerid = missionManager.registerMissionListener(listener);
 
   missionManager.unregisterMissionListener(listenerid, (error) => {
-      console.log("unregisterMissionListener");
+      console.log('unregisterMissionListener');
   })
 ```
 
@@ -125,15 +125,15 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
 ```ts
   let listener = {
-      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
-      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
-      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
-      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
-      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
-      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")},
-      onMissionLabelUpdated: function (mission) {console.log("--------onMissionLabelUpdated-------")}
+      onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+      onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+      onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+      onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+      onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+      onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+      onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
   };
-  console.log("registerMissionListener")
+  console.log('registerMissionListener');
   let listenerid = missionManager.registerMissionListener(listener);
 
   missionManager.unregisterMissionListener(listenerid).catch(function (err) {
@@ -165,22 +165,22 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  let allMissions=missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
-      missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
+  let allMissions=missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
+      missionManager.getMissionInfo('', allMissions[0].missionId, (error, mission) => {
         if (error.code) {
-          console.log("getMissionInfo failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+          console.log('getMissionInfo failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
           return;
         }
 
-        console.log("mission.missionId = " + mission.missionId);
-        console.log("mission.runningState = " + mission.runningState);
-        console.log("mission.lockedState = " + mission.lockedState);
-        console.log("mission.timestamp = " + mission.timestamp);
-        console.log("mission.label = " + mission.label);
-        console.log("mission.iconPath = " + mission.iconPath);
+        console.log('mission.missionId = ' + mission.missionId);
+        console.log('mission.runningState = ' + mission.runningState);
+        console.log('mission.lockedState = ' + mission.lockedState);
+        console.log('mission.timestamp = ' + mission.timestamp);
+        console.log('mission.label = ' + mission.label);
+        console.log('mission.iconPath = ' + mission.iconPath);
       });
   ```
 
@@ -213,9 +213,9 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  let mission = missionManager.getMissionInfo("", 10).catch(function (err){
+  let mission = missionManager.getMissionInfo('', 10).catch(function (err){
       console.log(err);
   });
   ```
@@ -244,17 +244,17 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+          console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
           return;
       }
-      console.log("size = " + missions.length);
-      console.log("missions = " + JSON.stringify(missions));
-  })
+      console.log('size = ' + missions.length);
+      console.log('missions = ' + JSON.stringify(missions));
+  });
   ```
 
 
@@ -286,9 +286,9 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  let allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
+  let allMissions = missionManager.getMissionInfos('', 10).catch(function (err){
       console.log(err);
   });
   ```
@@ -317,27 +317,27 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
         return;
     }
-    console.log("size = " + missions.length);
-    console.log("missions = " + JSON.stringify(missions));
+    console.log('size = ' + missions.length);
+    console.log('missions = ' + JSON.stringify(missions));
     let id = missions[0].missionId;
 
-    missionManager.getMissionSnapShot("", id, (error, snapshot) => {
+    missionManager.getMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.log("getMissionSnapShot failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+          console.log('getMissionSnapShot failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
           return;
       }
-      console.log("bundleName = " + snapshot.ability.bundleName);
-  })
-  })
+      console.log('bundleName = ' + snapshot.ability.bundleName);
+    });
+  });
   ```
 
 
@@ -369,17 +369,17 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
   let allMissions;
-  missionManager.getMissionInfos("",10).then(function(res){
+  missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
     }).catch(function(err){console.log(err);});
-    console.log("size = " + allMissions.length);
-    console.log("missions = " + JSON.stringify(allMissions));
+    console.log('size = ' + allMissions.length);
+    console.log('missions = ' + JSON.stringify(allMissions));
     let id = allMissions[0].missionId;
 
-    let snapshot = missionManager.getMissionSnapShot("", id).catch(function (err){
+    let snapshot = missionManager.getMissionSnapShot('', id).catch(function (err){
         console.log(err);
     });
   ```
@@ -407,27 +407,27 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
         return;
     }
-    console.log("size = " + missions.length);
-    console.log("missions = " + JSON.stringify(missions));
+    console.log('size = ' + missions.length);
+    console.log('missions = ' + JSON.stringify(missions));
     let id = missions[0].missionId;
 
-    missionManager.getLowResolutionMissionSnapShot("", id, (error, snapshot) => {
+    missionManager.getLowResolutionMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.log("getLowResolutionMissionSnapShot failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+          console.log('getLowResolutionMissionSnapShot failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
           return;
       }
-  	  console.log("bundleName = " + snapshot.ability.bundleName);
-  })
-  })
+  	  console.log('bundleName = ' + snapshot.ability.bundleName);
+    });
+  });
   ```
 
 
@@ -459,17 +459,17 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<M
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
   let allMissions;
-  missionManager.getMissionInfos("",10).then(function(res){
+  missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
     }).catch(function(err){console.log(err);});
-    console.log("size = " + allMissions.length);
-    console.log("missions = " + JSON.stringify(allMissions));
+    console.log('size = ' + allMissions.length);
+    console.log('missions = ' + JSON.stringify(allMissions));
     let id = allMissions[0].missionId;
 
-    let snapshot = missionManager.getLowResolutionMissionSnapShot("", id).catch(function (err){
+    let snapshot = missionManager.getLowResolutionMissionSnapShot('', id).catch(function (err){
         console.log(err);
     });
   ```
@@ -497,21 +497,21 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
         return;
     }
-    console.log("size = " + missions.length);
-    console.log("missions = " + JSON.stringify(missions));
+    console.log('size = ' + missions.length);
+    console.log('missions = ' + JSON.stringify(missions));
     let id = missions[0].missionId;
 
     missionManager.lockMission(id).then(() => {
-  	console.log("lockMission is called ");
-  });
+  	  console.log('lockMission is called ');
+    });
   });
   ```
 
@@ -543,13 +543,13 @@ lockMission(missionId: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
   let allMissions;
-  missionManager.getMissionInfos("",10).then(function(res){
+  missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(err){console.log(err);});
-  console.log("size = " + allMissions.length);
-  console.log("missions = " + JSON.stringify(allMissions));
+  console.log('size = ' + allMissions.length);
+  console.log('missions = ' + JSON.stringify(allMissions));
   let id = allMissions[0].missionId;
 
   missionManager.lockMission(id).catch(function (err){
@@ -580,21 +580,21 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
         return;
     }
-    console.log("size = " + missions.length);
-    console.log("missions = " + JSON.stringify(missions));
+    console.log('size = ' + missions.length);
+    console.log('missions = ' + JSON.stringify(missions));
     let id = missions[0].missionId;
 
     missionManager.unlockMission(id).then(() => {
-  	console.log("unlockMission is called ");
-  });
+  	  console.log('unlockMission is called ');
+    });
   });
   ```
 
@@ -626,14 +626,14 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
   let allMissions;
-  missionManager.getMissionInfos("",10).then(function(res){
+  missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(err){console.log(err);});
-  console.log("size = " + allMissions.length);
-  console.log("missions = " + JSON.stringify(allMissions));
+  console.log('size = ' + allMissions.length);
+  console.log('missions = ' + JSON.stringify(allMissions));
   let id = allMissions[0].missionId;
 
   missionManager.lockMission(id).catch(function (err){
@@ -667,21 +667,21 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
         return;
     }
-    console.log("size = " + missions.length);
-    console.log("missions = " + JSON.stringify(missions));
+    console.log('size = ' + missions.length);
+    console.log('missions = ' + JSON.stringify(missions));
     let id = missions[0].missionId;
 
     missionManager.clearMission(id).then(() => {
-  	console.log("clearMission is called ");
-  });
+  	  console.log('clearMission is called ');
+    });
   });
   ```
 
@@ -713,14 +713,14 @@ clearMission(missionId: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
   let allMissions;
-  missionManager.getMissionInfos("",10).then(function(res){
+  missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(err){console.log(err);});
-  console.log("size = " + allMissions.length);
-  console.log("missions = " + JSON.stringify(allMissions));
+  console.log('size = ' + allMissions.length);
+  console.log('missions = ' + JSON.stringify(allMissions));
   let id = allMissions[0].missionId;
 
   missionManager.clearMission(id).catch(function (err){
@@ -747,7 +747,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
   import missionManager from '@ohos.application.missionManager'
 
   missionManager.clearAllMissions().then(() => {
-    console.log("clearAllMissions is called ");
+    console.log('clearAllMissions is called ');
   });
   ```
 
@@ -773,7 +773,7 @@ clearAllMissions(): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
   missionManager.clearAllMissions().catch(function (err){
     console.log(err);
   });
@@ -802,21 +802,21 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
         return;
     }
-    console.log("size = " + missions.length);
-    console.log("missions = " + JSON.stringify(missions));
+    console.log('size = ' + missions.length);
+    console.log('missions = ' + JSON.stringify(missions));
     let id = missions[0].missionId;
 
     missionManager.moveMissionToFront(id).then(() => {
-  	console.log("moveMissionToFront is called ");
-  });
+  	  console.log('moveMissionToFront is called ');
+    });
   });
   ```
 
@@ -844,20 +844,20 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
-  missionManager.getMissionInfos("", 10, (error, missions) => {
+  missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
         return;
     }
-    console.log("size = " + missions.length);
-    console.log("missions = " + JSON.stringify(missions));
+    console.log('size = ' + missions.length);
+    console.log('missions = ' + JSON.stringify(missions));
     let id = missions[0].missionId;
 
     missionManager.moveMissionToFront(id,{windowMode : 101}).then(() => {
-  	console.log("moveMissionToFront is called ");
+  	  console.log('moveMissionToFront is called ');
     });
   });
   ```
@@ -891,14 +891,14 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.application.missionManager'
+  import missionManager from '@ohos.application.missionManager';
 
   let allMissions;
-  missionManager.getMissionInfos("",10).then(function(res){
+  missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
   }).catch(function(err){console.log(err);});
-  console.log("size = " + allMissions.length);
-  console.log("missions = " + JSON.stringify(allMissions));
+  console.log('size = ' + allMissions.length);
+  console.log('missions = ' + JSON.stringify(allMissions));
   let id = allMissions[0].missionId;
 
   missionManager.moveMissionToFront(id).catch(function (err){

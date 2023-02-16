@@ -51,11 +51,11 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 ```ts
 let config = {
   language: 'chinese' 
-}
+};
 
 abilityManager.updateConfiguration(config, () => {
     console.log('------------ updateConfiguration -----------');
-})
+});
 ```
 
 ## updateConfiguration
@@ -85,13 +85,13 @@ updateConfiguration(config: Configuration): Promise\<void>
 ```ts
 let config = {
   language: 'chinese' 
-}
+};
 
 abilityManager.updateConfiguration(config).then(() => {
   console.log('updateConfiguration success');
 }).catch((err) => {
   console.log('updateConfiguration fail');
-})
+});
 ```
 
 ## getAbilityRunningInfos
@@ -114,7 +114,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 ```ts
 abilityManager.getAbilityRunningInfos((err,data) => { 
-    console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
+    console.log('getAbilityRunningInfos err: '  + err + ' data: ' + JSON.stringify(data));
 });
 ```
 
@@ -138,8 +138,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 ```ts
 abilityManager.getAbilityRunningInfos().then((data) => {
-    console.log("getAbilityRunningInfos  data: " + JSON.stringify(data))
+    console.log('getAbilityRunningInfos  data: ' + JSON.stringify(data));
 }).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err)
+  console.log('getAbilityRunningInfos err: '  + err);
 });
 ```

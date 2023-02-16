@@ -11,7 +11,7 @@ EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境�
 ## 导入模块
 
 ```ts
-import EnvironmentCallback from "@ohos.app.ability.EnvironmentCallback";
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 ```
 
 
@@ -33,29 +33,29 @@ onConfigurationUpdated(config: Configuration): void;
     
 
   ```ts
-import UIAbility from "@ohos.app.ability.Ability";
+import UIAbility from '@ohos.app.ability.Ability';
 
 let callbackId;
 
 export default class MyAbility extends UIAbility {
     onCreate() {
-        console.log("MyAbility onCreate")
+        console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback  =  {
             onConfigurationUpdated(config){
-                console.log("onConfigurationUpdated config:" + JSON.stringify(config));
+                console.log('onConfigurationUpdated config:' + JSON.stringify(config));
             }
         }
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
         // 2.通过applicationContext注册监听应用内生命周期
         callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
-        console.log("registerEnvironmentCallback number: " + JSON.stringify(callbackId));
+        console.log('registerEnvironmentCallback number: ' + JSON.stringify(callbackId));
     }
     onDestroy() {
         let applicationContext = globalThis.applicationContext;
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+            console.log('unregisterEnvironmentCallback success, err: ' + JSON.stringify(error));
         });
     }
 }

@@ -8,12 +8,12 @@ ErrorManager模块提供对错误观察器的注册和注销的能力。使用�
 
 ## 导入模块
 ```ts
-import errorManager from '@ohos.app.ability.errorManager'
+import errorManager from '@ohos.app.ability.errorManager';
 ```
 
 ## ErrorManager.on
 
-on(type: "error", observer: ErrorObserver): number;
+on(type: 'error', observer: ErrorObserver): number;
 
 注册错误观测器。
 
@@ -23,7 +23,7 @@ on(type: "error", observer: ErrorObserver): number;
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"error"，表示错误观察器。 |
+| type | string | 是 | 填写'error'，表示错误观察器。 |
 | observer | [ErrorObserver](./js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
 
 **返回值：**
@@ -37,20 +37,20 @@ on(type: "error", observer: ErrorObserver): number;
 ```ts
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
     }
 }
 let observerId = -1;
 try {
-    observerId = errorManager.on("error", observer);
+    observerId = errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
 
 注销错误观测器。
 
@@ -60,7 +60,7 @@ off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"error"，表示错误观察器。 |
+| type | string | 是 | 填写'error'，表示错误观察器。 |
 | observerId | number | 是 | 由on方法返回的观察器的index值。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
@@ -75,15 +75,15 @@ function unregisterErrorObserverCallback(err) {
     }
 }
 try {
-    errorManager.off("error", observerId, unregisterErrorObserverCallback);
+    errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number): Promise\<void>;
+off(type: 'error', observerId: number): Promise\<void>;
 
 注销错误观测器。
 
@@ -93,7 +93,7 @@ off(type: "error", observerId: number): Promise\<void>;
  
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 填写"error"，表示错误观察器。 |
+| type | string | 是 | 填写'error'，表示错误观察器。 |
 | observerId | number | 是 | 由on方法返回的观察器的index值。 |
 
 **返回值：**
@@ -107,7 +107,7 @@ off(type: "error", observerId: number): Promise\<void>;
 ```ts
 let observerId = 100;
 try {
-    errorManager.off("error", observerId)
+    errorManager.off('error', observerId)
         .then((data) => {
             console.log('----------- unregisterErrorObserver success ----------', data);
         })
@@ -115,7 +115,7 @@ try {
             console.log('----------- unregisterErrorObserver fail ----------', err);
     })
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 
 ```

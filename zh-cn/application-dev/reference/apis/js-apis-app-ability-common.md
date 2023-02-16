@@ -10,7 +10,7 @@ Common模块将二级模块API组织在一起方便开发者进行导出。
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common'
+import common from '@ohos.app.ability.common';
 ```
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
@@ -32,7 +32,7 @@ import common from '@ohos.app.ability.common'
 
 **示例：**
 ```ts
-import common from '@ohos.app.ability.common'
+import common from '@ohos.app.ability.common';
 
 let uiAbilityContext: common.UIAbilityContext;
 let abilityStageContext: common.AbilityStageContext;

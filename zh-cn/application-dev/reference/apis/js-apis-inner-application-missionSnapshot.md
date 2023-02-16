@@ -25,28 +25,28 @@
   import missionManager from '@ohos.app.ability.missionManager';
 
   try {
-    missionManager.getMissionInfos("", 10, (error, missions) => {
+    missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+          console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
+            'error.message:' + JSON.stringify(error.message));
           return;
       }
-      console.log("size = " + missions.length);
-      console.log("missions = " + JSON.stringify(missions));
+      console.log('size = ' + missions.length);
+      console.log('missions = ' + JSON.stringify(missions));
       let id = missions[0].missionId;
 
-      missionManager.getMissionSnapShot("", id, (err, snapshot) => {
+      missionManager.getMissionSnapShot('', id, (err, snapshot) => {
         if (err.code) {
-          console.log("getMissionInfos failed, err.code:" + JSON.stringify(err.code) +
-            "err.message:" + JSON.stringify(err.message));
+          console.log('getMissionInfos failed, err.code:' + JSON.stringify(err.code) +
+            'err.message:' + JSON.stringify(err.message));
           return;
         }
 
         // 执行正常业务
-        console.log("bundleName = " + snapshot.ability.bundleName);
+        console.log('bundleName = ' + snapshot.ability.bundleName);
       })
     })
   } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
 ```

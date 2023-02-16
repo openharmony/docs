@@ -66,11 +66,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.log('[Demo] EntryAbility onCreate');
         let wantExt = {
-            deviceId: "",
-            bundleName: "com.example.TheServiceExtension",
-            abilityName: "TheServiceExtension",
+            deviceId: '',
+            bundleName: 'com.example.TheServiceExtension',
+            abilityName: 'TheServiceExtension',
         };
         this.context.startServiceExtensionAbility(wantExt);
     }
@@ -85,8 +85,8 @@ export default class ServiceModel {
     constructor() {}
 
     executeTask() {
-        if (globalThis.ExtensionContext == undefined) {
-            console.log("ERROR, ServiceExtension does not exist");
+        if (globalThis.ExtensionContext === undefined) {
+            console.log('ERROR, ServiceExtension does not exist');
             return;
         }
 
@@ -94,20 +94,20 @@ export default class ServiceModel {
         this.moduleName = moduleInfo.name;
         // 根据moduleName执行不同的业务逻辑，实现对不同性能设备的区分
         switch (this.moduleName) {
-            case "highPerformance":
-                console.log("This is high performance device.");
+            case 'highPerformance':
+                console.log('This is high performance device.');
                 // 执行对应业务逻辑
                 break;
-            case "midPerformance":
-                console.log("This is mid performance device.");
+            case 'midPerformance':
+                console.log('This is mid performance device.');
                 // 执行对应业务逻辑
                 break;
-            case "lowPerformance":
-                console.log("This is low performance device.");
+            case 'lowPerformance':
+                console.log('This is low performance device.');
                 // 执行对应业务逻辑
                 break;
             default:
-                console.log("ERROR, invalid moduleName.");
+                console.log('ERROR, invalid moduleName.');
                 break;
         }
     }

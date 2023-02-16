@@ -11,21 +11,21 @@
 
 | 名称       | 类型  |     必填    |       说明   |
 | --------  | --------  | --------    | --------    |
-| uri?      | string    |      否    | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
+| uri?      | string    |      否    | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。  |
 | count?     | number    |      否    | 指示受操作影响的数据数量。  |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 
 // 批量执行数据库操作
 function executeBatchOperation() {
-    let dataAbilityUri = ("dataability:///com.example.myapplication.TestDataAbility");
+    let dataAbilityUri = ('dataability:///com.example.myapplication.TestDataAbility');
     let DAHelper;
     try {
         DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
-        if (DAHelper == null) {
+        if (DAHelper === null) {
             console.error('DAHelper is null');
             return;
         }
@@ -35,9 +35,9 @@ function executeBatchOperation() {
     }
 
     let valueBucket = {
-        "name": "DataAbilityHelperTest",
-        "age": 24,
-        "salary": 2024.20,
+        'name': 'DataAbilityHelperTest',
+        'age': 24,
+        'salary': 2024.20,
     };
     let operations = [
     {

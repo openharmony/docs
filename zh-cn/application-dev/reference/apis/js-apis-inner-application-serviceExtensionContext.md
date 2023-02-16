@@ -16,7 +16,7 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包�
 ```ts
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
-  let context = undefined;
+  let context;
   class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // 获取ServiceExtensionContext
@@ -69,8 +69,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   let want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
 
   try {
@@ -142,8 +142,8 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
   ```ts
   let want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
   let options = {
   	windowMode: 0,
@@ -213,9 +213,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let options = {
     windowMode: 0
@@ -291,9 +291,9 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
 
@@ -368,9 +368,9 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
   let options = {
@@ -454,9 +454,9 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
   let options = {
@@ -519,9 +519,9 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -585,9 +585,9 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -651,9 +651,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
 
@@ -722,9 +722,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
 
@@ -781,9 +781,9 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -844,9 +844,9 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -906,9 +906,9 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
 
@@ -974,9 +974,9 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
 
@@ -1119,14 +1119,14 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
   ```ts
   let want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
   let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
-  }
+  };
 
   let connection = null;
   try {
@@ -1179,16 +1179,16 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
   ```ts
   let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
   let accountId = 100;
   let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
-  }
+    onConnect(elementName, remote) { console.log('----------- onConnect -----------'); },
+    onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
+    onFailed(code) { console.log('----------- onFailed -----------'); }
+  };
 
   let connection = null;
   try {
@@ -1355,14 +1355,14 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   后台启动：
 
   ```ts
-  let caller = undefined;
+  let caller;
 
   // 后台启动Ability，不配置parameters
   let wantBackground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "EntryAbility",
-      deviceId: ""
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: ''
   };
 
   try {
@@ -1386,16 +1386,16 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   前台启动：
 
   ```ts
-  let caller = undefined;
+  let caller;
 
-  // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
+  // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
   let wantForeground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "EntryAbility",
-      deviceId: "",
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
-        "ohos.aafwk.param.callAbilityToForeground": true
+        'ohos.aafwk.param.callAbilityToForeground': true
       }
   };
 

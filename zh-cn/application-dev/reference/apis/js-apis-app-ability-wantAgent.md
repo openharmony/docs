@@ -85,7 +85,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -180,7 +180,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -268,7 +268,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -378,7 +378,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -480,7 +480,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -590,7 +590,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -692,7 +692,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -804,7 +804,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -905,7 +905,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -1015,7 +1015,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -1091,8 +1091,8 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 let wantAgent;
 // triggerInfo
 let triggerInfo = {
-        code: 0 //自定义义结果码
-    }
+    code: 0 //自定义义结果码
+};
 //WantAgentInfo对象
 let wantAgentInfo = {
     wants: [
@@ -1119,7 +1119,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -1226,7 +1226,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -1339,7 +1339,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -1439,7 +1439,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -1547,7 +1547,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {

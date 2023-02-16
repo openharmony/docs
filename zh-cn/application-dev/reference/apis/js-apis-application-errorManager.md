@@ -30,7 +30,7 @@ registerErrorObserver(observer: ErrorObserver): number;
 ```ts
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
     }
 }
 errorManager.registerErrorObserver(observer)
@@ -95,6 +95,6 @@ errorManager.unregisterErrorObserver(observerId)
 })
 .catch((err) => {
     console.log('----------- unregisterErrorObserver fail ----------', err);
-})
+});
 
 ```

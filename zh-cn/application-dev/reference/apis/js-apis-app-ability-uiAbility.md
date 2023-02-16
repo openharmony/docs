@@ -202,11 +202,11 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 **示例：**
     
   ```ts
-  import AbilityConstant from "@ohos.app.ability.AbilityConstant"
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   class MyUIAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
-          wantParams["myData"] = "my1234567";
+          wantParams['myData'] = 'my1234567';
           return AbilityConstant.OnContinueResult.AGREE;
       }
   }
@@ -259,7 +259,7 @@ onDump(params: Array\<string>): Array\<string>;
   class MyUIAbility extends UIAbility {
       onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          return ['params'];
       }
   }
   ```
@@ -289,12 +289,12 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 **示例：**
 
   ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyUIAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
-        wantParam["myData"] = "my1234567";
+        wantParam['myData'] = 'my1234567';
         return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
     }
 }
@@ -339,8 +339,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
     
   ```ts
   class MyMessageAble{ // 自定义的Sequenceable数据结构
-    name:""
-    str:""
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
@@ -364,12 +364,12 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble("msg", "world"); // 参考Sequenceable数据定义
+        let msg = new MyMessageAble('msg', 'world'); // 参考Sequenceable数据定义
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -420,8 +420,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 
   ```ts
   class MyMessageAble{
-    name:""
-    str:""
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
@@ -445,16 +445,16 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, "world");
+        let msg = new MyMessageAble(1, 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, "");
+            let retmsg = new MyMessageAble(0, '');
             data.readSequenceable(retmsg);
           })
           .catch((callErr) => {
@@ -494,9 +494,9 @@ release(): void;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
         try {
@@ -534,9 +534,9 @@ release(): void;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
@@ -557,7 +557,7 @@ release(): void;
 
 ## Caller.on
 
- on(type: "release", callback: OnReleaseCallback): void;
+ on(type: 'release', callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -585,13 +585,13 @@ release(): void;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
-            caller.on("release", (str) => {
+            caller.on('release', (str) => {
                 console.log(' Caller OnRelease CallBack is called ' + str);
             });
           } catch (error) {
@@ -608,7 +608,7 @@ release(): void;
 
 ## Caller.off
 
-off(type: "release", callback: OnReleaseCallback): void;
+off(type: 'release', callback: OnReleaseCallback): void;
 
 取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
 
@@ -635,17 +635,17 @@ off(type: "release", callback: OnReleaseCallback): void;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
             let onReleaseCallBack = (str) => {
                 console.log(' Caller OnRelease CallBack is called ' + str);
             };
-            caller.on("release", onReleaseCallBack);
-            caller.off("release", onReleaseCallBack);
+            caller.on('release', onReleaseCallBack);
+            caller.off('release', onReleaseCallBack);
           } catch (error) {
             console.log('Caller.on or Caller.off catch error, error.code: ' + JSON.stringify(error.code) +
               ' error.message: ' + JSON.stringify(error.message));
@@ -660,7 +660,7 @@ off(type: "release", callback: OnReleaseCallback): void;
 
 ## Caller.off
 
-off(type: "release"): void;
+off(type: 'release'): void;
 
 取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
 
@@ -686,17 +686,17 @@ off(type: "release"): void;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
             let onReleaseCallBack = (str) => {
                 console.log(' Caller OnRelease CallBack is called ' + str);
             };
-            caller.on("release", onReleaseCallBack);
-            caller.off("release");
+            caller.on('release', onReleaseCallBack);
+            caller.off('release');
           } catch (error) {  
             console.error('Caller.on or Caller.off catch error, error.code: ' + JSON.stringify(error.code) +
               ' error.message: ' + JSON.stringify(error.message));
@@ -740,8 +740,8 @@ on(method: string, callback: CalleeCallback): void;
 
   ```ts
   class MyMessageAble{
-      name:""
-      str:""
+      name:''
+      str:''
       num: 1
       constructor(name, str) {
         this.name = name;
@@ -763,9 +763,9 @@ on(method: string, callback: CalleeCallback): void;
   let method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
-      let msg = new MyMessageAble("test", "");
+      let msg = new MyMessageAble('test', '');
       pdata.readSequenceable(msg);
-      return new MyMessageAble("test1", "Callee test");
+      return new MyMessageAble('test1', 'Callee test');
   }
   export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {

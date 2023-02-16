@@ -28,7 +28,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let envCallback = {
             onConfigurationUpdated(config) {
-                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
+                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
                 let language = config.language;
                 let colorMode = config.colorMode;
                 let direction = config.direction;
@@ -39,10 +39,10 @@ export default class EntryAbility extends UIAbility {
         };
         try {
             let applicationContext = this.context.getApplicationContext();
-            let callbackId = applicationContext.on("environment", envCallback);
-            console.log("callbackId: " + callbackId);
+            let callbackId = applicationContext.on('environment', envCallback);
+            console.log('callbackId: ' + callbackId);
         } catch (paramError) {
-            console.log("error: " + paramError.code + ", " + paramError.message);
+            console.log('error: ' + paramError.code + ', ' + paramError.message);
         }
     }
 }

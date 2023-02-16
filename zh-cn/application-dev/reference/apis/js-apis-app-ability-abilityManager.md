@@ -64,7 +64,7 @@ const config = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: COLOR_MODE_LIGHT,         // 浅色模式
   direction: DIRECTION_VERTICAL,       // 垂直方向
-  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为"sdpi"
+  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为'sdpi'
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
 };
@@ -72,9 +72,9 @@ const config = {
 try {
     abilityManager.updateConfiguration(config, (err) => {
         if (err && err.code !== 0) {
-            console.log("updateConfiguration fail, err: " + JSON.stringify(err));
+            console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
         } else {
-            console.log("updateConfiguration success.");
+            console.log('updateConfiguration success.');
         }
     })
 } catch (paramError) {
@@ -122,7 +122,7 @@ const config = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: COLOR_MODE_LIGHT,         // 浅色模式
   direction: DIRECTION_VERTICAL,       // 垂直方向
-  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为"sdpi"
+  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为'sdpi'
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
 };
@@ -171,9 +171,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
         if (err && err.code !== 0) {
-            console.log("getAbilityRunningInfos fail, error: " + JSON.stringify(err));
+            console.log('getAbilityRunningInfos fail, error: ' + JSON.stringify(err));
         } else {
-            console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data));
+            console.log('getAbilityRunningInfos success, data: ' + JSON.stringify(data));
         }
     });
 } catch (paramError) {
@@ -213,9 +213,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
-        console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data))
+        console.log('getAbilityRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getAbilityRunningInfos fail, err: "  + JSON.stringify(err));
+        console.log('getAbilityRunningInfos fail, err: '  + JSON.stringify(err));
     });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -258,9 +258,9 @@ let upperLimit = 10;
 try {
     abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
         if (err && err.code !== 0) {
-            console.log("getExtensionRunningInfos fail, err: " + JSON.stringify(err));
+            console.log('getExtensionRunningInfos fail, err: ' + JSON.stringify(err));
         } else {
-            console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+            console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
         }
     });
 } catch (paramError) {
@@ -308,9 +308,9 @@ let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-        console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+        console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getExtensionRunningInfos fail, err: "  + JSON.stringify(err));
+        console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
     })
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -347,9 +347,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
     if (err && err.code !== 0) {
-        console.log("getTopAbility fail, err: " + JSON.stringify(err));
+        console.log('getTopAbility fail, err: ' + JSON.stringify(err));
     } else {
-        console.log("getTopAbility success, data: " + JSON.stringify(data));
+        console.log('getTopAbility success, data: ' + JSON.stringify(data));
     }
 });
 ```
@@ -382,8 +382,8 @@ getTopAbility(): Promise\<ElementName>;
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility().then((data) => {
-    console.log("getTopAbility success, data: " + JSON.stringify(data));
+    console.log('getTopAbility success, data: ' + JSON.stringify(data));
 }).catch((err) => {
-    console.log("getTopAbility fail, err: "  + JSON.stringify(err));
+    console.log('getTopAbility fail, err: '  + JSON.stringify(err));
 })
 ```
