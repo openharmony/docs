@@ -20,8 +20,8 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [alias](#alias) | struct [OH_Huks_Blob](_o_h___huks___blob.md)<br/>密钥的别名。  | 
-| [paramSet](#paramset) | struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*<br/>指向密钥参数集的指针。  | 
+| [alias](#alias) | 密钥的别名。  | 
+| [paramSet](#paramset) | 指向密钥参数集的指针。  | 
 
 
 ## 结构体成员变量说明

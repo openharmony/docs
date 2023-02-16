@@ -20,11 +20,11 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [keyAlg](#keyalg) | enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg)<br/>密钥的算法类型。  | 
-| [keySize](#keysize) | uint32_t<br/>25519类型密钥的长度。  | 
-| [pubKeySize](#pubkeysize) | uint32_t<br/>公钥的长度。  | 
-| [priKeySize](#prikeysize) | uint32_t<br/>私钥的长度。  | 
-| [reserved](#reserved) | uint32_t<br/>保留。  | 
+| [keyAlg](#keyalg) | 密钥的算法类型。  | 
+| [keySize](#keysize) | 25519类型密钥的长度。  | 
+| [pubKeySize](#pubkeysize) | 公钥的长度。  | 
+| [priKeySize](#prikeysize) | 私钥的长度。  | 
+| [reserved](#reserved) | 保留。  | 
 
 
 ## 结构体成员变量说明
