@@ -83,6 +83,7 @@ HUKS Core作为向应用提供密钥库能力的基础，包括密钥管理及�
 | [HuksHdiAbort()](#hukshdiabort)                         | 终止三段式。                               |无                             | abort(handle: number, options: HuksOptions) |
 | [HuksHdiGetKeyProperties()](#hukshdigetkeyproperties)        | 获取密钥属性。                              |无                            | getKeyProperties(keyAlias: string, options: HuksOptions)|
 | [HuksHdiAttestKey()](#hukshdiattestkey)        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
+| [HuksHdiExportChipsetPlatformPublicKey()](#hukshdiexportchipsetplatformpublickey)        | 导出芯片平台级密钥对的公钥。     | 出参为ECC P256的x y轴值裸数据，各32字节                      | 无 |
 
 - - -
 
@@ -544,6 +545,48 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
   <summary><strong>约束与限制</strong></summary>
 
   1. certChain的格式需遵循[约束与限制第二点](#约束与限制)。
+
+</details>
+<br></br>
+
+<details>
+  <summary><strong>返回值</strong></summary>
+
+  - HKS_SUCCESS：成功
+
+  - 其他：失败
+</details>
+
+- - -
+
+#### HuksHdiExportChipsetPlatformPublicKey
+
+**接口描述**
+
+导出芯片平台级密钥对的公钥。
+
+**接口原型**
+<pre><code>int32_t (*HuksHdiExportChipsetPlatformPublicKey)(const struct HksBlob *salt, enum HksChipsetPlatformDecryptScene scene, struct HksBlob *publicKey);</code></pre>
+
+<details>
+  <summary><strong>参数说明</strong></summary>
+  <pre>
+  <strong>const struct HksBlob *salt</strong>
+  用来派生芯片平台密钥对时的派生因子
+  <br></br>
+  <strong>enum HksChipsetPlatformDecryptScene scene</strong>
+  业务预期进行芯片平台解密的场景
+  <br></br>
+  <strong>struct HksBlob *publicKey</strong>
+  出参为ECC P256的x y轴值裸数据，各32字节
+  </pre>
+</details>
+<br></br>
+
+<details>
+  <summary><strong>约束与限制</strong></summary>
+
+  1. 入参`salt`长度必须为16字节，且最后一个字节的内容会被忽略，将由huks内部根据入参`scene`进行修改填充
 
 </details>
 <br></br>
