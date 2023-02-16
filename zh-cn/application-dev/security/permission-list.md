@@ -1174,6 +1174,8 @@
 
 **ACL使能**：TRUE
 
+**申请条件**：使用API version 9以下版本的SDK开发的应用，可以直接申请此权限。使用API version 9及API version 9以上版本的SDK开发的应用，需要先申请权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+
 ## ohos.permission.APPROXIMATELY_LOCATION
 
 允许应用获取设备模糊位置信息。
@@ -1183,6 +1185,8 @@
 **授权方式**：user_grant
 
 **ACL使能**：FALSE
+
+**申请条件**：仅供使用API version 9及API version 9以上版本的SDK开发的应用申请。
 
 ## ohos.permission.MEDIA_LOCATION
 
