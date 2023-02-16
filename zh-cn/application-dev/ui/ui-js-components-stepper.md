@@ -186,7 +186,7 @@ text{
 }
 ```
 
-![zh-cn_image_0000001234130975](figures/zh-cn_image_0000001234130975.png)
+![zh-cn_image_0000001234130975](figures/zh-cn_image_0000001234130975.PNG)
 
 
 ## 添加事件
