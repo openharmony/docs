@@ -16,7 +16,7 @@
 
 | 文件名称                                                     | 描述                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native XComponent的API。 |
+| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native XComponent的API。<br>引用文件：<ace/xcomponent/native_interface_xcomponent.h> |
 
 
 ### 结构体
@@ -45,6 +45,8 @@
 | ------------------------------------------------------------ | ------------------------------------ |
 | {OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, <br>OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, <br/>OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2 } | [枚举](#anonymous-enum)API访问状态。 |
 | [OH_NativeXComponent_TouchEventType](#oh_nativexcomponent_toucheventtype) {  <br/>OH_NATIVEXCOMPONENT_DOWN = 0, <br/>OH_NATIVEXCOMPONENT_UP, <br/>OH_NATIVEXCOMPONENT_MOVE, <br/>OH_NATIVEXCOMPONENT_CANCEL,<br/>OH_NATIVEXCOMPONENT_UNKNOWN } | 触摸事件类型。                       |
+| [OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype) {<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN = 0,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_FINGER,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_PEN,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_RUBBER,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_BRUSH,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_PENCIL,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_AIRBRUSH,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_MOUSE,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_LENS } | 触摸点工具类型。 | 
+| [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) {<br/>OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN = 0,<br/>OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE, OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN,<br/>OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD,<br/>OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK} | 触摸事件源类型。 | 
 | [OH_NativeXComponent_MouseEventAction](#oh_nativexcomponent_mouseeventaction) { <br/>OH_NATIVEXCOMPONENT_MOUSE_NONE = 0, <br/>OH_NATIVEXCOMPONENT_MOUSE_PRESS, <br/>OH_NATIVEXCOMPONENT_MOUSE_RELEASE, <br/>OH_NATIVEXCOMPONENT_MOUSE_MOVE } | 鼠标事件动作。                       |
 | [OH_NativeXComponent_MouseEventButton](#oh_nativexcomponent_mouseeventbutton) {  <br/>OH_NATIVEXCOMPONENT_NONE_BUTTON = 0, <br/>OH_NATIVEXCOMPONENT_LEFT_BUTTON = 0x01, <br/>OH_NATIVEXCOMPONENT_RIGHT_BUTTON = 0x02, <br/>OH_NATIVEXCOMPONENT_MIDDLE_BUTTON = 0x04,   <br/>OH_NATIVEXCOMPONENT_BACK_BUTTON = 0x08, <br/>OH_NATIVEXCOMPONENT_FORWARD_BUTTON = 0x10 } | 鼠标事件按键。                       |
 
@@ -57,6 +59,9 @@
 | [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, uint64_t \*width, uint64_t \*height) | 获取ArkUI XComponent持有的surface的大小。          |
 | [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, double \*x, double \*y) | 获取ArkUI XComponent组件相对屏幕左上顶点的偏移量。 |
 | [OH_NativeXComponent_GetTouchEvent](#oh_nativexcomponent_gettouchevent) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) \*touchEvent) | 获取ArkUI XComponent调度的触摸事件。               |
+| [OH_NativeXComponent_GetTouchPointToolType](#oh_nativexcomponent_gettouchpointtooltype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint32_t pointIndex, [OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype) \*toolType) | 获取ArkUI XComponent触摸点工具类型。 | 
+| [OH_NativeXComponent_GetTouchPointTiltX](#oh_nativexcomponent_gettouchpointtiltx) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint32_t pointIndex, float \*tiltX) | 获取ArkUI XComponent触摸点倾斜与X轴角度。 | 
+| [OH_NativeXComponent_GetTouchPointTiltY](#oh_nativexcomponent_gettouchpointtilty) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint32_t pointIndex, float \*tiltY) | 获取ArkUI XComponent触摸点倾斜与Y轴角度。 | 
 | [OH_NativeXComponent_GetMouseEvent](#oh_nativexcomponent_getmouseevent) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md) \*mouseEvent) | 获取ArkUI XComponent调度的鼠标事件                 |
 | [OH_NativeXComponent_RegisterCallback](#oh_nativexcomponent_registercallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) \*callback) | 为此OH_NativeXComponent实例注册回调。              |
 | [OH_NativeXComponent_RegisterMouseEventCallback](#oh_nativexcomponent_registermouseeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) \*callback) | 为此OH_NativeXComponent实例注册鼠标事件回调。      |
@@ -69,8 +74,8 @@
 | [OH_XCOMPONENT_ID_LEN_MAX](#oh_xcomponent_id_len_max) = 128  | ArkUI XComponent的id最大长度。            |
 | [OH_MAX_TOUCH_POINTS_NUMBER](#oh_max_touch_points_number) = 10 | 触摸事件中的可识别的触摸点个数最大值。    |
 | [OH_NativeXComponent_TouchPoint::id](#id-12) = 0             | 手指的唯一标识符。                        |
-| [OH_NativeXComponent_TouchPoint::screenX](#screenx-13) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。           |
-| [OH_NativeXComponent_TouchPoint::screenY](#screeny-13) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。           |
+| [OH_NativeXComponent_TouchPoint::screenX](#screenx-13) = 0.0 | 触摸点相对于应用窗口左上角的x坐标。           |
+| [OH_NativeXComponent_TouchPoint::screenY](#screeny-13) = 0.0 | 触摸点相对于应用窗口左上角的y坐标。           |
 | [OH_NativeXComponent_TouchPoint::x](#x-13) = 0.0             | 触摸点相对于XComponent组件左边缘的x坐标。 |
 | [OH_NativeXComponent_TouchPoint::y](#y-13) = 0.0             | 触摸点相对于XComponent组件上边缘的y坐标。 |
 | [OH_NativeXComponent_TouchPoint::type](#type-12) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。                      |
@@ -79,8 +84,8 @@
 | [OH_NativeXComponent_TouchPoint::timeStamp](#timestamp-12) = 0 | 当前触摸事件的时间戳。                    |
 | [OH_NativeXComponent_TouchPoint::isPressed](#ispressed) = false | 当前点是否被按下。                        |
 | [OH_NativeXComponent_TouchEvent::id](#id-22) = 0             | 手指的唯一标识符。                        |
-| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。           |
-| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。           |
+| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23) = 0.0 | 触摸点相对于应用窗口左上角的x坐标。           |
+| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23) = 0.0 | 触摸点相对于应用窗口左上角的y坐标。           |
 | [OH_NativeXComponent_TouchEvent::x](#x-23) = 0.0             | 触摸点相对于XComponent组件左边缘的x坐标。 |
 | [OH_NativeXComponent_TouchEvent::y](#y-23) = 0.0             | 触摸点相对于XComponent组件上边缘的y坐标。 |
 | [OH_NativeXComponent_TouchEvent::type](#type-22) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。                      |
@@ -92,8 +97,8 @@
 | [OH_NativeXComponent_TouchEvent::numPoints](#numpoints) = 0  | 当前接触点的数量。                        |
 | [OH_NativeXComponent_MouseEvent::x](#x-33) = 0.0             | 点击触点相对于当前组件左上角的x轴坐标。   |
 | [OH_NativeXComponent_MouseEvent::y](#y-33) = 0.0             | 点击触点相对于当前组件左上角的y轴坐标。   |
-| [OH_NativeXComponent_MouseEvent::screenX](#screenx-33) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。       |
-| [OH_NativeXComponent_MouseEvent::screenY](#screeny-33) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。       |
+| [OH_NativeXComponent_MouseEvent::screenX](#screenx-33) = 0.0 | 点击触点相对于应用窗口左上角的x轴坐标。       |
+| [OH_NativeXComponent_MouseEvent::screenY](#screeny-33) = 0.0 | 点击触点相对于应用窗口左上角的y轴坐标。       |
 | [OH_NativeXComponent_MouseEvent::timestamp](#timestamp) = 0  | 当前鼠标事件的时间戳。                    |
 | [OH_NativeXComponent_MouseEvent::action](#action) = [OH_NativeXComponent_MouseEventAction::OH_NATIVEXCOMPONENT_MOUSE_NONE](#oh_nativexcomponent_mouseeventaction) | 当前鼠标事件动作。                        |
 | [OH_NativeXComponent_MouseEvent::button](#button) = [OH_NativeXComponent_MouseEventButton::OH_NATIVEXCOMPONENT_NONE_BUTTON](#oh_nativexcomponent_mouseeventbutton) | 鼠标事件按键。                            |
@@ -183,6 +188,30 @@ anonymous enum
 
 8
 
+### OH_NativeXComponent_EventSourceType
+
+OH_NativeXComponent_EventSourceType
+
+  
+```
+enum OH_NativeXComponent_EventSourceType
+```
+
+**描述：**
+
+触摸事件源类型。
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN | 未知的输入源类型。 | 
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE | 表示输入源生成鼠标多点触摸事件。 | 
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN | 表示输入源生成一个触摸屏多点触摸事件。 | 
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD | 表示输入源生成一个触摸板多点触摸事件。 | 
+| OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK | 表示输入源生成一个操纵杆多点触摸事件。 | 
+
+**起始版本：**
+
+9
 
 ### OH_NativeXComponent_MouseEventAction
 
@@ -255,6 +284,33 @@ enum OH_NativeXComponent_TouchEventType
 
 8
 
+### OH_NativeXComponent_TouchPointToolType
+
+  
+```
+enum OH_NativeXComponent_TouchPointToolType
+```
+
+**描述：**
+
+触摸点工具类型
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN | 无效的工具类型。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_FINGER | 表示用手指。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_PEN | 表示用触笔。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_RUBBER | 表示用橡皮擦。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_BRUSH | 表示用画笔。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_PENCIL | 表示用铅笔。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_AIRBRUSH | 表示用气笔。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_MOUSE | 表示用鼠标。 | 
+| OH_NATIVEXCOMPONENT_TOOL_TYPE_LENS | 表示用晶状体。 | 
+
+**起始版本：**
+
+9
+
 
 ## 函数说明
 
@@ -313,6 +369,89 @@ int32_t OH_NativeXComponent_GetTouchEvent (OH_NativeXComponent * component, cons
 **起始版本：**
 
 8
+
+### OH_NativeXComponent_GetTouchPointTiltX()
+
+  
+```
+int32_t OH_NativeXComponent_GetTouchPointTiltX (OH_NativeXComponent * component, uint32_t pointIndex, float * tiltX )
+```
+
+**描述：**
+
+获取ArkUI XComponent触摸点倾斜与X轴角度。
+
+**参数：**
+
+| Name | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 | 
+| pointIndex | 表示触摸点的指针索引。 | 
+| tiltX | 表示指向X倾斜度的指针。 | 
+
+**返回：**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+9
+
+
+### OH_NativeXComponent_GetTouchPointTiltY()
+
+  
+```
+int32_t OH_NativeXComponent_GetTouchPointTiltX (OH_NativeXComponent * component, uint32_t pointIndex, float * tiltY )
+```
+
+**描述：**
+
+获取ArkUI XComponent触摸点倾斜与Y轴角度。
+
+**参数：**
+
+| Name | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 | 
+| pointIndex | 表示触摸点的指针索引。 | 
+| tiltX | 表示指向Y倾斜度的指针。 | 
+
+**返回：**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+9
+
+
+### OH_NativeXComponent_GetTouchPointToolType()
+
+  
+```
+int32_t OH_NativeXComponent_GetTouchPointToolType (OH_NativeXComponent * component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType * toolType )
+```
+
+**描述：**
+
+获取ArkUI XComponent触摸点工具类型。
+
+**参数：**
+
+| Name | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 | 
+| pointIndex | 表示触摸点的指针索引。 | 
+| toolType | 表示指向工具类型的指针。 | 
+
+**返回：**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+9
 
 
 ### OH_NativeXComponent_GetXComponentId()
@@ -739,7 +878,7 @@ float OH_NativeXComponent_TouchPoint::screenX = 0.0
 
 **描述：**
 
-触摸点相对于XComponent所在应用窗口左上角的x坐标。
+触摸点相对于应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -755,7 +894,7 @@ float OH_NativeXComponent_TouchEvent::screenX = 0.0
 
 **描述：**
 
-触摸点相对于XComponent所在应用窗口左上角的x坐标。
+触摸点相对于应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -771,7 +910,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 **描述：**
 
-点击触点相对于XComponent所在应用窗口左上角的x坐标。
+点击触点相对于应用窗口左上角的x轴坐标。
 
 **起始版本：**
 
@@ -787,7 +926,7 @@ float OH_NativeXComponent_TouchPoint::screenY = 0.0
 
 **描述：**
 
-触摸点相对于XComponent所在应用窗口左上角的y坐标。
+触摸点相对于应用窗口左上角的y坐标。
 
 **起始版本：**
 
@@ -803,7 +942,7 @@ float OH_NativeXComponent_TouchEvent::screenY = 0.0
 
 **描述：**
 
-触摸点相对于XComponent所在应用窗口左上角的y坐标。
+触摸点相对于应用窗口左上角的y坐标。
 
 **起始版本：**
 
@@ -819,7 +958,7 @@ float OH_NativeXComponent_MouseEvent::screenY
 
 **描述：**
 
-点击触点相对于XComponent所在应用窗口左上角的y轴坐标。
+点击触点相对于应用窗口左上角的y轴坐标。
 
 **起始版本：**
 
