@@ -61,6 +61,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
       });
   });
   ```
+注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 
 ## resourceManager.getResourceManager
@@ -117,6 +118,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
       console.log("error is " + error);
   });
   ```
+注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 
 ## resourceManager.getResourceManager
