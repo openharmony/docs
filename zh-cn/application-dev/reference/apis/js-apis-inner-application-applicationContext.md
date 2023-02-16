@@ -281,7 +281,7 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInfo.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
@@ -310,7 +310,7 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 类型 | 说明 |
 | -------- | -------- |
-|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInfo.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
