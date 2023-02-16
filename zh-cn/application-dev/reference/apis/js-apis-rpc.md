@@ -642,11 +642,11 @@ readShort(): number
   }
   try {
       let ret = data.readShort();
+      console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
       console.info("rpc read short fail, errorCode " + error.code);
       console.info("rpc read short fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readByte is: " + ret);
   ```
 
 ### writeInt
