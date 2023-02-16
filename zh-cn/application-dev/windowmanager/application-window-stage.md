@@ -205,7 +205,7 @@ export default class EntryAbility extends UIAbility {
 1. 获取应用主窗口。
    通过`getMainWindow`接口获取应用主窗口。
 
-2. 实现沉浸式效果。有以下三种方式：
+2. 实现沉浸式效果。有以下两种方式：
    - 方式一：调用`setWindowSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
    - 方式二：调用`setWindowLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setWindowSystemBarProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
