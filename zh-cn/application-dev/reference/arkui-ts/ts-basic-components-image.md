@@ -100,21 +100,21 @@ struct ImageExample1 {
         Text('default').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
           Image($r('app.media.ic_png'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.ic_gif'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.ic_svg'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
         Row({ space: 5 }) {
           Image($r('app.media.img_example'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image(this.src)
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('network', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }.margin({ top: 25, bottom: 10 })
       }
@@ -123,25 +123,25 @@ struct ImageExample1 {
         Text('objectFit').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
           Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.None).width(110).height(110)
             .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.Fill).width(110).height(110)
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.Cover).width(110).height(110)
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
         Row({ space: 5 }) {
           Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.Contain).width(110).height(110)
             .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.ScaleDown).width(110).height(110)
             .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }.margin({ top: 25 })
@@ -232,18 +232,18 @@ struct ImageExample2 {
       Row({ space: 50 }) {
         Image($r('app.media.img_example'))
           .renderMode(ImageRenderMode.Original).width(100).height(100)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.img_example'))
           .renderMode(ImageRenderMode.Template).width(100).height(100)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       }
       
       Text('alt').fontSize(12).fontColor(0xcccccc).width('96%').height(30)
       Image('')
         .alt($r('app.media.Image_none'))
-        .width(100).height(100).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+        .width(100).height(100).border({ width: 1 })
         
       Text('sourceSize').fontSize(12).fontColor(0xcccccc).width('96%')
       Row({ space: 50 }) {
@@ -253,7 +253,7 @@ struct ImageExample2 {
             height: 150
           })
           .objectFit(ImageFit.ScaleDown).width('25%').aspectRatio(1)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('w:150 h:150', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.img_example'))
           .sourceSize({
@@ -261,22 +261,22 @@ struct ImageExample2 {
             height: 200
           })
           .objectFit(ImageFit.ScaleDown).width('25%').aspectRatio(1)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('w:200 h:200', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       }
       
       Text('objectRepeat').fontSize(12).fontColor(0xcccccc).width('96%').height(30)
       Row({ space: 5 }) {
         Image($r('app.media.ic_health_heart'))
-          .width(120).height(125).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .width(120).height(125).border({ width: 1 })
           .objectRepeat(ImageRepeat.XY).objectFit(ImageFit.ScaleDown)
           .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.ic_health_heart'))
-          .width(110).height(125).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .width(110).height(125).border({ width: 1 })
           .objectRepeat(ImageRepeat.Y).objectFit(ImageFit.ScaleDown)
           .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.ic_health_heart'))
-          .width(110).height(125).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .width(110).height(125).border({ width: 1 })
           .objectRepeat(ImageRepeat.X).objectFit(ImageFit.ScaleDown)
           .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       }
