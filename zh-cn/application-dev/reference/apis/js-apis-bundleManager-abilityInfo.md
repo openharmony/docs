@@ -22,7 +22,7 @@ Ability信息，系统应用可以通过[bundleManager.queryAbilityInfo](js-apis
 | icon                  | string                                                   | 是   | 否   | Ability的图标资源文件索引。                 |
 | iconId                | number                                                   | 是   | 否   | Ability的图标资源id。                       |
 | process               | string                                                   | 是   | 否   | Ability的进程，如果不设置，默认为包的名称。 |
-| isVisible             | boolean                                                  | 是   | 否   | 判断Ability是否可以被其他应用调用。         |
+| exported             | boolean                                                  | 是   | 否   | 判断Ability是否可以被其他应用调用。         |
 | type                  | [AbilityType](js-apis-bundleManager.md#abilitytype)      | 是   | 否   | Ability类型<br />此属性仅可在FA模型下使用。 |
 | orientation           | [DisplayOrientation](js-apis-bundleManager.md#displayorientation)  | 是   | 否   | Ability的显示模式。                         |
 | launchType            | [LaunchType](js-apis-bundleManager.md#launchtype)        | 是   | 否   | Ability的启动模式。                         |

@@ -91,7 +91,7 @@
 | ------- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | name    | string                                      | 是   | 否   | 表示当前ability的名称，该名称在整个应用要唯一。            |
 | label   | string                                      | 是   | 否   | 表示ability对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 |
-| visible | boolean                                     | 是   | 否   | 表示ability是否可以被其它应用调用，true表示可以被其它应用调用，false表示不可以被其它应用调用。 |
+| exported | boolean                                     | 是   | 否   | 表示ability是否可以被其它应用调用，true表示可以被其它应用调用，false表示不可以被其它应用调用。 |
 | forms   | Array\<[AbilityFormInfo](#abilityforminfo)> | 是   | 否   | 卡片信息。                                                   |
 
 ## ExtensionAbility
