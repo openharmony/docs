@@ -99,7 +99,7 @@ onAccessibilityEvent(accessibilityEvent) {
   }
 ]
 ```
-另外，配置信息中的`accessibility_config`为无障碍扩展服务的具体配置，需要在`resources/profile/`下新建`accessibility_config.json`文件，在该文件中声明此无障碍扩展服务具备的[能力类型](../reference/apis/js-apis-accessibility.md#capability):
+另外，配置信息中的`accessibility_config`为无障碍扩展服务的具体配置，需要在`resources/base/profile/`下新建`accessibility_config.json`文件，在该文件中声明此无障碍扩展服务具备的[能力类型](../reference/apis/js-apis-accessibility.md#capability):
 ```json
 {
   "accessibilityCapabilities": [
