@@ -44,7 +44,7 @@ function dialCall(phoneNumber: string, options?: DialCallOptions): Promise<void>
 
 **适配指导**
 
-该接口删除无法再使用，请使用新增的接口dialCall替换。
+该接口作废，不推荐使用，请使用新增的接口dialCall替换。
 使用变更后的接口，示例代码如下：
 
 ```js
