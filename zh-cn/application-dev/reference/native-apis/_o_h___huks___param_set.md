@@ -20,9 +20,9 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [paramSetSize](#paramsetsize) | uint32_t<br/>参数集的内存大小。  | 
-| [paramsCnt](#paramscnt) | uint32_t<br/>参数的个数。  | 
-| [params](#params) [] | struct [OH_Huks_Param](_o_h___huks___param.md)<br/>参数数组。  | 
+| [paramSetSize](#paramsetsize) | 参数集的内存大小。  | 
+| [paramsCnt](#paramscnt) | 参数的个数。  | 
+| [params](#params) [] | 参数数组。  | 
 
 
 ## 结构体成员变量说明
