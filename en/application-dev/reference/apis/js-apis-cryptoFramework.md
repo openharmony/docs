@@ -14,9 +14,9 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 ## Result
 
- Enumerates the error codes.
+Enumerates the error codes.
 
- **System capability**: SystemCapability.Security.CryptoFramework
+**System capability**: SystemCapability.Security.CryptoFramework
 
 | Name                                 |    Value  |   Description                        |
 | ------------------------------------- | -------- | ---------------------------- |
@@ -29,11 +29,12 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 ## DataBlob
 
 Defines a binary data array.
- **System capability**: SystemCapability.Security.CryptoFramework
+
+**System capability**: SystemCapability.Security.CryptoFramework
 
 | Name| Type      | Readable| Writable| Description  |
 | ---- | ---------- | ---- | ---- | ------ |
-| data | Uint8Array | Yes  | Yes  | Data.|
+| data | Uint8Array | Yes  | Yes  | Binary data array. |
 
 
 ## cryptoFramework.createMac
@@ -42,13 +43,15 @@ createMac(algName : string) : Mac
 
 Creates a **Mac** instance for message authentication code (MAC) operations.
 
+For details about the supported specifications, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm to use, which can be SHA-1, SHA-224, SHA-256, SHA-384, or SHA-512.|
+| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications). |
 
 **Return value**
 
@@ -60,7 +63,7 @@ Creates a **Mac** instance for message authentication code (MAC) operations.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **Example**
 
@@ -100,14 +103,14 @@ Initializes the MAC computation using a symmetric key. This API uses an asynchro
 
 | Name  | Type                | Mandatory| Description        |
 | -------- | -------------------- | ---- | ------------ |
-| key      | SymKey               | Yes  | Shared symmetric key.|
+| key      | [SymKey](#symkey)    | Yes  | Shared symmetric key.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.    |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -146,7 +149,7 @@ Initializes the MAC computation using a symmetric key. This API uses a promise t
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | ------------ |
-| key    | SymKey | Yes  | Shared symmetric key.|
+| key    | [SymKey](#symkey) | Yes  | Shared symmetric key.|
 
 **Return value**
 
@@ -158,7 +161,7 @@ Initializes the MAC computation using a symmetric key. This API uses a promise t
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -191,20 +194,23 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 Updates the MAC computation data. This API uses an asynchronous callback to return the result.
 
+> **NOTE**<br>
+> For details about the sample code for calling **update()** multiple times, see [Generating a MAC](../../security/cryptoFramework-guidelines.md#generating-a-mac).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | Yes  | Data to pass in.|
+| input    | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -243,13 +249,16 @@ update(input : DataBlob) : Promise\<void>;
 
 Updates the MAC computation data. This API uses a promise to return the result.
 
+> **NOTE**<br>
+> For details about the sample code for calling **update()** multiple times, see [Generating a MAC](../../security/cryptoFramework-guidelines.md#generating-a-mac).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| input  | DataBlob | Yes  | Data to pass in.|
+| input  | [DataBlob](#datablob) | Yes  | Data to pass in.|
 
 **Return value**
 
@@ -261,7 +270,7 @@ Updates the MAC computation data. This API uses a promise to return the result.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -304,14 +313,14 @@ Finalizes the MAC computation. This API uses an asynchronous callback to return 
 
 | Name  | Type                    | Mandatory| Description    |
 | -------- | ------------------------ | ---- | -------- |
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -363,14 +372,14 @@ Finalizes the MAC computation. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -423,7 +432,7 @@ Obtains the MAC length, in bytes.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -464,7 +473,9 @@ promiseConvertKey.then(symKey => {
 
 createMd(algName : string) : Md
 
-Creates an **Md** instance for message digest operations.
+Creates an **Md** instance for message digest operations. 
+
+For details about the supported specifications, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -472,7 +483,7 @@ Creates an **Md** instance for message digest operations.
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm to use, which can be SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, or MD5.|
+| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications). |
 
 **Return value**
 
@@ -484,7 +495,7 @@ Creates an **Md** instance for message digest operations.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **Example**
 
@@ -518,20 +529,23 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 Updates the message digest data. This API uses an asynchronous callback to return the result.
 
+> **NOTE**<br>
+> For details about the sample code for calling **update()** multiple times, see [Generating a Digest](../../security/cryptoFramework-guidelines.md#generating-a-digest).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | Yes  | Data to pass in.|
+| input    | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -560,6 +574,9 @@ update(input : DataBlob) : Promise\<void>;
 
 Updates the message digest data. This API uses a promise to return the result.
 
+> **NOTE**<br>
+> For details about the sample code for calling **update()** multiple times, see [Generating a Digest](../../security/cryptoFramework-guidelines.md#generating-a-digest).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name| Type    | Mandatory| Description      |
@@ -576,7 +593,7 @@ Updates the message digest data. This API uses a promise to return the result.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -616,8 +633,8 @@ Generates a message digest. This API uses an asynchronous callback to return the
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -659,14 +676,14 @@ Generates a message digest. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -711,7 +728,7 @@ Obtains the message digest length, in bytes.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -744,7 +761,7 @@ promiseMdUpdate.then(() => {
 
 createRandom() : Random
 
-Creates a **Random** instance for generating random numbers and setting seeds.
+Creates a **Random** instance for generating a random number and setting a seed.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -758,7 +775,7 @@ Creates a **Random** instance for generating random numbers and setting seeds.
 
 | ID| Error Message    |
 | -------- | ------------ |
-| 17620001 | memory error |
+| 17620001 | memory error. |
 
 **Example**
 
@@ -789,14 +806,14 @@ Generates a random number of the given length. This API uses an asynchronous cal
 | Name  | Type                    | Mandatory| Description                |
 | -------- | ------------------------ | ---- | -------------------- |
 | len      | number                   | Yes  | Length of the random number to generate.|
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the result.            |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result.            |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -836,14 +853,14 @@ Generates a random number of the given length. This API uses a promise to return
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -881,7 +898,7 @@ Sets a seed. This API uses an asynchronous callback to return the result.
 
 | ID| Error Message          |
 | -------- | ----------------- |
-| 17620001 | memory error      |
+| 17620001 | memory error.      |
 
 **Example**
 
@@ -911,29 +928,33 @@ rand.generateRandom(12, (err, randData) => {
 
 ## ParamsSpec
 
-Defines the parameters used for encryption and decryption. <br>For the symmetric encryption and decryption modes that require parameters such as the initialization vector (IV), you need to construct a child class object and pass it to [init()](#init-2). If the IV is not required (for example, the ECB mode), pass in **null** in [init()](#init-2).
+Defines the parameters used for encryption and decryption. 
+
+For the symmetric encryption and decryption modes that require parameters such as the initialization vector (IV), you must construct a child class object and pass it to [init()](#init-2). If no IV is required (for example, the ECB mode is used), pass in **null** in [init()](#init-2).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
-| Name    | Type  | Readable| Writable| Description                   |
-| -------- | ------ | ---- | ---- | ----------------------- |
-| algoName | string | Yes  | Yes  | Symmetric encryption and decryption parameters. Options:<br>- **IvParamsSpec**: applicable to the CBC,|CTR,|OFB, |and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode.|
+| Name   | Type  | Readable| Writable| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| algName | string | Yes  | Yes  | Symmetric encryption and decryption parameters. Options:<br>- **IvParamsSpec**: applicable to the CBC, CTR, OFB, and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode.|
 
-> **NOTE**
-> The **params** parameter in [init()](#init-2) is of the **ParamsSpec** type (parent class), while a child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, you must set **algoName** for the parent class **ParamsSpec** to let the algorithm library know the child class object to pass in in **init()**.
+> **NOTE**<br>
+> The **params** parameter in [init()](#init-2) is of the **ParamsSpec** type (parent class), but a child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, set **algName** for the parent class **ParamsSpec** to let the algorithm library know the type of child class object to pass in in **init()**.
 
 ## IvParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. <br>**IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. 
+
+**IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name| Type                 | Readable| Writable| Description                                                        |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption and decryption. Options:<br>- AES CBC, |CTR, |OFB, |or CFB mode: 16-byte IV<br>- 3DES CBC,|OFB, or |CFB mode: 8-byte IV|
+| iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption and decryption. Options:<br>- AES CBC, CTR, OFB, or CFB mode: 16-byte IV<br>- 3DES CBC, OFB, or CFB mode: 8-byte IV|
 
-> **NOTE**
-> Before passing [init()](#init-2), specify **algoName** for its parent class [ParamsSpec](#paramsspec).
+> **NOTE**<br>
+> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 
 ## GcmParamsSpec
 
@@ -948,7 +969,7 @@ Defines the child class of [ParamsSpec](#paramsspec) for the GCM mode. It is use
 | authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>When the GCM mode is used for encryption, [DataBlob](#datablob) output by [doFinal()](#dofinal-2) is required. The last 16 bytes of [DataBlob](#datablob) are used as as **authTag** in [GcmParamsSpec](#gcmparamsspec) of [init()](#init-2). |
 
 > **NOTE**
-> Before passing [init()](#init-2), specify **algoName** for its parent class [ParamsSpec](#paramsspec).
+> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 
 ## CcmParamsSpec
 
@@ -959,11 +980,11 @@ Defines the child class of [ParamsSpec](#paramsspec) for the CCM mode. It is use
 | Name   | Type                 | Readable| Writable| Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                               |
-| aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                              |
+| aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authenticated data (AAD), which is of 8 bytes.                              |
 | authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, [DataBlob](#datablob) output by [doFinal()](#dofinal-2) is required. The last 12 bytes of [DataBlob](#datablob) are used as as **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
 
 > **NOTE**
-> Before passing [init()](#init-2), specify **algoName** for its parent class [ParamsSpec](#paramsspec).
+> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
 
 ## CryptoMode
 
@@ -1154,6 +1175,10 @@ key.clearMem();
 
 Defines an asymmetric key pair, which includes a public key and a private key. <br>Asymmetric key pairs can be generated by the **AsyKeyGenerator**.
 
+> **NOTE**
+> 
+> The **pubKey** and **priKey** objects in the **KeyPair** object exist as one parameter in the **KeyPair** object. When **KeyPair** leaves the scope, its internal objects may be destructed. <br>The service must reference the **KeyPair** object instead of the internal **pubKey** or **priKey** object.
+
 ### Attributes
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -1168,7 +1193,7 @@ Defines an asymmetric key pair, which includes a public key and a private key. <
 
 createSymKeyGenerator(algName : string) : SymKeyGenerator
 
-Creates a **symKeyGenerator** instance based on the specified algorithm. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
+Creates a **symKeyGenerator** instance based on the specified algorithm. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation- specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1176,7 +1201,7 @@ Creates a **symKeyGenerator** instance based on the specified algorithm. <br>For
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String for Generating a Key" in [Key Generation Specifications] (../../security/cryptoFramework-overview.md#key-generation-specifications).|
+| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String Parameter" in [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications). |
 
 **Return value**
 
@@ -1227,8 +1252,8 @@ Generates a key randomly. This API uses an asynchronous callback to return the r
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey((err, symKey) => {
   if (err) {
     console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
@@ -1262,8 +1287,8 @@ Generates a key randomly. This API uses a promise to return the result. <br>This
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
-let symAlgoName = 'AES128';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = 'AES128';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey()
 .then(symKey => {
   console.info(`Generate symKey success, algName: ${symKey.algName}`);
@@ -1307,8 +1332,8 @@ function genKeyMaterialBlob() {
   return {data : keyMaterial};
 }
 
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 let keyMaterialBlob = genKeyMaterialBlob();
 symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
   if (err) {
@@ -1359,8 +1384,8 @@ function genKeyMaterialBlob() {
   return {data : keyMaterial};
 }
 
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 let keyMaterialBlob = genKeyMaterialBlob();
 symKeyGenerator.convertKey(keyMaterialBlob)
 .then(symKey => {
@@ -1374,7 +1399,7 @@ symKeyGenerator.convertKey(keyMaterialBlob)
 
 createAsyKeyGenerator(algName : string) : AsyKeyGenerator
 
-Creates an **AsyKeyGenerator** instance based on the specified algorithm.
+Creates an **AsyKeyGenerator** instance based on the specified algorithm. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation- specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1388,7 +1413,7 @@ Creates an **AsyKeyGenerator** instance based on the specified algorithm.
 
 | Type           | Description                        |
 | --------------- | ---------------------------- |
-| asyKeyGenerator | **AsyKeyGenerator** instance created.|
+| [AsyKeyGenerator](#asykeygenerator) | **AsyKeyGenerator** instance created.|
 
 **Example**
 
@@ -1422,7 +1447,13 @@ Generates a key pair randomly. This API uses an asynchronous callback to return 
 
 | Name    | Type                   | Mandatory| Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<KeyPair> | Yes  | Callback invoked to return the key pair obtained.|
+| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1452,7 +1483,13 @@ Generates a key pair randomly. This API uses a promise to return the result.
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1480,9 +1517,15 @@ Converts data into an asymmetric key. This API uses an asynchronous callback to 
 
 | Name    | Type      | Mandatory| Description                          |
 | -------- | ----------- | ---- | ------------------------------ |
-| pubKey   | DataBlob    | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**.       |
-| priKey   | DataBlob    | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**.       |
-| callback | AsyncCallback\<KeyPair> | Yes  | Callback invoked to return the key pair obtained.|
+| pubKey   | [DataBlob](#datablob)     | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**.       |
+| priKey   | [DataBlob](#datablob)     | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**.       |
+| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1519,7 +1562,13 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1539,9 +1588,9 @@ keyGenPromise.then( keyPair => {
 
 **Key Conversion**
 
-- After **getEncoded()** is called for the asymmetric public and private keys (RSA and ECC), binary data in X.509 format and binary data in PKCS #8 format are returned, respectively. The data can be used for cross-application transfer or persistent storage.
-- The public key returned by **convertKey()** must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format, and the private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
-- In **convertKey()**, you can pass in either **pubKey** or **priKey**, or both of them. If one of them is passed in, the returned **KeyPair** instance contains only the key converted from the data you passed in.
+1. After **getEncoded()** is called for the asymmetric public and private keys (RSA and ECC), binary data in X.509 format and binary data in PKCS #8 format are returned, respectively. The data can be used for cross-application transfer or persistent storage.
+2. The public key returned by **convertKey()** must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format, and the private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
+3. In **convertKey()**, you can pass in either **pubKey** or **priKey**, or both of them. If one of them is passed in, the returned **KeyPair** instance contains only the key converted from the data you passed in.
 
 ## cryptoFramework.createCipher
 
@@ -1555,7 +1604,7 @@ Creates a [Cipher](#cipher) instance based on the specified algorithm. <br>For d
 
 | Name        | Type  | Mandatory| Description                                                        |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details about, see **Algorithm String** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications). |
+| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details about, see **Algorithm String** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).|
 
 > **NOTE**
 > 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed. <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
@@ -1572,10 +1621,10 @@ Creates a [Cipher](#cipher) instance based on the specified algorithm. <br>For d
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let cipherAlgoName = '3DES192|ECB|PKCS7';
+let cipherAlgName = '3DES192|ECB|PKCS7';
 var cipher;
 try {
-  cipher = cryptoFramework.createCipher(cipherAlgoName);
+  cipher = cryptoFramework.createCipher(cipherAlgName);
   console.info(`cipher algName: ${cipher.algName}`);
 } catch (error) {
   console.error(`createCipher failed, ${error.code}, ${error.message}`);
@@ -1694,9 +1743,9 @@ update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 Updates the data to encrypt or decrypt by segment. This API uses an asynchronous callback to return the encrypted or decrypted data. <br>This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
 
 > **NOTE**
-> - If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> - **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.
-> - RSA asymmetric encryption and decryption do not support **update()**.
+> 1. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment. <br>For details about the sample code for calling **update()** multiple times in AES, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
+> 3. RSA asymmetric encryption and decryption do not support **update()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1751,9 +1800,9 @@ update(data : DataBlob) : Promise\<DataBlob>
 Updates the data to encrypt or decrypt by segment. This API uses a promise to return the encrypted or decrypted data. <br>This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
 
 > **NOTE**
-> - If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update()** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> - **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.
-> - RSA asymmetric encryption and decryption do not support **update()**.
+> 1. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment. For details about the sample code for calling **update()** multiple times in AES, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
+> 3. RSA asymmetric encryption and decryption do not support **update()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1817,8 +1866,10 @@ doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
  (2) Encrypts or decrypts the input data for RSA asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
 
 >  **NOTE**
->  - In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
->  - If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  4. For details about the sample code for calling **doFinal()** multiple times during RSA asymmetric encryption and decryption, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1863,14 +1914,16 @@ doFinal(data : DataBlob) : Promise\<DataBlob>
 
  (1) Encrypts or decrypts the remaining data (generated by the block ciper mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**. <br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
-- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. **authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
+- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. <br>**authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
  (2) Encrypts or decrypts the input data for RSA asymmetric encryption/decryption. This API uses a promise to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
 
 >  **NOTE**
->  - In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
->  - If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  4. For details about the sample code for calling **doFinal()** multiple times during RSA asymmetric encryption and decryption, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1975,7 +2028,7 @@ keyGenPromise.then(rsaKeyPair => {
 
 createSign(algName : string) : Sign
 
-Creates a **Sign** instance.
+Creates a **Sign** instance. <br>For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1998,15 +2051,19 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
 
-let signer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
+let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
 ```
 
 ## Sign
 
 Provides APIs for signing. Before using any API of the **Sign** class, you must create a **Sign** instance by using **createSign()**. The **Sign** class does not support repeated initialization. When a new key is used for signing, you must create a new **Sign** object and call **init()** for initialization.
+
 The signing mode is determined in **createSign()**, and the key is set by **init()**.
+
 If the data to be signed is short, you can call **sign()** to pass in the data for signing after **init()**.
+
 If the data to be signed is long, you can use **update()** to pass in the data by segment, and then use **sign()** to sign the entire data.
+
 If **update()** is used to pass in data by segment, **data** of **sign()** can be **null**.
 
 ### Attributes
@@ -2021,7 +2078,7 @@ If **update()** is used to pass in data by segment, **data** of **sign()** can b
 
 init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
-Initializes a **Sign** instance using a private key. This API uses an asynchronous callback to return the result. The **Sign** class does not support repeated calling of **init()**. 
+Initializes a **Sign** object using a private key. This API uses an asynchronous callback to return the result. The **Sign** class does not support repeated calling of **init()**. 
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2029,14 +2086,22 @@ Initializes a **Sign** instance using a private key. This API uses an asynchrono
 
 | Name  | Type                | Mandatory| Description            |
 | -------- | -------------------- | ---- | ---------------- |
-| priKey   | PriKey                  | Yes  | Private key used for the initialization.|
+| priKey   | [PriKey](#prikey)    | Yes  | Private key used for the initialization.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.      |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
 init(priKey : PriKey) : Promise\<void>
 
-Initializes a **Sign** instance using a private key. This API uses a promise to return the result. The **Sign** class does not support repeated calling of **init()**. 
+Initializes a **Sign** object using a private key. This API uses a promise to return the result. The **Sign** class does not support repeated calling of **init()**. 
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2044,13 +2109,21 @@ Initializes a **Sign** instance using a private key. This API uses a promise to 
 
 | Name| Type| Mandatory| Description            |
 | ------ | ---- | ---- | ---------------- |
-| priKey | PriKey  | Yes  | Private key used for the initialization.|
+| priKey | [PriKey](#prikey)  | Yes  | Private key used for the initialization.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2058,14 +2131,25 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 Updates the data to be signed. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | Yes  | Data to pass in.|
+| data     | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2073,19 +2157,30 @@ update(data : DataBlob) : Promise\<void>;
 
 Updates the data to be signed. This API uses a promise to return the result.
 
+> **NOTE**
+> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2099,8 +2194,16 @@ Signs the data. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | Yes  | Data to pass in.|
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the result.  |
+| data     | [DataBlob](#datablob)              | Yes  | Data to pass in.|
+| callback | AsyncCallback\<[DataBlob](#datablob) > | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2114,13 +2217,19 @@ Signs the data. This API uses a promise to return the result.
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **Callback example**:
 
@@ -2138,8 +2247,8 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
+let plan1 = "This is Sign test plan1"; // The first segment of data.
+let plan2 = "This is Sign test plan2"; // The second segment of fata.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
 
@@ -2150,8 +2259,8 @@ function signMessageCallback() {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
     signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) { // Add the first segment of the data.
-        signer.sign(input2, function (err, data) { // Add the second segment of the data, and sign input1 and input2.
+      signer.update(input1, function (err, data) { // add first segment of data
+        signer.sign(input2, function (err, data) { // add second segment of data, sign input1 and input2
           SignMessageBlob = data;
           AlertDialog.show({message : "res" +  SignMessageBlob.data});
         });
@@ -2177,8 +2286,8 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
+let plan1 = "This is Sign test plan1"; // The first segment of data.
+let plan2 = "This is Sign test plan2"; // The second segment of fata.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
 
@@ -2191,9 +2300,9 @@ function signMessagePromise() {
     let priKey = globalKeyPair.priKey;
     return signer.init(priKey);
   }).then(() => {
-    return signer.update(input1); // Add the first segment of the data.
+    return signer.update(input1); // add first segment of data
   }).then(() => {
-    return signer.sign(input2); // Add the second segment of the data, and sign input1 and input2.
+    return signer.sign(input2); // add second segment of data, sign input1 and input2
   }).then(dataBlob => {
     SignMessageBlob = dataBlob;
     console.info("sign output is " + SignMessageBlob.data);
@@ -2206,7 +2315,7 @@ function signMessagePromise() {
 
 createVerify(algName : string) : Verify
 
-Creates a **Verify** instance.
+Creates a **Verify** instance. For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2235,10 +2344,15 @@ let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 ## Verify
 
 Provides APIs for signature verification. Before using any API of the **Verify** class, you must create a **Verify** instance by using **createVerify()**.
+
 The **Verify** class does not support repeated initialization. When a new key is used for signature verification, you must create a new **Verify** object and call **init()** for initialization.
+
 The signature verification mode is determined in **createVerify()**, and key is set by **init()**.
-If the data to be verified is short, you can call **verify()** to pass in the signature data and original data after **init()**.
-If the data to be verified is long, you can use **update()** to pass in the data by segment, and then use **verify()** to verify the entire data.
+
+If the signature data to be verified is short, you can call **verify()** to pass in the signature data and original data after **init()**.
+
+If the signature data to be verified is long, you can use **update()** to pass in the data by segment, and then use **verify()** to verify the entire data.
+
 If **update()** is used to pass in data by segment, **data** of **verify()** can be **null**.
 
 ### Attributes
@@ -2263,8 +2377,16 @@ Initializes the **Verify** instance using a public key. This API uses an asynchr
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| pubKey   | PubKey                  | Yes  | Public key used for the initialization.|
+| pubKey   | [PubKey](#pubkey)    | Yes  | Public key used for the initialization.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.                    |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
@@ -2278,13 +2400,21 @@ Initializes the **Verify** instance using a public key. This API uses a promise 
 
 | Name| Type| Mandatory| Description                        |
 | ------ | ---- | ---- | ---------------------------- |
-| pubKey | PubKey  | Yes  | Public key used for the initialization.|
+| pubKey | [PubKey](#pubkey)  | Yes  | Public key used for the initialization.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2292,14 +2422,25 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 Updates the data for signature verification. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | Yes  | Data to pass in.|
+| data     | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2307,19 +2448,30 @@ update(data : DataBlob) : Promise\<void>;
 
 Updates the data for signature verification. This API uses a promise to return the result.
 
+> **NOTE**
+> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+
 **System capability**: SystemCapability.Security.CryptoFramework
 
 **Parameters**
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2333,9 +2485,17 @@ Verifies the signature. This API uses an asynchronous callback to return the res
 
 | Name       | Type                | Mandatory| Description      |
 | ------------- | -------------------- | ---- | ---------- |
-| data          | DataBlob             | Yes  | Data to pass in.|
-| signatureData | DataBlob             | Yes  | Signature data.  |
+| data          | [DataBlob](#datablob)              | Yes  | Data to pass in.|
+| signatureData | [DataBlob](#datablob)              | Yes  | Signature data.  |
 | callback      | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2349,14 +2509,22 @@ Verifies the signature. This API uses a promise to return the result.
 
 | Name       | Type    | Mandatory| Description      |
 | ------------- | -------- | ---- | ---------- |
-| data          | DataBlob | Yes  | Data to pass in.|
-| signatureData | DataBlob | Yes  | Signature data.  |
+| data          | [DataBlob](#datablob)  | Yes  | Data to pass in.|
+| signatureData | [DataBlob](#datablob)  | Yes  | Signature data.  |
 
 **Return value**
 
 | Type             | Description                        |
 | ----------------- | ---------------------------- |
 | Promise\<boolean> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **Callback example**:
 
@@ -2401,7 +2569,7 @@ verifyInitPromise.then(() => {
 
 createKeyAgreement(algName : string) : KeyAgreement
 
-Creates a **KeyAgreement** instance.
+Creates a **KeyAgreement** instance. <br>For details about the supported specifications, see "Key Agreement Specifications" (../../security/cryptoFramework-overview.md#key-agreement-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2450,9 +2618,17 @@ Generates a shared secret. This API uses an asynchronous callback to return the 
 
 | Name  | Type                    | Mandatory| Description                  |
 | -------- | ------------------------ | ---- | ---------------------- |
-| priKey   | PriKey                   | Yes  | Private key used for key agreement.|
-| pubKey   | PubKey                   | Yes  | Public key used for key agreement.|
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the shared secret.|
+| priKey   | [PriKey](#prikey)        | Yes  | Private key used for key agreement.|
+| pubKey   | [PubKey](#pubkey)        | Yes  | Public key used for key agreement.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the shared secret.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### generateSecret
 
@@ -2466,14 +2642,22 @@ Generates a shared secret. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| priKey | PriKey | Yes  | Private key used for key agreement.|
-| pubKey | PubKey | Yes  | Public key used for key agreement.|
+| priKey | [PriKey](#prikey) | Yes  | Private key used for key agreement.|
+| pubKey | [PubKey](#pubkey) | Yes  | Public key used for key agreement.|
 
 **Return value**
 
 | Type              | Description    |
 | ------------------ | -------- |
-| Promise\<DataBlob> | Promise used to return the shared secret.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the shared secret.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **Callback example**:
 
