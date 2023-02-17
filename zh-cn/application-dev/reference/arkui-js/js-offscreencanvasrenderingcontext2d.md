@@ -94,10 +94,34 @@ isPointInPath(path?: Path2D, x: number, y: number): boolean
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 500px; height: 500px;">
-  <text>In path:{{textValue}}</text>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+<div class="container" style="width: 500px; height: 500px;">
+    <text class="textsize">In path:{{textValue}}</text>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F1F3F5;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    background-color: #fdfdfd;
+    border: none;
+}
+
+.textsize {
+    font-size: 40px;
+}
 ```
 
 ```js
@@ -144,10 +168,34 @@ isPointInStroke(path?: Path2D, x: number, y: number): boolean
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 500px; height: 500px;">
-  <text>In path:{{textValue}}</text>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+<div class="container" style="width: 500px; height: 500px;">
+    <text class="textsize">In stroke:{{textValue}}</text>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F1F3F5;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    background-color: #fdfdfd;
+    border: none;
+}
+
+.textsize {
+    font-size: 40px;
+}
 ```
 
 ```js
@@ -180,10 +228,34 @@ resetTransform(): void
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 500px; height: 500px;">
-  <text>In path:{{textValue}}</text>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+<div class="container" style="width: 500px; height: 500px;">
+    <text class="textsize">In path:{{textValue}}</text>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F1F3F5;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    background-color: #fdfdfd;
+    border: none;
+}
+
+.textsize {
+    font-size: 40px;
+}
 ```
 
 ```js
