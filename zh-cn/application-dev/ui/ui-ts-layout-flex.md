@@ -452,7 +452,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 - FlexAlign.SpaceEvenly:  子组件各行间距，子组件首尾行与交叉轴两端距离都相等。
 
     ```ts
-    Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceAround }) {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceEvenly }) {
       Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
       Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
       Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
