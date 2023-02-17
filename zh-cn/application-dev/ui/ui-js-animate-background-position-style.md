@@ -28,6 +28,7 @@
 .content{
   width: 400px;
   height: 400px;
+  /* 不建议图片长宽比为1:1 */
   background-image: url('common/images/bg-tv.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
