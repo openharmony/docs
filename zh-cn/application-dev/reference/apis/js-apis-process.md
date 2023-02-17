@@ -25,7 +25,7 @@ import process from '@ohos.process';
 | groups | number[] | 是 | 否 | 带有补充组id的数组。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
 | pid | number | 是 | 否 | 当前进程的pid。 |
 | ppid | number | 是 | 否 | 当前进程的父进程的pid。<br>**系统接口：** 此接口为系统接口。<br>此接口仅用于对应用的测试。 |
-| tid<sup>8+</sup> | number | 是 | 否 | 当前进程的tid。 |
+| tid<sup>8+</sup> | number | 是 | 否 | 当前线程的tid。 |
 
 
 ## EventListener
