@@ -123,3 +123,111 @@ LaunchType枚举类型名称变更，由LaunchType.STANDARD修改为LaunchType.M
 
 **适配指导**<br>
 由visible修改为exported。
+
+## cl.bundlemanager.8 app.json配置文件删除distributedNotificationEnabled标签
+删除配置文件app.json中[distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.9 app.json配置文件删除entityType标签
+删除配置文件app.json中[entityType](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[entityType](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[entityType](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.10 app.json配置文件删除keepAlive标签
+删除配置文件app.json中[keepAlive](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[keepAlive](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[keepAlive](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.11 app.json配置文件删除removable标签
+删除配置文件app.json中[removable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[removable](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[removable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.12 app.json配置文件删除singleton标签
+删除配置文件app.json中[singleton](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[singleton](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[singleton](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.13 app.json配置文件删除userDataClearable标签
+删除配置文件app.json中[userDataClearable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[userDataClearable](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[userDataClearable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.14 module.json配置文件中module的name标签不再支持配置中文
+module.json配置文件中的module的[name](../../../application-dev/quick-start/module-configuration-file.md)不再支持配置中文
+
+**变更影响**<br>
+删除配置文件module.json中module的[name](../../../application-dev/quick-start/module-configuration-file.md)标签不再支持配置中文，IDE中配置该标签为中文，会导致IDE编译报错
+
+**适配指导**<br>
+使用英文语言配置module.json中module的[name](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+## cl.bundlemanager.15 module.json配置文件中ability的name标签不再支持配置中文
+module.json配置文件中的ability的[name](../../../application-dev/quick-start/module-configuration-file.md)不再支持配置中文
+
+**变更影响**<br>
+删除配置文件module.json中ability的[name](../../../application-dev/quick-start/module-configuration-file.md)标签不再支持配置中文，IDE中配置该标签为中文，会导致IDE编译报错
+
+**适配指导**<br>
+使用英文语言配置module.json中ability的[name](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+## cl.bundlemanager.16 module.json配置文件删除uiSyntax标签
+删除配置文件module.json中[uiSyntax](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件module.json中[uiSyntax](../../../application-dev/quick-start/module-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[uiSyntax](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+## cl.bundlemanager.17 module.json配置文件中module及ability中的srcEntrance标签修改为srcEntry
+配置文件module.json中[srcEntrance](../../../application-dev/quick-start/module-configuration-file.md)标签修改为srcEntry
+
+**变更影响**<br>
+删除配置文件module.json中[srcEntrance](../../../application-dev/quick-start/module-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[srcEntrance](../../../application-dev/quick-start/module-configuration-file.md)标签，使用srcEntry替代
+
+## cl.bundlemanager.18 删除module.json配置文件中distroFilter的apiVersion标签
+删除配置文件module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)的apiVersion标签
+
+**变更影响**<br>
+删除配置文件module.json[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)的apiVersion标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)的apiVersion标签
+
+## cl.bundlemanager.19 module.json配置文件中distroFilter修改为distributionFilter
+配置文件module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签修改为distributionFilter
+
+**变更影响**<br>
+删除配置文件module.json[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，使用distributionFilter替代
