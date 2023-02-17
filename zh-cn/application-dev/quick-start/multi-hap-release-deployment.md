@@ -18,7 +18,7 @@
    
    在调试前，需要先安装或更新HAP，此处有两种方式。。
 
-   1. 直接使用hdc安装、更新HAP。 
+  1. 直接使用hdc安装、更新HAP。 
 
       HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
 
@@ -33,7 +33,7 @@
     uninstall bundle successfully.
     ```
  
-   2. 先执行hdc shell，再使用bm工具安装、更新HAP。
+  2. 先执行hdc shell，再使用bm工具安装、更新HAP。
 
       HAP的文件路径为真机上的文件路径，命令参考如下：
     
