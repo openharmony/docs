@@ -12,9 +12,9 @@
 
 | 接口名称                                                       | 说明                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| registerErrorObserver(observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。 |
-| unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void\>): void | 以callback的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
-| unregisterErrorObserver(observerId: number): Promise\<void\> | 以Promise的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
+| on(type: "error", observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。 |
+| off(type: "error", observerId: number,  callback: AsyncCallback\<void\>): void | 以callback的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
+| off(type: "error", observerId: number): Promise\<void\> | 以Promise的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
 
 当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
@@ -36,7 +36,7 @@
 
 ## 开发示例
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import errorManager from '@ohos.app.ability.errorManager';
 
 let registerId = -1;
@@ -46,15 +46,15 @@ let callback = {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
         registerId = errorManager.on("error", callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
         errorManager.off("error", registerId, (result) => {
             console.log("[Demo] result " + result.code + ";" + result.message)
         });
@@ -62,7 +62,7 @@ export default class MainAbility extends Ability {
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
@@ -75,17 +75,17 @@ export default class MainAbility extends Ability {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy")
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground")
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] MainAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground")
     }
 };
 ```
