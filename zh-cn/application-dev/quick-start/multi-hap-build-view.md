@@ -16,8 +16,8 @@ IDE支持在一个应用工程中进行多个HAP的开发与构建，如[多HAP�
          **说明：**
          - 该目录由IDE自动生成，名称不可更改。
          - AppScope目录下面的文件名与Entry、Feature模块下面的文件名不能重复，否则IDE会报错。
-   - entry或者featrue目录（名称可由开发者自定义）
-      - 由IDE引导开发者创建的Module，在该Module中实现应用的业务逻辑；可以创建多个Module，图中entry和featrue即是创建的两个Module。
+   - entry或者feature目录（名称可由开发者自定义）
+      - 由IDE引导开发者创建的Module，在该Module中实现应用的业务逻辑；可以创建多个Module，图中entry和feature即是创建的两个Module。
       - resources目录：放置该Module中所使用到的资源。
       - ets目录：开发者的业务逻辑。
       - [module.json5](module-configuration-file.md)：配置该Module的描述信息，如：Module的名称、Module的入口代码路径、包含的组件信息等。
