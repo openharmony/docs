@@ -14,24 +14,28 @@
 
    使用指导可参考[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section10491183521520)，其中包括了单HAP与多HAP通过DevEco Studio工具的安装调试方法。
 
-* 使用[hdc_std工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试
+* 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试
 
-    使用hdc_std安装HAP时，HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
+> **说明：**
+>
+> 安装、更新HAP时有两种方式进行调试，分为直接使用hdc进行安装、更新和先执行hdc shell再通过bm工具进行安装、更新。两种方法示例如下。
+
+    使用hdc安装、更新HAP时，HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
     ```
     // 安装、更新，多HAP可以指定多个文件路径
-    hdc_std install C:\entry.hap C:\feature.hap
+    hdc install C:\entry.hap C:\feature.hap
     // 执行结果
     install bundle successfully.
     // 卸载
-    hdc_std uninstall com.example.myapplication
+    hdc uninstall com.example.myapplication
     // 执行结果
     uninstall bundle successfully.
     ```
 
-* 使用[bm工具](../../application-dev/tools/bm-tool.md)进行调试
-
     使用bm工具进行安装、更新HAP时，传入的文件路径为真机上   的文件路径，命令参考如下：
     ```
+    // 先执行hdc shell才能使用bm工具
+    hdc shell
     // 安装、更新，多HAP可以指定多个文件路径
     bm install -p /data/app/entry.hap /data/app/feature.hap
     // 执行结果
