@@ -1214,7 +1214,7 @@ lstatSync(path: string): Stat
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-重命名文件，使用Promise异步回调。
+重命名文件或文件夹，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1247,7 +1247,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-重命名文件，使用callback异步回调。
+重命名文件或文件夹，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1277,7 +1277,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 renameSync(oldPath: string, newPath: string): void
 
-以同步方法重命名文件。
+以同步方法重命名文件或文件夹。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
