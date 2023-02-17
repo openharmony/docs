@@ -19,14 +19,14 @@
 
 **示例：**
 ```ts
-import missionManager from '@ohos.app.ability.missionManager'
+import missionManager from '@ohos.app.ability.missionManager';
 
 try {
-  missionManager.getMissionInfo("", 1, (error, data) => {
+  missionManager.getMissionInfo('', 1, (error, data) => {
     if (error.code) {
         // 处理业务逻辑错误
-        console.log("getMissionInfo failed, error.code:" + JSON.stringify(error.code) +
-          "error.message:" + JSON.stringify(error.message));
+        console.log('getMissionInfo failed, error.code:' + JSON.stringify(error.code) +
+          'error.message:' + JSON.stringify(error.message));
         return;
     }
 
@@ -40,6 +40,6 @@ try {
     console.log('getMissionInfo continuable is:' + JSON.stringify(data.continuable));
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```

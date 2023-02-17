@@ -19,14 +19,14 @@ Mission迁移完成后调用，返回迁移结果。
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
 
   let continueDeviceInfo = {
-      srcDeviceId: "123",
-      dstDeviceId: "456",
+      srcDeviceId: '123',
+      dstDeviceId: '456',
       missionId: 123,
       wantParam: {
-          "key":"value"
+          'key':'value'
       }
   };
 
@@ -42,5 +42,5 @@ Mission迁移完成后调用，返回迁移结果。
           ' error.message: ' + JSON.stringify(error.message));
       }
       console.log('continueMission finished');
-  })
+  });
   ```

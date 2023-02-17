@@ -60,7 +60,7 @@ createBundleContext(bundleName: string): Context;
 ```ts
 let bundleContext;
 try {
-    bundleContext = this.context.createBundleContext("com.example.test");
+    bundleContext = this.context.createBundleContext('com.example.test');
 } catch (error) {
     console.log('createBundleContext failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));
@@ -100,7 +100,7 @@ createModuleContext(moduleName: string): Context;
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("entry");
+    moduleContext = this.context.createModuleContext('entry');
 } catch (error) {
     console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));
@@ -139,7 +139,7 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("com.example.test", "entry");
+    moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 } catch (error) {
     console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));

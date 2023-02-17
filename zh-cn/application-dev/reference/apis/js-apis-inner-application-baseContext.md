@@ -22,7 +22,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         // EntryAbility onCreate, isStageMode: true
-        console.log("EntryAbility onCreate, isStageMode: " + this.context.stageMode);
+        console.log('EntryAbility onCreate, isStageMode: ' + this.context.stageMode);
     }
 }
 ```

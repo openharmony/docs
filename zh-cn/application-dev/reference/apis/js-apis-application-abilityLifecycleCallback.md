@@ -1,6 +1,6 @@
 # @ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)
 
-AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onWindowStageCreate、onWindowStageDestroy等方法，可以作为[on(type: "abilityLifecycle", callback: AbilityLifecycleCallback)](js-apis-inner-application-applicationContext.md#applicationcontextontype-abilitylifecycle-callback-abilitylifecyclecallback)的入参。
+AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onWindowStageCreate、onWindowStageDestroy等方法，可以作为[on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)](js-apis-inner-application-applicationContext.md#applicationcontextontype-abilitylifecycle-callback-abilitylifecyclecallback)的入参。
 
 > **说明：**
 > 
@@ -11,7 +11,7 @@ AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命�
 ## 导入模块
 
 ```ts
-import AbilityLifecycleCallback from "@ohos.application.AbilityLifecycleCallback";
+import AbilityLifecycleCallback from '@ohos.application.AbilityLifecycleCallback';
 ```
 
 
@@ -156,57 +156,57 @@ onAbilityContinue(ability: Ability): void;
 **示例：**
 
 ```ts
-import AbilityStage from "@ohos.app.ability.AbilityStage";
+import AbilityStage from '@ohos.app.ability.AbilityStage';
 
 let lifecycleId;
 
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
-        console.log("MyAbilityStage onCreate")
+        console.log('MyAbilityStage onCreate')
         let AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
-                console.log("onAbilityCreate ability:" + JSON.stringify(ability));
+                console.log('onAbilityCreate ability:' + JSON.stringify(ability));
             },
             onWindowStageCreate(ability, windowStage) {
-                console.log("onWindowStageCreate ability:" + JSON.stringify(ability));
-                console.log("onWindowStageCreate windowStage:" + JSON.stringify(windowStage));
+                console.log('onWindowStageCreate ability:' + JSON.stringify(ability));
+                console.log('onWindowStageCreate windowStage:' + JSON.stringify(windowStage));
             },
             onWindowStageActive(ability, windowStage) {
-                console.log("onWindowStageActive ability:" + JSON.stringify(ability));
-                console.log("onWindowStageActive windowStage:" + JSON.stringify(windowStage));
+                console.log('onWindowStageActive ability:' + JSON.stringify(ability));
+                console.log('onWindowStageActive windowStage:' + JSON.stringify(windowStage));
             },
             onWindowStageInactive(ability, windowStage) {
-                console.log("onWindowStageInactive ability:" + JSON.stringify(ability));
-                console.log("onWindowStageInactive windowStage:" + JSON.stringify(windowStage));
+                console.log('onWindowStageInactive ability:' + JSON.stringify(ability));
+                console.log('onWindowStageInactive windowStage:' + JSON.stringify(windowStage));
             },
             onWindowStageDestroy(ability, windowStage) {
-                console.log("onWindowStageDestroy ability:" + JSON.stringify(ability));
-                console.log("onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));
+                console.log('onWindowStageDestroy ability:' + JSON.stringify(ability));
+                console.log('onWindowStageDestroy windowStage:' + JSON.stringify(windowStage));
             },
             onAbilityDestroy(ability) {
-                console.log("onAbilityDestroy ability:" + JSON.stringify(ability));
+                console.log('onAbilityDestroy ability:' + JSON.stringify(ability));
             },
             onAbilityForeground(ability) {
-                console.log("onAbilityForeground ability:" + JSON.stringify(ability));
+                console.log('onAbilityForeground ability:' + JSON.stringify(ability));
             },
             onAbilityBackground(ability) {
-                console.log("onAbilityBackground ability:" + JSON.stringify(ability));
+                console.log('onAbilityBackground ability:' + JSON.stringify(ability));
             },
             onAbilityContinue(ability) {
-                console.log("onAbilityContinue ability:" + JSON.stringify(ability));
+                console.log('onAbilityContinue ability:' + JSON.stringify(ability));
             }
         }
         // 1.通过context属性获取applicationContext
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
-        console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleId));
+        console.log('registerAbilityLifecycleCallback number: ' + JSON.stringify(lifecycleId));
     }
 
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.unregisterAbilityLifecycleCallback(lifecycleId, (error, data) => {
-            console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+            console.log('unregisterAbilityLifecycleCallback success, err: ' + JSON.stringify(error));
         });
     }
 }

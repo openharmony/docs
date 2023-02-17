@@ -25,7 +25,7 @@ import Want from '@ohos.app.ability.Want';
 | [action](js-apis-app-ability-wantConstant.md#wantConstant.Action) | string               | 否   | 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，您可以定义该字段，配合uri或parameters来表示对数据要执行的操作。隐式Want定义及匹配规则请参见[显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)。                     |
 | [entities](js-apis-app-ability-wantConstant.md#wantConstant.Entity) | Array\<string> | 否 | 表示目标Ability额外的类别信息（如：浏览器、视频播放器）。在隐式Want中是对action字段的补充。在隐式Want中，您可以定义该字段，来过滤匹配Ability类型。 |
 | uri | string | 否 | 表示携带的数据，一般配合type使用，指明待处理的数据类型。如果在Want中指定了uri，则Want将匹配指定的Uri信息，包括`scheme`、`schemeSpecificPart`、`authority`和`path`信息。 |
-| type | string | 否 | 表示MIME type类型描述，打开文件的类型，主要用于文管打开文件。比如："text/xml" 、 "image/*"等，MIME定义请参见https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。 |
+| type | string | 否 | 表示MIME type类型描述，打开文件的类型，主要用于文管打开文件。比如：'text/xml' 、 'image/*'等，MIME定义请参见https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。 |
 | parameters   | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br />- ohos.aafwk.callerPid：表示拉起方的pid。<br />- ohos.aafwk.param.callerToken：表示拉起方的token。<br />- ohos.aafwk.param.callerUid：表示[BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。           |
 | [flags](js-apis-ability-wantConstant.md#wantconstantflags) | number | 否 | 表示处理Want的方式。默认传数字。<br />例如通过wantConstant.Flags.FLAG_ABILITY_CONTINUATION表示是否以设备间迁移方式启动Ability。 |
 
@@ -35,15 +35,15 @@ import Want from '@ohos.app.ability.Want';
 
   ```ts
     let want = {
-        "deviceId": "", // deviceId为空表示本设备
-        "bundleName": "com.example.myapplication",
-        "abilityName": "FuncAbility",
-        "moduleName": "entry" // moduleName非必选
+        'deviceId': '', // deviceId为空表示本设备
+        'bundleName': 'com.example.myapplication',
+        'abilityName': 'FuncAbility',
+        'moduleName': 'entry' // moduleName非必选
     };
     this.context.startAbility(want, (error) => {
         // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.log("error.code = " + error.code)
-    })
+        console.log('error.code = ' + error.code);
+    });
   ```
 
 - 通过自定字段传递数据, 以下为当前支持类型（在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象）。
@@ -51,84 +51,84 @@ import Want from '@ohos.app.ability.Want';
     * 字符串（String）
         ```ts
         let want = {
-            bundleName: "com.example.myapplication",
-            abilityName: "FuncAbility",
+            bundleName: 'com.example.myapplication',
+            abilityName: 'FuncAbility',
             parameters: {
-                keyForString: "str",
+                keyForString: 'str',
             },
-        }
+        };
         ```
     * 数字（Number）
         ```ts
         let want = {
-            bundleName: "com.example.myapplication",
-            abilityName: "FuncAbility",
+            bundleName: 'com.example.myapplication',
+            abilityName: 'FuncAbility',
             parameters: {
                 keyForInt: 100,
                 keyForDouble: 99.99,
             },
-        }
+        };
         ```
     * 布尔（Boolean）
         ```ts
         let want = {
-            bundleName: "com.example.myapplication",
-            abilityName: "FuncAbility",
+            bundleName: 'com.example.myapplication',
+            abilityName: 'FuncAbility',
             parameters: {
                 keyForBool: true,
             },
-        }
+        };
         ```
     * 对象（Object）
         ```ts
         let want = {
-            bundleName: "com.example.myapplication",
-            abilityName: "FuncAbility",
+            bundleName: 'com.example.myapplication',
+            abilityName: 'FuncAbility',
             parameters: {
                 keyForObject: {
-                    keyForObjectString: "str",
+                    keyForObjectString: 'str',
                     keyForObjectInt: -200,
                     keyForObjectDouble: 35.5,
                     keyForObjectBool: false,
                 },
             },
-        }
+        };
         ```
     * 数组（Array）
         ```ts
         let want = {
-            bundleName: "com.example.myapplication",
-            abilityName: "FuncAbility",
+            bundleName: 'com.example.myapplication',
+            abilityName: 'FuncAbility',
             parameters: {
-                keyForArrayString: ["str1", "str2", "str3"],
+                keyForArrayString: ['str1', 'str2', 'str3'],
                 keyForArrayInt: [100, 200, 300, 400],
                 keyForArrayDouble: [0.1, 0.2],
-                keyForArrayObject: [{obj1: "aaa"}, {obj2: 100}],
+                keyForArrayObject: [{obj1: 'aaa'}, {obj2: 100}],
             },
-        }
+        };
         ```
     * 文件描述符（FD）
         ```ts
         import fileio from '@ohos.fileio';
         let fd;
         try {
-            fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
+            fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
         } catch(e) {
-            console.log("openSync fail:" + JSON.stringify(e));
+            console.log('openSync fail:' + JSON.stringify(e));
         }
         let want = {
-            "deviceId": "", // deviceId为空表示本设备
-            "bundleName": "com.example.myapplication",
-            "abilityName": "FuncAbility",
-            "moduleName": "entry", // moduleName非必选
-            "parameters": {
-                "keyFd":{"type":"FD", "value":fd} // {"type":"FD", "value":fd}是固定用法，用于表示该数据是FD
+            'deviceId': '', // deviceId为空表示本设备
+            'bundleName': 'com.example.myapplication',
+            'abilityName': 'FuncAbility',
+            'moduleName': 'entry', // moduleName非必选
+            'parameters': {
+                'keyFd':{'type':'FD', 'value':fd} // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
             }
         };
         this.context.startAbility(want, (error) => {
             // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-            console.log("error.code = " + error.code)
-        })
+            console.log('error.code = ' + error.code)
+        });
         ```
 
 - 更多详细说明和示例请参见： [应用模型](../../application-models/Readme-CN.md)的信息传递载体Want

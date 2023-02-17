@@ -14,7 +14,7 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 | bundleName   | string               | 否   | 表示Bundle名称。 |
 | abilityName  | string               | 否   | 表示待启动的Ability名称。如果在Want中该字段同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。AbilityName需要在一个应用的范围内保证唯一。 |
 | uri          | string               | 否   | 表示Uri。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-| type         | string               | 否   | 表示MIME type类型，打开文件的类型，主要用于文管打开文件。比如："text/xml" 、 "image/*"等，MIME定义参考：https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。   |
+| type         | string               | 否   | 表示MIME type类型，打开文件的类型，主要用于文管打开文件。比如：'text/xml' 、 'image/*'等，MIME定义参考：https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。   |
 | flags        | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](js-apis-ability-wantConstant.md#wantConstant.Flags)。 |
 | action      | string               | 否   | 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，您可以定义该字段，配合uri或parameters来表示对数据要执行的操作。具体参考：[action说明](js-apis-app-ability-wantConstant.md#wantConstant.Action)。隐式Want定义及匹配规则参考：[显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)。                           |
 | parameters   | {[key: string]: any} | 否   | 表示WantParams，由开发者自行决定传入的键值对。默认会携带以下key值：<br>ohos.aafwk.callerPid 表示拉起方的pid。<br>ohos.aafwk.param.callerToken 表示拉起方的token。<br>ohos.aafwk.param.callerUid 表示[bundleInfo](js-apis-bundle-BundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。                                       |
@@ -27,14 +27,14 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 
   ```ts
   let want = {
-      "deviceId": "", // deviceId为空表示本设备
-      "bundleName": "com.example.myapplication",
-      "abilityName": "EntryAbility",
-      "moduleName": "entry" // moduleName非必选
+      'deviceId': '', // deviceId为空表示本设备
+      'bundleName': 'com.example.myapplication',
+      'abilityName': 'EntryAbility',
+      'moduleName': 'entry' // moduleName非必选
   };
   this.context.startAbility(want, (error) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.log("error.code = " + error.code)
+      console.log('error.code = ' + error.code)
   })
   ```
 
@@ -46,23 +46,23 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
   // ...
   let fd;
   try {
-      fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
+      fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
   } catch(e) {
-      console.log("openSync fail:" + JSON.stringify(e));
+      console.log('openSync fail:' + JSON.stringify(e));
   }
   let want = {
-      "deviceId": "", // deviceId为空表示本设备
-      "bundleName": "com.example.myapplication",
-      "abilityName": "EntryAbility",
-      "moduleName": "entry", // moduleName非必选
-      "parameters": {
-          "keyFd":{"type":"FD", "value":fd}
+      'deviceId': '', // deviceId为空表示本设备
+      'bundleName': 'com.example.myapplication',
+      'abilityName': 'EntryAbility',
+      'moduleName': 'entry', // moduleName非必选
+      'parameters': {
+          'keyFd':{'type':'FD', 'value':fd}
       }
   };
   this.context.startAbility(want, (error) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.log("error.code = " + error.code)
-  })
+      console.log('error.code = ' + error.code);
+  });
   // ...
   ```
   

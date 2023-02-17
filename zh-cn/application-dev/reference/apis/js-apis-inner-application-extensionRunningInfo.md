@@ -27,7 +27,7 @@ ExtensionRunningInfo模块封装了Extension运行的相关信息，可以通过
 
 **示例：**
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager'
+import abilityManager from '@ohos.app.ability.abilityManager';
 
 let upperLimit = 1;
 function getExtensionInfos() {
@@ -40,13 +40,13 @@ function getExtensionInfos() {
 
         for (let i = 0; i < data.length; i++) {
             let extensionRunningInfo = data[i];
-            console.log("extensionRunningInfo.extension: " + JSON.stringify(extensionRunningInfo.extension));
-            console.log("extensionRunningInfo.pid: " + JSON.stringify(extensionRunningInfo.pid));
-            console.log("extensionRunningInfo.uid: " + JSON.stringify(extensionRunningInfo.uid));
-            console.log("extensionRunningInfo.processName: " + JSON.stringify(extensionRunningInfo.processName));
-            console.log("extensionRunningInfo.startTime: " + JSON.stringify(extensionRunningInfo.startTime));
-            console.log("extensionRunningInfo.clientPackage: " + JSON.stringify(extensionRunningInfo.clientPackage));
-            console.log("extensionRunningInfo.type: " + JSON.stringify(extensionRunningInfo.type));
+            console.log('extensionRunningInfo.extension: ' + JSON.stringify(extensionRunningInfo.extension));
+            console.log('extensionRunningInfo.pid: ' + JSON.stringify(extensionRunningInfo.pid));
+            console.log('extensionRunningInfo.uid: ' + JSON.stringify(extensionRunningInfo.uid));
+            console.log('extensionRunningInfo.processName: ' + JSON.stringify(extensionRunningInfo.processName));
+            console.log('extensionRunningInfo.startTime: ' + JSON.stringify(extensionRunningInfo.startTime));
+            console.log('extensionRunningInfo.clientPackage: ' + JSON.stringify(extensionRunningInfo.clientPackage));
+            console.log('extensionRunningInfo.type: ' + JSON.stringify(extensionRunningInfo.type));
         }
     });
 }

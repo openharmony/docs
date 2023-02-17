@@ -14,7 +14,7 @@ particleAbility模块用来对Data和Service类型的Ability进行操作。
 ## 导入模块
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 ```
 
 ## particleAbility.startAbility
@@ -40,27 +40,27 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 **示例：**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import particleAbility from '@ohos.ability.particleAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 
 particleAbility.startAbility(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.Data",
-            abilityName: "EntryAbility",
-            uri: ""
+            deviceId: '',
+            bundleName: 'com.example.Data',
+            abilityName: 'EntryAbility',
+            uri: ''
         },
     },
     (error, result) => {
-        console.log('particleAbility startAbility errCode:' + error + 'result:' + result)
+        console.error('particleAbility startAbility errCode:' + error + 'result:' + result);
     },
-)
+);
 ```
 
 ## particleAbility.startAbility
@@ -91,25 +91,25 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>;
 **示例：**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import particleAbility from '@ohos.ability.particleAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 
 particleAbility.startAbility(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.Data",
-            abilityName: "EntryAbility",
-            uri: ""
+            deviceId: '',
+            bundleName: 'com.example.Data',
+            abilityName: 'EntryAbility',
+            uri: ''
         },
     },
 ).then((data) => {
-    console.info("particleAbility startAbility");
+    console.info('particleAbility startAbility');
 });
 ```
 
@@ -130,13 +130,13 @@ terminateSelf(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf(
     (error, result) => {
-        console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result)
+        console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result);
     }
-)
+);
 ```
 
 ## particleAbility.terminateSelf
@@ -156,10 +156,10 @@ terminateSelf(): Promise\<void>
 **示例：**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf().then((data) => {
-	console.info("particleAbility terminateSelf");
+	console.info('particleAbility terminateSelf');
 });
 ```
 
@@ -194,10 +194,10 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 **示例：**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 
-let uri = "";
-particleAbility.acquireDataAbilityHelper(uri)
+let uri = '';
+particleAbility.acquireDataAbilityHelper(uri);
 ```
 
 
@@ -228,17 +228,17 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed cause: " + JSON.stringify(err));
+        console.error('Operation failed cause: ' + JSON.stringify(err));
     } else {
-        console.info("Operation succeeded");
+        console.info('Operation succeeded');
     }
 }
 
 let wantAgentInfo = {
     wants: [
         {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility'
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -248,8 +248,8 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     let basicContent = {
-        title: "title",
-        text: "text"
+        title: 'title',
+        text: 'text'
     };
     let notificationContent = {
         contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -298,8 +298,8 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 let wantAgentInfo = {
     wants: [
         {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility'
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -309,8 +309,8 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     let basicContent = {
-        title: "title",
-        text: "text"
+        title: 'title',
+        text: 'text'
     };
     let notificationContent = {
         contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -322,9 +322,9 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     };
     let id = 1;
     particleAbility.startBackgroundRunning(id, request).then(() => {
-        console.info("Operation succeeded");
+        console.info('Operation succeeded');
     }).catch((err) => {
-        console.error("Operation failed cause: " + JSON.stringify(err));
+        console.error('Operation failed cause: ' + JSON.stringify(err));
     });
 });
 
@@ -351,9 +351,9 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed cause: " + JSON.stringify(err));
+        console.error('Operation failed cause: ' + JSON.stringify(err));
     } else {
-        console.info("Operation succeeded");
+        console.info('Operation succeeded');
     }
 }
 
@@ -381,9 +381,9 @@ cancelBackgroundRunning(): Promise&lt;void&gt;;
 import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.cancelBackgroundRunning().then(() => {
-    console.info("Operation succeeded");
+    console.info('Operation succeeded');
 }).catch((err) => {
-    console.error("Operation failed cause: " + JSON.stringify(err));
+    console.error('Operation failed cause: ' + JSON.stringify(err));
 });
 
 ```
@@ -413,25 +413,25 @@ connectAbility(request: Want, options:ConnectOptions): number
 **示例**：
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 
 let connId = particleAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -441,9 +441,9 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
+    console.log(' data: ' + data);
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+    console.log('particleAbilityTest result errCode : ' + error.code);
 });
 ```
 
@@ -472,17 +472,17 @@ function onConnectCallback(element, remote) {
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 
 let connId = particleAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -492,8 +492,8 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId, (err) => {
-    console.log("particleAbilityTest disconnectAbility err====>"
-    + ("json err=") + JSON.stringify(err));
+    console.log('particleAbilityTest disconnectAbility err====>'
+    + ('json err=') + JSON.stringify(err));
 });
 ```
 
@@ -523,17 +523,17 @@ function onConnectCallback(element, remote) {
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 
 let connId = particleAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -543,9 +543,9 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
+    console.log(' data: ' + data);
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+    console.log('particleAbilityTest result errCode : ' + error.code);
 });
 
 ```

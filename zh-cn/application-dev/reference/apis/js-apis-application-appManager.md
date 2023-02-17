@@ -152,7 +152,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   appManager.getAppMemorySize((err, data) => {
       console.log('error:' + JSON.stringify(err));
       console.log('The size of app memory is:' + JSON.stringify(data));
-  })
+  });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
@@ -206,7 +206,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
   appManager.getProcessRunningInfos((err, data) => {
       console.log('error:' + JSON.stringify(err));
       console.log('The process running infos is:' + JSON.stringify(data));
-  })
+  });
   ```
 
 ## appManager.registerApplicationStateObserver<sup>8+</sup>
@@ -230,7 +230,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 **示例：**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -246,7 +246,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  }
+  };
   const observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
   console.log('-------- observerCode: ---------', observerCode);
   ```
@@ -273,7 +273,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 **示例：**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -289,8 +289,8 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  }
-  var bundleNameList = ['bundleName1', 'bundleName2'];
+  };
+  let bundleNameList = ['bundleName1', 'bundleName2'];
   const observerCode = appManager.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
   console.log('-------- observerCode: ---------', observerCode);
   ```
@@ -361,7 +361,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
   })
   .catch((err) => {
       console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-  })
+  });
   ```
 
 ## appManager.getForegroundApplications<sup>8+</sup>
@@ -389,7 +389,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
     if (err) {
         console.log('--------- getForegroundApplicationsCallback fail ---------', err);
     } else {
-        console.log('--------- getForegroundApplicationsCallback success ---------', data)
+        console.log('--------- getForegroundApplicationsCallback success ---------', data);
     }
   }
   appManager.getForegroundApplications(getForegroundApplicationsCallback);
@@ -422,7 +422,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
   })
   .catch((err) => {
       console.log('--------- getForegroundApplications fail -------', err);
-  })
+  });
   ```
 
 ## appManager.killProcessWithAccount<sup>8+</sup>
@@ -455,7 +455,7 @@ appManager.killProcessWithAccount(bundleName, accountId)
    })
    .catch((err) => {
        console.log('------------ killProcessWithAccount fail ------------', err);
-   })
+   });
 ```
 
 
@@ -561,7 +561,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
     })
     .catch((err) => {
         console.log('------------ killProcessesByBundleName fail ------------', err);
-    })
+    });
   ```
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
@@ -631,5 +631,5 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
     })
     .catch((err) => {
         console.log('------------ clearUpApplicationData fail ------------', err);
-    })
+    });
   ```

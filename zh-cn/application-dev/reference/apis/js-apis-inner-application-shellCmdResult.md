@@ -19,13 +19,13 @@
 
 **示例：**
 ```ts
-import AbilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry";
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 let abilityDelegator;
-let cmd = "cmd";
+let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, (err: any, data: any) => {
-    console.info("executeShellCommand callback, result: ", err);
-    console.info("executeShellCommand callback, data: ", data);
+    console.info('executeShellCommand callback, result: ', err);
+    console.info('executeShellCommand callback, data: ', data);
 });
 ```

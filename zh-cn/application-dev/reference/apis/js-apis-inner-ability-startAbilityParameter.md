@@ -16,24 +16,24 @@
 
 **示例：**
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 
 let Want = {
-    bundleName: "com.example.abilityStartSettingApp2",
-    abilityName: "com.example.abilityStartSettingApp.EntryAbility",
-}
+    bundleName: 'com.example.abilityStartSettingApp2',
+    abilityName: 'com.example.abilityStartSettingApp.EntryAbility',
+};
 
 let abilityStartSetting ={
     [featureAbility.AbilityStartSetting.BOUNDS_KEY] : [100,200,300,400],
     [featureAbility.AbilityStartSetting.WINDOW_MODE_KEY] :
     featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED,
     [featureAbility.AbilityStartSetting.DISPLAY_ID_KEY] : 1,
-}
+};
 
 let startAbilityParameter = {
     want : Want,
     abilityStartSetting : abilityStartSetting
-}
+};
 
 try {
     featureAbility.startAbility(startAbilityParameter, (err, data) => {
@@ -41,6 +41,6 @@ try {
         console.log('data : ' + JSON.stringify(data));
     });
 } catch(error) {
-    console.log("startAbility error: " + JSON.stringify(error));
+    console.log('startAbility error: ' + JSON.stringify(error));
 }
 ```

@@ -15,7 +15,7 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 let axContext;
 class EntryAbility extends AccessibilityExtensionAbility {
     onConnect(): void {
@@ -542,7 +542,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 **示例：**
 
 ```ts
-import GesturePath from "@ohos.accessibility.GesturePath";
+import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
 let gesturePath = new GesturePath.GesturePath(100);
 try {
@@ -585,7 +585,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import GesturePath from "@ohos.accessibility.GesturePath";
+import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
 let gesturePath = new GesturePath.GesturePath(100);
 try {

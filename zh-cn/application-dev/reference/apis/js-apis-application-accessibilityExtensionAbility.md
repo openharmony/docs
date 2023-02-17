@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 ```
 
 ## 属性
@@ -137,7 +137,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onAccessibilityEvent(event) {
         console.log('AxExtensionAbility onAccessibilityEvent');
-        if (event.eventType == 'click') {
+        if (event.eventType === 'click') {
             console.log('AxExtensionAbility onAccessibilityEvent: click');
         }
     }
@@ -164,7 +164,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onKeyEvent(keyEvent) {
         console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.keyCode == 22) {
+        if (keyEvent.keyCode === 22) {
             console.log('AxExtensionAbility onKeyEvent: intercept 22');
             return true;
         }

@@ -14,12 +14,12 @@
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 let monitor = {
-    moduleName: "feature_as1",
-    srcEntrance: "./ets/Application/MyAbilityStage.ts",
+    moduleName: 'feature_as1',
+    srcEntrance: './ets/Application/MyAbilityStage.ts',
 };
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
-    console.info("stageMonitor waitAbilityStageMonitor, abilityStage = " + JSON.stringify(data));
+    console.info('stageMonitor waitAbilityStageMonitor, abilityStage = ' + JSON.stringify(data));
 });
 ```

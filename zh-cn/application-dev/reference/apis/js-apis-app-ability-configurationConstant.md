@@ -47,9 +47,9 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
 | SCREEN_DENSITY_NOT_SET | 0 | 未设置屏幕分辨率。 | 
-| SCREEN_DENSITY_SDPI | 120 | 屏幕分辨率为"sdpi"。 | 
-| SCREEN_DENSITY_MDPI | 160 | 屏幕分辨率为"mdpi"。 | 
-| SCREEN_DENSITY_LDPI | 240 | 屏幕分辨率为"ldpi"。 | 
-| SCREEN_DENSITY_XLDPI | 320 | 屏幕分辨率为"xldpi"。 | 
-| SCREEN_DENSITY_XXLDPI | 480 | 屏幕分辨率为"xxldpi"。 | 
-| SCREEN_DENSITY_XXXLDPI | 640 | 屏幕分辨率为"xxxldpi"。 | 
+| SCREEN_DENSITY_SDPI | 120 | 屏幕分辨率为'sdpi'。 | 
+| SCREEN_DENSITY_MDPI | 160 | 屏幕分辨率为'mdpi'。 | 
+| SCREEN_DENSITY_LDPI | 240 | 屏幕分辨率为'ldpi'。 | 
+| SCREEN_DENSITY_XLDPI | 320 | 屏幕分辨率为'xldpi'。 | 
+| SCREEN_DENSITY_XXLDPI | 480 | 屏幕分辨率为'xxldpi'。 | 
+| SCREEN_DENSITY_XXXLDPI | 640 | 屏幕分辨率为'xxxldpi'。 | 
