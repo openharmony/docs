@@ -114,7 +114,7 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
       },
     ]
     try {
-      // this.context 是MainAbility 传过来的context
+      // this.context 是EntryAbility 传过来的context
       fileAccessHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
       if (!fileAccessHelper)
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -153,7 +153,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
     let fileAccesssHelperAllServer = null;
     // 创建连接系统内所有配置fileAccess的文件管理类服务的helper对象
     try {
-      // this.context 是MainAbility 传过来的context
+      // this.context 是EntryAbility 传过来的context
       fileAccesssHelperAllServer = fileAccess.createFileAccessHelper(this.context);
       if (!fileAccesssHelperAllServer)
         console.error("createFileAccessHelper interface returns an undefined object");
