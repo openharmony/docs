@@ -438,7 +438,7 @@ treeSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中键值对的新迭代器对象。
+返回包含此映射中键值的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
