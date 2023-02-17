@@ -16,7 +16,7 @@
 
 * 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试
    
-   在调试前，需要先安装或更新HAP，此处有两种方式。。
+   在调试前，需要先安装或更新HAP，此处有两种方式。
 
  1. 直接使用hdc安装、更新HAP。 
 
