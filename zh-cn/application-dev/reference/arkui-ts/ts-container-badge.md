@@ -82,7 +82,7 @@ struct BadgeExample {
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)
 
-        // 数字上标
+        // 数字左标
         Badge({
           count: this.counts,
           maxCount: 99,
@@ -97,7 +97,7 @@ struct BadgeExample {
         }.width(100).height(50)
 
 
-        // 数字上标
+        // 数字右标
         Badge({
           count: this.counts,
           maxCount: 99,
