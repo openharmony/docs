@@ -271,8 +271,8 @@ struct NestedScroll {
             this.listPosition = 2
           })
           .onScrollFrameBegin((offset: number) => {
-            if ((this.listPosition == 0 && offset >= 0) || (this.listPosition == 2 && offset <= 0)) {
-              this.scrollerForScroll.scrollBy(0, -offset)
+            if ((this.listPosition == 0 && offset <= 0) || (this.listPosition == 2 && offset >= 0)) {
+              this.scrollerForScroll.scrollBy(0, offset)
               return { offsetRemain: 0 }
             }
             this.listPosition = 1
