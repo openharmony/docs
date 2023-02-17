@@ -56,7 +56,7 @@ export default {
     path.closePath();
     // 门
     path.moveTo(250, 450);
-    path.rect(250, 450, 350, 600);
+    path.rect(250, 450, 100, 600);
     path.closePath();
     // 烟囱
     path.moveTo(365, 250);
