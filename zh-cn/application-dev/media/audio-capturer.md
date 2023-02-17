@@ -112,7 +112,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    let numBuffersToCapture = 150; // 循环写入150次
    let count = 0;
    while (numBuffersToCapture) {
-     let bufferSize = await audioCapturer.getBuffersize();
+     let bufferSize = await audioCapturer.getBufferSize();
      let buffer = await audioCapturer.read(bufferSize, true);
      let options = {
        offset: count * this.bufferSize,
@@ -194,7 +194,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    let audioTime : number = await audioCapturer.getAudioTime();
 
    // 获取合理的最小缓冲区大小
-   let bufferSize : number = await audioCapturer.getBuffersize();
+   let bufferSize : number = await audioCapturer.getBufferSize();
    ```
 
 7. （可选）使用on('markReach')方法订阅采集器标记到达事件，使用off('markReach')取消订阅事件。
