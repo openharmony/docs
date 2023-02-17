@@ -234,7 +234,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    let audioTime : number = await audioRenderer.getAudioTime();
 
    // 获取合理的最小缓冲区大小
-   let bufferSize : number = await audioRenderer.getBuffersize();
+   let bufferSize : number = await audioRenderer.getBufferSize();
 
    // 获取渲染速率
    let renderRate : audio.AudioRendererRate = await audioRenderer.getRenderRate();
