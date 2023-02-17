@@ -7,11 +7,6 @@ The **\<Counter>** component provides an operation to increase or decrease the n
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
-
 ## Child Components
 
 Supported

@@ -30,7 +30,7 @@ import batteryInfo from '@ohos.batteryInfo';
 | batteryTemperature                        | number                                         | 是   | 否   | 表示当前设备电池的温度，单位0.1摄氏度。                    |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。                 |
 | batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 否   | 表示当前设备电池电量的等级。                               |
-| estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 否   | 表示当前设备充满电的预估时间，单位毫秒。                   |
+| estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 否   | 表示当前设备充满电的预估时间，单位毫秒。此接口为系统接口。          |
 | totalEnergy<sup>9+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的总容量，单位毫安时。此接口为系统接口。   |
 | nowCurrent<sup>9+</sup>                   | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。此接口为系统接口。       |
 | remainingEnergy<sup>9+</sup>              | number                                         | 是   | 否   | 表示当前设备电池的剩余容量，单位毫安时。此接口为系统接口。 |
@@ -84,14 +84,15 @@ import batteryInfo from '@ohos.batteryInfo';
 
 | 名称           | 值 | 说明                       |
 | -------------- | ------ | ---------------------------- |
-| LEVEL_NONE     | 0      | 表示电池电量等级未知。       |
 | LEVEL_FULL     | 1      | 表示电池电量等级为满电量。   |
 | LEVEL_HIGH     | 2      | 表示电池电量等级为高电量。   |
 | LEVEL_NORMAL   | 3      | 表示电池电量等级为正常电量。 |
 | LEVEL_LOW      | 4      | 表示电池电量等级为低电量。   |
-| LEVEL_CRITICAL | 5      | 表示电池电量等级为极低电量。 |
+| LEVEL_WARNING  | 5      | 表示电池电量等级为告警电量。 |
+| LEVEL_CRITICAL | 6      | 表示电池电量等级为极低电量。 |
+| LEVEL_SHUTDOWN | 7      | 表示电池电量等级为关机电量。 |
 
-## CommonEventBatteryChangedCode<sup>9+</sup>
+## CommonEventBatteryChangedKey<sup>9+</sup>
 
 表示COMMON_EVENT_BATTERY_CHANGED通用事件附加信息的查询键。
 
@@ -99,14 +100,12 @@ import batteryInfo from '@ohos.batteryInfo';
 
 | 名称                 | 值 | 说明                                             |
 | -------------------- | ------ | -------------------------------------------------- |
-| EXTRA_SOC            | 0      | 表示剩余电池电量百分比的查询键。                   |
-| EXTRA_VOLTAGE        | 1      | 表示当前设备电池电压的查询键。                     |
-| EXTRA_TEMPERATURE    | 2      | 表示当前设备电池温度的查询键。                     |
-| EXTRA_HEALTH_STATE   | 3      | 表示当前设备电池健康状态的查询键。                 |
-| EXTRA_PLUGGED_TYPE   | 4      | 表示当前设备连接的充电器类型的查询键。             |
-| EXTRA_MAX_CURRENT    | 5      | 表示当前设备电池最大电流的查询键。                 |
-| EXTRA_MAX_VOLTAGE    | 6      | 表示当前设备电池最大电压的查询键。                 |
-| EXTRA_CHARGE_STATE   | 7      | 表示当前设备电池充电状态的查询键。                 |
-| EXTRA_CHARGE_COUNTER | 8      | 表示当前设备电池充电次数的查询键。                 |
-| EXTRA_PRESENT        | 9      | 表示当前设备是否支持电池或者电池是否在位的查询键。 |
-| EXTRA_TECHNOLOGY     | 10     | 表示当前设备电池技术型号的查询键。                 |
+| EXTRA_SOC            | "soc" | 表示剩余电池电量百分比的查询键。                   |
+| EXTRA_CHARGE_STATE   | "chargeState" | 表示当前设备电池充电状态的查询键。                 |
+| EXTRA_HEALTH_STATE   | "healthState" | 表示当前设备电池健康状态的查询键。                 |
+| EXTRA_PLUGGED_TYPE   | "pluggedType" | 表示当前设备连接的充电器类型的查询键。             |
+| EXTRA_VOLTAGE        | "voltage" | 表示当前设备电池电压的查询键。                     |
+| EXTRA_TECHNOLOGY     | "technology" | 表示当前设备电池技术型号的查询键。                 |
+| EXTRA_TEMPERATURE    | "temperature" | 表示当前设备电池温度的查询键。                     |
+| EXTRA_PRESENT        | "present" | 表示当前设备是否支持电池或者电池是否在位的查询键。 |
+| EXTRA_CAPACITY_LEVEL | "capacityLevel" | 表示当前设备电池电量等级的查询键。                 |

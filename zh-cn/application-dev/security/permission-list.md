@@ -246,7 +246,7 @@
 
 ## ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-允许应用管理本地用户账号。
+允许应用管理本地用户帐号。
 
 **权限级别**：system_basic
 
@@ -256,7 +256,7 @@
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许多个系统账号之间相互访问。
+允许多个系统帐号之间相互访问。
 
 **权限级别**：system_basic
 
@@ -534,9 +534,9 @@
 
 **ACL使能**：TRUE
 
-## ohos.permission.START_ABILIIES_FROM_BACKGROUND
+## ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
-允许应用在后台启动FA。
+允许应用在后台启动或者访问其他组件。
 
 **权限级别**：system_basic
 
@@ -1144,6 +1144,8 @@
 
 **ACL使能**：TRUE
 
+**申请条件**：使用API version 9以下版本的SDK开发的应用，可以直接申请此权限。使用API version 9及API version 9以上版本的SDK开发的应用，需要先申请权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+
 ## ohos.permission.APPROXIMATELY_LOCATION
 
 允许应用获取设备模糊位置信息。
@@ -1153,6 +1155,8 @@
 **授权方式**：user_grant
 
 **ACL使能**：FALSE
+
+**申请条件**：仅供使用API version 9及API version 9以上版本的SDK开发的应用申请。
 
 ## ohos.permission.MEDIA_LOCATION
 

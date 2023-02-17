@@ -1,128 +1,137 @@
 # Camera
 
-## Overview<a name="1"></a>
-### Camera<a name="2"></a>
+## Overview
+### Function
 
-The OpenHarmony camera driver model implements the camera hardware device interface (HDI) and the camera pipeline model to manage camera devices.
-The camera driver model consists of the following layers:
+The OpenHarmony camera driver model provides the camera hardware device interface (HDI) and the camera pipeline model to manage camera devices.
+The camera driver model is divided into three layers:
 
 + HDI implementation layer: implements standard ohos (OpenHarmony operating system) APIs for cameras.
-+ Framework layer: connects to the HDI implementation layer for control instruction and stream transfer, establishes data channels, and manages camera devices.
-+ Device adaptation layer: shields the differences between underlying chips and OSs for multi-platform adaptation.
++ Framework layer: interacts with the HDI implementation layer to set up data channels and operate camera devices.
++ Device adaptation layer: supports different platforms by shielding the differences in underlying chips and operating systems.
 
-### Working Principles<a name="3"></a>
+### Working Principles
 
-The camera module is used to initialize services and devices, set up data channels, and configure, create, deliver, and capture streams. The figure below illustrates camera driver model.
+The camera module is used to initialize services and devices, set up data channels, and configure, create, deliver, and capture streams. The following figure shows the camera driver model.
 
 **Figure 1** HDF-based camera driver model
 
 ![](figures/camera-driver-model-architecture.png)
 
-1. When the system starts, the camera_host process is created. The process enumerates underlying devices, creates a **DeviceManager** instance that manages the device tree, an object for each underlying device, and a **CameraHost** instance, and registers the **CameraHost** instance with the UHDF service. Through the UHDF service, the camera service can obtain the underlying **CameraDeviceHost** services to operate the hardware devices. Note that the **DeviceManager** instance can also be created by using the configuration table.
+1. When the system starts, the camera_host process is created. The process enumerates underlying devices, creates a **DeviceManager** instance (to manage the device tree), an object for each underlying device, and a **CameraHost** instance, and registers the **CameraHost** instance with the user-mode HDF (UHDF) service. Through the UHDF service, the camera service can obtain the underlying **CameraDeviceHost** services to operate the hardware devices. The **DeviceManager** instance can also be created by using the configuration table.
 
-2. The Camera Service obtains the **CameraHost** instance through the CameraDeviceHost service. The **CameraHost** instance can be used to obtain the bottom-layer camera capabilities, turn on the flashlight, call the **Open()** interface to start the camera and create a connection, create a **DeviceManager** instance (powering on the bottom-layer hardware modules), and create a **CameraDevice** instance (providing the device control interface for the upper layer). When the **CameraDevice** instance is created, each submodule of PipelineCore is instantiated. Among the submodules, StreamPipelineCore is responsible for creating pipelines, and MetaQueueManager is responsible for reporting metadata.
+2. The Camera Service obtains the **CameraHost** instance through the CameraDeviceHost service. 
+
+   The **CameraHost** instance can be used to obtain the underlying camera capabilities, turn on the flashlight, call **Open()** to start a camera and set up a connection with the camera, create a **DeviceManager** instance (to power on the hardware modules), and create a **CameraDevice** instance (to provide the device control interface for the upper layer). 
+
+   When the **CameraDevice** instance is created, the PipelineCore modules will be instantiated. The StreamPipelineCore module creates pipelines, and the MetaQueueManager module reports metadata.
 
 3. The Camera Service configures stream and creates a **Stream** class through the CameraDevice module. The StreamPipelineStrategy module creates the node connection mode of the corresponding stream by using the mode issued by the upper layer and querying the configuration table. The StreamPipelineBuilder module creates a node and returns the pipeline to the StreamPipelineDispatcher module through the connection. The StreamPipelineDispatcher module dispatches pipelines.
 
-4. The Camera Service controls the stream operations through the **Stream** instance. The **AttachBufferQueue()** interface is used to deliver the buffer queue requested from the display module to the bottom layer. The CameraDeviceDriverModel manages the buffer. After the **Capture()** interface is called to deliver commands, the bottom layer transfers the buffer to the upper layer. The Image Signal Processor (ISP) node obtains a specified number of buffers from the buffer queue and delivers the buffers to the bottom-layer ISP hardware. After filling the buffers, the ISP hardware transfers the buffers to the CameraDeviceDriverModel. The CameraDeviceDriverModel fills the created pipeline with the received buffers by using a loop thread. Each node processes the pipeline data and transfers the data to the upper layer by using a callback. At the same time, the buffers are freed for reuse.
+4. The Camera Service controls the stream operations through the **Stream** instance. 
 
-5. The Camera Service delivers the photographing command through the **Capture()** interface. The **ChangeToOfflineStream()** interface is used to query the position of the photographing buffer. If the ISP hardware has output an image and sent the image data to the IPP node, the common photographing streams can be converted into offline streams. Otherwise, the close process is executed. The **ChangeToOfflineStream()** interface transfers **StreamInfo** to enable the offline stream to obtain the stream information of the common stream, confirms the node connection mode of the offline stream based on the configuration table, and creates the node connection of the offline stream. If the node connection has been created, the interface releases the node required by the non-offline stream through **CloseCamera()**. It then waits for the buffer to return from the bottom-layer pipeline to the upper layer and then releases the pipeline resources.
+   **AttachBufferQueue()** delivers the buffer queue requested from the display module to the bottom layer. The CameraDeviceDriverModel manages the buffer. After **Capture()** is called to deliver commands, the bottom layer transfers the buffer to the upper layer. The Image Signal Processor (ISP) node obtains a specified number of buffers from the buffer queue and delivers the buffers to the bottom-layer ISP hardware. After filling the buffers, the ISP hardware transfers the buffers to the CameraDeviceDriverModel. The CameraDeviceDriverModel fills the created pipeline with the received buffers by using a loop thread. Each node processes the pipeline data and transfers the data to the upper layer in a callback. At the same time, the buffers are freed to the buffer queue for reuse.
 
-6. The Camera Service sends the **CaptureSetting** parameter to the CameraDeviceDriverModel through the **UpdateSettings()** interface of the **CameraDevice** instance. The CameraDeviceDriverModel forwards the parameter to each node through the StreamPipelineDispatcher module. The **CaptureSetting** parameter carried in **StartStreamingCapture()** and **Capture()** is forwarded to the node to which the stream belongs through the StreamPipelineDispatcher module.
+5. The Camera Service delivers the photographing command through **Capture()**. **ChangeToOfflineStream()** is used to query the position of the photographing buffer. If the ISP hardware has output an image and sent the image data to the IPP node, the common photographing stream can be converted into an offline stream. Otherwise, the close process is executed. **ChangeToOfflineStream()** passes **StreamInfo** to enable the offline stream to obtain the stream information of the common stream, determines the node connection mode of the offline stream based on the configuration table, and creates the node connection for the offline stream (if the node connection has been created, the node required by the non-offline stream will be closed by **CloseCamera**.) When the buffer is transferred from the  pipeline to the upper layer, the pipeline resources are released.
 
-7. The Camera Service controls underlying metadata reporting through the **EnableResult()** and **DisableResult()** interfaces. If the underlying metadata needs to be reported, the pipeline creates a buffer queue in the CameraDeviceDriverModel to collect and transfer metadata, queries the configuration table based on the StreamPipelineStrategy module, and creates and connects to the specified node through the StreamPipelineBuilder module. The MetaQueueManager module delivers the buffer to the bottom layer, and the bottom-layer node fills in data. The MetaQueueManager module then invokes the upper-layer callback to transfer the data to the upper layer.
+6. The Camera Service sends the **CaptureSetting** parameter to the CameraDeviceDriverModel through **UpdateSettings()** of the **CameraDevice** instance. The CameraDeviceDriverModel forwards the parameter to each node through the StreamPipelineDispatcher module. The **CaptureSetting** parameter carried in **StartStreamingCapture()** and **Capture()** is forwarded to the node to which the stream belongs through the StreamPipelineDispatcher module.
 
-8. The Camera Service calls the **Close()** interface of the **CameraDevice** class, and the **CameraDevice** instance calls the corresponding DeviceManager module to power off each hardware. If an offline stream exists in the subpipeline of the IPP node, the offline stream must be reserved until the execution is complete.
+7. The Camera Service uses **EnableResult()** and **DisableResult()** to control the reporting of underlying metadata. If the underlying metadata needs to be reported, the pipeline creates a buffer queue in the CameraDeviceDriverModel to collect and transfer metadata, queries the configuration table based on the StreamPipelineStrategy module, and creates and connects to the specified node through the StreamPipelineBuilder module. The MetaQueueManager module delivers the buffer to the bottom layer, and the bottom-layer node fills in data. The MetaQueueManager module then invokes the upper-layer callback to transfer the data to the upper layer.
+
+8. The Camera Service calls **Close()** of the **CameraDevice** class, and the **CameraDevice** instance calls the corresponding DeviceManager module to power off each hardware. If an offline stream exists in the subpipeline of the IPP node, the offline stream must be reserved until the execution is complete.
 
 9. To implement dynamic frame control, a CollectBuffer thread is started in the StreamOperator. The CollectBuffer thread obtains a buffer from the buffer queue of each stream. If the frame rate of a stream needs to be controlled (1/n of the sensor output frame rate), the CollectBuffer thread can control the buffer packaging of each frame as required, and determine whether to collect the buffer of the stream. For example, if the output frame rate of the sensor is 120 fps and the preview stream frame rate is 30 fps, the CollectBuffer thread collects the buffer of the preview stream every 4 fps.
 
    
 
-## Development Guidelines<a name="4"></a>
+## Development Guidelines
 
 
-### When to Use<a name="5"></a>
+### When to Use
 
-The camera module encapsulates camera operations in camera preview, photographing, and video streams to facilitate camera hardware operations and improve development efficiency.
+The camera module encapsulates camera operations in camera preview, photographing, and video streams to implement camera hardware operations and improve development efficiency.
 
-### Available APIs<a name="6"></a>
+### Available APIs
 
+The following table describes the C++ APIs generated from the Interface Definition Language (IDL) interface description. For details about the interface declaration, see the .idl file in **/drivers/interface/camera/v1_0/**.        
+The parameters passed in the HDI cannot exceed the capability range obtained by **GetCameraAbility**. Even if the parameters beyond the capability range can be passed in APIs such as **UpdateSettings**, **CommitStreams**, and **Capture** with no error returned, unexpected behavior may be caused.
 - icamera_device.h
 
-  | API                                                    | Description                    |
-  | ------------------------------------------------------------ | ---------------------------- |
-  | CamRetCode GetStreamOperator(<br>    const OHOS::sptr<IStreamOperatorCallback> &callback,<br>    OHOS::sptr<IStreamOperator> &streamOperator) | Obtains the stream controller.                |
-  | CamRetCode UpdateSettings(const std::shared_ptr<CameraSetting> &settings) | Updates device control parameters.            |
-  | CamRetCode SetResultMode(const ResultCallbackMode &mode)     | Sets the result callback mode and function.|
-  | CamRetCode GetEnabledResults(std::vector<MetaType> &results) | Obtains the enabled ResultMeta.        |
-  | CamRetCode EnableResult(const std::vector<MetaType> &results) | Enables specific ResultMeta.        |
-  | CamRetCode DisableResult(const std::vector<MetaType> &results) | Disables specific ResultMeta.        |
-  | void Close()                                                 | Closes the camera device.              |
+  | API                 | Description                    |
+  | ---------------------------- | ------------------------------------------------------------ |
+  | int32_t GetStreamOperator(const sptr<IStreamOperatorCallback>& callbackObj, sptr<IStreamOperator>& streamOperator) | Obtains the stream controller.                |
+  | int32_t UpdateSettings(const std::vector<uint8_t>& settings) | Updates device control parameters.            |
+  | int32_t SetResultMode(ResultCallbackMode mode) | Sets the result callback mode and function.|
+  | int32_t GetEnabledResults(std::vector<int32_t>& results) | Obtains the enabled ResultMeta.        |
+  | int32_t EnableResult(const std::vector<int32_t>& results) | Enables specific ResultMeta.        |
+  | int32_t DisableResult(const std::vector<int32_t>& results) | Disables specific ResultMeta.        |
+  | int32_t Close() | Closes the camera device.              |
 
 - icamera_device_callback.h
 
-  | API                                                    | Description                                                    |
+  | API                                                          | Description                                                  |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | void OnError(ErrorType type, int32_t errorCode)              | Called when an error occurs on the device to return error information. You need to implement this interface.|
-  | void OnResult(uint64_t timestamp, const std::shared_ptr<CameraMetadata> &result) | Callback invoked to report metadata related to the camera device.                          |
+  | int32_t OnError(ErrorType type, int32_t errorCode)           | Called when an error occurs on the camera device. The caller needs to implement this API. |
+  | int32_t OnResult(uint64_t timestamp, const std::vector<uint8_t>& result) | Called to report metadata related to the camera device.      |
 
 
 - icamera_host.h
 
-  | API                                                    | Description                      |
-  | ------------------------------------------------------------ | ------------------------------ |
-  | CamRetCode SetCallback(const OHOS::sptr<ICameraHostCallback> &callback) | Sets the **ICameraHostCallback** API.       |
-  | CamRetCode GetCameraIds(std::vector\<std::string\> &cameraIds) | Obtains the IDs of available camera devices.|
-  | CamRetCode GetCameraAbility(const std::string &cameraId,<br>    std::shared_ptr<CameraAbility> &ability) | Obtains the abilities of a camera device.        |
-  | CamRetCode OpenCamera(const std::string &cameraId,<br>    const OHOS::sptr<ICameraDeviceCallback> &callback,<br>    OHOS::sptr<ICameraDevice> &device) | Opens a camera.                |
-  | CamRetCode SetFlashlight(const std::string &cameraId, bool &isEnable) | Turns on or off the flash.              |
+  | API                                                    | Description                                         |
+  | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | int32_t SetCallback(const sptr<ICameraHostCallback>& callbackObj) | Sets the **ICameraHostCallback** API. |
+  | int32_t GetCameraIds(std::vector<std::string>& cameraIds) | Obtains the IDs of available camera devices. |
+  | int32_t GetCameraAbility(const std::string& cameraId, std::vector<uint8_t>& cameraAbility) | Obtains the abilities of a camera device. |
+  | int32_t OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj, sptr<ICameraDevice>& device) | Opens a camera. |
+  | int32_t SetFlashlight(const std::string& cameraId, bool isEnable) | Turns on or off the flash. |
 
 - icamera_host_callback.h
 
-  | API                                                    | Description              |
-  | ------------------------------------------------------------ | ---------------------- |
-  | void OnCameraStatus(const std::string &cameraId, CameraStatus status) | Reports camera status changes.|
-  | void OnFlashlightStatus(const std::string &cameraId, FlashlightStatus status) | Callback invoked to report the flash status changes.    |
+  | API                                                    | Description                                         |
+  | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | int32_t OnCameraStatus(const std::string& cameraId, CameraStatus status) | Called to report camera status changes. |
+  | int32_t OnFlashlightStatus(const std::string& cameraId, FlashlightStatus status) | Called to report the flash status changes. |
+  | int32_t OnCameraEvent(const std::string& cameraId, CameraEvent event) | Called to report a camera event. |
 
 - ioffline_stream_operator.h
 
-  | API                                                    | Description      |
-  | ------------------------------------------------------------ | -------------- |
-  | CamRetCode CancelCapture(int captureId)                      | Cancels a capture request.  |
-  | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) | Releases streams.        |
-  | CamRetCode Release()                                         | Releases all offline streams.|
+  | API                                         | Description                              |
+  | ----                                         | ----                              |
+  | int32_t CancelCapture(int32_t captureId)                      | Cancels a capture request. |
+  | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) | Releases streams. |
+  | int32_t Release()                                         | Releases all offline streams.            |
 
 - istream_operator.h
 
-  | API                                                    | Description                        |
-  | ------------------------------------------------------------ | -------------------------------- |
-  | CamRetCode IsStreamsSupported(<br>    OperationMode mode,<br>    const std::shared_ptr\<Camera::CameraMetadata\> &modeSetting,<br>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br>    StreamSupportType &type) | Checks whether a stream can be added.    |
-  | CamRetCode CreateStreams(const std::vector<std::shared_ptr<StreamInfo>> &streamInfos) | Creates streams.                          |
-  | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) | Releases streams.                          |
-  | CamRetCode CommitStreams(OperationMode mode,<br>    const std::shared_ptr<CameraMetadata> &modeSetting) | Configure streams.                          |
-  | CamRetCode GetStreamAttributes(<br>    std::vector<std::shared_ptr<StreamAttribute>> &attributes) | Obtain stream attributes.                    |
-  | CamRetCode AttachBufferQueue(int streamId, const OHOS::sptr\<OHOS::IBufferProducer\> &producer) | Attaches a producer handle to a stream.          |
-  | CamRetCode DetachBufferQueue(int streamId)                   | Detaches a producer handle from a stream.|
-  | CamRetCode Capture(int captureId,<br>    const std::shared_ptr<CaptureInfo> &info, bool isStreaming) | Captures images.                        |
-  | CamRetCode CancelCapture(int captureId)                      | Cancels a capture.                        |
-  | CamRetCode ChangeToOfflineStream(const std::vector<int> &streamIds,<br>    OHOS::sptr<IStreamOperatorCallback> &callback,<br>    OHOS::sptr<IOfflineStreamOperator> &offlineOperator) | Changes a stream into an offline stream.            |
+  | API                                                    | Description                                         |
+  | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | int32_t IsStreamsSupported(OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo>& infos,<br> StreamSupportType& type) | Checks whether a stream can be added. |
+  | int32_t CreateStreams(const std::vector<StreamInfo>& streamInfos) | Creates streams. |
+  | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) | Releases streams. |
+  | int32_t CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting) | Configure streams. |
+  | int32_t GetStreamAttributes(std::vector<StreamAttribute>& attributes) | Obtain stream attributes. |
+  | int32_t AttachBufferQueue(int32_t streamId, const sptr<BufferProducerSequenceable>& bufferProducer) | Attaches a producer handle to a stream. |
+  | int32_t DetachBufferQueue(int32_t streamId)                   | Detaches a producer handle from a stream. |
+  | int32_t Capture(int32_t captureId, const CaptureInfo& info, bool isStreaming) | Captures images. |
+  | int32_t CancelCapture(int32_t captureId)                      | Cancels a capture.    |
+  | int32_t ChangeToOfflineStream(const std::vector<int32_t>& streamIds,<br>const sptr<IStreamOperatorCallback>& callbackObj,<br>sptr<IOfflineStreamOperator>& offlineOperator) | Changes a stream into an offline stream. |
 
 - istream_operator_callback.h
 
-  | API                                                    | Description                                |
-  | ------------------------------------------------------------ | ---------------------------------------- |
-  | void OnCaptureStarted(int32_t captureId, const std::vector<int32_t> &streamIds) | Called when a capture starts.          |
-  | void OnCaptureEnded(int32_t captureId,<br>    const std::vector<std::shared_ptr<CaptureEndedInfo>> &infos) | Called when a capture ends.          |
-  | void OnCaptureError(int32_t captureId,<br>    const std::vector<std::shared_ptr<CaptureErrorInfo>> &infos) | Called when an error occurs during the capture.|
-  | void OnFrameShutter(int32_t captureId,<br>    const std::vector<int32_t> &streamIds, uint64_t timestamp) | Called when a frame is captured.                              |
+  | API                                                          | Description                                     |
+  | ------------------------------------------------------------ | ----------------------------------------------- |
+  | int32_t OnCaptureStarted(int32_t captureId, const std::vector<int32_t>& streamIds) | Called when a capture starts.                   |
+  | int32_t OnCaptureEnded(int32_t captureId, const std::vector<CaptureEndedInfo>& infos) | Called when a capture ends.                     |
+  | int32_t OnCaptureError(int32_t captureId, const std::vector<CaptureErrorInfo>& infos) | Called when an error occurs during the capture. |
+  | int32_t OnFrameShutter(int32_t captureId, const std::vector<int32_t>& streamIds, uint64_t timestamp) | Called when a frame is captured.                |
 
-### How to Develop<a name="7"></a>
-To camera driver development procedure is as follows:
+### How to Develop
+The camera driver development procedure is as follows:
 
-1. Register a **CameraHost**.
+1. Register a **CameraHost** instance.
 
-    Define the **HdfDriverEntry** structure to define the method for initializing a **CameraHost**.
-    ```
+    Define the **HdfDriverEntry** structure to define the method for initializing **CameraHost**. For details about the code, see **drivers/peripheral/camera/interfaces/hdi_ipc/camera_host_driver.cpp**.
+    ```c++
    struct HdfDriverEntry g_cameraHostDriverEntry = {
        .moduleVersion = 1,
        .moduleName = "camera_service",
@@ -133,35 +142,48 @@ To camera driver development procedure is as follows:
    HDF_INIT(g_cameraHostDriverEntry); // Register the HdfDriverEntry structure with the HDF.
    ```
 
-2.  Initialize the  **CameraHost**.
+2. Initialize the **CameraHost** service.
 
-    **HdfCameraHostDriverBind** defined in the **HdfDriverEntry** structure provides the registration of **CameraServiceDispatch()** and **CameraHostStubInstance()**. **CameraServiceDispatch()** is used to remotely call a method of the **CameraHost**, such as **OpenCamera()** and **SetFlashlight()**. **CameraHostStubInstance()** is used to initialize the camera device, which is called during system startup.
+    The **HdfCameraHostDriverBind()** method defined in the **HdfDriverEntry** structure registers **CameraServiceDispatch()** and **CameraHostStubInstance()**. **CameraServiceDispatch()** is used to remotely call the **CameraHost** methods, such as **OpenCamera()** and **SetFlashlight()**. **CameraHostStubInstance()** is called during the system startup to initialize the camera.
 
-   ```
-   int HdfCameraHostDriverBind(HdfDeviceObject *deviceObject)
+   ```c++
+   static int HdfCameraHostDriverBind(struct HdfDeviceObject *deviceObject)
    {
-       HDF_LOGI("HdfCameraHostDriverBind enter!");
-       if (deviceObject == nullptr) {
-           HDF_LOGE("HdfCameraHostDriverBind: HdfDeviceObject is NULL !");
+       HDF_LOGI("HdfCameraHostDriverBind enter");
+    
+       auto *hdfCameraHostHost = new (std::nothrow) HdfCameraHostHost;
+       if (hdfCameraHostHost == nullptr) {
+           HDF_LOGE("%{public}s: failed to create HdfCameraHostHost object", __func__);
            return HDF_FAILURE;
        }
-       HdfCameraService *hdfCameraService = reinterpret_cast<HdfCameraService *>(OsalMemAlloc(sizeof(HdfCameraService)));
-       if (hdfCameraService == nullptr) {
-           HDF_LOGE("HdfCameraHostDriverBind OsalMemAlloc HdfCameraService failed!");
+    
+       hdfCameraHostHost->ioService.Dispatch = CameraHostDriverDispatch; // Provide a method to remotely call a CameraHost method.
+       hdfCameraHostHost->ioService.Open = NULL;
+       hdfCameraHostHost->ioService.Release = NULL;
+    
+       auto serviceImpl = ICameraHost::Get(true);
+       if (serviceImpl == nullptr) {
+           HDF_LOGE("%{public}s: failed to get of implement service", __func__);
+           delete hdfCameraHostHost;
            return HDF_FAILURE;
        }
-       hdfCameraService->ioservice.Dispatch = CameraServiceDispatch; // Used to call methods of the CameraHost.
-       hdfCameraService->ioservice.Open = nullptr;
-       hdfCameraService->ioservice.Release = nullptr;
-       hdfCameraService->instance = CameraHostStubInstance(); // Initialize the camera device.
-       deviceObject->service = &hdfCameraService->ioservice;
+    
+       hdfCameraHostHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
+           ICameraHost::GetDescriptor()); // Initialize the camera.
+       if (hdfCameraHostHost->stub == nullptr) {
+           HDF_LOGE("%{public}s: failed to get stub object", __func__);
+           delete hdfCameraHostHost;
+           return HDF_FAILURE;
+       }
+    
+       deviceObject->service = &hdfCameraHostHost->ioService;
        return HDF_SUCCESS;
    }
    ```
 
    The following functions are the implementation of the methods of the **CameraHost**:
 
-   ```
+   ```c++
    int32_t CameraHostStub::CameraHostServiceStubOnRemoteRequest(int cmdId, MessageParcel &data,
        MessageParcel &reply, MessageOption &option)
    {
@@ -192,11 +214,11 @@ To camera driver development procedure is as follows:
 
    **CameraHostStubInstance()** finally calls **CameraHostImpl::Init()** to obtain the physical camera and initialize the DeviceManager and PipelineCore modules.
 
-3.  Obtain the  **CameraHost**.
+3. Obtain the **CameraHost** service.
 
-   Call the **Get()** interface to obtain the **CameraHost** from the **CameraService**. The **Get()** interface is as follows:
+   Use **Get()** to obtain the **CameraHost** from the **CameraService**. The **Get()** method is as follows:
 
-   ```
+   ```c++
    sptr<ICameraHost> ICameraHost::Get(const char *serviceName)
    {
        do {
@@ -218,51 +240,80 @@ To camera driver development procedure is as follows:
    }
    ```
 
-4.  Implement the  **OpenCamera\(\)**  interface.
+4. Open a camera device.
 
-   The **CameraHostProxy** class provides five interfaces: **SetCallback()**, **GetCameraIds()**, **GetCameraAbility()**, **OpenCamera()**, and **SetFlashlight()**. The following describes **OpenCamera()**.
-   The **OpenCamera()** interface calls the remote **CameraHostStubOpenCamera()** interface through the CMD_CAMERA_HOST_OPEN_CAMERA to obtain an **ICameraDevice** object.
+   The **CameraHostProxy** class provides **SetCallback()**, **GetCameraIds()**, **GetCameraAbility()**, **OpenCamera()**, and **SetFlashlight()**.
 
-   ```
-   CamRetCode CameraHostProxy::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &pDevice)
+   Use **OpenCamera()** to call the remote **CameraHostStubOpenCamera()** through the **CMD_CAMERA_HOST_OPEN_CAMERA** to obtain an **ICameraDevice** object.
+
+   ```c++
+   int32_t CameraHostProxy::OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,
+       sptr<ICameraDevice>& device)
    {
-       int32_t ret = Remote()->SendRequest(CMD_CAMERA_HOST_REMOTE_OPEN_CAMERA, data, reply, option);
-       if (ret != HDF_SUCCESS) {
-           HDF_LOGE("%{public}s: SendRequest failed, error code is %{public}d", __func__, ret);
-           return INVALID_ARGUMENT;
+       MessageParcel cameraHostData;
+       MessageParcel cameraHostReply;
+       MessageOption cameraHostOption(MessageOption::TF_SYNC);
+    
+       if (!cameraHostData.WriteInterfaceToken(ICameraHost::GetDescriptor())) {
+           HDF_LOGE("%{public}s: failed to write interface descriptor!", __func__);
+           return HDF_ERR_INVALID_PARAM;
        }
-       CamRetCode retCode = static_cast<CamRetCode>(reply.ReadInt32());
-       bool flag = reply.ReadBool();
-       if (flag) {
-           sptr<IRemoteObject> remoteCameraDevice = reply.ReadRemoteObject();
-           if (remoteCameraDevice == nullptr) {
-               HDF_LOGE("%{public}s: CameraHostProxy remoteCameraDevice is null", __func__);
-           }
-           pDevice = OHOS::iface_cast<ICameraDevice>(remoteCameraDevice);
+    
+       if (!cameraHostData.WriteCString(cameraId.c_str())) {
+           HDF_LOGE("%{public}s: write cameraId failed!", __func__);
+           return HDF_ERR_INVALID_PARAM;
        }
-       return retCode;
+    
+       if (!cameraHostData.WriteRemoteObject(OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(callbackObj, 
+           ICameraDeviceCallback::GetDescriptor()))) {
+           HDF_LOGE("%{public}s: write callbackObj failed!", __func__);
+           return HDF_ERR_INVALID_PARAM;
+       }
+    
+       int32_t cameraHostRet = Remote()->SendRequest(CMD_CAMERA_HOST_OPEN_CAMERA, cameraHostData, cameraHostReply, cameraHostOption);
+       if (cameraHostRet != HDF_SUCCESS) {
+           HDF_LOGE("%{public}s failed, error code is %{public}d", __func__, cameraHostRet);
+           return cameraHostRet;
+       }
+    
+       device = hdi_facecast<ICameraDevice>(cameraHostReply.ReadRemoteObject());
+    
+       return cameraHostRet;
    }
    ```
 
-   **Remote()->SendRequest** calls **CameraHostServiceStubOnRemoteRequest()**, enters the **CameraHostStubOpenCamera()** interface based on **cmdId**, and finally calls **CameraHostImpl::OpenCamera()** to obtain a **CameraDevice** and power on the camera hardware.
+   **Remote()->SendRequest** calls **CameraHostServiceStubOnRemoteRequest()**, locates **CameraHostStubOpenCamera()** based on **cmdId**, and finally calls **CameraHostImpl::OpenCamera()** to obtain a **CameraDevice** and power on the camera hardware.
 
-   ```
-   CamRetCode CameraHostImpl::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &device)
+   ```c++
+   int32_t CameraHostImpl::OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,
+       sptr<ICameraDevice>& device)
    {
-       std::shared_ptr<CameraDeviceImpl> cameraDevice = std::static_pointer_cast<CameraDeviceImpl>(itr->second);
+       CAMERA_LOGD("OpenCamera entry");
+       DFX_LOCAL_HITRACE_BEGIN;
+       if (CameraIdInvalid(cameraId) != RC_OK || callbackObj == nullptr) {
+           CAMERA_LOGW("open camera id is empty or callback is null.");
+           return INVALID_ARGUMENT;
+       }
+    
+       auto itr = cameraDeviceMap_.find(cameraId);
+       if (itr == cameraDeviceMap_.end()) {
+           CAMERA_LOGE("camera device not found.");
+           return INSUFFICIENT_RESOURCES;
+       }
+       CAMERA_LOGD("OpenCamera cameraId find success.");
+    
+       std::shared_ptr<CameraDeviceImpl> cameraDevice = itr->second;
        if (cameraDevice == nullptr) {
            CAMERA_LOGE("camera device is null.");
            return INSUFFICIENT_RESOURCES;
        }
-       CamRetCode ret = cameraDevice->SetCallback(callback);
-       if (ret != NO_ERROR) {
-           CAMERA_LOGW("set camera device callback failed.");
-           return ret;
-       }
+    
+       CamRetCode ret = cameraDevice->SetCallback(callbackObj);
+       CHECK_IF_NOT_EQUAL_RETURN_VALUE(ret, HDI::Camera::V1_0::NO_ERROR, ret);
+    
        CameraHostConfig *config = CameraHostConfig::GetInstance();
-       if (config == nullptr) {
-           return INVALID_ARGUMENT;
-       }
+       CHECK_IF_PTR_NULL_RETURN_VALUE(config, INVALID_ARGUMENT);
+    
        std::vector<std::string> phyCameraIds;
        RetCode rc = config->GetPhysicCameraIds(cameraId, phyCameraIds);
        if (rc != RC_OK) {
@@ -274,214 +325,333 @@ To camera driver development procedure is as follows:
            CameraPowerDown(phyCameraIds);
            return DEVICE_ERROR;
        }
-   
+    
        auto sptrDevice = deviceBackup_.find(cameraId);
        if (sptrDevice == deviceBackup_.end()) {
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+           deviceBackup_[cameraId] = cameraDevice;
+   #else
            deviceBackup_[cameraId] = cameraDevice.get();
+   #endif
        }
        device = deviceBackup_[cameraId];
        cameraDevice->SetStatus(true);
-       return NO_ERROR;
+       CAMERA_LOGD("open camera success.");
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
-5.  Implement the  **GetStreamOperator\(\)**  interface.
+5. Obtain streams.
 
-   **CameraDeviceImpl** defines interfaces such as **GetStreamOperator()**, **UpdateSettings()**, **SetResultMode()**, and **GetEnabledResult()**. The following is an example of implementing the **GetStreamOperator()** interface:
+   **CameraDeviceImpl** defines **GetStreamOperator()**, **UpdateSettings()**, **SetResultMode()**, and **GetEnabledResult()**. Use **GetStreamOperator()** to obtain steams.
 
-   ```
-   CamRetCode CameraDeviceImpl::GetStreamOperator(const OHOS::sptr<IStreamOperatorCallback> &callback,
-    OHOS::sptr<IStreamOperator> &streamOperator)
+   ```c++
+   int32_t CameraDeviceImpl::GetStreamOperator(const sptr<IStreamOperatorCallback>& callbackObj,
+       sptr<IStreamOperator>& streamOperator)
    {
-       if (callback == nullptr) {
+       HDI_DEVICE_PLACE_A_WATCHDOG;
+       DFX_LOCAL_HITRACE_BEGIN;
+       if (callbackObj == nullptr) {
            CAMERA_LOGW("input callback is null.");
            return INVALID_ARGUMENT;
        }
-       spCameraDeviceCallback_ = callback;
+    
+       spCameraDeciceCallback_ = callbackObj;
        if (spStreamOperator_ == nullptr) {
-           // Here, an spStreamOperator object is created and passed to the caller for stream operations.
-           spStreamOperator_ = new(std::nothrow) StreamOperatorImpl(spCameraDeviceCallback_, shared_from_this());
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+           // Create a spStreamOperator_ object and pass it to the caller for subsequent stream operations.
+           spStreamOperator_ = std::make_shared<StreamOperator>(spCameraDeciceCallback_, shared_from_this());
+   #else
+           spStreamOperator_ = new(std::nothrow) StreamOperator(spCameraDeciceCallback_, shared_from_this());
+   #endif
            if (spStreamOperator_ == nullptr) {
                CAMERA_LOGW("create stream operator failed.");
                return DEVICE_ERROR;
            }
+           spStreamOperator_->Init();
            ismOperator_ = spStreamOperator_;
        }
        streamOperator = ismOperator_;
-   
-       spStreamOperator_->SetRequestCallback([this](){
-           spCameraDeviceCallback_->OnError(REQUEST_TIMEOUT, 0);
+   #ifndef CAMERA_BUILT_ON_OHOS_LITE
+       CAMERA_LOGI("CameraDeviceImpl %{public}s: line: %{public}d", __FUNCTION__, __LINE__);
+       pipelineCore_->GetStreamPipelineCore()->SetCallback(
+           [this](const std::shared_ptr<CameraMetadata> &metadata) {
+           OnMetadataChanged(metadata);
        });
+   #endif
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
-6.  Create a stream.
+6. Create streams.
 
-   Fill in the **StreamInfo** structure before creating a stream by calling **CreateStreams()**.
+   Fill in the **StreamInfo** structure before creating streams by calling **CreateStreams()**.
 
-   ```
+   ```c++
    using StreamInfo = struct _StreamInfo {
        int streamId_; 
-       int width_; // Stream width
-       int height_; // Stream height
-       int format_; // Stream format, for example, PIXEL_FMT_YCRCB_420_SP
+       int width_;                             // Stream width
+       int height_;                            // Stream height
+       int format_;                            // Stream format, for example, PIXEL_FMT_YCRCB_420_SP
        int dataSpace_; 
-       StreamIntent intent_; // StreamIntent, for example, PREVIEW
+       StreamIntent intent_;                   // StreamIntent, for example, PREVIEW
        bool tunneledMode_;
-       OHOS::sptr<OHOS::IBufferProducer> bufferQueue_; // The stream buffer queue can be created by using the streamCustomer->CreateProducer() interface.
+       ufferProducerSequenceable bufferQueue_; // Use streamCustomer->CreateProducer() to create a buffer queue for streams.
        int minFrameDuration_;
        EncodeType encodeType_;
    };
    ```
 
-   The **CreateStreams()** interface in the **StreamOperatorImpl** class is used to create a **StreamBase** instance, which can then be used to initialize operations such as **CreateBufferPool()** by using the **init()** interface.
+   **CreateStreams()** is a method in the **StreamOperator** class (**StreamOperatorImpl** is the base class of **StreamOperator**). Use **CreateStreams()** to create a **StreamBase** object, which initializes operations such as **CreateBufferPool** through its **Init()** method.
 
-   ```
-   RetCode StreamOperatorImpl::CreateStream(const std::shared_ptr<StreamInfo>& streamInfo)
+   ```c++
+   int32_t StreamOperator::CreateStreams(const std::vector<StreamInfo>& streamInfos)
    {
-       static std::map<StreamIntent, std::string> typeMap = {
-           {PREVIEW, "PREVIEW"},
-           {VIDEO, "VIDEO"},
-           {STILL_CAPTURE, "STILL_CAPTURE"},
-           {POST_VIEW, "POST_VIEW"}, {ANALYZE, "ANALYZE"},
-           {CUSTOM, "CUSTOM"}
-       };
-   
-       auto itr = typeMap.find(streamInfo->intent_);
-       if (itr == typeMap.end()) {
-           CAMERA_LOGE("do not support stream type. [type = %{public}d]", streamInfo->intent_);
-           return RC_ERROR;
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+       for (const auto& it : streamInfos) {
+           CHECK_IF_NOT_EQUAL_RETURN_VALUE(CheckStreamInfo(it), true, INVALID_ARGUMENT);
+           CAMERA_LOGI("streamId:%{public}d and format:%{public}d and width:%{public}d and height:%{public}d",
+               it.streamId_, it.format_, it.width_, it.height_);
+           if (streamMap_.count(it.streamId_) > 0) {
+               CAMERA_LOGE("stream [id = %{public}d] has already been created.", it.streamId_);
+               return INVALID_ARGUMENT;
+           }
+           std::shared_ptr<IStream> stream = StreamFactory::Instance().CreateShared( // Create a stream instance.
+               IStream::g_availableStreamType[it.intent_], it.streamId_, it.intent_, pipelineCore_, messenger_);
+           if (stream == nullptr) {
+               CAMERA_LOGE("create stream [id = %{public}d] failed.", it.streamId_);
+               return INSUFFICIENT_RESOURCES;
+           }
+           StreamConfiguration scg;
+           StreamInfoToStreamConfiguration(scg, it);
+           RetCode rc = stream->ConfigStream(scg);
+           if (rc != RC_OK) {
+               CAMERA_LOGE("configure stream %{public}d failed", it.streamId_);
+               return INVALID_ARGUMENT;
+           }
+           if (!scg.tunnelMode && (it.bufferQueue_)->producer_ != nullptr) {
+               CAMERA_LOGE("stream [id:%{public}d] is not tunnel mode, can't bind a buffer producer", it.streamId_);
+               return INVALID_ARGUMENT;
+           }
+           if ((it.bufferQueue_)->producer_ != nullptr) {
+               auto tunnel = std::make_shared<StreamTunnel>();
+               CHECK_IF_PTR_NULL_RETURN_VALUE(tunnel, INSUFFICIENT_RESOURCES);
+               rc = tunnel->AttachBufferQueue((it.bufferQueue_)->producer_);
+               CHECK_IF_NOT_EQUAL_RETURN_VALUE(rc, RC_OK, INVALID_ARGUMENT);
+               if (stream->AttachStreamTunnel(tunnel) != RC_OK) {
+                   CAMERA_LOGE("attach buffer queue to stream [id = %{public}d] failed", it.streamId_);
+                   return INVALID_ARGUMENT;
+               }
+           }
+           {
+               std::lock_guard<std::mutex> l(streamLock_);
+               streamMap_[stream->GetStreamId()] = stream;
+           }
+           CAMERA_LOGI("create stream success [id:%{public}d] [type:%{public}s]", stream->GetStreamId(),
+                       IStream::g_availableStreamType[it.intent_].c_str());
        }
-       std::shared_ptr<StreamBase> stream = StreamFactory::Instance().CreateShared(itr->second);  // Create a StreamBase instance.
-       RetCode rc = stream->Init(streamInfo); 
-       return RC_OK;
-   }
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
+    }
    ```
 
-7. Configure the stream.
+7. Configure streams.
 
-   Use the **CommitStreams()** interface to configure the stream, including PipelineCore initialization and creation. It must be called after the stream is created.
+   Use **CommitStreams()** to configure streams, including initializing and creating **PipelineCore**. **CommitStreams()** must be called after streams are created.
 
-   ```
-   CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<Camera::CameraMetadata>& modeSetting)
+   ```c++
+   int32_t StreamOperator::CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting)
    {
-       auto cameraDevice = cameraDevice_.lock();
-       if (cameraDevice == nullptr) {
-           CAMERA_LOGE("camera device closed.");
-           return CAMERA_CLOSED;
-       }
-       std::shared_ptr<IPipelineCore> PipelineCore =
-           std::static_pointer_cast<CameraDeviceImpl>(cameraDevice)->GetPipelineCore();
-       if (PipelineCore == nullptr) {
-            CAMERA_LOGE("Failed to obtain PipelineCore.");
-           return CAMERA_CLOSED;
-       }
-   
-       streamPipeCore_ = PipelineCore->GetStreamPipelineCore();
-       if (streamPipeCore_ == nullptr) {
-            CAMERA_LOGE("Failed to obtain the stream PipelineCore.");
-           return DEVICE_ERROR;
-       }
-   
-       RetCode rc = streamPipeCore_->Init(); // Initialize the PipelineCore.
-       if (rc != RC_OK) {
-            CAMERA_LOGE("Failed to initialize the stream PipelineCore.");
-           return DEVICE_ERROR;
-       }
-       rc = streamPipeCore_->CreatePipeline(mode); // Create a pipeline.
-       if (rc != RC_OK) {
-            CAMERA_LOGE("Failed to create pipeline.");
+       CAMERA_LOGV("enter");
+       CHECK_IF_PTR_NULL_RETURN_VALUE(streamPipeline_, DEVICE_ERROR);
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       if (modeSetting.empty()) {
+           CAMERA_LOGE("input vector is empty");
            return INVALID_ARGUMENT;
        }
-       return NO_ERROR;
+       DFX_LOCAL_HITRACE_BEGIN;
+   
+       std::vector<StreamConfiguration> configs = {};
+       {
+           std::lock_guard<std::mutex> l(streamLock_);
+           std::transform(streamMap_.begin(), streamMap_.end(), std::back_inserter(configs),
+               [](auto &iter) { return iter.second->GetStreamAttribute(); });
+       }
+    
+       std::shared_ptr<CameraMetadata> setting;
+       MetadataUtils::ConvertVecToMetadata(modeSetting, setting);
+       DynamicStreamSwitchMode method = streamPipeline_->CheckStreamsSupported(mode, setting, configs);
+       if (method == DYNAMIC_STREAM_SWITCH_NOT_SUPPORT) {
+           return INVALID_ARGUMENT;
+       }
+       if (method == DYNAMIC_STREAM_SWITCH_NEED_INNER_RESTART) {
+           std::lock_guard<std::mutex> l(streamLock_);
+           for (auto it : streamMap_) {
+               it.second->StopStream();
+           }
+       }
+       {
+           std::lock_guard<std::mutex> l(streamLock_);
+           for (auto it : streamMap_) {
+               if (it.second->CommitStream() != RC_OK) {
+                   CAMERA_LOGE("commit stream [id = %{public}d] failed.", it.first);
+                   return DEVICE_ERROR;
+               }
+           }
+       }
+       RetCode rc = streamPipeline_->PreConfig(setting); // Configure the device stream.
+       if (rc != RC_OK) {
+           CAMERA_LOGE("prepare mode settings failed");
+           return DEVICE_ERROR;
+       }
+       rc = streamPipeline_->CreatePipeline(mode); // Create a pipeline.
+       if (rc != RC_OK) {
+           CAMERA_LOGE("create pipeline failed.");
+           return INVALID_ARGUMENT;
+       }
+    
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
 8. Capture images.
 
-   Fill in the **CaptureInfo** structure before calling the **Capture()** method.
+   Fill in the **CaptureInfo** structure before calling **Capture()**.
 
-   ```
+   ```c++
    using CaptureInfo = struct _CaptureInfo {
-         std::vector<int> streamIds_; // IDs of streams to be captured
-         std::shared_ptr<Camera::CameraMetadata> captureSetting_; // Camera ability can be obtained through the GetCameraAbility() interface of CameraHost.
-        bool enableShutterCallback_;
+       int[] streamIds_;                 // IDs of the streams to capture.
+       unsigned char[]  captureSetting_; // Use the camera ability obtained by GetCameraAbility() of CameraHost to fill in the settings.
+       bool enableShutterCallback_;
    };
    ```
 
-   Use the **Capture()** interface in **StreamOperatorImpl** to call the **CreateCapture()** interface to capture streams.
+   Use the **Capture()** method in **StreamOperator** to capture data streams.
 
-   ```
-   CamRetCode StreamOperatorImpl::Capture(int captureId, const std::shared_ptr<CaptureInfo>& captureInfo, bool isStreaming)
+   ```c++
+   int32_t StreamOperator::Capture(int32_t captureId, const CaptureInfo& info, bool isStreaming)
    {
-        if (!ValidCaptureInfo(captureId, captureInfo)) {
-           CAMERA_LOGE("capture streamIds is empty. [captureId = %d]", captureId);
-           return INVALID_ARGUMENT;
+       CHECK_IF_EQUAL_RETURN_VALUE(captureId < 0, true, INVALID_ARGUMENT);
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+    
+       for (auto id : info.streamIds_) {
+           std::lock_guard<std::mutex> l(streamLock_);
+           auto it = streamMap_.find(id);
+           if (it == streamMap_.end()) {
+               return INVALID_ARGUMENT;
+           }
        }
-       std::shared_ptr<CameraCapture> cameraCapture = nullptr;
-       RetCode rc = CreateCapture(captureId, captureInfo, isStreaming, cameraCapture);
-       if (rc != RC_OK) {
-           CAMERA_LOGE("create capture is failed.");
-           return DEVICE_ERROR;
-       }
-   
+    
        {
-           std::unique_lock<std::mutex> lock(captureMutex_);
-           camerCaptureMap_.insert(std::make_pair(captureId, cameraCapture));
+           std::lock_guard<std::mutex> l(requestLock_);
+           auto itr = requestMap_.find(captureId);
+           if (itr != requestMap_.end()) {
+               return INVALID_ARGUMENT;
+           }
        }
-   
-       rc = StartThread();
-       if (rc != RC_OK) {
-           CAMERA_LOGE("preview start failed.");
-           return DEVICE_ERROR;
+    
+       std::shared_ptr<CameraMetadata> captureSetting;
+       MetadataUtils::ConvertVecToMetadata(info.captureSetting_, captureSetting);
+       CaptureSetting setting = captureSetting;
+       auto request =
+           std::make_shared<CaptureRequest>(captureId, info.streamIds_.size(), setting,
+                                             info.enableShutterCallback_, isStreaming);
+       for (auto id : info.streamIds_) {
+           RetCode rc = streamMap_[id]->AddRequest(request);
+           if (rc != RC_OK) {
+               return DEVICE_ERROR;
+           }
        }
-       return NO_ERROR;
+    
+       {
+           std::lock_guard<std::mutex> l(requestLock_);
+           requestMap_[captureId] = request;
+       }
+       return HDI::Camera::V1_0::NO_ERROR;
    }  
    ```
 
 9. Cancel the capture and release the offline stream.
 
-   Use the **CancelCapture()** interface in the **StreamOperatorImpl** class to cancel the stream capture based on **captureId**.
+   Use **CancelCapture()** in the **StreamOperatorImpl** class to cancel the stream capture based on **captureId**.
 
-   ```
-   CamRetCode StreamOperatorImpl::CancelCapture(int captureId)
+   ```c++
+   int32_t StreamOperator::CancelCapture(int32_t captureId)
    {
-         auto itr = camerCaptureMap_.find(captureId); // Search for the CameraCapture object in the Map based on the captureId.
-         RetCode rc = itr->second->Cancel(); // Call the Cancel() interface in CameraCapture to cancel the stream capture.
-         std::unique_lock<std::mutex> lock(captureMutex_);
-         camerCaptureMap_.erase(itr); // Erase the CameraCapture object.
-         return NO_ERROR;
+       CHECK_IF_EQUAL_RETURN_VALUE(captureId < 0, true, INVALID_ARGUMENT);
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+    
+       std::lock_guard<std::mutex> l(requestLock_);
+       auto itr = requestMap_.find(captureId); // Search for the CameraCapture object in the Map based on the captureId.
+       if (itr == requestMap_.end()) {
+           CAMERA_LOGE("can't cancel capture [id = %{public}d], this capture doesn't exist", captureId);
+           return INVALID_ARGUMENT;
+       }
+    
+       RetCode rc = itr->second->Cancel();    // Call Cancel() in CameraCapture to cancel the stream capture.
+       if (rc != RC_OK) {
+           return DEVICE_ERROR;
+       }
+       requestMap_.erase(itr);                // Erase the CameraCapture object.
+    
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
-   Use the **ReleaseStreams()** interface in the **StreamOperatorImpl** class t release the streams created by using **CreateStream()** and **CommitStreams()** and destroy the pipeline.
+   Use **ReleaseStreams()** in the **StreamOperatorImpl** class to release the streams created by using **CreateStream()** and **CommitStreams()** and destroy the pipeline.
 
-   ```
-   CamRetCode StreamOperatorImpl::ReleaseStreams(const std::vector<int>& streamIds)
+   ```c++
+   int32_t StreamOperator::ReleaseStreams(const std::vector<int32_t>& streamIds)
    {
-       RetCode rc = DestroyStreamPipeline(streamIds); // Destroy the pipeline based on streamIds.
-       rc = DestroyHostStreamMgr(streamIds);
-       rc = DestroyStreams(streamIds); // Destroy the stream specified by streamIds.
-       return NO_ERROR;
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+       for (auto id : streamIds) {
+           std::lock_guard<std::mutex> l(streamLock_);
+           auto it = streamMap_.find(id);
+           if (it == streamMap_.end()) {
+               continue;
+           }
+           if (it->second->IsRunning()) {
+               it->second->StopStream();
+           }
+           it->second->DumpStatsInfo();
+           streamMap_.erase(it);
+       }
+    
+       for (auto id : streamIds) {
+           CHECK_IF_EQUAL_RETURN_VALUE(id < 0, true, INVALID_ARGUMENT);
+       }
+    
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
 10. Close the camera device.
-    
-    Use the **Close()** interface in the **CameraDeviceImpl** class to close the camera device. This interface calls **PowerDown()** in the **DeviceManager** to power off the device.    
 
-### Development Example<a name = "8"></a>
+    Use **Close()** in the **CameraDeviceImpl** class to close the camera device. The **PowerDown()** in **DeviceManager** is called to power off the device.    
 
-There is a camera demo in the **/drivers/peripheral/camera/hal/init** directory. After system startup, the executable file **ohos_camera_demo** is generated in the **/vendor/bin** directory. This demo can implement basic camera capabilities such as preview and photographing. The following uses the demo as an example to describe how to use the HDI to write the **PreviewOn()** and **CaptureON()** instances. For details, see [ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init).
+### Example
 
-1. Construct a CameraDemo object in the **main** function. This object contains methods for initializing the camera and starting, stopping, and releasing streams. The **mainDemo->InitSensors()** function is used to initialize the **CameraHost**, and the **mainDemo->InitCameraDevice()** function is used to initialize the **CameraDevice**.
+There is a [ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init) in the **/drivers/peripheral/camera/hal/init** directory. After the system is started, the executable file **ohos_camera_demo** is generated in the **/vendor/bin** directory. This demo implements basic camera capabilities such as preview and photographing. 
 
-   ```
+The following uses the demo to describe how to use the HDI to implement **PreviewOn()** and **CaptureON()**.
+
+1. Construct a **CameraDemo** object in the **main** function. This object contains methods for initializing the camera and starting, stopping, and releasing streams. The **mainDemo->InitSensors()** function is used to initialize the **CameraHost**, and the **mainDemo->InitCameraDevice()** function is used to initialize the **CameraDevice**.
+
+   ```c++
    int main(int argc, char** argv)
    {
        RetCode rc = RC_OK;
        auto mainDemo = std::make_shared<CameraDemo>();
-       rc = mainDemo->InitSensors(); // Initialize the CameraHost.
+       rc = mainDemo->InitSensors();      // Initialize the CameraHost.
        if (rc == RC_ERROR) {
            CAMERA_LOGE("main test: mainDemo->InitSensors() error\n");
            return -1;
@@ -493,13 +663,13 @@ There is a camera demo in the **/drivers/peripheral/camera/hal/init** directory.
            return -1;
        }
    
-       rc = PreviewOn(0, mainDemo); // Configure and enable streams.
+       rc = PreviewOn(0, mainDemo);       // Configure and enable streams.
        if (rc != RC_OK) {
            CAMERA_LOGE("main test: PreviewOn() error demo exit");
            return -1;
        }
    
-       ManuList(mainDemo, argc, argv); // Print the menu to the console.
+       ManuList(mainDemo, argc, argv);    // Print the menu to the console.
    
        return RC_OK;
    }
@@ -507,190 +677,309 @@ There is a camera demo in the **/drivers/peripheral/camera/hal/init** directory.
 
    The function used to initialize the **CameraHost** is implemented as follows, where the HDI **ICameraHost::Get()** is called to obtain the **demoCameraHost** and set the callback:
 
-   ```
-   RetCode CameraDemo::InitSensors()
+   ```c++
+   RetCode OhosCameraDemo::InitSensors()
    {
-       demoCameraHost_ = ICameraHost::Get(DEMO_SERVICE_NAME);
+       int rc = 0;
+   
+       CAMERA_LOGD("demo test: InitSensors enter");
+    
+       if (demoCameraHost_ != nullptr) {
+           return RC_OK;
+       }
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+       demoCameraHost_ = OHOS::Camera::CameraHost::CreateCameraHost();
+   #else
+       constexpr const char *DEMO_SERVICE_NAME = "camera_service";
+       demoCameraHost_ = ICameraHost::Get(DEMO_SERVICE_NAME, false);
+   #endif
        if (demoCameraHost_ == nullptr) {
            CAMERA_LOGE("demo test: ICameraHost::Get error");
            return RC_ERROR;
        }
-   
-       hostCallback_ = new CameraHostCallback();
+    
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+       hostCallback_ = std::make_shared<DemoCameraHostCallback>();
+   #else
+       hostCallback_ = new DemoCameraHostCallback();
+   #endif
        rc = demoCameraHost_->SetCallback(hostCallback_);
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
+           CAMERA_LOGE("demo test: demoCameraHost_->SetCallback(hostCallback_) error");
+           return RC_ERROR;
+       }
+    
+       CAMERA_LOGD("demo test: InitSensors exit");
+    
        return RC_OK;
    }
    ```
 
-   The implementation of the function for initializing the **CameraDevice** is as follows, where the **GetCameraIds(cameraIds_)**, **GetCameraAbility(cameraId, ability_)**, and **OpenCamera(cameraIds_.front(), callback, demoCameraDevice_)** interfaces are called to obtain the **demoCameraHost**.
+   The function for initializing the **CameraDevice** is implemented as follows. The **GetCameraIds(cameraIds_)**, **GetCameraAbility(cameraId, ability_)**, and **OpenCamera(cameraIds\_.front(), callback, demoCameraDevice_)** methods are used to obtain the **demoCameraHost**.
 
-   ```
-   RetCode CameraDemo::InitCameraDevice()
+   ```c++
+   RetCode OhosCameraDemo::InitCameraDevice()
    {
+       int rc = 0;
+    
+       CAMERA_LOGD("demo test: InitCameraDevice enter");
+    
+       if (demoCameraHost_ == nullptr) {
+           CAMERA_LOGE("demo test: InitCameraDevice demoCameraHost_ == nullptr");
+           return RC_ERROR;
+       }
+    
        (void)demoCameraHost_->GetCameraIds(cameraIds_);
+       if (cameraIds_.empty()) {
+           return RC_ERROR;
+       }
        const std::string cameraId = cameraIds_.front();
-       demoCameraHost_->GetCameraAbility(cameraId, ability_);
-   
-       sptr<CameraDeviceCallback> callback = new CameraDeviceCallback();
+       demoCameraHost_->GetCameraAbility(cameraId, cameraAbility_);
+    
+       MetadataUtils::ConvertVecToMetadata(cameraAbility_, ability_);
+    
+       GetFaceDetectMode(ability_);
+       GetFocalLength(ability_);
+       GetAvailableFocusModes(ability_);
+       GetAvailableExposureModes(ability_);
+       GetExposureCompensationRange(ability_);
+       GetExposureCompensationSteps(ability_);
+       GetAvailableMeterModes(ability_);
+       GetAvailableFlashModes(ability_);
+       GetMirrorSupported(ability_);
+       GetStreamBasicConfigurations(ability_);
+       GetFpsRange(ability_);
+       GetCameraPosition(ability_);
+       GetCameraType(ability_);
+       GetCameraConnectionType(ability_);
+       GetFaceDetectMaxNum(ability_);
+    
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+       std::shared_ptr<CameraDeviceCallback> callback = std::make_shared<CameraDeviceCallback>();
+   #else
+       sptr<DemoCameraDeviceCallback> callback = new DemoCameraDeviceCallback();
+   #endif
        rc = demoCameraHost_->OpenCamera(cameraIds_.front(), callback, demoCameraDevice_);
+       if (rc != HDI::Camera::V1_0::NO_ERROR || demoCameraDevice_ == nullptr) {
+           CAMERA_LOGE("demo test: InitCameraDevice OpenCamera failed");
+           return RC_ERROR;
+       }
+    
+       CAMERA_LOGD("demo test: InitCameraDevice exit");
+    
        return RC_OK;
    }   
    ```
 
-2. Implement the **PreviewOn()** interface to configure streams, enable preview streams, and start stream capture. After this interface is called, the camera preview channel starts running. Two streams are enabled: preview stream and capture or video stream. Only the preview stream will be captured.
+2. Implement **PreviewOn()** to configure streams, enable preview streams, and start stream capture. 
 
-   ```
-   static RetCode PreviewOn(int mode, const std::shared_ptr<CameraDemo>& mainDemo)
+   After **PreviewOn()** is called, the camera preview channel starts running. Two streams are enabled: preview stream and capture or video stream. Only the preview stream will be captured.
+
+   ```c++
+   static RetCode PreviewOn(int mode, const std::shared_ptr<OhosCameraDemo>& mainDemo)
    {
-        rc = mainDemo->StartPreviewStream(); // Configure the preview stream.
-        if (mode == 0) {
+       RetCode rc = RC_OK;
+       CAMERA_LOGD("main test: PreviewOn enter");
+    
+       rc = mainDemo->StartPreviewStream();     // Configure the preview stream.
+       if (rc != RC_OK) {
+           CAMERA_LOGE("main test: PreviewOn StartPreviewStream error");
+           return RC_ERROR;
+       }
+    
+       if (mode == 0) {
            rc = mainDemo->StartCaptureStream(); // Configure the capture stream.
-         } else {
-           rc = mainDemo->StartVideoStream(); // Configure the video stream.
-         }
-   
-       rc = mainDemo->CaptureON(STREAM_ID_PREVIEW, CAPTURE_ID_PREVIEW, CAPTURE_PREVIEW); // Capture the preview stream.
+           if (rc != RC_OK) {
+               CAMERA_LOGE("main test: PreviewOn StartCaptureStream error");
+               return RC_ERROR;
+           }
+       } else {
+           rc = mainDemo->StartVideoStream();   // Configure the video stream.
+           if (rc != RC_OK) {
+               CAMERA_LOGE("main test: PreviewOn StartVideoStream error");
+               return RC_ERROR;
+           }
+       }
+    
+       rc = mainDemo->CaptureON(STREAM_ID_PREVIEW, CAPTURE_ID_PREVIEW, CAPTURE_PREVIEW);
+       if (rc != RC_OK) {
+           CAMERA_LOGE("main test: PreviewOn mainDemo->CaptureON() preview error");
+           return RC_ERROR;
+       }
+    
+       CAMERA_LOGD("main test: PreviewOn exit");
        return RC_OK;
    }           
    ```
 
-   The **StartCaptureStream()**, **StartVideoStream()**, and **StartPreviewStream()** interfaces call the **CreateStream()** interface with different input parameters.
+   The **StartCaptureStream()**, **StartVideoStream()**, and **StartPreviewStream()** methods call **CreateStream()** with different input parameters.
 
-   ```
-   RetCode CameraDemo::StartVideoStream()
+   Use **CreateStream()** to call an HDI API to configure and create streams. Specifically, **CreateStream()** calls the HDI to obtain a **StreamOperation** object and then creates a **StreamInfo** object. Call **CreateStreams()** and **CommitStreams()** to create and configure streams.
+
+   ```c++
+   RetCode OhosCameraDemo::CreateStream(const int streamId, std::shared_ptr<StreamCustomer> &streamCustomer,
+       StreamIntent intent)
    {
-       RetCode rc = RC_OK;
-       if (isVideoOn_ == 0) {
-           isVideoOn_ = 1;
-           rc = CreateStream(STREAM_ID_VIDEO, streamCustomerVideo_, VIDEO); // To enable the preview stream or capture stream, change the input parameters.
-       }
-       return RC_OK;
-   }
-   ```
-
-   The **CreateStream()** interface calls the HDI to configure and create a stream. Specifically, the interface first calls the HDI to obtain a **StreamOperation** object and then creates a **StreamInfo** object. Call **CreateStreams()** and **CommitStreams()** to create and configure a stream.
-
-   ```
-   RetCode CameraDemo::CreateStreams(const int streamIdSecond, StreamIntent intent)
-   {
-       std::vector<std::shared_ptr<StreamInfo>> streamInfos;
-       std::vector<std::shared_ptr<StreamInfo>>().swap(streamInfos);
+       int rc = 0;
+       CAMERA_LOGD("demo test: CreateStream enter");
+    
        GetStreamOpt(); // Obtain a StreamOperator object.
-       std::shared_ptr<StreamInfo> previewStreamInfo = std::make_shared<StreamInfo>();
-       SetStreamInfo(previewStreamInfo, streamCustomerPreview_, STREAM_ID_PREVIEW, PREVIEW); // Fill in the StreamInfo.
-       if (previewStreamInfo->bufferQueue_ == nullptr) {
+       if (streamOperator_ == nullptr) {
+           CAMERA_LOGE("demo test: CreateStream GetStreamOpt() is nullptr\n");
+           return RC_ERROR;
+       }
+    
+       StreamInfo streamInfo = {0};
+    
+       SetStreamInfo(streamInfo, streamCustomer, streamId, intent); // Fills in the StreamInfo stream.
+       if (streamInfo.bufferQueue_->producer_ == nullptr) {
            CAMERA_LOGE("demo test: CreateStream CreateProducer(); is nullptr\n");
            return RC_ERROR;
        }
-       streamInfos.push_back(previewStreamInfo);
-   
-       std::shared_ptr<StreamInfo> secondStreamInfo = std::make_shared<StreamInfo>();
-       if (streamIdSecond == STREAM_ID_CAPTURE) {
-           SetStreamInfo(secondStreamInfo, streamCustomerCapture_, STREAM_ID_CAPTURE, intent);
-       } else {
-           SetStreamInfo(secondStreamInfo, streamCustomerVideo_, STREAM_ID_VIDEO, intent);
-       }
-   
-       if (secondStreamInfo->bufferQueue_ == nullptr) {
-           CAMERA_LOGE("demo test: CreateStreams CreateProducer() secondStreamInfo is nullptr\n");
-           return RC_ERROR;
-       }
-       streamInfos.push_back(secondStreamInfo);
-   
+    
+       std::vector<StreamInfo> streamInfos;
+       streamInfos.push_back(streamInfo);
+    
        rc = streamOperator_->CreateStreams(streamInfos); // Create a stream.
-       if (rc != Camera::NO_ERROR) {
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CreateStream CreateStreams error\n");
            return RC_ERROR;
        }
    
-       rc = streamOperator_->CommitStreams(Camera::NORMAL, ability_);
-       if (rc != Camera::NO_ERROR) {
+       rc = streamOperator_->CommitStreams(NORMAL, cameraAbility_);
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CreateStream CommitStreams error\n");
-           std::vector<int> streamIds = {STREAM_ID_PREVIEW, streamIdSecond};
+           std::vector<int> streamIds;
+           streamIds.push_back(streamId);
            streamOperator_->ReleaseStreams(streamIds);
            return RC_ERROR;
        }
+   
+       CAMERA_LOGD("demo test: CreateStream exit");
+    
        return RC_OK;
    }
    ```
 
-   The **CaptureON()** interface calls the **Capture()** interface of **StreamOperator** to obtain camera data, rotate the buffer, and start a thread to receive data of the corresponding type.
+   Use **CaptureON()** to call the **Capture()** method of **StreamOperator** to obtain camera data, flip the buffer, and start a thread to receive data of the corresponding type.
 
-   ```
-   RetCode CameraDemo::CaptureON(const int streamId, const int captureId, CaptureMode mode)
+   ```c++
+   RetCode OhosCameraDemo::CaptureON(const int streamId,
+       const int captureId, CaptureMode mode)
    {
-       std::shared_ptr<Camera::CaptureInfo> captureInfo = std::make_shared<Camera::CaptureInfo>(); // Create and fill in CaptureInfo.
-       captureInfo->streamIds_ = {streamId};
-       captureInfo->captureSetting_ = ability_;
-       captureInfo->enableShutterCallback_ = false;
-   
-       int rc = streamOperator_->Capture(captureId, captureInfo, true);// The stream capture starts, and buffer recycling starts.
+       CAMERA_LOGI("demo test: CaptureON enter streamId == %{public}d and captureId == %{public}d and mode == %{public}d",
+           streamId, captureId, mode);
+       std::lock_guard<std::mutex> l(metaDatalock_);
+       if (mode == CAPTURE_SNAPSHOT) {
+           constexpr double latitude = 27.987500; // dummy data: Qomolangma latitde
+           constexpr double longitude = 86.927500; // dummy data: Qomolangma longituude
+           constexpr double altitude = 8848.86; // dummy data: Qomolangma altitude
+           constexpr size_t entryCapacity = 100;
+           constexpr size_t dataCapacity = 2000;
+           captureSetting_ = std::make_shared<CameraSetting>(entryCapacity, dataCapacity);
+           captureQuality_ = OHOS_CAMERA_JPEG_LEVEL_HIGH;
+           captureOrientation_ = OHOS_CAMERA_JPEG_ROTATION_270;
+           mirrorSwitch_ = OHOS_CAMERA_MIRROR_ON;
+           gps_.push_back(latitude);
+           gps_.push_back(longitude);
+           gps_.push_back(altitude);
+           captureSetting_->addEntry(OHOS_JPEG_QUALITY, static_cast<void*>(&captureQuality_),
+               sizeof(captureQuality_));
+           captureSetting_->addEntry(OHOS_JPEG_ORIENTATION, static_cast<void*>(&captureOrientation_),
+               sizeof(captureOrientation_));
+           captureSetting_->addEntry(OHOS_CONTROL_CAPTURE_MIRROR, static_cast<void*>(&mirrorSwitch_),
+               sizeof(mirrorSwitch_));
+           captureSetting_->addEntry(OHOS_JPEG_GPS_COORDINATES, gps_.data(), gps_.size());
+       }
+    
+       std::vector<uint8_t> setting;
+       MetadataUtils::ConvertMetadataToVec(captureSetting_, setting);
+       captureInfo_.streamIds_ = {streamId};
+       if (mode == CAPTURE_SNAPSHOT) {
+           captureInfo_.captureSetting_ = setting;
+       } else {
+           captureInfo_.captureSetting_ = cameraAbility_;
+       }
+       captureInfo_.enableShutterCallback_ = false;
+    
+       int rc = streamOperator_->Capture(captureId, captureInfo_, true); // The capture starts, and buffer starts to flip.
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
+           CAMERA_LOGE("demo test: CaptureStart Capture error\n");
+           streamOperator_->ReleaseStreams(captureInfo_.streamIds_);
+           return RC_ERROR;
+       }
+    
        if (mode == CAPTURE_PREVIEW) {
-           streamCustomerPreview_->ReceiveFrameOn(nullptr); // Create a preview thread to receive the passed buffers.
+           streamCustomerPreview_->ReceiveFrameOn(nullptr); // Create a preview thread to receive the passed buffer.
        } else if (mode == CAPTURE_SNAPSHOT) {
-           streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // Create a capture thread to receive the passed buffers through the StoreImage callback.
+           streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // Create a capture thread to receive the passed buffer through the StoreImage callback.
                StoreImage(addr, size);
            });
        } else if (mode == CAPTURE_VIDEO) {
            OpenVideoFile();
-           streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) {// Create a video thread to receive the passed buffer by calling the StoreVideo callback.
+    
+           streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // Create a video thread to receive the passed buffer through the StoreImage callback.
                StoreVideo(addr, size);
            });
        }
+       CAMERA_LOGD("demo test: CaptureON exit");
+    
        return RC_OK;
    }
    ```
 
-3. Implement the **ManuList()** function to obtain characters from the console through the **fgets()** interface. Different characters correspond to different capabilities provided by the demo, and the functionality menu is printed.
+3. Implement **ManuList()** to obtain characters from the console through **fgets()**. Different characters correspond to different capabilities provided by the demo, and the functionality menu is printed.
 
-   ```
-   static void ManuList(const std::shared_ptr<CameraDemo>& mainDemo,
+   ```c++
+   static void ManuList(const std::shared_ptr<OhosCameraDemo>& mainDemo,
        const int argc, char** argv)
    {
        int idx, c;
-       int awb = 1;
-       constexpr char shortOptions[] = "h:cwvaqof:";
-       c = getopt_long(argc, argv, shortOptions, longOptions, &idx);
-       while(1) {
+       bool isAwb = true;
+       const char *shortOptions = "h:cwvaeqof:";
+       c = getopt_long(argc, argv, shortOptions, LONG_OPTIONS, &idx);
+       while (1) {
            switch (c) {
                case 'h':
-                   c = PutMenuAndGetChr(); // Print the menu.
+                   c = PutMenuAndGetChr();   // Print the menu.
                    break;
-                   
-                   case 'f':
-                   FlashLightTest(mainDemo); // Test the flashlight capability.
+               case 'f':
+                   FlashLightTest(mainDemo); // Verify the flashlight capability.
                    c = PutMenuAndGetChr();
                    break;
                case 'o':
-                   OfflineTest(mainDemo); // Test the offline capability.
+                   OfflineTest(mainDemo);    // Verify the offline capability.
                    c = PutMenuAndGetChr();
                    break;
                case 'c':
-                   CaptureTest(mainDemo); // Test the capture capability.
+                   CaptureTest(mainDemo);    // Verify the capture capability.
                    c = PutMenuAndGetChr();
                    break;
-               case 'w': // Test the AWB capability.
-                   if (awb) {
+               case 'w':                     // Verify the AWB capability.
+                   if (isAwb) {
                        mainDemo->SetAwbMode(OHOS_CAMERA_AWB_MODE_INCANDESCENT);
                    } else {
                        mainDemo->SetAwbMode(OHOS_CAMERA_AWB_MODE_OFF);
                    }
-                   awb = !awb;
+                   isAwb = !isAwb;
                    c = PutMenuAndGetChr();
                    break;
-               case 'a': // Test the AE capability.
+               case 'a':                    // Verify the AE capability.
                    mainDemo->SetAeExpo();
                    c = PutMenuAndGetChr();
                    break;
-               case 'v': // Test the video capability.
+               case'e':                     // Verify the metadata operations.
+                   mainDemo->SetMetadata();
+                   c = PutMenuAndGetChr();
+                   break;
+               case'v':                     // Verify the video function.
                    VideoTest(mainDemo);
                    c = PutMenuAndGetChr();
                    break;
-               case 'q': // Exit the demo.
+               case 'q':                    // Exit the demo.
                    PreviewOff(mainDemo);
                    mainDemo->QuitDemo();
-                   exit(EXIT_SUCCESS);
-   
+                   return;
                default:
                    CAMERA_LOGE("main test: command error please retry input command");
                    c = PutMenuAndGetChr();
@@ -700,9 +989,9 @@ There is a camera demo in the **/drivers/peripheral/camera/hal/init** directory.
    }
    ```
 
-   The **PutMenuAndGetChr()** interface prints the menu of the demo and calls **fgets()** to wait for commands from the console.
+   Use **PutMenuAndGetChr()** to print the menu of the demo and call **fgets()** to wait for commands from the console.
 
-   ``` 
+   ```c++
    static int PutMenuAndGetChr(void)
    {
        constexpr uint32_t inputCount = 50;
@@ -724,7 +1013,7 @@ There is a camera demo in the **/drivers/peripheral/camera/hal/init** directory.
 
    The console outputs the menu details as follows:
 
-   ```
+   ```c++
    "Options:\n"
    "-h | --help          Print this message\n"
    "-o | --offline       stream offline test\n"
@@ -732,8 +1021,28 @@ There is a camera demo in the **/drivers/peripheral/camera/hal/init** directory.
    "-w | --set WB        Set white balance Cloudy\n"
    "-v | --video         capture Video of 10s\n"
    "-a | --Set AE        Set Auto exposure\n"
+   "-e | --Set Metadeta  Set Metadata\n"
    "-f | --Set Flashlight        Set flashlight ON 5s OFF\n"
    "-q | --quit          stop preview and quit this app\n");
    ```
 
-   
+4. Compile and build the **ohos_camera_demo**.        
+
+   Add **init:ohos_camera_demo** to **deps** in the **drivers/peripheral/camera/hal/BUILD.gn** file. 
+
+   The sample code is as follows:
+
+   ```
+   deps = [
+       "buffer_manager:camera_buffer_manager",
+       "device_manager:camera_device_manager",
+       "hdi_impl:camera_host_service_1.0",
+       "pipeline_core:camera_pipeline_core",
+       "utils:camera_utils",
+       "init:ohos_camera_demo",
+       ]
+   ```
+
+   The following uses RK3568 development board as an example.       
+   1. Run the **./build.sh --product-name rk3568 --ccache** command to generate the executable binary file **ohos_camera_demo** in **out/rk3568/packages/phone/vendor/bin/**.       
+   2. Import the executable file **ohos_camera_demo** to the development board, modify the permission, and run the file.

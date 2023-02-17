@@ -6,10 +6,10 @@
 >
 > If you still need to use Hi3516DV300 to develop standard-system devices, adaptation may fail. In this case, contact the chip supplier to obtain the adaptation guide or complete adaptation by yourself.
 
-In addition to the small system, the Hi3516D V300 development board also supports the standard system. This topic describes how to develop the standard system on Hi3516DV300 by using DevEco Device Tool.
+In addition to the small system, the Hi3516DV300 development board also supports the standard system. This topic describes how to develop the standard system on Hi3516DV300 by using DevEco Device Tool.
 
 
-The following exemplifies how to run the first program on the development board. The created program outputs the message "Hello World!" .
+The following exemplifies how to run the first program on the development board. This program displays the message "Hello World!" .
 
 
 Before development, complete the following preparations:
@@ -48,8 +48,7 @@ Perform the steps below in the source code directory:
 
 1. Create a directory and write the service code.
    
-
-Create the **applications/sample/hello/src/helloworld.c** directory and file whose code is shown in the following example. You can customize the content to be printed. For example, you can change **World** to **OHOS**. Declare the string printing function **HelloPrint** in the **helloworld.h** file. You can use either C or C++ to develop a program.
+   Create the **applications/sample/hello/src/helloworld.c** directory and file whose code is shown in the following example. You can customize the content to be printed. For example, you can change **World** to **OHOS**. Declare the string printing function **HelloPrint** in the **helloworld.h** file. You can use either C or C++ to develop a program.
 
 
    ```
@@ -68,7 +67,7 @@ Create the **applications/sample/hello/src/helloworld.c** directory and file who
    }
    ```
 
-Add the header file **applications/sample/hello/include/helloworld.h**. The sample code is as follows:
+   Add the header file **applications/sample/hello/include/helloworld.h**. The sample code is as follows:
 
 
    ```
@@ -166,6 +165,7 @@ Add the header file **applications/sample/hello/include/helloworld.h**. The samp
    In the **productdefine/common/products/Hi3516DV300.json** file, add the **hello** part after the existing part.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > In this example, the OpenHarmony-v3.1-Release version is used, where the Hi3516 configuration file is **productdefine/common/products/Hi3516DV300.json**. In OpenHarmony-v3.2-Beta2 and later versions, the Hi3516 configuration file is **vendor/hisilicon/Hi3516DV300/config.json**.
 
 
@@ -284,7 +284,7 @@ Hi3516DV300 supports burning for the standard system through the USB port and ne
 
    ![en-us_image_0000001275802150](figures/en-us_image_0000001275802150.png)
 
-8. When the burning is successful, perform the operations in "Running" to start the system.
+8. When the burning is successful, perform the operations in [Running an Image](#running-an-image) to start the system.
 
 
 ## Running an Image

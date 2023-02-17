@@ -2,7 +2,7 @@
 
 提供具有网页显示能力的Web组件。
 
-> **说明：** 
+> **说明：**
 >
 > - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
@@ -21,6 +21,7 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 > **说明：**
 >
 > 不支持转场动画。
+> 同一页面的多个web组件，必须绑定不同的WebController。
 
 **参数：**
 
@@ -467,13 +468,13 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置视频播放是否需要用户手动点击。
+设置有声视频播放是否需要用户手动点击，静音视频播放不受该接口管控。
 
 **参数：**
 
 | 参数名    | 参数类型    | 必填   | 默认值  | 参数描述              |
 | ------ | ------- | ---- | ---- | ----------------- |
-| access | boolean | 是    | true | 设置视频播放是否需要用户手动点击。 |
+| access | boolean | 是    | true | 设置有声视频播放是否需要用户手动点击。 |
 
 **示例：**
 
@@ -520,6 +521,108 @@ multiWindowAccess(multiWindow: boolean)
       }
     }
   }
+  ```
+
+### horizontalScrollBarAccess<sup>9+</sup>
+
+horizontalScrollBarAccess(horizontalScrollBar: boolean)
+
+设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+
+**参数：**
+
+| 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
+| ----------- | ------- | ---- | ----- | ------------ |
+| horizontalScrollBar | boolean | 是    | true | 设置是否显示横向滚动条。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .horizontalScrollBarAccess(true)
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Demo</title>
+      <style>
+        body {
+          width:3000px;
+          height:3000px;
+          padding-right:170px;
+          padding-left:170px;
+          border:5px solid blueviolet
+        }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
+  ```
+
+### verticalScrollBarAccess<sup>9+</sup>
+
+verticalScrollBarAccess(verticalScrollBar: boolean)
+
+设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+
+**参数：**
+
+| 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
+| ----------- | ------- | ---- | ----- | ------------ |
+| verticalScrollBarAccess | boolean | 是    | true | 设置是否显示纵向滚动条。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .verticalScrollBarAccess(true)
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Demo</title>
+      <style>
+        body {
+          width:3000px;
+          height:3000px;
+          padding-right:170px;
+          padding-left:170px;
+          border:5px solid blueviolet
+        }
+      </style>
+  </head>
+  <body>
+  Scroll Test
+  </body>
+  </html>
   ```
 
 ### cacheMode
@@ -642,34 +745,440 @@ userAgent(userAgent: string)
   }
   ```
 
-### webDebuggingAccess<sup>9+</sup>
+### blockNetwork<sup>9+</sup>
 
-webDebuggingAccess(webDebuggingAccess: boolean)
+blockNetwork(block: boolean)
 
-设置是否启用网页调试功能。
+设置Web组件是否阻止从网络加载资源。
 
 **参数：**
 
-| 参数名                | 参数类型    | 必填   | 默认值   | 参数描述          |
-| ------------------ | ------- | ---- | ----- | ------------- |
-| webDebuggingAccess | boolean | 是    | false | 设置是否启用网页调试功能。 |
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                            |
+| ------ | -------- | ---- | ------ | ----------------------------------- |
+| block  | boolean  | 是   | false  | 设置Web组件是否阻止从网络加载资源。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
-    @State webDebuggingAccess: boolean = true
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State block: boolean = true
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .webDebuggingAccess(this.webDebuggingAccess)
+          .blockNetwork(this.block)
       }
     }
   }
+  ```
+
+### defaultFixedFontSize<sup>9+</sup>
+
+defaultFixedFontSize(size: number)
+
+设置网页的默认等宽字体大小。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
+| ------ | -------- | ---- | ------ | ---------------------------- |
+| size   | number   | 是   | 13     | 设置网页的默认等宽字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State fontSize: number = 16
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .defaultFixedFontSize(this.fontSize)
+      }
+    }
+  }
+  ```
+
+### defaultFontSize<sup>9+</sup>
+
+defaultFontSize(size: number)
+
+设置网页的默认字体大小。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | 是   | 16     | 设置网页的默认字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State fontSize: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .defaultFontSize(this.fontSize)
+      }
+    }
+  }
+  ```
+
+### minFontSize<sup>9+</sup>
+
+minFontSize(size: number)
+
+设置网页字体大小最小值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | 是   | 8      | 设置网页字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State fontSize: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .minFontSize(this.fontSize)
+      }
+    }
+  }
+  ```
+
+### minLogicalFontSize<sup>9+</sup>
+
+minLogicalFontSize(size: number)
+
+设置网页逻辑字体大小最小值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| size   | number   | 是   | 8      | 设置网页逻辑字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State fontSize: number = 13
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .minLogicalFontSize(this.fontSize)
+      }
+    }
+  }
+  ```
+
+
+### webFixedFont<sup>9+</sup>
+
+webFixedFont(family: string)
+
+设置网页的fixed font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值    | 参数描述                     |
+| ------ | -------- | ---- | --------- | ---------------------------- |
+| family | string   | 是   | monospace | 设置网页的fixed font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "monospace"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webFixedFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webSansSerifFont<sup>9+</sup>
+
+webSansSerifFont(family: string)
+
+设置网页的sans serif font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值     | 参数描述                          |
+| ------ | -------- | ---- | ---------- | --------------------------------- |
+| family | string   | 是   | sans-serif | 设置网页的sans serif font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "sans-serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webSansSerifFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webSerifFont<sup>9+</sup>
+
+webSerifFont(family: string)
+
+设置网页的serif font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
+| ------ | -------- | ---- | ------ | ---------------------------- |
+| family | string   | 是   | serif  | 设置网页的serif font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webSerifFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webStandardFont<sup>9+</sup>
+
+webStandardFont(family: string)
+
+设置网页的standard font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值     | 参数描述                        |
+| ------ | -------- | ---- | ---------- | ------------------------------- |
+| family | string   | 是   | sans serif | 设置网页的standard font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "sans-serif"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webStandardFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webFantasyFont<sup>9+</sup>
+
+webFantasyFont(family: string)
+
+设置网页的fantasy font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | -------- | ---- | ------- | ------------------------------ |
+| family | string   | 是   | fantasy | 设置网页的fantasy font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "fantasy"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webFantasyFont(this.family)
+      }
+    }
+  }
+  ```
+
+### webCursiveFont<sup>9+</sup>
+
+webCursiveFont(family: string)
+
+设置网页的cursive font字体库。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | -------- | ---- | ------- | ------------------------------ |
+| family | string   | 是   | cursive | 设置网页的cursive font字体库。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State family: string = "cursive"
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webCursiveFont(this.family)
+      }
+    }
+  }
+  ```
+
+### darkMode<sup>9+</sup>
+
+darkMode(mode: WebDarkMode)
+
+设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefer-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+|  mode  | [WebDarkMode](#webdarkmode9枚举说明) | 是   | WebDarkMode.Off | 设置Web的深色模式为关闭、开启或跟随系统。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebDarkMode = WebDarkMode.On
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .darkMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### forceDarkAccess<sup>9+</sup>
+
+forceDarkAccess(access: boolean)
+
+设置网页是否开启强制深色模式。默认关闭。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ------- | ---- | ----- | ------------------ |
+| access | boolean | 是   | false | 设置网页是否开启强制深色模式。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebDarkMode = WebDarkMode.On
+    @State access: boolean = true
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .darkMode(this.mode)
+          .forceDarkAccess(this.access)
+      }
+    }
+  }
+  ```
+
+### pinchSmooth<sup>9+</sup>
+
+pinchSmooth(isEnabled: boolean)
+
+设置网页是否开启捏合流畅模式。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述                   |
+| --------- | -------- | ---- | ------ | -------------------------- |
+| isEnabled | boolean  | 是   | false  | 网页是否开启捏合流畅模式。 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .pinchSmooth(true)
+    }
+  }
+}
   ```
 
 ## 事件
@@ -694,7 +1203,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
 
 **示例：**
 
@@ -752,7 +1261,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
 
 **示例：**
 
@@ -762,7 +1271,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -813,7 +1322,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
 
 **示例：**
 
@@ -823,7 +1332,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -873,7 +1382,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
 
 **示例：**
 
@@ -883,7 +1392,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -943,7 +1452,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -980,7 +1489,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1000,7 +1509,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
 
-网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。
+网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
 **参数：**
 
@@ -1017,7 +1526,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1061,7 +1570,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1112,7 +1621,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1145,7 +1654,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1177,7 +1686,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1209,7 +1718,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1242,7 +1751,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1254,7 +1763,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
   }
   ```
 
-### onRenderExited
+### onRenderExited<sup>9+</sup>
 
 onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void)
 
@@ -1274,7 +1783,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
@@ -1303,7 +1812,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当返回值为false时，触发Web默认弹窗。 |
+| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，web组件暂不支持触发默认弹窗。 |
 
 **示例：**
 
@@ -1362,7 +1871,7 @@ onResourceLoad(callback: (event: {url: string}) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1395,7 +1904,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1411,7 +1920,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-当Web组件加载url之前触发该回调，用于是否阻止此次访问。
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
 **参数：**
 
@@ -1433,7 +1942,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1541,7 +2050,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   struct WebComponent {
     controller: WebController = new WebController()
     httpAuth: boolean = false
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1602,7 +2111,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1741,7 +2250,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
 
-长按特定元素（例如图片，链接），跳出菜单。
+长按特定元素（例如图片，链接）或鼠标右键，跳出菜单。
 
 **参数：**
 
@@ -1787,8 +2296,8 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 | 参数名     | 参数类型   | 参数描述         |
 | ------- | ------ | ------------ |
-| xOffset | number | 水平滚动条滚动所在位置。 |
-| yOffset | number | 竖直滚动条滚动所在位置。 |
+| xOffset | number | 以网页最左端为基准，水平滚动条滚动所在位置。 |
+| yOffset | number | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
 
 **示例：**
 
@@ -1975,6 +2484,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2059,6 +2569,181 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
   }
   ```
 
+### onDataResubmitted<sup>9+</sup>
+
+onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
+
+设置网页表单可以重新提交时触发的回调函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                             | 参数描述               |
+| ------- | ---------------------------------------------------- | ---------------------- |
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 表单数据重新提交句柄。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
+      }
+    }
+  }
+  ```
+
+### onPageVisible<sup>9+</sup>
+
+onPageVisible(callback: (event: {url: string}) => void)
+
+设置旧页面不再呈现，新页面即将可见时触发的回调函数。
+
+**参数：**
+
+| 参数名 | 参数类型 | 参数描述                                          |
+| ------ | -------- | ------------------------------------------------- |
+| url    | string   | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onPageVisible((event) => {
+          console.log('onPageVisible url:' + event.url)
+        })
+      }
+    }
+  }
+  ```
+
+### onInterceptKeyEvent<sup>9+</sup>
+
+onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
+
+设置键盘事件的回调函数，该回调在被Webview使用前触发。
+
+**参数：**
+
+| 参数名 | 参数类型                                                | 参数描述             |
+| ------ | ------------------------------------------------------- | -------------------- |
+| event  | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 回调函数通过返回boolean类型值来决定是否继续将该KeyEvent传入Webview内核。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onInterceptKeyEvent((event) => {
+          if (event.keyCode == 2017 || event.keyCode == 2018) {
+            console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
+            return true;
+          }
+          return false;
+        })
+      }
+    }
+  }
+  ```
+
+### onTouchIconUrlReceived<sup>9+</sup>
+
+onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) => void)
+
+设置接收到apple-touch-icon url地址时的回调函数。
+
+**参数：**
+
+| 参数名      | 参数类型 | 参数描述                           |
+| ----------- | -------- | ---------------------------------- |
+| url         | string   | 接收到的apple-touch-icon url地址。 |
+| precomposed | boolean  | 对应apple-touch-icon是否为预合成。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.baidu.com', controller: this.controller })
+         .onTouchIconUrlReceived((event) => {
+          console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
+        })
+      }
+    }
+  }
+  ```
+
+### onFaviconReceived<sup>9+</sup>
+
+onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
+
+设置应用为当前页面接收到新的favicon时的回调函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                       | 参数描述                            |
+| ------- | ---------------------------------------------- | ----------------------------------- |
+| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import image from "@ohos.multimedia.image"
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State icon: image.PixelMap = undefined;
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onFaviconReceived((event) => {
+          console.log('onFaviconReceived:' + JSON.stringify(event))
+          this.icon = event.favicon;
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -2069,7 +2754,7 @@ getLineNumber(): number
 
 获取ConsoleMessage的行数。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
@@ -2081,7 +2766,7 @@ getMessage(): string
 
 获取ConsoleMessage的日志信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
@@ -2093,7 +2778,7 @@ getMessageLevel(): MessageLevel
 
 获取ConsoleMessage的信息级别。
 
-**返回值：** 
+**返回值：**
 
 | 类型                                | 说明                     |
 | --------------------------------- | ---------------------- |
@@ -2105,7 +2790,7 @@ getSourceId(): string
 
 获取网页源文件路径和名字。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -2175,7 +2860,7 @@ getErrorCode(): number
 
 获取加载资源的错误码。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
@@ -2187,7 +2872,7 @@ getErrorInfo(): string
 
 获取加载资源的错误信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明           |
 | ------ | ------------ |
@@ -2203,7 +2888,7 @@ getResponseHeader() : Array\<Header\>
 
 获取资源请求头信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型                         | 说明         |
 | -------------------------- | ---------- |
@@ -2215,7 +2900,7 @@ getRequestUrl(): string
 
 获取资源请求的URL信息。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -2227,7 +2912,7 @@ isMainFrame(): boolean
 
 判断资源请求是否为主frame。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明               |
 | ------- | ---------------- |
@@ -2239,7 +2924,7 @@ isRedirect(): boolean
 
 判断资源请求是否被服务端重定向。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明               |
 | ------- | ---------------- |
@@ -2251,7 +2936,7 @@ isRequestGesture(): boolean
 
 获取资源请求是否与手势（如点击）相关联。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明                   |
 | ------- | -------------------- |
@@ -2277,7 +2962,7 @@ getReasonMessage(): string
 
 获取资源响应的状态码描述。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
@@ -2289,7 +2974,7 @@ getResponseCode(): number
 
 获取资源响应的状态码。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
@@ -2301,7 +2986,7 @@ getResponseData(): string
 
 获取资源响应数据。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
@@ -2313,7 +2998,7 @@ getResponseEncoding(): string
 
 获取资源响应的编码。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
@@ -2325,7 +3010,7 @@ getResponseHeader() : Array\<Header\>
 
 获取资源响应头。
 
-**返回值：** 
+**返回值：**
 
 | 类型                         | 说明       |
 | -------------------------- | -------- |
@@ -2337,7 +3022,7 @@ getResponseMimeType(): string
 
 获取资源响应的媒体（MIME）类型。
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
@@ -2345,15 +3030,15 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string)
+setResponseData(data: string | number)
 
 设置资源响应数据。
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述        |
-| ---- | ------ | ---- | ---- | ----------- |
-| data | string | 是    | -    | 要设置的资源响应数据。 |
+| 参数名 | 参数类型         | 必填 | 默认值 | 参数描述                                                     |
+| ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
+| data   | string \| number | 是   | -      | 要设置的资源响应数据。string表示输入类型是字符串，number表示输入类型是文件句柄。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -2415,6 +3100,18 @@ setResponseCode(code: number)
 | ---- | ------ | ---- | ---- | ------------- |
 | code | number | 是    | -    | 要设置的资源响应的状态码。 |
 
+### setResponseIsReady<sup>9+</sup>
+
+setResponseIsReady(IsReady: boolean)
+
+设置资源响应数据是否已经就绪。
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述                   |
+| ------- | -------- | ---- | ------ | -------------------------- |
+| IsReady | boolean  | 是   | true   | 资源响应数据是否已经就绪。 |
+
 ## FileSelectorResult<sup>9+</sup>
 
 通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
@@ -2435,25 +3132,13 @@ handleFileList(fileList: Array\<string\>): void
 
 web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
-### getTitle<sup>9+</sup>
-
-getTitle(): string
-
-获取文件选择器标题。
-
-**返回值：** 
-
-| 类型     | 说明         |
-| ------ | ---------- |
-| string | 返回文件选择器标题。 |
-
 ### getMode<sup>9+</sup>
 
 getMode(): FileSelectorMode
 
 获取文件选择器的模式。
 
-**返回值：** 
+**返回值：**
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
@@ -2465,7 +3150,7 @@ getAcceptType(): Array\<string\>
 
 获取文件过滤类型。
 
-**返回值：** 
+**返回值：**
 
 | 类型              | 说明        |
 | --------------- | --------- |
@@ -2477,7 +3162,7 @@ isCapture(): boolean
 
 获取是否调用多媒体能力。
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明           |
 | ------- | ------------ |
@@ -2516,7 +3201,7 @@ confirm(userName: string, pwd: string): boolean
 
 isHttpAuthInfoSaved(): boolean
 
-通知Web组件用户使用服务器缓存的账号密码认证。
+通知Web组件用户使用服务器缓存的帐号密码认证。
 
 **返回值：**
 
@@ -2613,11 +3298,46 @@ grant(resources: Array\<string\>): void
 
 | 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
 | --------- | --------------- | ---- | ---- | ------------- |
-| resources | Array\<string\> | 是    | -    | 网页所请求的权限资源列表。 |
+| resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
+
+## ContextMenuSourceType<sup>9+</sup>枚举说明
+| 名称                   | 描述         |
+| -------------------- | ---------- |
+| None        | 其他事件来源。  |
+| Mouse       | 鼠标事件。  |
+| LongPress   | 长按事件。  |
+
+## ContextMenuMediaType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非特殊媒体或其他媒体类型。 |
+| Image     | 图片。     |
+
+## ContextMenuInputFieldType<sup>9+</sup>枚举说明
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| None      | 非输入框。       |
+| PlainText | 纯文本类型，包括text、search、email等。   |
+| Password  | 密码类型。     |
+| Number    | 数字类型。     |
+| Telephone | 电话号码类型。 |
+| Other     | 其他类型。     |
+
+## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
+
+| 名称         | 描述         |
+| ------------ | ----------- |
+| NONE         | 不可编辑。   |
+| CAN_CUT      | 支持剪切。   |
+| CAN_COPY     | 支持拷贝。   |
+| CAN_PASTE    | 支持粘贴。   |
+| CAN_SELECT_ALL  | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### x<sup>9+</sup>
 
@@ -2691,9 +3411,81 @@ existsImageContents(): boolean
 | ------- | ------------------------- |
 | boolean | 长按位置中有图片返回true，否则返回false。 |
 
+### getMediaType<sup>9+</sup>
+
+getMediaType(): ContextMenuMediaType
+
+获取网页元素媒体类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuMediaType](#contextmenumediatype9枚举说明) | 网页元素媒体类型。 |
+
+### getSelectionText<sup>9+</sup>
+
+getSelectionText(): string
+
+获取选中文本。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| string | 菜单上下文选中文本内容，不存在则返回空。 |
+
+### getSourceType<sup>9+</sup>
+
+getSourceType(): ContextMenuSourceType
+
+获取菜单事件来源。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuSourceType](#contextmenusourcetype9枚举说明) | 菜单事件来源。 |
+
+### getInputFieldType<sup>9+</sup>
+
+getInputFieldType(): ContextMenuInputFieldType
+
+获取网页元素输入框类型。
+
+**返回值：**
+
+| 类型                                       | 说明          |
+| ---------------------------------------- | ----------- |
+| [ContextMenuInputFieldType](#contextmenuinputfieldtype9枚举说明) | 输入框类型。 |
+
+### isEditable<sup>9+</sup>
+
+isEditable(): boolean
+
+获取网页元素是否可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| boolean | 网页元素可编辑返回true，不可编辑返回false。 |
+
+### getEditStateFlags<sup>9+</sup>
+
+getEditStateFlags(): number
+
+获取网页元素可编辑标识。
+
+**返回值：**
+
+| 类型      | 说明                        |
+| ------- | ------------------------- |
+| number | 网页元素可编辑标识，参照[ContextMenuEditStateFlags](#contextmenueditstateflags9枚举说明)。 |
+
 ## WebContextMenuResult<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### closeContextMenu<sup>9+</sup>
 
@@ -2706,6 +3498,30 @@ closeContextMenu(): void
 copyImage(): void
 
 WebContextMenuParam有图片内容则复制图片。
+
+### copy<sup>9+</sup>
+
+copy(): void
+
+执行与此上下文菜单相关的拷贝操作。
+
+### paste<sup>9+</sup>
+
+paste(): void
+
+执行与此上下文菜单相关的粘贴操作。
+
+### cut<sup>9+</sup>
+
+cut(): void
+
+执行与此上下文菜单相关的剪切操作。
+
+### selectAll<sup>9+</sup>
+
+selectAll(): void
+
+执行与此上下文菜单相关的全选操作。
 
 ## JsGeolocation
 
@@ -2723,11 +3539,13 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 | ------ | ------- | ---- | ---- | ---------------------------------------- |
 | origin | string  | 是    | -    | 指定源的字符串索引。                               |
 | allow  | boolean | 是    | -    | 设置的地理位置权限状态。                             |
-| retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions](#geolocationpermissions9)接口管理保存到系统的地理位置权限。 |
+| retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](../apis/js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。 |
 
 ## WebController
 
 通过WebController可以控制Web组件各种行为。一个WebController对象只能控制一个Web组件，且必须在Web组件和WebController绑定后，才能调用WebController上的方法。
+
+从API version 9开始不再维护，建议使用[WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller)代替。
 
 ### 创建对象
 
@@ -2735,11 +3553,13 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 webController: WebController = new WebController()
 ```
 
-### requestFocus
+### requestFocus<sup>(deprecated)</sup>
 
 requestFocus()
 
 使当前web页面获取焦点。
+
+从API version 9开始不再维护，建议使用[requestFocus<sup>9+</sup>](../apis/js-apis-webview.md#requestfocus)代替。
 
 **示例：**
 
@@ -2749,7 +3569,7 @@ requestFocus()
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('requestFocus')
@@ -2762,11 +3582,13 @@ requestFocus()
   }
   ```
 
-### accessBackward
+### accessBackward<sup>(deprecated)</sup>
 
 accessBackward(): boolean
 
 当前页面是否可后退，即当前页面是否有返回历史记录。
+
+从API version 9开始不再维护，建议使用[accessBackward<sup>9+</sup>](../apis/js-apis-webview.md#accessbackward)代替。
 
 **返回值：**
 
@@ -2782,7 +3604,7 @@ accessBackward(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('accessBackward')
@@ -2796,11 +3618,13 @@ accessBackward(): boolean
   }
   ```
 
-### accessForward
+### accessForward<sup>(deprecated)</sup>
 
 accessForward(): boolean
 
 当前页面是否可前进，即当前页面是否有前进历史记录。
+
+从API version 9开始不再维护，建议使用[accessForward<sup>9+</sup>](../apis/js-apis-webview.md#accessforward)代替。
 
 **返回值：**
 
@@ -2816,7 +3640,7 @@ accessForward(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('accessForward')
@@ -2830,11 +3654,13 @@ accessForward(): boolean
   }
   ```
 
-### accessStep
+### accessStep<sup>(deprecated)</sup>
 
 accessStep(step: number): boolean
 
 当前页面是否可前进或者后退给定的step步。
+
+从API version 9开始不再维护，建议使用[accessStep<sup>9+</sup>](../apis/js-apis-webview.md#accessstep)代替。
 
 **参数：**
 
@@ -2857,7 +3683,7 @@ accessStep(step: number): boolean
   struct WebComponent {
     controller: WebController = new WebController()
     @State steps: number = 2
-  
+
     build() {
       Column() {
         Button('accessStep')
@@ -2871,11 +3697,13 @@ accessStep(step: number): boolean
   }
   ```
 
-### backward
+### backward<sup>(deprecated)</sup>
 
 backward(): void
 
 按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+
+从API version 9开始不再维护，建议使用[backward<sup>9+</sup>](../apis/js-apis-webview.md#backward)代替。
 
 **示例：**
 
@@ -2885,7 +3713,7 @@ backward(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('backward')
@@ -2898,11 +3726,13 @@ backward(): void
   }
   ```
 
-### forward
+### forward<sup>(deprecated)</sup>
 
 forward(): void
 
 按照历史栈，前进一个页面。一般结合accessForward一起使用。
+
+从API version 9开始不再维护，建议使用[forward<sup>9+</sup>](../apis/js-apis-webview.md#forward)代替。
 
 **示例：**
 
@@ -2912,7 +3742,7 @@ forward(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('forward')
@@ -2925,45 +3755,13 @@ forward(): void
   }
   ```
 
-### backOrForward<sup>9+</sup>
-
-backOrForward(step: number): void
-
-按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
-
-**参数：**
-
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述        |
-| ---- | ------ | ---- | ---- | ----------- |
-| step | number | 是    | -    | 需要前进或后退的步长。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    @State step: number = -2
-  
-    build() {
-      Column() {
-        Button('backOrForward')
-          .onClick(() => {
-            this.controller.backOrForward(this.step)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### deleteJavaScriptRegister
+### deleteJavaScriptRegister<sup>(deprecated)</sup>
 
 deleteJavaScriptRegister(name: string)
 
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
+
+从API version 9开始不再维护，建议使用[deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister)代替。
 
 **参数：**
 
@@ -2980,7 +3778,7 @@ deleteJavaScriptRegister(name: string)
   struct WebComponent {
     controller: WebController = new WebController()
     @State name: string = 'Object'
-  
+
     build() {
       Column() {
         Button('deleteJavaScriptRegister')
@@ -2993,11 +3791,13 @@ deleteJavaScriptRegister(name: string)
   }
   ```
 
-### getHitTest
+### getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): HitTestType
 
-获取当前被点击区域的元素类型。	
+获取当前被点击区域的元素类型。
+
+从API version 9开始不再维护，建议使用[getHitTest<sup>9+</sup>](../apis/js-apis-webview.md#gethittest)代替。
 
 **返回值：**
 
@@ -3013,80 +3813,13 @@ getHitTest(): HitTestType
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getHitTest')
           .onClick(() => {
             let hitType = this.controller.getHitTest()
             console.log("hitType: " + hitType)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getHitTestValue<sup>9+</sup>
-getHitTestValue(): HitTestValue
-
-获取当前被点击区域的元素信息。
-
-**返回值：**
-
-| 类型                             | 说明         |
-| ------------------------------ | ---------- |
-| [HitTestValue](#hittestvalue9) | 点击区域的元素信息。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('getHitTestValue')
-          .onClick(() => {
-            let hitValue = this.controller.getHitTestValue()
-            console.log("hitType: " + hitValue.getType())
-            console.log("extra: " + hitValue.getExtra())
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getWebId<sup>9+</sup>
-getWebId(): number
-
-获取当前Web组件的索引值，用于多个Web组件的管理。
-
-**返回值：**
-
-| 类型     | 说明           |
-| ------ | ------------ |
-| number | 当前Web组件的索引值。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('getWebId')
-          .onClick(() => {
-            let id = this.controller.getWebId()
-            console.log("id: " + id)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3113,7 +3846,7 @@ getTitle(): string
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getTitle')
@@ -3127,73 +3860,7 @@ getTitle(): string
   }
   ```
 
-### getPageHeight<sup>9+</sup>
-getPageHeight(): number
-
-获取当前网页的页面高度。
-
-**返回值：**
-
-| 类型     | 说明         |
-| ------ | ---------- |
-| number | 当前网页的页面高度。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('getPageHeight')
-          .onClick(() => {
-            let pageHeight = this.controller.getPageHeight()
-            console.log("pageHeight: " + pageHeight)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getDefaultUserAgent<sup>9+</sup>
-getDefaultUserAgent(): string
-
-获取当前默认用户代理。
-
-**返回值：**
-
-| 类型     | 说明      |
-| ------ | ------- |
-| string | 默认用户代理。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('getDefaultUserAgent')
-          .onClick(() => {
-            let userAgent = this.controller.getDefaultUserAgent()
-            console.log("userAgent: " + userAgent)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### loadData
+### loadData<sup>(deprecated)</sup>
 
 loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: string, historyUrl?: string })
 
@@ -3202,6 +3869,8 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
 当baseUrl为”data“协议时，编码后的data字符串将被Web组件作为”data"协议加载。
 
 当baseUrl为“http/https"协议时，编码后的data字符串将被Web组件以类似loadUrl的方式以非编码字符串处理。
+
+从API version 9开始不再维护，建议使用[loadData<sup>9+</sup>](../apis/js-apis-webview.md#loaddata)代替。
 
 **参数：**
 
@@ -3221,7 +3890,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('loadData')
@@ -3238,7 +3907,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
   }
   ```
 
-### loadUrl
+### loadUrl<sup>(deprecated)</sup>
 
 loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 
@@ -3247,6 +3916,8 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 通过loadUrl注入的对象只在当前document有效，即通过loadUrl导航到新的页面会无效。
 
 而通过registerJavaScriptProxy注入的对象，在loadUrl导航到新的页面也会有效。
+
+从API version 9开始不再维护，建议使用[loadUrl<sup>9+</sup>](../apis/js-apis-webview.md#loadurl)代替。
 
 **参数：**
 
@@ -3263,7 +3934,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('loadUrl')
@@ -3276,11 +3947,13 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
   }
   ```
 
-### onActive
+### onActive<sup>(deprecated)</sup>
 
 onActive(): void
 
 调用此接口通知Web组件进入前台激活状态。
+
+从API version 9开始不再维护，建议使用[onActive<sup>9+</sup>](../apis/js-apis-webview.md#onactive)代替。
 
 **示例：**
 
@@ -3290,7 +3963,7 @@ onActive(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('onActive')
@@ -3303,11 +3976,13 @@ onActive(): void
   }
   ```
 
-### onInactive
+### onInactive<sup>(deprecated)</sup>
 
 onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。
+
+从API version 9开始不再维护，建议使用[onInactive<sup>9+</sup>](../apis/js-apis-webview.md#oninactive)代替。
 
 **示例：**
 
@@ -3317,7 +3992,7 @@ onInactive(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('onInactive')
@@ -3330,10 +4005,12 @@ onInactive(): void
   }
   ```
 
-### zoom
+### zoom<sup>(deprecated)</sup>
 zoom(factor: number): void
 
 调整当前网页的缩放比例。
+
+从API version 9开始不再维护，建议使用[zoom<sup>9+</sup>](../apis/js-apis-webview.md#zoom)代替。
 
 **参数：**
 
@@ -3350,7 +4027,7 @@ zoom(factor: number): void
   struct WebComponent {
     controller: WebController = new WebController()
     @State factor: number = 1
-  
+
     build() {
       Column() {
         Button('zoom')
@@ -3363,78 +4040,14 @@ zoom(factor: number): void
   }
   ```
 
-### zoomIn<sup>9+</sup>
-zoomIn(): boolean
-
-调用此接口将当前网页进行放大，比列20%。
-
-**返回值：**
-
-| 类型      | 说明          |
-| ------- | ----------- |
-| boolean | 放大操作是否成功执行。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('zoomIn')
-          .onClick(() => {
-            let result = this.controller.zoomIn()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### zoomOut<sup>9+</sup>
-zoomOut(): boolean
-
-调用此接口将当前网页进行缩小，比列20%。
-
-**返回值：**
-
-| 类型      | 说明          |
-| ------- | ----------- |
-| boolean | 缩小操作是否成功执行。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('zoomOut')
-          .onClick(() => {
-            let result = this.controller.zoomOut()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### refresh
+### refresh<sup>(deprecated)</sup>
 
 refresh()
 
 调用此接口通知Web组件刷新网页。
 
+从API version 9开始不再维护，建议使用[refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh)代替。
+
 **示例：**
 
   ```ts
@@ -3443,7 +4056,7 @@ refresh()
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('refresh')
@@ -3456,11 +4069,13 @@ refresh()
   }
   ```
 
-### registerJavaScriptProxy
+### registerJavaScriptProxy<sup>(deprecated)</sup>
 
 registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+
+从API version 9开始不再维护，建议使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)代替。
 
 **参数：**
 
@@ -3519,14 +4134,16 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
       }
   </script>
   </html>
-  
+
   ```
 
-### runJavaScript
+### runJavaScript<sup>(deprecated)</sup>
 
 runJavaScript(options: { script: string, callback?: (result: string) => void })
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+
+从API version 9开始不再维护，建议使用[runJavaScript<sup>9+</sup>](../apis/js-apis-webview.md#runjavascript)代替。
 
 **参数：**
 
@@ -3581,11 +4198,13 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 
   ```
 
-### stop
+### stop<sup>(deprecated)</sup>
 
 stop()
 
 停止页面加载。
+
+从API version 9开始不再维护，建议使用[stop<sup>9+</sup>](../apis/js-apis-webview.md#stop)代替。
 
 **示例：**
 
@@ -3595,7 +4214,7 @@ stop()
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('stop')
@@ -3608,12 +4227,14 @@ stop()
   }
   ```
 
-### clearHistory
+### clearHistory<sup>(deprecated)</sup>
 
 clearHistory(): void
 
 删除所有前进后退记录。
 
+从API version 9开始不再维护，建议使用[clearHistory<sup>9+</sup>](../apis/js-apis-webview.md#clearhistory)代替。
+
 **示例：**
 
   ```ts
@@ -3622,66 +4243,12 @@ clearHistory(): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('clearHistory')
           .onClick(() => {
             this.controller.clearHistory()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### clearSslCache
-
-clearSslCache(): void
-
-清除Web组件记录的SSL证书错误事件对应的用户操作行为。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('clearSslCache')
-          .onClick(() => {
-            this.controller.clearSslCache()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### clearClientAuthenticationCache
-
-clearClientAuthenticationCache(): void
-
-清除Web组件记录的客户端证书请求事件对应的用户操作行为。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('clearClientAuthenticationCache')
-          .onClick(() => {
-            this.controller.clearClientAuthenticationCache()
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3709,7 +4276,7 @@ getCookieManager(): WebCookie
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('getCookieManager')
@@ -3721,317 +4288,6 @@ getCookieManager(): WebCookie
     }
   }
   ```
-
-### createWebMessagePorts<sup>9+</sup>
-
-createWebMessagePorts(): Array\<WebMessagePort\>
-
-创建Web消息端口。
-
-**返回值：**
-
-
-| 类型                                       | 说明         |
-| ---------------------------------------- | ---------- |
-| Array\<[WebMessagePort](#webmessageport9)\> | web消息端口列表。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    ports: WebMessagePort[] = null
-    build() {
-      Column() {
-        Button('createWebMessagePorts')
-          .onClick(() => {
-            this.ports = this.controller.createWebMessagePorts()
-            console.log("createWebMessagePorts size:" + this.ports.length)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### postMessage<sup>9+</sup>
-
-postMessage(options: { message: WebMessageEvent, uri: string}): void
-
-发送Web消息端口到HTML5。
-
-**参数：**
-
-| 参数名     | 参数类型                                 | 必填   | 默认值  | 参数描述              |
-| ------- | ------------------------------------ | ---- | ---- | ----------------- |
-| message | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息，包含数据和消息端口。 |
-| uri     | string                               | 是    | -    | 接收该消息的URI。        |
-
-**示例：**
-
-  ```ts
-  // index.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    ports: WebMessagePort[] = null
-    @State sendFromEts: string = 'Send this message from ets to HTML'
-    @State receivedFromHtml: string = 'Display received message send from HTML'
-
-    build() {
-      Column() {
-        // 展示接收到的来自HTML的内容
-        Text(this.receivedFromHtml)
-        // 输入框的内容发送到HTML
-        TextInput({placeholder: 'Send this message from ets to HTML'})
-        .onChange((value: string) => {
-          this.sendFromEts = value
-        })
-
-        // 1、创建两个消息端口
-        Button('1.CreateWebMessagePorts')
-          .onClick(() => {
-            this.ports = this.controller.createWebMessagePorts()
-            console.log("createWebMessagePorts size:" + this.ports.length)
-          })
-
-        // 2、将其中一个消息端口发送到HTML侧，由HTML侧保存并使用。
-        Button('2.PostMessagePort')
-          .onClick(() => {
-            var sendPortArray = new Array(this.ports[1])
-            var msgEvent = new WebMessageEvent()
-            msgEvent.setData("__init_port__")
-            msgEvent.setPorts(sendPortArray)
-            this.controller.postMessage({message: msgEvent, uri: "*"})
-          })
-
-        // 3、另一个消息端口在应用侧注册回调事件。
-        Button('3.RegisterCallback')
-          .onClick(() => {
-              this.ports[0].onMessageEvent((result: string) => {
-                var msg = 'Got msg from HTML: ' + result
-                this.receivedFromHtml = msg
-              })
-          })
-
-        // 4、使用应用侧的端口给另一个已经发送到HTML的消息端口发送消息。
-        Button('4.SendDataToHtml5')
-          .onClick(() => {
-            var msg = new WebMessageEvent()
-            msg.setData(this.sendFromEts)
-            this.ports[0].postMessageEvent(msg)
-          })
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-          .javaScriptAccess(true)
-          .fileAccess(true)
-      }
-    }
-  }
-
-  // index.html
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <h1>Web Message Port Demo</h1>
-          <div style="font-size: 24pt;">
-            <input type="button" value="5.SendToEts" onclick="PostMsgToEts(msgFromJS.value);" /><br/>
-            <input id="msgFromJS" type="text" value="send this message from HTML to ets" style="font-size: 16pt;" /><br/>
-          </div>
-          <p class="output">display received message send from ets</p>
-      </body>
-      <script src="index.js"></script>
-  </html>
-
-  // index.js
-  var h5Port;
-  var output = document.querySelector('.output');
-  window.addEventListener('message', function(event) {
-    if (event.data == '__init_port__') {
-      if(event.ports[0] != null) {
-        h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
-        h5Port.onmessage = function(event) {
-          // 2. 接收ets侧发送过来的消息.
-          var msg = 'Got message from ets:' + event.data;
-          output.innerHTML = msg;
-        }
-      }
-    }
-  })
-
-  // 3. 使用h5Port往ets侧发送消息.
-  function PostMsgToEts(data) {
-    h5Port.postMessage(data)
-  }
-  ```
-
-### getUrl<sup>9+</sup>
-
-getUrl(): string
-
-获取当前页面的url地址。
-
-**返回值：**
-
-| 类型     | 说明          |
-| ------ | ----------- |
-| string | 当前页面的url地址。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('getUrl')
-          .onClick(() => {
-            console.log("url: " + this.controller.getUrl())
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### searchAllAsync<sup>9+</sup>
-
-searchAllAsync(searchString: string): void
-
-异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](#onsearchresultreceive9)异步返回。
-
-**参数：**
-
-| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述    |
-| ------------ | ------ | ---- | ---- | ------- |
-| searchString | string | 是    | -    | 查找的关键字。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    @State searchString: string = "xxx"
-
-    build() {
-      Column() {
-        Button('searchString')
-          .onClick(() => {
-            this.controller.searchAllAsync(this.searchString)
-          })
-        Button('clearMatches')
-          .onClick(() => {
-            this.controller.clearMatches()
-          })
-        Button('searchNext')
-          .onClick(() => {
-            this.controller.searchNext(true)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-          })
-      }
-    }
-  }
-  ```
-
-### clearMatches<sup>9+</sup>
-
-clearMatches(): void
-
-清除所有通过[searchAllAsync](#searchallasync9)匹配到的高亮字符查找结果。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('clearMatches')
-          .onClick(() => {
-            this.controller.clearMatches()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### searchNext<sup>9+</sup>
-
-searchNext(forward: boolean): void
-
-滚动到下一个匹配的查找结果并高亮。
-
-**参数：**
-
-| 参数名     | 参数类型    | 必填   | 默认值  | 参数描述        |
-| ------- | ------- | ---- | ---- | ----------- |
-| forward | boolean | 是    | -    | 从前向后或者逆向查找。 |
-
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('searchNext')
-          .onClick(() => {
-            this.controller.searchNext(true)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## HitTestValue<sup>9+</sup>
-提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue9)。
-
-### getType<sup>9+</sup>
-getType(): HitTestType
-
-获取当前被点击区域的元素类型。
-
-**返回值：**
-
-| 类型                              | 说明            |
-| ------------------------------- | ------------- |
-| [HitTestType](#hittesttype枚举说明) | 当前被点击区域的元素类型。 |
-
-### getExtra<sup>9+</sup>
-getExtra(): string
-
-若被点击区域为图片或链接，则附加参数信息为其url地址。
-
-**返回值：**
-
-| 类型     | 说明           |
-| ------ | ------------ |
-| string | 点击区域的附加参数信息。 |
-
 
 ## WebCookie
 
@@ -4049,7 +4305,7 @@ setCookie(url: string, value: string): boolean
 | url   | string | 是    | -    | 要设置的cookie所属的url。 |
 | value | string | 是    | -    | cookie的值。         |
 
-**返回值：** 
+**返回值：**
 
 | 类型      | 说明            |
 | ------- | ------------- |
@@ -4063,7 +4319,7 @@ setCookie(url: string, value: string): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('setCookie')
@@ -4076,7 +4332,6 @@ setCookie(url: string, value: string): boolean
     }
   }
   ```
-
 ### saveCookieSync<sup>9+</sup>
 saveCookieSync(): boolean
 
@@ -4096,7 +4351,7 @@ saveCookieSync(): boolean
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-  
+
     build() {
       Column() {
         Button('saveCookieSync')
@@ -4109,1173 +4364,6 @@ saveCookieSync(): boolean
     }
   }
   ```
-
-### getCookie<sup>9+</sup>
-getCookie(url: string): string
-
-获取指定url对应cookie的值。
-
-**参数：**
-
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ---- | ------ | ---- | ---- | ----------------- |
-| url  | string | 是    | -    | 要获取的cookie所属的url。 |
-
-**返回值：**
-
-| 类型     | 说明                |
-| ------ | ----------------- |
-| string | 指定url对应的cookie的值。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('getCookie')
-          .onClick(() => {
-            let value = webview.WebCookieManager.getCookie('www.example.com')
-            console.log("value: " + value)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### setCookie<sup>9+</sup>
-setCookie(url: string, value: string): boolean
-
-为指定url设置单个cookie的值。
-
-**参数：**
-
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | 是    | -    | 要设置的cookie所属的url。 |
-| value | string | 是    | -    | 要设置的cookie的值。     |
-
-**返回值：**
-
-| 类型      | 说明            |
-| ------- | ------------- |
-| boolean | 设置cookie是否成功。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('setCookie')
-          .onClick(() => {
-            let result = web_webview.WebCookieManager.setCookie('www.example.com', 'a=b')
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### saveCookieSync<sup>9+</sup>
-saveCookieSync(): boolean
-
-将当前存在内存中的cookie保存到磁盘中，该方法为同步方法。
-
-**返回值：**
-
-| 类型      | 说明                   |
-| ------- | -------------------- |
-| boolean | 同步内存cookie到磁盘操作是否成功。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('saveCookieSync')
-          .onClick(() => {
-            let result = web_webview.WebCookieManager.saveCookieSync()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### saveCookieAsync<sup>9+</sup>
-saveCookieAsync(): Promise\<boolean>
-
-将当前存在内存中的cookie以Promise方法异步保存到磁盘中。
-
-**返回值：**
-
-| 类型                | 说明                          |
-| ----------------- | --------------------------- |
-| Promise\<boolean> | Promise实例，用于获取cookie是否成功保存。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('saveCookieAsync')
-          .onClick(() => {
-            web_webview.WebCookieManager.saveCookieAsync()
-              .then (function(result) {
-                console.log("result: " + result)
-              })
-              .catch(function(error) {
-                console.error("error: " + error)
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### saveCookieAsync<sup>9+</sup>
-saveCookieAsync(callback: AsyncCallback\<boolean>): void
-
-将当前存在内存中的cookie异步保存到磁盘中。
-
-**参数：**
-
-| 参数名      | 参数类型                    | 必填   | 默认值  | 参数描述                         |
-| -------- | ----------------------- | ---- | ---- | ---------------------------- |
-| callback | AsyncCallback\<boolean> | 是    | -    | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('saveCookieAsync')
-          .onClick(() => {
-            web_webview.WebCookieManager.saveCookieAsync(function(result) {
-              console.log("result: " + result)
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### isCookieAllowed<sup>9+</sup>
-isCookieAllowed(): boolean
-
-获取WebCookieManager实例是否拥有发送和接收cookie的权限。
-
-**返回值：**
-
-| 类型      | 说明                  |
-| ------- | ------------------- |
-| boolean | 是否拥有发送和接收cookie的权限。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('isCookieAllowed')
-          .onClick(() => {
-            let result = web_webview.WebCookieManager.isCookieAllowed()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### putAcceptCookieEnabled<sup>9+</sup>
-putAcceptCookieEnabled(accept: boolean): void
-
-设置WebCookieManager实例是否拥有发送和接收cookie的权限。
-
-**参数：**
-
-| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                  |
-| ------ | ------- | ---- | ---- | --------------------- |
-| accept | boolean | 是    | -    | 设置是否拥有发送和接收cookie的权限。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('putAcceptCookieEnabled')
-          .onClick(() => {
-            web_webview.WebCookieManager.putAcceptCookieEnabled(false)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### isThirdPartyCookieAllowed<sup>9+</sup>
-isThirdCookieAllowed(): boolean
-
-获取WebCookieManager实例是否拥有发送和接收第三方cookie的权限。
-
-**返回值：**
-
-| 类型      | 说明                     |
-| ------- | ---------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('isThirdPartyCookieAllowed')
-          .onClick(() => {
-            let result = web_webview.WebCookieManager.isThirdPartyCookieAllowed()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### putAcceptThirdPartyCookieEnabled<sup>9+</sup>
-putAcceptThirdPartyCookieEnabled(accept: boolean): void
-
-设置WebCookieManager实例是否拥有发送和接收第三方cookie的权限。
-
-**参数：**
-
-| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                     |
-| ------ | ------- | ---- | ---- | ------------------------ |
-| accept | boolean | 是    | -    | 设置是否拥有发送和接收第三方cookie的权限。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('putAcceptThirdPartyCookieEnabled')
-          .onClick(() => {
-            web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### existCookie<sup>9+</sup>
-existCookie(): boolean
-
-获取是否存在cookie。
-
-**返回值：**
-
-| 类型      | 说明          |
-| ------- | ----------- |
-| boolean | 是否存在cookie。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('existCookie')
-          .onClick(() => {
-            let result = web_webview.WebCookieManager.existCookie()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### deleteEntireCookie<sup>9+</sup>
-deleteEntireCookie(): void
-
-清除所有cookie。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('deleteEntireCookie')
-          .onClick(() => {
-            web_webview.WebCookieManager.deleteEntireCookie()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### deleteSessionCookie<sup>9+</sup>
-deleteSessionCookie(): void
-
-清除所有会话cookie。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('deleteSessionCookie')
-          .onClick(() => {
-            webview.WebCookieManager.deleteSessionCookie()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## WebDataBase<sup>9+</sup>
-web组件数据库管理对象。
-
-### existHttpAuthCredentials<sup>9+</sup>
-
-static existHttpAuthCredentials(): boolean
-
-判断是否存在任何已保存的HTTP身份验证凭据，该方法为同步方法。存在返回true，不存在返回false。
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 是否存在任何已保存的HTTP身份验证凭据。存在返回true，不存在返回false |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('existHttpAuthCredentials')
-          .onClick(() => {
-            let result = web_webview.WebDataBase.existHttpAuthCredentials()
-            console.log('result: ' + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### deleteHttpAuthCredentials<sup>9+</sup>
-
-static deleteHttpAuthCredentials(): void
-
-清除所有已保存的HTTP身份验证凭据，该方法为同步方法。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-  
-    build() {
-      Column() {
-        Button('deleteHttpAuthCredentials')
-          .onClick(() => {
-            web_webview.WebDataBase.deleteHttpAuthCredentials()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getHttpAuthCredentials<sup>9+</sup>
-
-static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
-
-检索给定主机和域的HTTP身份验证凭据，该方法为同步方法。检索成功返回一个包含用户名和密码的组数，检索不成功返回空数组。
-
-**参数：**
-
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述             |
-| ----- | ------ | ---- | ---- | ---------------- |
-| host  | string | 是    | -    | HTTP身份验证凭据应用的主机。 |
-| realm | string | 是    | -    | HTTP身份验证凭据应用的域。  |
-
-**返回值：** 
-
-| 类型              | 说明                     |
-| --------------- | ---------------------- |
-| Array\<string\> | 包含用户名和密码的组数，检索失败返回空数组。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    host: string = "www.spincast.org"
-    realm: string = "protected example"
-    username_password: string[]
-    build() {
-      Column() {
-        Button('getHttpAuthCredentials')
-          .onClick(() => {
-            this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm)
-            console.log('num: ' + this.username_password.length)
-            ForEach(this.username_password, (item) => {
-              console.log('username_password: ' + item)
-            }, item => item)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### saveHttpAuthCredentials<sup>9+</sup>
-
-static saveHttpAuthCredentials(host: string, realm: string, username: string, password: string): void
-
-保存给定主机和域的HTTP身份验证凭据，该方法为同步方法。
-
-**参数：**
-
-| 参数名      | 参数类型   | 必填   | 默认值  | 参数描述             |
-| -------- | ------ | ---- | ---- | ---------------- |
-| host     | string | 是    | -    | HTTP身份验证凭据应用的主机。 |
-| realm    | string | 是    | -    | HTTP身份验证凭据应用的域。  |
-| username | string | 是    | -    | 用户名。             |
-| password | string | 是    | -    | 密码。              |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    host: string = "www.spincast.org"
-    realm: string = "protected example"
-    build() {
-      Column() {
-        Button('saveHttpAuthCredentials')
-          .onClick(() => {
-            web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche")
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## GeolocationPermissions<sup>9+</sup>
-
-web组件地理位置权限管理对象。
-
-### allowGeolocation<sup>9+</sup>
-
-static allowGeolocation(origin: string): void
-
-允许指定来源使用地理位置接口。
-
-**参数：**
-
-| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述       |
-| ------ | ------ | ---- | ---- | ---------- |
-| origin | string | 是    | -    | 指定源的字符串索引。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "file:///"
-    build() {
-      Column() {
-        Button('allowGeolocation')
-          .onClick(() => {
-            web_webview.GeolocationPermissions.allowGeolocation(this.origin)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### deleteGeolocation<sup>9+</sup>
-
-static deleteGeolocation(origin: string): void
-
-清除指定来源的地理位置权限状态。
-
-**参数：**
-
-| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述       |
-| ------ | ------ | ---- | ---- | ---------- |
-| origin | string | 是    | -    | 指定源的字符串索引。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "file:///"
-    build() {
-      Column() {
-        Button('deleteGeolocation')
-          .onClick(() => {
-            web_webview.GeolocationPermissions.deleteGeolocation(this.origin)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### deleteAllGeolocation<sup>9+</sup>
-
-static deleteAllGeolocation(): void
-
-清除所有来源的地理位置权限状态。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('deleteAllGeolocation')
-          .onClick(() => {
-            web_webview.GeolocationPermissions.deleteAllGeolocation()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getAccessibleGeolocation<sup>9+</sup>
-
-static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean\>): void
-
-以回调方式异步获取指定源的地理位置权限状态。
-
-**参数：**
-
-| 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                     |
-| -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
-| origin   | string                   | 是    | -    | 指定源的字符串索引。                               |
-| callback | AsyncCallback\<boolean\> | 是    | -    | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "file:///"
-    build() {
-      Column() {
-        Button('getAccessibleGeolocationAsync')
-          .onClick(() => {
-            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
-              if (error) {
-                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error))
-                return
-              }
-              console.log('getAccessibleGeolocationAsync result: ' + result)
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getAccessibleGeolocation<sup>9+</sup>
-
-static getAccessibleGeolocation(origin: string): Promise\<boolean\>
-
-以Promise方式异步获取指定源的地理位置权限状态。
-
-**参数：**
-
-| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述       |
-| ------ | ------ | ---- | ---- | ---------- |
-| origin | string | 是    | -    | 指定源的字符串索引。 |
-
-**返回值：**
-
-| 类型                 | 说明                                       |
-| ------------------ | ---------------------------------------- |
-| Promise\<boolean\> | Promise实例，用于获取指定源的权限状态，获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "file:///"
-    build() {
-      Column() {
-        Button('getAccessibleGeolocationPromise')
-          .onClick(() => {
-            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
-              console.log('getAccessibleGeolocationPromise result: ' + result)
-            }).catch(error => {
-              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error))
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getStoredGeolocation<sup>9+</sup>
-
-static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
-
-以回调方式异步获取已存储地理位置权限状态的所有源信息。
-
-**参数：**
-
-| 参数名      | 参数类型                             | 必填   | 默认值  | 参数描述                 |
-| -------- | -------------------------------- | ---- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<string\>\> | 是    | -    | 返回已存储地理位置权限状态的所有源信息。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('getStoredGeolocationAsync')
-          .onClick(() => {
-            web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
-              if (error) {
-                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error))
-                return
-              }
-              let origins_str: string = origins.join()
-              console.log('getStoredGeolocationAsync origins: ' + origins_str)
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getStoredGeolocation<sup>9+</sup>
-
-static getStoredGeolocation(): Promise\<Array\<string\>\>
-
-以Promise方式异步获取已存储地理位置权限状态的所有源信息。
-
-**参数：**
-
-| 参数名      | 参数类型                             | 必填   | 默认值  | 参数描述                 |
-| -------- | -------------------------------- | ---- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<string\>\> | 是    | -    | 返回已存储地理位置权限状态的所有源信息。 |
-
-**返回值：**
-
-| 类型                         | 说明                               |
-| -------------------------- | -------------------------------- |
-| Promise\<Array\<string\>\> | Promise实例，用于获取已存储地理位置权限状态的所有源信息。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('getStoredGeolocationPromise')
-          .onClick(() => {
-            web_webview.GeolocationPermissions.getStoredGeolocation().then(origins => {
-              let origins_str: string = origins.join()
-              console.log('getStoredGeolocationPromise origins: ' + origins_str)
-            }).catch(error => {
-                console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error))
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## WebStorage<sup>9+</sup>
-通过WebStorage可管理Web SQL数据库接口和HTML5 Web存储接口，每个应用中的所有Web组件共享一个WebStorage。
-### deleteAllData<sup>9+</sup>
-static deleteAllData(): void
-
-清除Web SQL数据库当前使用的所有存储。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('deleteAllData')
-          .onClick(() => {
-            web_webview.WebStorage.deleteAllData()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-        .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-### deleteOrigin<sup>9+</sup>
-static deleteOrigin(origin : string): void
-
-清除指定源所使用的存储。
-
-**参数：**
-
-| 参数名    | 参数类型   | 必填   | 说明         |
-| ------ | ------ | ---- | ---------- |
-| origin | string | 是    | 指定源的字符串索引。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "origin"
-    build() {
-      Column() {
-        Button('getHttpAuthCredentials')
-          .onClick(() => {
-            web_webview.WebStorage.deleteOrigin(this.origin)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-        .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
-
-以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
-
-**参数：**
-
-| 参数名      | 参数类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback<Array<[WebStorageOrigin](#webstorageorigin9)>> | 是    | 以数组方式返回源的信息，信息内容参考WebStorageOrigin。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "origin"
-    build() {
-      Column() {
-        Button('getOrigins')
-          .onClick(() => {
-            web_webview.WebStorage.getOrigins((error, origins) => {
-              if (error) {
-                console.log('error: ' + error)
-                return
-              }
-              for (let i = 0; i < origins.length; i++) {
-                console.log('origin: ' + origins[i].origin)
-                console.log('usage: ' + origins[i].usage)
-                console.log('quota: ' + origins[i].quota)
-              }
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-        .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-### getOrigins<sup>9+</sup>
-static getOrigins() : Promise\<Array\<WebStorageOrigin>>
-
-以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
-
-**返回值：**
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise<Array<[WebStorageOrigin](#webstorageorigin9)>> | Promise实例，用于获取当前所有源的信息，信息内容参考WebStorageOrigin。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "origin"
-    build() {
-      Column() {
-        Button('getOrigins')
-          .onClick(() => {
-            web_webview.WebStorage.getOrigins()
-              .then(origins => {
-                for (let i = 0; i < origins.length; i++) {
-                  console.log('origin: ' + origins[i].origin)
-                  console.log('usage: ' + origins[i].usage)
-                  console.log('quota: ' + origins[i].quota)
-                }
-              })
-              .catch(error => {
-                console.log('error: ' + error)
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-          .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-### getOriginQuota<sup>9+</sup>
-static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
-
-使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
-
-**参数：**
-
-| 参数名      | 参数类型                   | 必填   | 说明        |
-| -------- | ---------------------- | ---- | --------- |
-| origin   | string                 | 是    | 指定源的字符串索引 |
-| callback | AsyncCallback\<number> | 是    | 指定源的存储配额。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    origin: string = "origin"
-    build() {
-      Column() {
-        Button('getOriginQuota')
-          .onClick(() => {
-            web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
-              if (error) {
-                console.log('error: ' + error)
-                return
-              }
-              console.log('quota: ' + quota)
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-          .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-### getOriginQuota<sup>9+</sup>
-static getOriginQuota(origin : string) : Promise\<number>
-
-以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
-
-**参数：**
-
-| 参数名    | 参数类型   | 必填   | 说明         |
-| ------ | ------ | ---- | ---------- |
-| origin | string | 是    | 指定源的字符串索引。 |
-
-**返回值：**
-
-| 类型               | 说明                      |
-| ---------------- | ----------------------- |
-| Promise\<number> | Promise实例，用于获取指定源的存储配额。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "origin"
-    build() {
-      Column() {
-        Button('getOriginQuota')
-          .onClick(() => {
-            web_webview.WebStorage.getOriginQuota(this.origin)
-              .then(quota => {
-                console.log('quota: ' + quota)
-              })
-              .catch(error => {
-                console.log('error: ' + error)
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-          .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-### getOriginUsage<sup>9+</sup>
-static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
-
-以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
-
-**参数：**
-
-| 参数名      | 参数类型                   | 必填   | 说明         |
-| -------- | ---------------------- | ---- | ---------- |
-| origin   | string                 | 是    | 指定源的字符串索引。 |
-| callback | AsyncCallback\<number> | 是    | 指定源的存储量。   |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "origin"
-    build() {
-      Column() {
-        Button('getOriginUsage')
-          .onClick(() => {
-            web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
-              if (error) {
-                console.log('error: ' + error)
-                return
-              }
-              console.log('usage: ' + usage)
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-          .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-### getOriginUsage<sup>9+</sup>
-static getOriginUsage(origin : string) : Promise\<number>
-
-以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
-
-**参数：**
-
-| 参数名    | 参数类型   | 必填   | 说明         |
-| ------ | ------ | ---- | ---------- |
-| origin | string | 是    | 指定源的字符串索引。 |
-
-**返回值：**
-
-| 类型               | 说明                     |
-| ---------------- | ---------------------- |
-| Promise\<number> | Promise实例，用于获取指定源的存储量。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    origin: string = "origin"
-    build() {
-      Column() {
-        Button('getOriginQuota')
-          .onClick(() => {
-            web_webview.WebStorage.getOriginUsage(this.origin)
-              .then(usage => {
-                console.log('usage: ' + usage)
-              })
-              .catch(error => {
-                console.log('error: ' + error)
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-          .databaseAccess(true)
-      }
-    }
-  }
-  ```
-
-## WebStorageOrigin<sup>9+</sup>
-
-提供Web SQL数据库的使用信息。
-
-**参数：**
-
-| 参数名    | 参数类型   | 必填   | 说明         |
-| ------ | ------ | ---- | ---------- |
-| origin | string | 是    | 指定源的字符串索引。 |
-| usage  | number | 是    | 指定源的存储量。   |
-| quota  | number | 是    | 指定源的存储配额。  |
 
 ## MessageLevel枚举说明
 
@@ -5353,30 +4441,22 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 
-## WebAsyncController
+## WebDarkMode<sup>9+</sup>枚举说明
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| Off     | Web深色模式关闭。                     |
+| On      | Web深色模式开启。                     |
+| Auto    | Web深色模式跟随系统。                 |
 
-通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
+## DataResubmissionHandler<sup>9+</sup>
 
-### 创建对象
+通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
 
-```
-webController: WebController = new WebController();
-webAsyncController: WebAsyncController = new WebAsyncController(webController);
-```
+### resend<sup>9+</sup>
 
-### storeWebArchive<sup>9+</sup>
+resend(): void
 
-storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<string>): void
-
-以回调方式异步保存当前页面。
-
-**参数：**
-
-| 参数名      | 参数类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-| callback | AsyncCallback<string> | 是    | 返回文件存储路径，保持网页失败会返回null。 |
+重新发送表单数据。
 
 **示例：**
 
@@ -5386,42 +4466,24 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<str
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller)
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
-              if (filename != null) {
-                console.info(`save web archive success: ${filename}`)
-              }
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
       }
     }
   }
   ```
 
-### storeWebArchive<sup>9+</sup>
+###  cancel<sup>9+</sup>
 
-storeWebArchive(baseName: string, autoName: boolean): Promise<string>
+cancel(): void
 
-以Promise方式异步保存当前页面。
-
-**参数：**
-
-| 参数名      | 参数类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-
-**返回值：**
-
-| 类型              | 说明                               |
-| --------------- | -------------------------------- |
-| Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
+取消重新发送表单数据。
 
 **示例：**
 
@@ -5431,241 +4493,14 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller);
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
-              .then(filename => {
-                if (filename != null) {
-                  console.info(`save web archive success: ${filename}`)
-                }
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## WebMessagePort<sup>9+</sup>
-
-通过WebMessagePort可以进行消息的发送以及接收。
-
-### close<sup>9+</sup>
-close(): void
-
-关闭该消息端口。
-
-### postMessageEvent<sup>9+</sup>
-postMessageEvent(message: WebMessageEvent): void
-
-发送消息。完整示例代码参考[postMessage](#postmessage9)
-
-**参数：**
-
-| 参数名     | 参数类型                                 | 必填   | 默认值  | 参数描述    |
-| ------- | ------------------------------------ | ---- | ---- | ------- |
-| message | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    ports: WebMessagePort[] = null
-
-    build() {
-      Column() {
-        Button('postMessageEvent')
-          .onClick(() => {
-            var msg = new WebMessageEvent()
-            msg.setData("post message from ets to html5")
-            this.ports[0].postMessageEvent(msg)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### onMessageEvent<sup>9+</sup>
-onMessageEvent(callback: (result: string) => void): void
-
-注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage9)
-
-**参数：**
-
-| 参数名      | 参数类型     | 必填   | 默认值  | 参数描述       |
-| -------- | -------- | ---- | ---- | ---------- |
-| callback | function | 是    | -    | 接收消息的回调函数。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    ports: WebMessagePort[] = null
-
-    build() {
-      Column() {
-        Button('onMessageEvent')
-          .onClick(() => {
-            this.ports[0].onMessageEvent((result: string) => {
-              console.log("received message from html5, on message:" + result);
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-
-## WebMessageEvent<sup>9+</sup>
-
-通过WebMessagePort对要发送的消息和端口进行封装。
-
-### getData<sup>9+</sup>
-getData(): string
-
-获取当前对象中存放的消息。
-
-**返回值：**
-
-| 类型     | 说明             |
-| ------ | -------------- |
-| string | 当前该类型对象中存放的消息。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    build() {
-      Column() {
-        Button('getPorts')
-          .onClick(() => {
-            var msgEvent = new WebMessageEvent();
-            msgEvent.setData("message event data")
-            var messageData = msgEvent.getData()
-            console.log("message is:" + messageData)
-          })
-      }
-    }
-  }
-  ```
-
-### setData<sup>9+</sup>
-setData(data: string): void
-
-设置当前对象中的消息。完整示例代码参考[postMessage](#postmessage9)
-
-**参数：**
-
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述    |
-| ---- | ------ | ---- | ---- | ------- |
-| data | string | 是    | -    | 要发送的消息。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    ports: WebMessagePort[] = null
-
-    build() {
-      Column() {
-        Button('setData')
-          .onClick(() => {
-            var msg = new WebMessageEvent()
-            msg.setData("post message from ets to HTML5")
-            this.ports[0].postMessageEvent(msg)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-### getPorts<sup>9+</sup>
-getPorts(): Array\<WebMessagePort\>
-
-获取当前对象中存放的消息端口。
-
-**返回值：**
-
-| 类型                                       | 说明               |
-| ---------------------------------------- | ---------------- |
-| Array\<[WebMessagePort](#webmessageport9)\> | 当前该类型对象中存放的消息端口。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    ports: WebMessagePort[] = null
-    build() {
-      Column() {
-        Button('getPorts')
-          .onClick(() => {
-            var sendPortArray = new Array(this.ports[0])
-            var msgEvent = new WebMessageEvent()
-            msgEvent.setPorts(sendPortArray)
-            var getPorts = msgEvent.getPorts()
-            console.log("Ports is:" + getPorts)
-          })
-      }
-    }
-  }
-  ```
-
-### setPorts<sup>9+</sup>
-setPorts(ports: Array\<WebMessagePort\>): void
-
-设置当前对象中的消息端口。完整示例代码参考[postMessage](#postmessage9)
-
-**参数：**
-
-| 参数名   | 参数类型                                     | 必填   | 默认值  | 参数描述      |
-| ----- | ---------------------------------------- | ---- | ---- | --------- |
-| ports | Array\<[WebMessagePort](#webmessageport9)\> | 是    | -    | 要发送的消息端口。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    ports: WebMessagePort[] = null
-  
-    build() {
-      Column() {
-        Button('setPorts')
-          .onClick(() => {
-            var sendPortArray = new Array(this.ports[1])
-            var msgEvent = new WebMessageEvent()
-            msgEvent.setData("__init_ports__")
-            msgEvent.setPorts(sendPortArray)
-            this.controller.postMessage({message: msgEvent, uri: "*"})
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.cancel();
+        })
       }
     }
   }

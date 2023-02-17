@@ -360,7 +360,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 迁移任务，以回调函数的方式返回。
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS, ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限**：ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -394,11 +394,11 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
       missionId: 1,
       wantParam: {"key": "value"}
   };
-  function OnContinueDone(resultCode) {
-      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  function onContinueDone(resultCode) {
+      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   var options = {
-      OnContinueDone: OnContinueDone
+      onContinueDone: onContinueDone
   };
   try {
       distributedMissionManager.continueMission(parameter, options, (error) => {
@@ -418,7 +418,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 迁移任务，以promise方式返回执行结果。
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS, ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限**：ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -457,11 +457,11 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
       missionId: 1,
       wantParam: {"key": "value"}
   };
-  function OnContinueDone(resultCode) {
-      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  function onContinueDone(resultCode) {
+      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   var options = {
-      OnContinueDone: OnContinueDone
+      onContinueDone: onContinueDone
   };
   try {
       distributedMissionManager.continueMission(parameter, options)

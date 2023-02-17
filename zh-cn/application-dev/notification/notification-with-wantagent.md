@@ -35,7 +35,7 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
    ```
 
 2. 创建WantAgentInfo信息。
-     场景一：创建拉起Ability的WantAgent的WantAgentInfo信息。
+     场景一：创建拉起Ability的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
      
    ```ts
    let wantAgentObj = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
@@ -59,7 +59,7 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
    }
    ```
 
-     场景二：创建发布公共事件的WantAgent的WantAgentInfo信息。
+     场景二：创建发布公共事件的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
    
    ```ts
    let wantAgentObj = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。

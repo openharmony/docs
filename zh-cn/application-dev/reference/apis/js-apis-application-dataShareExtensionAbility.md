@@ -17,6 +17,26 @@
 import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
 ```
 
+## uri命名规则
+
+标准uri定义结构如下:
+
+**Scheme://authority/path** 
+- Scheme: 协议名，对于data share统一为datashare
+- authority: [userinfo@]host[:port]
+    - userinfo: 登录信息，不需要填写。
+    - host: 服务器地址，如果跨设备访问则为目标设备的ID，如果为本设备则为空。
+    - port: 服务器端口，不需要填写。
+- path: data share的标识信息和资源的路径信息，需要包含data share的标识信息，资源的路径信息可以不填写。
+
+uri示例:
+
+- 不包含资源路径: `datashare:///com.samples.datasharetest.DataShare`
+
+- 包含资源路径: `datashare:///com.samples.datasharetest.DataShare/DB00/TBL00`
+
+其中，data share的标识信息为`com.samples.datasharetest.DataShare`，资源路径为`DB00/TBL00`。
+
 ## 属性
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider
@@ -37,13 +57,13 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| want | [Want](js-apis-application-want.md#want) | 是  | Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-application-want.md#want) | 是  | Want类型信息，包括Ability名称、Bundle名称等。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。无返回值。 |
 
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -55,8 +75,9 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
-            name: DB_NAME
-        }, 1, function (err, data) {
+            name: DB_NAME,
+            securityLevel: rdb.SecurityLevel.S1
+        }, function (err, data) {
             console.log('getRdbStore done, data : ' + data);
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
@@ -89,7 +110,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -134,7 +155,7 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -176,7 +197,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -219,7 +240,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
@@ -264,7 +285,7 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";

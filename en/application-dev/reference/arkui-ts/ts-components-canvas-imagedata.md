@@ -16,6 +16,10 @@ An **ImageData** object stores pixel data rendered on a canvas.
 | height | number | Actual height of the rectangle on the canvas, in pixels.|
 | data | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.|
 
+>  **NOTE**
+> 
+> You can use [px2vp](ts-pixel-units.md) to convert units.
+
 **Example**
 
   ```ts

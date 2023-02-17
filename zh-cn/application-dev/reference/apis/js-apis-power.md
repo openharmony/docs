@@ -293,7 +293,7 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 
 rebootDevice(reason: string): void
 
-> 从API version 9开始不再维护，建议使用[power.reboot](#powerreboot9)替代。
+> **说明：**<br>从API version 9开始不再维护，建议使用[power.reboot](#powerreboot9)替代。
 
 重启设备。
 
@@ -317,7 +317,7 @@ power.rebootDevice('reboot_test');
 
 isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
-> 从API version 9开始不再维护，建议使用[power.isActive](#powerisactive9)替代。
+> **说明：**<br>从API version 9开始不再维护，建议使用[power.isActive](#powerisactive9)替代。
 
 检测当前设备的亮灭屏状态。使用callback异步回调。
 
@@ -327,7 +327,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当检测成功，err为undefined，data为获取到的亮灭屏状态，返回true表示梁平，返回false表示灭屏；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当检测成功，err为undefined，data为获取到的亮灭屏状态，返回true表示亮屏，返回false表示灭屏；否则为错误对象。 |
 
 **示例：**
 
@@ -345,7 +345,7 @@ power.isScreenOn((err, data) => {
 
 isScreenOn(): Promise&lt;boolean&gt;
 
-> 从API version 9开始不再维护，建议使用[power.isActive](#powerisactive9)替代。
+> **说明：**<br>从API version 9开始不再维护，建议使用[power.isActive](#powerisactive9)替代。
 
 检测当前设备的亮灭屏状态。使用Promise异步回调。
 

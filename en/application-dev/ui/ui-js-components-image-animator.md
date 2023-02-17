@@ -177,7 +177,7 @@ Add the start, pause, stop, and resume events to the **&lt;image-animator&gt;** 
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     imginfo: [
@@ -201,22 +201,22 @@ export default {
     this.$element('img').resume()
   },
   popstart(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Started.'
     })
   },
   poppause(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Paused.'
     })
   },
   popstop(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Stopped.'
     })
   },
   popresume(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Resumed.'
     })
   }

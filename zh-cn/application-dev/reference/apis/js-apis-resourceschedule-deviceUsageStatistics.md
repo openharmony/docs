@@ -35,7 +35,11 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Callback形式返回。
 
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -53,8 +57,8 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 10000001   | Memory operation failed.         | 
 | 10000002   | Parcel operation failed.         | 
 | 10000003   | System service operation failed. | 
-| 10000004   | IPC Communication failed.        | 
-| 10000006   | Get application info failed.     |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.    |
 
 **示例**：
   ```js
@@ -77,7 +81,11 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Promise形式返回。
 
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -100,8 +108,8 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 | 10000001   | Memory operation failed.         | 
 | 10000002   | Parcel operation failed.         | 
 | 10000003   | System service operation failed. | 
-| 10000004   | IPC Communication failed.        | 
-| 10000006   | Get application info failed.     |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.     |
 
 **示例**：
 
@@ -140,10 +148,10 @@ queryAppGroup(): Promise&lt;number&gt;
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **示例**：
 
@@ -182,10 +190,10 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **示例**：
 
@@ -219,8 +227,8 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                   |
-| end      | number                                   | 是    | 结束时间。                                   |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
 | callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **错误码**：
@@ -232,9 +240,9 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -274,8 +282,8 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -292,9 +300,9 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -333,8 +341,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 参数名        | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | byInterval | [IntervalType](#intervaltype)            | 是    | 查询类型。                                    |
-| begin      | number                                   | 是    | 起始时间。                                    |
-| end        | number                                   | 是    | 结束时间。                                    |
+| begin      | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end        | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
 | callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **错误码**：
@@ -346,9 +354,9 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -387,8 +395,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 参数名        | 类型                            | 必填   | 说明    |
 | ---------- | ----------------------------- | ---- | ----- |
 | byInterval | [IntervalType](#intervaltype) | 是    | 查询类型。 |
-| begin      | number                        | 是    | 起始时间。 |
-| end        | number                        | 是    | 结束时间。 |
+| begin      | number                        | 是    | 起始时间，以毫秒为单位。 |
+| end        | number                        | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -405,9 +413,9 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -443,8 +451,8 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                   |
-| end      | number                                   | 是    | 结束时间。                                   |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **错误码**：
@@ -456,9 +464,9 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -496,8 +504,8 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -514,9 +522,9 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -548,8 +556,8 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                   |
-| end      | number                                   | 是    | 结束时间。                                   |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
 
 **错误码**：
@@ -561,9 +569,9 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -597,8 +605,8 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -615,9 +623,9 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.      |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -664,9 +672,9 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -714,9 +722,9 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -771,9 +779,9 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -821,9 +829,9 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **示例**：
 
@@ -878,10 +886,10 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
+| 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **示例**：
 
@@ -927,10 +935,10 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
+| 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **示例**：
 
@@ -977,9 +985,9 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
 
 **返回值**：
 
@@ -1033,9 +1041,9 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
 
 **示例**：
 
@@ -1083,8 +1091,8 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **返回值**：
 
@@ -1142,13 +1150,14 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 
 **示例**：
 
 ```javascript
+    // @ts-nocheck
     let onBundleGroupChanged = (err, res) =>{
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
@@ -1197,8 +1206,8 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **示例**：
 
@@ -1241,8 +1250,8 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **示例**：
 
@@ -1276,8 +1285,8 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -1294,9 +1303,9 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **示例**：
 
@@ -1329,8 +1338,8 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                    |
-| end      | number                                   | 是    | 结束时间。                                    |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
 **错误码**：
@@ -1342,9 +1351,9 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.           |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.           |
+| 10000007   | Failed to get the system time.     |
 
 **示例**：
 
@@ -1379,8 +1388,8 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间。 |
-| end   | number | 是    | 结束时间。 |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
 
 **返回值**：
 
@@ -1397,9 +1406,9 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **示例**：
 
@@ -1432,8 +1441,8 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | 是    | 起始时间。                                    |
-| end      | number                                   | 是    | 结束时间。                                    |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **错误码**：
@@ -1445,9 +1454,9 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **示例**：
 

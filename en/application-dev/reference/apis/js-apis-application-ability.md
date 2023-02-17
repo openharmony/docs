@@ -1,4 +1,4 @@
-# Ability
+# @ohos.application.Ability (Ability)
 
 The **Ability** module manages the ability lifecycle and context, such as creating and destroying an ability, and dumping client information.
 
@@ -14,8 +14,8 @@ This module provides the following common ability-related functions:
 
 ## Modules to Import
 
-```
-import Ability from '@ohos.application.Ability';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 ```
 
 ## Attributes
@@ -24,9 +24,9 @@ import Ability from '@ohos.application.Ability';
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AbilityContext](js-apis-ability-context.md) | Yes| No| Context of an ability.| 
-| launchWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters for starting the ability.| 
-| lastRequestWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters used when the ability was started last time.| 
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | Yes| No| Context of an ability.| 
+| launchWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters for starting the ability.| 
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters used when the ability was started last time.| 
 | callee | [Callee](#callee) | Yes| No| Object that invokes the stub service.| 
 
 ## Ability.onCreate
@@ -41,13 +41,13 @@ Called to initialize the service logic when an ability is created.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | Yes| Information related to this ability, including the ability name and bundle name.| 
+  | want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this ability, including the ability name and bundle name.| 
   | param | AbilityConstant.LaunchParam | Yes| Parameters for starting the ability, and the reason for the last abnormal exit.| 
 
 **Example**
 
   ```ts
-  class myAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
       }
@@ -67,7 +67,7 @@ Called when a **WindowStage** is created for this ability.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | Yes| **WindowStage** information.| 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.| 
 
 **Example**
     
@@ -111,7 +111,7 @@ Called when the **WindowStage** is restored during the migration of this ability
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | Yes| **WindowStage** information.| 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.| 
 
 **Example**
     
@@ -219,48 +219,48 @@ Called to save data during the ability migration preparation process.
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-Called when the ability startup mode is set to singleton.
+Called when a new Want is passed in and this UIAbility is started again.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | Yes| Want parameters, such as the ability name and bundle name.| 
-  | launchParams | AbilityConstant.LaunchParam | Yes| Reason for the ability startup and the last abnormal exit.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information, such as the ability name and bundle name.|
+| launchParams | AbilityConstant.LaunchParam | Yes| Reason for the ability startup and the last abnormal exit.|
 
 **Example**
     
   ```ts
   class myAbility extends Ability {
-      onNewWant(want) {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
+          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
       }
   }
   ```
-
 
 ## Ability.onConfigurationUpdated
 
 onConfigurationUpdated(config: Configuration): void;
 
-Called when the configuration of the environment where the ability is running is updated.
+Called when the global configuration is updated.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | Yes| New configuration.| 
+  | config | [Configuration](js-apis-application-configuration.md) | Yes| Callback invoked when the global configuration is updated. The global configuration indicates the configuration of the environment where the application is running and includes the language and color mode.| 
 
 **Example**
     
   ```ts
   class myAbility extends Ability {
       onConfigurationUpdated(config) {
-          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+          console.log('onConfigurationUpdated, language:' + config.language);
       }
   }
   ```
@@ -314,12 +314,11 @@ Called when the system has decided to adjust the memory level. For example, this
   }
   ```
 
-
 ## Ability.onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
 
-Called when the framework saves the ability state in the case of an application fault if automatic saving is enabled. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md).  
+Called when the framework automatically saves the ability state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md).  
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -338,7 +337,7 @@ Called when the framework saves the ability state in the case of an application 
 
 **Example**
 
-  ```js
+  ```ts
 import AbilityConstant from '@ohos.application.AbilityConstant'
 
 class myAbility extends Ability {
@@ -390,8 +389,9 @@ Sends sequenceable data to the target ability.
 **Example**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
-  class MyMessageAble{ // Custom sequenceable data structure
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
+  class MyMessageAble{ // Custom sequenceable data structure.
     name:""
     str:""
     num: 1
@@ -414,11 +414,11 @@ Sends sequenceable data to the target ability.
   };
   var method = 'call_Function'; // Notification message string negotiated by the two abilities
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -474,7 +474,8 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 **Example**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   class MyMessageAble{
     name:""
     str:""
@@ -498,11 +499,11 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
   };
   var method = 'call_Function';
   var caller;
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -545,14 +546,17 @@ Releases the caller interface of the target ability.
 
 **Example**
     
+
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
         caller = obj;
@@ -570,10 +574,9 @@ Releases the caller interface of the target ability.
   }
   ```
 
+## Caller.onRelease
 
-## Caller.on
-
- on(type: "release", callback: OnReleaseCallback): void;
+ onRelease(callback: OnReleaseCallBack): void;
 
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
@@ -583,32 +586,25 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is fixed at **release**.| 
   | callback | OnReleaseCallBack | Yes| Callback used for the **onRelease** API.| 
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
 
 **Example**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var caller;
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: "com.example.myservice",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         deviceId: ""
       }).then((obj) => {
           caller = obj;
           try {
-            caller.on("release", (str) => {
+            caller.onRelease((str) => {
                 console.log(' Caller OnRelease CallBack is called ' + str);
             });
           } catch (error) {
@@ -654,7 +650,7 @@ Registers a caller notification callback, which is invoked when the target abili
 **Example**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:""
       str:""
@@ -679,11 +675,11 @@ Registers a caller notification callback, which is invoked when the target abili
   var method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
-      let msg = new MyMessageAble(0, "");
+      let msg = new MyMessageAble("test", "");
       pdata.readSequenceable(msg);
-      return new MyMessageAble(10, "Callee test");
+      return new MyMessageAble("test1", "Callee test");
   }
-  export default class MainAbility extends Ability {
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -722,9 +718,11 @@ Deregisters a caller notification callback, which is invoked when the target abi
 **Example**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
   var method = 'call_Function';
-  export default class MainAbility extends Ability {
+  
+  export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -737,7 +735,7 @@ Deregisters a caller notification callback, which is invoked when the target abi
   }
   ```
 
-## OnReleaseCallback
+## OnReleaseCallBack
 
 (msg: string): void;
 
@@ -747,7 +745,7 @@ Deregisters a caller notification callback, which is invoked when the target abi
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | function | Yes| No| Prototype of the listener function registered by the caller.| 
 
-## CalleeCallback
+## CalleeCallBack
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
@@ -756,5 +754,3 @@ Deregisters a caller notification callback, which is invoked when the target abi
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes| No| Prototype of the listener function registered by the callee.| 
-
-<!--no_check-->

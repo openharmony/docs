@@ -2,11 +2,11 @@
 
 ## Introduction
 
-You can use audio playback APIs to convert audio data into audible analog signals and play the signals using output devices. You can also manage playback tasks. For example, you can start, suspend, stop playback, release resources, set the volume, seek to a playback position, and obtain track information.
+You can use audio playback APIs to convert audio data into audible analog signals and play the signals using output devices. You can also manage playback tasks. For example, you can control the playback and volume, obtain track information, and release resources.
 
 ## Working Principles
 
-The following figures show the audio playback status changes and the interaction with external modules for audio playback.
+The following figures show the audio playback state transition and the interaction with external modules for audio playback.
 
 **Figure 1** Audio playback state transition
 
@@ -28,7 +28,7 @@ For details about the APIs, see [AudioPlayer in the Media API](../reference/apis
 
 > **NOTE**
 >
-> The method for obtaining the path in the FA model is different from that in the stage model. **pathDir** used in the sample code below is an example. You need to obtain the path based on project requirements. For details about how to obtain the path, see [Application Sandbox Path Guidelines](../reference/apis/js-apis-fileio.md#guidelines).
+> The method for obtaining the path in the FA model is different from that in the stage model. For details about how to obtain the path, see [Application Sandbox Path Guidelines](../reference/apis/js-apis-fileio.md#guidelines).
 
 ### Full-Process Scenario
 
@@ -109,7 +109,7 @@ async function audioPlayerDemo() {
     setCallBack(audioPlayer); // Set the event callbacks.
     // 2. Set the URI of the audio file.
     let fdPath = 'fd://'
-    let pathDir = "/data/storage/el2/base/haps/entry/files" // The method for obtaining pathDir in the FA model is different from that in the stage model. For details, see NOTE just below How to Develop. You need to obtain pathDir based on project requirements.
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
     await fileIO.open(path).then((fdNumber) => {
@@ -151,7 +151,7 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer(); // Create an AudioPlayer instance.
     this.setCallBack(audioPlayer); // Set the event callbacks.
     let fdPath = 'fd://'
-    let pathDir = "/data/storage/el2/base/haps/entry/files" // The method for obtaining pathDir in the FA model is different from that in the stage model. For details, see NOTE just below How to Develop. You need to obtain pathDir based on project requirements.
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
     await fileIO.open(path).then((fdNumber) => {
@@ -199,7 +199,7 @@ export class AudioDemo {
   async nextMusic(audioPlayer) {
     this.isNextMusic = true;
     let nextFdPath = 'fd://'
-    let pathDir = "/data/storage/el2/base/haps/entry/files" // The method for obtaining pathDir in the FA model is different from that in the stage model. For details, see NOTE just below How to Develop. You need to obtain pathDir based on project requirements.
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let nextpath = pathDir  + '/02.mp3'
     await fileIO.open(nextpath).then((fdNumber) => {
@@ -217,7 +217,7 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
     this.setCallBack(audioPlayer);                     // Set the event callbacks.
     let fdPath = 'fd://'
-    let pathDir = "/data/storage/el2/base/haps/entry/files" // The method for obtaining pathDir in the FA model is different from that in the stage model. For details, see NOTE just below How to Develop. You need to obtain pathDir based on project requirements.
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
     await fileIO.open(path).then((fdNumber) => {
@@ -256,7 +256,7 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer(); // Create an AudioPlayer instance.
     this.setCallBack(audioPlayer); // Set the event callbacks.
     let fdPath = 'fd://'
-    let pathDir = "/data/storage/el2/base/haps/entry/files" // The method for obtaining pathDir in the FA model is different from that in the stage model. For details, see NOTE just below How to Develop. You need to obtain pathDir based on project requirements.
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
     await fileIO.open(path).then((fdNumber) => {

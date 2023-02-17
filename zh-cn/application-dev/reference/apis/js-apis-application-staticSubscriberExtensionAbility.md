@@ -31,12 +31,9 @@ onReceiveEvent(event: CommonEventData): void;
 **示例：**
     
   ```ts
-  var StaticSubscriberExtensionAbility = requireNapi("application.StaticSubscriberExtensionAbility")
-  {
-      onReceiveEvent(event){
-          console.log('onReceiveEvent,event:' + event.code);
-      }
-  }
-  export default MyStaticSubscriberExtensionAbility
-
+    class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+        onReceiveEvent(event) {
+            console.log("onReceiveEvent, event: " + JSON.stringify(event))
+        }
+    }
   ```

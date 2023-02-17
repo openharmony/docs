@@ -224,9 +224,9 @@ appManager.getAppMemorySize((err, data) => {
 })
 ```
 
-## appManager.getProcessRunningInformation
+## appManager.getRunningProcessInformation
 
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
@@ -234,13 +234,11 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -255,16 +253,16 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-appManager.getProcessRunningInformation().then((data) => {
-    console.log("The process running information is:" + JSON.stringify(data));
+appManager.getRunningProcessInformation().then((data) => {
+    console.log("The running process information is:" + JSON.stringify(data));
 }).catch((error) => {
     console.log("error:" + JSON.stringify(error));
 });
 ```
 
-## appManager.getProcessRunningInformation<sup>9+</sup>
+## appManager.getRunningProcessInformation<sup>9+</sup>
 
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
 获取有关运行进程的信息。
 
@@ -272,13 +270,11 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -293,9 +289,9 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-appManager.getProcessRunningInformation((err, data) => {
+appManager.getRunningProcessInformation((err, data) => {
     if (err.code !== 0) {
-        console.log("getProcessRunningInformation faile, err: " + JSON.stringify(err));
+        console.log("getRunningProcessInformation faile, err: " + JSON.stringify(err));
     } else {
         console.log("The process running information is:" + JSON.stringify(data));
     }
@@ -588,7 +584,7 @@ try {
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
-获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -608,7 +604,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以Promise方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以Callback方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
@@ -633,7 +629,7 @@ try {
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
-获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -645,7 +641,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 返回前台进程应用程序的数组。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 以Promise形式返回所有当前处于前台的应用信息。 |
 
 **错误码**：
 

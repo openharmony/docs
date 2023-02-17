@@ -20,7 +20,7 @@
 
    > **说明：**
    > 
-   > DevEco Studio V3.0 Beta3及更高版本支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
+   > DevEco Studio V3.0 Beta3及更高版本支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-ide-low-code-overview-0000001445605884-V3)方式。
    > 
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
    > 
@@ -223,7 +223,9 @@
            .height('5%')
            // 跳转按钮绑定onClick事件，点击时跳转到第二页
            .onClick(() => {
-             router.pushUrl({ url: 'pages/second' })
+             router.push({ url: 'pages/second' })
+             // 若为API 9工程，则可使用以下接口
+             // router.pushUrl({ url: 'pages/second' })
            })
          }
          .width('100%')

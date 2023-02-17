@@ -4,6 +4,7 @@
 - HDF
   - [HDF Overview](driver-hdf-overview.md)
   - [Driver Development](driver-hdf-development.md)
+  - [Driver Loading](driver-hdf-load.md)
   - [Driver Service Management](driver-hdf-servicemanage.md)
   - [Driver Message Mechanism Management](driver-hdf-message-management.md)
   - [Driver Configuration Management](driver-hdf-manage.md)

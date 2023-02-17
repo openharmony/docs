@@ -37,7 +37,7 @@ This environment combines chip security and system security features with upper-
   
   Since some dedicated hardware resources are used for data encryption/decryption, the CPU can concurrently execute other computing tasks, which greatly improves performance and reduces the CPU load. In addition, a well-designed hardware key engine protects keys from leak even if the software is cracked and even defends against electromagnetic and radiation attacks from physical channels.
   
-  OpenHarmony devices support the hardware key engine, which allows OpenHarmony to perform computing tasks such as data encryption and decryption, certificate signature verification, and hash value calculation. The hardware key engine supports popular algorithms such as Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA).
+  OpenHarmony devices support the hardware key engine, which allows OpenHarmony to perform computing tasks such as data encryption and decryption, certificate signature verification, and hash value calculation. The hardware key engine supports popular algorithms such as Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA). 
 
 ### Recommended Practices
 
@@ -101,7 +101,7 @@ For device with 128 KB to 128 MB of memory, the OpenHarmony lite kernel is recom
 
 OpenHarmony Universal KeyStore (HUKS) provides key and certificate management. For OpenHarmony, it mainly provides key management for HiChain (device identity authentication platform). The figure below shows the HUKS functions.
 
-**Figure 3** HUKS functions 
+**Figure 3** HUKS functions
 
 ![](figure/huks-functions.png)
 
@@ -141,7 +141,7 @@ To use the device certification function, it is recommended that you use HiChain
 
 ## Device Interconnection Security
 
-To ensure secure transmit of user data between devices, a trust relationship and a secure data transmission channel must be established between the devices. The figure below illustrates how an IoT controller and an IoT device establish a trust relationship.
+To ensure secure transmit of user data between devices, a trust relationship and a secure data transmission channel must be established between the devices. The following figure shows how an IoT controller and an IoT device establish a trust relationship.
 
 **Figure 4** Process of establishing a trust relationship between devices
 
@@ -169,7 +169,7 @@ To ensure secure transmit of user data between devices, a trust relationship and
   
   When an IoT controller and an IoT device establish a trust relationship, they exchange identifiers.
   
-  During this process, the user needs to enter or scan the PIN provided by the IoT device on the IoT controller. PIN is either dynamically generated if the IoT device has a screen, or preset by the manufacturer if it does not have a screen. A PIN can be a number or a QR code. Then the IoT controller and IoT device perform authentication and session key exchange based on password authenticated key exchange (PAKE), and use the session key to encrypt the channel for exchanging identity public keys.
+  During this process, the user needs to enter or scan the PIN provided by the IoT device on the IoT controller. PIN is either dynamically generated if the IoT device has a screen, or preset by the manufacturer if it does not have a screen. A PIN can be a number or a QR code. Then the IoT controller and IoT device perform authentication and session key exchange based on password authenticated key exchange (PAKE), and use the session key to encrypt the channel for exchanging identity public keys.  
 
 
 - Secure communication between the IoT controller and IoT device
@@ -186,13 +186,16 @@ To ensure secure transmit of user data between devices, a trust relationship and
   
   After developing and debugging an OpenHarmony application, sign the application installation package using a private key, which matches a public key. Generally, the OEM generates a public/private key pair, presets the public key in the device, and stores the private key on a local server that is not connected to the Internet to prevent private key leakage. After you finish developing an application, you can use an external device (such as a USB flash drive) to upload the installation package to the server where the private key is stored, calculate the signature, and download the signature to the external device. During application installation, the hash value of the bundle is calculated using the SHA-256 algorithm. The hash value, together with the signature and preset public key, is used for authentication. The application can be installed only after the authentication is successful.
   
-  In addition, the application source must be verified to ensure that the application is from a valid developer. As a developer, you must apply for a development certificate and use it to sign the application you have developed. During application installation, the upper-level certificate stored on the device is used to verify the signature to ensure validity of the developer.
+  In addition, the application source must be verified to ensure that the application is from a valid developer. As a developer, you must apply for a development certificate and use it to sign the application you have developed. During application installation, the upper-level certificate stored on the device is used to verify the signature to ensure validity of the developer.  
+
 
 - Application permission control
   
-  OpenHarmony allows users to install third-party applications and controls calls made by third-party applications to sensitive permissions. When developing an application, you need to declare the sensitive permissions that the application may require in the **profile.json** file. The permissions can be static or dynamic. Static permissions need to be registered during application installation, and dynamic permissions can be obtained only upon user authorization. Authorization modes include system settings, manual authorization by applications, and others. In addition, application signature control is used to ensure that the application installation package has been confirmed by the device vendor.
+  OpenHarmony allows users to install third-party applications and controls calls made by third-party applications to sensitive permissions. When developing an application, you need to declare the sensitive permissions that the application may require in the application configuration file. The permissions can be static or dynamic. Static permissions need to be registered during application installation, and dynamic permissions can be obtained only upon user authorization. Authorization modes include system settings, manual authorization by applications, and others. In addition, application signature control is used to ensure that the application installation package has been confirmed by the device vendor.
 
-  **Table 1** OpenHarmony system permissions
+
+
+**Table 1** OpenHarmony system permissions
 
 | Permission| **Authorization Mode**| **Description**|
 | -------- | -------- | -------- |
@@ -207,7 +210,11 @@ To ensure secure transmit of user data between devices, a trust relationship and
 | ohos.permission.DISTRIBUTED_DATASYNC | user_grant (dynamic permission)| Allows an application to manage distributed data transmission.|
 | ohos.permission.DISTRIBUTED_VIRTUALDEVICE | user_grant (dynamic permission)| Allows an application to use distributed virtualization features.|
 
-
 ### Recommended Practices
 
-When developing an application, determine the permissions required by your application and register the permissions in the **profile.json** file. Sign the application to ensure that the devices on which the application will be installed can verify its integrity and source.
+When developing an application, determine the permissions required by your application and register the permissions in the application configuration file. Sign the application to ensure that the devices on which the application will be installed can verify its integrity and source.
+
+> **NOTE**
+> 
+> The application configuration file varies depending on the application model. It is **config.json** for the application based on the FA model and **module.json5** for the application based on the stage mode. For details about the application models, see [Interpretation of the Application Model](../../application-dev/application-models/application-model-description.md).
+

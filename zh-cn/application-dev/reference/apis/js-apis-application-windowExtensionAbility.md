@@ -5,10 +5,10 @@ WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示�
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > 本模块接口为系统接口。
 >
-> 本模块接口仅可在Stage模型下使用。 
+> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -22,7 +22,7 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 | 名称      | 类型 | 可读 | 可写 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [ExtensionContext](js-apis-inner-application-extensionContext.md)   | 是   | 否   | 上下文。      |
+| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)   | 是   | 否   | 上下文。      |
 
 ## WindowExtensionAbility.onConnect
 
@@ -38,7 +38,7 @@ onConnect(want: Want): void
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
 
-**示例：** 
+**示例：**
 
 ```ts
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
@@ -65,7 +65,7 @@ onDisconnect(want: Want): void
 | want | [Want](js-apis-application-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
 
 
-**示例：** 
+**示例：**
 
 ```ts
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
@@ -92,7 +92,7 @@ onWindowReady(window: window.Window): void
 | window | [window.Window](js-apis-window.md#window) | 是 | 当前窗口实例。 |
 
 
-**示例：** 
+**示例：**
 
 ```ts
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {

@@ -51,7 +51,7 @@ Xcomponent创建方法可参考：[Xcomponent创建方法](../reference/arkui-ts
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // 函数调用发生错误时用于上报错误信息
   failureCallback(error) {
@@ -82,14 +82,8 @@ export class VideoPlayerDemo {
     let fdPath = 'fd://'
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // 调用createVideoPlayer接口返回videoPlayer实例对象
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
@@ -180,7 +174,7 @@ export class VideoPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // 函数调用发生错误时用于上报错误信息
   failureCallback(error) {
@@ -211,14 +205,8 @@ export class VideoPlayerDemo {
     let fdPath = 'fd://'
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // 调用createVideoPlayer接口返回videoPlayer实例对象
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
@@ -267,7 +255,7 @@ export class VideoPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // 函数调用发生错误时用于上报错误信息
   failureCallback(error) {
@@ -299,14 +287,8 @@ export class VideoPlayerDemo {
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     let nextPath = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/MP4_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // 调用createVideoPlayer接口返回videoPlayer实例对象
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
@@ -341,14 +323,8 @@ export class VideoPlayerDemo {
 
     // 获取下一个视频fd地址
     fdPath = 'fd://'
-    await fileIO.open(nextPath).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let nextFile = await fs.open(nextPath);
+    fdPath = fdPath + '' + nextFile.fd;
     // 设置第二个视频播放源
     videoPlayer.url = fdPath;
 
@@ -378,7 +354,7 @@ export class VideoPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // 函数调用发生错误时用于上报错误信息
   failureCallback(error) {
@@ -409,14 +385,8 @@ export class VideoPlayerDemo {
     let fdPath = 'fd://'
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // 调用createVideoPlayer接口返回videoPlayer实例对象
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
@@ -452,4 +422,4 @@ export class VideoPlayerDemo {
 针对视频播放开发，有以下相关实例可供参考：
 
 - [`VideoPlayer:`视频播放（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/VideoPlayer)
-- [视频播放器（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoPlayerStage)
+- [视频播放器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoPlayerStage)

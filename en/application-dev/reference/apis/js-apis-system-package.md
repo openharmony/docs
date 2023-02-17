@@ -1,9 +1,9 @@
-# Application Management
+# @system.package (Bundle Management)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
+> **NOTE**
 >
-> - The APIs of this module are no longer maintained since API version 7. It is recommended that you use [`@ohos.bundle`](js-apis-Bundle.md) instead.
+> - This module is deprecated since API version 9. You are advised to use [@ohos.bundle.bundleManager](js-apis-bundleManager.md) instead.
 >
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -12,11 +12,12 @@
 
 
 ```
-import pkg from '@system.package';
+import package from '@system.package';
 ```
 
 
-## package.hasInstalled
+## package.hasInstalled<sup>(deprecated)</sup>
+> This API is deprecated since API version 9. You are advised to use [@ohos.bundle.bundleManager](js-apis-bundleManager.md) instead.
 
 hasInstalled(Object): void
 
@@ -26,35 +27,57 @@ Checks whether an application exists, or whether a native application has been i
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-**Parameter**
+**Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Application&nbsp;bundle&nbsp;name |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;check&nbsp;result&nbsp;is&nbsp;obtained |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;check&nbsp;result&nbsp;fails&nbsp;to&nbsp;be&nbsp;obtained |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete |
+|options | [CheckPackageHasInstalledOptions](#checkpackagehasinstalledoptions) | Yes| Options.|
 
-The following value will be returned when the check result is obtained.
+**Return value**
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| result | boolean | Whether&nbsp;the&nbsp;application&nbsp;exists,&nbsp;or&nbsp;whether&nbsp;the&nbsp;native&nbsp;application&nbsp;has&nbsp;been&nbsp;installed |
+| result | boolean | The value **true** means that the application exists or the native application has been installed, and **false** means the opposite.|
 
 **Example**
 
-```
-export default {    
-  hasInstalled() {        
-    pkg.hasInstalled({            
-      bundleName: 'com.example.bundlename',            
-      success: function(data) {                
-        console.log('package has installed: ' + data);            
-      },            
-      fail: function(data, code) {               
-        console.log('query package fail, code: ' + code + ', data: ' + data);            
-      },        
-    });    
+``` ts
+export default {
+  hasInstalled() {
+    package.hasInstalled({
+      bundleName: 'com.example.bundlename',
+      success: function(data) {
+        console.log('package has installed: ' + data);
+      },
+      fail: function(data, code) {
+        console.log('query package fail, code: ' + code + ', data: ' + data);
+      },
+    });
   },
 }
 ```
+
+## CheckPackageHasInstalledResponse
+
+> This API is deprecated since API version 9.
+
+Checks whether a bundle has been installed.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name| Type| Description|
+| --- | --- | ---- |
+| result | boolean | The value **true** means that the bundle has been installed, and **false** means the opposite.|
+
+## CheckPackageHasInstalledOptions
+
+> This API is deprecated since API version 9.
+
+Defines the options used for checking whether a bundle has been installed.
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| success | Function | No| Called when API call is successful.|
+| fail | Function | No| Called when API call has failed.|
+| complete | Function | No| Called when API call is complete.|

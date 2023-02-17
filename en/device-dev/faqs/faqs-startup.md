@@ -148,7 +148,7 @@ Improper caps configuration leads to a configuration error. The error informatio
 [ 4.620014] [pid=1 0][Init][ERROR][init_service_manager.c:818]GetServiceSecon secon section not found, skip
 [ 4.620216] [pid=1 0][Init][ERROR][init_service_manager.c:818]GetServiceSecon secon section not found, skip
 [ 4.620608] [pid=1 0][Init][ERROR][init_capability.c:119]service=mmi_uinput_service  not support caps = CAP_DC_OVERRIDE caps 41
-```
+ ```
 **Possible Cause**
 
 1. The caps configuration is not supported by the kernel.
@@ -191,6 +191,42 @@ None.
 
 Enter the hdc shell mode on the device. Then, run the **sandbox -s service_name** command to move the current service to the sandbox, and run shell commands such as **ls** to view the sandbox directory. For details, see the [sandbox command description](../subsystems/subsys-boot-init-plugin.md).
 
+### Timestamp in the Ready Phase of Some Bootevent Events Is 0
+
+**Symptom**
+
+In manual bootevent mode, after device startup is completed and the **dump_service all bootevent** command is executed, the timestamps in the ready phase of some events are 0.
+
+**Possible Cause**
+
+1. The service does not send the bootevent event.
+2. The service sends the bootevent event, but does not have the related permission.
+
+**Solution**
+
+1. For case 1, make sure the related service sends the bootevent in the code.
+2. For case 2, make sure the service has the permission to set the bootevent parameter.
+
+### Failed to Boot from Partition A/B
+
+**Symptom**
+
+After the image is burnt, the system cannot be started, and information similar to the following can be found in the serial port log:
+
+```
+wait for file:/dev/block/platform/fe310000.sdhci/by-name/system_b failed after 5 second.
+Mount /dev/block/platform/fe310000.sdhci/by-name/system_b to /usr failed 2
+```
+
+**Possible Cause**
+
+As indicated by the log, partition B is used as the boot partition. However, it is not found during startup, resulting in the startup failure. This issue occurs because the active slot value in the misc partition is set to 2 (partition B), but partition B is not burnt.
+
+**Solution**
+
+1. Clear the misc partition by burning the corresponding partition with an empty misc image, erase the active slot value, and restart the system from the default partition.
+2. Burn the **system_b** and **vendor_b** images to the development board by using the partition table configured with partition B. Then, the development board can boot from partition B.
+
 ## Application Spawning
 
 ### Failed to Start appspawn
@@ -221,11 +257,15 @@ Applications fail to be started by running the cold start command.
 
 1. Cold start is not enabled.
 2. The parameter of the cold start command is incorrect.
+3. The socket request times out.
+4. SELinux is enabled.
 
 **Solution**
 
-1. For case 1, run **param get appspawn.cold.boot** to check the cold start switch and run **param set appspawn.cold.boot true** to enable cold start.
+1. For case 1, run **param get startup.appspawn.cold.boot** to check the cold start switch and run **param set startup.appspawn.cold.boot 1** to enable cold start.
 2. For case 2, correct the parameter of the cold start command.
+3. For case 3, run the **param set persist.appspawn.client.timeout 5** command to set the timeout period to 5.
+4. For case 4, run the **setenforce 0** command to disable SELinux.
 
 ### Failed to Create the Application Sandbox
 

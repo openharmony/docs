@@ -5,7 +5,7 @@
 
 提供了模型相关接口，可以用于模型创建、模型推理等。
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -50,8 +50,8 @@
 | -------- | -------- |
 | [OH_AI_ModelCreate](_mind_spore.md#oh_ai_modelcreate) () | 创建一个模型对象。 |
 | [OH_AI_ModelDestroy](_mind_spore.md#oh_ai_modeldestroy) (OH_AI_ModelHandle \*model) | 释放一个模型对象。 |
-| [OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild) (OH_AI_ModelHandle model, const void \*model_data, <br/>size_t data_size, OH_AI_ModelType model_type, <br/>const OH_AI_ContextHandle model_context) | 从内存缓冲区加载并编译MindSpore模型。 |
-| [OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile) (OH_AI_ModelHandle model, <br/>const char \*model_path, OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context) | 通过模型文件加载并编译MindSpore模型。 |
+| [OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild) (OH_AI_ModelHandle model, const void \*model_data, <br/>size_t data_size, OH_AI_ModelType model_type, <br/>const OH_AI_ContextHandle model_context) | 从内存缓冲区加载并编译MindSpore模型。注意，同一个[OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle)。 |
+| [OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile) (OH_AI_ModelHandle model, <br/>const char \*model_path, OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context) | 通过模型文件加载并编译MindSpore模型。注意，同一个[OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle)。 |
 | [OH_AI_ModelResize](_mind_spore.md#oh_ai_modelresize) (OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs,<br/> OH_AI_ShapeInfo \*shape_infos, size_t shape_info_num) | 调整已编译模型的输入形状。 |
 | [OH_AI_ModelPredict](_mind_spore.md#oh_ai_modelpredict) (OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs, OH_AI_TensorHandleArray \*outputs, const OH_AI_KernelCallBack before, const OH_AI_KernelCallBack after) | 执行模型推理。 |
 | [OH_AI_ModelGetInputs](_mind_spore.md#oh_ai_modelgetinputs) (const OH_AI_ModelHandle model) | 获取模型的输入张量数组结构体。 |

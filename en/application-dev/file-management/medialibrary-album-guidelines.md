@@ -12,9 +12,9 @@ To ensure the application running efficiency, most **MediaLibrary** API calls ar
 
 You can obtain images and videos in an album in either of the following ways:
 
-- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified to obtain the media assets. For details, see [Querying Media Assets with the Specified Album Name](medialibrary-resource-guidelines#querying-media-assets-with-the-specified-album-name).
+- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified to obtain the media assets. For details, see [Querying Media Assets with the Specified Album Name](medialibrary-resource-guidelines.md#querying-media-assets-with-the-specified-album-name).
 
-- Call [Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3) to obtain an **Album** instance, so as to obtain the media assets in it. For details, see [Obtaining Images and Videos in an Album](medialibrary-resource-guidelines#obtaining-images-and-videos-in-an-album).
+- Call [Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3) to obtain an **Album** instance, so as to obtain the media assets in it. For details, see [Obtaining Images and Videos in an Album](medialibrary-resource-guidelines.md#obtaining-images-and-videos-in-an-album).
 
 ## Creating an Album
 
@@ -42,8 +42,8 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    const path = await media.getPublicDirectory(DIR_IMAGE)
+    let media = mediaLibrary.getMediaLibrary(context);
+    const path = await media.getPublicDirectory(DIR_IMAGE);
     // myAlbum is the path for storing the new file and the name of the new album.
     media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
         if (fileAsset != undefined) {
@@ -80,7 +80,7 @@ async function example() {
         selectionArgs: [],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     let album = albumList[0];
     album.albumName = 'newAlbum';
@@ -88,7 +88,7 @@ async function example() {
     album.commitModify().then(function() {
         console.info("albumRename successfully");
     }).catch(function(err){
-        console.info("albumRename failed with error:"+ err);
+        console.info("albumRename failed with error: " + err);
     });
 }
 ```

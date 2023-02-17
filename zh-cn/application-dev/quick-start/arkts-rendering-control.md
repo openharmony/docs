@@ -267,7 +267,7 @@ struct MyComponent {
 >
 > - 生成的子组件必须是允许包含在LazyForEach父容器组件中的子组件。
 >
-> - 允许LazyForEach包含在if/else条件渲染语句中，但不允许LazyForEach中出现if/else条件渲染语句。
+> - 允许LazyForEach包含在if/else条件渲染语句中。
 >
 > - 为了高性能渲染，通过DataChangeListener对象的onDataChange方法来更新UI时，仅当itemGenerator中创建的子组件内使用了状态变量时，才会触发组件刷新。
 >
@@ -275,7 +275,7 @@ struct MyComponent {
 >
 >   ```ts
 >   LazyForEach(dataSource, 
->     item => Text(`${item.i}. item.data.label`)),
+>     item => Text(`${item.i}. item.data.label`),
 >     item => item.data.id.toString())
 >   ```
 

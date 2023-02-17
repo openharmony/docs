@@ -1,4 +1,4 @@
-# Work Scheduler Callbacks
+# @ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)
 
 The **WorkSchedulerExtensionAbility** module provides callbacks for Work Scheduler tasks.
 

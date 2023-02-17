@@ -66,9 +66,9 @@
    通过`loadContent`接口加载主窗口的目标页面。
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         // 1.获取应用主窗口。
         let windowClass = null;
@@ -122,11 +122,11 @@ class MainAbility extends Ability {
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
    
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
    let windowStage_ = null;
    let sub_windowClass = null;
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        showSubWindow() {
            // 1.创建应用子窗口。
            windowStage_.createSubWindow("mySubWindow", (err, data) => {
@@ -205,7 +205,7 @@ class MainAbility extends Ability {
 1. 获取应用主窗口。
    通过`getMainWindow`接口获取应用主窗口。
 
-2. 实现沉浸式效果。有以下三种方式：
+2. 实现沉浸式效果。有以下两种方式：
    - 方式一：调用`setWindowSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
    - 方式二：调用`setWindowLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setWindowSystemBarProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
@@ -213,9 +213,9 @@ class MainAbility extends Ability {
    通过`loadContent`接口加载沉浸式窗口的具体内容。
    
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 1.获取应用主窗口。
            let windowClass = null;
@@ -295,7 +295,7 @@ class MainAbility extends Ability {
            "name" : "ohos.permission.SYSTEM_FLOAT_WINDOW",
            "usedScene": {
              "abilities": [
-               "MainAbility"
+               "EntryAbility"
              ],
              "when":"inuse"
            }
@@ -319,11 +319,11 @@ class MainAbility extends Ability {
    当不再需要悬浮窗时，可根据具体实现逻辑，使用`destroyWindow`接口销毁悬浮窗。
 
    ```ts
-   import Ability from '@ohos.application.Ability'
-   import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
    import window from '@ohos.window';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 2. 创建悬浮窗。
            let windowClass = null;

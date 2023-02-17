@@ -176,7 +176,7 @@ This version has the following updates to OpenHarmony 3.2 Beta2.
 
 For details about the API changes, see the following:
 
-[API Differences](api-change/v3.2-beta3/Readme-EN.md)
+[API Differences](api-diff/v3.2-beta3/js-apidiff-ability.md)
 
 
 ### Chip and Development Board Adaptation

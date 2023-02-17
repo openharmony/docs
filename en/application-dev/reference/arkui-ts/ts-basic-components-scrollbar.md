@@ -21,7 +21,7 @@ ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: B
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes| Scroller, which can be bound to scrollable components.|
-| direction | ScrollBarDirection | No| Scrollbar direction in which scrollable components scroll.<br>Default value: **ScrollBarDirection.Vertical**|
+| direction | [ScrollBarDirection](#scrollbardirection) | No| Scrollbar direction in which scrollable components scroll.<br>Default value: **ScrollBarDirection.Vertical**|
 | state | [BarState](ts-appendix-enums.md#barstate) | No| Scrollbar state.<br>Default value: **BarState.Auto**|
 
 >  **NOTE**

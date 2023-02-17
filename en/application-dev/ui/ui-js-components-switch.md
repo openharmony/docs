@@ -12,7 +12,7 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 ```html
 <!-- xxx.hml -->
 <div class="container">
-    <switch></switch>
+    <switch checked="true"></switch>
 </div>
 ```
 
@@ -21,8 +21,6 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 /* xxx.css */
 .container {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #F1F3F5;
 }
 ```
@@ -63,15 +61,15 @@ switch {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   switchChange(e){
     if(e.checked){
-      prompt.showToast({
+      promptAction.showToast({
         message: "open"
       });
     }else{
-      prompt.showToast({
+      promptAction.showToast({
         message: "close"
       });
     }

@@ -93,40 +93,63 @@
     - [Porting Verification](porting/porting-minichip-verification.md)
 
     - [FAQs](porting/porting-chip-faqs.md)
-- Small System SoC Porting Guide
-  
-  - Porting Preparation
-  
-    - [Before You Start](porting/porting-smallchip-prepare-needs.md)
-  
-    - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
-  
-  - Kernel Porting
-  
-    - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
-  
-    - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
-  
-  - Driver Porting
-  
-    - [Porting Overview](porting/porting-smallchip-driver-overview.md)
-  
-    - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
-  
-    - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+
+  - Small System SoC Porting Guide
+
+    - Porting Preparation
+
+      - [Before You Start](porting/porting-smallchip-prepare-needs.md)
+
+      - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
+
+    - Kernel Porting
+
+      - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
+
+      - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
+
+    - Driver Porting
+
+      - [Porting Overview](porting/porting-smallchip-driver-overview.md)
+
+      - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
+
+      - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+
   - Standard System SoC Porting Guide
 
     - [Standard System Porting Guide](porting/standard-system-porting-guide.md)
 
     - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md)
--  Third-Party Library Porting Guide for Mini and Small Systems
-  
-  - [Overview](porting/porting-thirdparty-overview.md)
-  - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
-  - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
-- Mini System SoC Porting Cases
-  - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
-  - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+
+  - Third-Party Library Porting Guide for Mini and Small Systems
+
+    - [Overview](porting/porting-thirdparty-overview.md)
+
+    - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
+
+    - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
+
+  - Mini System SoC Porting Cases
+
+      - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
+
+      - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+
+      - [IoT Solution - Chipsea CST85 Chip Porting Case](porting/porting-cst85f01-combo-demo.md)
+
+      - [Mini System STM32F407 SoC Porting Case](porting/porting-stm32f407-on-minisystem-eth.md)
+
+      - [Combo Solution – W800 Chip Porting Case](porting/porting-w800-combo-demo.md)
+
+  - Small System SoC Porting Cases
+
+      - [Mini-System Devices – STM32MP1 SoC Porting Case](porting/porting-stm32mp15xx-on-smallsystem.md)
+
+  - Standard System SoC Porting Cases
+
+      - [Standard System Solution – Rockchip RK3568 Porting Case](porting/porting-dayu200-on_standard-demo.md)
+
 - Subsystem Development
 
   -  Kernel
@@ -142,7 +165,7 @@
            - [Mutex](kernel/kernel-mini-basic-ipc-mutex.md)
            - [Queue](kernel/kernel-mini-basic-ipc-queue.md)
            - [Semaphore](kernel/kernel-mini-basic-ipc-sem.md)
-         - [Time Management](kernel/kernel-basic-mini-time.md)
+         - [Time Management](kernel/kernel-mini-basic-time.md)
          - [Software Timer](kernel/kernel-mini-basic-soft.md)
          - [Doubly Linked List](kernel/kernel-mini-basic-list.md)
        - Extended Components
@@ -295,6 +318,7 @@
      - HDF
        - [HDF Overview](driver/driver-hdf-overview.md)
        - [Driver Development](driver/driver-hdf-development.md)
+       - [Driver Loading](driver/driver-hdf-load.md)
        - [Driver Service Management](driver/driver-hdf-servicemanage.md)
        - [Driver Message Mechanism Management](driver/driver-hdf-message-management.md)
        - [Driver Configuration Management](driver/driver-hdf-manage.md)
@@ -357,6 +381,7 @@
      - Related Operations
        - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Product](subsystems/subsys-build-product.md)
+       - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Component](subsystems/subsys-build-component.md)
        - [Building a Module](subsystems/subsys-build-module.md)
        - [Building a Chipset Solution](subsystems/subsys-build-chip_solution.md)
@@ -493,6 +518,8 @@
 
 
 - Debugging
+  - [Development Self-Test Framework User Guide](device-test/developer_test.md)
+  - [xDevice User Guide](device-test/xdevice.md)
   - R&D Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc\_std](subsystems/subsys-toolchain-hdc-guide.md)
@@ -503,8 +530,7 @@
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
 - Hands-On Tutorials
-  
-  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
+   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 - References
   - FAQs
     - [FAQs Overview](faqs/faqs-overview.md)
@@ -515,5 +541,4 @@
     - [Porting](faqs/faqs-porting.md)
     - [Startup](faqs/faqs-startup.md)
     - [System Applications](faqs/faqs-system-applications.md)
-  
    

@@ -4,7 +4,9 @@ The **\<RelativeContainer>** component is used for element alignment in complex 
 
 >  **NOTE**
 >
->  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+
+
 
 ## Rules 
 
@@ -14,7 +16,7 @@ The **\<RelativeContainer>** component is used for element alignment in complex 
  * A child component can set the container or another child component as the anchor. 
    * To show in the **\<RelativeContainer>**, child components must have an ID. The container ID is fixed at **__container__**. 
    * Three positions of the child component in a direction can use three positions of the container or another child components in the same direction as anchors. If anchors are set for more than two positions in a single direction, the third position is skipped. 
-   * The child component size set on the frontend page is not affected by the **\<RelativeContainer>** rules.
+   * The child component size set on the frontend page is not affected by the **\<RelativeContainer>** rules. If two or more **alignRules** values are set for one direction of the child component, you are not advised to set the size for this direction.
    * If offset is required after the alignment, it can be set through **offset**. 
  * Exceptions
    * When a mutual or circular dependency occurs, none of the child components in the container are drawn. 
@@ -37,62 +39,60 @@ RelativeContainer()
 struct Index {
   build() {
     Row() {
-      Button("Extra button").width(100).height(50)
 
       RelativeContainer() {
-        Button("Button 1")
-          .width(120)
-          .height(30)
+        Row().width(100).height(100)
+          .backgroundColor("#FF3333")
           .alignRules({
-            middle: { anchor: "__container__", align: HorizontalAlign.Center },
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            left: {anchor: "__container__", align: HorizontalAlign.Start}
           })
-          .id("bt1")
-          .borderWidth(1)
-          .borderColor(Color.Black)
+          .id("row1")
 
-        Text("This is text 2")
-          .fontSize(20)
-          .padding(10)
+        Row().width(100).height(100)
+          .backgroundColor("#FFCC00")
           .alignRules({
-            bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
-            top: { anchor: "bt1", align: VerticalAlign.Bottom },
-            right: { anchor: "bt1", align: HorizontalAlign.Center }
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            right: {anchor: "__container__", align: HorizontalAlign.End}
           })
-          .id("tx2")
-          .borderWidth(1)
-          .borderColor(Color.Black)
-          .height(30)
+          .id("row2")
 
-        Button("Button 3")
-          .width(100)
-          .height(100)
+        Row().height(100)
+          .backgroundColor("#FF6633")
           .alignRules({
-            left: { anchor: "bt1", align: HorizontalAlign.End },
-            top: { anchor: "tx2", align: VerticalAlign.Center },
-            bottom: { anchor: "__container__", align: VerticalAlign.Bottom }
+            top: {anchor: "row1", align: VerticalAlign.Bottom},
+            left: {anchor: "row1", align: HorizontalAlign.End},
+            right: {anchor: "row2", align: HorizontalAlign.Start}
           })
-          .id("bt3")
-          .borderWidth(1)
-          .borderColor(Color.Black)
+          .id("row3")
 
-        Text("This is text 4")
-          .fontSize(20)
-          .padding(10)
+        Row()
+          .backgroundColor("#FF9966")
           .alignRules({
-            left: { anchor: "tx2", align: HorizontalAlign.End },
-            right: { anchor: "__container__", align: HorizontalAlign.End },
-            top: { anchor: "__container__", align: VerticalAlign.Top },
-            bottom: { anchor: "bt3", align: VerticalAlign.Top }
+            top: {anchor: "row3", align: VerticalAlign.Bottom},
+            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
+            left: {anchor: "__container__", align: HorizontalAlign.Start},
+            right: {anchor: "row1", align: HorizontalAlign.End}
           })
-          .id("tx4")
-          .borderWidth(1)
-          .borderColor(Color.Black)
+          .id("row4")
+
+        Row()
+          .backgroundColor("#FF66FF")
+          .alignRules({
+            top: {anchor: "row3", align: VerticalAlign.Bottom},
+            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
+            left: {anchor: "row2", align: HorizontalAlign.Start},
+            right: {anchor: "__container__", align: HorizontalAlign.End}
+          })
+          .id("row5")
       }
-      .width(200).height(200)
-      .backgroundColor(Color.Orange)
+      .width(300).height(300)
+      .margin({left: 100})
+      .border({width:2, color: "#6699FF"})
     }
     .height('100%')
   }
 }
+
 ```
 ![relative container](figures/relativecontainer.png)

@@ -34,7 +34,7 @@ Column() {
 
 You can use **ForEach** to obtain data from arrays and create components for each data item.
 
-```
+```ts
 ForEach(
   arr: any[], 
   itemGenerator: (item: any, index?: number) => void,
@@ -263,11 +263,11 @@ struct MyComponent {
 >
 > - **LazyForEach** must be used in the container component. Currently, only the **\<List>**, **\<Grid>**, and **\<Swiper>** components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at a time.
 >
-> - **LazyForEach** must create and only one child component in each iteration.
+> - **LazyForEach** must create one and only one child component in each iteration.
 >
-> - The generated child components must be allowed in the parent container component of **LazyForEach**.
+> - The generated child components must be the ones allowed in the parent container component of **LazyForEach**.
 >
-> - **LazyForEach** can be included in an **if/else** statement, but cannot contain such a statement.
+> - **LazyForEach** can be included in an **if/else** statement.
 >
 > - For the purpose of high-performance rendering, when the **onDataChange** method of the **DataChangeListener** object is used to update the UI, the component update is triggered only when the state variable is used in the child component created by **itemGenerator**.
 >
@@ -275,7 +275,7 @@ struct MyComponent {
 >
 >   ```ts
 >   LazyForEach(dataSource, 
->     item => Text(`${item.i}. item.data.label`)),
+>     item => Text(`${item.i}. item.data.label`),
 >     item => item.data.id.toString())
 >   ```
 

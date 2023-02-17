@@ -72,7 +72,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
      }
      await audioCapturer.start();
 
-     let state = audioCapturer.state;
+     state = audioCapturer.state;
      if (state == audio.AudioState.STATE_RUNNING) {
        console.info('AudioRecLog: Capturer started');
      } else {
@@ -86,7 +86,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    参考以下示例，将采集到的数据写入文件。 
 
    ```js
-   import fileio from '@ohos.fileio';
+   import fs from '@ohos.file.fs';
 
     let state = audioCapturer.state;
     // 只有状态为STATE_RUNNING的时候才可以read.
@@ -96,31 +96,36 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
     }
       
    const path = '/data/data/.pulse_dir/capture_js.wav'; // 采集到的音频文件存储路径
-   let fd = fileio.openSync(path, 0o102, 0o777);
-   if (fd !== null) {
-     console.info('AudioRecLog: file fd created');
-   }
-   else{
-     console.info('AudioRecLog: file fd create : FAILED');
+   let file = fs.openSync(filePath, 0o2);
+   let fd = file.fd;
+   if (file !== null) {
+     console.info('AudioRecLog: file created');
+   } else {
+     console.info('AudioRecLog: file create : FAILED');
      return;
    }
-      
-   fd = fileio.openSync(path, 0o2002, 0o666);
+
    if (fd !== null) {
      console.info('AudioRecLog: file fd opened in append mode');
    }
       
    let numBuffersToCapture = 150; // 循环写入150次
+   let count = 0;
    while (numBuffersToCapture) {
+     let bufferSize = await audioCapturer.getBuffersize();
      let buffer = await audioCapturer.read(bufferSize, true);
+     let options = {
+       offset: count * this.bufferSize,
+       length: this.bufferSize
+     }
      if (typeof(buffer) == undefined) {
        console.info('AudioRecLog: read buffer failed');
      } else {
-       let number = fileio.writeSync(fd, buffer);
+       let number = fs.writeSync(fd, buffer, options);
        console.info(`AudioRecLog: data written: ${number}`);
-     }
-      
+     } 
      numBuffersToCapture--;
+     count++;
    }
    ```
 

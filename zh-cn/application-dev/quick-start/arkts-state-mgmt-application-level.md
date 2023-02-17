@@ -58,26 +58,15 @@ struct ComponentA {
             this.label = (this.languageCode === 'zh') ? '数量' : 'Count'
           })
       }
-      .margin({ bottom: 50 })
+      .margin({ top: 50, bottom: 50 })
 
       Row() {
         Button(`更改@StorageLink修饰的变量：${this.varA}`).height(40).fontSize(14)
           .onClick(() => {
             this.varA++
           })
-      }.margin({ bottom: 50 })
-
-      Row() {
-        Button(`更改@StorageProp修饰的变量：${this.languageCode}`).height(40).fontSize(14)
-          .onClick(() => {
-            if (this.languageCode === 'zh') {
-              this.languageCode = 'en'
-            } else {
-              this.languageCode = 'zh'
-            }
-          })
       }
-    }
+    }.width('100%')
   }
 }
 ```
@@ -131,7 +120,7 @@ export default class MainAbility extends Ability {
 
     onWindowStageCreate(windowStage) {
         // storage作为参数传递给loadContent接口
-        windowStage.loadContent('pages/index', this.storage)
+        windowStage.loadContent('pages/Index', this.storage)
     }
 
     onWindowStageDestroy() {
@@ -151,7 +140,7 @@ export default class MainAbility extends Ability {
 @Component组件获取数据
 
 ```ts
-// index.ets
+// Index.ets
 let storage = LocalStorage.GetShared()
 
 @Entry(storage)

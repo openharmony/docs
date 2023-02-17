@@ -1,7 +1,7 @@
 # UI Development
 
 - [ArkUI Overview](arkui-overview.md)
-- UI Development with eTS-based Declarative Development Paradigm
+- UI Development with ArkTS-based Declarative Development Paradigm
     - [Overview](ui-ts-overview.md)
     - [Declarative UI Development Guidelines](ui-ts-developing-intro.md)
     - Declarative UI Development Examples

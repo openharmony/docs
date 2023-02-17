@@ -1681,9 +1681,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
       // Linear gradient: start(50,0) end(300,100)
       var gradient = ctx.createLinearGradient(50,0, 300,100);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);
@@ -1734,9 +1734,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
       // Radial gradient: inner circle(200,200,r:50) outer circle(200,200,r:200)
       var gradient = ctx.createRadialGradient(200,200,50, 200,200,200);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);

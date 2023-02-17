@@ -1,4 +1,4 @@
-# Distributed Mission Management
+# @ohos.distributedMissionManager (Distributed Mission Management)
 
 The **distributedMissionManager** module implements system mission management across devices. You can use the APIs provided by this module to register or deregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device.
 
@@ -372,6 +372,19 @@ Continues a mission on a remote device. This API uses an asynchronous callback t
 | options | [ContinueCallback](#continuecallback) | Yes   | Callback invoked when the mission continuation is complete.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300502 | Failed to get the missionInfo of the specified missionId. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+
 **Example**
 
   ```ts
@@ -381,11 +394,11 @@ Continues a mission on a remote device. This API uses an asynchronous callback t
       missionId: 1,
       wantParam: {"key": "value"}
   };
-  function OnContinueDone(resultCode) {
-      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  function onContinueDone(resultCode) {
+      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   var options = {
-      OnContinueDone: OnContinueDone
+      onContinueDone: onContinueDone
   };
   try {
       distributedMissionManager.continueMission(parameter, options, (error) => {
@@ -422,6 +435,19 @@ Continues a mission on a remote device. This API uses a promise to return the re
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300502 | Failed to get the missionInfo of the specified missionId. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+
 **Example**
 
   ```ts
@@ -431,11 +457,11 @@ Continues a mission on a remote device. This API uses a promise to return the re
       missionId: 1,
       wantParam: {"key": "value"}
   };
-  function OnContinueDone(resultCode) {
-      console.log('OnContinueDone resultCode: ' + JSON.stringify(resultCode));
+  function onContinueDone(resultCode) {
+      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   var options = {
-      OnContinueDone: OnContinueDone
+      onContinueDone: onContinueDone
   };
   try {
       distributedMissionManager.continueMission(parameter, options)

@@ -11,7 +11,7 @@ The **\<canvas>** component is used for customizing drawings.
 None
 
 
-## Child Component
+## Child Components
 
 Not supported
 
@@ -38,7 +38,7 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
 
 ### getContext
 
-getContext(type: '2d', options?:  ContextAttrOptions): CanvasRendering2dContext
+getContext(type: '2d', options?:  ContextAttrOptions): CanvasRenderingContext2D
 
 Obtains the canvas drawing context. This API cannot be called in **onInit** or **onReady**.
 
@@ -49,7 +49,7 @@ Obtains the canvas drawing context. This API cannot be called in **onInit** or *
 | type                 | string             | Yes   | Object type. The value is set to **'2d'**, indicating that a 2D drawing object is returned. This object can be used to draw rectangles, texts, and images on the canvas component.|
 | options<sup>6+</sup> | ContextAttrOptions | No   | Whether to enable anti-aliasing. By default, anti-aliasing is disabled.                 |
 
-**Table 1** ContextAttrOptions
+  **Table 1** ContextAttrOptions
 
 | Name      | Type     | Description                 |
 | --------- | ------- | ------------------- |
@@ -59,7 +59,7 @@ Obtains the canvas drawing context. This API cannot be called in **onInit** or *
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| [CanvasRenderingContext2D](../arkui-js/js-components-canvas-canvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts, on the canvas component. |
+| [CanvasRenderingContext2D](../arkui-js/js-components-canvas-canvasrenderingcontext2d.md) | 2D drawing object, which can be used to draw rectangles, images, and texts on the canvas component.|
 
 ### toDataURL<sup>6+</sup>
 

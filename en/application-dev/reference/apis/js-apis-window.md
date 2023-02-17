@@ -1,4 +1,4 @@
-# Window
+# @ohos.window (Window)
 
 The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
@@ -46,17 +46,15 @@ Enumerates the window types.
 
 ## Configuration<sup>9+</sup>
 
-Defines the parameters used for creating a subwindow.
-
-An asynchronous callback is used when a system window is created in the case that [ServiceExtensionContext](js-apis-service-extension-context.md) is used as the context.
+Defines the parameters for creating a subwindow or system window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name| Type| Mandatory| Description|
 | ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | Yes| Name of the subwindow.                        |
-| windowType | [WindowType](#windowtype7) | Yes| Type of the subwindow.                        |
-| ctx        | BaseContext                | No| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).<br> If this parameter is not set, no context is used.     |
+| name       | string                     | Yes| Name of the window.                        |
+| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If this parameter is not set, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
 | displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
 | parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
 
@@ -250,7 +248,7 @@ Enumerates the color spaces.
 
 | Name      | Value| Description          |
 | ---------- | ------ | -------------- |
-| DEFAULT    | 0      | Default gamut.|
+| DEFAULT    | 0      | Default SRGB gamut.|
 | WIDE_GAMUT | 1      | Wide-gamut.  |
 
 ## ScaleOptions<sup>9+</sup>
@@ -302,7 +300,7 @@ Describes the translation parameters.
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow. This API uses an asynchronous callback to return the result.
+Creates a subwindow or system window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -310,8 +308,8 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | --------------------------------- |
-| config   | [Configuration](#configuration9)       | Yes| Current application context.               |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the subwindow created.|
+| config   | [Configuration](#configuration9)       | Yes| Parameters used for creating the window.  |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the window created.|
 
 **Error codes**
 
@@ -346,7 +344,7 @@ try {
 
 createWindow(config: Configuration): Promise&lt;Window&gt;
 
-Creates a subwindow. This API uses a promise to return the result.
+Creates a subwindow or system window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -354,13 +352,13 @@ Creates a subwindow. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | ------ | -------------------------------- | -- | ------------------ |
-| config | [Configuration](#configuration9) | Yes| Current application context.|
+| config | [Configuration](#configuration9) | Yes| Parameters used for creating the window.|
 
 **Return value**
 
 | Type| Description|
 | -------------------------------- | ------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
+| Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
 
 **Error codes**
 
@@ -393,7 +391,7 @@ try {
 
 findWindow(name: string): Window
 
-Finds a window based on the ID.
+Finds a window based on the name.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -432,7 +430,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | Yes| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the top window obtained.|
 
 **Error codes**
@@ -474,7 +472,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
@@ -899,7 +897,7 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow in the FA model or a system window in the stage model. This API uses an asynchronous callback to return the result.
+Creates a system window. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -909,12 +907,12 @@ Creates a subwindow in the FA model or a system window in the stage model. This 
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory| Description                                                        |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).|
-| id       | string                                 | Yes  | Window ID.                                                    |
-| type     | [WindowType](#windowtype7)              | Yes  | Window type.                                                  |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
+| Name  | Type                                                   | Mandatory| Description                                |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.                |
+| id       | string                                                  | Yes  | Window ID.                            |
+| type     | [WindowType](#windowtype7)                              | Yes  | Window type.                          |
+| callback | AsyncCallback&lt;[Window](#window)&gt;                  | Yes  | Callback used to return the subwindow created.|
 
 **Example**
 
@@ -935,7 +933,7 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow in the FA model or a system window in the stage model. This API uses a promise to return the result.
+Creates a system window. This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -947,7 +945,7 @@ Creates a subwindow in the FA model or a system window in the stage model. This 
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-service-extension-context.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
@@ -1123,7 +1121,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md)                            | Yes  | Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -1156,7 +1154,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-Context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
@@ -1546,6 +1544,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1586,6 +1586,8 @@ try {
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1638,6 +1640,8 @@ The system window has the following size limits: [0, 2560] in width and [0, 2560
 
 The new width and height you set must meet the limits.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1684,6 +1688,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1858,7 +1864,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name| Type| Mandatory| Description|
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area.|
+| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area.|
 
 **Return value**
 
@@ -1983,7 +1989,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 | Name| Type| Mandatory| Description|
 | -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | Yes | Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
+| names    | Array<'status'\|'navigation'> | Yes| Whether to display the status bar and navigation bar.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2494,7 +2500,7 @@ Disables listening for window size changes.
 | Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the window size.                          |
+| callback | Callback&lt;[Size](#size7)&gt; | No  | Callback used to return the window size.                          |
 
 **Example**
 
@@ -3000,7 +3006,7 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ----------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 | callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.  |
 
 **Error codes**
@@ -3039,7 +3045,7 @@ Sets a color space for this window. This API uses a promise to return the result
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 
 **Return value**
 
@@ -3082,7 +3088,7 @@ Obtains the color space of this window.
 
 | Type| Description|
 | ------------------------- | ------------- |
-| [ColorSpace](#colorspace) | Color space obtained.|
+| [ColorSpace](#colorspace8) | Color space obtained.|
 
 **Error codes**
 
@@ -4078,7 +4084,6 @@ try {
 } catch (exception) {
     console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -4114,7 +4119,6 @@ try {
 } catch (exception) {
     console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setShadow<sup>9+</sup>
@@ -4153,7 +4157,6 @@ try {
 } catch (exception) {
     console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setCornerRadius<sup>9+</sup>
@@ -4189,7 +4192,6 @@ try {
 } catch (exception) {
     console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4220,7 +4222,6 @@ windowClass.show((err) => {
     }
     console.info('Succeeded in showing the window.');
 });
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -4250,7 +4251,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4281,7 +4281,6 @@ windowClass.destroy((err) => {
     }
     console.info('Succeeded in destroying the window.');
 });
-
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -4311,7 +4310,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -4319,6 +4317,8 @@ promise.then(()=> {
 moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4344,7 +4344,6 @@ windowClass.moveTo(300, 300, (err)=>{
     }
     console.info('Succeeded in moving the window.');
 });
-
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -4352,6 +4351,8 @@ windowClass.moveTo(300, 300, (err)=>{
 moveTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4381,7 +4382,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -4395,6 +4395,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4420,7 +4422,6 @@ windowClass.resetSize(500, 1000, (err) => {
     }
     console.info('Succeeded in changing the window size.');
 });
-
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -4434,6 +4435,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4463,7 +4466,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -4498,7 +4500,6 @@ windowClass.setWindowType(type, (err) => {
   }
   console.info('Succeeded in setting the window type.');
 });
-
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -4537,7 +4538,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getProperties<sup>(deprecated)</sup>
@@ -4568,7 +4568,6 @@ windowClass.getProperties((err, data) => {
     }
     console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### getProperties<sup>(deprecated)</sup>
@@ -4598,7 +4597,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
@@ -4615,10 +4613,10 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                                  |
-| -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
-| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area.                            |
+| Name     | Type                                          | Mandatory | Description                       |
+| -------- | --------------------------------------------- | --------- | --------------------------------- |
+| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area.                 |
+| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area. |
 
 **Example**
 
@@ -4631,7 +4629,6 @@ windowClass.getAvoidArea(type, (err, data) => {
     }
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 });
-
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
@@ -4648,9 +4645,9 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description                                                  |
-| ---- | -------------------------------- | --------- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
+| Name | Type                             | Mandatory | Description       |
+| ---- | -------------------------------- | --------- | ----------------- |
+| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. |
 
 **Return value**
 
@@ -4668,7 +4665,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -4701,7 +4697,6 @@ windowClass.setFullScreen(isFullScreen, (err) => {
     }
     console.info('Succeeded in enabling the full-screen mode.');
 });
-
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -4738,7 +4733,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
@@ -4771,7 +4765,6 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
     }
     console.info('Succeeded in setting the window layout to full-screen mode.');
 });
-
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
@@ -4808,7 +4801,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
@@ -4842,7 +4834,6 @@ windowClass.setSystemBarEnable(names, (err) => {
     }
     console.info('Succeeded in setting the system bar to be invisible.');
 });
-
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
@@ -4880,7 +4871,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
@@ -4919,7 +4909,6 @@ windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
     }
     console.info('Succeeded in setting the system bar properties.');
 });
-
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
@@ -4962,7 +4951,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -4994,7 +4982,6 @@ windowClass.loadContent('pages/page2/page2', (err) => {
    }
   console.info('Succeeded in loading the content.');
 });
-
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -5030,7 +5017,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### isShowing<sup>(deprecated)</sup>
@@ -5061,7 +5047,6 @@ windowClass.isShowing((err, data) => {
     }
     console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### isShowing<sup>(deprecated)</sup>
@@ -5091,7 +5076,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### on('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -5119,7 +5103,6 @@ Enables listening for changes to the area where the window cannot be displayed.
 windowClass.on('systemAvoidAreaChange', (data) => {
     console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -5145,7 +5128,6 @@ Disables listening for changes to the area where the window cannot be displayed.
 
 ```js
 windowClass.off('systemAvoidAreaChange');
-
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -5176,7 +5158,6 @@ windowClass.isSupportWideGamut((err, data) => {
     }
     console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -5206,7 +5187,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -5223,10 +5203,10 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name       | Type                      | Mandatory | Description                         |
-| ---------- | ------------------------- | --------- | ----------------------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set.                 |
-| callback   | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| Name       | Type                       | Mandatory | Description                         |
+| ---------- | -------------------------- | --------- | ----------------------------------- |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set.                 |
+| callback   | AsyncCallback&lt;void&gt;  | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -5238,7 +5218,6 @@ windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err) => {
     }
     console.info('Succeeded in setting window colorspace.');
 });
-
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -5255,9 +5234,9 @@ Sets a color space for this window. This API uses a promise to return the result
 
 **Parameters**
 
-| Name       | Type                      | Mandatory | Description         |
-| ---------- | ------------------------- | --------- | ------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set. |
+| Name       | Type                       | Mandatory | Description         |
+| ---------- | -------------------------- | --------- | ------------------- |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set. |
 
 **Return value**
 
@@ -5274,7 +5253,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getColorSpace<sup>(deprecated)</sup>
@@ -5291,9 +5269,9 @@ Obtains the color space of this window. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name     | Type                                           | Mandatory | Description                                                  |
-| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
+| Name     | Type                                            | Mandatory | Description                                                  |
+| -------- | ----------------------------------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
 
 **Example**
 
@@ -5305,7 +5283,6 @@ windowClass.getColorSpace((err, data) => {
     }
     console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
 });
-
 ```
 
 ### getColorSpace<sup>(deprecated)</sup>
@@ -5322,9 +5299,9 @@ Obtains the color space of this window. This API uses a promise to return the re
 
 **Return value**
 
-| Type                                     | Description                                     |
-| ---------------------------------------- | ----------------------------------------------- |
-| Promise&lt;[ColorSpace](#colorspace)&gt; | Promise used to return the current color space. |
+| Type                                      | Description                                     |
+| ----------------------------------------- | ----------------------------------------------- |
+| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise used to return the current color space. |
 
 **Example**
 
@@ -5335,7 +5312,6 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setBackgroundColor<sup>(deprecated)</sup>
@@ -5368,7 +5344,6 @@ windowClass.setBackgroundColor(color, (err) => {
     }
     console.info('Succeeded in setting the background color.');
 });
-
 ```
 
 ### setBackgroundColor<sup>(deprecated)</sup>
@@ -5405,7 +5380,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
@@ -5438,7 +5412,6 @@ windowClass.setBrightness(brightness, (err) => {
     }
     console.info('Succeeded in setting the brightness.');
 });
-
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
@@ -5475,7 +5448,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setDimBehind<sup>(deprecated)</sup>
@@ -5507,7 +5479,6 @@ windowClass.setDimBehind(0.5, (err) => {
     }
     console.info('Succeeded in setting the dimness.');
 });
-
 ```
 
 ### setDimBehind<sup>(deprecated)</sup>
@@ -5543,7 +5514,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setFocusable<sup>(deprecated)</sup>
@@ -5576,7 +5546,6 @@ windowClass.setFocusable(isFocusable, (err) => {
     }
     console.info('Succeeded in setting the window to be focusable.');
 });
-
 ```
 
 ### setFocusable<sup>(deprecated)</sup>
@@ -5613,7 +5582,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -5646,7 +5614,6 @@ windowClass.setKeepScreenOn(isKeepScreenOn, (err) => {
     }
     console.info('Succeeded in setting the screen to be always on.');
 });
-
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -5683,7 +5650,6 @@ promise.then(() => {
 }).catch((err)=>{
     console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
 });
-
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -5715,7 +5681,6 @@ windowClass.setOutsideTouchable(true, (err) => {
     }
     console.info('Succeeded in setting the area to be touchable.');
 });
-
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -5751,7 +5716,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -5784,7 +5748,6 @@ windowClass.setPrivacyMode(isPrivacyMode, (err) => {
     }
     console.info('Succeeded in setting the window to privacy mode.');
 });
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -5821,7 +5784,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -5854,7 +5816,6 @@ windowClass.setTouchable(isTouchable, (err) => {
     }
     console.info('Succeeded in setting the window to be touchable.');
 });
-
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -5891,7 +5852,6 @@ promise.then(()=> {
 }).catch((err)=>{
     console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ## WindowStageEventType<sup>9+</sup>
@@ -5902,12 +5862,12 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Value | Description                                    |
-| ---------- | ----- | ---------------------------------------------- |
-| FOREGROUND | 1     | The window stage is running in the foreground. |
-| ACTIVE     | 2     | The window stage gains focus.                  |
-| INACTIVE   | 3     | The window stage loses focus.                  |
-| BACKGROUND | 4     | The window stage is running in the background. |
+| Name     | Value | Description                                    |
+| -------- | ----- | ---------------------------------------------- |
+| SHOWN    | 1     | The window stage is running in the foreground. |
+| ACTIVE   | 2     | The window stage gains focus.                  |
+| INACTIVE | 3     | The window stage loses focus.                  |
+| HIDDEN   | 4     | The window stage is running in the background. |
 
 ## WindowStage<sup>9+</sup>
 
@@ -5959,7 +5919,6 @@ class myAbility extends Ability {
         });
     }
 };
-
 ```
 
 ### getMainWindow<sup>9+</sup>
@@ -6005,7 +5964,6 @@ class myAbility extends Ability {
         });
     }
 };
-
 ```
 
 ### getMainWindowSync<sup>9+</sup>
@@ -6048,7 +6006,6 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
 
 ### createSubWindow<sup>9+</sup>
@@ -6101,9 +6058,7 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
-
 ### createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string): Promise&lt;Window&gt;
@@ -6157,7 +6112,6 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
 
 ### getSubWindow<sup>9+</sup>
@@ -6203,9 +6157,7 @@ class myAbility extends Ability {
         });
     }
 };
-
 ```
-
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
@@ -6248,9 +6200,7 @@ class myAbility extends Ability {
         })
     }
 };
-
 ```
-
 ### loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
@@ -6302,7 +6252,6 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6360,7 +6309,6 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
 
 ### loadContent<sup>9+</sup>
@@ -6410,7 +6358,6 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
 
 ### on('windowStageEvent')<sup>9+</sup>
@@ -6458,7 +6405,6 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
 
 ### off('windowStageEvent')<sup>9+</sup>
@@ -6503,7 +6449,6 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
 
 ### disableWindowDecor()<sup>9+</sup>
@@ -6538,7 +6483,6 @@ class myAbility extends Ability {
         windowStage.disableWindowDecor();
     }
 };
-
 ```
 
 ### setShowOnLockScreen()<sup>9+</sup>
@@ -6583,9 +6527,7 @@ class myAbility extends Ability {
         };
     }
 };
-
 ```
-
 ## TransitionContext<sup>9+</sup>
 
 Provides the context for the transition animation.
@@ -6646,7 +6588,6 @@ controller.animationForShown = (context : window.TransitionContext) => {
     }
     console.info('complete transition end');
 };
-
 ```
 
 ## TransitionController<sup>9+</sup>
@@ -6697,7 +6638,6 @@ controller.animationForShown = (context : window.TransitionContext) => {
     );
     console.info('complete transition end');
 };
-
 ```
 
 ### animationForHidden<sup>9+</sup>

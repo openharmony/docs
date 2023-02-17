@@ -50,14 +50,7 @@ SideBarContainer( type?: SideBarContainerType )
 | top | number | No| Spacing between the sidebar control button and the top of the container.<br>Default value: **48**, in vp|
 | width | number | No| Width of the sidebar control button.<br>Default value: **32**, in vp|
 | height | number | No| Height of the sidebar control button.<br>Default value: **32**, in vp|
-| icons | {<br>shown: string \| PixelMap \| [Resource](ts-types.md#resource) ,<br>hidden: string \| PixelMap \| [Resource](ts-types.md#resource) ,<br>switching?: string \| PixelMap \| [Resource](ts-types.md#resource) <br>} | No| Icons of the sidebar control button.<br> </p> - **shown**: icon of the control button when the sidebar is shown.<br>- **hidden**: icon of the control button when the sidebar is hidden.<br>- **switching**: icon of the control button when the sidebar is switching between the shown and hidden states.|
-
-## SideBarPosition<sup>9+</sup>
-
-| Name| Description|
-| -------- | -------- |
-| Start | The sidebar is on the left side of the container.|
-| End | The sidebar is on the right side of the container.|
+| icons | {<br>shown: string \| PixelMap \| [Resource](ts-types.md) ,<br>hidden: string \| PixelMap \| [Resource](ts-types.md) ,<br>switching?: string \| PixelMap \| [Resource](ts-types.md) <br>} | No| Icons of the sidebar control button.<br> </p> - **shown**: icon of the control button when the sidebar is shown.<br>- **hidden**: icon of the control button when the sidebar is hidden.<br>- **switching**: icon of the control button when the sidebar is switching between the shown and hidden states.|
 
 ## SideBarPosition<sup>9+</sup>
 

@@ -5,7 +5,7 @@
 
 触摸事件。
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -22,8 +22,8 @@
   | 成员变量名称 | 描述 | 
 | -------- | -------- |
 | [id](_o_h___native_x_component.md#id-22) = 0 | 手指的唯一标识符。 | 
-| [screenX](_o_h___native_x_component.md#screenx-23) = 0.0 | 触摸点相对于屏幕左边缘的x坐标。 | 
-| [screenY](_o_h___native_x_component.md#screeny-23) = 0.0 | 触摸点相对于屏幕上边缘的y坐标。 | 
+| [screenX](_o_h___native_x_component.md#screenx-23) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。 | 
+| [screenY](_o_h___native_x_component.md#screeny-23) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。 | 
 | [x](_o_h___native_x_component.md#x-23) = 0.0 | 触摸点相对于XComponent组件左边缘的x坐标。 | 
 | [y](_o_h___native_x_component.md#y-23) = 0.0 | 触摸点相对于XComponent组件上边缘的y坐标。 | 
 | [type](_o_h___native_x_component.md#type-22) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。 | 

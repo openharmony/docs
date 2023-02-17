@@ -74,7 +74,7 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -129,7 +129,7 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -528,7 +528,7 @@ async function createTonePlayerBefore(){
 | CONTENT_TYPE_SPEECH                | 1      | 语音。     |
 | CONTENT_TYPE_MUSIC                 | 2      | 音乐。     |
 | CONTENT_TYPE_MOVIE                 | 3      | 电影。     |
-| CONTENT_TYPE_SONIFICATION          | 4      | 加密类型。 |
+| CONTENT_TYPE_SONIFICATION          | 4      | 通知音。   |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | 铃声。     |
 
 ## StreamUsage
@@ -2320,10 +2320,6 @@ audioVolumeManager.on('volumeChange', (volumeEvent) => {
 ## AudioVolumeGroupManager<sup>9+</sup>
 
 管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](#getvolumegroupmanager9) 创建实例。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 ### setVolume<sup>9+</sup>
 
@@ -4534,16 +4530,26 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf, (err, writtenbytes) => {
-  if (writtenbytes < 0) {
-    console.error('write failed.');
-  } else {
-    console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-});
+let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * this.bufferSize,
+      length: this.bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    let writeSize = await new Promise((resolve,reject)=>{
+      this.audioRenderer.write(buf,(err,writeSize)=>{
+        if(err){
+          reject(err)
+        }else{
+          resolve(writeSize)
+        }
+      })
+    })	  
+}
 ```
 
 ### write<sup>8+</sup>
@@ -4577,18 +4583,22 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf).then((writtenbytes) => {
-  if (writtenbytes < 0) {
-      console.error('write failed.');
-  } else {
-      console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-}).catch((err) => {
-    console.error(`ERROR: ${err}`);
-});
+let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * this.bufferSize,
+      length: this.bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    try{
+       let writeSize = await this.audioRenderer.write(buf);
+    } catch(err) {
+       console.error(`audioRenderer.write err: ${err}`);
+    }   
+}
 ```
 
 ### getAudioTime<sup>8+</sup>

@@ -194,7 +194,7 @@ screenlock.lock().then((data) => {
 
 onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
-注册锁屏相关的系统事件。
+注册锁屏相关的系统事件，仅系统锁屏应用可调用。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 

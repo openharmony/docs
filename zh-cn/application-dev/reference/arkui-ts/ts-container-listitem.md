@@ -1,6 +1,6 @@
 # ListItem
 
-用来展示列表具体item，宽度默认充满List组件，必须配合List来使用。
+用来展示列表具体item，必须配合List来使用。
 
 >  **说明：**
 >
@@ -101,8 +101,7 @@ struct ListItemExample2 {
     Column() {
       List({space:10}) {
         ListItem() {
-          Text(this.message) {
-          }
+          Text(this.message)
           .width('100%')
           .height(100)
           .fontSize(16)
@@ -113,8 +112,7 @@ struct ListItemExample2 {
         .swipeAction({ end:this.itemEnd})
 
         ListItem() {
-          Text(this.message) {
-          }
+          Text(this.message)
           .width('100%')
           .height(100)
           .fontSize(16)

@@ -34,11 +34,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.|
 | fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.|
 | stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, the component does not have any stroke.|
-| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes. |
+| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes.|
 | strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.|
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.|
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.|
-| strokeMiterLimit | number \| string | 4 | Limit value when the sharp angle is drawn as a miter.|
+| strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>**NOTE**<br>This attribute must be set to a value greater than or equal to 1 and takes effect when **strokeLineJoin** is set to **LineJoinStyle.Miter**.|
 | strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Stroke opacity.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.|
 | strokeWidth | Length | 1 | Stroke width.|
 | antiAlias | boolean | true | Whether anti-aliasing is enabled.|

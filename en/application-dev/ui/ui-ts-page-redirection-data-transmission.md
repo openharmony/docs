@@ -61,7 +61,7 @@ The procedure below uses these two mechanisms for redirection between the page l
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ url: 'pages/FoodDetail' })
+         router.pushUrl({ url: 'pages/FoodDetail' })
        })
      }
    }
@@ -138,7 +138,7 @@ We have implemented the redirection and going back of the **FoodCategoryList** a
    The router API called by **FoodGridItem** also has supports redirection with parameters. The method of using the router API is similar to that of using the **Navigator**.
 
    ```ts
-   router.push({
+   router.pushUrl({
      url: 'pages/FoodDetail',
      params: { foodData: this.foodItem }
    })

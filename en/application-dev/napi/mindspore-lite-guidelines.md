@@ -24,7 +24,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 | ------------------ | ----------------- |
 |OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object.|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|Sets the number of runtime threads.|
-| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are categorized into little cores and big cores depending on the CPU frequency.|
+| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.|
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|Creates a runtime device information object.|
 |void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)|Destroys a context object.|
 |void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16)|Sets whether to enable float16 inference. This function is available only for CPU and GPU devices.|
@@ -61,7 +61,7 @@ The development process consists of the following main steps:
     The required model can be downloaded directly or obtained using the model conversion tool.
   
      - If the downloaded model is in the `.ms` format, you can use it directly for inference. The following uses the **mobilenetv2.ms** model as an example.
-     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/en/r1.5/use/benchmark_tool.html) to convert it to the `.ms` format.
+     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/en/r1.5/use/downloads.html#id1) to convert it to the `.ms` format.
 
 2. Create a context, and set parameters such as the number of runtime threads and device type.
   

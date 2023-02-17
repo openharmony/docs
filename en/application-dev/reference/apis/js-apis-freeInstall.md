@@ -1,4 +1,4 @@
-# Bundle.freeInstall
+# @ohos.bundle.freeInstall (freeInstall)
 
 The **Bundle.freeInstall** module provides APIs for setting and obtaining installation-free information and APIs for obtaining **BundlePackInfo** and **DispatchInfo**.
 
@@ -63,7 +63,7 @@ Sets an upgrade flag for a module. This API uses an asynchronous callback to ret
 
 | Name    | Type                       | Mandatory| Description                      |
 | ----------- | --------------------------- | ---- | ---------------------------- |
-| bundleName  | string                      | Yes  | Bundle name.            |
+| bundleName  | string                      | Yes  | Bundle name.    |
 | moduleName  | string                      | Yes  | Module name.          |
 | upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is for internal use only.      |
 | callback    | AsyncCallback\<void>        | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
@@ -113,7 +113,7 @@ Sets an upgrade flag for a module. This API uses a promise to return the result.
 
 | Name     | Type                       | Mandatory| Description                  |
 | ----------- | --------------------------- | ---- | ---------------------- |
-| bundleName  | string                      | Yes  | Bundle name.      |
+| bundleName  | string                      | Yes  | Bundle name.|
 | moduleName  | string                      | Yes  | Module name.    |
 | upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is for internal use only.|
 
@@ -166,7 +166,7 @@ Checks whether a module can be removed. This API uses an asynchronous callback t
 
 | Name     | Type                  | Mandatory| Description                                         |
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
-| bundleName | string                 | Yes  | Bundle name.                             |
+| bundleName | string                 | Yes  | Bundle name.                     |
 | moduleName | string                 | Yes  | Module name.                           |
 | callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the module can be removed, **true** is returned; otherwise, **false** is returned.|
 
@@ -266,7 +266,7 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This 
 | Name        | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName     | string                                                       | Yes  | Bundle name.                                            |
-| bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | Yes  | Flag of the bundle package.                                      |
+| bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | Yes  | Flag of the bundle package.                                    |
 | callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundlePackInfo** object obtained; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -299,7 +299,7 @@ try {
 
 getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
 
-Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This API uses a promise to return the result.
+Obtains **bundlePackInfo** based on **bundleName** and **bundleFlag**. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -311,7 +311,7 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This 
 
 | Name        | Type                             | Mandatory| Description                  |
 | -------------- | --------------------------------- | ---- | ---------------------- |
-| bundleName     | string                            | Yes  | Bundle name.      |
+| bundleName     | string                            | Yes  | Bundle name.|
 | bundlePackFlag | [BundlePackFlag](#bundlepackflag) | Yes  | Flag of the bundle package.|
 
 **Return value**
@@ -363,10 +363,6 @@ Obtains the dispatch information. This API uses an asynchronous callback to retu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**, and **data** is the [DispatchInfo](js-apis-bundleManager-dispatchInfo.md) object obtained. otherwise, **err** is an error object.|
 
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
 **Example**
 
 ```js
@@ -401,10 +397,6 @@ Obtains the dispatch information. This API uses a promise to return the result.
 | Type                                            | Description                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | Promise<[DispatchInfo](js-apis-bundleManager-dispatchInfo.md)> | Promise used to return the [DispatchInfo](js-apis-bundleManager-dispatchInfo.md) object obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 **Example**
 

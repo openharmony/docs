@@ -161,12 +161,13 @@
 
 ### FA模型下的示例代码
 ```js
-  //ability的onWindowStageCreate生命周期
-  onWindowStageCreate() {
-    var context = this.context
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  reqPermissions() {
+    let context = featureAbility.getContext();
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    context.requestPermissionsFromUser(array).then(function(data) {
+    context.requestPermissionsFromUser(array, 1).then(function(data) {
       console.log("data type:" + typeof(data));
       console.log("data:" + data);
       console.log("data permissions:" + data.permissions);
@@ -231,5 +232,5 @@
 
 针对访问控制，有以下相关实例可供参考：
 
-- [`AbilityAccessCtrl`：访问权限控制（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
-- [为应用添加运行时权限（ArkTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
+- [`AbilityAccessCtrl`：访问权限控制（ArkTS）（Full SDK）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [为应用添加运行时权限（ArkTS）（Full SDK）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

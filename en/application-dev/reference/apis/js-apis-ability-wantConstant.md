@@ -1,20 +1,20 @@
-# wantConstant
+# @ohos.ability.wantConstant (wantConstant)
 
 The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 6 and deprecated since API version 9. You are advised to use [@ohos.app.ability.wantConstant](js-apis-app-ability-wantConstant.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```js
+```ts
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
 ## wantConstant.Action
 
-Enumerates the action constants of the **Want** object.
+Enumerates the action constants of the **Want** object. **action** specifies the operation to execute.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -46,6 +46,7 @@ Enumerates the action constants of the **Want** object.
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | Action of selecting a file.                                         |
 |  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent.                         |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
+|  ACTION_APP_ACCOUNT_AUTH <sup>9+</sup>     | account.appAccount.action.auth     | Action of providing the authentication service.                                     |
 |  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | Action of downloading an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 |  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | Action of crowdtesting an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 |   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | Action of obtaining the sandbox flag.<br>**System API**: This is a system API and cannot be called by third-party applications. |
@@ -56,7 +57,7 @@ Enumerates the action constants of the **Want** object.
 
 ## wantConstant.Entity
 
-Enumerates the entity constants of the **Want** object.
+Enumerates the entity constants of the **Want** object. **entity** specifies additional information of the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -71,25 +72,25 @@ Enumerates the entity constants of the **Want** object.
 
 ## wantConstant.Flags
 
-Describes flags.
+Enumerates the flags that specify how the Want will be handled.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name                                | Value      | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                                 |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write data to the URI.                                 |
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Grants the permission to read the URI.                                 |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Grants the permission to write data to the URI.                                 |
 | FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | Returns the result to the ability.                                          |
 | FLAG_ABILITY_CONTINUATION            | 0x00000008 | Indicates whether the ability on the local device can be continued on a remote device.                  |
 | FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Indicates that a component does not belong to OHOS.                                        |
 | FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates that an ability is enabled.                                         |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Indicates the permission to make the URI persistent.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Indicates the permission to verify URIs by prefix matching.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Supports cross-device startup in a distributed scheduler.                              |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the Service ability is started regardless of whether the host application has been started.        |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Grants the permission to make the URI persistent.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Grants the permission to verify URIs by prefix matching.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Indicates the support for cross-device startup in the distributed scheduler.                              |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the ServiceAbility is started regardless of whether the host application has been started.        |
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that ability continuation is reversible.<br>**System API**: This is a system API and cannot be called by third-party applications.     |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                             |
 | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object in the **startAbility** API passed to [ohos.app.Context](js-apis-ability-context.md) and must be used together with **flag_ABILITY_NEW_MISSION**.|
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Indicates the operation of creating a mission on the history mission stack.                              |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Starts the mission on the top of the existing mission stack; creates an ability instance if no mission exists.|
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the history mission stack.                              |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

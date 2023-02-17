@@ -59,9 +59,9 @@ export default {
             clickAction: {
                 bundleName: 'com.example.testapp',
                 abilityName: 'notificationDemo',
-                uri: '/path/to/notification',
-            },
+                uri: '/path/to/notification'
+            }
         });
-    },
+    }
 }
 ```

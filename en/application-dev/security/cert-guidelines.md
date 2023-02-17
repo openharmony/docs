@@ -25,16 +25,14 @@ The table below describes the APIs used in this guide.
 
 | Instance         | API                                                      | Description                                        |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| cryptoCert | createX509Cert(inStream : EncodingBlob, callback : AsyncCallback<X509Cert>) : void | Parses certificate data to create an **X509Cert** instance. This API uses an asynchronous callback to return the result.|
-| cryptoCert | createX509Cert(inStream : EncodingBlob) : Promise<X509Cert>  | Parses certificate data to create an **X509Cert** instance. This API uses a promise to return the result. |
-| X509Cert        | verify(key : cryptoFramework.PubKey, callback : AsyncCallback<void>) : void  | Verifies the certificate signature. This API uses an asynchronous callback to return the result.                |
-| X509Cert        | verify(key : cryptoFramework.PubKey) : Promise<void>                         | Verifies the certificate signature. This API uses a promise to return the result.                 |
-| X509Cert        | getEncoded(callback : AsyncCallback<EncodingBlob>) : void    | Obtains serialized certificate data. This API uses an asynchronous callback to return the result.          |
-| X509Cert        | getEncoded() : Promise<EncodingBlob>                         | Obtains serialized certificate data. This API uses a promise to return the result.           |
-| X509Cert        | getPublicKey(callback : AsyncCallback<cryptoFramework.PubKey>) : void        | Obtains the certificate public key. This API uses an asynchronous callback to return the result.                |
-| X509Cert        | getPublicKey() : Promise<cryptoFramework.PubKey>                             | Obtains the certificate public key. This API uses a promise to return the result.                 |
-| X509Cert        | checkValidityWithDate(date: string, callback : AsyncCallback<void>) : void | Verifies the certificate validity period. This API uses an asynchronous callback to return the result.              |
-| X509Cert        | checkValidityWithDate(date: string) : Promise<void>          | Verifies the certificate validity period. This API uses a promise to return the result.               |
+| cryptoCert | createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void | Parses certificate data to create an **X509Cert** instance. This API uses an asynchronous callback to return the result.|
+| cryptoCert | createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>  | Parses certificate data to create an **X509Cert** instance. This API uses a promise to return the result. |
+| X509Cert        | verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void  | Verifies the certificate signature. This API uses an asynchronous callback to return the result.                |
+| X509Cert        | verify(key : cryptoFramework.PubKey) : Promise\<void>                         | Verifies the certificate signature. This API uses a promise to return the result.                 |
+| X509Cert        | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void    | Obtains serialized certificate data. This API uses an asynchronous callback to return the result.          |
+| X509Cert        | getEncoded() : Promise\<EncodingBlob>                         | Obtains serialized certificate data. This API uses a promise to return the result.           |
+| X509Cert        | getPublicKey() : cryptoFramework.PubKey                       | Obtains the certificate public key.                              |
+| X509Cert        | checkValidityWithDate(date: string) : void                   | Checks the certificate validity period.                             |
 | X509Cert        | getVersion() : number                                        | Obtains the certificate version.                                |
 | X509Cert        | getSerialNumber() : number                                   | Obtains the certificate serial number.                              |
 | X509Cert        | getIssuerName() : DataBlob                                   | Obtains the certificate issuer.                          |
@@ -73,7 +71,7 @@ let certData = "-----BEGIN CERTIFICATE-----\n"
 + "I1Lwu6in1ruflZhzseWulXwcITf3bm/Y5X1g1XFWQUH\n"
 + "-----END CERTIFICATE-----\n";
 
-// Convert the string into a Uint8Array.
+// Convert the certificate data form a string to a Uint8Array.
 function stringToUint8Array(str) {
     var arr = [];
     for (var i = 0, j = str.length; i < j; i++) {
@@ -95,11 +93,11 @@ function certSample() {
     cryptoCert.createX509Cert(encodingBlob, function (err, x509Cert) {
         if (err != null) {
             // Failed to create the X509Cert instance.
-            Console.log("createX509Cert failed, errCode: " + err.code + ", errMsg: " + err.message);
+            console.log("createX509Cert failed, errCode: " + err.code + ", errMsg: " + err.message);
             return;
         }
         // The X509Cert instance is successfully created.
-        Console.log("createX509Cert success");
+        console.log("createX509Cert success");
 
         // Obtain the certificate version.
         let version = x509Cert.getVersion();
@@ -108,51 +106,41 @@ function certSample() {
         x509Cert.getEncoded(function (err, data) {
             if (err != null) {
                 // Failed to obtain the serialized data of the certificate.
-                Console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
+                console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
             } else {
                 // The serialized data of the certificate is successfully obtained.
-                Console.log("getEncoded success");
+                console.log("getEncoded success");
             }
         });
-        
-        // Obtain the certificate public key.
-        x509Cert.getPublicKey(function (err, pubKey) {
-            if (err != null) {
-                // Failed to obtain the certificate public key.
-                Console.log("getPublicKey failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // The certificate public key is successfully obtained.
-                Console.log("getPublicKey success");
-            }
-        });
-        
+
         // Obtain the public key object using the getPublicKey() of the upper-level certificate object or this (self-signed) certificate object.
         let pubKey = null;
-        
+        try {
+            pubKey = x509Cert.getPublicKey();
+        } catch (error) {
+            console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
+        }
+
         // Verify the certificate signature.
         x509Cert.verify(pubKey, function (err, data) {
             if (err == null) {
                 // The signature verification is successful.
-                Console.log("verify success");
+                console.log("verify success");
             } else {
                 // The signature verification failed.
-                Console.log("verify failed, errCode: " + err.code + ", errMsg: " + err.message);
+                console.log("verify failed, errCode: " + err.code + ", errMsg: " + err.message);
             }
         });
-        
+
         // Time represented in a string.
         let date = "150527000001Z";
         
         // Verify the certificate validity period.
-        x509Cert.checkValidityWithDate(date, function (err, data) {
-            if (err != null) {
-                // Failed to verify the certificate validity period.
-                Console.log("checkValidityWithDate failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // The certificate validity period is verified successfully.
-                Console.log("checkValidityWithDate success");
-            }
-        });
+        try {
+            x509Cert.checkValidityWithDate(date);
+        } catch (error) {
+            console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+        }
     });
 }
 ```
@@ -178,31 +166,27 @@ The table below describes the APIs used in this guide.
 
 | Instance         | API                                                      | Description                                                        |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| cryptoCert | createX509Crl(inStream : EncodingBlob, callback : AsyncCallback<X509Crl>) : void | Parses the X.509 CRL data to create an **X509Crl** instance. This API uses an asynchronous callback to return the result.|
-| cryptoCert | createX509Crl(inStream : EncodingBlob) : Promise<X509Crl>    | Parses the X.509 CRL data to create an **X509Crl** instance. This API uses a promise to return the result. |
-| X509Crl         | isRevoked(cert : X509Cert, callback : AsyncCallback<boolean>) : void | Checks whether the certificate is revoked. This API uses an asynchronous callback to return the result.                          |
-| X509Crl         | isRevoked(cert : X509Cert) : Promise<boolean>                | Checks whether the certificate is revoked. This API uses a promise to return the result.                           |
-| X509Crl         | getType() : string                                           | Obtains the CRL type.                                        |
-| X509Crl         | getEncoded(callback : AsyncCallback<EncodingBlob>) : void    | Obtains the serialized CRL data. This API uses an asynchronous callback to return the result.                  |
-| X509Crl         | getEncoded() : Promise<EncodingBlob>                         | Obtains the serialized CRL data. This API uses a promise to return the result.                   |
-| X509Crl         | verify(key : cryptoFramework.PubKey, callback : AsyncCallback<void>) : void  | Verifies the CRL signature. This API uses an asynchronous callback to return the result.                        |
-| X509Crl         | verify(key : cryptoFramework.PubKey) : Promise<void>                         | Verifies the CRL signature. This API uses a promise to return the result.                         |
-| X509Crl         | getVersion() : number                                        | Obtains the CRL version.                                        |
+| cryptoCert | createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void | Parses the X.509 CRL data to create an **X509Crl** instance. This API uses an asynchronous callback to return the result.|
+| cryptoCert | createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>    | Parses the X.509 CRL data to create an **X509Crl** instance. This API uses a promise to return the result. |
+| X509Crl         | isRevoked(cert : X509Cert) : boolean                     |  Checks whether the certificate is revoked.                           |
+| X509Crl         | getType() : string                                           | Obtains the CRL type.                                       |
+| X509Crl         | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void    | Obtains the serialized CRL data. This API uses an asynchronous callback to return the result.                  |
+| X509Crl         | getEncoded() : Promise\<EncodingBlob>                         | Obtains the serialized CRL data. This API uses a promise to return the result.                   |
+| X509Crl         | verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void  | Verifies the CRL signature. This API uses an asynchronous callback to return the result.       |
+| X509Crl         | verify(key : cryptoFramework.PubKey) : Promise\<void>                         | Verifies the CRL signature. This API uses a promise to return the result.        |
+| X509Crl         | getVersion() : number                                        | Obtains the CRL version.                                       |
 | X509Crl         | getIssuerName() : DataBlob                                   | Obtains the CRL issuer.                                  |
 | X509Crl         | getLastUpdate() : string                                     | Obtains the date when the CRL was last updated.                              |
 | X509Crl         | getNextUpdate() : string                                     | Obtains the next update date of the CRL.                              |
-| X509Crl         | getRevokedCert(serialNumber : number, callback : AsyncCallback<X509CrlEntry>) : void | Obtains the revoked certificate in the CRL based on the specified serial number. This API uses an asynchronous callback to return the result.    |
-| X509Crl         | getRevokedCert(serialNumber : number) : Promise<X509CrlEntry> | Obtains the revoked certificate in the CRL based on the specified serial number. This API uses a promise to return the result.     |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert, callback : AsyncCallback<X509CrlEntry>) : void | Obtains the specified X.509 certificate from the CRL. This API uses an asynchronous callback to return the result.  |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert) : Promise<X509CrlEntry> | Obtains the specified X.509 certificate from the CRL. This API uses a promise to return the result.   |
-| X509Crl         | getRevokedCerts(callback : AsyncCallback<Array<X509CrlEntry>>) : void | Obtains all revoked certificates in the CRL. This API uses an asynchronous callback to return the result.            |
-| X509Crl         | getRevokedCerts() : Promise<Array<X509CrlEntry>>             | Obtains all revoked certificates in the CRL. This API uses a promise to return the result.             |
-| X509Crl         | getTbsInfo(callback : AsyncCallback<DataBlob>) : void        | Obtains the tbsCertList of the CRL. This API uses an asynchronous callback to return the result.               |
-| X509Crl         | getTbsInfo() : Promise<DataBlob>                             | Obtains the tbsCertList of the CRL. This API uses a promise to return the result.                |
+| X509Crl         | getRevokedCert(serialNumber : number) : X509CrlEntry         | Obtains the revoked certificate in the CRL based on the serial number.                      |
+| X509Crl         | getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry         | Obtains the revoked certificate in the CRL based on the X.509 certificate.                  |
+| X509Crl         | getRevokedCerts(callback : AsyncCallback\<Array\<X509CrlEntry>>) : void | Obtains all revoked certificates in the CRL. This API uses an asynchronous callback to return the result.   |
+| X509Crl         | getRevokedCerts() : Promise\<Array\<X509CrlEntry>>             | Obtains all revoked certificates in the CRL. This API uses a promise to return the result.             |
+| X509Crl         | getTbsInfo() : DataBlob                                      | Obtains **tbsCertList** of the CRL.                               |
 | X509Crl         | getSignature() : DataBlob                                    | Obtains the CRL signature.                                      |
-| X509Crl         | getSignatureAlgName() : string                               | Obtains the CRL signing algorithm.                              |
-| X509Crl         | getSignatureAlgOid() : string                                | Obtains the signing algorithm OID of the CRL.                               |
-| X509Crl         | getSignatureAlgParams() : DataBlob                           | Obtains the signing algorithm parameters of the CRL.                              |
+| X509Crl         | getSignatureAlgName() : string                               | Obtains the CRL signing algorithm.                               |
+| X509Crl         | getSignatureAlgOid() : string                                | Obtains the signing algorithm OID of the CRL.                                |
+| X509Crl         | getSignatureAlgParams() : DataBlob                           | Obtains the signing algorithm parameters of the CRL.                               |
 
 **How to Develop**
 
@@ -225,7 +209,7 @@ let crlData = "-----BEGIN X509 CRL-----\n"
 + "DrAA7hErVgXhtURLbAI=\n"
 + "-----END X509 CRL-----\n";
 
-// Convert the string into a Uint8Array.
+// Convert the certificate data form a string to a Uint8Array.
 function stringToUint8Array(str) {
     var arr = [];
     for (var i = 0, j = str.length; i < j; i++) {
@@ -247,11 +231,11 @@ function crlSample() {
     cryptoCert.createX509Crl(encodingBlob, function (err, x509Crl) {
         if (err != null) {
             // Failed to create the X509Crl instance.
-            Console.log("createX509Crl failed, errCode: " + err.code + ", errMsg: " + err.message);
+            console.log("createX509Crl failed, errCode: " + err.code + ", errMsg: " + err.message);
             return;
         }
         // The X509Crl instance is successfully created.
-        Console.log("createX509Crl success");
+        console.log("createX509Crl success");
 
         // Obtain the CRL version.
         let version = x509Crl.getVersion();
@@ -259,55 +243,46 @@ function crlSample() {
         // Obtain the serialized data of the CRL.
         x509Crl.getEncoded(function (err, data) {
             if (err != null) {
-                // Failed to obtain the serialized CRL data.
-                Console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
+                // Failed to obtain the serialized data of the certificate.
+                console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
             } else {
-                // The serialized CRL data is successfully obtained.
-                Console.log("getEncoded success");
+                // The serialized data of the certificate is successfully obtained.
+                console.log("getEncoded success");
             }
         });
-        
+
         // Create an X509Cert instance by using createX509Cert() of cryptoFramework.
         let x509Cert = null;
-        
         // Check whether the certificate is revoked.
-        x509Crl.isRevoked(x509Cert, function (err, isRevoked) {
-            if (err != null) {
-                // The operation fails.
-                Console.log("isRevoked failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // The operation is successful.
-                Console.log("isRevoked success, isRevoked? " + isRevoked);
-            }
-        });
-        
-        // Obtain the PubKey instance by using generateKeyPair() or convertKey() of AsyKeyGenerator. The process is omitted here.
+        try {
+            let revokedFlag = x509Crl.isRevoked(x509Cert);
+        } catch (error) {
+           console.log("isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
+        }
+
+        // The binary data of the public key needs to be passed to convertKey() of @ohos.security.cryptoFramework to obtain the PubKey object. The process is omitted here.
         let pubKey = null;
         
         // Verify the CRL signature.
         x509Crl.verify(pubKey, function (err, data) {
             if (err == null) {
-                // The operation is successful.
-                Console.log("verify success");
+                // The signature verification is successful.
+                console.log("verify success");
             } else {
-                // The operation fails.
-                Console.log("verify failed, errCode: " + err.code + ", errMsg: " + err.message);
+                // The signature verification failed.
+                console.log("verify failed, errCode: " + err.code + ", errMsg: " + err.message);
             }
         });
-        
+
         // Certificate serial number, which must be set based on the service.
         let serialNumber = 1000;
-        
+
         // Obtain the revoked certificate based on the serial number.
-        x509Crl.getRevokedCert(serialNumber, function (err, entry) {
-            if (err != null) {
-                // The operation fails.
-                Console.log("getRevokedCert failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // The operation is successful.
-                Console.log("getRevokedCert success");
-            }
-        });
+        try {
+            let entry = x509Crl.getRevokedCert(serialNumber);
+        } catch (error) {
+           console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+        }
     });
 }
 ```
@@ -327,8 +302,8 @@ The table below describes the APIs used in this guide.
 | Instance            | API                                                      | Description                            |
 | ------------------ | ------------------------------------------------------------ | -------------------------------- |
 | cryptoCert | createCertChainValidator(algorithm :string) : CertChainValidator | Creates a **CertChainValidator** instance.|
-| CertChainValidator | validate(certChain : CertChainData, callback : AsyncCallback<void>) : void | Verifies the certificate chain. This API uses an asynchronous callback to return the result.  |
-| CertChainValidator | validate(certChain : CertChainData) : Promise<void>          | Verifies the certificate chain. This API uses a promise to return the result.       |
+| CertChainValidator | validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void | Verifies the certificate chain. This API uses an asynchronous callback to return the result.  |
+| CertChainValidator | validate(certChain : CertChainData) : Promise\<void>          | Verifies the certificate chain. This API uses a promise to return the result.       |
 | CertChainValidator | algorithm : string                                           | Obtains the certificate chain validator algorithm.            |
 
 **How to Develop**
@@ -352,7 +327,7 @@ let secondCaCertData = "-----BEGIN CERTIFICATE-----\n"
 + "...\n"
 + "-----END CERTIFICATE-----\n";
 
-// Convert the certificate data form a string to a Uint8Array.
+// Convert the certificate data form a string to a Uint8Array..
 function stringToUint8Array(str) {
     var arr = [];
     for (var i = 0, j = str.length; i < j; i++) {
@@ -411,10 +386,10 @@ function certChainValidatorSample() {
     validator.validate(certChainData, function (err, data) {
         if (err != null) {
             // The operation fails.
-            Console.log("validate failed, errCode: " + err.code + ", errMsg: " + err.message);
+            console.log("validate failed, errCode: " + err.code + ", errMsg: " + err.message);
         } else {
             // The operation is successful.
-            Console.log("validate success");
+            console.log("validate success");
         }
 	});
 }
@@ -436,15 +411,13 @@ For details about the APIs, see [Certificate](../reference/apis/js-apis-cert.md)
 
 The table below describes the APIs used in this guide.
 
-| Instance      | API                                                     | Description                                      |
-| ------------ | ----------------------------------------------------------- | ------------------------------------------ |
-| X509CrlEntry | getEncoded(callback : AsyncCallback<EncodingBlob>) : void;  | Obtains the serialized data of the revoked certificate. This API uses an asynchronous callback to return the result.|
-| X509CrlEntry | getEncoded() : Promise<EncodingBlob>;                       | Obtains the serialized data of the revoked certificate. This API uses a promise to return the result. |
-| X509CrlEntry | getSerialNumber() : number;                                 | Obtains the serial number of the revoked certificate.                    |
-| X509CrlEntry | getCertIssuer(callback : AsyncCallback<DataBlob>) : void;   | Obtains the issuer of the revoked certificate. This API uses an asynchronous callback to return the result.      |
-| X509CrlEntry | getCertIssuer() : Promise<DataBlob>;                        | Obtains the issuer of the revoked certificate. This API uses a promise to return the result.       |
-| X509CrlEntry | getRevocationDate(callback : AsyncCallback<string>) : void; | Obtains the revocation date of the certificate. This API uses an asynchronous callback to return the result.  |
-| X509CrlEntry | getRevocationDate() : Promise<string>;                      | Obtains the issuer of the revoked certificate. This API uses a promise to return the result.   |
+| Instance      | API                                                     | Description                                     |
+| ------------ | ----------------------------------------------------------- | ---------------------------------------- |
+| X509CrlEntry | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void;  | Obtains the serialized data of the revoked certificate. This API uses an asynchronous callback to return the result.|
+| X509CrlEntry | getEncoded() : Promise\<EncodingBlob>;                       | Obtains the serialized data of the revoked certificate. This API uses a promise to return the result. |
+| X509CrlEntry | getSerialNumber() : number;                                  | Obtains the serial number of the revoked certificate.                   |
+| X509CrlEntry | getCertIssuer() : DataBlob;                                  | Obtains the issuer of the revoked certificate.                    |
+| X509CrlEntry | getRevocationDate() : string;                                | Obtains the revocation date of the revoked certificate.                 |
 
 **How to Develop**
 
@@ -460,39 +433,32 @@ function crlEntrySample() {
     
     // Obtain a revoked certificate instance. In this example, the instance is obtained by using getRevokedCert().
     let serialNumber = 1000;
-    x509Crl.getRevokedCert(serialNumber, function (err, crlEntry) {
+    let crlEntry = null;
+    try {
+        crlEntry = x509Crl.getRevokedCert(serialNumber);
+    } catch (error) {
+        console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    }
+
+    // Obtain the serial number of the revoked certificate.
+    serialNumber = crlEntry.getSerialNumber();
+    
+    // Obtain the revocation date of the revoked certificate.
+    try {
+        crlEntry.getRevocationDate();
+    } catch (error) {
+        console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+    }
+
+    // Obtain the serialized data of the revoked certificate instance.
+    crlEntry.getEncoded(function (err, data) {
         if (err != null) {
-            // Failed to obtain the revoked certificate instance.
-            Console.log("getRevokedCert failed, errCode: " + err.code + ", errMsg: " + err.message);
-            return;
+            // Failed to obtain the serialized data of the certificate.
+            console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
+        } else {
+            // The serialized data of the certificate is successfully obtained.
+            console.log("getEncoded success");
         }
-        // The revoked certificate instance is successfully obtained.
-        Console.log("getRevokedCert success");
-        
-        // Obtain the serial number of the revoked certificate.
-        let serialNumber = crlEntry.getSerialNumber();
-        
-        // Obtain the revocation date of the revoked certificate.
-        crlEntry.getRevocationDate(function (err, date) {
-            if (err != null) {
-                // Failed to obtain the revocation date.
-                Console.log("getRevocationDate failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // The revocation date is successfully obtained.
-                Console.log("getRevocationDate success, date is: " + date);
-            }
-        });
-        
-        // Obtain the serialized data of the revoked certificate instance.
-        crlEntry.getEncoded(function (err, data) {
-            if (err != null) {
-                // Failed to obtain the serialized data.
-                Console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // The serialized data is successfully obtained.
-                Console.log("getEncoded success");
-            }
-        });
     });
 }
 ```

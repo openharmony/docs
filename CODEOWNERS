@@ -275,6 +275,8 @@ zh-cn/application-dev/reference/apis/js-apis-application-StartOptions.md @RayShi
 zh-cn/application-dev/reference/apis/js-apis-application-staticSubscriberExtensionAbility.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-Want.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-inner-application-windowExtensionContext.md @ge-yafang
+zh-cn/application-dev/application-models/windowextensionability.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-appmanager.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
@@ -476,6 +478,7 @@ zh-cn/application-dev/reference/apis/js-apis-wifiext.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-window.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-worker.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-taskpool.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-xml.md @ge-yafang

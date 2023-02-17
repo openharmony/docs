@@ -4,11 +4,11 @@ The **\<ListItemGroup>** component is used to display list item groups. It must 
 
 > **NOTE**
 >
-> - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 ## Usage Guidelines
 If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Vertical**, the **height** attribute of the **\<ListItemGroup>** component cannot be set. The height of a **\<ListItemGroup>** component is the sum of its header height, footer height, and total height of the list items. If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Horizontal**, the **width** attribute of the **\<ListItemGroup>** component cannot be set. The width of a **\<ListItemGroup>** component is the sum of its header width, footer width, and total width of the list items.
 
-Currently, the list items in the **\<ListItemGroup>** component cannot be edited, selected, or dragged. That is, the **editable** and **selectable** attributes of these list items do not take effect.
+The list items in the **\<ListItemGroup>** component cannot be edited, selected, or dragged. That is, the **editable** and **selectable** attributes of these list items do not take effect.
 
 ## Child Components
 
@@ -38,28 +38,6 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 ```ts
 // xxx.ets
-function itemHeadBuilder(text: string) {
-  @Builder function itemHead() {
-    Text(text)
-      .fontSize(20)
-      .backgroundColor(0xAABBCC)
-      .width("100%")
-      .padding(10)
-  }
-  return itemHead
-}
-
-function itemFootBuilder(num: number) {
-  @Builder function itemFoot() {
-    Text(''Total lessons:'+ num")
-      .fontSize(16)
-      .backgroundColor(0xAABBCC)
-      .width("100%")
-      .padding(5)
-  }
-  return itemFoot
-}
-
 @Entry
 @Component
 struct ListItemGroupExample {
@@ -82,11 +60,27 @@ struct ListItemGroupExample {
     }
   ]
 
+  @Builder itemHead(text:string) {
+    Text(text)
+      .fontSize(20)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(10)
+  }
+
+  @Builder itemFoot(num:number) {
+    Text(''Total lessons:'+ num")
+      .fontSize(16)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(5)
+  }
+
   build() {
     Column() {
       List({ space: 20 }) {
         ForEach(this.timetable, (item) => {
-          ListItemGroup({ header:itemHeadBuilder(item.title), footer:itemFootBuilder(item.projects.length) }) {
+          ListItemGroup({ header:this.itemHead(item.title), footer:this.itemFoot(item.projects.length) }) {
             ForEach(item.projects, (project) => {
               ListItem() {
                 Text(project)

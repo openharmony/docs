@@ -14,7 +14,7 @@ import process from '@ohos.process';
 
 ## 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -28,9 +28,512 @@ import process from '@ohos.process';
 | tid<sup>8+</sup> | number | 是 | 否 | 当前进程的tid。 |
 
 
+## EventListener
+
+系统能力： SystemCapability.Utils.Lang
+
+| 名称 | 说明 |
+| -------- | -------- |
+| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
+
+
+## process.isIsolatedProcess<sup>8+</sup>
+
+isIsolatedProcess(): boolean
+
+判断进程是否被隔离。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回判断结果，true表示进程被隔离，false表示未被隔离。|
+
+**示例：**
+
+```js
+let result = process.isIsolatedProcess();
+```
+
+
+## process.is64Bit<sup>8+</sup>
+
+is64Bit(): boolean
+
+判断运行环境是否64位。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回判断结果，如果为64位环境返回true，否则返回false。|
+
+**示例：**
+
+```js
+let result = process.is64Bit();
+```
+
+
+## process.getStartRealtime<sup>8+</sup>
+
+getStartRealtime(): number
+
+获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回经过的实时时间。单位：毫秒|
+
+**示例：**
+
+```js
+let realtime = process.getStartRealtime();
+```
+
+## process.getPastCpuTime<sup>8+</sup>
+
+getPastCpuTime(): number
+
+获取进程启动到当前时间的CPU时间（以毫秒为单位）。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回经过的CPU时间。单位：毫秒|
+
+**示例：**
+
+```js
+let result = process.getPastCpuTime() ;
+```
+
+
+## process.runCmd
+
+runCmd(command: string, options?: { timeout?: number, killSignal?: number | string, maxBuffer?: number }): ChildProcess
+
+通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
+
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| command | string | 是 | shell命令。 |
+| options | Object | 否 | 相关选项参数。 |
+
+**表1** options
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| timeout | number | 否 | 子进程运行的毫秒数，当子进程运行时间超出此时间，则父进程发送killSignal信号给子进程。timeout默认为0。 |
+| killSignal | number&nbsp;\|&nbsp;string | 否 | 子进程运行时间超出timeout时，父进程发送killSignal&nbsp;信号给子进程。killSignal&nbsp;默认为'SIGTERM'。 |
+| maxBuffer | number | 否 | 子进程标准输入输出的最大缓冲区大小，当超出此大小时则终止子进程。maxBuffer默认1024\*1024。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ChildProcess](#childprocess) | 子进程对象。 |
+
+**示例：**
+
+```js
+let child = process.runCmd('ls', { maxBuffer : 2 });
+let result = child.wait();
+child.getOutput.then(val=>{
+    console.log("child.getOutput = " + val);
+})
+```
+
+
+## process.abort
+
+abort(): void
+
+该方法会导致进程立即退出并生成一个核心文件，谨慎使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+```js
+process.abort();
+```
+
+
+## process.on
+
+on(type: string, listener: EventListener): void
+
+存储用户所触发的事件。
+
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 存储事件的type。 |
+| listener | [EventListener](#eventlistener) | 是 | 回调的事件。 |
+
+**示例：**
+
+```js
+process.on("data", (e)=>{
+    console.log("data callback");
+})
+```
+
+
+## process.off
+
+off(type: string): boolean
+
+删除用户存储的事件。
+
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 删除事件的type。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 事件删除成功则返回true，没有成功则为false。|
+
+**示例：**
+
+```js
+process.on("data", (e)=>{
+    console.log("data callback");
+})
+let result = process.off("data");
+```
+
+
+## process.cwd
+
+cwd(): string
+
+获取进程的工作目录。
+
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string| 返回当前进程的工作目录。 |
+
+**示例：**
+
+```js
+let path = process.cwd();
+```
+
+
+## process.chdir
+
+chdir(dir: string): void
+
+更改进程的当前工作目录。
+
+**系统接口：** 此接口为系统接口。
+
+此接口仅用于对应用的测试。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dir | string | 是 | 路径。 |
+
+**示例：**
+
+```js
+process.chdir('/system');
+```
+
+
+## process.uptime
+
+uptime(): number
+
+获取当前系统已运行的秒数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 当前系统已运行的秒数。 |
+
+**示例：**
+
+```js
+let time = process.uptime();
+```
+
+
+## process.kill<sup>(deprecated)</sup>
+
+kill(signal: number, pid: number): boolean
+
+发送signal到指定的进程，结束指定进程。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[kill<sup>9+</sup>](#kill9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pid | number | 是 | 进程的id。 |
+| signal | number | 是 | 发送的信号。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 信号是否发送成功。 |
+
+**示例：**
+
+```js
+let pres = process.pid
+let result = process.kill(28, pres)
+```
+
+
+## process.exit<sup>(deprecated)</sup>
+
+exit(code: number): void
+
+终止程序。
+
+请谨慎使用此接口，此接口调用后应用会退出，如果入参非0会产生数据丢失或者异常情况。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[exit<sup>9+</sup>](#exit9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| code | number | 是 | 进程的退出码。 |
+
+**示例：**
+
+```js
+process.exit(0);
+```
+
+
+## process.getUidForName<sup>(deprecated)</sup>
+
+getUidForName(v: string): number
+
+通过进程名获取进程uid。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getUidForName<sup>9+</sup>](#getuidforname9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | string | 是 | 进程名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回进程uid。|
+
+**示例：**
+
+```js
+let pres = process.getUidForName("tool")
+```
+
+
+## process.getThreadPriority<sup>(deprecated)</sup>
+
+getThreadPriority(v: number): number
+
+根据指定的tid获取线程优先级。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getThreadPriority<sup>9+</sup>](#getthreadpriority9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | number | 是 | 指定的线程tid。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回线程的优先级。 |
+
+**示例：**
+
+```js
+let tid = process.tid;
+let pres = process.getThreadPriority(tid);
+```
+
+
+## process.isAppUid<sup>(deprecated)</sup>
+
+isAppUid(v: number): boolean
+
+判断uid是否属于应用程序。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[isAppUid<sup>9+</sup>](#isappuid9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| v | number | 是 | 应用程序的uid。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 返回判断结果，如果为应用程序的uid返回true，否则返回false。|
+
+**示例：**
+
+```js
+let result = process.isAppUid(688);
+```
+
+
+## process.getSystemConfig<sup>(deprecated)</sup>
+
+getSystemConfig(name: number): number
+
+获取系统配置信息。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getSystemConfig<sup>9+</sup>](#getsystemconfig9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | number | 是 | 指定系统配置参数名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回系统配置信息。 |
+
+**示例：**
+
+```js
+let _SC_ARG_MAX = 0
+let pres = process.getSystemConfig(_SC_ARG_MAX)
+```
+
+
+## process.getEnvironmentVar<sup>(deprecated)</sup>
+
+getEnvironmentVar(name: string): string
+
+获取环境变量对应的值。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getEnvironmentVar<sup>9+</sup>](#getenvironmentvar9)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 环境变量名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回环境变量名对应的value。 |
+
+**示例：**
+
+```js
+let pres = process.getEnvironmentVar("PATH")
+```
+
+
 ## ProcessManager<sup>9+</sup>	
 
 提供用于新增进程的抛异常接口。
+
+通过自身的构造来获取ProcessManager对象。
 
 ### isAppUid<sup>9+</sup>
 
@@ -50,7 +553,7 @@ isAppUid(v: number): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回判断结果，如果返回true表示为应用程序的uid。|
+| boolean | 返回判断结果，如果为应用程序的uid返回true，否则返回false。|
 
 **示例：**
 
@@ -150,7 +653,7 @@ let pres = pro.getSystemConfig(_SC_ARG_MAX);
 
 getEnvironmentVar(name: string): string
 
-用该方法获取环境变量对应的值。
+获取环境变量对应的值。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -164,7 +667,7 @@ getEnvironmentVar(name: string): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回环境变量名对应的value。 |
+| string | 返回环境变量名对应的值。 |
 
 **示例：**
 
@@ -180,7 +683,7 @@ exit(code: number): void
 
 终止程序。
 
-请谨慎使用此接口。
+请谨慎使用此接口，此接口调用后应用会退出，如果入参非0会产生数据丢失或者异常情况。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -230,11 +733,15 @@ let result = pro.kill(28, pres);
 
 ## ChildProcess
 
-主进程可以获取子进程的标准输入输出，以及发送信号和关闭子进程。
+ChildProcess对象为创建的新的子进程，主进程可以获取子进程的标准输入输出，以及发送信号和关闭子进程，可以通过[process.runCmd](#processruncmd)获取ChildProcess对象。
+
+**系统接口：** 此接口为系统接口。
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -374,468 +881,4 @@ kill(signal: number | string): void
 ```js
 let child = process.runCmd('sleep 5; ls');
 child.kill(9);
-```
-
-
-## process.isIsolatedProcess<sup>8+</sup>
-
-isIsolatedProcess(): boolean
-
-判断进程是否被隔离。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回判断结果，如果返回true表示进程被隔离。 |
-
-**示例：**
-
-```js
-let result = process.isIsolatedProcess();
-```
-
-
-## process.isAppUid<sup>8+</sup>
-
-isAppUid(v: number): boolean
-
-判断uid是否属于应用程序。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | number | 是 | 应用程序的uid。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回判断结果，如果返回true表示为应用程序的uid。|
-
-**示例：**
-
-```js
-let result = process.isAppUid(688);
-```
-
-
-## process.is64Bit<sup>8+</sup>
-
-is64Bit(): boolean
-
-判断运行环境是否64位。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回判断结果，如果返回true表示为64位环境。 |
-
-**示例：**
-
-```js
-let result = process.is64Bit();
-```
-
-
-## process.getUidForName<sup>8+</sup>
-
-getUidForName(v: string): number
-
-通过进程名获取进程uid。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | string | 是 | 进程名。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回进程uid。|
-
-**示例：**
-
-```js
-let pres = process.getUidForName("tool")
-```
-
-
-## process.getThreadPriority<sup>8+</sup>
-
-getThreadPriority(v: number): number
-
-根据指定的tid获取线程优先级。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| v | number | 是 | 指定的线程tid。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回线程的优先级。 |
-
-**示例：**
-
-```js
-let tid = process.tid;
-let pres = process.getThreadPriority(tid);
-```
-
-
-## process.getStartRealtime<sup>8+</sup>
-
-getStartRealtime(): number
-
-获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回经过的实时时间。|
-
-**示例：**
-
-```js
-let realtime = process.getStartRealtime();
-```
-
-## process.getPastCpuTime<sup>8+</sup>
-
-getPastCpuTime(): number
-
-获取进程启动到当前时间的CPU时间（以毫秒为单位）。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回经过的CPU时间。 |
-
-**示例：**
-
-```js
-let result = process.getPastCpuTime() ;
-```
-
-
-## process.getSystemConfig<sup>8+</sup>
-
-getSystemConfig(name: number): number
-
-获取系统配置信息。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | number | 是 | 指定系统配置参数名。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回系统配置信息。 |
-
-**示例：**
-
-```js
-let _SC_ARG_MAX = 0
-let pres = process.getSystemConfig(_SC_ARG_MAX)
-```
-
-
-## process.getEnvironmentVar<sup>8+</sup>
-
-getEnvironmentVar(name: string): string
-
-用该方法获取环境变量对应的值。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 环境变量名。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 返回环境变量名对应的value。 |
-
-**示例：**
-
-```js
-let pres = process.getEnvironmentVar("PATH")
-```
-
-
-## process.runCmd
-
-runCmd(command: string, options?: { timeout?: number, killSignal?: number | string, maxBuffer?: number }): ChildProcess
-
-通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
-
-**系统接口：** 此接口为系统接口。
-
-此接口仅用于对应用的测试。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| command | string | 是 | shell命令。 |
-| options | Object | 否 | 相关选项参数。 |
-
-**表1** options
-
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| timeout | number | 否 | 子进程运行的ms数，当子进程运行时间超出此时间，则父进程发送killSignal信号给子进程。timeout默认为0。 |
-| killSignal | number&nbsp;\|&nbsp;string | 否 | 子进程运行时间超出timeout时，父进程发送killSignal&nbsp;信号给子进程。killSignal&nbsp;默认为'SIGTERM'。 |
-| maxBuffer | number | 否 | 子进程标准输入输出的最大缓冲区大小，当超出此大小时则终止子进程。maxBuffer默认1024\*1024。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [ChildProcess](#childprocess) | 子进程对象。 |
-
-**示例：**
-
-```js
-let child = process.runCmd('ls', { maxBuffer : 2 });
-let result = child.wait();
-child.getOutput.then(val=>{
-    console.log("child.getOutput = " + val);
-})
-```
-
-
-## process.abort
-
-abort(): void
-
-该方法会导致进程立即退出并生成一个核心文件，谨慎使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```js
-process.abort();
-```
-
-
-## process.on
-
-on(type: string, listener: EventListener): void
-
-存储用户所触发的事件。
-
-**系统接口：** 此接口为系统接口。
-
-此接口仅用于对应用的测试。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 存储事件的type。 |
-| listener | EventListener | 是 | 回调的事件。 |
-
-**表2** EventListener
-
-| 名称 | 说明 |
-| -------- | -------- |
-| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
-
-**示例：**
-
-```js
-process.on("data", (e)=>{
-    console.log("data callback");
-})
-```
-
-
-## process.off
-
-off(type: string): boolean
-
-删除用户存储的事件。
-
-**系统接口：** 此接口为系统接口。
-
-此接口仅用于对应用的测试。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 删除事件的type。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 事件是否删除成功。 |
-
-**示例：**
-
-```js
-process.on("data", (e)=>{
-    console.log("data callback");
-})
-let result = process.off("data");
-```
-
-
-## process.exit
-
-exit(code: number): void
-
-终止程序。
-
-请谨慎使用此接口。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| code | number | 是 | 进程的退出码。 |
-
-**示例：**
-
-```js
-process.exit(0);
-```
-
-
-## process.cwd
-
-cwd(): string
-
-用该方法获取进程的工作目录。
-
-**系统接口：** 此接口为系统接口。
-
-此接口仅用于对应用的测试。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```js
-let path = process.cwd();
-```
-
-
-## process.chdir
-
-chdir(dir: string): void
-
-更改进程的当前工作目录。
-
-**系统接口：** 此接口为系统接口。
-
-此接口仅用于对应用的测试。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| dir | string | 是 | 路径。 |
-
-**示例：**
-
-```js
-process.chdir('/system');
-```
-
-
-## process.uptime
-
-uptime(): number
-
-获取当前系统已运行的秒数。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 当前系统已运行的秒数。 |
-
-**示例：**
-
-```js
-let time = process.uptime();
-```
-
-
-## process.kill
-
-kill(signal: number, pid: number): boolean
-
-发送signal到指定的进程，结束指定进程。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| pid | number | 是 | 进程的id。 |
-| signal | number | 是 | 发送的信号。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 信号是否发送成功。 |
-
-**示例：**
-
-```js
-let pres = process.pid
-let result = process.kill(28, pres)
 ```

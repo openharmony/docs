@@ -67,7 +67,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | 是 | WindowStage相关信息。 | 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 | 
 
 **示例：**
     
@@ -111,7 +111,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | 是 | WindowStage相关信息。 | 
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 | 
 
 **示例：**
     
@@ -219,7 +219,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-当ability的启动模式设置为单例时回调会被调用。
+当传入新的Want，ability再次被拉起时会回调执行该方法。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -234,8 +234,9 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
     
   ```ts
   class myAbility extends Ability {
-      onNewWant(want) {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
+          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
       }
   }
   ```
@@ -325,7 +326,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+  | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
   | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
@@ -410,8 +411,8 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
       return true;
     }
   };
-  var method = 'call_Function'; // 约定的通知消息字符串
-  var caller;
+  let method = 'call_Function'; // 约定的通知消息字符串
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -494,8 +495,8 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
       return true;
     }
   };
-  var method = 'call_Function';
-  var caller;
+  let method = 'call_Function';
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -545,7 +546,7 @@ release(): void;
     
   ```ts
   import Ability from '@ohos.application.Ability';
-  var caller;
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -586,7 +587,7 @@ release(): void;
     
   ```ts
   import Ability from '@ohos.application.Ability';
-  var caller;
+  let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
@@ -664,7 +665,7 @@ on(method: string, callback: CalleeCallBack): void;
           return true;
       }
   };
-  var method = 'call_Function';
+  let method = 'call_Function';
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble("test", "");
@@ -711,7 +712,7 @@ off(method: string): void;
     
   ```ts
   import Ability from '@ohos.application.Ability';
-  var method = 'call_Function';
+  let method = 'call_Function';
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');

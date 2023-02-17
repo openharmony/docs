@@ -1,4 +1,4 @@
-# moduleInfo
+# ModuleInfo
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -11,4 +11,4 @@
 | 名称            | 类型   | 可读 | 可写 | 说明     |
 | --------------- | ------ | ---- | ---- | -------- |
 | moduleName      | string | 是   | 否   | 模块名称。 |
-| moduleSourceDir | string | 是   | 否   | 安装目录。 |
+| moduleSourceDir | string | 是   | 否   | 安装目录。不能拼接路径访问资源文件，请使用[资源管理接口]( js-apis-resource-manager.md )访问资源。 |

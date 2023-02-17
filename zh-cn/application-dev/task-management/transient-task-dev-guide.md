@@ -28,57 +28,64 @@
 1、当应用需要开始执行一个耗时的任务时。调用短时任务申请接口，并且在任务执行完后，调用短时任务取消接口。
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 
-let delayInfo;
-let id;
+let id; // 申请延迟挂起任务ID
+let delayTime; // 本次申请延迟挂起任务的剩余时间
 
 // 申请延迟挂起
 function requestSuspendDelay() {
-    let myReason = 'test requestSuspendDelay';
-    delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.info("Request suspension delay will time out.");
-        // 此回调函数执行，表示应用的延迟挂起申请即将超时，应用需要执行一些清理和标注工作。
-    });
+  let myReason = 'test requestSuspendDelay'; // 申请原因
 
+  try {
+    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+      // 此回调函数执行，表示应用的延迟挂起申请即将超时，应用需要执行一些清理和标注工作，并取消延时挂起
+      console.info("[backgroundTaskManager] Request suspension delay will time out.");
+      backgroundTaskManager.cancelSuspendDelay(id);
+    })
     id = delayInfo.requestId;
-    console.info("requestId is: " + id);
+    delayTime = delayInfo.actualDelayTime;
+    console.info("[backgroundTaskManager] The requestId is: " + id);
+    console.info("[backgroundTaskManager]The actualDelayTime is: " + delayTime);
+  } catch (error) {
+    console.error(`[backgroundTaskManager] requestSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+  }
 }
 
 // 获取进入挂起前的剩余时间
-function getRemainingDelayTime() {
-    let delayTime = 0;
-    backgroundTaskManager.getRemainingDelayTime(id).then((res) => {
-        console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-        delayTime = res;
-    }).catch((err) => {
-        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
-    });
-    return delayTime;
+async function getRemainingDelayTime() {
+  try {
+    await backgroundTaskManager.getRemainingDelayTime(id).then(res => {
+      console.log('[backgroundTaskManager] promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+    }).catch(error => {
+      console.error(`[backgroundTaskManager] promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+    })
+  } catch (error) {
+    console.error(`[backgroundTaskManager] promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+  }
 }
 
 // 取消延迟挂起
 function cancelSuspendDelay() {
-    backgroundTaskManager.cancelSuspendDelay(id);
+  backgroundTaskManager.cancelSuspendDelay(id);
 }
 
-function performingLongRunningTask() {
-    // 在执行具体的耗时任务前，调用短时任务申请接口。向系统申请延迟挂起，延长应用的后台执行时间。
-    requestSuspendDelay();
+async function performingLongRunningTask() {
+  // 在执行具体的耗时任务前，调用短时任务申请接口。向系统申请延迟挂起，延长应用的后台执行时间。
+  requestSuspendDelay();
 
-    // 通过剩余时间查询接口，获取可用时间配额。
-    let delayTime = getRemainingDelayTime();
+  // 根据需要，通过剩余时间查询接口，获取可用时间配额。
+  await getRemainingDelayTime();
 
-    if (delayTime < 0) { // 如果时间配置少于一定的大小，考虑取消此次耗时操作。
-        // 处理短时任务配额时间不够的场景
-
-        cancelSuspendDelay();
-        return;
-    }
-
-    // 此处执行具体的耗时任务。
-
-    // 耗时任务执行完，调用短时任务取消接口，避免配额浪费。
+  if (delayTime < 0) { // 如果时间配置少于一定的大小，考虑取消此次耗时操作。
+    // 处理短时任务配额时间不够的场景
     cancelSuspendDelay();
+    return;
+  }
+
+  // 此处执行具体的耗时任务
+
+  // 耗时任务执行完，调用短时任务取消接口，避免配额浪费
+  cancelSuspendDelay();
 }
 ```

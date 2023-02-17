@@ -1,8 +1,8 @@
-# continuationManager
+# @ohos.continuation.continuationManager (continuationManager)
 
 The **continuationManager** module provides the continuation management entry. You can use the APIs of this module to connect to and cancel the continuation management service, subscribe to and unsubscribe from device connection events, start the device selection module, and update the device connection state.
 
-Currently, this module provides incomplete functions, and its APIs are mainly used to start the device selection module. **The continuation capability is not available for application development.**
+Currently, this module provides incomplete functions, and its APIs are mainly used to start the device selection module. The continuation capability is not available for application development.
 
 > **NOTE**
 > 
@@ -38,7 +38,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 
 **Example**
 
@@ -79,7 +79,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -129,7 +129,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null. |
-| 29360207 | The maximum number of registrations exceeded. |
+| 29360207 | The number of registrations has reached the upper limit. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -155,8 +155,6 @@ registerContinuation(callback: AsyncCallback\<number>): void;
 
 Registers the continuation management service and obtains a token. This API does not involve any filter parameters and uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -171,8 +169,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
@@ -199,8 +196,6 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 Registers the continuation management service and obtains a token. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -216,8 +211,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
@@ -247,8 +241,6 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
 
 Registers the continuation management service and obtains a token. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -269,8 +261,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
+| 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
 **Example**
@@ -301,7 +292,7 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondeviceselected9) instead.
+> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondeviceconnect9) instead.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
@@ -320,8 +311,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null | 7 |
-| 29360208 | The token has not registered. |
-| 29360209 | Callback has been registered. |
+| 29360208 | The token is not registered. |
+| 29360209 | The callback has been registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -340,7 +331,7 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondeviceunselected9) instead.
+> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondevicedisconnect9) instead.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
@@ -359,8 +350,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360209 | Callback has been registered. |
+| 29360208 | The token is not registered. |
+| 29360209 | The callback has been registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -377,7 +368,7 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 Unsubscribes from device connection events. This API uses an asynchronous callback to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdeviceselected9) instead.
+> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdeviceconnect9) instead.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
@@ -396,8 +387,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -416,7 +407,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 Unsubscribes from device disconnection events. This API uses an asynchronous callback to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdeviceunselected9) instead.
+> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdevicedisconnect9) instead.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
@@ -435,8 +426,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
 | 29360214 | The type of callback is not supported. |
 
 **Example**
@@ -447,13 +438,11 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   });
   ```
 
-## continuationManager.on("deviceSelected")<sup>9+</sup>
+## continuationManager.on("deviceConnect")<sup>9+</sup>
 
-on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void;
+on(type: "deviceConnect", token: number, callback: Callback\<Array\<ContinuationResult>>): void;
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
@@ -461,7 +450,7 @@ Subscribes to device connection events. This API uses an asynchronous callback t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is fixed at **deviceSelected**.|
+  | type | string | Yes| Event type. The value is fixed at **deviceConnect**.|
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
   | callback | Callback\<Array\<[ContinuationResult](js-apis-continuation-continuationResult.md)>> | Yes| Callback invoked when a device is selected from the device list provided by the device selection module. This callback returns the device ID, type, and name.|
 
@@ -471,9 +460,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -481,12 +469,12 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   let token = 1;
   try {
-    continuationManager.on("deviceSelected", token, (data) => {
-      console.info('onDeviceSelected len: ' + data.length);
+    continuationManager.on("deviceConnect", token, (data) => {
+      console.info('onDeviceConnect len: ' + data.length);
       for (let i = 0; i < data.length; i++) {
-        console.info('onDeviceSelected deviceId: ' + JSON.stringify(data[i].id));
-        console.info('onDeviceSelected deviceType: ' + JSON.stringify(data[i].type));
-        console.info('onDeviceSelected deviceName: ' + JSON.stringify(data[i].name));
+        console.info('onDeviceConnect deviceId: ' + JSON.stringify(data[i].id));
+        console.info('onDeviceConnect deviceType: ' + JSON.stringify(data[i].type));
+        console.info('onDeviceConnect deviceName: ' + JSON.stringify(data[i].name));
       }
     });
   } catch (err) {
@@ -494,23 +482,21 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   }
   ```
 
-## continuationManager.on("deviceUnselected")<sup>9+</sup>
+## continuationManager.on("deviceDisconnect")<sup>9+</sup>
 
-on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void;
+on(type: "deviceDisconnect", token: number, callback: Callback\<Array\<string>>): void;
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is fixed at **deviceUnselected**.|
+  | type | string | Yes| Event type. The value is fixed at **deviceDisconnect**.|
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | callback | Callback\<Array\<[ContinuationResult](js-apis-continuation-continuationResult.md)>> | Yes| Callback invoked when a device is unselected from the device list provided by the device selection module. This callback returns the device ID, type, and name.|
+  | callback | Callback\<Array\<string>> | Yes| Callback invoked when a device is unselected from the device list provided by the device selection module. This callback returns the device ID, type, and name.|
 
 **Error codes**
 
@@ -518,9 +504,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -528,27 +513,23 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   let token = 1;
   try {
-    continuationManager.on("deviceUnselected", token, (data) => {
-      console.info('onDeviceUnselected len: ' + data.length);
+    continuationManager.on("deviceDisconnect", token, (data) => {
+      console.info('onDeviceDisconnect len: ' + data.length);
       for (let i = 0; i < data.length; i++) {
-        console.info('onDeviceUnselected deviceId: ' + JSON.stringify(data[i].id));
-        console.info('onDeviceUnselected deviceType: ' + JSON.stringify(data[i].type));
-        console.info('onDeviceUnselected deviceName: ' + JSON.stringify(data[i].name));
+        console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data[i]));
       }
-      console.info('onDeviceUnselected finished.');
+      console.info('onDeviceDisconnect finished.');
     });
   } catch (err) {
     console.error('on failed, cause: ' + JSON.stringify(err));
   }
   ```
 
-## continuationManager.off("deviceSelected")<sup>9+</sup>
+## continuationManager.off("deviceConnect")<sup>9+</sup>
 
-off(type: "deviceSelected", token: number): void;
+off(type: "deviceConnect", token: number): void;
 
 Unsubscribes from device connection events.
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
@@ -556,7 +537,7 @@ Unsubscribes from device connection events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is fixed at **deviceSelected**.|
+  | type | string | Yes| Event type. The value is fixed at **deviceConnect**.|
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
 
 **Error codes**
@@ -565,9 +546,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -575,19 +555,17 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   let token = 1;
   try {
-    continuationManager.off("deviceSelected", token);
+    continuationManager.off("deviceConnect", token);
   } catch (err) {
     console.error('off failed, cause: ' + JSON.stringify(err));
   }
   ```
 
-## continuationManager.off("deviceUnselected")<sup>9+</sup>
+## continuationManager.off("deviceDisconnect")<sup>9+</sup>
 
-off(type: "deviceUnselected", token: number): void;
+off(type: "deviceDisconnect", token: number): void;
 
 Unsubscribes from device disconnection events.
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
@@ -595,7 +573,7 @@ Unsubscribes from device disconnection events.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is fixed at **deviceUnselected**.|
+  | type | string | Yes| Event type. The value is fixed at **deviceDisconnect**.|
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
 
 **Error codes**
@@ -604,9 +582,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
 
 **Example**
@@ -614,7 +591,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   ```ts
   let token = 1;
   try {
-    continuationManager.off("deviceUnselected", token);
+    continuationManager.off("deviceDisconnect", token);
   } catch (err) {
     console.error('off failed, cause: ' + JSON.stringify(err));
   }
@@ -645,9 +622,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -689,9 +666,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -741,9 +718,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object |
 | 7 | The object is null |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
 | 29360216 | Invalid continuation mode. |
 
 **Example**
@@ -768,8 +745,6 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 Starts the device selection module to show the list of available devices on the network. This API does not involve any filter parameters and uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -785,9 +760,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -812,8 +786,6 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 Starts the device selection module to show the list of available devices on the network. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -830,9 +802,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -860,8 +831,6 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 Starts the device selection module to show the list of available devices on the network. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -883,9 +852,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -934,10 +902,10 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
-| 29360215 | Invalid connect state. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
+| 29360215 | Invalid connection state. |
 
 **Example**
 
@@ -985,10 +953,10 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
-| 29360210 | Callback has not registered. |
-| 29360211 | Failed to connect ability. |
-| 29360215 | Invalid connect state. |
+| 29360208 | The token is not registered. |
+| 29360210 | The callback is not registered. |
+| 29360211 | Failed to connect to the ability. |
+| 29360215 | Invalid connection state. |
 
 **Example**
 
@@ -1010,8 +978,6 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 Instructs the device selection module to update the device connection state. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -1029,9 +995,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1057,8 +1022,6 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 Instructs the device selection module to update the device connection state. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -1081,9 +1044,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1129,7 +1091,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
+| 29360208 | The token is not registered. |
 
 **Example**
 
@@ -1174,7 +1136,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 | ------- | -------------------------------------------- |
 | 3 | Failed to flatten the object. |
 | 7 | The object is null. |
-| 29360208 | The token has not registered. |
+| 29360208 | The token is not registered. |
 
 **Example**
 
@@ -1195,8 +1157,6 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
 
 Deregisters the continuation management service. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -1212,9 +1172,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1239,8 +1198,6 @@ unregisterContinuation(token: number): Promise\<void>;
 
 Deregisters the continuation management service. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
 **Parameters**
@@ -1261,9 +1218,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401 | The parameter check failed. |
-| 16600001 | The system ability work abnormally. |
-| 16600002 | The specified token or callback has not registered. |
+| 16600001 | The system ability works abnormally. |
+| 16600002 | The specified token or callback is not registered. |
 
 **Example**
 
@@ -1289,14 +1245,12 @@ Enumerates the device connection states.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
-**Parameters**
-
-  | Name| Type| Value| Description|
-  | -------- | -------- | -------- | -------- |
-  | IDLE | number | 0 | The device is in the initial state.|
-  | CONNECTING | number | 1 | The device is being connected.|
-  | CONNECTED | number | 2 | The device is connected.|
-  | DISCONNECTING | number | 3 | The device is being disconnected.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| IDLE | 0 | The device is in the initial state.|
+| CONNECTING | 1 | The device is being connected.|
+| CONNECTED | 2 | The device is connected.|
+| DISCONNECTING | 3 | The device is being disconnected.|
 
 ## ContinuationMode
 
@@ -1304,9 +1258,7 @@ Enumerates the continuation modes provided by the device selection module.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
-**Parameters**
-
-  | Name| Type| Value| Description|
-  | -------- | -------- | -------- | -------- |
-  | COLLABORATION_SINGLE | number | 0 | Single-choice mode.|
-  | COLLABORATION_MULTIPLE | number | 1 | Multi-choice mode.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| COLLABORATION_SINGLE | 0 | Single-choice mode.|
+| COLLABORATION_MULTIPLE | 1 | Multi-choice mode.|

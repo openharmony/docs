@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-Bubble indication. The **\<popup>** component is used to display a pop-up to offer instructions after a user clicks a bound control.
+The **\<popup>** component is used to display a pop-up to offer instructions after a user clicks a bound component.
 
 ## Required Permissions
 
@@ -116,7 +116,7 @@ export default {
   visibilitychange(e) {
     prompt.showToast({
       message: 'visibility change visibility: ' + e.visibility,
-        duration: 3000,
+        duration: 3000
     }); 
   },
   showpopup() {
@@ -124,7 +124,7 @@ export default {
   },
   hidepopup() {
     this.$element("popup").hide();
-  },
+  }
 }
 ```
 

@@ -1,4 +1,4 @@
-# Device Usage Statistics
+# @ohos.bundleState (Device Usage Statistics)
 
 This module provides APIs for collecting statistics on device usage.
 
@@ -454,6 +454,20 @@ Provides the usage duration information of an application.
 | infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object.|
 | infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object.|
 
+### merge<sup>(deprecated)</sup>
+
+merge(toMerge: BundleStateInfo): void
+
+Merges the device usage statistics of applications with the same bundle name.
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes| Device usage statistics to merge.|
+
 ## BundleActiveState
 
 Provides information about an application event.
@@ -487,7 +501,7 @@ Enumerates the interval types for querying the application usage duration.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| Name          | Default Value | Description                                      |
+| Name          | Value | Description                                      |
 | ------------ | ---- | ---------------------------------------- |
 | BY_OPTIMIZED | 0    | The system obtains the application usage duration statistics in the specified time frame at the interval the system deems appropriate.|
 | BY_DAILY     | 1    | The system obtains the application usage duration statistics in the specified time frame on a daily basis.             |

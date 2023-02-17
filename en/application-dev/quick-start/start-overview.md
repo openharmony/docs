@@ -4,7 +4,7 @@ This document is intended for novices at developing OpenHarmony applications. It
 
 ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
 
-Before you begin, there are two basic concepts that will help you better understand OpenHarmony: UI framework and ability.
+Before you begin, there are two basic concepts that will help you better understand OpenHarmony: UI framework and application model.
 
 
 ## Basic Concepts
@@ -16,29 +16,25 @@ OpenHarmony provides a UI development framework, known as ArkUI. ArkUI provides 
 
 ArkUI comes with two development paradigms: ArkTS-based declarative development paradigm (declarative development paradigm for short) and JavaScript-compatible web-like development paradigm (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
 
-| **Development Paradigm**| **Programming Language**| **UI Update Mode**| **Applicable To**| **Intended Audience**|
-| -------- | -------- | -------- | -------- | -------- |
-| Declarative development paradigm| ArkTS| Data-driven| Applications involving technological sophistication and teamwork| Mobile application and system application developers|
-| Web-like development paradigm| JavaScript| Data-driven| Applications and service widgets with simple UIs| Frontend web developers|
+| **Development Paradigm**| **Programming Language**| **UI Update Mode**| **Applicable To**                    | **Intended Audience**                          |
+| ---------------- | ------------ | -------------- | -------------------------------- | -------------------------------------- |
+| Declarative development paradigm  | ArkTS   | Data-driven  | Applications involving technological sophistication and teamwork| Mobile application and system application developers|
+| Web-like development paradigm   | JavaScript      | Data-driven  | Applications and service widgets with simple UIs    | Frontend web developers                       |
 
 For more details, see [UI Development](../ui/arkui-overview.md).
 
+### Application Model
 
-### Ability
+The application model is the abstraction of capabilities required by OpenHarmony applications. It provides necessary components and running mechanisms for applications. With application models, you can develop applications based on a unified set of models, making application development simpler and more efficient. For details, see [Elements of the Application Model](../application-models/application-model-composition.md).
 
-An ability is the abstraction of a functionality that an application can provide. An application may provide various capabilities, and so it can have multiple abilities. These abilities can be deployed together or independently from each other.
+Along its evolution, OpenHarmony has provided two application models:
 
-The ability framework model has two forms:
+- Feature Ability (FA) model. This model is supported by OpenHarmony API version 7 and 8. It is no longer recommended. For details about development based on the FA model, see [FA Model Development Overview](../application-models/fa-model-development-overview.md).
+- Stage model. This model is supported since OpenHarmony API version 9. It is recommended and will evolve for a long time. In this model, classes such as **AbilityStage** and **WindowStage** are provided as the stage of application components and windows. That's why it is named stage model. For details about development based on the stage model, see [Stage Model Development Overview](../application-models/fa-model-development-overview.md).
 
-- **FA model**: applies to application development using API version 8 and earlier versions. For details, see [FA Model Overview](../ability/fa-brief.md).
+For details about the differences between the FA model and stage model, see [Interpretation of the Application Model](../application-models/application-model-description.md).
 
-- **Stage model**: introduced since API version 9. For details, see [Stage Model Overview](../ability/stage-brief.md).
-
-The project directory structure of the FA model is different from that of the stage model. The stage model only works with the ArkTS programming language.
-
-For details about the differences between the FA model and stage model, see [Ability Framework Overview](../ability/ability-brief.md).
-
-This document provides an ability with two pages. For more information about ability development, see [Ability Development](../ability/ability-brief.md).
+To help you better understand the preceding basic concepts and application development process, **Getting Started** provides a development example that contains two pages in different programming languages and application models.
 
 
 ## Tool Preparation

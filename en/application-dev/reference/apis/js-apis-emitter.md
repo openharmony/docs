@@ -1,4 +1,4 @@
-# Emitter
+# @ohos.events.emitter
 
 The **Emitter** module provides APIs for sending and processing in-process events, including the APIs for processing events that are subscribed to in persistent or one-shot manner, unsubscribing from events, and emitting events to the event queue.
 

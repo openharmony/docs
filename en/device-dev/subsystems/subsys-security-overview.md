@@ -10,7 +10,7 @@ The OpenHarmony security subsystem provides security capabilities that make your
 
 - Application permission management
 
-  Application permissions determine what system resources and capabilities an application can access. During application development, you need to declare the permissions that the application may require in the profile.json file. Static permissions need to be registered during application installation, while dynamic permissions usually involve sensitive information and need users' dynamic authorization.
+  Application permissions determine what system resources and capabilities an application can access. During application development, you need to declare the permissions required by the application in the application configuration file. Static permissions need to be registered during application installation, while dynamic permissions usually involve sensitive information and need users' dynamic authorization.
 
 - Inter-process communication (IPC) authentication
 
