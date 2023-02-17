@@ -9,18 +9,18 @@
 开发者通过[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio)工具按照业务的需要创建多个Module，在相应的Module中完成自身业务的开发。
 
 ## 调试
-通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。
+通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。在调试前，需要先安装或更新HAP，以下介绍具体做法。
 * 使用DevEco Studio进行调试
 
    使用指导可参考[应用程序包调试方法](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section10491183521520)，其中包括了单HAP与多HAP通过DevEco Studio工具的安装调试方法。
 
 * 使用[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试
+   此处有两种方式。
 
-> **说明：**
->
-> 安装、更新HAP时有两种方式进行调试，分为直接使用hdc进行安装、更新和先执行hdc shell再通过bm工具进行安装、更新。两种方法示例如下。
+   1. 直接使用hdc安装、更新HAP。 
 
-    使用hdc安装、更新HAP时，HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
+      HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
+
     ```
     // 安装、更新，多HAP可以指定多个文件路径
     hdc install C:\entry.hap C:\feature.hap
@@ -31,8 +31,12 @@
     // 执行结果
     uninstall bundle successfully.
     ```
+ 
+  2. 先执行hdc shell，再使用bm工具安装、更新HAP。
 
-    使用bm工具进行安装、更新HAP时，传入的文件路径为真机上   的文件路径，命令参考如下：
+     HAP的文件路径为真机上的文件路径，命令参考如下：
+
+    
     ```
     // 先执行hdc shell才能使用bm工具
     hdc shell
