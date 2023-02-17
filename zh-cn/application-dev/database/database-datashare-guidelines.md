@@ -150,12 +150,13 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 
 7. 在module.json5中定义DataShareExtensionAbility。
 
-   | Json重要字段 | 备注说明                                                     |
-   | ------------ | ------------------------------------------------------------ |
-   | "name"       | Ability名称，对应Ability派生的ExtensionAbility类名。         |
-   | "type"       | Ability类型，DataShare对应的Ability类型为”dataShare“，表示基于datashare模板开发的。 |
-   | "uri"        | 通信使用的URI，是客户端链接服务端的唯一标识。                |
-   | "visible"    | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 |
+   | Json重要字段 | 备注说明                                                     | 必填 |
+   | ------------ | ------------------------------------------------------------ | --- |
+   | "name"       | Ability名称，对应Ability派生的ExtensionAbility类名。         | 是 |
+   | "type"       | Ability类型，DataShare对应的Ability类型为”dataShare“，表示基于datashare模板开发的。 | 是 |
+   | "uri"        | 通信使用的URI，是客户端链接服务端的唯一标识。                | 是 |
+   | "visible"    | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 |
+   | "metadata"   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json. | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下选填。 |
 
    **module.json5配置样例**
 
@@ -168,8 +169,40 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
        "description": "$string:description_datashareextability",
        "type": "dataShare",
        "uri": "datashare://com.samples.datasharetest.DataShare",
-       "visible": true
+       "visible": true,
+       "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
+   ]
+   ```
+
+   **data_share_config.json说明**
+
+   | 字段 | 备注说明                                                     | 必填 |
+   | ------------ | ------------------------------------------------------------ | --- |
+   | "tableConfig"       | 配置标签。 | 是 |
+   | "uri"               | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是 |
+   | "crossUserMode"     | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。                | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下不填。 |
+   | "writePermission"   | 静默访问需要的写权限。 | 否 |
+   | "readPermission"    | 静默访问需要的读权限。 | 否 |
+
+   **data_share_config.json配置样例**
+
+   ```json
+   "tableConfig": [
+    {
+      "uri": "*",
+      "writePermission": "ohos.permission.xxx"
+    },
+    {
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
+      "crossUserMode": 1,
+      "writePermission": "ohos.permission.xxx",
+      "readPermission": "ohos.permission.xxx"
+    },
+    {
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
+      "crossUserMode": 2
+    }
    ]
    ```
 
@@ -187,7 +220,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 
    ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
-   let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
+   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
    ```
 
 3. 创建工具接口类对象。
@@ -216,19 +249,19 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
    let valArray = ['*'];
    // 插入一条数据
    dsHelper.insert(dseUri, valuesBucket, (err, data) => {
-     console.log("dsHelper insert result: " + data);
+     console.log('dsHelper insert result: ' + data);
    });
    // 更新数据
    dsHelper.update(dseUri, predicates, updateBucket, (err, data) => {
-     console.log("dsHelper update result: " + data);
+     console.log('dsHelper update result: ' + data);
    });
    // 查询数据
    dsHelper.query(dseUri, predicates, valArray, (err, data) => {
-     console.log("dsHelper query result: " + data);
+     console.log('dsHelper query result: ' + data);
    });
    // 删除指定的数据
    dsHelper.delete(dseUri, predicates, (err, data) => {
-     console.log("dsHelper delete result: " + data);
+     console.log('dsHelper delete result: ' + data);
    });
    ```
 
