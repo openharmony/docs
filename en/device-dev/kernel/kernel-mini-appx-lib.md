@@ -177,7 +177,7 @@ int main (void) {
   // ...
 
   osKernelInitialize();                // Initialize CMSIS-RTOS.
-  osThreadNew(app_main, NULL, NULL);    // Create the main thread of the application.
+  osThreadNew(app_main, NULL, NULL);   // Create the main thread of the application.
   osKernelStart();                     // Start to execute the thread.
   for (;;) {}
 }
@@ -196,14 +196,14 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 
 #### Available APIs
 
-  **Table 1** APIs for process management
+  **Table 11** APIs for process management
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
 | \#include &lt;stdlib.h&gt; | void abort(void); | Terminates the thread.|
 | \#include &lt;assert.h&gt; | void assert(scalar expression); | Terminates the thread if the assertion is false.|
-| \#include &lt;pthread.h&gt; | int pthread_cond_destroy(pthread_cond_t *cond); | Destroys a condition variable.|
-| \#include &lt;pthread.h&gt; | int pthread_cond_init(pthread_cond_t *restrict cond, const pthread_condattr_t \*restrict attr); | Initializes a condition variable.|
+| \#include &lt;pthread.h&gt; | int pthread_cond_destroy(pthread_cond_t \*cond); | Destroys a condition variable.|
+| \#include &lt;pthread.h&gt; | int pthread_cond_init(pthread_cond_t \*restrict cond, const pthread_condattr_t \*restrict attr); | Initializes a condition variable.|
 | \#include &lt;pthread.h&gt; | int pthread_cond_timedwait(pthread_cond_t \*restrict cond, pthread_mutex_t \*restrict mutex, const struct timespec \*restrict abstime); | Waits for the condition.|
 | \#include &lt;pthread.h&gt; | int pthread_condattr_init(pthread_condattr_t \*attr); | Initializes the condition variable attribute.|
 | \#include &lt;pthread.h&gt; | int pthread_mutex_unlock(pthread_mutex_t \*mutex); | Unlocks a mutex.|
@@ -212,13 +212,13 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;pthread.h&gt; | pthread_t pthread_self(void); | Obtains the ID of the current thread.|
 | \#include &lt;pthread.h&gt; | int pthread_getschedparam(pthread_t thread, int \*policy, struct sched_param \*param); | Obtains the scheduling policy and parameters of a thread.|
 | \#include &lt;pthread.h&gt; | int pthread_setschedparam(pthread_t thread, intpolicy, const struct sched_param \*param); | Sets a scheduling policy and parameters for a thread.|
-| \#include &lt;pthread.h&gt; | int pthread_mutex_init(pthread_mutex_t \* &#95;&#95;restrict m, const pthread_mutexattr_t \*__restrict a); | Initializes a mutex.|
+| \#include &lt;pthread.h&gt; | int pthread_mutex_init(pthread_mutex_t *\_restrict m, const pthread_mutexattr_t \*__restrict a); | Initializes a mutex.|
 | \#include &lt;pthread.h&gt; | int pthread_mutex_lock(pthread_mutex_t \*m); | Locks a mutex.|
 | \#include &lt;pthread.h&gt; | int pthread_mutex_trylock(pthread_mutex_t \*m); | Attempts to lock a mutex.|
 | \#include &lt;pthread.h&gt; | int pthread_mutex_destroy(pthread_mutex_t \*m); | Destroys a mutex.|
 | \#include &lt;pthread.h&gt; | int pthread_attr_init(pthread_attr_t \*attr); | Initializes a thread attribute object.|
 | \#include &lt;pthread.h&gt; | int pthread_attr_destroy(pthread_attr_t \*attr); | Destroys a thread attribute object.|
-| \#include &lt;pthread.h&gt; | int pthread_attr_getstacksize(const&nbsp;pthread_attr_t&nbsp;\*attr,&nbsp;size_t&nbsp;\*stacksize); | Obtains the stack size of a thread attribute object.|
+| \#include &lt;pthread.h&gt; | int pthread_attr_getstacksize(const pthread_attr*t \*attr, size*t \*stacksize); | Obtains the stack size of a thread attribute object.|
 | \#include &lt;pthread.h&gt; | int pthread_attr_setstacksize(pthread_attr_t \*attr, size_t stacksize); | Sets the stack size for a thread attribute object.|
 | \#include &lt;pthread.h&gt; | int pthread_attr_getschedparam(const pthread_attr_t \*attr, struct sched_param \*param); | Obtains scheduling parameter attributes of a thread attribute object.|
 | \#include &lt;pthread.h&gt; | int pthread_attr_setschedparam(pthread_attr_t \*attr, const struct sched_param \*param); | Sets scheduling parameter attributes for a thread attribute object.|
@@ -226,9 +226,9 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;pthread.h&gt; | int pthread_setname_np(pthread_t pthread, constchar \*name); | Sets the thread name.|
 | \#include &lt;pthread.h&gt; | int pthread_cond_broadcast(pthread_cond_t \*c); | Unblocks all threads that are currently blocked on the condition variable **cond**.|
 | \#include &lt;pthread.h&gt; | int pthread_cond_signal(pthread_cond_t \*c); | Unblocks a thread.|
-| \#include &lt;pthread.h&gt; | int pthread_cond_wait(pthread_cond_t \*__restrictc, pthread_mutex_t \*__restrict m); | Waits for the condition.|
+| \#include &lt;pthread.h&gt; | int pthread_cond_wait(pthread_cond_t *\__restrictc, pthread_mutex_t \*__restrict m); | Waits for the condition.|
 
-  **Table 2** APIs for file system management
+  **Table 12** APIs for file system management
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
@@ -250,7 +250,7 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;sys/stat.h&gt; | int fstat(int fd, struct stat \*buf); | Obtains file status.|
 | \#include &lt;sys/statfs.h&gt; | int statfs(const char \*path, struct statfs \*buf); | Obtains the file system information for a file in a specified path.|
 
-  **Table 3** APIs for time management
+  **Table 13** APIs for time management
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
@@ -265,19 +265,19 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;unistd.h&gt; | int usleep(useconds_t usec); | Goes to hibernation, in microseconds.|
 | \#include &lt;time.h&gt; | int nanosleep(const struct timespec \*tspec1, structtimespec \*tspec2); | Suspends the current thread till the specified time.|
 | \#include &lt;time.h&gt; | int clock_gettime(clockid_t id, struct timespec \*tspec); | Obtains the clock time.|
-| \#include &lt;time.h&gt; | int timer_create(clockid_t id, struct sigevent \*__restrict evp, timer_t \*__restrict t); | Creates a timer for a thread.|
+| \#include &lt;time.h&gt; | int timer_create(clockid_t id, struct sigevent *\__restrict evp, timer_t \*__restrict t); | Creates a timer for a thread.|
 | \#include &lt;time.h&gt; | int timer_delete(timer_t t); | Deletes the timer for a thread.|
-| \#include &lt;time.h&gt; | int timer_settime(timer_t t, int flags, const structitimerspec \*__restrict val, struct itimerspec \*__restrict old); | Sets a timer for a thread.|
+| \#include &lt;time.h&gt; | int timer_settime(timer_t t, int flags, const struct itimerspec *\__restrict val, struct itimerspec \*_restrict old); | Sets a timer for a thread.|
 | \#include &lt;time.h&gt; | time_t time (time_t \*t); | Obtains the time.|
 | \#include &lt;time.h&gt; | char \*strptime(const char \*s, const char \*format, struct tm \*tm); | Converts the time string into the time **tm** structure.|
 
-  **Table 4** APIs for util
+  **Table 14** APIs for util
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
-| \#include &lt;stdlib.h&gt; | int atoi(const char \*nptr); | Converts the string pointed to by **nptr** into an integer (**int** type).|
-| \#include &lt;stdlib.h&gt; | long atol(const char \*nptr); | Converts the string pointed to by **nptr** into a long Integer (long type).|
-| \#include &lt;stdlib.h&gt; | long long atoll(const char \*nptr); | Converts the string pointed to by **nptr** into a long long Integer (long long type).|
+| \#include &lt;stdlib.h&gt; | int atoi(const char \*nptr); | Converts a string into an integer (**int** type).|
+| \#include &lt;stdlib.h&gt; | long atol(const char \*nptr); | Converts the string into a long Integer (**long** type).|
+| \#include &lt;stdlib.h&gt; | long long atoll(const char \*nptr); | Converts a string into a long longer integer (**long long** type).|
 | \#include &lt;ctype.h&gt; | int isalnum(int c); | Checks whether the passed character is alphanumeric.|
 | \#include &lt;ctype.h&gt; | int isascii(int c); | Checks whether the passed character is an ASCII character.|
 | \#include &lt;ctype.h&gt; | int isdigit(int c); | Checks whether the passed character is a digit.|
@@ -302,17 +302,17 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;strings.h&gt; | int strncasecmp(const char \*s1, const char \*s2, size_t n); | Compares the bytes of the specified length in two strings, ignoring case.|
 | \#include &lt;strings.h&gt; | int strcasecmp(const char \*s1, const char \*s2); | Compares two strings, ignoring case.|
 | \#include &lt;string.h&gt; | int strncmp(const char \*s1, const char \*s2, size_t n); | Compares the bytes of the specified length in two strings.|
-| \#include &lt;string.h&gt; | char \*strrchr(const char \*s, int c); | Searches for the last occurrence of a character in a string.|
+| \#include &lt;string.h&gt; | char \*strrchr(const char \*s, int c); | Searches for a character in a string.|
 | \#include &lt;string.h&gt; | char \*strstr(const char \*haystack, const char \*needle); | Searches for the specified substring in a string.|
 | \#include &lt;stdlib.h&gt; | long int strtol(const char \*nptr, char \*\*endptr, int base); | Converts the string pointed to by **nptr** into a **long int** value according to the given **base**.|
-| \#include &lt;stdlib.h&gt; | unsigned long int strtoul(const char \*nptr, char\*\*endptr, int base); | Converts the string pointed to by **nptr** into an unsigned long integer.|
-| \#include &lt;stdlib.h&gt; | unsigned long long int strtoull(const char \*nptr,char \*\*endptr, int base); | Converts the string pointed to by **nptr** into an unsigned long long integer.|
+| \#include &lt;stdlib.h&gt; | unsigned long int strtoul(const char \*nptr, char\*\*endptr, int base); | Converts a string into an unsigned long integer.|
+| \#include &lt;stdlib.h&gt; | unsigned long long int strtoull(const char \*nptr,char \*\*endptr,int base); | Converts a string into an unsigned long long integer.|
 | \#include &lt;regex.h&gt; | int regcomp(regex_t \*preg, const char \*regex,int cflags); | Compiles a regular expression.|
 | \#include &lt;regex.h&gt; | int regexec(const regex_t \*preg, const char \*string, size_t nmatch, regmatch_t pmatch[], int eflags); | Executes the compiled regular expression.|
 | \#include &lt;regex.h&gt; | void regfree(regex_t \*preg); | Releases the regular expression.|
 | \#include &lt;string.h&gt; | char \*strerror(int errnum); | Obtains an error message string of the specified error code.|
 
-  **Table 5** APIs for math operations
+  **Table 15** APIs for math operations
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
@@ -322,7 +322,7 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;math.h&gt; | double round(double x); | Rounds off the value from zero to the nearest integer.|
 | \#include &lt;math.h&gt; | double sqrt(double x); | Obtains the square root of **x**.|
 
-  **Table 6** APIs for I/O operations
+  **Table 16** APIs for I/O operations
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
@@ -335,16 +335,16 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;stdio.h&gt; | int fileno(FILE \*stream); | Obtains the file descriptor for a stream.|
 | \#include &lt;stdio.h&gt; | FILE \*fopen(const char \*path, const char \*mode); | Opens a stream.|
 | \#include &lt;stdio.h&gt; | int fputs(const char \*s, FILE \*stream); | Writes a line to the specified stream.|
-| \#include &lt;stdio.h&gt; | size_t fread(void \*ptr, size_t size, size_t nmemb,FILE \*stream); | Reads a stream.|
+| \#include &lt;stdio.h&gt; | size_t fread(void \*ptr, size_t size, size_t nmemb, FILE \*stream); | Reads a stream.|
 | \#include &lt;stdio.h&gt; | int fseek(FILE \*stream, long offset, int whence); | Sets the position of the stream pointer.|
 | \#include &lt;stdio.h&gt; | long ftell(FILE \*stream); | Obtains the position of the stream pointer.|
-| \#include &lt;stdio.h&gt; | size_t fwrite(const void \*ptr, size_t size, size_tnmemb,FILE \*stream); | Writes data to a stream.|
+| \#include &lt;stdio.h&gt; | size_t fwrite(const void \*ptr, size_t size, size_tnmemb, FILE \*stream); | Writes data to a stream.|
 | \#include &lt;stdio.h&gt; | void perror(const char \*s); | Prints system error information.|
 | \#include &lt;stdio.h&gt; | void rewind(FILE \*stream); | Sets the position to the beginning of the file of the specified stream.|
 | \#include &lt;unistd.h&gt; | ssize_t write(int fd, const void \*buf, size_t size); | Writes data a file.|
 | \#include &lt;unistd.h&gt; | ssize_t read(int fd, void \*buf, size_t size); | Reads data from a file.|
 
-  **Table 7** APIs for network
+  **Table 17** APIs for network
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
@@ -363,7 +363,7 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;sys/socket.h&gt; | ssize_t sendto(int sockfd, const void \*buf, size_t len, intflags,const struct sockaddr \*dest_addr, socklen_t addrlen); | Sends a message on a socket.|
 | \#include &lt;sys/socket.h&gt; | int setsockopt(int sockfd, int level, int optname,constvoid \*optval, socklen_t optlen); | Sets options associated with a socket.|
 
-  **Table 8** APIs for memory management
+  **Table 18** APIs for memory management
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
@@ -374,7 +374,7 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;stdlib.h&gt; | void \*malloc(size_t size); | Dynamically allocates memory blocks.|
 | \#include &lt;stdlib.h&gt; | void free(void \*ptr); | Release the memory space pointed to by **ptr**.|
 
-  **Table 9** APIs for IPC
+  **Table 19** APIs for IPC
 
 | Header File| API| Description|
 | -------- | -------- | -------- |
@@ -386,11 +386,11 @@ The OpenHarmony kernel uses the **musl libc** library and self-developed APIs an
 | \#include &lt;mqueue.h&gt; | mqd_t mq_open(const char \*mqName, int openFlag, ...); | Opens an existing message queue with the specified name or creates a message queue.|
 | \#include &lt;mqueue.h&gt; | int mq_close(mqd_t personal); | Closes a message queue with the specified descriptor.|
 | \#include &lt;mqueue.h&gt; | int mq_unlink(const char \*mqName); | Deletes the message queue of the specified name.|
-| \#include &lt;mqueue.h&gt; | int mq_send(mqd_t personal, const char \*msg,size_t msgLen, unsigned int msgPrio); | Puts a message with the specified content and length into a message queue.|
-| \#include &lt;mqueue.h&gt; | ssize_t mq_receive(mqd_t personal, char \*msg,size_t msgLen, unsigned int \*msgPrio); | Deletes the oldest message from a message queue and puts it in the buffer pointed to by **msg_ptr**.|
+| \#include &lt;mqueue.h&gt; | int mq_send(mqd_t personal, const char \*msg, size_t msgLen, unsigned int msgPrio); | Puts a message with the specified content and length into a message queue.|
+| \#include &lt;mqueue.h&gt; | ssize_t mq_receive(mqd_t personal, char \*msg, size_t msgLen, unsigned int \*msgPrio); | Deletes the oldest message from a message queue and puts it in the buffer pointed to by **msg_ptr**.|
 | \#include &lt;mqueue.h&gt; | int mq_timedsend(mqd_t personal, const char\*msg, size_t msgLen, unsigned int msgPrio, const struct timespec \*absTimeout) | Puts a message with the specified content and length into a message queue at the specified time.|
 | \#include &lt;mqueue.h&gt; | ssize_t mq_timedreceive(mqd_t personal, char\*msg, size_t msgLen, unsigned int \*msgPrio, const struct timespec \*absTimeout); | Obtains a message with the specified content and length from a message queue.|
-| \#include &lt;mqueue.h&gt; | int mq_setattr(mqd_t mqdes, const struct mq_attr \*__restrict newattr, struct mq_attr \*__restrict oldattr); | Sets the message queue attributes specified by the descriptor.|
+| \#include &lt;mqueue.h&gt; | int mq_setattr(mqd_t mqdes, const struct mq_attr \*\_\_restrict newattr, struct mq_attr *\__restrict oldattr); | Sets the message queue attributes specified by the descriptor.|
 | \#include &lt;libc.h&gt; | const char \*libc_get_version_string(void); | Obtains the libc version string.|
 | \#include &lt;libc.h&gt; | int libc_get_version(void); | Obtains the libc version.|
 
@@ -458,6 +458,8 @@ The table below lists common error codes.
 Example:
 
 Creates a thread, transfers the information in the parent thread to the child thread, and prints the transferred information and the thread ID in the child thread.
+
+The sample code can be compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. The **DemoForTest** function is called in **TestTaskEntry**.
 
 
 ```
