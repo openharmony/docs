@@ -83,7 +83,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 
   
   ```bash
-  aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D]
+  aa dump -a
   ```
 
   ![aa-dump-a](figures/aa-dump-a.png)
