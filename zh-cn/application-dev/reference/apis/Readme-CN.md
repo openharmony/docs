@@ -1,4 +1,4 @@
-# 接口
+﻿# 接口
 
 - [开发说明](development-intro.md)
 
@@ -336,6 +336,7 @@
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
+  - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
