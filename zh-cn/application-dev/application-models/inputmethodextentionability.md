@@ -28,6 +28,10 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 在工程Module对应的ets目录下，右键选择“New &gt; Extention Ability > InputMethod”，即可创建出InputMethodExtensionAbility的最小化模板。
 
+> **说明：**
+> 在编译输入法应用时，要使用system_core级别的签名，否则无法拉起输入法键盘。
+> [签名指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)
+
 最小化模板为一个最基本的输入法应用，包含软键盘拉起以及输入删除功能。后续开发者可在此基础上添加功能，如隐藏键盘等，实现自己的输入法应用。
 
 最小化模板主要包含四个文件，分别为KeyboardController.ts、InputMethodService.ts、Index.ets以及KeyboardKeyData.ts。目录如下：
