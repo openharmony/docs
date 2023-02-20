@@ -3,11 +3,12 @@
 
 ## Want的定义与用途
 
-[Want](../reference/apis/js-apis-app-ability-want.md)是一种对象，用于在应用组件之间传递信息。其中，一种常见的使用场景是作为[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法的参数。在这种情况下，Want对象包含了指定的启动目标以及启动时需携带的相关数据。具体来说，bundleName和abilityName字段分别指定了目标Ability所在应用的Bundle名称和对应包内的Ability名称。例如，当UIAbilityA需要启动UIAbilityB并向UIAbilityB传递一些数据时，可以使用Want作为一个载体，将数据传递给UIAbilityB。
+[Want](../reference/apis/js-apis-app-ability-want.md)是一种对象，用于在应用组件之间传递信息。
 
-  **图1** Want用法示意
+其中，一种常见的使用场景是作为[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法的参数。例如，当UIAbilityA需要启动UIAbilityB并向UIAbilityB传递一些数据时，可以使用Want作为一个载体，将数据传递给UIAbilityB。
 
-  ![usage-of-want](figures/usage-of-want.png)  
+**图1** Want用法示意  
+![usage-of-want](figures/usage-of-want.png)  
 
 
 ## Want的类型
