@@ -135,7 +135,7 @@ let option = {
 this.context.startAbility(want, option).then(()={
     console.log('Succeed to start ability.');
 }).catch((error)=>{
-    console.log('Failed to start ability with error: ' + JSON.stringify(error));
+    console.log('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
 

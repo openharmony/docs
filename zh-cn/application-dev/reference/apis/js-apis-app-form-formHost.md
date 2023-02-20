@@ -842,7 +842,7 @@ try {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getAllFormsInfo, data:' + JSON.stringify(data));
+      console.log('formHost getAllFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -873,7 +873,7 @@ import formHost from '@ohos.app.form.formHost';
 
 try {
   formHost.getAllFormsInfo().then((data) => {
-    console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
+    console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
   }).catch((error) => {
     console.log(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -916,7 +916,7 @@ try {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+      console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -959,7 +959,7 @@ try {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+      console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -1004,7 +1004,7 @@ import formHost from '@ohos.app.form.formHost';
 
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
-    console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
   }).catch((error) => {
     console.log(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -1041,7 +1041,7 @@ try {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
+      console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -1079,7 +1079,7 @@ import formHost from '@ohos.app.form.formHost';
 try {
   let formIds = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds).then((data) => {
-    console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
+    console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
   }).catch((error) => {
     console.log(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -1132,7 +1132,7 @@ try {
     if (error) {
       console.log(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost acquireFormState, data:' + JSON.stringify(data));
+      console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -1186,7 +1186,7 @@ let want = {
 };
 try {
   formHost.acquireFormState(want).then((data) => {
-    console.log('formHost acquireFormState, data:' + JSON.stringify(data));
+    console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
   }).catch((error) => {
     console.log(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -1216,7 +1216,7 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 import formHost from '@ohos.app.form.formHost';
 
 let callback = function(formId) {
-  console.log('formHost on formUninstall, formId:' + formId);
+  console.log('formHost on formUninstall, formId: ${formId}');
 }
 formHost.on('formUninstall', callback);
 ```
@@ -1242,7 +1242,7 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 import formHost from '@ohos.app.form.formHost';
 
 let callback = function(formId) {
-  console.log('formHost on formUninstall, formId:' + formId);
+  console.log('formHost on formUninstall, formId: ${formId}');
 }
 formHost.off('formUninstall', callback);
 ```

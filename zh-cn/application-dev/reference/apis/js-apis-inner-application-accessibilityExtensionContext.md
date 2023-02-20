@@ -103,10 +103,10 @@ try {
     axContext.setTargetBundleName(targetNames).then(() => {
         console.info('set target bundle names success');
     }).catch((err) => {
-        console.error('failed to set target bundle names, because ' + JSON.stringify(err));
+        console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ' + JSON.stringify(exception));
+    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
 };
 ```
 
@@ -132,13 +132,13 @@ let targetNames = ['com.ohos.xyz'];
 try {
     axContext.setTargetBundleName(targetNames, (err, data) => {
         if (err) {
-            console.error('failed to set target bundle names, because ' + JSON.stringify(err));
+            console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
             return;
         }
         console.info('set target bundle names success');
     });
 } catch (exception) {
-    console.error('failed to set target bundle names, because ' + JSON.stringify(exception));
+    console.error('failed to set target bundle names, because ${JSON.stringify(exception)}');
 };
 ```
 
@@ -179,10 +179,10 @@ try {
         focusElement = data;
         console.log('get focus element success');
     }).catch((err) => {
-        console.error('failed to get focus element, because ' + JSON.stringify(err));
+        console.error('failed to get focus element, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.error('failed to get focus element, because ' + JSON.stringify(exception));
+    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
 }
 ```
 
@@ -215,14 +215,14 @@ let focusElement;
 try {
     axContext.getFocusElement((err, data) => {
         if (err) {
-            console.error('failed to get focus element, because ' + JSON.stringify(err));
+            console.error('failed to get focus element, because ${JSON.stringify(err)}');
             return;
         }
         focusElement = data;
         console.info('get focus element success');
     });
 } catch (exception) {
-    console.error('failed to get focus element, because ' + JSON.stringify(exception));
+    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
 }
 ```
 
@@ -249,14 +249,14 @@ let isAccessibilityFocus = true;
 try {
     axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
     if (err) {
-        console.error('failed to get focus element, because ' + JSON.stringify(err));
+        console.error('failed to get focus element, because ${JSON.stringify(err)}');
         return;
     }
     focusElement = data;
     console.info('get focus element success');
 });
 } catch (exception) {
-    console.error('failed to get focus element, because ' + JSON.stringify(exception));
+    console.error('failed to get focus element, because ${JSON.stringify(exception)}');
 }
 ```
 ## AccessibilityExtensionContext.getWindowRootElement
@@ -296,10 +296,10 @@ try {
         rootElement = data;
         console.log('get root element of the window success');
     }).catch((err) => {
-        console.error('failed to get root element of the window, because ' + JSON.stringify(err));
+        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.error('failed to get root element of the window, ' + JSON.stringify(exception));
+    console.error('failed to get root element of the window, ${JSON.stringify(exception)}');
 }
 ```
 
@@ -332,14 +332,14 @@ let rootElement;
 try {
     axContext.getWindowRootElement((err, data) => {
     if (err) {
-        console.error('failed to get root element of the window, because ' + JSON.stringify(err));
+        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
         return;
     }
     rootElement = data;
     console.info('get root element of the window success');
 });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ' + JSON.stringify(exception));
+    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
 }
 ```
 
@@ -374,14 +374,14 @@ let windowId = 10;
 try {
     axContext.getWindowRootElement(windowId, (err, data) => {
     if (err) {
-        console.error('failed to get root element of the window, because ' + JSON.stringify(err));
+        console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
         return;
     }
     rootElement = data;
     console.info('get root element of the window success');
 });
 } catch (exception) {
-    console.error('failed to get root element of the window, because ' + JSON.stringify(exception));
+    console.error('failed to get root element of the window, because ${JSON.stringify(exception)}');
 }
 ```
 
@@ -422,10 +422,10 @@ try {
         windows = data;
         console.log('get windows success');
     }).catch((err) => {
-        console.error('failed to get windows, because ' + JSON.stringify(err));
+        console.error('failed to get windows, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.error('failed to get windows, because ' + JSON.stringify(exception));
+    console.error('failed to get windows, because ${JSON.stringify(exception)}');
 }
 ```
 
@@ -458,14 +458,14 @@ let windows;
 try {
     axContext.getWindows((err, data) => {
         if (err) {
-            console.error('failed to get windows, because ' + JSON.stringify(err));
+            console.error('failed to get windows, because ${JSON.stringify(err)}');
             return;
         }
         windows = data;
         console.info('get windows success');
     });
 } catch (exception) {
-    console.error('failed to get windows, because ' + JSON.stringify(exception));
+    console.error('failed to get windows, because ${JSON.stringify(exception)}');
 }
 ```
 
@@ -500,14 +500,14 @@ let displayId = 10;
 try {
     axContext.getWindows(displayId, (err, data) => {
         if (err) {
-            console.error('failed to get windows, because ' + JSON.stringify(err));
+            console.error('failed to get windows, because ${JSON.stringify(err)}');
             return;
         }
         windows = data;
         console.info('get windows success');
     });
 } catch (exception) {
-    console.error('failed to get windows, because ' + JSON.stringify(exception));
+    console.error('failed to get windows, because ${JSON.stringify(exception)}');
 }
 ```
 
@@ -553,10 +553,10 @@ try {
     axContext.injectGesture(gesturePath).then(() => {
         console.info('inject gesture success');
     }).catch((err) => {
-        console.error('failed to inject gesture, because ' + JSON.stringify(err));
+        console.error('failed to inject gesture, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.error('failed to inject gesture, because ' + JSON.stringify(exception));
+    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
 }
 ```
 ## AccessibilityExtensionContext.injectGesture
@@ -595,13 +595,13 @@ try {
     }
     axContext.injectGesture(gesturePath, (err, data) => {
         if (err) {
-            console.error('failed to inject gesture, because ' + JSON.stringify(err));
+            console.error('failed to inject gesture, because ${JSON.stringify(err)}');
             return;
         }
         console.info('inject gesture success');
     });
 } catch (exception) {
-    console.error('failed to inject gesture, because ' + JSON.stringify(exception));
+    console.error('failed to inject gesture, because ${JSON.stringify(exception)}');
 }
 ```
 ## AccessibilityElement<sup>9+</sup>
@@ -633,7 +633,7 @@ rootElement.attributeNames().then((data) => {
     console.log('get attribute names success');
     attributeNames = data;
 }).catch((err) => {
-    console.log('failed to get attribute names, because '  + JSON.stringify(err));
+    console.log('failed to get attribute names, because ${JSON.stringify(err)}');
 });
 ```
 ## attributeNames
@@ -657,7 +657,7 @@ let rootElement;
 let attributeNames;
 rootElement.attributeNames((err, data) => {
     if (err) {
-        console.error('failed to get attribute names, because ' + JSON.stringify(err));
+        console.error('failed to get attribute names, because ${JSON.stringify(err)}');
         return;
     }
     attributeNames = data;
@@ -703,10 +703,10 @@ try {
         console.log('get attribute value by name success');
         attributeValue = data;
     }).catch((err) => {
-        console.log('failed to get attribute value, because '  + JSON.stringify(err));
+        console.log('failed to get attribute value, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to get attribute value, because ' + JSON.stringify(exception));
+    console.log('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
 ## AccessibilityElement.attributeValue
@@ -742,14 +742,14 @@ let attributeName = 'name';
 try {
     rootElement.attributeValue(attributeName, (err, data) => {
         if (err) {
-            console.error('failed to get attribute value, because ' + JSON.stringify(err));
+            console.error('failed to get attribute value, because ${JSON.stringify(err)}');
             return;
         }
         attributeValue = data;
         console.info('get attribute value success');
     });
 } catch (exception) {
-    console.log('failed to get attribute value, because ' + JSON.stringify(exception));
+    console.log('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
 ## actionNames
@@ -775,7 +775,7 @@ rootElement.actionNames().then((data) => {
     console.log('get action names success');
     actionNames = data;
 }).catch((err) => {
-    console.log('failed to get action names because '  + JSON.stringify(err));
+    console.log('failed to get action names because ${JSON.stringify(err)}');
 });
 ```
 ## actionNames
@@ -799,7 +799,7 @@ let rootElement;
 let actionNames;
 rootElement.actionNames((err, data) => {
     if (err) {
-        console.error('failed to get action names, because ' + JSON.stringify(err));
+        console.error('failed to get action names, because ${JSON.stringify(err)}');
         return;
     }
     actionNames = data;
@@ -843,10 +843,10 @@ try {
     rootElement.performAction('action').then((data) => {
         console.info('perform action success');
     }).catch((err) => {
-        console.log('failed to perform action, because '  + JSON.stringify(err));
+        console.log('failed to perform action, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to perform action, because ' + JSON.stringify(exception));
+    console.log('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
 ## performAction
@@ -879,13 +879,13 @@ let rootElement;
 try {
     rootElement.performAction('action', (err, data) => {
         if (err) {
-            console.error('failed to perform action, because ' + JSON.stringify(err));
+            console.error('failed to perform action, because ${JSON.stringify(err)}');
             return;
         }
         console.info('perform action success');
     });
 } catch (exception) {
-    console.log('failed to perform action, because ' + JSON.stringify(exception));
+    console.log('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
 ## performAction
@@ -923,13 +923,13 @@ let parameters = {
 try {
     rootElement.performAction(actionName, parameters, (err, data) => {
         if (err) {
-            console.error('failed to perform action, because ' + JSON.stringify(err));
+            console.error('failed to perform action, because ${JSON.stringify(err)}');
             return;
         }
         console.info('perform action success');
     });
 } catch (exception) {
-    console.log('failed to perform action, because ' + JSON.stringify(exception));
+    console.log('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('content')
@@ -965,10 +965,10 @@ try {
         elements = data;
         console.log('find element success');
     }).catch((err) => {
-        console.log('failed to find element, because '  + JSON.stringify(err));
+        console.log('failed to find element, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to find element, because ' + JSON.stringify(exception));
+    console.log('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('content')
@@ -997,14 +997,14 @@ let elements;
 try {
     rootElement.findElement(type, condition, (err, data) => {
         if (err) {
-            console.error('failed to find element, because ' + JSON.stringify(err));
+            console.error('failed to find element, because ${JSON.stringify(err)}');
             return;
         }
         elements = data;
         console.info('find element success');
     });
 } catch (exception) {
-    console.log('failed to find element, because ' + JSON.stringify(exception));
+    console.log('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusType')
@@ -1040,10 +1040,10 @@ try {
         element = data;
         console.log('find element success');
     }).catch((err) => {
-        console.log('failed to find element, because '  + JSON.stringify(err));
+        console.log('failed to find element, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to find element, because ' + JSON.stringify(exception));
+    console.log('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusType')
@@ -1072,14 +1072,14 @@ let element;
 try {
     rootElement.findElement(type, condition, (err, data) => {
         if (err) {
-            console.error('failed to find element, because ' + JSON.stringify(err));
+            console.error('failed to find element, because ${JSON.stringify(err)}');
             return;
         }
         element = data;
         console.info('find element success');
     });
 } catch (exception) {
-    console.log('failed to find element, because ' + JSON.stringify(exception));
+    console.log('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusDirection')
@@ -1115,10 +1115,10 @@ try {
         element = data;
         console.log('find element success');
     }).catch((err) => {
-        console.log('failed to find element, because '  + JSON.stringify(err));
+        console.log('failed to find element, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to find element, because ' + JSON.stringify(exception));
+    console.log('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusDirection')
@@ -1147,13 +1147,13 @@ let elements;
 try {
     rootElement.findElement(type, condition, (err, data) => {
         if (err) {
-            console.error('failed to find element, because ' + JSON.stringify(err));
+            console.error('failed to find element, because ${JSON.stringify(err)}');
             return;
         }
         elements = data;
         console.info('find element success');
     });
 } catch (exception) {
-    console.log('failed to find element, because ' + JSON.stringify(exception));
+    console.log('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```

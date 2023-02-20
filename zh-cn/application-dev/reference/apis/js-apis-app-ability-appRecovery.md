@@ -105,7 +105,7 @@ let observer = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -139,6 +139,6 @@ let observer = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```

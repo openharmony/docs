@@ -22,10 +22,10 @@ let missionParameter = {
 try {
     distributedMissionManager.startSyncRemoteMissions(missionParameter,
         (err, data) => {
-            console.log('startSyncRemoteMissions, data: ' + JSON.stringify(data));
+            console.log('startSyncRemoteMissions, data: ${JSON.stringify(data)}');
         }
     );
 } catch (err) {
-    console.error('startSyncRemoteMissions fail: ' + JSON.stringify(err));
+    console.error('startSyncRemoteMissions fail: ${JSON.stringify(err)}');
 }
 ```

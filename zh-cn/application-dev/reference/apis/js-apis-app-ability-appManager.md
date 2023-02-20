@@ -41,9 +41,9 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest((err, flag) => {
     if (err && err.code !== 0) {
-        console.log('isRunningInStabilityTest fail, err: ' + JSON.stringify(err));
+        console.log('isRunningInStabilityTest fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+        console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
     }
 })  
 ```
@@ -77,9 +77,9 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest().then((flag) => {
-    console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+    console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
 }).catch((error) => {
-    console.log('error:' + JSON.stringify(error));
+    console.log('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -112,9 +112,9 @@ isRamConstrainedDevice(): Promise\<boolean>;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice().then((data) => {
-    console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
+    console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error:' + JSON.stringify(error));
+    console.log('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -147,9 +147,9 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice((err, data) => {
     if (err && err.code !== 0) {
-        console.log('isRamConstrainedDevice fail, err: ' + JSON.stringify(err));
+        console.log('isRamConstrainedDevice fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
+        console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
     }
 })
 ```
@@ -182,9 +182,9 @@ getAppMemorySize(): Promise\<number>;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize().then((data) => {
-    console.log('The size of app memory is:' + JSON.stringify(data));
+    console.log('The size of app memory is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error:' + JSON.stringify(error));
+    console.log('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -217,9 +217,9 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize((err, data) => {
     if (err && err.code !== 0) {
-        console.log('getAppMemorySize fail, err: ' + JSON.stringify(err));
+        console.log('getAppMemorySize fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log('The size of app memory is:' + JSON.stringify(data));
+        console.log('The size of app memory is: ${JSON.stringify(data)}');
     }
 })
 ```
@@ -254,9 +254,9 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getRunningProcessInformation().then((data) => {
-    console.log('The running process information is:' + JSON.stringify(data));
+    console.log('The running process information is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error:' + JSON.stringify(error));
+    console.log('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -291,9 +291,9 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.getRunningProcessInformation((err, data) => {
     if (err && err.code !== 0) {
-        console.log('getRunningProcessInformation fail, err: ' + JSON.stringify(err));
+        console.log('getRunningProcessInformation fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log('The process running information is:' + JSON.stringify(data));
+        console.log('The process running information is: ${JSON.stringify(data)}');
     }
 })
 ```
@@ -490,7 +490,7 @@ try {
 // 2.注销应用状态监听器
 function unregisterApplicationStateObserverCallback(err) {
     if (err && err.code !== 0) {
-        console.log('unregisterApplicationStateObserverCallback fail, err: ' + JSON.stringify(err));
+        console.log('unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('unregisterApplicationStateObserverCallback success.');
     }
@@ -498,7 +498,7 @@ function unregisterApplicationStateObserverCallback(err) {
 try {
     appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -571,12 +571,12 @@ try {
 // 2.注销应用状态监听器
 try {
     appManager.off('applicationState', observerId).then((data) => {
-        console.log('unregisterApplicationStateObserver success, data: ' + JSON.stringify(data));
+        console.log('unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}');
     }).catch((err) => {
-        console.log('unregisterApplicationStateObserver fail, err: ' + JSON.stringify(err));
+        console.log('unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}');
     })
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -613,15 +613,15 @@ import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundApplicationsCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('getForegroundApplicationsCallback fail, err: ' + JSON.stringify(err));
+        console.log('getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log('getForegroundApplicationsCallback success, data: ' + JSON.stringify(data));
+        console.log('getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}');
     }
 }
 try {
     appManager.getForegroundApplications(getForegroundApplicationsCallback);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -657,9 +657,9 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getForegroundApplications().then((data) => {
-    console.log('getForegroundApplications success, data: ' + JSON.stringify(data));
+    console.log('getForegroundApplications success, data: ${JSON.stringify(data)}');
 }).catch((err) => {
-    console.log('getForegroundApplications fail, err: ' + JSON.stringify(err));
+    console.log('getForegroundApplications fail, err: ${JSON.stringify(err)}');
 })
 ```
 
@@ -701,10 +701,10 @@ try {
     appManager.killProcessWithAccount(bundleName, accountId).then(() => {
         console.log('killProcessWithAccount success');
     }).catch((err) => {
-        console.error('killProcessWithAccount fail, err: ' + JSON.stringify(err));
+        console.error('killProcessWithAccount fail, err: ${JSON.stringify(err)}');
     })
 } catch (paramError) {
-    console.error('error: ' + paramError.code + ', ' + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -746,7 +746,7 @@ let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('killProcessWithAccountCallback fail, err: ' + JSON.stringify(err));
+        console.log('killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('killProcessWithAccountCallback success.');
     }
@@ -789,7 +789,7 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 function killProcessesByBundleNameCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('killProcessesByBundleNameCallback fail, err: ' + JSON.stringify(err));
+        console.log('killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('killProcessesByBundleNameCallback success.');
     }
@@ -797,7 +797,7 @@ function killProcessesByBundleNameCallback(err, data) {
 try {
     appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -843,10 +843,10 @@ try {
     appManager.killProcessesByBundleName(bundleName).then((data) => {
         console.log('killProcessesByBundleName success.');
     }).catch((err) => {
-        console.log('killProcessesByBundleName fail, err: ' + JSON.stringify(err));
+        console.log('killProcessesByBundleName fail, err: ${JSON.stringify(err)}');
     })
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -885,7 +885,7 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 function clearUpApplicationDataCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('clearUpApplicationDataCallback fail, err: ' + JSON.stringify(err));
+        console.log('clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('clearUpApplicationDataCallback success.');
     }
@@ -893,7 +893,7 @@ function clearUpApplicationDataCallback(err, data) {
 try {
     appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -939,10 +939,10 @@ try {
     appManager.clearUpApplicationData(bundleName).then((data) => {
         console.log('clearUpApplicationData success.');
     }).catch((err) => {
-        console.log('clearUpApplicationData fail, err: ' + JSON.stringify(err));
+        console.log('clearUpApplicationData fail, err: ${JSON.stringify(err)}');
     })
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 

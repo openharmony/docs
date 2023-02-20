@@ -26,8 +26,8 @@
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getProcessRunningInfos().then((data) => {
-    console.log('success:' + JSON.stringify(data));
+    console.log('success: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('failed:' + JSON.stringify(error));
+    console.log('failed: ${JSON.stringify(error)}');
 });
 ```

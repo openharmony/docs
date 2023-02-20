@@ -30,7 +30,6 @@ let observer = {
 try {
     errorManager.on('error', observer);
 } catch (error) {
-    console.log('registerErrorObserver' + ' failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('registerErrorObserver failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
