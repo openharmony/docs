@@ -1498,6 +1498,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.READ_APP_PUSH_DATA
+
+允许推送服务读取APP中Push数据权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.WRITE_APP_PUSH_DATA
+
+允许推送服务往APP中写入Push数据权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 允许应用订阅开机广播。
