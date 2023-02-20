@@ -93,7 +93,7 @@ The callback is not exists.
 
 **处理步骤**
 
-确定执行去注册函数前是否有执行注册函数。
+检查callback对象，确保注销callback对象前，已执行注册函数。
 
 ## 2101022 请求数量超过最大值
 
