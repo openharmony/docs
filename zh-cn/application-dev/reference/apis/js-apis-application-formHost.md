@@ -40,6 +40,8 @@ let formId = '12400633174999288';
 formHost.deleteForm(formId, (error, data) => {
   if (error.code) {
     console.error('formHost deleteForm, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost deleteForm success');
   }
 });
 ```
@@ -66,7 +68,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**参数：**
+**示例：**
 
 ```ts
 import formHost from '@ohos.application.formHost';
@@ -206,6 +208,8 @@ let formId = '12400633174999288';
 formHost.requestForm(formId, (error, data) => {
   if (error.code) {
     console.error('formHost requestForm, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost requestForm success');
   }
 });
 ```
@@ -271,6 +275,8 @@ let formId = '12400633174999288';
 formHost.castTempForm(formId, (error, data) => {
   if (error.code) {
     console.error('formHost castTempForm, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost castTempForm success');
   }
 });
 ```
@@ -336,6 +342,8 @@ let formId = ['12400633174999288'];
 formHost.notifyVisibleForms(formId, (error, data) => {
   if (error.code) {
     console.error('formHost notifyVisibleForms, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost notifyVisibleForms success');
   }
 });
 ```
@@ -401,6 +409,8 @@ let formId = ['12400633174999288'];
 formHost.notifyInvisibleForms(formId, (error, data) => {
   if (error.code) {
     console.error('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost notifyInvisibleForms success');
   }
 });
 ```
@@ -466,6 +476,8 @@ let formId = ['12400633174999288'];
 formHost.enableFormsUpdate(formId, (error, data) => {
   if (error.code) {
     console.error('formHost enableFormsUpdate, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost enableFormsUpdate success');
   }
 });
 ```
@@ -531,6 +543,8 @@ let formId = ['12400633174999288'];
 formHost.disableFormsUpdate(formId, (error, data) => {
   if (error.code) {
     console.error('formHost disableFormsUpdate, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost disableFormsUpdate success');
   }
 });
 ```
@@ -593,6 +607,8 @@ let formId = '12400633174999288';
 formHost.isSystemReady((error, data) => {
   if (error.code) {
     console.error('formHost isSystemReady, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost isSystemReady success');
   }
 });
 ```
@@ -1011,6 +1027,8 @@ let formIds = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsVisible(formIds, true, (error, data) => {
   if (error.code) {
     console.error('formHost notifyFormsVisible, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost notifyFormsVisible, data:' + JSON.stringify(data));
   }
 });
 ```
@@ -1078,6 +1096,8 @@ let formIds = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
   if (error.code) {
     console.error('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
+  } else {
+    console.log('formHost notifyFormsEnableUpdate, data:' + JSON.stringify(data));
   }
 });
 ```
