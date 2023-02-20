@@ -71,9 +71,9 @@ export default {
       },            
       fail: function(data, code) {                
         console.log('fail to get location. code:' + code + ', data:' + data);            
-      },
+      }
     });    
-  },
+  }
 }
 ```
 
@@ -193,7 +193,7 @@ unsubscribe(): void
 export default {    
   unsubscribe() {        
     geolocation.unsubscribe();    
-  },
+  }
 }
 ```
 
