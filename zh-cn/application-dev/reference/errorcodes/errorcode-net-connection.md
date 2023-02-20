@@ -66,15 +66,15 @@ The same callback exists.
 
 **错误描述**
 
-已经注册的Callback。
+已经注册的callback。
 
 **可能原因**
 
-激活&监听指定属性网络并注册回调时，Callback对象重复注册。
+激活&监听指定属性网络并注册回调时，callback对象重复注册。
 
 **处理步骤**
 
-确保Callback对象未进行过注册或者执行过去注册处理。
+确保callback对象未进行过注册或者执行过去注册处理。
 
 ## 2101008 callback不存在
 
@@ -84,7 +84,7 @@ The callback is not exists.
 
 **错误描述**
 
-不存在的Callback对象。
+不存在的callback对象。
 
 **可能原因**
 
