@@ -453,7 +453,7 @@ struct Test {
         .width('600px')
         .height('300px')
         .margin({ top: 50 })
-      Text(`矩阵变换前的坐标：[${this.transformPoint}]`)
+      Text(`矩阵变换后的坐标：[${this.transformPoint}]`)
         .fontSize(16)
         .margin({ top: 100 })
       Image($r("app.media.image"))
