@@ -32,6 +32,3 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
   }
 }
 ```
-
-> **说明：**
-> Ability的组成请参见在[模块中添加Ability](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-adding-ability-0000001218280664-V3)。
