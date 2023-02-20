@@ -459,7 +459,7 @@ async function createTonePlayerBefore(){
 | SAMPLE_FORMAT_S16LE                | 1      | 带符号的16位整数，小尾数。 |
 | SAMPLE_FORMAT_S24LE                | 2      | 带符号的24位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 | SAMPLE_FORMAT_S32LE                | 3      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
-| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | 带符号的32位浮点数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 
 ## AudioErrors<sup>9+</sup>
 
@@ -4026,7 +4026,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 |
 | deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 |
-| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id。  |
+| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id，唯一。  |
 | name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。 |
 | address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。 |
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
