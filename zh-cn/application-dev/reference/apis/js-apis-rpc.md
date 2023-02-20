@@ -6647,6 +6647,8 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
