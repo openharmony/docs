@@ -306,10 +306,10 @@ import window from '@ohos.window';
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| SHOWN      | 1      | 切到前台。 |
-| ACTIVE     | 2      | 获焦状态。 |
-| INACTIVE   | 3      | 失焦状态。 |
-| HIDDEN     | 4      | 切到后台。 |
+| WINDOW_SHOWN      | 1      | 切到前台。 |
+| WINDOW_ACTIVE     | 2      | 获焦状态。 |
+| WINDOW_INACTIVE   | 3      | 失焦状态。 |
+| WINDOW_HIDDEN     | 4      | 切到后台。 |
 
 ## window.createWindow<sup>9+</sup>
 
