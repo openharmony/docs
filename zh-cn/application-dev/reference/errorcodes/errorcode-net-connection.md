@@ -74,7 +74,8 @@ The same callback exists.
 
 **处理步骤**
 
-确保callback对象未进行过注册或者执行过去注册处理。
+1.确保待注册的callback对象未进行过注册
+2.若callback对象已进行过注册，执行已存在的注册。
 
 ## 2101008 callback不存在
 
