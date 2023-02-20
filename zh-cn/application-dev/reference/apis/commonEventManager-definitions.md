@@ -779,3 +779,8 @@ Wi-Fi P2P群组信息已更改。
 表示快速修复应用的动作。
 - 值： usual.event.QUICK_FIX_APPLY_RESULT
 - 订阅者所需权限： 无
+
+## COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+<sup>
+表示HTTP代理的配置信息发生变化。
+- 值：usual.event.HTTP_PROXY_CHANGE
+- 订阅者所需权限：无
