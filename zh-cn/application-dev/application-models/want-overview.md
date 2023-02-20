@@ -3,7 +3,7 @@
 
 ## Want的定义与用途
 
-[Want](../reference/apis/js-apis-app-ability-want.md)是一种对象，用于在应用组件之间传递信息。其中，一种常见的使用场景是作为[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法的参数。在这种情况下，Want对象包含了指定的启动目标以及启动时需携带的相关数据。具体来说，bundleName和abilityName字段分别指定了目标应用组件所在应用的Bundle名称和对应包内的Ability名称。例如，当UIAbilityA需要启动UIAbilityB并向UIAbilityB传递一些数据时，可以使用Want作为一个载体，将数据传递给UIAbilityB。
+[Want](../reference/apis/js-apis-app-ability-want.md)是一种对象，用于在应用组件之间传递信息。其中，一种常见的使用场景是作为[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法的参数。在这种情况下，Want对象包含了指定的启动目标以及启动时需携带的相关数据。具体来说，bundleName和abilityName字段分别指定了目标Ability所在应用的Bundle名称和对应包内的Ability名称。例如，当UIAbilityA需要启动UIAbilityB并向UIAbilityB传递一些数据时，可以使用Want作为一个载体，将数据传递给UIAbilityB。
 
   **图1** Want用法示意
 
@@ -13,7 +13,7 @@
 ## Want的类型
 
 - **显式Want**：在启动Ability时，如果指定了abilityName和bundleName，则称为显式Want。
-    显式Want通常用于在当前应用中启动已知的目标应用组件，通过提供目标应用组件所在应用的Bundle名称信息（bundleName）并在Want对象内指定abilityName来启动目标应用组件。当有明确处理请求的对象时，显式Want是一种简单有效的启动目标应用组件的方式。
+    显式Want通常用于在当前应用中启动已知的目标Ability，通过提供目标Ability所在应用的Bundle名称信息（bundleName）并在Want对象内指定abilityName来启动目标Ability。当有明确处理请求的对象时，显式Want是一种简单有效的启动目标Ability的方式。
     
   ```ts
   let wantInfo = {
