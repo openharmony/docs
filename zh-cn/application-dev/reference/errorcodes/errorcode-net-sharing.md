@@ -90,7 +90,7 @@ WiFi sharing failed.
 
 **错误描述**
 
-开启wifi共享失败。
+开启WiFi共享失败。
 
 **可能原因**
 
