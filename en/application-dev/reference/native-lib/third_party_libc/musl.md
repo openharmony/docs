@@ -35,6 +35,8 @@ C standard library includes a set of header files in accordance with standard C 
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
+[Native Api Symbols That May Invoke Failed Because of Permission Control](musl-permission-control-symbol.md)
+
 ## libc++
 
 [libc++](https://libcxx.llvm.org/) is an implementation of the C++ standard library.
