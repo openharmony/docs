@@ -1,50 +1,6 @@
-# Restrictions and Extensions
+# ArkUI Subsystem ChangeLog
 
-## Restrictions on Using ArkTS in Generators
-
-ArkTS has the following restrictions on generators:
-
-- Expressions can be used only in character strings (${expression}), **if/else** statements, **ForEach** parameters, and component parameters.
-
-- No expressions should cause any application state variables (that is, variables decorated by **@State**, **@Link**, and **@Prop**) to change. Otherwise, undefined and potentially unstable framework behavior may occur.
-
-- The generator function cannot contain local variables.
-
-None of the above restrictions applies to anonymous function implementations of event methods (such as **onClick**).
-
-## Two-Way Binding of Variables
-
-ArkTS supports two-way binding through **$$**, which is usually used for variables whose state values change frequently.
-
-- **$$** supports variables of primitive types and variables decorated by **@State**, **@Link**, or **@Prop**.
-- **$$** supports only the **show** parameter of the **[bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md)** attribute method, the **checked** attribute of the **[\<Radio>](../reference/arkui-ts/ts-basic-components-radio.md)** component, and the **refreshing** parameter of the **[\<Refresh>](../reference/arkui-ts/ts-container-refresh.md)** component.
-- When the variable bound to **$$** changes, only the current component is rendered, which improves the rendering speed.
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct bindPopupPage {
-  @State customPopup: boolean = false
-
-  build() {
-    Column() {
-      Button('Popup')
-        .margin(20)
-        .onClick(() => {
-          this.customPopup = !this.customPopup
-        })
-        .bindPopup($$this.customPopup, {
-          message: "showPopup"
-        })
-    }
-  }
-}
-```
-
-![popup](figures/popup.gif)
-
-## Restrictions on Data Type Declarations of State Variables
+## cl.arkui.1 Restrictions on Data Type Declarations of State Variables
 
 1. The data types of state variables decorated by state decorators must be explicitly declared. They cannot be declared as **any** or **Date**.
 
@@ -83,12 +39,12 @@ struct bindPopupPage {
     }
     ```
 
-    ![datePicker](../../application-dev/reference/arkui-ts/figures/datePicker.gif)
+    ![datePicker](../../../application-dev/reference/arkui-ts/figures/datePicker.gif)
 
 2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
 
     The **Length**, **ResourceStr**, and **ResourceColor** types are combinations of primitive data types or reference data types. Therefore, they cannot be used by the aforementioned types of state variables.
-    For details about the definitions of **Length**, **ResourceStr**, and **ResourceColor**, see [Types](../../application-dev/reference/arkui-ts/ts-types.md).
+    For details about the definitions of **Length**, **ResourceStr**, and **ResourceColor**, see [Types](../../../application-dev/reference/arkui-ts/ts-types.md).
 
     Example:
 
@@ -116,44 +72,45 @@ struct bindPopupPage {
     }
     ```
 
-    ![hello](figures/hello.PNG)
+    ![hello](../../../application-dev/quick-start/figures/hello.PNG)
 
-## Initialization Rules and Restrictions of Custom Components' Member Variables
+**Change Impacts**
 
-The member variables of a component can be initialized in either of the following ways:
+1. If the data type of a state variable decorated by a state decorator is declared as **any**, a build error will occur.
+    ```ts
+    // ArkTS:ERROR Please define an explicit type, not any.
+    @State isLunar: any = false
+    ```
+2. If the data type of a state variable decorated by a state decorator is declared as **Date**, a build error will occur.
+    ```ts
+    // ArkTS:ERROR The @State property 'selectedDate' cannot be a 'Date' object.
+    @State selectedDate: Date = new Date('2021-08-08')
+    ```
+3. If the data type of a **@State**, **@Provide**, **@Link**, and or **@Consume** decorated state variable is Length, **ResourceStr**, or **ResourceColor**, a build error will occur.
+    ```ts
+    /* ArkTS:ERROR The state variable type here is 'ResourceStr', it contains both a simple type and an object type,
+      which are not allowed to be defined for state variable of a struct.*/
+    @State message: ResourceStr = $r('app.string.hello')
+    ```
 
-- Local initialization:
+**Key API/Component Changes**
 
-  ```ts
-  @State counter: Counter = new Counter()
-  ```
-- Initialization using constructor parameters:
+N/A
 
-  ```ts
-  MyComponent({counter: $myCounter})
-  ```
+**Adaptation Guide**
 
-The allowed method depends on the decorator of the state variable, as described in the following table.
+1. Explicitly declare the data type for state variables decorated by state decorators.
+2. If a state variable decorated by a state decorator uses the **Date** object, change it to a regular variable – a variable not decorated by any decorator.
+3. Adapt the **@State**, **@Provide**, **@Link**, and **@Consume** decorated variables based on the following code snippet so that they do not use the **Length(string|number|Resource)**, **ResourceStr(string|Resource)**, and **ResourceColor(string|number|Color|Resource)** types:
+    
+    ```ts
+    // Incorrect:
+    @State message: ResourceStr = $r('app.string.hello')
+    // Corrected:
+    @State resourceStr: Resource = $r('app.string.hello')
+    ```
 
-| Decorator       | Local Initialization| Initialization Using Constructor Parameters|
-| ------------ | ----- | ----------- |
-| @State       | Mandatory   | Optional         |
-| @Prop        | Forbidden   | Mandatory         |
-| @Link        | Forbidden   | Mandatory         |
-| @StorageLink | Mandatory   | Forbidden         |
-| @StorageProp | Mandatory   | Forbidden         |
-| @LocalStorageLink | Mandatory   | Forbidden         |
-| @LocalStorageProp | Mandatory   | Forbidden         |
-| @Provide     | Mandatory   | Optional         |
-| @Consume     | Forbidden   | Forbidden         |
-| @ObjectLink  | Forbidden   | Mandatory         |
-| Normal member variable      | Recommended   | Optional         |
-
-As indicated by the preceding table:
-
-- The **@State** decorated variables must be initialized locally. Their initial values can be overwritten by the constructor parameters.
-
-- The **@Prop** and **@Link** decorated variables must be initialized only by constructor parameters.
+## cl.arkui.2 Initialization Rules and Restrictions of Custom Components' Member Variables
 
 Comply with the following rules when using constructors to initialize member variables:
 
@@ -183,52 +140,78 @@ Comply with the following rules when using constructors to initialize member var
 >
 > **regular**: refers to a regular variable that is not decorated by any decorator.
 
-As indicated by the preceding tables:
+**@StorageLink**, **@StorageProp**, **@LocalStorageLink**, and **@LocalStorageProp** variables cannot be initialized from the parent component.
 
-- The **@ObjectLink** decorated variable cannot be directly initialized from a decorated variable in the parent component. The source of the parent component must be an array item or object attribute decorated by **@State**, **@Link**, **@Provide**, **@Consume**, or **@ObjectLink**.
+**Change Impacts**
 
-- The regular variables of the parent component can be used to initialize the **@State** variable of the child component, but cannot be used to initialize the **@Link**, **@Consume**, and **@ObjectLink** variables.
-
-- The **@State** variable of the parent component can be used to initialize the **@Prop**, **@Link** (through **$**), or regular variables of the child component, but cannot be used to initialize the **@Consume** variable.
-
-- The **@Link** variable of the parent component cannot be used to initialize the **@Consume** and **@ObjectLink** variables of the child component.
-
-- The **@Prop** variable of the parent component cannot be used to initialize the **@Consume** and **@ObjectLink** variables of the child component.
-
-- **@StorageLink**, **@StorageProp**, **@LocalStorageLink**, and **@LocalStorageProp** variables cannot be initialized from the parent component.
-
-- In addition to the preceding rules, the TypeScript strong type rules need to be followed.
-
-Example:
-```ts
-@Entry
-@Component
-struct Parent {
-  message: string = "Hello World"
-  build() {
-    Column() {
-      Child({
-        stateMessage: this.message,
-        /* ArkTS:ERROR The regular property 'message' cannot be assigned  
-           to the @Link property 'linkMessage'.*/
-        linkMessage: this.$message
-      })
+1. Variables decorated by **@LocalStorageLink** and **@LocalStorageProp** cannot be initialized from the parent component.
+    ```ts
+    @Entry
+    @Component
+    struct LocalStorageComponent {
+        build() {
+            Column() {
+                Child({
+                  /* ArkTS:ERROR Property 'simpleVarName' in the custom component 'Child' cannot
+                    initialize here (forbidden to specify). */
+                  simpleVarName: 1,
+                  /* ArkTS:ERROR Property 'objectName' in the custom component 'Child' cannot
+                    initialize here (forbidden to specify). */
+                  objectName: new ClassA("x")
+                })
+            }
+        }
     }
-    .width('100%')
-  }
-}
-
-@Component
-struct Child {
-  @State stateMessage: string = "Hello World"
-  @Link linkMessage: string
-  build() {
-    Column() {
-      Text(this.stateMessage)
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
+    @Component
+    struct Child {
+        @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0;
+        @LocalStorageProp("storageObjectProp") objectName: ClassA = new ClassA("x");
+        build() {}
     }
-    .width('100%')
-  }
-}
-```
+    ```
+2. The **@ObjectLink** decorated variable cannot be directly initialized from a decorated variable in the parent component. The source of the parent component must be an array item or object attribute decorated by **@State**, **@Link**, **@Provide**, **@Consume**, or **@ObjectLink**.
+    ```ts
+    let NextID : number = 0;
+
+    @Observed class ClassA {
+      public id : number;
+      public c: number;
+      constructor(c: number) {
+        this.id = NextID++;
+        this.c = c;
+      }
+    }
+
+    @Component
+    struct Child {
+      @ObjectLink varA : ClassA;
+      build() {
+        Row() {
+          Text('ViewA-' + this.varA.id)
+        }
+      }
+    }
+
+    @Component
+    struct Parent {
+      @Link linkValue: ClassA
+      build() {
+        Column() {
+          /* ArkTS:ERROR The @Link property 'linkValue' cannot be assigned to
+            the @ObjectLink property 'varA'.*/
+          Child({ varA: this.linkValue })
+        }
+      }
+    }
+    ```
+
+**Key API/Component Changes**
+
+N/A
+
+**Adaptation Guide**
+1. When building a child component, do not perform the build on the variables decorated by **@LocalStorageLink** and **@LocalStorageProp** in the child component.
+
+   To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
+
+2. For details about how to use **@ObjectLink**, see [@Observed and @ObjectLink](../../../application-dev/quick-start/arkts-state-mgmt-page-level.md).
