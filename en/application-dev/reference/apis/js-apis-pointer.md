@@ -278,7 +278,7 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -321,7 +321,7 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -360,7 +360,7 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
@@ -398,7 +398,7 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 import window from '@ohos.window';
 
 window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
+  win.getWindowProperties((error, properties) => {
     let windowId = properties.id;
     if (windowId < 0) {
       console.log(`Invalid windowId`);
