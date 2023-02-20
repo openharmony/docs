@@ -140,7 +140,7 @@ Network share enable forwarding error.
 
 开启debug日志，检查Ip tables的命令是否拼接出现问题。
 
-## 2202011 无法获取网路共享配置
+## 2202011 无法获取网络共享配置
 
 **错误信息**
 
