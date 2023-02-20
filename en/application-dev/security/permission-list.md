@@ -1464,26 +1464,6 @@ Allows an application to to access the Ability of the push service.
 
 **Enable ACL**: TRUE
 
-## ohos.permission.READ_APP_PUSH_DATA
-
-Allows push service to read push data from the application.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable ACL**: FALSE
-
-## ohos.permission.WRITE_APP_PUSH_DATA
-
-Allows push service to write push data to the application.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable ACL**: FALSE
-
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 Allows an application to subscribe to the startup broadcast.
