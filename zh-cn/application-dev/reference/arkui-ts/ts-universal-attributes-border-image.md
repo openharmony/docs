@@ -85,7 +85,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
+        Text('This is gradient color.').textAlign(TextAlign.Center).height(50).width(200)
           .borderImage({
             source: {
               angle: 90,
