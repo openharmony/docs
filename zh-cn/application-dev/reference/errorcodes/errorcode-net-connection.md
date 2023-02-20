@@ -103,7 +103,7 @@ The number of requests exceeded the maximum.
 
 **错误描述**
 
-请求数超过了最大值。
+网络请求数超过了最大值。
 
 **可能原因**
 
@@ -111,4 +111,4 @@ The number of requests exceeded the maximum.
 
 **处理步骤**
 
-建议通过日志定位问题。
+建议通过日志信息“Over the max request number”定位问题。
