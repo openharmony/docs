@@ -1,4 +1,4 @@
-# Media Query
+# @system.mediaquery (Media Query)
 
 The **mediaquery** module provides different styles for different media types.
 
@@ -12,7 +12,7 @@ The **mediaquery** module provides different styles for different media types.
 ## Modules to Import
 
 
-```
+```ts
 import mediaquery from '@system.mediaquery';
 ```
 
@@ -39,8 +39,8 @@ Creates a **MediaQueryList** object based on the query condition.
 
 **Example**
 
-```
-var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
+```ts
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
 ```
 
 ## MediaQueryEvent
@@ -97,7 +97,7 @@ Adds a listener for this **MediaQueryList** object. The listener must be added b
 
 **Example**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something
@@ -123,7 +123,7 @@ Removes the listener for this **MediaQueryList** object.
 
 **Example**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something

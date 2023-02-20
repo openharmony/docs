@@ -1,17 +1,15 @@
-# AbilityConstant
+# @ohos.application.AbilityConstant (AbilityConstant)
 
-The **AbilityConstant** module provides ability launch parameters.
-
-The parameters include the initial launch reasons, reasons for the last exit, and ability continuation results.
+The **AbilityConstant** module defines the ability-related enums, including the initial launch reasons, reasons for the last exit, ability continuation results, and window modes.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are supported since API version 9 and are deprecated in versions later than API version 9. You are advised to use [@ohos.app.ability.AbilityConstant](js-apis-app-ability-abilityConstant.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
-```js
+```ts
 import AbilityConstant from '@ohos.application.AbilityConstant';
 ```
 
@@ -19,14 +17,14 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | LaunchReason| Yes| Yes| Ability launch reason.| 
-| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.| 
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| Yes| Yes| Ability launch reason.|
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | Yes| Yes| Reason for the last exit.|
 
 ## AbilityConstant.LaunchReason
 
-Enumerates ability launch reasons.
+Enumerates the initial ability launch reasons.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -36,11 +34,12 @@ Enumerates ability launch reasons.
 | START_ABILITY          | 1    | Ability startup.|
 | CALL | 2    | Call.|
 | CONTINUATION           | 3    | Ability continuation.|
+| APP_RECOVERY           | 4    | Application recovery.|
 
 
 ## AbilityConstant.LastExitReason
 
-Enumerates reasons for the last exit.
+Enumerates the reasons for the last exit.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -53,7 +52,7 @@ Enumerates reasons for the last exit.
 
 ## AbilityConstant.OnContinueResult 
 
-Enumerates ability continuation results.
+Enumerates the ability continuation results.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -88,3 +87,29 @@ Enumerates the memory levels.
 | MEMORY_LEVEL_MODERATE       | 0   | Moderate memory usage.      |
 | MEMORY_LEVEL_LOW            | 1   | Low memory usage.           |
 | MEMORY_LEVEL_CRITICAL       | 2   | High memory usage.  |
+
+## AbilityConstant.OnSaveResult
+
+Enumerates the result types for the operation of saving application data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                         | Value  | Description                                                        |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| ALL_AGREE           | 0    | Agreed to save the status.|
+| CONTINUATION_REJECT           | 1    | Rejected to save the status in continuation.|
+| CONTINUATION_MISMATCH  | 2    | Continuation mismatch.|
+| RECOVERY_AGREE           | 3    | Agreed to restore the saved status.|
+| RECOVERY_REJECT  | 4    | Rejected to restore the saved state.|
+| ALL_REJECT  | 5    | Rejected to save the status.|
+
+## AbilityConstant.StateType
+
+Enumerates the scenarios for saving application data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                         | Value  | Description                                                        |
+| ----------------------------- | ---- | ------------------------------------------------------------ |
+| CONTINUATION           | 0    | Saving the status in continuation.|
+| APP_RECOVERY           | 1    | Saving the status in application recovery.|

@@ -2,13 +2,13 @@
 
 ## When to Use
 
-With the APIs provided by the **Camera** module, you can access and operate camera devices and develop new functions. Common operations include preview, photographing, and video recording. You can also implement flash control, exposure time control, focus mode control, zooming control, and many others.
+With the APIs provided by the **Camera** module, you can access and operate camera devices and develop new functions. Common operations include preview, photographing, and video recording. You can also implement flash control, exposure time control, focus mode control, zoom control, and much more.
 
 Before calling camera APIs, be familiar with the following concepts:
 
 - **Static camera capabilities**: A series of parameters used to describe inherent capabilities of a camera, such as orientation and supported resolution.
 - **Physical camera**: An independent camera device. The physical camera ID is a string that uniquely identifies a physical camera.
-- **Asynchronous operation**: To prevent the UI thread from being blocked, most **Camera** calls are asynchronous. Each API provides the callback and promise functions.
+- **Asynchronous operation**: A non-blocking operation that allows other operations to execute before it completes. To prevent the UI thread from being blocked, some **Camera** calls are asynchronous. Each asynchronous API provides the callback and promise functions.
 
 ## How to Develop
 
@@ -22,7 +22,7 @@ The full process includes applying for permissions, creating an instance, settin
 
 #### Applying for Permissions
 
-You must apply for the permission for your application to access the camera device and other functions. The following table lists camera-related permissions.
+You must apply for the permissions for your application to access the camera device and other functions. The following table lists camera-related permissions.
 
 | Permission| Attribute Value                    |
 | -------- | ------------------------------ |
@@ -51,79 +51,108 @@ function applyPermission() {
 
 #### Creating an Instance
 
-You must create an independent **CameraManager** instance before performing camera operations. If this operation fails, the camera may be occupied or unusable. If the camera is occupied, wait until it is released. You can call **getSupportedCameras()** to obtain the list of cameras supported by the current device. The list stores all camera IDs of the current device. If the list is not empty, each ID in the list can be used to create an independent camera instance. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed. The camera has preview, shooting, video recording, and metadata streams. You can use **getSupportedOutputCapability()** to obtain the output stream capabilities of the camera and configure them in the **profile** field in **CameraOutputCapability**. The procedure for creating a **CameraManager** instance is as follows:
+You must create an independent **CameraManager** instance before performing camera operations. If this operation fails, the camera may be occupied or unusable. If the camera is occupied, wait until it is released. You can call **getSupportedCameras()** to obtain the list of cameras supported by the current device. The list stores all camera IDs of the current device. Each of these IDs can be used to create an independent **CameraManager** instance. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed. The camera has preview, shooting, video recording, and metadata output streams. You can use **getSupportedOutputCapability()** to obtain the output stream capabilities of the camera and configure them in the **profile** field in **CameraOutputCapability**. The procedure for creating a **CameraManager** instance is as follows:
 
 ```typescript
 import camera from '@ohos.multimedia.camera'
 import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
 
-// Create a CameraManager object.
+// Create a CameraManager instance.
 context: any = getContext(this)
-let cameraManager = await camera.getCameraManager(this.context)
+let cameraManager = camera.getCameraManager(this.context)
 if (!cameraManager) {
-    console.error('Failed to get the CameraManager instance');
-}
+    console.error("camera.getCameraManager error")
+    return;
+} 
+// Listen for camera state changes.
+cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.log(`status: ${cameraStatusInfo.status}`);
+})
 
 // Obtain the camera list.
-let cameraArray = await cameraManager.getSupportedCameras()
-if (!cameraArray) {
-    console.error('Failed to get the cameras');
-}
+let cameraArray = cameraManager.getSupportedCameras();
+if (cameraArray.length <= 0) {
+    console.error("cameraManager.getSupportedCameras error")
+    return;
+} 
 
 for (let index = 0; index < cameraArray.length; index++) {
-    console.log('cameraId : ' + cameraArray[index].cameraId)                          // Obtain the camera ID.
-    console.log('cameraPosition : ' + cameraArray[index].cameraPosition)              // Obtain the camera position.
-    console.log('cameraType : ' + cameraArray[index].cameraType)                      // Obtain the camera type.
-    console.log('connectionType : ' + cameraArray[index].connectionType)              // Obtain the camera connection type.
+    console.log('cameraId : ' + cameraArray[index].cameraId);                        // Obtain the camera ID.
+    console.log('cameraPosition : ' + cameraArray[index].cameraPosition);              // Obtain the camera position.
+    console.log('cameraType : ' + cameraArray[index].cameraType);                      // Obtain the camera type.
+    console.log('connectionType : ' + cameraArray[index].connectionType);              // Obtain the camera connection type.
 }
 
 // Create a camera input stream.
-let cameraInput = await cameraManager.createCameraInput(cameraArray[0])
-
-// Obtain the output stream capabilities supported by the camera.
-let cameraOutputCap = await cameraManager.getSupportedOutputCapability(cameraArray[0]);
-if (!cameraOutputCap) {
-    console.error("outputCapability outputCapability == null || undefined")
-} else {
-    console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
+let cameraInput
+try {
+    cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+} catch () {
+   console.error('Failed to createCameraInput errorCode = ' + error.code);
 }
 
-let previewProfilesArray = cameraOutputCap.GetPreviewProfiles();
+// Listen for CameraInput errors.
+let cameraDevice = cameraArray[0];
+cameraInput.on('error', cameraDevice, (error) => {
+    console.log(`Camera input error code: ${error.code}`);
+})
+
+// Open the camera.
+await cameraInput.open();
+
+// Obtain the output stream capabilities supported by the camera.
+let cameraOutputCap = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+if (!cameraOutputCap) {
+    console.error("cameraManager.getSupportedOutputCapability error")
+    return;
+}
+console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
+
+let previewProfilesArray = cameraOutputCap.previewProfiles;
 if (!previewProfilesArray) {
     console.error("createOutput previewProfilesArray == null || undefined")
 } 
 
-let photoProfilesArray = cameraOutputCap.GetPhotoProfiles();
+let photoProfilesArray = cameraOutputCap.photoProfiles;
 if (!photoProfilesArray) {
     console.error("createOutput photoProfilesArray == null || undefined")
 } 
 
-let videoProfilesArray = cameraOutputCap.GetVideoProfiles();
+let videoProfilesArray = cameraOutputCap.videoProfiles;
 if (!videoProfilesArray) {
     console.error("createOutput videoProfilesArray == null || undefined")
 } 
 
-let metadataObjectTypesArray = cameraOutputCap.GetSupportedMetadataObjectType();
+let metadataObjectTypesArray = cameraOutputCap.supportedMetadataObjectTypes;
 if (!metadataObjectTypesArray) {
     console.error("createOutput metadataObjectTypesArray == null || undefined")
 }
 
 // Create a preview stream. For details about the surfaceId parameter, see the XComponent section. The preview stream is the surface provided by the XComponent.
-let previewOutput = await cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId)
-if (!previewOutput) {
+let previewOutput
+try {
+    previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId)
+} catch (error) {
     console.error("Failed to create the PreviewOutput instance.")
 }
 
-// Create an ImageReceiver object and set photo parameters. The resolution is set based on the photographing resolutions supported by the current device, which are obtained by photoProfilesArray.
+// Listen for PreviewOutput errors.
+previewOutput.on('error', (error) => {
+    console.log(`Preview output error code: ${error.code}`);
+})
+
+// Create an ImageReceiver instance and set photo parameters. Wherein, the resolution must be one of the photographing resolutions supported by the current device, which are obtained by photoProfilesArray.
 let imageReceiver = await image.createImageReceiver(1920, 1080, 4, 8)
 // Obtain the surface ID for displaying the photos.
 let photoSurfaceId = await imageReceiver.getReceivingSurfaceId()
 // Create a photographing output stream.
-let photoOutput = await cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId)
-if (!photoOutput) {
-    console.error('Failed to create the PhotoOutput instance.');
-    return;
+let photoOutput
+try {
+    photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId)
+} catch (error) {
+   console.error('Failed to createPhotoOutput errorCode = ' + error.code);
 }
 
 // Define video recording parameters.
@@ -165,12 +194,18 @@ videoRecorder.getInputSurface().then((id) => {
     videoSurfaceId = id
 })
 
-// Create a VideoOutput object.
-let videoOutput = await cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId)
-if (!videoOutput) {
-    console.error('Failed to create the videoOutput instance.');
-    return;
+// Create a VideoOutput instance.
+let videoOutput
+try {
+    videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId)
+} catch (error) {
+    console.error('Failed to create the videoOutput instance. errorCode = ' + error.code);
 }
+
+// Listen for VideoOutput errors.
+videoOutput.on('error', (error) => {
+    console.log(`Preview output error code: ${error.code}`);
+})
 ```
 Surfaces must be created in advance for the preview, shooting, and video recording stream. The preview stream is the surface provided by the **XComponent**, the shooting stream is the surface provided by **ImageReceiver**, and the video recording stream is the surface provided by **VideoRecorder**.
 
@@ -244,24 +279,45 @@ function getVideoRecorderSurface() {
 
 ```typescript
 // Create a session.
-let captureSession = await camera.createCaptureSession()
-if (!captureSession) {
-    console.error('Failed to create the CaptureSession instance.');
-    return;
+let captureSession
+try {
+    captureSession = cameraManager.createCaptureSession()
+} catch (error) {
+    console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
 }
-console.log('Callback returned with the CaptureSession instance.' + session);
+
+// Listen for session errors.
+captureSession.on('error', (error) => {
+    console.log(`Capture session error code: ${error.code}`);
+})
 
 // Start configuration for the session.
-await captureSession.beginConfig()
+try {
+    captureSession.beginConfig()
+} catch (error) {
+    console.error('Failed to beginConfig. errorCode = ' + error.code);
+}
 
 // Add the camera input stream to the session.
-await captureSession.addInput(cameraInput)
+try {
+    captureSession.addInput(cameraInput)
+} catch (error) {
+    console.error('Failed to addInput. errorCode = ' + error.code);
+}
 
 // Add the preview input stream to the session.
-await captureSession.addOutput(previewOutput)
+try {
+    captureSession.addOutput(previewOutput)
+} catch (error) {
+    console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
+}
 
 // Add the photographing output stream to the session.
-await captureSession.addOutput(photoOutput)
+try {
+    captureSession.addOutput(photoOutput)
+} catch (error) {
+    console.error('Failed to addOutput(photoOutput). errorCode = ' + error.code);
+}
 
 // Commit the session configuration.
 await captureSession.commitConfig()
@@ -279,13 +335,25 @@ await captureSession.start().then(() => {
 await captureSession.stop()
 
 // Start configuration for the session.
-await captureSession.beginConfig()
+try {
+    captureSession.beginConfig()
+} catch (error) {
+    console.error('Failed to beginConfig. errorCode = ' + error.code);
+}
 
 // Remove the photographing output stream from the session.
-await captureSession.removeOutput(photoOutput)
+try {
+    captureSession.removeOutput(photoOutput)
+} catch (error) {
+    console.error('Failed to removeOutput(photoOutput). errorCode = ' + error.code);
+}
 
 // Add a video recording output stream to the session.
-await captureSession.addOutput(videoOutput)
+try {
+    captureSession.addOutput(videoOutput)
+} catch (error) {
+    console.error('Failed to addOutput(videoOutput). errorCode = ' + error.code);
+}
 
 // Commit the session configuration.
 await captureSession.commitConfig()
@@ -300,71 +368,65 @@ await captureSession.start().then(() => {
 
 ```typescript
 // Check whether the camera has flash.
-let flashStatus = await captureSession.hasFlash()
-if (!flashStatus) {
-    console.error('Failed to check whether the device has the flash mode.');
+let flashStatus
+try {
+    flashStatus = captureSession.hasFlash()
+} catch (error) {
+    console.error('Failed to hasFlash. errorCode = ' + error.code);
 }
 console.log('Promise returned with the flash light support status:' + flashStatus);
 
 if (flashStatus) {
     // Check whether the auto flash mode is supported.
     let flashModeStatus
-    captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, async (err, status) => {
-        if (err) {
-            console.error('Failed to check whether the flash mode is supported. ${err.message}');
-            return;
-        }
-        console.log('Callback returned with the flash mode support status: ' + status);
+    try {
+        let status = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO)
         flashModeStatus = status
-    })
+    } catch (error) {
+        console.error('Failed to check whether the flash mode is supported. errorCode = ' + error.code);
+    }
     if(flashModeStatus) {
         // Set the flash mode to auto.
-        captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, async (err) => {
-            if (err) {
-                console.error('Failed to set the flash mode  ${err.message}');
-                return;
-            }
-            console.log('Callback returned with the successful execution of setFlashMode.');
-        })
+        try {
+            captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO)
+        } catch (error) {
+            console.error('Failed to set the flash mode. errorCode = ' + error.code);
+        }
     }
 }
 
 // Check whether the continuous auto focus is supported.
 let focusModeStatus
-captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err, status) => {
-    if (err) {
-        console.error('Failed to check whether the focus mode is supported. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with the focus mode support status: ' + status);
+try {
+    let status = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO)
     focusModeStatus = status
-})
+} catch (error) {
+    console.error('Failed to check whether the focus mode is supported. errorCode = ' + error.code);
+}
+
 if (focusModeStatus) {
     // Set the focus mode to continuous auto focus.
-    captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err) => {
-        if (err) {
-            console.error('Failed to set the focus mode  ${err.message}');
-            return;
-        }
-        console.log('Callback returned with the successful execution of setFocusMode.');
-    })
+    try {
+        captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO)
+    } catch (error) {
+        console.error('Failed to set the focus mode. errorCode = ' + error.code);
+    }
 }
 
 // Obtain the zoom ratio range supported by the camera.
-let zoomRatioRange = await captureSession.getZoomRatioRange()
-if (!zoomRatioRange) {
-    console.error('Failed to get the zoom ratio range.');
-    return;
+let zoomRatioRange
+try {
+    zoomRatioRange = captureSession.getZoomRatioRange()
+} catch (error) {
+    console.error('Failed to get the zoom ratio range. errorCode = ' + error.code);
 }
 
 // Set a zoom ratio.
-captureSession.setZoomRatio(zoomRatioRange[0], async (err) => {
-    if (err) {
-        console.error('Failed to set the zoom ratio value ${err.message}');
-        return;
-    }
-    console.log('Callback returned with the successful execution of setZoomRatio.');
-})
+try {
+    captureSession.setZoomRatio(zoomRatioRange[0])
+} catch (error) {
+    console.error('Failed to set the zoom ratio value. errorCode = ' + error.code);
+}
 ```
 
 #### Taking Photos
@@ -425,7 +487,7 @@ For details about the APIs used for saving photos, see [Image Processing](image.
 captureSession.stop()
 
 // Release the camera input stream.
-cameraInput.release()
+cameraInput.close()
 
 // Release the preview output stream.
 previewOutput.release()
@@ -446,4 +508,4 @@ captureSession = null
 ## Process Flowchart
 
 The following figure shows the process of using the camera.
-![camera_framework process](figures/camera_framework_process.jpg)
+![camera_framework process](figures/camera_framework_process.png)

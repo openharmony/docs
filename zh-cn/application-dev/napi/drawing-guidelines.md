@@ -118,9 +118,9 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
     OH_Drawing_CanvasDrawPath(cCanvas, cPath);
     // 销毁创建的对象
-    OH_Drawing_BrushDestory(cBrush);
-    OH_Drawing_PenDestory(cPen);
-    OH_Drawing_PathDestory(cPath);
+    OH_Drawing_BrushDestroy(cBrush);
+    OH_Drawing_PenDestroy(cPen);
+    OH_Drawing_PathDestroy(cPath);
     ```
 
 6. **获取像素数据**。使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapGetPixels** 接口获取到画布绑定bitmap实例的像素地址，该地址指向的内存包含画布刚刚绘制的像素数据。
@@ -133,9 +133,9 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
         LOGI("memcpy_s failed");
     }
     // 销毁canvas对象
-    OH_Drawing_CanvasDestory(cCanvas);
+    OH_Drawing_CanvasDestroy(cCanvas);
     // 销毁bitmap对象
-    OH_Drawing_BitmapDestory(cBitmap);
+    OH_Drawing_BitmapDestroy(cBitmap);
     ```
 
 ## 文本绘制开发步骤

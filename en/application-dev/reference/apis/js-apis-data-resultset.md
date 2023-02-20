@@ -1,18 +1,20 @@
-# Result Set
+# resultSet
 
 A result set is a set of results returned after the relational database (RDB) query APIs are called. You can use the **resultset** APIs to obtain required data.
 
-> **NOTE**
+> **NOTE**<br/>
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.relationalStore#ResultSet](js-apis-data-relationalStore.md#resultset).
 
 ## ResultSetV9<sup>9+</sup>
 
-Provides methods to access the result set, which is obtained by querying the RDB store.
+Provides APIs to access the result set, which is obtained by querying the RDB store.
 
 ### Usage
 
-You need to obtain the **resultSetV9** instance by using [RdbStoreV9.query()](js-apis-data-rdb.md#query).
+Use [RdbStoreV9.query()](js-apis-data-rdb.md#query) to obtain the **resultSetV9** instance.
 
 ```js
 import dataRdb from '@ohos.data.rdb';
@@ -65,7 +67,7 @@ Obtains the column index based on the column name.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800013     | The column value is  null or the column type is incompatible. |
 
@@ -103,7 +105,7 @@ Obtains the column name based on the column index.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800013     | The column value is  null or the column type is incompatible. |
 
@@ -139,7 +141,7 @@ Moves the cursor to the row based on the specified offset.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
@@ -180,7 +182,7 @@ Moves the cursor to the specified row in the result set.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
@@ -216,7 +218,7 @@ Moves the cursor to the first row of the result set.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
@@ -251,7 +253,7 @@ Moves the cursor to the last row of the result set.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
@@ -286,7 +288,7 @@ Moves the cursor to the next row in the result set.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
@@ -321,7 +323,7 @@ Moves the cursor to the previous row in the result set.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
@@ -362,7 +364,7 @@ Obtains the value in the specified column in the current row as a byte array.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800013     | The column value is  null or the column type is incompatible. |
 
@@ -396,7 +398,7 @@ Obtains the value in the specified column in the current row as a string.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800013     | The column value is  null or the column type is incompatible. |
 
@@ -430,7 +432,7 @@ Obtains the value in the specified column in the current row as a Long.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800013     | The column value is  null or the column type is incompatible. |
 
@@ -464,7 +466,7 @@ Obtains the value in the specified column in the current row as a double.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800013     | The column value is  null or the column type is incompatible. |
 
@@ -498,7 +500,7 @@ Checks whether the value in the specified column of the current row is null.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800013     | The column value is  null or the column type is incompatible. |
 
@@ -524,7 +526,7 @@ let promiseClose = rdbStoreV9.query(predicatesV9Close, ["ID", "NAME", "AGE", "SA
 promiseClose.then((resultSetV9) => {
     resultSetV9.close();
 }).catch((err) => {
-    console.log('Failed to close the resultset');
+    console.log('resultset close failed');
 });
   ```
 
@@ -532,17 +534,13 @@ promiseClose.then((resultSetV9) => {
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| ID| **Error Message**                                                |
+| **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
-## ResultSet<sup>(deprecated)</sup>
+## ResultSet
 
 Provides methods to access the result set, which is obtained by querying the RDB store.
-
-> **NOTE**
->
-> This object is supported since API version 7 and deprecated since API version 9. You are advised to use [ResultSetV9](#resultsetv99).
 
 ### Usage
 
@@ -559,11 +557,7 @@ promise.then((resultSet) => {
 });
 ```
 
-### Attributes<sup>(deprecated)</sup>
-
-> **NOTE**
->
-> This parameter is supported since API version 7 and is deprecated since API version 9. You are advised to use [Attributes](#attributes9).
+### Attributes
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -579,29 +573,25 @@ promise.then((resultSet) => {
 | isStarted | boolean | Yes| Whether the cursor has been moved.|
 | isClosed | boolean | Yes| Whether the result set is closed.|
 
-### getColumnIndex<sup>(deprecated)</sup>
+### getColumnIndex
 
 getColumnIndex(columnName: string): number
 
 Obtains the column index based on the column name.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getColumnIndex](#getcolumnindex9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| columnName | string | Yes| Column name specified.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | columnName | string | Yes| Column name specified.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Index of the column obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | number | Index of the column obtained.|
 
 **Example**
 
@@ -613,29 +603,25 @@ Obtains the column index based on the column name.
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### getColumnName<sup>(deprecated)</sup>
+### getColumnName
 
 getColumnName(columnIndex: number): string
 
 Obtains the column name based on the column index.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getColumnName](#getcolumnname9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| columnIndex | number | Yes| Column index specified.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | columnIndex | number | Yes| Column index specified.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Column name obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | string | Column name obtained.|
 
 **Example**
 
@@ -645,29 +631,25 @@ Obtains the column name based on the column index.
   const age = resultSet.getColumnName(2);
   ```
 
-### goTo<sup>(deprecated)</sup>
+### goTo
 
 goTo(offset:number): boolean
 
 Moves the cursor to the row based on the specified offset.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [goTo](#goto9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| offset | number | Yes| Offset relative to the current position.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | offset | number | Yes| Offset relative to the current position.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -682,29 +664,25 @@ Moves the cursor to the row based on the specified offset.
   });
   ```
 
-### goToRow<sup>(deprecated)</sup>
+### goToRow
 
 goToRow(position: number): boolean
 
 Moves the cursor to the specified row in the result set.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [goToRow](#gotorow9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| position | number | Yes| Position to which the cursor is to be moved.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | position | number | Yes| Position to which the cursor is to be moved.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -719,23 +697,19 @@ Moves the cursor to the specified row in the result set.
   });
   ```
 
-### goToFirstRow<sup>(deprecated)</sup>
+### goToFirstRow
 
 goToFirstRow(): boolean
 
 Moves the cursor to the first row of the result set.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [goToFirstRow](#gotofirstrow9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -750,23 +724,19 @@ Moves the cursor to the first row of the result set.
   });
   ```
 
-### goToLastRow<sup>(deprecated)</sup>
+### goToLastRow
 
 goToLastRow(): boolean
 
 Moves the cursor to the last row of the result set.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [goToLastRow](#gotolastrow9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -781,23 +751,19 @@ Moves the cursor to the last row of the result set.
   });
   ```
 
-### goToNextRow<sup>(deprecated)</sup>
+### goToNextRow
 
 goToNextRow(): boolean
 
 Moves the cursor to the next row in the result set.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [goToNextRow](#gotonextrow9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -812,23 +778,19 @@ Moves the cursor to the next row in the result set.
   });
   ```
 
-### goToPreviousRow<sup>(deprecated)</sup>
+### goToPreviousRow
 
 goToPreviousRow(): boolean
 
 Moves the cursor to the previous row in the result set.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [goToPreviousRow](#gotopreviousrow9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -843,29 +805,25 @@ Moves the cursor to the previous row in the result set.
   });
   ```
 
-### getBlob<sup>(deprecated)</sup>
+### getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
 Obtains the value in the specified column in the current row as a byte array.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getBlob](#getblob9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| columnIndex | number | Yes| Index of the specified column, starting from 0.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Uint8Array | Value in the specified column as a byte array.|
+  | Type| Description|
+  | -------- | -------- |
+  | Uint8Array | Value in the specified column as a byte array.|
 
 **Example**
 
@@ -873,29 +831,25 @@ Obtains the value in the specified column in the current row as a byte array.
   const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"));
   ```
 
-### getString<sup>(deprecated)</sup>
+### getString
 
 getString(columnIndex: number): string
 
 Obtains the value in the specified column in the current row as a string.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getString](#getstring9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| columnIndex | number | Yes| Index of the specified column, starting from 0.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Value in the specified column as a string.|
+  | Type| Description|
+  | -------- | -------- |
+  | string | Value in the specified column as a string.|
 
 **Example**
 
@@ -903,29 +857,25 @@ Obtains the value in the specified column in the current row as a string.
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
   ```
 
-### getLong<sup>(deprecated)</sup>
+### getLong
 
 getLong(columnIndex: number): number
 
 Obtains the value in the specified column in the current row as a Long.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getLong](#getlong9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| columnIndex | number | Yes| Index of the specified column, starting from 0.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Value in the specified column as a Long.|
+  | Type| Description|
+  | -------- | -------- |
+  | number | Value in the specified column as a Long.|
 
 **Example**
 
@@ -933,29 +883,25 @@ Obtains the value in the specified column in the current row as a Long.
   const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
   ```
 
-### getDouble<sup>(deprecated)</sup>
+### getDouble
 
 getDouble(columnIndex: number): number
 
 Obtains the value in the specified column in the current row as a double.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDouble](#getdouble9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| columnIndex | number | Yes| Index of the specified column, starting from 0.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Value in the specified column as a double.|
+  | Type| Description|
+  | -------- | -------- |
+  | number | Value in the specified column as a double.|
 
 **Example**
 
@@ -963,29 +909,25 @@ Obtains the value in the specified column in the current row as a double.
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### isColumnNull<sup>(deprecated)</sup>
+### isColumnNull
 
 isColumnNull(columnIndex: number): boolean
 
 Checks whether the value in the specified column of the current row is null.
 
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isColumnNull](#iscolumnnull9).
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| columnIndex | number | Yes| Index of the specified column, starting from 0.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the value is null; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the value is null; returns **false** otherwise.|
 
 **Example**
 
@@ -993,15 +935,11 @@ Checks whether the value in the specified column of the current row is null.
   const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"));
   ```
 
-### close<sup>(deprecated)</sup>
+### close
 
 close(): void
 
 Closes this result set.
-
-> **NOTE**
-> 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [close](#close9).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 

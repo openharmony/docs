@@ -60,4 +60,20 @@ struct TransitionExample {
 }
 ```
 
-![animateTo](figures/animateTo.gif)
+示意图：
+
+图片完全显示时：
+
+![animationComponent1](figures/animationComponent1.png)
+
+图片消失时配置顺时针旋转180°的过渡效果：
+
+![animationComponent3](figures/animationComponent3.png)
+
+图片完全消失时：
+
+![animationComponent2](figures/animationComponent2.png)
+
+图片显示时配置横向放大一倍的过渡效果：
+
+![animationComponent4](figures/animationComponent4.png)

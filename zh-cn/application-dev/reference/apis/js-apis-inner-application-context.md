@@ -20,9 +20,9 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 | filesDir | string | 是    | 否    | 文件目录。 |
 | databaseDir | string | 是    | 否    | 数据库目录。 |
 | preferencesDir | string | 是    | 否    | preferences目录。 |
-| bundleCodeDir | string | 是    | 否    | 安装包目录。 |
+| bundleCodeDir | string | 是    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
 | distributedFilesDir | string | 是    | 否    | 分布式文件目录。 |
-| eventHub | string | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
+| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
 | area | [AreaMode](#areamode) | 是    | 否    | 文件分区信息。 |
 
 

@@ -480,7 +480,7 @@ try {
 }
 ```
 
-## ResultCodeV9<sup>9+</sup>
+## UserAuthResultCode<sup>9+</sup>
 
 表示返回码的枚举。
 
@@ -795,7 +795,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 表示返回码的枚举。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[ResultCodeV9](#resultcodev99)代替。
+> 从 API version 9 开始废弃，建议使用[UserAuthResultCode](#userauthresultcode9)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 

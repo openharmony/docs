@@ -300,3 +300,13 @@ struct Index {
   }
 }
 ```
+
+## 相关实例
+
+基于Stage模型下的Ability开发，有以下相关实例可供参考：
+
+- [Ability内和Ability间页面的跳转（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbility)
+
+- [Stage模型下Ability的创建和使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbilityDemo)
+
+- [Ability内页面间的跳转（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/PagesRouter)

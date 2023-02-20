@@ -2032,7 +2032,9 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-let signVerifyInData = 'signVerifyInDataForTest';
+let signVerifyInData1 = 'signVerifyInDataForTestFirstText';
+let signVerifyInData2 = 'signVerifyInDataForTestSecondText';
+let signVerifyInData = [signVerifyInData1, signVerifyInData2];
 let generateKeyAlias = 'generateKeyAliasForTest';
 let importKeyAlias = 'importKeyAliasForTest';
 let handle;
@@ -2121,8 +2123,10 @@ async function testSm2SignVerify() {
     await publicInitFunc(generateKeyAlias, signOptions);
 
     signHandle = handle;
-    signOptions.inData = StringToUint8Array(signVerifyInData)
-    await publicUpdateFunc(signHandle, signOptions);
+    for (var index = 0; index < signVerifyInData.length; index++) {
+        signOptions.inData = StringToUint8Array(signVerifyInData[index]);
+        await publicUpdateFunc(signHandle, signOptions);
+    }
 
     signOptions.inData = new Uint8Array(new Array());
     await publicFinishFunc(signHandle, signOptions);
@@ -2141,8 +2145,10 @@ async function testSm2SignVerify() {
 
     verifyHandle = handle;
 
-    verifyOptions.inData = StringToUint8Array(signVerifyInData)
-    await publicUpdateFunc(verifyHandle, verifyOptions);
+    for (var index = 0; index < signVerifyInData.length; index++) {
+        verifyOptions.inData = StringToUint8Array(signVerifyInData[index]);
+        await publicUpdateFunc(verifyHandle, verifyOptions);
+    }
 
     verifyOptions.inData = signFinishOutData;
     await publicFinishFunc(verifyHandle, verifyOptions);

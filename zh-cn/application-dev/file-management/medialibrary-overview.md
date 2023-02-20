@@ -21,7 +21,7 @@ MediaLibrary提供媒体库相关能力，帮助开发者更方便地访问和�
 > **说明：**<br/>
 > 本开发指导基于API Version 9，仅适用于Stage模型。
 
-应用需要先获取媒体库实例，才能访问和修改用户等个人媒体数据信息。媒体库涉及用户个人数据信息，所以应用需要向用户申请媒体库读写操作权限才能保证功能的正常运行。
+应用需要先获取媒体库实例，才能访问和修改用户等个人媒体数据信息。媒体库涉及用户个人数据信息，所以应用需要向用户申请媒体库读写操作权限才能保证功能的正常运行。在使用媒体库相关接口时如无其他注明则默认在工程代码的pages/index.ets或者其他自创的ets文件中使用
 
 开发者在使用MediaLibrary进行功能开发前，请先掌握以下内容：
 
@@ -42,7 +42,7 @@ MediaLibrary提供媒体库相关能力，帮助开发者更方便地访问和�
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 const context = getContext(this);
-var media = mediaLibrary.getMediaLibrary(context);
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 
 ## 申请媒体库功能相关权限
@@ -102,27 +102,26 @@ var media = mediaLibrary.getMediaLibrary(context);
    }    
    ```
 
-2. 调用requestPermissionsFromUser进行权限校验，可以选择需要动态申请获取的权限。
+2. 在Ability.ts中onWindowStageCreate里调用requestPermissionsFromUser进行权限校验，可以选择需要动态申请获取的权限自行添加相应代码
 
    ```ts
-   import Ability from '@ohos.application.Ability';
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
    
-   export default class MainAbility extends Ability {
-       onWindowStageCreate(windowStage) {
-           var permissions=['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
-           var permissionRequestResult;
-           let atManager = abilityAccessCtrl.createAtManager();
-           atManager.requestPermissionsFromUser(this.context, permissions, (err,result) => {
-               if(err){
-                   console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
-               }else{
-                   permissionRequestResult=result;
-                   console.log('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
-               }    
-           });       
-       }
-   }
+   export default class EntryAbility extends UIAbility {
+        onWindowStageCreate(windowStage) {
+            let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
+            let permissionRequestResult;
+            let atManager = abilityAccessCtrl.createAtManager();
+            atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
+                if (err) {
+                    console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
+                } else {
+                    permissionRequestResult=result;
+                    console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+                }    
+            });       
+        }
+    }
    ```
 
-   

@@ -44,7 +44,6 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>- Default value: **true** |
 
 > **NOTE**
->
 > For **fillStyle**, **shadowColor**, and **strokeStyle**, the value format of the string type is 'rgb(255, 255, 255)', 'rgba(255, 255, 255, 1.0)', '\#FFFFFF'.
 
 
@@ -78,7 +77,7 @@ struct FillStyleExample {
 }
 ```
 
-![en-us_image_0000001211898510](figures/en-us_image_0000001211898510.png)
+![en-us_image_0000001193872516](figures/en-us_image_0000001193872516.png)
 
 
 ### lineWidth
@@ -111,7 +110,7 @@ struct LineWidthExample {
 }
 ```
 
-![en-us_image_0000001257058439](figures/en-us_image_0000001257058439.png)
+![en-us_image_0000001238832403](figures/en-us_image_0000001238832403.png)
 
 
 ### strokeStyle
@@ -145,7 +144,7 @@ struct StrokeStyleExample {
 }
 ```
 
-![en-us_image_0000001257058429](figures/en-us_image_0000001257058429.png)
+![en-us_image_0000001238712437](figures/en-us_image_0000001238712437.png)
 
 
 ### lineCap
@@ -182,7 +181,7 @@ struct LineCapExample {
 }
 ```
 
-![en-us_image_0000001256858427](figures/en-us_image_0000001256858427.png)
+![en-us_image_0000001194192454](figures/en-us_image_0000001194192454.PNG)
 
 
 ### lineJoin
@@ -220,7 +219,7 @@ struct LineJoinExample {
 }
 ```
 
-![en-us_image_0000001256858429](figures/en-us_image_0000001256858429.png)
+![en-us_image_0000001194352450](figures/en-us_image_0000001194352450.png)
 
 
 ### miterLimit
@@ -258,7 +257,7 @@ struct MiterLimit {
 }
 ```
 
-![en-us_image_0000001212218472](figures/en-us_image_0000001212218472.png)
+![en-us_image_0000001238952397](figures/en-us_image_0000001238952397.png)
 
 
 ### font
@@ -291,7 +290,7 @@ struct Fonts {
 }
 ```
 
-![en-us_image_0000001211898508](figures/en-us_image_0000001211898508.png)
+![en-us_image_0000001194032476](figures/en-us_image_0000001194032476.png)
 
 
 ### textAlign
@@ -339,7 +338,7 @@ struct CanvasExample {
 }
 ```
 
-![en-us_image_0000001257138377](figures/en-us_image_0000001257138377.png)
+![en-us_image_0000001239032423](figures/en-us_image_0000001239032423.png)
 
 
 ### textBaseline
@@ -387,7 +386,7 @@ struct TextBaseline {
 }
 ```
 
-![en-us_image_0000001256978375](figures/en-us_image_0000001256978375.png)
+![en-us_image_0000001193872518](figures/en-us_image_0000001193872518.png)
 
 
 ### globalAlpha
@@ -408,7 +407,7 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.fillStyle = 'rgb(255,0,0)'
+          this.offContext.fillStyle = 'rgb(0,0,255)'
           this.offContext.fillRect(0, 0, 50, 50)
           this.offContext.globalAlpha = 0.4
           this.offContext.fillStyle = 'rgb(0,0,255)'
@@ -423,7 +422,7 @@ struct GlobalAlpha {
 }
 ```
 
-![en-us_image_0000001211898506](figures/en-us_image_0000001211898506.png)
+![en-us_image_0000001238832405](figures/en-us_image_0000001238832405.png)
 
 
 ### lineDashOffset
@@ -458,7 +457,7 @@ struct LineDashOffset {
 }
 
 ```
-![en-us_image_0000001212058506](figures/en-us_image_0000001212058506.png)
+![en-us_image_0000001238712439](figures/en-us_image_0000001238712439.png)
 
 
 ### globalCompositeOperation
@@ -513,7 +512,7 @@ struct GlobalCompositeOperation {
 }
 ```
 
-![en-us_image_0000001212218474](figures/en-us_image_0000001212218474.png)
+![en-us_image_0000001194192456](figures/en-us_image_0000001194192456.png)
 
 
 ### shadowBlur
@@ -548,7 +547,7 @@ struct ShadowBlur {
 }
 ```
 
-![en-us_image_0000001211898514](figures/en-us_image_0000001211898514.png)
+![en-us_image_0000001194352452](figures/en-us_image_0000001194352452.png)
 
 
 ### shadowColor
@@ -583,7 +582,7 @@ struct ShadowColor {
 }
 ```
 
-![en-us_image_0000001212058502](figures/en-us_image_0000001212058502.png)
+![en-us_image_0000001238952399](figures/en-us_image_0000001238952399.png)
 
 
 ### shadowOffsetX
@@ -619,7 +618,7 @@ struct ShadowOffsetX {
 }
 ```
 
-![en-us_image_0000001257138379](figures/en-us_image_0000001257138379.png)
+![en-us_image_0000001194032478](figures/en-us_image_0000001194032478.png)
 
 
 ### shadowOffsetY
@@ -655,7 +654,7 @@ struct ShadowOffsetY {
 }
 ```
 
-![en-us_image_0000001257058427](figures/en-us_image_0000001257058427.png)
+![en-us_image_0000001239032425](figures/en-us_image_0000001239032425.png)
 
 
 ### imageSmoothingEnabled
@@ -689,7 +688,7 @@ struct ImageSmoothingEnabled {
 }
 ```
 
-![en-us_image_0000001257138385](figures/en-us_image_0000001257138385.png)
+![en-us_image_0000001193872520](figures/en-us_image_0000001193872520.png)
 
 
 ## Methods
@@ -703,7 +702,7 @@ Fills a rectangle on the canvas.
 
  **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description           |
+| Name | Type    | Mandatory  | Default Value | Description           |
 | ------ | ------ | ---- | ---- | ------------- |
 | x      | number | Yes   | 0    | X-coordinate of the upper left corner of the rectangle.|
 | y      | number | Yes   | 0    | Y-coordinate of the upper left corner of the rectangle.|
@@ -739,7 +738,7 @@ Fills a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001257138375](figures/en-us_image_0000001257138375.png)
+  ![en-us_image_0000001194192436](figures/en-us_image_0000001194192436.png)
 
 
 ### strokeRect
@@ -750,7 +749,7 @@ Draws an outlined rectangle on the canvas.
 
  **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description          |
+| Name | Type    | Mandatory  | Default Value | Description          |
 | ------ | ------ | ---- | ---- | ------------ |
 | x      | number | Yes   | 0    | X-coordinate of the upper left corner of the rectangle.|
 | y      | number | Yes   | 0    | Y-coordinate of the upper left corner of the rectangle.|
@@ -786,7 +785,7 @@ Draws an outlined rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001212378436](figures/en-us_image_0000001212378436.png)
+  ![en-us_image_0000001194352436](figures/en-us_image_0000001194352436.png)
 
 
 ### clearRect
@@ -797,7 +796,7 @@ Clears the content in a rectangle on the canvas.
 
  **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description           |
+| Name | Type    | Mandatory  | Default Value | Description           |
 | ------ | ------ | ---- | ---- | ------------- |
 | x      | number | Yes   | 0    | X-coordinate of the upper left corner of the rectangle.|
 | y      | number | Yes   | 0    | Y-coordinate of the upper left corner of the rectangle.|
@@ -835,7 +834,7 @@ Clears the content in a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001212058500](figures/en-us_image_0000001212058500.png)
+  ![en-us_image_0000001238952377](figures/en-us_image_0000001238952377.png)
 
 
 ### fillText
@@ -846,7 +845,7 @@ Draws filled text on the canvas.
 
 **Parameters**
 
-| Name      | Type    | Mandatory  | Default Value | Description             |
+| Name  | Type    | Mandatory  | Default Value | Description             |
 | -------- | ------ | ---- | ---- | --------------- |
 | text     | string | Yes   | ""   | Text to draw.     |
 | x        | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
@@ -883,7 +882,7 @@ Draws filled text on the canvas.
   }
   ```
 
-  ![en-us_image_0000001257058437](figures/en-us_image_0000001257058437.png)
+  ![en-us_image_0000001194032458](figures/en-us_image_0000001194032458.png)
 
 
 ### strokeText
@@ -894,7 +893,7 @@ Draws a text stroke on the canvas.
 
 **Parameters**
 
-| Name      | Type    | Mandatory  | Default Value | Description             |
+| Name  | Type    | Mandatory  | Default Value | Description             |
 | -------- | ------ | ---- | ---- | --------------- |
 | text     | string | Yes   | ""   | Text to draw.     |
 | x        | number | Yes   | 0    | X-coordinate of the lower left corner of the text.|
@@ -931,7 +930,7 @@ Draws a text stroke on the canvas.
   }
   ```
 
-  ![en-us_image_0000001212218466](figures/en-us_image_0000001212218466.png)
+  ![en-us_image_0000001238952401](figures/en-us_image_0000001238952401.png)
 
 
 ### measureText
@@ -942,7 +941,7 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description        |
+| Name | Type    | Mandatory  | Default Value | Description        |
 | ---- | ------ | ---- | ---- | ---------- |
 | text | string | Yes   | ""   | Text to be measured.|
 
@@ -1001,7 +1000,7 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
   }
   ```
 
-  ![en-us_image_0000001256858431](figures/en-us_image_0000001256858431.png)
+  ![en-us_image_0000001194032480](figures/en-us_image_0000001194032480.png)
 
 
 ### stroke
@@ -1012,7 +1011,7 @@ Strokes a path.
 
  **Parameters**
 
-| Name  | Type                                      | Mandatory  | Default Value | Description          |
+| Name | Type                                      | Mandatory  | Default Value | Description          |
 | ---- | ---------------------------------------- | ---- | ---- | ------------ |
 | path | [Path2D](ts-components-canvas-path2d.md) | No   | null | A **Path2D** path to draw.|
 
@@ -1050,7 +1049,7 @@ Strokes a path.
   }
   ```
 
-  ![en-us_image_0000001257138373](figures/en-us_image_0000001257138373.png)
+  ![en-us_image_0000001238832389](figures/en-us_image_0000001238832389.png)
 
 
 ### beginPath
@@ -1093,7 +1092,7 @@ Creates a drawing path.
   }
   ```
 
-  ![en-us_image_0000001212378440](figures/en-us_image_0000001212378440.png)
+  ![en-us_image_0000001193872522](figures/en-us_image_0000001193872522.png)
 
 
 ### moveTo
@@ -1104,7 +1103,7 @@ Moves a drawing path to a target position on the canvas.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description       |
+| Name | Type    | Mandatory  | Default Value | Description       |
 | ---- | ------ | ---- | ---- | --------- |
 | x    | number | Yes   | 0    | X-coordinate of the target position.|
 | y    | number | Yes   | 0    | Y-coordinate of the target position.|
@@ -1141,7 +1140,7 @@ Moves a drawing path to a target position on the canvas.
   }
   ```
 
-  ![en-us_image_0000001212058498](figures/en-us_image_0000001212058498.png)
+  ![en-us_image_0000001238832409](figures/en-us_image_0000001238832409.png)
 
 
 ### lineTo
@@ -1152,7 +1151,7 @@ Connects the current point to a target position using a straight line.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description       |
+| Name | Type    | Mandatory  | Default Value | Description       |
 | ---- | ------ | ---- | ---- | --------- |
 | x    | number | Yes   | 0    | X-coordinate of the target position.|
 | y    | number | Yes   | 0    | Y-coordinate of the target position.|
@@ -1189,7 +1188,7 @@ Connects the current point to a target position using a straight line.
   }
   ```
 
-  ![en-us_image_0000001257058435](figures/en-us_image_0000001257058435.png)
+  ![en-us_image_0000001238712443](figures/en-us_image_0000001238712443.png)
 
 
 ### closePath
@@ -1232,7 +1231,7 @@ Draws a closed path.
   }
   ```
 
-  ![en-us_image_0000001257058431](figures/en-us_image_0000001257058431.png)
+  ![en-us_image_0000001194192460](figures/en-us_image_0000001194192460.png)
 
 
 ### createPattern
@@ -1243,7 +1242,7 @@ Creates a pattern for image filling based on a specified source image and repeti
 
 **Parameters**
 
-| Name        | Type                                      | Mandatory  | Default Value | Description                                      |
+| Name    | Type                                      | Mandatory  | Default Value | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes   | null | Source image. For details, see **ImageBitmap**.                 |
 | repetition | string                                   | Yes   | ""  | Repetition mode. The value can be **"repeat"**, **"repeat-x"**, **"repeat-y"**, or **"no-repeat"**.|
@@ -1286,7 +1285,7 @@ Creates a pattern for image filling based on a specified source image and repeti
   }
   ```
 
-  ![en-us_image_0000001257138387](figures/en-us_image_0000001257138387.png)
+  ![en-us_image_0000001194352456](figures/en-us_image_0000001194352456.png)
 
 
 ### bezierCurveTo
@@ -1297,7 +1296,7 @@ Draws a cubic bezier curve on the canvas.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description            |
+| Name | Type    | Mandatory  | Default Value | Description            |
 | ---- | ------ | ---- | ---- | -------------- |
 | cp1x | number | Yes   | 0    | X-coordinate of the first parameter of the bezier curve.|
 | cp1y | number | Yes   | 0    | Y-coordinate of the first parameter of the bezier curve.|
@@ -1338,7 +1337,7 @@ Draws a cubic bezier curve on the canvas.
   }
   ```
 
-  ![en-us_image_0000001212378442](figures/en-us_image_0000001212378442.png)
+  ![en-us_image_0000001238952403](figures/en-us_image_0000001238952403.png)
 
 
 ### quadraticCurveTo
@@ -1349,7 +1348,7 @@ Draws a quadratic curve on the canvas.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description         |
+| Name | Type    | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ----------- |
 | cpx  | number | Yes   | 0    | X-coordinate of the bezier curve parameter.|
 | cpy  | number | Yes   | 0    | Y-coordinate of the bezier curve parameter.|
@@ -1388,7 +1387,7 @@ Draws a quadratic curve on the canvas.
   }
   ```
 
-  ![en-us_image_0000001256978383](figures/en-us_image_0000001256978383.png)
+  ![en-us_image_0000001194032482](figures/en-us_image_0000001194032482.png)
 
 
 ### arc
@@ -1399,7 +1398,7 @@ Draws an arc on the canvas.
 
  **Parameters**
 
-| Name              | Type     | Mandatory  | Default Value  | Description        |
+| Name          | Type     | Mandatory  | Default Value  | Description        |
 | ---------------- | ------- | ---- | ----- | ---------- |
 | x                | number  | Yes   | 0     | X-coordinate of the center point of the arc.|
 | y                | number  | Yes   | 0     | Y-coordinate of the center point of the arc.|
@@ -1439,7 +1438,7 @@ Draws an arc on the canvas.
   }
   ```
 
-  ![en-us_image_0000001212378430](figures/en-us_image_0000001212378430.png)
+  ![en-us_image_0000001239032429](figures/en-us_image_0000001239032429.png)
 
 
 ### arcTo
@@ -1450,7 +1449,7 @@ Draws an arc based on the radius and points on the arc.
 
  **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description             |
+| Name | Type    | Mandatory  | Default Value | Description             |
 | ------ | ------ | ---- | ---- | --------------- |
 | x1     | number | Yes   | 0    | X-coordinate of the first point on the arc.|
 | y1     | number | Yes   | 0    | Y-coordinate of the first point on the arc.|
@@ -1489,7 +1488,7 @@ Draws an arc based on the radius and points on the arc.
   }
   ```
 
-  ![en-us_image_0000001257138383](figures/en-us_image_0000001257138383.png)
+  ![en-us_image_0000001193872524](figures/en-us_image_0000001193872524.png)
 
 
 ### ellipse
@@ -1500,7 +1499,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
 
  **Parameters**
 
-| Name              | Type     | Mandatory  | Default Value  | Description               |
+| Name          | Type     | Mandatory  | Default Value  | Description               |
 | ---------------- | ------- | ---- | ----- | ----------------- |
 | x                | number  | Yes   | 0     | X-coordinate of the ellipse center.       |
 | y                | number  | Yes   | 0     | Y-coordinate of the ellipse center.       |
@@ -1541,7 +1540,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
   }
   ```
 
-  ![en-us_image_0000001256858423](figures/en-us_image_0000001256858423.png)
+  ![en-us_image_0000001194192440](figures/en-us_image_0000001194192440.png)
 
 
 ### rect
@@ -1552,7 +1551,7 @@ Creates a rectangle on the canvas.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description           |
+| Name | Type    | Mandatory  | Default Value | Description           |
 | ---- | ------ | ---- | ---- | ------------- |
 | x    | number | Yes   | 0    | X-coordinate of the upper left corner of the rectangle.|
 | y    | number | Yes   | 0    | Y-coordinate of the upper left corner of the rectangle.|
@@ -1589,7 +1588,7 @@ Creates a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001257138381](figures/en-us_image_0000001257138381.png)
+  ![en-us_image_0000001238712445](figures/en-us_image_0000001238712445.png)
 
 
 ### fill
@@ -1600,7 +1599,7 @@ Fills the area inside a closed path on the canvas.
 
 **Parameters**
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| Name  | Type            | Mandatory  | Default Value      | Description                                      |
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
 | fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
 
@@ -1632,7 +1631,7 @@ Fills the area inside a closed path on the canvas.
   }
   ```
 
-  ![en-us_image_0000001256858421](figures/en-us_image_0000001256858421.png)
+  ![en-us_image_0000001194192462](figures/en-us_image_0000001194192462.png)
 
 
 fill(path: Path2D, fillRule?: CanvasFillRule): void
@@ -1641,7 +1640,7 @@ Fills the area inside a closed path on the canvas.
 
 **Parameters**
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| Name  | Type            | Mandatory  | Default Value      | Description                                      |
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
 | path     | Path2D         | Yes   |           | A **Path2D** path to fill.                             |
 | fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
@@ -1674,7 +1673,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.offContext.fillStyle = 'green'
+          this.offContext.fillStyle = '#00ff00'
           this.offContext.fill(region, "evenodd")
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -1698,7 +1697,7 @@ Sets the current path to a clipping path.
 
 **Parameters**
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| Name  | Type            | Mandatory  | Default Value      | Description                                      |
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
 | fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
 
@@ -1735,7 +1734,7 @@ Sets the current path to a clipping path.
   }
   ```
 
-  ![en-us_image_0000001257058441](figures/en-us_image_0000001257058441.png)
+  ![en-us_image_0000001194032462](figures/en-us_image_0000001194032462.png)
 
 
 clip(path:Path2D, fillRule?: CanvasFillRule): void
@@ -1744,7 +1743,7 @@ Sets a closed path to a clipping path.
 
 **Parameters**
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
+| Name  | Type            | Mandatory  | Default Value      | Description                                      |
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
 | path | Path2D | Yes   |  | A **Path2D** path to clip.|
 | fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
@@ -1795,7 +1794,7 @@ Sets a filter for the image on the canvas. This API is a void API.
 
 **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description          |
+| Name | Type    | Mandatory  | Default Value | Description          |
 | ------ | ------ | ---- | ---- | ------------ |
 | filter | string | Yes   | -    | Functions that accept various filter effects.|
 
@@ -1829,7 +1828,7 @@ Rotates a canvas clockwise around its coordinate axes.
 
  **Parameters**
 
-| Name   | Type    | Mandatory  | Default Value | Description                                      |
+| Name | Type    | Mandatory  | Default Value | Description                                      |
 | ----- | ------ | ---- | ---- | ---------------------------------------- |
 | angle | number | Yes   | 0    | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
 
@@ -1851,7 +1850,7 @@ Rotates a canvas clockwise around its coordinate axes.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.rotate(45 * Math.PI / 180) // Rotate the rectangle 45 degrees
+            this.offContext.rotate(45 * Math.PI / 180)
             this.offContext.fillRect(70, 20, 50, 50)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -1863,7 +1862,7 @@ Rotates a canvas clockwise around its coordinate axes.
   }
   ```
 
-  ![en-us_image_0000001212218478](figures/en-us_image_0000001212218478.png)
+  ![en-us_image_0000001238952405](figures/en-us_image_0000001238952405.png)
 
 
 ### scale
@@ -1874,7 +1873,7 @@ Scales the canvas based on scale factors.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description         |
+| Name | Type    | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ----------- |
 | x    | number | Yes   | 0    | Horizontal scale factor.|
 | y    | number | Yes   | 0    | Vertical scale factor.|
@@ -1911,7 +1910,7 @@ Scales the canvas based on scale factors.
   }
   ```
 
-  ![en-us_image_0000001211898516](figures/en-us_image_0000001211898516.png)
+  ![en-us_image_0000001193872498](figures/en-us_image_0000001193872498.png)
 
 
 ### transform
@@ -1930,7 +1929,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description                  |
+| Name | Type    | Mandatory  | Default Value | Description                  |
 | ---- | ------ | ---- | ---- | -------------------- |
 | a    | number | Yes   | 0    | X-axis scale.    |
 | b    | number | Yes   | 0    | X-axis skew.     |
@@ -1975,7 +1974,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
   }
   ```
 
-  ![en-us_image_0000001212378438](figures/en-us_image_0000001212378438.png)
+  ![en-us_image_0000001239032431](figures/en-us_image_0000001239032431.png)
 
 
 ### setTransform
@@ -1986,7 +1985,7 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description                  |
+| Name | Type    | Mandatory  | Default Value | Description                  |
 | ---- | ------ | ---- | ---- | -------------------- |
 | a    | number | Yes   | 0    | X-axis scale.    |
 | b    | number | Yes   | 0    | X-axis skew.     |
@@ -2039,7 +2038,7 @@ Moves the origin of the coordinate system.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description      |
+| Name | Type    | Mandatory  | Default Value | Description      |
 | ---- | ------ | ---- | ---- | -------- |
 | x    | number | Yes   | 0    | X-axis translation.|
 | y    | number | Yes   | 0    | Y-axis translation.|
@@ -2090,7 +2089,7 @@ Draws an image on the canvas.
 
  **Parameters**
 
-| Name   | Type                                      | Mandatory  | Default Value | Description                           |
+| Name | Type                                      | Mandatory  | Default Value | Description                           |
 | ----- | ---------------------------------------- | ---- | ---- | ----------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7)| Yes   | null | Image resource. For details, see **ImageBitmap** or **PixelMap**.|
 | sx    | number                                   | No   | 0    | X-coordinate of the upper left corner of the rectangle used to crop the source image.         |
@@ -2132,7 +2131,7 @@ Draws an image on the canvas.
   }
   ```
 
-  ![en-us_image_0000001256978377](figures/en-us_image_0000001256978377.png)
+  ![en-us_image_0000001238712447](figures/en-us_image_0000001238712447.png)
 
 
 ### createImageData
@@ -2143,7 +2142,7 @@ Creates an **[ImageData](ts-components-canvas-imagedata.md)** object with the sp
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value  | Description           |
+| Name | Type    | Mandatory  | Default Value  | Description           |
 | ---- | ------ | ---- | ---- | ------------- |
 | sw   | number | Yes   | 0    | Width of the **ImageData** object.|
 | sh   | number | Yes   | 0    | Height of the **ImageData** object.|
@@ -2155,7 +2154,7 @@ Creates an **[ImageData](ts-components-canvas-imagedata.md)** object by copying 
 
  **Parameters**
 
-| Name       | Type                                      | Mandatory  | Default Value  | Description              |
+| Name   | Type                                      | Mandatory  | Default Value  | Description              |
 | --------- | ---------------------------------------- | ---- | ---- | ---------------- |
 | imagedata | [ImageData](ts-components-canvas-imagedata.md) | Yes   | null | **ImageData** object to copy.|
 
@@ -2173,7 +2172,7 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description             |
+| Name | Type    | Mandatory  | Default Value | Description             |
 | ---- | ------ | ---- | ---- | --------------- |
 | sx   | number | Yes   | 0    | X-coordinate of the upper left corner of the output area.|
 | sy   | number | Yes   | 0    | Y-coordinate of the upper left corner of the output area.|
@@ -2195,7 +2194,7 @@ Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created wi
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description             |
+| Name | Type    | Mandatory  | Default Value | Description             |
 | ---- | ------ | ---- | ---- | --------------- |
 | sx   | number | Yes   | 0    | X-coordinate of the upper left corner of the output area.|
 | sy   | number | Yes   | 0    | Y-coordinate of the upper left corner of the output area.|
@@ -2254,7 +2253,7 @@ Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectang
 
  **Parameters**
 
-| Name         | Type    | Mandatory  | Default Value         | Description                           |
+| Name     | Type    | Mandatory  | Default Value         | Description                           |
 | ----------- | ------ | ---- | ------------ | ----------------------------- |
 | imagedata   | Object | Yes   | null         | **ImageData** object with pixels to put onto the canvas.           |
 | dx          | number | Yes   | 0            | X-axis offset of the rectangular area on the canvas.               |
@@ -2299,7 +2298,7 @@ Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectang
   }
   ```
 
-  ![en-us_image_0000001212058496](figures/en-us_image_0000001212058496.png)
+  ![en-us_image_0000001194192464](figures/en-us_image_0000001194192464.png)
 
 ### setLineDash
 
@@ -2309,7 +2308,7 @@ Sets the dash line style.
 
 **Parameters**
 
-| Name      | Type      | Description                 |
+| Name  | Type      | Description                 |
 | -------- | -------- | ------------------- |
 | segments | number[] | An array of numbers that specify distances to alternately draw a line and a gap.|
 
@@ -2457,7 +2456,7 @@ Sets the quality of image smoothing. This API is a void API.
 
  **Parameters**
 
-| Name     | Type                   | Description                                      |
+| Name | Type                   | Description                                      |
 | ------- | --------------------- | ---------------------------------------- |
 | quality | imageSmoothingQuality | Quality of image smoothing. The value can be **'low'**, **'medium'**,or **'high'**.|
 
@@ -2537,7 +2536,7 @@ struct CanvasExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.offContext.save() // save the default state
-          this.offContext.fillStyle = "green"
+          this.offContext.fillStyle = "#00ff00"
           this.offContext.fillRect(20, 20, 100, 100)
           this.offContext.restore() // restore to the default state
           this.offContext.fillRect(150, 75, 100, 100)
@@ -2578,7 +2577,7 @@ struct CanvasExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.offContext.save() // save the default state
-          this.offContext.fillStyle = "green"
+          this.offContext.fillStyle = "#00ff00"
           this.offContext.fillRect(20, 20, 100, 100)
           this.offContext.restore() // restore to the default state
           this.offContext.fillRect(150, 75, 100, 100)
@@ -2602,7 +2601,7 @@ Creates a linear gradient.
 
  **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description      |
+| Name | Type    | Mandatory  | Default Value | Description      |
 | ---- | ------ | ---- | ---- | -------- |
 | x0   | number | Yes   | 0    | X-coordinate of the start point.|
 | y0   | number | Yes   | 0    | Y-coordinate of the start point.|
@@ -2628,9 +2627,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.offContext.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
             this.offContext.fillRect(0, 0, 500, 500)
             var image = this.offContext.transferToImageBitmap()
@@ -2643,7 +2642,7 @@ Creates a linear gradient.
   }
   ```
 
-  ![en-us_image_0000001212378434](figures/en-us_image_0000001212378434.png)
+  ![en-us_image_0000001194352460](figures/en-us_image_0000001194352460.png)
 
 
 ### createRadialGradient
@@ -2652,9 +2651,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 Creates a linear gradient.
 
-  **Parameters**
+ **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description               |
+| Name | Type    | Mandatory  | Default Value | Description               |
 | ---- | ------ | ---- | ---- | ----------------- |
 | x0   | number | Yes   | 0    | X-coordinate of the center of the start circle.        |
 | y0   | number | Yes   | 0    | Y-coordinate of the center of the start circle.        |
@@ -2663,7 +2662,7 @@ Creates a linear gradient.
 | y1   | number | Yes   | 0    | Y-coordinate of the center of the end circle.        |
 | r1   | number | Yes   | 0    | Radius of the end circle, which must be a non-negative finite number.|
 
-  **Example** 
+ **Example** 
 
   ```ts
   // xxx.ets
@@ -2682,9 +2681,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.offContext.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
             this.offContext.fillRect(0, 0, 500, 500)
             var image = this.offContext.transferToImageBitmap()
@@ -2697,7 +2696,7 @@ Creates a linear gradient.
   }
   ```
 
-  ![en-us_image_0000001212218480](figures/en-us_image_0000001212218480.png)
+  ![en-us_image_0000001238952407](figures/en-us_image_0000001238952407.png)
 
 
 ## CanvasPattern

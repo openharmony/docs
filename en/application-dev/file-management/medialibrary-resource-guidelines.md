@@ -33,14 +33,14 @@ To specify the image as the media type, set **selectionArgs** to **MediaType.IMA
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.IMAGE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.IMAGE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -64,13 +64,13 @@ To specify the date 2022-8-5, set **selectionArgs** to **2022-8-5**.
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let option = {
         selections: fileKeyObj.DATE_ADDED + '= ?',
         selectionArgs: ['2022-8-5'],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -92,15 +92,15 @@ To sort files in descending order by the date when they are added, set **order**
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.IMAGE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.IMAGE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
         order: fileKeyObj.DATE_ADDED + " DESC",
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -124,14 +124,14 @@ To specify the album name **'myAlbum'**, set **selectionArgs** to **'myAlbum'**.
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.IMAGE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.IMAGE;
     let option = {
         selections: fileKeyObj.ALBUM_NAME + '= ?',
         selectionArgs: ['myAlbum'],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     for (let i = 0; i < fetchFileResult.getCount(); i++) {
         fetchFileResult.getNextObject((err, fileAsset) => {
@@ -189,7 +189,7 @@ Complete sample code:
 ```ts
 async function getCameraImagePromise() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let imagesFetchOp = {
@@ -236,7 +236,7 @@ The following describes how to obtain the thumbnail (size: 720 x 720) of the fir
 ```ts
 async function getFirstThumbnailPromise() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let imagesFetchOp = {
@@ -280,7 +280,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.FILE;
     let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const path = await media.getPublicDirectory(DIR_DOCUMENTS);
     media.createAsset(mediaType, "testFile.text", path).then ((asset) => {
         console.info("createAsset successfully:"+ JSON.stringify(asset));
@@ -312,25 +312,25 @@ The following describes how to move the first file in the result set to the recy
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
-      console.error('asset not exist')
-      return
+      console.error('asset not exist');
+      return;
     }
     // Void callback.
     asset.trash(true).then(() => {
         console.info("trash successfully");
     }).catch((err) => {
-        console.info("trash failed with error:"+ err);
+        console.info("trash failed with error: " + err);
     });
 }
 ```
@@ -358,19 +358,19 @@ The following describes how to rename the first file in the result set as **newt
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
     };
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     const fetchFileResult = await media.getFileAssets(option);
     let asset = await fetchFileResult.getFirstObject();
     if (asset == undefined) {
-      console.error('asset not exist')
-      return
+      console.error('asset not exist');
+      return;
     }
     asset.displayName = 'newImage.jpg';
     // Void callback.
@@ -380,6 +380,6 @@ async function example() {
            return;
        }
        console.log('fileRename successful.');
-    })
+    });
 }
 ```

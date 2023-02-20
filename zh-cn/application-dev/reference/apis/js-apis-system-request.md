@@ -89,11 +89,11 @@ upload(options: UploadRequestOptions): void
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
-  | 名称 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | code | number | 服务器返回的HTTP状态码。 |
-  | data | string | 服务器返回的内容。根据返回头内容中的type决定该值的类型。 |
-  | headers | Object | 服务器返回的返回头内容。 |
+  | 名称 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | code | number | 是 | 服务器返回的HTTP状态码。 |
+  | data | string | 是 | 服务器返回的内容。根据返回头内容中的type决定该值的类型。 |
+  | headers | Object | 是 | 服务器返回的返回头内容。 |
 
 
 ## RequestFile
@@ -189,9 +189,9 @@ download(options: DownloadRequestOptions): void
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
-  | 名称 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | token | string | 表示下载的token，获取下载状态的依据。 |
+  | 名称 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | string | 是 | 表示下载的token，获取下载状态的依据。 |
 
 
 ## request.onDownloadComplete
@@ -254,6 +254,6 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
-  | 名称 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | uri | string | 表示下载文件的uri。 |
+  | 名称 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | uri | string | 是 | 表示下载文件的uri。 |

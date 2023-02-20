@@ -1,10 +1,10 @@
-# CommonEvent
+# @ohos.commonEvent
 
 The **CommonEvent** module provides common event capabilities, including the capabilities to publish, subscribe to, and unsubscribe from common events, as well obtaining and setting the common event result code and result data.
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [@ohos.commonEventManager](js-apis-commonEventManager.md).
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -14,7 +14,7 @@ import CommonEvent from '@ohos.commonEvent';
 
 ## Support
 
-Provides the event types supported by the **CommonEvent** module. The name and value indicate the macro and name of a common event, respectively.
+The table below lists the event types supported by the **CommonEvent** module. The name and value indicate the macro and name of a common event, respectively.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -167,8 +167,8 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | Indicates the common event that the account was deleted.     |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | Indicates the common event that the foundation is ready.     |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | -                                                          | Indicates the common event that the airplane mode of the device has changed.     |
-| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | -                        | Indicates the common event of screen splitting.     |
-| COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | Indicates the common event that the notification slot has changed.     |
+| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | -                       | Indicates the common event of screen splitting.     |
+| COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | Indicates the common event that the notification slot has been updated.     |
 | COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | -                       | Indicates the common event that the SPN displayed has been updated.     |
 | COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>                                    | usual.event.QUICK_FIX_APPLY_RESULT                        | -                       | Indicates the common event that a quick fix is applied to the application.     |
 
@@ -192,7 +192,7 @@ Publishes a common event. This API uses an asynchronous callback to return the r
 
 ```js
 // Callback for common event publication
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err.code) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -201,7 +201,7 @@ function PublishCallBack(err) {
 }
 
 // Publish a common event.
-CommonEvent.publish("event", PublishCallBack);
+CommonEvent.publish("event", publishCallBack);
 ```
 
 
@@ -234,7 +234,7 @@ let options = {
 }
 
 // Callback for common event publication
-function PublishCallBack(err) {
+function publishCallBack(err) {
 	if (err.code) {
         console.error("publish failed " + JSON.stringify(err));
     } else {
@@ -243,7 +243,7 @@ function PublishCallBack(err) {
 }
 
 // Publish a common event.
-CommonEvent.publish("event", options, PublishCallBack);
+CommonEvent.publish("event", options, publishCallBack);
 ```
 
 
@@ -270,7 +270,7 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 
 ```js
 // Callback for common event publication
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err.code) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -282,7 +282,7 @@ function PublishAsUserCallBack(err) {
 let userId = 100;
 
 // Publish a common event.
-CommonEvent.publishAsUser("event", userId, PublishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, publishAsUserCallBack);
 ```
 
 
@@ -317,7 +317,7 @@ let options = {
 }
 
 // Callback for common event publication
-function PublishAsUserCallBack(err) {
+function publishAsUserCallBack(err) {
 	if (err.code) {
         console.error("publishAsUser failed " + JSON.stringify(err));
     } else {
@@ -329,7 +329,7 @@ function PublishAsUserCallBack(err) {
 let userId = 100;
 
 // Publish a common event.
-CommonEvent.publishAsUser("event", userId, options, PublishAsUserCallBack);
+CommonEvent.publishAsUser("event", userId, options, publishAsUserCallBack);
 ```
 
 
@@ -361,7 +361,7 @@ let subscribeInfo = {
 };
 
 // Callback for subscriber creation.
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
     } else {
@@ -371,7 +371,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
 }
 
 // Create a subscriber.
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
 ```
 
 
@@ -442,7 +442,7 @@ let subscribeInfo = {
 };
 
 // Callback for common event subscription.
-function SubscribeCallBack(err, data) {
+function subscribeCallBack(err, data) {
     if (err.code) {
         console.error("subscribe failed " + JSON.stringify(err));
     } else {
@@ -451,19 +451,19 @@ function SubscribeCallBack(err, data) {
 }
 
 // Callback for subscriber creation.
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
-        CommonEvent.subscribe(subscriber, SubscribeCallBack);
+        CommonEvent.subscribe(subscriber, subscribeCallBack);
     }
 }
 
 // Create a subscriber.
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
 ```
 
 
@@ -494,7 +494,7 @@ let subscribeInfo = {
 };
 
 // Callback for common event subscription.
-function SubscribeCallBack(err, data) {
+function subscribeCallBack(err, data) {
     if (err.code) {
         console.info("subscribe failed " + JSON.stringify(err));
     } else {
@@ -503,19 +503,19 @@ function SubscribeCallBack(err, data) {
 }
 
 // Callback for subscriber creation.
-function CreateSubscriberCallBack(err, commonEventSubscriber) {
+function createSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.info("createSubscriber failed " + JSON.stringify(err));
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
-        CommonEvent.subscribe(subscriber, SubscribeCallBack);
+        CommonEvent.subscribe(subscriber, subscribeCallBack);
     }
 }
 
 // Callback for common event unsubscription.
-function UnsubscribeCallBack(err) {
+function unsubscribeCallBack(err) {
 	if (err.code) {
         console.info("unsubscribe failed " + JSON.stringify(err));
     } else {
@@ -524,10 +524,10 @@ function UnsubscribeCallBack(err) {
 }
 
 // Create a subscriber.
-CommonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
+CommonEvent.createSubscriber(subscribeInfo, createSubscriberCallBack);
 
 // Unsubscribe from the common event.
-CommonEvent.unsubscribe(subscriber, UnsubscribeCallBack);
+CommonEvent.unsubscribe(subscriber, unsubscribeCallBack);
 ```
 
 ## CommonEventSubscriber
@@ -1233,39 +1233,45 @@ subscriber.finishCommonEvent().then(() => {
 
 ## CommonEventData
 
+Describes the common event data body.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name      | Readable| Writable| Type                | Description                                                   |
-| ---------- | ---- | ---- | -------------------- | ------------------------------------------------------- |
-| event      | Yes | No | string               | Name of the common event that is being received.                             |
-| bundleName | Yes | No | string               | Bundle name.                                             |
-| code       | Yes | No | number               | Result code of the common event, which is used to transfer data of the int type.          |
-| data       | Yes | No | string               | Custom result data of the common event, which is used to transfer data of the string type.|
-| parameters | Yes | No | {[key: string]: any} | Additional information about the common event.                                 |
+| Name      | Type                | Readable| Writable| Description                                                   |
+| ---------- |-------------------- | ---- | ---- |  ------------------------------------------------------- |
+| event      | string               | Yes | No | Name of the common event that is being received.                             |
+| bundleName | string               | Yes | No | Bundle name.                                             |
+| code       | number               | Yes | No | Result code of the common event, which is used to transfer data of the int type.          |
+| data       | string               | Yes | No | Custom result data of the common event, which is used to transfer data of the string type.|
+| parameters | {[key: string]: any} | Yes | No | Additional information about the common event.                                 |
 
 
 ## CommonEventPublishData
 
+Describes the data body published by a common event, including the common event content and attributes.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name                 | Readable| Writable| Type                | Description                        |
-| --------------------- | ---- | ---- | -------------------- | ---------------------------- |
-| bundleName            | Yes | No | string               | Bundle name.                  |
-| code                  | Yes | No | number               | Result code of the common event.      |
-| data                  | Yes | No | string               | Custom result data of the common event.|
-| subscriberPermissions | Yes | No | Array\<string>       | Permissions required for subscribers to receive the common event.            |
-| isOrdered             | Yes | No | boolean              | Whether the common event is an ordered one.          |
-| isSticky              | Yes | No | boolean              | Whether the common event is a sticky one.          |
-| parameters            | Yes | No | {[key: string]: any} | Additional information about the common event.      |
+| Name                 | Type                | Readable| Writable| Description                        |
+| --------------------- | -------------------- | ---- | ---- | ---------------------------- |
+| bundleName            | string               | Yes | No | Bundle name.                  |
+| code                  | number               | Yes | No | Result code of the common event.      |
+| data                  | string               | Yes | No | Custom result data of the common event.|
+| subscriberPermissions | Array\<string>       | Yes | No | Permissions required for subscribers to receive the common event.            |
+| isOrdered             | boolean              | Yes | No | Whether the common event is an ordered one.          |
+| isSticky              | boolean              | Yes | No | Whether the common event is a sticky one. Only system applications and system services are allowed to send sticky events.|
+| parameters            | {[key: string]: any} | Yes | No | Additional information about the common event.      |
 
 ## CommonEventSubscribeInfo
 
+Provides the subscriber information.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name               | Readable| Writable| Type          | Description                                                        |
-| ------------------- | ---- | ---- | -------------- | ------------------------------------------------------------ |
-| events              | Yes | No | Array\<string> | Name of the common event to publish.                                        |
-| publisherPermission | Yes | No | string         | Permissions required for publishers to publish the common event.                                            |
-| publisherDeviceId   | Yes | No | string         | Device ID. The value must be the ID of an existing device on the same network.            |
-| userId              | Yes | No | number         | User ID. The default value is the ID of the current user. If this parameter is specified, the value must be an existing user ID in the system.|
-| priority            | Yes | No | number         | Subscriber priority. The value ranges from -100 to 1000.                    |
+| Name               | Type          | Readable| Writable| Description                                                        |
+| ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
+| events              | Array\<string> | Yes | No | Name of the common event to publish.                                        |
+| publisherPermission | string         | Yes | No | Permissions required for publishers to publish the common event.                                            |
+| publisherDeviceId   | string         | Yes | No | Device ID. The value must be the ID of an existing device on the same network.            |
+| userId              | number         | Yes | No | User ID. The default value is the ID of the current user. If this parameter is specified, the value must be an existing user ID in the system.|
+| priority            | number         | Yes | No | Subscriber priority. The value ranges from -100 to +1000.                    |

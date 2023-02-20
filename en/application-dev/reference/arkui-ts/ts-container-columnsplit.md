@@ -1,10 +1,12 @@
 # ColumnSplit
 
-The **\<ColumnSplit>** lays out child components vertically and inserts a horizontal divider between every two child components.
+The **\<ColumnSplit>** component lays out child components vertically and inserts a horizontal divider between every two child components.
 
 >  **NOTE**
 >
->  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+
 
 ## Child Components
 

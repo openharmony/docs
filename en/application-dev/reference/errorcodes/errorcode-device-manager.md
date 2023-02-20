@@ -26,7 +26,7 @@ The service is not started or fails to start.
 
 **Solution**
 
-Check whether the service is started normally and obtain the service again.
+Make sure the service is started and obtain the service again.
 
 ## 11600103 Authentication Unavailable
 
@@ -38,7 +38,7 @@ Authentication invalid.
 
 The last authentication service is still in progress.
 
-**Procedure**
+**Solution**
 
 Wait until the last authentication service is complete and call the authentication API again.
 

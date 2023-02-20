@@ -1,9 +1,8 @@
-# BundleInstaller
+# @ohos.bundle.installer (installer)
 
-The **BundleInstaller** module provides APIs for you to install, uninstall, and recover bundles on devices.
+The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -18,7 +17,7 @@ import installer from '@ohos.bundle.installer';
 | ------------------------------ | ----------- | ---------------- |
 | ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall bundles.|
 
-For details, see in [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
+For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
 ## BundleInstaller.getBundleInstaller
 
@@ -35,10 +34,6 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 **Example**
 
@@ -72,10 +67,6 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
 | Promise\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Promise used to return the **BundleInstaller** object obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
 **Example**
 
@@ -278,10 +269,10 @@ Defines the hash parameters for bundle installation and uninstall.
 
  **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name    | Type  | Description            |
-| ---------- | ------ | ---------------- |
-| moduleName | string | Module name of the bundle.|
-| hashValue  | string | Hash value.          |
+| Name    | Type  | Mandatory| Description            |
+| ---------- | ------ | ---------------- | ---------------- |
+| moduleName | string | Yes| Module name of the bundle.|
+| hashValue  | string | Yes| Hash value.          |
 
 ## InstallParam
 
@@ -291,10 +282,10 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
  **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name                         | Type                          | Description              |
-| ------------------------------ | ------------------------------ | ------------------ |
-| userId                         | number                         | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#queryosaccountlocalidfromprocess9) to obtain the user of the current process.|
-| installFlag                    | number                         | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
-| isKeepData                     | boolean                        | Whether to retain the data directory during bundle uninstall.|
-| hashParams        | Array<[HashParam](#hashparam)> | Hash parameters.        |
-| crowdtestDeadline| number                         |End date of crowdtesting.|
+| Name                       | Type                          | Mandatory                        | Description              |
+| ------------------------------ | ------------------------------ | ------------------ | ------------------ |
+| userId                         | number                         | Yes                       | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#queryosaccountlocalidfromprocess9) to obtain the user of the current process.|
+| installFlag                    | number                         | Yes                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
+| isKeepData                     | boolean                        | Yes                      | Whether to retain the data directory during bundle uninstall.|
+| hashParams        | Array<[HashParam](#hashparam)> | Yes| Hash parameters.        |
+| crowdtestDeadline| number                         | Yes                       |End date of crowdtesting.|

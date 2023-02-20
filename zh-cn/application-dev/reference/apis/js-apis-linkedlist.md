@@ -389,7 +389,7 @@ removeFirst(): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeFirst method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 
@@ -424,7 +424,7 @@ removeLast(): T
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeLast method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 
@@ -504,7 +504,7 @@ removeFirstFound(element: T): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeFirstFound method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 
@@ -544,7 +544,7 @@ removeLastFound(element: T): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200011 | The removeLastFound method cannot be bound. |
-| 10200010 | The container is empty. |
+| 10200010 | Container is empty. |
 
 **示例：**
 

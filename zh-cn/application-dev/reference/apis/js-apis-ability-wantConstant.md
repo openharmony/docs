@@ -44,7 +44,7 @@ want操作的常数。
 |  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | 指示用行为选择器来展示选择的操作。                             |
 |  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | 指示与行为选择器一起使用时的字符序列对话框标题。                |
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
-|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI                          |
+|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI。对应的value必须是string类型的数组。  |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
 |  ACTION_APP_ACCOUNT_AUTH <sup>9+</sup>     | account.appAccount.action.auth     | 指示提供auth服务的操作。                                      |
 |  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |

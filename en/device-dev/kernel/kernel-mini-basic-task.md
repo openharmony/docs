@@ -5,7 +5,7 @@
 
 From the perspective of the operating system, tasks are the minimum running units that compete for system resources. They can use or wait for CPUs, use system resources such as memory, and run independently.
 
-The task module of the OpenHarmony LiteOS-M provides multiple tasks and supports switching between tasks, helping users manage business process procedures. The task module has the following features:
+The task module of the OpenHarmony LiteOS-M supports switching between tasks to help users manage business process procedures. The task module has the following features:
 
 - Multiple tasks are supported.
 
@@ -36,9 +36,11 @@ A task can be in any of the following states:
 
 **Task State Transitions**
 
-**Figure 1** Task state transition<br>
+**Figure 1** Task state transitions
 
-  ![](figures/task-state-transitions.png "task-state-transitions")
+![](figures/task-state-transitions.png "task-state-transitions")
+
+A system may have multiple tasks at the same time. Therefore, tasks in the Ready state and Blocked state are added to the **Ready** queue and **Blocked** queue respectively. A queue is a collection of tasks in the same state. The sequence of adding tasks to a queue is irrelevant to the sequence of task status transition. There is only one task running at a time. Therefore, there is no queue for the running task.
 
 The task state transition process is as follows:
 
@@ -48,12 +50,12 @@ The task state transition process is as follows:
 - Running → Blocked
   
   When a running task is blocked (suspended, delayed, or reading semaphores), it will be inserted to the blocked task queue and changes from the Running state to the Blocked state. Then, task switching is triggered to run the task with the highest priority in the Ready queue.
-- Blocked → Ready (Blocked → Running)
+- Blocked -> Ready (Prerequisites for Blocked -> Running)
   
   When a blocked task is recovered (for example, the task is resumed, the delay period or semaphore read period times out, or the task successfully reads a semaphore), the task will be added to the Ready queue and change from the Blocked state to the Ready state. If the priority of the recovered task is higher than that of the running task, task switching will be triggered to run the recovered task. Then, the task changes from the Ready state to the Running state.
 - Ready → Blocked
   
-  When a task in the Ready state is blocked (suspended), the task changes to the Blocked state and is deleted from the Ready queue. The blocked task will not be scheduled until it is recovered.
+  When a task in the Ready state is blocked (suspended), the task changes to the Blocked state and is removed from the Ready queue. The blocked task will not be scheduled until it is recovered.
 - Running → Ready
   
   When a task with a higher priority is created or recovered, tasks will be scheduled. The task with the highest priority in the Ready queue changes to the Running state. The originally running task changes to the Ready state and remains in the Ready queue.
@@ -66,7 +68,7 @@ The task state transition process is as follows:
 
 **Task ID**
 
-You will receive a task ID after successfully creating a task. The task IDs are unique in the operating system. You can suspend, restore, or query tasks by task ID.
+A task ID is returned when a task is created. The task ID uniquely identifies a task in the system. You can suspend, restore, or query tasks by task ID.
 
 **Task Priority**
 
@@ -84,7 +86,7 @@ An independent memory space for each task. The stack stores information such as 
 
 Resources, such as registers, used during the running of a task. When a task is suspended, other running tasks might modify the register values of the suspended task. If the original task context is not saved when task switching occurs, an unknown error may occur when the task is recovered. The context information of switched-out tasks is saved into their own task stacks so that the context information can be resumed along with tasks and the system can start from the interrupted code after the tasks are resumed.
 
-**Task Control Block**
+**TCB**
 
 Each task has a task control block (TCB). A TCB contains task information, such as context stack pointer, state, priority, ID, name, and stack size. The TCB reflects the running status of a task.
 
@@ -95,24 +97,23 @@ Task switching involves actions, such as obtaining the task with the highest pri
 
 ### Task Running Mechanism
 
-When a task is created, the system initializes the task stack and presets the context. The system places the task entry function in the corresponding position so that the function is executed when the task enters the running state for the first time.
+When a task is created, the system initializes the task stack and presets the context. The system places the task entry function in the corresponding position so that the function can be executed when the task enters the running state for the first time.
 
 
 ## Available APIs
 
 The following table describes APIs available for the OpenHarmony LiteOS-M task module. For more details about the APIs, see the API reference.
 
-  **Table 1** APIs of the task management module
+**Table 1** APIs of the task management module
 
 | Category| Description|
 | -------- | -------- |
-| Creating or deleting a task| **LOS_TaskCreateOnly**: creates a task and places the task in the Ready state. If there is no task with a higher priority in the Ready queue, the task will be executed.<br>**LOS_TaskCreate**: creates a task and places the task in the Ready state. If there is no task with a higher priority in the Ready queue, the task will be executed.<br>**LOS_TaskDelete**: deletes a task.|
-| Controlling task status| **LOS_TaskResume**: resumes a suspended task to place the task in the Ready state.<br>**LOS_TaskSuspend**: suspends the specified task and performs task switching.<br>**LOS_TaskJoin**: suspends this task till the specified task is complete and the task control block resources are reclaimed.<br>**LOS_TaskDelay**: makes a task wait for a period of time (in ticks) and releases CPU resources. When the delay timer expires, the task enters the Ready state again. The input parameter is the number of ticks.<br>**LOS_Msleep**: converts the input parameter number of milliseconds into number of ticks, and use the result to call **LOS_TaskDelay**.<br>**LOS_TaskYield**: sets the time slice of the current task to **0** to release CPU resources and schedule the task with the highest priority in the Ready queue to run.|
+| Creating or deleting a task| **LOS_TaskCreateOnly**: creates a task and places the task in the Blocked state.<br>**LOS_TaskCreate**: creates a task and places the task in the Ready state. If there is no task with a higher priority in the Ready queue, the task will be executed.<br>**LOS_TaskDelete**: deletes a task.|
+| Controlling task status| **LOS_TaskResume**: resumes a suspended task to place the task in the Ready state.<br>**LOS_TaskSuspend**: suspends the specified task and performs task switching.<br>**LOS_TaskJoin**: suspends this task till the specified task is complete and the task control block resources are reclaimed.<br>**LOS_TaskDelay**: makes a task wait for a period of time (in ticks) and releases CPU resources. When the delay timer expires, the task enters the Ready state again. The input parameter is the number of ticks.<br>**LOS_Msleep**: makes a task wait for a period of time and releases CPU resources. When the delay timer expires, the task enters the Ready state again. The input parameter is the number of milliseconds.<br>**LOS_TaskYield**: sets the time slice of the current task to **0** to release CPU resources and schedule the task with the highest priority in the Ready queue to run.|
 | Controlling task scheduling| **LOS_TaskLock**: locks task scheduling. However, tasks can still be interrupted.<br>**LOS_TaskUnlock**: unlocks task scheduling.<br>**LOS_Schedule**: triggers task scheduling.|
 | Controlling task priority| **LOS_CurTaskPriSet**: sets the priority for the current task.<br>**LOS_TaskPriSet**: sets the priority for a specified task.<br>**LOS_TaskPriGet**: obtains the priority of a specified task.|
 | Obtaining Job information| **LOS_CurTaskIDGet**: obtains the ID of the current task.<br>**LOS_NextTaskIDGet**: obtains the ID of the task with the highest priority in the Ready queue.<br>**LOS_NewTaskIDGet**: equivalent to **LOS_NextTaskIDGet**.<br>**LOS_CurTaskNameGet**: obtains the name of the current task.<br>**LOS_TaskNameGet**: obtains the name of a task.<br>**LOS_TaskStatusGet**: obtains the state of a task.<br>**LOS_TaskInfoGet**: obtains information about a specified task, including the task state, priority, stack size, stack pointer (SP), task entry function, and used stack space.<br>**LOS_TaskIsRunning**: checks whether the task module has started scheduling.|
-| Updating task information| **LOS_TaskSwitchInfoGet**: obtains task switching information. The macro **LOSCFG_BASE_CORE_EXC_TSK_SWITCH** must be enabled.|
-
+| Updating task information| **LOS_TaskSwitchInfoGet**: obtains the task switching information. The macro **LOSCFG_BASE_CORE_EXC_TSK_SWITCH** must be enabled.|
 
 ## How to Develop
 
@@ -130,7 +131,7 @@ The typical development process of the task module is as follows:
 
 6. Use **LOS_TaskResume** to resume the suspended task.
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
 > - Running idle tasks reclaims the TCBs and stacks in the to-be-recycled linked list.
 > 
 > - The task name is a pointer without memory space allocated. When setting the task name, do not assign the local variable address to the task name pointer.
@@ -162,16 +163,18 @@ The typical development process of the task module is as follows:
 
 This example describes the priority-based task scheduling and use of task-related APIs, including creating, delaying, suspending, and resuming two tasks with different priorities, and locking/unlocking task scheduling. 
 
-The sample code is as follows:
+The sample code is compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. Call **ExampleTask** in **TestTaskEntry**.
 
 
 ```
+#include "los_task.h"
+
 UINT32 g_taskHiId;
 UINT32 g_taskLoId;
-#define TSK_PRIOR_HI 4
-#define TSK_PRIOR_LO 5
+#define TSK_PRIOR_HI 3 /* Priority of a high-priority task. */
+#define TSK_PRIOR_LO 4 /* Priority of a low-priority task. */
 
-UINT32 Example_TaskHi(VOID)
+UINT32 ExampleTaskHi(VOID)
 {
     UINT32 ret;
 
@@ -184,7 +187,7 @@ UINT32 Example_TaskHi(VOID)
         return LOS_NOK;
     }
 
-    /*After 100 ticks elapse, the task is resumed. */
+    /* After 100 ticks elapse, the task is resumed. */
     printf("TaskHi LOS_TaskDelay Done.\n");
 
     /* Suspend the task. */
@@ -198,7 +201,7 @@ UINT32 Example_TaskHi(VOID)
 }
 
 /* Entry function of low-priority tasks */
-UINT32 Example_TaskLo(VOID)
+UINT32 ExampleTaskLo(VOID)
 {
     UINT32 ret;
 
@@ -222,25 +225,26 @@ UINT32 Example_TaskLo(VOID)
     return ret;
 }
 
-/* Task entry function used to create two tasks with different priorities */
-UINT32 Example_TskCaseEntry(VOID)
+/* Task entry function used to create two tasks with different priorities. */
+UINT32 ExampleTask(VOID)
 {
     UINT32 ret;
-    TSK_INIT_PARAM_S initParam;
+    TSK_INIT_PARAM_S taskParam1 = { 0 };
+    TSK_INIT_PARAM_S taskParam2 = { 0 };
 
     /* Lock task scheduling to prevent newly created tasks from being scheduled prior to this task due to higher priority. */
     LOS_TaskLock();
 
     printf("LOS_TaskLock() Success!\n");
 
-    initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_TaskHi;
-    initParam.usTaskPrio = TSK_PRIOR_HI;
-    initParam.pcName = "TaskHi";
-    initParam.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-    initParam.uwResved = 0; /* Detach attributes. */
+    taskParam1.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleTaskHi;
+    taskParam1.usTaskPrio = TSK_PRIOR_HI;
+    taskParam1.pcName = "TaskHi";
+    taskParam1.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam1.uwResved = LOS_TASK_ATTR_JOINABLE; /* Detach attribute. */
 
     /* Create a task with higher priority. The task will not be executed immediately after being created, because task scheduling is locked. */
-    ret = LOS_TaskCreate(&g_taskHiId, &initParam);
+    ret = LOS_TaskCreate(&g_taskHiId, &taskParam1);
     if (ret != LOS_OK) {
         LOS_TaskUnlock();
 
@@ -250,13 +254,13 @@ UINT32 Example_TskCaseEntry(VOID)
 
     printf("Example_TaskHi create Success!\n");
 
-    initParam.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_TaskLo;
-    initParam.usTaskPrio = TSK_PRIOR_LO;
-    initParam.pcName = "TaskLo";
-    initParam.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
+    taskParam2.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleTaskLo;
+    taskParam2.usTaskPrio = TSK_PRIOR_LO;
+    taskParam2.pcName = "TaskLo";
+    taskParam2.uwStackSize = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
 
     /* Create a low-priority task. The task will not be executed immediately after being created, because task scheduling is locked. */
-    ret = LOS_TaskCreate(&g_taskLoId, &initParam);
+    ret = LOS_TaskCreate(&g_taskLoId, &taskParam2);
     if (ret != LOS_OK) {
         LOS_TaskUnlock();
         printf("Example_TaskLo create Failed!\n");
@@ -269,7 +273,7 @@ UINT32 Example_TskCaseEntry(VOID)
     LOS_TaskUnlock();
     ret = LOS_TaskJoin(g_taskHiId, NULL);
     if (ret != LOS_OK) {
-        printf("Join Example_TaskHi Failed!\n");
+        printf("Join Example_TaskHi Failed!, 0x%x\n", ret);
     } else {
         printf("Join Example_TaskHi Success!\n");
     }
@@ -277,13 +281,12 @@ UINT32 Example_TskCaseEntry(VOID)
 }
 ```
 
-
-### Verification
+**Verification**
 
 The development is successful if the return result is as follows:
 
 
-```
+```     
 LOS_TaskLock() Success!
 Example_TaskHi create Success!
 Example_TaskLo create Success!

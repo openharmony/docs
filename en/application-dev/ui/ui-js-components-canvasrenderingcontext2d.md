@@ -27,6 +27,8 @@ Use **moveTo** and **lineTo** to draw a line segment. Use the **closePath** meth
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -49,7 +51,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -324,6 +325,8 @@ Add the **createLinearGradient** and **createRadialGradient** attributes to crea
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -346,7 +349,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -448,6 +450,8 @@ Create a text and use the **fillText** method to write the text on the canvas. U
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -470,7 +474,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -592,6 +595,8 @@ After creating an image object, use the **drawImage** attribute to draw the imag
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -626,7 +631,7 @@ text{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     compositeOperation: 'source-over'
@@ -669,7 +674,7 @@ export default {
     };
     // A method is triggered when the image fails to be obtained.
     img1.onerror = function() {
-      prompt.showToast({message:"error",duration:2000})
+      promptAction.showToast({message:"error",duration:2000})
     };
   },
   rotate(){
@@ -761,6 +766,8 @@ Use the **save** method to save the brush style, and use the **restore** method 
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -794,7 +801,7 @@ text{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     ctx: '',
@@ -807,7 +814,7 @@ export default {
   save(){
     // Save the brush setting.
     this.ctx.save();
-    prompt.showToast({message:"save succeed"});
+    promptAction.showToast({message:"save succeed"});
   },
   clear(){ 
     this.ctx.clearRect(0,0,600,500);

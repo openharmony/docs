@@ -23,7 +23,7 @@
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口。<br/>-`config`：创建窗口时的参数。 |
-| window静态方法 | findWindow(id: string, callback: AsyncCallback&lt;Window&gt;): void | 查找`id`所对应的窗口。 |
+| window静态方法 | findWindow(name: string): Window | 查找`name`所对应的窗口。 |
 | Window | SetUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
 | Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。 |
 | Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。 |
@@ -49,31 +49,28 @@
    - 可以通过`window.createWindow`接口创建子窗口。
    - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
    
-```js
-   import window from '@ohos.window';
+   ```js
+      import window from '@ohos.window';
    
-   let windowClass = null;
-   // 方式一：创建子窗口。
-   let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP, ctx: this.context};
-   window.createWindow(config, (err, data) => {
-       if (err.code) {
-           console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
-           return;
-       }
-       console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
-       windowClass = data;
-   });
-   // 方式二：查找得到子窗口。
-   window.findWindow("subWindow", (err, data) => {
-       if (err.code) {
-           console.error('Failed to find the subWindow. Cause: ' + JSON.stringify(err));
-           return;
-       }
-       console.info('Succeeded in finding subWindow. Data: ' + JSON.stringify(data));
-       windowClass = data;
-   });
+      let windowClass = null;
+      // 方式一：创建子窗口。
+      let config = {name: "subWindow", windowType: window.WindowType.TYPE_APP};
+      window.createWindow(config, (err, data) => {
+          if (err.code) {
+              console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+              return;
+          }
+          console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
+          windowClass = data;
+      });
+      // 方式二：查找得到子窗口。
+      try {
+          windowClass = window.findWindow('subWindow');
+      } catch (exception) {
+          console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
+      }
    ```
-   
+
 2. 设置子窗口属性。
 
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
@@ -156,7 +153,7 @@
    
    let mainWindowClass = null;
    // 获取主窗口。
-   window.getLastWindow((err, data) => {
+   window.getLastWindow(this.context,(err, data) => {
      if (err.code) {
        console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
        return;
@@ -166,7 +163,7 @@
    });
    ```
 
-2. 实现沉浸式效果。有以下三种方式：
+2. 实现沉浸式效果。有以下两种方式：
 
    - 方式一：调用`setWindowSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
    - 方式二：调用`setWindowLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setSystemProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。

@@ -35,7 +35,7 @@ onConfigurationUpdated(config: Configuration): void;
   ```ts
 import Ability from "@ohos.application.Ability";
 
-var callbackId;
+let callbackId;
 
 export default class MyAbility extends Ability {
     onCreate() {

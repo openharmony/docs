@@ -11,14 +11,14 @@
 
 | Name     | Type    | Default Value | Description                                      |
 | ------- | ------ | ---- | ---------------------------------------- |
-| shareid | string | -   | Used for the transition of shared elements, which takes effect only when this attribute is set. **\<list-item>**, **\<image>**, **\<text>**, **\<button>**, and **\<label>** components are supported for the transition of shared elements. |
+| shareid | string | -   | Used for the transition of shared elements, which takes effect only when this attribute is set. **\<list-item>**, **\<image>**, **\<text>**, **\<button>**, and **\<label>** components are supported for the transition of shared elements.|
 
 
 ### Styles
 
 | Name                               | Type    | Default Value     | Description                                      |
 | --------------------------------- | ------ | -------- | ---------------------------------------- |
-| shared-transition-effect          | string | exchange | Entry style of a shared element during transition.<br>-&nbsp;**exchange** (default): The source page element is moved to the position of the target page element and is zoomed in or out properly.<br>-&nbsp;**static**: The position of the target page element remains unchanged. You can configure the opacity animation. Currently, only the static effect configured on the target page takes effect.|
+| shared-transition-effect          | string | exchange | Entry style of a shared element during transition.<br>- **exchange** (default): The source page element is moved to the position of the target page element and is zoomed in or out properly.<br>- **static**: The position of the target page element remains unchanged. You can configure the opacity animation. Currently, only the static effect configured on the target page takes effect.|
 | shared-transition-name            | string | -        | During the transition, the style configured on the target page takes effect preferentially. This style is used to configure the animation effect of shared elements. The animation effect is an animation sequence defined by **@keyframes** supporting transform and opacity animations. If the effect of shared elements conflicts with the custom animation, the latter is used.|
 | shared-transition-timing-function | string | friction | During the transition, the style configured on the target page takes effect preferentially. This style defines the difference curve during the transition of shared elements. If it is not configured, the friction curve is used.|
 
@@ -52,7 +52,7 @@ In the example below, where **PageA** jumps to **PageB**, the shared element is 
       <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
     </list-item>
     <list-item>
-      <text onclick="jump">Click on picture to Jump to the details</text>
+      <text onclick="jump">Click on picture to jump to the details</text>
     </list-item>
   </list>
 </div>
@@ -60,12 +60,12 @@ In the example below, where **PageA** jumps to **PageB**, the shared element is 
 
 ```js
 // xxx.js
-import router from '@system.router';
+import router from '@ohos.router';
 export default {
   jump() {
     router.push({
       // The path must be the same as that in the config.json file.
-      uri: 'pages/detailpage',
+      url: 'pages/detailpage',
     });
   },
 }
@@ -93,7 +93,7 @@ export default {
 
 ```js
 // xxx.js
-import router from '@system.router';
+import router from '@ohos.router';
 export default {
   jumpBack() {
     router.back();
@@ -117,7 +117,6 @@ export default {
 ## Widget Transition
 
 >  **NOTE**
->
 >  Widget transitions are not available when other transitions (including shared element transitions and custom transitions) are used.
 
 
@@ -125,7 +124,7 @@ export default {
 
 | Name               | Type    | Default Value | Description                                      |
 | ----------------- | ------ | ---- | ---------------------------------------- |
-| transition-effect | string | -    | Whether a component on the current page displays the transition effect during a widget transition. Available values are as follows:<br>-&nbsp;**unfold**: The component will move upwards by one widget height if the component is located above the widget tapped by the user, or move downwards by one widget height if the component is located below the widget.<br>-&nbsp;**none**: No transition effect is displayed. |
+| transition-effect | string | -    | Whether a component on the current page displays the transition effect during a widget transition. Available values are as follows:<br>- **unfold**: The component will move upwards by one widget height if the component is located above the widget tapped by the user, or move downwards by one widget height if the component is located below the widget.<br>- **none**: No transition effect is displayed.|
 
 
 ### Example
@@ -140,7 +139,7 @@ The **source_page** has a title area on the top and a widget list. Users can tap
     <text style="font-size: 23px; margin-bottom: 20px" >MAIN TITLE</text>
   </div>
   <list style="width:340px;height:600px;flex-direction:column;justify-content:center;align-items:center">
-    <list-item type="listItem" class="item" card="true" for="list" id="{{$item.id}}" onclick="jumpPage({{$item.id}}, {{$item.uri}})">
+    <list-item type="listItem" class="item" card="true" for="list" id="{{$item.id}}" onclick="jumpPage({{$item.id}}, {{$item.url}})">
       <text style="margin-left: 10px; font-size: 23px;">{{$item.title}}</text>
     </list-item>
   </list>
@@ -149,19 +148,19 @@ The **source_page** has a title area on the top and a widget list. Users can tap
 
 ```js
 // xxx.js
-import router from '@system.router'
+import router from '@ohos.router'
 export default {
   data: { list: [] },
   onInit() {
     for(var i = 0; i < 10; i++) {
-      var item = { uri: "pages/card_transition/target_page/index", 
+      var item = { url: "pages/card_transition/target_page/index", 
                    title: "this is title" + i, id: "item_" + i }
       this.list.push(item);
     }
   },
-  jumpPage(id, uri) {
+  jumpPage(id, url) {
     var cardId = this.$element(id).ref;
-    router.push({ uri: uri, params : { ref : cardId } });
+    router.push({ url: url, params : { ref : cardId } });
   }
 }
 ```
@@ -169,6 +168,8 @@ export default {
 ```css
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   background-color: #ABDAFF;
@@ -199,6 +200,8 @@ export default {
 ```css
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%; 
   flex-direction: column;
   align-items: center;
   background-color: #EBFFD7;
@@ -223,7 +226,7 @@ export default {
 | -------------------------- | ------ | ------------- | ---------------------------------------- |
 | transition-enter           | string | -             | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md).|
 | transition-exit            | string | -             | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md).|
-| transition-duration        | string | Follows the default page transition time of the device | The unit can be s or ms. The default unit is ms. If no value is specified, the default value is used. |
+| transition-duration        | string | Follows the default page transition time of the device| The unit can be s|or ms. The default unit is ms. If no value is specified, the default value is used.|
 | transition-timing-function | string | friction      | Speed curve of the transition animation, which makes the animation more fluent. For details, see the description of **animation-timing-function **in [Animation Styles](../arkui-js/js-components-common-animation.md).|
 
 
@@ -255,16 +258,16 @@ export default {
    </div>
    ```
 
-   ```css
+   ```js
    // xxx.js
-   import router from '@system.router';
+   import router from '@ohos.router';
    export default {
        data: {
-
+   
        },
        jump() {
            router.push({
-               uri:'pages/transition2/transition2'
+               url:'pages/transition2/transition2'
            })
        }
    }
@@ -288,13 +291,13 @@ export default {
        transition-duration: 5s;
        transition-timing-function: friction;
    }
-
+   
    @keyframes go_page {
        from {
            opacity: 0;
            transform: translate(0px) rotate(60deg) scale(1.0);
        }
-
+   
        to {
            opacity: 1;
            transform: translate(100px) rotate(360deg) scale(1.0);
@@ -305,7 +308,7 @@ export default {
            opacity: 1;
            transform: translate(200px) rotate(60deg) scale(2);
        }
-
+   
        to {
            opacity: 0;
            transform: translate(200px) rotate(360deg) scale(2);
@@ -321,15 +324,15 @@ export default {
    <div class="container">
        <text>transition</text>
        <div class="move_page" onclick="jumpBack"></div>
-   </div
+   </div>
    ```
 
    ```js
    // xxx.js
-   import router from '@system.router';
+   import router from '@ohos.router';
    export default {
        data: {
-
+   
        },
        jumpBack() {
            router.back()
@@ -346,7 +349,7 @@ export default {
        width: 100%;
        height: 100%;
    }
-
+   
    .move_page {
        width: 100px;
        height: 100px;
@@ -356,7 +359,7 @@ export default {
        transition-duration: 5s;
        transition-timing-function: ease;
    }
-
+   
    @keyframes go_page {
        from {
            opacity: 0;
@@ -367,7 +370,7 @@ export default {
            transform:translate(100px) rotate(180deg) scale(2.0);
        }
    }
-
+   
    @keyframes exit_page {
        from {
            opacity: 1;

@@ -1,4 +1,4 @@
-# distributedBundle
+# @ohos.distributedBundle (Distributed Bundle Management)
 
 The **distributedBundle** module manages distributed bundles.
 
@@ -26,7 +26,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
 
@@ -46,7 +46,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name       | Type                                                        | Mandatory| Description                                              |
+| Name     | Type                                                        | Mandatory| Description                                              |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md)                 | Yes  | **ElementName**.                           |
 | callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)> | Yes  | Callback used to return the remote ability information.|
@@ -55,7 +55,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
@@ -75,7 +75,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name       | Type                                        | Mandatory| Description                   |
+| Name     | Type                                        | Mandatory| Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | Yes  | **ElementName**.|
 
@@ -87,7 +87,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
 
@@ -107,16 +107,16 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name        | Type                                                        | Mandatory| Description                                              |
+| Name      | Type                                                        | Mandatory| Description                                              |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
-| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Yes  | Callback used to return the remote ability information.|
+| callback     | AsyncCallback< Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Yes  | Callback used to return an array of the remote ability information.|
 
 
 
 ## distributedBundle.getRemoteAbilityInfos<sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo](js-apis-distributedBundle.md) instead.
+> This API is deprecated since API version 9. You are advised to use [getRemoteAbilityInfo(@ohos.bundle.distributedBundle)](js-apis-distributedBundle.md) instead.
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 
@@ -136,7 +136,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name        | Type                                               | Mandatory| Description                   |
+| Name     | Type                                               | Mandatory| Description                 |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
 | elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
 

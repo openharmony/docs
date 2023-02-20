@@ -29,6 +29,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 ## DataBlob
 
 buffer数组。
+
  **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称 | 类型       | 可读 | 可写 | 说明   |
@@ -40,7 +41,7 @@ buffer数组。
 
 createMac(algName : string) : Mac
 
-生成Mac实例，用于进行消息认证码的计算与操作
+生成Mac实例，用于进行消息认证码的计算与操作。<br/>支持的规格详见框架概述“[HMAC消息认证码算法规格](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -48,7 +49,7 @@ createMac(algName : string) : Mac
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法范围：SHA1/SHA224/SHA256/SHA384/SHA512 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考“[HMAC算法支持范围](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节 |
 
 **返回值**：
 
@@ -60,7 +61,7 @@ createMac(algName : string) : Mac
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **示例：**
 
@@ -100,14 +101,14 @@ init(key : SymKey, callback : AsyncCallback\<void>) : void;
 
 | 参数名   | 类型                 | 必填 | 说明         |
 | -------- | -------------------- | ---- | ------------ |
-| key      | SymKey               | 是   | 共享对称密钥 |
+| key      | [SymKey](#symkey)    | 是   | 共享对称密钥 |
 | callback | AsyncCallback\<void> | 是   | 回调函数     |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -146,7 +147,7 @@ init(key : SymKey) : Promise\<void>;
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| key    | SymKey | 是   | 共享对称密钥 |
+| key    | [SymKey](#symkey) | 是   | 共享对称密钥 |
 
 **返回值：**
 
@@ -158,7 +159,7 @@ init(key : SymKey) : Promise\<void>;
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -191,20 +192,23 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 传入消息进行Mac更新计算
 
+> **说明：** 
+> Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | 是   | 传入的消息 |
+| input    | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -243,13 +247,16 @@ update(input : DataBlob) : Promise\<void>;
 
 传入消息进行Mac更新计算
 
+> **说明：** 
+> Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| input  | DataBlob | 是   | 传入的消息 |
+| input  | [DataBlob](#datablob) | 是   | 传入的消息 |
 
 **返回值：**
 
@@ -261,7 +268,7 @@ update(input : DataBlob) : Promise\<void>;
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -304,14 +311,14 @@ doFinal(callback : AsyncCallback\<DataBlob>) : void;
 
 | 参数名   | 类型                     | 必填 | 说明     |
 | -------- | ------------------------ | ---- | -------- |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -363,14 +370,14 @@ doFinal() : Promise\<DataBlob>
 
 | 类型               | 说明        |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise对象 |
+| Promise\<[DataBlob](#datablob)> | Promise对象 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -423,7 +430,7 @@ getMacLength() : number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -464,7 +471,7 @@ promiseConvertKey.then(symKey => {
 
 createMd(algName : string) : Md
 
-生成Md实例，用于进行消息摘要的计算与操作
+生成Md实例，用于进行消息摘要的计算与操作。<br/>支持的规格详见框架概述“[MD消息摘要算法规格](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -472,7 +479,7 @@ createMd(algName : string) : Md
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法范围：SHA1/SHA224/SHA256/SHA384/SHA512/MD5 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考“[MD算法支持范围](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节 |
 
 **返回值**：
 
@@ -484,7 +491,7 @@ createMd(algName : string) : Md
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **示例：**
 
@@ -518,20 +525,23 @@ update(input : DataBlob, callback : AsyncCallback\<void>) : void;
 
 传入消息进行Md更新计算
 
+> **说明：** 
+> Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | 是   | 传入的消息 |
+| input    | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -560,6 +570,9 @@ update(input : DataBlob) : Promise\<void>;
 
 传入消息进行Md更新计算
 
+> **说明：** 
+> Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 参数名 | 类型     | 必填 | 说明       |
@@ -576,7 +589,7 @@ update(input : DataBlob) : Promise\<void>;
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -616,8 +629,8 @@ digest(callback : AsyncCallback\<DataBlob>) : void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -659,14 +672,14 @@ digest() : Promise\<DataBlob>
 
 | 类型               | 说明        |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise对象 |
+| Promise\<[DataBlob](#datablob)> | Promise对象 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -711,7 +724,7 @@ getMdLength() : number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -744,7 +757,7 @@ promiseMdUpdate.then(() => {
 
 createRandom() : Random
 
-生成Random实例，用于进行随机数的计算与设置种子
+生成Random实例，用于进行随机数的计算与设置种子。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -758,7 +771,7 @@ createRandom() : Random
 
 | 错误码ID | 错误信息     |
 | -------- | ------------ |
-| 17620001 | memory error |
+| 17620001 | memory error. |
 
 **示例：**
 
@@ -789,14 +802,14 @@ generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void;
 | 参数名   | 类型                     | 必填 | 说明                 |
 | -------- | ------------------------ | ---- | -------------------- |
 | len      | number                   | 是   | 表示生成随机数的长度 |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数             |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数             |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -836,14 +849,14 @@ generateRandom(len : number) : Promise\<DataBlob>;
 
 | 类型               | 说明        |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise对象 |
+| Promise\<[DataBlob](#datablob)> | Promise对象 |
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **示例：**
 
@@ -881,7 +894,7 @@ setSeed(seed : DataBlob) : void;
 
 | 错误码ID | 错误信息           |
 | -------- | ----------------- |
-| 17620001 | memory error      |
+| 17620001 | memory error.      |
 
 **示例：**
 
@@ -915,12 +928,12 @@ rand.generateRandom(12, (err, randData) => {
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称     | 类型   | 可读 | 可写 | 说明                    |
-| -------- | ------ | ---- | ---- | ----------------------- |
-| algoName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
+| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
 
 > **说明：** 
-> 由于[init()](#init-2)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algoName参数，使算法库在init()时知道传入的是哪种子类对象。
+> 由于[init()](#init-2)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algName参数，使算法库在init()时知道传入的是哪种子类对象。
 
 ## IvParamsSpec
 
@@ -933,7 +946,7 @@ rand.generateRandom(12, (err, randData) => {
 | iv   | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节 |
 
 > **说明：** 
-> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## GcmParamsSpec
 
@@ -948,7 +961,7 @@ rand.generateRandom(12, (err, randData) => {
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag |
 
 > **说明：** 
-> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CcmParamsSpec
 
@@ -963,7 +976,7 @@ rand.generateRandom(12, (err, randData) => {
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag |
 
 > **说明：** 
-> 传入[init()](#init-2)方法前需要指定其algoName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CryptoMode
 
@@ -1152,7 +1165,11 @@ key.clearMem();
 
 ## KeyPair
 
-非对称密钥对，包含：公钥与私钥，。<br/>可以通过非对称密钥生成器AsyKeyGenerator来生成。
+非对称密钥对，包含：公钥与私钥。<br/>可以通过非对称密钥生成器AsyKeyGenerator来生成。
+
+> **说明：** 
+> 
+> KeyPair对象中的pubKey对象和priKey对象，作为KeyPair对象中的一个参数存在，当离开KeyPair对象作用域时，其内部对象可能被析构。<br/>业务方使用时应持有KeyPair对象的引用，而非内部pubKey或priKey对象的引用。
 
 ### 属性
 
@@ -1227,8 +1244,8 @@ generateSymKey(callback : AsyncCallback\<SymKey>) : void
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey((err, symKey) => {
   if (err) {
     console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
@@ -1262,8 +1279,8 @@ generateSymKey() : Promise\<SymKey>
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
-let symAlgoName = 'AES128';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = 'AES128';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 symKeyGenerator.generateSymKey()
 .then(symKey => {
   console.info(`Generate symKey success, algName: ${symKey.algName}`);
@@ -1307,8 +1324,8 @@ function genKeyMaterialBlob() {
   return {data : keyMaterial};
 }
 
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 let keyMaterialBlob = genKeyMaterialBlob();
 symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
   if (err) {
@@ -1359,8 +1376,8 @@ function genKeyMaterialBlob() {
   return {data : keyMaterial};
 }
 
-let symAlgoName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+let symAlgName = '3DES192';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
 let keyMaterialBlob = genKeyMaterialBlob();
 symKeyGenerator.convertKey(keyMaterialBlob)
 .then(symKey => {
@@ -1374,7 +1391,7 @@ symKeyGenerator.convertKey(keyMaterialBlob)
 
 createAsyKeyGenerator(algName : string) : AsyKeyGenerator
 
-通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。
+通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。<br/>支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1388,7 +1405,7 @@ createAsyKeyGenerator(algName : string) : AsyKeyGenerator
 
 | 类型            | 说明                         |
 | --------------- | ---------------------------- |
-| asyKeyGenerator | 返回非对称密钥生成器的对象。 |
+| [AsyKeyGenerator](#asykeygenerator) | 返回非对称密钥生成器的对象。 |
 
 **示例：**
 
@@ -1422,7 +1439,13 @@ generateKeyPair(callback : AsyncCallback\<KeyPair>) : void;
 
 | 参数名     | 类型                    | 必填 | 说明                           |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
+| callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1452,7 +1475,13 @@ generateKeyPair() : Promise\<KeyPair>
 
 | 类型              | 说明                              |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | 使用Promise的方式获取非对称密钥。 |
+| Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1480,9 +1509,15 @@ convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPa
 
 | 参数名     | 类型       | 必填 | 说明                           |
 | -------- | ----------- | ---- | ------------------------------ |
-| pubKey   | DataBlob    | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null        |
-| priKey   | DataBlob    | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null        |
-| callback | AsyncCallback\<KeyPair> | 是   | 回调函数，用于获取非对称密钥。 |
+| pubKey   | [DataBlob](#datablob)     | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。        |
+| priKey   | [DataBlob](#datablob)     | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。        |
+| callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1519,7 +1554,13 @@ convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
 
 | 类型              | 说明                              |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | 使用Promise的方式获取非对称密钥。 |
+| Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **示例：**
 
@@ -1572,10 +1613,10 @@ createCipher(transformation : string) : Cipher
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let cipherAlgoName = '3DES192|ECB|PKCS7';
+let cipherAlgName = '3DES192|ECB|PKCS7';
 var cipher;
 try {
-  cipher = cryptoFramework.createCipher(cipherAlgoName);
+  cipher = cryptoFramework.createCipher(cipherAlgName);
   console.info(`cipher algName: ${cipher.algName}`);
 } catch (error) {
   console.error(`createCipher failed, ${error.code}, ${error.message}`);
@@ -1695,7 +1736,7 @@ update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 > **说明：** 
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
-> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。
+> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 > 3. RSA非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1752,7 +1793,7 @@ update(data : DataBlob) : Promise\<DataBlob>
 
 > **说明：** 
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
-> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。
+> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 > 3. RSA非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1819,6 +1860,8 @@ doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 >  **说明：** 
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
+>  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
+>  4. RSA非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1871,6 +1914,8 @@ doFinal(data : DataBlob) : Promise\<DataBlob>
 >  **说明：** 
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
+>  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
+>  4. RSA非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1975,7 +2020,7 @@ keyGenPromise.then(rsaKeyPair => {
 
 createSign(algName : string) : Sign
 
-Sign实例生成
+Sign实例生成。<br/>支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2004,9 +2049,13 @@ let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
 ## Sign
 
 Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过createSign(algName : string) : Sign方法构造此实例。Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
+
 业务方使用时，在createSign时确定签名的模式，调用init接口设置密钥。
+
 当待签名数据较短时，可在init初始化后直接调用sign接口传入原文数据进行签名。
+
 当待签名数据较长时，可通过update接口分段传入切分后的原文数据，最后调用sign接口对整体原文数据进行签名。
+
 当使用update分段传入原文时，sign接口支持传null，业务方可在循环中调用update接口，循环结束后调用sign进行签名。
 
 ### 属性
@@ -2029,8 +2078,16 @@ init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明             |
 | -------- | -------------------- | ---- | ---------------- |
-| priKey   | PriKey                  | 是   | 用于Sign的初始化 |
-| callback | AsyncCallback\<void> | 是   | 回调函数的       |
+| priKey   | [PriKey](#prikey)    | 是   | 用于Sign的初始化 |
+| callback | AsyncCallback\<void> | 是   | 回调函数       |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
@@ -2044,13 +2101,21 @@ init(priKey : PriKey) : Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明             |
 | ------ | ---- | ---- | ---------------- |
-| priKey | PriKey  | 是   | 用于Sign的初始化 |
+| priKey | [PriKey](#prikey)  | 是   | 用于Sign的初始化 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2058,14 +2123,25 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 追加待签名数据，callback方式
 
+> **说明：** 
+> Sign多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | 是   | 传入的消息 |
+| data     | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2073,19 +2149,30 @@ update(data : DataBlob) : Promise\<void>;
 
 追加待签名数据，promise方式
 
+> **说明：** 
+> Sign多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | 是   | 传入的消息 |
+| data   | [DataBlob](#datablob)  | 是   | 传入的消息 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2099,8 +2186,16 @@ sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | 是   | 传入的消息 |
-| callback | AsyncCallback\<DataBlob> | 是   | 回调函数   |
+| data     | [DataBlob](#datablob)              | 是   | 传入的消息 |
+| callback | AsyncCallback\<[DataBlob](#datablob) > | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2114,13 +2209,19 @@ sign(data : DataBlob) : Promise\<DataBlob>
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | 是   | 传入的消息 |
+| data   | [DataBlob](#datablob)  | 是   | 传入的消息 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **callback示例：**
 
@@ -2206,7 +2307,7 @@ function signMessagePromise() {
 
 createVerify(algName : string) : Verify
 
-Verify实例生成
+Verify实例生成。<br/>支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2235,10 +2336,15 @@ let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 ## Verify
 
 Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过createVerify(algName : string) : Verify方法构造此实例。
+
 Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
+
 业务方使用时，在createVerify时确定验签的模式，调用init接口设置密钥。
-当待签名数据较短时，可在init初始化后直接调用verify接口传入签名数据和原文进行验签。
-当待签名数据较长时，可通过update接口分段传入待签名数据，最后调用verify接口对整体数据进行验签。
+
+当签名数据较短时，可在init初始化后直接调用verify接口传入签名数据和原文进行验签。
+
+当签名数据较长时，可通过update接口分段传入签名数据，最后调用verify接口对整体签名数据进行验签。
+
 当使用update分段传入签名数据时，verify接口的签名数据支持传null，业务方可在循环中调用update接口，循环结束后调用verify传入原文进行验签。
 
 ### 属性
@@ -2263,8 +2369,16 @@ init(pubKey : PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| pubKey   | PubKey                  | 是   | 公钥对象，用于Verify的初始化 |
+| pubKey   | [PubKey](#pubkey)    | 是   | 公钥对象，用于Verify的初始化 |
 | callback | AsyncCallback\<void> | 是   | 回调函数                     |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
@@ -2278,13 +2392,21 @@ init(pubKey : PubKey) : Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | ---- | ---- | ---------------------------- |
-| pubKey | PubKey  | 是   | 公钥对象，用于Verify的初始化 |
+| pubKey | [PubKey](#pubkey)  | 是   | 公钥对象，用于Verify的初始化 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2292,14 +2414,25 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 追加待验签数据，callback方式
 
+> **说明：** 
+> Verify多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | 是   | 传入的消息 |
+| data     | [DataBlob](#datablob)| 是   | 传入的消息 |
 | callback | AsyncCallback\<void> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2307,19 +2440,30 @@ update(data : DataBlob) : Promise\<void>;
 
 追加待验签数据，promise方式
 
+> **说明：** 
+> Verify多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | 是   | 传入的消息 |
+| data   | [DataBlob](#datablob)  | 是   | 传入的消息 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2333,9 +2477,17 @@ verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<bool
 
 | 参数名        | 类型                 | 必填 | 说明       |
 | ------------- | -------------------- | ---- | ---------- |
-| data          | DataBlob             | 是   | 传入的消息 |
-| signatureData | DataBlob             | 是   | 签名数据   |
+| data          | [DataBlob](#datablob)              | 是   | 传入的消息 |
+| signatureData | [DataBlob](#datablob)              | 是   | 签名数据   |
 | callback      | AsyncCallback\<boolean> | 是   | 回调函数   |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2349,14 +2501,22 @@ verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>
 
 | 参数名        | 类型     | 必填 | 说明       |
 | ------------- | -------- | ---- | ---------- |
-| data          | DataBlob | 是   | 传入的消息 |
-| signatureData | DataBlob | 是   | 签名数据   |
+| data          | [DataBlob](#datablob)  | 是   | 传入的消息 |
+| signatureData | [DataBlob](#datablob)  | 是   | 签名数据   |
 
 **返回值：**
 
 | 类型              | 说明                         |
 | ----------------- | ---------------------------- |
 | Promise\<boolean> | 异步返回值，代表验签是否通过 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **callback示例：**
 
@@ -2401,7 +2561,7 @@ verifyInitPromise.then(() => {
 
 createKeyAgreement(algName : string) : KeyAgreement
 
-KeyAgreement实例生成
+KeyAgreement实例生成。<br/>支持的规格详见框架概述“[密钥协商规格](../../security/cryptoFramework-overview.md#密钥协商规格)”一节。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2450,9 +2610,17 @@ generateSecret(priKey : PriKey, pubKey : PubKey, callback : AsyncCallback\<DataB
 
 | 参数名   | 类型                     | 必填 | 说明                   |
 | -------- | ------------------------ | ---- | ---------------------- |
-| priKey   | PriKey                   | 是   | 设置密钥协商的私钥输入 |
-| pubKey   | PubKey                   | 是   | 设置密钥协商的公钥输入 |
-| callback | AsyncCallback\<DataBlob> | 是   | 异步接受共享秘密的回调 |
+| priKey   | [PriKey](#prikey)        | 是   | 设置密钥协商的私钥输入 |
+| pubKey   | [PubKey](#pubkey)        | 是   | 设置密钥协商的公钥输入 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享秘密的回调 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### generateSecret
 
@@ -2466,14 +2634,22 @@ generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| priKey | PriKey | 是   | 设置密钥协商的私钥输入 |
-| pubKey | PubKey | 是   | 设置密钥协商的公钥输入 |
+| priKey | [PriKey](#prikey) | 是   | 设置密钥协商的私钥输入 |
+| pubKey | [PubKey](#pubkey) | 是   | 设置密钥协商的公钥输入 |
 
 **返回值：**
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<DataBlob> | 共享秘密 |
+| Promise\<[DataBlob](#datablob)> | 共享秘密 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **callback示例：**
 

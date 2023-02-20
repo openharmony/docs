@@ -84,7 +84,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    将需要播放的音频数据读入缓冲区，重复调用write()方法写入。
 
    ```js
-   import fileio from '@ohos.fileio';
+   import fs from '@ohos.file.fs';
    import audio from '@ohos.multimedia.audio';
 
    async function writeBuffer(buf) {
@@ -103,35 +103,33 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    // 此处是渲染器的合理的最小缓冲区大小（也可以选择其它大小的缓冲区）
    const bufferSize = await audioRenderer.getBufferSize();
    let dir = globalThis.fileDir; //不可直接访问，没权限，切记！！！一定要使用沙箱路径
-   const path = dir + '/file_example_WAV_2MG.wav'; // 需要渲染的音乐文件 实际路径为：/data/storage/el2/base/haps/entry/files/file_example_WAV_2MG.wav
-   console.info(`file path: ${ path}`);
-   let ss = fileio.createStreamSync(path, 'r');
-   const totalSize = fileio.statSync(path).size; // 音乐文件大小
-   let discardHeader = new ArrayBuffer(bufferSize);
-   ss.readSync(discardHeader);
-   let rlen = 0;
-   rlen += bufferSize;
-  
-   let id = setInterval(() => {
-     if (audioRenderer.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
-       ss.closeSync();
-       await audioRenderer.stop();
-       clearInterval(id);
+   const filePath = dir + '/file_example_WAV_2MG.wav'; // 需要渲染的音乐文件 实际路径为：/data/storage/el2/base/haps/entry/files/file_example_WAV_2MG.wav
+   console.info(`file filePath: ${ filePath}`);
+
+   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+   let stat = await fs.stat(filePath); //音乐文件信息
+   let buf = new ArrayBuffer(bufferSize);
+   let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+   for (let i = 0;i < len; i++) {
+     let options = {
+       offset: i * this.bufferSize,
+       length: this.bufferSize
      }
-     if (audioRenderer.state == audio.AudioState.STATE_RUNNING) {
-       if (rlen >= totalSize) { // 如果音频文件已经被读取完，停止渲染
-         ss.closeSync();
-         await audioRenderer.stop();
-         clearInterval(id);
-       }
-       let buf = new ArrayBuffer(bufferSize);
-       rlen += ss.readSync(buf);
-       console.info(`Total bytes read from file: ${rlen}`);
-       writeBuffer(buf);
-     } else {
-       console.info('check after next interval');
-     }
-   }, 30); // 定时器区间根据音频格式设置，单位为毫秒
+     let readsize = await fs.read(file.fd, buf, options)
+     let writeSize = await new Promise((resolve,reject)=>{
+       this.audioRenderer.write(buf,(err,writeSize)=>{
+         if(err){
+           reject(err)
+         }else{
+           resolve(writeSize)
+         }
+       })
+     })	
+   }
+
+   fs.close(file)
+   await audioRenderer.stop(); //停止渲染
+   await audioRenderer.release(); //释放资源
    ```
 
 4. （可选）调用pause()方法或stop()方法暂停/停止渲染音频数据。
@@ -236,7 +234,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    let audioTime : number = await audioRenderer.getAudioTime();
 
    // 获取合理的最小缓冲区大小
-   let bufferSize : number = await audioRenderer.getBuffersize();
+   let bufferSize : number = await audioRenderer.getBufferSize();
 
    // 获取渲染速率
    let renderRate : audio.AudioRendererRate = await audioRenderer.getRenderRate();
@@ -416,35 +414,31 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
        let dir = globalThis.fileDir; //不可直接访问，没权限，切记！！！一定要使用沙箱路径
        const path1 = dir + '/music001_48000_32_1.wav'; // 需要渲染的音乐文件 实际路径为：/data/storage/el2/base/haps/entry/files/music001_48000_32_1.wav
        console.info(`audioRender1 file path: ${ path1}`);
-       let ss1 = await fileio.createStream(path1,'r');
-       const totalSize1 = fileio.statSync(path1).size; // 音乐文件大小
-       console.info(`totalSize1   -------: ${totalSize1}`);
-       let discardHeader = new ArrayBuffer(bufferSize);
-       ss1.readSync(discardHeader);
-       let rlen = 0;
-       rlen += bufferSize;
-
-       //2.7 通过audioRender对缓存区的原始音频数据进行渲染
-       let id = setInterval(async () => {
-         if (audioRenderer1.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
-           ss1.closeSync();
-           audioRenderer1.stop();
-           clearInterval(id);
+       let file1 = fs.openSync(path1, fs.OpenMode.READ_ONLY);
+       let stat = await fs.stat(path1); //音乐文件信息
+       let buf = new ArrayBuffer(bufferSize);
+       let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+       
+       //1.7 通过audioRender对缓存区的原始音频数据进行渲染
+       for (let i = 0;i < len; i++) {
+         let options = {
+           offset: i * this.bufferSize,
+           length: this.bufferSize
          }
-         if (audioRenderer1.state == audio.AudioState.STATE_RUNNING) {
-           if (rlen >= totalSize1) { // 如果音频文件已经被读取完，停止渲染
-             ss1.closeSync();
-             await audioRenderer1.stop();
-             clearInterval(id);
-           }
-           let buf = new ArrayBuffer(bufferSize);
-           rlen += ss1.readSync(buf);
-           console.info(`Total bytes read from file: ${rlen}`);
-           await writeBuffer(buf, that.audioRenderer1);
-         } else {
-           console.info('check after next interval');
-         }
-       }, 30); // 定时器区间根据音频格式设置，单位为毫秒
+         let readsize = await fs.read(file.fd, buf, options)
+         let writeSize = await new Promise((resolve,reject)=>{
+           this.audioRenderer1.write(buf,(err,writeSize)=>{
+             if(err){
+               reject(err)
+             }else{
+               resolve(writeSize)
+             }
+           })
+         })	
+       }
+       fs.close(file1)
+       await audioRenderer1.stop(); //停止渲染
+       await audioRenderer1.release(); //释放资源
      }
 
      async runningAudioRender2(){
@@ -488,39 +482,35 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
        const bufferSize = await audioRenderer2.getBufferSize();
        console.info(`audio bufferSize: ${bufferSize}`);
 
-       //2.6 读取原始音频数据文件
+       //2.6 获取原始音频数据文件
        let dir = globalThis.fileDir; //不可直接访问，没权限，切记！！！一定要使用沙箱路径
        const path2 = dir + '/music002_48000_32_1.wav'; // 需要渲染的音乐文件 实际路径为：/data/storage/el2/base/haps/entry/files/music002_48000_32_1.wav
-       console.error(`audioRender1 file path: ${ path2}`);
-       let ss2 = await fileio.createStream(path2,'r');
-       const totalSize2 = fileio.statSync(path2).size; // 音乐文件大小
-       console.error(`totalSize2   -------: ${totalSize2}`);
-       let discardHeader2 = new ArrayBuffer(bufferSize);
-       ss2.readSync(discardHeader2);
-       let rlen = 0;
-       rlen += bufferSize;
-
+       console.info(`audioRender2 file path: ${ path2}`);
+       let file2 = fs.openSync(path2, fs.OpenMode.READ_ONLY);
+       let stat = await fs.stat(path2); //音乐文件信息
+       let buf = new ArrayBuffer(bufferSize);
+       let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+       
        //2.7 通过audioRender对缓存区的原始音频数据进行渲染
-       let id = setInterval(async () => {
-         if (audioRenderer2.state == audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为release，停止渲染
-           ss2.closeSync();
-           that.audioRenderer2.stop();
-           clearInterval(id);
+       for (let i = 0;i < len; i++) {
+         let options = {
+           offset: i * this.bufferSize,
+           length: this.bufferSize
          }
-         if (audioRenderer1.state == audio.AudioState.STATE_RUNNING) {
-           if (rlen >= totalSize2) { // 如果音频文件已经被读取完，停止渲染
-             ss2.closeSync();
-             await audioRenderer2.stop();
-             clearInterval(id);
-           }
-           let buf = new ArrayBuffer(bufferSize);
-           rlen += ss2.readSync(buf);
-           console.info(`Total bytes read from file: ${rlen}`);
-           await writeBuffer(buf, that.audioRenderer2);
-         } else {
-           console.info('check after next interval');
-         }
-       }, 30); // 定时器区间根据音频格式设置，单位为毫秒
+         let readsize = await fs.read(file.fd, buf, options)
+         let writeSize = await new Promise((resolve,reject)=>{
+           this.audioRenderer2.write(buf,(err,writeSize)=>{
+             if(err){
+               reject(err)
+             }else{
+               resolve(writeSize)
+             }
+           })
+         })	
+       }
+       fs.close(file2)
+       await audioRenderer2.stop(); //停止渲染
+       await audioRenderer2.release(); //释放资源
      }
 
      async writeBuffer(buf, audioRender) {

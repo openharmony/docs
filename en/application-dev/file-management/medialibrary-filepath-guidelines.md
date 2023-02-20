@@ -17,7 +17,7 @@ Before using file paths for development, learn the file formats supported by eac
 
 | Directory  | Directory Type     | Media Type     | Description          | Supported File Format                                              |
 | ---------- | ------------- | ------------- | -------------- | ------------------------------------------------------------ |
-| Camera/    | DIR_CAMERA    |    VIDEO and IMAGE     | Directory for storing images and videos taken by the camera. Videos and images can be stored in this directory and its subdirectories.| .bmp / .bm / .gif / .jpg /. jpeg / .jpe / .png / .webp / .raw / .svg / .heif / .mp4 / .3gp / .mpg / .mov / .webm / .mkv |
+| Camera/    | DIR_CAMERA    |    VIDEO and   IMAGE      | Directory for storing images and videos taken by the camera. Videos and images can be stored in this directory and its subdirectories.| .bmp / .bm / .gif / .jpg /. jpeg / .jpe / .png / .webp / .raw / .svg / .heif / .mp4 / .3gp / .mpg / .mov / .webm / .mkv |
 | Videos/    | DIR_VIDEO     | VIDEO | Dedicated video directory. Only videos can be stored in this directory and its subdirectories.| .mp4 / .3gp / .mpg / .mov / .webm / .mkv                     |
 | Pictures/  | DIR_IMAGE     | IMAGE | Dedicated image directory. Only images can be stored in this directory and its subdirectories.| .bmp / .bm / .gif / .jpg /. jpeg / .jpe / .png / .webp / .raw / .svg / .heif |
 | Audios/    | DIR_AUDIO     | AUDIO |Dedicated audio directory. Only audio files can be stored in this directory and its subdirectories.| .aac/.mp3/.flac/.wav/.ogg                                    |
@@ -38,7 +38,7 @@ The following describes how to obtain the public directory that stores camera fi
 ```ts
 async function example(){
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
     const dicResult = await media.getPublicDirectory(DIR_CAMERA);
     if (dicResult == 'Camera/') {
@@ -69,7 +69,7 @@ You can call [fileio.open](../reference/apis/js-apis-fileio.md#fileioopen7) to o
 
 **How to Develop**
 
-1. Call [Context.getFilesDir](../reference/apis/js-apis-Context.md#contextgetfilesdir) to obtain the directory of the application sandbox.
+1. Call [context.filesDir](../reference/apis/js-apis-inner-app-context.md#contextgetfilesdir) to obtain the directory of the application sandbox.
 2. Call **MediaLibrary.getFileAssets** and **FetchFileResult.getFirstObject** to obtain the first file in the result set of the public directory.
 3. Call **fileio.open** to open the file in the sandbox.
 4. Call **fileAsset.open** to open the file in the public directory.
@@ -81,11 +81,11 @@ You can call [fileio.open](../reference/apis/js-apis-fileio.md#fileioopen7) to o
 ```ts
 async function copyPublic2Sandbox() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let sandboxDirPath = globalThis.context.filesDir;
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
+        selections: fileKeyObj.DISPLAY_NAME + '= ?',
         selectionArgs: ['testFile.txt'],
     };
     let fetchResult = await media.getFileAssets(fileAssetFetchOp);
@@ -108,7 +108,7 @@ async function copyPublic2Sandbox() {
 ```ts
 async function copySandbox2Public() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
+    let media = mediaLibrary.getMediaLibrary(context);
     let sandboxDirPath = globalThis.context.filesDir;
 
     let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
@@ -120,26 +120,26 @@ async function copySandbox2Public() {
         console.info('createFile failed, message = ' + err);
     }
     try {
-        let fileKeyObj = mediaLibrary.FileKey
+        let fileKeyObj = mediaLibrary.FileKey;
         let fileAssetFetchOp = {
-            selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
+            selections: fileKeyObj.DISPLAY_NAME + '= ?',
             selectionArgs: ['testFile02.txt'],
         };
         let fetchResult = await media.getFileAssets(fileAssetFetchOp);
         var fileAsset = await fetchResult.getFirstObject();
     } catch (err) {
-        console.info('file asset get failed, message = ', err)
+        console.info('file asset get failed, message = ' + err);
     }
-    var fdPub = await fileAsset.open('rw');
-    var fdSand = await fileio.open(sandboxDirPath + 'testFile.txt', 0o2);
+    let fdPub = await fileAsset.open('rw');
+    let fdSand = await fileio.open(sandboxDirPath + 'testFile.txt', 0o2);
     await fileio.copyFile(fdSand, fdPub);
     await fileio.close(fdPub);
     await fileio.close(fdSand);
     let fdPubRead = await fileAsset.open('rw');
     try {
-        var arrayBuffer = new ArrayBuffer(4096);
+        let arrayBuffer = new ArrayBuffer(4096);
         await fileio.read(fdPubRead, arrayBuffer);
-        var content_pub = String.fromCharCode(new Uint8Array(arrayBuffer));
+        var content_pub = String.fromCharCode(...new Uint8Array(arrayBuffer));
         fileAsset.close(fdPubRead);
     } catch (err) {
         console.log('read text failed, message = ', err);
@@ -167,12 +167,12 @@ You can use **FileAsset.open** and **FileAsset.close** of [mediaLibrary](../refe
        let mediaType = mediaLibrary.MediaType.FILE;
        let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
        const context = getContext(this);
-       var media = mediaLibrary.getMediaLibrary(context);
+       let media = mediaLibrary.getMediaLibrary(context);
        const path = await media.getPublicDirectory(DIR_DOCUMENTS);
        media.createAsset(mediaType, "testFile.text", path).then (function (asset) {
-           console.info("createAsset successfully:"+ JSON.stringify(asset));
+           console.info("createAsset successfully:" + JSON.stringify(asset));
        }).catch(function(err){
-           console.info("createAsset failed with error:"+ err);
+           console.info("createAsset failed with error: " + err);
        });
    }
    ```
@@ -192,10 +192,10 @@ You can use **FileAsset.open** and **FileAsset.close** of [mediaLibrary](../refe
 ```ts
 async function writeOnlyPromise() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey
+    let media = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
     let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
+        selections: fileKeyObj.DISPLAY_NAME + '= ?',
         selectionArgs: ['testFile.txt'],
     };
     let fetchResult = await media.getFileAssets(fileAssetFetchOp);
@@ -218,8 +218,8 @@ async function writeOnlyPromise() {
 ```ts
 async function readOnlyPromise() {
     const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey
+    let media = mediaLibrary.getMediaLibrary(context);
+    let fileKeyObj = mediaLibrary.FileKey;
     let fileAssetFetchOp = {
         selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
         selectionArgs: ['testFile.txt'],
@@ -233,7 +233,7 @@ async function readOnlyPromise() {
         let arrayBuffer = new ArrayBuffer(4096);
         await fileio.read(fd, arrayBuffer);
         let fileContent = String.fromCharCode(...new Uint8Array(arrayBuffer));
-        globalThis.fileContent = fileContent
+        globalThis.fileContent = fileContent;
         globalThis.fileName = fileAsset.displayName;
         console.info('file content: ', fileContent);
         await fileAsset.close(fd);

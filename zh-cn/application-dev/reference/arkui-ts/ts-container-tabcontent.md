@@ -24,12 +24,44 @@ TabContent()
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | tabBar | string&nbsp;\|&nbsp;Resource&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;Resource,<br/>text?:&nbsp;string&nbsp;\|&nbsp;Resource<br/>}<br/>\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。 |
 
 >  **说明：**
 > - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
 > - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
-> - TabContent组件不支持[触摸热区设置](ts-universal-attributes-touch-target.md)。
 
+## SubTabBarStyle<sup>9+</sup>
+
+子页签样式。
+
+### constructor<sup>9+</sup>
+
+constructor(content: string | Resource)
+
+SubTabBarStyle的构造函数。
+
+**参数：**
+
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| content | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。 |
+
+## BottomTabBarStyle<sup>9+</sup>
+
+底部页签和侧边页签样式。
+
+### constructor<sup>9+</sup>
+
+constructor(icon: string | Resource, text: string | Resource)
+
+BottomTabBarStyle的构造函数。
+
+**参数：**
+
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| icon | string \| [Resource](ts-types.md#resource) | 是 | 页签内的图片内容。 |
+| text | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。 |
 
 ## 示例
 
@@ -194,3 +226,101 @@ struct TabContentExample {
 ```
 
 ![tabContent](figures/tabContent2.gif)
+
+示例3：
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column({ space: 5 }) {
+      Text("子页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new SubTabBarStyle('Pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new SubTabBarStyle('Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new SubTabBarStyle('Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new SubTabBarStyle('Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text("底部页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text("侧边页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(true).scrollable(true).barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(400)
+    }
+  }
+}
+```
+
+![tabbarStyle](figures/TabBarStyle.jpeg)

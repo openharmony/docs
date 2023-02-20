@@ -60,26 +60,15 @@ struct ComponentA {
             this.label = (this.languageCode === 'en') ? 'Number' : 'Count'
           })
       }
-      .margin({ bottom: 50 })
+      .margin({ top: 50, bottom: 50 })
 
       Row() {
         Button (`Change @StorageLink decorated variable: ${this.varA}`).height(40).fontSize(14)
           .onClick(() => {
             this.varA++
           })
-      }.margin({ bottom: 50 })
-
-      Row() {
-        Button (`Change @StorageProp decorated variable: ${this.languageCode}`).height(40).fontSize(14)
-          .onClick(() => {
-            if (this.languageCode === 'zh') {
-              this.languageCode = 'en'
-            } else {
-              this.languageCode = 'zh'
-            }
-          })
       }
-    }
+    }.width('100%')
   }
 }
 ```
@@ -110,27 +99,26 @@ One-way data binding can be established between a component and the **LocalStora
 
 > **NOTE**
 >
-> If a **LocalStorage** instance has initial values assigned when being created, these values will be used for the **@LocalStorageLink** and **@LocalStorageProp** decorated state variables in the component. Otherwise, the initial values assigned for **@LocalStorageLink** and **@LocalStorageProp** will be used instead.
+> If a **LocalStorage** instance does not have an initial value assigned when being created, it can use the initial value defined by **@LocalStorageLink** or **@LocalStorageProp** in the component. 
 
 ### Example 1: Creating a LocalStorage Instance in an Ability
 
 The **LocalStorage** is loaded through the **loadContent** API. For details, see [loadContent](../reference/apis/js-apis-window.md#loadcontent9-1).
 
 ```ts
-// MainAbility.ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     storage: LocalStorage
 
     onCreate() {
         this.storage = new LocalStorage()
         this.storage.setOrCreate('storageSimpleProp', 121)
-        console.info('[Demo MainAbility onCreate]')
+        console.info('[Demo EntryAbility onCreate]')
     }
 
     onDestroy() {
-        console.info('[Demo MainAbility onDestroy]')
+        console.info('[Demo EntryAbility onDestroy]')
     }
 
     onWindowStageCreate(windowStage) {
@@ -139,15 +127,15 @@ export default class MainAbility extends Ability {
     }
 
     onWindowStageDestroy() {
-        console.info('[Demo] MainAbility onWindowStageDestroy')
+        console.info('[Demo] EntryAbility onWindowStageDestroy')
     }
 
     onForeground() {
-        console.info('[Demo] MainAbility onForeground')
+        console.info('[Demo] EntryAbility onForeground')
     }
 
     onBackground() {
-        console.info('[Demo] MainAbility onBackground')
+        console.info('[Demo] EntryAbility onBackground')
     }
 }
 ```

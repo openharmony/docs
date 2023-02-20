@@ -5,6 +5,8 @@
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore#ResultSet](js-apis-data-relationalStore.md#resultset)。
 
 ## ResultSetV9<sup>9+</sup>
 
@@ -536,13 +538,9 @@ promiseClose.then((resultSetV9) => {
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
 
-## ResultSet<sup>(deprecated)</sup>
+## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[ResultSetV9](#resultsetv99)替代。
 
 ### 使用说明
 
@@ -559,11 +557,7 @@ promise.then((resultSet) => {
 });
 ```
 
-### 属性<sup>(deprecated)</sup>
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[属性](#属性9)替代。
+### 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -579,15 +573,11 @@ promise.then((resultSet) => {
 | isStarted | boolean | 是 | 检查指针是否移动过。 |
 | isClosed | boolean | 是 | 检查当前结果集是否关闭。 |
 
-### getColumnIndex<sup>(deprecated)</sup>
+### getColumnIndex
 
 getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getColumnIndex](#getcolumnindex9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -613,15 +603,11 @@ getColumnIndex(columnName: string): number
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### getColumnName<sup>(deprecated)</sup>
+### getColumnName
 
 getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getColumnName](#getcolumnname9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -645,15 +631,11 @@ getColumnName(columnIndex: number): string
   const age = resultSet.getColumnName(2);
   ```
 
-### goTo<sup>(deprecated)</sup>
+### goTo
 
 goTo(offset:number): boolean
 
 向前或向后转至结果集的指定行，相对于其当前位置偏移。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goTo](#goto9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -682,15 +664,11 @@ goTo(offset:number): boolean
   });
   ```
 
-### goToRow<sup>(deprecated)</sup>
+### goToRow
 
 goToRow(position: number): boolean
 
 转到结果集的指定行。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToRow](#gotorow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -719,15 +697,11 @@ goToRow(position: number): boolean
   });
   ```
 
-### goToFirstRow<sup>(deprecated)</sup>
+### goToFirstRow
 
 goToFirstRow(): boolean
 
 转到结果集的第一行。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToFirstRow](#gotofirstrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -750,15 +724,11 @@ goToFirstRow(): boolean
   });
   ```
 
-### goToLastRow<sup>(deprecated)</sup>
+### goToLastRow
 
 goToLastRow(): boolean
 
 转到结果集的最后一行。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToLastRow](#gotolastrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -781,15 +751,11 @@ goToLastRow(): boolean
   });
   ```
 
-### goToNextRow<sup>(deprecated)</sup>
+### goToNextRow
 
 goToNextRow(): boolean
 
 转到结果集的下一行。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToNextRow](#gotonextrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -812,15 +778,11 @@ goToNextRow(): boolean
   });
   ```
 
-### goToPreviousRow<sup>(deprecated)</sup>
+### goToPreviousRow
 
 goToPreviousRow(): boolean
 
 转到结果集的上一行。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[goToPreviousRow](#gotopreviousrow9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -843,15 +805,11 @@ goToPreviousRow(): boolean
   });
   ```
 
-### getBlob<sup>(deprecated)</sup>
+### getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getBlob](#getblob9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -873,15 +831,11 @@ getBlob(columnIndex: number): Uint8Array
   const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"));
   ```
 
-### getString<sup>(deprecated)</sup>
+### getString
 
 getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getString](#getstring9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -903,15 +857,11 @@ getString(columnIndex: number): string
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
   ```
 
-### getLong<sup>(deprecated)</sup>
+### getLong
 
 getLong(columnIndex: number): number
 
 以Long形式获取当前行中指定列的值。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getLong](#getlong9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -923,9 +873,9 @@ getLong(columnIndex: number): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 以Long形式返回指定列的值。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 以Long形式返回指定列的值。<br/>该接口支持的数据范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议使用[getDouble](#getdouble)。 |
 
 **示例：**
 
@@ -933,15 +883,11 @@ getLong(columnIndex: number): number
   const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
   ```
 
-### getDouble<sup>(deprecated)</sup>
+### getDouble
 
 getDouble(columnIndex: number): number
 
 以double形式获取当前行中指定列的值。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getDouble](#getdouble9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -963,15 +909,11 @@ getDouble(columnIndex: number): number
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
-### isColumnNull<sup>(deprecated)</sup>
+### isColumnNull
 
 isColumnNull(columnIndex: number): boolean
 
 检查当前行中指定列的值是否为null。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[isColumnNull](#iscolumnnull9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -993,15 +935,11 @@ isColumnNull(columnIndex: number): boolean
   const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"));
   ```
 
-### close<sup>(deprecated)</sup>
+### close
 
 close(): void
 
 关闭结果集。
-
-> **说明：**
->
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[close](#close9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

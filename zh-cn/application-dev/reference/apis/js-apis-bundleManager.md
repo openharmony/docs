@@ -146,7 +146,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
 | SINGLETON        | 0   | ability的启动模式，表示单实例。 |
-| STANDARD         | 1   | ability的启动模式，表示普通多实例。 |
+| MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
 | SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己置顶多实例。 |
 
 ### AbilityType
@@ -2235,8 +2235,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
-| 17700003 | The specified abilityName does not exist.                     |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2291,8 +2291,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
-| 17700003 | The specified abilityName does not exist.                     |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2356,7 +2356,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
+| 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2411,7 +2411,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
+| 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2654,122 +2654,10 @@ try {
 }
 ```
 
-### bundleManager.getAbilityIcon
-
-getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback<[image.PixelMap](js-apis-image.md#pixelmap7)>): void;
-
-以异步的方法获取指定bundleName、moduleName和abilityName的icon，使用callback形式返回结果。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
-
-**参数：**
-
-| 参数名      | 类型                                                        | 必填 | 说明                                                         |
-| ----------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName  | string                                                      | 是   | 表示应用程序的bundleName。                                     |
-| moduleName  | string                                                      | 是   | 表示应用程序的moduleName。                                     |
-| abilityName | string                                                      | 是   | 表示应用程序的abilityName。                                    |
-| callback    | AsyncCallback<[image.PixelMap](js-apis-image.md#pixelmap7)> | 是   | 回调函数，当获取成功时，err为null，data为指定组件icon的PixelMap对象；否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                              |
-| -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found.  |
-| 17700002 | The specified moduleName is not found.  |
-| 17700003 | The specified abilityName is not found. |
-| 17700026 | The specified bundle is disabled.       |
-| 17700029 | The specified ability is disabled.      |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import hilog from '@ohos.hilog';
-let bundleName = 'com.example.myapplication';
-let moduleName = 'entry';
-let abilityName = 'MainAbility';
-
-try {
-    bundleManager.getAbilityIcon(bundleName, moduleName, abilityName, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'getAbilityIcon failed: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'getAbilityIcon successfully: %{public}s', JSON.stringify(data));
-        }
-    });
-} catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAbilityIcon failed: %{public}s', err.message);
-}
-```
-
-### bundleManager.getAbilityIcon
-
-getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Promise<[image.PixelMap](js-apis-image.md#pixelmap7)>;
-
-以异步的方法获取指定bundleName、moduleName和abilityName的icon，使用Promise形式返回结果。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
-
-**参数：**
-
-| 参数名      | 类型   | 必填 | 说明                      |
-| ----------- | ------ | ---- | ------------------------- |
-| bundleName  | string | 是   | 表示应用程序的bundleName。  |
-| moduleName  | string | 是   | 表示应用程序的moduleName。  |
-| abilityName | string | 是   | 表示应用程序的abilityName。 |
-
-**返回值：**
-
-| 类型                                                  | 说明                                        |
-| ----------------------------------------------------- | ------------------------------------------- |
-| Promise<[image.PixelMap](js-apis-image.md#pixelmap7)> | Promise对象，返回指定组件icon的PixelMap对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found.  |
-| 17700002 | The specified moduleName is not found.  |
-| 17700003 | The specified abilityName is not found. |
-| 17700026 | The specified bundle is disabled.       |
-| 17700029 | The specified ability is disabled.      |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import hilog from '@ohos.hilog';
-let bundleName = 'com.example.myapplication';
-let moduleName = 'entry';
-let abilityName = 'MainAbility';
-
-try {
-    bundleManager.getAbilityIcon(bundleName, moduleName, abilityName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getAbilityIcon successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
-        hilog.error(0x0000, 'testTag', 'getAbilityIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAbilityIcon failed. Cause: %{public}s', err.message);
-}
-```
-
 ### bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
+getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
 以同步方法根据给定的bundleName、applicationFlags和userId获取ApplicationInfo。
 
@@ -2785,7 +2673,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | 是   | 表示应用程序的bundleName。                                  |
 | applicationFlags | [number](#applicationflag) | 是   | 表示用于指定将返回的ApplicationInfo对象中包含的信息。       |
-| userId      | number | 否   | 表示用户ID。                                         |
+| userId      | number | 是   | 表示用户ID。                                         |
 
 **返回值：**
 
@@ -2837,6 +2725,7 @@ try {
 ### bundleManager.getBundleInfoSync
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
+getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
 以同步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo。
 

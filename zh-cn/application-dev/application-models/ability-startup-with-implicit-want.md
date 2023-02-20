@@ -60,13 +60,7 @@
            } catch (error) {
                console.info(`explicit start ability failed with ${error.code}`)
            }
-           let context = getContext(this) as common.UIAbilityContext;
-           await context.startAbility(want)
-           console.info(`explicit start ability succeed`)
-       } catch (error) {
-           console.info(`explicit start ability failed with ${error.code}`)
-       }
-   }
+        }
    ```
 
      匹配过程如下：
@@ -78,4 +72,6 @@
    
    4. want内type不为空，且被skills内type包含，匹配成功。
 
-2. 当有多个匹配应用时，会被应用选择器展示给用户进行选择。<img src="figures/stage-want1.png" alt="stage-want1" style="zoom:50%;" />
+2. 当有多个匹配应用时，会被应用选择器展示给用户进行选择。
+
+   ![stage-want1](figures/stage-want1.png)

@@ -128,11 +128,11 @@ This version has the following updates to OpenHarmony 3.0 LTS.
 
 For details, see the following:
 
-_[JS API Differences](api-change/v3.1-beta/js-apidiff-v3.1-beta.md)_
+_[JS API Differences](api-diff/v3.1-beta/js-apidiff-v3.1-beta.md)_
 
-_[Native API Differences](api-change/v3.1-beta/native-apidiff-v3.1-beta.md)_
+_[Native API Differences](api-diff/v3.1-beta/native-apidiff-v3.1-beta.md)_
 
-_[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
+_[Changelog](api-diff/v3.1-beta/changelog-v3.1-beta.md)_
 
 
 ### Chip and Development Board Adaptation

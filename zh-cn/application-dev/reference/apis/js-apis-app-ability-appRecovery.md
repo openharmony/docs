@@ -8,27 +8,26 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 
 ## 导入模块
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery'
+import appRecovery from '@ohos.app.ability.appRecovery';
 ```
 
 
 ## appRecovery.RestartFlag
 
-[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数。
+应用重启标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数，该类型为枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                          | 值   | 说明                                                         |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| ALWAYS_RESTART           | 0    | 总是重启应用。 |
-| CPP_CRASH_NO_RESTART           | 0x0001    | 发生CPP_CRASH时不重启应用。 |
-| JS_CRASH_NO_RESTART           | 0x0002    | 发生JS_CRASH时不重启应用。 |
-| APP_FREEZE_NO_RESTART           | 0x0004    | 发生APP_FREEZE时不重启应用。 |
-| NO_RESTART           | 0xFFFF  | 总是不重启应用。 |
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| ALWAYS_RESTART   | 0    | 总是重启应用。 |
+| RESTART_WHEN_JS_CRASH   | 0x0001    | 发生JS_CRASH时重启应用。 |
+| RESTART_WHEN_APP_FREEZE   | 0x0002    | 发生APP_FREEZE时重启应用。 |
+| NO_RESTART           | 0xFFFF    | 总是不重启应用。 |
 
 ## appRecovery.SaveOccasionFlag
 
-[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存时机选项参数。
+保存条件标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存时的选项参数，该类型为枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -39,7 +38,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 ## appRecovery.SaveModeFlag  
 
-[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存方式的参数。
+状态保存标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存方式的参数，该类型为枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -50,7 +49,7 @@ import appRecovery from '@ohos.app.ability.appRecovery'
 
 ## appRecovery.enableAppRecovery
 
-enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void;
+enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void;
 
 使能应用恢复功能，参数按顺序填入。
 
@@ -60,16 +59,23 @@ enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 发生对应故障时是否重启，默认为不重启。 |
-| saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 状态保存时机，默认为故障时保存。 |
-| saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 状态保存方式， 默认为文件缓存。 |
+| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为不重启。 |
+| saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 枚举类型，状态保存时机，默认为故障时保存。 |
+| saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 枚举类型，状态保存方式， 默认为文件缓存。 |
 
 **示例：**
     
 ```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
-        appRecovery.enableAppRecovery(RestartFlag::ALWAYS_RESTART, SaveOccasionFlag::SAVE_WHEN_ERROR, SaveModeFlag::SAVE_WITH_FILE);
+        appRecovery.enableAppRecovery(
+            appRecovery.RestartFlag::ALWAYS_RESTART,
+            appRecovery.SaveOccasionFlag::SAVE_WHEN_ERROR,
+            appRecovery.SaveModeFlag::SAVE_WITH_FILE
+        );
     }
 }
 ```
@@ -86,13 +92,21 @@ restartApp(): void;
 **示例：**
     
 ```ts
-var observer = {
+import appRecovery from '@ohos.app.ability.appRecovery';
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.restartApp();
     }
-}
+};
 
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
+}
 ```
 
 ## appRecovery.saveAppState
@@ -107,15 +121,24 @@ saveAppState(): boolean;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 保存成功与否。 |
+| boolean | 保存成功与否。true：保存成功，false：保存失败。 |
 
 **示例：**
     
 ```ts
-var observer = {
+import appRecovery from '@ohos.app.ability.appRecovery';
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
         appRecovery.saveAppState();
     }
+};
+
+try {
+    errorManager.on("error", observer);
+} catch (paramError) {
+    console.log("error: " + paramError.code + ", " + paramError.message);
 }
 ```

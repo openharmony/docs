@@ -1,0 +1,85 @@
+# Error Codes
+
+- [Universal Error Codes](errorcode-universal.md)
+- Ability Framework
+  - [Ability Error Codes](errorcode-ability.md)
+  - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
+  - [Form Error Codes](errorcode-form.md)
+- Bundle Management
+  - [Bundle Error Codes](errorcode-bundle.md)
+  - [zlib Error Codes](errorcode-zlib.md)
+- Common Event and Notification
+  - [Event Error Codes](errorcode-CommonEventService.md)
+  - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
+- UI Page
+  - [Animator Error Codes](errorcode-animator.md)
+  - [promptAction Error Codes](errorcode-promptAction.md)
+  - [Router Error Codes](errorcode-router.md)
+- Graphics
+  - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
+  - [Display Error Codes](errorcode-display.md)
+  - [Window Error Codes](errorcode-window.md)
+- Media
+  - [Audio Error Codes](errorcode-audio.md)
+  - [Media Error Codes](errorcode-media.md)
+  - [AVSession Management Error Codes](errorcode-avsession.md)
+- Resource Management
+  - [I18N Error Codes](errorcode-i18n.md)
+  - [Resource Manager Error Codes](errorcode-resource-manager.md)
+- Resource Scheduling
+  - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
+  - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
+  - [workScheduler Error Codes](errorcode-workScheduler.md)
+- Security
+  - [Ability Access Control Error Codes](errorcode-access-token.md)
+  - [HUKS Error Codes](errorcode-huks.md)
+  - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
+  - [Certificate Error Codes](errorcode-cert.md)
+  - [User Authentication Error Codes](errorcode-useriam.md)
+- Data Management
+  - [RDB Error Codes](errorcode-data-rdb.md)
+  - [DataShare Error Codes](errorcode-datashare.md)
+  - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
+  - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
+  - [Preferences Error Codes](errorcode-preferences.md)
+- File Management
+  - [File Management Error Codes](errorcode-filemanagement.md)
+- Network Management
+  - [Upload and Download Error Codes](errorcode-request.md)
+- Connectivity
+  - [NFC Error Codes](errorcode-nfc.md)
+  - [RPC Error Codes](errorcode-rpc.md)
+- Basic Features
+  - [Accessibility Error Codes](errorcode-accessibility.md)
+  - [FaultLogger Error Codes](errorcode-faultlogger.md)
+  - [Application Event Logging Error Codes](errorcode-hiappevent.md)
+  - [HiSysEvent Error Codes](errorcode-hisysevent.md)
+  - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
+  - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
+  - [Pasteboard Error Codes](errorcode-pasteboard.md)
+  - [Time and Time Zone Service Error Codes](errorcode-time.md)
+  - [Webview Error Codes](errorcode-webview.md)
+- Account Management
+  - [Account Error Codes](errorcode-account.md)
+  - [App Account Error Codes](errorcode-app-account.md)
+- Device Management
+  - [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md)
+  - [Brightness Error Codes](errorcode-brightness.md)
+  - [Power Manager Error Codes](errorcode-power.md)
+  - [Running Lock Error Codes](errorcode-runninglock.md)
+  - [Thermal Manager Error Codes](errorcode-thermal.md)
+  - [Device Management Error Codes](errorcode-device-manager.md)
+  - [Location Subsystem Error Codes](errorcode-geoLocationManager.md)
+  - [Screen Hopping Error Codes](errorcode-multimodalinput.md)
+  - [Sensor Error Codes](errorcode-sensor.md)
+  - [Vibrator Error Codes](errorcode-vibrator.md)
+  - [System Parameter Error Codes](errorcode-system-parameterV9.md)
+  - [USB Error Codes](errorcode-usb.md)
+  - [Update Error Codes](errorcode-update.md)
+  - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
+- Customization Management
+  - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
+- Language Base Class Library
+  - [Utils Error Codes](errorcode-utils.md)
+- Test
+  - [UiTest Error Codes](errorcode-uitest.md)

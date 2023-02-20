@@ -29,7 +29,7 @@
 
 **restartApp:** 调用后框架会杀死当前应用进程，并重新拉起处于前台的Ability，其中启动原因为APP_RECOVERY。
 
-### 框架故障管理理流程示意
+### 框架故障管理流程示意
 
 故障管理是应用提升用户体验的重要手段。应用程序框架为开发者提供了故障监听、故障恢复、以及故障查询三种方式来管理应用的故障。
 
@@ -133,7 +133,7 @@ callback触发appRecovery.saveAppState()调用后，会触发MainAbility的onSav
 
 - 数据恢复
 
-callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到MainAbility的onSaveState(state, wantParams)函数，保存的数据会在want参数的parameters里。
+callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到MainAbility的onCreate(want, launchParam)函数，保存的数据会在want参数的parameters里。
 
 ```ts
 storage: LocalStorage

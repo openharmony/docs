@@ -271,9 +271,9 @@ createKVManager(config: KVManagerConfig): KVManager
 Stage模型下的示例：
 
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbilityStage onCreate")
         let context = this.context
@@ -2846,7 +2846,7 @@ try {
 
 ### get
 
-get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>): void
+get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 获取指定键的值，使用callback异步回调。
 
@@ -2897,7 +2897,7 @@ try {
 
 ### get
 
-get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
+get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 获取指定键的值，使用Promise异步回调。
 
@@ -4848,7 +4848,7 @@ try {
 
 ### get
 
-get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>): void
+get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 获取本设备指定键的值，使用callback异步回调。
 
@@ -4899,7 +4899,7 @@ try {
 
 ### get
 
-get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
+get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 获取本设备指定键的值，使用Promise异步回调。
 
@@ -4951,7 +4951,7 @@ try {
 
 ### get
 
-get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
+get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 获取与指定设备ID和key匹配的string值，使用callback异步回调。
 
@@ -5003,7 +5003,7 @@ try {
 
 ### get
 
-get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
+get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 获取与指定设备ID和key匹配的string值，使用Promise异步回调。
 

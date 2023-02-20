@@ -596,7 +596,6 @@ export default {
 /* xxx.css */
 .container{
   width: 100%;
-  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;

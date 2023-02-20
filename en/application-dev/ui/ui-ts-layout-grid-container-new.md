@@ -27,12 +27,12 @@ After you set the breakpoints, the layout listens for changes in the application
 The grid system defines breakpoints, which are screen width types in effect, based on the horizontal width (screen density pixels, in vp) of the screens. You can use the breakpoints to meet specific layout requirements.
 By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 
-| Breakpoint | Value Range (vp)| 
-| --------| ------ | 
-| xs | [0, 320)  | 
-| sm | [320, 520) | 
-| md | [520, 840) | 
-| lg | [840, +∞)  | 
+| Breakpoint | Value Range (vp)|
+| --------| ------ |
+| xs | [0, 320)  |
+| sm | [320, 520) |
+| md | [520, 840) |
+| lg | [840, +∞)  |
 
 In the **\<GridRow>** component, you can use **breakpoints** to customize the value range of breakpoints. A maximum of six breakpoints are supported.
 In addition to the four default breakpoints, you can also enable the xl and xxl breakpoints for your application window layout.
@@ -83,15 +83,15 @@ GridRow({
          }
        }) {
          Row() {
-           Text(${index})
+           Text(`${index}`)
          }.width("100%").height("50vp")
        }.backgroundColor(color)
      })
 }                                                                    
-```
+  ```
 
 ![](figures/breakpoints.gif)
-  
+
 
 
 ### Columns
@@ -173,7 +173,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
   ```
   ![](figures/columns3.gif)
 
-  As shown above, if **columns** is only set for the sm and md screen size types, screen sizes smaller than sm use the default value 12, and screen sizes larger than md (lg, xl, and xxl) use the value of **columns** of the md type.
+  As shown above, if **columns** is only set for the sm and md screen size types, screen sizes smaller than sm use the default value **12**, and screen sizes larger than md (lg, xl, and xxl) use the value of **columns** of the md type.
 
 ### Gutters
 
@@ -264,7 +264,7 @@ Sets the number of columns occupied by a child component in the grid layout, whi
     ForEach(this.bgColors, (color, index) => {
       GridCol({ span: 2 }) {      
         Row() {
-          Text(${index})
+          Text(`${index}`)
         }.width("100%").height("50vp")          
       }
       .backgroundColor(color)
@@ -281,7 +281,7 @@ Sets the number of columns occupied by a child component in the grid layout, whi
     ForEach(this.bgColors, (color, index) => {
       GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
         Row() {
-          Text(${index})
+          Text(`${index}`)
         }.width("100%").height("50vp")          
       }
       .backgroundColor(color)
@@ -333,8 +333,8 @@ Sets the column offset of a child component relative to the previous child compo
 
 ### order
 
-  Sets the sequence number of a child component in the grid layout. If a child component shares an **order** value with another child component or does not have **order** set, it is displayed based on its code sequence number. A child components with a larger **order** value is placed before the one with a smaller **order** value.
-  If **order** is not set for all child components, those that have **order** set are displayed after those that do not have **order** set and are sorted in descending order based on the value.
+Sets the sequence number of a child component in the grid layout. If a child component shares an **order** value with another child component or does not have **order** set, it is displayed based on its code sequence number. A child components with a smaller **order** value is placed before the one with a larger **order** value.
+If **order** is not set for all child components, those that have **order** set are displayed after those that do not have **order** set and are sorted in ascending order based on the value.
 
 
 - When the value type is number, child components are sorted in the same order across screen sizes.

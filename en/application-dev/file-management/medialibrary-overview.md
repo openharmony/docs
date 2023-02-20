@@ -22,7 +22,7 @@ The **mediaLibrary** module provides APIs for you to access and modify media fil
 >
 > This development guide applies only to the stage model (available from API version 9).
 
-To access and modify personal media data, an application must obtain a **MediaLibrary** instance and request the media asset read and write permissions from the user.
+To access and modify personal media data, an application must obtain a **MediaLibrary** instance and request the media asset read and write permissions from the user. Unless otherwise specified, the **MediaLibrary** APIs are used in **pages/index.ets** or custom .ets files of the project code.
 
 Before using the **MediaLibrary** APIs to develop features, you must learn how to:
 
@@ -43,7 +43,7 @@ An application must call [getMediaLibrary](../reference/apis/js-apis-medialibrar
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 const context = getContext(this);
-var media = mediaLibrary.getMediaLibrary(context);
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 
 ## Requesting Permissions
@@ -56,7 +56,7 @@ To read and write a **MediaLibrary** instance, you must have the required permis
 | ohos.permission.WRITE_MEDIA    | Allows an application to read media files from and write media files into the user's external storage.| user_grant |
 | ohos.permission.MEDIA_LOCATION | Allows an application to access geographical locations in the user's media file.| user_grant |
 
-After configuring the permissions in the **module.json5** file, the application must call [Context.requestPermissionsFromUser](../reference/apis/js-apis-ability-context.md#abilitycontextrequestpermissionsfromuser) to check for the required permissions and if they are not granted, request the permissions from the user by displaying a dialog box.
+After configuring the permissions in the **module.json5** file, the application must call [abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check for the required permissions and if they are not granted, request the permissions from the user by displaying a dialog box.
 
 > **NOTE**<br>Even if the user has granted a permission, the application must check for the permission before calling an API protected by the permission. It should not persist the permission granted status, because the user can revoke the permission through the system application **Settings**.
 
@@ -103,19 +103,21 @@ After configuring the permissions in the **module.json5** file, the application 
    }    
    ```
 
-2. Call **requestPermissionsFromUser** to check for the required permissions and if they are not granted, request the permissions from the user by displaying a dialog box.
+2. In the **Ability.ts** file, call **requestPermissionsFromUser** in the **onWindowStageCreate** callback to check for the required permissions and if they are not granted, request the permissions from the user by displaying a dialog box.
 
    ```ts
-   import Ability from '@ohos.application.Ability'
-   
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+
    export default class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
-           var permissions=['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
-           var permissionRequestResult;
-           this.context.requestPermissionsFromUser(permissions,(err,result) => {
-               if(err){
+           let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
+           let permissionRequestResult;
+           let atManager = abilityAccessCtrl.createAtManager();
+           atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
+               if (err) {
                    console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
-               }else{
+               } else {
                    permissionRequestResult=result;
                    console.log('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
                }    
@@ -123,5 +125,3 @@ After configuring the permissions in the **module.json5** file, the application 
        }
    }
    ```
-
-   

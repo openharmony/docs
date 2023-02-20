@@ -31,3 +31,4 @@ AppStorage是整个应用程序状态的中心“数据库”，UI框架会针�
 - PersistentStorage提供了一些静态方法用来管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据，或者通过@StorageLink装饰器来访问对应key的变量。 
 - Environment是框架在应用程序启动时创建的单例对象，它为AppStorage提供了一系列应用程序需要的环境状态数据，这些数据描述了应用程序运行的设备环境。 
 
+请参考[状态变量数据类型声明的使用限制](arkts-restrictions-and-extensions.md)了解状态变量使用规范。

@@ -35,15 +35,68 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
 
 以下步骤描述了在**OpenHarmony**中如何使用`NativeWindow`提供的`NAPI`接口，申请图形`Buffer`，并将生产图形内容写入图形`Buffer`后，最终提交`Buffer`到图形队列。
 
-1. **获取NativeWindow实例**。例如，使用`Surface`创建`NativeWindow`实例。
-    ```c++
-    sptr<OHOS::Surface> cSurface = Surface::CreateSurfaceAsConsumer();
-    sptr<IBufferConsumerListener> listener = new BufferConsumerListenerTest();
-    cSurface->RegisterConsumerListener(listener);
-    sptr<OHOS::IBufferProducer> producer = cSurface->GetProducer();
-    sptr<OHOS::Surface> pSurface = Surface::CreateSurfaceAsProducer(producer);
-    OHNativeWindow* nativeWindow = OH_NativeWindow_CreateNativeWindow(&pSurface);
-    ```
+1. **获取NativeWindow实例**。可在[`OH_NativeXComponent_Callback`](../reference/native-apis/_o_h___native_x_component___callback.md)提供的接口中获取。
+   1. 在xxx.ets 中定义 XComponent。
+        ```ts
+        XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'nativerender'})
+            .onLoad((context) => {
+                this.context = context;
+            })
+            .onDestroy(() => {
+            })
+        ```
+   2. 在 native c++ 层获取 NativeXComponent。
+       ```c++
+       napi_value exportInstance = nullptr;
+       napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
+
+       OH_NativeXComponent *nativeXComponent = nullptr;
+       napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent));
+
+       char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { };
+       uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+       OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
+        ```
+   3. 定义 OH_NativeXComponent_Callback。
+       ```c++
+       // 定义回调函数
+       void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
+       {
+           // 可获取 NativeWindow 实例
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
+       {
+           // 可获取 NativeWindow 实例
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
+       {
+           // 可获取 NativeWindow 实例
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
+       {
+           // 可获取 NativeWindow 实例
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       ```
+       ```c++
+       // 初始化 OH_NativeXComponent_Callback
+       OH_NativeXComponent_Callback callback_;
+       callback_->OnSurfaceCreated = OnSurfaceCreatedCB;
+       callback_->OnSurfaceChanged = OnSurfaceChangedCB;
+       callback_->OnSurfaceDestroyed = OnSurfaceDestroyedCB;
+       callback_->DispatchTouchEvent = DispatchTouchEventCB;
+       ```
+   4. 将 OH_NativeXComponent_Callback 注册给 NativeXComponent。
+       ```c++
+       OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
+       ```
 
 2. **设置NativeWindowBuffer的属性**。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`NativeWindowBuffer`的属性。
     ```c++
@@ -91,7 +144,6 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，表示图形队列的生
     ```
 
 5. **提交NativeWindowBuffer到图形队列**。
-
     ```c++
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为NativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};

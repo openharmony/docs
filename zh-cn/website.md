@@ -4,6 +4,8 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 3.x Releases
+    - [OpenHarmony v3.2 Beta5 (2023-01-31)](release-notes/OpenHarmony-v3.2-beta5.md)
+    - [OpenHarmony v3.2 Beta4 (2022-11-30)](release-notes/OpenHarmony-v3.2-beta4.md)
     - [OpenHarmony v3.2 Beta3 (2022-09-30)](release-notes/OpenHarmony-v3.2-beta3.md)
     - [OpenHarmony v3.2 Beta2 (2022-07-30)](release-notes/OpenHarmony-v3.2-beta2.md)
     - [OpenHarmony v3.2 Beta1 (2022-05-31)](release-notes/OpenHarmony-v3.2-beta1.md)
@@ -18,13 +20,13 @@
       - [OpenHarmony v3.0.3 LTS (2022-04-08)](release-notes/OpenHarmony-v3.0.3-LTS.md)
       - [OpenHarmony v3.0.2 LTS (2022-03-18)](release-notes/OpenHarmony-v3.0.2-LTS.md)
       - [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
-
+    
   - OpenHarmony 2.x Releases
     - [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     - [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
 
   - OpenHarmony 1.x Releases
-
+  
     - [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
       - [OpenHarmony v1.1.5 LTS (2022-08-24)](release-notes/OpenHarmony-v1.1.5-LTS.md)
       - [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
@@ -32,7 +34,7 @@
       - [OpenHarmony v1.1.2 LTS (2021-08-04)](release-notes/OpenHarmony-v1.1.2-LTS.md)
       - [OpenHarmony v1.1.1 LTS (2021-06-22)](release-notes/OpenHarmony-1-1-1-LTS.md)
       - [OpenHarmony v1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
-
+  
   - API差异报告
     - OpenHarmony 3.2 Beta3
       - JS API差异报告
@@ -169,7 +171,7 @@
     - OpenHarmony v2.2 Beta2
       - [JS API差异报告](release-notes/api-diff/v2.2-beta2/js-apidiff-v2.2-beta2.md)
       - [Native API差异报告](release-notes/api-diff/v2.2-beta2/native-apidiff-v2.2-beta2.md)
-
+  
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
   - [OpenHarmony JS/TS三方组件使用指导](third-party-components/npm-third-party-guide.md)

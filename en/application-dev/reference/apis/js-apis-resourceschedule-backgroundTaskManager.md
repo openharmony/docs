@@ -1,4 +1,4 @@
-# Background Task Management
+# @ohos.resourceschedule.backgroundTaskManager (Background Task Management)
 
 The **BackgroundTaskManager** module provides APIs to manage background tasks.
 
@@ -52,10 +52,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -100,10 +100,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 
 **Example**
@@ -156,10 +156,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -201,10 +201,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -234,9 +234,9 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 | callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
 
 **Error codes**
@@ -247,18 +247,18 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(error, data) {
     if (error) {
@@ -268,13 +268,13 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -282,14 +282,18 @@ export default class MainAbility extends Ability {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -308,9 +312,9 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Background mode requested.                             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
 
 **Return value**
 
@@ -326,26 +330,26 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -353,18 +357,22 @@ export default class MainAbility extends Ability {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-                    console.info("Operation startBackgroundRunning succeeded");
-                }).catch((error) => {
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                        console.info("Operation startBackgroundRunning succeeded");
+                    }).catch((error) => {
+                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
                     console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                });
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -381,7 +389,7 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                  |
 
 **Error codes**
@@ -392,16 +400,16 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 function callback(error, data) {
@@ -412,7 +420,7 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context, callback);
@@ -437,7 +445,7 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 
 | Name    | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 
@@ -453,19 +461,19 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
@@ -506,9 +514,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **Example**
 
@@ -549,9 +557,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **Example**
 
@@ -618,12 +626,12 @@ Enumerates the efficiency resource types.
 
 **System API**: This is a system API.
 
-| Name                    | Description                   |
-| ----------------------- | --------------------- |
-| CPU                     | CPU resources, which prevent the application from being suspended.            |
-| COMMON_EVENT            | A type of software resources, which prevent common events from being proxied when the application is suspended. |
-| TIMER                   | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
-| WORK_SCHEDULER          | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
-| BLUETOOTH               | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
-| GPS                     | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
-| AUDIO                   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU resources, which prevent the application from being suspended.            |
+| COMMON_EVENT            | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
+| TIMER                   | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.   |
+| WORK_SCHEDULER          | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.     |
+| BLUETOOTH               | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
+| GPS                     | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended. |
+| AUDIO                   | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended.|

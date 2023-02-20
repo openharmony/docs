@@ -64,7 +64,7 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
@@ -114,7 +114,7 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
@@ -153,7 +153,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 function onCallback() {
     console.info("**** Observer on callback ****");
 }
@@ -180,7 +180,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 function offCallback() {
     console.info("**** Observer off callback ****");
 }
@@ -207,7 +207,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose",
@@ -251,7 +251,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose1",
@@ -288,7 +288,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -331,7 +331,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -368,7 +368,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -413,7 +413,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -451,7 +451,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -501,7 +501,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -543,7 +543,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
@@ -585,7 +585,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
@@ -619,7 +619,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -653,7 +653,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
     console.log("normalizeUri = " + data);
@@ -680,7 +680,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -714,7 +714,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
     console.log("denormalizeUri = " + data);
@@ -741,7 +741,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
     console.log("***** notifyChange *****");
@@ -771,7 +771,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri);
 ```
