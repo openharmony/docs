@@ -1,6 +1,6 @@
 # @ohos.app.ability.Want (Want)
 
-Want是对象间信息传递的载体, 可以用于应用组件间的信息传递。 Want的使用场景之一是作为startAbility的参数, 其包含了指定的启动目标, 以及启动时需携带的相关数据, 如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当UIAbilityA需要启动UIAbilityB并传入一些数据时, 可使用Want作为载体将这些数据传递给UIAbilityB。
+Want是对象间信息传递的载体，可以用于应用组件间的信息传递。Want的使用场景之一是作为startAbility的参数，其包含了指定的启动目标，以及启动时需携带的相关数据，例如bundleName和abilityName字段分别指明目标Ability所在应用的包名以及对应包内的Ability名称。当UIAbilityA需要启动UIAbilityB并传入一些数据时，可使用Want作为载体将这些数据传递给UIAbilityB。
 
 > **说明：**
 >
@@ -31,107 +31,125 @@ import Want from '@ohos.app.ability.Want';
 
 **示例：**
 
-- 基础用法（在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象）。
+- 基础用法：在UIAbility对象中调用，示例中的context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   ```ts
-    let want = {
-        'deviceId': '', // deviceId为空表示本设备
-        'bundleName': 'com.example.myapplication',
-        'abilityName': 'FuncAbility',
-        'moduleName': 'entry' // moduleName非必选
-    };
-    this.context.startAbility(want, (error) => {
-        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.log('error.code = ' + error.code);
-    });
+  let want = {
+    'deviceId': '', // deviceId为空表示本设备
+    'bundleName': 'com.example.myapplication',
+    'abilityName': 'FuncAbility',
+    'moduleName': 'entry' // moduleName非必选
+  };
+  
+  this.context.startAbility(want, (err) => {
+    // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+    console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+  });
   ```
 
-- 通过自定字段传递数据, 以下为当前支持类型（在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象）。
+- 通过自定字段传递数据，以下为当前支持类型（在UIAbility对象中调用，示例中的context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)）。
 
     * 字符串（String）
         ```ts
         let want = {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'FuncAbility',
-            parameters: {
-                keyForString: 'str',
-            },
+          bundleName: 'com.example.myapplication',
+          abilityName: 'FuncAbility',
+          parameters: {
+            keyForString: 'str',
+          },
         };
+        
+        this.context.startAbility(want, (err) => {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
         ```
     * 数字（Number）
         ```ts
         let want = {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'FuncAbility',
-            parameters: {
-                keyForInt: 100,
-                keyForDouble: 99.99,
-            },
+          bundleName: 'com.example.myapplication',
+          abilityName: 'FuncAbility',
+          parameters: {
+            keyForInt: 100,
+            keyForDouble: 99.99,
+          },
         };
+        
+        this.context.startAbility(want, (err) => {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
         ```
     * 布尔（Boolean）
         ```ts
         let want = {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'FuncAbility',
-            parameters: {
-                keyForBool: true,
-            },
+          bundleName: 'com.example.myapplication',
+          abilityName: 'FuncAbility',
+          parameters: {
+            keyForBool: true,
+          },
         };
+        
+        this.context.startAbility(want, (err) => {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
         ```
     * 对象（Object）
         ```ts
         let want = {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'FuncAbility',
-            parameters: {
-                keyForObject: {
-                    keyForObjectString: 'str',
-                    keyForObjectInt: -200,
-                    keyForObjectDouble: 35.5,
-                    keyForObjectBool: false,
-                },
+          bundleName: 'com.example.myapplication',
+          abilityName: 'FuncAbility',
+          parameters: {
+            keyForObject: {
+              keyForObjectString: 'str',
+              keyForObjectInt: -200,
+              keyForObjectDouble: 35.5,
+              keyForObjectBool: false,
             },
+          },
         };
+        
+        this.context.startAbility(want, (err) => {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
         ```
     * 数组（Array）
         ```ts
         let want = {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'FuncAbility',
-            parameters: {
-                keyForArrayString: ['str1', 'str2', 'str3'],
-                keyForArrayInt: [100, 200, 300, 400],
-                keyForArrayDouble: [0.1, 0.2],
-                keyForArrayObject: [{obj1: 'aaa'}, {obj2: 100}],
-            },
+          bundleName: 'com.example.myapplication',
+          abilityName: 'FuncAbility',
+          parameters: {
+            keyForArrayString: ['str1', 'str2', 'str3'],
+            keyForArrayInt: [100, 200, 300, 400],
+            keyForArrayDouble: [0.1, 0.2],
+            keyForArrayObject: [{ obj1: 'aaa' }, { obj2: 100 }],
+          },
         };
+        
+        this.context.startAbility(want, (err) => {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
         ```
     * 文件描述符（FD）
         ```ts
         import fileio from '@ohos.fileio';
+        
         let fd;
         try {
-            fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
-        } catch(e) {
-            console.log('openSync fail:' + JSON.stringify(e));
+          fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
+        } catch (e) {
+          console.log('openSync fail:' + JSON.stringify(e));
         }
         let want = {
-            'deviceId': '', // deviceId为空表示本设备
-            'bundleName': 'com.example.myapplication',
-            'abilityName': 'FuncAbility',
-            'moduleName': 'entry', // moduleName非必选
-            'parameters': {
-                'keyFd':{'type':'FD', 'value':fd} // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
-            }
+          'deviceId': '', // deviceId为空表示本设备
+          'bundleName': 'com.example.myapplication',
+          'abilityName': 'FuncAbility',
+          'moduleName': 'entry', // moduleName非必选
+          'parameters': {
+            'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
+          }
         };
-        this.context.startAbility(want, (error) => {
-            // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-            console.log('error.code = ' + error.code)
+        
+        this.context.startAbility(want, (err) => {
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
         });
         ```
-
-- 更多详细说明和示例请参见： [应用模型](../../application-models/Readme-CN.md)的信息传递载体Want
-
-  <!--no_check-->
 
