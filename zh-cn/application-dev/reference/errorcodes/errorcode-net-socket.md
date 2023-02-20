@@ -73,7 +73,7 @@ Couldn't resolve host name.
 排查系统调用。
 
 **TCP/UDP 错误码说明：**
-> TCP/UDP Socket其余错误码映射形式为：2301000 + Linux内核错误码，关键信息请参考Linux内核错误码。
+> TCP/UDP Socket其余错误码映射形式为：2301000 + Linux系统内核错误码errno，关键信息请参考Linux系统内核错误码。
 
 ## 2300002 系统内部错误
 
@@ -330,7 +330,7 @@ Error occurred in the tls system call.
 
 **处理步骤**
 
-请参阅Linux系统的errno以了解详细信息。
+请参阅Linux系统内核错误码errno以了解详细信息。
 
 ## 2303506 清除tls连接出错
 
