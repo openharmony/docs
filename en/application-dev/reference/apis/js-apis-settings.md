@@ -47,7 +47,7 @@ Provides data items for setting the display effects.
 | ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.|
 | TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.          |
 | WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.      |
-| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled. |
+| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled.|
 
 ## general
 
@@ -185,121 +185,6 @@ Provides data items for setting wireless network information.
 | WIFI_STATUS                       | string | Yes  | Yes  | Whether Wi-Fi is available.<br>**true**: Wi-Fi is available.<br>**false**: Wi-Fi is unavailable.|
 | WIFI_WATCHDOG_STATUS              | string | Yes  | Yes  | Whether Wi-Fi watchdog is available.<br>**true**: Wi-Fi watchdog is available.<br>**false**: Wi-Fi watchdog is unavailable.|
 
-## setting.getURI
-
-getURI(name: string, callback: AsyncCallback\<object>): void
-
-Obtains the URI of a data item. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Applications.settings.Core
-
-**Parameters**
-
-| Name  | Type                  | Mandatory| Description                                                        |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| callback | AsyncCallback\<object> | Yes  | Callback used to obtain the URI of the data item.                                 |
-
-**Example**
-
-```js
-settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri) => {
-    console.log(`callback:uri -> ${JSON.stringify(uri)}`)
-})
-```
-
-## setting.getURI
-
-getURI(name: string): Promise\<object>
-
-Obtains the URI of a data item. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Applications.settings.Core
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-
-**Return value**
-
-| Type            | Description                                |
-| ---------------- | ------------------------------------ |
-| Promise\<object> | Promise used to return the URI of the data item.|
-
-**Example**
-
-```js
-settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
-    console.log(`promise:uri -> ${JSON.stringify(uri)}`)
-})
-```
-
-## setting.getValue
-
-getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
-
-Obtains the value of a data item in the database. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Applications.settings.Core
-
-**Parameters**
-
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
-| callback          | AsyncCallback\<object>                            | Yes  | Callback used to return the value of the data item.                            |
-
-**Example**
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
-    if (err) {
-        console.error(`Failed to get the setting. ${err.message} `);
-        return;
-    }
-    console.log(`callback:value -> ${JSON.stringify(value)}`)
-});
-```
-
-## setting.getValue
-
-getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
-
-Obtains the value of a data item in the database. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Applications.settings.Core
-
-**Parameters**
-
-| Name           | Type                                             | Mandatory| Description                                                        |
-| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
-| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
-
-**Return value**
-
-| Type            | Description                               |
-| ---------------- | ----------------------------------- |
-| Promise\<object> | Promise used to return the value of the data item.|
-
-**Example**
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-    console.log(`promise:value -> ${JSON.stringify(value)}`)
-});
-```
 
 ## settings.setValue
 
@@ -325,9 +210,11 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update the value of the data item.)
+// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
 let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
+// @ts-ignore
+// The value of the data item is a string.
 settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
     console.log('Callback return whether value is set.');
 });
@@ -365,6 +252,8 @@ import featureAbility from '@ohos.ability.featureAbility';
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update the value of the data item.)
 let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
+// @ts-ignore
+// The value of the data item is a string.
 settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
     console.log('Callback return whether value is set.');
 });
@@ -500,11 +389,153 @@ Obtains the URI of a data item.
 let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
-## settings.getValueSync<sup>8+</sup>
+## setting.getURI<sup>(deprecated)</sup>
+
+getURI(name: string, callback: AsyncCallback\<object>): void
+
+Obtains the URI of a data item. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+| callback | AsyncCallback\<object> | Yes  | Callback used to obtain the URI of the data item.                                 |
+
+**Example**
+
+```js
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri) => {
+    console.log(`callback:uri -> ${JSON.stringify(uri)}`)
+})
+```
+
+## setting.getURI<sup>(deprecated)</sup>
+
+getURI(name: string): Promise\<object>
+
+Obtains the URI of a data item. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| name   | string | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
+
+**Return value**
+
+| Type            | Description                                |
+| ---------------- | ------------------------------------ |
+| Promise\<object> | Promise used to return the URI of the data item.|
+
+**Example**
+
+```js
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
+    console.log(`promise:uri -> ${JSON.stringify(uri)}`)
+})
+```
+
+## setting.getValue<sup>(deprecated)</sup>
+
+getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
+
+Obtains the value of a data item in the database. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+
+**Model restriction**: This API can be used only in the FA model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name           | Type                                             | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+| callback          | AsyncCallback\<object>                            | Yes  | Callback used to return the value of the data item.                            |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+    if (err) {
+        console.error(`Failed to get the setting. ${err.message} `);
+        return;
+    }
+    console.log(`callback:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## setting.getValue<sup>(deprecated)</sup>
+
+getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
+
+Obtains the value of a data item in the database. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+
+**Model restriction**: This API can be used only in the FA model.
+
+**System capability**: SystemCapability.Applications.settings.Core
+
+**Parameters**
+
+| Name           | Type                                             | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
+| name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| Promise\<object> | Promise used to return the value of the data item.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+    console.log(`promise:value -> ${JSON.stringify(value)}`)
+});
+```
+
+## settings.getValueSync<sup>(deprecated)</sup>
 
 getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
 Obtains the value of a data item. Unlike **getValue**, this API returns the result synchronously.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9.
+
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Applications.settings.Core
 
@@ -514,7 +545,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | Yes  | **DataAbilityHelper** class.                                            |
 | name              | string                                            | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| defValue          | string                                            | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this parameter as needed. |
+| defValue          | string                                            | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this parameter as needed.|
 
 **Return value**
 
@@ -533,13 +564,19 @@ let helper = featureAbility.acquireDataAbilityHelper(uri);
 let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
-## settings.setValueSync<sup>8+</sup>
+## settings.setValueSync<sup>(deprecated)</sup>
 
 setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
 Sets the value for a data item. Unlike **setValue**, this API returns the result synchronously.
 
 If the specified data item exists in the database, the **setValueSync** method updates the value of the data item. If the data item does not exist in the database, the **setValueSync** method inserts the data item into the database.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9.
+
+**Model restriction**: This API can be used only in the FA model.
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
