@@ -21,8 +21,6 @@ fetch(Object): void
 
 Obtains data through a network.
 
-**Required permission**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -33,8 +31,8 @@ Obtains data through a network.
 | header | Object | No| Request header.|
 | method | string | No| Request method. The default value is **GET**. The value can be **OPTIONS**, **GET**, **HEAD**, **POST**, **PUT**, **DELETE **or **TRACE**.|
 | responseType | string | No| Response type. The return type can be text or JSON. By default, the return type is determined based on **Content-Type** in the header returned by the server. For details, see return values in the **success** callback.|
-| success | Function | No| Called when the data is obtained successfully.|
-| fail | Function | No| Called when the data failed to be obtained.|
+| success | Function | No| Called when data is obtained successfully. The return value is [FetchResponse](#fetchresponse). |
+| fail | Function | No| Called when data failed to be obtained.|
 | complete | Function | No| Called when the execution is complete.|
 
 **Table 1** Mapping between data and Content-Type
@@ -46,7 +44,7 @@ Obtains data through a network.
 | Object | Not set| The default value of **Content-Type** is **application/x-www-form-urlencoded**. The **data** value is encoded based on the URL rule and appended in the request body.|
 | Object | application/x-www-form-urlencoded | The value of data is encoded based on the URL rule and is used as the request body.|
 
-Return values in the **success** callback
+## FetchResponse
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
