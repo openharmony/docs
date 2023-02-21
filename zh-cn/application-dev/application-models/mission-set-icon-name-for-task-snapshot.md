@@ -27,7 +27,7 @@ this.context.setMissionIcon(imagePixelMap, (err) => {
 
 效果示意如下图所示。
 
-图2 置任务快照的图标   
+图2 设置任务快照的图标   
 <img src="figures/mission-set-task-snapshot-icon.png" alt="mission-set-task-snapshot-icon" height="400" />
 
 ## 设置任务快照的名称
@@ -42,5 +42,7 @@ this.context.setMissionLabel('test').then(() => {
 });
 ```
 
-效果示意如下图所示。   
+效果示意如下图所示。
+
+图3 设置任务快照的名称   
 <img src="figures/mission-set-task-snapshot-label.png" alt="mission-set-task-snapshot-label" height="400" />
