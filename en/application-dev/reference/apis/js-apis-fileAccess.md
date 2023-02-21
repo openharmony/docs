@@ -17,7 +17,7 @@ import fileAccess from '@ohos.file.fileAccess';
 
 getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
-Obtains information about all wants with **extension** set to **fileAcesss** in the system. A want is a basic communication component used to start services. This API uses a promise to return the result.
+Obtains information about all wants with **extension** set to **fileAccess** in the system. A want is a basic communication component used to start services. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -25,9 +25,9 @@ Obtains information about all wants with **extension** set to **fileAcesss** in 
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | Promise&lt;Array&lt;Want&gt;&gt; | Promise used to return the **want** information obtained.|
+| Type| Description|
+| --- | -- |
+| Promise&lt;Array&lt;Want&gt;&gt; | Promise used to return the **want** information obtained.|
 
 **Example**
 
@@ -47,7 +47,7 @@ Obtains information about all wants with **extension** set to **fileAcesss** in 
 
 getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void;
 
-Obtains information about all wants with **extension** set to **fileAcesss** in the system. A want is a basic communication component used to start services. This API uses an asynchronous callback to return the result.
+Obtains information about all wants with **extension** set to **fileAccess** in the system. A want is a basic communication component used to start services. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -55,9 +55,9 @@ Obtains information about all wants with **extension** set to **fileAcesss** in 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;Array&lt;Want&gt;&gt; | Yes| Promise used to return the **want** information obtained.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| callback | AsyncCallback&lt;Array&lt;Want&gt;&gt; | Yes| Promise used to return the **want** information obtained.|
 
 **Example**
 
@@ -89,16 +89,16 @@ Synchronously creates a **Helper** object to connect to the specified wants. The
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | context | Context | Yes| Context of the ability.|
-  | wants | Array&lt;Want&gt; | Yes| Wants to connect.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| context | Context | Yes| Context of the ability.|
+| wants | Array&lt;Want&gt; | Yes| Wants to connect.|
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileAccessHelper | **Helper** object created.|
+| Type| Description|
+| --- | -- |
+| FileAccessHelper | **Helper** object created.|
 
 **Example**
 
@@ -114,7 +114,7 @@ Synchronously creates a **Helper** object to connect to the specified wants. The
       },
     ]
     try {
-      // this.context is passed by MainAbility.
+      // this.context is passed by EntryAbility.
       fileAccessHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
       if (!fileAccessHelper)
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -136,15 +136,15 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | context | Context | Yes| Context of the ability.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| context | Context | Yes| Context of the ability.|
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileAccessHelper | **Helper** object created.|
+| Type| Description|
+| --- | -- |
+| FileAccessHelper | **Helper** object created.|
 
 **Example**
 
@@ -153,7 +153,7 @@ Synchronously creates a **Helper** object to connect to all file management serv
     let fileAccesssHelperAllServer = null;
     // Create a Helper object to interact with all file management services configured with fileAccess in the system.
     try {
-      // this.context is passed by MainAbility.
+      // this.context is passed by EntryAbility.
       fileAccesssHelperAllServer = fileAccess.createFileAccessHelper(this.context);
       if (!fileAccesssHelperAllServer)
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -167,8 +167,7 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
 getRoots( ) : Promise&lt;RootIterator&gt;
 
-Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses a promise to return a **RootIterator** object, which
-returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
+Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses a promise to return a **RootIterator** object, which returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -176,9 +175,9 @@ returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | Promise&lt;RootIterator&gt; | Promise used to return the **RootIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| Promise&lt;RootIterator&gt; | Promise used to return the **RootIterator** object obtained.|
 
 **Example**
 
@@ -211,8 +210,7 @@ returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
 
 getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void;
 
-Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses an asynchronous callback to return the result.
-The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) through [next()](#rootiteratornext).
+Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses an asynchronous callback to return the result. The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) through [next()](#rootiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -220,9 +218,9 @@ The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;RootIterator&gt; | Yes| Promise used to return the **RootIterator** object obtained.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| callback | AsyncCallback&lt;RootIterator&gt; | Yes| Promise used to return the **RootIterator** object obtained.|
 
 **Example**
 
@@ -263,16 +261,16 @@ Synchronously obtains the **FileIterator** object of the first-level files (file
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -314,15 +312,15 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -364,15 +362,15 @@ Synchronously obtains the **FileIterator** object of the next-level files (file 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -414,16 +412,16 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -465,10 +463,10 @@ Creates a file in a directory. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the parent directory for the file to create.|
-  | displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the parent directory for the file to create.|
+| displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
 
 **Return value**
 
@@ -510,11 +508,11 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the parent directory for the file to create.|
-  | displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file created.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the parent directory for the file to create.|
+| displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file created.|
 
 **Example**
 
@@ -550,10 +548,10 @@ Creates a folder in a directory. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | parentUri | string | Yes| URI of the parent directory for the folder to create.|
-  | displayName | string | Yes| Name of the folder to create.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| parentUri | string | Yes| URI of the parent directory for the folder to create.|
+| displayName | string | Yes| Name of the folder to create.|
 
 **Return value**
 
@@ -595,11 +593,11 @@ Creates a folder in a directory. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | parentUri | string | Yes| URI of the parent directory for the folder to create.|
-  | displayName | string | Yes| Name of the folder to create.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the folder created.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| parentUri | string | Yes| URI of the parent directory for the folder to create.|
+| displayName | string | Yes| Name of the folder to create.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the folder created.|
 
 **Example**
 
@@ -635,16 +633,16 @@ Opens a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file to open.|
-  | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file to open.|
+| flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;number&gt; | Promise used to return the handle to the file opened.|
+| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
 
 **Example**
 
@@ -673,11 +671,11 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file to open.|
-  | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the handle to the file opened.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file to open.|
+| flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the file descriptor of the file opened.|
 
 **Example**
 
@@ -712,9 +710,9 @@ Deletes a file or folder. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to delete.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or folder to delete.|
 
 **Return value**
 
@@ -751,10 +749,10 @@ Deletes a file or folder. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to delete.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the result.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or folder to delete.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the result.|
 
 **Example**
 
@@ -789,10 +787,10 @@ Moves a file or folder. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFile | string | Yes| URI of the file or folder to move.|
-  | destFile | string | Yes| URI of the folder to which the file or folder will be moved.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFile | string | Yes| URI of the file or folder to move.|
+| destFile | string | Yes| URI of the folder to which the file or folder will be moved.|
 
 **Return value**
 
@@ -829,11 +827,11 @@ Moves a file or folder. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFile | string | Yes| URI of the file or folder to move.|
-  | destFile | string | Yes| URI of the folder to which the file or folder will be moved.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file or folder in the destination directory.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFile | string | Yes| URI of the file or folder to move.|
+| destFile | string | Yes| URI of the folder to which the file or folder will be moved.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file or folder in the destination directory.|
 
 **Example**
 
@@ -869,10 +867,10 @@ Renames a file or folder. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to rename.|
-  | displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or folder to rename.|
+| displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
 
 **Return value**
 
@@ -908,11 +906,11 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to rename.|
-  | displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the renamed file or folder.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or folder to rename.|
+| displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the renamed file or folder.|
 
 **Example**
 
@@ -947,9 +945,9 @@ Checks whether a file or folder exists. This API uses a promise to return the re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFileUri | string | Yes| URI of the file or folder.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFileUri | string | Yes| URI of the file or folder.|
 
 **Return value**
 
@@ -988,10 +986,10 @@ Checks whether a file or folder exists. This API uses an asynchronous callback t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFileUri | string | Yes| URI of the file or folder.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Promise used to return the result.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFileUri | string | Yes| URI of the file or folder.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Promise used to return the result.|
 
 **Example**
 
