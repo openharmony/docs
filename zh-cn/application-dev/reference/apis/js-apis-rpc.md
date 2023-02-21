@@ -5953,7 +5953,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 注销用于接收远程对象死亡通知的回调。
 
