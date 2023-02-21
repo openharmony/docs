@@ -21,6 +21,7 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 > **NOTE**
 >
 > Transition animation is not supported.
+> Different **\<Web>** components on the same page must be bound to different **WebController**s.
 
 **Parameters**
 
@@ -526,7 +527,7 @@ Sets whether to enable the multi-window permission.
 
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
-Sets whether to display the horizontal scrollbar, including the system default scrollbar and custom scrollbar. By default, the horizontal scrollbar is displayed.
+Sets whether to display the horizontal scrollbar, including the default system scrollbar and custom scrollbar. By default, the horizontal scrollbar is displayed.
 
 **Parameters**
 
@@ -577,7 +578,7 @@ Sets whether to display the horizontal scrollbar, including the system default s
 
 verticalScrollBarAccess(verticalScrollBar: boolean)
 
-Sets whether to display the vertical scrollbar, including the system default scrollbar and custom scrollbar. By default, the vertical scrollbar is displayed.
+Sets whether to display the vertical scrollbar, including the default system scrollbar and custom scrollbar. By default, the vertical scrollbar is displayed.
 
 **Parameters**
 
@@ -1539,7 +1540,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
 
-Called when an error occurs during web page loading. For better results, simplify the implementation logic in the callback.
+Called when an error occurs during web page loading. For better results, simplify the implementation logic in the callback. This API is called when there is no network connection.
 
 **Parameters**
 
@@ -1764,7 +1765,7 @@ Called when the document title of the web page is changed.
 
 onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void)
 
-Called when loading of the web page is complete. This API is used by an application to update the historical link it accessed..
+Called when loading of the web page is complete. This API is used by an application to update the historical link it accessed.
 
 **Parameters**
 
@@ -1950,7 +1951,7 @@ Called when the display ratio of this page changes.
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
-Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access.
+Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 
 **Parameters**
 
@@ -2326,8 +2327,8 @@ Called when the scrollbar of the page scrolls.
 
 | Name    | Type  | Description        |
 | ------- | ------ | ------------ |
-| xOffset | number | Position of the scrollbar on the x-axis.|
-| yOffset | number | Position of the scrollbar on the y-axis.|
+| xOffset | number | Position of the scrollbar on the x-axis relative to the leftmost of the web page.|
+| yOffset | number | Position of the scrollbar on the y-axis relative to the top of the web page.|
 
 **Example**
 
@@ -2668,7 +2669,7 @@ Called when the old page is not displayed and the new page is about to be visibl
 
 onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
-Called when the key event is intercepted, before being consumed by the Webview.
+Called when the key event is intercepted and before it is consumed by the Webview.
 
 **Parameters**
 

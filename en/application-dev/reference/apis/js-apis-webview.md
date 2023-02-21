@@ -305,6 +305,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
+            // The URL to be loaded is of the string type.
             this.controller.loadUrl('www.example.com');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -314,6 +315,69 @@ struct WebComponent {
     }
   }
 }
+```
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // The headers parameter is carried.
+            this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+      .webDebuggingAccess(true)
+    }
+  }
+}
+```
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // The URL to be loaded is of the Resource type.
+            this.controller.loadUrl($rawfile('xxx.html'));
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```html
+<!-- xxx.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
 ```
 
 ### loadData
@@ -987,7 +1051,7 @@ Executes a JavaScript script. This API uses a promise to return the script execu
 
 | Type           | Description                                               |
 | --------------- | --------------------------------------------------- |
-| Promise\<string> | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed|
+| Promise\<string> | Promise used to return the result. Returns **null** if the JavaScript script fails to be executed|
 
 **Error codes**
 
@@ -4101,7 +4165,7 @@ Checks whether any saved HTTP authentication credentials exist. This API returns
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist exists; returns **false** otherwise.|
+| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist; returns **false** otherwise. |
 
 **Example**
 
