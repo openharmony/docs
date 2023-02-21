@@ -72,6 +72,7 @@ Sanitizer configuration example:
   ohos_shared_library("example") {
     sanitize = {
       cfi = true
+      cfi_cross_dso = true                   # CFI: shared library support.
       integer_overflow = true                
       debug = true                           # Optional. The debug mode is disabled by default.
       blocklist = "./blocklist.txt"          # Optional. Enter the path of the blocklist.
