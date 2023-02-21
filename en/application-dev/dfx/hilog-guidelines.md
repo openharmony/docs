@@ -1,10 +1,15 @@
-# HiLog Development 
+# HiLog Development
+
 ## Overview
+
 HiLog is the log system of OpenHarmony that provides logging for the system framework, services, and applications to record information on user operations and system running status.
+
 > **NOTE**
-> This development guide is applicable only when you use Native APIs for application development. For details about the APIs, see [HiLog Native API Reference](../reference/native-apis/_hi_log.md).
+> 
+> This development guide is applicable only when you use Native APIs for application development. For details about the APIs, see [HiLog Native API Reference](https://gitee.com/openharmony-sig/interface_native_header/blob/master/en/native_sdk/dfx/log.h).
 
 ## Available APIs
+
 | API/Macro| Description| 
 | -------- | -------- |
 | int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, ...) | Outputs logs based on the specified log type, log level, service domain, log tag, and variable parameters determined by the format specifier and privacy identifier in the printf format.<br>Input parameters: See [Parameter Description](#parameter-description).<br>Output parameters: None<br>Return value: total number of bytes if log printing is successful; **-1** otherwise.| 
@@ -14,6 +19,7 @@ HiLog is the log system of OpenHarmony that provides logging for the system fram
 | #define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__)) | Outputs ERROR logs. This is a function-like macro.| 
 | #define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__)) | Outputs FATAL logs. This is a function-like macro.| 
 | bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level) | Checks whether logs of the specified service domain, tag, and level can be printed.<br>Input parameters: See [Parameter Description](#parameter-description).<br>Output arguments: none<br>Return value: **true** if the specified logs can be printed; **false** otherwise.|
+
 ## Parameter Description
 
 | Name| Type  | Mandatory| Description                                                        |
@@ -24,7 +30,9 @@ HiLog is the log system of OpenHarmony that provides logging for the system fram
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
 | fmt    | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **\<private>**.|
 | args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
+
 ## LogLevel
+
 Log level.
 
 | Name |   Value  | Description                                                        |
@@ -34,7 +42,9 @@ Log level.
 | WARN  | 5      | Log level used to record severe, unexpected faults that have little impact on users and can be rectified by the programs themselves or through simple operations.|
 | ERROR | 6      | Log level used to record program or functional errors that affect the normal running or use of the functionality and can be fixed at a high cost, for example, by resetting data.|
 | FATAL | 7      | Log level used to record program or functionality crashes that cannot be rectified.
+
 ## Development Examples
+
 1. Add the link of **libhilog_ndk.z.so** to **CMakeLists.txt**:
 ```
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
