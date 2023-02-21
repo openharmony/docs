@@ -19,7 +19,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
   > 如果服务已创建，再次启动该InputMethodExtensionAbility不会触发onCreate()回调。
 
 - **onDestroy**
-  当不再使用服务且准备将其销毁该实例时，触发该回调。开发者可以在该回调中清理资源，如注销监听等。
+  当不再使用服务且准备将该实例销毁时，触发该回调。开发者可以在该回调中清理资源，如注销监听等。
 
 
 ## 开发步骤
@@ -38,13 +38,12 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 ```
 /src/main/
-├── ets/InputMethodExtAbility
+├── ets/inputmethodextability
 │   └──model/KeyboardController.ts			# 显示键盘
 │   └──InputMethodService.ts				# 自定义类继承InputMethodExtensionAbility并加上需要的生命周期回调
 │   └──pages
-│      └──InputMethodExtAbility
-│         └── Index.ets						# 绘制键盘，添加输入删除功能
-│         └── KeyboardKeyData.ts			# 键盘属性定义
+│      └── Index.ets						# 绘制键盘，添加输入删除功能
+│      └── KeyboardKeyData.ts			    # 键盘属性定义
 ├── resources/base/profile/main_pages.json   
 ```
 
@@ -68,7 +67,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    
      onDestroy() {
        console.log("onDestroy.");
-       this.context.destroy()
+       this.context.destroy();
      }
    }
    ```
@@ -76,16 +75,16 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 2. KeyboardController.ts文件。
 
    ```ts
-   import inputMethodEngine from '@ohos.inputMethodEngine'
-   import display from '@ohos.display'
-   import windowManager from '@ohos.window'
+   import inputMethodEngine from '@ohos.inputMethodEngine';
+   import display from '@ohos.display';
+   import windowManager from '@ohos.window';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
    globalThis.inputAbility = inputMethodEngine.getInputMethodAbility();
    
    export class KeyboardController {
-     mContext	// 保存InputMethodExtensionAbility中的context属性
-     WINDOW_TYPE_INPUT_METHOD_FLOAT = 2105		// 定义窗口类型，2105代表输入法窗口类型，用于创建输入法应用窗口
+     mContext;	// 保存InputMethodExtensionAbility中的context属性
+     WINDOW_TYPE_INPUT_METHOD_FLOAT = 2105;		// 定义窗口类型，2105代表输入法窗口类型，用于创建输入法应用窗口
      windowName = 'inputApp';
      private windowHeight: number = 0;
      private windowWidth: number = 0;
@@ -105,32 +104,31 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
      public onDestroy(): void			// 应用生命周期销毁
      {
        this.unRegisterListener();		// 注销事件监听
-       var win = windowManager.findWindow(this.windowName)
-       win.destroyWindow()				// 销毁窗口
+       let win = windowManager.findWindow(this.windowName);
+       win.destroyWindow();				// 销毁窗口
        this.mContext.terminateSelf();	// 销毁InputMethodExtensionAbility服务
      }
    
      private initWindow(): void		// 初始化窗口
      {
-       display.getDefaultDisplay().then(dis => {
-         var dWidth = dis.width;
-         var dHeight = dis.height;
-         var keyHeightRate = 0.47;
-         var keyHeight = dHeight * keyHeightRate;
-         this.windowWidth = dWidth;
-         this.windowHeight = keyHeight;
-         this.nonBarPosition = dHeight - keyHeight
+       let dis = display.getDefaultDisplaySync();
+       let dWidth = dis.width;
+       let dHeight = dis.height;
+       let keyHeightRate = 0.47;
+       let keyHeight = dHeight * keyHeightRate;
+       this.windowWidth = dWidth;
+       this.windowHeight = keyHeight;
+       this.nonBarPosition = dHeight - keyHeight;
    
-         var config = {
-           name: this.windowName,
-           windowType: this.WINDOW_TYPE_INPUT_METHOD_FLOAT,
-           ctx: this.mContext
-         }
-         windowManager.createWindow(config).then((win) => {	// 根据窗口类型创建窗口
-           win.resize(dWidth, keyHeight).then(() => {
-             win.moveWindowTo(0, this.nonBarPosition).then(() => {
-               win.setUIContent('pages/InputMethodExtAbility/Index').then(() => {
-               });
+       let config = {
+         name: this.windowName,
+         windowType: this.WINDOW_TYPE_INPUT_METHOD_FLOAT,
+         ctx: this.mContext
+       }
+       windowManager.createWindow(config).then((win) => {	// 根据窗口类型创建窗口
+         win.resize(dWidth, keyHeight).then(() => {
+           win.moveWindowTo(0, this.nonBarPosition).then(() => {
+             win.setUIContent('pages/InputMethodExtAbility/Index').then(() => {
              });
            });
          });
@@ -157,7 +155,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
          globalThis.keyboardController = kbController;
        })
        globalThis.inputAbility.on('inputStop', (imeId) => {
-         if (imeId == "com.example.kikainput/InputDemoService") {
+         if (imeId == "包名/Ability名") {
            this.onDestroy();
          }
        });
@@ -166,12 +164,12 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
      private unRegisterListener(): void
      {
        globalThis.inputAbility.off('inputStart');
-       globalThis.inputAbility.off('inputStop');
+       globalThis.inputAbility.off('inputStop', () => {});
        globalThis.inputAbility.off('keyboardShow');
      }
    
      private showHighWindow() {
-       var win = windowManager.findWindow(this.windowName)
+       let win = windowManager.findWindow(this.windowName)
        win.resize(this.windowWidth, this.windowHeight).then(() => {
          win.moveWindowTo(0, this.nonBarPosition).then(() => {
            win.showWindow().then(() => {
