@@ -37,9 +37,9 @@ getId(uri: string): number
 ```ts
 try {
     let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
-    console.info('get id: ' + id);
+    console.info('get id: ${id}');
 } catch(err) {
-    console.error('get id err ,check the uri' + err);
+    console.error('get id err ,check the uri ${err}');
 }
 ```
 
@@ -75,9 +75,9 @@ try {
         'com.example.dataUriUtils',
         id,
     );
-    console.info('attachId the uri is: ' + uri);
+    console.info('attachId the uri is: ${uri}');
 } catch (err) {
-    console.error('get id err ,check the uri' + err);
+    console.error('get id err ,check the uri ${err}');
 }
 
 ```
@@ -109,9 +109,9 @@ deleteId(uri: string): string
 ```ts
 try {
     let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
-    console.info('delete id with the uri is: ' + uri);
+    console.info('delete id with the uri is: ${uri}');
 } catch(err) {
-    console.error('delete uri err, check the input uri' + err);
+    console.error('delete uri err, check the input uri ${err}');
 }
 
 ```
@@ -150,7 +150,7 @@ try {
         id
     );
 } catch (err) {
-    console.error('delete uri err, check the input uri' + err);
+    console.error('delete uri err, check the input uri ${err}');
 }
 ```
 

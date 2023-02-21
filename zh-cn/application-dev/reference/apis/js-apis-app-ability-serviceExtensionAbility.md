@@ -49,7 +49,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
   ```ts
   class ServiceExt extends ServiceExtension {
     onCreate(want) {
-      console.log('onCreate, want:' + want.abilityName);
+      console.log('onCreate, want: ${want.abilityName}');
     }
   }
   ```
@@ -98,7 +98,7 @@ Extension生命周期回调，如果是startAbility或者startServiceExtensionAb
   ```ts
   class ServiceExt extends ServiceExtension {
     onRequest(want, startId) {
-      console.log('onRequest, want:' + want.abilityName);
+      console.log('onRequest, want: ${want.abilityName}');
     }
   }
   ```
@@ -139,7 +139,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   }
   class ServiceExt extends ServiceExtension {
     onConnect(want) {
-      console.log('onConnect , want:' + want.abilityName);
+      console.log('onConnect , want: ${want.abilityName}');
       return new StubTest('test');
     }
   }
@@ -167,7 +167,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
   ```ts
   class ServiceExt extends ServiceExtension {
     onDisconnect(want) {
-      console.log('onDisconnect, want:' + want.abilityName);
+      console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
   ```
@@ -193,7 +193,7 @@ Extension的生命周期回调，当所有以前的客户端都断开连接之�
   ```ts
   class ServiceExt extends ServiceExtension {
     onReconnect(want) {
-      console.log('onReconnect, want:' + want.abilityName);
+      console.log('onReconnect, want: ${want.abilityName}');
     }
   }
   ```
@@ -219,7 +219,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
   ```ts
   class ServiceExt extends ServiceExtension {
       onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
+          console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
       }
   }
   ```
@@ -245,7 +245,7 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class ServiceExt extends ServiceExtension {
       onDump(params) {
-          console.log('dump, params:' + JSON.stringify(params));
+          console.log('dump, params: ${JSON.stringify(params)}');
           return ['params'];
       }
   }

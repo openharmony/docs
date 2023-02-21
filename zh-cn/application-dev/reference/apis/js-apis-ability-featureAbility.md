@@ -58,7 +58,7 @@ featureAbility.startAbility(
         },
     },
     (err, data) => {
-        console.info('startAbility err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+        console.info('startAbility err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
     }
 );
 ```
@@ -111,7 +111,7 @@ featureAbility.startAbility(
         },
     }
 ).then((data) => {
-    console.info('startAbility data: ' + JSON.stringify(data));
+    console.info('startAbility data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -194,7 +194,7 @@ featureAbility.startAbilityForResult(
         },
     },
     (err, data) => {
-        console.info('startAbilityForResult err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+        console.info('startAbilityForResult err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
     }
 );
 ```
@@ -259,7 +259,7 @@ featureAbility.startAbilityForResult(
         },
     },
 ).then((data) => {
-    console.info('startAbilityForResult data: ' + JSON.stringify(data));
+    console.info('startAbilityForResult data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -310,7 +310,7 @@ featureAbility.terminateSelfWithResult(
         },
     },
     (err) => {
-        console.error('err: ' + JSON.stringify(err));
+        console.error('err: ${JSON.stringify(err)}');
     }
 );
 ```
@@ -390,7 +390,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus((err, data) => {
-    console.info('hasWindowFocus err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('hasWindowFocus err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -413,7 +413,7 @@ hasWindowFocus(): Promise\<boolean>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info('hasWindowFocus data: ' + JSON.stringify(data));
+    console.info('hasWindowFocus data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -436,7 +436,7 @@ getWant(callback: AsyncCallback\<Want>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant((err, data) => {
-    console.info('getWant err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('getWant err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -459,7 +459,7 @@ getWant(): Promise\<Want>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-    console.info('getWant data: ' + JSON.stringify(data));
+    console.info('getWant data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -483,7 +483,7 @@ getContext(): Context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 context.getBundleName((err, data) => {
-    console.info('getBundleName err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('getBundleName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -507,7 +507,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
     (err) => {
-        console.error('err: ' + JSON.stringify(err));
+        console.error('err: ${JSON.stringify(err)}');
     }
 )
 ```
@@ -568,13 +568,13 @@ connectAbility(request: Want, options:ConnectOptions): number
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -611,13 +611,13 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code);
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -632,8 +632,7 @@ let connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId, (err) => {
-    console.error('featureAbilityTest disconnectAbility err====>'
-    + ('json err=') + JSON.stringify(err));
+    console.error('featureAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
 });
 ```
 
@@ -663,13 +662,13 @@ disconnectAbility(connection: number): Promise\<void>
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code);
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -684,9 +683,9 @@ let connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data : '  + data);
+    console.log('data: ${data)}';
 }).catch((error)=>{
-    console.error('featureAbilityTest result errCode : ' + error.code);
+    console.error('featureAbilityTest result errCode : ${error.code}');
 });
 ```
 
@@ -709,7 +708,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 ```ts
 featureAbility.getWindow((err, data) => {
-    console.info('getWindow err: ' + JSON.stringify(err) + 'data: ' + typeof(data));
+    console.info('getWindow err: ${JSON.stringify(err)}, data: ${typeof(data)}');
 });
 ```
 
@@ -731,7 +730,7 @@ getWindow(): Promise\<window.Window>;
 
 ```ts
 featureAbility.getWindow().then((data) => {
-    console.info('getWindow data: ' + typeof(data));
+    console.info('getWindow data: ${typeof(data)}');
 });
 ```
 

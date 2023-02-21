@@ -33,7 +33,7 @@ onReceiveEvent(event: CommonEventData): void;
   ```ts
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
         onReceiveEvent(event) {
-            console.log('onReceiveEvent, event: ' + JSON.stringify(event));
+            console.log('onReceiveEvent, event: ${JSON.stringify(event)}');
         }
     }
   ```

@@ -78,10 +78,10 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
             name: DB_NAME,
             securityLevel: rdb.SecurityLevel.S1
         }, function (err, data) {
-            console.log('getRdbStore done, data : ' + data);
+            console.log('getRdbStore done, data : ${data}');
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                console.log('executeSql done, error message : ' + err);
+                console.log('executeSql done, error message : ${err}');
             });
             if (callback) {
                 callback();
@@ -126,7 +126,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
             return;
         }
         rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
-            console.info('callback ret:' + ret);
+            console.info('callback ret: ${ret}');
             if (callback !== undefined) {
                 callback(err, ret);
             }
@@ -256,7 +256,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
         }
         rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
             if (resultSet !== undefined) {
-                console.info('resultSet.rowCount: ' + resultSet.rowCount);
+                console.info('resultSet.rowCount: ${resultSet.rowCount}');
             }
             if (callback !== undefined) {
                 callback(err, resultSet);
@@ -333,7 +333,7 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     normalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = 'normalize+' + uri;
+        let ret = 'normalize+${uri}';
         callback(err, ret);
     }
 };
@@ -360,7 +360,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     denormalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = 'denormalize+' + uri;
+        let ret = 'denormalize+${uri}';
         callback(err, ret);
     }
 };

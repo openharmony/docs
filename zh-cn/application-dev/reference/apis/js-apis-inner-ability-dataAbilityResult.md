@@ -30,7 +30,7 @@ function executeBatchOperation() {
             return;
         }
     } catch (err) {
-        console.error('acquireDataAbilityHelper fail, error:' + JSON.stringify(err));
+        console.error('acquireDataAbilityHelper fail, error: ${JSON.stringify(err)}');
         return;
     }
 
@@ -64,14 +64,14 @@ function executeBatchOperation() {
         DAHelper.executeBatch(dataAbilityUri, operations).then((data) => {
             for (let i = 0; i < data.length; i++) {
                 let dataAbilityResult = data[i];
-                console.log('dataAbilityResult.uri: ' + dataAbilityResult.uri);
-                console.log('dataAbilityResult.count: ' + dataAbilityResult.count);
+                console.log('dataAbilityResult.uri: ${dataAbilityResult.uri}');
+                console.log('dataAbilityResult.count: ${dataAbilityResult.count}');
             }
         }).catch(err => {
-            console.error('executeBatch error: ' + JSON.stringify(err));
+            console.error('executeBatch error: ${JSON.stringify(err)}');
         });
     } catch (err) {
-        console.error('executeBatch error: ' + JSON.stringify(err));
+        console.error('executeBatch error: ${JSON.stringify(err)}');
     }
 }
 ```

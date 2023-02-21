@@ -62,8 +62,7 @@ let bundleContext;
 try {
     bundleContext = this.context.createBundleContext('com.example.test');
 } catch (error) {
-    console.log('createBundleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('createBundleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -102,8 +101,7 @@ let moduleContext;
 try {
     moduleContext = this.context.createModuleContext('entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -141,8 +139,7 @@ let moduleContext;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -167,8 +164,7 @@ let applicationContext;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {
-    console.log('getApplicationContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('getApplicationContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 

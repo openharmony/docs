@@ -44,7 +44,7 @@ let observerId = -1;
 try {
     observerId = errorManager.on('error', observer);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -77,7 +77,7 @@ function unregisterErrorObserverCallback(err) {
 try {
     errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -115,7 +115,7 @@ try {
             console.log('----------- unregisterErrorObserver fail ----------', err);
     })
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 
 ```

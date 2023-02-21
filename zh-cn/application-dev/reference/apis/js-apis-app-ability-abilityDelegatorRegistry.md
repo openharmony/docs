@@ -56,7 +56,7 @@ abilityDelegator.startAbility(want, (err) => {
     if (!err || err.code === 0) {
         console.log('Success start ability.');
     } else {
-        console.log('Failed start ability, error: ' + JSON.stringify(err));
+        console.log('Failed start ability, error: ${JSON.stringify(err)}');
     }
 });
 ```
@@ -81,8 +81,8 @@ getArguments(): AbilityDelegatorArgs
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 let args = AbilityDelegatorRegistry.getArguments();
-console.info('getArguments bundleName:' + args.bundleName);
-console.info('getArguments parameters:' + JSON.stringify(args.parameters));
-console.info('getArguments testCaseNames:' + args.testCaseNames);
-console.info('getArguments testRunnerClassName:' + args.testRunnerClassName);
+console.info('getArguments bundleName: ${args.bundleName}');
+console.info('getArguments parameters: ${JSON.stringify(args.parameters)}');
+console.info('getArguments testCaseNames: ${args.testCaseNames}');
+console.info('getArguments testRunnerClassName: ${args.testRunnerClassName}');
 ```

@@ -32,14 +32,13 @@ Mission迁移完成后调用，返回迁移结果。
 
   let continueCallback = {
       onContinueDone(result) {
-          console.log('onContinueDone, result: ' + JSON.stringify(result));
+          console.log('onContinueDone, result: ${JSON.stringify(result)}');
       }
   };
 
   distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
       if (error && error.code) {
-          console.log('continueMission failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+          console.log('continueMission failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
       console.log('continueMission finished');
   });

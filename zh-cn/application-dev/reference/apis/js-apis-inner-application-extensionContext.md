@@ -36,22 +36,22 @@ import Want from '@ohos.app.ability.Want';
 
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
-        console.log('ServiceAbility onCreate, want: ' + want.abilityName);
+        console.log('ServiceAbility onCreate, want: ${want.abilityName}');
         // 通过globalThis传递ExtensionContext给entry
         globalThis.ExtensionContext = this.context;
     }
 
     onRequest(want, startId) {
-        console.log('ServiceAbility onRequest, want: ' + want.abilityName + ', startId: ' + startId);
+        console.log('ServiceAbility onRequest, want: ${want.abilityName}, startId: ${startId}');
     }
 
     onConnect(want) {
-        console.log('ServiceAbility onConnect, want:' + want.abilityName);
+        console.log('ServiceAbility onConnect, want: ${want.abilityName}');
         return null;
     }
 
     onDisconnect(want) {
-        console.log('ServiceAbility onDisconnect, want:' + want.abilityName);
+        console.log('ServiceAbility onDisconnect, want: ${want.abilityName}');
     }
 
     onDestroy() {

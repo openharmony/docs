@@ -33,12 +33,11 @@ import StartOptions from '@ohos.app.ability.StartOptions';
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
-            'error.message:' + JSON.stringify(error.message));
+          console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
       }
-      console.log('size = ' + missions.length);
-      console.log('missions = ' + JSON.stringify(missions));
+      console.log('size = ${missions.length}');
+      console.log('missions = ${JSON.stringify(missions)}');
       let id = missions[0].missionId;
 
       let startOptions = {
@@ -50,6 +49,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
       });
     });
   } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
   }
   ```

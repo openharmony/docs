@@ -20,6 +20,6 @@ let monitor = {
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
-    console.info('stageMonitor waitAbilityStageMonitor, abilityStage = ' + JSON.stringify(data));
+    console.info('stageMonitor waitAbilityStageMonitor, abilityStage = ${JSON.stringify(data)}');
 });
 ```

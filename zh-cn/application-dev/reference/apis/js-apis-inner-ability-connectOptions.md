@@ -20,13 +20,13 @@
 
   let connectOptions = {
     onConnect(elementName, remote) { 
-        console.log('onConnect elementName: ' + elementName);
+        console.log('onConnect elementName: ${elementName}');
     },
     onDisconnect(elementName) { 
-        console.log('onDisconnect elementName: ' + elementName);
+        console.log('onDisconnect elementName: ${elementName}');
     },
     onFailed(code) { 
-        console.error('onFailed code: ' + code);
+        console.error('onFailed code: ${code}');
     }
   };
 

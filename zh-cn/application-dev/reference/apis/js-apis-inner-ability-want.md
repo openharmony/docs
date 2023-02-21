@@ -34,7 +34,7 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
   };
   this.context.startAbility(want, (error) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.log('error.code = ' + error.code)
+      console.log('error.code = ${error.code}');
   })
   ```
 
@@ -48,7 +48,7 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
   try {
       fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
   } catch(e) {
-      console.log('openSync fail:' + JSON.stringify(e));
+      console.log('openSync fail: ${JSON.stringify(e)}');
   }
   let want = {
       'deviceId': '', // deviceId为空表示本设备
@@ -61,7 +61,7 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
   };
   this.context.startAbility(want, (error) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.log('error.code = ' + error.code);
+      console.log('error.code = ${error.code}');
   });
   // ...
   ```

@@ -221,7 +221,7 @@ try {
     if (error) {
       console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
@@ -265,7 +265,7 @@ try {
     if (error) {
       console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
@@ -312,7 +312,7 @@ const filter: formInfo.FormInfoFilter = {
 };
 try {
   formProvider.getFormsInfo(filter).then((data) => {
-    console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   }).catch((error) => {
     console.log(`promise error, code: ${error.code}, message: ${error.message})`);
   });
@@ -366,7 +366,7 @@ try {
     if (error) {
       console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
@@ -416,7 +416,7 @@ try {
     if (error) {
       console.log(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
@@ -469,7 +469,7 @@ let want = {
 };
 try {
   formProvider.requestPublishForm(want).then((data) => {
-    console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+    console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
   }).catch((error) => {
     console.log(`promise error, code: ${error.code}, message: ${error.message})`);
   });
@@ -518,7 +518,7 @@ try {
             if (error) {
               console.log(`callback error, code: ${error.code}, message: ${error.message})`);
             } else {
-              console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+              console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
             }
           });
         } catch (error) {
@@ -566,7 +566,7 @@ try {
       };
       try {
         formProvider.requestPublishForm(want).then((data) => {
-          console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+          console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
         }).catch((error) => {
           console.log(`promise error, code: ${error.code}, message: ${error.message})`);
         });

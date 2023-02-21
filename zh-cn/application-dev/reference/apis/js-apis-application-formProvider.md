@@ -36,7 +36,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
   let formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
     if (error.code) {
-      console.log('formProvider setFormNextRefreshTime, error:' + JSON.stringify(error));
+      console.log('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
     }
   });
   ```
@@ -71,7 +71,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log('formProvider setFormNextRefreshTime success');
   }).catch((error) => {
-    console.log('formProvider setFormNextRefreshTime, error:' + JSON.stringify(error));
+    console.log('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -101,7 +101,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj, (error, data) => {
     if (error.code) {
-      console.log('formProvider updateForm, error:' + JSON.stringify(error));
+      console.log('formProvider updateForm, error: ${JSON.stringify(error)}');
     }
   });
   ```
@@ -138,7 +138,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
   formProvider.updateForm(formId, obj).then(() => {
     console.log('formProvider updateForm success');
   }).catch((error) => {
-    console.log('formProvider updateForm, error:' + JSON.stringify(error));
+    console.log('formProvider updateForm, error: ${JSON.stringify(error)}');
   });
   ```
 
