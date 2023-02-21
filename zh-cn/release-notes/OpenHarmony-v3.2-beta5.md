@@ -135,6 +135,12 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 本版本在OpenHarmony 3.2 Beta4的基础上有如下变更。
 
+### SDK变更
+
+从本版本起，SDK仅发布提供Public SDK，也可通过DevEcoStudio下载使用。
+
+Full SDK需下载源码编译构建并替换使用，源码编译指导见[full-SDK编译指南](../application-dev/quick-start/full-sdk-compile-guide.md)
+
 
 ### 特性变更
 
