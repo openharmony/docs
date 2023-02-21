@@ -119,7 +119,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
                 rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
                     console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
                });
-               if (callbakc) {
+               if (callback) {
                     callback();
                }
            });
