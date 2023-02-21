@@ -22,9 +22,9 @@ onUnhandledException(errMsg: string): void;
 import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+  }
 };
 
 try {
