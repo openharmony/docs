@@ -15,10 +15,10 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 import Ability from '@ohos.application.Ability';
 export default class MainAbility extends Ability {
     func1(){
-        console.log("func1 is called");
+        console.log('func1 is called');
     }
     onForeground() {
-        this.context.eventHub.on("123", this.func1);
+        this.context.eventHub.on('123', this.func1);
     }
 }
 ```
@@ -45,17 +45,17 @@ on(event: string, callback: Function): void;
   
   export default class MainAbility extends Ability {
       onForeground() {
-          this.context.eventHub.on("123", this.func1);
-          this.context.eventHub.on("123", () => {
-              console.log("call anonymous func 1");
+          this.context.eventHub.on('123', this.func1);
+          this.context.eventHub.on('123', () => {
+              console.log('call anonymous func 1');
           });
           // 结果：
           // func1 is called
           // call anonymous func 1
-          this.context.eventHub.emit("123"); 
+          this.context.eventHub.emit('123'); 
       }
       func1() {
-          console.log("func1 is called");
+          console.log('func1 is called');
       }
   }
   ```
@@ -83,17 +83,17 @@ off(event: string, callback?: Function): void;
   
   export default class MainAbility extends Ability {
       onForeground() {
-          this.context.eventHub.on("123", this.func1);
-          this.context.eventHub.off("123", this.func1); //取消订阅func1
-          this.context.eventHub.on("123", this.func1);
-          this.context.eventHub.on("123", this.func2);
-          this.context.eventHub.off("123");  //取消订阅func1和func2
+          this.context.eventHub.on('123', this.func1);
+          this.context.eventHub.off('123', this.func1); //取消订阅func1
+          this.context.eventHub.on('123', this.func1);
+          this.context.eventHub.on('123', this.func2);
+          this.context.eventHub.off('123');  //取消订阅func1和func2
       }
       func1() {
-          console.log("func1 is called");
+          console.log('func1 is called');
       }
       func2() {
-          console.log("func2 is called");
+          console.log('func2 is called');
       }
   }
   ```
@@ -121,19 +121,19 @@ emit(event: string, ...args: Object[]): void;
   
   export default class MainAbility extends Ability {
       onForeground() {
-          this.context.eventHub.on("123", this.func1);
+          this.context.eventHub.on('123', this.func1);
           // 结果：
           // func1 is called,undefined,undefined
-          this.context.eventHub.emit("123");
+          this.context.eventHub.emit('123');
           // 结果：
           // func1 is called,1,undefined
-          this.context.eventHub.emit("123", 1);
+          this.context.eventHub.emit('123', 1);
           // 结果：
           // func1 is called,1,2
-          this.context.eventHub.emit("123", 1, 2);
+          this.context.eventHub.emit('123', 1, 2);
       }
       func1(a, b) {
-          console.log("func1 is called," + a + "," + b);
+          console.log('func1 is called,' + a + ',' + b);
       }
   }
   ```

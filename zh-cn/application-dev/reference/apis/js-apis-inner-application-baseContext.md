@@ -22,7 +22,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MainAbility extends UIAbility {
     onCreate(want, launchParam) {
         // MainAbility onCreate, isStageMode: true
-        console.log("MainAbility onCreate, isStageMode: " + this.context.stageMode);
+        console.log('MainAbility onCreate, isStageMode: ' + this.context.stageMode);
     }
 }
 ```

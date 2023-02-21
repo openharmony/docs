@@ -24,15 +24,15 @@ import ElementName from '@ohos.bundle';
 import image from '@ohos.multimedia.image';
 import missionManager from '@ohos.application.missionManager';
 
-missionManager.getMissionInfos("", 10, (error, missions) => {
-  console.log("getMissionInfos is called, error.code = " + error.code);
-  console.log("size = " + missions.length);
-  console.log("missions = " + JSON.stringify(missions));
+missionManager.getMissionInfos('', 10, (error, missions) => {
+  console.log('getMissionInfos is called, error.code = ' + error.code);
+  console.log('size = ' + missions.length);
+  console.log('missions = ' + JSON.stringify(missions));
   let id = missions[0].missionId;
 
-  missionManager.getMissionSnapShot("", id, (error, snapshot) => {
-    console.log("getMissionSnapShot is called, error.code = " + error.code);
-    console.log("bundleName = " + snapshot.ability.bundleName);
-  })
-})
+  missionManager.getMissionSnapShot('', id, (error, snapshot) => {
+    console.log('getMissionSnapShot is called, error.code = ' + error.code);
+    console.log('bundleName = ' + snapshot.ability.bundleName);
+  });
+});
 ```
