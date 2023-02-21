@@ -1,6 +1,6 @@
 # 图片边框设置
 
-设置组件图片边框样式。
+设置容器组件的图片边框样式。
 
 >  **说明：**
 >
@@ -16,7 +16,7 @@
 
 | 名称         | 类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
-| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                            |
+| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。<br/>**说明：** 边框图源仅适用于容器组件，如Row、Column、Flex，在非容器组件上使用会失效。 |
 | slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
 | width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
 | outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
@@ -33,8 +33,9 @@
 | Round   | 被切割图片以整数次平铺在图片边框上，无法以整数次平铺时压缩被切割图片。 |
 | Space   | 被切割图片以整数次平铺在图片边框上，无法以整数次平铺时以空白填充。   |
 
-
 ## 示例
+
+### 示例1
 
 
 ```ts
@@ -66,3 +67,48 @@ struct Index {
 ```
 
 ![zh-cn_image_borderImageGradient](figures/borderImageGradient.png)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State outSetValue: number = 40
+
+  build() {
+    Row() {
+      Column() {
+        Row() {
+          Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
+        }
+        .borderImage({
+          source: $r('app.media.icon'),
+          slice: `${this.outSetValue}%`,
+          width: `${this.outSetValue}px`,
+          outset: '5px',
+          repeat: RepeatMode.Repeat,
+          fill: false
+        })
+
+        Slider({
+          value: this.outSetValue,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .margin({ top: 30 })
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.outSetValue = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_borderImage](figures/borderImage.gif)
