@@ -24,7 +24,7 @@ import process from '@ohos.process';
 | groups | number[] | 是 | 否 | 带有补充组id的数组。该接口为系统接口，三方应用不支持调用。 |
 | pid | number | 是 | 否 | 当前进程的pid。 |
 | ppid | number | 是 | 否 | 当前进程的父进程的pid。该接口为系统接口，三方应用不支持调用。 |
-| tid<sup>8+</sup> | number | 是 | 否 | 当前进程的tid。 |
+| tid<sup>8+</sup> | number | 是 | 否 | 当前线程的tid。 |
 
 
 ## ChildProcess
