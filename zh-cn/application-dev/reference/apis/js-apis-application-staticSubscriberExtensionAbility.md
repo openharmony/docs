@@ -9,7 +9,7 @@ StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility的�
 ## 导入模块
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
 ```
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
@@ -33,7 +33,7 @@ onReceiveEvent(event: CommonEventData): void;
   ```ts
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
         onReceiveEvent(event) {
-            console.log("onReceiveEvent, event: " + JSON.stringify(event))
+            console.log('onReceiveEvent, event: ' + JSON.stringify(event));
         }
     }
   ```

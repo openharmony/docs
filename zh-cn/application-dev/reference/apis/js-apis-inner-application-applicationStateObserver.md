@@ -16,7 +16,7 @@
 
 **示例：**
 ```ts
-import appManager from "@ohos.application.appManager"
+import appManager from "@ohos.application.appManager";
 
 let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
@@ -34,6 +34,6 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log('onProcessStateChanged onProcessStateChanged: ' +  JSON.stringify(processData));
     }
-}
+};
 let observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
 ```

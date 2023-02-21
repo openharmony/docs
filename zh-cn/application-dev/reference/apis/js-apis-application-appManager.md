@@ -32,7 +32,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest((err, flag) => {
       console.log('startAbility result:' + JSON.stringify(err));
-  })  
+  });
   ```
 
 
@@ -106,7 +106,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
   app.isRamConstrainedDevice((err, data) => {
       console.log('startAbility result failed:' + JSON.stringify(err));
       console.log('startAbility result success:' + JSON.stringify(data));
-  })
+  });
   ```
 
 ## appManager.getAppMemorySize
@@ -153,7 +153,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   app.getAppMemorySize((err, data) => {
       console.log('startAbility result failed :' + JSON.stringify(err));
       console.log('startAbility result success:' + JSON.stringify(data));
-  })
+  });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
@@ -207,7 +207,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
   app.getProcessRunningInfos((err, data) => {
       console.log('startAbility result failed :' + JSON.stringify(err));
       console.log('startAbility result success:' + JSON.stringify(data));
-  })
+  });
   ```
 
 ## appManager.registerApplicationStateObserver<sup>8+</sup>
@@ -247,7 +247,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  }
+  };
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
   console.log('-------- observerCode: ---------', observerCode);
   ```
@@ -290,7 +290,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  }
+  };
   let bundleNameList = ['bundleName1', 'bundleName2'];
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
   console.log('-------- observerCode: ---------', observerCode);
@@ -362,7 +362,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
   })
   .catch((err) => {
       console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-  })
+  });
   ```
 
 ## appManager.getForegroundApplications<sup>8+</sup>
@@ -423,7 +423,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
   })
   .catch((err) => {
       console.log('--------- getForegroundApplications fail -------', err);
-  })
+  });
   ```
 
 ## appManager.killProcessWithAccount<sup>8+</sup>
@@ -456,7 +456,7 @@ app.killProcessWithAccount(bundleName, accountId)
    })
    .catch((err) => {
        console.log('------------ killProcessWithAccount fail ------------', err);
-   })
+   });
 ```
 
 
@@ -562,7 +562,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
     })
     .catch((err) => {
         console.log('------------ killProcessesByBundleName fail ------------', err);
-    })
+    });
   ```
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
@@ -632,5 +632,5 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
     })
     .catch((err) => {
         console.log('------------ clearUpApplicationData fail ------------', err);
-    })
+    });
   ```

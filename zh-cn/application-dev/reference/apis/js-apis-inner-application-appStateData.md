@@ -14,7 +14,7 @@
 
 **示例：**
 ```ts
-import appManager from "@ohos.application.appManager"
+import appManager from "@ohos.application.appManager";
 
 appManager.getForegroundApplications((error, data) => {
     for (let i = 0; i < data.length; i++) {
