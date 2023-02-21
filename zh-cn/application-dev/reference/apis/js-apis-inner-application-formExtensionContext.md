@@ -21,8 +21,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         let formContext = this.context; // 获取FormExtensionContext
         // ...
         let dataObj1 = {
-            temperature:"11c",
-            "time":"11:00"
+            temperature:'11c',
+            'time':'11:00'
         };
         let obj1 = formBindingData.createFormBindingData(dataObj1);
         return obj1;
@@ -51,22 +51,22 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 var want = {
-    deviceId: "",
-    bundleName: "com.example.formstartability",
-    abilityName: "MainAbility",
-    action: "action1",
-    entities: ["entity1"],
-    type: "MIMETYPE",
-    uri: "key={true,true,false}",
+    deviceId: '',
+    bundleName: 'com.example.formstartability',
+    abilityName: 'MainAbility',
+    action: 'action1',
+    entities: ['entity1'],
+    type: 'MIMETYPE',
+    uri: 'key={true,true,false}',
     parameters: {}
-}
+};
 this.context.startAbility(want, (error, data) => {
     if (error) {
       console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
     } else {
       console.log(`FormExtensionContext startAbility success`);
     }
-})
+});
 ```
 
 ## startAbility
@@ -95,18 +95,18 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 ```ts
 var want = {
-    deviceId: "",
-    bundleName: "com.example.formstartability",
-    abilityName: "MainAbility",
-    action: "action1",
-    entities: ["entity1"],
-    type: "MIMETYPE",
-    uri: "key={true,true,false}",
+    deviceId: '',
+    bundleName: 'com.example.formstartability',
+    abilityName: 'MainAbility',
+    action: 'action1',
+    entities: ['entity1'],
+    type: 'MIMETYPE',
+    uri: 'key={true,true,false}',
     parameters: {}
-}
+};
 this.context.startAbility(want).then(() => {
-    console.info("StartAbility Success");
+    console.info('StartAbility Success');
 }).catch((error) => {
-    console.info("StartAbility failed");
+    console.info('StartAbility failed');
 });
 ```

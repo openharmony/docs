@@ -14,8 +14,8 @@
 
   ```ts
   let want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
 
   let connectOptions = {
@@ -28,7 +28,7 @@
     onFailed(code) { 
         console.error('onFailed code: ' + code);
     }
-  }
+  };
 
   let connection = this.context.connectAbility(want, connectOptions);
   ```

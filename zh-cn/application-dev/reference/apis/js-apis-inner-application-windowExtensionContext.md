@@ -19,7 +19,7 @@ WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-w
 ```ts
   import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
-  let context = undefined;
+  let context;
   class WindowExtAbility extends WindowExtensionAbility {
     onConnect() {
       context = this.context; // 获取WindowExtensionContext
@@ -47,8 +47,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
   ```ts
   var want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "MainAbility"
+    bundleName: 'com.example.myapplication',
+    abilityName: 'MainAbility'
   };
   var options = {
     windowMode: 102
@@ -97,8 +97,8 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MainAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MainAbility'
   };
   var options = {
   	windowMode: 102,

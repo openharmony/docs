@@ -48,7 +48,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
         if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
-            console.log("The ability has been started by the way of startAbility.");
+            console.log('The ability has been started by the way of startAbility.');
         }
     }
 }
@@ -74,7 +74,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
-            console.log("The ability has exit last because the ability was not responding.");
+            console.log('The ability has exit last because the ability was not responding.');
         }
     }
 }
@@ -124,8 +124,8 @@ class MyAbility extends UIAbility {
 
 ```ts
 let want = {
-    bundleName: "com.test.example",
-    abilityName: "MainAbility"
+    bundleName: 'com.test.example',
+    abilityName: 'MainAbility'
 };
 let option = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
@@ -133,9 +133,9 @@ let option = {
 
 // 确保从上下文获取到context
 this.context.startAbility(want, option).then(()={
-    console.log("Succeed to start ability.");
+    console.log('Succeed to start ability.');
 }).catch((error)=>{
-    console.log("Failed to start ability with error: " + JSON.stringify(error));
+    console.log('Failed to start ability with error: ' + JSON.stringify(error));
 });
 ```
 
@@ -159,7 +159,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onMemoryLevel(level) {
         if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
-            console.log("The memory of device is critical, please release some memory.");
+            console.log('The memory of device is critical, please release some memory.');
         }
     }
 }
@@ -211,7 +211,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         if (reason === AbilityConstant.StateType.CONTINUATION) {
-            console.log("Save the ability data when the ability continuation.");
+            console.log('Save the ability data when the ability continuation.');
         } 
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }

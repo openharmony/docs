@@ -10,7 +10,7 @@ AbilityManager模块提供对Ability相关信息和状态信息进行获取、�
 ## 导入模块
 
 ```ts
-import AbilityManager from '@ohos.application.abilityManager'
+import AbilityManager from '@ohos.application.abilityManager';
 ```
 
 ## AbilityState
@@ -53,7 +53,7 @@ import abilitymanager from '@ohos.application.abilityManager';
 
 let config = {
   language: 'chinese' 
-}
+};
 
 abilitymanager.updateConfiguration(config, () => {
     console.log('------------ updateConfiguration -----------');
@@ -89,7 +89,7 @@ import abilitymanager from '@ohos.application.abilityManager';
 
 let config = {
   language: 'chinese' 
-}
+};
 
 abilitymanager.updateConfiguration(config).then(() => {
   console.log('updateConfiguration success');
@@ -146,8 +146,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 import abilitymanager from '@ohos.application.abilityManager';
  
 abilitymanager.getAbilityRunningInfos().then((data) => {
-    console.log("getAbilityRunningInfos  data: " + JSON.stringify(data))
+    console.log("getAbilityRunningInfos  data: " + JSON.stringify(data));
 }).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err)
+  console.log("getAbilityRunningInfos err: "  + err);
 });
 ```
