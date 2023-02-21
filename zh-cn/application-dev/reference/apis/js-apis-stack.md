@@ -239,7 +239,7 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 stack.forEach((value, index) => {
- console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
