@@ -1,16 +1,18 @@
 # @ohos.util.TreeSet (非线性容器TreeSet)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 TreeSet基于[TreeMap](js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一且有序。
 
 TreeSet和[HashSet](js-apis-hashset.md)相比，HashSet中的数据无序存放，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不允许。
 
 **推荐使用场景：** 一般需要存储有序集合的场景，可以使用TreeSet。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
+文档中存在泛型的使用，涉及以下泛型标记符:
+
 - T: Type, 类
+
+> **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -436,7 +438,7 @@ treeSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中包含的键值的新迭代器对象。
+返回包含此映射中键值的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -482,13 +484,13 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的元素。 |
-| key | T | 否 | 当前遍历到的元素（和value相同）。 |
+| value | T | 否 | 当前遍历到的value元素。 |
+| key | T | 否 | 当前遍历到的key元素。 |
 | set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
 **错误码：**
@@ -515,7 +517,7 @@ treeSet.forEach((value, key) => {
 
 entries(): IterableIterator<[T, T]>
 
-返回包含此映射中包含的键值对的新迭代器对象。
+返回包含此映射中键值对的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -553,7 +555,7 @@ while(temp != undefined) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -561,7 +563,7 @@ while(temp != undefined) {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器 |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
 **错误码：**
 

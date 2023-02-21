@@ -20,7 +20,7 @@
 
 | 文件名称 | 描述 |
 | -------- | -------- |
-| [native_buffer.h](native__buffer_8h.md) | 定义获取和使用NativeBuffer的相关函数 |
+| [native_buffer.h](native__buffer_8h.md) | 定义获取和使用NativeBuffer的相关函数<br>引用文件：<native_buffer/native_buffer.h> |
 
 
 ### 结构体

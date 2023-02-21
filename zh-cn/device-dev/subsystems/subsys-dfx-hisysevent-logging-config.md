@@ -31,20 +31,20 @@
 - 每个事件名称可定义多个参数，同一个事件名称内部的参数不能重名，每个事件名称有且只有一个名称为__BASE的参数，此参数字段组成如表1，其它自定义参数，具体字段组成如表2。
     **表1** __BASE参数字段说明
   
-  | 字段名称 | 描述 | 
+  | 字段名称 | 描述 |
   | -------- | -------- |
-  | type | 字段说明：必选字段，用来标识该事件名称的类型。<br/>取值范围：<br/>-&nbsp;FAULT：错误类型。<br/>-&nbsp;STATISTIC：统计类型。<br/>-&nbsp;SECURITY：安全性。<br/>-&nbsp;BEHAVIOR：用户行为。 | 
-  | level | 字段说明：必选字段，用来标识该事件名称的级别。<br/>取值范围：<br/>-&nbsp;CRITICAL：严重。<br/>-&nbsp;MINOR：一般。 | 
-  | tag | 字段说明：可选字段，用来标识该事件名称的标签。<br/>定义规则：<br/>-&nbsp;最多可同时定义5个标签，标签之间使用空格来分隔。<br/>-&nbsp;单个标签最多包含16个字符，字符范围[a-zA-Z0-9] | 
-  | desc | 字段说明：必选字段，用来对该事件名称进行描述。<br/>定义规则：<br/>-&nbsp;至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9&nbsp;_] | 
+  | type | 字段说明：必选字段，用来标识该事件名称的类型。<br/>取值范围：<br/>-&nbsp;FAULT：错误类型。<br/>-&nbsp;STATISTIC：统计类型。<br/>-&nbsp;SECURITY：安全性。<br/>-&nbsp;BEHAVIOR：用户行为。 |
+  | level | 字段说明：必选字段，用来标识该事件名称的级别。<br/>取值范围：<br/>-&nbsp;CRITICAL：严重。<br/>-&nbsp;MINOR：一般。 |
+  | tag | 字段说明：可选字段，用来标识该事件名称的标签。<br/>定义规则：<br/>-&nbsp;最多可同时定义5个标签，标签之间使用空格来分隔。<br/>-&nbsp;单个标签最多包含16个字符，字符范围[a-zA-Z0-9] |
+  | desc | 字段说明：必选字段，用来对该事件名称进行描述。<br/>定义规则：<br/>-&nbsp;至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9&nbsp;_] |
 
     **表2** 自定义参数字段说明
   
-  | 字段名称 | 描述 | 
+  | 字段名称 | 描述 |
   | -------- | -------- |
-  | type | 字段说明：必选字段，用来标识该参数的类型。<br/>取值范围：<br/>-&nbsp;BOOL<br/>-&nbsp;UINT8<br/>-&nbsp;UINT16<br/>-&nbsp;INT32<br/>-&nbsp;UINT32<br/>-&nbsp;UINT64<br/>-&nbsp;FLOAT<br/>-&nbsp;DOUBLE<br/>-&nbsp;STRING | 
-  | arrsize | 字段作用：可选字段，用来标识数组类型参数的长度。<br/>取值范围：<br/>-&nbsp;1~100 | 
-  | desc | 字段作用：必选字段，用来对该参数进行描述。<br/>定义规则：<br/>-&nbsp;至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9&nbsp;_] | 
+  | type | 字段说明：必选字段，用来标识该参数的类型。<br/>取值范围：<br/>-&nbsp;BOOL<br/>-&nbsp;INT8<br/>-&nbsp;UINT8<br/>-&nbsp;INT16<br/>-&nbsp;UINT16<br/>-&nbsp;INT32<br/>-&nbsp;UINT32<br/>-&nbsp;INT64<br/>-&nbsp;UINT64<br/>-&nbsp;FLOAT<br/>-&nbsp;DOUBLE<br/>-&nbsp;STRING |
+  | arrsize | 字段作用：可选字段，用来标识数组类型参数的长度。<br/>取值范围：<br/>-&nbsp;1~100 |
+  | desc | 字段作用：必选字段，用来对该参数进行描述。<br/>定义规则：<br/>-&nbsp;至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9&nbsp;_] |
 
 
 ## 编写yaml文件
@@ -74,7 +74,7 @@
 - EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](../subsystems/subsys-dfx-hisysevent-listening.md)。
 
 - EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](../subsystems/subsys-dfx-hisysevent-listening.md)，所以还可以通过事件标签对该事件进行实时订阅。
-    
+  
   ```
   ##########################################
   # the hisysevent definition for module a #
@@ -102,7 +102,7 @@
 
 在bundle.json文件中通过hisysevent_config属性完成yaml文件的路径指定：
 
-  
+
 ```
 {
     "name": "@ohos/moduel_a",
@@ -153,14 +153,14 @@
 
 - 全量编译：
   - 全量编译整个系统，会将所有组件配置的yaml文件中的配置进行汇总，正常完成系统编译后，指定目录下就会生成hisysevent.def文件。
-       
+    
      ```
      cd 工程根目录的绝对路径
      ./build --product-name <product name>
      ```
 
   - 全量编译生成的hisysevent.def文件可以通过以下命令获取：
-       
+    
      ```
      cd 工程根目录的绝对路径
      find out -name hisysevent.def -type f
@@ -169,7 +169,7 @@
 - 单文件编译：
   也可以只编译单个组件的yaml文件，命令如下：
 
-    
+  
   ```
   cd 工程根目录的绝对路径
   ./build/ohos/hisysevent/gen_def_from_all_yaml.py --yaml-list <yaml file list> --def-path <file store directory>
@@ -177,10 +177,10 @@
 
     **表3** 单文件编译参数说明
   
-  | 选项名称 | 描述 | 
+  | 选项名称 | 描述 |
   | -------- | -------- |
-  | --yaml-list | 指定需要编译的yaml文件路径列表，多个yaml文件路径之间用空格分隔。 | 
-  | --def-path | 指定编译生成的hisysevent.def文件的生成路径。 | 
+  | --yaml-list | 指定需要编译的yaml文件路径列表，多个yaml文件路径之间用空格分隔。 |
+  | --def-path | 指定编译生成的hisysevent.def文件的生成路径。 |
 
 
 ### 打点及查询定义的事件

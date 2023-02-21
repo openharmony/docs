@@ -71,7 +71,7 @@ let certData = "-----BEGIN CERTIFICATE-----\n"
 + "I1Lwu6in1ruflZhzseWulXwcITf3bm/Y5X1g1XFWQUH\n"
 + "-----END CERTIFICATE-----\n";
 
-// Convert the certificate data form a string to a Uint8Array..
+// Convert the certificate data form a string to a Uint8Array.
 function stringToUint8Array(str) {
     var arr = [];
     for (var i = 0, j = str.length; i < j; i++) {
@@ -209,7 +209,7 @@ let crlData = "-----BEGIN X509 CRL-----\n"
 + "DrAA7hErVgXhtURLbAI=\n"
 + "-----END X509 CRL-----\n";
 
-// Convert the certificate data form a string to a Uint8Array..
+// Convert the certificate data form a string to a Uint8Array.
 function stringToUint8Array(str) {
     var arr = [];
     for (var i = 0, j = str.length; i < j; i++) {
@@ -260,7 +260,7 @@ function crlSample() {
            console.log("isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
         }
 
-        // Obtain the PubKey instance by using generateKeyPair() or convertKey() of AsyKeyGenerator. The process is omitted here.
+        // The binary data of the public key needs to be passed to convertKey() of @ohos.security.cryptoFramework to obtain the PubKey object. The process is omitted here.
         let pubKey = null;
         
         // Verify the CRL signature.
@@ -441,7 +441,7 @@ function crlEntrySample() {
     }
 
     // Obtain the serial number of the revoked certificate.
-    let serialNumber = crlEntry.getSerialNumber();
+    serialNumber = crlEntry.getSerialNumber();
     
     // Obtain the revocation date of the revoked certificate.
     try {

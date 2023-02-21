@@ -36,46 +36,6 @@
 
 ## 示例
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Index {
-  @State outSetValue: number = 40
-
-  build() {
-    Row() {
-      Column() {
-        Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
-          .borderImage({
-            source: $r('app.media.heart'),
-            slice: `${this.outSetValue}%`,
-            width: `${this.outSetValue}px`,
-            outset: '5px',
-            repeat: RepeatMode.Repeat,
-            fill: false
-          })
-        Slider({
-          value: this.outSetValue,
-          min: 0,
-          max: 100,
-          style: SliderStyle.OutSet
-        })
-          .margin({ top: 30 })
-          .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValue = value
-            console.info('value:' + value + 'mode:' + mode.toString())
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![zh-cn_image_borderImage](figures/borderImage.gif)
-
 
 ```ts
 // xxx.ets
@@ -85,7 +45,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
+        Text('This is gradient color.').textAlign(TextAlign.Center).height(50).width(200)
           .borderImage({
             source: {
               angle: 90,

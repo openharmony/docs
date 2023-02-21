@@ -77,7 +77,7 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 
 ## Available APIs
 
-| Category| Description|
+| Category| API Description |
 | -------- | -------- |
 | Creating or deleting a message queue| **LOS_QueueCreate**: creates a message queue. The system dynamically allocates the queue space.<br>**LOS_QueueCreateStatic**: creates a static message queue. You need to pass in the queue space.<br>**LOS_QueueDelete**: deletes a message queue. After a static message queue is deleted, you need to release the queue space.|
 | Reading or writing data (address without the content) in a queue| **LOS_QueueRead**: reads data in the head node of the specified queue. The data in the queue node is an address.<br>**LOS_QueueWrite**: writes the **bufferAddr** (buffer address) to the tail node of the specified queue.<br>**LOS_QueueWriteHead**: writes the **bufferAddr** (buffer address) to the head node of the specified queue.|
@@ -136,7 +136,7 @@ Create a queue and two tasks. Enable task 1 to write data to the queue, and task
 
 The sample code is as follows:
 
-The sample code is compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. Call **ExampleQueue** in **TestTaskEntry**.
+The sample code can be compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. The **ExampleQueue** function is called in **TestTaskEntry**.
 
 
 ```

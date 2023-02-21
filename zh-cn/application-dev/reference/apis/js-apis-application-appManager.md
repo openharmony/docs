@@ -121,7 +121,7 @@ getAppMemorySize(): Promise\<number>;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 应用程序内存大小。 | 
+  | Promise&lt;number&gt; | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -145,7 +145,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -161,7 +161,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 获取有关运行进程的信息。
 
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
+> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -171,7 +171,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<ProcessRunningInfo>> | 获取有关运行进程的信息。 |
+| Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -189,7 +189,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 获取有关运行进程的信息。
 
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
+> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -199,63 +199,12 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 是 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | 是 | 获取有关运行进程的信息。 |
 
 **示例：**
     
   ```ts
   app.getProcessRunningInfos((err, data) => {
-      console.log('startAbility result failed :' + JSON.stringify(err));
-      console.log('startAbility result success:' + JSON.stringify(data));
-  })
-  ```
-
-## appManager.getProcessRunningInformation<sup>9+</sup>
-
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
-
-获取有关运行进程的信息。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 获取有关运行进程的信息。 |
-
-**示例：**
-    
-  ```ts
-  app.getProcessRunningInformation().then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-  ```
-
-## appManager.getProcessRunningInformation<sup>9+</sup>
-
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
-
-获取有关运行进程的信息。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 是 | 获取有关运行进程的信息。 |
-
-**示例：**
-    
-  ```ts
-  app.getProcessRunningInformation((err, data) => {
       console.log('startAbility result failed :' + JSON.stringify(err));
       console.log('startAbility result success:' + JSON.stringify(data));
   })
@@ -282,7 +231,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 **示例：**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -325,7 +274,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 **示例：**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -342,7 +291,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
         console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
-  var bundleNameList = ['bundleName1', 'bundleName2'];
+  let bundleNameList = ['bundleName1', 'bundleName2'];
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
   console.log('-------- observerCode: ---------', observerCode);
   ```
@@ -368,7 +317,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 **示例：**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   function unregisterApplicationStateObserverCallback(err) {
     if (err) {
@@ -405,7 +354,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 **示例：**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   app.unregisterApplicationStateObserver(observerId)
   .then((data) => {
@@ -420,8 +369,8 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
-获取前台进程的应用程序。
-
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
+  
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -432,7 +381,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<AppStateData>> | 是 | 表示应用的状态数据。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | callback形式返回所有当前处于前台的应用信息。 |
 
 **示例：**
     
@@ -451,7 +400,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
-获取前台进程的应用程序。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -463,7 +412,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<ProcessRunningInfo>> | 返回进程运行信息的数组。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise形式返回所有当前处于前台的应用信息。 |
 
 **示例：**
     
@@ -499,8 +448,8 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 app.killProcessWithAccount(bundleName, accountId)
    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
@@ -534,8 +483,8 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 **示例：**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
    if (err) {
        console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
@@ -568,7 +517,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function killProcessesByBundleNameCallback(err, data) {
     if (err) {
         console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
@@ -606,7 +555,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   app.killProcessesByBundleName(bundleName)
     .then((data) => {
         console.log('------------ killProcessesByBundleName success ------------', data);
@@ -638,7 +587,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function clearUpApplicationDataCallback(err, data) {
     if (err) {
         console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
@@ -676,7 +625,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 **示例：**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   app.clearUpApplicationData(bundleName)
     .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);
@@ -685,31 +634,3 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
         console.log('------------ clearUpApplicationData fail ------------', err);
     })
   ```
-
-## ApplicationState<sup>9+</sup>
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称                 | 值  | 说明                               |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |   当应用在创建中的时候处于的状态。         |
-| STATE_FOREGROUND          | 2   |      当应用切换到前台的时候处于的状态。            |
-| STATE_ACTIVE  | 3   |         当应用在获焦的时候处于的状态。     |
-| STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
-
-## ProcessState<sup>9+</sup>
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称                 | 值  | 说明                               |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 3   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 4   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 5   |         当进程在销毁的时候处于的状态。         |

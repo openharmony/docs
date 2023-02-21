@@ -490,7 +490,7 @@ struct CompA {
     this.updateTotal()
   }
 
-  updateTotal(): number {
+  updateTotal(): void {
     let sum = 0;
     this.shopBasket.forEach((i) => {
       sum += i

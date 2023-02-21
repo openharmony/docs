@@ -34,7 +34,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 ## 属性
 
-不支持[触摸热区设置](ts-universal-attributes-touch-target.md)，除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
@@ -43,7 +43,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | barMode           | BarMode | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
 | barWidth          | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。     |
 | barHeight         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。     |
-| animationDuration | number | TabContent滑动动画时长。<br/>默认值：200 |
+| animationDuration | number | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：200 |
 
 ## BarMode枚举说明
 

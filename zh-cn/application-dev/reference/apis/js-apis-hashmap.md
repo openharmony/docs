@@ -1,8 +1,5 @@
 # @ohos.util.HashMap (非线性容器HashMap)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 HashMap底层使用数组+链表+红黑树的方式实现，查询、插入和删除的效率都很高。HashMap存储内容基于key-value的键值对映射，不能有重复的key，且一个key只能对应一个value。
 
 HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
@@ -11,9 +8,14 @@ HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 需要快速存取、删除以及插入键值对数据时，推荐使用HashMap。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
-- K: Key, 键<br>
-- V: Value, 值
+文档中存在泛型的使用，涉及以下泛型标记符：<br>
+- K：Key，键<br>
+- V：Value，值
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -337,7 +339,7 @@ hashMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-返回包含此映射中包含的键名的新迭代器对象。
+返回包含此映射中包含的键的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 

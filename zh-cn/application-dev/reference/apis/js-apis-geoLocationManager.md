@@ -88,7 +88,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | countryCode | string | 是 | 否  | 表示国家码信息。 |
 | countryName | string| 是 | 否 | 表示国家信息。 |
 | administrativeArea | string | 是 | 否 | 表示省份区域信息。 |
-| subAdministrativeArea | string | 是 | 否 | 表示表示子区域信息。 |
+| subAdministrativeArea | string | 是 | 否 | 表示子区域信息。 |
 | locality | string | 是 | 否 | 表示城市信息。 |
 | subLocality | string | 是 | 否 | 表示子城市信息。 |
 | roadName | string | 是 | 否 |表示路名信息。 |
@@ -782,12 +782,12 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {

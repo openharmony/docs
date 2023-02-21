@@ -20,7 +20,7 @@
 
 | 文件名称 | 描述 |
 | -------- | -------- |
-| [native_vsync.h](native__vsync_8h.md) | 定义获取和使用NativeVsync的相关函数 |
+| [native_vsync.h](native__vsync_8h.md) | 定义获取和使用NativeVsync的相关函数<br>引用文件：<native_vsync/native_vsync.h> |
 
 
 ### 函数

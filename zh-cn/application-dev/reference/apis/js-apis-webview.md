@@ -11,6 +11,7 @@
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ## 需要权限
+
 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 导入模块
@@ -114,7 +115,7 @@ postMessageEvent(message: WebMessage): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -166,7 +167,7 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
@@ -248,7 +249,7 @@ export default class MainAbility extends Ability {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
 
 @Entry
 @Component
@@ -265,7 +266,7 @@ struct WebComponent {
 
 ### loadUrl
 
-loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
+loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 加载指定的URL。
 
@@ -276,11 +277,11 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string \| Resource | 是   | 需要加载的 URL。      |
-| headers | Array\<[HeaderV9](#headerv9)> | 否   | URL的附加HTTP请求头。 |
+| headers | Array\<[WebHeader](#webheader)> | 否   | URL的附加HTTP请求头。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -304,6 +305,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
+            //需要加载的URL是string类型
             this.controller.loadUrl('www.example.com');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -313,6 +315,69 @@ struct WebComponent {
     }
   }
 }
+```
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            //带参数headers
+            this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+      .webDebuggingAccess(true)
+    }
+  }
+}
+```
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            //需要加载的URL是Resource类型
+            this.controller.loadUrl($rawfile('xxx.html'));
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```html
+<!-- xxx.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
 ```
 
 ### loadData
@@ -335,7 +400,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -389,7 +454,7 @@ accessForward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -433,7 +498,7 @@ forward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -482,7 +547,7 @@ accessBackward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -526,7 +591,7 @@ backward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -569,7 +634,7 @@ onActive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -612,7 +677,7 @@ onInactive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -654,7 +719,7 @@ refresh(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -709,7 +774,7 @@ accessStep(step: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -754,7 +819,7 @@ clearHistory(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -789,7 +854,7 @@ struct WebComponent {
 
 ### getHitTest
 
-getHitTest(): HitTestTypeV9
+getHitTest(): WebHitTestType
 
 获取当前被点击区域的元素类型。
 
@@ -799,11 +864,11 @@ getHitTest(): HitTestTypeV9
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [HitTestTypeV9](#hittesttypev9)| 被点击区域的元素类型。 |
+| [WebHitTestType](#webhittesttype)| 被点击区域的元素类型。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -855,7 +920,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -922,7 +987,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -990,7 +1055,7 @@ runJavaScript(script: string): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1048,7 +1113,7 @@ deleteJavaScriptRegister(name: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1099,7 +1164,7 @@ zoom(factor: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1150,7 +1215,7 @@ searchAllAsync(searchString: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1198,7 +1263,7 @@ clearMatches(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1247,7 +1312,7 @@ searchNext(forward: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1290,7 +1355,7 @@ clearSslCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1333,7 +1398,7 @@ clearClientAuthenticationCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1374,7 +1439,7 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
@@ -1382,13 +1447,13 @@ struct WebComponent {
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
-**示例：** 
+**示例：**
 
   ```ts
 // xxx.ets
@@ -1435,7 +1500,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1472,7 +1537,7 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2、在应用侧的消息端口(如端口1)上注册回调事件。
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                var msg = 'Got msg from HTML:';    
+                let msg = 'Got msg from HTML:';
                 if (typeof(result) == "string") {
                   console.log("received string message from html5, string is:" + result);
                   msg = msg + result;
@@ -1500,7 +1565,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.ports && this.ports[1]) {
-              this.ports[1].postMessageEvent("post message from ets to HTML");
+              this.ports[1].postMessageEvent("this.sendFromEts");
             } else {
               console.error(`ports is null, Please initialize first`);
             }
@@ -1586,7 +1651,7 @@ requestFocus(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1629,7 +1694,7 @@ zoomIn(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1673,7 +1738,7 @@ zoomOut(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1723,7 +1788,7 @@ getHitTestValue(): HitTestValue
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1774,7 +1839,7 @@ getWebId(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1824,7 +1889,7 @@ getUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1874,7 +1939,7 @@ getTitle(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1924,7 +1989,7 @@ getPageHeight(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1976,7 +2041,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2041,7 +2106,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2099,7 +2164,7 @@ getUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2143,7 +2208,7 @@ stop(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2192,7 +2257,7 @@ backOrForward(step: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2243,7 +2308,7 @@ scrollTo(x:number, y:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2315,7 +2380,7 @@ scrollBy(deltaX:number, deltaY:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2387,7 +2452,7 @@ slideScroll(vx:number, vy:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2458,7 +2523,7 @@ getOriginalUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2508,7 +2573,7 @@ getFavicon(): image.PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2558,7 +2623,7 @@ setNetworkAvailable(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2607,7 +2672,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2662,7 +2727,7 @@ hasImage(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2716,7 +2781,7 @@ removeCache(clearRom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2765,7 +2830,7 @@ pageUp(top:boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2814,7 +2879,7 @@ pageDown(bottom:boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2863,7 +2928,7 @@ getBackForwardEntries(): BackForwardList
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2912,7 +2977,7 @@ serializeWebState(): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2967,7 +3032,7 @@ restoreWebState(state: Uint8Array): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3087,7 +3152,7 @@ static getCookie(url: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3138,7 +3203,7 @@ static setCookie(url: string, value: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3431,7 +3496,7 @@ static existCookie(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
@@ -3539,11 +3604,11 @@ static deleteOrigin(origin : string): void
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| origin | string | 是   | 指定源的字符串索引. |
+| origin | string | 是   | 指定源的字符串索引，来自于[getOrigins](#getorigins)。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3595,7 +3660,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3656,7 +3721,7 @@ static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3718,7 +3783,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3782,7 +3847,7 @@ static getOriginQuota(origin : string) : Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3841,7 +3906,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -3905,7 +3970,7 @@ static getOriginUsage(origin : string) : Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
@@ -4164,133 +4229,6 @@ struct WebComponent {
 }
 ```
 
-## WebAsyncController
-
-通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
-
-### 创建对象
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    webAsyncController: web_webview.WebAsyncController = new web_webview.WebAsyncController(this.controller)
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### constructor<sup>9+</sup>
-
-constructor(controller: WebController)
-
-WebAsyncController的创建需要与一个[WebController](../arkui-ts/ts-basic-components-web.md#webcontroller)进行绑定。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名| 类型 | 必填 | 说明 |
-| ----- | ---- | ---- | --- |
-| controller | [WebController](../arkui-ts/ts-basic-components-web.md#webcontroller) | 是 | 所绑定的WebviewController。|
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
-
-以回调方式异步保存当前页面。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名      | 类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-| callback | AsyncCallback\<string> | 是    | 返回文件存储路径，保持网页失败会返回null。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller)
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
-              if (filename != null) {
-                console.info(`save web archive success: ${filename}`)
-              }
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
-
-以Promise方式异步保存当前页面。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名      | 类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-
-**返回值：**
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller);
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
-              .then(filename => {
-                if (filename != null) {
-                  console.info(`save web archive success: ${filename}`)
-                }
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
 ## GeolocationPermissions
 
 web组件地理位置权限管理对象。
@@ -4315,7 +4253,7 @@ static allowGeolocation(origin: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -4365,7 +4303,7 @@ static deleteGeolocation(origin: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -4416,7 +4354,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -4478,7 +4416,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -4646,7 +4584,7 @@ struct WebComponent {
   }
 }
 ```
-## HeaderV9
+## WebHeader
 Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -4656,7 +4594,7 @@ Web组件返回的请求/响应头对象。
 | headerKey   | string | 是 | 是 | 请求/响应头的key。   |
 | headerValue | string | 是 | 是 | 请求/响应头的value。 |
 
-## HitTestTypeV9
+## WebHitTestType
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4679,7 +4617,7 @@ Web组件返回的请求/响应头对象。
 
 | 名称 | 类型 | 可读 | 可写 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [HitTestTypeV9](#hittesttypev9) | 是 | 否 | 当前被点击区域的元素类型。|
+| type | [WebHitTestType](#webhittesttype) | 是 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
@@ -4780,7 +4718,6 @@ struct WebComponent {
 | historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 是   | 否   | 历史记录项的标题。           |
-
 
 ## WebCustomScheme
 

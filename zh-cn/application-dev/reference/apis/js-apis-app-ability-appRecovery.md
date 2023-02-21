@@ -18,13 +18,12 @@ import appRecovery from '@ohos.app.ability.appRecovery';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                          | 值   | 说明                                                         |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| ALWAYS_RESTART           | 0    | 总是重启应用。 |
-| CPP_CRASH_NO_RESTART           | 0x0001    | 发生CPP_CRASH时不重启应用。 |
-| JS_CRASH_NO_RESTART           | 0x0002    | 发生JS_CRASH时不重启应用。 |
-| APP_FREEZE_NO_RESTART           | 0x0004    | 发生APP_FREEZE时不重启应用。 |
-| NO_RESTART           | 0xFFFF  | 总是不重启应用。 |
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| ALWAYS_RESTART   | 0    | 总是重启应用。 |
+| RESTART_WHEN_JS_CRASH   | 0x0001    | 发生JS_CRASH时重启应用。 |
+| RESTART_WHEN_APP_FREEZE   | 0x0002    | 发生APP_FREEZE时重启应用。 |
+| NO_RESTART           | 0xFFFF    | 总是不重启应用。 |
 
 ## appRecovery.SaveOccasionFlag
 
@@ -69,9 +68,8 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
-import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MyAbility extends UIAbility {
+export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         appRecovery.enableAppRecovery(
             appRecovery.RestartFlag::ALWAYS_RESTART,

@@ -947,7 +947,8 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```js
-let path = this.context.getApplicationContext().fileDirs + "test.jpg";
+let context = featureAbility.getContext();
+let path = context.getCacheDir() + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
@@ -2529,7 +2530,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
+| format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg和webp。 |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 | bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M |
 

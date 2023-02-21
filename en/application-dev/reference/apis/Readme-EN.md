@@ -113,6 +113,7 @@
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
+      - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
@@ -215,9 +216,13 @@
   - data/rdb
     - [resultSet](js-apis-data-resultset.md)
 - File Management
-  - [@ohos.environment (Environment)](js-apis-environment.md)
+  - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
+  - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
+  - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
+  - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
+  - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
   - [@ohos.storageStatistics (Application Storage Statistics)](js-apis-storage-statistics.md)

@@ -1,4 +1,4 @@
-# @ohos.data.dataShare (DataShare)
+# @ohos.data.dataShare (Data Sharing)
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
@@ -37,17 +37,11 @@ Example:
 
 **com.samples.datasharetest.DataShare** is the data share identifier, and **DB00/TBL00** is the resource path.
 
-
 ## dataShare.createDataShareHelper
 
 createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void
 
 Creates a **DataShareHelper** instance. This API uses an asynchronous callback to return the result.
-
-Observe the following when using this API:
- - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -70,7 +64,7 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
@@ -93,11 +87,6 @@ try {
 createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper&gt;
 
 Creates a **DataShareHelper** instance. This API uses a promise to return the result.
-
-Observe the following when using this API:
- - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -125,7 +114,7 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
@@ -164,8 +153,7 @@ Subscribes to changes of the specified data. After an observer is registered, th
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 function onCallback() {
     console.info("**** Observer on callback ****");
 }
@@ -192,8 +180,7 @@ Unsubscribes from the changes of the specified data. This API uses an asynchrono
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 function offCallback() {
     console.info("**** Observer off callback ****");
 }
@@ -220,8 +207,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose",
@@ -265,8 +251,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose1",
@@ -303,8 +288,8 @@ Deletes one or more data records from the database. This API uses an asynchronou
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -346,8 +331,8 @@ Deletes one or more data records from the database. This API uses a promise to r
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -383,8 +368,8 @@ Queries data in the database. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -428,8 +413,8 @@ Queries data in the database. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -466,8 +451,8 @@ Updates data in the database. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -516,8 +501,8 @@ Updates data in the database. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -558,8 +543,7 @@ Batch inserts data into the database. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
@@ -601,8 +585,7 @@ Batch inserts data into the database. This API uses a promise to return the resu
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
@@ -636,8 +619,7 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -671,8 +653,7 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
     console.log("normalizeUri = " + data);
@@ -699,8 +680,7 @@ Denormalizes a URI. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -734,8 +714,7 @@ Denormalizes a URI. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
     console.log("denormalizeUri = " + data);
@@ -762,8 +741,7 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
     console.log("***** notifyChange *****");
@@ -793,8 +771,7 @@ Notifies the registered observer of data changes. This API uses a promise to ret
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri);
 ```

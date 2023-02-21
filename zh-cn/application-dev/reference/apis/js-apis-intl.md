@@ -14,7 +14,7 @@
 ```js
 import Intl from '@ohos.intl';
 ```
-
+未正确导入包可能产生不明确的接口行为。
 
 ## Locale
 
@@ -47,7 +47,10 @@ constructor()
 
 **示例：** 
   ```js
-  var locale = new Intl.Locale();
+  // 默认构造函数使用系统当前locale创建Locale对象
+  let locale = new Intl.Locale();
+  // 返回系统当前localel
+  let localeID = locale.toString();
   ```
 
 
@@ -63,12 +66,14 @@ constructor(locale: string, options?: LocaleOptions)
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string                           | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | 否    | 用于创建区域对象的选项。                 |
+| locale               | string                           | 是    | 包含区域信息的字符串，包括语言以、脚本、国家或地区。语言、脚本、国家或地区的国际标准及组合方式请见[Intl开发指导](../../internationalization/intl-guidelines.md#设置区域信息) |
+| options<sup>9+</sup> | [LocaleOptions](#localeoptions6) | 否    | 用于创建区域对象的选项。                 |
 
 **示例：** 
   ```js
-  var locale = new Intl.Locale("zh-CN");
+  // 创建 "zh-CN" Locale对象
+  let locale = new Intl.Locale("zh-CN");
+  let localeID = locale.toString(); // localeID = "zh-CN"
   ```
 
 
@@ -76,7 +81,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 toString(): string
 
-将区域信息转换为字符串
+获取区域对象的字符串表示
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -84,12 +89,13 @@ toString(): string
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| string | 字符串形式的区域信息。 |
+| string | 区域对象的字符串表示。 |
 
 **示例：** 
   ```js
-  var locale = new Intl.Locale("zh-CN");
-  locale.toString();
+  // 创建 "en-GB" Locale对象
+  let locale = new Intl.Locale("en-GB");
+  let localeID = locale.toString(); // localeID = "en-GB"
   ```
 
 
@@ -109,8 +115,17 @@ maximize(): Locale
 
 **示例：** 
   ```js
-  var locale = new Intl.Locale("zh-CN");
-  locale.maximize();
+  // 创建 "zh" Locale对象
+  let locale = new Intl.Locale("zh");
+  // 补齐Locale对象的脚本和地区
+  let maximizedLocale = locale.maximize();
+  let localeID = maximizedLocale.toString(); // localeID = "zh-Hans-CN"
+
+  // 创建 "en-US" Locale对象
+  locale = new Intl.Locale("en-US");
+  // 补齐Locale对象的脚本
+  maximizedLocale = locale.maximize();
+  localeID = maximizedLocale.toString(); // localeID = "en-Latn-US"
   ```
 
 
@@ -130,12 +145,21 @@ minimize(): Locale
 
 **示例：** 
   ```js
-  var locale = new Intl.Locale("zh-CN");
-  locale.minimize();
+  // 创建 "zh-Hans-CN" Locale对象
+  let locale = new Intl.Locale("zh-Hans-CN");
+  // 去除Locale对象的脚本和地区
+  let minimizedLocale = locale.minimize();
+  let localeID = minimizedLocale.toString(); // localeID = "zh"
+
+  // 创建 "en-US" Locale对象
+  locale = new Intl.Locale("en-US");
+  // 去除Locale对象的地区
+  minimizedLocale = locale.minimize();
+  localeID = minimizedLocale.toString(); // localeID = "en"
   ```
 
 
-## LocaleOptions<sup>9+</sup>
+## LocaleOptions<sup>6+</sup>
 
 表示区域初始化选项。
 
@@ -164,7 +188,8 @@ constructor()
 
 **示例：** 
   ```js
-  var datefmt= new Intl.DateTimeFormat();
+  // 使用系统当前locale创建DateTimeFormat对象
+  let datefmt= new Intl.DateTimeFormat();
   ```
 
 
@@ -181,17 +206,19 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | 否    | 用于创建时间日期格式化的选项。              |
+| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions6) | 否    | 用于创建时间日期格式化的选项。              |
 
 **示例：** 
   ```js
-  var datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
+  // 使用 "zh-CN" locale创建DateTimeFormat对象，日期风格为full，时间风格为medium
+  let datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **示例：** 
   ```js
-  var datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
+  // 使用 ["ban", "zh"] locale列表创建DateTimeFormat对象，因为ban为非法LocaleID，因此使用zh Locale创建DateTimeFormat对象
+  let datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
@@ -217,9 +244,14 @@ format(date: Date): string
 
 **示例：** 
   ```js
-  var date = new Date(2021, 11, 17, 3, 24, 0);
-  var datefmt = new Intl.DateTimeFormat("en-GB");
-  datefmt.format(date);
+  let date = new Date(2021, 11, 17, 3, 24, 0);
+  // 使用 en-GB locale创建DateTimeFormat对象
+  let datefmt = new Intl.DateTimeFormat("en-GB");
+  let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
+
+  // 使用 en-GB locale创建DateTimeFormat对象，dateStyle设置为full，timeStyle设置为medium
+  datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
+  formattedDate = datefmt.format(date); // formattedDate "Friday, 17 December 2021 at 03:24:00"
   ```
 
 
@@ -246,10 +278,11 @@ formatRange(startDate: Date, endDate: Date): string
 
 **示例：** 
   ```js
-  var startDate = new Date(2021, 11, 17, 3, 24, 0);
-  var endDate = new Date(2021, 11, 18, 3, 24, 0);
-  var datefmt = new Intl.DateTimeFormat("en-GB");
-  datefmt.formatRange(startDate, endDate);
+  let startDate = new Date(2021, 11, 17, 3, 24, 0);
+  let endDate = new Date(2021, 11, 18, 3, 24, 0);
+  // 使用 en-GB locale创建DateTimeFormat对象
+  let datefmt = new Intl.DateTimeFormat("en-GB");
+  let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021-18/12/2021"
   ```
 
 
@@ -265,16 +298,19 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions9) | DateTimeFormat&nbsp;对象的格式化选项。 |
+| [DateTimeOptions](#datetimeoptions6) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
   ```js
-  var datefmt = new Intl.DateTimeFormat("en-GB");
-  datefmt.resolvedOptions();
+  let datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
+  // 返回DateTimeFormat对象的配置项
+  let options = datefmt.resolvedOptions();
+  let dateStyle = options.dateStyle; // dateStyle = "full"
+  let timeStyle = options.timeStyle; // timeStyle = "medium"
   ```
 
 
-## DateTimeOptions<sup>9+</sup>
+## DateTimeOptions<sup>6+</sup>
 
 表示时间日期格式化选项。
 
@@ -316,7 +352,8 @@ constructor()
 
 **示例：** 
   ```js
-  var numfmt = new Intl.NumberFormat();
+  // 使用系统当前locale创建NumberFormat对象
+  let numfmt = new Intl.NumberFormat();
   ```
 
 
@@ -333,11 +370,12 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | 否    | 用于创建数字格式化的选项。                |
+| options<sup>9+</sup> | [NumberOptions](#numberoptions6) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
   ```js
-  var numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
+  // 使用 en-GB locale创建NumberFormat对象，style设置为decimal，notation设置为scientific
+  let numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
 
 
@@ -364,8 +402,9 @@ format(number: number): string;
 
 **示例：** 
   ```js
-  var numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
-  numfmt.format(1223);
+  // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
+  let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
   ```
 
 
@@ -381,17 +420,20 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions9) | NumberFormat&nbsp;对象的格式化选项。 |
+| [NumberOptions](#numberoptions6) | NumberFormat&nbsp;对象的格式化选项。 |
 
 
 **示例：** 
   ```js
-  var numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
-  numfmt.resolvedOptions();
+  let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  // 获取NumberFormat对象配置项
+  let options = numfmt.resolvedOptions();
+  let style = options.style; // style = decimal
+  let notation = options.notation; // notation = scientific
   ```
 
 
-## NumberOptions<sup>9+</sup>
+## NumberOptions<sup>6+</sup>
 
 表示设备支持的能力。
 
@@ -433,7 +475,8 @@ constructor()
 
 **示例：** 
   ```js
-  var collator = new Intl.Collator();
+  // 使用系统locale创建Collator对象
+  let collator = new Intl.Collator();
   ```
 
 
@@ -450,11 +493,12 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | 否    | 用于创建排序对象的选项。                 |
+| options<sup>9+</sup> | [CollatorOptions](#collatoroptions8) | 否    | 用于创建排序对象的选项。                 |
 
 **示例：** 
   ```js
-  var collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
+  // 使用 zh-CN locale创建Collator对象，localeMatcher设置为lookup，usage设置为sort
+  let collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
 
 
@@ -481,8 +525,10 @@ compare(first: string, second: string): number
 
 **示例：** 
   ```js
-  var collator = new Intl.Collator("zh-Hans");
-  collator.compare("first", "second");
+  // 使用en-GB locale创建Collator对象
+  let collator = new Intl.Collator("en-GB");
+  // 比较 "first" 和 "second" 的先后顺序
+  let compareResult = collator.compare("first", "second"); // compareResult = -1
   ```
 
 
@@ -498,16 +544,19 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions9) | 返回的Collator对象的属性。 |
+| [CollatorOptions](#collatoroptions8) | 返回的Collator对象的属性。 |
 
 **示例：** 
   ```js
-  var collator = new Intl.Collator("zh-Hans");
-  var options = collator.resolvedOptions();
+  let collator = new Intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
+  // 获取Collator对象的配置项
+  let options = collator.resolvedOptions();
+  let usage = options.usage; // usage = "sort"
+  let ignorePunctuation = options.ignorePunctuation; // ignorePunctuation = true
   ```
 
 
-## CollatorOptions<sup>9+</sup>
+## CollatorOptions<sup>8+</sup>
 
 表示Collator可设置的属性。
 
@@ -517,7 +566,7 @@ resolvedOptions(): CollatorOptions
 | ----------------- | ------- | ---- | ---- | ---------------------------------------- |
 | localeMatcher     | string  | 是    | 是    | locale匹配算法，取值范围："best&nbsp;fit",&nbsp;"lookup"。 |
 | usage             | string  | 是    | 是    | 比较的用途，取值范围："sort",&nbsp;"search"。        |
-| sensitivity       | string  | 是    | 是    | 表示字符串中的哪些差异会导致非零结果值，取值范围："base",&nbsp;"accent",&nbsp;"case",&nbsp;"variant"。 |
+| sensitivity       | string  | 是    | 是    | 表示字符串中的哪些差异会导致非零结果值，取值范围："base",&nbsp;"accent",&nbsp;"case",&nbsp;"letiant"。 |
 | ignorePunctuation | boolean | 是    | 是    | 表示是否忽略标点符号，取值范围：true,&nbsp;false。        |
 | collation         | string  | 是    | 是    | 排序规则，取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
 | numeric           | boolean | 是    | 是    | 是否使用数字排序，取值范围：true,&nbsp;false。          |
@@ -531,13 +580,14 @@ resolvedOptions(): CollatorOptions
 
 constructor()
 
-创建PluralRules对象。
+创建单复数对象来计算数字的单复数类别。
 
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
   ```js
-  var pluralRules = new Intl.PluralRules();
+  // 使用系统locale创建PluralRules对象
+  let pluralRules = new Intl.PluralRules();
   ```
 
 
@@ -545,7 +595,7 @@ constructor()
 
 constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
-创建PluralRules对象。
+创建单复数对象来计算数字的单复数类别。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -554,11 +604,12 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | 否    | 用于创建单复数对象的选项。                |
+| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 用于创建单复数对象的选项。                |
 
 **示例：** 
   ```js
-  var pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
+  // 使用 zh-CN locale创建PluralRules对象，localeMatcher设置为lookup，type设置为cardinal
+  let pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
 
@@ -584,12 +635,19 @@ select(n: number): string
 
 **示例：** 
   ```js
-  var pluralRules = new Intl.PluralRules("zh-Hans");
-  pluralRules.select(1);
+  // 使用 zh-Hans locale创建PluralRules对象
+  let zhPluralRules = new Intl.PluralRules("zh-Hans");
+  // 计算 zh-Hans locale中数字1对应的单复数类别
+  let plural = zhPluralRules.select(1); // plural = other
+
+  // 使用 en-US locale创建PluralRules对象
+  let enPluralRules = new Intl.PluralRules("en-US");
+  // 计算 en-US locale中数字1对应的单复数类别
+  plural = enPluralRules.select(1); // plural = one
   ```
 
 
-## PluralRulesOptions<sup>9+</sup>
+## PluralRulesOptions<sup>8+</sup>
 
 表示PluralRules对象可设置的属性。
 
@@ -619,7 +677,8 @@ constructor()
 
 **示例：** 
   ```js
-  var relativetimefmt = new Intl.RelativeTimeFormat();
+  // 使用系统locale创建RelativeTimeFormat对象
+  let relativetimefmt = new Intl.RelativeTimeFormat();
   ```
 
 
@@ -636,11 +695,12 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | 否    | 用于创建相对时间格式化对象的选项。            |
+| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
   ```js
-  var relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
+  // 使用 zh-CN locale创建RelativeTimeFormat对象，localeMatcher设置为lookup，numeric设置为always，style设置为long
+  let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
 
 
@@ -667,8 +727,10 @@ format(value: number, unit: string): string
 
 **示例：** 
   ```js
-  var relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
-  relativetimefmt.format(3, "quarter")
+  // 使用 zh-CN locale创建RelativeTimeFormat对象
+  let relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
+  // 计算 zh-CN locale中数字3，单位quarter的本地化表示
+  let formatResult = relativetimefmt.format(3, "quarter"); // formatResult = "3个季度后"
   ```
 
 
@@ -695,8 +757,9 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 **示例：** 
   ```js
-  var relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
-  var parts = relativetimefmt.format(10, "seconds");
+  // 使用 en locale创建RelativeTimeFormat对象，numeric设置为auto
+  let relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
+  let parts = relativetimefmt.formatToParts(10, "seconds"); // parts = [ {type: "literal", value: "in"}, {type: "integer", value: 10, unit: "second"}, {type: "literal", value: "seconds"} ]
   ```
 
 
@@ -716,12 +779,15 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 **示例：** 
   ```js
-  var relativetimefmt= new Intl.RelativeTimeFormat("en-GB");
-  relativetimefmt.resolvedOptions();
+  // 使用 en-GB locale创建RelativeTimeFormat对象
+  let relativetimefmt= new Intl.RelativeTimeFormat("en-GB", { style: "short" });
+  // 获取RelativeTimeFormat对象配置项
+  let options = relativetimefmt.resolvedOptions();
+  let style = options.style; // style = "short"
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>9+</sup>
+## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
 

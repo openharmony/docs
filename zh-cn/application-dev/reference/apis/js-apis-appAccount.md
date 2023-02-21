@@ -198,18 +198,23 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
     console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
   try {  
@@ -252,18 +257,23 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
     console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
   let options = {
@@ -1354,7 +1364,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, authResult) {
     console.log("resultCode: "  + code);
@@ -1362,10 +1372,17 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
-        console.log("startAbility err: " + JSON.stringify(err));
-    });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
   try {
@@ -1410,7 +1427,7 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, authResult) {
     console.log("resultCode: "  + code);
@@ -1418,10 +1435,17 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
-        console.log("startAbility err: " + JSON.stringify(err));
-    });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
   let options = {
@@ -2810,7 +2834,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
@@ -2818,10 +2842,17 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err)=>{
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
   appAccountManager.addAccountImplicitly("com.example.accountjsdemo", "getSocialData", {}, {
@@ -3758,18 +3789,23 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
       console.log("resultCode: "  + code);
       console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-      let abilityStartSetting = {want: request};
-      featureAbility.startAbility(abilityStartSetting, (err)=>{
-          console.log("startAbility err: " + JSON.stringify(err));
-      });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
   appAccountManager.authenticate("LiSi", "com.example.accountjsdemo", "getSocialData", {}, {
@@ -4528,9 +4564,12 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | 表示键名，必需的标签。    |
 | KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | 表示键名，布尔返回值。    |
 
-## ResultCode<sup>8+</sup>
+## ResultCode<sup>(deprecated)</sup>
 
 表示返回码的枚举。
+
+> **说明：**<br/>
+> 从API version 8开始支持，从API version 9开始废弃。建议查看[错误码文档](../errorcodes/errorcode-app-account.md)替代。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 

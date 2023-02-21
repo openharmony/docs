@@ -188,10 +188,10 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px。 |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 是   | 窗口宽度。 |
-| height | number   | 是   | 是   | 窗口高度。 |
+| width  | number   | 是   | 是   | 窗口宽度，单位为px。 |
+| height | number   | 是   | 是   | 窗口高度，单位为px。 |
 
 ## WindowProperties
 
@@ -2730,58 +2730,6 @@ try {
     windowClass.off('screenshot', callback);
     // 如果通过on开启多个callback进行监听，同时关闭所有监听：
     windowClass.off('screenshot');
-} catch (exception) {
-    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
-}
-```
-
-### on('dialogTargetTouch')<sup>9+</sup>
-
-on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
-
-开启模态窗口目标窗口的点击事件的监听。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                                                          |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
-
-**示例：**
-
-```js
-try {
-    windowClass.on('dialogTargetTouch', () => {
-        console.info('touch dialog target');
-    });
-} catch (exception) {
-    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-}
-```
-
-### off('dialogTargetTouch')<sup>9+</sup>
-
-off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
-
-关闭模态窗口目标窗口的点击事件的监听。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                                                          |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;      | 否   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
-
-**示例：**
-
-```js
-try {
-    windowClass.off('dialogTargetTouch');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
@@ -5903,9 +5851,9 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5949,9 +5897,9 @@ getMainWindow(): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5994,9 +5942,9 @@ getMainWindowSync(): Window
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6037,9 +5985,9 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6093,9 +6041,9 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6141,9 +6089,9 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6185,9 +6133,9 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6231,9 +6179,9 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6289,9 +6237,9 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6340,9 +6288,9 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6389,9 +6337,9 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6436,9 +6384,9 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6475,9 +6423,9 @@ disableWindowDecor(): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
@@ -6515,9 +6463,9 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {

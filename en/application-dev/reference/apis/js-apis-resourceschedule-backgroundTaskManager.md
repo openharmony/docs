@@ -52,10 +52,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -100,10 +100,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 
 **Example**
@@ -156,10 +156,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -201,10 +201,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -247,9 +247,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -258,7 +258,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(error, data) {
     if (error) {
@@ -282,14 +282,18 @@ export default class EntryAbility extends UIAbility {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -326,9 +330,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -337,7 +341,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -353,18 +357,22 @@ export default class EntryAbility extends UIAbility {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-                    console.info("Operation startBackgroundRunning succeeded");
-                }).catch((error) => {
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                        console.info("Operation startBackgroundRunning succeeded");
+                    }).catch((error) => {
+                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
                     console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                });
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -392,9 +400,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -453,9 +461,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -506,9 +514,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **Example**
 
@@ -549,9 +557,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **Example**
 

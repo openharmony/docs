@@ -30,8 +30,8 @@ class MainAbility extends Ability {
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 |
-| currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 |
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | Abilityinfo相关信息 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前hap包的信息 |
 | config | [Configuration](js-apis-application-configuration.md) | 是 | 否 | 表示配置信息。 |
 
 ## AbilityContext.startAbility
@@ -39,6 +39,11 @@ class MainAbility extends Ability {
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 启动Ability（callback形式）。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -59,7 +64,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -89,6 +94,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 启动Ability（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -96,7 +106,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
@@ -109,12 +119,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -142,6 +152,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 启动Ability（promise形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -149,7 +164,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -167,11 +182,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -198,7 +213,15 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
+启动一个Ability。Ability被启动后，有如下情况(callback形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -219,7 +242,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
@@ -248,7 +271,15 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在该Ability退出的时候返回执行结果（callback形式）。
+启动一个Ability。Ability被启动后，有如下情况(callback形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -257,7 +288,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
@@ -270,12 +301,12 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var options = {
+  let options = {
     windowMode: 0,
   };
 
@@ -303,7 +334,15 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-启动Ability并在该Ability退出的时候返回执行结果（promise形式）。
+启动一个Ability。Ability被启动后，有如下情况(promise形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#abilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -312,7 +351,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 
 **返回值：**
@@ -331,11 +370,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -363,6 +402,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -375,7 +419,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| callback | AsyncCallback\<AbilityResult\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
+| callback | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
 
 **错误码：**
 
@@ -387,12 +431,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
@@ -420,6 +464,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -432,7 +481,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -445,13 +494,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -481,6 +530,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 启动一个Ability并在该Ability帐号销毁时返回执行结果（promise形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -493,13 +547,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;AbilityResult&gt; | 返回一个Promise，包含Ability结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 返回一个Promise，包含Ability结果。 |
 
 **错误码：**
 
@@ -511,13 +565,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -566,7 +620,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
@@ -616,7 +670,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
@@ -670,12 +724,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -724,12 +778,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
@@ -775,7 +829,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
@@ -825,7 +879,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
@@ -879,12 +933,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -933,12 +987,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
@@ -1034,7 +1088,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability，配合startAbilityForResult使用，返回给接口调用方AbilityResult信息（callback形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1055,13 +1109,13 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.extreme.myapplication",
     abilityName: "SecondAbility"
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1090,6 +1144,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 停止Ability，配合startAbilityForResult使用，返回给接口调用方AbilityResult信息（promise形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#abilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1116,13 +1171,13 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: "com.extreme.myapplication",
     abilityName: "SecondAbility"
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1178,18 +1233,18 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1236,19 +1291,19 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1289,7 +1344,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1335,7 +1390,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1361,6 +1416,11 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -1382,10 +1442,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   后台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 后台启动Ability，不配置parameters
-  var wantBackground = {
+  let wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
       abilityName: "MainAbility",
@@ -1413,10 +1473,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   前台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
-  var wantForeground = {
+  let wantForeground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
       abilityName: "MainAbility",
@@ -1450,6 +1510,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 根据account启动Ability（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -1474,12 +1539,12 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
@@ -1506,6 +1571,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 根据account启动Ability（callback形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -1518,7 +1588,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。|
-| options | [StartOptions](js-apis-application-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -1531,13 +1601,13 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1566,6 +1636,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 根据account启动Ability（Promise形式）。
 
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -1578,7 +1653,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| options | [StartOptions](js-apis-application-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
 
@@ -1590,13 +1665,13 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: "",
     bundleName: "com.extreme.test",
     abilityName: "MainAbility"
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1685,16 +1760,16 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
+| icon | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 在最近的任务中显示的ability图标。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **示例：**
 
   ```ts
     import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
+    let imagePixelMap;
+    let color = new ArrayBuffer(0);
+    let initializationOptions = {
        size: {
            height: 100,
            width: 100
@@ -1727,7 +1802,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
+| icon | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 在最近的任务中显示的ability图标。 |
 
 **返回值：**
 
@@ -1739,9 +1814,9 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
   ```ts
     import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
+    let imagePixelMap;
+    let color = new ArrayBuffer(0);
+    let initializationOptions = {
       size: {
           height: 100,
           width: 100
@@ -1779,7 +1854,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 **示例：**
 
   ```ts
-    var storage = new LocalStorage();
+    let storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
   ```
 
@@ -1800,6 +1875,6 @@ isTerminating(): boolean;
 **示例：**
 
   ```ts
-  var isTerminating = this.context.isTerminating();
+  let isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

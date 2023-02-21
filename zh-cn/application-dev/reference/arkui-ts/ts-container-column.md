@@ -29,7 +29,7 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：HorizontalAlign.Center |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start |
 
 ## 示例
 

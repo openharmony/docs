@@ -23,28 +23,27 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 
 ## Attributes
 
-| Name                                      | Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is **string**, this attribute indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineWidth](#linewidth)                  | number                                   | Line width.                              |
-| [strokeStyle](#strokestyle)              | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineCap](#linecap)                      | CanvasLineCap                            | Style of the line endpoints. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>- Default value: **'butt'**|
-| [lineJoin](#linejoin)                    | CanvasLineJoin                           | Style of the shape used to join line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>- Default value: **'miter'**|
-| [miterLimit](#miterlimit)                | number                                   | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>- Default value: **10**|
-| [font](#font)                            | string                                   | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **'normal normal 14px sans-serif'**|
-| [textAlign](#textalign)                  | CanvasTextAlign                          | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>**NOTE**<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>- Default value: **'left'**|
-| [textBaseline](#textbaseline)            | CanvasTextBaseline                       | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>- Default value: **'alphabetic'**|
-| [globalAlpha](#globalalpha)              | number                                   | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.               |
-| [lineDashOffset](#linedashoffset)        | number                                   | Offset of the dashed line. The precision is float.<br>- Default value: **0.0**|
-| [globalCompositeOperation](#globalcompositeoperation) | string                                   | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>- Default value: **'source-over'**|
-| [shadowBlur](#shadowblur)                | number                                   | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>- Default value: **0.0**|
-| [shadowColor](#shadowcolor)              | string                                   | Shadow color.                           |
-| [shadowOffsetX](#shadowoffsetx)          | number                                   | X-axis shadow offset relative to the original object.                     |
-| [shadowOffsetY](#shadowoffsety)          | number                                   | Y-axis shadow offset relative to the original object.                     |
-| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>- Default value: **true**|
+| Name                                                  | Type                                                         | Description                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [fillStyle](#fillstyle)                               | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is **string**, this attribute indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineWidth](#linewidth)                               | number                                                       | Line width.                                                  |
+| [strokeStyle](#strokestyle)                           | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineCap](#linecap)                                   | CanvasLineCap                                                | Style of the line endpoints. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>- Default value: **'butt'** |
+| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | Style of the shape used to join line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>- Default value: **'miter'** |
+| [miterLimit](#miterlimit)                             | number                                                       | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>- Default value: **10** |
+| [font](#font)                                         | string                                                       | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **'normal normal 14px sans-serif'** |
+| [textAlign](#textalign)                               | CanvasTextAlign                                              | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>**NOTE**<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>- Default value: **'left'** |
+| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>- Default value: **'alphabetic'** |
+| [globalAlpha](#globalalpha)                           | number                                                       | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque. |
+| [lineDashOffset](#linedashoffset)                     | number                                                       | Offset of the dashed line. The precision is float.<br>- Default value: **0.0** |
+| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>- Default value: **'source-over'** |
+| [shadowBlur](#shadowblur)                             | number                                                       | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>- Default value: **0.0** |
+| [shadowColor](#shadowcolor)                           | string                                                       | Shadow color.                                                |
+| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | X-axis shadow offset relative to the original object.        |
+| [shadowOffsetY](#shadowoffsety)                       | number                                                       | Y-axis shadow offset relative to the original object.        |
+| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>- Default value: **true** |
 
 > **NOTE**
->
 > For **fillStyle**, **shadowColor**, and **strokeStyle**, the value format of the string type is 'rgb(255, 255, 255)', 'rgba(255, 255, 255, 1.0)', '\#FFFFFF'.
 
 
@@ -408,7 +407,7 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.fillStyle = 'rgb(255,0,0)'
+          this.offContext.fillStyle = 'rgb(0,0,255)'
           this.offContext.fillRect(0, 0, 50, 50)
           this.offContext.globalAlpha = 0.4
           this.offContext.fillStyle = 'rgb(0,0,255)'
@@ -748,7 +747,7 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 Draws an outlined rectangle on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description          |
 | ------ | ------ | ---- | ---- | ------------ |
@@ -757,7 +756,7 @@ Draws an outlined rectangle on the canvas.
 | width  | number | Yes   | 0    | Width of the rectangle.    |
 | height | number | Yes   | 0    | Height of the rectangle.    |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -795,7 +794,7 @@ clearRect(x: number, y: number, w: number, h: number): void
 
 Clears the content in a rectangle on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description           |
 | ------ | ------ | ---- | ---- | ------------- |
@@ -804,7 +803,7 @@ Clears the content in a rectangle on the canvas.
 | width  | number | Yes   | 0    | Width of the rectangle.     |
 | height | number | Yes   | 0    | Height of the rectangle.     |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -853,7 +852,7 @@ Draws filled text on the canvas.
 | y        | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
 | maxWidth | number | No   | -    | Maximum width allowed for the text.   |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -901,7 +900,7 @@ Draws a text stroke on the canvas.
 | y        | number | Yes   | 0    | Y-coordinate of the lower left corner of the text.|
 | maxWidth | number | No   | -    | Maximum width of the text to be drawn. |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -940,13 +939,13 @@ measureText(text: string): TextMetrics
 
 Returns a **TextMetrics** object used to obtain the width of specified text.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description        |
 | ---- | ------ | ---- | ---- | ---------- |
 | text | string | Yes   | ""   | Text to be measured.|
 
-**Return value**
+ **Return value**
 
 | Type         | Description     |
 | ----------- | ------- |
@@ -970,7 +969,7 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
 | hangingBaseline          | number | Distance from the horizontal line specified by the **CanvasRenderingContext2D.textBaseline** attribute to the hanging baseline of the line box. The current value is **0**.|
 | ideographicBaseline      | number | Distance from the horizontal line indicated by the **CanvasRenderingContext2D.textBaseline** attribute to the ideographic baseline of the line box. The current value is **0**.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1010,13 +1009,13 @@ stroke(path?: Path2D): void
 
 Strokes a path.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type                                      | Mandatory  | Default Value | Description          |
 | ---- | ---------------------------------------- | ---- | ---- | ------------ |
 | path | [Path2D](ts-components-canvas-path2d.md) | No   | null | A **Path2D** path to draw.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1059,7 +1058,7 @@ beginPath(): void
 
 Creates a drawing path.
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1102,14 +1101,14 @@ moveTo(x: number, y: number): void
 
 Moves a drawing path to a target position on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description       |
 | ---- | ------ | ---- | ---- | --------- |
 | x    | number | Yes   | 0    | X-coordinate of the target position.|
 | y    | number | Yes   | 0    | Y-coordinate of the target position.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1150,14 +1149,14 @@ lineTo(x: number, y: number): void
 
 Connects the current point to a target position using a straight line.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description       |
 | ---- | ------ | ---- | ---- | --------- |
 | x    | number | Yes   | 0    | X-coordinate of the target position.|
 | y    | number | Yes   | 0    | Y-coordinate of the target position.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1198,7 +1197,7 @@ closePath(): void
 
 Draws a closed path.
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1254,7 +1253,7 @@ Creates a pattern for image filling based on a specified source image and repeti
 | ------------------------------- | ----------------------- |
 | [CanvasPattern](#canvaspattern) | Created pattern for image filling based on a specified source image and repetition mode.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1295,7 +1294,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 Draws a cubic bezier curve on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description            |
 | ---- | ------ | ---- | ---- | -------------- |
@@ -1306,7 +1305,7 @@ Draws a cubic bezier curve on the canvas.
 | x    | number | Yes   | 0    | X-coordinate of the end point on the bezier curve.   |
 | y    | number | Yes   | 0    | Y-coordinate of the end point on the bezier curve.   |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1347,7 +1346,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 Draws a quadratic curve on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ----------- |
@@ -1356,7 +1355,7 @@ Draws a quadratic curve on the canvas.
 | x    | number | Yes   | 0    | X-coordinate of the end point on the bezier curve.|
 | y    | number | Yes   | 0    | Y-coordinate of the end point on the bezier curve.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1397,7 +1396,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 Draws an arc on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name          | Type     | Mandatory  | Default Value  | Description        |
 | ---------------- | ------- | ---- | ----- | ---------- |
@@ -1408,7 +1407,7 @@ Draws an arc on the canvas.
 | endAngle         | number  | Yes   | 0     | End radian of the arc.  |
 | counterclockwise | boolean | No   | false | Whether to draw the arc counterclockwise.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1448,7 +1447,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 Draws an arc based on the radius and points on the arc.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description             |
 | ------ | ------ | ---- | ---- | --------------- |
@@ -1458,7 +1457,7 @@ Draws an arc based on the radius and points on the arc.
 | y2     | number | Yes   | 0    | Y-coordinate of the second point on the arc.|
 | radius | number | Yes   | 0    | Radius of the arc.       |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1498,7 +1497,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 Draws an ellipse in the specified rectangular region on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name          | Type     | Mandatory  | Default Value  | Description               |
 | ---------------- | ------- | ---- | ----- | ----------------- |
@@ -1511,7 +1510,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
 | endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.|
 | counterclockwise | boolean | No   | false | Whether to draw the ellipse counterclockwise.<br>**true**: Draw the ellipse counterclockwise.<br>**false**: Draw the ellipse clockwise.    |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1550,7 +1549,7 @@ rect(x: number, y: number, w: number, h: number): void
 
 Creates a rectangle on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description           |
 | ---- | ------ | ---- | ---- | ------------- |
@@ -1559,7 +1558,7 @@ Creates a rectangle on the canvas.
 | w    | number | Yes   | 0    | Width of the rectangle.     |
 | h    | number | Yes   | 0    | Height of the rectangle.     |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1702,7 +1701,7 @@ Sets the current path to a clipping path.
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
 | fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1749,7 +1748,7 @@ Sets a closed path to a clipping path.
 | path | Path2D | Yes   |  | A **Path2D** path to clip.|
 | fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1827,13 +1826,13 @@ rotate(angle: number): void
 
 Rotates a canvas clockwise around its coordinate axes.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description                                      |
 | ----- | ------ | ---- | ---- | ---------------------------------------- |
 | angle | number | Yes   | 0    | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1872,14 +1871,14 @@ scale(x: number, y: number): void
 
 Scales the canvas based on scale factors.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ----------- |
 | x    | number | Yes   | 0    | Horizontal scale factor.|
 | y    | number | Yes   | 0    | Vertical scale factor.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1930,7 +1929,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description                  |
+| Name | Type    | Mandatory  | Default Value | Description                  |
 | ---- | ------ | ---- | ---- | -------------------- |
 | a    | number | Yes   | 0    | X-axis scale.    |
 | b    | number | Yes   | 0    | X-axis skew.     |
@@ -1939,7 +1938,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 | e    | number | Yes   | 0    | X-axis translation.|
 | f    | number | Yes   | 0    | Y-axis translation.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1995,7 +1994,7 @@ Resets the existing transformation matrix and creates a new transformation matri
 | e    | number | Yes   | 0    | X-axis translation.|
 | f    | number | Yes   | 0    | Y-axis translation.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2037,14 +2036,14 @@ translate(x: number, y: number): void
 
 Moves the origin of the coordinate system.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description      |
 | ---- | ------ | ---- | ---- | -------- |
 | x    | number | Yes   | 0    | X-axis translation.|
 | y    | number | Yes   | 0    | Y-axis translation.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2088,7 +2087,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 Draws an image on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type                                      | Mandatory  | Default Value | Description                           |
 | ----- | ---------------------------------------- | ---- | ---- | ----------------------------- |
@@ -2102,7 +2101,8 @@ Draws an image on the canvas.
 | dw    | number                                   | No   | 0    | Width of the drawing area.                     |
 | dh    | number                                   | No   | 0    | Height of the drawing area.                     |
 
-**Example**
+
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2140,7 +2140,7 @@ createImageData(sw: number, sh: number): ImageData
 
 Creates an **[ImageData](ts-components-canvas-imagedata.md)** object with the specified dimensions.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value  | Description           |
 | ---- | ------ | ---- | ---- | ------------- |
@@ -2152,7 +2152,7 @@ createImageData(imageData: ImageData): ImageData
 
 Creates an **[ImageData](ts-components-canvas-imagedata.md)** object by copying an existing **ImageData** object.
 
-**Parameters**
+ **Parameters**
 
 | Name   | Type                                      | Mandatory  | Default Value  | Description              |
 | --------- | ---------------------------------------- | ---- | ---- | ---------------- |
@@ -2170,7 +2170,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created with the pixels within the specified area on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description             |
 | ---- | ------ | ---- | ---- | --------------- |
@@ -2192,7 +2192,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created with the pixels within the specified area on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description             |
 | ---- | ------ | ---- | ---- | --------------- |
@@ -2206,6 +2206,7 @@ Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created wi
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
 | [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object.|
+
 
 **Example**
 
@@ -2250,7 +2251,7 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 
 Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectangular area on the canvas.
 
-**Parameters**
+ **Parameters**
 
 | Name     | Type    | Mandatory  | Default Value         | Description                           |
 | ----------- | ------ | ---- | ------------ | ----------------------------- |
@@ -2262,7 +2263,7 @@ Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectang
 | dirtyWidth  | number | No   | Width of the **ImageData** object| Width of the rectangular area to crop the source image.              |
 | dirtyHeight | number | No   | Height of the **ImageData** object| Height of the rectangular area to crop the source image.              |
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2453,7 +2454,7 @@ imageSmoothingQuality(quality: imageSmoothingQuality)
 
 Sets the quality of image smoothing. This API is a void API.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type                   | Description                                      |
 | ------- | --------------------- | ---------------------------------------- |
@@ -2472,7 +2473,8 @@ Creates an **ImageBitmap** object on the most recently rendered image of the **O
 | ---------------------------------------- | --------------- |
 | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Pixel data rendered on the **OffscreenCanvas**.|
 
-**Example**
+
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2515,7 +2517,7 @@ restore(): void
 
 Restores the saved drawing context.
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2556,7 +2558,7 @@ save(): void
 
 Saves the current drawing context.
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2597,7 +2599,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
 
 Creates a linear gradient.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description      |
 | ---- | ------ | ---- | ---- | -------- |
@@ -2606,7 +2608,7 @@ Creates a linear gradient.
 | x1   | number | Yes   | 0    | X-coordinate of the end point.|
 | y1   | number | Yes   | 0    | Y-coordinate of the end point.|
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -2649,7 +2651,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 Creates a linear gradient.
 
-**Parameters**
+ **Parameters**
 
 | Name | Type    | Mandatory  | Default Value | Description               |
 | ---- | ------ | ---- | ---- | ----------------- |
@@ -2660,7 +2662,7 @@ Creates a linear gradient.
 | y1   | number | Yes   | 0    | Y-coordinate of the center of the end circle.        |
 | r1   | number | Yes   | 0    | Radius of the end circle, which must be a non-negative finite number.|
 
-**Example** 
+ **Example** 
 
   ```ts
   // xxx.ets

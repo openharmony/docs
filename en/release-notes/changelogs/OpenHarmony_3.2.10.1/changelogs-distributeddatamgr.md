@@ -67,7 +67,7 @@ try {
 ## cl.distributeddatamgr.2 Migration of function getRdbStoreV9 from @ohos.data.rdb.d.ts to @ohos.data.relationalStore.d.ts.
 **Change Impacts**
 
-The application needs to adapt these APIs so that it can be properly compiled in the SDK environment of the new version.
+The **getRdbStoreV9()** API is deprecated, and the applications that use it need to make adjustment.
 
 **Key API/Component Changes**
 
@@ -79,8 +79,8 @@ function getRdbStoreV9(context: Context, config: StoreConfigV9, version: number)
 ```
 The APIs are migrated from **@ohos.data.rdb.d.ts** to **@ohos.data.relationalStore.d.ts**.
 ```
-function getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback<RdbStore>): void;
-function getRdbStore(context: Context, config: StoreConfig, version: number): Promise<RdbStore>;
+function getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<RdbStore>): void;
+function getRdbStore(context: Context, config: StoreConfig): Promise<RdbStore>;
 ```
 
 **Adaptation Guide**
@@ -91,7 +91,7 @@ function getRdbStore(context: Context, config: StoreConfig, version: number): Pr
 ## cl.distributeddatamgr.3 Migration of function deleteRdbStoreV9 from @ohos.data.rdb.d.ts to @ohos.data.relationalStore.d.ts
 **Change Impacts**
 
-The application needs to adapt these APIs so that it can be properly compiled in the SDK environment of the new version.
+The **deleteRdbStoreV9()** API is deprecated, and the applications that use it need to make adjustment.
 
 **Key API/Component Changes**
 
@@ -114,20 +114,21 @@ function deleteRdbStoreV9(context: Context, name: string): Promise<void>;
 ## cl.distributeddatamgr.4 Migration of interface StoreConfigV9 from @ohos.data.rdb.d.ts to @ohos.data.relationalStore.d.ts
 **Change Impacts**
 
-The application needs to adapt these APIs so that it can be properly compiled in the SDK environment of the new version.
+The **StoreConfigV9()** API is deprecated, and the applications that use it need to make adjustment.
 
 **Key API/Component Changes**
 
 **interface StoreConfigV9** is migrated from **@ohos.data.rdb.d.ts** to **@ohos.data.relationalStore.d.ts** and is renamed as **interface StoreConfig**.
 
 **Adaptation Guide**
+
  * `import rdb from "@ohos.data.rdb"` is changed to `import rdb from "@ohos.data.relationalStore"`.
  * The names of relevant APIs should be changed according to the preceding changes.
 
 ## cl.distributeddatamgr.5 Migration of enum SecurityLevel from @ohos.data.rdb.d.ts to @ohos.data.relationalStore.d.ts
 **Change Impacts**
 
-The application needs to adapt these APIs so that it can be properly compiled in the SDK environment of the new version.
+The **SecurityLevel** object is deprecated, and the applications that use it need to make adjustment.
 
 **Key API/Component Changes**
 
@@ -140,24 +141,25 @@ The application needs to adapt these APIs so that it can be properly compiled in
 ## cl.distributeddatamgr.6 Migration of interface RdbStoreV9 from @ohos.data.rdb.d.ts to @ohos.data.relationalStore.d.ts
 **Change Impacts**
 
-The application needs to adapt these APIs so that it can be properly compiled in the SDK environment of the new version.
+The **RdbStoreV9()** interface is deprecated, and the applications that use it need to make adjustment.
 
 **Key API/Component Changes**
 
-**interface RdbStoreV9** is migrated from **@ohos.data.rdb.d.ts** to **@ohos.data.relationalStore.d.ts** and is renamed as **interface RdbStore**.
+**RdbStoreV9()** is migrated from **@ohos.data.rdb.d.ts** to **@ohos.data.relationalStore.d.ts** and is renamed as **interface RdbStore**.
 
 **Adaptation Guide**
+
  * `import rdb from "@ohos.data.rdb"` is changed to `import rdb from "@ohos.data.relationalStore"`.
  * The names of relevant APIs should be changed according to the preceding changes.
 
 ## cl.distributeddatamgr.7 Migration of class RdbPredicatesV9 from ohos.data.rdb.d.ts to @ohos.data.relationalStore.d.ts
 **Change Impacts**
 
-The application needs to adapt these APIs so that it can be properly compiled in the SDK environment of the new version.
+The **RdbPredicatesV9** class is deprecated, and the applications that use it need to make adjustment.
 
 **Key API/Component Changes**
 
-**class RdbPredicatesV9** is migrated from **ohos.data.rdb.d.ts** to **@ohos.data.relationalStore.d.ts** and is renamed as **interface RdbPredicates**.
+**RdbPredicatesV9** is migrated from **ohos.data.rdb.d.ts** to **@ohos.data.relationalStore.d.ts** and is renamed as **interface RdbPredicates**.
 
 **Adaptation Guide**
  * `import rdb from "@ohos.data.rdb"` is changed to `import rdb from "@ohos.data.relationalStore"`.
@@ -166,11 +168,11 @@ The application needs to adapt these APIs so that it can be properly compiled in
 ## cl.distributeddatamgr.8 Migration of interface ResultSetV9 from api/@ohos.data.relationalStore.d.ts to @ohos.data.relationalStore.d.ts
 **Change Impacts**
 
-The application needs to adapt these APIs so that it can be properly compiled in the SDK environment of the new version.
+The **ResultSetV9** object is deprecated, and the applications that use it need to make adjustment.
 
 **Key API/Component Changes**
 
-**interface ResultSetV9** is migrated from **api/data/rdb/resultSet.d.ts** to **@ohos.data.relationalStore.d.ts** and is renamed as **interface ResultSet**.
+**ResultSetV9** is migrated from **api/data/rdb/resultSet.d.ts** to **@ohos.data.relationalStore.d.ts** and is renamed as **interface ResultSet**.
 
 **Adaptation Guide**
 

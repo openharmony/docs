@@ -8,7 +8,7 @@ Grid用于设置网格布局相关参数，GridItem定义子组件相关特征�
 2. 支持自定义网格布局行数和列数，以及每行每列尺寸占比。
 3. 支持设置网格布局中子组件的行列间距。
 4. 支持设置子组件横跨几行或者几列。
- 
+
 
 
 ## 容器组件Grid设置
@@ -159,7 +159,7 @@ Grid() {
         .fontSize(16)
         .textAlign(TextAlign.Center)
         .textStyle()
-    }.rowStart(2).rowEnd(3)  // 5子组件从第二列到第三列
+    }.rowStart(2).rowEnd(3)  // 5子组件从第二行到第三行
 
     GridItem() {
       Text('4')
