@@ -21,7 +21,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 > **说明：**
 >
 > 不支持转场动画。
-> 同一页面的多个web组件，必须绑定不同的WebController。
+> 同一页面的多个web组件，必须绑定不同的WebviewController。
 
 **参数：**
 
@@ -96,10 +96,12 @@ domStorageAccess(domStorageAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -125,10 +127,12 @@ fileAccess(fileAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -153,10 +157,12 @@ imageAccess(imageAccess: boolean)
 **示例：**
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -169,7 +175,7 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebController | WebviewController})
+    controller: WebviewController | WebController})
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
 
@@ -180,41 +186,10 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebController](#webcontroller) \| [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 控制器。                      |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
 
 **示例：**
 
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    testObj = {
-      test: (data1, data2, data3) => {
-        console.log("data1:" + data1)
-        console.log("data2:" + data2)
-        console.log("data3:" + data3)
-        return "AceString"
-      },
-      toString: () => {
-        console.log('toString' + "interface instead.")
-      }
-    }
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .javaScriptAccess(true)
-          .javaScriptProxy({
-            object: this.testObj,
-            name: "objName",
-            methodList: ["test", "toString"],
-            controller: this.controller,
-        })
-      }
-    }
-  }
-  ```
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -265,10 +240,12 @@ javaScriptAccess(javaScriptAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -294,10 +271,12 @@ mixedMode(mixedMode: MixedMode)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State mode: MixedMode = MixedMode.All
     build() {
       Column() {
@@ -324,10 +303,12 @@ onlineImageAccess(onlineImageAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -353,10 +334,12 @@ zoomAccess(zoomAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -382,10 +365,12 @@ overviewModeAccess(overviewModeAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -411,10 +396,12 @@ databaseAccess(databaseAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -440,10 +427,12 @@ geolocationAccess(geolocationAccess: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -469,10 +458,12 @@ mediaPlayGestureAccess(access: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State access: boolean = true
     build() {
       Column() {
@@ -499,10 +490,12 @@ multiWindowAccess(multiWindow: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -528,10 +521,12 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -579,10 +574,12 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -630,10 +627,12 @@ cacheMode(cacheMode: CacheMode)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State mode: CacheMode = CacheMode.None
     build() {
       Column() {
@@ -660,10 +659,12 @@ textZoomRatio(textZoomRatio: number)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State atio: number = 150
     build() {
       Column() {
@@ -690,10 +691,12 @@ initialScale(percent: number)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State percent: number = 100
     build() {
       Column() {
@@ -720,10 +723,12 @@ userAgent(userAgent: string)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
     build() {
       Column() {
@@ -1198,10 +1203,12 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1256,10 +1263,12 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1317,10 +1326,12 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1377,10 +1388,12 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1437,10 +1450,12 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1474,10 +1489,12 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1511,10 +1528,12 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1555,10 +1574,12 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1606,10 +1627,12 @@ onPageBegin(callback: (event?: { url: string }) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1639,10 +1662,12 @@ onPageEnd(callback: (event?: { url: string }) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1671,10 +1696,12 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1703,10 +1730,12 @@ onTitleReceive(callback: (event?: { title: string }) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1736,10 +1765,12 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1768,10 +1799,12 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1807,10 +1840,12 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1856,10 +1891,12 @@ onResourceLoad(callback: (event: {url: string}) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1889,10 +1926,12 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1927,10 +1966,12 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1966,10 +2007,12 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     responseweb: WebResourceResponse = new WebResourceResponse()
     heads:Header[] = new Array()
     @State webdata: string = "<!DOCTYPE html>\n" +
@@ -2037,7 +2080,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     httpAuth: boolean = false
 
     build() {
@@ -2099,7 +2142,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -2154,7 +2197,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -2202,10 +2245,12 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2258,10 +2303,12 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2292,10 +2339,12 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2325,10 +2374,12 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
@@ -2369,10 +2420,12 @@ onGeolocationHide(callback: () => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
@@ -2401,10 +2454,12 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     handler: FullScreenExitHandler = null
     build() {
       Column() {
@@ -2434,10 +2489,12 @@ onFullScreenExit(callback: () => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     handler: FullScreenExitHandler = null
     build() {
       Column() {
@@ -2467,7 +2524,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
 | isAlert       | boolean                                  | true代表请求创建对话框，false代表新标签页。 |
 | isUserTrigger | boolean                                  | true代表用户触发，false代表非用户触发。   |
 | targetUrl     | string                                   | 目标url。                     |
-| handler       | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebController实例。  |
+| handler       | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebviewController实例。  |
 
 **示例：**
 
@@ -2508,10 +2565,12 @@ onWindowExit(callback: () => void)
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
@@ -2541,10 +2600,12 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -3121,6 +3182,18 @@ handleFileList(fileList: Array\<string\>): void
 
 web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
+### getTitle<sup>9+</sup>
+
+getTitle(): string
+
+获取文件选择器标题。
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| string | 返回文件选择器标题。 |
+
 ### getMode<sup>9+</sup>
 
 getMode(): FileSelectorMode
@@ -3530,7 +3603,148 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 | allow  | boolean | 是    | -    | 设置的地理位置权限状态。                             |
 | retain | boolean | 是    | -    | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions<sup>9+</sup>](../apis/js-apis-webview.md#geolocationpermissions)接口管理保存到系统的地理位置权限。 |
 
-## WebController
+## MessageLevel枚举说明
+
+| 名称    | 描述    |
+| ----- | :---- |
+| Debug | 调试级别。 |
+| Error | 错误级别。 |
+| Info  | 消息级别。 |
+| Log   | 日志级别。 |
+| Warn  | 警告级别。 |
+
+## RenderExitReason枚举说明
+
+onRenderExited接口返回的渲染进程退出的具体原因。
+
+| 名称                         | 描述                |
+| -------------------------- | ----------------- |
+| ProcessAbnormalTermination | 渲染进程异常退出。         |
+| ProcessWasKilled           | 收到SIGKILL，或被手动终止。 |
+| ProcessCrashed             | 渲染进程崩溃退出，如段错误。    |
+| ProcessOom                 | 程序内存不足。           |
+| ProcessExitUnknown         | 其他原因。             |
+
+## MixedMode枚举说明
+
+| 名称         | 描述                                 |
+| ---------- | ---------------------------------- |
+| All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
+| None       | 不允许加载HTTP和HTTPS混合内容。               |
+
+## CacheMode枚举说明
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| Default | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
+| None    | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
+| Online  | 加载资源不使用cache，全部从网络中获取。               |
+| Only    | 只从cache中加载资源。                        |
+
+## FileSelectorMode枚举说明
+| 名称                   | 描述         |
+| -------------------- | ---------- |
+| FileOpenMode         | 打开上传单个文件。  |
+| FileOpenMultipleMode | 打开上传多个文件。  |
+| FileOpenFolderMode   | 打开上传文件夹模式。 |
+| FileSaveMode         | 文件保存模式。    |
+
+ ## HitTestType枚举说明
+
+| 名称            | 描述                       |
+| ------------- | ------------------------ |
+| EditText      | 可编辑的区域。                  |
+| Email         | 电子邮件地址。                  |
+| HttpAnchor    | 超链接，其src为http。           |
+| HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
+| Img           | HTML::img标签。             |
+| Map           | 地理地址。                    |
+| Phone         | 电话号码。                    |
+| Unknown       | 未知内容。                    |
+
+## SslError<sup>9+</sup>枚举说明
+
+onSslErrorEventReceive接口返回的SSL错误的具体原因。
+
+| 名称           | 描述          |
+| ------------ | ----------- |
+| Invalid      | 一般错误。       |
+| HostMismatch | 主机名不匹配。     |
+| DateInvalid  | 证书日期无效。     |
+| Untrusted    | 证书颁发机构不受信任。 |
+
+## ProtectedResourceType<sup>9+</sup>枚举说明
+
+| 名称        | 描述            | 备注                         |
+| --------- | ------------- | -------------------------- |
+| MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
+
+## WebDarkMode<sup>9+</sup>枚举说明
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| Off     | Web深色模式关闭。                     |
+| On      | Web深色模式开启。                     |
+| Auto    | Web深色模式跟随系统。                 |
+
+## DataResubmissionHandler<sup>9+</sup>
+
+通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
+
+### resend<sup>9+</sup>
+
+resend(): void
+
+重新发送表单数据。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
+      }
+    }
+  }
+  ```
+
+###  cancel<sup>9+</sup>
+
+cancel(): void
+
+取消重新发送表单数据。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.cancel();
+        })
+      }
+    }
+  }
+  ```
+
+  ## WebController
 
 通过WebController可以控制Web组件各种行为。一个WebController对象只能控制一个Web组件，且必须在Web组件和WebController绑定后，才能调用WebController上的方法。
 
@@ -3541,6 +3755,39 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 ```
 webController: WebController = new WebController()
 ```
+
+### getCookieManager<sup>9+</sup>
+
+getCookieManager(): WebCookie
+
+获取web组件cookie管理对象。
+
+**返回值：**
+
+| 类型        | 说明                                       |
+| --------- | ---------------------------------------- |
+| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('getCookieManager')
+          .onClick(() => {
+            let cookieManager = this.controller.getCookieManager()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
 
 ### requestFocus<sup>(deprecated)</sup>
 
@@ -3809,39 +4056,6 @@ getHitTest(): HitTestType
           .onClick(() => {
             let hitType = this.controller.getHitTest()
             console.log("hitType: " + hitType)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getTitle<sup>9+</sup>
-getTitle(): string
-
-获取当前网页的标题。
-
-**返回值：**
-
-| 类型     | 说明       |
-| ------ | -------- |
-| string | 当前网页的标题。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('getTitle')
-          .onClick(() => {
-            let title = this.controller.getTitle()
-            console.log("title: " + title)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4245,47 +4459,15 @@ clearHistory(): void
   }
   ```
 
-### getCookieManager<sup>9+</sup>
-
-getCookieManager(): WebCookie
-
-获取web组件cookie管理对象。
-
-**返回值：**
-
-| 类型        | 说明                                       |
-| --------- | ---------------------------------------- |
-| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('getCookieManager')
-          .onClick(() => {
-            let cookieManager = this.controller.getCookieManager()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## WebCookie
+## WebCookie<sup>(deprecated)</sup>
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 
-### setCookie<sup>9+</sup>
+### setCookie<sup>(deprecated)</sup>
 setCookie(url: string, value: string): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
+从API version 9开始不在维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
 
 **参数：**
 
@@ -4321,10 +4503,11 @@ setCookie(url: string, value: string): boolean
     }
   }
   ```
-### saveCookieSync<sup>9+</sup>
-saveCookieSync(): boolean
+### saveCookie<sup>(deprecated)</sup>
+saveCookie(): boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
+从API version 9开始不在维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
 
 **返回值：**
 
@@ -4343,153 +4526,12 @@ saveCookieSync(): boolean
 
     build() {
       Column() {
-        Button('saveCookieSync')
+        Button('saveCookie')
           .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookieSync()
+            let result = this.controller.getCookieManager().saveCookie()
             console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## MessageLevel枚举说明
-
-| 名称    | 描述    |
-| ----- | :---- |
-| Debug | 调试级别。 |
-| Error | 错误级别。 |
-| Info  | 消息级别。 |
-| Log   | 日志级别。 |
-| Warn  | 警告级别。 |
-
-## RenderExitReason枚举说明
-
-onRenderExited接口返回的渲染进程退出的具体原因。
-
-| 名称                         | 描述                |
-| -------------------------- | ----------------- |
-| ProcessAbnormalTermination | 渲染进程异常退出。         |
-| ProcessWasKilled           | 收到SIGKILL，或被手动终止。 |
-| ProcessCrashed             | 渲染进程崩溃退出，如段错误。    |
-| ProcessOom                 | 程序内存不足。           |
-| ProcessExitUnknown         | 其他原因。             |
-
-## MixedMode枚举说明
-
-| 名称         | 描述                                 |
-| ---------- | ---------------------------------- |
-| All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
-| Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
-| None       | 不允许加载HTTP和HTTPS混合内容。               |
-
-## CacheMode枚举说明
-| 名称      | 描述                                   |
-| ------- | ------------------------------------ |
-| Default | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
-| None    | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
-| Online  | 加载资源不使用cache，全部从网络中获取。               |
-| Only    | 只从cache中加载资源。                        |
-
-## FileSelectorMode枚举说明
-| 名称                   | 描述         |
-| -------------------- | ---------- |
-| FileOpenMode         | 打开上传单个文件。  |
-| FileOpenMultipleMode | 打开上传多个文件。  |
-| FileOpenFolderMode   | 打开上传文件夹模式。 |
-| FileSaveMode         | 文件保存模式。    |
-
- ## HitTestType枚举说明
-
-| 名称            | 描述                       |
-| ------------- | ------------------------ |
-| EditText      | 可编辑的区域。                  |
-| Email         | 电子邮件地址。                  |
-| HttpAnchor    | 超链接，其src为http。           |
-| HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
-| Img           | HTML::img标签。             |
-| Map           | 地理地址。                    |
-| Phone         | 电话号码。                    |
-| Unknown       | 未知内容。                    |
-
-## SslError<sup>9+</sup>枚举说明
-
-onSslErrorEventReceive接口返回的SSL错误的具体原因。
-
-| 名称           | 描述          |
-| ------------ | ----------- |
-| Invalid      | 一般错误。       |
-| HostMismatch | 主机名不匹配。     |
-| DateInvalid  | 证书日期无效。     |
-| Untrusted    | 证书颁发机构不受信任。 |
-
-## ProtectedResourceType<sup>9+</sup>枚举说明
-
-| 名称        | 描述            | 备注                         |
-| --------- | ------------- | -------------------------- |
-| MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-
-## WebDarkMode<sup>9+</sup>枚举说明
-| 名称      | 描述                                   |
-| ------- | ------------------------------------ |
-| Off     | Web深色模式关闭。                     |
-| On      | Web深色模式开启。                     |
-| Auto    | Web深色模式跟随系统。                 |
-
-## DataResubmissionHandler<sup>9+</sup>
-
-通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
-
-### resend<sup>9+</sup>
-
-resend(): void
-
-重新发送表单数据。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
-      }
-    }
-  }
-  ```
-
-###  cancel<sup>9+</sup>
-
-cancel(): void
-
-取消重新发送表单数据。
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.cancel();
-        })
       }
     }
   }
