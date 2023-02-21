@@ -17,7 +17,7 @@ import fileAccess from '@ohos.file.fileAccess';
 
 getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
-以异步方法获取系统内extension配置为fileAcesss类型的所有Want信息。使用Promise异步回调。
+以异步方法获取系统内extension配置为fileAccess类型的所有Want信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -47,7 +47,7 @@ getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
 getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void;
 
-以异步方法获取系统内extension配置为fileAcesss类型的所有Want信息。使用callback异步回调。
+以异步方法获取系统内extension配置为fileAccess类型的所有Want信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -150,12 +150,12 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
   ```js
   createFileAccessHelper() {
-    let fileAccesssHelperAllServer = null;
+    let fileAccessHelperAllServer = null;
     // 创建连接系统内所有配置fileAccess的文件管理类服务的helper对象
     try {
       // this.context 是EntryAbility 传过来的context
-      fileAccesssHelperAllServer = fileAccess.createFileAccessHelper(this.context);
-      if (!fileAccesssHelperAllServer)
+      fileAccessHelperAllServer = fileAccess.createFileAccessHelper(this.context);
+      if (!fileAccessHelperAllServer)
         console.error("createFileAccessHelper interface returns an undefined object");
     } catch (error) {
       console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
