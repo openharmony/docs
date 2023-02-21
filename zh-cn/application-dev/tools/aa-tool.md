@@ -1,7 +1,11 @@
 # aa工具
 
 
-Ability assistant（Ability助手，简称为aa），是实现应用及测试用例启动功能的工具，为开发者提供基本的应用调试和测试的能力。通过该工具，开发者可以在hdc shell中，发送命令以执行各种系统操作，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
+Ability assistant（Ability助手，简称为aa），是实现应用及测试用例启动功能的工具，为开发者提供基本的应用调试和测试能力，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
+
+> **说明：**
+>
+> 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
 
 
 - help
