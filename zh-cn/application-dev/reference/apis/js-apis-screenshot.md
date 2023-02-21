@@ -37,10 +37,10 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | 是   | 表示截取图像区域的左边界。|
-| top    | number | 是   | 表示截取图像区域的上边界。|
-| width  | number | 是   | 表示截取图像区域的宽度。|
-| height | number | 是   | 表示截取图像区域的高度。|
+| left   | number | 是   | 表示截取图像区域的左边界，单位为像素。 |
+| top    | number | 是   | 表示截取图像区域的上边界，单位为像素。 |
+| width  | number | 是   | 表示截取图像区域的宽度，单位为像素。 |
+| height | number | 是   | 表示截取图像区域的高度，单位为像素。 |
 
 
 ## Size
@@ -51,8 +51,8 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | 是   | 表示截取图像的宽度。|
-| height | number | 是   | 表示截取图像的高度。|
+| width  | number | 是   | 表示截取图像的宽度，单位为像素。 |
+| height | number | 是   | 表示截取图像的高度，单位为像素。 |
 
 ## screenshot.save
 
