@@ -1500,7 +1500,7 @@
 
 ## ohos.permission.READ_APP_PUSH_DATA
 
-允许推送服务读取APP中Push数据权限。
+允许推送服务读取应用中推送服务存储的数据。
 
 **权限级别**：system_basic
 
@@ -1510,7 +1510,7 @@
 
 ## ohos.permission.WRITE_APP_PUSH_DATA
 
-允许推送服务往APP中写入Push数据权限。
+允许推送服务往应用中写入数据。
 
 **权限级别**：system_basic
 
