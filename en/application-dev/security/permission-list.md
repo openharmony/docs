@@ -12,7 +12,7 @@ Allows an application to access Bluetooth configurations.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.DISCOVER_BLUETOOTH
 
@@ -22,7 +22,7 @@ Allows an application to configure Bluetooth on a device, initiate or cancel a s
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_BLUETOOTH
 
@@ -32,7 +32,7 @@ Allows an application to pair with a Bluetooth device and access the contacts or
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.INTERNET
 
@@ -42,7 +42,7 @@ Allows an application to access the Internet.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MODIFY_AUDIO_SETTINGS
 
@@ -52,7 +52,7 @@ Allows an application to modify audio settings.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -62,7 +62,7 @@ Allows an application to access the notification policy on the device.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.GET_TELEPHONY_STATE
 
@@ -72,7 +72,7 @@ Allows an application to read telephony information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.REQUIRE_FORM
 
@@ -82,7 +82,7 @@ Allows an application to obtain widgets.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_NETWORK_INFO
 
@@ -92,7 +92,7 @@ Allows an application to obtain network information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.PLACE_CALL
 
@@ -102,7 +102,7 @@ Allows an application to make calls without starting the dialer.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_NETWORK_INFO
 
@@ -112,7 +112,7 @@ Allows an application to set data network information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.REMOVE_CACHE_FILES
 
@@ -122,7 +122,7 @@ Allows the cache of the specified application to be cleared.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.REBOOT
 
@@ -132,7 +132,7 @@ Allows an application to restart the device.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.RUNNING_LOCK
 
@@ -142,7 +142,7 @@ Allows an application to obtain a running lock.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_TIME
 
@@ -152,7 +152,7 @@ Allows an application to set the system time.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_TIME_ZONE
 
@@ -162,7 +162,7 @@ Allows an application to set the system time zone.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.DOWNLOAD_SESSION_MANAGER
 
@@ -172,7 +172,7 @@ Allows an application to manage download sessions.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.COMMONEVENT_STICKY
 
@@ -182,7 +182,7 @@ Allows an application to publish sticky common events.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SYSTEM_FLOAT_WINDOW
 
@@ -192,7 +192,7 @@ Allows an application to be displayed in a floating window on top of other appli
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.PRIVACY_WINDOW
 
@@ -202,7 +202,7 @@ Allows an application to set screens that cannot be captured or recorded.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.POWER_MANAGER
 
@@ -212,7 +212,7 @@ Allows an application to hibernate or wake up the device by calling an API.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.REFRESH_USER_ACTION
 
@@ -222,7 +222,7 @@ Allows an application to reset the screen timeout counter when a user input even
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.POWER_OPTIMIZATION
 
@@ -232,7 +232,7 @@ Allows an application to set power saving mode, obtain configuration of the powe
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.REBOOT_RECOVERY
 
@@ -242,7 +242,7 @@ Allows an application to restart the device and enter Recovery mode.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -252,7 +252,7 @@ Allows an application to manage local user accounts.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -262,7 +262,7 @@ Allows access between multiple OS accounts.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.VIBRATE
 
@@ -272,7 +272,7 @@ Allows an application to control vibration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CONNECT_IME_ABILITY
 
@@ -282,7 +282,7 @@ Allows an application to bind the InputMethodAbility.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CONNECT_SCREEN_SAVER_ABILITY
 
@@ -292,7 +292,7 @@ Allows an application to bind the ScreenSaverAbility.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_SCREEN_SAVER
 
@@ -302,7 +302,7 @@ Allows an application to read the screen saver information, such as the list of 
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_SCREEN_SAVER
 
@@ -312,7 +312,7 @@ Allows an application to modify the screen saver information, such as activating
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_WALLPAPER
 
@@ -322,7 +322,7 @@ Allows an application to set a static wallpaper.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_WALLPAPER
 
@@ -332,7 +332,7 @@ Allows an application to read wallpaper files.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CHANGE_ABILITY_ENABLED_STATE
 
@@ -342,7 +342,7 @@ Allows an application to enable or disable an application or component.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCESS_MISSIONS
 
@@ -352,7 +352,7 @@ Allows an application to obtain information about running processes and mission 
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -362,7 +362,7 @@ Allows an application to clear background processes based on their bundle names.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -372,7 +372,7 @@ Allows a Service ability to keep running in the background.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.UPDATE_CONFIGURATION
 
@@ -382,7 +382,7 @@ Allows an application to modify system settings.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.UPDATE_SYSTEM
 
@@ -392,7 +392,7 @@ Allows an application to call the update APIs.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.FACTORY_RESET
 
@@ -402,7 +402,7 @@ Allows an application to call the API for restoring factory settings.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
@@ -412,7 +412,7 @@ Allows an application to grant sensitive permissions to other applications.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -422,7 +422,7 @@ Allows an application to revoke sensitive permissions granted to other applicati
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_SENSITIVE_PERMISSIONS
 
@@ -432,7 +432,7 @@ Allows an application to obtain the sensitive permissions that have been granted
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
@@ -442,7 +442,7 @@ Allows an application to set the attributes of applications of other users.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.LISTEN_BUNDLE_CHANGE
 
@@ -452,7 +452,7 @@ Allows an application to listen for changes in other applications, when they are
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_BUNDLE_INFO
 
@@ -462,7 +462,7 @@ Allows an application to obtain information about another application. This perm
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -472,7 +472,7 @@ Allows an application to obtain information about other applications at the same
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCELEROMETER
 
@@ -482,7 +482,7 @@ Allows an application to read data from an acceleration sensor, uncalibrated acc
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GYROSCOPE
 
@@ -492,7 +492,7 @@ Allows an application to read data from a gyroscope sensor or uncalibrated gyros
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.INSTALL_BUNDLE
 
@@ -502,7 +502,7 @@ Allows an application to install and uninstall other applications.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_SHORTCUTS
 
@@ -512,7 +512,7 @@ Allows an application to query and start shortcuts of other applications.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.radio.ACCESS_FM_AM
 
@@ -522,7 +522,7 @@ Allows an application to access radio services.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_TELEPHONY_STATE
 
@@ -532,7 +532,7 @@ Allows an application to change the telephone state.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
@@ -542,7 +542,7 @@ Allows an application to start or access other components from the background.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -552,7 +552,7 @@ Allows an application to obtain how long other applications have been running in
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.START_INVISIBLE_ABILITY
 
@@ -562,7 +562,7 @@ Allows an application to start an invisible ability.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.sec.ACCESS_UDID
 
@@ -572,7 +572,7 @@ Allows an application to obtain the Unified Device ID (UDID).
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.LAUNCH_DATA_PRIVACY_CENTER
 
@@ -582,7 +582,7 @@ Allows an application to switch from its privacy statement page to the <b>Data &
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_MEDIA_RESOURCES
 
@@ -592,7 +592,7 @@ Allows an application to obtain and manage the media resources that are being pl
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -602,7 +602,7 @@ Allows an application to use agent-powered reminders.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
@@ -612,7 +612,7 @@ Allows an application to use sync task animations.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.INPUT_MONITORING
 
@@ -622,7 +622,7 @@ Allows an application to listen for input events. Only the system signed applica
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_MISSIONS
 
@@ -632,7 +632,7 @@ Allows an application to manage ability mission stacks.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -642,7 +642,7 @@ Allows an application to manage and subscribe to notifications.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CONNECTIVITY_INTERNAL
 
@@ -652,7 +652,7 @@ Allows an application to obtain network information or modify network settings.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
@@ -662,7 +662,7 @@ Allows an application to set the start and stop of an ability.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.USE_USER_IDM
 
@@ -672,7 +672,7 @@ Allows an application to access the system identity credential information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_USER_IDM
 
@@ -682,7 +682,7 @@ Allows an application to use the system identity credential management capabilit
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_BIOMETRIC
 
@@ -692,7 +692,7 @@ Allows an application to use biometric recognition for identity authentication.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCESS_USER_AUTH_INTERNAL
 
@@ -702,7 +702,7 @@ Allows an application to use the system identity authentication capability to au
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_PIN_AUTH
 
@@ -712,7 +712,7 @@ Allows a system application to call the PIN input APIs to present a password inp
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.GET_RUNNING_INFO
 
@@ -722,7 +722,7 @@ Allows an application to obtain running status information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CLEAN_APPLICATION_DATA
 
@@ -732,7 +732,7 @@ Allows an application to clear application data.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -742,7 +742,7 @@ Allows an application to observe the application status.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CAPTURE_SCREEN
 
@@ -752,7 +752,7 @@ Allows an application to take screenshots.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_WIFI_INFO
 
@@ -762,7 +762,7 @@ Allows an application to obtain WLAN information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_WIFI_INFO_INTERNAL
 
@@ -772,7 +772,7 @@ Allows an application to obtain WLAN information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_WIFI_INFO
 
@@ -782,7 +782,7 @@ Allows an application to set WLAN devices.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_WIFI_PEERS_MAC
 
@@ -792,7 +792,7 @@ Allows an application to obtain the MAC address of the peer WLAN or Bluetooth de
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -802,7 +802,7 @@ Allows an application to obtain the MAC address of the local WLAN or Bluetooth d
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_WIFI_CONFIG
 
@@ -812,7 +812,7 @@ Allows an application to obtain the WLAN configuration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_WIFI_CONFIG
 
@@ -822,7 +822,7 @@ Allows an application to set WLAN information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_WIFI_CONNECTION
 
@@ -832,7 +832,7 @@ Allows an application to manage WLAN connections.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_WIFI_HOTSPOT
 
@@ -842,7 +842,7 @@ Allows an application to enable or disable Wi-Fi hotspots.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_ALL_APP_ACCOUNTS
 
@@ -852,7 +852,7 @@ Allows an application to obtain all application account information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -862,7 +862,7 @@ Allows an application to modify security settings.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_DFX_SYSEVENT
 
@@ -872,7 +872,7 @@ Allows an application to access system event logging data.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -882,7 +882,7 @@ Allows an application to activate the device administrator app.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_ENTERPRISE_INFO
 
@@ -892,7 +892,7 @@ Allows the device administrator application to set enterprise information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -902,7 +902,7 @@ Allows the device administrator application to subscribe to management events.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -912,7 +912,7 @@ Allows the device administrator application to set the system time.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -922,7 +922,7 @@ Allows the device administrator application to obtain device information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.NFC_TAG
 
@@ -932,7 +932,7 @@ Allows an application to read NFC tag information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.NFC_CARD_EMULATION
 
@@ -942,7 +942,7 @@ Allows an application to implement card emulation.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.PERMISSION_USED_STATS
 
@@ -952,7 +952,7 @@ Allows a system application to access the permission usage records.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -962,7 +962,7 @@ Allows an application to send agent-powered notifications.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ANSWER_CALL
 
@@ -972,7 +972,7 @@ Allows an application to answer incoming calls.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_CALENDAR
 
@@ -982,7 +982,7 @@ Allows an application to read calendar data.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_CALL_LOG
 
@@ -992,7 +992,7 @@ Allows an application to read call logs.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_CELL_MESSAGES
 
@@ -1002,7 +1002,7 @@ Allows an application to read cell broadcast messages received by the device.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_CONTACTS
 
@@ -1012,7 +1012,7 @@ Allows an application to read contacts.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_MESSAGES
 
@@ -1022,7 +1022,7 @@ Allows an application to read messages.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.RECEIVE_MMS
 
@@ -1032,7 +1032,7 @@ Allows an application to receive and process MMS messages.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.RECEIVE_SMS
 
@@ -1042,7 +1042,7 @@ Allows an application to receive and process SMS messages.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.RECEIVE_WAP_MESSAGES
 
@@ -1052,7 +1052,7 @@ Allows an application to receive and process WAP messages.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MICROPHONE
 
@@ -1062,7 +1062,7 @@ Allows an application to access the microphone.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SEND_MESSAGES
 
@@ -1072,7 +1072,7 @@ Allows an application to send messages.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_CALENDAR
 
@@ -1082,7 +1082,7 @@ Allows an application to add, remove, and modify calendar events.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_CALL_LOG
 
@@ -1092,7 +1092,7 @@ Allows an application to add, remove, and modify call logs.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_CONTACTS
 
@@ -1102,7 +1102,7 @@ Allows an application to add, remove, and modify contacts.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1112,7 +1112,7 @@ Allows an application to exchange data with other devices.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_VOICEMAIL
 
@@ -1122,7 +1122,7 @@ Allows an application to leave messages in the voice mailbox.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.LOCATION_IN_BACKGROUND
 
@@ -1132,7 +1132,7 @@ Allows an application running in the background to obtain the device location.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.LOCATION
 
@@ -1142,7 +1142,7 @@ Allows an application to obtain the device location.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1152,7 +1152,7 @@ Allows an application to obtain the approximate location information of a device
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MEDIA_LOCATION
 
@@ -1162,7 +1162,7 @@ Allow an application to access geographical locations in the user's media file.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.CAMERA
 
@@ -1172,7 +1172,7 @@ Allows an application to use the camera to take photos and record videos.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_MEDIA
 
@@ -1182,7 +1182,7 @@ Allows an application to read media files from the user's external storage.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_MEDIA
 
@@ -1192,7 +1192,7 @@ Allows an application to read media files from and write media files into the us
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACTIVITY_MOTION
 
@@ -1202,7 +1202,7 @@ Allows an application to read the current workout status of the user.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_HEALTH_DATA
 
@@ -1212,7 +1212,7 @@ Allows an application to read the health data of the user.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -1222,7 +1222,7 @@ Allows an application to query default applications.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -1232,7 +1232,7 @@ Allows an application to set and reset default applications.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -1242,7 +1242,7 @@ Allows an application to set and query the application handling state.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCESS_IDS
 
@@ -1252,7 +1252,7 @@ Allows an application to query the unique identifier of a device.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.DUMP
 
@@ -1262,7 +1262,7 @@ Allows the basic system information and SA service information to be exported.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.DISTRIBUTED_SOFTBUS_CENTER
 
@@ -1272,7 +1272,7 @@ Allows networking between different devices.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_DLP_FILE
 
@@ -1282,7 +1282,7 @@ Allows configuration and management of the permissions on .dlp files.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.PROVISIONING_MESSAGE
 
@@ -1292,7 +1292,7 @@ Allows the Super Device Manager application to be activated.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCESS_SYSTEM_SETTINGS
 
@@ -1302,7 +1302,7 @@ Allows an application to access or start system **Settings**.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_IMAGEVIDEO
 
@@ -1312,7 +1312,7 @@ Allows access to the images or video files in a user's directory.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_AUDIO
 
@@ -1322,7 +1322,7 @@ Allows access to the audio files in a user's directory.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.READ_DOCUMENT
 
@@ -1332,7 +1332,7 @@ Allows access to the files in a user's directory.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1342,7 +1342,7 @@ Allows modification to the images or video files in a user's directory.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_AUDIO
 
@@ -1352,7 +1352,7 @@ Audio modification to the audio files in a user's directory.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_DOCUMENT
 
@@ -1362,7 +1362,7 @@ Allows modification to the files in a user's directory.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
@@ -1372,7 +1372,7 @@ Allows an application to start the Ability component in the background and estab
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.securityguard.REPORT_SECURITY_INFO
 
@@ -1382,7 +1382,7 @@ Allows an application to report risk data for security guard.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT
 
@@ -1392,7 +1392,7 @@ Allows an application to obtain the device risk status.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -1402,7 +1402,7 @@ Allows an application to obtain detailed risk data.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.READ_ACCESSIBILITY_CONFIG
 
@@ -1412,7 +1412,7 @@ Allows an application to read the accessibility configuration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
@@ -1422,7 +1422,7 @@ Allows an application to set the accessibility configuration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_CERT_MANAGER_INTERNAL
 
@@ -1432,7 +1432,7 @@ Allows an application to install, uninstall, enable, and disable certificates an
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1442,7 +1442,7 @@ Allows an application to manage private credentials and query certificate status
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_PUSH_SERVICE
 
@@ -1452,7 +1452,7 @@ Allows an application to to access the Ability of the push service.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -1462,7 +1462,7 @@ Allows an application to subscribe to the startup broadcast.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_CAMERA_CONFIG
 
@@ -1472,7 +1472,7 @@ Allows an application to enable or disable cameras globally.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.READ_WHOLE_CALENDAR
 
@@ -1482,7 +1482,7 @@ Allows an application to read all calendar information.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.WRITE_WHOLE_CALENDAR
 
@@ -1492,7 +1492,7 @@ Allows an application to add, remove, or change all calendar events.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ENFORCE_USER_IAM
 
@@ -1502,7 +1502,7 @@ Allows an SA to delete user information from the IAM subsystem without a token.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCESS_AUTH_RESPOOL
 
@@ -1512,7 +1512,7 @@ Allows an SA to register the executor.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -1522,7 +1522,7 @@ Allows an application to mount and unmount external cards.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -1532,7 +1532,7 @@ Allows an application to format external cards.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.STORAGE_MANAGER
 
@@ -1542,7 +1542,7 @@ Allows an application to call the interfaces of the Storage Manager service to q
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.BACKUP
 
@@ -1552,7 +1552,7 @@ Allows an application to have backup and restore capabilities.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.FILE_ACCESS_MANAGER
 
@@ -1562,7 +1562,7 @@ Allows a file management application to access user data files through the FAF.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.MANAGE_AUDIO_CONFIG
 
@@ -1572,4 +1572,4 @@ Allows an application to to mute microphones globally.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: TRUE
+**Enable via ACL**: TRUE
