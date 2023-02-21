@@ -31,7 +31,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
   ```ts
-  var formId = "12400633174999288";
+  var formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
       if (error.code) {
           console.log('formProvider setFormNextRefreshTime, error:' + JSON.stringify(error));
@@ -63,7 +63,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  var formId = "12400633174999288";
+  var formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
       console.log('formProvider setFormNextRefreshTime success');
   }).catch((error) => {
@@ -91,8 +91,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
-  var formId = "12400633174999288";
-  let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  var formId = '12400633174999288';
+  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj, (error, data) => {
       if (error.code) {
           console.log('formProvider updateForm, error:' + JSON.stringify(error));
@@ -125,8 +125,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
-  var formId = "12400633174999288";
-  let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  var formId = '12400633174999288';
+  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj).then(() => {
       console.log('formProvider updateForm success');
   }).catch((error) => {
@@ -180,7 +180,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
-    moduleName : "entry"
+    moduleName : 'entry'
 };
 formProvider.getFormsInfo(filter, (error, data) => {
     if (error.code) {
@@ -217,7 +217,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
-    moduleName : "entry"
+    moduleName : 'entry'
 };
 formProvider.getFormsInfo(filter).then((data) => {
     console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
@@ -240,7 +240,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
@@ -249,14 +249,14 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
   var want = {
-      abilityName: "FormAbility",
+      abilityName: 'FormAbility',
       parameters: {
-          "ohos.extra.param.key.form_dimension": 2,
-          "ohos.extra.param.key.form_name": "widget",
-          "ohos.extra.param.key.module_name": "entry"
+          'ohos.extra.param.key.form_dimension': 2,
+          'ohos.extra.param.key.form_name': 'widget',
+          'ohos.extra.param.key.module_name': 'entry'
       }
   };
-  let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.requestPublishForm(want, obj, (error, data) => {
       if (error.code) {
           console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
@@ -280,18 +280,18 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](js-apis-application-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want     | [Want](js-apis-application-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
 
 **示例：**
 
   ```ts
   var want = {
-      abilityName: "FormAbility",
+      abilityName: 'FormAbility',
       parameters: {
-          "ohos.extra.param.key.form_dimension": 2,
-          "ohos.extra.param.key.form_name": "widget",
-          "ohos.extra.param.key.module_name": "entry"
+          'ohos.extra.param.key.form_dimension': 2,
+          'ohos.extra.param.key.form_name': 'widget',
+          'ohos.extra.param.key.module_name': 'entry'
       }
   };
   formProvider.requestPublishForm(want, (error, data) => {
@@ -317,7 +317,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
 
 **返回值：**
@@ -330,11 +330,11 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
   ```ts
   var want = {
-      abilityName: "FormAbility",
+      abilityName: 'FormAbility',
       parameters: {
-          "ohos.extra.param.key.form_dimension": 2,
-          "ohos.extra.param.key.form_name": "widget",
-          "ohos.extra.param.key.module_name": "entry"
+          'ohos.extra.param.key.form_dimension': 2,
+          'ohos.extra.param.key.form_name': 'widget',
+          'ohos.extra.param.key.module_name': 'entry'
       }
   };
   formProvider.requestPublishForm(want).then((data) => {
@@ -369,11 +369,11 @@ formProvider.isRequestPublishFormSupported((error, isSupported) => {
   } else {
     if (isSupported) {
       var want = {
-      abilityName: "FormAbility",
+      abilityName: 'FormAbility',
       parameters: {
-        "ohos.extra.param.key.form_dimension": 2,
-        "ohos.extra.param.key.form_name": "widget",
-        "ohos.extra.param.key.module_name": "entry"
+        'ohos.extra.param.key.form_dimension': 2,
+        'ohos.extra.param.key.form_name': 'widget',
+        'ohos.extra.param.key.module_name': 'entry'
       }
       };
       formProvider.requestPublishForm(want, (error, data) => {
@@ -410,11 +410,11 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 formProvider.isRequestPublishFormSupported().then((isSupported) => {
   if (isSupported) {
     var want = {
-    abilityName: "FormAbility",
+    abilityName: 'FormAbility',
     parameters: {
-        "ohos.extra.param.key.form_dimension": 2,
-        "ohos.extra.param.key.form_name": "widget",
-        "ohos.extra.param.key.module_name": "entry"
+        'ohos.extra.param.key.form_dimension': 2,
+        'ohos.extra.param.key.form_name': 'widget',
+        'ohos.extra.param.key.module_name': 'entry'
     }
     };
     formProvider.requestPublishForm(want).then((data) => {

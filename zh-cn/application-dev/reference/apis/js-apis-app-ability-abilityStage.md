@@ -30,7 +30,7 @@ import AbilityStage from '@ohos.app.ability.AbilityStage';
 
 class MyAbilityStage extends AbilityStage {
     onCreate() {
-        console.log("MyAbilityStage.onCreate is called");
+        console.log('MyAbilityStage.onCreate is called');
     }
 }
 ```
@@ -63,8 +63,8 @@ import AbilityStage from '@ohos.app.ability.AbilityStage';
 
 class MyAbilityStage extends AbilityStage {
     onAcceptWant(want) {
-        console.log("MyAbilityStage.onAcceptWant called");
-        return "com.example.test";
+        console.log('MyAbilityStage.onAcceptWant called');
+        return 'com.example.test';
     }
 }
 ```

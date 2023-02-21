@@ -14,11 +14,11 @@
   import distributedMissionManager from '@ohos.distributedMissionManager';
 
   let continueDeviceInfo = {
-    srcDeviceId: "123",
-    dstDeviceId: "456",
+    srcDeviceId: '123',
+    dstDeviceId: '456',
     missionId: 123,
     wantParam: {
-        "key":"value"
+        'key':'value'
     }
   };
 
@@ -26,7 +26,7 @@
       onContinueDone(result) {
           console.log('onContinueDone, result: ' + JSON.stringify(result));
       }
-  }
+  };
 
   distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
     if (error.code != 0) {

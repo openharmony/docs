@@ -129,7 +129,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 **示例：**
 
   ```ts
-  import rpc from '@ohos.rpc'
+  import rpc from '@ohos.rpc';
   class StubTest extends rpc.RemoteObject{
       constructor(des) {
           super(des);
@@ -140,7 +140,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   class ServiceExt extends ServiceExtension {
     onConnect(want) {
       console.log('onConnect , want:' + want.abilityName);
-      return new StubTest("test");
+      return new StubTest('test');
     }
   }
   ```
@@ -246,7 +246,7 @@ onDump(params: Array\<string>): Array\<string>;
   class ServiceExt extends ServiceExtension {
       onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          return ['params'];
       }
   }
   ```

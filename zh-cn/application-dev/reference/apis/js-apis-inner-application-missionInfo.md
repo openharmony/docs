@@ -19,9 +19,9 @@
 
 **示例：**
 ```ts
-import missionManager from '@ohos.application.missionManager'
+import missionManager from '@ohos.application.missionManager';
 
-missionManager.getMissionInfo("12345", 1, (error, data) => {
+missionManager.getMissionInfo('12345', 1, (error, data) => {
     console.info('getMissionInfo missionId is:' + JSON.stringify(data.missionId));
     console.info('getMissionInfo runningState is:' + JSON.stringify(data.runningState));
     console.info('getMissionInfo lockedState is:' + JSON.stringify(data.lockedState));

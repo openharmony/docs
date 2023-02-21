@@ -16,26 +16,26 @@
 
 **示例：**
 ```ts
-import missionManager from '@ohos.application.missionManager'
+import missionManager from '@ohos.application.missionManager';
 
 let listener = {
     onMissionCreated: function (mission) {
-        console.log("onMissionCreated mission: " + JSON.stringify(mission));
+        console.log('onMissionCreated mission: ' + JSON.stringify(mission));
     },
     onMissionDestroyed: function (mission) {
-        console.log("onMissionDestroyed mission: " + JSON.stringify(mission));
+        console.log('onMissionDestroyed mission: ' + JSON.stringify(mission));
     },
     onMissionSnapshotChanged: function (mission) {
-        console.log("onMissionSnapshotChanged mission: " + JSON.stringify(mission));
+        console.log('onMissionSnapshotChanged mission: ' + JSON.stringify(mission));
     },
     onMissionMovedToFront: function (mission) {
-        console.log("onMissionMovedToFront mission: " + JSON.stringify(mission));
+        console.log('onMissionMovedToFront mission: ' + JSON.stringify(mission));
     },
     onMissionIconUpdated: function (mission, icon) {
-        console.log("onMissionIconUpdated mission: " + JSON.stringify(mission));
+        console.log('onMissionIconUpdated mission: ' + JSON.stringify(mission));
     },
     onMissionClosed: function (mission) {
-        console.log("onMissionClosed mission: " + JSON.stringify(mission));
+        console.log('onMissionClosed mission: ' + JSON.stringify(mission));
     }
 };
 let listenerid = missionManager.registerMissionListener(listener);

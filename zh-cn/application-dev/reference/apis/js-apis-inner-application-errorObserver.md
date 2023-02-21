@@ -25,6 +25,6 @@ let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ' + JSON.stringify(errorMsg));
     }
-}
-errorManager.registerErrorObserver(observer)
+};
+errorManager.registerErrorObserver(observer);
 ```

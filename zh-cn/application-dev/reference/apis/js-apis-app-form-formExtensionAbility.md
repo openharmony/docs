@@ -49,8 +49,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want) {
     console.log('FormExtensionAbility onAddForm, want:' + want.abilityName);
     let dataObj1 = {
-      temperature:"11c",
-      "time":"11:00"
+      temperature:'11c',
+      'time':'11:00'
     };
     let obj1 = formBindingData.createFormBindingData(dataObj1);
     return obj1;
@@ -99,11 +99,11 @@ onUpdateForm(formId: string): void
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData'
+import formBindingData from '@ohos.app.form.formBindingData';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onUpdateForm(formId) {
     console.log('FormExtensionAbility onUpdateForm, formId:' + formId);
-    let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+    let obj2 = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
     this.context.updateForm(formId, obj2).then((data)=>{
       console.log('FormExtensionAbility context updateForm, data:' + data);
     }).catch((error) => {
@@ -129,14 +129,14 @@ onChangeFormVisibility(newStatus: { [key: string]: number }): void
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData'
+import formBindingData from '@ohos.app.form.formBindingData';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onChangeFormVisibility(newStatus) {
   console.log('FormExtensionAbility onChangeFormVisibility, newStatus:' + newStatus);
-  let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  let obj2 = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
 
   for (let key in newStatus) {
-    console.log('FormExtensionAbility onChangeFormVisibility, key:' + key + ", value=" + newStatus[key]);
+    console.log('FormExtensionAbility onChangeFormVisibility, key:' + key + ', value=' + newStatus[key]);
     this.context.updateForm(key, obj2).then((data)=>{
         console.log('FormExtensionAbility context updateForm, data:' + data);
     }).catch((error) => {
@@ -166,7 +166,7 @@ onFormEvent(formId: string, message: string): void
 ```ts
 export default class MyFormExtension extends FormExtensionAbility {
   onFormEvent(formId, message) {
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
+    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ', message:' + message);
   }
 }
 ```
@@ -274,8 +274,8 @@ class MyFormExtensionAbility extends FormExtensionAbility {
   onShareForm(formId) {
     console.log('FormExtensionAbility onShareForm, formId:' + formId);
     let wantParams = {
-      "temperature":"20",
-      "time":"2022-8-8 09:59",
+      'temperature':'20',
+      'time':'2022-8-8 09:59',
     };
     return wantParams;
   }
