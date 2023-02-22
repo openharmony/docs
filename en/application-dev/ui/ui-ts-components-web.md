@@ -8,10 +8,12 @@ Create a **\<Web>** component in the .ets file under **main/ets/entryability/pag
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'https://www.example.com', controller: this.controller })
@@ -26,11 +28,13 @@ When using the **\<Web>** component, you must specify the styles and attributes.
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -54,13 +58,15 @@ Add the **onProgressChange** event for the **\<Web>** component, which is trigge
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -93,14 +99,17 @@ Add the **runJavaScript** method to the **onPageEnd** event. The **onPageEnd** e
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
+  @State webResult: string = ''
   fileAccess: boolean = true;
   // Define the controller for the \<Web> component.
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -124,8 +133,23 @@ struct WebComponent {
         })
         .onPageEnd(e => {
           // test() is defined in index.html.
-          this.controller.runJavaScript({ script: 'test()' });
-          console.info('url: ', e.url);
+          try {
+            this.controller.runJavaScript(
+              'test()',
+              (error, result) => {
+                if (error) {
+                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  return;
+                }
+                if (result) {
+                  this.webResult = result
+                  console.info(`The test() return value is: ${result}`)
+                }
+              });
+            console.info('url: ', e.url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
         })
       Text('End')
         .fontSize(20)
@@ -160,10 +184,12 @@ The configuration procedure is as follows:
 1. Set the **webDebuggingAccess** attribute of the **\<Web>** component to **true**.
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -189,20 +215,30 @@ In this example, you'll implement a **\<Web>** component where videos can be pla
 
   ```ts
   // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Row() {
         Button('onActive').onClick(() => {
           console.info("Web Component onActive");
-          this.controller.onActive();
+          try {
+            this.controller.onActive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
         Button('onInactive').onClick(() => {
           console.info("Web Component onInactive");
-          this.controller.onInactive();
+          try {
+            this.controller.onInactive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
       }
       Web({ src: $rawfile('index.html'), controller: this.controller })

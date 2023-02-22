@@ -37,3 +37,49 @@ GridItem的forceRebuild属性废弃
 **适配指导**
 
 如有使用可以直接删除，不影响GridItem功能
+
+
+## cl.arkui.1 API9 router接口整改。
+
+ohos.router中的enableAlertBeforeBackPage、enableBackPageAlert、disableAlertBeforeBackPage接口名不利于开发者理解，更改为showAlertBeforeBackPage、hideAlertBeforeBackPage。
+
+**变更影响**
+
+router的enableAlertBeforeBackPage、enableBackPageAlert接口需替换为showAlertBeforeBackPage；
+
+disableAlertBeforeBackPage接口需替换为hideAlertBeforeBackPage。
+
+**关键的接口/组件变更**
+
+涉及router.enableAlertBeforeBackPage, router.enableBackPageAlert, router.disableAlertBeforeBackPage。
+
+* 变更前：
+
+```ts
+router.enableAlertBeforeBackPage();
+router.enableBackPageAlert()
+```
+
+* 变更后：
+
+```ts
+router.showAlertBeforeBackPage()
+```
+
+* 变更前：
+
+```ts
+router.disableAlertBeforeBackPage()
+```
+
+* 变更后：
+
+```ts
+router.hideAlertBeforeBackPage()
+```
+
+**适配指导**
+
+将enableAlertBeforeBackPage、enableBackPageAlert替换为showAlertBeforeBackPage;
+
+将disableAlertBeforeBackPage替换为hideAlertBeforeBackPage。

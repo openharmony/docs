@@ -33,22 +33,15 @@ Obtains the network type.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete |
+| success | Function | No | Called when the execution is successful. The return value is [NetworkResponse](#networkresponse). |
+| fail | Function | No | Called when the operation fails. |
+| complete | Function | No | Called when the execution is complete |
 
-The following value will be returned when the multimedia volume is obtained.
+Return value of the **fail** callback:
 
-| Parameter | Type | Description |
-| -------- | -------- | -------- |
-| metered | boolean | Whether&nbsp;the&nbsp;billing&nbsp;is&nbsp;based&nbsp;on&nbsp;the&nbsp;data&nbsp;volume. |
-| type | string | Network&nbsp;type.&nbsp;The&nbsp;value&nbsp;can&nbsp;be&nbsp;**2G**,&nbsp;**3G**,&nbsp;**4G**,&nbsp;**5G**,&nbsp;**WiFi**,&nbsp;or&nbsp;**none**. |
-
-One of the following error codes will be returned if the operation fails.
-
-| Error&nbsp;Code | Description |
+| Error Code | Description |
 | -------- | -------- |
-| 602 | The&nbsp;current&nbsp;permission&nbsp;is&nbsp;not&nbsp;declared. |
+| 602 | The current permission is not declared. |
 
 **Example**
 
@@ -80,22 +73,15 @@ Listens to the network connection state. If this method is called multiple times
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;network&nbsp;connection&nbsp;state&nbsp;changes |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;multimedia&nbsp;volume&nbsp;fails&nbsp;to&nbsp;be&nbsp;obtained. |
+| success | Function | No | Called when the network connection state changes |
+| fail | Function | No | Called when the multimedia volume fails to be obtained. |
 
-The following value will be returned when the multimedia volume is obtained.
+Return value of the **fail** callback:
 
-| Parameter | Type | Description |
-| -------- | -------- | -------- |
-| metered | boolean | Whether&nbsp;the&nbsp;billing&nbsp;is&nbsp;based&nbsp;on&nbsp;the&nbsp;data&nbsp;volume. |
-| type | string | Network&nbsp;type.&nbsp;The&nbsp;value&nbsp;can&nbsp;be&nbsp;**2G**,&nbsp;**3G**,&nbsp;**4G**,&nbsp;**5G**,&nbsp;**WiFi**,&nbsp;or&nbsp;**none**. |
-
-One of the following error codes will be returned if the listening fails.
-
-| Error&nbsp;Code | Description |
+| Error Code | Description |
 | -------- | -------- |
-| 602 | The&nbsp;current&nbsp;permission&nbsp;is&nbsp;not&nbsp;declared. |
-| 200 | The&nbsp;subscription&nbsp;fails. |
+| 602 | The current permission is not declared. |
+| 200 | The subscription fails. |
 
 **Example**
 
@@ -132,3 +118,10 @@ export default {
   },
 }
 ```
+
+## NetworkResponse
+
+| Parameter | Type | Description |
+| -------- | -------- | -------- |
+| metered | boolean | Whether the billing is based on the data volume. |
+| type | string | Network type. The value can be **2G**, **3G**, **4G**, **5G**, **WiFi**, or **none**. |

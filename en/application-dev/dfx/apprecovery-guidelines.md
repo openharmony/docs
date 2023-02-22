@@ -39,7 +39,7 @@ Fault management is an important way for applications to deliver a better user e
 
 - Fault query indicates that [faultLogger](../reference/apis/js-apis-faultLogger.md) obtains the fault information using its query API.
 
-The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to [LastExitReason](../reference/apis/js-apis-application-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query the information about the last fault.
+The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to [LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query the information about the last fault.
 ![Fault rectification process](./figures/fault_rectification.png)
 
 It is recommended that you call [errorManager](../reference/apis/js-apis-application-errorManager.md) to process the exception. After the processing is complete, you can call the status saving API and restart the application.
@@ -134,7 +134,7 @@ After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state,
 
 - Restore data.
 
-After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onSaveState(state, wantParams)** of **EntryAbility** is called, and the saved data is in **parameters** of **want**.
+After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onCreate(want, launchParam)** of **EntryAbility** is called, and the saved data is in **parameters** of **want**.
 
 ```ts
 storage: LocalStorage
