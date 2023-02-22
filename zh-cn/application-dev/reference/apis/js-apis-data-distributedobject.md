@@ -140,7 +140,6 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-let g_object;
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
     console.info("join session");
@@ -174,7 +173,6 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-let g_object;
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
     console.info("join session");
@@ -217,13 +215,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let g_object;
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
     console.info("join session.");
@@ -256,7 +248,6 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 **示例：**
 
 ```js
-let g_object;
 globalThis.changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
@@ -287,7 +278,6 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 **示例：**
 
 ```js
-let g_object;
 // 删除数据变更回调changeCallback
 g_object.off("change", globalThis.changeCallback);
 // 删除所有的数据变更回调
@@ -312,10 +302,6 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
 **示例：**
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let g_object;
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -341,7 +327,6 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 **示例：**
 
 ```js
-let g_object;
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -377,7 +362,6 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 **示例：**
 
 ```ts
-let g_object;
 g_object.setSessionId("123456");
 g_object.save("local", (result) => {
     console.info("save callback");
@@ -418,10 +402,6 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 **示例：**
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let g_object;
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
     console.info("save callback");
@@ -453,7 +433,6 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 **示例：**
 
 ```js
-let g_object;
 g_object.setSessionId("123456");
 // 持久化数据
 g_object.save("local", (result) => {
@@ -488,10 +467,7 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
 **示例：**
 
-FA模型示例
-
 ```ts
-let g_object;
 g_object.setSessionId("123456");
 // 持久化数据
 g_object.save("local").then((result) => {

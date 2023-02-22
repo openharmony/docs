@@ -58,6 +58,7 @@ try {
 	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 	        return;
 	    }
+	    preferences = val;
 	    console.info("Succeeded in getting preferences.");
 	})
 } catch (err) {
@@ -80,6 +81,7 @@ class EntryAbility extends UIAbility {
                     console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                     return;
                 }
+                preferences = val;
                 console.info("Succeeded in getting preferences.");
             })
         } catch (err) {
