@@ -1,6 +1,7 @@
 # @ohos.multimedia.medialibrary (Media Library Management)
 
 > **NOTE**
+>
 > The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -118,14 +119,14 @@ media.getFileAssets(imagesFetchOp, (error, fetchFileResult) => {
             console.error('Failed to get first object: ' + err);
             return;
         }
-        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        console.info('fileAsset.displayName ' + ': ' + fileAsset.displayName);
         for (let i = 1; i < count; i++) {
             fetchFileResult.getNextObject((err, fileAsset) => {
                 if (fileAsset == undefined) {
                     console.error('Failed to get next object: ' + err);
                     return;
                 }
-                console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
             })
         }
     });
@@ -174,10 +175,10 @@ media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
     }
     console.info('Get fetchFileResult success, count: ' + count);
     fetchFileResult.getFirstObject().then(function(fileAsset) {
-        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        console.info('fileAsset.displayName ' + ': ' + fileAsset.displayName);
         for (let i = 1; i < count; i++) {
             fetchFileResult.getNextObject().then(function(fileAsset) {
-                console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+                console.info('fileAsset.displayName ' + ': ' + fileAsset.displayName);
             }).catch(function(err) {
                 console.error('Failed to get next object: ' + err);
             })
@@ -264,9 +265,9 @@ async function example() {
     const path = await media.getPublicDirectory(DIR_IMAGE);
     media.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
         if (fileAsset != undefined) {
-            console.info('createAsset successfully, message = ' + err);
+            console.info('createAsset successfully, message');
         } else {
-            console.info('createAsset failed, message = ' + err);
+            console.error('createAsset failed, message = ' + err);
         }
     });
 }
@@ -307,7 +308,7 @@ async function example() {
     media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
         console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
     }).catch((err) => {
-        console.info('createAsset failed, message = ' + err);
+        console.error('createAsset failed, message = ' + err);
     });
 }
 ```
@@ -354,7 +355,7 @@ async function example() {
     media.deleteAsset(asset.uri).then(() => {
         console.info("deleteAsset successfully");
     }).catch((err) => {
-        console.info("deleteAsset failed with error:"+ err);
+        console.error("deleteAsset failed with error:"+ err);
     });
 }
 ```
@@ -397,7 +398,7 @@ async function example() {
         if (err != undefined) {
             console.info("deleteAsset successfully");
         } else {
-            console.info("deleteAsset failed with error:"+ err);
+            console.error("deleteAsset failed with error:"+ err);
         }
     });
 }
@@ -426,7 +427,7 @@ media.getPublicDirectory(DIR_CAMERA, (err, dicResult) => {
     if (dicResult == 'Camera/') {
         console.info('mediaLibraryTest : getPublicDirectory passed');
     } else {
-        console.info('mediaLibraryTest : getPublicDirectory failed');
+        console.error('mediaLibraryTest : getPublicDirectory failed');
     }
 });
 ```
@@ -460,7 +461,7 @@ async function example() {
     if (dicResult == 'Camera/') {
         console.info('MediaLibraryTest : getPublicDirectory');
     } else {
-        console.info('MediaLibraryTest : getPublicDirectory failed');
+        console.error('MediaLibraryTest : getPublicDirectory failed');
     }
 }
 ```
@@ -495,7 +496,7 @@ media.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
         console.info('album.albumName = ' + album.albumName);
         console.info('album.count = ' + album.count);
      } else {
-        console.info('getAlbum fail, message = ' + err);
+        console.error('getAlbum fail, message = ' + err);
      }
 })
 ```
@@ -532,7 +533,7 @@ let AlbumNoArgsfetchOp = {
 media.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
     console.info("getAlbums successfully:"+ JSON.stringify(albumList));
 }).catch(function(err){
-    console.info("getAlbums failed with error:"+ err);
+    console.error("getAlbums failed with error: " + err);
 });
 ```
 
@@ -609,10 +610,10 @@ let option = {
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
     if (err) {
-        console.log("An error occurred when storing the media asset.");
+        console.error("An error occurred when storing media resources.");
         return;
     }
-    console.log("Media asset stored.");
+    console.info("Media resources stored. ");
     // Obtain the URI that stores the media asset.
 });
 ```
@@ -651,10 +652,10 @@ let option = {
     relativePath : "Pictures/"
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
-    console.log("Media asset stored.");
+    console.info("Media resources stored.");
     // Obtain the URI that stores the media asset.
 }).catch((err) => {
-    console.log("An error occurred when storing the media assets.");
+    console.error("An error occurred when storing media resources.");
 });
 ```
 
@@ -695,10 +696,10 @@ let images = [
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
     if (err) {
-        console.log("An error occurred when previewing the images.");
+        console.error("An error occurred when previewing the images.");
         return;
     }
-    console.log("Succeeded in previewing the images.");
+    console.info("Succeeded in previewing the images.");
 });
 ```
 
@@ -737,10 +738,10 @@ let images = [
 */
 mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
     if (err) {
-        console.log("An error occurred when previewing the images.");
+        console.error("An error occurred when previewing the images.");
         return;
     }
-    console.log("Succeeded in previewing the images.");
+    console.info("Succeeded in previewing the images.");
 });
 ```
 
@@ -785,9 +786,9 @@ let images = [
 */
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
-    console.log("Succeeded in previewing the images.");
+    console.info("Succeeded in previewing the images.");
 }).catch((err) => {
-    console.log("An error occurred when previewing the images.");
+    console.error("An error occurred when previewing the images.");
 });
 ```
 
@@ -820,10 +821,10 @@ let option : mediaLibrary.MediaSelectOption = {
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
     if (err) {
-        console.log("An error occurred when selecting the media asset.");
+        console.error("An error occurred when selecting media resources.");
         return;
     }
-    console.log("Media asset selected.");
+    console.info("Media resources selected.");
     // Obtain the media selection value.
 });
 ```
@@ -861,10 +862,10 @@ let option : mediaLibrary.MediaSelectOption = {
     count : 2
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
-    console.log("Media asset selected.");
+    console.info("Media resources selected.");
     // Obtain the media selection value.
 }).catch((err) => {
-    console.log("An error occurred when selecting the media assets.");
+    console.error("An error occurred when selecting media resources.");
 });
 
 ```
@@ -899,7 +900,7 @@ async function example() {
             console.info('get distributed info is undefined!')
         }
     }).catch((err) => {
-        console.info("get distributed info failed with error:" + err);
+        console.error("get distributed info failed with error:" + err);
     });
 }
 ```
@@ -932,7 +933,7 @@ async function example() {
                 console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
             }
         } else {
-            console.info('get distributed fail, message = ' + err)
+            console.error('get distributed fail, message = ' + err)
         }
     })
 }
@@ -970,7 +971,7 @@ async function example() {
             console.info('get distributed info is undefined!')
         }
     }).catch((err) => {
-        console.info("get distributed info failed with error:" + err);
+        console.error("get distributed info failed with error: " + err);
     });
 }
 ```
@@ -1003,7 +1004,7 @@ async function example() {
             console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
             }
         } else {
-            console.info('get distributed fail, message = ' + err)
+            console.error('get distributed fail, message = ' + err)
         }
     })
 }
@@ -1033,9 +1034,9 @@ Provides APIs for encapsulating file asset attributes.
 | relativePath<sup>8+</sup> | string                   | Yes  | Yes  | Relative public directory of the file.                                      |
 | parent<sup>8+</sup>       | number                   | Yes  | No  | Parent directory ID.                                              |
 | size                      | number                   | Yes  | No  | File size, in bytes.                                |
-| dateAdded                 | number                   | Yes  | No  | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateModified              | number                   | Yes  | No  | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateTaken                 | number                   | Yes  | No  | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)        |
+| dateAdded                 | number                   | Yes  | No  | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.        |
+| dateModified              | number                   | Yes  | No  | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| dateTaken                 | number                   | Yes  | No  | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.        |
 | artist<sup>8+</sup>       | string                   | Yes  | No  | Artist of the file.                                                  |
 | audioAlbum<sup>8+</sup>   | string                   | Yes  | No  | Audio album.                                                  |
 | width                     | number                   | Yes  | No  | Image width, in pixels.                                |
@@ -1116,7 +1117,7 @@ async function example() {
     asset.isDirectory().then(function(isDirectory){
         console.info("isDirectory result:"+ isDirectory);
     }).catch(function(err){
-        console.info("isDirectory failed with error:"+ err);
+        console.error("isDirectory failed with error: " + err);
     });
 }
 ```
@@ -1212,7 +1213,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | Mode of opening the file, for example, **'r'** (read-only), **'w'** (write-only), and **'rw'** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file handle.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor.                           |
 
 **Example**
 
@@ -1226,7 +1227,7 @@ async function example() {
             if(fd > 0){
                 asset.close(fd);
             }else{
-                console.info('File Open Failed!' + openError);
+                console.error('File Open Failed!' + openError);
             }
     });
 }
@@ -1256,7 +1257,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file handle.|
+| Promise&lt;number&gt; | Promise used to return the file descriptor.|
 
 **Example**
 
@@ -1271,7 +1272,7 @@ async function example() {
             console.info('File fd!' + fd);
         })
         .catch((err) => {
-            console.info('File err!' + err);
+            console.error('File err!' + err);
         });
 }
 ```
@@ -1311,15 +1312,15 @@ async function example() {
         console.info('File fd!' + fd);
         asset.close(fd, (closeErr) => {
             if (closeErr != undefined) {
-                console.info('mediaLibraryTest : close : FAIL ' + closeErr);
-                console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
+                console.error('mediaLibraryTest : close : FAIL ' + closeErr);
+                console.error('mediaLibraryTest : ASSET_CALLBACK : FAIL');
             } else {
                 console.info("=======asset.close success====>");
             }
         });
     })
     .catch((err) => {
-        console.info('File err!' + err);
+        console.error('File err!' + err);
     });
 }
 ```
@@ -1364,8 +1365,8 @@ async function example() {
         console.info('File fd!' + fd);
         asset.close(fd).then((closeErr) => {
             if (closeErr != undefined) {
-                console.info('mediaLibraryTest : close : FAIL ' + closeErr);
-                console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
+                console.error('mediaLibraryTest : close : FAIL ' + closeErr);
+                console.error('mediaLibraryTest : ASSET_CALLBACK : FAIL');
 
             } else {
                 console.info("=======asset.close success====>");
@@ -1373,7 +1374,7 @@ async function example() {
         });
     })
     .catch((err) => {
-        console.info('File err!' + err);
+        console.error('File err!' + err);
     });
 }
 ```
@@ -1494,7 +1495,7 @@ async function example() {
         console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     })
     .catch((err) => {
-        console.info('mediaLibraryTest : getThumbnail fail'+ err);
+        console.error('mediaLibraryTest : getThumbnail fail, err: ' + err);
     });
 }
 ```
@@ -1575,7 +1576,7 @@ async function example() {
     asset.favorite(true).then(function() {
         console.info("favorite successfully");
     }).catch(function(err){
-        console.info("favorite failed with error:"+ err);
+        console.error("favorite failed with error: " + err);
     });
 }
 ```
@@ -1653,7 +1654,7 @@ async function example() {
     asset.isFavorite().then(function(isFavorite){
         console.info("isFavorite result:"+ isFavorite);
     }).catch(function(err){
-        console.info("isFavorite failed with error:"+ err);
+        console.error("isFavorite failed with error: " + err);
     });
 }
 ```
@@ -1739,7 +1740,7 @@ async function example() {
     asset.trash(true).then(function() {
         console.info("trash successfully");
     }).catch(function(err){
-        console.info("trash failed with error:"+ err);
+        console.error("trash failed with error: " + err);
     });
 }
 ```
@@ -1894,7 +1895,6 @@ async function example() {
               console.info('mediaLibraryTest : isAfterLast:' + result);
               console.info('mediaLibraryTest : isAfterLast end');
               fetchFileResult.close();
-
             }
     }
 }
@@ -1957,7 +1957,7 @@ async function example() {
            console.error('Failed ');
            return;
        }
-       console.log('fileAsset.displayName : ' + fileAsset.displayName);
+       console.info('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -1992,7 +1992,7 @@ async function example() {
     fetchFileResult.getFirstObject().then(function(fileAsset){
         console.info("getFirstObject successfully:"+ JSON.stringify(fileAsset));
     }).catch(function(err){
-        console.info("getFirstObject failed with error:"+ err);
+        console.error("getFirstObject failed with error: " + err);
     });
 }
 ```
@@ -2099,7 +2099,7 @@ async function example() {
            console.error('Failed ');
            return;
        }
-       console.log('fileAsset.displayName : ' + fileAsset.displayName);
+       console.info('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -2168,7 +2168,7 @@ async function example() {
            console.error('Failed ');
            return;
        }
-       console.log('fileAsset.displayName : ' + fileAsset.displayName);
+       console.info('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -2207,9 +2207,9 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getPositionObject(1) .then(function (fileAsset){
-        console.log('fileAsset.displayName : ' + fileAsset.displayName);
+        console.info('fileAsset.displayName : ' + fileAsset.displayName);
     }).catch(function (err) {
-        console.info("getFileAssets failed with error:" + err);
+        console.error("getFileAssets failed with error: " + err);
     });
 }
 ```
@@ -2247,7 +2247,7 @@ async function example() {
            return;
         }
         for (let i = 0; i < fetchFileResult.getCount(); i++) {
-            console.log('fileAsset.displayName : ' + fileAsset[i].displayName);
+            console.info('fileAsset.displayName : ' + fileAsset[i].displayName);
         } 
     })
 }
@@ -2334,7 +2334,7 @@ async function example() {
            console.error('Failed ');
            return;
        }
-       console.log('Modify successful.');
+       console.info('Modify successful.');
     })
 }
 ```
@@ -2369,7 +2369,7 @@ async function example() {
     album.commitModify().then(function() {
         console.info("commitModify successfully");
     }).catch(function(err){
-        console.info("commitModify failed with error:"+ err);
+        console.error("commitModify failed with error: " + err);
     });
 }
 ```
@@ -2449,9 +2449,9 @@ async function example() {
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     album.getFileAssets(fileNoArgsfetchOp).then(function(albumFetchFileResult){
-        console.info("getFileAssets successfully:"+ JSON.stringify(albumFetchFileResult));
+        console.info("getFileAssets successfully: " + JSON.stringify(albumFetchFileResult));
     }).catch(function(err){
-        console.info("getFileAssets failed with error:"+ err);
+        console.error("getFileAssets failed with error: " + err);
     });
 }
 ```
@@ -2505,9 +2505,9 @@ Enumerates key file information.
 | MIME_TYPE     | "mime_type"           | Extended file attributes.                                              |
 | MEDIA_TYPE    | "media_type"          | Media type.                                                  |
 | SIZE          | "size"                | File size, in bytes.                                    |
-| DATE_ADDED    | "date_added"          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_MODIFIED | "date_modified"       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_TAKEN    | "date_taken"          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
+| DATE_ADDED    | "date_added"          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_MODIFIED | "date_modified"       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| DATE_TAKEN    | "date_taken"          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.            |
 | TITLE         | "title"               | Title in the file.                                                  |
 | ARTIST        | "artist"              | Artist of the file.                                                      |
 | AUDIOALBUM    | "audio_album"         | Audio album.                                                      |
@@ -2581,6 +2581,8 @@ Describes the image size.
 
 Implements the media asset option.
 
+> **NOTE**
+>
 > This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
