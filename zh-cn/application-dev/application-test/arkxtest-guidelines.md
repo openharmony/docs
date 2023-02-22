@@ -1,4 +1,4 @@
-# 自动化测试框架使用指南
+# 自动化测试框架使用指南 
 
 
 ## 概述
@@ -24,7 +24,7 @@ OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要�
   ![](figures/UnitTest.PNG)
 
   单元测试脚本的基础运行流程如下图所示，依赖aa test命令作为执行入口。
-
+  
   ![](figures/TestFlow.PNG)
 
 - UI测试框架
@@ -134,7 +134,7 @@ export default function abilityTest() {
       //init driver
       var driver = await Driver.create();
       await driver.delayMs(1000);
-      //find button by text 'Next'
+      //find button on text 'Next'
       var button = await driver.findComponent(ON.text('Next'));
       //click button
       await button.click();
@@ -197,7 +197,7 @@ export default function abilityTest() {
 | breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程 | true/false(默认值)                                           | -s breakOnError true                      |
 | testType     | 指定要执行用例的用例类型                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
 | level        | 指定要执行用例的用例级别                                      | 0,1,2,3,4                                                    | -s level 0                                |
-| size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small
+| size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small        
 | stress       | 指定要执行用例的执行次数                                    |  正整数                                         | -s stress 1000                            |
 
 **通过在cmd窗口直接执行命令。**
