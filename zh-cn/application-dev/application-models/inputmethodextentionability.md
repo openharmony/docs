@@ -347,10 +347,10 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
        // ...
        "extensionAbilities": [
          {
-           "description": "输入法Demo",
+           "description": "inputMethod",
            "icon": "$media:icon",
-           "name": "InputDemoService",
-           "srcEntrance": "./ets/InputMethodExtAbility/InputMethodService.ts",
+           "name": "InputMethodExtAbility",
+           "srcEntrance": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
            "visible": true,
          }
