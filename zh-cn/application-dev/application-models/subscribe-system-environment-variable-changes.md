@@ -48,7 +48,7 @@
    }
    ```
 
-2. 在资源使用完成之后，可以通过调用[ApplicationContext.off()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextofftype-environment-callbackid-number-callback-asynccallback)方法释放相关资源。
+2. 在资源使用完成之后，可以通过调用[ApplicationContext.off()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextofftype-environment-callbackid-number)方法释放相关资源。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -72,7 +72,7 @@
 > **说明：**
 >
 > - DevEco Studio默认工程中未自动生成AbilityStage，AbilityStage文件的创建请参见[AbilityStage组件容器](abilitystage.md)。
-> - 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着[AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md)的生命周期而存在，在[Module](../reference/apis/js-apis-app-module-module.md)销毁时一并销毁。
+> - 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着[AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md)的生命周期而存在，在Module销毁时一并销毁。
 
 例如，在[AbilityStage.onConfigurationUpdate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)回调方法中实现监测系统语言的变化。
 
