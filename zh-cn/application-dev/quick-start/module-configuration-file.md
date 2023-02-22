@@ -231,6 +231,7 @@ ablities标签描述UIAbility组件的配置信息，标签值为数组类型，
 | maxWindowHeight | 标识当前UIAbility组件支持的最大的窗口高度,&nbsp;高度单位为vp。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最大的窗口高度。 |
 | minWindowHeight | 标识当前UIAbility组件支持的最小的窗口高度,&nbsp;高度单位为vp。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口高度。 |
 | excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>- 仅支持系统应用配置，三方应用配置不生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| recoverable | 标识当前是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 abilities示例：
 
