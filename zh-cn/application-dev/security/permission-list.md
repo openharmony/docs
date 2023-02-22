@@ -1687,3 +1687,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.PRINT
+
+允许应用获取打印框架的能力。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_PRINT_JOB
+
+允许应用获取管理打印任务的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
