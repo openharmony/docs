@@ -44,6 +44,6 @@ For details about the APIs, see [@ohos.notificationManager](../reference/apis/js
    notificationManager.requestEnableNotification().then(() => {
        console.info(`[ANS] requestEnableNotification success`);
    }).catch((err) => {
-       console.error(`[ANS] requestEnableNotification failed, errCode[${err}]`);
+       console.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
    });
    ```

@@ -45,7 +45,7 @@ The following table describes the APIs for notification publishing. You specify 
    - A normal text notification consists of the **title**, **text**, and **additionalText** parameters, of which **title** and **text** are mandatory. The value of these parameters contains less than 200 bytes.
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // Basic notification
@@ -59,10 +59,10 @@ The following table describes the APIs for notification publishing. You specify 
       
       notificationManager.publish(notificationRequest, (err) => {
           if (err) {
-              console.error(`[ANS] failed to publish, error[${err}]`);
+              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
               return;
           }
-          console.info(`[ANS] publish success`);
+          console.info(`[ANS] publish success.`);
       });
       ```
 
@@ -71,7 +71,7 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the long text notification provides the **longText**, **briefText**, and **expandedTitle** parameters. The value of **longText** contains a maximum of 1024 bytes, while that of any other parameters contains less than 200 bytes. By default, a long-text notification looks in the same way as a normal text notification. When expanded, the notification displays the title and content specified in **expandedTitle** and **longText**, respectively.
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // Long-text notification
@@ -89,10 +89,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
           if (err) {
-              console.error(`[ANS] failed to publish, error[${err}]`);
+              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
               return;
           }
-          console.info(`[ANS] publish success`);
+          console.info(`[ANS] publish success.`);
       });
       ```
    
@@ -101,7 +101,7 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the multi-line text notification provides the **lines**, **briefText**, and **longTitle** parameters. The value of these parameters contains less than 200 bytes. By default, a multi-line notification looks in the same way as a normal text notification. When expanded, the notification displays the title and content specified in **longTitle** and **lines**, respectively.
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // Multi-line text notification
@@ -118,7 +118,7 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
         if (err) {
-      	console.error(`[ANS] failed to publish, error[${err}]`);
+      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
       	return;
         }
         console.info(`[ANS] publish success`);
@@ -131,7 +131,7 @@ The following table describes the APIs for notification publishing. You specify 
      
       ```ts
       let notificationPicture: PixelMap = undefined; // Obtain the pixel map information.
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
           content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
@@ -149,10 +149,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
           if (err) {
-      	console.error(`[ANS] failed to publish, error[${err}]`);
+      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
       	return;
           }
-          console.info(`[ANS] publish success `);
+          console.info(`[ANS] publish success.`);
       });
       ```
    
