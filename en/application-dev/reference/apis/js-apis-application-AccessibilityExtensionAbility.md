@@ -31,7 +31,7 @@ Defines an accessibility event.
 | Name       | Type                                    | Readable  | Writable  | Description        |
 | --------- | ---------------------------------------- | ---- | ---- | ---------- |
 | eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes   | No   | Event type.   |
-| target    | AccessibilityElement                     | Yes   | No   | Target component where the event occurs.|
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)                     | Yes   | No   | Target component where the event occurs.|
 | timeStamp | number                                   | Yes   | No   | Timestamp of the event.    |
 
 ## GestureType
@@ -78,8 +78,8 @@ Enumerates the touch guide event types.
 
 | Name        | Description          |
 | ---------- | ------------ |
-| touchBegin | Start of touch in touch guide mode. |
-| touchEnd   | End of touch in touch guide mode. |
+| touchBegin | Start of touch in touch guide mode.|
+| touchEnd   | End of touch in touch guide mode.|
 
 ## AccessibilityExtensionAbility.onConnect
 
