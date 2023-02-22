@@ -77,8 +77,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     this.context.startAbility(want, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -86,8 +85,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -157,13 +155,11 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -225,8 +221,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
     this.context.startAbility(want, options, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -234,8 +229,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -301,8 +295,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
     this.context.startAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -310,8 +303,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -381,8 +373,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
     this.context.startAbilityWithAccount(want, accountId, options, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -390,8 +381,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -471,13 +461,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -528,8 +516,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     this.context.startServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -537,8 +524,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -598,13 +584,11 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -661,8 +645,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -670,8 +653,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -736,13 +718,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -790,8 +770,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     this.context.stopServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -799,8 +778,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -857,13 +835,11 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -916,8 +892,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code), error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -925,8 +900,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -988,13 +962,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1031,8 +1003,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
   this.context.terminateSelf((error) => {
     if (error.code) {
       // 处理业务逻辑错误
-      console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+      console.log('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       return;
     }
     // 执行正常业务
@@ -1075,8 +1046,7 @@ terminateSelf(): Promise&lt;void&gt;;
     console.log('terminateSelf succeed');
   }).catch((error) => {
     // 处理业务逻辑错误
-    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-      ' error.message: ' + JSON.stringify(error.message));
+    console.log('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
   });
   ```
 
@@ -1133,8 +1103,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1195,8 +1164,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1238,8 +1206,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -1247,8 +1214,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1299,13 +1265,11 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1373,13 +1337,11 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1407,12 +1369,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```

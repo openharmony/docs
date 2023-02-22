@@ -51,7 +51,7 @@ This component can contain only one child component.
 | Normal  | Normal button (without rounded corners by default).     |
 
 >  **NOTE**
->  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md), rather than by using the **border** API.
+>  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md), rather than by using the **border** API. Only a button-wide rounded corner setting is supported.
 >  - For a button of the **Capsule** type, the **borderRadius** settings do not take effect, and its rounded corner is always half of the button height.
 >  - For a button of the **Circle** type, its radius is the value of **borderRadius** (if set) or the width or height (whichever is smaller).
 >  - The button text is set using the [text style attributes](ts-universal-attributes-text-style.md).

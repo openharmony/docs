@@ -40,7 +40,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
 );
 let mode = 'rw';
 DAHelper.openFile('dataability:///com.example.DataAbility', mode, (err, data) => {
-    console.info('openFile err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('openFile err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -74,7 +74,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
 );
 let mode = 'rw';
 DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) => {
-    console.info('openFile data: ' + JSON.stringify(data));
+    console.info('openFile data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -171,7 +171,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getType('dataability:///com.example.DataAbility', (err, data) => {
-    console.info('getType err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('getType err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -203,7 +203,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getType('dataability:///com.example.DataAbility').then((data) => {
-    console.info('getType data: ' + JSON.stringify(data));
+    console.info('getType data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -231,7 +231,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getFileTypes( 'dataability:///com.example.DataAbility', 'image/*', (err, data) => {
-    console.info('getFileTypes err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('getFileTypes err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -264,7 +264,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getFileTypes('dataability:///com.example.DataAbility', 'image/*').then((data) => {
-    console.info('getFileTypes data: ' + JSON.stringify(data));
+    console.info('getFileTypes data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -291,7 +291,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.normalizeUri('dataability:///com.example.DataAbility', (err, data) => {
-    console.info('normalizeUri err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('normalizeUri err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -323,7 +323,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => {
-    console.info('normalizeUri data: ' + JSON.stringify(data));
+    console.info('normalizeUri data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -350,7 +350,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.denormalizeUri('dataability:///com.example.DataAbility', (err, data) => {
-    console.info('denormalizeUri err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('denormalizeUri err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -382,7 +382,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.denormalizeUri('dataability:///com.example.DataAbility',).then((data) => {
-    console.info('denormalizeUri data: ' + JSON.stringify(data));
+    console.info('denormalizeUri data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -475,7 +475,7 @@ const valueBucket = {
     'blobType': 'u8',
 };
 DAHelper.insert('dataability:///com.example.DataAbility', valueBucket, (err, data) => {
-    console.info('insert err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('insert err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -514,7 +514,7 @@ const valueBucket = {
     'blobType': 'u8',
 };
 DAHelper.insert('dataability:///com.example.DataAbility', valueBucket).then((data) => {
-    console.info('insert data: ' + JSON.stringify(data));
+    console.info('insert data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -545,7 +545,7 @@ let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u
                      {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
                      {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',});
 DAHelper.batchInsert('dataability:///com.example.DataAbility', cars, (err, data) => {
-    console.info('batchInsert err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('batchInsert err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -581,7 +581,7 @@ let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u
                      {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
                      {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',});
 DAHelper.batchInsert('dataability:///com.example.DataAbility', cars).then((data) => {
-    console.info('batchInsert data: ' + JSON.stringify(data));
+    console.info('batchInsert data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -611,7 +611,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.delete('dataability:///com.example.DataAbility', da, (err, data) => {
-    console.info('delete err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('delete err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -646,7 +646,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.delete('dataability:///com.example.DataAbility', da).then((data) => {
-    console.info('delete data: ' + JSON.stringify(data));
+    console.info('delete data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -683,7 +683,7 @@ const va = {
 };
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.update('dataability:///com.example.DataAbility', va, da, (err, data) => {
-    console.info('update err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('update err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -725,7 +725,7 @@ const va = {
 };
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) => {
-    console.info('update data: ' + JSON.stringify(data));
+    console.info('update data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -757,7 +757,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
 let cars=new Array('value1', 'value2', 'value3', 'value4');
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query('dataability:///com.example.DataAbility', cars, da, (err, data) => {
-    console.info('query err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
+    console.info('query err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -796,7 +796,7 @@ let DAHelper = featureAbility.acquireDataAbilityHelper(
 let cars = new Array('value1', 'value2', 'value3', 'value4');
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query('dataability:///com.example.DataAbility', cars, da).then((data) => {
-    console.info('query data: ' + JSON.stringify(data));
+    console.info('query data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -829,10 +829,10 @@ let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
     'method', 'arg', {'key1':'value1'}, (err, data) => {
     if (err) {
-        console.error('Operation failed. Cause: ' + err);
+        console.error('Operation failed. Cause: ${err}');
         return;
     }
-    console.info('Operation succeeded: ' + data);
+    console.info('Operation succeeded: ${data}');
 });
 ```
 
@@ -869,9 +869,9 @@ let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 );
 dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
     'method', 'arg', {'key1':'value1'}).then((data) => {
-    console.info('Operation succeeded: ' + data);
+    console.info('Operation succeeded: ${data}');
 }).catch((error) => {
-    console.error('Operation failed. Cause: ' + error);
+    console.error('Operation failed. Cause: ${error}');
 });
 ```
 
@@ -903,10 +903,10 @@ let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 );
 dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op, (err, data) => {
     if (err) {
-        console.error('Operation failed. Cause: ' + err);
+        console.error('Operation failed. Cause: ${err}');
         return;
     }
-    console.info('Operation succeeded: ' + data);
+    console.info('Operation succeeded: ${data}');
 });
 ```
 
@@ -942,9 +942,9 @@ let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
 );
 dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op).then((data) => {
-    console.info('Operation succeeded: ' + data);
+    console.info('Operation succeeded: ${data}');
 }).catch((error) => {
-    console.error('Operation failed. Cause: ' + error);
+    console.error('Operation failed. Cause: ${error}');
 });
 
 ```

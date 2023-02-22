@@ -48,35 +48,35 @@ export default class EntryAbility extends UIAbility {
         console.log('MyAbility onCreate');
         let AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
-                console.log('AbilityLifecycleCallback onAbilityCreate ability:' + ability);
+                console.log('AbilityLifecycleCallback onAbilityCreate ability: ${ability}');
             },
             onWindowStageCreate(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageCreate ability:' + ability);
-                console.log('AbilityLifecycleCallback onWindowStageCreate windowStage:' + windowStage);
+                console.log('AbilityLifecycleCallback onWindowStageCreate ability: ${ability}');
+                console.log('AbilityLifecycleCallback onWindowStageCreate windowStage: ${windowStage}');
             },
             onWindowStageActive(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageActive ability:' + ability);
-                console.log('AbilityLifecycleCallback onWindowStageActive windowStage:' + windowStage);
+                console.log('AbilityLifecycleCallback onWindowStageActive ability: ${ability}');
+                console.log('AbilityLifecycleCallback onWindowStageActive windowStage: ${windowStage}');
             },
             onWindowStageInactive(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageInactive ability:' + ability);
-                console.log('AbilityLifecycleCallback onWindowStageInactive windowStage:' + windowStage);
+                console.log('AbilityLifecycleCallback onWindowStageInactive ability: ${ability}');
+                console.log('AbilityLifecycleCallback onWindowStageInactive windowStage: ${windowStage}');
             },
             onWindowStageDestroy(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageDestroy ability:' + ability);
-                console.log('AbilityLifecycleCallback onWindowStageDestroy windowStage:' + windowStage);
+                console.log('AbilityLifecycleCallback onWindowStageDestroy ability: ${ability}');
+                console.log('AbilityLifecycleCallback onWindowStageDestroy windowStage: ${windowStage}');
             },
             onAbilityDestroy(ability) {
-                console.log('AbilityLifecycleCallback onAbilityDestroy ability:' + ability);
+                console.log('AbilityLifecycleCallback onAbilityDestroy ability: ${ability}');
             },
             onAbilityForeground(ability) {
-                console.log('AbilityLifecycleCallback onAbilityForeground ability:' + ability);
+                console.log('AbilityLifecycleCallback onAbilityForeground ability: ${ability}');
             },
             onAbilityBackground(ability) {
-                console.log('AbilityLifecycleCallback onAbilityBackground ability:' + ability);
+                console.log('AbilityLifecycleCallback onAbilityBackground ability: ${ability}');
             },
             onAbilityContinue(ability) {
-                console.log('AbilityLifecycleCallback onAbilityContinue ability:' + ability);
+                console.log('AbilityLifecycleCallback onAbilityContinue ability: ${ability}');
             }
         }
         // 1.通过context属性获取applicationContext
@@ -288,9 +288,9 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 ```ts
 let applicationContext = this.context.getApplicationContext();
 applicationContext.getProcessRunningInformation().then((data) => {
-    console.log('The process running information is:' + JSON.stringify(data));
+    console.log('The process running information is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error:' + JSON.stringify(error));
+    console.log('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -318,9 +318,9 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 let applicationContext = this.context.getApplicationContext();
 applicationContext.getProcessRunningInformation((err, data) => {
     if (err.code !== 0) {
-        console.error('getProcessRunningInformation faile, err: ' + JSON.stringify(err));
+        console.error('getProcessRunningInformation faile, err: ${JSON.stringify(err)}');
     } else {
-        console.log('The process running information is:' + JSON.stringify(data));
+        console.log('The process running information is: ${JSON.stringify(data)}');
     }
 })
 ```
@@ -365,6 +365,6 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 ```ts
 let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses(err => {
-    console.error('killAllProcesses result: ' + JSON.stringify(err));
+    console.error('killAllProcesses result: ${JSON.stringify(err)}');
 });
 ```

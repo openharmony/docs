@@ -40,9 +40,9 @@ export default class EntryAbility extends UIAbility {
         try {
             let applicationContext = this.context.getApplicationContext();
             let callbackId = applicationContext.on('environment', envCallback);
-            console.log('callbackId: ' + callbackId);
+            console.log('callbackId: ${callbackId}');
         } catch (paramError) {
-            console.log('error: ' + paramError.code + ', ' + paramError.message);
+            console.log('error: ${paramError.code}, ${paramError.message}');
         }
     }
 }

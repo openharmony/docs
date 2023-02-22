@@ -56,7 +56,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId, message) {
     // 当触发卡片message事件时，执行startAbility
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ', message:' + message);
+    console.log('FormExtensionAbility onFormEvent, formId: ${formId}, message:${message}');
     let want = {
       deviceId: '',
       bundleName: 'com.example.formstartability',
@@ -67,7 +67,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want, (error, data) => {
       if (error) {
-        console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
+        console.log('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -106,7 +106,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId, message) {
     // 当触发卡片message事件时，执行startAbility
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ', message:' + message);
+    console.log('FormExtensionAbility onFormEvent, formId:${formId}, message:${message}');
     let want = {
       deviceId: '',
       bundleName: 'com.example.formstartability',

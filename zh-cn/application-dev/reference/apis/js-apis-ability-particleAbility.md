@@ -58,7 +58,7 @@ particleAbility.startAbility(
         },
     },
     (error, result) => {
-        console.error('particleAbility startAbility errCode:' + error + 'result:' + result);
+        console.error('particleAbility startAbility errCode: ${JSON.stringify(error)}, result: ${JSON.stringify(result)}');
     },
 );
 ```
@@ -134,7 +134,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf(
     (error, result) => {
-        console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result);
+        console.log('particleAbility terminateSelf errCode: ${JSON.stringify(error)}, result: ${JSON.stringify(result)}');
     }
 );
 ```
@@ -228,7 +228,7 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
-        console.error('Operation failed cause: ' + JSON.stringify(err));
+        console.error('Operation failed cause: ${JSON.stringify(err)}');
     } else {
         console.info('Operation succeeded');
     }
@@ -324,7 +324,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     particleAbility.startBackgroundRunning(id, request).then(() => {
         console.info('Operation succeeded');
     }).catch((err) => {
-        console.error('Operation failed cause: ' + JSON.stringify(err));
+        console.error('Operation failed cause: ${JSON.stringify(err)}');
     });
 });
 
@@ -351,7 +351,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(err, data) {
     if (err) {
-        console.error('Operation failed cause: ' + JSON.stringify(err));
+        console.error('Operation failed cause: ${JSON.stringify(err)}');
     } else {
         console.info('Operation succeeded');
     }
@@ -383,7 +383,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info('Operation succeeded');
 }).catch((err) => {
-    console.error('Operation failed cause: ' + JSON.stringify(err));
+    console.error('Operation failed cause: ${JSON.stringify(err)}');
 });
 
 ```
@@ -417,15 +417,15 @@ import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 
 let connId = particleAbility.connectAbility(
@@ -441,9 +441,9 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(' data: ' + data);
+    console.log(' data: ${data}');
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code);
+    console.log('particleAbilityTest result errCode : ${error.code}');
 });
 ```
 
@@ -468,15 +468,15 @@ import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 
 let connId = particleAbility.connectAbility(
@@ -492,8 +492,7 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId, (err) => {
-    console.log('particleAbilityTest disconnectAbility err====>'
-    + ('json err=') + JSON.stringify(err));
+    console.log('particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
 });
 ```
 
@@ -519,15 +518,15 @@ import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 
 let connId = particleAbility.connectAbility(
@@ -543,9 +542,9 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(' data: ' + data);
+    console.log(' data: ${data}');
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code);
+    console.log('particleAbilityTest result errCode : ${error.code}');
 });
 
 ```

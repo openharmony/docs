@@ -30,8 +30,8 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
     
   ```ts
   appManager.isRunningInStabilityTest((err, flag) => {
-    console.log('error:' + JSON.stringify(err));
-    console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+    console.log('error: ${JSON.stringify(err)}');
+    console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
   })  
   ```
 
@@ -54,9 +54,9 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
     
   ```ts
   appManager.isRunningInStabilityTest().then((flag) => {
-      console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+      console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -79,9 +79,9 @@ isRamConstrainedDevice(): Promise\<boolean>;
     
   ```ts
   appManager.isRamConstrainedDevice().then((data) => {
-      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
+      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -103,8 +103,8 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
     
   ```ts
   appManager.isRamConstrainedDevice((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
+      console.log('error: ${JSON.stringify(err)}');
+      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
   })
   ```
 
@@ -126,9 +126,9 @@ getAppMemorySize(): Promise\<number>;
     
   ```ts
   appManager.getAppMemorySize().then((data) => {
-      console.log('The size of app memory is:' + JSON.stringify(data));
+      console.log('The size of app memory is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -150,8 +150,8 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
     
   ```ts
   appManager.getAppMemorySize((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The size of app memory is:' + JSON.stringify(data));
+      console.log('error: ${JSON.stringify(err)}');
+      console.log('The size of app memory is: ${JSON.stringify(data)}');
   });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
@@ -176,9 +176,9 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
     
   ```ts
   appManager.getProcessRunningInfos().then((data) => {
-      console.log('The process running infos is:' + JSON.stringify(data));
+      console.log('The process running infos is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -204,8 +204,8 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
     
   ```ts
   appManager.getProcessRunningInfos((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The process running infos is:' + JSON.stringify(data));
+      console.log('error: ${JSON.stringify(err)}');
+      console.log('The process running infos is: ${JSON.stringify(data)}');
   });
   ```
 

@@ -1498,6 +1498,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.READ_APP_PUSH_DATA
+
+允许推送服务读取应用中推送服务存储的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.WRITE_APP_PUSH_DATA
+
+允许推送服务往应用中写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 允许应用订阅开机广播。
@@ -1667,3 +1687,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.PRINT
+
+允许应用获取打印框架的能力。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_PRINT_JOB
+
+允许应用获取管理打印任务的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

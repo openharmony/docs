@@ -37,10 +37,10 @@ let startAbilityParameter = {
 
 try {
     featureAbility.startAbility(startAbilityParameter, (err, data) => {
-        console.log('errCode : ' + JSON.stringify(err));
-        console.log('data : ' + JSON.stringify(data));
+        console.log('errCode : ${JSON.stringify(err)}');
+        console.log('data : ${JSON.stringify(data)}');
     });
 } catch(error) {
-    console.log('startAbility error: ' + JSON.stringify(error));
+    console.log('startAbility error: ${JSON.stringify(error)}');
 }
 ```

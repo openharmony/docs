@@ -35,7 +35,7 @@ Enables a device administrator application based on the specified bundle name an
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
@@ -87,7 +87,7 @@ Enables a device administrator application for the specified user based on the s
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
@@ -144,7 +144,7 @@ Enables a device administrator application based on the specified bundle name an
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
@@ -190,7 +190,7 @@ Disables a device common administrator application based on the specified bundle
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -234,7 +234,7 @@ Disables a device common administrator application for the specified user based 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -283,7 +283,7 @@ Disables a device common administrator application based on the specified bundle
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -322,7 +322,7 @@ Disables a device super administrator application based on the specified bundle 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |   
 | ------- | ----------------------------------------------------------------- |
@@ -367,7 +367,7 @@ Disables a device super administrator application based on the specified bundle 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -571,7 +571,7 @@ Sets the enterprise information of a device administrator application. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -624,7 +624,7 @@ Sets the enterprise information of a device administrator application. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -665,7 +665,7 @@ Obtains the enterprise information of a device administrator application. This A
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -712,7 +712,7 @@ Obtains the enterprise information of a device administrator application. This A
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -755,7 +755,7 @@ Subscribes to system management events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 |ID| Error Message                                               |
 | ------- | ----------------------------------------------------- |
@@ -804,7 +804,7 @@ Subscribes to system management events. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -847,7 +847,7 @@ Unsubscribes from system management events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -896,7 +896,7 @@ Unsubscribes from system management events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |

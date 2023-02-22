@@ -16,7 +16,7 @@ import networkManager from '@ohos.enterprise.networkManager';
 
 getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-获取获取所有活动的网络接口，使用callback形式返回网络接口名称数组。
+获取所有活动的网络接口，使用callback形式返回网络接口名称数组。
 
 **需要权限：** ohos.permission.GET_NETWORK_INFO
 

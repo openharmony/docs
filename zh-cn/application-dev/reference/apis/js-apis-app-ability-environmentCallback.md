@@ -43,19 +43,19 @@ export default class MyAbility extends UIAbility {
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback  =  {
             onConfigurationUpdated(config){
-                console.log('onConfigurationUpdated config:' + JSON.stringify(config));
+                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             }
         }
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
         // 2.通过applicationContext注册监听应用内生命周期
         callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
-        console.log('registerEnvironmentCallback number: ' + JSON.stringify(callbackId));
+        console.log('registerEnvironmentCallback number: ${JSON.stringify(callbackId)}');
     }
     onDestroy() {
         let applicationContext = globalThis.applicationContext;
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log('unregisterEnvironmentCallback success, err: ' + JSON.stringify(error));
+            console.log('unregisterEnvironmentCallback success, err: ${JSON.stringify(error)}');
         });
     }
 }

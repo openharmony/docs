@@ -35,6 +35,8 @@ C标准函数库是在C语言程序设计中，所有符合标准的头文件的
 
 [native api中没有导出的符号列表](musl-peculiar-symbol.md)
 
+[native api由于权限管控可能调用失败的符号列表](musl-permission-control-symbol.md)
+
 ## 标准C++库
 
 [libc++](https://libcxx.llvm.org/)是C++标准库的一种实现。

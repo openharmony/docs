@@ -61,15 +61,15 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "520vp", "840vp"]    |
+| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
 | reference  | BreakpointsReference | 否    | 断点切换参照物。 |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
   // 启用xs、sm、md、lg共4个断点，断点范围值必须单调递增
-  breakpoints: {value: ["320vp", "520vp", "840vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp"]}
   // 启用xs、sm、md、lg、xl共5个断点，断点范围数量不可超过断点可取值数量-1
-  breakpoints: {value: ["320vp", "520vp", "840vp", "1080vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp", "1080vp"]}
 ```
 
 ## BreakpointsReference枚举类型

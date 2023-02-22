@@ -39,7 +39,7 @@ This API is used only for test purposes.
 
 ### getInspectorTree<sup>9+</sup>
 
-getInspectorTree(): string
+getInspectorTree(): Object
 
 Obtains the component tree and component attributes.
 
@@ -49,7 +49,7 @@ This API is used only for test purposes.
 
 | Type    | Description                           |
 | ------ | --------------------------- |
-| string | JSON string of the component tree and component attribute list.|
+| Object | JSON object of the component tree and component attribute list.|
 
 ### sendEventByKey<sup>9+</sup>
 
@@ -181,7 +181,7 @@ struct IdExample {
       }.margin({ top: 20 })
       .onClick(() => {
         console.info(getInspectorByKey("click"))
-        console.info(getInspectorTree())
+        console.info(JSON.stringify(getInspectorTree()))
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
           sendEventByKey("longClick", 11, "") // Send a long-click event to the component whose ID is "longClick".

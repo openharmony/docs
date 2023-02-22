@@ -722,7 +722,7 @@ Subscribes to service status changes.
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
 | event         | string               | Yes  | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to service status changes.                            |
+| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return service status changes.                                                  |
 
 **Example**
 
@@ -2847,7 +2847,7 @@ try {
 
 ### get
 
-get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>): void
+get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains the value of the specified key. This API uses an asynchronous callback to return the result.
 
@@ -2898,7 +2898,7 @@ try {
 
 ### get
 
-get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
+get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains the value of the specified key. This API uses a promise to return the result.
 
@@ -4849,7 +4849,7 @@ Before calling any method in **DeviceKVStore**, you must use [getKVStore](#getkv
 
 ### get
 
-get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>): void
+get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains the value of the specified key for this device. This API uses an asynchronous callback to return the result.
 
@@ -4900,7 +4900,7 @@ try {
 
 ### get
 
-get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
+get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains the value of the specified key for this device. This API uses a promise to return the result.
 
@@ -4952,7 +4952,7 @@ try {
 
 ### get
 
-get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
+get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains a string value that matches the specified device ID and key. This API uses an asynchronous callback to return the result.
 
@@ -5004,7 +5004,7 @@ try {
 
 ### get
 
-get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
+get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains a string value that matches the specified device ID and key. This API uses a promise to return the result.
 

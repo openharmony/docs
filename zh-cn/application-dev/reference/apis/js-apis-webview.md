@@ -20,7 +20,7 @@
 import web_webview from '@ohos.web.webview';
 ```
 
-### once
+## once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -43,7 +43,7 @@ import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
   console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("www.example.com", "a=b")
+  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
 })
 
 @Entry
@@ -379,7 +379,33 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
-      .webDebuggingAccess(true)
+    }
+  }
+}
+```
+
+加载本地网页
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            //通过$rawfile加载本地资源文件
+            this.controller.loadUrl($rawfile('xxx.html'));
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }
@@ -399,8 +425,8 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //需要加载的URL是Resource类型
-            this.controller.loadUrl($rawfile('xxx.html'));
+            //通过resource协议加载本地资源文件
+            this.controller.loadUrl("resource://rawfile/xxx.html");
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -479,7 +505,34 @@ struct WebComponent {
 }
 ```
 
-### accessforward
+加载本地资源
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### accessForward
 
 accessForward(): boolean
 
@@ -1606,7 +1659,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.ports && this.ports[1]) {
-              this.ports[1].postMessageEvent("this.sendFromEts");
+              this.ports[1].postMessageEvent(this.sendFromEts);
             } else {
               console.error(`ports is null, Please initialize first`);
             }
@@ -3215,7 +3268,7 @@ struct WebComponent {
       Button('getCookie')
         .onClick(() => {
           try {
-            let value = web_webview.WebCookieManager.getCookie('www.example.com');
+            let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3267,7 +3320,7 @@ struct WebComponent {
       Button('setCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
+            web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -4135,9 +4188,6 @@ struct WebComponent {
           try {
             this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
-            ForEach(this.username_password, (item) => {
-              console.log('username_password: ' + item);
-            }, item => item)
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }

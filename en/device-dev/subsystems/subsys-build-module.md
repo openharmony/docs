@@ -65,6 +65,7 @@ ohos_shared_library("helloworld") {
   
   # Sanitizer variables
   cfi = [boolean]
+  cfi_cross_dso = [boolean]     # CFI: shared library support.
   scs = [boolean]
   scudo = []
   ubsan = []
@@ -106,6 +107,7 @@ ohos_static_library("helloworld") {
   
   # Sanitizer variables
   cfi = [boolean]
+  cfi_cross_dso = [boolean]     # CFI: shared library support.
   scs = [boolean]
   scudo = []
   ubsan = []
@@ -138,6 +140,7 @@ ohos_executable("helloworld") {
   
   # Sanitizer variables
   cfi = [boolean]
+  cfi_cross_dso = [boolean]          # CFI: shared library support.
   scs = [boolean]
   scudo = []
   ubsan = []
@@ -181,6 +184,7 @@ ohos_source_set("helloworld") {
   
   # Sanitizer variables
   cfi = [boolean]
+  cfi_cross_dso = [boolean]    # CFI: shared library support.
   scs = [boolean]
   scudo = []
   ubsan = []

@@ -22,15 +22,14 @@ onUnhandledException(errMsg: string): void;
 import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+  }
 };
 
 try {
     errorManager.on('error', observer);
 } catch (error) {
-    console.log('registerErrorObserver' + ' failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('registerErrorObserver failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```

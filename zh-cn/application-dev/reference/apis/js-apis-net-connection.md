@@ -110,6 +110,36 @@ connection.getDefaultNet().then(function (data) {
 })
 ```
 
+## connection.getDefaultNetSync<sup>9+</sup>
+
+getDefaultNetSync(): NetHandle
+
+使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| NetHandle | 以同步方式返回默认激活的数据网络。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let netHandle = connection.getDefaultNetSync();
+```
+
 ## connection.getGlobalHttpProxy<sup>10+</sup>
 
 getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
@@ -404,36 +434,6 @@ connection.getDefaultNet().then(function (netHandle) {
         console.log(JSON.stringify(error))
    })
 })
-```
-
-## connection.getDefaultNetSync<sup>9+</sup>
-
-getDefaultNetSync(): NetHandle;
-
-使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
-**系统能力**：SystemCapability.Communication.NetManager.Core
-
-**返回值：**
-
-| 类型      | 说明                               |
-| --------- | ---------------------------------- |
-| NetHandle | 以同步方式返回默认激活的数据网络。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
-
-**示例：**
-
-```js
-let netHandle = connection.getDefaultNetSync();
 ```
 
 ## connection.getAllNets

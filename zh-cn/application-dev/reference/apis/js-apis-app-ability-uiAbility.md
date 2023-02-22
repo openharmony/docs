@@ -47,7 +47,7 @@ UIAbility创建时回调，执行初始化业务逻辑操作。
   ```ts
   class MyUIAbility extends UIAbility {
       onCreate(want, param) {
-          console.log('onCreate, want:' + want.abilityName);
+          console.log('onCreate, want: ${want.abilityName}');
       }
   }
   ```
@@ -233,8 +233,8 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
   ```ts
   class MyUIAbility extends UIAbility {
       onNewWant(want, launchParams) {
-          console.log('onNewWant, want:' + want.abilityName);
-          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
+          console.log('onNewWant, want: ${want.abilityName}');
+          console.log('onNewWant, launchParams: ${JSON.stringify(launchParams)}');
       }
   }
   ```
@@ -258,7 +258,7 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class MyUIAbility extends UIAbility {
       onDump(params) {
-          console.log('dump, params:' + JSON.stringify(params));
+          console.log('dump, params: ${JSON.stringify(params)}');
           return ['params'];
       }
   }
@@ -349,13 +349,13 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
     marshalling(messageParcel) {
       messageParcel.writeInt(this.num);
       messageParcel.writeString(this.str);
-      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
     unmarshalling(messageParcel) {
       this.num = messageParcel.readInt();
       this.str = messageParcel.readString();
-      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
       return true;
     }
   };
@@ -375,12 +375,10 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
             console.log('Caller call() called');
           })
           .catch((callErr) => {
-            console.log('Caller.call catch error, error.code: ' + JSON.stringify(callErr.code) +
-              ' error.message: ' + JSON.stringify(callErr.message));
+            console.log('Caller.call catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -430,13 +428,13 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
     marshalling(messageParcel) {
       messageParcel.writeInt(this.num);
       messageParcel.writeString(this.str);
-      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
     unmarshalling(messageParcel) {
       this.num = messageParcel.readInt();
       this.str = messageParcel.readString();
-      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble unmarshalling num[${this.num] str[${this.str}]');
       return true;
     }
   };
@@ -458,12 +456,10 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
             data.readSequenceable(retmsg);
           })
           .catch((callErr) => {
-            console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
-              ' error.message: ' + JSON.stringify(callErr.message));
+            console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -502,12 +498,10 @@ release(): void;
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
-            ' error.message: ' + JSON.stringify(releaseErr.message));
+          console.log('Caller.release catch error, error.code: ${JSON.stringify(releaseErr.code)}, error.message: ${JSON.stringify(releaseErr.message)}');
         }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -541,15 +535,13 @@ release(): void;
           caller = obj;
           try {
             caller.onRelease((str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
+                console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.log('Caller.onRelease catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -592,15 +584,13 @@ release(): void;
           caller = obj;
           try {
             caller.on('release', (str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
+                console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.log('Caller.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -642,17 +632,15 @@ off(type: 'release', callback: OnReleaseCallback): void;
           caller = obj;
           try {
             let onReleaseCallBack = (str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
+                console.log(' Caller OnRelease CallBack is called ${str}');
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.log('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -693,17 +681,15 @@ off(type: 'release'): void;
           caller = obj;
           try {
             let onReleaseCallBack = (str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
+                console.log(' Caller OnRelease CallBack is called ${str}');
             };
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {  
-            console.error('Caller.on or Caller.off catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.error('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.error('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.error('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -750,19 +736,19 @@ on(method: string, callback: CalleeCallback): void;
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
           messageParcel.writeString(this.str);
-          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+          console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
           return true;
       }
       unmarshalling(messageParcel) {
           this.num = messageParcel.readInt();
           this.str = messageParcel.readString();
-          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+          console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
           return true;
       }
   };
   let method = 'call_Function';
   function funcCallBack(pdata) {
-      console.log('Callee funcCallBack is called ' + pdata);
+      console.log('Callee funcCallBack is called ${pdata}');
       let msg = new MyMessageAble('test', '');
       pdata.readSequenceable(msg);
       return new MyMessageAble('test1', 'Callee test');
@@ -773,8 +759,7 @@ on(method: string, callback: CalleeCallback): void;
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
     }
   }
@@ -813,8 +798,7 @@ off(method: string): void;
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
     }
   }

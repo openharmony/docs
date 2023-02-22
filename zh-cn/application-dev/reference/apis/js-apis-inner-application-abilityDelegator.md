@@ -336,7 +336,7 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
     let state = abilityDelegator.getAbilityState(ability);
-    console.info('getAbilityState' + state);
+    console.info('getAbilityState ${state}');
 });
 ```
 

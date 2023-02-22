@@ -473,9 +473,9 @@ console.log('current path = ' + page.path);
 | name  | string | 否   | 表示当前页面的名称，即对应文件名。                           |
 | path  | string | 是   | 表示当前页面的路径。                                         |
 
-## router.enableBackPageAlert<sup>9+</sup>
+## router.showAlertBeforeBackPage<sup>9+</sup>
 
-enableBackPageAlert(options: EnableAlertOptions): void
+showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
@@ -499,11 +499,11 @@ enableBackPageAlert(options: EnableAlertOptions): void
 
   ```js    
 try {
-  router.enableBackPageAlert({            
+  router.showAlertBeforeBackPage({            
     message: 'Message Info'        
   });
 } catch(error) {
-  console.error(`enableBackPageAlert failed, code is ${error.code}, message is ${error.message}`);
+  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
 }
   ```
 ## EnableAlertOptions
@@ -516,9 +516,9 @@ try {
 | ------- | ------ | ---- | -------- |
 | message | string | 是    | 询问对话框内容。 |
 
-## router.disableAlertBeforeBackPage
+## router.hideAlertBeforeBackPage<sup>9+</sup>
 
-disableAlertBeforeBackPage(): void
+hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
@@ -527,7 +527,7 @@ disableAlertBeforeBackPage(): void
 **示例：**
 
 ```js
-router.disableAlertBeforeBackPage();    
+router.hideAlertBeforeBackPage();    
 ```
 
 ##  router.getParams
@@ -748,7 +748,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[enableBackPageAlert<sup>9+</sup>](#routerenablebackpagealert9)
+从API version9开始不再维护，建议使用[showAlertBeforeBackPage<sup>9+</sup>](#routershowalertbeforebackpage9)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -765,3 +765,19 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
     message: 'Message Info'        
   });    
   ```
+
+## router.disableAlertBeforeBackPage<sup>(deprecated)</sup>
+
+disableAlertBeforeBackPage(): void
+
+禁用页面返回询问对话框。
+
+从API version9开始不再维护，建议使用[hideAlertBeforeBackPage<sup>9+</sup>](#routerhidealertbeforebackpage9)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```js
+router.disableAlertBeforeBackPage();    
+```

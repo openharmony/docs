@@ -51,7 +51,7 @@
 
 ## 设置应用主窗口
 
-在`Stage`模型下，应用主窗口由`Ability`创建并维护生命周期。在`Ability`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。
+在`Stage`模型下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。
 
 
 ### 开发步骤

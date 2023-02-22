@@ -34,7 +34,7 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -82,7 +82,7 @@ Sets the system time. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
