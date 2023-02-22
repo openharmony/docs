@@ -71,9 +71,9 @@ const config = {
 try {
     abilityManager.updateConfiguration(config, (err) => {
         if (err.code !== 0) {
-            console.log("updateConfiguration fail, err: " + JSON.stringify(err));
+            console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
         } else {
-            console.log("updateConfiguration success.");
+            console.log('updateConfiguration success.');
         }
     })
 } catch (paramError) {
@@ -170,9 +170,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
         if (err.code !== 0) {
-            console.log("getAbilityRunningInfos fail, error: " + JSON.stringify(err));
+            console.log('getAbilityRunningInfos fail, error: ' + JSON.stringify(err));
         } else {
-            console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data));
+            console.log('getAbilityRunningInfos success, data: ' + JSON.stringify(data));
         }
     });
 } catch (paramError) {
@@ -195,7 +195,7 @@ Obtains the ability running information. This API uses a promise to return the r
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the API call result and the ability running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -212,9 +212,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
-        console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data))
+        console.log('getAbilityRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getAbilityRunningInfos fail, err: "  + JSON.stringify(err));
+        console.log('getAbilityRunningInfos fail, err: '  + JSON.stringify(err));
     });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -257,9 +257,9 @@ let upperLimit = 10;
 try {
     abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
         if (err.code !== 0) {
-            console.log("getExtensionRunningInfos fail, err: " + JSON.stringify(err));
+            console.log('getExtensionRunningInfos fail, err: ' + JSON.stringify(err));
         } else {
-            console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+            console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
         }
     });
 } catch (paramError) {
@@ -307,9 +307,9 @@ let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-        console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+        console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getExtensionRunningInfos fail, err: "  + JSON.stringify(err));
+        console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
     })
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -346,9 +346,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
     if (err.code !== 0) {
-        console.log("getTopAbility fail, err: " + JSON.stringify(err));
+        console.log('getTopAbility fail, err: ' + JSON.stringify(err));
     } else {
-        console.log("getTopAbility success, data: " + JSON.stringify(data));
+        console.log('getTopAbility success, data: ' + JSON.stringify(data));
     }
 });
 ```
@@ -381,8 +381,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility().then((data) => {
-    console.log("getTopAbility success, data: " + JSON.stringify(data));
+    console.log('getTopAbility success, data: ' + JSON.stringify(data));
 }).catch((err) => {
-    console.log("getTopAbility fail, err: "  + JSON.stringify(err));
+    console.log('getTopAbility fail, err: '  + JSON.stringify(err));
 })
 ```

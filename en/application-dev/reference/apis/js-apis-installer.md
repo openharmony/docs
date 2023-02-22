@@ -116,8 +116,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700101 | The system service is excepted.                              |
-| 17700103 | I/O operation is failed.                                     |
+| 17700018 | Failed to install because the dependent module does not exist. |
 
 **Example**
 

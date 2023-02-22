@@ -26,7 +26,7 @@
 - Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
-- Resource Scheduling
+- Background Tasks
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
@@ -79,7 +79,7 @@
   - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
 - Customization Management
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Language Base Class Library
+- Utils
   - [Utils Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)
