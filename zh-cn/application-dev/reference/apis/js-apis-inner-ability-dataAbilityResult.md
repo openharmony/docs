@@ -11,15 +11,15 @@
 
 | 名称       | 类型  |     必填    |       说明   |
 | --------  | --------  | --------    | --------    |
-| uri?      | string    |      否    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
+| uri?      | string    |      否    | 指定待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。  |
 | count?     | number    |      否    | 指示受操作影响的行数。  |
 
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 
-let dataAbilityUri = ("dataability:///com.example.myapplication.TestDataAbility");
+let dataAbilityUri = ('dataability:///com.example.myapplication.TestDataAbility');
 let DAHelper;
 try {
     DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
@@ -33,9 +33,9 @@ try {
 }
 
 let valueBucket = {
-    "name": "DataAbilityHelperTest",
-    "age": 24,
-    "salary": 2024.20,
+    'name': 'DataAbilityHelperTest',
+    'age': 24,
+    'salary': 2024.20,
 };
 let operations = [
 {

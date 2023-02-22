@@ -42,13 +42,13 @@ arkXtest is divided into two parts: unit test framework and UI test framework.
 - The feature availability of the unit test framework varies by version. For details about the mappings between the features and versions, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
 
 
-## Environment preparations
+## Preparing the Environment
 
 ### Environment Requirements
 
 Software for writing test scripts: DevEco Studio 3.0 or later
 
-Hardware for running test scripts: PC connected to a OpenHarmony device, such as the RK3568 development board
+Hardware for running test scripts: PC connected to an OpenHarmony device, such as the RK3568 development board
 
 ### Setting Up the Environment
 
@@ -63,8 +63,8 @@ Hardware for running test scripts: PC connected to a OpenHarmony device, such as
 ## Writing a Unit Test Script
 
 ```TS
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 export default function abilityTest() {
@@ -72,7 +72,7 @@ export default function abilityTest() {
     it('testUiExample',0, async function (done) {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a MainAbility').then(result =>{
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
         console.info('Uitest, start ability finished:' + result)
       }).catch(err => {
         console.info('Uitest, start ability failed: ' + err)
@@ -81,7 +81,7 @@ export default function abilityTest() {
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability)=>{
         console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       done();
     })
@@ -119,7 +119,7 @@ export default function abilityTest() {
     it('testUiExample',0, async function (done) {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a MainAbility').then(result =>{
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
         console.info('Uitest, start ability finished:' + result)
       }).catch(err => {
         console.info('Uitest, start ability failed: ' + err)
@@ -128,7 +128,7 @@ export default function abilityTest() {
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability)=>{
         console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       //ui test code
       //init uidriver
@@ -154,19 +154,179 @@ export default function abilityTest() {
 
 ## Running the Test Script
 
+### In DevEco Studio
+
 You can run a test script in DevEco Studio in any of the following modes:
 
-- Test package level: All test cases in the test package are executed.
-- Test suite level: All test cases defined in the **describe** method are executed.
-- Test method level: The specified **it** method, that is, a single test case, is executed.
+1. Test package level: All test cases in the test package are executed.
+
+2. Test suite level: All test cases defined in the **describe** method are executed.
+
+3. Test method level: The specified **it** method, that is, a single test case, is executed.
 
 ![](figures/Execute.PNG)
 
-## Viewing the Test Result
+**Viewing the Test Result**
 
 After the test is complete, you can view the test result in DevEco Studio, as shown in the following figure.
 
 ![](figures/TestResult.PNG)
+
+### In the CLI
+
+To run a test script in the CLI, execute **aa** commands with different execution control keywords.
+
+Parameters in aa test commands
+
+| Keyword | Abbreviation| Description                          | Example                      |
+| ------------- | ------------ | -------------------------------------- | ---------------------------------- |
+| --bundleName  | -b           | Application bundle name.                        | - b com.test.example               |
+| --packageName | -p           | Application module name, which is applicable to applications developed in the FA model.          | - p com.test.example.entry         |
+| --moduleName  | -m           | Application module name, which is applicable to applications developed in the stage model.       | -m entry                           |
+| NA            | -s           | \<key, value> pair.| - s unittest OpenHarmonyTestRunner |
+
+The framework supports multiple test case execution modes, which are triggered by the key-value pair following the **-s** keyword. The table below lists the available keys and values.
+
+| Key    | Description                                                | Value                                                | Parameter                             |
+| ------------ | -----------------------------------------------------------------------------    | ------------------------------------------------------------ | ----------------------------------------- |
+| unittest     | OpenHarmonyTestRunner object used for test case execution. | **OpenHarmonyTestRunner** or custom runner name.                 | - s unittest OpenHarmonyTestRunner        |
+| class        | Test suite or test case to be executed.                                  | {describeName}#{itName}, {describeName}                     | -s class attributeTest#testAttributeIt    |
+| notClass     | Test suite or test case that does not need to be executed.                              | {describeName}#{itName}, {describeName}                     | -s notClass attributeTest#testAttributeIt |
+| itName       | Test case to be executed.                                        | {itName}                                                     | -s itName testAttributeIt                 |
+| timeout      | Timeout interval for executing a test case.                                       | Positive integer (unit: ms). If no value is set, the default value 5000 is used.                       | -s timeout 15000                          |
+| breakOnError | Whether to enable break-on-error mode. When this mode is enabled, the test execution process exits if a test assertion error or any other error occurs.| **true**/**false** (default value)                                          | -s breakOnError true                      |
+| testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
+| level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
+| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small         |
+| stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
+
+**Running Commands**
+
+> Configure hdc-related environment variables, and then perform the following:
+
+- Open the CLI.
+- Run the **aa test** commands.
+
+Example 1: Execute all test cases.
+
+```shell  
+ hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner
+```
+
+Example 2: Execute cases in the specified test suites, separated by commas (,).
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
+```
+
+Example 3: Execute specified cases in the specified test suites, separated by commas (,).
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
+```
+
+Example 4: Execute all test cases except the specified ones, separated by commas (,).
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
+```
+
+Example 5: Execute specified test cases, separated by commas (,).
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
+```
+
+Example 6: Set the timeout interval for executing a test case.
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner  -s timeout 15000
+```
+
+Example 7: Enable break-on-error mode.
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s breakOnError true
+```
+
+Example 8: Execute test cases of the specified type.
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s testType function
+```
+
+Example 9: Execute test cases at the specified level.
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
+```
+
+Example 10: Execute test cases with the specified size.
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+```
+
+Example 11: Execute test cases for a specified number of times.
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s stress 1000
+```
+
+**Viewing the Test Result**
+
+- During test execution in the CLI, the log information similar to the following is displayed:
+
+```
+OHOS_REPORT_STATUS: class=testStop
+OHOS_REPORT_STATUS: current=1
+OHOS_REPORT_STATUS: id=JS
+OHOS_REPORT_STATUS: numtests=447
+OHOS_REPORT_STATUS: stream=
+OHOS_REPORT_STATUS: test=stop_0
+OHOS_REPORT_STATUS_CODE: 1
+
+OHOS_REPORT_STATUS: class=testStop
+OHOS_REPORT_STATUS: current=1
+OHOS_REPORT_STATUS: id=JS
+OHOS_REPORT_STATUS: numtests=447
+OHOS_REPORT_STATUS: stream=
+OHOS_REPORT_STATUS: test=stop_0
+OHOS_REPORT_STATUS_CODE: 0
+OHOS_REPORT_STATUS: consuming=4
+```
+
+| Log Field              | Description      |
+| -------           | -------------------------|
+| OHOS_REPORT_SUM    | Total number of test cases in the current test suite.|
+| OHOS_REPORT_STATUS: class | Name of the test suite that is being executed.|
+| OHOS_REPORT_STATUS: id | Case execution language. The default value is JS. |
+| OHOS_REPORT_STATUS: numtests | Total number of test cases in the test package.|
+| OHOS_REPORT_STATUS: stream | Error information of the current test case.|
+| OHOS_REPORT_STATUS: test| Name of the current test case.|
+| OHOS_REPORT_STATUS_CODE | Execution result of the current test case. The options are as follows:<br>**0**: pass<br>**1**: error<br>**2**: fail|
+| OHOS_REPORT_STATUS: consuming | Execution duration of the current test case.|
+
+- After the commands are executed, the log information similar to the following is displayed:
+
+```
+OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
+OHOS_REPORT_CODE: 0
+
+OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
+OHOS_REPORT_STATUS: taskconsuming=16029
+
+```
+| Log Field              | Description          |
+| ------------------| -------------------------|
+| run    | Total number of test cases in the current test package.|
+| Failure | Number of failed test cases.|
+| Error | Number of test cases whose execution encounters errors. |
+| Pass | Number of passed test cases.|
+| Ignore | Number of test cases not executed.|
+| taskconsuming| Total time spent in executing the current test case.|
+
+> When an error occurs in break-on-error mode, check the **Ignore** and interrupt information.
 
 ## FAQs
 
@@ -182,7 +342,7 @@ The logs added to the test case are displayed after the test case execution, rat
 
 More than one asynchronous interface is called in the test case.<br>In principle, logs in the test case are printed before the test case execution is complete.
 
- **Solution**
+**Solution**
 
 If more than one asynchronous interface is called, you are advised to encapsulate the interface invoking into the promise mode
 
@@ -209,14 +369,18 @@ After the test case execution is complete, the console displays the error messag
 **Possible Causes**
 
 1. The test case is executed through an asynchronous interface, but the **done** function is not executed during the execution. As a result, the test case execution does not end until it times out.
-2. The time taken for API invocation is longer than the timeout interval set for test case execution. 
+
+2. The time taken for API invocation is longer than the timeout interval set for test case execution.
+
+3. Test assertion fails, and a failure exception is thrown. As a result, the test case execution does not end until the timeout expires.
 
 **Solution**
 
 1. Check the code logic of the test case to ensure that the **done** function is executed even if the assertion fails.
 
-2. Modify the case execution timeout settings under **Run/Debug Configurations** in DevEco Studio. 
+2. Modify the case execution timeout settings under **Run/Debug Configurations** in DevEco Studio.
 
+3. Check the code logic and assertion result of the test case and make sure that the assertion is passed.
 ### FAQs About UI Test Cases
 
 #### The failure log contains "Get windows failed/GetRootByWindow failed"
@@ -237,11 +401,11 @@ Run the following command, restart the device, and execute the test case again:
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-#### The failure log contains "uitest-api dose not allow calling concurrently"
+#### The failure log contains "uitest-api does not allow calling concurrently"
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "uitest-api dose not allow calling concurrently".
+The UI test case fails to be executed. The HiLog file contains the error message "uitest-api does not allow calling concurrently".
 
 **Possible Causes**
 
@@ -255,11 +419,11 @@ The UI test case fails to be executed. The HiLog file contains the error message
 
 2. Do not execute UI test cases in multiple processes.
 
-#### The failure log contains "dose not exist on current UI! Check if the UI has changed after you got the widget object"
+#### The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "dose not exist on current UI! Check if the UI has changed after you got the widget object".
+The UI test case fails to be executed. The HiLog file contains the error message "does not exist on current UI! Check if the UI has changed after you got the widget object".
 
 **Possible Causes**
 

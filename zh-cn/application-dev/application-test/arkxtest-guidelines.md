@@ -134,7 +134,7 @@ export default function abilityTest() {
       //init driver
       var driver = await Driver.create();
       await driver.delayMs(1000);
-      //find button on text 'Next'
+      //find button by text 'Next'
       var button = await driver.findComponent(ON.text('Next'));
       //click button
       await button.click();

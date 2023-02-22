@@ -13,7 +13,7 @@ import errorManager from '@ohos.app.ability.errorManager'
 
 ## ErrorManager.on
 
-on(type: "error", observer: ErrorObserver): number;
+on(type: 'error', observer: ErrorObserver): number;
 
 注册错误观测器。
 
@@ -35,15 +35,15 @@ let observer = {
     }
 }
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
 
 注销错误观测器。
 
@@ -68,15 +68,15 @@ function unregisterErrorObserverCallback(err) {
     }
 }
 try {
-    errorManager.off("error", observerId, unregisterErrorObserverCallback);
+    errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number): Promise\<void>;
+off(type: 'error', observerId: number): Promise\<void>;
 
 注销错误观测器。
 
@@ -100,7 +100,7 @@ off(type: "error", observerId: number): Promise\<void>;
 ```js
 let observerId = 100;
 try {
-    errorManager.off("error", observerId)
+    errorManager.off('error', observerId)
         .then((data) => {
             console.log('----------- unregisterErrorObserver success ----------', data);
         })
@@ -108,7 +108,7 @@ try {
             console.log('----------- unregisterErrorObserver fail ----------', err);
     })
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 
 ```

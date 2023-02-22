@@ -34,27 +34,27 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
 }
 //WantAgentInfo对象
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -65,9 +65,9 @@ var wantAgentInfo = {
 }
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -103,21 +103,21 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -125,14 +125,14 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -164,7 +164,7 @@ var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
@@ -175,21 +175,21 @@ function getWantAgentCallback(err, data) {
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -197,18 +197,18 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
     //getBundleName回调
     function getBundleNameCallback(err, data) {
-	    console.info("==========================>getBundleNameCallback=======================>");
+	    console.info('==========================>getBundleNameCallback=======================>');
     }
-    WantAgent.getBundleName(wantAgent, getBundleNameCallback)
+    WantAgent.getBundleName(wantAgent, getBundleNameCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -247,21 +247,21 @@ var wantAgent;
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -269,19 +269,19 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
         wantAgent = data;
     });
 
     WantAgent.getBundleName(wantAgent).then((data) => {
-	    console.info("==========================>getBundleNameCallback=======================>");
+	    console.info('==========================>getBundleNameCallback=======================>');
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -313,7 +313,7 @@ var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
@@ -324,21 +324,21 @@ function getWantAgentCallback(err, data) {
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -346,18 +346,18 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
     //getUid回调
     function getUidCallback(err, data) {
-	    console.info("==========================>getUidCallback=======================>");
+	    console.info('==========================>getUidCallback=======================>');
     }
-    WantAgent.getUid(wantAgent, getUidCallback)
+    WantAgent.getUid(wantAgent, getUidCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -396,21 +396,21 @@ var wantAgent;
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -418,19 +418,19 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
         wantAgent = data;
     });
 
     WantAgent.getUid(wantAgent).then((data) => {
-	    console.info("==========================>getUidCallback=======================>");
+	    console.info('==========================>getUidCallback=======================>');
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -464,7 +464,7 @@ var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
@@ -475,21 +475,21 @@ function getWantAgentCallback(err, data) {
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -497,18 +497,18 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
     //getWant回调
     function getWantCallback(err, data) {
-	    console.info("==========================>getWantCallback=======================>");
+	    console.info('==========================>getWantCallback=======================>');
     }
-    WantAgent.getWant(wantAgent, getWantCallback)
+    WantAgent.getWant(wantAgent, getWantCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -549,21 +549,21 @@ var wantAgent;
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -571,19 +571,19 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
         wantAgent = data;
     });
 
     WantAgent.getWant(wantAgent).then((data) => {
-	    console.info("==========================>getWantCallback=======================>");
+	    console.info('==========================>getWantCallback=======================>');
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -615,7 +615,7 @@ var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
@@ -626,21 +626,21 @@ function getWantAgentCallback(err, data) {
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -648,18 +648,18 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
     //cancel回调
     function cancelCallback(err, data) {
-	    console.info("==========================>cancelCallback=======================>");
+	    console.info('==========================>cancelCallback=======================>');
     }
-    WantAgent.cancel(wantAgent, cancelCallback)
+    WantAgent.cancel(wantAgent, cancelCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -698,21 +698,21 @@ var wantAgent;
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -720,19 +720,19 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
         wantAgent = data;
     });
 
     WantAgent.cancel(wantAgent).then((data) => {
-	    console.info("==========================>cancelCallback=======================>");
+	    console.info('==========================>cancelCallback=======================>');
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -765,7 +765,7 @@ var wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent = data;
     } else {
@@ -776,21 +776,21 @@ function getWantAgentCallback(err, data) {
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -798,23 +798,23 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
     //trigger回调
     function triggerCallback(data) {
-	    console.info("==========================>triggerCallback=======================>");
+	    console.info('==========================>triggerCallback=======================>');
     }
 
 
     var triggerInfo = {
         code:0
-    }
-    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
+    };
+    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -848,7 +848,7 @@ var wantAgent2;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
-	console.info("==========================>getWantAgentCallback=======================>");
+	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
     	wantAgent1 = data;
         wantAgent2 = data;
@@ -860,21 +860,21 @@ function getWantAgentCallback(err, data) {
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -882,18 +882,18 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
+    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
     //equal回调
     function equalCallback(err, data) {
-	    console.info("==========================>equalCallback=======================>");
+	    console.info('==========================>equalCallback=======================>');
     }
-    WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
+    WantAgent.equal(wantAgent1, wantAgent2, equalCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -934,21 +934,21 @@ var wantAgent2;
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -956,20 +956,20 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
         wantAgent1 = data;
         wantAgent2 = data;
     });
 
     WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
-	    console.info("==========================>equalCallback=======================>");
+	    console.info('==========================>equalCallback=======================>');
     });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -1000,21 +1000,21 @@ var wantAgent;
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1022,11 +1022,11 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
         wantAgent = data;
     });
 
@@ -1034,7 +1034,7 @@ try {
         console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
     })
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -1070,21 +1070,21 @@ var wantAgent;
 var wantAgentInfo = {
     wants: [
         {
-            deviceId: "deviceId",
-            bundleName: "com.neu.setResultOnAbilityResultTest1",
-            abilityName: "com.example.test.MainAbility",
-            action: "action1",
-            entities: ["entity1"],
-            type: "MIMETYPE",
-            uri: "key={true,true,false}",
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.MainAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
             parameters:
             {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [false, true, false],
-                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
         }
@@ -1092,11 +1092,11 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	    console.info("==========================>getWantAgentCallback=======================>");
+	    console.info('==========================>getWantAgentCallback=======================>');
         wantAgent = data;
     });
 
@@ -1106,7 +1106,7 @@ try {
         console.log('getOperationType fail, err: ' + err);
     })
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 

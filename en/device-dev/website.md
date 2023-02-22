@@ -522,7 +522,7 @@
   - [xDevice User Guide](device-test/xdevice.md)
   - R&D Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hdc\_std](subsystems/subsys-toolchain-hdc-guide.md)
+    - [hdc](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf](subsystems/subsys-toolchain-hiperf.md)
 - Tools
 

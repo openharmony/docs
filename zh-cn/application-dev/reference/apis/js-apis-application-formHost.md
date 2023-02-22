@@ -34,7 +34,7 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.deleteForm(formId, (error, data) => {
   if (error.code) {
     console.log('formHost deleteForm, error:' + JSON.stringify(error));
@@ -67,7 +67,7 @@ deleteForm(formId: string): Promise&lt;void&gt;
 **参数：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.deleteForm(formId).then(() => {
   console.log('formHost deleteForm success');
 }).catch((error) => {
@@ -95,7 +95,7 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.releaseForm(formId, (error, data) => {
   if (error.code) {
     console.log('formHost releaseForm, error:' + JSON.stringify(error));
@@ -124,7 +124,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.releaseForm(formId, true, (error, data) => {
   if (error.code) {
     console.log('formHost releaseForm, error:' + JSON.stringify(error));
@@ -158,7 +158,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.releaseForm(formId, true).then(() => {
   console.log('formHost releaseForm success');
 }).catch((error) => {
@@ -186,7 +186,7 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.requestForm(formId, (error, data) => {
   if (error.code) {
     console.log('formHost requestForm, error:' + JSON.stringify(error));
@@ -219,7 +219,7 @@ requestForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.requestForm(formId).then(() => {
   console.log('formHost requestForm success');
 }).catch((error) => {
@@ -247,7 +247,7 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.castTempForm(formId, (error, data) => {
   if (error.code) {
     console.log('formHost castTempForm, error:' + JSON.stringify(error));
@@ -280,7 +280,7 @@ castTempForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.castTempForm(formId).then(() => {
   console.log('formHost castTempForm success');
 }).catch((error) => {
@@ -308,7 +308,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.notifyVisibleForms(formId, (error, data) => {
   if (error.code) {
     console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
@@ -341,7 +341,7 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.notifyVisibleForms(formId).then(() => {
   console.log('formHost notifyVisibleForms success');
 }).catch((error) => {
@@ -369,7 +369,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.notifyInvisibleForms(formId, (error, data) => {
   if (error.code) {
     console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
@@ -402,7 +402,7 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.notifyInvisibleForms(formId).then(() => {
   console.log('formHost notifyInvisibleForms success');
 }).catch((error) => {
@@ -430,7 +430,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.enableFormsUpdate(formId, (error, data) => {
   if (error.code) {
     console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
@@ -463,7 +463,7 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.enableFormsUpdate(formId).then(() => {
   console.log('formHost enableFormsUpdate success');
 }).catch((error) => {
@@ -491,7 +491,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.disableFormsUpdate(formId, (error, data) => {
   if (error.code) {
     console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
@@ -524,7 +524,7 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = ["12400633174999288"];
+var formId = ['12400633174999288'];
 formHost.disableFormsUpdate(formId).then(() => {
   console.log('formHost disableFormsUpdate success');
 }).catch((error) => {
@@ -549,7 +549,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.isSystemReady((error, data) => {
   if (error.code) {
     console.log('formHost isSystemReady, error:' + JSON.stringify(error));
@@ -574,7 +574,7 @@ isSystemReady(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
+var formId = '12400633174999288';
 formHost.isSystemReady().then(() => {
   console.log('formHost isSystemReady success');
 }).catch((error) => {
@@ -656,7 +656,7 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 **示例：**
 
 ```ts
-formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
+formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
   if (error.code) {
     console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
   } else {
@@ -686,7 +686,7 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
+formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
   if (error.code) {
       console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
   } else {
@@ -721,7 +721,7 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 **示例：**
 
   ```ts
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
     console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
   }).catch((error) => {
     console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
@@ -748,7 +748,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 formHost.deleteInvalidForms(formIds, (error, data) => {
   if (error.code) {
     console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
@@ -783,7 +783,7 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 formHost.deleteInvalidForms(formIds).then((data) => {
   console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
 }).catch((error) => {
@@ -812,13 +812,13 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 ```ts
 var want = {
-  "deviceId": "",
-  "bundleName": "ohos.samples.FormApplication",
-  "abilityName": "FormAbility",
-  "parameters": {
-    "ohos.extra.param.key.module_name": "entry",
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.form_dimension": 2
+  'deviceId': '',
+  'bundleName': 'ohos.samples.FormApplication',
+  'abilityName': 'FormAbility',
+  'parameters': {
+    'ohos.extra.param.key.module_name': 'entry',
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.form_dimension': 2
   }
 };
 formHost.acquireFormState(want, (error, data) => {
@@ -856,13 +856,13 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 ```ts
 var want = {
-  "deviceId": "",
-  "bundleName": "ohos.samples.FormApplication",
-  "abilityName": "FormAbility",
-  "parameters": {
-    "ohos.extra.param.key.module_name": "entry",
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.form_dimension": 2
+  'deviceId': '',
+  'bundleName': 'ohos.samples.FormApplication',
+  'abilityName': 'FormAbility',
+  'parameters': {
+    'ohos.extra.param.key.module_name': 'entry',
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.form_dimension': 2
   }
 };
 formHost.acquireFormState(want).then((data) => {
@@ -872,9 +872,9 @@ formHost.acquireFormState(want).then((data) => {
 });
 ```
 
-## on("formUninstall")
+## on('formUninstall')
 
-on(type: "formUninstall", callback: Callback&lt;string&gt;): void
+on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
 订阅卡片卸载事件。使用callback异步回调。
 
@@ -884,7 +884,7 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写"formUninstall"，表示卡片卸载事件。 |
+| type | string | 是   | 填写'formUninstall'，表示卡片卸载事件。 |
 | callback | Callback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
 **示例：**
@@ -893,12 +893,12 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
-formHost.on("formUninstall", callback);
+formHost.on('formUninstall', callback);
 ```
 
-## off("formUninstall")
+## off('formUninstall')
 
-off(type: "formUninstall", callback?: Callback&lt;string&gt;): void
+off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
 取消订阅卡片卸载事件。使用callback异步回调。
 
@@ -908,7 +908,7 @@ off(type: "formUninstall", callback?: Callback&lt;string&gt;): void
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写"formUninstall"，表示卡片卸载事件。 |
+| type | string | 是   | 填写'formUninstall'，表示卡片卸载事件。 |
 | callback | Callback&lt;string&gt; | 否 | 回调函数。返回卡片标识。缺省时，表示注销所有已注册事件回调。 |
 
 **示例：**
@@ -917,7 +917,7 @@ off(type: "formUninstall", callback?: Callback&lt;string&gt;): void
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
-formHost.off("formUninstall", callback);
+formHost.off('formUninstall', callback);
 ```
 
 ## notifyFormsVisible
@@ -941,7 +941,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsVisible(formIds, true, (error, data) => {
   if (error.code) {
     console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
@@ -975,7 +975,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsVisible(formIds, true).then(() => {
   console.log('formHost notifyFormsVisible success');
 }).catch((error) => {
@@ -1004,7 +1004,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
   if (error.code) {
     console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
@@ -1038,7 +1038,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 **示例：**
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
   console.log('formHost notifyFormsEnableUpdate success');
 }).catch((error) => {
@@ -1066,8 +1066,8 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-var formId = "12400633174999288";
-var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+var formId = '12400633174999288';
+var deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 formHost.shareForm(formId, deviceId, (error, data) => {
   if (error.code) {
     console.log('formHost shareForm, error:' + JSON.stringify(error));
@@ -1101,8 +1101,8 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 **参数：**
 
 ```ts
-var formId = "12400633174999288";
-var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+var formId = '12400633174999288';
+var deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 formHost.shareForm(formId, deviceId).then(() => {
   console.log('formHost shareForm success');
 }).catch((error) => {
@@ -1126,7 +1126,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 | deviceId | string | 是   | 远程设备标识。 |
 
 ```ts
-var formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
   console.log('formHost shareForm success');
 }).catch((error) => {

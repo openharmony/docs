@@ -44,7 +44,7 @@ Kconfig visual configuration has the following advantages:
 
 4. Set parameters.
 
-   For details about the parameters, see [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json).
+   For details about the parameters, see productdefine/common/base/base_product.json.
 
    ![Setting parameters](./figure/kconfig_set_parameters.gif)
 
@@ -99,7 +99,7 @@ Kconfig visual configuration has the following advantages:
 
 ### Latest Components Not Displayed in the Menu List
 
-The component list [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json) is updated with product updates and iterations. The Kconfig menu does not contain the latest components.
+The component list productdefine/common/base/base_product.json is updated with product updates and iterations. The Kconfig menu does not contain the latest components.
 
 **Solution**
 
