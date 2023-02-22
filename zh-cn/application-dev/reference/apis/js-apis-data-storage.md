@@ -367,7 +367,7 @@ context.getFilesDir().then((filePath) => {
 
 getSync(key: string, defValue: ValueType): ValueType
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -396,7 +396,7 @@ console.info("The value of startup is " + value);
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据。使用callback方式返回结果，此方法为异步方法。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。使用callback方式返回结果，此方法为异步方法。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -425,7 +425,7 @@ storage.get('startup', 'default', function(err, value) {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-获取键对应的值，如果值为null或者非默认值类型，返默认数据。使用Promise方式返回结果，此方法为异步方法。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。使用Promise方式返回结果，此方法为异步方法。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
