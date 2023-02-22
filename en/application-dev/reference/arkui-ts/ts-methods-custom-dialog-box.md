@@ -11,7 +11,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam})
 
 
 **Parameters**
@@ -23,9 +23,11 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | autoCancel             | boolean                                            | No             | Whether to allow users to click the overlay to exit.<br>Default value: **true**          |
 | alignment              | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment)           | No             | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**       |
 | offset                 | [Offset](ts-types.md#offset) | No   | Offset of the dialog box relative to the alignment position.|
-| customStyle            | boolean                                  | No                   | Whether to use a custom style for the dialog box.<br>Default value: **false**          |
+| customStyle            | boolean                                  | No                   | Whether to use a custom style for the dialog box.<br>Default value: **false**, which means that the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.          |
 | gridCount<sup>8+</sup> | number                                   | No                   | Number of [grid columns](../../ui/ui-ts-layout-grid-container-new.md) occupied by the dialog box.<br>The default value is 4, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
-
+| maskColor<sup>10+</sup>     | [ResourceColor](ts-types.md#resourcecolor)  | No  | Custom mask color.<br>Default value: **0x33000000**                                                                                                 |
+| openAnimation<sup>10+</sup> | [AnimateParam](ts-explicit-animation.md#animateparam)     | No  | Parameters for defining the open animation of the dialog box.     |
+| closeAniamtion<sup>10+</sup>| [AnimateParam](ts-explicit-animation.md#animateparam)     | No  | Parameters for defining the close animation of the dialog box.     |
 
 ## CustomDialogController
 
