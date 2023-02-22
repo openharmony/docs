@@ -84,7 +84,7 @@ The following table describes the application development paths obtained from co
 | tempDir | string | Yes| No| Temporary file directory of the application.<br>Files in this directory are deleted after the application is uninstalled.|
 | filesDir | string | Yes| No| File directory of the application on the internal storage.<br>Files in this directory may be synchronized to other directories during application migration or backup.|
 | databaseDir | string | Yes| No| Storage directory of the local database.|
-| bundleCodeDir | string | Yes| No| Installation directory of the application on the internal storage.|
+| bundleCodeDir | string | Yes| No| Installation directory of the application on the internal storage. A resource file cannot be accessed by combining paths. Use [Resource Manager](js-apis-resource-manager.md) to access it. |
 | distributedFilesDir | string | Yes| No| Storage directory of distributed application data files.|
 | preferencesDir | string | Yes| Yes| Preferences directory of the application.|
 
