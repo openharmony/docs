@@ -14,4 +14,4 @@ The **ModuleInfo** module provides module information of an application.
 | Name           | Type  | Readable| Writable| Description    |
 | --------------- | ------ | ---- | ---- | -------- |
 | moduleName      | string | Yes  | No  | Module name.|
-| moduleSourceDir | string | Yes  | No  | Installation directory.|
+| moduleSourceDir | string | Yes  | No  | Installation directory. A resource file cannot be accessed by combining paths. Use [Resource Manager](js-apis-resource-manager.md) to access it. |
