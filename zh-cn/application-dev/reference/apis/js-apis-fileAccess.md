@@ -1017,6 +1017,157 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
   };
   ```
 
+## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+
+getFileInfoFromUri(uri: string) : Promise<FileInfo>;
+
+以异步方法获取uri对应的[FileInfo](#fileinfo)对象。使用promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 文件(夹)的Uri |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | -- |
+| [FileInfo](#fileinfo) | FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
+  } catch (error) {
+    console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+
+getFileInfoFromUri(uri: string, callback: AsyncCallback<FileInfo>) : void;
+
+以异步方法获取uri对应的[FileInfo](#fileinfo)对象。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 文件(夹)的Uri |
+  | callback | AsyncCallback&lt;string&gt; | 是 | uri对应的FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.getFileInfoFromUri(sourceUri, function (err, fileInfo) {
+      if (err) {
+        console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
+    });
+  } catch (error) {
+    console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+
+## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+
+getFileInfoFromRelativePath(relativePath: string) : Promise<FileInfo>;
+
+以异步方法获取relativePath对应的[FileInfo](#fileinfo)对象。使用promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | relativePath | string | 是 | 文件(夹)的相对路径 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | -- |
+| [FileInfo](#fileinfo) | FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库relativePath为例
+  // 示例代码relativePath表示Download目录，该relativePath是对应的fileInfo中relativePath
+  // 开发者应根据自己实际获取的relativePath进行开发
+  let relativePath = "Download/";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(relativePath);
+  } catch (error) {
+    console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+
+getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback<FileInfo>) : void;
+
+以异步方法获取relativePath对应的[FileInfo](#fileinfo)对象。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | relativePath | string | 是 | 文件(夹)的相对路径 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | relativePath对应的FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库relativePath为例
+  // 示例代码relativePath表示Download目录，该relativePath是对应的fileInfo中relativePath
+  // 开发者应根据自己实际获取的relativePath进行开发
+  let relativePath = "Download/";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.getFileInfoFromRelativePath(relativePath, function (err, fileInfo) {
+      if (err) {
+        console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
+    });
+  } catch (error) {
+    console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
 ## RootIterator.next
 
 next( ) : { value: RootInfo, done: boolean }
@@ -1063,6 +1214,7 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 | ------ | ------ | -------- | ------ | -------- |
 | deviceType | number | 是 | 否 |设备类型 |
 | uri | string | 是 | 否 | 设备根目录Uri |
+| relativePath<sup>10+</sup> | string | 是 | 否 | 根目录的相对路径 |
 | displayName | string | 是 | 否 | 设备名称 |
 | deviceFlags | number | 是 | 否 | 设备支持的能力 |
 
@@ -1079,6 +1231,7 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 | 名称 | 类型   | 可读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | 是 | 否 | 文件(夹)的uri |
+| relativePath<sup>10+</sup> | string | 是 | 否 | 文件(夹)的相对路径 |
 | fileName | string | 是 | 否 | 文件(夹)的名称 |
 | mode | number | 是 | 否 | 文件(夹)的权限信息 |
 | size | number | 是 | 否 |  文件(夹)的大小 |
