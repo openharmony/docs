@@ -581,6 +581,8 @@ httpResponseCache.delete().then(() => {
 | 6      | Unable to resolve the host because of a failure to resolve the specified remote host. You are advised perform the following: 1. Check whether the URL is correct. 2. Check whether the network connection is normal and whether the network can communicate with external networks. 3. Check whether the network access permission is available.      |
 | 7      | Unable to connect to the proxy or host. You are advised perform the following: 1. Check whether the port number is correct. 2. Check whether the HTTP proxy is enabled on the local host.                                   |
 
+For details about the error codes, see [libcurl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
+
 ## HttpDataType<sup>9+</sup>
 
 Enumerates HTTP data types.

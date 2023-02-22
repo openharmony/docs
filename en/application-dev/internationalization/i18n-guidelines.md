@@ -6,7 +6,7 @@ The [intl](intl-guidelines.md) module provides basic i18n capabilities through t
 
 ## Obtaining and Setting i18n Information
 
-The system provides APIs to configure information such as the system language, preferred language, country or region, 24-hour clock, and local digit switch.
+The following table lists the APIs used to configure information such as the system language, preferred language, country or region, 24-hour clock, and use of local digits.
 
 ### Available APIs
 
@@ -30,15 +30,15 @@ The system provides APIs to configure information such as the system language, p
 | System | getPreferredLanguageList()<sup>9+</sup>     | Obtains the preferred language list.   |
 | System | getFirstPreferredLanguage()<sup>9+</sup>     | Obtains the first language in the preferred language list.   |
 | System | getAppPreferredLanguage()<sup>9+</sup>     | Obtains the preferred language of an application.   |
-| System | setUsingLocalDigit(flag: boolean)<sup>9+</sup>     | Sets whether to enable the local digit switch.   |
-| System | getUsingLocalDigit()<sup>9+</sup>     | Checks whether the local digit switch is turned on.   |
+| System | setUsingLocalDigit(flag: boolean)<sup>9+</sup>     | Specifies whether to enable use of local digits.   |
+| System | getUsingLocalDigit()<sup>9+</sup>     | Checks whether use of local digits is enabled.   |
 |  | isRTL(locale:string):boolean<sup>9+</sup> | Checks whether the locale uses a right-to-left (RTL) language.|
 
 ### How to Develop
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Obtain and set the system language.
@@ -51,7 +51,7 @@ The system provides APIs to configure information such as the system language, p
       I18n.System.setSystemLanguage("en"); // Set the system language to en.
       let language = I18n.System.getSystemLanguage(); // language = "en"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -65,7 +65,7 @@ The system provides APIs to configure information such as the system language, p
       I18n.System.setSystemRegion("CN"); // Set the system country to CN.
       let region = I18n.System.getSystemRegion(); // region = "CN"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -79,7 +79,7 @@ The system provides APIs to configure information such as the system language, p
       I18n.System.setSystemLocale("zh-Hans-CN"); // Set the system locale to zh-Hans-CN.
       let locale = I18n.System.getSystemLocale(); // locale = "zh-Hans-CN"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -92,7 +92,7 @@ The system provides APIs to configure information such as the system language, p
       let rtl = I18n.isRTL("zh-CN"); // rtl = false
       rtl = I18n.isRTL("ar"); // rtl = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -106,7 +106,7 @@ The system provides APIs to configure information such as the system language, p
       I18n.System.set24HourClock(true);
       let hourClock = I18n.System.is24HourClock(); // hourClock = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -121,7 +121,7 @@ The system provides APIs to configure information such as the system language, p
       let sentenceCase = false;
       let localizedLanguage = I18n.System.getDisplayLanguage(language, locale, sentenceCase); // localizedLanguage = "English"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -136,7 +136,7 @@ The system provides APIs to configure information such as the system language, p
       let sentenceCase = false;
       let localizedCountry = I18n.System.getDisplayCountry(country, locale, sentenceCase); // localizedCountry = "U.S."
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -150,7 +150,7 @@ The system provides APIs to configure information such as the system language, p
       let languageList = I18n.System.getSystemLanguages();  // languageList = ["en-Latn-US", "zh-Hans"]
       let countryList = I18n.System.getSystemCountries("zh"); // countryList = ["ZW", "YT", ..., "CN", "DE"], 240 countries and regions in total
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -162,7 +162,7 @@ The system provides APIs to configure information such as the system language, p
    try {
       let isSuggest = I18n.System.isSuggested("zh", "CN"); // isSuggest = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -182,7 +182,7 @@ The system provides APIs to configure information such as the system language, p
       let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage(); // firstPreferredLanguage = "en-GB"
       let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // Set the preferred language of the application to en-GB if the application contains en-GB resources.
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -190,14 +190,14 @@ The system provides APIs to configure information such as the system language, p
 
    Call **setUsingLocalDigit** to enable the local digit switch. (This is a system API and can be called only by system applications with the UPDATE_CONFIGURATION permission.)
    Call **getUsingLocalDigit** to check whether the local digit switch is enabled.
-   Currently, the local digit switch applies only to the following languages: "ar", "as", "bn", "fa", "mr", "my", "ne", and "ur".
+   Currently, use of local digits is supported only for the following languages: **ar**, **as**, **bn**, **fa**, **mr**, **my**, **ne**, **ur**.
 
 ```js
 try {
    I18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
    let status = I18n.System.getUsingLocalDigit(); // status = true
 } catch(error) {
-   console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+   console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -220,14 +220,14 @@ try {
 | Calendar | getMinimalDaysInFirstWeek():number<sup>8+</sup> | Obtains the minimum number of days in the first week of a year.       |
 | Calendar | setMinimalDaysInFirstWeek(value:number): void<sup>8+</sup> | Sets the minimum number of days in the first week of a year.       |
 | Calendar | getDisplayName(locale:string):string<sup>8+</sup> | Obtains the localized display of the **Calendar** object.        |
-| Calendar | isWeekend(date?:Date):boolean<sup>8+</sup> | Checks whether the specified date in this **Calendar** object is a weekend.    |
+| Calendar | isWeekend(date?:Date):boolean<sup>8+</sup> | Checks whether a given date is a weekend in the calendar.    |
 
 ### How to Develop
 
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Instantiate a **Calendar** object.
@@ -254,7 +254,7 @@ try {
      Call **set** to set the year, month, day, hour, minute, and second for the **Calendar** object.
 
    ```js
-   calendar.set(2021, 12, 21, 6, 0, 0)
+   calendar.set(2021, 12, 21, 6, 0, 0);
    ```
 
 5. Set and obtain the time zone for the **Calendar** object.
@@ -317,7 +317,7 @@ try {
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Instantiate a **PhoneNumberFormat** object.
@@ -359,7 +359,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Convert a measurement unit.
@@ -393,7 +393,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Instantiates an **IndexUtil** object.
@@ -418,7 +418,7 @@ The **I18NUtil** class provides an API to implement measurement conversion.
      Call **addLocale** to add the alphabet index of a new locale to the current index list.
 
    ```js
-   indexUtil.addLocale("ar")
+   indexUtil.addLocale("ar");
    ```
 
 5. Obtain the index of a string.
@@ -454,7 +454,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Instantiate a **BreakIterator** object.
@@ -462,7 +462,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
    Call **getLineInstance** to instantiate a **BreakIterator** object.
 
    ```js
-   let locale = "en-US"
+   let locale = "en-US";
    let breakIterator = I18n.getLineInstance(locale);
    ```
 
@@ -531,7 +531,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Instantiate the **TimeZone** object, and obtain the time zone information.
@@ -592,7 +592,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Obtains the transliterator ID list.
@@ -637,7 +637,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Check the input character has a certain attribute.
@@ -719,7 +719,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 1. Import the **i18n** module.
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. Check the sequence of year, month, and day in a date.

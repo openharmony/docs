@@ -25,7 +25,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiates a **Locale** object.
@@ -100,7 +100,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **DateTimeFormat** object.
@@ -170,7 +170,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **NumberFormat** object.
@@ -195,7 +195,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
-   let number = 1234.5678
+   let number = 1234.5678;
    let formatResult = numberFormat.format(number); // formatResult = "1235"
    ```
 
@@ -229,7 +229,7 @@ Users in different regions have different requirements for string sorting. [Coll
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **Collator** object.
@@ -290,7 +290,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **PluralRules** object.
@@ -313,7 +313,7 @@ According to grammars in certain languages, the singular or plural form of a nou
      
    ```js
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
-   let number = 1234.5678
+   let number = 1234.5678;
    let categoryResult = pluralRules.select(number); // categoryResult = "other"
    ```
 
@@ -338,7 +338,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **RelativeTimeFormat** object.
@@ -362,7 +362,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
-   let unit = "year"
+   let unit = "year";
    let formatResult = relativeTimeFormat.format(number, unit); // 2 years later
    ```
 
@@ -373,7 +373,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
-   let unit = "year"
+   let unit = "year";
    let formatPartsResult = relativeTimeFormat.formatToParts(number, unit); // formatPartsResult = [{"type": "integer", "value": "2", "unit": "year"}, {"type":"literal", "value": "years later"}]
    ```
 

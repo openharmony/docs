@@ -104,7 +104,7 @@ radio.getNetworkState((err, data) =>{
 
 getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
-Obtains the network status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network status. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -131,7 +131,7 @@ radio.getNetworkState(slotId, (err, data) => {
 
 getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
-Obtains the network status of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network status. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -290,7 +290,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -331,7 +331,7 @@ promise.then(data => {
 
 getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInformation\>\>\): void
 
-Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result. 
+Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -356,7 +356,7 @@ radio.getSignalInformation(slotId, (err, data) => {
 
 getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
-Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result. 
+Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -384,11 +384,15 @@ promise.then(data => {
 });
 ```
 
-## radio.isNrSupported<sup>7+</sup>
+## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(\): boolean
 
 Checks whether the current device supports 5G \(NR\).
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9) instead.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -405,12 +409,15 @@ let result = radio.isNrSupported();
 console.log("Result: "+ result);
 ```
 
-
-## radio.isNrSupported<sup>8+</sup>
+## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\) for the SIM card in the specified slot.
+Checks whether the current device supports 5G \(NR\).
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9-1) instead.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -431,6 +438,57 @@ Checks whether the current device supports 5G \(NR\) for the SIM card in the spe
 ```js
 let slotId = 0;
 let result = radio.isNrSupported(slotId);
+console.log("Result: "+ result);
+```
+
+
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let result = radio.isNRSupported();
+console.log("Result: "+ result);
+```
+
+
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(slotId: number\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type              | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let slotId = 0;
+let result = radio.isNRSupported(slotId);
 console.log("Result: "+ result);
 ```
 
@@ -596,7 +654,7 @@ Sets the ID of the slot in which the primary card is located. This API uses an a
 | Name  | Type                 | Mandatory| Description                                  |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
 
 **Example**
 
@@ -675,7 +733,7 @@ radio.getIMEI((err, data) => {
 
 getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -704,7 +762,7 @@ radio.getIMEI(slotId, (err, data) => {
 
 getIMEI(slotId?: number): Promise<string\>
 
-Obtains the IMEI of the SIM card in a card slot. This API uses a promise to return the result.
+Obtains the IMEI of the SIM card in the specified card slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -767,7 +825,7 @@ radio.getMEID((err, data) => {
 
 getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -796,7 +854,7 @@ radio.getMEID(slotId, (err, data) => {
 
 getMEID(slotId?: number): Promise<string\>
 
-Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the MEID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -859,7 +917,7 @@ radio.getUniqueDeviceId((err, data) => {
 
 getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -888,7 +946,7 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 getUniqueDeviceId(slotId?: number): Promise<string\>
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the unique device ID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -928,7 +986,7 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -954,7 +1012,7 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -978,11 +1036,11 @@ radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
 
 sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
-Sends a cell location update request for the SIM card in the specified slot.This API uses a promise to return the result.
+Sends a cell location update request for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1192,7 +1250,7 @@ promise.then(data => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
 
-Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
+Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1205,7 +1263,7 @@ Obtains network search information for the SIM card in the specified slot. This 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.            |
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.          |
 
 **Example**
 
@@ -1714,7 +1772,7 @@ promise.then(data => {
 
 on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
 
-Enables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1743,7 +1801,7 @@ radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
 
-Disables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1770,7 +1828,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 ## RadioTechnology
 
-Enumerates radio access technologies.
+ Enumerates radio access technologies.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1797,10 +1855,10 @@ Defines the signal strength.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| signalType  | [NetworkType](#networktype) | Yes| Signal strength type.|
-| signalLevel | number                      | Yes| Signal strength level.|
+|    Name    |           Type             | Mandatory|      Description         |
+| ----------- | --------------------------- | ---- | ----------------- |
+| signalType  | [NetworkType](#networktype) | Yes  | Signal strength type.|
+| signalLevel | number                      | Yes  | Signal strength level.|
 
 
 ## NetworkType
@@ -1825,17 +1883,17 @@ Defines the network status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| longOperatorName  | string                | Yes | Long carrier name of the registered network.|
-| shortOperatorName | string                | Yes | Short carrier name of the registered network.|
-| plmnNumeric       | string                | Yes | PLMN code of the registered network.|
-| isRoaming         | boolean               | Yes | Whether the user is roaming.|
-| regState          | [RegState](#regstate) | Yes | Network registration status of the device.|
-| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | Yes | RAT of the device.|
-| nsaState          | [NsaState](#nsastate) | Yes | NSA network registration status of the device.|
-| isCaActive        | boolean               | Yes | CA status.|
-| isEmergency       | boolean               | Yes | Whether only emergency calls are allowed.|
+|       Name          |                 Type               | Mandatory|                          Description                               |
+| -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| longOperatorName     | string                              |  Yes | Long carrier name of the registered network.                                    |
+| shortOperatorName    | string                              |  Yes | Short carrier name of the registered network.                                    |
+| plmnNumeric          | string                              |  Yes | PLMN code of the registered network.                                          |
+| isRoaming            | boolean                             |  Yes | Whether the user is roaming.                                          |
+| regState             | [RegState](#regstate)               |  Yes | Network registration status of the device.                                        |
+| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) |  Yes | RAT of the device.                                        |
+| nsaState             | [NsaState](#nsastate)               |  Yes | NSA network registration status of the device.                                     |
+| isCaActive           | boolean                             |  Yes | CA status.                                                  |
+| isEmergency          | boolean                             |  Yes | Whether only emergency calls are allowed.                              |
 
 
 ## RegState
@@ -1848,7 +1906,7 @@ Defines the network status.
 | ----------------------------- | ---- | -------------------------- |
 | REG_STATE_NO_SERVICE          | 0    | The device cannot use any services, including data, SMS, and call services.    |
 | REG_STATE_IN_SERVICE          | 1    | The device can use services properly, including data, SMS, and call services.    |
-| REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.    |
+| REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.|
 | REG_STATE_POWER_OFF           | 3    | The device cannot communicate with the network because the cellular radio service is disabled or the modem is powered off.     |
 
 
@@ -1922,7 +1980,7 @@ Enumerates preferred network modes.
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM                 | 38   | NR+LTE+TD-SCDMA+GSM network mode.             |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | NR+LTE+TD-SCDMA+WCDMA network mode.           |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
-| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM+EVDO+CDMA network mode.       |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
 | PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | Maximum value of the preferred network mode.                         |
 
 ## CellInformation<sup>8+</sup>
@@ -1933,13 +1991,13 @@ Defines the cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| networkType       | [NetworkType](#networktype) | Yes | Network type of the cell.                      |
-| isCamped          | boolean                     | Yes | Status of the cell.                            |
-| timeStamp         | number                     | Yes | Timestamp when cell information is obtained.    |
-| signalInformation | [SignalInformation](#signalinformation) | Yes | Signal information.                |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | Yes | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
+| Name             |                  Type                  | Mandatory|                           Description                              |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| networkType       | [NetworkType](#networktype)             |  Yes | Network type of the cell.                                    |
+| isCamped          | boolean                                 |  Yes | Cell status.                                        |
+| timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.                                |
+| signalInformation | [SignalInformation](#signalinformation) |  Yes | Signal information.                                                  |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1949,13 +2007,13 @@ Defines the CDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| baseId    | number | Yes | Base station ID.    |
-| latitude  | number | Yes | Longitude.      |
-| longitude | number | Yes | Latitude.      |
-| nid       | number | Yes | Network ID.|
-| sid       | number | Yes | System ID.|
+| Name     | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| baseId    | number |  Yes | Base station ID.    |
+| latitude  | number |  Yes | Longitude.      |
+| longitude | number |  Yes | Latitude.      |
+| nid       | number |  Yes | Network ID.|
+| sid       | number |  Yes | System ID.|
 
 ## GsmCellInformation<sup>8+</sup>
 
@@ -1965,50 +2023,50 @@ Defines the GSM cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| lac    | number | Yes | Location area code.        |
-| cellId | number | Yes | Cell ID.            |
-| arfcn  | number | Yes | Absolute radio frequency channel number.|
-| bsic   | number | Yes | Base station ID.        |
-| mcc    | string | Yes | Mobile country code.        |
-| mnc    | string | Yes | Mobile network code.          |
+| Name  | Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| lac    | number |  Yes | Location area code.        |
+| cellId | number |  Yes | Cell ID.            |
+| arfcn  | number |  Yes | Absolute radio frequency channel number.|
+| bsic   | number |  Yes | Base station ID.        |
+| mcc    | string |  Yes | Mobile country code.        |
+| mnc    | string |  Yes | Mobile network code.          |
 
 ## LteCellInformation<sup>8+</sup>
 
-Defines the LTE cell information.
+LTE cell information.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| cgi           | number  | Yes | Cell global identification.         |
-| pci           | number  | Yes | Physical cell ID.         |
-| tac           | number  | Yes | Tracking area code.         |
-| earfcn        | number  | Yes | Absolute radio frequency channel number.   |
-| bandwidth     | number  | Yes | Bandwidth.                 |
-| mcc           | string  | Yes | Mobile country code.           |
-| mnc           | string  | Yes | Mobile network code.             |
-| isSupportEndc | boolean | Yes | Support for New Radio_Dual Connectivity. |
+| Name         | Type   | Mandatory| Description                   |
+| ------------- | ------- | ---- | ----------------------- |
+| cgi           | number  |  Yes | Cell global identification.         |
+| pci           | number  |  Yes | Physical cell ID.         |
+| tac           | number  |  Yes | Tracking area code.         |
+| earfcn        | number  |  Yes | Absolute radio frequency channel number.   |
+| bandwidth     | number  |  Yes | Bandwidth.                 |
+| mcc           | string  |  Yes | Mobile country code.           |
+| mnc           | string  |  Yes | Mobile network code.             |
+| isSupportEndc | boolean |  Yes | Support for New Radio_Dual Connectivity.|
 
 ## NrCellInformation<sup>8+</sup>
 
-Defines the NR cell information.
+Defines the 5G NR cell information.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| nrArfcn | number | Yes | 5G frequency number.      |
-| pci     | number | Yes | Physical cell ID.  |
-| tac     | number | Yes | Tracking area code.  |
-| nci     | number | Yes | 5G network cell ID.|
-| mcc     | string | Yes | Mobile country code.    |
-| mnc     | string | Yes | Mobile network code.      |
+| Name   | Type  | Mandatory| Description            |
+| ------- | ------ | ---- | ---------------- |
+| nrArfcn | number |  Yes | 5G frequency number.      |
+| pci     | number |  Yes | Physical cell ID.  |
+| tac     | number |  Yes | Tracking area code.  |
+| nci     | number |  Yes | 5G network cell ID.|
+| mcc     | string |  Yes | Mobile country code.    |
+| mnc     | string |  Yes | Mobile network code.      |
 
 ## TdscdmaCellInformation<sup>8+</sup>
 
@@ -2018,14 +2076,14 @@ Defines the TD-SCDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| lac    | number | Yes | Location area code.|
-| cellId | number | Yes | Cell ID.    |
-| cpid   | number | Yes | Cell parameter ID.|
-| uarfcn | number | Yes | Absolute radio frequency number.|
-| mcc    | string | Yes | Mobile country code.|
-| mnc    | string | Yes | Mobile network code.  |
+| Name  | Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  Yes | Location area code.|
+| cellId | number |  Yes | Cell ID.    |
+| cpid   | number |  Yes | Cell parameter ID.|
+| uarfcn | number |  Yes | Absolute radio frequency number.|
+| mcc    | string |  Yes | Mobile country code.|
+| mnc    | string |  Yes | Mobile network code.  |
 
 ## WcdmaCellInformation<sup>8+</sup>
 
@@ -2035,14 +2093,14 @@ Defines the WCDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| lac    | number | Yes | Location area code.|
-| cellId | number | Yes | Cell ID.    |
-| psc    | number | Yes | Primary scrambling code.    |
-| uarfcn | number | Yes | Absolute radio frequency number.|
-| mcc    | string | Yes | Mobile country code.|
-| mnc    | string | Yes | Mobile network code.  |
+| Name  | Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  Yes | Location area code.|
+| cellId | number |  Yes | Cell ID.    |
+| psc    | number |  Yes | Primary scrambling code.    |
+| uarfcn | number |  Yes | Absolute radio frequency number.|
+| mcc    | string |  Yes | Mobile country code.|
+| mnc    | string |  Yes | Mobile network code.  |
 
 ## NrOptionMode<sup>8+</sup>
 
@@ -2056,7 +2114,7 @@ Enumerates NR selection modes.
 | -------------------- | ---- | ---------------------------------- |
 | NR_OPTION_UNKNOWN    | 0    | Unknown NR selection mode.                |
 | NR_OPTION_NSA_ONLY   | 1    | NR selection mode in 5G non-standalone networking.        |
-| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G standalone networking.          |
+| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G non-standalone networking.          |
 | NR_OPTION_NSA_AND_SA | 3    | NR selection mode in non-standalone and standalone networking.|
 
 ## NetworkSearchResult
@@ -2067,10 +2125,10 @@ Defines the network search result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| isNetworkSearchSuccess | boolean                                           | Yes | Successful network search.|
-| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | Yes | Network search result.|
+| Name                  | Type                                             | Mandatory| Description          |
+| ---------------------- | ------------------------------------------------- | ---- | -------------- |
+| isNetworkSearchSuccess | boolean                                           |  Yes | Successful network search.|
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  Yes | Network search result.|
 
 ## NetworkInformation
 
@@ -2080,12 +2138,12 @@ Defines the network information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| operatorName    | string                                    | Yes | Carrier name.|
-| operatorNumeric | string                                    | Yes | Carrier number.  |
-| state           | [NetworkInformation](#networkinformationstate) | Yes | Network information status.|
-| radioTech       | string                                    | Yes | Radio technology.  |
+| Name           |                         Type                       | Mandatory| Description          |
+| --------------- | --------------------------------------------------- | ---- | -------------- |
+| operatorName    | string                                              |  Yes | Carrier name.|
+| operatorNumeric | string                                              |  Yes | Carrier number.  |
+| state           | [NetworkInformationState](#networkinformationstate) |  Yes | Network information status.|
+| radioTech       | string                                              |  Yes | Radio access technology.  |
 
 ## NetworkInformationState
 
@@ -2110,12 +2168,12 @@ Defines the network selection mode.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| slotId             | number                                        | Yes | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| selectMode         | [NetworkSelectionMode](#networkselectionmode) | Yes | Network selection mode.                       |
-| networkInformation | [NetworkInformation](#networkinformation)    | Yes | Network information.                           |
-| resumeSelection    | boolean                                       | Yes | Whether to resume selection.                  |
+| Name              |                    Type                      | Mandatory|                 Description                  |
+| ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
+| slotId             | number                                        |  Yes | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) |  Yes | Network selection mode.                        |
+| networkInformation | [NetworkInformation](#networkinformation)     |  Yes | Network information.                            |
+| resumeSelection    | boolean                                       |  Yes | Whether to resume selection.                            |
 
 ## ImsRegState<sup>9+</sup>
 
@@ -2153,10 +2211,10 @@ Defines the IMS registration information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| imsRegState | [ImsRegState](#imsregstate9) | Yes | IMS registration state.|
-| imsRegTech  | [ImsRegTech](#imsregtech9)   | Yes | IMS registration technology.|
+| Name       | Type                        | Mandatory| Description         |
+| ----------- | ---------------------------- | ---- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) |  Yes | IMS registration state.|
+| imsRegTech  | [ImsRegTech](#imsregtech9)   |  Yes | IMS registration technology.|
 
 ## ImsServiceType<sup>9+</sup>
 
