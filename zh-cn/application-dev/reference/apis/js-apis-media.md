@@ -512,7 +512,7 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
     console.info(`audio error called, errMessage is ${error.message}`);
 });
 
-// 用户选择视频设置fd(本地播放)
+// 用户选择音频设置fd(本地播放)
 let fdPath = 'fd://'
 // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
