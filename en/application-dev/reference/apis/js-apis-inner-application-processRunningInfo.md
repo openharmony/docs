@@ -3,7 +3,7 @@
 The **ProcessRunningInfo** module defines the running information of a process.
 
 > **NOTE**
-> - The APIs provided by this module are deprecated since API version 9. You are advised to use [ProcessRunningInformation<sup>9+</sup>](js-apis-inner-application-processRunningInformation.md) instead.
+> - The APIs provided by this module are deprecated since API version 9. You are advised to use [ProcessInformation<sup>9+</sup>](js-apis-inner-application-processInformation.md) instead.
 > - The initial APIs of this module are supported since API version 8.
 
 ## Attributes

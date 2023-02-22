@@ -3,8 +3,8 @@
 - Access Control  
   - [Access Control (Permission) Overview](accesstoken-overview.md)
   - [Permission Application Guide](accesstoken-guidelines.md)
-  - [Permission Verification Guide](permission-verify-guidelines.md)
-  - [App Permission List](permission-list.md)
+  - [API Access Permission Verification](permission-verify-guidelines.md)
+  - [Application Permission List](permission-list.md)
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
   - [User Authentication Development](userauth-guidelines.md)
@@ -17,7 +17,7 @@
 - Certificate
   - [Certificate Overview](cert-overview.md)
   - [Certificate Development](cert-guidelines.md)
-- hapsigner  
+- hapsigner 
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
   - [HarmonyAppProvision Configuration File](app-provision-structure.md)
