@@ -49,7 +49,7 @@ createBundleContext(bundleName: string): Context;
 **示例：**
 
 ```ts
-let bundleContext = this.context.createBundleContext("com.example.test");
+let bundleContext = this.context.createBundleContext('com.example.test');
 ```
 
 ## Context.createModuleContext
@@ -75,7 +75,7 @@ createModuleContext(moduleName: string): Context;
 **示例：**
 
 ```ts
-let moduleContext = this.context.createModuleContext("entry");
+let moduleContext = this.context.createModuleContext('entry');
 ```
 
 createModuleContext(bundleName: string, moduleName: string): Context;
@@ -100,7 +100,7 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 **示例：**
 
 ```ts
-let moduleContext = this.context.createModuleContext("com.example.test", "entry");
+let moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 ```
 
 ## Context.getApplicationContext

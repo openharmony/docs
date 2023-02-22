@@ -32,7 +32,7 @@ export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage: Window.WindowStage) {
         let envCallback = {
             onConfigurationUpdated(config) {
-                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
+                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
                 let language = config.language;
                 let colorMode = config.colorMode;
             }

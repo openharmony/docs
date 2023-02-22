@@ -46,19 +46,19 @@ featureAbility.startAbility(
     {
         want:
         {
-            action: "",
-            entities: [""],
-            type: "",
+            action: '',
+            entities: [''],
+            type: '',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.myapplication.secondAbility",
-            uri: ""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri: ''
         },
     },
     (err, data) => {
-        console.info("startAbility err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+        console.info('startAbility err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
     }
 );
 ```
@@ -99,19 +99,19 @@ featureAbility.startAbility(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.myapplication.secondAbility",
-            uri: ""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri: ''
         },
     }
 ).then((data) => {
-    console.info("startAbility data: " + JSON.stringify(data));
+    console.info('startAbility data: ' + JSON.stringify(data));
 });
 ```
 
@@ -140,7 +140,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+    'dataability:///com.example.DataAbility'
 );
 ```
 
@@ -176,19 +176,19 @@ featureAbility.startAbilityForResult(
    {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.myapplication.secondAbility",
-            uri:""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:''
         },
     },
     (err, data) => {
-        console.info("startAbilityForResult err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+        console.info('startAbilityForResult err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
     }
 );
 ```
@@ -230,30 +230,30 @@ featureAbility.startAbilityForResult(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.myapplication.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters:
             {
                 mykey0: 1111,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "xxxxxxxxxxxxxxxxxxxxxx",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'xxxxxxxxxxxxxxxxxxxxxx',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["aaaaaa", "bbbbb", "ccccccccccc"],
+                mykey6: ['aaaaaa', 'bbbbb', 'ccccccccccc'],
                 mykey7: true,
             },
         },
     },
 ).then((data) => {
-    console.info("startAbilityForResult data: " + JSON.stringify(data));
+    console.info('startAbilityForResult data: ' + JSON.stringify(data));
 });
 ```
 
@@ -282,29 +282,29 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.myapplication.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters: {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey7: true,
             }
         },
     },
     (err) => {
-        console.info("err: " + JSON.stringify(err))
+        console.error('err: ' + JSON.stringify(err));
     }
 );
 ```
@@ -339,29 +339,29 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.myapplication.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters: {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey7: true,
             }
         },
     }
 ).then((data) => {
-    console.info("==========================>terminateSelfWithResult=======================>");
+    console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
 
@@ -384,7 +384,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus((err, data) => {
-    console.info("hasWindowFocus err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    console.info('hasWindowFocus err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
 });
 ```
 
@@ -407,7 +407,7 @@ hasWindowFocus(): Promise\<boolean>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info("hasWindowFocus data: " + JSON.stringify(data));
+    console.info('hasWindowFocus data: ' + JSON.stringify(data));
 });
 ```
 
@@ -430,7 +430,7 @@ getWant(callback: AsyncCallback\<Want>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant((err, data) => {
-    console.info("getWant err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    console.info('getWant err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
 });
 ```
 
@@ -453,7 +453,7 @@ getWant(): Promise\<Want>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-    console.info("getWant data: " + JSON.stringify(data));
+    console.info('getWant data: ' + JSON.stringify(data));
 });
 ```
 
@@ -475,9 +475,9 @@ getContext(): Context
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 context.getBundleName((err, data) => {
-    console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    console.info('getBundleName err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
 });
 ```
 
@@ -501,7 +501,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
     (err) => {
-        console.info("err: " + JSON.stringify(err))
+        console.error('err: ' + JSON.stringify(err));
     }
 )
 ```
@@ -525,7 +525,7 @@ terminateSelf(): Promise\<void>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
-    console.info("==========================>terminateSelf=======================>");
+    console.info('==========================>terminateSelf=======================>');
 });
 ```
 
@@ -566,9 +566,9 @@ function onFailedCallback(code){
 }
 let connectId = featureAbility.connectAbility(
     {
-        deviceId: "",
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
+        deviceId: '',
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -602,15 +602,15 @@ function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 let connectId = featureAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -620,8 +620,8 @@ let connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId, (err) => {
-    console.log("featureAbilityTest disconnectAbility err====>"
-    + ("json err=") + JSON.stringify(err));
+    console.error('featureAbilityTest disconnectAbility err====>'
+    + ('json err=') + JSON.stringify(err));
 });
 ```
 
@@ -654,15 +654,15 @@ function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 let connectId = featureAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "com.ix.ServiceAbility.ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -674,7 +674,7 @@ let connectId = featureAbility.connectAbility(
 featureAbility.disconnectAbility(connectId).then((data) => {
     console.log('data : '  + data);
 }).catch((error)=>{
-    console.log('featureAbilityTest result errCode : ' + error.code);
+    console.error('featureAbilityTest result errCode : ' + error.code);
 });
 ```
 
@@ -697,7 +697,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 ```ts
 featureAbility.getWindow((err, data) => {
-    console.info("getWindow err: " + JSON.stringify(err) + "data: " + typeof(data));
+    console.info('getWindow err: ' + JSON.stringify(err) + 'data: ' + typeof(data));
 });
 ```
 
@@ -719,7 +719,7 @@ getWindow(): Promise\<window.Window>;
 
 ```ts
 featureAbility.getWindow().then((data) => {
-    console.info("getWindow data: " + typeof(data));
+    console.info('getWindow data: ' + typeof(data));
 });
 ```
 
@@ -760,9 +760,9 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | 名称                           | 值              | 说明                                       |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | 窗口显示大小属性的参数名。 |
-| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | 窗口显示模式属性的参数名。|
-| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | 窗口显示设备ID属性的参数名。 |
+| BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
+| WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | 窗口显示模式属性的参数名。|
+| DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
 
 ## ErrorCode
 

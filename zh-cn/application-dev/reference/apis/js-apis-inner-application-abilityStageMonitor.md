@@ -11,15 +11,15 @@
 
 **示例：**
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 let monitor = {
-    moduleName: "feature_as1",
-    srcEntrance: "./ets/Application/MyAbilityStage.ts",
+    moduleName: 'feature_as1',
+    srcEntrance: './ets/Application/MyAbilityStage.ts',
 };
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
-    console.info("stageMonitor waitAbilityStageMonitor, abilityStage = " + JSON.stringify(data));
+    console.info('stageMonitor waitAbilityStageMonitor, abilityStage = ' + JSON.stringify(data));
 });
 ```

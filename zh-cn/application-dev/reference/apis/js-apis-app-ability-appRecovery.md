@@ -99,15 +99,15 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.restartApp();
     }
 };
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -133,14 +133,14 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState();
     }
 };
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```

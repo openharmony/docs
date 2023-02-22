@@ -67,8 +67,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
 
   try {
@@ -139,9 +139,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var options = {
     windowMode: 0
@@ -219,8 +219,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
   var options = {
   	windowMode: 0,
@@ -296,9 +296,9 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -310,7 +310,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
         return;
       }
       // 执行正常业务
-      console.log("startAbilityForResult succeed, result.resultCode = " +
+      console.log('startAbilityForResult succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -372,9 +372,9 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var options = {
     windowMode: 0,
@@ -389,7 +389,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
         return;
       }
       // 执行正常业务
-      console.log("startAbilityForResult succeed, result.resultCode = " +
+      console.log('startAbilityForResult succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -458,8 +458,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
   ```ts
   var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
   var options = {
   	windowMode: 0,
@@ -469,7 +469,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
     this.context.startAbilityForResult(want, options)
       .then((result) => {
         // 执行正常业务
-        console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
+        console.log('startAbilityForResult succeed, result.resultCode = ' + result.resultCode);
       })
       .catch((error) => {
         // 处理业务逻辑错误
@@ -532,9 +532,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
 
@@ -547,7 +547,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
         return;
       }
       // 执行正常业务
-      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+      console.log('startAbilityForResultWithAccount succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -608,9 +608,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
   var options = {
@@ -626,7 +626,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
         return;
       }
       // 执行正常业务
-      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+      console.log('startAbilityForResultWithAccount succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -692,9 +692,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
   var options = {
@@ -705,7 +705,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
     this.context.startAbilityForResultWithAccount(want, accountId, options)
       .then((result) => {
         // 执行正常业务
-        console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+        console.log('startAbilityForResultWithAccount succeed, result.resultCode = ' +
           result.resultCode)
       })
       .catch((error) => {
@@ -757,9 +757,9 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -817,9 +817,9 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -878,9 +878,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
 
@@ -943,9 +943,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
 
@@ -1001,9 +1001,9 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -1058,9 +1058,9 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -1120,9 +1120,9 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
 
@@ -1182,9 +1182,9 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
 
@@ -1316,8 +1316,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
   ```ts
   var want = {
-    bundleName: "com.extreme.myapplication",
-    abilityName: "SecondAbility"
+    bundleName: 'com.extreme.myapplication',
+    abilityName: 'SecondAbility'
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1381,8 +1381,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
   ```ts
   var want = {
-    bundleName: "com.extreme.myapplication",
-    abilityName: "SecondAbility"
+    bundleName: 'com.extreme.myapplication',
+    abilityName: 'SecondAbility'
   }
   var resultCode = 100;
   // 返回给接口调用方AbilityResult信息
@@ -1446,9 +1446,9 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
@@ -1510,9 +1510,9 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
   var options = {
@@ -1674,10 +1674,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
   // 后台启动Ability，不配置parameters
   var wantBackground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: ""
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'MainAbility',
+      deviceId: ''
   };
 
   try {
@@ -1703,14 +1703,14 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   ```ts
   var caller = undefined;
 
-  // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
+  // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
   var wantForeground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: "",
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'MainAbility',
+      deviceId: '',
       parameters: {
-        "ohos.aafwk.param.callAbilityToForeground": true
+        'ohos.aafwk.param.callAbilityToForeground': true
       }
   };
 
@@ -1781,9 +1781,9 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
 
@@ -1856,9 +1856,9 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
   var options = {
@@ -1933,9 +1933,9 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
   ```ts
   var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
   var accountId = 100;
   var options = {
@@ -2037,7 +2037,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  this.context.setMissionLabel("test",(result) => {
+  this.context.setMissionLabel('test',(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
   ```
@@ -2066,7 +2066,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  this.context.setMissionLabel("test").then(() => {
+  this.context.setMissionLabel('test').then(() => {
       console.log('success');
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
