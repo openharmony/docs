@@ -105,6 +105,8 @@ try {
 }
 ```
 
+## Context.createModuleContext
+
 createModuleContext(bundleName: string, moduleName: string): Context;
 
 根据Bundle名称和模块名称创建上下文。

@@ -265,9 +265,9 @@ export default class MyAbility extends Ability {
 }
 ```
 
-## ApplicationContext.getProcessRunningInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
@@ -281,22 +281,22 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInfo.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.getProcessRunningInformation().then((data) => {
+applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is: ${JSON.stringify(data)}');
 }).catch((error) => {
     console.log('error: ${JSON.stringify(error)}');
 });
 ```
 
-## ApplicationContext.getProcessRunningInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
 获取有关运行进程的信息。
 
@@ -310,15 +310,15 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 类型 | 说明 |
 | -------- | -------- |
-|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInfo.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.getProcessRunningInformation((err, data) => {
+applicationContext.getRunningProcessInformation((err, data) => {
     if (err.code !== 0) {
-        console.error('getProcessRunningInformation faile, err: ${JSON.stringify(err)}');
+        console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
     }

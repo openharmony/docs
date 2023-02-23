@@ -1292,13 +1292,3 @@ context.printDrawnCompleted().then((data) => {
 | requestCode | 只读   | number         | 是    | 用户传入的请求代码。 |
 | permissions | 只读   | Array\<string> | 是    | 用户传入的权限。   |
 | authResults | 只读   | Array\<number> | 是    | 请求权限的结果。   |
-
-## AppVersionInfo<sup>7+</sup>
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称          | 类型     | 可读   | 可写   | 说明      |
-| ----------- | ------ | ---- | ---- | ------- |
-| appName     | string | 是    | 否    | 模块名称。   |
-| versionCode | number | 是    | 否    | 模块描述信息。 |
-| versionName | string | 是    | 否    | 描述信息ID。 |
