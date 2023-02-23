@@ -1,4 +1,4 @@
-# MediaLibrary
+# @ohos.multimedia.medialibrary (Media Library Management)
 
 > **NOTE**
 >
@@ -193,7 +193,7 @@ media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
 
 ### on<sup>8+</sup>
 
-on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
+on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback: Callback&lt;void&gt;): void
 
 Subscribes to the media library changes. This API uses an asynchronous callback to return the result.
 
@@ -203,7 +203,7 @@ Subscribes to the media library changes. This API uses an asynchronous callback 
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| type     | 'deviceChange'&#124;<br>'albumChange'&#124;<br>'imageChange'&#124;<br>'audioChange'&#124;<br>'videoChange'&#124;<br>'fileChange'&#124;<br>'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
 | callback | Callback&lt;void&gt; | Yes   | Void callback.                                   |
 
 **Example**
@@ -215,7 +215,7 @@ media.on('imageChange', () => {
 ```
 ### off<sup>8+</sup>
 
-off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
+off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the media library changes. This API uses an asynchronous callback to return the result.
 
@@ -225,7 +225,7 @@ Unsubscribes from the media library changes. This API uses an asynchronous callb
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| type     | 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
+| type     | 'deviceChange'&#124;<br>'albumChange'&#124;<br>'imageChange'&#124;<br>'audioChange'&#124;<br>'videoChange'&#124;<br>'fileChange'&#124;<br>'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
 | callback | Callback&lt;void&gt; | No   | Void callback.                                   |
 
 **Example**
@@ -610,11 +610,11 @@ let option = {
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
     if (err) {
-        console.log("An error occurred when storing the media asset.");
+        console.log("An error occurred when storing media resources.");
         return;
     }
-    console.log("Media asset stored.");
-    // Obtain the URI that stores the media asset.
+    console.log("Media resources stored. ");
+    // Obtain the URI that stores the media assets.
 });
 ```
 
@@ -652,10 +652,10 @@ let option = {
     relativePath : "Pictures/"
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
-    console.log("Media asset stored.");
-    // Obtain the URI that stores the media asset.
+    console.log("Media resources stored.");
+    // Obtain the URI that stores the media assets.
 }).catch((err) => {
-    console.log("An error occurred when storing the media assets.");
+    console.log("An error occurred when storing media resources.");
 });
 ```
 
@@ -821,10 +821,10 @@ let option : mediaLibrary.MediaSelectOption = {
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
     if (err) {
-        console.log("An error occurred when selecting the media asset.");
+        console.log("An error occurred when selecting media resources.");
         return;
     }
-    console.log("Media asset selected.");
+    console.log("Media resources selected.");
     // Obtain the media selection value.
 });
 ```
@@ -862,10 +862,10 @@ let option : mediaLibrary.MediaSelectOption = {
     count : 2
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
-    console.log("Media asset selected.");
+    console.log("Media resources selected.");
     // Obtain the media selection value.
 }).catch((err) => {
-    console.log("An error occurred when selecting the media assets.");
+    console.log("An error occurred when selecting media resources.");
 });
 
 ```
@@ -885,7 +885,7 @@ Obtains information about online peer devices. This API uses a promise to return
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -921,7 +921,7 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -956,7 +956,7 @@ Obtains information about all peer devices. This API uses a promise to return th
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-|  Promise\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+|  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -992,7 +992,7 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 | Type                 | Description                  |
 | ------------------- | -------------------- |
-| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+| callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
 
 **Example**
 
@@ -1014,6 +1014,11 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
+> **NOTE**
+> 
+> 1. The system attempts to parse the file content if the file is an audio or video file. The actual field values will be restored from the passed values during scanning on some devices.
+> 2. Some devices may not support the modification of **orientation**. You are advised to use [ModifyImageProperty](js-apis-image.md#modifyimageproperty9) of the **image** module.
+
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -1025,13 +1030,13 @@ Provides APIs for encapsulating file asset attributes.
 | mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
 | displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
-| title                     | string                   | Yes  | Yes  | Title in the file.                                              |
+| title                     | string                   | Yes  | Yes  | Title in the file. By default, it carries the file name without extension.                                              |
 | relativePath<sup>8+</sup> | string                   | Yes  | Yes  | Relative public directory of the file.                                      |
 | parent<sup>8+</sup>       | number                   | Yes  | No  | Parent directory ID.                                              |
 | size                      | number                   | Yes  | No  | File size, in bytes.                                |
-| dateAdded                 | number                   | Yes  | No  | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateModified              | number                   | Yes  | No  | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateTaken                 | number                   | Yes  | No  | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)        |
+| dateAdded                 | number                   | Yes  | No  | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.        |
+| dateModified              | number                   | Yes  | No  | Date when the file was last modified. The value is the number of seconds elapsed since the Epoch time. |
+| dateTaken                 | number                   | Yes  | No  | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.        |
 | artist<sup>8+</sup>       | string                   | Yes  | No  | Artist of the file.                                                  |
 | audioAlbum<sup>8+</sup>   | string                   | Yes  | No  | Audio album.                                                  |
 | width                     | number                   | Yes  | No  | Image width, in pixels.                                |
@@ -1208,7 +1213,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | Mode of opening the file, for example, **'r'** (read-only), **'w'** (write-only), and **'rw'** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file handle.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor.                           |
 
 **Example**
 
@@ -1252,7 +1257,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file handle.|
+| Promise&lt;number&gt; | Promise used to return the file descriptor.|
 
 **Example**
 
@@ -2486,29 +2491,33 @@ Enumerates media types.
 
 Enumerates key file information.
 
+> **NOTE**
+> 
+> The **bucket_id** field may change after file rename or movement. Therefore, you must obtain the field again before using it.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| ID            | file_id             | File ID.                                                  |
-| RELATIVE_PATH | relative_path       | Relative public directory of the file.                                          |
-| DISPLAY_NAME  | display_name        | Display file name.                                                  |
-| PARENT        | parent              | Parent directory ID.                                                  |
-| MIME_TYPE     | mime_type           | Extended file attributes.                                              |
-| MEDIA_TYPE    | media_type          | Media type.                                                  |
-| SIZE          | size                | File size, in bytes.                                    |
-| DATE_ADDED    | date_added          | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_MODIFIED | date_modified       | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)            |
-| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)            |
-| TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Artist of the file.                                                      |
-| AUDIOALBUM    | audio_album         | Audio album.                                                      |
-| DURATION      | duration            | Duration, in ms.                                      |
-| WIDTH         | width               | Image width, in pixels.                                    |
-| HEIGHT        | height              | Image height, in pixels.                                    |
-| ORIENTATION   | orientation         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
-| ALBUM_ID      | bucket_id           | ID of the album to which the file belongs.                                      |
-| ALBUM_NAME    | bucket_display_name | Name of the album to which the file belongs.                                        |
+| ID            | "file_id"             | File ID.                                                  |
+| RELATIVE_PATH | "relative_path"       | Relative public directory of the file.                                          |
+| DISPLAY_NAME  | "display_name"        | Display file name.                                                  |
+| PARENT        | "parent"              | Parent directory ID.                                                  |
+| MIME_TYPE     | "mime_type"           | Extended file attributes.                                              |
+| MEDIA_TYPE    | "media_type"          | Media type.                                                  |
+| SIZE          | "size"                | File size, in bytes.                                    |
+| DATE_ADDED    | "date_added"          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_MODIFIED | "date_modified"       | Date when the file was last modified. The value is the number of seconds elapsed since the Epoch time. |
+| DATE_TAKEN    | "date_taken"          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.            |
+| TITLE         | "title"               | Title in the file.                                                  |
+| ARTIST        | "artist"              | Artist of the file.                                                      |
+| AUDIOALBUM    | "audio_album"         | Audio album.                                                      |
+| DURATION      | "duration"            | Duration, in ms.                                      |
+| WIDTH         | "width"               | Image width, in pixels.                                    |
+| HEIGHT        | "height"              | Image height, in pixels.                                    |
+| ORIENTATION   | "orientation"         | Image display direction (clockwise rotation angle, for example, 0, 90, and 180, in degrees).|
+| ALBUM_ID      | "bucket_id"           | ID of the album to which the file belongs.                                      |
+| ALBUM_NAME    | "bucket_display_name" | Name of the album to which the file belongs.                                        |
 
 ## DirectoryType<sup>8+</sup>
 
@@ -2598,5 +2607,7 @@ Describes media selection option.
 
 | Name   | Type    | Readable| Writable| Description                  |
 | ----- | ------ | ---- | ---- | -------------------- |
-| type  | string | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
+| type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
 | count | number | Yes   | Yes | Number of media assets selected. The value starts from 1, which indicates that one media asset can be selected.           |
+
+
