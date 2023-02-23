@@ -155,10 +155,10 @@ zh-cn/application-dev/media/avsession-guidelines.md @zengyawen @liuyuehua1 @saga
 zh-cn/application-dev/media/image.md @zengyawen @zhangqiang183 @wind_zj @zxg-gitee
 zh-cn/application-dev/media/camera.md @zengyawen @liuyuehua1 @saga2020 @currydavids
 zh-cn/application-dev/media/remote-camera.md @zengyawen @liuyuehua1 @saga2020 @currydavids
-zh-cn/application-dev/security/accesstoken-overview.md @zengyawen @nianCode @nianCode @jinhaihw
-zh-cn/application-dev/security/accesstoken-guidelines.md @zengyawen @nianCode @nianCode @jinhaihw
-zh-cn/application-dev/security/permission-verify-guidelines.md @zengyawen @nianCode @nianCode @jinhaihw
-zh-cn/application-dev/security/permission-list.md @zengyawen @zengyawen @nianCode @nianCode @jinhaihw
+zh-cn/application-dev/security/accesstoken-overview.md @zengyawen @nianCode @shuqinglin2 @jinhaihw
+zh-cn/application-dev/security/accesstoken-guidelines.md @zengyawen @nianCode @shuqinglin2 @jinhaihw
+zh-cn/application-dev/security/permission-verify-guidelines.md @zengyawen @nianCode @shuqinglin2 @jinhaihw
+zh-cn/application-dev/security/permission-list.md @zengyawen @shuqinglin2
 zh-cn/application-dev/security/userauth-overview.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
 zh-cn/application-dev/security/userauth-guidelines.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
 zh-cn/application-dev/security/huks-overview.md @zengyawen @gaoyong @niejiteng @jumozhanjiang
