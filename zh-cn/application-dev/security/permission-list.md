@@ -1707,3 +1707,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
+
+允许系统应用禁用使能overlay特性的应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
