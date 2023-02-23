@@ -14,7 +14,7 @@ The ParticleAbility module is used to perform operations on abilities of the Dat
 ## Modules to Import
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 ```
 
 ## particleAbility.startAbility
@@ -25,7 +25,7 @@ Starts a ParticleAbility. This API uses an asynchronous callback to return the r
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
@@ -40,27 +40,27 @@ Observe the following when using this API:
 **Example**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import particleAbility from '@ohos.ability.particleAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 
 particleAbility.startAbility(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.Data",
-            abilityName: "EntryAbility",
-            uri: ""
+            deviceId: '',
+            bundleName: 'com.example.Data',
+            abilityName: 'com.example.Data.MainAbility',
+            uri: ''
         },
     },
     (error, result) => {
-        console.log('particleAbility startAbility errCode:' + error + 'result:' + result)
+        console.log('particleAbility startAbility errCode:' + error + 'result:' + result);
     },
-)
+);
 ```
 
 ## particleAbility.startAbility
@@ -71,7 +71,7 @@ Starts a ParticleAbility. This API uses a promise to return the result.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
@@ -91,25 +91,25 @@ Observe the following when using this API:
 **Example**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import particleAbility from '@ohos.ability.particleAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 
 particleAbility.startAbility(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'action.system.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.Data",
-            abilityName: "EntryAbility",
-            uri: ""
+            deviceId: '',
+            bundleName: 'com.example.Data',
+            abilityName: 'com.example. Data.MainAbility',
+            uri: ''
         },
     },
 ).then((data) => {
-    console.info("particleAbility startAbility");
+    console.info('particleAbility startAbility');
 });
 ```
 
@@ -130,13 +130,13 @@ Terminates this ParticleAbility. This API uses an asynchronous callback to retur
 **Example**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf(
     (error, result) => {
-        console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result)
+        console.log('particleAbility terminateSelf errCode:' + error + 'result:' + result);
     }
-)
+);
 ```
 
 ## particleAbility.terminateSelf
@@ -156,10 +156,10 @@ Terminates this ParticleAbility. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf().then((data) => {
-	console.info("particleAbility terminateSelf");
+	console.info('particleAbility terminateSelf');
 });
 ```
 
@@ -170,12 +170,6 @@ particleAbility.terminateSelf().then((data) => {
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 Obtains a **dataAbilityHelper** object.
-
-Observe the following when using this API:
- - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
- - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -194,10 +188,10 @@ Observe the following when using this API:
 **Example**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
+import particleAbility from '@ohos.ability.particleAbility';
 
-var uri = "";
-particleAbility.acquireDataAbilityHelper(uri)
+let uri = '';
+particleAbility.acquireDataAbilityHelper(uri);
 ```
 
 
@@ -228,17 +222,17 @@ import wantAgent from '@ohos.wantAgent';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed cause: " + JSON.stringify(err));
+        console.error('Operation failed cause: ' + JSON.stringify(err));
     } else {
-        console.info("Operation succeeded");
+        console.info('Operation succeeded');
     }
 }
 
 let wantAgentInfo = {
     wants: [
         {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
+            bundleName: 'com.example.myapplication',
+            abilityName: 'com.example.myapplication.MainAbility'
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -248,8 +242,8 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     let basicContent = {
-        title: "title",
-        text: "text"
+        title: 'title',
+        text: 'text'
     };
     let notificationContent = {
         contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -298,8 +292,8 @@ import wantAgent from '@ohos.wantAgent';
 let wantAgentInfo = {
     wants: [
         {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
+            bundleName: 'com.example.myapplication',
+            abilityName: 'com.example.myapplication.MainAbility'
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -309,8 +303,8 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     let basicContent = {
-        title: "title",
-        text: "text"
+        title: 'title',
+        text: 'text'
     };
     let notificationContent = {
         contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -322,9 +316,9 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     };
     let id = 1;
     particleAbility.startBackgroundRunning(id, request).then(() => {
-        console.info("Operation succeeded");
+        console.info('Operation succeeded');
     }).catch((err) => {
-        console.error("Operation failed cause: " + JSON.stringify(err));
+        console.error('Operation failed cause: ' + JSON.stringify(err));
     });
 });
 
@@ -351,9 +345,9 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed cause: " + JSON.stringify(err));
+        console.error('Operation failed cause: ' + JSON.stringify(err));
     } else {
-        console.info("Operation succeeded");
+        console.info('Operation succeeded');
     }
 }
 
@@ -381,9 +375,9 @@ Requests to cancel a continuous task from the system. This API uses a promise to
 import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.cancelBackgroundRunning().then(() => {
-    console.info("Operation succeeded");
+    console.info('Operation succeeded');
 }).catch((err) => {
-    console.error("Operation failed cause: " + JSON.stringify(err));
+    console.error('Operation failed cause: ' + JSON.stringify(err));
 });
 
 ```
@@ -393,12 +387,6 @@ particleAbility.cancelBackgroundRunning().then(() => {
 connectAbility(request: Want, options:ConnectOptions): number
 
 Connects this ability to a specific ServiceAbility.
-
-Observe the following when using this API:
- - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
- - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -413,25 +401,25 @@ Observe the following when using this API:
 **Example**
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility'
-import rpc from '@ohos.rpc'
+import particleAbility from '@ohos.ability.particleAbility';
+import rpc from '@ohos.rpc';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -441,11 +429,10 @@ var connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
+    console.log(' data: ' + data);
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+    console.log('particleAbilityTest result errCode : ' + error.code);
 });
-    
 ```
 
 ## particleAbility.disconnectAbility
@@ -473,17 +460,17 @@ function onConnectCallback(element, remote) {
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -491,10 +478,10 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
-}).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+
+particleAbility.disconnectAbility(connId, (err) => {
+    console.log('particleAbilityTest disconnectAbility err====>'
+    + ('json err=') + JSON.stringify(err));
 });
 ```
 
@@ -524,17 +511,17 @@ function onConnectCallback(element, remote) {
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId);
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.log('particleAbilityTest ConnectAbility onFailed errCode : ' + code);
 }
 
-var connId = particleAbility.connectAbility(
+let connId = particleAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -544,9 +531,9 @@ var connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
+    console.log(' data: ' + data);
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+    console.log('particleAbilityTest result errCode : ' + error.code);
 });
 
 ```
