@@ -36,7 +36,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
      "module": {
        "name": "entry",
        "type": "entry",
-       "srcEntrance": "./ets/myabilitystage/MyAbilityStage.ts",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
        // ...
      }
    }
