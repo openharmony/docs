@@ -1661,7 +1661,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：** 
@@ -1689,7 +1689,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如"#00FF00"或"#FF00FF00"。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如"#00FF00"或"#FF00FF00"。 |
 
 **返回值：** 
 
