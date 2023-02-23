@@ -9,6 +9,7 @@
 - [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
 - [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)
 - [在UIAbility组件中订阅回调](#在uiability组件中订阅回调)
+- [在ExtensionAbility组件中订阅回调](#在extensionability组件中订阅回调)
 
 ## 使用ApplicationContext订阅回调
 
@@ -67,7 +68,7 @@
 
 ## 在AbilityStage组件容器中订阅回调
 
-使用[AbilityStage.onConfigurationUpdate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)回调方法订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息，而无需重启UIAbility。可以进行相应的界面适配等操作，从而提高系统的灵活性和可维护性。
+使用[AbilityStage.onConfigurationUpdate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)回调方法订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息。可以进行相应的界面适配等操作，从而提高系统的灵活性和可维护性。
 
 > **说明：**
 >
@@ -100,13 +101,13 @@ export default class MyAbilityStage extends AbilityStage {
 
 ## 在UIAbility组件中订阅回调
 
-也可以使用UIAbility.onConfigurationUpdate()回调方法订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息，而无需重启UIAbility。
+UIAbility组件提供了`UIAbility.onConfigurationUpdate()`回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息，而无需重启UIAbility。
 
 > **说明：**
 >
 > 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着UIAbility的生命周期而存在，在UIAbility销毁时一并销毁。
 
-例如，在UIAbility.onConfigurationUpdate()回调方法中实现监测系统语言的变化。
+例如，在`onConfigurationUpdate()`回调方法中实现监测系统语言的变化。
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -131,3 +132,26 @@ export default class EntryAbility extends UIAbility {
     // ...
 }
 ```
+
+## 在ExtensionAbility组件中订阅回调
+
+ExtensionAbility组件提供了`onConfigurationUpdate()`回调方法用于订阅系统环境变量的变化。当系统环境变量发生变化时，会调用该回调方法。在该方法中，通过[Configuration](../reference/apis/js-apis-app-ability-configuration.md)对象获取最新的系统环境配置信息。
+
+> **说明：**
+>
+> 当使用回调方法订阅系统环境变量的变化时，该回调方法会随着ExtensionAbility的生命周期而存在，在ExtensionAbility销毁时一并销毁。
+
+以FormExtensionAbility为例说明。例如，在`onConfigurationUpdate()`回调方法中实现系统环境变量的变化。
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class EntryFormAbility extends FormExtensionAbility {
+    onConfigurationUpdate(newConfig) {
+        console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+    }
+
+    // ...
+}
+```
+
