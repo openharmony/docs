@@ -22,16 +22,16 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```ts
   appManager.isRunningInStabilityTest((err, flag) => {
-    console.log('error:' + JSON.stringfy(err));
-    console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+    console.log('error: ${JSON.stringify(err)}');
+    console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
   })  
   ```
 
@@ -46,17 +46,17 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```ts
   appManager.isRunningInStabilityTest().then((flag) => {
-      console.log('The result of isRunningInStabilityTest is:' + JSON.stringify(flag));
+      console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -71,17 +71,17 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```ts
   appManager.isRamConstrainedDevice().then((data) => {
-      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
+      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -95,16 +95,16 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```ts
   appManager.isRamConstrainedDevice((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The result of isRamConstrainedDevice is:' + JSON.stringify(data));
+      console.log('error: ${JSON.stringify(err)}');
+      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
   })
   ```
 
@@ -118,17 +118,17 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Size of the application memory.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the memory size, in MB.|
 
 **Example**
     
   ```ts
   appManager.getAppMemorySize().then((data) => {
-      console.log('The size of app memory is:' + JSON.stringify(data));
+      console.log('The size of app memory is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -142,17 +142,17 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes| Size of the application memory.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB.|
 
 **Example**
     
   ```ts
   appManager.getAppMemorySize((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The size of app memory is:' + JSON.stringify(data));
-  })
+      console.log('error: ${JSON.stringify(err)}');
+      console.log('The size of app memory is: ${JSON.stringify(data)}');
+  });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
@@ -160,7 +160,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9) instead.
+> This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -176,9 +176,9 @@ Obtains information about the running processes. This API uses a promise to retu
     
   ```ts
   appManager.getProcessRunningInfos().then((data) => {
-      console.log('The process running infos is:' + JSON.stringify(data));
+      console.log('The process running infos is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -188,7 +188,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
-> This API is deprecated since API version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1) instead.
+> This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9) instead.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -204,60 +204,9 @@ Obtains information about the running processes. This API uses an asynchronous c
     
   ```ts
   appManager.getProcessRunningInfos((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The process running infos is:' + JSON.stringify(data));
-  })
-  ```
-
-## appManager.getProcessRunningInformation<sup>9+</sup>
-
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
-
-Obtains information about the running processes. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | Obtains information about the running processes. This API uses a promise to return the result.|
-
-**Example**
-    
-  ```ts
-  appManager.getProcessRunningInformation().then((data) => {
-      console.log('The process running info is:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('error:' + JSON.stringify(error));
+      console.log('error: ${JSON.stringify(err)}');
+      console.log('The process running infos is: ${JSON.stringify(data)}');
   });
-  ```
-
-## appManager.getProcessRunningInformation<sup>9+</sup>
-
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
-
-Obtains information about the running processes. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | Yes| Obtains information about the running processes. This API uses a promise to return the result.|
-
-**Example**
-    
-  ```ts
-  appManager.getProcessRunningInformation((err, data) => {
-      console.log('error:' + JSON.stringify(err));
-      console.log('The process running info is:' + JSON.stringify(data));
-  })
   ```
 
 ## appManager.registerApplicationStateObserver<sup>8+</sup>
@@ -281,7 +230,7 @@ Registers an observer to listen for the state changes of all applications.
 **Example**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -297,7 +246,7 @@ Registers an observer to listen for the state changes of all applications.
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  }
+  };
   const observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
   console.log('-------- observerCode: ---------', observerCode);
   ```
@@ -324,7 +273,7 @@ Registers an observer to listen for the state changes of a specified application
 **Example**
     
   ```ts
-  var applicationStateObserver = {
+  let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -340,8 +289,8 @@ Registers an observer to listen for the state changes of a specified application
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  }
-  var bundleNameList = ['bundleName1', 'bundleName2'];
+  };
+  let bundleNameList = ['bundleName1', 'bundleName2'];
   const observerCode = appManager.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
   console.log('-------- observerCode: ---------', observerCode);
   ```
@@ -367,7 +316,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 **Example**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   function unregisterApplicationStateObserverCallback(err) {
     if (err) {
@@ -404,7 +353,7 @@ Deregisters the application state observer. This API uses a promise to return th
 **Example**
     
   ```ts
-  var observerId = 100;
+  let observerId = 100;
 
   appManager.unregisterApplicationStateObserver(observerId)
   .then((data) => {
@@ -412,7 +361,7 @@ Deregisters the application state observer. This API uses a promise to return th
   })
   .catch((err) => {
       console.log('----------- unregisterApplicationStateObserver fail ----------', err);
-  })
+  });
   ```
 
 ## appManager.getForegroundApplications<sup>8+</sup>
@@ -440,7 +389,7 @@ Obtains information about the applications that are running in the foreground. T
     if (err) {
         console.log('--------- getForegroundApplicationsCallback fail ---------', err);
     } else {
-        console.log('--------- getForegroundApplicationsCallback success ---------', data)
+        console.log('--------- getForegroundApplicationsCallback success ---------', data);
     }
   }
   appManager.getForegroundApplications(getForegroundApplicationsCallback);
@@ -473,7 +422,7 @@ Obtains information about the applications that are running in the foreground. T
   })
   .catch((err) => {
       console.log('--------- getForegroundApplications fail -------', err);
-  })
+  });
   ```
 
 ## appManager.killProcessWithAccount<sup>8+</sup>
@@ -498,15 +447,15 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 **Example**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 appManager.killProcessWithAccount(bundleName, accountId)
    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
    })
    .catch((err) => {
        console.log('------------ killProcessWithAccount fail ------------', err);
-   })
+   });
 ```
 
 
@@ -533,8 +482,8 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 **Example**
 
 ```ts
-var bundleName = 'bundleName';
-var accountId = 0;
+let bundleName = 'bundleName';
+let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
    if (err) {
        console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
@@ -567,7 +516,7 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
 **Example**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function killProcessesByBundleNameCallback(err, data) {
     if (err) {
         console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
@@ -605,14 +554,14 @@ Kills a process by bundle name. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  var bundleName = 'com.example.myapplication';
+  let bundleName = 'com.example.myapplication';
   appManager.killProcessesByBundleName(bundleName)
     .then((data) => {
         console.log('------------ killProcessesByBundleName success ------------', data);
     })
     .catch((err) => {
         console.log('------------ killProcessesByBundleName fail ------------', err);
-    })
+    });
   ```
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
@@ -637,7 +586,7 @@ Clears application data by bundle name. This API uses an asynchronous callback t
 **Example**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   function clearUpApplicationDataCallback(err, data) {
     if (err) {
         console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
@@ -675,40 +624,12 @@ Clears application data by bundle name. This API uses a promise to return the re
 **Example**
     
   ```ts
-  var bundleName = 'bundleName';
+  let bundleName = 'bundleName';
   appManager.clearUpApplicationData(bundleName)
     .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);
     })
     .catch((err) => {
         console.log('------------ clearUpApplicationData fail ------------', err);
-    })
+    });
   ```
-
-## ApplicationState<sup>9+</sup>
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name                | Value | Description                              |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |   State indicating that the application is being created.        |
-| STATE_FOREGROUND          | 2   |      State indicating that the application is running in the foreground.           |
-| STATE_ACTIVE  | 3   |         State indicating that the application is active.    |
-| STATE_BACKGROUND        | 4   |       State indicating that the application is running in the background.          |
-| STATE_DESTROY        | 5   |           State indicating that the application is destroyed.      |
-
-## ProcessState<sup>9+</sup>
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name                | Value | Description                              |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |      State indicating that the process is being created.      |
-| STATE_FOREGROUND          | 2   |            State indicating that the process is running in the foreground.     |
-| STATE_ACTIVE  | 3   |          State indicating that the process is active.  |
-| STATE_BACKGROUND        | 4   |       State indicating that the process is running in the background.          |
-| STATE_DESTROY        | 5   |         State indicating that the process is destroyed.        |
