@@ -1,7 +1,7 @@
 # 软总线子系统Changelog
 
 ## IPC&RPC API支持异常处理方式和支持传入布尔值与数值选择同步或异步方式发送信息变更
-1. 软总线IPC&RPC部分接口使用业务逻辑返回值表示错误信息，不符合Openharmony接口错误规范；
+1. 软总线IPC&RPC部分接口使用业务逻辑返回值表示错误信息，不符合OpenHarmony接口错误规范；
 2. 支持传入布尔值选择同步或异步方式发送信息。
 #### 变更影响
 
@@ -108,7 +108,7 @@
 | RemoteObject | queryLocalInterface(descriptor: string): IRemoteBroker | NA | getLocalInterface(descriptor: string): IRemoteBroker |
 | RemoteObject | attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void  | NA | modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void |
 | RemoteObject | getInterfaceDescriptor(): string | NA | getDescriptor(): string |
-| RemoteObject | NA | NA | onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean&nbsp;\|&nbsp;Promise<boolean> |
+| RemoteObject | onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean&nbsp;\|&nbsp;Promise<boolean> | NA | onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean&nbsp;\|&nbsp;Promise<boolean> |
 | RemoteObject | sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise<SendRequestResult> | NA | sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise<RequestResult> |
 | RemoteObject | sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback<SendRequestResult>): void | NA | sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback<RequestResult>): void |
 | RemoteProxy | queryLocalInterface(interface: string): IRemoteBroker | NA | getLocalInterface(descriptor: string): IRemoteBroker |
