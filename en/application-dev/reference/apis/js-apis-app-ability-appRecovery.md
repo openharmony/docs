@@ -18,13 +18,12 @@ Enumerates the application restart flags. This enum is used as an input paramete
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                         | Value  | Description                                                        |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| ALWAYS_RESTART           | 0    | The application is restarted in all cases.|
-| CPP_CRASH_NO_RESTART           | 0x0001    | The application is not restarted in the case of CPP_CRASH.|
-| JS_CRASH_NO_RESTART           | 0x0002    | The application is not restarted in the case of JS_CRASH.|
-| APP_FREEZE_NO_RESTART           | 0x0004    | The application is not restarted in the case of APP_FREEZE.|
-| NO_RESTART           | 0xFFFF  | The application is not restarted in any case.|
+| Name      | Value  | Description      |
+| ---------- | ---- | ---------- |
+| ALWAYS_RESTART   | 0    | The application is restarted in all cases.|
+| RESTART_WHEN_JS_CRASH   | 0x0001    | The application is restarted in the case of JS_CRASH.|
+| RESTART_WHEN_APP_FREEZE   | 0x0002    | The application is restarted in the case of APP_FREEZE.|
+| NO_RESTART           | 0xFFFF    | The application is not restarted in any case.|
 
 ## appRecovery.SaveOccasionFlag
 
@@ -69,9 +68,8 @@ Enables application recovery.
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
-import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MyAbility extends UIAbility {
+export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         appRecovery.enableAppRecovery(
             appRecovery.RestartFlag::ALWAYS_RESTART,
@@ -99,15 +97,15 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.restartApp();
     }
 };
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
@@ -133,14 +131,14 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState();
     }
 };
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
