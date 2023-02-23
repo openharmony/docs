@@ -1,4 +1,4 @@
-# 接口
+﻿# 接口
 
 - [开发说明](development-intro.md)
 
@@ -157,6 +157,7 @@
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
+  - [@ohos.pluginComponent(PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
 
@@ -228,8 +229,8 @@
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
-  - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
-  - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
+  - [@ohos.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
+  - [@ohos.volumeManager (卷管理)](js-apis-file-volumemanager.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -336,6 +337,7 @@
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
+  - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)

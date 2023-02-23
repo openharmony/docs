@@ -11,7 +11,7 @@
 
 ## 接口
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam})
 
 
 **参数:**
@@ -25,7 +25,9 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | offset                 | [Offset](ts-types.md#offset) | 否    | 弹窗相对alignment所在位置的偏移量。 |
 | customStyle            | boolean                                  | 否                    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。           |
 | gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占[栅格宽度](../../ui/ui-ts-layout-grid-container-new.md)的个数。<br>默认值为4，异常值按默认值处理，最大栅格数为系统最大栅格数。 |
-
+| maskColor<sup>10+</sup>     | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 自定义蒙层颜色。<br>默认值: 0x33000000                                                                                                  |
+| openAnimation<sup>10+</sup> | [AnimateParam](ts-explicit-animation.md#animateparam对象说明)     | 否   | 自定义设置弹窗弹出的动画效果相关参数。      |
+| closeAniamtion<sup>10+</sup>| [AnimateParam](ts-explicit-animation.md#animateparam对象说明)     | 否   | 自定义设置弹窗关闭的动画效果相关参数。      |
 
 ## CustomDialogController
 
