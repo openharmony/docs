@@ -1,6 +1,6 @@
-# @ohos.ability.particleAbility
+# @ohos.ability.particleAbility (ParticleAbility)
 
-The **particleAbility** module provides APIs for Service abilities. You can use the APIs to start and terminate a Particle ability, obtain a **dataAbilityHelper** object, connect the current ability to a specific Service ability, and disconnect the current ability from a specific Service ability. 
+The **particleAbility** module provides APIs for operating a ServiceAbility. You can use the APIs to start and terminate a ParticleAbility, obtain a **dataAbilityHelper** object, and connect to or disconnect from a ServiceAbility.
 
 > **NOTE**
 > 
@@ -21,7 +21,7 @@ import particleAbility from '@ohos.ability.particleAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): void
 
-Starts a Particle ability. This API uses an asynchronous callback to return the result.
+Starts a ParticleAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -62,7 +62,7 @@ particleAbility.startAbility(
 
 startAbility(parameter: StartAbilityParameter): Promise\<void>;
 
-Starts a Particle ability. This API uses a promise to return the result.
+Starts a ParticleAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -107,7 +107,7 @@ particleAbility.startAbility(
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Terminates this Particle ability. This API uses an asynchronous callback to return the result.
+Terminates this ParticleAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -133,7 +133,7 @@ particleAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-Terminates this Particle ability. This API uses a promise to return the result.
+Terminates this ParticleAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -173,7 +173,7 @@ Obtains a **dataAbilityHelper** object.
 
 | Type             | Description                                        |
 | ----------------- | -------------------------------------------- |
-| DataAbilityHelper | A utility class used to help other abilities access a Data ability.|
+| DataAbilityHelper | A utility class used to help other abilities access a DataAbility.|
 
 **Example**
 
@@ -349,7 +349,7 @@ particleAbility.cancelBackgroundRunning(callback);
 
 cancelBackgroundRunning(): Promise&lt;void&gt;;
 
-Requests a continuous task from the system. This API uses a promise to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1).
+Requests to cancel a continuous task from the system. This API uses a promise to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -376,7 +376,7 @@ particleAbility.cancelBackgroundRunning().then(() => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-Connects this ability to a specific Service ability. This API uses a callback to return the result.
+Connects this ability to a specific ServiceAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -384,8 +384,8 @@ Connects this ability to a specific Service ability. This API uses a callback to
 
 | Name   | Type          | Mandatory| Description                        |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](js-apis-application-want.md)           | Yes  | Service ability to connect.|
-| options | ConnectOptions | Yes  | Callback used to return the result.          |
+| request | [Want](js-apis-application-want.md)           | Yes  | ServiceAbility to connect.|
+| options | ConnectOptions | Yes  | Connection options.          |
 
 
 ConnectOptions
@@ -432,14 +432,13 @@ particleAbility.disconnectAbility(connId).then((data) => {
 }).catch((error) => {
     console.log('particleAbilityTest result errCode : ' + error.code)
 });
-    
 ```
 
 ## particleAbility.disconnectAbility
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-Disconnects this ability from the Service ability. This API uses a callback to return the result.
+Disconnects this ability from a specific ServiceAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -477,10 +476,10 @@ var connId = particleAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(" data: " + data);
-}).catch((error) => {
-    console.log('particleAbilityTest result errCode : ' + error.code)
+
+particleAbility.disconnectAbility(connId, (err) => {
+    console.log("particleAbilityTest disconnectAbility err====>"
+    + ("json err=") + JSON.stringify(err));
 });
 ```
 
@@ -489,7 +488,7 @@ var result = particleAbility.disconnectAbility(connId).then((data) => {
 
 disconnectAbility(connection: number): Promise\<void>;
 
-Disconnects this ability from the Service ability. This API uses a promise to return the result.
+Disconnects this ability from a specific ServiceAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -538,7 +537,7 @@ particleAbility.disconnectAbility(connId).then((data) => {
 
 ## ErrorCode
 
-Enumerates error codes.
+Enumerates the error codes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
