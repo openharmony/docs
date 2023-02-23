@@ -78,6 +78,8 @@ createModuleContext(moduleName: string): Context;
 let moduleContext = this.context.createModuleContext('entry');
 ```
 
+## Context.createModuleContext
+
 createModuleContext(bundleName: string, moduleName: string): Context;
 
 根据包名和模块名创建上下文Context。
