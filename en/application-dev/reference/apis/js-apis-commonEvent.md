@@ -3,7 +3,6 @@
 The **CommonEvent** module provides common event capabilities, including the capabilities to publish, subscribe to, and unsubscribe from common events, as well obtaining and setting the common event result code and result data.
 
 > **NOTE**
->
 > - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [@ohos.commonEventManager](js-apis-commonEventManager.md).
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -43,7 +42,7 @@ Publishes a common event. This API uses an asynchronous callback to return the r
 // Callback for common event publication
 function publishCB(err) {
 	if (err.code) {
-        console.error("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}`);
     } else {
         console.info("publish");
     }
@@ -85,7 +84,7 @@ let options = {
 // Callback for common event publication
 function publishCB(err) {
 	if (err.code) {
-        console.error("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}`);
     } else {
         console.info("publish");
     }
@@ -121,7 +120,7 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 // Callback for common event publication
 function publishCB(err) {
 	if (err.code) {
-        console.error("publishAsUser failed " + JSON.stringify(err));
+        console.error(`publishAsUser failed, code is ${err.code}`);
     } else {
         console.info("publishAsUser");
     }
@@ -161,14 +160,14 @@ Publishes a common event with given attributes to a specific user. This API uses
 ```ts
 // Attributes of a common event.
 let options = {
-	code: 0,			 // Initial code of the common event.
-	data: "initial data";// Initial data of the common event.
+	code: 0,			 // Result code of the common event.
+	data: "initial data",// Result data of the common event.
 }
 
 // Callback for common event publication
 function publishCB(err) {
 	if (err.code) {
-        console.error("publishAsUser failed " + JSON.stringify(err));
+        console.error(`publishAsUser failed, code is ${err.code}`);
     } else {
         console.info("publishAsUser");
     }
@@ -212,7 +211,7 @@ let subscribeInfo = {
 // Callback for subscriber creation.
 function createCB(err, commonEventSubscriber) {
     if (err.code) {
-        console.error("createSubscriber failed " + JSON.stringify(err));
+        console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
@@ -259,7 +258,7 @@ CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
     console.info("createSubscriber");
     subscriber = commonEventSubscriber;
 }).catch((err) => {
-    console.error("createSubscriber failed " + JSON.stringify(err));
+    console.error(`createSubscriber failed, code is ${err.code}`);
 });
 ```
 
@@ -293,7 +292,7 @@ let subscribeInfo = {
 // Callback for common event subscription.
 function subscribeCB(err, data) {
     if (err.code) {
-        console.error("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}`);
     } else {
         console.info("subscribe " + JSON.stringify(data));
     }
@@ -302,7 +301,7 @@ function subscribeCB(err, data) {
 // Callback for subscriber creation.
 function createCB(err, subscriber) {
     if (err.code) {
-        console.error("createSubscriber failed " + JSON.stringify(err));
+        console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
         // Subscribe to a common event.
@@ -344,7 +343,7 @@ let subscribeInfo = {
 // Callback for common event subscription.
 function subscribeCB(err, data) {
     if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}`);
     } else {
         console.info("subscribe " + JSON.stringify(data));
     }
@@ -353,7 +352,7 @@ function subscribeCB(err, data) {
 // Callback for subscriber creation.
 function createCB(err, commonEventSubscriber) {
     if (err.code) {
-        console.info("createSubscriber failed " + JSON.stringify(err));
+        console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
@@ -365,7 +364,7 @@ function createCB(err, commonEventSubscriber) {
 // Callback for common event unsubscription.
 function unsubscribeCB(err) {
 	if (err.code) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}`);
     } else {
         console.info("unsubscribe");
     }
@@ -404,7 +403,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for result code obtaining of an ordered common event.
 function getCodeCB(err, Code) {
     if (err.code) {
-        console.error("getCode failed " + JSON.stringify(err));
+        console.error(`getCode failed, code is ${err.code}`);
     } else {
         console.info("getCode " + JSON.stringify(Code));
     }
@@ -436,7 +435,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.getCode().then((code) => {
     console.info("getCode " + JSON.stringify(code));
 }).catch((err) => {
-    console.error("getCode failed " + JSON.stringify(err));
+    console.error(`getCode failed, code is ${err.code}`);
 });
 ```
 
@@ -465,7 +464,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for result code setting of an ordered common event.
 function setCodeCB(err) {
     if (err.code) {
-        console.error("setCode failed " + JSON.stringify(err));
+        console.error(`setCode failed, code is ${err.code}`);
     } else {
         console.info("setCode");
     }
@@ -503,7 +502,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.setCode(1).then(() => {
     console.info("setCode");
 }).catch((err) => {
-    console.error("setCode failed " + JSON.stringify(err));
+    console.error(`setCode failed, code is ${err.code}`);
 });
 ```
 
@@ -531,7 +530,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for result data obtaining of an ordered common event.
 function getDataCB(err, data) {
     if (err.code) {
-        console.error("getData failed " + JSON.stringify(err));
+        console.error(`getData failed, code is ${err.code}`);
     } else {
         console.info("getData " + JSON.stringify(data));
     }
@@ -564,7 +563,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.getData().then((data) => {
     console.info("getData " + JSON.stringify(data));
 }).catch((err) => {
-    console.error("getData failed " + JSON.stringify(err));
+    console.error(`getData failed, code is ${err.code}`);
 });
 ```
 
@@ -593,7 +592,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for result data setting of an ordered common event
 function setDataCB(err) {
     if (err.code) {
-        console.error("setData failed " + JSON.stringify(err));
+        console.error(`sendData failed, code is ${err.code}`);
     } else {
         console.info("setData");
     }
@@ -631,7 +630,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
 }).catch((err) => {
-    console.error("setData failed " + JSON.stringify(err));
+    console.error(`setData failed, code is ${err.code}`);
 });
 ```
 
@@ -661,7 +660,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for result code and result data setting of an ordered common event.
 function setCodeDataCB(err) {
     if (err.code) {
-        console.error("setCodeAndData failed " + JSON.stringify(err));
+        console.error(`setCodeAndData failed, code is ${err.code}`);
     } else {
         console.info("setCodeDataCallback");
     }
@@ -701,7 +700,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
 }).catch((err) => {
-    console.info("setCodeAndData failed " + JSON.stringify(err));
+    console.error(`setCodeAndData failed, code is ${err.code}`);
 });
 ```
 
@@ -729,7 +728,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for checking whether the current common event is an ordered one.
 function isOrderedCB(err, isOrdered) {
     if (err.code) {
-        console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
+        console.error(`isOrderedCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
     }
@@ -761,7 +760,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
 }).catch((err) => {
-    console.error("isOrdered failed " + JSON.stringify(err));
+    console.error(`isOrderedCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -789,7 +788,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for checking whether the current common event is a sticky one.
 function isStickyCB(err, isSticky) {
     if (err.code) {
-        console.error("isStickyCommonEvent failed " + JSON.stringify(err));
+        console.error(`isStickyCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
     }
@@ -821,7 +820,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.isStickyCommonEvent().then((isSticky) => {
     console.info("isSticky " + JSON.stringify(isSticky));
 }).catch((err) => {
-    console.error("isSticky failed " + JSON.stringify(err));
+    console.error(`isSticky failed, code is ${err.code}`);
 });
 ```
 
@@ -849,7 +848,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for common event aborting.
 function abortCB(err) {
     if (err.code) {
-        console.error("abortCommonEvent failed " + JSON.stringify(err));
+        console.error(`abortCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("abortCommonEvent");
     }
@@ -882,7 +881,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
 }).catch((err) => {
-    console.error("abortCommonEvent failed " + JSON.stringify(err));
+    console.error(`abortCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -910,7 +909,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for clearing the aborted state of the current common event.
 function clearAbortCB(err) {
     if (err.code) {
-        console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
+        console.error(`clearAbortCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("clearAbortCommonEvent");
     }
@@ -943,7 +942,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
 }).catch((err) => {
-    console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
+    console.error(`clearAbortCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -971,7 +970,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for checking whether the current common event is in the aborted state.
 function getAbortCB(err, abortEvent) {
     if (err.code) {
-        console.error("getAbortCommonEvent failed " + JSON.stringify(err));
+        console.error(`getAbortCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("abortEvent " + abortEvent)
     }
@@ -1004,7 +1003,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.getAbortCommonEvent().then((abortCommonEvent) => {
     console.info("abortCommonEvent " + JSON.stringify(abortCommonEvent));
 }).catch((err) => {
-    console.error("getAbortCommonEvent failed " + JSON.stringify(err));
+    console.error(`getAbortCommonEvent failed, code is ${err.code}`);
 });
 ```
 
@@ -1032,7 +1031,7 @@ let subscriber;	// Subscriber object successfully created.
 // Callback for subscriber information obtaining.
 function getCB(err, subscribeInfo) {
     if (err.code) {
-        console.error("getSubscribeInfo failed " + JSON.stringify(err));
+        console.error(`getSubscribeInfo failed, code is ${err.code}`);
     } else {
         console.info("SubscribeInfo " + JSON.stringify(subscribeInfo));
     }
@@ -1065,7 +1064,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.getSubscribeInfo().then((subscribeInfo) => {
     console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 }).catch((err) => {
-    console.error("getSubscribeInfo failed " + JSON.stringify(err));
+    console.error(`getSubscribeInfo failed, code is ${err.code}`);
 });
 ```
 
@@ -1088,12 +1087,12 @@ Finishes this common event. This API takes effect only for ordered common events
 **Example**
 
 ```ts
-let subscriber; // Subscriber object successfully created.
+let subscriber;	// Subscriber object successfully created.
 
 // Callback for ordered common event finishing.
 function finishCB(err) {
     if (err.code) {
-        console.error("finishCommonEvent failed " + JSON.stringify(err));
+        console.error(`finishCommonEvent failed, code is ${err.code}`);
     } else {
         console.info("FinishCommonEvent");
     }
@@ -1126,7 +1125,7 @@ let subscriber;	// Subscriber object successfully created.
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
 }).catch((err) => {
-    console.error("finishCommonEvent failed " + JSON.stringify(err));
+    console.error(`finishCommonEvent failed, code is ${err.code}`);
 });
 ```
 

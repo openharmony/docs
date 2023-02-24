@@ -5,12 +5,11 @@ The progress notification is a commonly used notification type, mainly used to d
 
 In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#notificationtemplate), which can only be of the progress type, **data** indicates custom template data.
 
-
 ## Available APIs
 
 | Name| Description|
 | -------- | -------- |
-| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result.<br>Only the progress-type template is supported.|
+| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result. For details, see [isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationmanagerissupporttemplate).<br>Only the progress-type template is supported.|
 
 
 ## How to Develop
@@ -31,17 +30,18 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
      let isSupportTpl: boolean = data; // The value **true** means that the template of the **downloadTemplate** type is supported; and false means the opposite.
      // ...
    }).catch((err) => {
-     console.error(`[ANS] isSupportTemplate failed, error[${err}]`);
+     console.error(`[ANS] isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
 
    > **NOTE**
    >
    > Proceed with the step below only when the specified template is supported.
+   
 4. Create a **NotificationRequest** object and publish a progress notification.
    
    ```ts
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
      id: 1,
      content: {
        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -61,7 +61,7 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
    // Publish the notification.
    notificationManager.publish(notificationRequest, (err) => {
      if (err) {
-       console.error(`[ANS] failed to publish, error[${err}]`);
+       console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
        return;
      }
      console.info(`[ANS] publish success `);

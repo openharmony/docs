@@ -36,6 +36,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -48,7 +50,7 @@ Subscribes to a notification with the subscription information specified. This A
 // subscribe callback
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe success");
     }
@@ -86,6 +88,8 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -97,7 +101,7 @@ Subscribes to notifications of all applications under this user. This API uses a
 ```js
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe success");
     }
@@ -133,6 +137,8 @@ Subscribes to a notification with the subscription information specified. This A
 | info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information.  |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -177,6 +183,8 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -188,7 +196,7 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 ```js
 function unsubscribeCallback(err) {
     if (err) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("unsubscribe success");
     }
@@ -221,6 +229,8 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 | subscriber | [NotificationSubscriber](#notificationsubscriber) | Yes  | Notification subscriber.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -265,6 +275,8 @@ Removes a notification for a specified application. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -278,7 +290,7 @@ Removes a notification for a specified application. This API uses an asynchronou
 ```js
 function removeCallback(err) {
     if (err) {
-        console.info("remove failed " + JSON.stringify(err));
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("remove success");
     }
@@ -317,6 +329,8 @@ Removes a notification for a specified application. This API uses a promise to r
 | reason          | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -364,6 +378,8 @@ Removes a specified notification. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -378,7 +394,7 @@ let hashCode = 'hashCode';
 
 function removeCallback(err) {
     if (err) {
-        console.info("remove failed " + JSON.stringify(err));
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("remove success");
     }
@@ -407,6 +423,8 @@ Removes a specified notification. This API uses a promise to return the result.
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -446,6 +464,8 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -458,7 +478,7 @@ Removes all notifications for a specified application. This API uses an asynchro
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -489,6 +509,8 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -500,7 +522,7 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -528,6 +550,8 @@ Removes all notifications for a specified application. This API uses a promise t
 | bundle | [BundleOption](#bundleoption) | No  | Bundle information of the application.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -566,6 +590,8 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -578,7 +604,7 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -609,6 +635,8 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -621,7 +649,7 @@ Removes all notifications for a specified user. This API uses a promise to retur
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -659,7 +687,7 @@ Callback for receiving notifications.
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -699,7 +727,7 @@ Callback for canceling notifications.
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -739,7 +767,7 @@ Callback for notification sorting updates.
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -771,7 +799,7 @@ Callback for subscription.
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -803,14 +831,14 @@ Callback for unsubscription.
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
 };
 function unsubscribeCallback(err) {
     if (err.code) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("unsubscribeCallback");
     }
@@ -849,7 +877,7 @@ Callback for service disconnection.
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -887,7 +915,7 @@ Callback for DND time setting updates.
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -926,7 +954,7 @@ Listens for the notification enabled status changes. This API uses an asynchrono
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -940,6 +968,46 @@ function onEnabledNotificationChangedCallback(callbackData) {
 
 let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
+
+### onBadgeChanged<sup>10+</sup>
+
+ onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata)) => void
+
+Listens for the change of the notification badge number.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                      |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata)\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```javascript
+function subscribeCallback(err) {
+    if (err) {
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onBadgeChangedCallback(data) {
+    console.info("bundle: ", data.bundle);
+    console.info("uid: ", data.uid);
+    console.info("badgeNumber: ", data.badgeNumber);
+};
+
+let subscriber = {
+    onBadgeChanged: onBadgeChangedCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -1054,3 +1122,15 @@ Provides the notification user input.
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
 | CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |
+
+## BadgeNumberCallbackData<sup>10+</sup>
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+| Name       | Type  | Readable| Writable| Description        |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundle      | string | Yes  | No  | Bundle name of the application.|
+| uid         | number | Yes  | No  | UID of the application. |
+| badgeNumber | number | Yes  | No  | Notification badge number.  |
