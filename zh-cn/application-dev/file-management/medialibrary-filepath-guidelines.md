@@ -36,15 +36,15 @@ Openharmony上用户数据统一由媒体库进行管理，用户数据用户数
 
 ```ts
 async function example(){
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
-    const dicResult = await media.getPublicDirectory(DIR_CAMERA);
-    if (dicResult == 'Camera/') {
-        console.info('mediaLibraryTest : getPublicDirectory passed');
-    } else {
-        console.error('mediaLibraryTest : getPublicDirectory failed');
-    }
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
+  const dicResult = await media.getPublicDirectory(DIR_CAMERA);
+  if (dicResult == 'Camera/') {
+    console.info('mediaLibraryTest : getPublicDirectory passed');
+  } else {
+    console.error('mediaLibraryTest : getPublicDirectory failed');
+  }
 }
 ```
 
@@ -80,30 +80,30 @@ OpenHarmony提供应用沙箱机制，增加目录可见性数据访问防线，
 
 ```ts
 async function copyPublic2Sandbox() {
-    try {
-        const context = getContext(this);
-        let media = mediaLibrary.getMediaLibrary(context);
-        let sandboxDirPath = context.filesDir;
-        let fileKeyObj = mediaLibrary.FileKey;
-        let fileAssetFetchOp = {
-            selections: fileKeyObj.DISPLAY_NAME + '= ?',
-            selectionArgs: ['testFile.txt'],
-        };
-        let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-        let fileAsset = await fetchResult.getFirstObject();
+  try {
+    const context = getContext(this);
+    let media = mediaLibrary.getMediaLibrary(context);
+    let sandboxDirPath = context.filesDir;
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileAssetFetchOp = {
+      selections: fileKeyObj.DISPLAY_NAME + '= ?',
+      selectionArgs: ['testFile.txt'],
+    };
+    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+    let fileAsset = await fetchResult.getFirstObject();
 
-        let fdPub = await fileAsset.open('rw');
-        let fdSand = await fs.open(sandboxDirPath + '/testFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        await fs.copyFile(fdPub, fdSand.fd);
+    let fdPub = await fileAsset.open('rw');
+    let fdSand = await fs.open(sandboxDirPath + '/testFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    await fs.copyFile(fdPub, fdSand.fd);
 
-        await fileAsset.close(fdPub);
-        await fs.close(fdSand.fd);
+    await fileAsset.close(fdPub);
+    await fs.close(fdSand.fd);
 
-        let content_sand = await fs.readText(sandboxDirPath + '/testFile.txt');
-        console.info('content read from sandbox file: ', content_sand)
-    } catch (err) {
-        console.info('[demo] copyPublic2Sandbox fail, err: ', err);
-    }
+    let content_sand = await fs.readText(sandboxDirPath + '/testFile.txt');
+    console.info('content read from sandbox file: ', content_sand)
+  } catch (err) {
+    console.info('[demo] copyPublic2Sandbox fail, err: ', err);
+  }
 }
 ```
 
@@ -111,44 +111,44 @@ async function copyPublic2Sandbox() {
 
 ```ts
 async function copySandbox2Public() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let sandboxDirPath = context.filesDir;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let sandboxDirPath = context.filesDir;
 
-    let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-    const publicDirPath = await media.getPublicDirectory(DIR_DOCUMENTS);
-    try {
-        let fileAsset = await media.createAsset(mediaLibrary.MediaType.FILE, 'testFile02.txt', publicDirPath);
-        console.info('createFile successfully, message = ' + fileAsset);
-    } catch (err) {
-        console.error('createFile failed, message = ' + err);
-    }
-    try {
-        let fileKeyObj = mediaLibrary.FileKey;
-        let fileAssetFetchOp = {
-            selections: fileKeyObj.DISPLAY_NAME + '= ?',
-            selectionArgs: ['testFile02.txt'],
-        };
-        let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-        var fileAsset = await fetchResult.getFirstObject();
-    } catch (err) {
-        console.error('file asset get failed, message = ' + err);
-    }
-    let fdPub = await fileAsset.open('rw');
-    let fdSand = await fs.open(sandboxDirPath + 'testFile.txt', OpenMode.READ_WRITE);
-    await fs.copyFile(fdSand.fd, fdPub);
-    await fileAsset.close(fdPub);
-    await fs.close(fdSand.fd);
-    let fdPubRead = await fileAsset.open('rw');
-    try {
-        let arrayBuffer = new ArrayBuffer(4096);
-        await fs.read(fdPubRead, arrayBuffer);
-        var content_pub = String.fromCharCode(...new Uint8Array(arrayBuffer));
-        fileAsset.close(fdPubRead);
-    } catch (err) {
-        console.error('read text failed, message = ', err);
-    }
-    console.info('content read from public file: ', content_pub);
+  let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
+  const publicDirPath = await media.getPublicDirectory(DIR_DOCUMENTS);
+  try {
+    let fileAsset = await media.createAsset(mediaLibrary.MediaType.FILE, 'testFile02.txt', publicDirPath);
+    console.info('createFile successfully, message = ' + fileAsset);
+  } catch (err) {
+    console.error('createFile failed, message = ' + err);
+  }
+  try {
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileAssetFetchOp = {
+      selections: fileKeyObj.DISPLAY_NAME + '= ?',
+      selectionArgs: ['testFile02.txt'],
+    };
+    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+    var fileAsset = await fetchResult.getFirstObject();
+  } catch (err) {
+    console.error('file asset get failed, message = ' + err);
+  }
+  let fdPub = await fileAsset.open('rw');
+  let fdSand = await fs.open(sandboxDirPath + 'testFile.txt', OpenMode.READ_WRITE);
+  await fs.copyFile(fdSand.fd, fdPub);
+  await fileAsset.close(fdPub);
+  await fs.close(fdSand.fd);
+  let fdPubRead = await fileAsset.open('rw');
+  try {
+    let arrayBuffer = new ArrayBuffer(4096);
+    await fs.read(fdPubRead, arrayBuffer);
+    var content_pub = String.fromCharCode(...new Uint8Array(arrayBuffer));
+    fileAsset.close(fdPubRead);
+  } catch (err) {
+    console.error('read text failed, message = ', err);
+  }
+  console.info('content read from public file: ', content_pub);
 }
 ```
 
@@ -166,20 +166,20 @@ async function copySandbox2Public() {
 
 1. 创建用于读写示例的文件。
 
-   ```ts
-   async function example() {
-       let mediaType = mediaLibrary.MediaType.FILE;
-       let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-       const context = getContext(this);
-       let media = mediaLibrary.getMediaLibrary(context);
-       const path = await media.getPublicDirectory(DIR_DOCUMENTS);
-       media.createAsset(mediaType, "testFile.text", path).then((asset) => {
-           console.info("createAsset successfully:" + JSON.stringify(asset));
-       }).catch((err) => {
-           console.error("createAsset failed with error: " + err);
-       });
-   }
-   ```
+```ts
+async function example() {
+  let mediaType = mediaLibrary.MediaType.FILE;
+  let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const path = await media.getPublicDirectory(DIR_DOCUMENTS);
+  media.createAsset(mediaType, "testFile.text", path).then((asset) => {
+    console.info("createAsset successfully:" + JSON.stringify(asset));
+  }).catch((err) => {
+    console.error("createAsset failed with error: " + err);
+  });
+}
+```
 
 2. 使用open打开文件。
 
@@ -195,25 +195,25 @@ async function copySandbox2Public() {
 
 ```ts
 async function writeOnlyPromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?',
-        selectionArgs: ['testFile.txt'],
-    };
-    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-    let fileAsset = await fetchResult.getFirstObject();
-    console.info('fileAssetName: ', fileAsset.displayName);
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileAssetFetchOp = {
+    selections: fileKeyObj.DISPLAY_NAME + '= ?',
+    selectionArgs: ['testFile.txt'],
+  };
+  let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+  let fileAsset = await fetchResult.getFirstObject();
+  console.info('fileAssetName: ', fileAsset.displayName);
 
-    try {
-        let fd = await fileAsset.open('w');
-        console.info('file descriptor: ', fd);
-        await fs.write(fd, "Write file test content.");
-        await fileAsset.close(fd);
-    } catch (err) {
-        console.error('write file failed, message = ', err);
-    }
+  try {
+    let fd = await fileAsset.open('w');
+    console.info('file descriptor: ', fd);
+    await fs.write(fd, "Write file test content.");
+    await fileAsset.close(fd);
+  } catch (err) {
+    console.error('write file failed, message = ', err);
+  }
 }
 ```
 
@@ -221,29 +221,29 @@ async function writeOnlyPromise() {
 
 ```ts
 async function readOnlyPromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
-        selectionArgs: ['testFile.txt'],
-    };
-    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-    let fileAsset = await fetchResult.getFirstObject();
-    console.info('fileAssetName: ', fileAsset.displayName);
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileAssetFetchOp = {
+    selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
+    selectionArgs: ['testFile.txt'],
+  };
+  let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+  let fileAsset = await fetchResult.getFirstObject();
+  console.info('fileAssetName: ', fileAsset.displayName);
 
-    try {
-        let fd = await fileAsset.open('r');
-        let arrayBuffer = new ArrayBuffer(4096);
-        await fs.read(fd, arrayBuffer);
-        let fileContent = String.fromCharCode(...new Uint8Array(arrayBuffer));
-        globalThis.fileContent = fileContent;
-        globalThis.fileName = fileAsset.displayName;
-        console.info('file content: ', fileContent);
-        await fileAsset.close(fd);
-    } catch (err) {
-        console.error('read file failed, message = ', err);
-    }
+  try {
+    let fd = await fileAsset.open('r');
+    let arrayBuffer = new ArrayBuffer(4096);
+    await fs.read(fd, arrayBuffer);
+    let fileContent = String.fromCharCode(...new Uint8Array(arrayBuffer));
+    globalThis.fileContent = fileContent;
+    globalThis.fileName = fileAsset.displayName;
+    console.info('file content: ', fileContent);
+    await fileAsset.close(fd);
+  } catch (err) {
+    console.error('read file failed, message = ', err);
+  }
 }
 ```
 
