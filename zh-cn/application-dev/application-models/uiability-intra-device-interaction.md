@@ -75,7 +75,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    >
    > 调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
    
-4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的killProcessBySelf()方法实现关闭应用所有的进程。
+4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[killProcessBySelf()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses9)方法实现关闭应用所有的进程。
 
 
 ## 启动应用内的UIAbility并获取返回结果
@@ -102,7 +102,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-2. 在FuncAbility停止自身时，需要调用terminateSelfWithResult()方法，入参abilityResult为FuncAbility需要返回给EntryAbility的信息。
+2. 在FuncAbility停止自身时，需要调用[terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法，入参abilityResult为FuncAbility需要返回给EntryAbility的信息。
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -219,7 +219,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 当使用隐式Want启动其他应用的UIAbility并希望获取返回结果时，调用方需要使用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动目标UIAbility。例如主应用中需要启动三方支付并获取支付结果。
 
-1. 在支付应用对应UIAbility的module.json5配置文件中，配置skills的entities字段和actions字段。
+1. 在支付应用对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills的entities字段和actions字段。
    
    ```json
    {
@@ -265,7 +265,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-3. 在支付UIAbility完成支付之后，需要调用terminateSelfWithResult()方法实现停止自身，并将abilityResult参数信息返回给调用方。
+3. 在支付UIAbility完成支付之后，需要调用[terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法实现停止自身，并将abilityResult参数信息返回给调用方。
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -286,7 +286,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    });
    ```
 
-4. 在调用方[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调中接收支付应用返回的信息，RESULT_CODE需要与前面terminateSelfWithResult()返回的数值保持一致。
+4. 在调用方[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调中接收支付应用返回的信息，RESULT_CODE需要与前面[terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)返回的数值保持一致。
    
    ```ts
    const RESULT_CODE: number = 1001;
