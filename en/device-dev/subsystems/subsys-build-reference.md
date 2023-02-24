@@ -55,8 +55,8 @@ The dependency between modules can be classified into **deps** (left in the figu
     external_deps = [
       "part1:module1",
     ...
-    ]                     # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
-    part_name = "part2"   # (Mandatory) Name of the component to which the module belongs.
+    ]                    # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
+    part_name = "part2"  # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
@@ -64,18 +64,21 @@ The dependency between modules can be classified into **deps** (left in the figu
 
 ## Using Sanitizer
 
-When adding a module, you can enable the Sanitizer, such as the integer overflow check and control-flow integrity (CFI), provided by the compiler as required. You can also enable the debug or release mode and configure a blocklist. Each configuration item is optional. It is **false** by default. You can also leave it empty. 
+When adding a module, you can enable the Sanitizer, such as the integer overflow check and control-flow integrity (CFI), provided by the compiler as required. You can also enable the debug or release mode and configure a blocklist. Each configuration item is optional and **false** by default. You can also leave it empty. 
 
 Sanitizer configuration example:
 
 ``` shell
   ohos_shared_library("example") {
     sanitize = {
-      cfi = true
-      cfi_cross_dso = true                   # CFI: shared library support.
-      integer_overflow = true                
-      debug = true                           # Optional. The debug mode is disabled by default.
-      blocklist = "./blocklist.txt"          # Optional. Enter the path of the blocklist.
+      cfi = true                             # Enable the CFI check.
+      cfi_cross_dso = true                   # Enable the cross-DSO CFI check.
+      integer_overflow = true                # Enable the integer overflow check.
+      boundary_sanitize = true               # Enable the bounds check.
+      ubsan = true                           # Enable some UBSAN options.
+      all_ubsan = true                       # Enable all UBSAN options.
+      debug = true                           # Enable the debug mode, which is disabled by default.
+      blocklist = "./blocklist.txt"          # Path of the blocklist.
     }
     ...
   }
@@ -83,10 +86,13 @@ Sanitizer configuration example:
 
 **Supported Sanitizer Types**
 
-Currently, the following two types of Sanitizers are supported:
+Currently, Sanitizers provides the following functions:
 
-- Integer overflow check: provides check of unsigned integer overflow (unsigned_integer_overflow), check of signed integer overflow (signed_integer_overflow), or both (integer_overflow).
-- CFI: prevents malware attacks from redirecting the control flow of a program.
+- **integer_overflow**: provides check of unsigned integer overflow (unsigned_integer_overflow), check of signed integer overflow (signed_integer_overflow), or both (integer_overflow).
+- CFI: provides CFI and cross-DSO CFI checks.
+- **boundary_sanitize**: provides the bounds check.
+- **ubsan**: checks some Undefined Behavior Sanitizer (UBSAN) options, including **bool**, **integer-divide-by-zero**, **return**, **returns-nonnull-attribute**, **shift-exponent**, **unreachable**, and **vla-bound**.
+- **all_ubsan**: checks all UBSAN options.
 
 **Release and Debug Modes**
 
@@ -95,6 +101,7 @@ Currently, the following two types of Sanitizers are supported:
 - Debug mode: If debug mode is enabled, abundant error-related information is provided to help locate faults. When an error occurs, the application will be resumed instead of being interrupted to further identify subsequent errors.
 
 - Release mode: If release mode is enabled, the application will be directly interrupted when an error occurs. This can protect the system against errors or maliciously attacks.
+
 
 **Blocklist**
 
