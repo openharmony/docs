@@ -195,7 +195,7 @@
 | ArkUI | AdaptiveCapabilities | 此Demo展示在eTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | eTS |
 | ArkUI | JsAdaptiveCapabilities | 此Demo展示在JS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | JS |
 
-请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
 
 ## 修复缺陷列表

@@ -286,6 +286,6 @@ public async init(surfaceId: any) {
 
 针对图片开发，有以下相关实例可供参考：
 
-- [`Image`：图片处理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Image)
+- [`Image`：图片处理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
 
-- [`GamePuzzle`：拼图（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/GamePuzzle)
+- [`GamePuzzle`：拼图（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/GamePuzzle)
