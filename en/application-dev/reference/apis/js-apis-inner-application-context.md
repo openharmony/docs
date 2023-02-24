@@ -20,18 +20,17 @@ The **Context** module provides context for abilities or applications. It allows
 | filesDir | string | Yes   | No   | File directory.|
 | databaseDir | string | Yes   | No   | Database directory.|
 | preferencesDir | string | Yes   | No   | Preferences directory.|
-| bundleCodeDir | string | Yes   | No   | Bundle code directory.|
+| bundleCodeDir | string | Yes   | No   | Bundle code directory. A resource file cannot be accessed by combining paths. Use [Resource Manager](js-apis-resource-manager.md) to access it. |
 | distributedFilesDir | string | Yes   | No   | Distributed file directory.|
-| eventHub | string | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
+| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
 | area | [AreaMode](#areamode) | Yes   | No   | Area in which the file to be access is located.|
+
 
 ## Context.createBundleContext
 
 createBundleContext(bundleName: string): Context;
 
 Creates the context based on the bundle name.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -47,24 +46,10 @@ Creates the context based on the bundle name.
 | -------- | -------- |
 | Context | Context created.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
-let bundleContext;
-try {
-    bundleContext = this.context.createBundleContext("com.example.test");
-} catch (error) {
-    console.log('createBundleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-}
+let bundleContext = this.context.createBundleContext("com.example.test");
 ```
 
 ## Context.createModuleContext
@@ -87,24 +72,10 @@ Creates the context based on the module name.
 | -------- | -------- |
 | Context | Context created.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
-let moduleContext;
-try {
-    moduleContext = this.context.createModuleContext("entry");
-} catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-}
+let moduleContext = this.context.createModuleContext("entry");
 ```
 
 createModuleContext(bundleName: string, moduleName: string): Context;
@@ -126,24 +97,10 @@ Creates the context based on the bundle name and module name.
 | -------- | -------- |
 | Context | Context created.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
-let moduleContext;
-try {
-    moduleContext = this.context.createModuleContext("com.example.test", "entry");
-} catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-}
+let moduleContext = this.context.createModuleContext("com.example.test", "entry");
 ```
 
 ## Context.getApplicationContext
@@ -158,18 +115,12 @@ Obtains the context of this application.
 
 | Type| Description|
 | -------- | -------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained.|
+| Context | Application context obtained.|
 
 **Example**
 
 ```ts
-let applicationContext;
-try {
-    applicationContext = this.context.getApplicationContext();
-} catch (error) {
-    console.log('getApplicationContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-}
+let applicationContext = this.context.getApplicationContext();
 ```
 
 ## AreaMode
