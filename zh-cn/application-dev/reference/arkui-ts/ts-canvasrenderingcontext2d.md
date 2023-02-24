@@ -1663,10 +1663,15 @@ struct Clip {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           let region = new Path2D()
-          region.rect(80,10,20,130)
-          region.rect(40,50,100,50)
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           this.context.clip(region,"evenodd")
-          this.context.fillStyle = "rgb(255,0,0)"
+          this.context.fillStyle = "rgb(0,255,0)"
           this.context.fillRect(0, 0, this.context.width, this.context.height)
         })
     }
