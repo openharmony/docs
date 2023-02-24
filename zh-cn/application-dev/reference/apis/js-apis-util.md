@@ -26,7 +26,7 @@ format(format: string,  ...args: Object[]): string
 | 参数名  | 类型     | 必填 | 说明           |
 | ------- | -------- | ---- | -------------- |
 | format  | string   | 是   | 式样化字符串。 |
-| ...args | Object[] | 否   | 替换式样化字符串通配符的数据。  |
+| ...args | Object[] | 否   | 替换式样化字符串通配符的数据，此参数缺失时，默认返回第一个参数。 |
 
 **返回值：**
 
@@ -68,6 +68,20 @@ let errnum = -1; // -1 : a system error number
 let result = util.errnoToString(errnum);
 console.log("result = " + result);
 ```
+
+**部分错误码及信息示例：**
+
+| 错误码 | 信息                              |
+| ------ | -------------------------------- |
+| -1     | operation not permitted          |
+| -2     | no such file or directory        |
+| -3     | no such process                  |
+| -4     | interrupted system call          |
+| -5     | i/o error                        |
+| -11    | resource temporarily unavailable |
+| -12    | not enough memory                |
+| -13    | permission denied                |
+| -100   | network is down                  |
 
 ## util.callbackWrapper
 
@@ -126,17 +140,23 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 **示例：**
 
   ```js
-  function aysnFun(str1, str2) {
-    if (typeof str1 === 'object' && typeof str2 === 'object') {
-      return str2
-    } else {
-      return str1
-    }
-  }
-  let newPromiseObj = util.promisify(aysnFun);
-  newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
-    console.log(res);
-  })
+function fun(num, callback) {
+   if (typeof num === 'number') {
+      callback(null, num + 3);
+   } else {
+      callback("type err");
+   }
+}
+
+const addCall = util.promisify(fun);
+(async () => {
+   try {
+      let res = await addCall(2);
+      console.log(res);
+   } catch (err) {
+      console.log(err);
+   }
+})();
   ```
 
 ## util.randomUUID<sup>9+</sup>
@@ -243,7 +263,7 @@ printf(format: string,  ...args: Object[]): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | format | string | 是 | 式样化字符串。 |
-| ...args | Object[] | 否 | 替换式样化字符串通配符的数据。 |
+| ...args | Object[] | 否 | 替换式样化字符串通配符的数据，此参数缺失时，默认返回第一个参数。 |
 
 **返回值：**
 
