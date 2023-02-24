@@ -2,7 +2,7 @@
 
 ## When to Use
 
-A relational database (RDB) store allows you to operate local data with or without native SQL statements based on SQLite.
+A relational database (RDB) store allows you to manage local data with or without native SQL statements based on SQLite.
 
 
 ## Available APIs
@@ -17,12 +17,12 @@ The following table describes the APIs for creating and deleting an RDB store.
 
 | API                                                      | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt; | Obtains an **RdbStore** object. This API uses a promise to return the result. You can set parameters for the **RdbStore** object based on service requirements and use **RdbStore** APIs to perform data operations.<br>- **context**: application context.<br>- **config**: configuration of the RDB store.|
+| getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt; | Obtains an RDB store. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.<br>- **context**: application context.<br>- **config**: configuration of the RDB store.|
 | deleteRdbStore(context: Context, name: string): Promise&lt;void&gt; | Deletes an RDB store. This API uses a promise to return the result.<br>- **context**: application context.<br>- **name**: name of the RDB store to delete.|
 
 ### Managing Data in an RDB Store
 
-The RDB provides APIs for inserting, deleting, updating, and querying data in the local RDB store.
+The RDB provides APIs for inserting, deleting, updating, and querying data in a local RDB store.
 
 - **Inserting Data**
   
@@ -37,14 +37,14 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   
 - **Updating Data**
   
-  Call **update()** to update data based on the passed data and the conditions specified by **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
+  Call **update()** to pass in new data and specify the update conditions by using **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
   
   **Table 3** API for updating data
   
 
   | Class      | API                                                      | Description                                                        |
   | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStore | update(values: ValuesBucket, predicates: RdbPredicates): Promise&lt;number&gt; | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data. |
+  | RdbStore | update(values: ValuesBucket, predicates: RdbPredicates): Promise&lt;number&gt; | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data.|
   
 - **Deleting Data**
   
@@ -55,7 +55,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
 
   | Class      | API                                                    | Description                                                        |
   | ---------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
-  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows deleted.<br>- **predicates**: conditions for deleting data. |
+  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows deleted.<br>- **predicates**: conditions for deleting data.|
   
 - **Querying Data**
 
@@ -180,7 +180,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 ### Transaction
 
-Table 15 Transaction APIs
+**Table 15** Transaction APIs
 
 | Class    | API                 | Description                             |
 | -------- | ----------------------- | --------------------------------- |
@@ -201,40 +201,51 @@ Table 15 Transaction APIs
    FA model:
 
     ```js
-   import data_rdb from '@ohos.data.relationalStore'
-    // Obtain the context.
+   import relationalStore from '@ohos.data.relationalStore'
    import featureAbility from '@ohos.ability.featureAbility'
-   let context = featureAbility.getContext()
    
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+   var store;
    
-   const STORE_CONFIG = { name: "RdbTest.db",
-                         securityLevel: data_rdb.SecurityLevel.S1}
-   data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-      rdbStore.executeSql(CREATE_TABLE_TEST)
-      console.info('create table done.')
+   // Obtain the context.
+   let context = featureAbility.getContext();
+   
+   const STORE_CONFIG = { 
+       name: "RdbTest.db",
+       securityLevel: relationalStore.SecurityLevel.S1
+   };
+   
+   relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
+     store = rdbStore;
+     if (err) {
+       console.error(`Get RdbStore failed, err: ${err}`);
+       return;
+     }
+     console.info(`Get RdbStore successfully.`);
    })
     ```
     Stage model:
      ```ts
-   import data_rdb from '@ohos.data.relationalStore'
-    // Obtain the context.
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   let context = null
+   import relationalStore from '@ohos.data.relationalStore'
+   import UIAbility from '@ohos.app.ability.UIAbility'
+   
    class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
-         context = this.context
+         var store;   
+         const STORE_CONFIG = {
+           name: "RdbTest.db",
+           securityLevel: relationalStore.SecurityLevel.S1
+         };
+   
+         relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+           store = rdbStore;
+           if (err) {
+             console.error(`Get RdbStore failed, err: ${err}`);
+             return;
+           }
+           console.info(`Get RdbStore successfully.`);
+         })
        }
    }
-   
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-   
-   const STORE_CONFIG = { name: "rdbstore.db",
-                          securityLevel: data_rdb.SecurityLevel.S1}
-   data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-       rdbStore.executeSql(CREATE_TABLE_TEST)
-       console.info('create table done.')
-   })
      ```
 
 2. Insert data.
@@ -246,23 +257,24 @@ Table 15 Transaction APIs
    The sample code is as follows:
 
     ```js
-    let u8 = new Uint8Array([1, 2, 3])
-    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
-    let insertPromise = rdbStore.insert("test", valueBucket)
+    let u8 = new Uint8Array([1, 2, 3]);
+    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
+    let insertPromise = store.insert("test", valueBucket);
     ```
    
     ```js
     // Use a transaction to insert data.
-    beginTransaction()
     try {
-        let u8 = new Uint8Array([1, 2, 3])
-        const valueBucket1 = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
-        const valueBucket2 = { "name": "Jam", "age": 19, "salary": 200.5, "blobType": u8 }
-        let insertPromise1 = rdbStore.insert("test", valueBucket1)
-        let insertPromise2 = rdbStore.insert("test", valueBucket2)
-        commit()
-    } catch (e) {
-        rollBack()
+      store.beginTransaction();
+      let u8 = new Uint8Array([1, 2, 3]);
+      const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
+      let promise = store.insert("test", valueBucket);
+      promise.then(() => {
+        store.commit();
+      })
+    } catch (err) {
+      console.error(`Transaction failed, err: ${err}`);
+      store.rollBack();
     }
     ```
 
@@ -277,17 +289,17 @@ Table 15 Transaction APIs
    The sample code is as follows:
 
     ```js
-    let predicates = new data_rdb.RdbPredicates("test");
-    predicates.equalTo("name", "Tom")
-    let promisequery = rdbStore.query(predicates)
+    let predicates = new relationalStore.RdbPredicates("test");
+    predicates.equalTo("name", "Tom");
+    let promisequery = store.query(predicates);
     promisequery.then((resultSet) => {
-        resultSet.goToFirstRow()
-        const id = resultSet.getLong(resultSet.getColumnIndex("id"))
-        const name = resultSet.getString(resultSet.getColumnIndex("name"))
-        const age = resultSet.getLong(resultSet.getColumnIndex("age"))
-        const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
-        const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
-        resultSet.close()
+      resultSet.goToFirstRow();
+      const id = resultSet.getLong(resultSet.getColumnIndex("id"));
+      const name = resultSet.getString(resultSet.getColumnIndex("name"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("age"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"));
+      const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"));
+      resultSet.close();
     })
     ```
 
@@ -297,9 +309,9 @@ Table 15 Transaction APIs
 
     ```json
     "requestPermissions": 
-      {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-      }
+    {
+      "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }
     ```
 
     (2) Obtain the required permissions.
@@ -313,13 +325,13 @@ Table 15 Transaction APIs
     ```js
     let context = featureAbility.getContext();
     context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-        console.info(`result.requestCode=${result.requestCode}`)
+      console.info(`result.requestCode=${result.requestCode}`);
     })
-    let promise = rdbStore.setDistributedTables(["test"])
+    let promise = store.setDistributedTables(["test"]);
     promise.then(() => {
-        console.info("setDistributedTables success.")
+      console.info(`setDistributedTables success.`);
     }).catch((err) => {
-        console.info("setDistributedTables failed.")
+      console.error(`setDistributedTables failed, ${err}`);
     })
     ```
 
@@ -334,16 +346,16 @@ Table 15 Transaction APIs
     The sample code is as follows:
 
     ```js
-    let predicate = new data_rdb.RdbPredicates('test')
-    predicate.inDevices(['12345678abcde'])
-    let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicate)
+    let predicate = new relationalStore.RdbPredicates('test');
+    predicate.inDevices(['12345678abcde']);
+    let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicate);
     promise.then((result) => {
-        console.log('sync done.')
-        for (let i = 0; i < result.length; i++) {
-            console.log('device=' + result[i][0] + 'status=' + result[i][1])
-        }
+      console.info(`sync done.`);
+      for (let i = 0; i < result.length; i++) {
+        console.info(`device=${result[i][0]}, status=${result[i][1]}`);
+      }
     }).catch((err) => {
-        console.log('sync failed')
+      console.error(`sync failed, err: ${err}`);
     })
     ```
 
@@ -357,15 +369,15 @@ Table 15 Transaction APIs
 
     ```js
     function storeObserver(devices) {
-        for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + 'data changed')
-        }
+      for (let i = 0; i < devices.length; i++) {
+        console.info(`device= ${devices[i]} data changed`);
+      }
     }
     
     try {
-        rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+      store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
     } catch (err) {
-        console.log('register observer failed')
+      console.error(`register observer failed, err: ${err}`);
     }
     ```
 
@@ -378,59 +390,75 @@ Table 15 Transaction APIs
     The sample code is as follows:
 
     ```js
-    let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
-    let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
+   import deviceManager from '@ohos.distributedHardware.deviceManager'
+  
+   let deviceIds = [];
+   deviceManager.createDeviceManager('bundleName', (err, value) => {
+     if (!err) {
+       let devManager = value;
+       if (devManager != null) {
+         // Obtain device IDs.
+         let devices = devManager.getTrustedDeviceListSync();
+         for (let i = 0; i < devices.length; i++) {
+           deviceIds[i] = devices[i].deviceId;
+         }
+       }
+     }
+   })
+   
+   let tableName = store.obtainDistributedTableName(deviceIds[0], "test");
+   let resultSet = store.querySql("SELECT * FROM " + tableName);
     ```
     
 8. Query data of a remote device.
-   
    
    (1) Construct a predicate object for querying distributed tables, and specify the remote distributed table name and the remote device.
    
    (2) Call the resultSet() API to obtain the result.
    
    The sample code is as follows:
-   
-    ```js
-    let rdbPredicate = new data_rdb.RdbPredicates('employee')
-    predicates.greaterThan("id", 0) 
-    let promiseQuery = rdbStore.remoteQuery('12345678abcde', 'employee', rdbPredicate)
+
+   ```js
+    let rdbPredicate = new relationalStore.RdbPredicates('employee');
+    predicates.greaterThan("id", 0) ;
+    let promiseQuery = store.remoteQuery('12345678abcde', 'employee', rdbPredicate);
     promiseQuery.then((resultSet) => {
-        while (resultSet.goToNextRow()) {
-            let idx = resultSet.getLong(0);
-            let name = resultSet.getString(1);
-            let age = resultSet.getLong(2);
-            console.info(idx + " " + name + " " + age);
-        }
-        resultSet.close();
+      while (resultSet.goToNextRow()) {
+        let idx = resultSet.getLong(0);
+        let name = resultSet.getString(1);
+        let age = resultSet.getLong(2);
+        console.info(`indx: ${idx}, name: ${name}, age: ${age}`);
+      }
+      resultSet.close();
     }).catch((err) => {
-        console.info("failed to remoteQuery, err: " + err)
+      console.error(`failed to remoteQuery, err: ${err}`);
     })
-    ```
-   
+   ```
+
 9. Back up and restore an RDB store.
 
    (1) Back up the current RDB store.
 
-    The sample code is as follows:
+   The sample code is as follows:
 
-    ```js
-    let promiseBackup = rdbStore.backup("dbBackup.db")
+   ```js
+    let promiseBackup = store.backup("dbBackup.db");
     promiseBackup.then(() => {
-        console.info('Backup success.')
+      console.info(`Backup success.`);
     }).catch((err) => {
-        console.info('Backup failed, err: ' + err)
+      console.error(`Backup failed, err: ${err}`);
     })
-    ```
-   (2) Restore the RDB store using the backup file.
+   ```
    
-    The sample code is as follows:
+   (2) Restore the RDB store using the backup file.
 
-    ```js
-    let promiseRestore = rdbStore.restore("dbBackup.db")
+   The sample code is as follows:
+
+   ```js
+    let promiseRestore = store.restore("dbBackup.db");
     promiseRestore.then(() => {
-        console.info('Restore success.')
+      console.info(`Restore success.`);
     }).catch((err) => {
-        console.info('Restore failed, err: ' + err)
+      console.error(`Restore failed, err: ${err}`);
     })
-    ```
+   ```
