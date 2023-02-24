@@ -1017,6 +1017,90 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
   };
   ```
 
+## FileAccessHelper.getThumbnail<sup>10+</sup>
+
+getThumbnail(uri: string, size: image.Size) : Promise&lt;image.PixelMap&gt;
+
+通过指定uri和尺寸获取媒体文件的Pixelmap对象，使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明        |
+| ------ | ----------------------------------- | ---- | ----------- |
+| uri    | string                              | 是   | 媒体文件uri |
+| size   | [image.Size](js-apis-image.md#size) | 是   | 缩略图尺寸  |
+
+**返回值：**
+
+| 类型                          | 说明               |
+| :---------------------------- | :----------------- |
+| Promise&lt;image.PixelMap&gt; | 返回的Pixelmap对象 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码targetUri表示Download目录下某个媒体文件(图片、音频、视频)，该uri是对应的fileInfo中uri
+// 开发者应根据自己实际获取的uri进行开发
+let targetUri = "datashare:///media/image/100";
+let size = { width: 128, height: 128 };
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let pixelMap = await fileAccessHelper.getThumbnail(targetUri, size);
+  let imageInfo = await pixelMap.getImageInfo();    
+  console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
+  console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
+} catch (error) {
+  console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
+};
+```
+
+## FileAccessHelper.getThumbnail<sup>10+</sup>
+
+ getThumbnail(uri: string, size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;) : void
+
+通过指定uri和尺寸获取媒体文件的Pixelmap对象，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明               |
+| -------- | ----------------------------------- | ---- | ------------------ |
+| uri      | string                              | 是   | 媒体文件uri        |
+| size     | [image.Size](js-apis-image.md#size) | 是   | 缩略图尺寸         |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 返回的Pixelmap对象 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码targetUri表示Download目录下某个媒体文件(图片、音频、视频)，该uri是对应的fileInfo中uri
+// 开发者应根据自己实际获取的uri进行开发
+let targetUri = "datashare:///media/image/100";
+let size = { width: 128, height: 128 };
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.getThumbnail(targetUri, size, async(err, pixelMap) => {
+        if (err) {
+            console.error("Failed to getThumbnail in async, errCode:" + err.code + ", errMessage:" + err.message);
+            return;
+        }
+        let imageInfo = await pixelMap.getImageInfo();
+        console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
+        console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
+    });
+} catch (error) {
+    console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
+};
+```
+
 ## RootIterator.next
 
 next( ) : { value: RootInfo, done: boolean }
