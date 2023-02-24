@@ -15,10 +15,10 @@ The **relationalStore** module provides the following functions:
 ## Modules to Import
 
 ```js
-import data_rdb from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore'
 ```
 
-## data_rdb.getRdbStore
+## relationalStore.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void
 
@@ -51,20 +51,23 @@ FA model:
 
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 
 const STORE_CONFIG = {
-    name: "RdbTest.db",
-    securityLevel: data_rdb.SecurityLevel.S1
-}
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
 
-data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-    if (err) {
-        console.info("Failed to get RdbStore, err: " + err)
-        return
-    }
-    console.log("Got RdbStore successfully.")
+relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
+  store = rdbStore;
+  if (err) {
+    console.error(`Get RdbStore failed, err: ${err}`);
+    return;
+  }
+  console.info(`Get RdbStore successfully.`);
 })
 ```
 
@@ -74,24 +77,26 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        const STORE_CONFIG = {
-            name: "RdbTest.db",
-            securityLevel: data_rdb.SecurityLevel.S1
-        }
+  onWindowStageCreate(windowStage) {
+    var store;
+    const STORE_CONFIG = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S1
+    };
         
-        data_rdb.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
-            if (err) {
-                console.info("Failed to get RdbStore, err: " + err)
-                return
-            }
-            console.log("Got RdbStore successfully.")
-        })
-    }
+    relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+      store = rdbStore;
+      if (err) {
+        console.error(`Get RdbStore failed, err: ${err}`);
+        return;
+      }
+      console.info(`Get RdbStore successfully.`);
+    })
+  }
 }
 ```
 
-## data_rdb.getRdbStore
+## relationalStore.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
@@ -128,19 +133,22 @@ FA model:
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 
+var store;
+
 // Obtain the context.
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 
 const STORE_CONFIG = {
-    name: "RdbTest.db",
-    securityLevel: data_rdb.SecurityLevel.S1
-}
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
 
-let promise = data_rdb.getRdbStore(context, STORE_CONFIG);
+let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
-    console.log("Got RdbStore successfully.")
+  store = rdbStore;
+  console.info(`Get RdbStore successfully.`);
 }).catch((err) => {
-    console.log("Failed to get RdbStore, err: " + err)
+  console.error(`Get RdbStore failed, err: ${err}`);
 })
 ```
 
@@ -150,23 +158,25 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        const STORE_CONFIG = {
-            name: "RdbTest.db",
-            securityLevel: data_rdb.SecurityLevel.S1
-        }
+  onWindowStageCreate(windowStage) {
+    var store;
+    const STORE_CONFIG = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S1
+    };
         
-        let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG);
-        promise.then(async (rdbStore) => {
-            console.log("Got RdbStore successfully.")
-        }).catch((err) => {
-            console.log("Failed to get RdbStore, err: " + err)
-        })
-    }
+    let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
+    promise.then(async (rdbStore) => {
+      store = rdbStore;
+      console.info(`Get RdbStore successfully.`)
+    }).catch((err) => {
+      console.error(`Get RdbStore failed, err: ${err}`);
+    })
+  }
 }
 ```
 
-## data_rdb.deleteRdbStore
+## relationalStore.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -200,12 +210,12 @@ import featureAbility from '@ohos.ability.featureAbility'
 // Obtain the context.
 let context = featureAbility.getContext()
 
-data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
-    if (err) {
-        console.info("Failed to delete RdbStore, err: " + err)
-        return
-    }
-    console.log("Deleted RdbStore successfully.")
+relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
+  if (err) {
+    console.error(`Delete RdbStore failed, err: ${err}`);
+    return;
+  }
+  console.info(`Delete RdbStore successfully.`);
 })
 ```
 
@@ -215,19 +225,19 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err) {
-            if (err) {
-                console.info("Failed to delete RdbStore, err: " + err)
-                return
-            }
-            console.log("Deleted RdbStore successfully.")
-        })
-    }
+  onWindowStageCreate(windowStage){
+    relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
+      if (err) {
+        console.error(`Delete RdbStore failed, err: ${err}`);
+        return;
+      }
+      console.info(`Delete RdbStore successfully.`);
+    })
+  }
 }
 ```
 
-## data_rdb.deleteRdbStore
+## relationalStore.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
@@ -264,13 +274,13 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility'
 
 // Obtain the context.
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 
-let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
+let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
 promise.then(()=>{
-    console.log("Deleted RdbStore successfully.")
+  console.info(`Delete RdbStore successfully.`);
 }).catch((err) => {
-    console.info("Failed to delete RdbStore, err: " + err)
+  console.error(`Delete RdbStore failed, err: ${err}`);
 })
 ```
 
@@ -280,14 +290,14 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility'
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
-        promise.then(()=>{
-            console.log("Deleted RdbStore successfully.")
-        }).catch((err) => {
-            console.info("Failed to delete RdbStore, err: " + err)
-        })
-    }
+  onWindowStageCreate(windowStage){
+    let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
+    promise.then(()=>{
+      console.info(`Delete RdbStore successfully.`);
+    }).catch((err) => {
+      console.error(`Delete RdbStore failed, err: ${err}`);
+    })
+  }
 }
 ```
 
@@ -397,7 +407,7 @@ A constructor used to create an **RdbPredicates** object.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 ```
 
 ### inDevices
@@ -424,8 +434,8 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.inDevices(['12345678abcde'])
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.inDevices(['12345678abcde']);
 ```
 
 ### inAllDevices
@@ -446,8 +456,8 @@ Sets an **RdbPredicates** to specify all remote devices on the network to connec
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.inAllDevices()
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.inAllDevices();
 ```
 
 ### equalTo
@@ -475,8 +485,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "lisi")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "lisi");
 ```
 
 
@@ -505,8 +515,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.notEqualTo("NAME", "lisi")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.notEqualTo("NAME", "lisi");
 ```
 
 
@@ -528,7 +538,7 @@ Adds a left parenthesis to the **RdbPredicates**.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
@@ -554,7 +564,7 @@ Adds a right parenthesis to the **RdbPredicates**.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
@@ -580,7 +590,7 @@ Adds the OR condition to the **RdbPredicates**.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
     .equalTo("NAME", "Rose")
@@ -603,7 +613,7 @@ Adds the AND condition to the **RdbPredicates**.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
     .equalTo("SALARY", 200.5)
@@ -633,8 +643,8 @@ Sets an **RdbPredicates** to match a string containing the specified value.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.contains("NAME", "os")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.contains("NAME", "os");
 ```
 
 ### beginsWith
@@ -661,8 +671,8 @@ Sets an **RdbPredicates** to match a string that starts with the specified value
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.beginsWith("NAME", "os")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.beginsWith("NAME", "os");
 ```
 
 ### endsWith
@@ -689,8 +699,8 @@ Sets an **RdbPredicates** to match a string that ends with the specified value.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.endsWith("NAME", "se")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.endsWith("NAME", "se");
 ```
 
 ### isNull
@@ -716,8 +726,8 @@ Sets an **RdbPredicates** to match the field whose value is null.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.isNull("NAME")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.isNull("NAME");
 ```
 
 ### isNotNull
@@ -743,8 +753,8 @@ Sets an **RdbPredicates** to match the field whose value is not null.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.isNotNull("NAME")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.isNotNull("NAME");
 ```
 
 ### like
@@ -771,8 +781,8 @@ Sets an **RdbPredicates** to match a string that is similar to the specified val
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.like("NAME", "%os%")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.like("NAME", "%os%");
 ```
 
 ### glob
@@ -799,8 +809,8 @@ Sets an **RdbPredicates** to match the specified string.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.glob("NAME", "?h*g")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.glob("NAME", "?h*g");
 ```
 
 ### between
@@ -828,8 +838,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.between("AGE", 10, 50)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.between("AGE", 10, 50);
 ```
 
 ### notBetween
@@ -857,8 +867,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.notBetween("AGE", 10, 50)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.notBetween("AGE", 10, 50);
 ```
 
 ### greaterThan
@@ -885,8 +895,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.greaterThan("AGE", 18)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.greaterThan("AGE", 18);
 ```
 
 ### lessThan
@@ -913,8 +923,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.lessThan("AGE", 20)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.lessThan("AGE", 20);
 ```
 
 ### greaterThanOrEqualTo
@@ -941,8 +951,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.greaterThanOrEqualTo("AGE", 18)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.greaterThanOrEqualTo("AGE", 18);
 ```
 
 ### lessThanOrEqualTo
@@ -969,8 +979,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.lessThanOrEqualTo("AGE", 20)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.lessThanOrEqualTo("AGE", 20);
 ```
 
 ### orderByAsc
@@ -996,8 +1006,8 @@ Sets an **RdbPredicates** to match the column with values sorted in ascending or
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.orderByAsc("NAME")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.orderByAsc("NAME");
 ```
 
 ### orderByDesc
@@ -1023,8 +1033,8 @@ Sets an **RdbPredicates** to match the column with values sorted in descending o
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.orderByDesc("AGE")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.orderByDesc("AGE");
 ```
 
 ### distinct
@@ -1044,8 +1054,8 @@ Sets an **RdbPredicates** to filter out duplicate records.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").distinct()
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose").distinct();
 ```
 
 ### limitAs
@@ -1071,8 +1081,8 @@ Sets an **RdbPredicates** to specify the maximum number of records.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").limitAs(3)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose").limitAs(3);
 ```
 
 ### offsetAs
@@ -1098,8 +1108,8 @@ Sets an **RdbPredicates** to specify the start position of the returned result.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").offsetAs(3)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose").offsetAs(3);
 ```
 
 ### groupBy
@@ -1125,8 +1135,8 @@ Sets an **RdbPredicates** to group rows that have the same value into summary ro
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.groupBy(["AGE", "NAME"])
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.groupBy(["AGE", "NAME"]);
 ```
 
 ### indexedBy
@@ -1153,8 +1163,8 @@ Sets an **RdbPredicates** object to specify the index column.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.indexedBy("SALARY_INDEX")
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.indexedBy("SALARY_INDEX");
 ```
 
 ### in
@@ -1181,8 +1191,8 @@ Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueTyp
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.in("AGE", [18, 20])
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.in("AGE", [18, 20]);
 ```
 
 ### notIn
@@ -1209,8 +1219,8 @@ Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueTyp
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.notIn("NAME", ["Lisa", "Rose"])
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
 ## RdbStore
@@ -1231,9 +1241,9 @@ Before using the following APIs, use [executeSql](#executesql) to initialize the
 
 ```js
 // Set the RDB store version.
-rdbStore.version = 3
+store.version = 3;
 // Obtain the RDB store version.
-console.info("Get RdbStore version is " + rdbStore.version)
+console.info(`RdbStore version is ${store.version}`);
 ```
 
 ### insert
@@ -1256,17 +1266,17 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 
 ```js
 const valueBucket = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-rdbStore.insert("EMPLOYEE", valueBucket, function (status, rowId) {
-    if (status) {
-        console.log("Failed to insert data");
-        return;
-    }
-    console.log("Inserted data successfully, rowId = " + rowId);
+  "NAME": "Lisa",
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+store.insert("EMPLOYEE", valueBucket, function (err, rowId) {
+  if (err) {
+    console.error(`Insert is failed, err: ${err}`);
+    return;
+  }
+  console.info(`Insert is successful, rowId = ${rowId}`);
 })
 ```
 
@@ -1291,17 +1301,17 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 
 ```js
 const valueBucket = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-rdbStore.insert("EMPLOYEE", valueBucket, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE, function (status, rowId) {
-    if (status) {
-        console.log("Failed to insert data");
-        return;
-    }
-    console.log("Inserted data successfully, rowId = " + rowId);
+  "NAME": "Lisa",
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rowId) {
+  if (err) {
+    console.error(`Insert is failed, err: ${err}`);
+    return;
+  }
+  console.info(`Insert is successful, rowId = ${rowId}`);
 })
 ```
 
@@ -1330,16 +1340,16 @@ Inserts a row of data into a table. This API uses a promise to return the result
 
 ```js
 const valueBucket = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let promise = rdbStore.insert("EMPLOYEE", valueBucket)
+  "NAME": "Lisa",
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+let promise = store.insert("EMPLOYEE", valueBucket);
 promise.then((rowId) => {
-    console.log("Inserted data successfully, rowId = " + rowId);
-}).catch((status) => {
-    console.log("Failed to insert data");
+  console.info(`Insert is successful, rowId = ${rowId}`);
+}).catch((err) => {
+  console.error(`Insert is failed, err: ${err}`);
 })
 ```
 
@@ -1369,16 +1379,16 @@ Inserts a row of data into a table. This API uses a promise to return the result
 
 ```js
 const valueBucket = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let promise = rdbStore.insert("EMPLOYEE", valueBucket, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE)
+  "NAME": "Lisa",
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+let promise = store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
 promise.then((rowId) => {
-    console.log("Inserted data successfully, rowId = " + rowId);
-}).catch((status) => {
-    console.log("Failed to insert data");
+  console.info(`Insert is successful, rowId = ${rowId}`);
+}).catch((err) => {
+  console.error(`Insert is failed, err: ${err}`);
 })
 ```
 
@@ -1402,31 +1412,31 @@ Batch inserts data into a table. This API uses an asynchronous callback to retur
 
 ```js
 const valueBucket1 = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5])
-}
+  "NAME": "Lisa",
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5])
+};
 const valueBucket2 = {
-    "NAME": "Jack",
-    "AGE": 19,
-    "SALARY": 101.5,
-    "CODES": new Uint8Array([6, 7, 8, 9, 10])
-}
+  "NAME": "Jack",
+  "AGE": 19,
+  "SALARY": 101.5,
+  "CODES": new Uint8Array([6, 7, 8, 9, 10])
+};
 const valueBucket3 = {
-    "NAME": "Tom",
-    "AGE": 20,
-    "SALARY": 102.5,
-    "CODES": new Uint8Array([11, 12, 13, 14, 15])
-}
+  "NAME": "Tom",
+  "AGE": 20,
+  "SALARY": 102.5,
+  "CODES": new Uint8Array([11, 12, 13, 14, 15])
+};
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
-    if (status) {
-        console.log("batchInsert is failed, status = " + status);
-        return;
-    }
-    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
+store.batchInsert("EMPLOYEE", valueBuckets, function(err, insertNum) {
+  if (err) {
+    console.error(`batchInsert is failed, err: ${err}`);
+    return;
+  }
+  console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
 })
 ```
 
@@ -1455,30 +1465,30 @@ Batch inserts data into a table. This API uses a promise to return the result.
 
 ```js
 const valueBucket1 = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5])
-}
+  "NAME": "Lisa",
+  "AGE": 18,
+  "SALARY": 100.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5])
+};
 const valueBucket2 = {
-    "NAME": "Jack",
-    "AGE": 19,
-    "SALARY": 101.5,
-    "CODES": new Uint8Array([6, 7, 8, 9, 10])
-}
+  "NAME": "Jack",
+  "AGE": 19,
+  "SALARY": 101.5,
+  "CODES": new Uint8Array([6, 7, 8, 9, 10])
+};
 const valueBucket3 = {
-    "NAME": "Tom",
-    "AGE": 20,
-    "SALARY": 102.5,
-    "CODES": new Uint8Array([11, 12, 13, 14, 15])
-}
+  "NAME": "Tom",
+  "AGE": 20,
+  "SALARY": 102.5,
+  "CODES": new Uint8Array([11, 12, 13, 14, 15])
+};
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
+let promise = store.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
-    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
-}).catch((status) => {
-    console.log("batchInsert is failed, status = " + status);
+  console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+}).catch((err) => {
+  console.error(`batchInsert is failed, err: ${err}`);
 })
 ```
 
@@ -1502,19 +1512,19 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 ```js
 const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, function (err, rows) {
-    if (err) {
-        console.info("Failed to update data, err: " + err)
-        return
-    }
-    console.log("Updated row count: " + rows)
+  "NAME": "Rose",
+  "AGE": 22,
+  "SALARY": 200.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+store.update(valueBucket, predicates, function (err, rows) {
+  if (err) {
+    console.error(`Updated failed, err: ${err}`);
+    return;
+  }
+  console.info(`Updated row count: ${rows}`);
 })
 ```
 
@@ -1539,19 +1549,19 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 ```js
 const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rows) {
-    if (err) {
-        console.info("Failed to update data, err: " + err)
-        return
-    }
-    console.log("Updated row count: " + rows)
+  "NAME": "Rose",
+  "AGE": 22,
+  "SALARY": 200.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, function (err, rows) {
+  if (err) {
+    console.error(`Updated failed, err: ${err}`);
+    return;
+  }
+  console.info(`Updated row count: ${rows}`);
 })
 ```
 
@@ -1580,18 +1590,18 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 ```js
 const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.update(valueBucket, predicates)
+  "NAME": "Rose",
+  "AGE": 22,
+  "SALARY": 200.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+let promise = store.update(valueBucket, predicates);
 promise.then(async (rows) => {
-    console.log("Updated row count: " + rows)
+  console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-    console.info("Failed to update data, err: " + err)
+  console.error(`Updated failed, err: ${err}`);
 })
 ```
 
@@ -1621,18 +1631,18 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 ```js
 const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.update(valueBucket, predicates, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE)
+  "NAME": "Rose",
+  "AGE": 22,
+  "SALARY": 200.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+let promise = store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
 promise.then(async (rows) => {
-    console.log("Updated row count: " + rows)
+  console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-    console.info("Failed to update data, err: " + err)
+  console.error(`Updated failed, err: ${err}`);
 })
 ```
 
@@ -1664,15 +1674,15 @@ const valueBucket = {
     "AGE": 22,
     "SALARY": 200.5,
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, rows) {
-    if (err) {
-        console.info("Failed to update data, err: " + err)
-        return
-    }
-    console.log("Updated row count: " + rows)
+};
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Lisa");
+store.update("EMPLOYEE", valueBucket, predicates, function (err, rows) {
+  if (err) {
+    console.error(`Updated failed, err: ${err}`);
+    return;
+  }
+  console.info(`Updated row count: ${rows}`);
 })
 ```
 
@@ -1705,18 +1715,18 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
+  "NAME": "Rose",
+  "AGE": 22,
+  "SALARY": 200.5,
+  "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+};
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Lisa");
+let promise = store.update("EMPLOYEE", valueBucket, predicates);
 promise.then(async (rows) => {
-    console.log("Updated row count: " + rows)
+  console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-    console.info("Failed to update data, err: " + err)
+  console.error(`Updated failed, err: ${err}`);
 })
 ```
 
@@ -1738,14 +1748,14 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Lisa")
-rdbStore.delete(predicates, function (err, rows) {
-    if (err) {
-        console.info("Failed to delete data, err: " + err)
-        return
-    }
-    console.log("Deleted rows: " + rows)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+store.delete(predicates, function (err, rows) {
+  if (err) {
+    console.error(`Delete failed, err: ${err}`);
+    return;
+  }
+  console.info(`Delete rows: ${rows}`);
 })
 ```
 
@@ -1772,13 +1782,13 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.delete(predicates)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+let promise = store.delete(predicates);
 promise.then((rows) => {
-    console.log("Deleted rows: " + rows)
+  console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-    console.info("Failed to delete data, err: " + err)
+  console.error(`Delete failed, err: ${err}`);
 })
 ```
 
@@ -1804,14 +1814,14 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
-    if (err) {
-        console.info("Failed to delete data, err: " + err)
-        return
-    }
-    console.log("Deleted rows: " + rows)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Lisa");
+store.delete("EMPLOYEE", predicates, function (err, rows) {
+  if (err) {
+    console.error(`Delete failed, err: ${err}`);
+    return;
+  }
+  console.info(`Delete rows: ${rows}`);
 })
 ```
 
@@ -1842,13 +1852,13 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.delete("EMPLOYEE", predicates)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Lisa");
+let promise = store.delete("EMPLOYEE", predicates);
 promise.then((rows) => {
-    console.log("Deleted rows: " + rows)
+  console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-    console.info("Failed to delete data, err: " + err)
+  console.error(`Delete failed, err: ${err}`);
 })
 ```
 
@@ -1871,15 +1881,15 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose")
-rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-    if (err) {
-        console.info("Failed to query data, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, err: ${err}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 })
 ```
 
@@ -1907,14 +1917,14 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 **Example**
 
   ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose")
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-    console.info("Failed to query data, err: " + err)
+  console.error(`Query failed, err: ${err}`);
 })
   ```
 
@@ -1941,15 +1951,15 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
-rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-    if (err) {
-        console.info("Failed to query data, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
+store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, err: ${err}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 })
 ```
 
@@ -1981,14 +1991,14 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
-let promise = rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
+let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-    console.info("Failed to query data, err: " + err)
+  console.error(`Query failed, err: ${err}`);
 })
 ```
 
@@ -2013,17 +2023,18 @@ Queries data from the RDB store of a remote device based on specified conditions
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.greaterThan("id", 0)
-rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
-    function(err, resultSet){
+let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates.greaterThan("id", 0);
+store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
+  function(err, resultSet) {
     if (err) {
-        console.info("Failed to remoteQuery, err: " + err)
-        return
+      console.error(`Failed to remoteQuery, err: ${err}`);
+      return;
     }
-    console.info("ResultSet column names: " + resultSet.columnNames)
-    console.info("ResultSet column count: " + resultSet.columnCount)
-})
+    console.info(`ResultSet column names: ${resultSet.columnNames}`);
+    console.info(`ResultSet column count: ${resultSet.columnCount}`);
+  }
+)
 ```
 
 ### remoteQuery
@@ -2052,14 +2063,14 @@ Queries data from the RDB store of a remote device based on specified conditions
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.greaterThan("id", 0)
-let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates.greaterThan("id", 0);
+let promise = store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    console.info("ResultSet column names: " + resultSet.columnNames)
-    console.info("ResultSet column count: " + resultSet.columnCount)
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-    console.info("Failed to remoteQuery , err: " + err)
+  console.error(`Failed to remoteQuery, err: ${err}`);
 })
 ```
 
@@ -2082,13 +2093,13 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 **Example**
 
 ```js
-rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
-    if (err) {
-        console.info("Failed to query data, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
+  if (err) {
+    console.error(`Query failed, err: ${err}`);
+    return;
+  }
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 })
 ```
 
@@ -2116,12 +2127,12 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 **Example**
 
 ```js
-let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
+let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo']);
 promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+  console.info(`ResultSet column names: ${resultSet.columnNames}`);
+  console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-    console.info("Failed to query data, err: " + err)
+  console.error(`Query failed, err: ${err}`);
 })
 ```
 
@@ -2145,12 +2156,12 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 ```js
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
-    if (err) {
-        console.info("Failed to execute SQL, err: " + err)
-        return
-    }
-    console.info('Create table done.')
+store.executeSql(SQL_CREATE_TABLE, null, function(err) {
+  if (err) {
+    console.error(`ExecuteSql failed, err: ${err}`);
+    return;
+  }
+  console.info(`Create table done.`);
 })
 ```
 
@@ -2179,11 +2190,11 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 ```js
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promise = rdbStore.executeSql(SQL_CREATE_TABLE)
+let promise = store.executeSql(SQL_CREATE_TABLE);
 promise.then(() => {
-    console.info('Create table done.')
+    console.info(`Create table done.`);
 }).catch((err) => {
-    console.info("Failed to execute SQL, err: " + err)
+    console.error(`ExecuteSql failed, err: ${err}`);
 })
 ```
 
@@ -2199,19 +2210,25 @@ Starts the transaction before executing an SQL statement.
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
-const STORE_CONFIG = { name: "RdbTest.db",
-                     securityLevel: data_rdb.SecurityLevel.S1}
-data_rdb.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
-    rdbStore.beginTransaction()
-	const valueBucket = {
-		"name": "lisi",
-		"age": 18,
-		"salary": 100.5,
-		"blobType": new Uint8Array([1, 2, 3]),
-	}
-	await rdbStore.insert("test", valueBucket)
-	rdbStore.commit()
+let context = featureAbility.getContext();
+const STORE_CONFIG = { 
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
+relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
+  if (err) {
+    console.error(`GetRdbStore failed, err: ${err}`);
+    return;
+  }
+  store.beginTransaction();
+  const valueBucket = {
+    "name": "lisi",
+	"age": 18,
+	"salary": 100.5,
+	"blobType": new Uint8Array([1, 2, 3]),
+  };
+  await store.insert("test", valueBucket);
+  store.commit();
 })
 ```
 
@@ -2227,19 +2244,25 @@ Commits the executed SQL statements.
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
-const STORE_CONFIG = { name: "RdbTest.db",
-                     securityLevel: data_rdb.SecurityLevel.S1}
-data_rdb.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
-    rdbStore.beginTransaction()
-	const valueBucket = {
-		"name": "lisi",
-		"age": 18,
-		"salary": 100.5,
-		"blobType": new Uint8Array([1, 2, 3]),
-	}
-	await rdbStore.insert("test", valueBucket)
-	rdbStore.commit()
+let context = featureAbility.getContext();
+const STORE_CONFIG = { 
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
+relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
+  if (err) {
+     console.error(`GetRdbStore failed, err: ${err}`);
+     return;
+  }
+  store.beginTransaction();
+  const valueBucket = {
+	"name": "lisi",
+	"age": 18,
+	"salary": 100.5,
+	"blobType": new Uint8Array([1, 2, 3]),
+  };
+  await store.insert("test", valueBucket);
+  store.commit();
 })
 ```
 
@@ -2255,24 +2278,31 @@ Rolls back the SQL statements that have been executed.
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-let context = featureAbility.getContext()
-const STORE_CONFIG = { name: "RdbTest.db",
-                     securityLevel: data_rdb.SecurityLevel.S1}
-data_rdb.getRdbStore(context, STORE_CONFIG, async function (err, rdbStore) {
-    try {
-		rdbStore.beginTransaction()
-		const valueBucket = {
-			"id": 1,
-			"name": "lisi",
-			"age": 18,
-			"salary": 100.5,
-			"blobType": new Uint8Array([1, 2, 3]),
-		}
-		await rdbStore.insert("test", valueBucket)
-		rdbStore.commit()
-	} catch (e) {
-		rdbStore.rollBack()
-	}
+let context = featureAbility.getContext();
+const STORE_CONFIG = { 
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1
+};
+relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
+  if (err) {
+    console.error(`GetRdbStore failed, err: ${err}`);
+    return;
+  }
+  try {
+    store.beginTransaction()
+    const valueBucket = {
+	  "id": 1,
+	  "name": "lisi",
+	  "age": 18,
+	  "salary": 100.5,
+	  "blobType": new Uint8Array([1, 2, 3]),
+	};
+	await store.insert("test", valueBucket);
+    store.commit();
+  } catch (err) {
+    console.error(`Transaction failed, err: ${err}`);
+    store.rollBack();
+  }
 })
 ```
 
@@ -2294,12 +2324,12 @@ Backs up an RDB store. This API uses an asynchronous callback to return the resu
 **Example**
 
 ```js
-rdbStore.backup("dbBackup.db", function(err) {
-    if (err) {
-        console.info('Backup failed, err: ' + err)
-        return
-    }
-    console.info('Backup success.')
+store.backup("dbBackup.db", function(err) {
+  if (err) {
+    console.error(`Backup failed, err: ${err}`);
+    return;
+  }
+  console.info(`Backup success.`);
 })
 ```
 
@@ -2326,11 +2356,11 @@ Backs up an RDB store. This API uses a promise to return the result.
 **Example**
 
 ```js
-let promiseBackup = rdbStore.backup("dbBackup.db")
+let promiseBackup = store.backup("dbBackup.db");
 promiseBackup.then(()=>{
-    console.info('Backup success.')
+  console.info(`Backup success.`);
 }).catch((err)=>{
-    console.info('Backup failed, err: ' + err)
+  console.error(`Backup failed, err: ${err}`);
 })
 ```
 
@@ -2352,12 +2382,12 @@ Restores an RDB store from a backup file. This API uses an asynchronous callback
 **Example**
 
 ```js
-rdbStore.restore("dbBackup.db", function(err) {
-    if (err) {
-        console.info('Restore failed, err: ' + err)
-        return
-    }
-    console.info('Restore success.')
+store.restore("dbBackup.db", function(err) {
+  if (err) {
+    console.error(`Restore failed, err: ${err}`);
+    return;
+  }
+  console.info(`Restore success.`);
 })
 ```
 
@@ -2384,11 +2414,11 @@ Restores an RDB store from a backup file. This API uses a promise to return the 
 **Example**
 
 ```js
-let promiseRestore = rdbStore.restore("dbBackup.db")
+let promiseRestore = store.restore("dbBackup.db");
 promiseRestore.then(()=>{
-    console.info('Restore success.')
+  console.info(`Restore success.`);
 }).catch((err)=>{
-    console.info('Restore failed, err: ' + err)
+  console.error(`Restore failed, err: ${err}`);
 })
 ```
 
@@ -2412,12 +2442,12 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 **Example**
 
 ```js
-rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
-    if (err) {
-        console.info('Failed to set distributed tables, err: ' + err)
-        return
-    }
-    console.info('Set distributed tables successfully.')
+store.setDistributedTables(["EMPLOYEE"], function (err) {
+  if (err) {
+    console.error(`SetDistributedTables failed, err: ${err}`);
+    return;
+  }
+  console.info(`SetDistributedTables successfully.`);
 })
 ```
 
@@ -2446,11 +2476,11 @@ Sets distributed tables. This API uses a promise to return the result.
 **Example**
 
 ```js
-let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
+let promise = store.setDistributedTables(["EMPLOYEE"]);
 promise.then(() => {
-    console.info("Set distributed tables successfully.")
+  console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
-    console.info("Failed to set distributed tables, err: " + err)
+  console.error(`SetDistributedTables failed, err: ${err}`);
 })
 ```
 
@@ -2475,12 +2505,12 @@ Obtains the distributed table name for a remote device based on the local table 
 **Example**
 
 ```js
-rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
+store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
     if (err) {
-        console.info('Failed to obtain DistributedTableName, err: ' + err)
-        return
+        console.error(`ObtainDistributedTableName failed, err: ${err}`);
+        return;
     }
-    console.info('Obtained distributed table name successfully, tableName=.' + tableName)
+    console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 })
 ```
 
@@ -2510,11 +2540,11 @@ Obtains the distributed table name for a remote device based on the local table 
 **Example**
 
 ```js
-let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
+let promise = store.obtainDistributedTableName("12345678abcde", "EMPLOYEE");
 promise.then((tableName) => {
-    console.info('Obtained distributed table name successfully, tableName= ' + tableName)
+  console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 }).catch((err) => {
-    console.info('Failed to obtain DistributedTableName, err: ' + err)
+  console.error(`ObtainDistributedTableName failed, err: ${err}`);
 })
 ```
 
@@ -2539,17 +2569,17 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
-rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
-    if (err) {
-        console.log('Sync failed, err: ' + err)
-        return
-    }
-    console.log('Sync done.')
-    for (let i = 0; i < result.length; i++) {
-        console.log('device=' + result[i][0] + ' status=' + result[i][1])
-    }
+let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates.inDevices(['12345678abcde']);
+store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
+  if (err) {
+    console.error(`Sync failed, err: ${err}`);
+    return;
+  }
+  console.info(`Sync done.`);
+  for (let i = 0; i < result.length; i++) {
+    console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
+  }
 })
 ```
 
@@ -2579,16 +2609,16 @@ Synchronizes data between devices. This API uses a promise to return the result.
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
-let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
+let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+predicates.inDevices(['12345678abcde']);
+let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
 promise.then((resultSet) =>{
-    console.log('Sync done.')
-    for (let i = 0; i < resultSet.length; i++) {
-        console.log('device=' + resultSet[i][0] + ' status=' + resultSet[i][1])
-    }
+  console.info(`Sync done.`);
+  for (let i = 0; i < resultSet.length; i++) {
+    console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
+  }
 }).catch((err) => {
-    console.log('Sync failed')
+  console.error(`Sync failed, err: ${err}`);
 })
 ```
 
@@ -2604,22 +2634,22 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
-| event    | string                              | Yes  | The value is'dataChange', which indicates a data change event.         |
+| event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event. |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Observer that listens for the data changes in the RDB store.     |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change event. |
 
 **Example**
 
 ```js
 function storeObserver(devices) {
-    for (let i = 0; i < devices.length; i++) {
-        console.log('device=' + devices[i] + ' data changed')
-    }
+  for (let i = 0; i < devices.length; i++) {
+    console.info(`device= ${devices[i]} data changed`);
+  }
 }
 try {
-    rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-    console.log('Failed to register observer')
+  console.error(`Register observer failed, err: ${err}`);
 }
 ```
 
@@ -2635,22 +2665,22 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
-| event    | string                              | Yes  | The value is'dataChange', which indicates a data change event.         |
-| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to register.                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Data change observer registered.                 |
+| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates a data change event. |
+| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change event. |
 
 **Example**
 
 ```js
 function storeObserver(devices) {
-    for (let i = 0; i < devices.length; i++) {
-        console.log('device=' + devices[i] + ' data changed')
-    }
+  for (let i = 0; i < devices.length; i++) {
+    console.info(`device= ${devices[i]} data changed`);
+  }
 }
 try {
-    rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-    console.log('Failed to unregister observer')
+  console.error(`Unregister observer failed, err: ${err}`);
 }
 ```
 
@@ -2660,16 +2690,15 @@ Provides APIs to access the result set obtained by querying the RDB store. A res
 
 ### Usage
 
-Obtain the **resultSet** object by [RdbStore.query()](#query).
+Obtain the **resultSet** object first.
 
 ```js
-import dataRdb from '@ohos.data.rdb';
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
-    console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);
+  console.info(`resultSet columnNames: ${resultSet.columnNames}`);
+  console.info(`resultSet columnCount: ${resultSet.columnCount}`);
 });
 ```
 
@@ -2794,13 +2823,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
   ```js
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
-let promise= rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let promise= store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    resultSet.goTo(1);
-    resultSet.close();
+  resultSet.goTo(1);
+  resultSet.close();
 }).catch((err) => {
-    console.log('query failed');
+  console.error(`query failed, err: ${err}`);
 });
   ```
 
@@ -2835,13 +2864,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
   ```js
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    resultSet.(5);
-    resultSet.close();
+  resultSet.(5);
+  resultSet.close();
 }).catch((err) => {
-    console.log('query failed');
+  console.error(`query failed, err: ${err}`);
 });
   ```
 
@@ -2871,13 +2900,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
   ```js
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    resultSet.goToFirstRow();
-    resultSet.close();
+  resultSet.goToFirstRow();
+  resultSet.close();
 }).catch((err) => {
-    console.log('query failed');
+  console.error(`query failed, err: ${err}`);
 });
   ```
 
@@ -2906,13 +2935,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
   ```js
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    resultSet.goToLastRow();
-    resultSet.close();
+  resultSet.goToLastRow();
+  resultSet.close();
 }).catch((err) => {
-    console.log('query failed');
+  console.error(`query failed, err: ${err}`);
 });
   ```
 
@@ -2941,13 +2970,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
   ```js
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    resultSet.goToNextRow();
-    resultSet.close();
+  resultSet.goToNextRow();
+  resultSet.close();
 }).catch((err) => {
-    console.log('query failed');
+  console.error(`query failed, err: ${err}`);
 });
   ```
 
@@ -2976,13 +3005,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 **Example**
 
   ```js
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-    resultSet.goToPreviousRow();
-    resultSet.close();
+  resultSet.goToPreviousRow();
+  resultSet.close();
 }).catch((err) => {
-    console.log('query failed');
+  console.error(`query failed, err: ${err}`);
 });
   ```
 
@@ -3054,9 +3083,9 @@ Obtains the value of the Long type based on the specified column and the current
 
 **Return value**
 
-| Type  | Description                      |
-| ------ | -------------------------- |
-| number | Value obtained.|
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| number | Value obtained.<br>The value range supported by this API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
 
 **Example**
 
@@ -3135,12 +3164,12 @@ Closes this result set.
 **Example**
 
   ```js
-let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE");
-let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let predicatesClose = new relationalStore.RdbPredicates("EMPLOYEE");
+let promiseClose = store.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promiseClose.then((resultSet) => {
-    resultSet.close();
+  resultSet.close();
 }).catch((err) => {
-    console.log('resultset close failed');
+  console.error(`resultset close failed, err: ${err}`);
 });
   ```
 
