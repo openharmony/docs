@@ -66,11 +66,10 @@ try {
 
 ## cl.distributeddatamgr.2 function getRdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
 **变更影响**
-getRdbStoreV9接口标记废弃，应用需要进行适配。
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
 
 **关键的接口/组件变更**
 如下接口：
-
 ```ts
 function getRdbStoreV9(context: Context, config: StoreConfigV9, version: number, callback: AsyncCallback<RdbStoreV9>): void;
 function getRdbStoreV9(context: Context, config: StoreConfigV9, version: number): Promise<RdbStoreV9>;
@@ -87,11 +86,10 @@ function getRdbStore(context: Context, config: StoreConfig): Promise<RdbStore>;
 
 ## cl.distributeddatamgr.3 function deleteRdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
 **变更影响**
-deleteRdbStoreV9接口标记废弃，应用需要进行适配。
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
 
 **关键的接口/组件变更**
 如下接口：
-
 ```ts
 function deleteRdbStoreV9(context: Context, name: string, callback: AsyncCallback<void>): void;
 function deleteRdbStoreV9(context: Context, name: string): Promise<void>;
@@ -108,7 +106,7 @@ function deleteRdbStoreV9(context: Context, name: string): Promise<void>;
 
 ## cl.distributeddatamgr.4 interface StoreConfigV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
 **变更影响**
-StoreConfigV9接口标记废弃，应用需要进行适配。
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
 
 **关键的接口/组件变更**
 interface StoreConfigV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface StoreConfig。
@@ -119,7 +117,7 @@ interface StoreConfigV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalSto
 
 ## cl.distributeddatamgr.5 enum SecurityLevel 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
 **变更影响**
-SecurityLevel接口标记废弃，应用需要进行适配。
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
 
 **关键的接口/组件变更**
 enum SecurityLevel 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts。
@@ -130,7 +128,7 @@ enum SecurityLevel 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.t
 
 ## cl.distributeddatamgr.6 interface RdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
 **变更影响**
-RdbStoreV9接口标记废弃，应用需要进行适配。
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
 
 **关键的接口/组件变更** 
 interface RdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface RdbStore。
@@ -141,7 +139,7 @@ interface RdbStoreV9 从@ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.
 
 ## cl.distributeddatamgr.7 class RdbPredicatesV9 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts
 **变更影响**
-RdbPredicatesV9接口标记废弃，应用需要进行适配。
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
 
 **关键的接口/组件变更**
 class RdbPredicatesV9 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface RdbPredicates。
@@ -152,7 +150,7 @@ class RdbPredicatesV9 从ohos.data.rdb.d.ts 迁移至@ohos.data.relationalStore.
 
 ## cl.distributeddatamgr.8 interface ResultSetV9 从api/@ohos.data.relationalStore.d.ts 迁移至@ohos.data.relationalStore.d.ts
 **变更影响**
-ResultSetV9接口标记废弃，应用需要进行适配。
+应用需要进行适配，才可以在新版本SDK环境正常编译通过。
 
 **关键的接口/组件变更**
 interface ResultSetV9 从api/data/rdb/resultSet.d.ts 迁移至@ohos.data.relationalStore.d.ts 改名为interface ResultSet。
