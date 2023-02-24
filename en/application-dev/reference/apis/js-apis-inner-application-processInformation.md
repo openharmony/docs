@@ -1,6 +1,6 @@
-# ProcessRunningInformation
+# ProcessInformation
 
-The **ProcessRunningInformation** module defines the running information of a process.
+The **ProcessInformation** module defines the running information of a process.
 
 > **NOTE**
 > 
@@ -8,13 +8,13 @@ The **ProcessRunningInformation** module defines the running information of a pr
 
 ## How to Use
 
-The process running information is obtained through [getProcessRunningInformation](js-apis-application-appManager.md#appmanagergetprocessrunninginformation9) in **appManager**.
+The process information is obtained by calling [getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9) of the **appManager** module.
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import appManager from '@ohos.app.ability.appManager';
 
-appManager.getProcessRunningInformation((error, data) => { 
-    console.log("error: "  + error.code + " data: " + JSON.stringify(data));
+appManager.getRunningProcessInformation((error, data) => { 
+    console.log('error: '  + error.code + ' data: ' + JSON.stringify(data));
 });
 ```
 

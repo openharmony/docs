@@ -109,7 +109,7 @@
       - [MissionSnapshot](js-apis-inner-application-missionSnapshot.md)
       - [ProcessData](js-apis-inner-application-processData.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
-      - [ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)
+      - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
@@ -152,7 +152,6 @@
     - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
     - [launcherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
     - [metadata](js-apis-bundleManager-metadata.md)
-    - [packInfo](js-apis-bundleManager-packInfo.md)
     - [permissionDef](js-apis-bundleManager-permissionDef.md)
     - [remoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
@@ -185,7 +184,7 @@
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
   - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
-- Resource Scheduling
+- Background Tasks
   - [@ohos.distributedMissionManager (Distributed Mission Management)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (Reminder Agent Management)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager.md)
@@ -211,7 +210,7 @@
   - [@ohos.data.distributedDataObject (Distributed Data Object)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md) 
   - [@ohos.data.preferences (Preferences)](js-apis-data-preferences.md)
-  - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
+  - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
   - data/rdb
     - [resultSet](js-apis-data-resultset.md)
@@ -371,6 +370,7 @@
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.systemParameter (System Parameter)](js-apis-system-parameter.md)
   - [@ohos.usb (USB Management)](js-apis-usb-deprecated.md)
+  - [@ohos.usbV9 (USB Management)](js-apis-usb.md)
   - [@system.app (Application Context)](js-apis-system-app.md)
   - [@system.battery (Battery Information)](js-apis-system-battery.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)
