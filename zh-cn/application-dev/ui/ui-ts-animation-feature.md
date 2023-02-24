@@ -132,7 +132,7 @@
       .onAppear(() => {
    
         animateTo({
-         duration: 2000,
+         duration: 1000,
           curve: this.curve1, 
           delay: 100, 
           onFinish: () => {
@@ -196,7 +196,7 @@
          .opacity(this.opacityValue)
          .onAppear(() => {
            animateTo({
-             duration: 2000,
+             duration: 1000,
              curve: this.curve1,
              delay: 100,
              onFinish: () => {

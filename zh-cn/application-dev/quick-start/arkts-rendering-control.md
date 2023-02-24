@@ -254,7 +254,7 @@ struct MyComponent {
           this.data.pushData('/path/image' + this.data.totalCount() + '.png')
         })
       }, item => item)
-    }
+    }.height('100%').width('100%')
   }
 }
 ```
