@@ -443,7 +443,7 @@ To adapt `OpenHarmony` subsystems, you only need to add related subsystems and c
 
 #### Startup Subsystem Adaptation
 
-For the startup subsystem, adapt the `bootstrap_lite`, `syspara_lite`, `appspawn_lite`, and `init_lite` components. Add the corresponding configuration items to the `vendor/bearpi/bearpi_hm_micro/config.json` file, as shown below:
+For the startup subsystem, adapt the `bootstrap_lite`, `syspara_lite`, `appspawn_lite`, and `init` components. Add the corresponding configuration items to the `vendor/bearpi/bearpi_hm_micro/config.json` file, as shown below:
 
 ```
     {
@@ -452,7 +452,7 @@ For the startup subsystem, adapt the `bootstrap_lite`, `syspara_lite`, `appspawn
         { "component": "syspara_lite", "features":[] },
         { "component": "bootstrap_lite", "features":[] },
         { "component": "appspawn_lite", "features":[] },
-        { "component": "init_lite", "features":[] }
+        { "component": "init", "features":[] }
      ]
     },
 ```
