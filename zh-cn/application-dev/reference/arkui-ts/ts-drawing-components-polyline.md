@@ -33,7 +33,7 @@ Polyline(value?: {width?: string | number, height?: string | number})
 | points | Array&lt;Point&gt; | [] | 折线经过坐标点列表。 |
 | fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | - | 设置线条颜色。 |
+| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 |
