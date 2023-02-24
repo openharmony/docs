@@ -94,39 +94,6 @@ Declare the events for service widgets in the **actions** field in the JSON file
   }
   ```
 
-You can also implement redirection to the target application using a **want**, which contains the **abilityName**, **bundleName**, and **parameters** fields.
-
-| Selector   | Type    | Default Value     | Description                                    |
-| ------ | ------ | -------- | ---------------------------------------- |
-| action | string | "router" | Event type.<br>- **"router"**: redirection event.<br>- **"message"**: message event.|
-| want   | [Want](../apis/js-apis-app-ability-want.md) | -        | Information about the target application. For details, see the **want** format.                    |
-
-
-```json
-  {
-      "data": {
-        "mainAbility": "xxx.xxx.xxx"
-      },
-      "actions": {
-        "routerEventName1": { 
-          "action": "router",
-          "want": {
-            "bundleName": "com.example.myapplication",
-            "abilityName": "EntryAbility"
-          }
-        },
-        "routerEventName2": { 
-          "action": "router",
-          "want": {
-            "action": "xxx.intent.action.DIAL",
-            "uri": "tel:12345678"
-          }
-        }  
-      }
-    }
-```
-
-  In API version 8, the [featureAbility.getWant](../apis/js-apis-ability-featureAbility.md) API in the **onCreate** method of the **app.js** or **app.ets** file must be called for the **want** parameter to receive related parameters.
 
 - Message event properties
 
