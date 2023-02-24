@@ -19,8 +19,8 @@
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
   - Stage模型能力的接口(待停用)
-    - [@ohos.application.Ability (Ability)](js-apis-application-ability.md)
-    - [@ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-application-abilityLifecycleCallback.md)
+    - [@ohos.application.Ability (Ability)](js-apis-app-ability-ability.md)
+    - [@ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
@@ -53,7 +53,7 @@
     - [@ohos.application.appManager (appManager)](js-apis-application-appManager.md)
     - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
     - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
-    - [@ohos.application.errorManager (ErrorManager)](js-apis-application-errorManager.md)
+    - [@ohos.application.errorManager (ErrorManager)](js-apis-app-ability-errorManager.md)
     - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-application-formBindingData.md)
     - [@ohos.application.formError (FormError)](js-apis-application-formError.md)
     - [@ohos.application.formHost (FormHost)](js-apis-application-formHost.md)
@@ -76,7 +76,7 @@
       - [context](js-apis-inner-app-context.md)
       - [processInfo](js-apis-inner-app-processInfo.md)
     - application
-      - [AbilityContext](js-apis-ability-context.md)
+      - [AbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
@@ -338,6 +338,8 @@
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
+  - [@ohos.enterprise.accountManager (账户管理)](js-apis-enterprise-accountManager.md)
+  - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
