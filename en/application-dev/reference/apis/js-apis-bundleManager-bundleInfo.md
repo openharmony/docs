@@ -6,8 +6,6 @@ The **BundleInfo** module defines the bundle information. A system application c
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
-
 ## BundleInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
