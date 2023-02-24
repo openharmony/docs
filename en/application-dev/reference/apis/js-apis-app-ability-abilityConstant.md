@@ -48,7 +48,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
         if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
-            console.log("The ability has been started by the way of startAbility.");
+            console.log('The ability has been started by the way of startAbility.');
         }
     }
 }
@@ -74,7 +74,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
-            console.log("The ability has exit last because the ability was not responding.");
+            console.log('The ability has exit last because the ability was not responding.');
         }
     }
 }
@@ -110,20 +110,22 @@ Enumerates the window modes in which an ability can be displayed at startup. It 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name                       | Value| Description                |
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | Undefined window mode.      |
 | WINDOW_MODE_FULLSCREEN      | 1   | The ability is displayed in full screen.           |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | The ability is displayed in the primary window in split-screen mode.  |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | The ability is displayed in the secondary window in split-screen mode.  |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | The left screen in horizontal direction or the upper screen in vertical direction is the primary window.  |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window.  |
 | WINDOW_MODE_FLOATING        | 102 | The ability is displayed in a floating window.|
 
 **Example**
 
 ```ts
 let want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
 };
 let option = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
@@ -131,9 +133,9 @@ let option = {
 
 // Ensure that the context is obtained.
 this.context.startAbility(want, option).then(()={
-    console.log("Succeed to start ability.");
+    console.log('Succeed to start ability.');
 }).catch((error)=>{
-    console.log("Failed to start ability with error: " + JSON.stringify(error));
+    console.log('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -157,7 +159,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onMemoryLevel(level) {
         if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
-            console.log("The memory of device is critical, please release some memory.");
+            console.log('The memory of device is critical, please release some memory.');
         }
     }
 }
@@ -209,7 +211,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         if (reason === AbilityConstant.StateType.CONTINUATION) {
-            console.log("Save the ability data when the ability continuation.");
+            console.log('Save the ability data when the ability continuation.');
         } 
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }

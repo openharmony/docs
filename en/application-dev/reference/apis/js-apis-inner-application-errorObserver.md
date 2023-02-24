@@ -19,18 +19,17 @@ Called when an unhandled exception occurs in the JS runtime.
 **Example**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager'
+import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
-    onUnhandledException(errorMsg) {
-        console.log('HXW onUnhandledException, errorMsg: ', errorMsg);
-    }
-}
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+  }
+};
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (error) {
-    console.log('registerErrorObserver' + ' failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('registerErrorObserver failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
