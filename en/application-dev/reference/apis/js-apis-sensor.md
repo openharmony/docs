@@ -1,8 +1,9 @@
-# Sensor
+# @ohos.sensor (Sensor)
 
 The **Sensor** module provides APIs for obtaining the sensor list and subscribing to sensor data. It also provides some common sensor algorithms.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -2875,7 +2876,7 @@ Transforms a rotation vector based on the coordinate system. This API uses an as
 
 | Name          | Type                                     | Mandatory| Description                  |
 | ---------------- | ----------------------------------------- | ---- | ---------------------- |
-| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation matrix.        |
+| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector.        |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Rotation vector to transform.      |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes  | Callback used to return the rotation vector after being transformed.|
 
@@ -2922,7 +2923,7 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 
 | Name          | Type                                     | Mandatory| Description            |
 | ---------------- | ----------------------------------------- | ---- | ---------------- |
-| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation matrix.  |
+| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector.  |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Rotation vector to transform.|
 
 **Return value**
@@ -3178,7 +3179,7 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 try {
     let gravity = [-0.27775216, 0.5351276, 9.788099];
     let geomagnetic = [210.87253, -78.6096, -111.44444];
-    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) => {
+    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) {
         if (err) {
             console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
             return;
@@ -3476,7 +3477,7 @@ Describes the sensor information.
 | Name           | Type| Readable| Writable| Description                  |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
 | sensorName      | string   | Yes | Yes | Sensor name.          |
-| venderName      | string   | Yes | Yes | Vendor of the sensor.        |
+| venderName     | string   | Yes | Yes | Vendor of the sensor.        |
 | firmwareVersion | string   | Yes | Yes | Firmware version of the sensor.      |
 | hardwareVersion | string   | Yes | Yes | Hardware version of the sensor.      |
 | sensorId        | number   | Yes | Yes | Sensor type ID.        |
@@ -3495,9 +3496,9 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 
 | Name| Type  | Readable| Writable| Description                                |
 | ---- | ------ | ---- | ---- | ------------------------------------ |
-| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s².|
+| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s².|
+| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s².|
 
 
 ## LinearAccelerometerResponse
@@ -3509,9 +3510,9 @@ Describes the linear acceleration sensor data. It extends from [Response](#respo
 
 | Name| Type  | Readable| Writable| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Linear acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s².|
+| y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s².|
+| z    | number | Yes  | Yes  | Linear acceleration along the z-axis of the device, in m/s².|
 
 
 ## AccelerometerUncalibratedResponse
@@ -3523,12 +3524,12 @@ Describes the uncalibrated acceleration sensor data. It extends from [Response](
 
 | Name | Type  | Readable| Writable| Description                                            |
 | ----- | ------ | ---- | ---- | ------------------------------------------------ |
-| x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s2.      |
-| y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s2.      |
-| z     | number | Yes  | Yes  | Uncalibrated acceleration along the z-axis of the device, in m/s2.      |
-| biasX | number | Yes  | Yes  | Uncalibrated acceleration bias along the x-axis of the device, in m/s2.  |
-| biasY | number | Yes  | Yes  | Uncalibrated acceleration bias along the y-axis of the device, in m/s2.|
-| biasZ | number | Yes  | Yes  | Uncalibrated acceleration bias along the z-axis of the device, in m/s2.  |
+| x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s².      |
+| y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s².      |
+| z     | number | Yes  | Yes  | Uncalibrated acceleration along the z-axis of the device, in m/s².      |
+| biasX | number | Yes  | Yes  | Uncalibrated acceleration bias along the x-axis of the device, in m/s².  |
+| biasY | number | Yes  | Yes  | Uncalibrated acceleration bias along the y-axis of the device, in m/s².|
+| biasZ | number | Yes  | Yes  | Uncalibrated acceleration bias along the z-axis of the device, in m/s².  |
 
 
 ## GravityResponse
@@ -3540,9 +3541,9 @@ Describes the gravity sensor data. It extends from [Response](#response).
 
 | Name| Type  | Readable| Writable| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Gravitational acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s².|
+| y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s².|
+| z    | number | Yes  | Yes  | Gravitational acceleration along the z-axis of the device, in m/s².|
 
 
 ## OrientationResponse
@@ -3829,6 +3830,18 @@ Describes the geographical location.
 | latitude  | number | Yes  | Yes  | Latitude.    |
 | longitude | number | Yes  | Yes  | Longitude.    |
 | altitude  | number | Yes  | Yes  | Altitude.|
+
+## LocationOptions
+
+Describes the geographical location.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name      | Type   | Readable | Writable | Description |
+| --------- | ------ | -------- | -------- | ----------- |
+| latitude  | number | Yes      | Yes      | Latitude.   |
+| longitude | number | Yes      | Yes      | Longitude.  |
+| altitude  | number | Yes      | Yes      | Altitude.   |
 
 ## sensor.on<sup>(deprecated)</sup>
 
@@ -6230,7 +6243,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
       }
       console.info(JSON.stringify(data));
   })
-
   ```
 
 
