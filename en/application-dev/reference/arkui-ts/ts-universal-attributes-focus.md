@@ -48,6 +48,7 @@ Requests the focus to move to the specified component. This API can be used in g
 defaultFocus/groupDefaultFocus/focusOnTouch:
 
 **defaultFocus** sets the bound component as the initial focus of the page after the page is created. **groupDefaultFocus** sets the bound component as the initial focus of the **tabIndex** container after the container is created. **focusOnTouch** sets the bound component to obtain focus upon being clicked.
+
 ```ts
 // focusTest.ets
 @Entry

@@ -16,6 +16,7 @@ This component can contain the **\<GridCol>** child component.
 GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
 **Parameters**
+
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
 |gutter|Length \| GutterOption|   No |Gutter of the grid layout. **x** indicates the horizontal direction.|
@@ -37,11 +38,11 @@ Describes the numbers of grid columns for different device width types.
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | number | No   | Device of the minimum size.   |
-| sm  | number | No   | Small-sized device.     |
-| md  | number | No   | Medium-sized device.   |
-| lg  | number | No   | Large-sized device.     |
-| xl  | number | No   | Extra-large-sized device.   |
-| xxl | number | No   | Ultra-large-sized device.   |
+| sm  | number | No   | Small-sized device.           |
+| md  | number | No   | Medium-sized device.          |
+| lg  | number | No   | Large-sized device.           |
+| xl  | number | No   | Extra-large-sized device.     |
+| xxl | number | No   | Ultra-large-sized device.     |
 
 ## GridRowSizeOption
 
@@ -50,11 +51,11 @@ Describes the gutter sizes for different device width types.
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | Length | No   | Device of the minimum size.   |
-| sm  | Length | No   | Small-sized device.     |
-| md  | Length | No   | Medium-sized device.   |
-| lg  | Length | No   | Large-sized device.     |
-| xl  | Length | No   | Extra-large-sized device.   |
-| xxl | Length | No   | Ultra-large-sized device.   |
+| sm  | Length | No   | Small-sized device.           |
+| md  | Length | No   | Medium-sized device.          |
+| lg  | Length | No   | Large-sized device.           |
+| xl  | Length | No   | Extra-large-sized device.     |
+| xxl | Length | No   | Ultra-large-sized device.     |
 
 ## BreakPoints
 

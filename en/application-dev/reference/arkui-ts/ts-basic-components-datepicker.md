@@ -19,6 +19,7 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 Creates a date picker in the given date range.
 
 **Parameters**
+
 | Name| Type| Mandatory | Description|
 | -------- | -------- | ------------- | -------- |
 | start    | Date | No | Start date of the picker.<br>Default value: **Date('1970-1-1')**|
