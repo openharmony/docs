@@ -1,16 +1,16 @@
 # Crypto Framework Overview
-The cryptographic (crypto for shot) framework shields the implementation differences of third-party cryptographic algorithm libraries and implements encryption and decryption, signing and signature verification, message authentication code (MAC), hashes, and secure random numbers. You can use the APIs provided by this framework to implement cipher development quickly.
+The cryptographic (crypto for shot) framework shields the implementation differences of third-party cryptographic algorithm libraries and implements encryption and decryption, signing and signature verification, and operations of the message authentication code (MAC), hashes, and secure random numbers. You can use the APIs provided by this framework to implement cipher development quickly.
 
 > **NOTE**
 >
-> The crypto framework provides cryptographic operations on keys, but not key management. It is used when the application keeps the key (for example, temporary session keys are used only in the memory or the application implements secure key storage). If the system is required to provide key management (such as key storage), use the [HUKS](huks-overview.md).
+> The crypto framework provides cryptographic operations on keys, but not key management. It is used when the application keeps the key securely (for example, temporary session keys are used only in the memory or the application implements secure key storage). If the system is required to provide key management (such as key storage), use the [HUKS](huks-overview.md).
 
 ## Working Principles
 The crypto framework provides components in the following layers:
 
 - Interface layer: provides unified JS interface externally.
-- Framework layer: implements third-party algorithm libraries.
-- Plug-in layer: loads plug-ins at the plug-in layer to adapt to third-party algorithm libraries and shield implementation differences between these libraries.
+- Plug-in layer: implements third-party algorithm libraries.
+- Framework layer: loads plug-ins at the plug-in layer to adapt to third-party algorithm libraries and shield implementation differences between these libraries.
 
 ## Basic Concepts
 **Symmetric Key**
@@ -30,7 +30,7 @@ In the asymmetric cryptography, a private and public key pair is required. The p
 
 - RSA key
 
-  The security of RSA relies on the factoring problem, that is, the difficulty of factoring the product of two large prime numbers. The keys for the RSA algorithm are generated as follows: <br>
+  The security of RSA relies on the factoring problem, that is, the difficulty of factoring the product of two large prime numbers. The keys for the RSA algorithm are generated as follows: 
 
   1. Generate two large prime numbers **p** and **q**. 
   
@@ -40,8 +40,7 @@ In the asymmetric cryptography, a private and public key pair is required. The p
   
   3. Choose an integer **e** such that 1 < **e** < (**p** - 1) x (**q** - 1), that is, **e** and (**p** - 1) x (**q** - 1) are coprime.
   
-  4.  Compute **d**.<br>**e** x **d** - 1 is a multiple of (**p** - 1) and (**q** - 1). 
-
+  4. Compute **d**. **e** x **d** - 1 is a multiple of (**p** - 1) and (**q** - 1). 
   
   The public key consists of the modulus **n** and the public exponent **e**. The private key consists of **n** and the private exponent **d**.
   
@@ -64,7 +63,7 @@ In the asymmetric cryptography, a private and public key pair is required. The p
   
     
   
-  > **NOTE**<br>In ECB and CBC, the plaintext must be padded if its length is not an integer multiple of 128 bits. <br>Since the plaintext is padded to the block size, the PKCS #5 and PKCS #7 used in the algorithm library use the block size as the padding length. That is, data is padded to 16 bytes in AES encryption.
+  > **NOTE**<br>In ECB and CBC, the plaintext must be padded if its length is not an integer multiple of 128 bits. Since the plaintext is padded to the block size, the PKCS #5 and PKCS #7 used in the algorithm library use the block size as the padding length. That is, data is padded to 16 bytes in AES encryption.
   
 - **Symmetric 3DES Encryption and Decryption**
 
@@ -83,25 +82,35 @@ In the asymmetric cryptography, a private and public key pair is required. The p
 
 - **Asymmetric RSA Encryption and Decryption**
 
-  After the RSA public key (n, e) and private key (n, d) are held, the RSA encryption process is as follows:<br>Ciphertext = Plaintext ^ **e** mod **n**<br>The decryption process is as follows:<br>Plaintext = Ciphertext ^ **d** mod **n** 
+  After the RSA public key (n, e) and private key (n, d) are held, the RSA encryption process is as follows:
+	
+	Ciphertext = Plaintext ^ **e** mod **n**
+	
+	The decryption process is as follows:
+	
+	Plaintext = Ciphertext ^ **d** mod **n** 
 	
 	The algorithm library provides the following modes of operation for RSA encryption and decryption: **PKCS1**, **PKCS1_ OAEP**, and **NoPadding**. RSA is a block cipher, with fixed-length blocks. In actual applications, diverse padding modes are used. The padding options are as follows:
 	
 	- **NoPadding**: No padding is required. The length of the input or output data must be the same as that of the RSA key modulus.
-	
 	- **PKCS1**: PKCS #1 v1.5 is the default padding mode for RSA encryption and decryption. The length of the input data must be less than or equal to the RSA key modulus minus 11, and the length of the output data must be the same as that of the RSA key modulus.
-	
 	- **PKCS1_OAEP**: The RSA_PKCS1_OAEP_PADDING is a new padding mode provided by PKCS #1. In this mode, two digests (**md** and **mgf1_md**) must be set. The length of the input data must be less than RSA key modulus length minus the **md** length, **mgf1_md** length, and two. The length of the output data must be the same as that of the RSA key modulus.
 	
-	  > **NOTE**
-	  >
-	  > Length of the RSA key modulus = (Number of RSA bits + 7)/8
+	> **NOTE**
+	>
+	> Length of the RSA key modulus = (Number of RSA bits + 7)/8
 
 **Signing and Signature Verification**
 
 - RSA signing and signature verification
 
-	After the RSA public key (n, e) and private key (n, d) are held, the RSA signature is generated as follows:<br>Signature = Message ^ **d** mod **n**<br>The signature verification process is as follows:<br> Message = Signature ^ **d** mod **n** 
+	After the RSA public key (n, e) and private key (n, d) are held, the RSA signature is generated as follows: 
+  
+  Signature = Message ^ **d** mod **n**
+  
+  The signature verification process is as follows: 
+  
+  Message = Signature ^ **d** mod **n** 
   
   The sender sends the message and the signature signed by the private key. The receiver decrypts the signature using the public key to verify the signature. Generally, the message sent is longer than the RSA key modulus. Therefore, the crypto framework provides two padding modes to extract the hash value of the message digest before signing the message. The crypto framework provides the following padding modes for signing and signature verification:
   
@@ -128,9 +137,7 @@ When the same digest algorithm is used, the generated digest (hash value) has th
 - It is almost impossible to find two different messages with the same hash value. (The probability still exists, depending on the length of the digest.)
 
 There are three types of message digest algorithms: MD, SHA, and MAC. For details, see **HMAC**.
-
 MD algorithms include MD2, MD4, and MD5.
-
 Major SHA algorithms include SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512.
 
 **HMAC**
@@ -222,9 +229,8 @@ Random numbers are mainly used to generate temporary session keys or keys in asy
   |AES|CCM|AES[128\|192\|256]\|CCM\|[NoPadding\|PKCS5\|PKCS7]|
 
 > **NOTE**
->
+> 
 > - The options included in the square brackets ([]) are mutually exclusive.
->
 > - **String Parameter** is a combination of **Algorithm** (including the key length), **Block Cipher Mode**, and padding mode. It specifies the symmetric encryption/decryption algorithm specifications when a symmetric encryption/decryption instance is created.
 
 **Asymmetric RSA Encryption and Decryption**
@@ -263,45 +269,45 @@ The crypto framework provides three padding modes for RSA encryption/decryption:
 | Asymmetric Key Type| Padding Mode| Digest| Mask Digest|
 |---|---|---|---|
 |RSA512|PKCS1_OAEP|MD5|  [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PKCS1_OAEP|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PKCS1_OAEP|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PKCS1_OAEP|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
+|RSA512|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+|RSA512|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+|RSA512|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
 |RSA768|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PKCS1_OAEP|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PKCS1_OAEP|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PKCS1_OAEP|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
-|RSA768|PKCS1_OAEP|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA768|PKCS1_OAEP|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
+|RSA768|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA768|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA768|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+|RSA768|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+|RSA768|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
 |RSA1024|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+|RSA1024|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
 |RSA2048|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
 |RSA3072|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
 |RSA4096|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
 |RSA8192|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512  ]|
-|RSA8192|PKCS1_OAEP|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512  ]|
+|RSA8192|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
 
 
 ### Signing and Signature Verification Specifications
@@ -325,51 +331,50 @@ The crypto framework provides two padding modes for RSA signing and signature ve
   > **NOTE**
   > 
   > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
-  > 
-  >  - Combine the asymmetric key type, padding mode, digest, and mask digest, with a vertical bar (|) in between. For example, **RSA2048|PSS|SHA256|MGF1_SHA256**.
-
-  | Asymmetric Key Type| Padding Mode| Digest| Mask Digest|
-  |---|---|---|---|
-  |RSA512|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-  |RSA512|PSS|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-  |RSA512|PSS|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-  |RSA512|PSS|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|RSA512\|PSS\|SHA256\|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
-  |RSA768|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA768|PSS|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA768|PSS|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA768|PSS|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
-  |RSA768|PSS|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-  |RSA768|PSS|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
-  |RSA1024|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA1024|PSS|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA1024|PSS|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA1024|PSS|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA1024|PSS|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA1024|PSS|SHA-512| [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
-  |RSA2048|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA2048|PSS|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA2048|PSS|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA2048|PSS|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA2048|PSS|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA2048|PSS|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA3072|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA3072|PSS|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA3072|PSS|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA3072|PSS|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA3072|PSS|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA3072|PSS|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA4096|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA4096|PSS|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA4096|PSS|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA4096|PSS|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA4096|PSS|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA4096|PSS|SHA-512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA8192|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA8192|PSS|SHA-1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA8192|PSS|SHA-224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA8192|PSS|SHA-256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA8192|PSS|SHA-384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-  |RSA8192|PSS|SHA-512| [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  > - Combine the asymmetric key type, padding mode, digest, and mask digest, with a vertical bar (|) in between. For example, **RSA2048|PSS|SHA256|MGF1_SHA256**.
+  
+| Asymmetric Key Type| Padding Mode| Digest| Mask Digest|
+|---|---|---|---|
+|RSA512|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+|RSA512|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+|RSA512|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+|RSA512|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|RSA512\|PSS\|SHA256\|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
+|RSA768|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA768|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA768|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA768|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+|RSA768|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+|RSA768|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
+|RSA1024|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA1024|PSS|SHA512| [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+|RSA2048|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA2048|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA3072|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA4096|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+|RSA8192|PSS|SHA512| [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
 
 **ECDSA Signing and Signature Verification**
 
@@ -384,11 +389,11 @@ The crypto framework provides two padding modes for RSA signing and signature ve
 
   |Digest Algorithm|Supported Type|
   |---|---|
-  |HASH|SHA-1|
-  |HASH|SHA-224|
-  |HASH|SHA-256|
-  |HASH|SHA-384|
-  |HASH|SHA-512|
+  |HASH|SHA1|
+  |HASH|SHA224|
+  |HASH|SHA256|
+  |HASH|SHA384|
+  |HASH|SHA512|
 
 ### Key Agreement Specifications
 
@@ -408,11 +413,11 @@ The crypto framework provides two padding modes for RSA signing and signature ve
 
   |Digest Algorithm|Supported Type|
   |---|---|
-  |HASH|SHA-1|
-  |HASH|SHA-224|
-  |HASH|SHA-256|
-  |HASH|SHA-384|
-  |HASH|SHA-512|
+  |HASH|SHA1|
+  |HASH|SHA224|
+  |HASH|SHA256|
+  |HASH|SHA384|
+  |HASH|SHA512|
   |HASH|MD5|
 
 ### HMAC Algorithm Specifications
@@ -420,8 +425,8 @@ The crypto framework provides two padding modes for RSA signing and signature ve
 
   |Digest Algorithm|Supported Type|
   |---|---|
-  |HASH|SHA-1|
-  |HASH|SHA-224|
-  |HASH|SHA-256|
-  |HASH|SHA-384|
-  |HASH|SHA-512|
+  |HASH|SHA1|
+  |HASH|SHA224|
+  |HASH|SHA256|
+  |HASH|SHA384|
+  |HASH|SHA512|
