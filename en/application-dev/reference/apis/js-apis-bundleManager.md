@@ -147,7 +147,7 @@ Enumerates the launch types of the ability.
 | Name| Value| Description|
 |:----------------:|:---:|:---:|
 | SINGLETON        | 0   | The ability can have only one instance.|
-| STANDARD         | 1   | The ability can have multiple instances.|
+| MULTITON         | 1   | The ability can have multiple instances.|
 | SPECIFIED        | 2   | The ability can have one or multiple instances, depending on the internal service of the ability.|
 
 ### AbilityType
@@ -2236,8 +2236,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
-| 17700003 | The specified abilityName does not exist.                     |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2292,8 +2292,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
-| 17700003 | The specified abilityName does not exist.                     |
+| 17700002 | The specified moduleName is not existed.                      |
+| 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
 | 17700029 | The specified ability is disabled.                            |
@@ -2357,7 +2357,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
+| 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2412,7 +2412,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 17700002 | The specified moduleName does not exist.                      |
+| 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
 | 17700026 | The specified bundle is disabled.                             |
@@ -2655,122 +2655,11 @@ try {
 }
 ```
 
-### bundleManager.getAbilityIcon
-
-getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback<[image.PixelMap](js-apis-image.md#pixelmap7)>): void;
-
-Obtains the ability icon based on the given bundle name, module name, and ability name. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Resource
-
-**Parameters**
-
-| Name     | Type                                                       | Mandatory| Description                                                        |
-| ----------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| bundleName  | string                                                      | Yes  | Bundle name.                                    |
-| moduleName  | string                                                      | Yes  | Module name.                                    |
-| abilityName | string                                                      | Yes  | Ability name.                                   |
-| callback    | AsyncCallback<[image.PixelMap](js-apis-image.md#pixelmap7)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **PixelMap** object of the icon. Otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                             |
-| -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found.  |
-| 17700002 | The specified moduleName is not found.  |
-| 17700003 | The specified abilityName is not found. |
-| 17700026 | The specified bundle is disabled.       |
-| 17700029 | The specified ability is disabled.      |
-
-**Example**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import hilog from '@ohos.hilog';
-let bundleName = 'com.example.myapplication';
-let moduleName = 'entry';
-let abilityName = 'EntryAbility';
-
-try {
-    bundleManager.getAbilityIcon(bundleName, moduleName, abilityName, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'getAbilityIcon failed: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'getAbilityIcon successfully: %{public}s', JSON.stringify(data));
-        }
-    });
-} catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAbilityIcon failed: %{public}s', err.message);
-}
-```
-
-### bundleManager.getAbilityIcon
-
-getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Promise<[image.PixelMap](js-apis-image.md#pixelmap7)>;
-
-Obtains the ability icon based on the given bundle name, module name, and ability name. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Resource
-
-**Parameters**
-
-| Name     | Type  | Mandatory| Description                     |
-| ----------- | ------ | ---- | ------------------------- |
-| bundleName  | string | Yes  | Bundle name. |
-| moduleName  | string | Yes  | Module name. |
-| abilityName | string | Yes  | Ability name.|
-
-**Return value**
-
-| Type                                                 | Description                                       |
-| ----------------------------------------------------- | ------------------------------------------- |
-| Promise<[image.PixelMap](js-apis-image.md#pixelmap7)> | Promise used to return the **PixelMap** object of the icon.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                              |
-| -------- | -------------------------------------- |
-| 17700001 | The specified bundleName is not found.  |
-| 17700002 | The specified moduleName is not found.  |
-| 17700003 | The specified abilityName is not found. |
-| 17700026 | The specified bundle is disabled.       |
-| 17700029 | The specified ability is disabled.      |
-
-**Example**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import hilog from '@ohos.hilog';
-let bundleName = 'com.example.myapplication';
-let moduleName = 'entry';
-let abilityName = 'EntryAbility';
-
-try {
-    bundleManager.getAbilityIcon(bundleName, moduleName, abilityName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getAbilityIcon successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch(err => {
-        hilog.error(0x0000, 'testTag', 'getAbilityIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    hilog.error(0x0000, 'testTag', 'getAbilityIcon failed. Cause: %{public}s', err.message);
-}
-```
 
 ### bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
+getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
 Synchronously obtains the application information based on the given bundle name, application flags, and user ID.
 
@@ -2786,7 +2675,7 @@ Synchronously obtains the application information based on the given bundle name
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | Yes  | Bundle name.                                 |
 | applicationFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.      |
-| userId      | number | No  | User ID.                                        |
+| userId      | number | Yes  | User ID.                                        |
 
 **Return value**
 
@@ -2838,6 +2727,7 @@ try {
 ### bundleManager.getBundleInfoSync
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
+getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
 Synchronously obtains the bundle information based on the given bundle name, bundle flags, and user ID.
 
