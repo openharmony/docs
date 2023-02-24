@@ -724,8 +724,8 @@ Defines virtual screen parameters.
 | Name     | Type| Readable| Writable| Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | name      | string   | Yes  | Yes  | Name of a virtual screen.     |
-| width     | number   | Yes  | Yes  | Width of the virtual screen.     |
-| height    | number   | Yes  | Yes  | Height of the virtual screen.     |
+| width     | number   | Yes  | Yes  | Width of the virtual screen, in pixels.|
+| height    | number   | Yes  | Yes  | Height of the virtual screen, in pixels.|
 | density   | number   | Yes  | Yes  | Density of the virtual screen.     |
 | surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.|
 
@@ -1006,6 +1006,6 @@ Defines the screen mode information.
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
 | id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate.|
-| width       | number   | Yes  | Yes  | Screen width.                                      |
-| height      | number   | Yes  | Yes  | Screen height.                                      |
+| width       | number   | Yes  | Yes  | Width of the screen, in pixels.                               |
+| height      | number   | Yes  | Yes  | Height of the screen, in pixels.                               |
 | refreshRate | number   | Yes  | Yes  | Screen refresh rate.                                    |
