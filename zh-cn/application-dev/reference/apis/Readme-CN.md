@@ -291,6 +291,7 @@
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [console (日志打印)](js-apis-logs.md)
+  - [InputMethodCommon](js-apis-inputmethod-InputMethodCommon.md)
   - [Timer (定时器)](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
