@@ -39,6 +39,10 @@ In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits
 
 2. Download the [DevEco Device Tool 3.0 Release Linux version](https://device.harmonyos.com/cn/ide#download).
 
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > 
+   > In this document, the DevEco Device Tool 3.0 Release version is used as an example. The UI and usage of DevEco Device Tool vary by version. If you are using the latest version of DevEco Device Tool, perform instructions in [Setting Up the Ubuntu Environment] (https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-ide-env-ubuntu.md).
+
 3. Decompress the DevEco Device Tool software package and assign permission on the folder obtained from the decompression.
 
    1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.401.zip** to the actual software package name.
@@ -55,16 +59,17 @@ In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits
 
 4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.0.0.401.sh** indicates the installation file name.
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
-
+   
    
    ```
    sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
-
+   
    Wait until the "Deveco Device Tool successfully installed." message is displayed.
-
+   
    ![en-us_image_0000001198722374](figures/en-us_image_0000001198722374.png)
 
 
@@ -74,13 +79,18 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 
 1. Download the [DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Windows edition.
 
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > 
+   > In this document, the DevEco Device Tool 3.0 Release version is used as an example. The UI and usage of DevEco Device Tool vary by version. If you are using the latest version of DevEco Device Tool, perform instructions in [Setting Up the Ubuntu Environment] (https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-ide-env-win.md).
+
 2. Decompress the DevEco Device Tool package, double-click the installer, and then click **Next**.
 
 3. Set the installation path of DevEco Device Tool and click **Next**. You are advised to install DevEco Device Tool in a non-system drive.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > If you have installed DevEco Device Tool 3.0 Beta2 or earlier, the earlier version will be uninstalled before you install a new version. If the following error message is displayed during the uninstallation, click **Ignore** to continue the installation. This error does not affect the installation of the new version.
-   > 
+   >
    > ![en-us_image_0000001239275843](figures/en-us_image_0000001239275843.png)
 
    ![en-us_image_0000001270076961](figures/en-us_image_0000001270076961.png)
@@ -89,16 +99,18 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 
    1. On the **VSCode installation confirm** page, select **Install VScode 1.62.2 automatically** and click **Next**.
 
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+       >
        > If Visual Studio Code 1.62 or later has been installed, this step will be skipped.
 
        ![en-us_image_0000001237801283](figures/en-us_image_0000001237801283.png)
 
    2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
 
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+       >
        > If Python 3.8 or 3.9 has been installed, select **Use one of compatible on your PC**.
-
+       
        ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
 
 5. In the dialog box shown below, click **Next** to download and install the tools..
@@ -121,22 +133,23 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 
 1. In Ubuntu, open the Terminal tool and run the following command to install the SSH service:
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > If the command fails to be executed and the system displays a message indicating that the openssh-server and openssh-client depend on different versions, install the openssh-client of the required version (for example, **sudo apt-get install openssh-client=1:8.2p1-4**) as prompted on the command-line interface (CLI) and run the command again to install the openssh-server.
-
+   
    
    ```
    sudo apt-get install openssh-server
    ```
-
-2. Run the following command to start the SSH service:
    
+2. Run the following command to start the SSH service:
+
    ```
    sudo systemctl start ssh
    ```
 
 3. Run the following command to obtain the IP address of the current user for remote access to the Ubuntu environment from Windows:
-   
+
    ```
    ifconfig
    ```

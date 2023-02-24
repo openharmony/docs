@@ -1,7 +1,10 @@
 # Burning
 
-
 Hi3861 V100 supports burning through the serial port. To burn source code through the serial port in Windows, perform the following steps:
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> 
+> In this document, the DevEco Device Tool 3.0 Release version is used as an example. The UI and usage of DevEco Device Tool vary by version. If you are using the latest version of DevEco Device Tool, perform instructions in [Burning an Image](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-ide-3861-burn.md).
 
 
 1. Connect the computer and the target development board through the serial port and USB port. For details, see [Introduction to the Hi3861 V100 Development Board](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-introduction-hi3861.md).
@@ -14,6 +17,7 @@ Hi3861 V100 supports burning through the serial port. To burn source code throug
    ![en-us_image_0000001261395999](figures/en-us_image_0000001261395999.png)
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > This operation is required only in remote access mode (in the Windows+Ubuntu hybrid development environment). If the local access mode (Windows or Ubuntu development environment) is used, skip this step.
 
 3. Check the serial port number in **QUICK ACCESS** > **DevEco Home** > **Device** in DevEco Device Tool.
@@ -21,6 +25,7 @@ Hi3861 V100 supports burning through the serial port. To burn source code throug
    ![en-us_image_0000001216274840](figures/en-us_image_0000001216274840.png)
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > If the serial port number is not displayed correctly, follow the steps described in [Installing the Serial Port Driver on Hi3861 V100](https://device.harmonyos.com/en/docs/documentation/guide/hi3861-drivers-0000001058153433).
 
 4. Choose **QUICK ACCESS** > **DevEco Home** > **Projects**, and then click **Settings**.

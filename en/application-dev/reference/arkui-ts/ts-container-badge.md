@@ -14,9 +14,9 @@ This component supports only one child component.
 
 ## APIs
 
-**Method 1**: Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style: BadgeStyle})
+**API 1**: Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style: BadgeStyle})
 
-Create a badge.
+Creates a badge.
 
 **Parameters**
 | Name| Type| Mandatory| Default Value| Description|
@@ -26,7 +26,7 @@ Create a badge.
 | maxCount | number | No| 99 | Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.|
 | style | [BadgeStyle](#badgestyle) | Yes| - | Style of the badge, including the font color, font size, badge color, and badge size.|
 
-**Method 2**: Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
+**API 2**: Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 
 Creates a badge based on the given string.
 
@@ -69,7 +69,7 @@ struct BadgeExample {
     Column() {
       Text('numberBadge').width('80%')
       Row({ space: 10 }) {
-        // Number badge. The default value of maxCount is 99. If the number of notifications exceeds 99, 99+ is displayed.
+        // Number badge in the upper right corner. The default value of maxCount is 99. If the number of notifications exceeds 99, 99+ is displayed.
         Badge({
           count: this.counts,
           maxCount: 99,
@@ -83,7 +83,7 @@ struct BadgeExample {
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)
 
-        // Number badge
+        // Number badge on the left.
         Badge({
           count: this.counts,
           maxCount: 99,
@@ -98,7 +98,7 @@ struct BadgeExample {
         }.width(100).height(50)
 
 
-        // Number badge
+        // Number badge on the right.
         Badge({
           count: this.counts,
           maxCount: 99,

@@ -25,15 +25,14 @@ The OpenHarmony Markup Language (HML) is an HTML-like language that allows you t
 <!-- xxx.hml -->
 <div class="item-container">
   <text>{{content}}</text>            <!-- Display Hello World!-->
-  <text>{{key1}} {{key2}}</text>       <!-- Display Hello World-->
-  <text>key1 {{key1}}</text>           <!-- Display key1 Hello-->
-  <text>{{flag1 && flag2}}</text>      <!-- Display false-->
-  <text>{{flag1 || flag2}}</text>      <!-- Display true-->
-  <text>{{!flag1}}</text>              <!-- Display false-->
+  <text>{{key1}} {{key2}}</text>       <!-- Display Hello World6+-->
+  <text>key1 {{key1}}</text>           <!-- Display key1 Hello6+-->
+  <text>{{flag1 && flag2}}</text>      <!-- Display false6+-->
+  <text>{{flag1 || flag2}}</text>      <!-- Display true6+-->
+  <text>{{!flag1}}</text>              <!-- Display false6+-->
 </div>
 ```
 
-Declare the variables used in the XML file for service widgets in the **data** field in the JSON file.
 
 ```json
 {
@@ -50,7 +49,7 @@ Declare the variables used in the XML file for service widgets in the **data** f
 >  **NOTE**
 >  - When using data binding, you can use the object operator or array operator on a key to access the bound data, for example, **{{key.value}}** and **{{key[0]}}**.
 >
->  - String concatenation, logical operations, and ternary expressions are supported.
+>  - String concatenation, logical operations, and ternary expressions are supported since API version 6.
 >   - String concatenation:
 >      - A variable can be followed by another variable, for example, **{{key1}}{{key2}}**.
 >      - A variable can also be followed by a constant, for example, **"my name is {{name}}, i am from {{city}}."    "key1 {{key1}}"**.
@@ -80,6 +79,7 @@ Declare the events for service widgets in the **actions** field in the JSON file
 
 
   ```json
+  // xxx.json
   {
     "data": {
       "mainAbility": "xxx.xxx.xxx"
@@ -94,40 +94,6 @@ Declare the events for service widgets in the **actions** field in the JSON file
   }
   ```
 
-You can also implement redirection to the target application using a **want**, which contains the **abilityName**, **bundleName**, and **parameters** fields.
-
-| Selector   | Type    | Default Value     | Description                                    |
-| ------ | ------ | -------- | ---------------------------------------- |
-| action | string | "router" | Event type.<br>- **"router"**: redirection event.<br>- **"message"**: message event.|
-| want   | [Want](../apis/js-apis-application-Want.md) | -        | Information about the target application. For details, see the **want** format.                    |
-
-
-    ```json
-    {
-      "data": {
-        "mainAbility": "xxx.xxx.xxx"
-      },
-      "actions": {
-        "routerEventName1": { 
-          "action": "router",
-          "want": {
-            "bundleName": "com.example.myapplication",
-            "abilityName": "com.example.entry.MainAbility"
-          }
-        },
-        "routerEventName2": { 
-          "action": "router",
-          "want": {
-            "action": "xxx.intent.action.DIAL",
-            "uri": "tel:12345678"
-          }
-        }  
-      }
-    }
-    ```
-
-  In API version 8, the [featureAbility.getWant](../apis/js-apis-featureAbility.md) API in the **onCreate** method of the **app.js** or **app.ets** file must be called for the **want** parameter to receive related parameters.
-
 - Message event properties
 
   | Selector   | Example    | Default Value    | Description        |
@@ -137,6 +103,7 @@ You can also implement redirection to the target application using a **want**, w
 
 
   ```json
+  // xxx.json
   {
     "actions": {
       "activeEvent": { 
@@ -184,6 +151,7 @@ You can also implement redirection to the target application using a **want**, w
 
 
 ```json
+// xxx.json
 {
   "data": {
     "array": [
@@ -232,6 +200,7 @@ The **if-elif-else** statements must be used in sibling nodes. Otherwise, the co
 
 
 ```json
+// xxx.json
 {
   "data": {
     "show": false,
@@ -250,6 +219,7 @@ If **show** is **true**, the node is rendered properly; if it is **false**, the 
 
 
 ```json
+// xxx.json
 {
   "data": {
     "visible": false
@@ -275,6 +245,7 @@ If **show** is **true**, the node is rendered properly; if it is **false**, the 
 
 
 ```json
+// xxx.json
 { 
   "data": { 
     "show": true
