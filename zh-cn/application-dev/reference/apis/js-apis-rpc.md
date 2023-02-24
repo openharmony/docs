@@ -641,12 +641,12 @@ readShort(): number
       console.info("rpc write short fail, errorMessage" + error.message);
   }
   try {
-      let ret = data.readShort(8);
+      let ret = data.readShort();
+      console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
       console.info("rpc read short fail, errorCode " + error.code);
       console.info("rpc read short fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readByte is: " + ret);
   ```
 
 ### writeInt
@@ -2391,6 +2391,8 @@ readException(): void
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -2411,6 +2413,11 @@ readException(): void
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -4839,6 +4846,8 @@ readException(): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **示例：**
+ 
+  获取服务
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -4860,6 +4869,11 @@ readException(): void
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -5640,6 +5654,8 @@ asObject(): IRemoteObject
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -5660,7 +5676,11 @@ asObject(): IRemoteObject
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
-
+  ```
+  
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的asObject接口方法获取代理或远端对象
+  
+  ```ts
   class TestProxy {
       remote: rpc.RemoteObject;
       constructor(remote) {
@@ -5802,7 +5822,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5826,7 +5846,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5850,7 +5870,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -5870,7 +5890,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6052,7 +6072,7 @@ isObjectDead(): boolean
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6072,6 +6092,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | boolean | true：发送成功，false：发送失败。|
 
 **示例：**
+
+  获取服务
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6093,6 +6115,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
+  
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6115,7 +6142,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6135,6 +6162,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
 **示例：**
+
+  获取服务
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6156,6 +6185,11 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -6186,7 +6220,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6206,6 +6240,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
+
+  获取服务
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6227,6 +6263,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6255,7 +6296,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendMessageRequest返回后的某个时机执行回调，回复内容在RequestResult的reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendMessageRequest返回后的某个时机执行回调，回复内容在RequestResult的reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6270,6 +6311,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
 **示例：**
+  
+  获取服务
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6304,6 +6347,11 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       result.reply.reclaim();
   }
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -6323,7 +6371,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6338,6 +6386,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | callback | AsyncCallback&lt;SendRequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
 **示例：**
+
+  获取服务
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6372,6 +6422,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       result.reply.reclaim();
   }
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6410,6 +6465,8 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6430,6 +6487,11 @@ getLocalInterface(interface: string): IRemoteBroker
       "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
+
+  ```ts
   try {
       let broker = proxy.getLocalInterface("testObject");
       console.log("RpcClient: getLocalInterface is " + broker);
@@ -6463,6 +6525,8 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6483,6 +6547,11 @@ queryLocalInterface(interface: string): IRemoteBroker
       "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
+
+  ```ts
   let broker = proxy.queryLocalInterface("testObject");
   console.log("RpcClient: queryLocalInterface is " + broker);
   ```
@@ -6512,6 +6581,8 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6532,6 +6603,11 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
+  
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6539,7 +6615,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
@@ -6571,6 +6647,8 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6591,18 +6669,23 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecippient接口方法新增死亡回调
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   ```
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6625,6 +6708,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+  获取服务
+  
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6645,6 +6730,11 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6685,6 +6775,8 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6705,6 +6797,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6740,6 +6837,8 @@ getDescriptor(): string
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6760,6 +6859,10 @@ getDescriptor(): string
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
+
+  ```ts
   try {
       let descriptor = proxy.getDescriptor();
       console.log("RpcClient: descriptor is " + descriptor);
@@ -6787,6 +6890,8 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6807,6 +6912,11 @@ getInterfaceDescriptor(): string
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+    ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
+
+  ```ts
   let descriptor = proxy.getInterfaceDescriptor();
   console.log("RpcClient: descriptor is " + descriptor);
   ```
@@ -6827,6 +6937,8 @@ isObjectDead(): boolean
 
 **示例：**
 
+  获取服务
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6847,6 +6959,11 @@ isObjectDead(): boolean
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
+
+  ```ts
   let isDead = proxy.isObjectDead();
   console.log("RpcClient: isObjectDead is " + isDead);
   ```
@@ -7452,7 +7569,7 @@ RemoteObject构造函数。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7518,7 +7635,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7588,7 +7705,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendMessageRequest返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7644,7 +7761,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendMessageRequest返回时收到回调，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageSequence消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendMessageRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7694,7 +7811,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8030,8 +8147,12 @@ getLocalInterface(descriptor: string): IRemoteBroker
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8040,8 +8161,8 @@ getLocalInterface(descriptor: string): IRemoteBroker
   try {
       let broker = testRemoteObject.getLocalInterface("testObject");
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
   ```
 
@@ -8127,8 +8248,12 @@ getDescriptor(): string
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8137,8 +8262,8 @@ getDescriptor(): string
   try {
       let descriptor = testRemoteObject.getDescriptor();
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
   console.log("RpcServer: descriptor is: " + descriptor);
   ```
@@ -8219,8 +8344,12 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
               console.info(rpc attach local interface fail, errorMessage " + error.message);
           }
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
       isObjectDead(): boolean {
           return false;
       }
