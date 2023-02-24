@@ -83,7 +83,7 @@ Image(src: string | PixelMap | Resource)
 
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图片尺寸。<br>- width：图片的宽，单位为像素。<br/>- height：图片的高，单位为像素。<br/>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>- loadingStatus：图片加载成功的状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图片尺寸。<br>- width：图片的宽，单位为像素。<br/>- height：图片的高，单位为像素。<br/>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>- loadingStatus：图片加载成功的状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>loadingStatus返回的状态值为0时，代表图片加载失败；返回的状态值为1时，代表图片加载成功。 |
 | onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)                | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 

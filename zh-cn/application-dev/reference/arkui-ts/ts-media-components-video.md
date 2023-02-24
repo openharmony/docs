@@ -173,7 +173,7 @@ struct VideoCreateComponent {
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width(800).height(600)
+      }).width('100%').height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -186,7 +186,7 @@ struct VideoCreateComponent {
           console.info('onFinish')
         })
         .onError(() => {
-          console.info('onFinish')
+          console.info('onError')
         })
         .onPrepared((e) => {
           console.info('onPrepared is ' + e.duration)

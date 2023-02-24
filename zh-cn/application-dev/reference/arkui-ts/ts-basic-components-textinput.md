@@ -43,6 +43,10 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) | 设置输入框为默认风格或内联输入风格。<br/>默认值：TextInputStyle.Default |
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置输入文本在输入框中的对齐方式。<br/>默认值：TextAlign.Start  |
 
+>  **说明：**
+>
+>  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 16 vp,<br>&nbsp;left: 8 vp<br> }
+
 ## EnterKeyType枚举说明
 
 | 名称                  | 描述        |
