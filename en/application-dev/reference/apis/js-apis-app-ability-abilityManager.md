@@ -21,13 +21,14 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 
 **System API**: This enum is an internal definition of a system API and cannot be called by third-party applications.
 
-| Name| Value| Description| 
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| INITIAL | 0 | The ability is in the initial state.| 
-| FOREGROUND | 9 | The ability is in the foreground state. | 
-| BACKGROUND | 10 | The ability is in the background state. | 
-| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
+| INITIAL | 0 | The ability is in the initial state.|
+| FOCUS | 2 | The ability has the focus.|
+| FOREGROUND | 9 | The ability is in the foreground state. |
+| BACKGROUND | 10 | The ability is in the background state. |
+| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. |
+| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. |
 
 ## updateConfiguration
 
@@ -38,7 +39,7 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
- 
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -71,9 +72,9 @@ const config = {
 try {
     abilityManager.updateConfiguration(config, (err) => {
         if (err.code !== 0) {
-            console.log("updateConfiguration fail, err: " + JSON.stringify(err));
+            console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
         } else {
-            console.log("updateConfiguration success.");
+            console.log('updateConfiguration success.');
         }
     })
 } catch (paramError) {
@@ -142,7 +143,7 @@ try {
 
 getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
-Obtains the ability running information. This API uses an asynchronous callback to return the result.
+Obtains the UIAbility running information. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -152,7 +153,7 @@ Obtains the ability running information. This API uses an asynchronous callback 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in this callback.  |
 
 **Error codes**
 
@@ -170,9 +171,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
         if (err.code !== 0) {
-            console.log("getAbilityRunningInfos fail, error: " + JSON.stringify(err));
+            console.log('getAbilityRunningInfos fail, error: ' + JSON.stringify(err));
         } else {
-            console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data));
+            console.log('getAbilityRunningInfos success, data: ' + JSON.stringify(data));
         }
     });
 } catch (paramError) {
@@ -185,7 +186,7 @@ try {
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
-Obtains the ability running information. This API uses a promise to return the result.
+Obtains the UIAbility running information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -195,7 +196,7 @@ Obtains the ability running information. This API uses a promise to return the r
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -212,9 +213,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
-        console.log("getAbilityRunningInfos success, data: " + JSON.stringify(data))
+        console.log('getAbilityRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getAbilityRunningInfos fail, err: "  + JSON.stringify(err));
+        console.log('getAbilityRunningInfos fail, err: '  + JSON.stringify(err));
     });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -257,9 +258,9 @@ let upperLimit = 10;
 try {
     abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
         if (err.code !== 0) {
-            console.log("getExtensionRunningInfos fail, err: " + JSON.stringify(err));
+            console.log('getExtensionRunningInfos fail, err: ' + JSON.stringify(err));
         } else {
-            console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+            console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
         }
     });
 } catch (paramError) {
@@ -273,7 +274,7 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 Obtains the ExtensionAbility running information. This API uses a promise to return the result.
- 
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -307,9 +308,9 @@ let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-        console.log("getExtensionRunningInfos success, data: " + JSON.stringify(data));
+        console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getExtensionRunningInfos fail, err: "  + JSON.stringify(err));
+        console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
     })
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -346,9 +347,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
     if (err.code !== 0) {
-        console.log("getTopAbility fail, err: " + JSON.stringify(err));
+        console.log('getTopAbility fail, err: ' + JSON.stringify(err));
     } else {
-        console.log("getTopAbility success, data: " + JSON.stringify(data));
+        console.log('getTopAbility success, data: ' + JSON.stringify(data));
     }
 });
 ```
@@ -358,7 +359,7 @@ abilityManager.getTopAbility((err, data) => {
 getTopAbility(): Promise\<ElementName>;
 
 Obtains the top ability, which is the ability that has the window focus. This API uses a promise to return the result.
- 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -381,8 +382,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility().then((data) => {
-    console.log("getTopAbility success, data: " + JSON.stringify(data));
+    console.log('getTopAbility success, data: ' + JSON.stringify(data));
 }).catch((err) => {
-    console.log("getTopAbility fail, err: "  + JSON.stringify(err));
+    console.log('getTopAbility fail, err: '  + JSON.stringify(err));
 })
 ```
