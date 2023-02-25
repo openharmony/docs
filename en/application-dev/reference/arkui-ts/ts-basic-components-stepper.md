@@ -34,11 +34,11 @@ None
 
 | Name| Description|
 | -------- | -------- |
-| onFinish(callback: () =&gt; void) | Invoked when the **nextLabel** of the last **\<StepperItem>** in the **\<Stepper>** is clicked.|
+| onFinish(callback: () =&gt; void) | Invoked when the **nextLabel** of the last **\<StepperItem>** in the **\<Stepper>** is clicked and the **ItemState** attribute is set to **Normal**.|
 | onSkip(callback: () =&gt; void) | Invoked when the current **\<StepperItem>** is **ItemState.Skip** and the **nextLabel** is clicked.|
-| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Invoked when the user switches to the previous or next step.<br>- **prevIndex**: index of the step page before the switching.<br>- **index**: index of the step page after the switching, that is, index of the previous or next page.|
-| onNext(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when a user switches to the next step.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the next page.|
-| onPrevious(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when a user switches to the previous step.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the previous page.|
+| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Invoked when the **prevLabel** of the current **\<StepperItem>** is clicked to switch to the previous step page; or when the **nextLabel** of the current (not the last) **\<StepperItem>** is clicked to switch to the next step page and the **ItemState** attribute is set to **Normal**.<br>- **prevIndex**: index of the step page before the switching.<br>- **index**: index of the step page after the switching, that is, index of the previous or next step page.|
+| onNext(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when the **nextLabel** of the current (not the last) **\<StepperItem>** is clicked and the **ItemState** attribute is set to **Normal**.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the next step page.|
+| onPrevious(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when the **prevLabel** of the current **\<StepperItem>** is clicked to switch to the previous step page.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the previous step page.|
 
 
 ## Example
