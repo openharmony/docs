@@ -318,7 +318,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 分屏模式允许用户在同一屏幕上同时运行两个应用程序，其中一个应用程序占据屏幕左侧的一部分，另一个应用程序占据右侧的一部分。分屏模式主要用于提高用户的多任务处理效率，例如在电子书阅读、视频会议或文档编辑中。
 
-使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数来配置UIAbility的展示形态。
+使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性来配置UIAbility的展示形态。
 
 > **说明：**
 >
