@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> For best possible results, use [DevEco Studio V3.0.0.993](https://developer.harmonyos.com/cn/develop/deveco-studio#download) for your development.
+> For best possible results, use [DevEco Studio 3.1 Beta1](https://developer.harmonyos.com/cn/develop/deveco-studio#download) for your development.
 
 
 ## Creating a JavaScript Project
