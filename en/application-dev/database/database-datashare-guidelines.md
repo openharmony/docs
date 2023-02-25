@@ -40,7 +40,7 @@ There are two roles in **DataShare**:
 
 - **onCreate**
 
-  Called by the server to initialize service logic when the **DataShare** client connects to the **DataShareExtensionAbility** server. This method can be overridden as required.
+  Called by the server to initialize service logic when the **DataShare** client connects to the **DataShareExtensionAbility** server.
 
 - **insert**
 
@@ -76,10 +76,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 2. Right-click the **DataShareAbility** directory, and choose **New > TypeScript File** to create a file named **DataShareAbility.ts**.
 
-3. In the **DataShareAbility.ts** file, import the **DataShareExtensionAbility** dependency package. You can override the service implementation as required. For example, if the data provider provides only the services for inserting, deleting, and querying data, you can override **insert()**, **delete()**, and **query()** only.
-
-
-4. Import dependencies.
+3. In the **DataShareAbility.ts** file, import **DataShareExtensionAbility** and other dependencies. 
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
@@ -88,9 +85,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
 
-5. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only **query()**.
+4. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only **query()**.
 
-6. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
+5. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
 
    ```ts
    const DB_NAME = "DB00.db";
@@ -98,13 +95,13 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    const DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
    + TBL_NAME
    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)";
-
+   
    let rdbStore;
    let result;
-
+   
    export default class DataShareExtAbility extends Extension {
        private rdbStore_;
-
+   
    	// Override onCreate().
        onCreate(want, callback) {
            result = this.context.cacheDir + '/datashare.txt';
@@ -122,7 +119,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
                }
            });
        }
-
+   
    	// Override query().
        query(uri, predicates, columns, callback) {
            if (predicates == null || predicates == undefined) {
@@ -146,19 +143,20 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    };
    ```
 
-7. Define **DataShareExtensionAbility** in **module.json5**.
 
-   | Field| Description                                                    |
-   | ------------ | ------------------------------------------------------------ |
-   | "name"       | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.        |
-   | "type"       | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template.|
-   | "uri"        | URI used for communication. It is the unique identifier for the data consumer to connect to the provider.               |
-   | "visible"    | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.|
+6. Define **DataShareExtensionAbility** in **module.json5**.
+
+   | Field     | Description                                                  |
+   | --------- | ------------------------------------------------------------ |
+   | "name"    | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**. |
+   | "type"    | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template. |
+   | "uri"     | URI used for communication. It is the unique identifier for the data consumer to connect to the provider. |
+   | "visible" | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**. |
 
    **module.json5 example**
-
+   
    ```json
-   "extensionAbilities": [
+      "extensionAbilities": [
      {
        "srcEntrance": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
        "name": "DataShareExtAbility",
@@ -170,6 +168,8 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      }
    ]
    ```
+   
+   
 
 ### Data Consumer Application Development
 

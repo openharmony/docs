@@ -119,7 +119,7 @@ The following uses a single KV store as an example to describe the development p
      }
      distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
        if (err) {
-         console.error(`Failed to createKVManager.code is ${err.code},message is ${err.message}`);
+         console.error(`Failed to create KVManager. code is ${err.code},message is ${err.message}`);
          return;
        }
        console.log('Created KVManager successfully');
