@@ -47,13 +47,13 @@ import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------')},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------')},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------')},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------')},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------')},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------')},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------')}
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
@@ -129,13 +129,13 @@ import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------')},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------')},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------')},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------')},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------')},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------')},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------')}
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
@@ -216,13 +216,13 @@ import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------')},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------')},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------')},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------')},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------')},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------')},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------')}
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
@@ -397,7 +397,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
         console.log('size = ${missions.length}');
         console.log('missions = ${JSON.stringify(missions)}');
       }
-    })
+    });
   } catch (paramError) {
     console.log('error: ${paramError.code}, ${paramError.message}');
   }

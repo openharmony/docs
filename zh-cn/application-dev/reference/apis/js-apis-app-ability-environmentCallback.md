@@ -63,7 +63,7 @@ export default class MyAbility extends UIAbility {
             onMemoryLevel(level){
                 console.log('onMemoryLevel level: ${JSON.stringify(level)}');
             }
-        }
+        };
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
         // 2.通过applicationContext注册监听应用内生命周期

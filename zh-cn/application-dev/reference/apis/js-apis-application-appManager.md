@@ -32,7 +32,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
   appManager.isRunningInStabilityTest((err, flag) => {
     console.log('error: ${JSON.stringify(err)}');
     console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
-  })  
+  });
   ```
 
 
@@ -105,7 +105,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
   appManager.isRamConstrainedDevice((err, data) => {
       console.log('error: ${JSON.stringify(err)}');
       console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
-  })
+  });
   ```
 
 ## appManager.getAppMemorySize

@@ -39,7 +39,7 @@ let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
     }
-}
+};
 let observerId = -1;
 try {
     observerId = errorManager.on('error', observer);
@@ -113,7 +113,7 @@ try {
         })
         .catch((err) => {
             console.log('----------- unregisterErrorObserver fail ----------', err);
-    })
+    });
 } catch (paramError) {
     console.log('error: ${paramError.code}, ${paramError.message}');
 }

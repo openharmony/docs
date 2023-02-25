@@ -231,7 +231,7 @@ function onAbilityCreateCallback(data) {
 let monitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) => {

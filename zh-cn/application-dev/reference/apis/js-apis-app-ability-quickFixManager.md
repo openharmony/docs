@@ -116,7 +116,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
       console.info(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}‘);
+    console.log('error: ${paramError.code}, ${paramError.message}');
   }
 ```
 
@@ -150,7 +150,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
       } else {
         console.info(`getApplicationQuickFixInfo success: ${data}`);
       }
-    })
+    });
   } catch (paramError) {
     console.log('error: ${paramError.code}, ${paramError.message}');
   }
