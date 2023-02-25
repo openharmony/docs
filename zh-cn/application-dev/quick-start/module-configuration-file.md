@@ -204,7 +204,7 @@ ablities标签描述UIAbility组件的配置信息，标签值为数组类型，
 
 **OpenHarmony中不允许应用隐藏启动图标**
 
-OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动图标，那么系统会读取app.json配置中icon显示在桌面上;<br>
+OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动图标，那么系统将应用app.json中的icon作为启动图标，并显示在桌面上。<br>
 用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面中。<br>
 如果应用想要隐藏启动图标，需要在HarmonyAppProvision中申请AllowAppDesktopIconHide应用特权。<br>
 配置相关参考 <br>
@@ -212,31 +212,31 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 [应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)
 
 启动图标和Label的设置与查询
-* 应用的HAP中包含Ability
-  * 该Ability中设置启动图标和Label
+* HAP中包含Ability
+  * 该Ability中设置icon和label
     * 该应用没有隐藏图标的特权
       * 返回的桌面图标为该Ability配置的图标
       * 返回的桌面Label为该Ability配置的Label（如果没有配置Label，返回包名）
       * 返回的组件名为该Ability的组件名
       * 用户点击该桌面图标，页面跳转到该Ability首页
     * 该应用具有隐藏图标的特权
-      * 该应用的launcherAbilityInfo不在返回信息
-  * 该Ability中没有设置启动图标和Label
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
+  * 该Ability中没有设置icon和label
     * 该应用没有隐藏图标的特权
       * 返回的桌面图标为app配置下的图标（app.json中icon为必填项）
       * 返回的桌面Label为app配置下的label（app.json中label为必填项）
       * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
       * 用户点击该桌面图标，页面跳转到该应用的详情页面
     * 该应用具有隐藏图标的特权
-      * 该应用的launcherAbilityInfo不在返回信息
-* 应用的HAP中不包含Ability
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
+* HAP中不包含Ability
   * 该应用没有隐藏图标的特权
     * 返回的桌面图标为app配置下的图标（app.json中icon为必填项）
     * 返回的桌面Label为app配置下的label（app.json中label为必填项）
     * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
     * 用户点击该桌面图标，页面跳转到该应用的详情页面
   * 该应用具有隐藏图标的特权
-    * 该应用的launcherAbilityInfo不在返回信息<br><br>
+    * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。<br><br>
 
 
   **表4** **abilities标签说明**
