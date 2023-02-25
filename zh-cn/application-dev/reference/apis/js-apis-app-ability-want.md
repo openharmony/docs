@@ -34,7 +34,7 @@ import Want from '@ohos.app.ability.Want';
 - 基础用法
 
   ```ts
-    var want = {
+    let want = {
         'deviceId': '', // deviceId为空表示本设备
         'bundleName': 'com.extreme.test',
         'abilityName': 'MainAbility',
@@ -110,13 +110,13 @@ import Want from '@ohos.app.ability.Want';
     * 文件描述符（FD）
         ```ts
             import fileio from '@ohos.fileio';
-            var fd;
+            let fd;
             try {
                 fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
             } catch(e) {
                 console.log('openSync fail:' + JSON.stringify(e));
             }
-            var want = {
+            let want = {
                 'deviceId': '', // deviceId为空表示本设备
                 'bundleName': 'com.extreme.test',
                 'abilityName': 'MainAbility',

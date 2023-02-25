@@ -18,7 +18,6 @@
 **示例：**
     
   ```ts
-import hilog from '@ohos.hilog';
 import Ability from '@ohos.application.Ability'
 import Window from '@ohos.window'
 
@@ -43,12 +42,10 @@ export default class MainAbility extends Ability {
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {
-                hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.ERROR);
-                hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+                console.error('failed to load the content, error: + ${JSON.stringify(err)}');
                 return;
             }
-            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-            hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+            console.info('Succeeded in loading the content, data: + ${JSON.stringify(data)}');
         });
     }
 }
