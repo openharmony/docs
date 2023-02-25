@@ -45,7 +45,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
     } else {
         console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
     }
-})  
+});  
 ```
 
 
@@ -151,7 +151,7 @@ appManager.isRamConstrainedDevice((err, data) => {
     } else {
         console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.getAppMemorySize
@@ -221,7 +221,7 @@ appManager.getAppMemorySize((err, data) => {
     } else {
         console.log('The size of app memory is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.getRunningProcessInformation
@@ -295,7 +295,7 @@ appManager.getRunningProcessInformation((err, data) => {
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.on
@@ -352,7 +352,7 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 try {
     const observerId = appManager.on('applicationState', applicationStateObserver);
     console.log(`[appManager] observerCode: ${observerId}`);
@@ -416,7 +416,7 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
@@ -478,7 +478,7 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
@@ -559,7 +559,7 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
@@ -574,7 +574,7 @@ try {
         console.log('unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}');
     }).catch((err) => {
         console.log('unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}');
-    })
+    });
 } catch (paramError) {
     console.log('error: ${paramError.code}, ${paramError.message}');
 }
@@ -660,7 +660,7 @@ appManager.getForegroundApplications().then((data) => {
     console.log('getForegroundApplications success, data: ${JSON.stringify(data)}');
 }).catch((err) => {
     console.log('getForegroundApplications fail, err: ${JSON.stringify(err)}');
-})
+});
 ```
 
 ## appManager.killProcessWithAccount
@@ -702,7 +702,7 @@ try {
         console.log('killProcessWithAccount success');
     }).catch((err) => {
         console.error('killProcessWithAccount fail, err: ${JSON.stringify(err)}');
-    })
+    });
 } catch (paramError) {
     console.error('error: ${paramError.code}, ${paramError.message}');
 }
@@ -844,7 +844,7 @@ try {
         console.log('killProcessesByBundleName success.');
     }).catch((err) => {
         console.log('killProcessesByBundleName fail, err: ${JSON.stringify(err)}');
-    })
+    });
 } catch (paramError) {
     console.log('error: ${paramError.code}, ${paramError.message}');
 }
@@ -940,7 +940,7 @@ try {
         console.log('clearUpApplicationData success.');
     }).catch((err) => {
         console.log('clearUpApplicationData fail, err: ${JSON.stringify(err)}');
-    })
+    });
 } catch (paramError) {
     console.log('error: ${paramError.code}, ${paramError.message}');
 }

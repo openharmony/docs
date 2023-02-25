@@ -42,8 +42,8 @@
 
         // 执行正常业务
         console.log('bundleName = ${snapshot.ability.bundleName}');
-      })
-    })
+      });
+    });
   } catch (paramError) {
     console.log('error: ${paramError.code}, ${paramError.message}');
   }

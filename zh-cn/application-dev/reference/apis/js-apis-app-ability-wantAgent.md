@@ -392,7 +392,7 @@ function getWantAgentCallback(err, data) {
             console.info('getBundleName ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
             console.info('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
-        })
+        });
     } catch(err){
         console.info('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
@@ -604,7 +604,7 @@ function getWantAgentCallback(err, data) {
             console.info('getUid ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
             console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
-        })
+        });
     } catch(err){
         console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
@@ -818,7 +818,7 @@ function getWantAgentCallback(err, data) {
             console.info('getUid ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
             console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
-        })
+        });
     } catch(err){
         console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
@@ -1029,7 +1029,7 @@ function getWantAgentCallback(err, data) {
             console.info('cancel ok!');
         }).catch((err)=>{
             console.info('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
-        })
+        });
     } catch(err){
         console.info('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
@@ -1561,7 +1561,7 @@ function getWantAgentCallback(err, data) {
             console.info('getOperationType ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
             console.info('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
-        })
+        });
     } catch(err){
         console.info('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }

@@ -93,7 +93,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
   missionManager.unregisterMissionListener(listenerid, (error) => {
       console.log('unregisterMissionListener');
-  })
+  });
 ```
 
 
