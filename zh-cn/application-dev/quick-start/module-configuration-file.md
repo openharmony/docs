@@ -202,6 +202,43 @@ deviceTypes示例：
 
 ablities标签描述UIAbility组件的配置信息，标签值为数组类型，该标签下的配置只对当前UIAbility生效。
 
+**OpenHarmony中不允许应用隐藏启动图标**
+
+OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动图标，那么系统会读取app.json配置中icon显示在桌面上;<br>
+用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面中。<br>
+如果应用想要隐藏启动图标，需要在HarmonyAppProvision中申请AllowAppDesktopIconHide应用特权。<br>
+配置相关参考 <br>
+[HarmonyAppProvision配置文件说明](../security/app-provision-structure.md) <br>
+[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)
+
+启动图标和Label的设置与查询
+* 应用的HAP中包含Ability
+  * 该Ability中设置启动图标和Label
+    * 该应用没有隐藏图标的特权
+      * 返回的桌面图标为该Ability配置的图标
+      * 返回的桌面Label为该Ability配置的Label（如果没有配置Label，返回包名）
+      * 返回的组件名为该Ability的组件名
+      * 用户点击该桌面图标，页面跳转到该Ability首页
+    * 该应用具有隐藏图标的特权
+      * 该应用的launcherAbilityInfo不在返回信息
+  * 该Ability中没有设置启动图标和Label
+    * 该应用没有隐藏图标的特权
+      * 返回的桌面图标为app配置下的图标（app.json中icon为必填项）
+      * 返回的桌面Label为app配置下的label（app.json中label为必填项）
+      * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
+      * 用户点击该桌面图标，页面跳转到该应用的详情页面
+    * 该应用具有隐藏图标的特权
+      * 该应用的launcherAbilityInfo不在返回信息
+* 应用的HAP中不包含Ability
+  * 该应用没有隐藏图标的特权
+    * 返回的桌面图标为app配置下的图标（app.json中icon为必填项）
+    * 返回的桌面Label为app配置下的label（app.json中label为必填项）
+    * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
+    * 用户点击该桌面图标，页面跳转到该应用的详情页面
+  * 该应用具有隐藏图标的特权
+    * 该应用的launcherAbilityInfo不在返回信息<br><br>
+
+
   **表4** **abilities标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
@@ -334,6 +371,40 @@ skills示例：
   ]
 }
 ```
+
+**增强隐式查询功能**
+
+支持Uri级别的前缀匹配。
+当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri，配置成功。
+
+
+  *  针对查询接口<br>
+    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
+    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
+    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
+    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array<AbilityInfo>>;
+  *  配置要求<br>
+    abilities  -> skills -> uris对象 <br>
+    配置1： 只配置 scheme = 'http' <br>
+    配置2： 只配置 ( scheme = 'http' ) + ( host = 'example.com' ) <br>
+    配置3： 只配置 ( scheme = 'http' ) + ( host = 'example.com' ) + ( port = '8080' )
+  *  前缀匹配<br>
+    参数[want](../application-models/want-overview.md)下uri，调用queryAbilityInfo查询接口<br>
+    1. uri = 'https://' 无匹配<br>
+    2. uri = 'http://' 可以匹配 配置1<br>
+    3. uri = 'https://example.com' 无匹配<br>
+    4. uri = 'https://exa.com' 无匹配<br>
+    5. uri = 'http://exa.com' 可以匹配 配置1<br>
+    6. uri = 'http://example.com' 可以匹配 配置1 配置2<br>
+    7. uri = 'https://example.com:8080' 无匹配<br>
+    8. uri = 'http://exampleaa.com:8080' 可以匹配 配置1<br>
+    9. uri = 'http://example.com:9180' 可以匹配 配置1 配置2<br>
+    10. uri = 'http://example.com:8080' 可以匹配 配置1 配置2 配置3<br>
+    11. uri = 'https://example.com:9180/path' 无匹配<br>
+    12. uri = 'http://exampleap.com:8080/path' 可以匹配 配置1<br>
+    13. uri = 'http://example.com:9180/path' 可以匹配 配置1 配置2<br>
+    14. uri = 'http://example.com:8080/path' 可以匹配 配置1 配置2 配置3<br>
+  
 
 
 ## extensionAbilities标签

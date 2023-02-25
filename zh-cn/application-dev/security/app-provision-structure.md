@@ -53,6 +53,8 @@ HarmonyAppProvision文件示例：
 
 ```
 
+**提示：** HarmonyAppProvision文件下的bundle-info对象中bundle-name需要和所签名应用的包名bundleName（config.js/module.json）保持一致
+在安装过程中会校验HAP签信息的bundleName与HAP的配置文件中的bundleName是否一致，不一致的话，HAP不可安装，目的就是防止颁发的provision证书任意用于不同应用的签名
 
 ### validity对象内部结构
 
