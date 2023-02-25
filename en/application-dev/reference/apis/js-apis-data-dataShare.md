@@ -175,7 +175,7 @@ Unsubscribes from the changes of the specified data. This API uses an asynchrono
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event type to unsubscribe from. The value is **dataChange**, which indicates data change events.|
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | No  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
