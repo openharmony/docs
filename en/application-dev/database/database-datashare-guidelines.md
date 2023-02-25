@@ -25,16 +25,14 @@ For details about the data provider APIs, see [DataShareExtensionAbility](../ref
 | query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | Queries data from the database.              |
 | delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | Deletes one or more data records from the database.|
 
-For more details, see [DataShareHelper](../reference/apis/js-apis-data-dataShare.md).
+For more information, see [DataShareHelper](../reference/apis/js-apis-data-dataShare.md).
 
 ## When to Use
 
-There are two roles in **DataShare**.
+There are two roles in **DataShare**:
 
 - Data provider: adds, deletes, modifies, and queries data, opens files, and shares data.
 - Data consumer: accesses the data provided by the provider using **DataShareHelper**.
-
-Examples are given below.
 
 ### Data Provider Application Development (Only for System Applications)
 
@@ -43,6 +41,8 @@ Examples are given below.
 - **onCreate**
 
   Called by the server to initialize service logic when the **DataShare** client connects to the **DataShareExtensionAbility** server. 
+
+- **insert**
 
   Inserts data. This API is called when the client requests to insert data.
 
@@ -70,7 +70,7 @@ Examples are given below.
 
   Converts the URI used by the server to the initial URI passed by the client. 
 
-Before implementing a **DataShare** service, you need to create a **DataShareExtensionAbility** object in the DevEco Studio project as follows:
+Before implementing a **DataShare** service, create a **DataShareExtensionAbility** object in the DevEco Studio project as follows:
 
 1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **DataShareAbility**.
 
@@ -153,53 +153,55 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | "visible"  | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**. | Yes                                                          |
    | "metadata" | Configuration for silent access, including the **name** and **resource** fields. <br/>The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**. <br/>The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**. | **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute). |
 
-**module.json5 example**
+   **module.json5 example**
+   
+   ```json
+   "extensionAbilities": [
+     {
+       "srcEntrance": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
+       "name": "DataShareExtAbility",
+       "icon": "$media:icon",
+       "description": "$string:description_datashareextability",
+       "type": "dataShare",
+       "uri": "datashare://com.samples.datasharetest.DataShare",
+       "visible": true,
+       "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
+     }
+   ]
+   ```
+   
+   **data_share_config.json Description**
+   
+   | Field             | Description                                                  | Mandatory                                                    |
+   | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+   | "tableConfig"     | Label configuration.                                         | Yes                                                          |
+   | "uri"             | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority: - *****: indicates all databases and tables. - **datashare:///{\*bundleName\*}/{\*moduleName\*}/{\*storeName\*}**: specifies a database. - **datashare:///{\*bundleName\*}/{\*moduleName\*}/{\*storeName\*}/{\*tableName\*}** : specifies a table. If URIs of different formats are configured, only the URI with higher priority takes effect. | Yes                                                          |
+   | "crossUserMode"   | Whether data is shared by multiple users. The value **1** means to share data between multiple users, and the value **2** means the opposite. | **crossUserMode** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute). |
+   | "writePermission" | Write permission required for silent access.                 | No                                                           |
+   | "readPermission"  | Read permission required for silent access.                  | No                                                           |
 
-```json
-"extensionAbilities": [
-  {
-    "srcEntrance": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
-    "name": "DataShareExtAbility",
-    "icon": "$media:icon",
-    "description": "$string:description_datashareextability",
-    "type": "dataShare",
-    "uri": "datashare://com.samples.datasharetest.DataShare",
-    "visible": true,
-    "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
-  }
-]
-```
+   **data_share_config.json Example**
+   
+   ```json
+   "tableConfig": [
+    {
+      "uri": "*",
+      "writePermission": "ohos.permission.xxx"
+    },
+    {
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
+      "crossUserMode": 1,
+      "writePermission": "ohos.permission.xxx",
+      "readPermission": "ohos.permission.xxx"
+    },
+    {
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
+      "crossUserMode": 2
+    }
+   ]
+   ```
 
-**data_share_config.json Description**
 
-| Field| Description                                                    | Mandatory|
-| ------------ | ------------------------------------------------------------ | --- |
-| "tableConfig"       | Label configuration.| Yes|
-| "uri"               | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *****: indicates all databases and tables.<br>- **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}**: specifies a database.<br>- **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}/{*tableName*}** : specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect. | Yes|
-| "crossUserMode"     | Whether data is shared by multiple users. The value **1** means to share data between multiple users, and the value **2** means the opposite.               | **crossUserMode** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute). |
-| "writePermission"   | Write permission required for silent access.| No|
-| "readPermission"    | Read permission required for silent access.| No|
-
-**data_share_config.json Example**
-
-```json
-"tableConfig": [
- {
-   "uri": "*",
-   "writePermission": "ohos.permission.xxx"
- },
- {
-   "uri": "datashare:///com.acts.datasharetest/entry/DB00",
-   "crossUserMode": 1,
-   "writePermission": "ohos.permission.xxx",
-   "readPermission": "ohos.permission.xxx"
- },
- {
-   "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
-   "crossUserMode": 2
- }
-]
-```
 
 ### Data Consumer Application Development
 
