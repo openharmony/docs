@@ -54,7 +54,7 @@
     - [页面栈及任务链](page-mission-stack.md)
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   - [Stage模型应用配置文件](config-file-stage.md)
-- FA模型开发指导s
+- FA模型开发指导
   - [FA模型开发概述](fa-model-development-overview.md)
   - FA模型应用组件
     - [应用/组件级配置](application-component-configuration-fa.md)
