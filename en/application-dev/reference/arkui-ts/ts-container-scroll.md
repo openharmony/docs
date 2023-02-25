@@ -76,7 +76,7 @@ Scrolls to the specified position.
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | xOffset   | Length                                                       | Yes  | Horizontal scrolling offset.                                              |
 | yOffset   | Length                                                       | Yes  | Vertical scrolling offset.                                              |
-| animation | {<br>duration: number,<br>curve: [Curve](ts-animatorproperty.md)<br>} | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.|
+| animation | {<br>duration: number,<br>curve: [Curve](ts-appendix-enums.md#curve)<br>} | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.|
 
 
 ### scrollEdge
@@ -131,7 +131,7 @@ Scrolls to the item with the specified index.
 
 >  **NOTE**
 >
->  Only the **\<List>** component is supported.
+>  Only the **\<Grid>** and **\<List>** components are supported.
 
 **Parameters**
 
