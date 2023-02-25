@@ -33,27 +33,27 @@ selectionArgs： MediaType.IMAGE，媒体类型为图片。
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.IMAGE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    fetchFileResult.getFirstObject().then((fileAsset) => {
-        console.log('getFirstObject.displayName : ' + fileAsset.displayName);
-        for (let i = 1; i < fetchFileResult.getCount(); i++) {
-            fetchFileResult.getNextObject().then((fileAsset) => {
-                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-            }).catch((err) => {
-                console.error('Failed to get next object: ' + err);
-            });
-        }
-    }).catch((err) => {
-        console.error('Failed to get first object: ' + err);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.IMAGE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  fetchFileResult.getFirstObject().then((fileAsset) => {
+    console.log('getFirstObject.displayName : ' + fileAsset.displayName);
+    for (let i = 1; i < fetchFileResult.getCount(); i++) {
+      fetchFileResult.getNextObject().then((fileAsset) => {
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }).catch((err) => {
+        console.error('Failed to get next object: ' + err);
+      });
+    }
+  }).catch((err) => {
+    console.error('Failed to get first object: ' + err);
+  });
 }
 ```
 
@@ -67,26 +67,26 @@ selectionArgs：2022-8-5，具体添加时间的字符串。
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let option = {
+  let fileKeyObj = mediaLibrary.FileKey;
+  let option = {
     selections: fileKeyObj.DATE_ADDED + '> ?',
     selectionArgs: ['2022-8-5'],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    fetchFileResult.getFirstObject().then((fileAsset) => {
-        console.info('getFirstObject.displayName : ' + fileAsset.displayName);
-        for (let i = 1; i < fetchFileResult.getCount(); i++) {
-            fetchFileResult.getNextObject().then((fileAsset) => {
-                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-            }).catch((err) => {
-                console.error('Failed to get next object: ' + err);
-            });
-        }
-    }).catch((err) => {
-        console.error('Failed to get first object: ' + err);
-    });
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  fetchFileResult.getFirstObject().then((fileAsset) => {
+    console.info('getFirstObject.displayName : ' + fileAsset.displayName);
+    for (let i = 1; i < fetchFileResult.getCount(); i++) {
+      fetchFileResult.getNextObject().then((fileAsset) => {
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }).catch((err) => {
+        console.error('Failed to get next object: ' + err);
+      });
+    }
+  }).catch((err) => {
+    console.error('Failed to get first object: ' + err);
+  });
 }
 ```
 
@@ -98,28 +98,28 @@ order： FileKey.DATE_ADDED，根据文件添加日期排序；并设置排列�
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.IMAGE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-        order: fileKeyObj.DATE_ADDED + " DESC",
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    fetchFileResult.getFirstObject().then((fileAsset) => {
-        console.info('getFirstObject.displayName : ' + fileAsset.displayName);
-        for (let i = 1; i < fetchFileResult.getCount(); i++) {
-            fetchFileResult.getNextObject().then((fileAsset) => {
-                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-            }).catch((err) => {
-                console.error('Failed to get next object: ' + err);
-            });
-        }
-    }).catch((err) => {
-        console.error('Failed to get first object: ' + err);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.IMAGE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+    order: fileKeyObj.DATE_ADDED + " DESC",
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  fetchFileResult.getFirstObject().then((fileAsset) => {
+    console.info('getFirstObject.displayName : ' + fileAsset.displayName);
+    for (let i = 1; i < fetchFileResult.getCount(); i++) {
+      fetchFileResult.getNextObject().then((fileAsset) => {
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }).catch((err) => {
+        console.error('Failed to get next object: ' + err);
+      });
+    }
+  }).catch((err) => {
+    console.error('Failed to get first object: ' + err);
+  });
 }
 ```
 
@@ -133,24 +133,23 @@ selectionArgs：'myAlbum'，具体相册名称。
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.IMAGE;
-    let option = {
-        selections: fileKeyObj.ALBUM_NAME + '= ?',
-        selectionArgs: ['myAlbum'],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    if (albumList.length > 0) {
-        fetchFileResult.getFirstObject().then((album) => {
-            console.info('getFirstObject.displayName : ' + album.albumName);
-        }).catch((err) => {
-            console.error('Failed to get first object: ' + err);
-        });
-    } else {
-        console.info('getAlbum list is: 0');
-    }
+  let fileKeyObj = mediaLibrary.FileKey;
+  let option = {
+    selections: fileKeyObj.ALBUM_NAME + '= ?',
+    selectionArgs: ['myAlbum'],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  if (albumList.length > 0) {
+    fetchFileResult.getFirstObject().then((album) => {
+      console.info('getFirstObject.displayName : ' + album.albumName);
+    }).catch((err) => {
+      console.error('Failed to get first object: ' + err);
+    });
+  } else {
+    console.info('getAlbum list is: 0');
+  }
 }
 ```
 
@@ -169,24 +168,24 @@ async function example() {
 
 1. 建立检索条件，用于获取目的相册实例。
 
-   ```ts
-   let fileKeyObj = mediaLibrary.FileKey;
-   let AlbumNoArgsFetchOp = {
-       selections: fileKeyObj.ALBUM_NAME + '= ?',
-       selectionArgs: ['新建相册1']
-   }
-   ```
+```ts
+let fileKeyObj = mediaLibrary.FileKey;
+let AlbumNoArgsFetchOp = {
+  selections: fileKeyObj.ALBUM_NAME + '= ?',
+  selectionArgs: ['新建相册1']
+}
+```
 
 2. 建立检索条件，用于获取目的相册下的视频资源。
 
-   ```ts
-   let fileKeyObj = mediaLibrary.FileKey;
-   let videoType = mediaLibrary.MediaType.VIDEO;
-   let videoFetchOp  = {
-       selections: fileKeyObj.MEDIA_TYPE + '= ?',
-       selectionArgs: [videoType.toString()],
-   }
-   ```
+```ts
+let fileKeyObj = mediaLibrary.FileKey;
+let videoType = mediaLibrary.MediaType.VIDEO;
+let videoFetchOp  = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [videoType.toString()],
+}
+```
 
 3. 通过Album.getFileAssets获取对应的资源。
 
@@ -194,28 +193,28 @@ async function example() {
 
 ```ts
 async function getCameraImagePromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let videoType = mediaLibrary.MediaType.VIDEO;
-    let videoFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [videoType.toString()],
-    }
-    let AlbumNoArgsFetchOp = {
-        selections: fileKeyObj.ALBUM_NAME + '= ?',
-        selectionArgs: ['新建相册1']
-    }
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let videoType = mediaLibrary.MediaType.VIDEO;
+  let videoFetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [videoType.toString()],
+  }
+  let AlbumNoArgsFetchOp = {
+    selections: fileKeyObj.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1']
+  }
 
-    let albumList = await media.getAlbums(AlbumNoArgsFetchOp);
-    if (albumList.length > 0) {
-        const album = albumList[0];
-        let fetchFileResult = await album.getFileAssets(videoFetchOp);
-        let count = fetchFileResult.getCount();
-        console.info("get mediaLibrary VIDEO number", count);
-    } else {
-        console.info('getAlbum list is: 0');
-    }
+  let albumList = await media.getAlbums(AlbumNoArgsFetchOp);
+  if (albumList.length > 0) {
+    const album = albumList[0];
+    let fetchFileResult = await album.getFileAssets(videoFetchOp);
+    let count = fetchFileResult.getCount();
+    console.info("get mediaLibrary VIDEO number", count);
+  } else {
+    console.info('getAlbum list is: 0');
+  }
 }
 ```
 
@@ -243,32 +242,32 @@ async function getCameraImagePromise() {
 
 ```ts
 async function getFirstThumbnailPromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-    }
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let imagesFetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+  }
 
-    let size = { width: 720, height: 720 };
-    const fetchFileResult = await media.getFileAssets(imagesFetchOp);
-    if (fetchFileResult === undefined) {
-        console.error("get image failed with error");
-        return;
-    } else {
-        const asset = await fetchFileResult.getFirstObject();
-        asset.getThumbnail(size).then((pixelMap) => {
-            pixelMap.getImageInfo().then((info) => {
-              console.info('get Thumbnail info: ' + "width: " + info.size.width + " height: " + info.size.height);
-            }).catch((err) => {
-              console.error("getImageInfo failed with error: " + err);
-            });
-        }).catch((err) => {
-            console.error("getImageInfo failed with error: " + err);
-        });
-    }
+  let size = { width: 720, height: 720 };
+  const fetchFileResult = await media.getFileAssets(imagesFetchOp);
+  if (fetchFileResult === undefined) {
+    console.error("get image failed with error");
+    return;
+  } else {
+    const asset = await fetchFileResult.getFirstObject();
+    asset.getThumbnail(size).then((pixelMap) => {
+      pixelMap.getImageInfo().then((info) => {
+        console.info('get Thumbnail info: ' + "width: " + info.size.width + " height: " + info.size.height);
+      }).catch((err) => {
+        console.error("getImageInfo failed with error: " + err);
+      });
+    }).catch((err) => {
+      console.error("getImageInfo failed with error: " + err);
+    });
+  }
 }
 ```
 
@@ -286,16 +285,16 @@ async function getFirstThumbnailPromise() {
 
 ```ts
 async function example() {
-    let mediaType = mediaLibrary.MediaType.FILE;
-    let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const path = await media.getPublicDirectory(DIR_DOCUMENTS);
-    media.createAsset(mediaType, "testFile.text", path).then((asset) => {
-        console.info("createAsset successfully:"+ JSON.stringify(asset));
-    }).catch((err) => {
-        console.error("createAsset failed with error: " + err);
-    });
+  let mediaType = mediaLibrary.MediaType.FILE;
+  let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const path = await media.getPublicDirectory(DIR_DOCUMENTS);
+  media.createAsset(mediaType, "testFile.text", path).then((asset) => {
+    console.info("createAsset successfully:"+ JSON.stringify(asset));
+  }).catch((err) => {
+    console.error("createAsset failed with error: " + err);
+  });
 }
 ```
 
@@ -321,26 +320,26 @@ async function example() {
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.FILE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset === undefined) {
-        console.error('asset not exist');
-        return;
-    }
-    //回调为空
-    asset.trash(true).then(() => {
-        console.info("trash successfully");
-    }).catch((err) => {
-        console.error("trash failed with error: " + err);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.FILE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  let asset = await fetchFileResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset not exist');
+    return;
+  }
+  //回调为空
+  asset.trash(true).then(() => {
+    console.info("trash successfully");
+  }).catch((err) => {
+    console.error("trash failed with error: " + err);
+  });
 }
 ```
 
@@ -369,28 +368,28 @@ async function example() {
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.IMAGE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset === undefined) {
-        console.error('asset not exist');
-        return;
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.IMAGE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  let asset = await fetchFileResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset not exist');
+    return;
+  }
+  asset.displayName = 'newImage.jpg';
+  //回调为空
+  asset.commitModify((err) => {
+    if (err) {
+      console.error('fileRename Failed ');
+      return;
     }
-    asset.displayName = 'newImage.jpg';
-    //回调为空
-    asset.commitModify((err) => {
-        if (err) {
-            console.error('fileRename Failed ');
-            return;
-        }
-        console.info('fileRename successful.');
-    });
+    console.info('fileRename successful.');
+  });
 }
 ```
