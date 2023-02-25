@@ -15,7 +15,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 - [启动其他应用的UIAbility并获取返回结果](#启动其他应用的uiability并获取返回结果)
 
-- [启动UIAbility指定展示形态](#启动uiability指定展示形态)
+- [启动UIAbility指定窗口模式](#启动uiability指定窗口模式)
 
 - [启动UIAbility的指定页面](#启动uiability的指定页面)
 
@@ -308,21 +308,21 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-## 启动UIAbility指定展示形态
+## 启动UIAbility指定窗口模式
 
-当用户打开应用时，应用程序会以不同的窗口状态或形态进行展示，即启动UIAbility的展示形态。应用程序可以启动为全屏模式，悬浮窗模式或分屏模式。
+当用户打开应用时，应用程序会以不同的窗口模式进行展示，即启动UIAbility的窗口模式。应用程序可以启动为全屏模式，悬浮窗模式或分屏模式。
 
-全屏模式是指应用程序启动后，占据整个屏幕，用户无法同时查看其他窗口或应用程序。全屏模式通常适用于那些要求用户专注于特定任务或界面的应用程序，例如游戏、多媒体应用程序或演示文稿。
+全屏模式是指应用程序启动后，占据整个屏幕，用户无法同时查看其他窗口或应用程序。全屏模式通常适用于那些要求用户专注于特定任务或界面的应用程序。
 
-悬浮窗模式是指应用程序启动后，以浮动窗口的形式显示在屏幕上，用户可以轻松切换到其他窗口或应用程序。悬浮窗通常适用于需要用户同时处理多个任务的应用程序，例如聊天工具、记事本或计算器等。
+悬浮窗模式是指应用程序启动后，以浮动窗口的形式显示在屏幕上，用户可以轻松切换到其他窗口或应用程序。悬浮窗通常适用于需要用户同时处理多个任务的应用程序。
 
-分屏模式允许用户在同一屏幕上同时运行两个应用程序，其中一个应用程序占据屏幕左侧的一部分，另一个应用程序占据右侧的一部分。分屏模式主要用于提高用户的多任务处理效率，例如在电子书阅读、视频会议或文档编辑中。
+分屏模式允许用户在同一屏幕上同时运行两个应用程序，其中一个应用程序占据屏幕左侧/上侧的一部分，另一个应用程序占据右侧/下侧的一部分。分屏模式主要用于提高用户的多任务处理效率。
 
-使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性来配置UIAbility的展示形态。
+使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过在入参中增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性来配置启动UIAbility的窗口模式。
 
 > **说明：**
 >
-> 1. 如果在使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时未指定[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性，那么UIAbility将以系统默认的窗口展示形态启动。
+> 1. 如果在使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，入参中未指定[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性，那么UIAbility将以系统默认的窗口展示形态启动。
 > 2. 为了确保启动的UIAbility展示形态能够被支持，需要在该UIAbility对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段确认启动的展示形态被支持。
 
 以下是具体的操作步骤，以悬浮窗模式为例，假设需要从EntryAbility的页面中启动FuncAbility：
@@ -356,7 +356,7 @@ this.context.startAbility(wantInfo, options).then(() => {
 ```
 
 效果示意如下图所示。   
-<img src="D:\Hzhao\Temp\zyjhandsome\docs\zh-cn\application-dev\application-models\figures\start-uiability-floating-window.png" alt="start-uiability-floating-window" height="600"  />
+<img src="figures/start-uiability-floating-window.png" alt="start-uiability-floating-window" height="600"  />
 
 ## 启动UIAbility的指定页面
 
