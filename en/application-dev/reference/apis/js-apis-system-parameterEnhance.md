@@ -1,10 +1,11 @@
-# SystemParameter (System Parameter)
+# @ohos.systemParameterEnhance (System Parameter)
 
 The **SystemParameter** module provides system services with easy access to key-value pairs. You can use the APIs provided by this module to describe the service status and change the service behavior. The basic operation primitives are get and set. You can obtain the values of system parameters through getters and modify the values through setters.
 For details about the system parameter design principles and definitions, see
 [Service Management](../../../device-dev/subsystems/subsys-boot-init-sysparam.md).
 
 > **NOTE**
+>
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs provided by this module are system APIs.
 > - Third-party applications cannot use the APIs provided by this module, because system parameters each require specific discretionary access control (DAC) and mandatory access control (MAC) permissions.
@@ -12,7 +13,7 @@ For details about the system parameter design principles and definitions, see
 ## Modules to Import
 
 ```ts
-import systemparameter from '@ohos.systemParameterV9'
+import systemparameter from '@ohos.systemParameterEnhance'
 ```
 
 ## systemparameter.getSync
