@@ -6,6 +6,7 @@
 >
 >  - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
 ## Modules to Import
 
 ```js
@@ -49,7 +50,7 @@ export default {
 
 ## storage.set
 
-get(options: SetStorageOptions): void
+set(options: SetStorageOptions): void
 
 Sets the value in the cache based on the specified key.
 
@@ -165,8 +166,8 @@ export default {
 | key      | string                               | Yes  | Key of the data to set.                                |
 | value    | string                               | Yes  | New value to set. The length must be less than 128 bytes.                             |
 | success  | () => void                           | No  | Called when **storage.set()** is called successfully.                     |
-| fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.get()** fails to be called. **data** is the error information, and **code** indicates the error code. |
-| complete | () => void                           | No  | Called when **storage.get()** is complete.                              |
+| fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.set()** fails to be called. **data** is the error information, and **code** indicates the error code. |
+| complete | () => void                           | No  | Called when **storage.set()** is complete.                              |
 
 
 ## ClearStorageOptions
