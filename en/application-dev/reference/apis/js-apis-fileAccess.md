@@ -1,11 +1,11 @@
-# User File Access and Management
+# @ohos.data.fileAccess (User File Access and Management)
 
-The **fileAccess** module is a framework for accessing and operating user files based on the extension mechanism. This module interacts with diverse file management services, such as the media library and external storage management service, and provides a set of unified file access and management APIs for system applications. The media library service allows access to user files on local devices and distributed devices. The external storage management service allows access to the user files stored on devices such as shared disks, USB flash drives, and SD cards.
+The **fileAccess** module is a framework for accessing and operating user files based on the Extension ability mechanism. This module interacts with diverse file management services, such as the media library and external storage management service, and provides a set of file access and management APIs for system applications. The media library service allows access to user files on local devices and distributed devices. The external storage management service allows access to the user files stored on devices such as shared disks, USB flash drives, and SD cards.
 
 >**NOTE**
 >
 >- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The APIs provided by this module are system APIs and cannot be called by third-party applications. Currently, the APIs can be called only by FilePicker and the file manager app.
+>- The APIs provided by this module are system APIs and cannot be called by third-party applications. Currently, the APIs can be called only by **FilePicker** and **Files**.
 
 ## Modules to Import
 
@@ -17,21 +17,17 @@ import fileAccess from '@ohos.data.fileAccess';
 
 getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
-Obtains information about all wants with **extension** set to **fileAcesss** in the system. A want is a basic communication component used to start services. This API uses a promise to return the result.
+Obtains information about all wants with **extension** set to **fileAccess** in the system. A want is a basic communication component used to start services. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-None
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| Promise&lt;Array&lt;Want&gt;&gt; | Promise used to return the want information obtained.|
+  | Type| Description|
+  | --- | -- |
+  | Promise&lt;Array&lt;Want&gt;&gt; | Promise used to return the **want** information obtained.|
 
 **Example**
 
@@ -55,27 +51,27 @@ Synchronously creates a **Helper** object to connect to the specified wants. The
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| context | Context | Yes| Context of the ability.|
-| wants | Array&lt;Want&gt; | Yes| Wants to connect.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | context | Context | Yes| Context of the ability.|
+  | wants | Array&lt;Want&gt; | Yes| Wants to connect.|
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileAccessHelper | **Helper** object created.|
+  | Type| Description|
+  | --- | -- |
+  | FileAccessHelper | **Helper** object created.|
 
 **Example**
 
   ```js
   createFileAccessHelper() {
-    let fileAccesssHelper = null;
-    // Obtain want information by using getFileAccessAbilityInfo().
+    let fileAccessHelper = null;
+    / / Obtain wantInfos by using getFileAccessAbilityInfo().
     // Create a Helper object to interact with the media library service only.
     let wantInfos = [
       {
@@ -84,8 +80,9 @@ Synchronously creates a **Helper** object to connect to the specified wants. The
       },
     ]
     try {
-      fileAccesssHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
-      if (!fileAccesssHelper)
+      // this.context is passed by MainAbility.
+      fileAccessHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
+      if (!fileAccessHelper)
         console.error("createFileAccessHelper interface returns an undefined object");
     } catch (error) {
       console.error("createFileAccessHelper failed, error " + error);
@@ -97,33 +94,34 @@ Synchronously creates a **Helper** object to connect to the specified wants. The
 
 createFileAccessHelper(context: Context) : FileAccessHelper
 
-Synchronously creates a **Helper** object that connects to all file management services in the current system.
+Synchronously creates a **Helper** object to connect to all file management services in the system.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| context | Context | Yes| Context of the ability.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | context | Context | Yes| Context of the ability.|
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileAccessHelper | **Helper** object created.|
+  | Type| Description|
+  | --- | -- |
+  | FileAccessHelper | **Helper** object created.|
 
 **Example**
 
   ```js
   createFileAccessHelper() {
-    let fileAccesssHelperAllServer = null;
+    let fileAccessHelperAllServer = null;
     // Create a Helper object to interact with all file management services configured with fileAccess in the system.
     try {
-      fileAccesssHelperAllServer = fileAccess.createFileAccessHelper(this.context);
-      if (!fileAccesssHelperAllServer)
+      // this.context is passed by MainAbility.
+      fileAccessHelperAllServer = fileAccess.createFileAccessHelper(this.context);
+      if (!fileAccessHelperAllServer)
         console.error("createFileAccessHelper interface returns an undefined object");
     } catch (error) {
       console.error("createFileAccessHelper failed, error " + error);
@@ -135,22 +133,18 @@ Synchronously creates a **Helper** object that connects to all file management s
 
 getRoots( ) : Promise&lt;RootIterator&gt;
 
-Obtains information about the root nodes for the devices of the file management service type connected to the **Helper** object. This API uses a promise to return a **RootIterator** object, which
-returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
+Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses a promise to return a **RootIterator** object,
+which returns [RootInfo](#rootinfo) by using [next](#rootiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-**Parameters**
-
-None
-
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| Promise&lt;RootIterator&gt; | **RootIterator** object obtained.|
+  | Type| Description|
+  | --- | -- |
+  | Promise&lt;RootIterator&gt; | Promise used to return the **RootIterator** object obtained.|
 
 **Example**
 
@@ -160,7 +154,8 @@ None
     let rootinfos = [];
     let isDone = false;
     try {
-      rootIterator = await fileAccesssHelper.getRoots();
+      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+      rootIterator = await fileAccessHelper.getRoots();
       if (!rootIterator) {
         console.error("getRoots interface returns an undefined object");
         return;
@@ -182,7 +177,7 @@ None
 
 listFile(filter?: Filter) : FileIterator
 
-Synchronously obtains the **FileIterator** object of the first-level files (file folder) matching the conditions of the filter from the root node of a device. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
+Synchronously obtains the **FileIterator** object of the first-level files (file folder) matching the conditions of the filter from the device root node. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -190,28 +185,28 @@ Synchronously obtains the **FileIterator** object of the first-level files (file
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | Filter | No| **Filter** object. |
 
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
+  | Type| Description|
+  | --- | -- |
+  | FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
   ```js
-  / / Obtain root information by using getRoots().
+  // Obtain rootInfos by using getRoots().
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
   let rootInfo = rootinfos[0];
   let fileInfos = [];
   let isDone = false;
   try {
     let fileIterator = rootInfo.listFile();
-    // ListFile that contains the filter implementation.
+    // listFile contains the filter implementation.
     // let fileIterator = rootInfo.listFile(filter);
     if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
@@ -233,7 +228,7 @@ Synchronously obtains the **FileIterator** object of the first-level files (file
 
 scanFile(filter?: Filter) : FileIterator
 
-Recursively obtains the **FileIterator** object of the files matching the conditions of the filter from the root node of a device synchronously. The **FileIterator** object then returns [FileInfo](#fileinfo) by using the [next()](#fileiteratornext).
+Recursively obtains the **FileIterator** object of the files matching the conditions of the filter from the device root node synchronously. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -241,39 +236,39 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | Filter | No| **Filter** object. |
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
+  | Type| Description|
+  | --- | -- |
+  | FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
   ```js
-  / / Obtain root information by using getRoots().
+  // Obtain rootInfos by using getRoots().
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo = rootinfos[0];
+  let rootInfo = rootInfos[0];
   let fileInfos = [];
   let isDone = false;
   try {
-      let fileIterator = rootInfo.scanFile();
-      // ScanFile that contains the filter implementation
-      // let fileIterator = rootInfo.scanFile(filter);
-      if (!fileIterator) {
-        console.error("scanFile interface returns undefined object");
-        return;
-      }
-      while (!isDone) {
-        let result = fileIterator.next();
-        console.log("next result = " + JSON.stringify(result));
-        isDone = result.done;
-        if (!isDone)
-          fileInfos.push(result.value);
-      }
+    let fileIterator = rootInfo.scanFile();
+    // scanFile contains the filter implementation.
+    // let fileIterator = rootInfo.scanFile(filter);
+    if (!fileIterator) {
+      console.error("scanFile interface returns undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        fileInfos.push(result.value);
+    }
   } catch (error) {
     console.error("scanFile failed, error " + error);
   }
@@ -291,15 +286,15 @@ Synchronously obtains the **FileIterator** object of the next-level files (file 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | Filter | No| **Filter** object. |
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
+  | Type| Description|
+  | --- | -- |
+  | FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -311,7 +306,7 @@ Synchronously obtains the **FileIterator** object of the next-level files (file 
   let isDone = false;
   try {
     let fileIterator = fileInfoDir.listFile();
-    // ListFile that contains the filter implementation.
+    // listFile contains the filter implementation.
     // let fileIterator = rootInfo.listFile(filter);
     if (!fileIterator) {
       console.error("listFile interface returns an undefined object");
@@ -341,16 +336,16 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | Filter | No| **Filter** object. |
 
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
+  | Type| Description|
+  | --- | -- |
+  | FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -362,7 +357,7 @@ Recursively obtains the **FileIterator** object of the files matching the condit
   let isDone = false;
   try {
     let fileIterator = fileInfoDir.scanFile();
-    // ScanFile that contains the filter implementation
+    // scanFile contains the filter implementation.
     // let fileIterator = rootInfo.scanFile(filter);
     if (!fileIterator) {
       console.error("scanFile interface returns an undefined object");
@@ -370,7 +365,7 @@ Recursively obtains the **FileIterator** object of the files matching the condit
     }
     while (!isDone) {
       let result = fileIterator.next();
-      console.error("next result = " + JSON.stringify(result));
+      console.log("next result = " + JSON.stringify(result));
       isDone = result.done;
       if (!isDone)
         subfileInfos.push(result.value);
@@ -392,25 +387,28 @@ Creates a file in a directory. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| uri | string | Yes| URI of the parent directory for the file to create.|
-| displayName | string | Yes| Name of the file to create. A file name extension must be added for a local file. It is not required for a file stored in a shared disk.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | uri | string | Yes| URI of the parent directory for the file to create.|
+  | displayName | string | Yes| Name of the file to create. A file name extension must be added for a local file. It is not required for a file stored in a shared disk.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;string&gt; | URI of the file created.|
+| Promise&lt;string&gt; | Promise used to return the URI of the file created.|
 
 **Example**
 
   ```js
-  // The URI of a shared disk is used as an example.
-  let sourceUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon";
+  // The media library URI is used as an example.
+  // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let sourceUri = "datashare:///media/file/6";
   let displayName = "file1"
   let fileUri = null;
   try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileUri = await fileAccessHelper.createFile(sourceUri, displayName)
     if (!fileUri) {
       console.error("createFile return undefined object");
@@ -434,25 +432,28 @@ Creates a folder in a directory. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| parentUri | string | Yes| URI of the parent directory for the folder to create.|
-| displayName | string | Yes| Name of the folder to create.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | parentUri | string | Yes| URI of the parent directory for the folder to create.|
+  | displayName | string | Yes| Name of the folder to create.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;string&gt; | URI of the folder created.|
+| Promise&lt;string&gt; | Promise used to return the URI of the folder created.|
 
 **Example**
 
   ```js
-  // The URI of a shared disk is used as an example.
-  let sourceUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon";
+  // The media library URI is used as an example.
+  // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let sourceUri = "datashare:///media/file/6";
   let dirName = "dirTest"
   let dirUri = null;
   try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     dirUri = await fileAccessHelper.mkDir(sourceUri, dirName)
     if (!dirUri) {
       console.error("mkDir return undefined object");
@@ -466,9 +467,9 @@ Creates a folder in a directory. This API uses a promise to return the result.
 
 ## FileAccessHelper.openFile
 
-openFile(uri: string, flags: [OPENFLAGS](#openflags)) : Promise&lt;number&gt;
+openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
-Opens a file. This API uses a promise to return the result.
+Opens a file in asynchronous mode and returns a file descriptor. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -476,25 +477,28 @@ Opens a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| uri | string | Yes| URI of the file to open.|
-| flags | OPENFLAGS |  |File open mode.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | uri | string | Yes| URI of the file to open.|
+  | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;number&gt | Handle of the file opened.|
+| Promise&lt;number&gt; | File descriptor.|
 
 **Example**
 
   ```js
-  // The URI of a shared disk is used as an example.
-  let targetUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/file1";
+  // The media library URI is used as an example.
+  //In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let targetUri  = "datashare:///media/file/100";
   try {
-    let fd = await fileAccessHelper.openFile(targetUri, OPENFLAGS.READ);
-  } cache (error) {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
+  } catch (error) {
     console.error("openFile failed, error " + error);
   };
   ```
@@ -511,9 +515,9 @@ Deletes a file or folder. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| uri | string | Yes| URI of the file or folder to delete.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | uri | string | Yes| URI of the file or folder to delete.|
 
 **Return value**
 
@@ -524,13 +528,16 @@ Deletes a file or folder. This API uses a promise to return the result.
 **Example**
 
   ```js
-  // The URI of a shared disk is used as an example.
-  let targetUri = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/file1";
+  // The media library URI is used as an example.
+  //In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let targetUri = "datashare:///media/file/100";
   try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let code = await fileAccessHelper.delete(targetUri);
     if (code != 0)
       console.error("delete failed, code " + code);
-  } cache (error) {
+  } catch (error) {
     console.error("delete failed, error " + error);
   };
   ```
@@ -547,27 +554,30 @@ Moves a file or folder. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| sourceFile | string | Yes| URI of the file or folder to move.|
-| destFile | string | Yes| URI of the folder to which the file or folder is moved.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | sourceFile | string | Yes| URI of the file or folder to move.|
+  | destFile | string | Yes| URI of the folder to which the file or folder is moved.|
 
 **Return value**
 
 | Type| Description|
 | ----- | ------ |
-| Promise&lt;string&gt; | URI of the file or folder in the destination directory.|
+| Promise&lt;string&gt; | Promise used to return the URI of the file or folder in the destination directory.|
 
 **Example**
 
   ```js
-  // The URI of a shared disk is used as an example.
-  let sourceFile = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/file1";
-  let destFile = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/dirTest";
+  // The media library URI is used as an example.
+  //In the sample code, sourceFile destFile indicates the file or folder in the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let sourceFile = "datashare:///media/file/102";
+  let destFile = "datashare:///media/file/101";
   try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
     console.log("Operation successful. fileUri: " + JSON.stringify(fileUri));
-  } cache (error) {
+  } catch (error) {
     console.error("move failed, error " + error);
   };
   ```
@@ -584,26 +594,29 @@ Renames a file or folder. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| uri | string | Yes| URI of the file or folder to rename.|
-| displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | uri | string | Yes| URI of the file or folder to rename.|
+  | displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;string&gt; | URI of the renamed file or folder.|
+| Promise&lt;string&gt; | Promise used to return the URI of the renamed file or folder.|
 
 **Example**
 
   ```js
-  // The URI of a shared disk is used as an example.
-  let sourceDir = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/dirTest";
+  // The media library URI is used as an example.
+  // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let sourceDir = "datashare:///media/file/100";
   try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
     console.log("Operation successful. DestDir: " + JSON.stringify(DestDir));
-  } cache (error) {
+  } catch (error) {
     console.error("rename failed, error " + error);
   };
   ```
@@ -620,9 +633,9 @@ Checks whether a file or folder exists. This API uses a promise to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| sourceFileUri | string | Yes| URI of the file or folder.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | sourceFileUri | string | Yes| URI of the file or folder.|
 
 **Return value**
 
@@ -633,15 +646,18 @@ Checks whether a file or folder exists. This API uses a promise to return the re
 **Example**
 
   ```js
-  // The URI of a shared disk is used as an example.
-  let sourceDir = "datashare:///com.ohos.UserFile.ExternalFileManager/data/storage/el1/bundle/storage_daemon/dirTest";
+  // The media library URI is used as an example.
+  // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let sourceDir = "datashare:///media/file/100";
   try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let existJudgment = await fileAccessHelper.access(sourceDir);
     if (existJudgment)
       console.log("sourceDir exists");
     else
       console.log("sourceDir does not exist");
-  } cache (error) {
+  } catch (error) {
     console.error("rename failed, error " + error);
   };
   ```
@@ -655,10 +671,6 @@ Obtains the next-level device root directory. **RootIterator** is an iterator ob
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-None
 
 **Return value**
 
@@ -675,10 +687,6 @@ Obtains the information about the next-level file or folder. **FileIterator** is
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-None
 
 **Return value**
 
@@ -720,7 +728,7 @@ Represents the file or folder attribute information and interface capabilities.
 | mode | number | Yes| No| Permissions on the file or folder.|
 | size | number | Yes| No|  Size of the file or folder.|
 | mtime | number | Yes| No|  Time when the file or folder was last modified.|
-| mimeType | string | Yes| No|  Media resource type of the file or folder.|
+| mimeType | string | Yes| No|  MIME type of the file or folder.|
 
 ## OPENFLAGS
 
