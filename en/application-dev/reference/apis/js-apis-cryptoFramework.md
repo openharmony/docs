@@ -939,7 +939,7 @@ For the symmetric encryption and decryption modes that require parameters such a
 | algName | string | Yes  | Yes  | Symmetric encryption and decryption parameters. Options:<br>- **IvParamsSpec**: applicable to the CBC, CTR, OFB, and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode.|
 
 > **NOTE**<br>
-> The **params** parameter in [init()](#init-2) is of the **ParamsSpec** type (parent class), but a child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, set **algName** for the parent class **ParamsSpec** to let the algorithm library know the type of child class object to pass in in **init()**.
+> The **params** parameter in [init()](#init-2) is of the **ParamsSpec** type (parent class), but a child class object (such as **IvParamsSpec**) needs to be passed in. When constructing the child class object, set **algName** in the parent class **ParamsSpec** to let the algorithm library know the type of child class object to pass in in **init()**.
 
 ## IvParamsSpec
 
@@ -954,11 +954,13 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 | iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption and decryption. Options:<br>- AES CBC, CTR, OFB, or CFB mode: 16-byte IV<br>- 3DES CBC, OFB, or CFB mode: 8-byte IV|
 
 > **NOTE**<br>
-> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> Before passing **IvParamsSpec** to [init()](#init-2), specify **algName** in its parent class [ParamsSpec](#paramsspec).
 
 ## GcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec) for the GCM mode. It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. <br>**GcmParamsSpec** applies to the GCM mode.
+Defines the child class of [ParamsSpec](#paramsspec) for the GCM mode. It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. 
+
+**GcmParamsSpec** applies to the GCM mode.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -969,22 +971,24 @@ Defines the child class of [ParamsSpec](#paramsspec) for the GCM mode. It is use
 | authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>When the GCM mode is used for encryption, [DataBlob](#datablob) output by [doFinal()](#dofinal-2) is required. The last 16 bytes of [DataBlob](#datablob) are used as as **authTag** in [GcmParamsSpec](#gcmparamsspec) of [init()](#init-2). |
 
 > **NOTE**
-> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> Before passing **GcmParamsSpec** to [init()](#init-2), specify **algName** in its parent class [ParamsSpec](#paramsspec).
 
 ## CcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec) for the CCM mode. It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption. <br>**CcmParamsSpec** applies to the CCM mode.
+Defines the child class of [ParamsSpec](#paramsspec) for the CCM mode. It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.
+
+**CcmParamsSpec** applies to the CCM mode.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type                 | Readable| Writable| Description                                                        |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                               |
-| aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authenticated data (AAD), which is of 8 bytes.                              |
+| aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                              |
 | authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, [DataBlob](#datablob) output by [doFinal()](#dofinal-2) is required. The last 12 bytes of [DataBlob](#datablob) are used as as **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
 
 > **NOTE**
-> Before passing [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> Before passing **CcmParamsSpec** to [init()](#init-2), specify **algName** in its parent class [ParamsSpec](#paramsspec).
 
 ## CryptoMode
 
@@ -1014,7 +1018,7 @@ Provides APIs for key operations. Before performing cryptographic operations (su
 
 getEncoded() : DataBlob
 
-Obtains the key in hexadecimal format. This API returns the result synchronously.
+Obtains a key in hexadecimal format. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1041,7 +1045,9 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));
 
 ## SymKey
 
-Provides APIs for symmetric key operations. It is a child class of [Key](#key). Its objects need to be passed to [init()](#init-2) of the [Cipher](#cipher) instance in symmetric encryption and decryption. <br>Symmetric keys can be generated by a [SymKeyGenerator](#symkeygenerator).
+Provides APIs for symmetric key operations. **SymKey** is a child class of [Key](#key), and its objects need to be passed to [init()](#init-2) of the [Cipher](#cipher) instance in symmetric encryption and decryption.
+
+Symmetric keys can be generated by a [SymKeyGenerator](#symkeygenerator).
 
 ### clearMem
 
@@ -1063,15 +1069,17 @@ function uint8ArrayToShowStr(uint8Array) {
 
 let key;    // The key is generated by a symKeyGenerator. The generation process is omitted here.
 let encodedKey = key.getEncoded();
-console.info("key hex: "+ uint8ArrayToShowStr(encodedKey.data));    // Display key content.
+console.info("key hex: "+ uint8ArrayToShowStr(encodedKey.data));    // Key content is displayed.
 key.clearMem();
 encodedKey = key.getEncoded();
-console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // Display all 0s.
+console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // All 0s are displayed.
 ```
 
 ## PubKey
 
-Provides APIs for public key operations. It is a child class of [Key](#key). Its objects need to be passed in during asymmetric encryption and decryption, signature verification, and key agreement. <br>Public keys can be generated by an **AsyKeyGenerator**.
+Provides APIs for public key operations. **PubKey** is a child class of [Key](#key), and its objects need to be passed in during asymmetric encryption and decryption, signature verification, and key agreement.
+
+Public keys can be generated by an **AsyKeyGenerator**.
 
 ### Attributes
 
@@ -1087,7 +1095,7 @@ Provides APIs for public key operations. It is a child class of [Key](#key). Its
 
 getEncoded() : DataBlob
 
-Obtains the key in binary format. This API returns the result synchronously. The public key format must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format.
+Obtains a key in binary format. This API returns the result synchronously. The public key format must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1115,7 +1123,9 @@ console.info("key encoded:" + uint8ArrayToShowStr(encodedKey.data));
 
 ## PriKey
 
-Provides APIs for private key operations. It is a child class of [Key](#key). Its objects need to be passed in during asymmetric encryption and decryption, signature verification, and key agreement. <br>Private keys can be generated by an **AsyKeyGenerator**.
+Provides APIs for private key operations. **PriKey** is a child class of [Key](#key), and its objects need to be passed in during asymmetric encryption and decryption, signature verification, and key agreement.
+
+Private keys can be generated by an **AsyKeyGenerator**.
 
 ### Attributes
 
@@ -1130,7 +1140,7 @@ Provides APIs for private key operations. It is a child class of [Key](#key). It
 
 getEncoded() : DataBlob
 
-Obtains the key in binary format. This API returns the result synchronously. The private key format must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding mode.
+Obtains a key in binary format. This API returns the result synchronously. The private key format must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding mode.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1173,11 +1183,13 @@ key.clearMem();
 
 ## KeyPair
 
-Defines an asymmetric key pair, which includes a public key and a private key. <br>Asymmetric key pairs can be generated by the **AsyKeyGenerator**.
+Defines an asymmetric key pair, which includes a public key and a private key. 
+
+Asymmetric key pairs can be generated by an **AsyKeyGenerator**.
 
 > **NOTE**
 > 
-> The **pubKey** and **priKey** objects in the **KeyPair** object exist as one parameter in the **KeyPair** object. When **KeyPair** leaves the scope, its internal objects may be destructed. <br>The service must reference the **KeyPair** object instead of the internal **pubKey** or **priKey** object.
+> The **pubKey** and **priKey** objects in the **KeyPair** object are defined as one parameter in **KeyPair**. When **KeyPair** leaves the scope, its internal objects may be destructed. <br>The service must reference the **KeyPair** object instead of the **pubKey** or **priKey** object.
 
 ### Attributes
 
@@ -1193,7 +1205,9 @@ Defines an asymmetric key pair, which includes a public key and a private key. <
 
 createSymKeyGenerator(algName : string) : SymKeyGenerator
 
-Creates a **symKeyGenerator** instance based on the specified algorithm. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation- specifications).
+Creates a **symKeyGenerator** instance based on the specified algorithm. 
+
+For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1218,7 +1232,9 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 ## SymKeyGenerator
 
-Provides APIs for using the **symKeyGenerator**. <br>Before using any API of the **SymKeyGenerator** class, you must create a **symKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+Provides APIs for using the **symKeyGenerator**.
+
+Before using any API of the **SymKeyGenerator** class, you must create a **symKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
 
 ### Attributes
 
@@ -1232,7 +1248,11 @@ Provides APIs for using the **symKeyGenerator**. <br>Before using any API of the
 
 generateSymKey(callback : AsyncCallback\<SymKey>) : void
 
-Generates a key randomly. This API uses an asynchronous callback to return the result. <br>This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator). <br>**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
+Generates a symmetric key randomly. This API uses an asynchronous callback to return the result.
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator). 
+
+**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1267,7 +1287,11 @@ symKeyGenerator.generateSymKey((err, symKey) => {
 
 generateSymKey() : Promise\<SymKey>
 
-Generates a key randomly. This API uses a promise to return the result. <br>This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator). <br>**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
+Generates a symmetric key randomly. This API uses a promise to return the result. 
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator). 
+
+**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1399,7 +1423,9 @@ symKeyGenerator.convertKey(keyMaterialBlob)
 
 createAsyKeyGenerator(algName : string) : AsyKeyGenerator
 
-Creates an **AsyKeyGenerator** instance based on the specified algorithm. <br>For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation- specifications).
+Creates an **AsyKeyGenerator** instance based on the specified algorithm. 
+
+For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1509,7 +1535,7 @@ keyGenPromise.then( keyPair => {
 
 convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair\>) : void
 
-Converts data into an asymmetric key. This API uses an asynchronous callback to return the result. For details, see **Key Conversion**.
+Converts data into an asymmetric key. This API uses an asynchronous callback to return the result. For more information, see **Key Conversion**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1547,7 +1573,7 @@ asyKeyGenerator.convertKey(pubKey, priKey, (err, keyPair) => {
 
 convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
 
-Converts data into an asymmetric key. This API uses a promise to return the result. For details, see **Key Conversion**.
+Converts data into an asymmetric key. This API uses a promise to return the result. For more information, see **Key Conversion**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1562,7 +1588,7 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair obtained. |
 
 **Error codes**
 
@@ -1588,15 +1614,17 @@ keyGenPromise.then( keyPair => {
 
 **Key Conversion**
 
-1. After **getEncoded()** is called for the asymmetric public and private keys (RSA and ECC), binary data in X.509 format and binary data in PKCS #8 format are returned, respectively. The data can be used for cross-application transfer or persistent storage.
-2. The public key returned by **convertKey()** must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format, and the private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
-3. In **convertKey()**, you can pass in either **pubKey** or **priKey**, or both of them. If one of them is passed in, the returned **KeyPair** instance contains only the key converted from the data you passed in.
+- If **getEncoded()** is called to obtain a public key and a private key (RSA and ECC), binary data in X.509 format and binary data in PKCS #8 format are returned, respectively. The data can be used for cross-application transfer or persistent storage.
+- When **convertKey()** is called to convert binary data into an asymmetric key pair, the public key material must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format, and the private key material must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
+- In **convertKey()**, you can pass in either **pubKey** or **priKey**, or both of them. If one of them is passed in, the returned **KeyPair** instance contains only the key converted from the data you passed in.
 
 ## cryptoFramework.createCipher
 
 createCipher(transformation : string) : Cipher
 
-Creates a [Cipher](#cipher) instance based on the specified algorithm. <br>For details about the supported specifications, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+Creates a [Cipher](#cipher) instance based on the specified algorithm.
+
+For details about the supported specifications, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1604,11 +1632,11 @@ Creates a [Cipher](#cipher) instance based on the specified algorithm. <br>For d
 
 | Name        | Type  | Mandatory| Description                                                        |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details about, see **Algorithm String** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).|
+| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details, see **Algorithm String** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and- decryption-specifications). |
 
 > **NOTE**
-> 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed. <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
-> 2. If RSA is used for asymmetric encryption and decryption, two **Cipher** objects must be created to perform encryption and decryption separately. For symmetric encryption and decryption, one **cipher** object can be used to perform both encryption and decryption as long as the algorithm specifications are the same.
+> - In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed. <br>You need to understand the differences between different block cipher modes and set parameter correctly. For example, padding is required for ECB and CBC. Otherwise, the plaintext length must be an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
+> - If RSA is used for asymmetric encryption and decryption, two **Cipher** objects must be created to perform encryption and decryption separately. For symmetric encryption and decryption, one **cipher** object can be used to perform both encryption and decryption as long as the algorithm specifications are the same.
 
 **Return value**
 
@@ -1633,12 +1661,14 @@ try {
 
 ## Cipher
 
-Provides APIs for cipher operations. The [init()](#init-2), [update()](#update-4), and [doFinal()](#dofinal-2) APIs in this class are called in sequence to implement symmetric encryption or decryption and asymmetric encryption or decryption. <br>For details about the complete encryption and decryption process, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
+Provides APIs for cipher operations. The [init()](#init-2), [update()](#update-4), and [doFinal()](#dofinal-2) APIs in this class are called in sequence to implement symmetric encryption/decryption and asymmetric encryption/decryption.
+
+For details about the complete encryption and decryption process, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
 
 A complete symmetric encryption/decryption process is slightly different from the asymmetric encryption/decryption process.
 
-- Symmetric encryption and decryption: **init()** and **doFinal()** are mandatory. **update()** is optional and can be called multiple times to encrypt or decrypt big data. After **doFinal()** is called to complete an encryption or decryption operation, **init()** can be called to start a new encryption or decryption operation.
-- RSA asymmetric encryption and decryption: **init()** and **doFinal()** are mandatory, and **update()** is not supported. **doFinal()** can be called multiple times to encrypt or decrypt big data. **init()** cannot be called repeatedly. If the encryption/decryption mode or padding mode is changed, a new **Cipher** object must be created.
+- In symmetric encryption and decryption, **init()** and **doFinal()** are mandatory. **update()** is optional and can be called multiple times to encrypt or decrypt big data by segment. After **doFinal()** is called to complete an encryption/decryption operation, **init()** can be called to start a new encryption/decryption operation.
+- In RSA asymmetric encryption and decryption, **init()** and **doFinal()** are mandatory, and **update()** is not supported. **doFinal()** can be called multiple times to encrypt or decrypt big data by segment. **init()** cannot be called repeatedly. If the encryption/decryption mode or padding mode is changed, a new **Cipher** object must be created.
 
 ### Attributes
 
@@ -1653,7 +1683,9 @@ A complete symmetric encryption/decryption process is slightly different from th
 
 init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallback\<void>) : void
 
-Initializes a [cipher](#cipher) instance. This API uses an asynchronous callback to return the result. **init()**This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
+Initializes a [cipher](#cipher) instance. This API uses an asynchronous callback to return the result. 
+
+This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1695,7 +1727,9 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
 
 init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
-Initializes a [cipher](#cipher) instance. This API uses a promise to return the result. <br>**init()**This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
+Initializes a [cipher](#cipher) instance. This API uses a promise to return the result. 
+
+This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1740,12 +1774,14 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
 
 update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
-Updates the data to encrypt or decrypt by segment. This API uses an asynchronous callback to return the encrypted or decrypted data. <br>This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
+Updates the data to encrypt or decrypt by segment. This API uses an asynchronous callback to return the encrypted or decrypted data. 
+
+This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
 
 > **NOTE**
-> 1. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment. <br>For details about the sample code for calling **update()** multiple times in AES, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
-> 3. RSA asymmetric encryption and decryption do not support **update()**.
+> - The **update()** and [doFinal()](#dofinal-2) results vary with the block mode you use. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.<br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, data is output by **update()** as long as the input data is of the block size. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> - **update()** can be called multiple times or not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment. <br>For details about the sample code for calling **update()** multiple times in AES, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
+> - RSA asymmetric encryption and decryption do not support **update()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1800,9 +1836,9 @@ update(data : DataBlob) : Promise\<DataBlob>
 Updates the data to encrypt or decrypt by segment. This API uses a promise to return the encrypted or decrypted data. <br>This API can be called only after the [Cipher](#cipher) instance is initialized by using [init()](init-2).
 
 > **NOTE**
-> 1. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. The reason is the block mode and the related specifications affect the **update()** and [doFinal()](#dofinal-2) results. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. **update()** may be called multiple times or may not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment. For details about the sample code for calling **update()** multiple times in AES, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
-> 3. RSA asymmetric encryption and decryption do not support **update()**.
+> - The **update()** and [doFinal()](#dofinal-2) results vary with the block mode you use. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update()** and **doFinal()** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.<br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encrypted/decrypted block data generated by this **update()** is output. <br>That is, data is output as long as the data passed in by **update()** is of the block size. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**. <br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted. <br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> - **update()** can be called multiple times or not be called ([doFinal()](#dofinal-2) is called after [init](#init-2)), depending on the size of the data to encrypt or decrypt. <br>The algorithm library does not set a limit on the amount of data that can be passed in by **updated()** (once or accumulatively). For symmetric encryption and decryption of a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment. For details about the sample code for calling **update()** multiple times in AES, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
+> - RSA asymmetric encryption and decryption do not support **update()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1816,7 +1852,7 @@ Updates the data to encrypt or decrypt by segment. This API uses a promise to re
 
 | Type                           | Description                                            |
 | ------------------------------- | ------------------------------------------------ |
-| Promise\<[DataBlob](#datablob)> | Promise used to returns the **DataBlob** (containing the encrypted or decrypted data).|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data). |
 
 **Error codes**
 
@@ -1858,18 +1894,20 @@ cipher.update(plainText)
 
 doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
- (1) Encrypts or decrypts the remaining data (generated by the block ciper mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses an asynchronous callback to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**. <br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
+(1) Encrypts or decrypts the remaining data (generated by the block ciper mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses an asynchronous callback to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**. 
+
+The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
 - Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. <br>**authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
- (2) Encrypts or decrypts the input data for RSA asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
+(2) Encrypts or decrypts the input data for RSA asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
 
 >  **NOTE**
->  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
->  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
->  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
->  4. For details about the sample code for calling **doFinal()** multiple times during RSA asymmetric encryption and decryption, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
+>  - In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  - If a decryption operation fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  - The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  - For details about the sample code for calling **doFinal()** multiple times during RSA asymmetric encryption and decryption, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1912,18 +1950,20 @@ cipher.doFinal(data, (err, output) => {
 
 doFinal(data : DataBlob) : Promise\<DataBlob>
 
- (1) Encrypts or decrypts the remaining data (generated by the block ciper mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**. <br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
+(1) Encrypts or decrypts the remaining data (generated by the block ciper mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**. 
+
+The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
 - Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. <br>**authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
- (2) Encrypts or decrypts the input data for RSA asymmetric encryption/decryption. This API uses a promise to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
+(2) Encrypts or decrypts the input data for RSA asymmetric encryption/decryption. This API uses a promise to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
 
 >  **NOTE**
->  1. In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
->  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
->  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
->  4. For details about the sample code for calling **doFinal()** multiple times during RSA asymmetric encryption and decryption, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
+>  - In symmetric encryption or decryption, calling **doFinal()** means the end of an  encryption or decryption process, and the [Cipher](#cipher) instance state will be cleared. To start a new encryption or decryption operation, you must call [init()](#init-2) to pass in a complete parameter list for initialization. <br>For example, if the same symmetric key is used for a **Cipher** instance to perform encryption and then decryption. After the encryption is complete, the **params** in **init** for decryption must be set instead of being **null**.
+>  - If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **[init](#init-2)**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
+>  - The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  - For details about the sample code for calling **doFinal()** multiple times during RSA asymmetric encryption and decryption, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2021,14 +2061,16 @@ keyGenPromise.then(rsaKeyPair => {
 });
 ```
 
-> **NOTE**
+> **NOTE**<br>
 > For more encryption and decryption examples, see [Encrypting and Decrypting Data](../../security/cryptoFramework-guidelines.md#encrypting-and-decrypting data).
 
 ## cryptoFramework.createSign
 
 createSign(algName : string) : Sign
 
-Creates a **Sign** instance. <br>For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
+Creates a **Sign** instance.
+
+For details about the supported specifications, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2060,7 +2102,7 @@ Provides APIs for signing. Before using any API of the **Sign** class, you must 
 
 The signing mode is determined in **createSign()**, and the key is set by **init()**.
 
-If the data to be signed is short, you can call **sign()** to pass in the data for signing after **init()**.
+If the data to be signed is short, you can use **sign()** to pass in the data for signing after **init()**.
 
 If the data to be signed is long, you can use **update()** to pass in the data by segment, and then use **sign()** to sign the entire data.
 
@@ -2078,7 +2120,7 @@ If **update()** is used to pass in data by segment, **data** of **sign()** can b
 
 init(priKey : PriKey, callback : AsyncCallback\<void>) : void
 
-Initializes a **Sign** object using a private key. This API uses an asynchronous callback to return the result. The **Sign** class does not support repeated calling of **init()**. 
+Initializes a **Sign** instance using a private key. This API uses an asynchronous callback to return the result. The **Sign** class does not support repeated calling of **init()**. 
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2101,7 +2143,7 @@ Initializes a **Sign** object using a private key. This API uses an asynchronous
 
 init(priKey : PriKey) : Promise\<void>
 
-Initializes a **Sign** object using a private key. This API uses a promise to return the result. The **Sign** class does not support repeated calling of **init()**. 
+Initializes a **Sign** instance using a private key. This API uses a promise to return the result. The **Sign** class does not support repeated calling of **init()**. 
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2131,7 +2173,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 Updates the data to be signed. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2157,7 +2199,7 @@ update(data : DataBlob) : Promise\<void>;
 
 Updates the data to be signed. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE**<br>
 > For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2247,8 +2289,8 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of data.
-let plan2 = "This is Sign test plan2"; // The second segment of fata.
+let plan1 = "This is Sign test plan1"; // The first segment of the data.
+let plan2 = "This is Sign test plan2"; // The second segment of the data.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
 
@@ -2259,8 +2301,8 @@ function signMessageCallback() {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
     signer.init(priKey, function (err, data) {
-      signer.update(input1, function (err, data) { // add first segment of data
-        signer.sign(input2, function (err, data) { // add second segment of data, sign input1 and input2
+      signer.update(input1, function (err, data) { // Add the first segment of the data.
+        signer.sign(input2, function (err, data) { // Add the second segment of the data, and sign input1 and input2.
           SignMessageBlob = data;
           AlertDialog.show({message : "res" +  SignMessageBlob.data});
         });
@@ -2286,8 +2328,8 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of data.
-let plan2 = "This is Sign test plan2"; // The second segment of fata.
+let plan1 = "This is Sign test plan1"; // The first segment of the data.
+let plan2 = "This is Sign test plan2"; // The second segment of the data.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
 
@@ -2300,9 +2342,9 @@ function signMessagePromise() {
     let priKey = globalKeyPair.priKey;
     return signer.init(priKey);
   }).then(() => {
-    return signer.update(input1); // add first segment of data
+    return signer.update(input1); // Add the first segment of the data.
   }).then(() => {
-    return signer.sign(input2); // add second segment of data, sign input1 and input2
+    return signer.sign(input2); // Add the second segment of the data, and sign input1 and input2.
   }).then(dataBlob => {
     SignMessageBlob = dataBlob;
     console.info("sign output is " + SignMessageBlob.data);
@@ -2477,7 +2519,7 @@ Updates the data for signature verification. This API uses a promise to return t
 
 verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void
 
-Verifies the signature. This API uses an asynchronous callback to return the result.
+Verifies a signature. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2501,7 +2543,7 @@ Verifies the signature. This API uses an asynchronous callback to return the res
 
 verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>
 
-Verifies the signature. This API uses a promise to return the result.
+Verifies a signature. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2569,7 +2611,9 @@ verifyInitPromise.then(() => {
 
 createKeyAgreement(algName : string) : KeyAgreement
 
-Creates a **KeyAgreement** instance. <br>For details about the supported specifications, see "Key Agreement Specifications" (../../security/cryptoFramework-overview.md#key-agreement-specifications).
+Creates a **KeyAgreement** instance.
+
+For details about the supported specifications, see [Key Agreement Specifications](../../security/cryptoFramework-overview.md#key-agreement-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
