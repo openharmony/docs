@@ -12,7 +12,7 @@
 > FilePicker仅支持基于Stage模型开发的应用拉起。<br/>
 > Stage模型介绍请参考[应用模型解读](../application-models/application-model-description.md)。
 
-使用不同的参数调用[AbilityContext.startAbilityForResult(want, options)](../reference/apis/js-apis-ability-context.md##abilitycontextstartabilityforresult-1)可以拉起FilePicker不同模式的窗口。
+使用不同的参数调用[AbilityContext.startAbilityForResult(want, options)](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-1)可以拉起FilePicker不同模式的窗口。
 
 开发者需要通过[Want](../reference/apis/js-apis-application-want.md)指定"bundleName"和"abilityName"来拉起FilePicker，具体写法可参见下方的示例代码。
 
@@ -31,8 +31,7 @@ ArkTS语言示例代码如下：
 // 拉起FilePicker选择文件
 globalThis.context.startAbilityForResult(
     {
-        bundleName: "com.ohos.filepicker",
-        abilityName: "MainAbility",
+        action: "ohos.want.action.OPEN_FILE",
         parameters: {
             'startMode': 'choose', //choose or save
         }
@@ -43,8 +42,7 @@ globalThis.context.startAbilityForResult(
 // 拉起FilePicker保存文件
 globalThis.context.startAbilityForResult(
     {
-        bundleName: "com.ohos.filepicker",
-        abilityName: "MainAbility",
+        action: "ohos.want.action.CREATE_FILE",
         parameters: {
             'startMode': 'save', //choose or save
             'saveFile': 'test.jpg',
@@ -65,3 +63,4 @@ let abilityResult = {
 }
 globalThis.context.terminateSelfWithResult(abilityResult)
 ```
+
