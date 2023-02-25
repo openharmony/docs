@@ -26,7 +26,7 @@ format(format: string,  ...args: Object[]): string
 | 参数名  | 类型     | 必填 | 说明           |
 | ------- | -------- | ---- | -------------- |
 | format  | string   | 是   | 式样化字符串。 |
-| ...args | Object[] | 否   | 替换式样化字符串通配符的数据。  |
+| ...args | Object[] | 否   | 替换式样化字符串通配符的数据，此参数缺失时，默认返回第一个参数。 |
 
 **返回值：**
 
@@ -69,6 +69,20 @@ let result = util.errnoToString(errnum);
 console.log("result = " + result);
 ```
 
+**部分错误码及信息示例：**
+
+| 错误码 | 信息                              |
+| ------ | -------------------------------- |
+| -1     | operation not permitted          |
+| -2     | no such file or directory        |
+| -3     | no such process                  |
+| -4     | interrupted system call          |
+| -5     | i/o error                        |
+| -11    | resource temporarily unavailable |
+| -12    | not enough memory                |
+| -13    | permission denied                |
+| -100   | network is down                  |
+
 ## util.callbackWrapper
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
@@ -92,15 +106,14 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 **示例：**
 
   ```js
-  async function promiseFn() {
-      return Promise.reject('value');
-  }
-  let err = "type err";
-  let cb = util.callbackWrapper(promiseFn);
-  cb((err, ret) => {
-      console.log(err);
-      console.log(ret);
-  }, err)
+async function fn() {
+   return 'hello world';
+}
+let cb = util.callbackWrapper(fn);
+cb((err, ret) => {
+   if (err) throw err;
+   console.log(ret);
+});
   ```
 
 ## util.promisify<sup>9+</sup>
@@ -126,24 +139,30 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 **示例：**
 
   ```js
-  function aysnFun(str1, str2) {
-    if (typeof str1 === 'object' && typeof str2 === 'object') {
-      return str2
-    } else {
-      return str1
-    }
-  }
-  let newPromiseObj = util.promisify(aysnFun);
-  newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
-    console.log(res);
-  })
+function fun(num, callback) {
+   if (typeof num === 'number') {
+      callback(null, num + 3);
+   } else {
+      callback("type err");
+   }
+}
+
+const addCall = util.promisify(fun);
+(async () => {
+   try {
+      let res = await addCall(2);
+      console.log(res);
+   } catch (err) {
+      console.log(err);
+   }
+})();
   ```
 
-## util.randomUUID<sup>9+</sup>
+## util.generateRandomUUID<sup>9+</sup>
 
-randomUUID(entropyCache?: boolean): string
+generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的 UUID。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -162,17 +181,17 @@ randomUUID(entropyCache?: boolean): string
 **示例：**
 
   ```js
-  let uuid = util.randomUUID(true);
+  let uuid = util.generateRandomUUID(true);
   console.log("RFC 4122 Version 4 UUID:" + uuid);
   // 输出：
   // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
   ```
 
-## util.randomBinaryUUID<sup>9+</sup>
+## util.generateRandomBinaryUUID<sup>9+</sup>
 
-randomBinaryUUID(entropyCache?: boolean): Uint8Array
+generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的 UUID。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的Uint8Array类型UUID。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -191,7 +210,7 @@ randomBinaryUUID(entropyCache?: boolean): Uint8Array
 **示例：**
 
   ```js
-  let uuid = util.randomBinaryUUID(true);
+  let uuid = util.generateRandomBinaryUUID(true);
   console.log(JSON.stringify(uuid));
   // 输出：
   // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
@@ -201,7 +220,7 @@ randomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 parseUUID(uuid: string): Uint8Array
 
-从字符串中解析UUID，如RFC 4122版本4中所述。
+将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，如RFC 4122版本4中所述。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -243,7 +262,7 @@ printf(format: string,  ...args: Object[]): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | format | string | 是 | 式样化字符串。 |
-| ...args | Object[] | 否 | 替换式样化字符串通配符的数据。 |
+| ...args | Object[] | 否 | 替换式样化字符串通配符的数据，此参数缺失时，默认返回第一个参数。 |
 
 **返回值：**
 
@@ -361,8 +380,8 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 **示例：**
 
 ```js
-let textDecoder = new util.TextDecoder()
-textDecoder.create('utf-8', { ignoreBOM : true });
+let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
+let retStr = result.encoding
 ```
 
 ### decodeWithStream<sup>9+</sup>
