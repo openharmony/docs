@@ -13,7 +13,7 @@ The **DataShare** module allows an application to manage its own data and share 
 |query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void|Queries data from the database.|
 |delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void|Deletes data from the database.|
 
-For details about the data provider APIs, see [DataShareExtensionAbility](../reference/apis/js-apis-application-DataShareExtensionAbility.md).
+For details about the data provider APIs, see [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md).
 
 **Table 2** APIs of the data consumer
 
@@ -34,11 +34,52 @@ There are two roles in **DataShare**:
 - Data provider: adds, deletes, modifies, and queries data, opens files, and shares data.
 - Data consumer: accesses the data provided by the provider using **DataShareHelper**.
 
-Examples are given below.
-
 ### Data Provider Application Development (Only for System Applications)
 
-1. Import dependencies.
+[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
+
+- **onCreate**
+
+  Called by the server to initialize service logic when the **DataShare** client connects to the **DataShareExtensionAbility** server. This method can be overridden as required.
+
+- **insert**
+
+  Inserts data. This API is called when the client requests to insert data.
+
+- **update**
+
+  Updates data. This API is called when the client requests to update data.
+
+- **delete**
+
+  Deletes data. This API is called when the client requests to delete data.
+
+- **query**
+
+  Queries data. This API is called when the client requests to query data.
+
+- **batchInsert**
+
+  Batch inserts data. This API is called when the client requests to batch insert data.
+
+- **normalizeUri**
+
+  Converts the URI provided by the client to the URI used by the server.
+
+- **denormalizeUri**
+
+  Converts the URI used by the server to the initial URI passed by the client.
+
+Before implementing a **DataShare** service, you need to create a **DataShareExtensionAbility** object in the DevEco Studio project as follows:
+
+1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **DataShareAbility**.
+
+2. Right-click the **DataShareAbility** directory, and choose **New > TypeScript File** to create a file named **DataShareAbility.ts**.
+
+3. In the **DataShareAbility.ts** file, import the **DataShareExtensionAbility** dependency package. You can override the service implementation as required. For example, if the data provider provides only the services for inserting, deleting, and querying data, you can override **insert()**, **delete()**, and **query()** only.
+
+
+4. Import dependencies.
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
@@ -47,9 +88,9 @@ Examples are given below.
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
 
-2. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only **query()**.
+5. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only **query()**.
 
-3. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
+6. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
 
    ```ts
    const DB_NAME = "DB00.db";
@@ -57,29 +98,31 @@ Examples are given below.
    const DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
    + TBL_NAME
    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)";
-   
+
    let rdbStore;
    let result;
-   
+
    export default class DataShareExtAbility extends Extension {
        private rdbStore_;
-       
+
    	// Override onCreate().
        onCreate(want, callback) {
-           result = this.context.cacheDir + '/datashare.txt'
+           result = this.context.cacheDir + '/datashare.txt';
            // Create an RDB store.
-           rdb.getRdbStore(this.context, {
-               name: DB_NAME,
-               securityLevel: rdb.SecurityLevel.S1
-           }, function (err, data) {
-               rdbStore = data;
-               rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                   console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
+            rdb.getRdbStore(this.context, {
+                name: DB_NAME,
+                securityLevel: rdb.SecurityLevel.S1
+            }, function (err, data) {
+                rdbStore = data;
+                rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
+                    console.log('DataShareExtAbility onCreate, executeSql done err:' + JSON.stringify(err));
                });
-               callback();
+               if (callback) {
+                    callback();
+               }
            });
        }
-   
+
    	// Override query().
        query(uri, predicates, columns, callback) {
            if (predicates == null || predicates == undefined) {
@@ -103,7 +146,7 @@ Examples are given below.
    };
    ```
 
-4. Define **DataShareExtensionAbility** in **module.json5**.
+7. Define **DataShareExtensionAbility** in **module.json5**.
 
    | Field| Description                                                    |
    | ------------ | ------------------------------------------------------------ |
@@ -133,25 +176,25 @@ Examples are given below.
 1. Import dependencies.
 
    ```ts
-   import Ability from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
-   
+
 2. Define the URI string for communicating with the data provider.
 
    ```ts
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).
    let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
    ```
-   
+
 3. Create a **DataShareHelper** instance.
 
    ```ts
    let dsHelper;
    let abilityContext;
-   
-   export default class MainAbility extends Ability {
+
+   export default class EntryAbility extends UIAbility {
    	onWindowStageCreate(windowStage) {
    		abilityContext = this.context;
    		dataShare.createDataShareHelper(abilityContext, dseUri, (err, data)=>{
@@ -160,7 +203,7 @@ Examples are given below.
    	}
    }
    ```
-   
+
 4. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
 
    ```ts
@@ -168,7 +211,7 @@ Examples are given below.
    let valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
    let updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
    let predicates = new dataSharePredicates.DataSharePredicates();
-   let valArray = new Array("*");
+   let valArray = ['*'];
    // Insert a piece of data.
    dsHelper.insert(dseUri, valuesBucket, (err, data) => {
      console.log("dsHelper insert result: " + data);
@@ -183,7 +226,6 @@ Examples are given below.
    });
    // Delete data.
    dsHelper.delete(dseUri, predicates, (err, data) => {
-     console.log("dsHelper delete result: " + data);   
+     console.log("dsHelper delete result: " + data);
    });
    ```
-   

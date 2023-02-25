@@ -38,7 +38,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                                |
+| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).                                                |
 | name     | string                                           | Yes  | Name of the **Preferences** instance.|
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
 
@@ -69,9 +69,9 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 let context = null;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -103,7 +103,7 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
@@ -139,9 +139,9 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 let context = null;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -177,7 +177,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
+| context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to delete.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
@@ -215,9 +215,9 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 let context = null;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -252,7 +252,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to delete.|
 
 **Return value**
@@ -294,9 +294,9 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 let context = null;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -328,7 +328,7 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
+| context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to remove.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
@@ -358,9 +358,9 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 let context = null;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -394,7 +394,7 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to remove.|
 
 **Return value**
@@ -428,9 +428,9 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 let context = null;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context;
     }
@@ -662,7 +662,7 @@ try {
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses an asynchronous callback to return the result..
+Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -698,7 +698,7 @@ try {
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses a promise to return the result..
+Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -987,7 +987,7 @@ Unsubscribes from data changes.
 | Name  | Type                            | Mandatory| Description                                      |
 | -------- | -------------------------------- | ---- | ------------------------------------------ |
 | type     | string                           | Yes  | Event type to unsubscribe from. The value **change** indicates data change events.  |
-| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks used to subscribing to all data changes will be unregistered.|
+| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered. |
 
 **Example**
 
