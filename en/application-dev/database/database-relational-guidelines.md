@@ -10,7 +10,7 @@ Most of the RDB store APIs are asynchronous interfaces, which can use a callback
 
 ### Creating or Deleting an RDB Store
 
-The table below describes the APIs available for creating and deleting an RDB store.
+The following table describes the APIs available for creating and deleting an RDB store.
 
 **Table 1** APIs for creating and deleting an RDB store
 
@@ -71,7 +71,7 @@ The **RDB** module provides APIs for inserting, deleting, updating, and querying
 
 The **RDB** module provides **RdbPredicates** for you to set database operation conditions.
 
-The table below lists common predicates. For more information about predicates, see [**RdbPredicates**](../reference/apis/js-apis-data-rdb.md#rdbpredicates).
+The following table lists common predicates. For more information about predicates, see [**RdbPredicates**](../reference/apis/js-apis-data-rdb.md#rdbpredicates).
 
 **Table 6** APIs for using RDB store predicates
 
@@ -250,7 +250,7 @@ You can obtain the distributed table name for a remote device based on the local
     ```js
     function storeObserver(devices) {
         for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + ' data changed')
+            console.log('device=' + devices[i] + ' data changed')
         }
     }
     try {
