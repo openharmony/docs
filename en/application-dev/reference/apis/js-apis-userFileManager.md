@@ -675,8 +675,8 @@ Unsubscribes from changes of the file management library. This API uses a callba
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
-| callback | Callback&lt;void&gt; | No  | Callback that returns no value.                                                  |
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to unsubscribe from.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device. |
+| callback | Callback&lt;void&gt; | No  | Callback for the change.                                    |
 
 **Example**
 
@@ -2335,9 +2335,9 @@ Enumerates the member types.
 
 | Name |  Type|  Readable |  Writable |  Description |
 | ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | Yes| Yes| The member is a number.| 
-| string |  string | Yes| Yes| The member is a string.| 
-| boolean |  boolean | Yes| Yes| The member is a Boolean value.| 
+| number |  number | Yes| Yes| The member is a number.|
+| string |  string | Yes| Yes| The member is a string.|
+| boolean |  boolean | Yes| Yes| The member is a Boolean value.|
 
 ## ChangeEvent
 
