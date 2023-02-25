@@ -39,19 +39,19 @@ mediaLibrary提供相册相关的接口，供开发者创建、删除相册，�
 
 ```ts
 async function example() {
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    //myAlbum为新建文件保存路径，也是新建相册的名称
-    media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
-        if (fileAsset === undefined) {
-            console.error('createAlbum failed, message = ' + err);
-        } else {
-            console.info('createAlbum successfully, message = ' + JSON.stringify(fileAsset));
-        }
-    });
+  let mediaType = mediaLibrary.MediaType.IMAGE;
+  let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const path = await media.getPublicDirectory(DIR_IMAGE);
+  //myAlbum为新建文件保存路径，也是新建相册的名称
+  media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
+    if (fileAsset === undefined) {
+      console.error('createAlbum failed, message = ' + err);
+    } else {
+      console.info('createAlbum successfully, message = ' + JSON.stringify(fileAsset));
+    }
+  });
 }
 ```
 
@@ -75,20 +75,20 @@ async function example() {
 
 ```ts
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    let album = albumList[0];
-    album.albumName = 'newAlbum';
-    //回调返回空
-    album.commitModify().then(() => {
-        console.info("albumRename successfully");
-    }).catch((err) => {
-        console.error("albumRename failed with error: " + err);
-    });
+  let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  let album = albumList[0];
+  album.albumName = 'newAlbum';
+  //回调返回空
+  album.commitModify().then(() => {
+    console.info("albumRename successfully");
+  }).catch((err) => {
+    console.error("albumRename failed with error: " + err);
+  });
 }
 ```
