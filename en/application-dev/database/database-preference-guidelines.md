@@ -200,6 +200,6 @@ You can use the following APIs to delete a **Preferences** instance or data file
    proDelete.then(() => {
         console.info("Deleted data successfully.");
    }).catch((err) => {
-       console.info("Failed to delete. Cause: " + err);
+       console.info("Failed to delete data. Cause: " + err);
    })
    ```
