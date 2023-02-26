@@ -57,7 +57,7 @@ function implicitStartAbility() {
 
 > **说明：**
 >
-> 当前仅支持文件FD格式进行数据分享。
+> 目前仅支持使用文件描述符（FD）格式分享数据。获取被分享文件的文件描述符和文件名，请参考[文件管理](../reference/apis/js-apis-file-fs.md)相关接口。
 
 在以上代码中，使用了自定义字段`parameters`。其中，一级参数`parameters`中的字段`ability.picker.*`用于向应用选择器传递展示信息，具体字段如下：
 
