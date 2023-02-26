@@ -1,110 +1,132 @@
 # 应用间使用Want分享数据
 
+在应用使用场景中，用户经常需要将应用内的数据（如文字、图片等）分享至其他应用以供进一步处理。以分享PDF文件为例，本文将介绍如何使用Want来实现应用间的数据分享。
 
-在应用使用场景中，用户经常需要将一个应用内的数据（如文字、图片等）分享至另一个应用内继续操作。下面以PDF文件分享为例，介绍应用间使用Want分享数据的方法。
+数据分享需要使用两个UIAbility组件（分享方和被分享方）以及一个系统组件（应用选择框）。当分享方使用`startAbility()`方法发起数据分享时，系统会隐式匹配所有支持接收分享数据类型的应用，并将其展示给用户以供选择。用户选择应用后，系统将启动该应用来完成数据分享操作。
 
+在本文中，我们将使用按钮的形式触发分享操作，但实际开发中并不限于此。本文主要介绍如何配置Want以实现数据分享的功能。
 
-## 前提条件
+本文中涉及的两个Action为：
 
-1. 数据分享涉及2个UIAbility组件（分享方和被分享方）和1个系统部件（应用选择框）。当分享方通过startAbility接口发起数据分享后，将拉起应用选择框。其将**隐式匹配并展示**所有支持接受分享数据类型的应用，由用户主动选取，并由系统拉起点击应用完成数据的分享。
+- `ohos.want.action.select`：用于启动应用选择框。
+- `ohos.want.action.sendData`：用于发送单个数据记录。此Action用于将数据传递给分享方应用。
 
-2. 在本章节中，将继续以按钮形式来触发分享，实际开发场景中并不局限于此，此章节着重讲解分享时Want的配置。
+## 分享方
 
-3. 本章节涉及的action：
-   - ACTION_SELECT （ohos.want.action.select）：指示显示应用程序选择框的操作。用于拉起应用选择框。
-   - ACTION_SEND_DATA （ohos.want.action.sendData）：指示发送单个数据记录的操作。用于传递数据至分享方。
+为了实现数据分享功能，分享方需要先拉起应用选择框并将要分享的数据传递给被分享方应用。因此，在分享方的代码中需要嵌套使用两层Want。在第一层中，使用隐式Want和`ohos.want.action.select`的action来启动应用选择框。在第二层Want中，声明要传递给被分享方应用的数据。
 
+具体来说，可以将要分享的数据放在自定义字段`parameters`中，然后将包含`ohos.want.action.sendData`的action和`parameters`字段的Want作为第二层Want传递给应用选择框。被分享方应用可以通过获取参数`parameters`来获取分享的数据。
 
-## 开发步骤
+```ts
+import common from '@ohos.app.ability.common';
 
-- 分享方
-  1. Stage模型下经常会遇到需要分享文件的场景，在这种场景下我们需要使用[文件描述符（FD）](../reference/apis/js-apis-fileio.md#fileioopensync)来传递文件。此示例中，默认已获取分享文件的路径。
-     
-      ```ts
-      import fileIO from '@ohos.fileio';
-      
-      // let path = ...
-      // file open where path is a variable contains the file path.
-      let fileFd = fileIO.openSync(path, 0o102, 0o666);
-      ```
-  2. 在前提条件中介绍了分享的流程。分享方需先拉起应用选择框，并将数据分享给应用选择框，并由应用选择框代理传递至被分享方，完成分享。因此分享方的Want需使用2层嵌套，在第1层中使用隐式Want并配合“ohos.want.action.select”action拉起应用选择框，并在自定义字段parameters内声明一个完整的want作为第2层，其中声明传递给被分享方的数据。
-     
-      ```ts
-      import wantConstant from '@ohos.app.ability.wantConstant';
-      
-      // let path = ...
-      // let fileFd = ...
-      // let fileSize = ...
-      let want = {
-          // This action is used to implicitly match the application selctor.
-          action: wantConstant.Action.ACTION_SELECT,
-          // This is the custom parameter in the first layer of want
-          // which is intended to add info to application selector.
-          parameters: {
-              // The MIME type of pdf
-              "ability.picker.type": "application/pdf",
-              "ability.picker.fileNames": [path],
-              "ability.picker.fileSizes": [fileSize],
-              // This a nested want which will be directly send to the user selected application.         
-              "ability.want.params.INTENT": {
-                  "action": "ohos.want.action.sendData",
-                  "type": "application/pdf",
-                  "parameters": {
-                     "keyFd": {"type": "FD", "value": fileFd}
-                  }
-              }
-          }
-      }
-      ```
+let fileType = 'application/pdf';
+let fileName = 'TestFile.pdf';
+let fileFd = -1; // 需要获取被分享文件的FD
+let fileSize; // 需要获取被分享文件的大小
 
-      以上代码中使用Want自定义字段paramters，其中第一层paramters中的“ability.picker.\*”字段用于传递展示信息给应用选择器，具体字段表示为：
-
-      - "ability.picker.type"：应用选择器根据该字段渲染相应的文件类型图标。
-      - "ability.picker.fileNames"：应用选择器根据该字段展示文件名。
-      - "ability.picker.fileSizes"：应用选择器根据该字段展示文件大小。以字节为单位。
-      - "ability.picker.fileNames"与"ability.picker.fileSizes"为数组，其有一一对应关系。
-
-      例如：当"ability.picker.type"为“application/pdf”，"ability.picker.fileNames"为“["接口文档.pdf"]”，"ability.picker.fileSizes"为“[350 \* 1024]”时，应用选择器将以下形式展示。 
-
-      ![stage-want2](figures/stage-want2.png) 
-      
-      示例代码中“ability.want.params.INTENT”字段是一个嵌套Want，内部所含action、type等字段将由应用选择器进行隐式匹配，具体隐式匹配规则可参考[隐式Want匹配原理](explicit-implicit-want-mappings.md#隐式want匹配原理)。当用户选择具体应用后，“ability.want.params.INTENT”字段的嵌套Want将传递至所选应用。
-  
-- 被分享方：
-  1. 上文中提到，应用选择器通过“ability.want.params.INTENT”字段进行隐式匹配。因此被分享方Ability配置文件内（stage模型下的module.json5）skills字段需配置如下。
-     
-      ```ts
-      "skills": [
-        {
-          "entities": [
-            // ...
-          ],
-          "actions": [
-              "ohos.want.action.sendData"
-              // ...
-          ],
-          "uris": [
-            {
-              "type": "application/pdf"
-            },
-            // ...
-          ]
-        },
-      ]
-      ```
-
-      其中"actions"字段和“uris”内“type”字段分别与“ability.want.params.INTENT”内“action”，“type”字段匹配。
-
-      注意：当前文件传递不支持uri方式传递，仅支持FD方式，但隐式匹配中，Want内的“type”字段需与被分享方配置文件skills内“uris”字段下的“type”字段匹配，因此skills内的“uris”字段建议只声明“type”字段，增加“host”，“port”等字段在上述示例中将匹配失败。因为应用选择框通过“ability.want.params.INTENT”发起隐式匹配，所以在“ability.want.params.INTENT”字段内增加uri字段，且与skills内的“uris”字段匹配时，仍可匹配成功且传递额外数据。
-  2. 应用选择器拉起被分享方后，系统将调用其“onCreate”接口，并传入“ability.want.params.INTENT”至其入参want内。
-     
-      ```ts
-      onCreate(want, launchParam) {
-        // note when keyFd is undefined, app crash will happen.
-        if (want["parameters"]["keyFd"] !== undefined) {
-          // receive file descriptor
-          let fd = want["parameters"]["keyFd"].value;
-          // ...
+function implicitStartAbility() {
+  let context = getContext(this) as common.UIAbilityContext;
+  let wantInfo = {
+    // This action is used to implicitly match the application selctor.
+    action: 'ohos.want.action.select',
+    // This is the custom parameter in the first layer of want
+    // which is intended to add info to application selector.
+    parameters: {
+      // The MIME type of pdf
+      "ability.picker.type": fileType,
+      "ability.picker.fileNames": [fileName],
+      "ability.picker.fileSizes": [fileSize],
+      // This a nested want which will be directly send to the user selected application.
+      "ability.want.params.INTENT": {
+        "action": "ohos.want.action.sendData",
+        "type": "application/pdf",
+        "parameters": {
+          "keyFd": { "type": "FD", "value": fileFd }
         }
       }
-      ```
+    }
+  }
+  context.startAbility(wantInfo).then(() => {
+    // ...
+  }).catch((err) => {
+    // ...
+  })
+}
+```
+
+> **说明：**
+>
+> 当前仅支持文件FD格式进行数据分享。
+
+在以上代码中，使用了自定义字段`parameters`。其中，一级参数`parameters`中的字段`ability.picker.*`用于向应用选择器传递展示信息，具体字段如下：
+
+- `ability.picker.type`：用于渲染相应的文件类型图标。
+- `ability.picker.fileNames`：用于展示文件名。
+- `ability.picker.fileSizes`：用于展示文件大小，单位为字节。
+- `ability.picker.fileNames`和`ability.picker.fileSizes`是数组，两者一一对应。
+
+效果示意如下图所示。   
+<img src="figures/ability-startup-with-implicit-want2.png" alt="ability-startup-with-implicit-want2" height="600" />
+
+## 被分享方
+
+为了使分享的内容能够在被分享方识别，需要在被分享方UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中的skills标签进行相应的配置。其中，`actions`字段和`uris`内的`type`字段分别与分享方Want参数中`ability.want.params.INTENT`内的`action`和`type`字段进行匹配。
+
+```json
+{
+  "module": {
+    // ...
+    "abilities": [
+      {
+        // ...
+        "skills": [
+          {
+            // ...
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.sendData"
+              // ...
+            ],
+            "uris": [
+              {
+                "type": "application/pdf"
+              },
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+当用户选择分享的应用后，嵌套在`ability.want.params.INTENT`字段中的Want参数将会传递给所选应用。被分享方的UIAbility被启动后，可以在其[onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中获取传入的Want参数信息。
+
+获取到的Want参数信息示例如下，可以使用被分享文件的文件描述符（FD）进行相应操作。
+
+```json
+{
+    "deviceId": "",
+    "bundleName": "com.example.myapplication",
+    "abilityName": "EntryAbility",
+    "moduleName": "entry",
+    "uri": "",
+    "type": "application/pdf",
+    "flags": 0,
+    "action": "ohos.want.action.sendData",
+    "parameters": {
+        "component.startup.newRules": true,
+        "keyFd": {
+            "type": "FD",
+            "value": 36
+        },
+        "mime-type": "application/pdf",
+        "moduleName": "entry",
+        "ohos.aafwk.param.callerPid": 3488,
+        "ohos.aafwk.param.callerToken": 537379209,
+        "ohos.aafwk.param.callerUid": 20010014
+    },
+    "entities": []
+}
+```
