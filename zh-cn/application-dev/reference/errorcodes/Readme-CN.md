@@ -27,7 +27,7 @@
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)
-- 后台任务
+- 资源调度
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)

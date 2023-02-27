@@ -1,11 +1,11 @@
 # OpenHarmony应用开发文档
 - [应用开发导读](application-dev-guide.md)
-- 快速开始
+- 入门
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
     - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
     - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
-    - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)  
+    - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
   - 开发基础知识
     - 应用程序包基础知识
       - [应用程序包概述](quick-start/application-package-overview.md)
@@ -173,7 +173,7 @@
         - [Storage接口切换](application-models/storage-switch.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
-    - UI开发（基于ArkTS的声明式开发范式）
+    - 基于ArkTS的声明式开发范式
       - [概述](ui/ui-ts-overview.md)
       - [声明式UI开发指导](ui/ui-ts-developing-intro.md)
       - 声明式UI开发实例
@@ -199,7 +199,7 @@
       - [自定义组件的生命周期](ui/ui-ts-custom-component-lifecycle-callbacks.md)
       - [Web组件开发指导](ui/ui-ts-components-web.md)
       - [性能提升的推荐方法](ui/ui-ts-performance-improvement-recommendation.md)
-    - UI开发（兼容JS的类Web开发范式）
+    - 兼容JS的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
         - [文件组织](ui/js-framework-file.md)
@@ -488,12 +488,12 @@
     - [anm工具](tools/anm-tool.md)
     - [cem工具](tools/cem-tool.md)
 - 示例教程
-  - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
+  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
-  - 组件参考（基于TS扩展的声明式开发范式）
+  - 组件参考（基于ArkTS的声明式开发范式）
     - [组件导读](reference/arkui-ts/ts-components-summary.md)
     - 组件通用信息
       - 通用事件
@@ -663,7 +663,7 @@
     - [类型说明](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
-  - 组件参考（基于JS扩展的类Web开发范式）
+  - 组件参考（兼容JS的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
       - [通用样式](reference/arkui-js/js-components-common-styles.md)
@@ -982,7 +982,7 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    - 后台任务
+    - 资源调度
       - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
@@ -1230,7 +1230,7 @@
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)
-    - 后台任务
+    - 资源调度
       - [backgroundTaskManager错误码](reference/errorcodes/errorcode-backgroundTaskMgr.md)
       - [reminderAgentManager错误码](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/errorcodes/errorcode-workScheduler.md)
