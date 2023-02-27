@@ -15,7 +15,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 - [启动其他应用的UIAbility并获取返回结果](#启动其他应用的uiability并获取返回结果)
 
-- [启动UIAbility指定窗口模式（仅对系统应用开放）](#启动uiability指定窗口模式（仅对系统应用开放）)
+- [启动UIAbility指定窗口模式（仅对系统应用开放）](#启动uiability指定窗口模式仅对系统应用开放)
 
 - [启动UIAbility的指定页面](#启动uiability的指定页面)
 
