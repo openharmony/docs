@@ -13,4 +13,4 @@ DataAbility，即"使用Data模板的Ability"，主要用于对外部提供统�
 
 基于DataAbility组件的开发，以下相关实例可供参考：
 
-- [`DataAbility`：DataAbility的创建与访问（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DataAbility)
+- [`DataAbility`：DataAbility的创建与访问（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ability/DataAbility)

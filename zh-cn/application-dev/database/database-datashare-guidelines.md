@@ -232,8 +232,3 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
    });
    ```
 
-## 相关示例
-
-针对DataShareExtensionAbility开发，有以下相关示例可供参考：
-
-[DataShareExtensionAbility：跨应用数据共享（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/CrossAppDataShare)

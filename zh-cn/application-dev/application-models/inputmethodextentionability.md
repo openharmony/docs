@@ -366,4 +366,4 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 针对InputMethodExtensionAbility开发，有以下相关示例可供参考：
 
-[Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/KikaInput)
+[Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/CompleteApps/KikaInput)

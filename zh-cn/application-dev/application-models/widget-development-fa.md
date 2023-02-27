@@ -547,6 +547,6 @@ onUpdate(formId) {
 针对FA模型卡片提供方的开发，有以下相关实例可供参考：
 
 
-- [FormAbility：FA模型卡片（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormAbility)
+- [FormAbility：FA模型卡片（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ability/FormAbility)
 
-- [FormLauncher：卡片使用方（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormLauncher)
+- [FormLauncher：卡片使用方（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ability/FormLauncher)
