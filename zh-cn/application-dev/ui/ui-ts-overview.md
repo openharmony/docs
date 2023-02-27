@@ -60,19 +60,17 @@ ArkTS语言的基础知识请参考[学习ArkTS语言](../quick-start/arkts-get-
 
 - [`MouseEvent`：鼠标事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent)
 
-- [`BringApp`：拉起系统应用（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp)
-
-- [`Chat`：聊天示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Chat)
+- [`Chat`：聊天示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
 
 - [`Shopping`：购物示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Shopping)
 
-- [`Lottie`：Lottie（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Lottie)
+- [`Lottie`：Lottie（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
 
-- [`Flybird`：小鸟避障游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/Flybird)
+- [`Flybird`：小鸟避障游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/Flybird)
 
-- [`AdaptiveCapabilities`：多设备自适应能力（ArkTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
+- [`AdaptiveCapabilities`：多设备自适应能力（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities)
 
-- [`Game2048`：2048游戏（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048)
+- [`Game2048`：2048游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048)
 
 - [`TransitionAnimation`：转场动画(ArkTS)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/TransitionAnimation)
 
@@ -88,4 +86,4 @@ ArkTS语言的基础知识请参考[学习ArkTS语言](../quick-start/arkts-get-
 
 - [`UpgradePopup`：自定义弹窗（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/UpgradePopup)
 
-- [CustomComponent:组件化（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/CustomComponent)
+- [ComponentCollection:组件集合（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/ComponentCollection)
