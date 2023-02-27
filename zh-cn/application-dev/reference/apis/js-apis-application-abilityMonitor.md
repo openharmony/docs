@@ -11,17 +11,17 @@ AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方
 通过abilityDelegator中的addAbilityMonitor来设置。
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-var abilityDelegator;
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
-var monitor = {
+let monitor = {
     abilityName: "abilityname",
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (err : any) => {

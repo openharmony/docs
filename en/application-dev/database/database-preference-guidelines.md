@@ -113,10 +113,10 @@ You can use the following APIs to delete a **Preferences** instance or data file
 
    ```ts
    // Obtain the context.
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility'
    let context = null;
    let preferences = null;
-   export default class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage){
            context = this.context;
        }
@@ -159,7 +159,7 @@ You can use the following APIs to delete a **Preferences** instance or data file
    
 5. Store data persistently.
 
-   Use **flush()** to flush data from the **Preferences** instance to its file.
+   Use **preferences.flush()** to flush data from the **Preferences** instance to its file.
 
    ```js
    preferences.flush();
@@ -186,7 +186,7 @@ You can use the following APIs to delete a **Preferences** instance or data file
                console.info("Failed to flush data. Cause: " + err);
                return;
            }
-            console.info("Flushed data successfully."); // The observer will be called.
+           console.info("Flushed data successfully."); // The observer will be called.
        })
    })
    ```
@@ -200,6 +200,6 @@ You can use the following APIs to delete a **Preferences** instance or data file
    proDelete.then(() => {
         console.info("Deleted data successfully.");
    }).catch((err) => {
-        console.info("Failed to delete data. Cause: " + err);
+       console.info("Failed to delete data. Cause: " + err);
    })
    ```

@@ -68,16 +68,16 @@ The following uses a single KV store as an example to describe the development p
     grantPermission();
    
     // Stage model
-    import AbilityStage from '@ohos.application.Ability';
-   
+    import UIAbility from '@ohos.app.ability.UIAbility';
+  
     let context = null;
-
-    class MainAbility extends AbilityStage {
+  
+    class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
         let context = this.context;
       }
     }
-
+  
     function grantPermission() {
       let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
       context.requestPermissionsFromUser(permissions).then((data) => {
@@ -86,7 +86,7 @@ The following uses a single KV store as an example to describe the development p
         console.error('failed: ${error}');
       });
     }
-
+  
     grantPermission();
     ```
 
@@ -103,9 +103,9 @@ The following uses a single KV store as an example to describe the development p
    let context = featureAbility.getContext();
    
    // Obtain the context of the stage model.
-   import AbilityStage from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let context = null;
-   class MainAbility extends AbilityStage{
+   class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage){
         context = this.context;
       }

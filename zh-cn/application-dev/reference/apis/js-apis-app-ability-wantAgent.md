@@ -37,7 +37,7 @@ function getWantAgentCallback(err, data) {
 	console.info('==========================>getWantAgentCallback=======================>');
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -62,7 +62,7 @@ var wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
@@ -100,7 +100,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -160,7 +160,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -172,7 +172,7 @@ function getWantAgentCallback(err, data) {
     }
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -241,10 +241,10 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -309,7 +309,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -321,7 +321,7 @@ function getWantAgentCallback(err, data) {
     }
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -390,10 +390,10 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -460,7 +460,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -472,7 +472,7 @@ function getWantAgentCallback(err, data) {
     }
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -543,10 +543,10 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -611,7 +611,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -623,7 +623,7 @@ function getWantAgentCallback(err, data) {
     }
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -692,10 +692,10 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -761,7 +761,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -773,7 +773,7 @@ function getWantAgentCallback(err, data) {
     }
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -809,7 +809,7 @@ try {
     }
 
 
-    var triggerInfo = {
+    let triggerInfo = {
         code:0
     };
     WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
@@ -843,8 +843,8 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent1;
-var wantAgent2;
+let wantAgent1;
+let wantAgent2;
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -857,7 +857,7 @@ function getWantAgentCallback(err, data) {
     }
 }
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -927,11 +927,11 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 
 //wantAgent对象
-var wantAgent1;
-var wantAgent2;
+let wantAgent1;
+let wantAgent2;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -994,10 +994,10 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -1064,10 +1064,10 @@ getOperationType(agent: WantAgent): Promise\<number>;
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 //wantAgent对象
-var wantAgent;
+let wantAgent;
 
 //WantAgentInfo对象
-var wantAgentInfo = {
+let wantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',

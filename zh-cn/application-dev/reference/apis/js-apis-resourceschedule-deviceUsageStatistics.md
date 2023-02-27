@@ -54,9 +54,9 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID        | 错误信息                     |
 | ---------- | ----------------------------     |
-| 10000001   | Memory operation failed.         | 
-| 10000002   | Parcel operation failed.         | 
-| 10000003   | System service operation failed. | 
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
 | 10000004   | IPC failed.        |
 | 10000006   | Failed to get the application information.    |
 
@@ -105,9 +105,9 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 | 错误码ID        | 错误信息                     |
 | ---------- | ----------------------------     |
-| 10000001   | Memory operation failed.         | 
-| 10000002   | Parcel operation failed.         | 
-| 10000003   | System service operation failed. | 
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
 | 10000004   | IPC failed.        |
 | 10000006   | Failed to get the application information.     |
 
@@ -133,6 +133,8 @@ queryAppGroup(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口。
+
 **返回值**：
 
 | 类型              | 说明                          |
@@ -145,9 +147,9 @@ queryAppGroup(): Promise&lt;number&gt;
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
@@ -175,6 +177,8 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口。
+
 **参数**：
 
 | 参数名      | 类型                    | 必填   | 说明                         |
@@ -186,10 +190,10 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
@@ -236,10 +240,10 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -296,10 +300,10 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -350,10 +354,10 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -409,10 +413,10 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -461,9 +465,9 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -519,9 +523,9 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -552,6 +556,8 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口。
+
 **参数**：
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
@@ -565,10 +571,10 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -601,6 +607,8 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口。
+
 **参数**：
 
 | 参数名   | 类型     | 必填   | 说明    |
@@ -619,10 +627,10 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.      |
 | 10000007   | Failed to get the system time.  |
@@ -668,10 +676,10 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -718,10 +726,10 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -776,9 +784,9 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -826,9 +834,9 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -883,11 +891,11 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      | 
+| 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
 
@@ -932,11 +940,11 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      | 
+| 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
 
@@ -982,9 +990,9 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
@@ -1037,10 +1045,10 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
@@ -1088,9 +1096,9 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1147,9 +1155,9 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1202,10 +1210,10 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1246,10 +1254,10 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1299,10 +1307,10 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
@@ -1348,9 +1356,9 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.           |
 | 10000007   | Failed to get the system time.     |
@@ -1403,9 +1411,9 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
@@ -1450,10 +1458,10 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
@@ -1557,6 +1565,8 @@ FA卡片的使用信息的属性集合。
 提供应用事件的具体信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口。
 
 | 名称                   | 类型     | 必填   | 说明                                       |
 | --------------------- | ------ | ---- | ---------------------------------------- |
