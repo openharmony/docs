@@ -34,7 +34,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported. The [touch target](ts-universal-attributes-touch-target.md) is not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
@@ -43,7 +43,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | barMode           | BarMode | Tab bar layout mode. For details, see **BarMode**.<br>Default value: **BarMode.Fixed**|
 | barWidth          | number \| Length<sup>8+</sup>  | Width of the tab bar.    |
 | barHeight         | number \| Length<sup>8+</sup>  | Height of the tab bar.    |
-| animationDuration | number | Animation duration of the tab content.<br>Default value: **200**|
+| animationDuration | number | Duration of the slide animation for tab switching. If this parameter is set, the tab switching animation is played when the user switches between tabs by sliding or clicking. If this parameter is not set, the tab switching animation is played only when the user switches between tabs by sliding.<br>Default value: **200**|
 
 ## BarMode
 
