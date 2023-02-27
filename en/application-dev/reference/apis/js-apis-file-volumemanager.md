@@ -1,16 +1,17 @@
-# @ohos.volumeManager (Volume Management)
+# @ohos.file.volumeManager (Volument Management)
 
 The volumeManager module provides APIs for volume and disk management, including obtaining volume information, mounting or unmounting volumes, partitioning disks, and formatting volumes.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9.
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
+> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
 ```js
-import volumemanager from "@ohos.volumeManager";
+import volumemanager from "@ohos.file.volumeManager";
 ```
 
 ## volumemanager.getAllVolumes
@@ -65,7 +66,7 @@ Asynchronously obtains information about all available volumes. This API uses a 
 
 ## volumemanager.mount
 
-mount(volumeId: string): Promise&lt;boolean&gt;
+mount(volumeId: string): Promise&lt;void&gt;
 
 Asynchronously mounts a volume. This API uses a promise to return the result.
 
@@ -83,7 +84,7 @@ Asynchronously mounts a volume. This API uses a promise to return the result.
 
   | Type                  | Description      |
   | ---------------------- | ---------- |
-  | Promise&lt;boolean&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -96,7 +97,7 @@ Asynchronously mounts a volume. This API uses a promise to return the result.
 
 ## volumemanager.mount
 
-mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
+mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
 Asynchronously obtains the available space of the specified volume. This API uses a callback to return the result.
 
@@ -109,7 +110,7 @@ Asynchronously obtains the available space of the specified volume. This API use
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -122,7 +123,7 @@ Asynchronously obtains the available space of the specified volume. This API use
 
 ## volumemanager.unmount
 
-unmount(volumeId: string): Promise&lt;boolean&gt;
+unmount(volumeId: string): Promise&lt;void&gt;
 
 Asynchronously unmounts a volume. This API uses a promise to return the result.
 
@@ -140,7 +141,7 @@ Asynchronously unmounts a volume. This API uses a promise to return the result.
 
   | Type                  | Description      |
   | ---------------------- | ---------- |
-  | Promise&lt;boolean&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -153,7 +154,7 @@ Asynchronously unmounts a volume. This API uses a promise to return the result.
 
 ## volumemanager.unmount
 
-unmount(volumeId: string, callback: AsyncCallback&lt;boolean&gt;): void
+unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously unmounts a volume. This API uses a callback to return the result.
 
@@ -166,7 +167,7 @@ Asynchronously unmounts a volume. This API uses a callback to return the result.
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
 
