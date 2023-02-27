@@ -1,4 +1,7 @@
 # Building
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> 
+> In this document, the DevEco Device Tool 3.0 Release version is used as an example. The UI and usage of DevEco Device Tool vary by version. If you are using the latest version of DevEco Device Tool, perform instructions in [Getting Started with the Standard System with Hi3516 (IDE Mode)](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-appendix-hi3516-ide.md).
 
 
 1. In **Projects**, click **Settings**. The Hi3516D V300 configuration page is displayed.
@@ -8,6 +11,7 @@
 2. On the **toolchain** tab page, DevEco Device Tool automatically checks whether the dependent compilation toolchain is complete. If a message is displayed indicating that some tools are missing, click **SetUp** to automatically install the required tools.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > If the pip component fails to be installed, [change the Python](https://device.harmonyos.com/en/docs/documentation/guide/ide-set-python-source-0000001227639986) source and try again.
 
    ![en-us_image_0000001227277128](figures/en-us_image_0000001227277128.png)
