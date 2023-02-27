@@ -1247,8 +1247,7 @@
       - [锁屏服务错误码](reference/errorcodes/errorcode-screenlock.md)
       - [Webview错误码](reference/errorcodes/errorcode-webview.md)
     - 帐号管理
-      - [Account错误码](reference/errorcodes/errorcode-account.md)
-      - [应用帐号错误码](reference/errorcodes/errorcode-app-account.md)
+      - [帐号管理错误码](reference/errorcodes/errorcode-account.md)
     - 设备管理
       - [耗电统计错误码](reference/errorcodes/errorcode-batteryStatistics.md)
       - [屏幕亮度错误码](reference/errorcodes/errorcode-brightness.md)
