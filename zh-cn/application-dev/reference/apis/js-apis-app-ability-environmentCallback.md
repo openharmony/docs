@@ -53,20 +53,20 @@ let callbackId;
 
 export default class MyAbility extends Ability {
     onCreate() {
-        console.log('MyAbility onCreate')
+        console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();
-        let EnvironmentCallback  =  {
+        let environmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log('onConfigurationUpdated config:' + JSON.stringify(config));
             },
             onMemoryLevel(level){
                 console.log('onMemoryLevel level: ${JSON.stringify(level)}');
             }
-        }
+        };
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
         // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
+        callbackId = applicationContext.registerEnvironmentCallback(environmentCallback);
         console.log('registerEnvironmentCallback number: ' + JSON.stringify(callbackId));
     }
     onDestroy() {
