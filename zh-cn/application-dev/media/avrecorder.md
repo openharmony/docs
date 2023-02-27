@@ -74,7 +74,7 @@ export class AVRecorderDemo {
         audioCodec : media.CodecMimeType.AUDIO_AAC,
         audioSampleRate : 48000,
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-        videoBitrate : 48000,
+        videoBitrate : 2000000,
         videoCodec : media.CodecMimeType.VIDEO_MPEG4,
         videoFrameWidth : 640,
         videoFrameHeight : 480,
@@ -366,7 +366,7 @@ export class VideoRecorderDemo {
     // 纯视频录制相关参数配置
     let videoProfile = {
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-        videoBitrate : 48000,
+        videoBitrate : 2000000,
         videoCodec : media.CodecMimeType.VIDEO_MPEG4,
         videoFrameWidth : 640,
         videoFrameHeight : 480,
