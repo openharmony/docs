@@ -50,7 +50,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-var want = {
+let want = {
     deviceId: '',
     bundleName: 'com.example.formstartability',
     abilityName: 'MainAbility',
@@ -94,7 +94,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-var want = {
+let want = {
     deviceId: '',
     bundleName: 'com.example.formstartability',
     abilityName: 'MainAbility',

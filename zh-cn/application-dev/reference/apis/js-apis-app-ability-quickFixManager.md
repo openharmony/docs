@@ -77,7 +77,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
       } else {
           console.info( 'applyQuickFix success');
       }
-    })
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
@@ -118,7 +118,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
       console.info('applyQuickFix success');
     }).catch((error) => {
       console.info(`applyQuickFix err: + ${error}`);
-    })
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
@@ -156,7 +156,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
       } else {
         console.info(`getApplicationQuickFixInfo success: + ${data}`);
       }
-    })
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
@@ -197,7 +197,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
       console.info(`getApplicationQuickFixInfo success: + ${data}`);
     }).catch((error) => {
       console.info(`getApplicationQuickFixInfo err: + ${error}`);
-    })
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }

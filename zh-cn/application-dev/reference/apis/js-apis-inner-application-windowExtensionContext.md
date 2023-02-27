@@ -46,11 +46,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: 'com.example.myapplication',
     abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     windowMode: 102
   };
 
@@ -96,11 +96,11 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 102,
   };
 

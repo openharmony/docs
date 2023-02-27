@@ -64,7 +64,7 @@ const config = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: COLOR_MODE_LIGHT,         // 浅色模式
   direction: DIRECTION_VERTICAL,       // 垂直方向
-  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为'sdpi'
+  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕像素密度为'sdpi'
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
 };
@@ -76,7 +76,7 @@ try {
         } else {
             console.log('updateConfiguration success.');
         }
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -122,7 +122,7 @@ const config = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: COLOR_MODE_LIGHT,         // 浅色模式
   direction: DIRECTION_VERTICAL,       // 垂直方向
-  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕分辨率为'sdpi'
+  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕像素密度为'sdpi'
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
 };
@@ -132,7 +132,7 @@ try {
         console.log('updateConfiguration success.');
     }).catch((err) => {
         console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -311,7 +311,7 @@ try {
         console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
         console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -385,5 +385,5 @@ abilityManager.getTopAbility().then((data) => {
     console.log('getTopAbility success, data: ' + JSON.stringify(data));
 }).catch((err) => {
     console.log('getTopAbility fail, err: '  + JSON.stringify(err));
-})
+});
 ```

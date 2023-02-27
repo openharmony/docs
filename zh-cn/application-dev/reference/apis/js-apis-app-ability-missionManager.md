@@ -9,7 +9,7 @@ missionManager模块提供系统任务管理能力，包括对系统任务执行
 ## 导入模块
 
 ```ts
-import missionManager from '@ohos.app.ability.missionManager'
+import missionManager from '@ohos.app.ability.missionManager';
 ```
 
 ## 权限列表
@@ -51,7 +51,7 @@ on(type:'mission', listener: MissionListener): number;
       onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
       onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');}
   };
-  console.log('registerMissionListener')
+  console.log('registerMissionListener');
   try {
     let listenerid = missionManager.on('mission', listener);
   } catch (paramError) {
@@ -90,13 +90,13 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
       onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
       onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');}
   };
-  console.log('registerMissionListener')
+  console.log('registerMissionListener');
   try {
     let listenerid = missionManager.registerMissionListener(listener);
 
     missionManager.unregisterMissionListener(listenerid, (error) => {
       console.log('unregisterMissionListener');
-    })
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
@@ -138,7 +138,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
       onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
       onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');}
   };
-  console.log('registerMissionListener')
+  console.log('registerMissionListener');
   try {
   let listenerid = missionManager.registerMissionListener(listener);
 
@@ -174,7 +174,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
+  import missionManager from '@ohos.app.ability.missionManager';
 
   try {
     let allMissions=missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
@@ -221,7 +221,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
+  import missionManager from '@ohos.app.ability.missionManager';
 
   try {
     let mission = missionManager.getMissionInfo('', 10).catch(function (err){
@@ -256,14 +256,14 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
+  import missionManager from '@ohos.app.ability.missionManager';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       console.log('getMissionInfos is called, error.code = ' + error.code);
       console.log('size = ' + missions.length);
       console.log('missions = ' + JSON.stringify(missions));
-    })
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
@@ -298,7 +298,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
+  import missionManager from '@ohos.app.ability.missionManager';
 
   try {
     let allMissions = missionManager.getMissionInfos('', 10).catch(function (err){
@@ -333,7 +333,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager'
+  import missionManager from '@ohos.app.ability.missionManager';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
@@ -345,8 +345,8 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
       missionManager.getMissionSnapShot('', id, (error, snapshot) => {
   	    console.log('getMissionSnapShot is called, error.code = ' + error.code);
   	    console.log('bundleName = ' + snapshot.ability.bundleName);
-      })
-    })
+      });
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
@@ -435,8 +435,8 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
       missionManager.getLowResolutionMissionSnapShot('', id, (error, snapshot) => {
   	    console.log('getLowResolutionMissionSnapShot is called, error.code = ' + error.code);
   	    console.log('bundleName = ' + snapshot.ability.bundleName);
-      })
-    })
+      });
+    });
   } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
   }
