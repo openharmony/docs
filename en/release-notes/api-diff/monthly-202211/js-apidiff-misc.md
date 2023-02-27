@@ -1,16 +1,15 @@
-| Change Type | New Version | Old Version | d.ts File |
+| Change Type | Old Version | New Version | d.ts File |
 | ---- | ------ | ------ | -------- |
-|Added||Module name: ohos.inputmethodengine<br>Class name: InputMethodAbility<br>Method or attribute name: off_setSubtype|@ohos.inputmethodengine.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_PERMISSION||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_PARAMCHECK||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_UNSUPPORTED||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_PACKAGEMANAGER||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_IMENGINE||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_IMCLIENT||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_KEYEVENT||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_CONFPERSIST||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_CONTROLLER||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_SETTINGS||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_IMMS||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_OTHERS||@ohos.inputmethod.d.ts|
-|Deleted|Module name: ohos.inputmethodengine<br>Class name: InputMethodAbility<br>Method or attribute name: off||@ohos.inputmethodengine.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_PERMISSION|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_PARAMCHECK|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_UNSUPPORTED|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_PACKAGEMANAGER|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_IMENGINE|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_IMCLIENT|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_KEYEVENT|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_CONFPERSIST|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_CONTROLLER|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_SETTINGS|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_IMMS|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethod<br>Class name: inputMethod<br>Method or attribute name: EXCEPTION_OTHERS|NA|@ohos.inputmethod.d.ts|
+|Deleted|Module name: ohos.inputmethodengine<br>Class name: InputMethodAbility<br>Method or attribute name: off|NA|@ohos.inputmethodengine.d.ts|

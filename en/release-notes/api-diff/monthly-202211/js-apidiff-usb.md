@@ -1,3 +1,3 @@
-| Change Type | New Version | Old Version | d.ts File |
+| Change Type | Old Version | New Version | d.ts File |
 | ---- | ------ | ------ | -------- |
-|Added||Method or attribute name: controlTransfer<br>Function name: function controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise<number>;|@ohos.usb.d.ts|
+|Added|NA|Method or attribute name: controlTransfer<br>Function name: function controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise<number>;|@ohos.usb.d.ts|
