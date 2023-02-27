@@ -99,7 +99,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
       .opacity(this.opacityValue)
       .onAppear(() => {
         animateTo({
-         duration: 2000, 
+         duration: 1000, 
          curve: this.curve1, 
          delay: 100, 
         }, () => {
@@ -170,9 +170,11 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
            Path()
              .commands('M162 128.7 a222 222 0 0 1 100.8 374.4 H198 a36 36 0 0 3 -36 -36')
              .fill(Color.White)
+             .stroke(Color.Transparent)
            Path()
              .commands(this.pathCommands1)
              .fill('none')
+             .stroke(Color.Transparent)
              .linearGradient(
              {
                angle: 30,
@@ -183,6 +185,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
            Path()
              .commands(this.pathCommands2)
              .fill('none')
+             .stroke(Color.Transparent)
              .linearGradient(
              {
                angle: 50,
@@ -227,10 +230,10 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
            angle: 180,
            colors: [['#BDE895', 0.1], ["#95DE7F", 0.6], ["#7AB967", 1]]
          })
-     }
+    }
    }
    ```
-
+   
    ![animation-feature](figures/animation-feature.gif)
 
 ## Page Transition Animation
