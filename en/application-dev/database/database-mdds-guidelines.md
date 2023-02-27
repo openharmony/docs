@@ -14,12 +14,12 @@ For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | Creates a **KvManager** object for database management.           |
-| getKVStore&lt;TextendsKVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br>getKVStore&lt;TextendsKVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | Creates and obtains a KV store.|
+| getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | Creates and obtains a KV store.|
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | Inserts and updates data.                                            |
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br>delete(key: string): Promise&lt;void> | Deletes data.                                                  |
-| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void<br>get(key: string): Promise&lt;Uint8Array\|string\|boolean\|number> | Queries data.                                                  |
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void<br>get(key: string): Promise&lt;Uint8Array\|string\|boolean\|number> | Obtains data.                                                  |
 | on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void<br>on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string,number]&gt;&gt;): void | Subscribes to data changes in the KV store.                                    |
-| sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void | Triggers database synchronization in manual mode.                              |
+| sync(deviceIdList: string[], mode: SyncMode, delayMs?: number): void | Triggers database synchronization in manual mode.                              |
 
 ## How to Develop
 
@@ -61,32 +61,32 @@ The following uses a single KV store as an example to describe the development p
     context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666).then((data) => {
         console.info('success: ${data}');
     }).catch((error) => {
-        console.info('failed: ${error}');
+        console.error('failed: ${error}');
     })
     }
    
     grantPermission();
    
     // Stage model
-    import Ability from '@ohos.application.Ability';
-   
+    import UIAbility from '@ohos.app.ability.UIAbility';
+  
     let context = null;
-   
-    function grantPermission() {
-    class MainAbility extends Ability {
-        onWindowStageCreate(windowStage) {
+  
+    class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage) {
         let context = this.context;
-        }
+      }
     }
-   
-    let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-    context.requestPermissionsFromUser(permissions).then((data) => {
+  
+    function grantPermission() {
+      let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+      context.requestPermissionsFromUser(permissions).then((data) => {
         console.log('success: ${data}');
-    }).catch((error) => {
-        console.log('failed: ${error}');
-    });
+      }).catch((error) => {
+        console.error('failed: ${error}');
+      });
     }
-   
+  
     grantPermission();
     ```
 
@@ -103,9 +103,9 @@ The following uses a single KV store as an example to describe the development p
    let context = featureAbility.getContext();
    
    // Obtain the context of the stage model.
-   import AbilityStage from '@ohos.application.Ability';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let context = null;
-   class MainAbility extends AbilityStage{
+   class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage){
         context = this.context;
       }
@@ -119,7 +119,7 @@ The following uses a single KV store as an example to describe the development p
      }
      distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
        if (err) {
-         console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
+         console.error(`Failed to create KVManager. code is ${err.code},message is ${err.message}`);
          return;
        }
        console.log('Created KVManager successfully');
