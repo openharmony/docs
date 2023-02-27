@@ -1495,6 +1495,241 @@ try {
 }
 ```
 
+### selectByRange<sup>10+</sup>
+
+selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
+
+Selects text based on the specified range. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| range    | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | Yes  | Range of the selected text.                                            |
+| callback | AsyncCallback&lt;void&gt;                                 | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByRange({start: 0, end: 1}, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to selectByRange: ${err.message}');
+            return;
+        }
+        console.info('Succeeded in selecting by range.');
+    });
+} catch (err) {
+    console.error('Failed to selectByRange: ${err.message}');
+}
+```
+
+### selectByRange<sup>10+</sup>
+
+selectByRange(range: Range): Promise&lt;void&gt;
+
+Selects text based on the specified range. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type                                                     | Mandatory| Description            |
+| ------ | --------------------------------------------------------- | ---- | ---------------- |
+| range  | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | Yes  | Range of the selected text.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByRange({start: 0, end:1}).then(() => {
+        console.log('Succeeded in selecting by range.');
+    }).catch((err) => {
+        console.error('Failed to selectByRange: ${err.message}');
+    });
+} catch (err) {
+    console.log('Failed to selectByRange: ${err.message}');
+}
+```
+
+### selectByMovement<sup>10+</sup>
+
+selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
+
+Selects text based on the cursor movement direction. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | Yes  | Direction in which the cursor moves when the text is selected.                                      |
+| callback | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByMovement({direction: 1}, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to selectByMovement: ${err.message}');
+            return;
+        }
+        console.info('Succeeded in selecting by movement.');
+    });
+} catch (err) {
+    console.error('Failed to selectByMovement: ${err.message}');
+}
+```
+
+### selectByMovement<sup>10+</sup>
+
+selectByMovement(range: Range): Promise&lt;void&gt;
+
+Selects text based on the specified range. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                  |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | Yes  | Direction in which the cursor moves when the text is selected.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | Input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByMovement({direction: 1}).then(() => {
+        console.log('Succeeded in selecting by movement.');
+    }).catch((err) => {
+        console.error('Failed to selectByMovement: ${err.message}');
+    });
+} catch (err) {
+    console.log('Failed to selectByMovement: ${err.message}');
+}
+```
+
+### getTextIndexAtCursor<sup>10+</sup>
+
+getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the index of the text where the cursor is located. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the text index is obtained, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                      |
+| -------- | ------------------------------ |
+| 401      | parameter error.               |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
+**Example**
+
+```js
+inputClient.getTextIndexAtCursor((err, index) => {
+    if (err !== undefined) {
+        console.error('Failed to getTextIndexAtCursor: ${err.message}');
+        return;
+    }
+    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+});
+```
+
+### getTextIndexAtCursor<sup>10+</sup>
+
+getTextIndexAtCursor(): Promise&lt;number&gt;
+
+Obtains the index of the text where the cursor is located. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                 | Description                                   |
+| --------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                      |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
+**Example**
+
+```js
+inputClient.getTextIndexAtCursor().then((index) => {
+    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+}).catch((err) => {
+    console.error('Failed to getTextIndexAtCursor: ${err.message}');
+});
+```
+
 ## EditorAttribute
 
 Attribute of the edit box.
