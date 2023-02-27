@@ -60,8 +60,7 @@
   - [时间时区服务错误码](errorcode-time.md)
   - [Webview错误码](errorcode-webview.md)
 - 帐号管理
-  - [Account错误码](errorcode-account.md)
-  - [应用帐号错误码](errorcode-app-account.md)
+  - [帐号管理错误码](errorcode-account.md)
 - 设备管理
   - [耗电统计错误码](errorcode-batteryStatistics.md)
   - [屏幕亮度错误码](errorcode-brightness.md)
