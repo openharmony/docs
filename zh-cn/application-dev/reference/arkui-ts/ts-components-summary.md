@@ -69,6 +69,12 @@
 - [Swiper](ts-container-swiper.md)
 
     滑块视图容器组件，提供子组件滑动轮播显示的能力。
+- [WaterFlow](ts-container-waterflow.md)
+
+    瀑布流容器组件，由“行”和“列”分割的单元格所组成，通过容器自身的排列规则，将不同大小的“项目”自上而下，如瀑布般紧密布局。
+- [FlowItem](ts-container-flowitem.md)
+
+    瀑布流组件WaterFlow的子组件，用来展示瀑布流具体item。
 
 
 ## 导航
