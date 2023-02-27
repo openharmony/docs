@@ -66,7 +66,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
@@ -138,12 +138,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -218,11 +218,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -295,7 +295,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
@@ -371,12 +371,12 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     windowMode: 0,
   };
 
@@ -457,11 +457,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -531,12 +531,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
@@ -607,13 +607,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -691,13 +691,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -756,7 +756,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
@@ -816,7 +816,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
@@ -877,12 +877,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -942,12 +942,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
@@ -1000,7 +1000,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
@@ -1057,7 +1057,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
@@ -1119,12 +1119,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -1181,12 +1181,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
@@ -1315,13 +1315,13 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: 'com.extreme.myapplication',
     abilityName: 'SecondAbility'
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1380,13 +1380,13 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     bundleName: 'com.extreme.myapplication',
     abilityName: 'SecondAbility'
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // 返回给接口调用方AbilityResult信息
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1445,18 +1445,18 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1509,19 +1509,19 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1568,7 +1568,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1620,7 +1620,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1670,10 +1670,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   后台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 后台启动Ability，不配置parameters
-  var wantBackground = {
+  let wantBackground = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
       abilityName: 'MainAbility',
@@ -1701,10 +1701,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   前台启动：
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
-  var wantForeground = {
+  let wantForeground = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
       abilityName: 'MainAbility',
@@ -1780,12 +1780,12 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
@@ -1855,13 +1855,13 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1932,13 +1932,13 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
     deviceId: '',
     bundleName: 'com.extreme.test',
     abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1978,7 +1978,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 **示例：**
 
   ```ts
-       var permissions=['com.example.permission']
+       let permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
        console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
@@ -2009,7 +2009,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 **示例：**
 
   ```ts
-   var permissions=['com.example.permission']
+   let permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
       console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
@@ -2093,9 +2093,9 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
   ```ts
     import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
+    let imagePixelMap;
+    let color = new ArrayBuffer(0);
+    let initializationOptions = {
        size: {
            height: 100,
            width: 100
@@ -2140,9 +2140,9 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
   ```ts
     import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
+    let imagePixelMap;
+    let color = new ArrayBuffer(0);
+    let initializationOptions = {
       size: {
           height: 100,
           width: 100
@@ -2180,7 +2180,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 **示例：**
 
   ```ts
-    var storage = new LocalStorage();
+    let storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
   ```
 
@@ -2201,6 +2201,6 @@ isTerminating(): boolean;
 **示例：**
 
   ```ts
-  var isTerminating = this.context.isTerminating();
+  let isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

@@ -31,9 +31,9 @@ on(type: 'error', observer: ErrorObserver): number;
 ```js
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
     }
-}
+};
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
@@ -106,7 +106,7 @@ try {
         })
         .catch((err) => {
             console.log('----------- unregisterErrorObserver fail ----------', err);
-    })
+    });
 } catch (paramError) {
     console.log('error: ' + paramError.code + ', ' + paramError.message);
 }

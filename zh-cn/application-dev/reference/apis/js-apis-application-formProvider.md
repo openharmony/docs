@@ -31,7 +31,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
   ```ts
-  var formId = '12400633174999288';
+  let formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
       if (error.code) {
           console.log('formProvider setFormNextRefreshTime, error:' + JSON.stringify(error));
@@ -63,7 +63,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  var formId = '12400633174999288';
+  let formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
       console.log('formProvider setFormNextRefreshTime success');
   }).catch((error) => {
@@ -91,7 +91,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
-  var formId = '12400633174999288';
+  let formId = '12400633174999288';
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj, (error, data) => {
       if (error.code) {
@@ -125,7 +125,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
-  var formId = '12400633174999288';
+  let formId = '12400633174999288';
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj).then(() => {
       console.log('formProvider updateForm success');
@@ -248,7 +248,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
-  var want = {
+  let want = {
       abilityName: 'FormAbility',
       parameters: {
           'ohos.extra.param.key.form_dimension': 2,
@@ -286,7 +286,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
       abilityName: 'FormAbility',
       parameters: {
           'ohos.extra.param.key.form_dimension': 2,
@@ -329,7 +329,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 **示例：**
 
   ```ts
-  var want = {
+  let want = {
       abilityName: 'FormAbility',
       parameters: {
           'ohos.extra.param.key.form_dimension': 2,
@@ -368,7 +368,7 @@ formProvider.isRequestPublishFormSupported((error, isSupported) => {
     console.log('formProvider isRequestPublishFormSupported, error:' + JSON.stringify(error));
   } else {
     if (isSupported) {
-      var want = {
+      let want = {
       abilityName: 'FormAbility',
       parameters: {
         'ohos.extra.param.key.form_dimension': 2,
@@ -409,7 +409,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 ```ts
 formProvider.isRequestPublishFormSupported().then((isSupported) => {
   if (isSupported) {
-    var want = {
+    let want = {
     abilityName: 'FormAbility',
     parameters: {
         'ohos.extra.param.key.form_dimension': 2,
