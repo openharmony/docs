@@ -4561,7 +4561,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 表示返回码的枚举。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议查看[错误码文档](../errorcodes/errorcode-app-account.md)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议查看[错误码文档](../errorcodes/errorcode-account.md)替代。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
