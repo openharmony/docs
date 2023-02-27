@@ -99,7 +99,7 @@ featureAbility.startAbility(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -182,7 +182,7 @@ featureAbility.startAbilityForResult(
    {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -236,7 +236,7 @@ featureAbility.startAbilityForResult(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -288,7 +288,7 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -345,7 +345,7 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,

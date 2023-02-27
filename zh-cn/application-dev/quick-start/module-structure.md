@@ -199,7 +199,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 [HarmonyAppProvision配置文件说明](../security/app-provision-structure.md) <br>
 [应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)
 
-**启动图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“action.system.home” 和 “entity.system.home”:
+**启动图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
 ```
 {
   "module":{
@@ -210,7 +210,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
       "icon": "$media:icon",
       "label": "Login",
       "skills": [{
-        "actions": ["action.system.home"],
+        "actions": ["ohos.want.action.home"],
         "entities": ["entity.system.home"],
         "uris": []
       }]

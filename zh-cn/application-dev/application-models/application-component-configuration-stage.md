@@ -35,9 +35,9 @@
   
     Stage模型支持对组件配置入口图标和入口标签。入口图标和入口标签会显示在桌面上。
 
-    入口图标需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面有icon标签。例如希望在桌面上显示该UIAbility的图标，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个图标，分别对应各自的UIAbility。
+    入口图标需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面有icon标签。例如希望在桌面上显示该UIAbility的图标，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个图标，分别对应各自的UIAbility。
 
-    入口标签需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面有label标签。例如希望在桌面上显示该UIAbility的图标，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"action.system.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个标签，分别对应各自的UIAbility。
+    入口标签需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面有label标签。例如希望在桌面上显示该UIAbility的图标，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。同一个应用有多个UIAbility配置上述字段时，桌面上会显示出多个标签，分别对应各自的UIAbility。
   
   ```json
   {
@@ -54,7 +54,7 @@
                 "entity.system.home"
               ],
               "actions": [
-                "action.system.home"
+                "ohos.want.action.home"
               ]
             }
           ],
