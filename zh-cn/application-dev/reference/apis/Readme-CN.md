@@ -19,13 +19,9 @@
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
   - Stage模型能力的接口(待停用)
-    - [@ohos.application.Ability (Ability)](js-apis-application-ability.md)
     - [@ohos.application.AbilityConstant (AbilityConstant)](js-apis-application-abilityConstant.md)
-    - [@ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-application-abilityLifecycleCallback.md)
     - [@ohos.application.AbilityStage (AbilityStage)](js-apis-application-abilityStage.md)
-    - [@ohos.application.context (Context)](js-apis-application-context.md)
     - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
-    - [@ohos.application.ExtensionAbility (ExtensionAbility)](js-apis-application-extensionAbility.md)
     - [@ohos.application.FormExtension (FormExtension)](js-apis-application-formExtension.md)
     - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-application-serviceExtensionAbility.md)
     - [@ohos.application.StartOptions (StartOptions)](js-apis-application-startOptions.md)
@@ -59,7 +55,6 @@
     - [@ohos.application.appManager (appManager)](js-apis-application-appManager.md)
     - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
     - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
-    - [@ohos.application.errorManager (ErrorManager)](js-apis-application-errorManager.md)
     - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-application-formBindingData.md)
     - [@ohos.application.formError (FormError)](js-apis-application-formError.md)
     - [@ohos.application.formHost (FormHost)](js-apis-application-formHost.md)
@@ -82,7 +77,6 @@
       - [context](js-apis-inner-app-context.md)
       - [processInfo](js-apis-inner-app-processInfo.md)
     - application
-      - [AbilityContext](js-apis-ability-context.md)
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
@@ -192,7 +186,7 @@
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
 
-- 后台任务
+- 资源调度
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
@@ -233,10 +227,10 @@
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
   - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
+  - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
-  - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
-  - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -292,7 +286,7 @@
   - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
-  - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
+  - [@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
@@ -389,6 +383,7 @@
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
+  - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
   - [@ohos.usbV9 (USB管理)](js-apis-usb.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
