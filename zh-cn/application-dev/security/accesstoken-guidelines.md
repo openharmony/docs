@@ -23,8 +23,8 @@
 ### FA模型
 | 接口名                                                       | 描述                                             |
 | ------------------------------------------------------------ | --------------------------------------------------- |
-| requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | 拉起弹窗请求用户授权。 |
-> 详细可查阅[API参考](../reference/apis/js-apis-ability-context.md)
+| requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback\<PermissionRequestResult>): void | 拉起弹窗请求用户授权。 |
+> 详细可查阅[API参考](../reference/apis/js-apis-inner-app-context.md)
 
 
 ### Stage模型
@@ -179,7 +179,7 @@
 
 ```
 > **说明：**
-> FA模型的动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
+> FA模型的动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-inner-app-context.md)。
 
 ### stage 模型下的示例代码
 ```js

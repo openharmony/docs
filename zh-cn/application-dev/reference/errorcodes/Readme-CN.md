@@ -10,6 +10,7 @@
   - [zlib子系统错误码](errorcode-zlib.md)
 - 公共事件与通知
   - [事件错误码](errorcode-CommonEventService.md)
+  - [通知错误码](errorcode-notification.md)
   - [DistributedNotificationService错误码](errorcode-DistributedNotificationService.md)
 - UI界面
   - [动画错误码](errorcode-animator.md)
@@ -44,6 +45,8 @@
   - [首选项错误码](errorcode-preferences.md)
 - 文件管理
   - [文件管理子系统错误码](errorcode-filemanagement.md)
+- 电话服务
+  - [电话子系统错误码](errorcode-telephony.md)
 - 网络管理
   - [上传下载错误码](errorcode-request.md)
 - 通信与连接

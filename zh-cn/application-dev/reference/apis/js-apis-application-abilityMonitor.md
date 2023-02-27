@@ -4,7 +4,7 @@ AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持，从API version 9废弃，替换模块为[abilityMonitor (AbilityMonitor)](js-apis-app-ability-abilityMonitor.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9 开始支持，从API version 9废弃，替换模块为[abilityMonitor (AbilityMonitor)](js-apis-inner-application-abilityMonitor.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 使用说明
 
