@@ -69,12 +69,6 @@
 - [Swiper](ts-container-swiper.md)
 
     A container that is able to display child components in looping mode.
-- [WaterFlow](ts-container-waterflow.md)
-
-    A container that consists of cells formed by rows and columns and arranges items of different sizes from top to bottom according to the preset rules.
-- [FlowItem](ts-container-flowitem.md)
-
-    A child component of the **\<WaterFlow>** container that is used to display specific items in the container layout.
 
 
 ## Navigation
@@ -265,7 +259,7 @@
     A component that can be used to display web pages.
 
 
-##  Miscellaneous
+## Miscellaneous
 
 - [ScrollBar](ts-basic-components-scrollbar.md)
 
@@ -288,3 +282,6 @@
 - [RemoteWindow](ts-basic-components-remotewindow.md)
 
     A component that is used to control the application window, providing the component animator and application window linkage animator during application startup and exit.
+- [Formcomponent](ts-basic-components-formcomponent.md)
+
+    A component that is used to display widgets.
