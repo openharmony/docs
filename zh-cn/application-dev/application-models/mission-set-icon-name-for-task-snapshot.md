@@ -36,9 +36,9 @@ this.context.setMissionIcon(imagePixelMap, (err) => {
 
 ```ts
 this.context.setMissionLabel('test').then(() => {
-  console.log('setMissionLabel succeeded.');
+  console.info('setMissionLabel succeeded.');
 }).catch((err) => {
-  console.log(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
