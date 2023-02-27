@@ -19,6 +19,7 @@ This component supports only one child component.
 Creates a badge.
 
 **Parameters**
+
 | Name| Type| Mandatory| Default Value| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | count | number | Yes| - | Number of notifications.|
