@@ -211,9 +211,32 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 [HarmonyAppProvision配置文件说明](../security/app-provision-structure.md) <br>
 [应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)
 
-启动图标和Label的设置与查询
+**启动图标的设置:** 需要在配置文件（module.json5）中abilities配置下设置icon，label以及skills,而且skills的配置下的必须同时包含“action.system.home” 和 “entity.system.home”:
+```
+{
+  "module":{
+
+    ...
+
+    "abilities": [{
+      "icon": "$media:icon",
+      "label": "Login",
+      "skills": [{
+        "actions": ["action.system.home"],
+        "entities": ["entity.system.home"],
+        "uris": []
+      }]
+    },
+
+    ...
+    
+  }
+}
+```
+
+启动图标的查询
 * HAP中包含Ability
-  * 该Ability中设置icon和label
+  * 配置文件（module.json5）中abilities配置中设置了启动图标
     * 该应用没有隐藏图标的特权
       * 返回的桌面图标为该Ability配置的图标
       * 返回的桌面Label为该Ability配置的Label（如果没有配置Label，返回包名）
@@ -221,7 +244,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
       * 用户点击该桌面图标，页面跳转到该Ability首页
     * 该应用具有隐藏图标的特权
       * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-  * 该Ability中没有设置icon和label
+  * 配置文件（module.json5）中abilities配置中未设置启动图标
     * 该应用没有隐藏图标的特权
       * 返回的桌面图标为app配置下的图标（app.json中icon为必填项）
       * 返回的桌面Label为app配置下的label（app.json中label为必填项）
