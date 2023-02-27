@@ -419,7 +419,7 @@ toPlainText(): string
 
 ```js
 let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-let data = await record.toPlainText();
+let data = record.toPlainText();
 console.info(`Succeeded in converting to text. Data: ${data}`);
 ```
 
