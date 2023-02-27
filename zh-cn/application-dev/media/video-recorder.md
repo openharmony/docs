@@ -83,7 +83,7 @@ export class VideoRecorderDemo {
       audioCodec : 'audio/mp4a-latm',
       audioSampleRate : 48000,
       fileFormat : 'mp4',
-      videoBitrate : 48000,
+      videoBitrate : 2000000,
       videoCodec : 'video/mp4v-es',
       videoFrameWidth : 640,
       videoFrameHeight : 480,
