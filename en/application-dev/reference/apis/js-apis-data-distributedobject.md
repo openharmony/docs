@@ -53,10 +53,10 @@ Stage model:
 ```ts
 // Import the module.
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -110,7 +110,7 @@ Called when the **revokeSave()** API is successfully called.
 
 ## DistributedObjectV9
 
-Provides APIs for managing a distributed data object.
+Represents a distributed data object.
 
 ### setSessionId<sup>9+</sup>
 
@@ -156,10 +156,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -218,10 +218,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -257,7 +257,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -294,10 +294,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -321,7 +321,7 @@ g_object.setSessionId().then (()=>{
 
 on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
 
-Subscribes to data changes of this distributed data object.
+Subscribes to the data change of this distributed data object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -357,10 +357,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -381,7 +381,7 @@ g_object.on("change", globalThis.changeCallback);
 
 off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
 
-Unsubscribes from the data changes of this distributed data object.
+Unsubscribes from the data change of this distributed data object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -413,10 +413,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -432,7 +432,7 @@ g_object.off("change");
 
 on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>): void
 
-Subscribes to statue changes of this distributed data object.
+Subscribes to the status change of this distributed data object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -463,10 +463,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -507,7 +507,7 @@ let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:fals
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-// Unregister the specified status change callback.
+// Unsubscribe from the specified status change callback for the distributed data object.
 g_object.off("status",globalThis.statusCallback);
 // Unregister all status change callbacks.
 g_object.off("status");
@@ -517,10 +517,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject'; 
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -529,7 +529,7 @@ let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:fals
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-// Unregister the specified status change callback.
+// Unsubscribe from all status change callbacks for the distributed data object.
 g_object.off("status",globalThis.statusCallback);
 // Unregister all status change callbacks.
 g_object.off("status");
@@ -579,10 +579,10 @@ g_object.save("local", (result) => {
 Stage model:
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -627,6 +627,8 @@ The saved data will be released in the following cases:
 
 **Example**
 
+FA model:
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -643,13 +645,14 @@ g_object.save("local").then((result) => {
     console.error("save failed");
 });
 ```
+Stage model:
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability{
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -712,10 +715,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability {
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         context = this.context
     }
@@ -786,10 +789,10 @@ Stage model:
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 // Obtain the context.
 let context;
-class MainAbility extends Ability {
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         context = this.context
     }
@@ -1000,7 +1003,7 @@ Unsubscribes from the status change of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to unsubscribe from. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+| type | string | Yes| Event type to unsubscribe from. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
 | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback for status changes. If this parameter is not specified, all status change callbacks of this distributed data object will be unsubscribed from.<br>**sessionId** indicates the session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
 
 
