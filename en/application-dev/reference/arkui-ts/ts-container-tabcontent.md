@@ -28,7 +28,6 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >  **NOTE**
 > - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
 > - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
-> - The **\<TabContent>** component does not support setting of the [touch target](ts-universal-attributes-touch-target.md).
 
 
 ## Example

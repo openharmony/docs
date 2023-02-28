@@ -91,10 +91,6 @@ The **@Prop** decorated state variable has the following features:
 - Support for multiple instances: A component can have multiple attributes decorated by **@Prop**.
 - Support for initialization with a value passed to the @Prop decorated variable: When a new instance of the component is created, all **@Prop** variables must be initialized. Initialization inside the component is not supported.
 
-> **NOTE**
->
-> A **@Prop** decorated variable cannot be initialized inside the component.
-
 **Example**
 
 In the following example, when the user presses **+1** or **-1**, the status of the parent component changes and the **build** method is executed again. In this case, a new **CountDownComponent** instance is created. The **countDownStartValue** attribute of the parent component is used to initialize the **@Prop** decorated variable of the child component. When the **count - costOfOneAttempt** button of the child component is touched, the value of the **@Prop** decorated variable **count** is changed. As a result, the **CountDownComponent** is rendered again. However, the change of the **count** value does not affect the **countDownStartValue** value of the parent component.
@@ -494,7 +490,7 @@ struct CompA {
     this.updateTotal()
   }
 
-  updateTotal(): number {
+  updateTotal(): void {
     let sum = 0;
     this.shopBasket.forEach((i) => {
       sum += i

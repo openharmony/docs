@@ -2,7 +2,7 @@
 
 The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
->  **NOTE**<br>
+>  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -34,7 +34,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported. The [touch target](ts-universal-attributes-touch-target.md) is not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |

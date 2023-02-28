@@ -106,36 +106,37 @@ One-way data binding can be established between a component and the **LocalStora
 The **LocalStorage** is loaded through the **loadContent** API. For details, see [loadContent](../reference/apis/js-apis-window.md#loadcontent9-1).
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+// MainAbility.ts
+import Ability from '@ohos.application.Ability'
 
-export default class EntryAbility extends UIAbility {
+export default class MainAbility extends Ability {
     storage: LocalStorage
 
     onCreate() {
         this.storage = new LocalStorage()
         this.storage.setOrCreate('storageSimpleProp', 121)
-        console.info('[Demo EntryAbility onCreate]')
+        console.info('[Demo MainAbility onCreate]')
     }
 
     onDestroy() {
-        console.info('[Demo EntryAbility onDestroy]')
+        console.info('[Demo MainAbility onDestroy]')
     }
 
     onWindowStageCreate(windowStage) {
         // storage is passed to the loadContent API as a parameter.
-        windowStage.loadContent('pages/index', this.storage)
+        windowStage.loadContent('pages/Index', this.storage)
     }
 
     onWindowStageDestroy() {
-        console.info('[Demo] EntryAbility onWindowStageDestroy')
+        console.info('[Demo] MainAbility onWindowStageDestroy')
     }
 
     onForeground() {
-        console.info('[Demo] EntryAbility onForeground')
+        console.info('[Demo] MainAbility onForeground')
     }
 
     onBackground() {
-        console.info('[Demo] EntryAbility onBackground')
+        console.info('[Demo] MainAbility onBackground')
     }
 }
 ```
@@ -143,7 +144,7 @@ export default class EntryAbility extends UIAbility {
 The **@Component** decorated component obtains data.
 
 ```ts
-// index.ets
+// Index.ets
 let storage = LocalStorage.GetShared()
 
 @Entry(storage)
