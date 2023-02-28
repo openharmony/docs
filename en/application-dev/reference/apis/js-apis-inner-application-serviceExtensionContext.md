@@ -16,7 +16,7 @@ Before using the **ServiceExtensionContext** module, you must define a child cla
 ```ts
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
-  let context = undefined;
+  let context;
   class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // Obtain a ServiceExtensionContext instance.
@@ -68,17 +68,16 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
 
   try {
     this.context.startAbility(want, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -86,8 +85,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -141,11 +139,11 @@ Starts an ability. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -157,13 +155,11 @@ Starts an ability. This API uses a promise to return the result.
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -212,12 +208,12 @@ Starts an ability with the start options specified. This API uses an asynchronou
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -225,8 +221,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
     this.context.startAbility(want, options, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -234,8 +229,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -290,19 +284,18 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -310,8 +303,7 @@ Observe the following when using this API:
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -367,13 +359,13 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -381,8 +373,7 @@ Observe the following when using this API:
     this.context.startAbilityWithAccount(want, accountId, options, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -390,8 +381,7 @@ Observe the following when using this API:
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -453,13 +443,13 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -471,13 +461,11 @@ Observe the following when using this API:
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -518,18 +506,17 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
     this.context.startServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -537,8 +524,7 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -584,10 +570,10 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -598,13 +584,11 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -650,19 +634,18 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -670,8 +653,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -721,12 +703,12 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
@@ -736,13 +718,11 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -780,18 +760,17 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
     this.context.stopServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -799,8 +778,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -843,10 +821,10 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -857,13 +835,11 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -905,19 +881,18 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code), error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -925,8 +900,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -973,12 +947,12 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
@@ -988,13 +962,11 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1031,8 +1003,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
   this.context.terminateSelf((error) => {
     if (error.code) {
       // Process service logic errors.
-      console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+      console.log('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       return;
     }
     // Carry out normal service processing.
@@ -1075,8 +1046,7 @@ Terminates this ability. This API uses a promise to return the result.
     console.log('terminateSelf succeed');
   }).catch((error) => {
     // Process service logic errors.
-    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-      ' error.message: ' + JSON.stringify(error.message));
+    console.log('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
   });
   ```
 
@@ -1118,23 +1088,22 @@ Connects this ability to a ServiceAbility.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
-  }
+  };
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1178,25 +1147,24 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
-  var options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
-  }
+  let accountId = 100;
+  let options = {
+    onConnect(elementName, remote) { console.log('----------- onConnect -----------'); },
+    onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
+    onFailed(code) { console.log('----------- onFailed -----------'); }
+  };
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1214,7 +1182,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectAbility** is called.|
+| connection | number | Yes| Number returned after **connectServiceExtensionAbility** is called.|
 | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result.|
 
 **Error codes**
@@ -1232,14 +1200,13 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
 
   ```ts
   // connection is the return value of connectServiceExtensionAbility.
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -1247,8 +1214,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1266,7 +1232,7 @@ Disconnects this ability from the ServiceAbility. This API uses a promise to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectAbility** is called.|
+| connection | number | Yes| Number returned after **connectServiceExtensionAbility** is called.|
 
 **Return value**
 
@@ -1288,8 +1254,8 @@ Disconnects this ability from the ServiceAbility. This API uses a promise to ret
 **Example**
 
   ```ts
-  // connection is the return value of connectAbility.
-  var connection = 1;
+  // connection is the return value of connectServiceExtensionAbility.
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1299,13 +1265,11 @@ Disconnects this ability from the ServiceAbility. This API uses a promise to ret
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1355,14 +1319,14 @@ Observe the following when using this API:
   Start an ability in the background.
 
   ```ts
-  var caller = undefined;
+  let caller;
 
   // Start an ability in the background by not passing parameters.
-  var wantBackground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "EntryAbility",
-      deviceId: ""
+  let wantBackground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: ''
   };
 
   try {
@@ -1373,29 +1337,27 @@ Observe the following when using this API:
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // Process service logic errors.
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
   Start an ability in the foreground.
 
   ```ts
-  var caller = undefined;
+  let caller;
 
-  // Start an ability in the foreground with ohos.aafwk.param.callAbilityToForeground in parameters set to true.
-  var wantForeground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "EntryAbility",
-      deviceId: "",
+  // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
+  let wantForeground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
-        "ohos.aafwk.param.callAbilityToForeground": true
+        'ohos.aafwk.param.callAbilityToForeground': true
       }
   };
 
@@ -1407,12 +1369,10 @@ Observe the following when using this API:
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // Process service logic errors.
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.log('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```

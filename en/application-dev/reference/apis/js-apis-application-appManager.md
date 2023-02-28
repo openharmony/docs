@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -32,7 +32,7 @@ Checks whether this application is undergoing a stability test. This API uses an
   appManager.isRunningInStabilityTest((err, flag) => {
     console.log('error: ${JSON.stringify(err)}');
     console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
-  })  
+  });
   ```
 
 
@@ -46,9 +46,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -71,9 +71,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -95,9 +95,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -105,7 +105,7 @@ Checks whether this application is running on a RAM constrained device. This API
   appManager.isRamConstrainedDevice((err, data) => {
       console.log('error: ${JSON.stringify(err)}');
       console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
-  })
+  });
   ```
 
 ## appManager.getAppMemorySize
@@ -118,9 +118,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the memory size, in MB.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the memory size, in MB.| 
 
 **Example**
     
@@ -142,9 +142,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB.| 
 
 **Example**
     
