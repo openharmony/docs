@@ -93,7 +93,7 @@ On device A, touch the **Start** button provided by the initiator application to
    }
    ```
 
-4. Set the target component parameters, and call **startAbility()** to start UIAbility or ServiceExtensionAbility.
+4. Set the target component parameters, and call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start UIAbility or ServiceExtensionAbility.
    
    ```ts
    let want = {
@@ -382,68 +382,68 @@ The following describes how to implement multi-device collaboration through cros
       
        ```ts
        export default class MySequenceable {
-           num: number = 0
-           str: string = ""
+           num: number = 0;
+           str: string = "";
        
            constructor(num, string) {
-               this.num = num
-               this.str = string
+               this.num = num;
+               this.str = string;
            }
        
            marshalling(messageParcel) {
-               messageParcel.writeInt(this.num)
-               messageParcel.writeString(this.str)
-               return true
+               messageParcel.writeInt(this.num);
+               messageParcel.writeString(this.str);
+               return true;
            }
        
            unmarshalling(messageParcel) {
-               this.num = messageParcel.readInt()
-               this.str = messageParcel.readString()
-               return true
+               this.num = messageParcel.readInt();
+               this.str = messageParcel.readString();
+               return true;
            }
        }
        ```
 
    4. Implement **Callee.on** and **Callee.off**.
    
-      In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the ability and deregistered in **onDestroy()**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
-      
-       ```ts
-       const TAG: string = '[CalleeAbility]'
-       const MSG_SEND_METHOD: string = 'CallSendMsg'
-       
-       function sendMsgCallback(data) {
-           console.info('CalleeSortFunc called')
-       
-           // Obtain the sequenceable data sent by the caller ability.
-           let receivedData = new MySequenceable(0, '')
-           data.readSequenceable(receivedData)
-           console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
-       
-           // Process the data.
-           // Return the sequenceable data result to the caller ability.
-           return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`)
-       }
-       
-       export default class CalleeAbility extends Ability {
-           onCreate(want, launchParam) {
-               try {
-                   this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
-               } catch (error) {
-                   console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
-               }
-           }
-       
-           onDestroy() {
-               try {
-                   this.callee.off(MSG_SEND_METHOD)
-               } catch (error) {
-                   console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`)
-               }
-           }
-       }
-       ```
-
+         In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the ability and deregistered in **onDestroy()**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
+   
+         ```ts
+         const TAG: string = '[CalleeAbility]';
+         const MSG_SEND_METHOD: string = 'CallSendMsg';
+         
+         function sendMsgCallback(data) {
+             console.info('CalleeSortFunc called');
+         
+             // Obtain the sequenceable data sent by the caller ability.
+             let receivedData = new MySequenceable(0, '');
+             data.readSequenceable(receivedData);
+             console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+         
+             // Process the data.
+             // Return the sequenceable data result to the caller ability.
+             return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+         }
+         
+         export default class CalleeAbility extends Ability {
+             onCreate(want, launchParam) {
+                 try {
+                     this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+                 } catch (error) {
+                     console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
+                 }
+             }
+         
+             onDestroy() {
+                 try {
+                  this.callee.off(MSG_SEND_METHOD);
+                 } catch (error) {
+                     console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
+                 }
+             }
+         }
+         ```
+   
 4. Obtain the caller object and access the callee ability.
    1. Import the **UIAbility** module.
       
@@ -458,8 +458,8 @@ The following describes how to implement multi-device collaboration through cros
        
        ```ts
        async onButtonGetRemoteCaller() {
-           var caller = undefined
-           var context = this.context
+           var caller = undefined;
+           var context = this.context;
        
            context.startAbilityByCall({
                deviceId: getRemoteDeviceId(),
@@ -467,16 +467,16 @@ The following describes how to implement multi-device collaboration through cros
                abilityName: 'CalleeAbility'
            }).then((data) => {
                if (data != null) {
-                   caller = data
-                   console.info('get remote caller success')
+                   caller = data;
+                   console.info('get remote caller success');
                    // Register the onRelease() listener of the caller ability.
                    caller.onRelease((msg) => {
-                       console.info(`remote caller onRelease is called ${msg}`)
+                       console.info(`remote caller onRelease is called ${msg}`);
                    })
-                   console.info('remote caller register OnRelease succeed')
+                   console.info('remote caller register OnRelease succeed');
                }
            }).catch((error) => {
-               console.error(`get remote caller failed with ${error}`)
+               console.error(`get remote caller failed with ${error}`);
            })
        }
        ```

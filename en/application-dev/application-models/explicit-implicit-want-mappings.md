@@ -50,7 +50,7 @@ The system matches the **want** parameter (including the **action**, **entities*
 
 ### Matching Rules of action in the want Parameter
 
-The system matches the [action](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction) attribute in the **want** parameter passed by the caller against **actions** under **skills** of the abilities.
+The system matches the **action** attribute in the **want** parameter passed by the caller against **actions** under **skills** of the abilities.
 
 - If **action** in the passed **want** parameter is specified but **actions** under **skills** of an ability is unspecified, the matching fails.
 
@@ -62,12 +62,12 @@ The system matches the [action](../reference/apis/js-apis-ability-wantConstant.m
 
   **Figure 1** Matching rules of action in the want parameter
 
-  ![want-action](figures/want-action.png) 
+  ![want-action](figures/want-action.png)
 
 
 ### Matching Rules of entities in the want Parameter
 
-The system matches the [entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity) attribute in the **want** parameter passed by the caller against **entities** under **skills** of the abilities.
+The system matches the **entities** attribute in the **want** parameter passed by the caller against **entities** under **skills** of the abilities.
 
 - If **entities** in the passed **want** parameter is unspecified but **entities** under **skills** of an ability is specified, the matching is successful.
 
@@ -117,7 +117,7 @@ To simplify the description, **uri** and **type** passed in the **want** paramet
 
 Figure 4 Matching rules of uri and type in the want parameter
 
-![want-uri-type2](figures/want-uri-type2.png)
+![want-uri-type2](figures/want-uri-type2.png)  
 
 
 ### Matching Rules of uri
