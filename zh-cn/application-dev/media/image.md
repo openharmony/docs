@@ -275,4 +275,4 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
 
 针对图片开发，有以下相关实例可供参考：
 
-- [`Image`：图片处理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Image)
+- [`Image`：图片处理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/media/Image)

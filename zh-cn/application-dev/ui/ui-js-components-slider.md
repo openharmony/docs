@@ -217,6 +217,6 @@ export default{
 
 针对Slider开发，有以下相关实例可供参考：
 
-- [`Slider`：滑动条（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Slider)
+- [`Slider`：滑动条（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/Slider)
 
 - [slider（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)

@@ -94,4 +94,4 @@
 
 针对应用事件打点开发，有以下相关实例可供参考：
 
-- [`JsDotTest`：测试打点（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/JsDotTest)
+- [`JsDotTest`：测试打点（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/DFX/JsDotTest)

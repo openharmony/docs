@@ -103,6 +103,6 @@
 
 针对自定义组件开发，有以下相关实例可供参考：
 
-- [`JSUICustomComponent`：自定义组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JSUICustomComponent)
+- [`JSUICustomComponent`：自定义组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JSUICustomComponent)
 
 - [自定义组件（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponet)

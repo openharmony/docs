@@ -34,22 +34,22 @@
 
 兼容JS的类Web开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`AtomicLayout`：原子布局（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/AtomicLayout)
+- [`AtomicLayout`：原子布局（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/AtomicLayout)
 
-- [`JsFA`：FA示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsFA)
+- [`JsFA`：FA示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsFA)
 
-- [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsShopping)
+- [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsShopping)
 
-- [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Stack)
+- [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/Stack)
 
-- [`JsAdaptivePortalList`：多设备自适应的效率型首页（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAdaptivePortalList)
+- [`JsAdaptivePortalList`：多设备自适应的效率型首页（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsAdaptivePortalList)
 
-- [`JsAdaptivePortalPage`：多设备自适应的FA页面（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAdaptivePortalPage)
+- [`JsAdaptivePortalPage`：多设备自适应的FA页面（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsAdaptivePortalPage)
 
-- [`JsGallery`：图库示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsGallery)
+- [`JsGallery`：图库示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsGallery)
 
-- [`AirQuality`：空气质量（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/AirQuality)
+- [`AirQuality`：空气质量（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/AirQuality)
 
-- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Badge)
+- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/Badge)
 
 - [购物应用（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)

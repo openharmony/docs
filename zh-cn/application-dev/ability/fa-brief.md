@@ -35,9 +35,9 @@ Ability框架在API 8及更早版本使用FA模型。FA模型中Ability分为Pag
 ![fa-threading-model](figures/fa-threading-model.png)
 ## 相关实例
 针对Ability开发，有以下相关实例可供参考：
-- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
-- [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
-- [`DistributeGraffiti`：分布式涂鸦（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DistributedGraffiti)
+- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/DistributeCalc)
+- [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/Preset/DistributeCalc)
+- [`DistributeGraffiti`：分布式涂鸦（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ability/DistributedGraffiti)
 - [分布式调度启动远程FA（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteStartFA)
 - [分布式新闻客户端（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/NewsDemo)
 - [分布式手写板（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)

@@ -151,4 +151,4 @@ plural.json文件的内容如下：
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [`ResourceManager`：资源管理器（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/ResourceManager)
+- [`ResourceManager`：资源管理器（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/ResourceManager)
