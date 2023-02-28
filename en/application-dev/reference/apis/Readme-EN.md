@@ -309,7 +309,7 @@
   - [@ohos.settings (Data Item Settings)](js-apis-settings.md)
   - [@ohos.stationary (Device Status Awareness Framework)](js-apis-stationary.md)
   - [@ohos.systemCapability (SystemCapability)](js-apis-system-capability.md)
-  - [@ohos.systemParameterV9 (System Parameter)](js-apis-system-parameterV9.md)
+  - [@ohos.systemParameterEnhance (System Parameter)](js-apis-system-parameterEnhance.md)
   - [@ohos.thermal (Thermal Management)](js-apis-thermal.md)
   - [@ohos.update (Update)](js-apis-update.md)
   - [@ohos.usbManager (USB Manager)](js-apis-usbManager.md)
