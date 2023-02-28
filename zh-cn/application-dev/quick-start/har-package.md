@@ -6,7 +6,6 @@ HAR（OpenHarmony Archive）是OpenHarmony静态共享包，可以包含代码�
 HAR包对应DevEco Studio工程中的“Library”类型的[Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-adding-deleting-module-0000001218760594-V3)，可以通过DevEco Studio创建一个HAR模块。HAR模块默认不开启混淆能力，开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
 
 ```json
-// build-profile.json5
 {
   "apiType": "stageMode",
   "buildOption": {
@@ -21,9 +20,8 @@ artifactType字段有以下两种取值，默认缺省为original。
 注意：artifactType字段设置为obfuscation时，apiType字段必须设置为stageMode，因为Stage模型才支持混淆。
 
 ## 导出HAR共享包接口
-index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要导出的接口，统一在index.ets文件中导出。在模块的package.json文件中的main字段配置如下所示：
+index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的package.json文件中的main字段配置入口声明文件，配置如下所示：
 ```json
-// package.json
 {
   "main": "index.ets"
 }
@@ -85,6 +83,18 @@ HAR模块编译打包时会把资源打包到HAR包中。在编译构建HAP时�
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照依赖顺序进行覆盖（依赖顺序在前的优先级较高）。
 
 ## 引用HAR共享包接口
+引用HAR共享包前，需要在package.json配置文件中配置对HAR的依赖，配置方式如下所示：
+```json
+{
+  "dependencies": {
+    // 依赖本地的HAR
+    "@ohos/library": "file:../library",
+    // 依赖远程仓的HAR
+    "@ohos/vcard": "^2.1.0"
+  }
+}
+```
+
 ### 引用HAR共享包的ArkUI组件
 
 HAR共享包的依赖配置成功后，可以引用HAR共享包的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过import引入HAR共享包导出的ArkUI组件，示例如下所示：
