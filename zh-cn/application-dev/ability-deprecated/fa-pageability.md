@@ -225,4 +225,4 @@ export default {
 
 针对PageAbility开发，有以下相关实例可供参考：
 
-- [`DMS`：分布式Demo（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
+- [`DMS`：分布式Demo（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ability/DMS)

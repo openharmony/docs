@@ -168,16 +168,13 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| web | [JS注入与执行](https://gitee.com/openharmony/applications_app_samples/tree/master/Web/RunJsInWeb) | 本示例基于H5游戏，通过ArkUI的button实现对游戏实现基本控制，展示webview的JS注入与执行能力，及native应用与H5的通信能力。 | ArkTs |
-| 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/master/media/QRCodeScan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
-| ArkUI | [一多设置典型页面](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Settings) | 本示例展示了设置应用的典型页面，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
-| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/master/FileManager/FileManager) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
-| 媒体子系统 | [录屏](https://gitee.com/openharmony/applications_app_samples/tree/master/media/ScreenRecorder) | 该示例展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。 | ArkTs |
-| 窗口子系统 | [屏幕探测](https://gitee.com/openharmony/applications_app_samples/tree/master/device/ScreenDetector) | 本示例实时监测连接的屏幕数量状态，支持创建至多5个虚拟屏幕，点击对应的屏幕矩形能显示该屏幕的相关属性。 | ArkTs |
-| 元能力 | [Stage模型卡片小游戏](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormGame) | 本示例展示了如何通过Stage模型实现一个简单的游戏卡片。 | ArkTs |
+| 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/media/Scan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
+| ArkUI | [一多设置典型页面](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
+| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/FileManager/FileIo) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
+| 元能力 | [无障碍扩展服务](https://gitee.com/openharmony/applications_app_samples/commits/monthly_20221018/ability/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTs |
 
 
-请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
 
 ## 修复缺陷列表

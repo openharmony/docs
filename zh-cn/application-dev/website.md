@@ -488,7 +488,7 @@
     - [anm工具](tools/anm-tool.md)
     - [cem工具](tools/cem-tool.md)
 - 示例教程
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
+  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/monthly_20221018/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)

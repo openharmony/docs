@@ -421,5 +421,5 @@ export class VideoPlayerDemo {
 ## 相关实例
 针对视频播放开发，有以下相关实例可供参考：
 
-- [`VideoPlayer:`视频播放（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/VideoPlayer)
+- [`VideoPlayer:`视频播放（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/media/VideoPlayer)
 - [视频播放器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoPlayerStage)

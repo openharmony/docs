@@ -17,21 +17,19 @@
 
 基于ArkTS的常用组件开发，有以下相关实例可供参考：
 
-- [`ComponentCollection`：组件集合（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ComponentCollection)
+- [`Shopping`：购物示例应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/AppSample/Shopping)
 
-- [`OrangeShopping`：购物示例应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/OrangeShopping)
+- [`Canvas`：画布组件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/Canvas)
 
-- [`Canvas`：画布组件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Canvas)
+- [`Clock`：简单时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Preset/Clock)
 
-- [`Clock`：简单时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/Clock)
+- [`PatternLock`：图案密码锁组件（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/PatternLock)
 
-- [`PatternLock`：图案密码锁组件（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/PatternLock)
+- [`Search`：Search组件（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/Search)
 
-- [`Search`：Search组件（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Search)
+- [`QRCode`：二维码（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/QRCode)
 
-- [`QRCode`：二维码（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/QRCode)
-
-- [`Gallery`：组件集合（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery)
+- [`Gallery`：组件集合（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/Gallery)
 
 - [List组件的使用之商品列表（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
 

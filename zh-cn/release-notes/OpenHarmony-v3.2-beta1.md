@@ -186,27 +186,26 @@ _[API差异报告](api-change/v3.2-beta1/Readme-CN.md)_
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| ArkUI | [MouseEvent](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent) | 本示例模拟了简单的扫雷游戏调用了鼠标事件的相关接口 | eTS |
-| ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Vibrator) | 本示例模拟倒计时场景，展示振动接口的使用方法。 | eTS |
-| DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/FaultLogger) | 本示例展示了在eTS中如何获取应用故障相关信息。 | eTS |
-| ArkUI | [Gallery](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery) | 本Demo通过不同示例向用户介绍通用事件、通用属性、手势处理等不同组件的功能。 | eTS |
-| 图形 | [JsWebGL](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/JsWebGL) | 本示例调用GPU资源绘制了五角星和矩形，展示WebGL相关接口的使用方法。 | JS |
-| ArkUI | [Clock](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/Clock) | 本示例使用eTS&nbsp;UI能力实现一个简单的时钟应用。 | eTS |
-| 网络管理 | [Http](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Http) | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | eTS |
-| 网络管理 | [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket) | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | eTS |
-| 分布式数据管理 | [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedRdb) | 本示例展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | eTS |
-| 元能力 | [BackgroundTaskManager](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager) | 本示例模拟下载功能，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | eTS |
-| 元能力 | [BringApp](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp) | 本示例使用FeatureAbility接口，通过应用的包名与Ability名，拉起系统应用。 | eTS |
-| 媒体 | [VideoPlayer](https://gitee.com/openharmony/applications_app_samples/tree/master/media/VideoPlayer) | 本示例展示了在eTS中VideoPlayer如何播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | eTS |
-| 元能力 | [DistributeCalc](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc) | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | eTS |
-| Web | [Browser](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Browser) | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | eTS |
-| 元能力 | [DeviceUsageStatistics](https://gitee.com/openharmony/applications_app_samples/tree/master/device/DeviceUsageStatistics) | 本示例主要展示了设备使用信息情况。 | eTS |
-| ArkUI | [AdaptiveCapabilities](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities) | 本示例展示在eTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | eTS |
-| ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048) | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | eTS |
-| 窗口 | [Window](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window) | 本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能 | eTS |
-| 分布式数据管理 | [Preference](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences) | 本示例主要展示了首选项在主题切换方面的功能。 | eTS |
-| ArkUI | [NativeAPI](https://gitee.com/openharmony/applications_app_samples/tree/master/Native/NativeAPI) | 本示例展示了在eTS中如何调用C++的接口以及C++如何回调JS，完成了一个简单的五子棋游戏，在native层完成计算逻辑，eTS完成界面绘制和刷新。 | eTS/C++ |
-| 全球化 | [International](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International) | 本示例展示了i18n，intl，resourceManager在eTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | eTS |
+| ArkUI | [MouseEvent](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/MouseEvent) | 本示例模拟了简单的扫雷游戏调用了鼠标事件的相关接口 | eTS |
+| ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/device/Vibrator) | 本示例模拟倒计时场景，展示振动接口的使用方法。 | eTS |
+| DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/DFX/FaultLogger) | 本示例展示了在eTS中如何获取应用故障相关信息。 | eTS |
+| ArkUI | [Gallery](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/Gallery) | 本Demo通过不同示例向用户介绍通用事件、通用属性、手势处理等不同组件的功能。 | eTS |
+| 图形 | [JsWebGL](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Graphics/JsWebGL) | 本示例调用GPU资源绘制了五角星和矩形，展示WebGL相关接口的使用方法。 | JS |
+| ArkUI | [Clock](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Preset/Clock) | 本示例使用eTS&nbsp;UI能力实现一个简单的时钟应用。 | eTS |
+| 网络管理 | [Http](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Network/Http) | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | eTS |
+| 网络管理 | [Socket](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Network/Socket) | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | eTS |
+| 分布式数据管理 | [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/data/DistributedRdb) | 本示例展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | eTS |
+| 元能力 | [BackgroundTaskManager](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ResourcesSchedule/BackgroundTaskManager) | 本示例模拟下载功能，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | eTS |
+| 元能力 | [BringApp](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/BringApp) | 本示例使用FeatureAbility接口，通过应用的包名与Ability名，拉起系统应用。 | eTS |
+| 媒体 | [VideoPlayer](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/media/VideoPlayer) | 本示例展示了在eTS中VideoPlayer如何播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | eTS |
+| 元能力 | [DistributeCalc](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Preset/DistributeCalc) | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | eTS |
+| Web | [Browser](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/device/Browser) | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | eTS |
+| 元能力 | [DeviceUsageStatistics](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/device/DeviceUsageStatistics) | 本示例主要展示了设备使用信息情况。 | eTS |
+| ArkUI | [AdaptiveCapabilities](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/MultiDeviceAppDev/AdaptiveCapabilities) | 本示例展示在eTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | eTS |
+| ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ETSUI/Game2048) | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | eTS |
+| 窗口 | [Window](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Graphics/Window) | 本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能 | eTS |
+| 分布式数据管理 | [Preference](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/data/Preferences) | 本示例主要展示了首选项在主题切换方面的功能。 | eTS |
+| 全球化 | [International](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/common/International) | 本示例展示了i18n，intl，resourceManager在eTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | eTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
