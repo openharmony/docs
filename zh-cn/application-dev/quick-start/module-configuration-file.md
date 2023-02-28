@@ -206,7 +206,7 @@ ablities标签描述UIAbility组件的配置信息，标签值为数组类型，
 
 OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动图标，那么系统将应用app.json中的icon作为启动图标，并显示在桌面上。<br>
 用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面中。<br>
-如果应用想要隐藏启动图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](./../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+如果应用想要隐藏启动图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
 
 **启动图标的设置:** 需要在配置文件（module.json5）中abilities配置下设置icon，label以及skills,而且skills的配置下的必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
