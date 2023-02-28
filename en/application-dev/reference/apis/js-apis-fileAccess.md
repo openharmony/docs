@@ -17,7 +17,7 @@ import fileAccess from '@ohos.file.fileAccess';
 
 getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
-Obtains information about all wants with **extension** set to **fileAcesss** in the system. A want is a basic communication component used to start services. This API uses a promise to return the result.
+Obtains information about all wants with **extension** set to **fileAccess** in the system. A want is a basic communication component used to start services. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -47,7 +47,7 @@ Obtains information about all wants with **extension** set to **fileAcesss** in 
 
 getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void;
 
-Obtains information about all wants with **extension** set to **fileAcesss** in the system. A want is a basic communication component used to start services. This API uses an asynchronous callback to return the result.
+Obtains information about all wants with **extension** set to **fileAccess** in the system. A want is a basic communication component used to start services. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -114,7 +114,7 @@ Synchronously creates a **Helper** object to connect to the specified wants. The
       },
     ]
     try {
-      // this.context is passed by MainAbility.
+      // this.context is passed by EntryAbility.
       fileAccessHelper = fileAccess.createFileAccessHelper(this.context, wantInfos);
       if (!fileAccessHelper)
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -150,12 +150,12 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
   ```js
   createFileAccessHelper() {
-    let fileAccesssHelperAllServer = null;
+    let fileAccessHelperAllServer = null;
     // Create a Helper object to interact with all file management services configured with fileAccess in the system.
     try {
-      // this.context is passed by MainAbility.
-      fileAccesssHelperAllServer = fileAccess.createFileAccessHelper(this.context);
-      if (!fileAccesssHelperAllServer)
+      // this.context is passed by EntryAbility.
+      fileAccessHelperAllServer = fileAccess.createFileAccessHelper(this.context);
+      if (!fileAccessHelperAllServer)
         console.error("createFileAccessHelper interface returns an undefined object");
     } catch (error) {
       console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -167,8 +167,7 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
 getRoots( ) : Promise&lt;RootIterator&gt;
 
-Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses a promise to return a **RootIterator** object, which
-returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
+Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses a promise to return a **RootIterator** object, which returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -212,6 +211,7 @@ returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
 getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void;
 
 Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses an asynchronous callback to return the result.
+
 The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) through [next()](#rootiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
@@ -255,7 +255,7 @@ The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) 
 
 listFile(filter?: Filter) : FileIterator
 
-Synchronously obtains the **FileIterator** object of the first-level files (file folder) matching the conditions of the filter from the device root node. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
+Synchronously obtains the **FileIterator** object of the first-level files (directory) matching the conditions of the filter from the device root node. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -356,7 +356,7 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 listFile(filter?: Filter) : FileIterator
 
-Synchronously obtains the **FileIterator** object of the next-level files (file folders) matching the conditions of the filter from a directory. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
+Synchronously obtains the **FileIterator** object of the next-level files (directories) matching the conditions of the filter from a directory. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -542,7 +542,7 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
-Creates a folder in a directory. This API uses a promise to return the result.
+Creates a directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -552,14 +552,14 @@ Creates a folder in a directory. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | parentUri | string | Yes| URI of the parent directory for the folder to create.|
-  | displayName | string | Yes| Name of the folder to create.|
+  | parentUri | string | Yes| URI of the parent directory for the directory to create.|
+  | displayName | string | Yes| Name of the directory to create.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;string&gt; | Promise used to return the URI of the folder created.|
+| Promise&lt;string&gt; | Promise used to return the URI of the directory created.|
 
 **Example**
 
@@ -587,7 +587,7 @@ Creates a folder in a directory. This API uses a promise to return the result.
 
 mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
 
-Creates a folder in a directory. This API uses an asynchronous callback to return the result.
+Creates a directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -597,9 +597,9 @@ Creates a folder in a directory. This API uses an asynchronous callback to retur
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | parentUri | string | Yes| URI of the parent directory for the folder to create.|
-  | displayName | string | Yes| Name of the folder to create.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the folder created.|
+  | parentUri | string | Yes| URI of the parent directory for the directory to create.|
+  | displayName | string | Yes| Name of the directory to create.|
+  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the directory created.|
 
 **Example**
 
@@ -677,7 +677,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
   | --- | --- | --- | -- |
   | uri | string | Yes| URI of the file to open.|
   | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the file descriptor of the file opened.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the file descriptor of the file opened.|
 
 **Example**
 
@@ -704,7 +704,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 delete(uri: string) : Promise&lt;number&gt;
 
-Deletes a file or folder. This API uses a promise to return the result.
+Deletes a file or directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -714,7 +714,7 @@ Deletes a file or folder. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to delete.|
+  | uri | string | Yes| URI of the file or directory to delete.|
 
 **Return value**
 
@@ -743,7 +743,7 @@ Deletes a file or folder. This API uses a promise to return the result.
 
 delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void;
 
-Deletes a file or folder. This API uses an asynchronous callback to return the result.
+Deletes a file or directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -753,7 +753,7 @@ Deletes a file or folder. This API uses an asynchronous callback to return the r
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to delete.|
+  | uri | string | Yes| URI of the file or directory to delete.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the result.|
 
 **Example**
@@ -781,7 +781,7 @@ Deletes a file or folder. This API uses an asynchronous callback to return the r
 
 move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
-Moves a file or folder. This API uses a promise to return the result.
+Moves a file or  directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -791,20 +791,20 @@ Moves a file or folder. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | sourceFile | string | Yes| URI of the file or folder to move.|
-  | destFile | string | Yes| URI of the folder to which the file or folder will be moved.|
+  | sourceFile | string | Yes| URI of the file or  directory to move.|
+  | destFile | string | Yes| URI of the  directory, to which the file or  directory will be moved.|
 
 **Return value**
 
 | Type| Description|
 | ----- | ------ |
-| Promise&lt;string&gt; | Promise used to return the URI of the file or folder in the destination directory.|
+| Promise&lt;string&gt; | Promise used to return the URI of the file or  directory in the destination directory.|
 
 **Example**
 
   ```js
   // The media library URI is used as an example.
-  //In the sample code, sourceFile destFile indicates the file or folder in the Download directory. The URI is the URI in fileInfo.
+  //In the sample code, sourceFile destFile indicates the file or  directory in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceFile = "datashare:///media/file/102";
   let destFile = "datashare:///media/file/101";
@@ -821,7 +821,7 @@ Moves a file or folder. This API uses a promise to return the result.
 
 move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void;
 
-Moves a file or folder. This API uses an asynchronous callback to return the result.
+Moves a file or  directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -831,15 +831,15 @@ Moves a file or folder. This API uses an asynchronous callback to return the res
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | sourceFile | string | Yes| URI of the file or folder to move.|
-  | destFile | string | Yes| URI of the folder to which the file or folder will be moved.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file or folder in the destination directory.|
+  | sourceFile | string | Yes| URI of the file or  directory to move.|
+  | destFile | string | Yes| URI of the  directory, to which the file or  directory will be moved.|
+  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file or  directory in the destination directory.|
 
 **Example**
 
   ```js
   // The media library URI is used as an example.
-  //In the sample code, sourceFile destFile indicates the file or folder in the Download directory. The URI is the URI in fileInfo.
+  //In the sample code, sourceFile destFile indicates the file or  directory in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceFile = "datashare:///media/file/102";
   let destFile = "datashare:///media/file/101";
@@ -861,7 +861,7 @@ Moves a file or folder. This API uses an asynchronous callback to return the res
 
 rename(uri: string, displayName: string) : Promise&lt;string&gt;
 
-Renames a file or folder. This API uses a promise to return the result.
+Renames a file or  directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -871,14 +871,14 @@ Renames a file or folder. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to rename.|
-  | displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
+  | uri | string | Yes| URI of the file or  directory to rename.|
+  | displayName | string | Yes| New name of the file or  directory, which can contain the file name extension.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;string&gt; | Promise used to return the URI of the renamed file or folder.|
+| Promise&lt;string&gt; | Promise used to return the URI of the renamed file or  directory.|
 
 **Example**
 
@@ -900,7 +900,7 @@ Renames a file or folder. This API uses a promise to return the result.
 
 rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
 
-Renames a file or folder. This API uses an asynchronous callback to return the result.
+Renames a file or  directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -910,9 +910,9 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or folder to rename.|
-  | displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the renamed file or folder.|
+  | uri | string | Yes| URI of the file or  directory to rename.|
+  | displayName | string | Yes| New name of the file or  directory, which can contain the file name extension.|
+  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the renamed file or  directory.|
 
 **Example**
 
@@ -939,7 +939,7 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 
 access(sourceFileUri: string) : Promise&lt;boolean&gt;
 
-Checks whether a file or folder exists. This API uses a promise to return the result.
+Checks whether a file or  directory exists. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -949,7 +949,7 @@ Checks whether a file or folder exists. This API uses a promise to return the re
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | sourceFileUri | string | Yes| URI of the file or folder.|
+  | sourceFileUri | string | Yes| URI of the file or  directory.|
 
 **Return value**
 
@@ -980,7 +980,7 @@ Checks whether a file or folder exists. This API uses a promise to return the re
 
 access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
 
-Checks whether a file or folder exists. This API uses an asynchronous callback to return the result.
+Checks whether a file or  directory exists. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -990,7 +990,7 @@ Checks whether a file or folder exists. This API uses an asynchronous callback t
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | sourceFileUri | string | Yes| URI of the file or folder.|
+  | sourceFileUri | string | Yes| URI of the file or  directory.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Promise used to return the result.|
 
 **Example**
@@ -1031,13 +1031,13 @@ Obtains the next-level device root directory. **RootIterator** is an iterator ob
 
 | Type| Description|
 | --- | -- |
-| {value: RootInfo, done: boolean} | Root directory information obtained. This API traverses the folder until **done** returns **true**. The **value** field contains the root directory information.|
+| {value: RootInfo, done: boolean} | Root directory information obtained. This API traverses the  directory until **done** returns **true**. The **value** field contains the root directory information.|
 
 ## FileIterator.next
 
 next( ) : { value: FileInfo, done: boolean }
 
-Obtains the information about the next-level file or folder. **FileIterator** is an iterator object of a folder.
+Obtains the information about the next-level file or  directory. **FileIterator** is an iterator object of a  directory.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1047,7 +1047,7 @@ Obtains the information about the next-level file or folder. **FileIterator** is
 
 | Type| Description|
 | --- | -- |
-| {value: FileInfo, done: boolean} | File or folder information obtained. This API traverses the specified folder until **done** returns **true**. The **value** field contains the file or folder information obtained.|
+| {value: FileInfo, done: boolean} | File or  directory information obtained. This API traverses the specified  directory until **done** returns **true**. The **value** field contains the file or  directory information obtained.|
 
 ## RootInfo
 
@@ -1068,7 +1068,7 @@ Represents the root attribute information and interface capabilities of a device
 
 ## FileInfo
 
-Represents the file or folder attribute information and interface capabilities.
+Represents the file or  directory attribute information and interface capabilities.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1078,12 +1078,12 @@ Represents the file or folder attribute information and interface capabilities.
 
 | Name| Type  | Readable| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | Yes| No| URI of the file or folder.|
-| fileName | string | Yes| No| Name of a file or folder.|
-| mode | number | Yes| No| Permissions on the file or folder.|
-| size | number | Yes| No|  Size of the file or folder.|
-| mtime | number | Yes| No|  Time when the file or folder was last modified.|
-| mimeType | string | Yes| No|  MIME type of the file or folder.|
+| uri | string | Yes| No| URI of the file or  directory.|
+| fileName | string | Yes| No| Name of a file or  directory.|
+| mode | number | Yes| No| Permissions on the file or  directory.|
+| size | number | Yes| No|  Size of the file or  directory.|
+| mtime | number | Yes| No|  Time when the file or  directory was last modified.|
+| mimeType | string | Yes| No|  MIME type of the file or  directory.|
 
 ## OPENFLAGS
 
