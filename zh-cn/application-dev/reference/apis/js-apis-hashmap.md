@@ -484,7 +484,7 @@ let hashMap = new HashMap();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
 hashMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
