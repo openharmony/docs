@@ -16,16 +16,18 @@
 
 Divider()
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称      | 参数类型         | 描述        |
 | ----------- | ---------- | ------------------ |
-| vertical    | boolean | 使用水平分割线还是垂直分割线。false：水平分割线；true：垂直分割线。<br/>默认值：false |
-| color       | [ResourceColor](ts-types.md#resourcecolor) | 分割线颜色。 |
-| strokeWidth | number&nbsp;\|&nbsp;string | 分割线宽度。<br/>默认值：1 |
-| lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 分割线的端点样式。<br/>默认值：LineCapStyle.Butt |
+| vertical    | boolean | 使用水平分割线还是垂直分割线。false：水平分割线；true：垂直分割线。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | 分割线颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| strokeWidth | number&nbsp;\|&nbsp;string | 分割线宽度。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 分割线的端点样式。<br/>默认值：LineCapStyle.Butt<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
