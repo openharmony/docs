@@ -762,9 +762,9 @@ cameraInput.on('error', cameraDevice, (error) => {
 
 | 名称                           | 值   | 说明         |
 | ----------------------------- | ---- | ----------- |
-| EXPOSURE_MODE_LOCKED          | 0    | 锁定曝光模式。 |
-| EXPOSURE_MODE_AUTO            | 1    | 自动曝光模式。 |
-| EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | 连续自动曝光。 |
+| EXPOSURE_MODE_LOCKED          | 0    | 锁定曝光模式。不支持曝光区域中心点设置。 |
+| EXPOSURE_MODE_AUTO            | 1    | 自动曝光模式。支持曝光区域中心点设置，可以使用[setMeteringPoint](#setmeteringpoint)设置曝光区域中心点。 |
+| EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | 连续自动曝光。不支持曝光区域中心点设置。 |
 
  ## FocusMode
 
@@ -774,10 +774,10 @@ cameraInput.on('error', cameraDevice, (error) => {
 
 | 名称                        | 值   | 说明          |
 | -------------------------- | ---- | ------------ |
-| FOCUS_MODE_MANUAL          | 0    | 手动对焦。     |
-| FOCUS_MODE_CONTINUOUS_AUTO | 1    | 连续自动对焦。 |
-| FOCUS_MODE_AUTO            | 2    | 自动对焦。     |
-| FOCUS_MODE_LOCKED          | 3    | 对焦锁定。     |
+| FOCUS_MODE_MANUAL          | 0    | 手动对焦。通过手动修改相机焦距来改变对焦位置，不支持对焦点设置。     |
+| FOCUS_MODE_CONTINUOUS_AUTO | 1    | 连续自动对焦。不支持对焦点设置。 |
+| FOCUS_MODE_AUTO            | 2    | 自动对焦。支持对焦点设置，可以使用[setFocusPoint](#setfocuspoint)设置对焦点，根据对焦点执行一次自动对焦。对焦动作完成后（无论对焦成功或是对焦失败），都进入对焦锁定。应用层需要再次调用CONTINUOUS_AUTO后才能再次进入连续自动对焦。    |
+| FOCUS_MODE_LOCKED          | 3    | 对焦锁定。不支持对焦点设置。     |
 
 ## FocusState
 
@@ -1392,7 +1392,10 @@ try {
 
 setMeteringPoint(point: Point): void
 
-设置曝光区域中心点。（该接口目前为预留，将在3.2版本开放）
+设置曝光区域中心点，曝光点应在0-1坐标系内，该坐标系左上角为{0，0}，右下角为{1，1}。
+此坐标系是以设备充电口在右侧时的横向设备方向为基准的，例如应用的预览界面布局以
+设备充电口在下侧时的竖向方向为基准，布局宽高为{w，h}，且触碰点为{x，y}，
+则转换后的坐标点为{y/h，1-x/w}。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1449,7 +1452,7 @@ try {
 
 setExposureBias(exposureBias: number): void
 
-设置曝光补偿。
+设置曝光补偿，曝光补偿值（EV）。
 
 进行设置之前，建议先通过方法[getExposureBiasRange](#getexposurebiasrange)查询支持的范围。
 
@@ -1591,7 +1594,10 @@ try {
 
 setFocusPoint(point: Point): void
 
-设置焦点。
+设置焦点，焦点应在0-1坐标系内，该坐标系左上角为{0，0}，右下角为{1，1}。
+此坐标系是以设备充电口在右侧时的横向设备方向为基准的，例如应用的预览界面布局以
+设备充电口在下侧时的竖向方向为基准，布局宽高为{w，h}，且触碰点为{x，y}，
+则转换后的坐标点为{y/h，1-x/w}。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1698,7 +1704,7 @@ try {
 
 setZoomRatio(zoomRatio: number): void
 
-设置变焦比。
+设置变焦比，变焦精度最高为小数点后两位，超过变焦精度的变焦值系统无法响应。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2853,7 +2859,7 @@ metadataOutput.on('error', (metadataOutputError) => {
 
 | 名称                       | 值   | 说明              |
 | ------------------------- | ---- | ----------------- |
-| FACE_DETECTION            | 0    | metadata对象类型,人脸检测。 |
+| FACE_DETECTION            | 0    | metadata对象类型,人脸检测。检测点应在0-1坐标系内，该坐标系左上角为{0，0}，右下角为{1，1}。<br> 此坐标系是以设备充电口在右侧时的横向设备方向为基准的，<br> 例如应用的预览界面布局以设备充电口在下侧时的竖向方向为基准，<br> 布局宽高为{w，h}， 返回点为{x，y}，则转换后的坐标点为{1-y，x}。 |
 
 ## Rect
 
