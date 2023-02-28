@@ -168,6 +168,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   contact.updateContact({
+      id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
@@ -202,6 +203,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
   ```js
   contact.updateContact({
+      id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
@@ -242,6 +244,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
   ```js
   let promise = contact.updateContact({
+      id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
