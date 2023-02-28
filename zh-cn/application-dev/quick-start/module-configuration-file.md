@@ -200,7 +200,7 @@ deviceTypes示例：
 
 ## abilities标签
 
-ablities标签描述UIAbility组件的配置信息，标签值为数组类型，该标签下的配置只对当前UIAbility生效。
+abilities标签描述UIAbility组件的配置信息，标签值为数组类型，该标签下的配置只对当前UIAbility生效。
 
 **OpenHarmony中不允许应用隐藏启动图标**
 
@@ -224,8 +224,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
         "entities": ["entity.system.home"],
         "uris": []
       }]
-    },
-
+    }],
     ...
     
   }

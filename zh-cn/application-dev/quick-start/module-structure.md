@@ -212,7 +212,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
         "entities": ["entity.system.home"],
         "uris": []
       }]
-    },
+    }],
 
     ...
 
