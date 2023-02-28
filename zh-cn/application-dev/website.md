@@ -350,8 +350,8 @@
       - [远端状态订阅开发实例](connectivity/subscribe-remote-state.md)
   - 电话服务
     - [电话服务开发概述](telephony/telephony-overview.md)
-    - [跳转拨号界面](telephony/jumping-to-the-dial-screen.md)
-    - [获取当前蜂窝网络信号信息](telephony/cellular-network-signal-info.md)
+    - [拨打电话](telephony/telephony-call.md)
+    - [短信服务](telephony/telephony-sms.md)
   - 数据管理
     - 分布式数据服务
       - [分布式数据服务概述](database/database-mdds-overview.md)
