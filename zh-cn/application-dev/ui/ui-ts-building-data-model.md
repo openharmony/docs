@@ -87,4 +87,4 @@
 
 ## 相关实例
 针对构建食物分类列表页面和食物详情页，有以下相关实例可供参考：
-- [DefiningPageLayoutAndConnection:页面布局和连接（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/DefiningPageLayoutAndConnection)
+- [DefiningPageLayoutAndConnection:页面布局和连接（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/DefiningPageLayoutAndConnection)

@@ -232,5 +232,5 @@
 
 针对访问控制，有以下相关实例可供参考：
 
-- [`AbilityAccessCtrl`：访问权限控制（ArkTS）（Full SDK）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [`AbilityAccessCtrl`：访问权限控制（ArkTS）（Full SDK）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/Safety/AbilityAccessCtrl)
 - [为应用添加运行时权限（ArkTS）（Full SDK）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

@@ -272,9 +272,9 @@
 
 针对分布式数据开发，有以下相关实例可供参考：
 
-- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
-- [`DistributedCalc`：分布式计算器（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
-- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedDataGobang)
-- [`DDMQuery`：结果集与谓词（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
-- [`KvStore`：分布式数据库（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
+- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/common/DistributeCalc)
+- [`DistributedCalc`：分布式计算器（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/Preset/DistributeCalc)
+- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/data/DistributedDataGobang)
+- [`DDMQuery`：结果集与谓词（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/data/DDMQuery)
+- [`KvStore`：分布式数据库（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/data/Kvstore)
 - [分布式数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)

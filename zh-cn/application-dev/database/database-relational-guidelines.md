@@ -466,7 +466,7 @@
 ## 相关实例
 针对关系型数据库开发，有以下相关实例可供参考：
 
-- [`DistributedRdb`：分布式关系型数据库（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedRdb)
+- [`DistributedRdb`：分布式关系型数据库（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/data/DistributedRdb)
 
 - [关系型数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)
 

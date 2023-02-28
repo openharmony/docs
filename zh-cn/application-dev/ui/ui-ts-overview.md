@@ -54,27 +54,27 @@ ArkTS语言的基础知识请参考[学习ArkTS语言](../quick-start/arkts-get-
 
 基于ArkTS的声明式开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`Drag`：拖拽事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Drag)
+- [`Drag`：拖拽事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/Drag)
 
-- [`ArkUIAnimation`：动画（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ArkUIAnimation)
+- [`ArkUIAnimation`：动画（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/ArkUIAnimation)
 
-- [`MouseEvent`：鼠标事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent)
+- [`MouseEvent`：鼠标事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/MouseEvent)
 
-- [`BringApp`：拉起系统应用（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp)
+- [`BringApp`：拉起系统应用（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/BringApp)
 
-- [`Chat`：聊天示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Chat)
+- [`Chat`：聊天示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/AppSample/Chat)
 
-- [`Shopping`：购物示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Shopping)
+- [`Shopping`：购物示例应用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/AppSample/Shopping)
 
-- [`Lottie`：Lottie（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Lottie)
+- [`Lottie`：Lottie（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/Lottie)
 
-- [`Flybird`：小鸟避障游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/Flybird)
+- [`Flybird`：小鸟避障游戏（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ResourcesSchedule/Flybird)
 
-- [`AdaptiveCapabilities`：多设备自适应能力（ArkTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
+- [`AdaptiveCapabilities`：多设备自适应能力（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/MultiDeviceAppDev/AdaptiveCapabilities)
 
-- [`Game2048`：2048游戏（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048)
+- [`Game2048`：2048游戏（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/Game2048)
 
-- [`TransitionAnimation`：转场动画(ArkTS)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/TransitionAnimation)
+- [`TransitionAnimation`：转场动画(ArkTS)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/TransitionAnimation)
 
 - [基础组件Slider的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderExample)
 
@@ -86,6 +86,6 @@ ArkTS语言的基础知识请参考[学习ArkTS语言](../quick-start/arkts-get-
 
 - [弹窗（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
 
-- [`UpgradePopup`：自定义弹窗（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/UpgradePopup)
+- [`UpgradePopup`：自定义弹窗（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/UpgradePopup)
 
-- [CustomComponent:组件化（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/CustomComponent)
+- [CustomComponent:组件化（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ETSUI/CustomComponent)
