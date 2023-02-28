@@ -188,10 +188,10 @@ Describes the rectangular area of the window.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle.|
-| width  | number   | Yes  | Yes  | Width of the rectangle.  |
-| height | number   | Yes  | Yes  | Height of the rectangle.  |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.|
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.|
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ Describes the window size.
 
 | Name  | Type| Readable| Writable| Description      |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | Yes  | Yes  | Window width.|
-| height | number   | Yes  | Yes  | Window height.|
+| width  | number   | Yes  | Yes  | Window width, in pixels.|
+| height | number   | Yes  | Yes  | Window height, in pixels.|
 
 ## WindowProperties
 
@@ -824,7 +824,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 Creates a subwindow. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -860,7 +860,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 Creates a subwindow. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -900,7 +900,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 Creates a system window. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -936,7 +936,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 Creates a system window. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9-1) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -975,7 +975,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 Finds a window based on the ID. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [findWindow()](#windowfindwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1008,7 +1008,7 @@ find(id: string): Promise&lt;Window&gt;
 Finds a window based on the ID. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [findWindow()](#windowfindwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1045,7 +1045,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -1079,7 +1079,7 @@ getTopWindow(): Promise&lt;Window&gt;
 Obtains the top window of the current application. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -1112,7 +1112,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1145,7 +1145,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 Obtains the top window of the current application. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9-1) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -5903,9 +5903,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5949,9 +5949,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5994,9 +5994,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6037,9 +6037,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6093,9 +6093,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6141,9 +6141,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6185,9 +6185,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6231,9 +6231,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6289,9 +6289,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6340,9 +6340,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6389,9 +6389,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6436,9 +6436,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6475,9 +6475,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
@@ -6515,9 +6515,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+class myAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
