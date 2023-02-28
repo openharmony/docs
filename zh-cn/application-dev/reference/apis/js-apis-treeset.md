@@ -508,7 +508,7 @@ let treeSet = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
 treeSet.forEach((value, key) => {
-  console.log("value:" + value, key)
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
