@@ -8,10 +8,14 @@
 
 > **说明**：本文中的截图仅为参考，具体的显示界面请以实际使用的DevEco Studio和SDK的版本为准。
 
-## 下载full-SDK
+## 获取full-SDK
 
-full-SDK需要手动下载。请参考[版本说明书](../../release-notes/OpenHarmony-v3.2-beta2.md)中的获取方式，从镜像站点获取所需的操作系统的full-SDK。
-
+- OpenHarmony 3.2 Beta2-Beta4
+  full-SDK需要手动下载。请参考[版本说明书](../../release-notes/OpenHarmony-v3.2-beta4.md)中的获取方式，从镜像站点获取所需的操作系统的full-SDK。
+  
+- OpenHarmony 3.2 Beta5起
+  不再随版本发布full-SDK，如有需要，请获取全量代码并手动编译full-SDK。编译方法请参见[full-SDK编译指南](full-sdk-compile-guide.md)。
+  编译后继续参考本指南完成SDK的替换。
 
 
 ## 查看本地SDK路径(此处以ets工程为例，1.0工程请以相同方式替换js-SDK)
