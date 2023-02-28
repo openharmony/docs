@@ -58,12 +58,11 @@ This section uses the volume bar as an example to describe how to develop a syst
    When the volume bar window is no longer needed, you can call **hide** or **destroyWindow** to hide or destroy it.
 
 ```ts
-import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
 import window from '@ohos.window';
 
 export default class ServiceExtensionAbility1 extends ExtensionContext {
     onCreate(want) {
-        console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
         // 1. Create a volume bar window.
         let windowClass = null;
@@ -151,7 +150,6 @@ import window from '@ohos.window';
 
 export default class ServiceExtensionAbility1 extends ExtensionContext {
     onCreate(want) {
-        console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
         // Create a volume bar window.
         let windowClass = null;
