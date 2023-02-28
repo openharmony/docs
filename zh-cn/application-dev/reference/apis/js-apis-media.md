@@ -1719,13 +1719,14 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+// 配置参数以实际硬件设备支持的范围为准
 let AVRecorderProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : media.CodecMimeType.AUDIO_AAC,
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : media.CodecMimeType.VIDEO_MPEG4,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
@@ -1789,13 +1790,14 @@ prepare(config: AVRecorderConfig): Promise\<void>
 **示例：**
 
 ```js
+// 配置参数以实际硬件设备支持的范围为准
 let AVRecorderProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : media.CodecMimeType.AUDIO_AAC,
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : media.CodecMimeType.VIDEO_MPEG4,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
@@ -2604,13 +2606,14 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```js
+// 配置参数以实际硬件设备支持的范围为准
 let videoProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : 'audio/mp4a-latm',
     audioSampleRate : 48000,
     fileFormat : 'mp4',
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : 'video/mp4v-es',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
@@ -2674,13 +2677,14 @@ prepare(config: VideoRecorderConfig): Promise\<void>;
 **示例：**
 
 ```js
+// 配置参数以实际硬件设备支持的范围为准
 let videoProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : 'audio/mp4a-latm',
     audioSampleRate : 48000,
     fileFormat : 'mp4',
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : 'video/mp4v-es',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
