@@ -15,19 +15,19 @@ The **MissionCallback** module defines the callbacks invoked after synchronizati
 import distributedMissionManager from '@ohos.distributedMissionManager';
 
 let missionDeviceInfo = {
-    deviceId: "123456"
+    deviceId: '123456'
 };
 let missionCallback = {
     notifyMissionsChanged: function (deviceId) {
-        console.log("notifyMissionsChanged deviceId: " + JSON.stringify(deviceId));
+        console.log('notifyMissionsChanged deviceId: ' + JSON.stringify(deviceId));
     },
     notifySnapshot: function (deviceId, mission) {
-        console.log("notifySnapshot deviceId: " + JSON.stringify(deviceId));
-        console.log("notifySnapshot mission: " + JSON.stringify(mission));
+        console.log('notifySnapshot deviceId: ' + JSON.stringify(deviceId));
+        console.log('notifySnapshot mission: ' + JSON.stringify(mission));
     },
     notifyNetDisconnect: function (deviceId, state) {
-        console.log("notifyNetDisconnect deviceId: " + JSON.stringify(deviceId));
-        console.log("notifyNetDisconnect state: " + JSON.stringify(state));
+        console.log('notifyNetDisconnect deviceId: ' + JSON.stringify(deviceId));
+        console.log('notifyNetDisconnect state: ' + JSON.stringify(state));
     }
 };
 distributedMissionManager.registerMissionListener(missionDeviceInfo, missionCallback);

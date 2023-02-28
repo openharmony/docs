@@ -1,19 +1,19 @@
 # @ohos.app.ability.errorManager (ErrorManager)
 
-The **ErrorManager** module provides APIs for registering and deregistering error observers. For example, you can use the APIs to register an observer when your application wants to capture JS crashes.
+The **ErrorManager** module provides APIs for registering and deregistering error observers.
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
-```ts
+```
 import errorManager from '@ohos.app.ability.errorManager'
 ```
 
 ## ErrorManager.on
 
-on(type: "error", observer: ErrorObserver): number;
+on(type: 'error', observer: ErrorObserver): number;
 
 Registers an error observer.
 
@@ -23,34 +23,27 @@ Registers an error observer.
  
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
+| type | string | Yes| Type of the API to call.|
 | observer | [ErrorObserver](./js-apis-inner-application-errorObserver.md) | Yes| Digital code of the observer.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | number | Index of the observer.|
 
 **Example**
     
-```ts
-var observer = {
+```js
+let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
     }
-}
-var observerId = -1;
+};
 try {
-    observerId = errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
 
 Deregisters an error observer. This API uses an asynchronous callback to return the result.
 
@@ -60,14 +53,14 @@ Deregisters an error observer. This API uses an asynchronous callback to return 
  
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
-| observerId | number | Yes| Index of the observer returned by **on()**.|
+| type | string | Yes| Type of the API to call.|
+| observerId | number | Yes| Digital code of the observer.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
     
-```ts
-var observerId = 100;
+```js
+let observerId = 100;
 
 function unregisterErrorObserverCallback(err) {
     if (err) {
@@ -75,15 +68,15 @@ function unregisterErrorObserverCallback(err) {
     }
 }
 try {
-    errorManager.off("error", observerId, unregisterErrorObserverCallback);
+    errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number): Promise\<void>;
+off(type: 'error', observerId: number): Promise\<void>;
 
 Deregisters an error observer. This API uses a promise to return the result.
 
@@ -93,8 +86,8 @@ Deregisters an error observer. This API uses a promise to return the result.
  
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
-| observerId | number | Yes| Index of the observer returned by **on()**.|
+| type | string | Yes| Type of the API to call.|
+| observerId | number | Yes| Digital code of the observer.|
 
 **Return value**
 
@@ -104,18 +97,18 @@ Deregisters an error observer. This API uses a promise to return the result.
 
 **Example**
     
-```ts
-var observerId = 100;
+```js
+let observerId = 100;
 try {
-    errorManager.off("error", observerId)
+    errorManager.off('error', observerId)
         .then((data) => {
             console.log('----------- unregisterErrorObserver success ----------', data);
         })
         .catch((err) => {
             console.log('----------- unregisterErrorObserver fail ----------', err);
-    })
+    });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ' + paramError.code + ', ' + paramError.message);
 }
 
 ```
