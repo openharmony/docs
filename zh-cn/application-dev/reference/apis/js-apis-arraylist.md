@@ -319,11 +319,9 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.replaceAllElements((value: number, index: number)=> {
-  return value = 2 * value;
-});
-arrayList.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+arrayList.replaceAllElements((value) => {
+    // 用户操作逻辑根据实际场景进行添加。
+    return value;
 });
 ```
 
@@ -360,7 +358,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 

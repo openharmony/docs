@@ -481,7 +481,7 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("sdfs");
 lightWeightSet.add("dfsghsf");
 lightWeightSet.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

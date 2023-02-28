@@ -581,7 +581,7 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("sdfs", 123);
 lightWeightMap.set("dfsghsf", 357);
 lightWeightMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
