@@ -209,7 +209,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       >
       > - 如果普通用户权限不能满足业务要求，需要把uid、gid定义为system或者root权限时，请找安全专家进行评审。
       >
-      > - 进程的uid在文件**base/startup/init_lite/services/etc/passwd**中配置，进程的gid在文件**base/startup/init_lite/services/etc/group**中配置，进程uid和gid配置参考：[系统服务用户组添加方法](https://gitee.com/openharmony/startup_init_lite/wikis)。
+      > - 进程的uid在文件**base/startup/init/services/etc/passwd**中配置，进程的gid在文件**base/startup/init/services/etc/group**中配置，进程uid和gid配置参考：[系统服务用户组添加方法](https://gitee.com/openharmony/startup_init_lite/wikis)。
       >
       > - caps值：格式为caps = ["xxx"]，如果要配置CAP_DAC_OVERRIDE，此处需要填写caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
       >

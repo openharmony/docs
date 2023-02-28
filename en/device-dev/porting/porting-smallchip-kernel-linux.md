@@ -69,7 +69,7 @@ Based on the preceding process, the recommended verification procedure is as fol
    Create a root file system image **rootfs.img** by following instructions in [Building Procedures](../subsystems/subsys-build-all.md). As shown in the preceding figure, the startup process is closely related to the product configuration. You need to complete the following configuration when creating **rootfs.img**:
 
    - Component configuration
-      In the product component configuration file ***vendor*/{*company*}/{*product*}/config.json**, configure the **init_lite** component of the startup subsystem and the **linux_4_1_9** component of the kernel subsystem.
+      In the product component configuration file ***vendor*/{*company*}/{*product*}/config.json**, configure the **init** component of the startup subsystem and the **linux_4_1_9** component of the kernel subsystem.
    - System service configuration
       Modify the system service configuration file ***vendor*/{*company*}/{*product*}/init_configs/init_xxx.cfg** to start the shell service.
    - File system configuration
