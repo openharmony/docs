@@ -83,17 +83,7 @@ HAR模块编译打包时会把资源打包到HAR包中。在编译构建HAP时�
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照依赖顺序进行覆盖（依赖顺序在前的优先级较高）。
 
 ## 引用HAR共享包接口
-引用HAR共享包前，需要在package.json配置文件中配置对HAR的依赖，配置方式如下所示：
-```json
-{
-  "dependencies": {
-    // 依赖本地的HAR
-    "@ohos/library": "file:../library",
-    // 依赖远程仓的HAR
-    "@ohos/vcard": "^2.1.0"
-  }
-}
-```
+引用HAR共享包前，需要先配置对HAR的依赖，配置方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391)。
 
 ### 引用HAR共享包的ArkUI组件
 
