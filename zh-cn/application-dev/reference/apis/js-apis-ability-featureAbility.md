@@ -823,7 +823,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是否是可反向的。                               |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 表示如果未安装指定的Ability，将安装该Ability。                       |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 表示如果未安装指定的Ability，将在后台安装该Ability。                       |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](#featureabilitystartability)方法的参数对象[parameter](js-apis-inner-ability-startAbilityParameter.md)下的[Want](js-apis-application-want.md)设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 表示在已有的任务栈上创建任务的操作。                       |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 表示如果启动的Ability的现有实例已位于任务栈顶，则将重用该实例。否则，将创建一个新的Ability实例。 |
 
