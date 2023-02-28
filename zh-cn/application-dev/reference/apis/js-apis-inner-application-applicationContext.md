@@ -83,7 +83,7 @@ export default class EntryAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
-        console.log('registerAbilityLifecycleCallback number: ' + JSON.stringify(lifecycleId));
+        console.log('registerAbilityLifecycleCallback lifecycleId: ${lifecycleId)}');
     }
 }
 ```
@@ -114,9 +114,13 @@ let lifecycleId;
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        console.log('stage applicationContext: ' + applicationContext);
+        console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off(type: 'abilityLifecycle', lifecycleId, (error, data) => {
-            console.log('unregisterAbilityLifecycleCallback success, err: ' + JSON.stringify(error));
+            if (error && error.code !== 0) {
+                console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
+            } else {
+                console.log('unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}');
+            }
         });
     }
 }
@@ -147,7 +151,7 @@ let lifecycleId;
 export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        console.log('stage applicationContext: ' + applicationContext);
+        console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off(type: 'abilityLifecycle', lifecycleId);
     }
 }
@@ -185,19 +189,19 @@ export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate')
         globalThis.applicationContext = this.context.getApplicationContext();
-        let EnvironmentCallback = {
+        let environmentCallback = {
             onConfigurationUpdated(config){
-                console.log('onConfigurationUpdated config:' + JSON.stringify(config));
+                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             },
             onMemoryLevel(level){
-                console.log('onMemoryLevel level:' + level);
+                console.log('onMemoryLevel level: ${level}');
             }
-        }
+        };
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
-        // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.on('environment', EnvironmentCallback);
-        console.log('registerEnvironmentCallback number: ' + JSON.stringify(callbackId));
+        // 2.通过applicationContext注册监听系统环境变化
+        callbackId = applicationContext.on('environment', environmentCallback);
+        console.log('registerEnvironmentCallback callbackId: ${callbackId}');
     }
 }
 ```
@@ -229,7 +233,11 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {
-            console.log('unregisterEnvironmentCallback success, err: ' + JSON.stringify(error));
+            if (error && error.code !== 0) {
+                console.error('unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}');
+            } else {
+                console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
+            }
         });
     }
 }

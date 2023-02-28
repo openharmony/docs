@@ -57,8 +57,12 @@ particleAbility.startAbility(
             uri: ''
         },
     },
-    (error, result) => {
-        console.error('particleAbility startAbility errCode: ${JSON.stringify(error)}, result: ${JSON.stringify(result)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbility success, data: ${JSON.stringify(data)}');
+        }
     },
 );
 ```
@@ -133,8 +137,12 @@ terminateSelf(callback: AsyncCallback\<void>): void
 import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf(
-    (error, result) => {
-        console.log('particleAbility terminateSelf errCode: ${JSON.stringify(error)}, result: ${JSON.stringify(result)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('terminateSelf fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('terminateSelf success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -226,11 +234,11 @@ import notification from '@ohos.notification';
 import particleAbility from '@ohos.ability.particleAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
 
-function callback(err, data) {
-    if (err) {
-        console.error('Operation failed cause: ${JSON.stringify(err)}');
+function callback(error, data) {
+    if (error && error.code !== 0) {
+        console.error('Operation failed error: ${JSON.stringify(error)}');
     } else {
-        console.info('Operation succeeded');
+        console.info('Operation succeeded, data: ${data}');
     }
 }
 
@@ -349,11 +357,11 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
-function callback(err, data) {
-    if (err) {
-        console.error('Operation failed cause: ${JSON.stringify(err)}');
+function callback(error, data) {
+    if (error && error.code !== 0) {
+        console.error('Operation failed error: ${JSON.stringify(error)}');
     } else {
-        console.info('Operation succeeded');
+        console.info('Operation succeeded, data: ${data}');
     }
 }
 
