@@ -340,6 +340,10 @@
       - [HTTP数据请求](connectivity/http-request.md)
       - [WebSocket连接](connectivity/websocket-connection.md)
       - [Socket连接](connectivity/socket-connection.md)
+      - [策略管理](connectivity/net-policy-management.md)
+      - [网络共享](connectivity/net-sharing.md)
+      - [以太网连接](connectivity/net-ethernet.md)
+      - [网络连接管理](connectivity/net-connection-manager.md)
     - IPC与RPC通信
       - [IPC与RPC通信概述](connectivity/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](connectivity/ipc-rpc-development-guideline.md)
@@ -822,12 +826,7 @@
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
       - Stage模型能力的接口(待停用)
-        - [@ohos.application.AbilityConstant (AbilityConstant)](reference/apis/js-apis-application-abilityConstant.md)
-        - [@ohos.application.AbilityStage (AbilityStage)](reference/apis/js-apis-application-abilityStage.md)
         - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-application-environmentCallback.md)
-        - [@ohos.application.FormExtension (FormExtension)](reference/apis/js-apis-application-formExtension.md)
-        - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-application-serviceExtensionAbility.md)
-        - [@ohos.application.StartOptions (StartOptions)](reference/apis/js-apis-application-startOptions.md)
       - FA模型能力的接口
         - [@ohos.ability.ability (Ability)](reference/apis/js-apis-ability-ability.md)
         - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-ability-featureAbility.md)
@@ -1266,8 +1265,7 @@
       - [时间时区服务错误码](reference/errorcodes/errorcode-time.md)
       - [Webview错误码](reference/errorcodes/errorcode-webview.md)
     - 帐号管理
-      - [Account错误码](reference/errorcodes/errorcode-account.md)
-      - [应用帐号错误码](reference/errorcodes/errorcode-app-account.md)
+      - [帐号管理错误码](reference/errorcodes/errorcode-account.md)
     - 设备管理
       - [耗电统计错误码](reference/errorcodes/errorcode-batteryStatistics.md)
       - [屏幕亮度错误码](reference/errorcodes/errorcode-brightness.md)
