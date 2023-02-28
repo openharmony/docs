@@ -225,8 +225,8 @@
 
 针对分布式数据开发，有以下相关实例可供参考：
 
-- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
-- [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
-- [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
-- [`KvStore`：分布式数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
+- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/DistributeCalc)
+- [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/Preset/DistributeCalc)
+- [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/data/DDMQuery)
+- [`KvStore`：分布式数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/data/Kvstore)
 - [分布式数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)

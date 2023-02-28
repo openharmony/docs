@@ -404,5 +404,5 @@ export default {
 ## 相关实例
 
 针对ServiceAbility开发，有以下相关实例可供参考：
-- [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceAbility)
-- [`DMS`：分布式Demo（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
+- [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ability/ServiceAbility)
+- [`DMS`：分布式Demo（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ability/DMS)

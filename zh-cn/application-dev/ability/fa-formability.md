@@ -403,5 +403,5 @@ onUpdate(formId) {
 ## 相关实例
 
 针对FA模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormAbility`：FA模型卡片（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormAbility)
-- [`FormLauncher`：卡片使用方（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormLauncher)
+- [`FormAbility`：FA模型卡片（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ability/FormAbility)
+- [`FormLauncher`：卡片使用方（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ability/FormLauncher)

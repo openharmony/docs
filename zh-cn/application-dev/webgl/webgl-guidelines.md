@@ -708,4 +708,4 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 
 针对WebGL开发，有以下相关实例可供参考：
 
-- [`JsWbgGL`：WebGL（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/JsWebGL)
+- [`JsWbgGL`：WebGL（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/Graphics/JsWebGL)

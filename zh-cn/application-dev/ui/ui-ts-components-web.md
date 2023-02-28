@@ -198,4 +198,4 @@ struct WebComponent {
 
 针对Web开发，有以下相关实例可供参考：
 
-- [`Web`：Web（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Web)
+- [`Web`：Web（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ETSUI/Web)

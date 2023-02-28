@@ -207,4 +207,4 @@ import stats from '@ohos.bundleState';
     ```
 ## 相关实例
 针对设备使用信息统计，有以下相关实例可供参考：
-- [`DeviceUsageStatistics`：设备使用信息统计（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/DeviceUsageStatistics)
+- [`DeviceUsageStatistics`：设备使用信息统计（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/device/DeviceUsageStatistics)

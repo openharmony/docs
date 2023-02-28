@@ -25,21 +25,21 @@
 
 针对组件开发，有以下相关实例可供参考：
 
-- [`JsPanel`：内容展示面板（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsPanel)
+- [`JsPanel`：内容展示面板（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsPanel)
 
-- [`Popup`：气泡（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Popup)
+- [`Popup`：气泡（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/Popup)
 
-- [`RefreshContainer`：下拉刷新容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/RefreshContainer)
+- [`RefreshContainer`：下拉刷新容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/RefreshContainer)
 
-- [`JSComponments`：Js组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JSComponments)
+- [`JSComponments`：Js组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JSComponments)
 
-- [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsUserRegistration)
+- [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsUserRegistration)
 
-- [`ECG`：心率检测（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/ECG)
+- [`ECG`：心率检测（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/ECG)
 
-- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Badge)
+- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/Badge)
 
-- [`JsVideo`：视频播放（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/JsVideo)
+- [`JsVideo`：视频播放（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/media/JsVideo)
 
 - [rating（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 

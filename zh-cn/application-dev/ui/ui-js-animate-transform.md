@@ -580,13 +580,13 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 针对transform样式动画开发，有以下相关实例可供参考：
 
-- [`JsAnimation`：动效示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimation)
+- [`JsAnimation`：动效示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsAnimation)
 
-- [`JsAnimationStyle`：动画与自定义字体（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimationStyle)
+- [`JsAnimationStyle`：动画与自定义字体（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsAnimationStyle)
 
-- [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/Clock)
+- [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/Clock)
 
-- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimation)
+- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/JsAnimation)
 
 - [动画样式（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
 

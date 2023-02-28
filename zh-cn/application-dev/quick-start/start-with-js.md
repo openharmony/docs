@@ -222,4 +222,4 @@
 ## 相关实例
 
 针对使用JS语言（传统代码方式）开发快速入门，有以下相关实例可供参考：
-- [`JsHelloWorld`：你好世界（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/JsHelloWorld)
+- [`JsHelloWorld`：你好世界（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/JsHelloWorld)
