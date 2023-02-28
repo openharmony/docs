@@ -200,6 +200,6 @@ export class AudioRecorderDemo {
 
 针对音频录制开发，有以下相关实例可供参考：
 
-- [`Recorder:`录音机（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Recorder)
-- [`eTsAudioPlayer`: 音频播放器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [`Recorder:`录音机（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/media/Recorder)
+- [`eTsAudioPlayer`: 音频播放器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Beta5/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [音频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

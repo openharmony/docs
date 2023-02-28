@@ -267,7 +267,7 @@ featureAbility.startAbility(
 > 说明：
 > (1) 由于DeviceManager的getTrustedDeviceList等接口仅对系统应用开放，当前仅系统应用支持连接远程Service。
 > (2) API定义可见：[deviceManager模块](..\reference\apis\js-apis-device-manager.md)
-> (3) 参考Demo可见：[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
+> (3) 参考Demo可见：[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ability/DMS)
 
 在跨设备场景下，需要向用户申请数据同步的权限，首先在config.json里配置权限：
 
@@ -320,7 +320,7 @@ async function RequestPermission() {
 
 获取deviceId需要导入`@ohos.distributedHardware.deviceManager`模块，其中提供了getTrustedDeviceList等接口用于获取远端设备的deviceId。
  - 接口使用可参考[deviceManager模块](..\reference\apis\js-apis-device-manager.md)
- - 具体实现可参考[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
+ - 具体实现可参考[分布式Demo](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ability/DMS)
 
 连接远程Service，只需要在want内定义deviceId即可，示例代码如下：
 
@@ -340,5 +340,5 @@ let connectId = featureAbility.connectAbility(want, option);
 ## 相关实例
 
 针对ServiceAbility开发，有以下相关实例可供参考：
-- [`ServiceAbility`：ServiceAbility的创建与使用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceAbility)
-- [`DMS`：分布式Demo（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)
+- [`ServiceAbility`：ServiceAbility的创建与使用（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ability/ServiceAbility)
+- [`DMS`：分布式Demo（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ability/DMS)

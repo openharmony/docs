@@ -196,17 +196,12 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 
 | 子系统<div style="width:100px"></div> | 名称 | 简介 |
 | -------- | -------- | -------- |
-| 事件通知 | [CustomEmitter: 事件通知](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CustomEmitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 |
-| 数据管理 | [CrossAppDataShare: 跨应用数据共享](https://gitee.com/openharmony/applications_app_samples/tree/master/data/CrossAppDataShare) | 本示例实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。 |
-| 媒体 | [PlayMusicBackground: 后台播放音乐](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/PlayMusicBackground) | 本示例基于API9 stage应用开发模型，用于验证OpenHarmony提供的后台播放音乐时申请长时任务功能。 |
-| 资源调度 | [ReminderAgentManager: 后台代理提醒](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/ReminderAgentManager) | 本示例通过使用后台代理提醒的能力，创建闹钟、日历、计时器三种类型的定时提醒，保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。 |
-| 文件管理 | [StorageStatistic: 存储空间统计](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。 |
-| 窗口 | [Screenshot: 截屏](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot) | 本示例通过screenshot模块实现屏幕截图 ，通过window模块实现隐私窗口切换，通过display模块查询当前隐私窗口。 |
-| 包管理 | [MultiHap: 多HAP](https://gitee.com/openharmony/applications_app_samples/tree/master/bundle/MultiHap) | 本示例展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 |
-| 元能力 | [AbilityStartMode: Ability的启动模式](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityStartMode) | 本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。 |
-| 资源管理 | [ApplicationThemeSwitch: 应用主题切换](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ApplicationThemeSwitch) | 本示例通过创建base同级资源文件夹dark和light完成深色浅色主题相关资源配置，实现深色浅色主题切换，在ThemeConst文件中配置自定义主题文件，通过控制变量实现多主题切换。 |
+| 事件通知 | [Emitter: 事件通知](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/Notification/Emitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 |
+| 资源调度 | [AlarmClock: 后台代理提醒](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/Notification/AlarmClock) | 本示例通过使用后台代理提醒的能力，创建闹钟的定时提醒，保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。 |
+| 文件管理 | [StorageStatistic: 存储空间统计](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/Graphics/Screenshot) | 本示例通过应用程序包管理、应用空间统计与卷管理模块，实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。 |
+| 窗口 | [Window: 窗口](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/Graphics/Window) | 本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能。 |
 
-请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
 
 

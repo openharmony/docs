@@ -252,4 +252,4 @@ export default {
 
 针对Grid开发，有以下相关实例可供参考：
 
-- [`JsGrid`：栅格组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsGrid)
+- [`JsGrid`：栅格组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/UI/JsGrid)
