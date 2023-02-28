@@ -1,6 +1,6 @@
-# @ohos.app.form.formHost (formHost)
+# @ohos.app.form.formHost (FormHost)
 
-The **formHost** module provides APIs related to the widget host, which is an application that displays the widget content and controls the position where the widget is displayed. You can use the APIs to delete, release, and update widgets installed by the same user, and obtain widget information and status.
+The **FormHost** module provides APIs related to the widget host, which is an application that displays the widget content and controls the position where the widget is displayed. You can use the APIs to delete, release, and update widgets installed by the same user, and obtain widget information and status.
 
 > **NOTE**
 >
@@ -34,26 +34,25 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
-  formHost.deleteForm(formId, (error) => {
+  var formId = '12400633174999288';
+  formHost.deleteForm(formId, (error, data) => {
   if (error) {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost deleteForm, error:' + JSON.stringify(error));
   } else {
     console.log('formHost deleteForm success');
   }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.log(`catch err->${JSON.stringify(error)}`);
 }
+
 ```
 
 ## deleteForm
@@ -83,23 +82,21 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Parameters**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
+  var formId = '12400633174999288';
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost deleteForm, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -124,23 +121,21 @@ Releases a widget. After this API is called, the application can no longer use t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
-  formHost.releaseForm(formId, (error) => {
+  var formId = '12400633174999288';
+  formHost.releaseForm(formId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost releaseForm, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -166,23 +161,21 @@ Releases a widget. After this API is called, the application can no longer use t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
-  formHost.releaseForm(formId, true, (error) => {
+  var formId = '12400633174999288';
+  formHost.releaseForm(formId, true, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost releaseForm, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -213,23 +206,21 @@ Releases a widget. After this API is called, the application can no longer use t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
+  var formId = '12400633174999288';
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost releaseForm, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -254,23 +245,21 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
-  formHost.requestForm(formId, (error) => {
+  var formId = '12400633174999288';
+  formHost.requestForm(formId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost requestForm, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -300,23 +289,21 @@ Requests a widget update. This API uses a promise to return the result.
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
+  var formId = '12400633174999288';
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost requestForm, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 
 ```
@@ -342,23 +329,21 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
-  formHost.castToNormalForm(formId, (error) => {
+  var formId = '12400633174999288';
+  formHost.castToNormalForm(formId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost castTempForm, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -388,23 +373,21 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = "12400633174999288";
+  var formId = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost castTempForm, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -429,23 +412,21 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
-  formHost.notifyVisibleForms(formId, (error) => {
+  var formId = ['12400633174999288'];
+  formHost.notifyVisibleForms(formId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -475,23 +456,21 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
+  var formId = ['12400633174999288'];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -516,23 +495,21 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
-  formHost.notifyInvisibleForms(formId, (error) => {
+  var formId = ['12400633174999288'];
+  formHost.notifyInvisibleForms(formId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -562,23 +539,21 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
+  var formId = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -603,23 +578,21 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
-  formHost.enableFormsUpdate(formId, (error) => {
+  var formId = ['12400633174999288'];
+  formHost.enableFormsUpdate(formId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -649,23 +622,21 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
+  var formId = ['12400633174999288'];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -690,23 +661,21 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
-  formHost.disableFormsUpdate(formId, (error) => {
+  var formId = ['12400633174999288'];
+  formHost.disableFormsUpdate(formId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -736,23 +705,21 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formId = ["12400633174999288"];
+  var formId = ['12400633174999288'];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -773,16 +740,15 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
+  var formId = '12400633174999288';
   formHost.isSystemReady((error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost isSystemReady, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -803,16 +769,15 @@ Checks whether the system is ready. This API uses a promise to return the result
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
+  var formId = '12400633174999288';
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost isSystemReady, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -830,23 +795,21 @@ Obtains the widget information provided by all applications on the device. This 
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
   formHost.getAllFormsInfo((error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
     } else {
       console.log('formHost getAllFormsInfo, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -864,21 +827,19 @@ Obtains the widget information provided by all applications on the device. This 
 
 | Type                                                        | Description                               |
 | :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
   formHost.getAllFormsInfo().then((data) => {
-    console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
+      console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -903,24 +864,22 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
     } else {
       console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -946,24 +905,22 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+        console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
     } else {
-      console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+        console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -988,28 +945,26 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Type                                                        | Description                               |
 | :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Error codes**
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
     console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1033,19 +988,17 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formIds = new Array("12400633174999288", "12400633174999289");
+  var formIds = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
     } else {
       console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1074,17 +1027,15 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 try {
-  let formIds = new Array("12400633174999288", "12400633174999289");
+  var formIds = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds).then((data) => {
     console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1103,40 +1054,38 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | want | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
-| callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;[FormInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
 
 **Error codes**
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let want = {
-  "deviceId": "",
-  "bundleName": "ohos.samples.FormApplication",
-  "abilityName": "FormAbility",
-  "parameters": {
-    "ohos.extra.param.key.module_name": "entry",
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.form_dimension": 2
+var want = {
+  'deviceId': '',
+  'bundleName': 'ohos.samples.FormApplication',
+  'abilityName': 'FormAbility',
+  'parameters': {
+    'ohos.extra.param.key.module_name': 'entry',
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.form_dimension': 2
   }
 };
 try {
   formHost.acquireFormState(want, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost acquireFormState, error:' + JSON.stringify(error));
     } else {
       console.log('formHost acquireFormState, data:' + JSON.stringify(data));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1160,44 +1109,42 @@ Obtains the widget state. This API uses a promise to return the result.
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state obtained.|
+| Promise&lt;[FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state obtained.|
 
 **Error codes**
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let want = {
-  "deviceId": "",
-  "bundleName": "ohos.samples.FormApplication",
-  "abilityName": "FormAbility",
-  "parameters": {
-    "ohos.extra.param.key.module_name": "entry",
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.form_dimension": 2
+var want = {
+  'deviceId': '',
+  'bundleName': 'ohos.samples.FormApplication',
+  'abilityName': 'FormAbility',
+  'parameters': {
+    'ohos.extra.param.key.module_name': 'entry',
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.form_dimension': 2
   }
 };
 try {
   formHost.acquireFormState(want).then((data) => {
     console.log('formHost acquireFormState, data:' + JSON.stringify(data));
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost acquireFormState, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
-## on("formUninstall")
+## on('formUninstall')
 
-on(type: "formUninstall", callback: Callback&lt;string&gt;): void
+on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
 Subscribes to widget uninstall events. This API uses an asynchronous callback to return the result.
 
@@ -1207,23 +1154,21 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **formUninstall** indicates a widget uninstallation event.|
+| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstallation event.|
 | callback | Callback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
-formHost.on("formUninstall", callback);
+formHost.on('formUninstall', callback);
 ```
 
-## off("formUninstall")
+## off('formUninstall')
 
-off(type: "formUninstall", callback?: Callback&lt;string&gt;): void
+off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from widget uninstall events. This API uses an asynchronous callback to return the result.
 
@@ -1233,18 +1178,16 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **formUninstall** indicates a widget uninstallation event.|
-| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> The value must be the same as that in **on("formUninstall")**.|
+| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstallation event.|
+| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> The value must be the same as that in **on('formUninstall')**.|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
 let callback = function(formId) {
   console.log('formHost on formUninstall, formId:' + formId);
 }
-formHost.off("formUninstall", callback);
+formHost.off('formUninstall', callback);
 ```
 
 ## notifyFormsVisible
@@ -1269,23 +1212,21 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsVisible(formIds, true, (error) => {
+  formHost.notifyFormsVisible(formIds, true, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1316,23 +1257,21 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1358,23 +1297,21 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsEnableUpdate(formIds, true, (error) => {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1405,23 +1342,21 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 ## shareForm
@@ -1446,24 +1381,23 @@ Shares a specified widget with a remote device. This API uses an asynchronous ca
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formId = "12400633174999288";
-let deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+var formId = '12400633174999288';
+var deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
-  formHost.shareForm(formId, deviceId, (error) => {
+  formHost.shareForm(formId, deviceId, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.log('formHost shareForm, error:' + JSON.stringify(error));
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1494,24 +1428,22 @@ Shares a specified widget with a remote device. This API uses a promise to retur
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 401 | If the input parameter is not valid parameter. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formId = "12400633174999288";
-let deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+var formId = '12400633174999288';
+var deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost shareForm, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -1529,75 +1461,18 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| formIds | Array\<string\> | Yes  | ID of the widgets.|
-| isProtected | boolean | Yes  | Whether privacy protection is enabled.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If privacy protection is set successfully, **error** is undefined; otherwise, **error** is an error object.|
-
-**Error codes**
-
-| Error Code ID                                                    | Error Message          |
-| ------------------------------------------------------------ | ------------------ |
-| 401                                                          | Incorrect input parameter.|
-| For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|                    |
-
-**Example**
+| formId | string | Yes  | Widget ID.|
+| deviceId | string | Yes   | Remote device ID. |
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formIds = new Array("12400633174999288", "12400633174999289");
-try {
-  formHost.notifyFormsPrivacyProtected(formIds, true, (error) => {
-    if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
-    }
-  });
-} catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## notifyFormsPrivacyProtected
-
-function notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
-
-Notifies that the privacy protection status of the specified widgets changes. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.REQUIRE_FORM
-
-**System capability**: SystemCapability.Ability.Form
-
-**Parameters**
-
-| Name     | Type           | Mandatory| Description                            |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formIds     | Array\<string\> | Yes  | ID of the widgets.|
-| isProtected | boolean         | Yes  | Whether privacy protection is enabled.              |
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-| Error Code ID                                                    | Error Message          |
-| ------------------------------------------------------------ | ------------------ |
-| 401                                                          | Incorrect input parameter.|
-| For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|                    |
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formIds = new Array("12400633174999288", "12400633174999289");
+var formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
-    console.log('formHost notifyFormsPrivacyProtected success');
+    console.log('formHost shareForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.log('formHost shareForm, error:' + JSON.stringify(error));
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+    console.log(`catch err->${JSON.stringify(error)}`);
 }
 ```

@@ -19,27 +19,16 @@ The **MissionInfo** module defines detailed information about a mission. The inf
 
 **Example**
 ```ts
-import missionManager from '@ohos.app.ability.missionManager'
+import missionManager from '@ohos.application.missionManager';
 
-try {
-  missionManager.getMissionInfo("", 1, (error, data) => {
-    if (error.code) {
-        // Process service logic errors.
-        console.log("getMissionInfo failed, error.code:" + JSON.stringify(error.code) +
-          "error.message:" + JSON.stringify(error.message));
-        return;
-    }
-
-    console.log('getMissionInfo missionId is:' + JSON.stringify(data.missionId));
-    console.log('getMissionInfo runningState is:' + JSON.stringify(data.runningState));
-    console.log('getMissionInfo lockedState is:' + JSON.stringify(data.lockedState));
-    console.log('getMissionInfo timestamp is:' + JSON.stringify(data.timestamp));
-    console.log('getMissionInfo want is:' + JSON.stringify(data.want));
-    console.log('getMissionInfo label is:' + JSON.stringify(data.label));
-    console.log('getMissionInfo iconPath is:' + JSON.stringify(data.iconPath));
-    console.log('getMissionInfo continuable is:' + JSON.stringify(data.continuable));
-    });
-} catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
-}
+missionManager.getMissionInfo('12345', 1, (error, data) => {
+    console.info('getMissionInfo missionId is:' + JSON.stringify(data.missionId));
+    console.info('getMissionInfo runningState is:' + JSON.stringify(data.runningState));
+    console.info('getMissionInfo lockedState is:' + JSON.stringify(data.lockedState));
+    console.info('getMissionInfo timestamp is:' + JSON.stringify(data.timestamp));
+    console.info('getMissionInfo want is:' + JSON.stringify(data.want));
+    console.info('getMissionInfo label is:' + JSON.stringify(data.label));
+    console.info('getMissionInfo iconPath is:' + JSON.stringify(data.iconPath));
+    console.info('getMissionInfo continuable is:' + JSON.stringify(data.continuable));
+});
 ```

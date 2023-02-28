@@ -15,9 +15,9 @@ Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContex
 let applicationContext = this.context.getApplicationContext();
 ```
 
-## ApplicationContext.registerAbilityLifecycleCallback
+## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
-registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**;
+on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;
 
 Registers a listener to monitor the ability lifecycle of the application.
 
@@ -27,6 +27,7 @@ Registers a listener to monitor the ability lifecycle of the application.
 
 | Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
+| type | 'abilityLifecycle' | Yes  | Event type.|
 | callback | [AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md) | Yes  | Callback used to return the ID of the registered listener.|
 
 **Return value**
@@ -40,56 +41,56 @@ Registers a listener to monitor the ability lifecycle of the application.
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var lifecycleId;
+let lifecycleId;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
-        console.log("MyAbility onCreate")
+        console.log('MyAbility onCreate');
         let AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
-                console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));
+                console.log('AbilityLifecycleCallback onAbilityCreate ability:' + ability);
             },
             onWindowStageCreate(ability, windowStage) {
-                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability));
-                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));
+                console.log('AbilityLifecycleCallback onWindowStageCreate ability:' + ability);
+                console.log('AbilityLifecycleCallback onWindowStageCreate windowStage:' + windowStage);
             },
             onWindowStageActive(ability, windowStage) {
-                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability));
-                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));
+                console.log('AbilityLifecycleCallback onWindowStageActive ability:' + ability);
+                console.log('AbilityLifecycleCallback onWindowStageActive windowStage:' + windowStage);
             },
             onWindowStageInactive(ability, windowStage) {
-                console.log("AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
-                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));
+                console.log('AbilityLifecycleCallback onWindowStageInactive ability:' + ability);
+                console.log('AbilityLifecycleCallback onWindowStageInactive windowStage:' + windowStage);
             },
             onWindowStageDestroy(ability, windowStage) {
-                console.log("AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
-                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));
+                console.log('AbilityLifecycleCallback onWindowStageDestroy ability:' + ability);
+                console.log('AbilityLifecycleCallback onWindowStageDestroy windowStage:' + windowStage);
             },
             onAbilityDestroy(ability) {
-                console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));
+                console.log('AbilityLifecycleCallback onAbilityDestroy ability:' + ability);
             },
             onAbilityForeground(ability) {
-                console.log("AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));
+                console.log('AbilityLifecycleCallback onAbilityForeground ability:' + ability);
             },
             onAbilityBackground(ability) {
-                console.log("AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));
+                console.log('AbilityLifecycleCallback onAbilityBackground ability:' + ability);
             },
             onAbilityContinue(ability) {
-                console.log("AbilityLifecycleCallback onAbilityContinue ability:" + JSON.stringify(ability));
+                console.log('AbilityLifecycleCallback onAbilityContinue ability:' + ability);
             }
         }
         // 1. Obtain applicationContext through the context attribute.
         let applicationContext = this.context.getApplicationContext();
         // 2. Use applicationContext to register a listener for the ability lifecycle in the application.
-        lifecycleId = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
-        console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleId));
+        lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
+        console.log('registerAbilityLifecycleCallback number: ' + JSON.stringify(lifecycleId));
     }
 }
 ```
 
-## ApplicationContext.unregisterAbilityLifecycleCallback
+## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback<void>)
 
-unregisterAbilityLifecycleCallback(callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
 
 Deregisters the listener that monitors the ability lifecycle of the application.
 
@@ -99,6 +100,7 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
+| type | 'abilityLifecycle' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                  |
 
@@ -107,22 +109,53 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var lifecycleId;
+let lifecycleId;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        console.log("stage applicationContext: " + JSON.stringify(applicationContext));
-        applicationContext.unregisterAbilityLifecycleCallback(lifecycleId, (error, data) => {
-            console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+        console.log('stage applicationContext: ' + applicationContext);
+        applicationContext.off(type: 'abilityLifecycle', lifecycleId, (error, data) => {
+            console.log('unregisterAbilityLifecycleCallback success, err: ' + JSON.stringify(error));
         });
     }
 }
 ```
 
-## ApplicationContext.registerEnvironmentCallback
+## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
 
-registerEnvironmentCallback(callback: EnvironmentCallback): **number**;
+off(type: 'abilityLifecycle', callbackId: **number**): **void**;
+
+Deregisters the listener that monitors the ability lifecycle of the application.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name       | Type    | Mandatory| Description                      |
+| ------------- | -------- | ---- | -------------------------- |
+| type | 'abilityLifecycle' | Yes  | Event type.|
+| callbackId    | number   | Yes  | ID of the listener to deregister.|
+
+**Example**
+
+```ts
+import Ability from '@ohos.app.ability.UIAbility';
+
+let lifecycleId;
+
+export default class MyAbility extends Ability {
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        console.log('stage applicationContext: ' + applicationContext);
+        applicationContext.off(type: 'abilityLifecycle', lifecycleId);
+    }
+}
+```
+
+## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
+
+on(type: 'environment', callback: EnvironmentCallback): **number**;
 
 Registers a listener for system environment changes. This API uses an asynchronous callback to return the result.
 
@@ -132,6 +165,7 @@ Registers a listener for system environment changes. This API uses an asynchrono
 
 | Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
+| type | 'environment' | Yes  | Event type.|
 | callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | Yes  | Callback used to return the ID of the registered listener.|
 
 **Return value**
@@ -145,32 +179,32 @@ Registers a listener for system environment changes. This API uses an asynchrono
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var callbackId;
+let callbackId;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
-        console.log("MyAbility onCreate")
+        console.log('MyAbility onCreate')
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback = {
             onConfigurationUpdated(config){
-                console.log("onConfigurationUpdated config:" + JSON.stringify(config));
+                console.log('onConfigurationUpdated config:' + JSON.stringify(config));
             },
             onMemoryLevel(level){
-                console.log("onMemoryLevel level:" + level);
+                console.log('onMemoryLevel level:' + level);
             }
         }
         // 1. Obtain an applicationContext object.
         let applicationContext = globalThis.applicationContext;
         // 2. Use applicationContext to register a listener for the ability lifecycle in the application.
-        callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
-        console.log("registerEnvironmentCallback number: " + JSON.stringify(callbackId));
+        callbackId = applicationContext.on('environment', EnvironmentCallback);
+        console.log('registerEnvironmentCallback number: ' + JSON.stringify(callbackId));
     }
 }
 ```
 
-## ApplicationContext.unregisterEnvironmentCallback
+## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback<void>)
 
-unregisterEnvironmentCallback(callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
 
 Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result.
 
@@ -180,6 +214,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 
 | Name        | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
+| type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                 |
 
@@ -188,14 +223,154 @@ Deregisters the listener for system environment changes. This API uses an asynch
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var callbackId;
+let callbackId;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+        applicationContext.off('environment', callbackId, (error, data) => {
+            console.log('unregisterEnvironmentCallback success, err: ' + JSON.stringify(error));
         });
     }
 }
+```
+
+## ApplicationContext.off(type: 'environment', callbackId: number)
+
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+
+Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name        | Type    | Mandatory| Description                      |
+| ------------- | -------- | ---- | -------------------------- |
+| type | 'environment' | Yes  | Event type.|
+| callbackId    | number   | Yes  | ID of the listener to deregister.  |
+
+**Example**
+
+```ts
+import Ability from '@ohos.app.ability.UIAbility';
+
+let callbackId;
+
+export default class MyAbility extends Ability {
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('environment', callbackId);
+    }
+}
+```
+
+## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
+
+Obtains information about the running processes. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Example**
+
+```ts
+let applicationContext = this.context.getApplicationContext();
+applicationContext.getRunningProcessInformation().then((data) => {
+    console.log('The process running information is:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('error:' + JSON.stringify(error));
+});
+```
+
+## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+
+Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Example**
+
+```ts
+let applicationContext = this.context.getApplicationContext();
+applicationContext.getRunningProcessInformation((err, data) => {
+    if (err.code !== 0) {
+        console.error('getRunningProcessInformation faile, err: ' + JSON.stringify(err));
+    } else {
+        console.log('The process running information is:' + JSON.stringify(data));
+    }
+})
+```
+
+## ApplicationContext.killProcessesBySelf<sup>9+</sup>
+
+killProcessesBySelf(): Promise<void>;
+
+Kills all the processes where the application is located. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void>> | Promise used to return the result.|
+
+**Example**
+
+```ts
+let applicationContext = this.context.getApplicationContext();
+applicationContext.killProcessesBySelf().then((data) => {
+    console.log('The process running information is:' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('error:' + JSON.stringify(error));
+});
+```
+
+## ApplicationContext.killProcessesBySelf<sup>9+</sup>
+
+killProcessesBySelf(callback: AsyncCallback<void>);
+
+Kills all the processes where the application is located. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+|AsyncCallback\<void\> | Callback used to return the result.|
+
+**Example**
+
+```ts
+let applicationContext = this.context.getApplicationContext();
+applicationContext.killProcessesBySelf(err => {
+    if (err.code !== 0) {
+        console.error('killProcessesBySelf faile, err: ' + JSON.stringify(err));
+    }
+})
 ```

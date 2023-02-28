@@ -49,7 +49,7 @@ Creates the context based on the bundle name.
 **Example**
 
 ```ts
-let bundleContext = this.context.createBundleContext("com.example.test");
+let bundleContext = this.context.createBundleContext('com.example.test');
 ```
 
 ## Context.createModuleContext
@@ -75,8 +75,10 @@ Creates the context based on the module name.
 **Example**
 
 ```ts
-let moduleContext = this.context.createModuleContext("entry");
+let moduleContext = this.context.createModuleContext('entry');
 ```
+
+## Context.createModuleContext
 
 createModuleContext(bundleName: string, moduleName: string): Context;
 
@@ -100,7 +102,7 @@ Creates the context based on the bundle name and module name.
 **Example**
 
 ```ts
-let moduleContext = this.context.createModuleContext("com.example.test", "entry");
+let moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 ```
 
 ## Context.getApplicationContext

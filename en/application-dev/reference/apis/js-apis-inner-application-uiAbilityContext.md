@@ -66,9 +66,9 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
 
   try {
@@ -138,12 +138,12 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -218,11 +218,11 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -295,10 +295,10 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -310,7 +310,7 @@ Observe the following when using this API:
         return;
       }
       // Carry out normal service processing.
-      console.log("startAbilityForResult succeed, result.resultCode = " +
+      console.log('startAbilityForResult succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -371,12 +371,12 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     windowMode: 0,
   };
 
@@ -389,7 +389,7 @@ Observe the following when using this API:
         return;
       }
       // Carry out normal service processing.
-      console.log("startAbilityForResult succeed, result.resultCode = " +
+      console.log('startAbilityForResult succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -457,11 +457,11 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -469,7 +469,7 @@ Observe the following when using this API:
     this.context.startAbilityForResult(want, options)
       .then((result) => {
         // Carry out normal service processing.
-        console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
+        console.log('startAbilityForResult succeed, result.resultCode = ' + result.resultCode);
       })
       .catch((error) => {
         // Process service logic errors.
@@ -531,12 +531,12 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
@@ -547,7 +547,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
         return;
       }
       // Carry out normal service processing.
-      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+      console.log('startAbilityForResultWithAccount succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -607,13 +607,13 @@ Starts an ability with the start options and account ID specified. This API uses
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -626,7 +626,7 @@ Starts an ability with the start options and account ID specified. This API uses
         return;
       }
       // Carry out normal service processing.
-      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+      console.log('startAbilityForResultWithAccount succeed, result.resultCode = ' +
         result.resultCode)
     });
   } catch (paramError) {
@@ -691,13 +691,13 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -705,7 +705,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
     this.context.startAbilityForResultWithAccount(want, accountId, options)
       .then((result) => {
         // Carry out normal service processing.
-        console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
+        console.log('startAbilityForResultWithAccount succeed, result.resultCode = ' +
           result.resultCode)
       })
       .catch((error) => {
@@ -756,10 +756,10 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -816,10 +816,10 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -877,12 +877,12 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -942,12 +942,12 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
@@ -1000,10 +1000,10 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -1057,10 +1057,10 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -1119,12 +1119,12 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -1181,12 +1181,12 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
@@ -1315,13 +1315,13 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.extreme.myapplication",
-    abilityName: "SecondAbility"
+  let want = {
+    bundleName: 'com.extreme.myapplication',
+    abilityName: 'SecondAbility'
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // AbilityResult information returned to the caller.
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1380,13 +1380,13 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.extreme.myapplication",
-    abilityName: "SecondAbility"
+  let want = {
+    bundleName: 'com.extreme.myapplication',
+    abilityName: 'SecondAbility'
   }
-  var resultCode = 100;
+  let resultCode = 100;
   // AbilityResult information returned to the caller.
-  var abilityResult = {
+  let abilityResult = {
     want,
     resultCode
   }
@@ -1445,18 +1445,18 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1509,19 +1509,19 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1568,7 +1568,7 @@ Disconnects a connection. This API uses a promise to return the result.
 
   ```ts
   // connection is the return value of connectServiceExtensionAbility.
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1620,7 +1620,7 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
   ```ts
   // connection is the return value of connectServiceExtensionAbility.
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1670,14 +1670,14 @@ Observe the following when using this API:
   Start an ability in the background.
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // Start an ability in the background by not passing parameters.
-  var wantBackground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: ""
+  let wantBackground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'MainAbility',
+      deviceId: ''
   };
 
   try {
@@ -1701,16 +1701,16 @@ Observe the following when using this API:
   Start an ability in the foreground.
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
-  // Start an ability in the foreground with ohos.aafwk.param.callAbilityToForeground in parameters set to true.
-  var wantForeground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: "",
+  // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
+  let wantForeground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'MainAbility',
+      deviceId: '',
       parameters: {
-        "ohos.aafwk.param.callAbilityToForeground": true
+        'ohos.aafwk.param.callAbilityToForeground': true
       }
   };
 
@@ -1780,12 +1780,12 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
@@ -1855,13 +1855,13 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1932,13 +1932,13 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -1978,7 +1978,7 @@ Requests permissions from the user by displaying a dialog box. This API uses an 
 **Example**
 
   ```ts
-       var permissions=['com.example.permission']
+       let permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
        console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
@@ -2009,7 +2009,7 @@ Requests permissions from the user by displaying a dialog box. This API uses a p
 **Example**
 
   ```ts
-   var permissions=['com.example.permission']
+   let permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
       console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
@@ -2037,7 +2037,7 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 **Example**
 
   ```ts
-  this.context.setMissionLabel("test",(result) => {
+  this.context.setMissionLabel('test',(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
   ```
@@ -2066,7 +2066,7 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 **Example**
 
   ```ts
-  this.context.setMissionLabel("test").then(() => {
+  this.context.setMissionLabel('test').then(() => {
       console.log('success');
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
@@ -2093,9 +2093,9 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 
   ```ts
     import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
+    let imagePixelMap;
+    let color = new ArrayBuffer(0);
+    let initializationOptions = {
        size: {
            height: 100,
            width: 100
@@ -2140,9 +2140,9 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 
   ```ts
     import image from '@ohos.multimedia.image';
-    var imagePixelMap;
-    var color = new ArrayBuffer(0);
-    var initializationOptions = {
+    let imagePixelMap;
+    let color = new ArrayBuffer(0);
+    let initializationOptions = {
       size: {
           height: 100,
           width: 100
@@ -2180,7 +2180,7 @@ Restores the window stage data for this ability.
 **Example**
 
   ```ts
-    var storage = new LocalStorage();
+    let storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
   ```
 
@@ -2201,6 +2201,6 @@ Checks whether this ability is in the terminating state.
 **Example**
 
   ```ts
-  var isTerminating = this.context.isTerminating();
+  let isTerminating = this.context.isTerminating();
   console.log('ability state :' + isTerminating);
   ```

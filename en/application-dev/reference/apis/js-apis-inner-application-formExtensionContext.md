@@ -16,19 +16,18 @@ Before using the **ServiceExtensionContext** module, you must first obtain a **F
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
-
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onAddForm(want) {
-    let formContext = this.context; // Obtain a FormExtensionContext instance.
-    // ...
-    let dataObj1 = {
-      temperature: "11c",
-      "time": "11:00"
-    };
-    let obj1 = formBindingData.createFormBindingData(dataObj1);
-    return obj1;
-  }
-};
+    onAddForm() {
+        let formContext = this.context; // »ñÈ¡FormExtensionContext
+        // ...
+        let dataObj1 = {
+            temperature:'11c',
+            'time':'11:00'
+        };
+        let obj1 = formBindingData.createFormBindingData(dataObj1);
+        return obj1;
+    }
+}
 ```
 
 ## startAbility
@@ -51,29 +50,23 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-
-export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onFormEvent(formId, message) {
-    // Call startAbility() when the message event is triggered.
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
-    let want = {
-      deviceId: "",
-      bundleName: "com.example.formstartability",
-      abilityName: "EntryAbility",
-      parameters: {
-        "message": message
-      }
-    };
-    this.context.startAbility(want, (error, data) => {
-      if (error) {
-        console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
-      } else {
-        console.log('FormExtensionContext startAbility success');
-      }
-    });
-  }
+let want = {
+    deviceId: '',
+    bundleName: 'com.example.formstartability',
+    abilityName: 'MainAbility',
+    action: 'action1',
+    entities: ['entity1'],
+    type: 'MIMETYPE',
+    uri: 'key={true,true,false}',
+    parameters: {}
 };
+this.context.startAbility(want, (error, data) => {
+    if (error) {
+      console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
+    } else {
+      console.log(`FormExtensionContext startAbility success`);
+    }
+});
 ```
 
 ## startAbility
@@ -96,30 +89,24 @@ Starts an ability. This API uses a promise to return the result.
 
 | Type         | Description                               |
 | ------------ | ---------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+| Promise&lt;void&lt; | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-
-export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onFormEvent(formId, message) {
-    // Call startAbility() when the message event is triggered.
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
-    let want = {
-      deviceId: "",
-      bundleName: "com.example.formstartability",
-      abilityName: "EntryAbility",
-      parameters: {
-        "message": message
-      }
-    };
-    this.context.startAbility(want).then(() => {
-      console.info("StartAbility Success");
-    }).catch((error) => {
-      console.info("StartAbility failed");
-    });
-  }
+let want = {
+    deviceId: '',
+    bundleName: 'com.example.formstartability',
+    abilityName: 'MainAbility',
+    action: 'action1',
+    entities: ['entity1'],
+    type: 'MIMETYPE',
+    uri: 'key={true,true,false}',
+    parameters: {}
 };
+this.context.startAbility(want).then(() => {
+    console.info('StartAbility Success');
+}).catch((error) => {
+    console.info('StartAbility failed');
+});
 ```

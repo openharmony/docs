@@ -7,7 +7,7 @@ The **WantAgentInfo** module defines the information required for triggering a *
 | Name          | Type                           | Mandatory| Description                  |
 | -------------- | ------------------------------- | ---- | ---------------------- |
 | wants          | Array\<Want\>                   | Yes  | Array of all **Want** objects.    |
-| operationType  | wantAgent.OperationType         | Yes  | Operation type.              |
+| operationType  | [wantAgent.OperationType](js-apis-app-ability-wantAgent.md#operationtype)         | Yes  | Operation type.              |
 | requestCode    | number                          | Yes  | Request code defined by the user.|
 | wantAgentFlags | Array<[wantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | No  | Array of flags for using the **WantAgent** object.          |
 | extraInfo      | {[key: string]: any}            | No  | Extra information.              |

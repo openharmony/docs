@@ -17,7 +17,7 @@ Before using the **ServiceExtensionContext** module, you must define a child cla
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
   let context = undefined;
-  class EntryAbility extends ServiceExtensionAbility {
+  class MainAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // Obtain a ServiceExtensionContext instance.
     }
@@ -68,9 +68,9 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
 
   try {
@@ -141,11 +141,11 @@ Starts an ability. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -212,12 +212,12 @@ Starts an ability with the start options specified. This API uses an asynchronou
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -247,7 +247,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -290,12 +290,12 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
@@ -323,7 +323,7 @@ Starts an ability with the account ID and start options specified. This API uses
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -367,13 +367,13 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -404,7 +404,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -453,13 +453,13 @@ Observe the following when using this API:
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -518,10 +518,10 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -584,10 +584,10 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -614,7 +614,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 Starts a new ServiceExtensionAbility with the account ID specified. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user)
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -650,12 +650,12 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -681,7 +681,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 Starts a new ServiceExtensionAbility with the account ID specified. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user)
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -721,12 +721,12 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
@@ -780,10 +780,10 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -843,10 +843,10 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
 
   try {
@@ -873,7 +873,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 Stops a ServiceExtensionAbility in the same application with the account ID specified. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user)
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -905,12 +905,12 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
@@ -936,7 +936,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 Stops a ServiceExtensionAbility in the same application with the account ID specified. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user)
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -973,12 +973,12 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
@@ -1118,17 +1118,17 @@ Connects this ability to a ServiceAbility.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
-  }
+  };
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
@@ -1178,19 +1178,19 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 **Example**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.extreme.test',
+    abilityName: 'MainAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.log('----------- onFailed -----------') }
   }
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
@@ -1214,7 +1214,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectAbility** is called.|
+| connection | number | Yes| Number returned after **connectServiceExtensionAbility** is called.|
 | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result.|
 
 **Error codes**
@@ -1232,7 +1232,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
 
   ```ts
   // connection is the return value of connectServiceExtensionAbility.
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1266,7 +1266,7 @@ Disconnects this ability from the ServiceAbility. This API uses a promise to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectAbility** is called.|
+| connection | number | Yes| Number returned after **connectServiceExtensionAbility** is called.|
 
 **Return value**
 
@@ -1288,8 +1288,8 @@ Disconnects this ability from the ServiceAbility. This API uses a promise to ret
 **Example**
 
   ```ts
-  // connection is the return value of connectAbility.
-  var connection = 1;
+  // connection is the return value of connectServiceExtensionAbility.
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1317,8 +1317,8 @@ Starts an ability in the foreground or background and obtains the caller object 
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+ - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1355,14 +1355,14 @@ Observe the following when using this API:
   Start an ability in the background.
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
   // Start an ability in the background by not passing parameters.
-  var wantBackground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "EntryAbility",
-      deviceId: ""
+  let wantBackground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'MainAbility',
+      deviceId: ''
   };
 
   try {
@@ -1386,16 +1386,16 @@ Observe the following when using this API:
   Start an ability in the foreground.
 
   ```ts
-  var caller = undefined;
+  let caller = undefined;
 
-  // Start an ability in the foreground with ohos.aafwk.param.callAbilityToForeground in parameters set to true.
-  var wantForeground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "EntryAbility",
-      deviceId: "",
+  // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
+  let wantForeground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'MainAbility',
+      deviceId: '',
       parameters: {
-        "ohos.aafwk.param.callAbilityToForeground": true
+        'ohos.aafwk.param.callAbilityToForeground': true
       }
   };
 
