@@ -231,7 +231,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 }
 ```
 
-启动图标的查询
+**启动图标的查询**
 * HAP中包含Ability
   * 配置文件（module.json5）中abilities配置中设置了启动图标
     * 该应用没有隐藏图标的特权
@@ -398,7 +398,7 @@ skills示例：
 当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri，配置成功。
 
 
-  *  针对查询接口<br>
+  *  查询功能增强涉及以下接口<br>
     [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
     1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
     2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
