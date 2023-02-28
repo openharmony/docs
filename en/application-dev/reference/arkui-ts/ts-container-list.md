@@ -35,7 +35,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | divider                      | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.|
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**|
 | cachedCount | number                                   | Number of list items or list item groups to be preloaded. A list item group is calculated as a whole, and all list items of the group are preloaded at the same time. For details, see [Minimizing White Blocks During Swiping](../../ui/ui-ts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**|
-| editMode<sup>(deprecated)</sup> | boolean | Whether to enter editing mode.<br>This API is deprecated since API version 9.<br>Default value: **false**|
+| editMode | boolean | Whether to enter editing mode.<br>Default value: **false** |
 | edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Scroll effect.<br>Default value: **EdgeEffect.Spring**|
 | chainAnimation | boolean | Whether to display chained animations on this list when it slides or its top or bottom is dragged. The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.<br>Default value: **false**<br>- **false**: No chained animations are displayed.<br>- **true**: Chained animations are displayed.|
 | multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.|
@@ -65,12 +65,13 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Description|
 | -------- | -------- |
-| onItemDelete<sup>(deprecated)</sup>(event: (index: number) => boolean) | Triggered when a list item is deleted.<br>This API is deprecated since API version 9.<br>- **index**: index of the deleted list item.|
+| onItemDelete(event: (index: number) => boolean) | Triggered when a list item is deleted.<br>- **index**: index of the deleted list item. |
 | onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the list scrolls.<br>- **scrollOffset**: scroll offset.<br>- **[scrollState](#scrollstate)**: current scroll state.|
 | onScrollIndex(event: (start: number, end: number) => void) | Triggered when scrolling starts.<br>When calculating the index value, the **\<ListItemGroup>** accounts for one index value as a whole, and the index values of the list items within are not calculated.<br>- **start**: index of the scroll start position.<br>- **end**: index of the scroll end position.|
 | onReachStart(event: () => void) | Triggered when the list reaches the start position.|
 | onReachEnd(event: () => void) | Triggered when the list reaches the end position.|
-| onScrollBegin<sup>9+</sup>(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | Triggered when the list starts to scroll. The input parameters indicate the amount by which the list will scroll. The event handler then works out the amount by which the list needs to scroll based on the real-world situation and returns the result.<br>- **dx**: amount by which the list will scroll in the horizontal direction.<br>- **dy**: amount by which the list will scroll in the horizontal direction.<br>- **dxRemain**: amount by which the list actually scrolls in the horizontal direction.<br>- **dyRemain**: amount by which the list actually scrolls in the vertical direction.|
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the list starts to scroll. The input parameters indicate the amount by which the list will scroll. The event handler then works out the amount by which the list needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current sliding status.<br>- **offsetRemain**: required amount to scroll by in the horizontal direction.|
+| onScrollStart<sup>9+</sup>(event: () => void) | Triggered when the list starts scrolling initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event will not be triggered if the scrolling is initiated by using [Scroller](ts-container-scroll.md#scroller).|
 | onScrollStop(event: () => void) | Triggered when the list stops scrolling after the user's finger leaves the screen. This event will not be triggered if the scrolling is initiated by using [Scroller](ts-container-scroll.md#scroller).|
 | onItemMove(event: (from: number, to: number) => boolean) | Triggered when a list item moves.<br>- **from**: index of the item before moving.<br>- **to**: index of the item after moving.|
 | onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void) | Triggered when a list element starts to be dragged.<br>- **event**: See [ItemDragInfo](ts-container-grid.md#itemdraginfo).<br>- **itemIndex**: index of the dragged list element.|
@@ -89,7 +90,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 >  **NOTE**
 >
->  To enable the editable mode for a list, the following conditions must be met: (This feature is deprecated since API version 9.)
+>  To enable the editable mode for a list, the following conditions must be met:
 >
 >  - **editMode** is set to **true**.
 >
@@ -99,7 +100,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >
 >  To enable dragging for a list item, the following conditions must be met:
 >
->  - **editMode** is set to **true**. (This is not required since API version 9.)
+>  - **editMode** is set to **true**.
 >
 >  - The list item is bound to the **onDragStart** event and the event returns a floating UI during event callback.
 
@@ -112,31 +113,43 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 @Component
 struct ListExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State editFlag: boolean = false
 
   build() {
-    Column() {
-      List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
-          ListItem() {
-            Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }
-        }, item => item)
-      }
+    Stack({ alignContent: Alignment.TopStart }) {
+      Column() {
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(this.arr, (item) => {
+            ListItem() {
+              Text('' + item)
+                .width('100%').height(100).fontSize(16)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }.editable(true)
+          }, item => item)
+        }
       .listDirection(Axis.Vertical) // Arrangement direction
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // Divider
-      .edgeEffect(EdgeEffect.Spring) // No effect when the list scrolls to the edge.
-      .onScrollIndex((firstIndex: number, lastIndex: number) => {
-        console.info('first' + firstIndex)
-        console.info('last' + lastIndex)
-      })
-      .width('90%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor(0xDCDCDC)
-    .padding({ top: 5 })
+        .edgeEffect(EdgeEffect.None) // No effect when the list scrolls to the edge.
+        .chainAnimation(false) // No chained animations are displayed.
+        .onScrollIndex((firstIndex: number, lastIndex: number) => {
+          console.info('first' + firstIndex)
+          console.info('last' + lastIndex)
+        })
+        .editMode(this.editFlag)
+        .onItemDelete((index: number) => {
+          console.info(this.arr[index] + 'Delete')
+          this.arr.splice(index, 1)
+          console.info(JSON.stringify(this.arr))
+          this.editFlag = false
+          return true
+        }).width('90%')
+      }.width('100%')
+
+      Button('edit list')
+        .onClick(() => {
+          this.editFlag = !this.editFlag
+        }).margin({ top: 5, left: 20 })
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }
 ```
