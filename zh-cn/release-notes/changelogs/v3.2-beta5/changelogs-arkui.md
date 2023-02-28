@@ -1,6 +1,6 @@
 # arkui子系统ChangeLog
 
-## cl.arkui.1 状态变量数据类型声明使用限制。
+## cl.arkui.1 状态变量数据类型声明使用限制
 
 1. 所有的状态装饰器变量需要显式声明变量类型，不允许声明any，不支持Date数据类型。
 
@@ -57,7 +57,7 @@
       @State message: string = 'Hello World'
       // 错误写法: @State message: ResourceStr = $r('app.string.hello')
       @State resourceStr: Resource = $r('app.string.hello')
-
+    
       build() {
         Row() {
           Column() {
@@ -87,7 +87,7 @@
     @State selectedDate: Date = new Date('2021-08-08')
     ```
 3. @State、@Provide、 @Link和@Consume四种状态变量使用框架提供的Length、ResourceStr、ResourceColor，
-  编译拦截报错。
+    编译拦截报错。
     ```ts
     /* ArkTS:ERROR The state variable type here is 'ResourceStr', it contains both a simple type and an object type,
       which are not allowed to be defined for state variable of a struct.*/
@@ -103,7 +103,7 @@
 1. 状态装饰器变量声明具体的变量类型替代any;
 2. 使用Date对象的状态装饰器变量，修改为不加状态装饰器修饰的常规变量；
 3. 因为Length(string|number|Resource), ResourceStr(string|Resource), ResourceColor(string|number|Color|Resource)
-  的三个类型是简单数据类型或引用数据类型的组合，使用@State、@Provide、 @Link和@Consume四种状态变量场景参考以下修改：
+    的三个类型是简单数据类型或引用数据类型的组合，使用@State、@Provide、 @Link和@Consume四种状态变量场景参考以下修改：
     ```ts
     // 错误写法:
     @State message: ResourceStr = $r('app.string.hello')
@@ -111,7 +111,8 @@
     @State resourceStr: Resource = $r('app.string.hello')
     ```
 
-## cl.arkui.2 自定义组件成员变量初始化的规则与约束。
+
+## cl.arkui.2 自定义组件成员变量初始化的规则与约束
 
 通过构造函数方法初始化成员变量，需要遵循如下规则：
 
@@ -172,7 +173,7 @@
 2. 子组件的@ObjectLink变量不支持父组件装饰器变量的直接赋值，其父组件的源必须是数组的项或对象的属性，该数组或对象必现用`@State`、`@Link`、`@Provide`、`@Consume`或`@ObjectLink`装饰器修饰。
     ```ts
     let NextID : number = 0;
-
+    
     @Observed class ClassA {
       public id : number;
       public c: number;
@@ -181,7 +182,7 @@
         this.c = c;
       }
     }
-
+    
     @Component
     struct Child {
       @ObjectLink varA : ClassA;
@@ -191,7 +192,7 @@
         }
       }
     }
-
+    
     @Component
     struct Parent {
       @Link linkValue: ClassA
@@ -213,3 +214,119 @@
 1. 构造子组件时，不对子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量进行。
 如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
 2. @ObjectLink的使用指导请参考文档[@ObjectLink使用指导](../../../application-dev/quick-start/arkts-state-mgmt-page-level.md)。
+
+
+## cl.arkui.LocalStorage.1 get接口返回类型变更
+
+**变更影响**
+
+返回类型从get<T>(propName: string): T变更为get<T>(propName: string): T | undefined
+应用不需要进行适配。 
+
+## cl.arkui.LocalStorage.2 setOrCreate参数newValue变成必选
+**变更影响**
+
+原接口声明：
+```js
+setOrCreate<T>(propName: string, newValue?: T): boolean
+```
+现接口声明：
+```js
+setOrCreate<T>(propName: string, newValue: T): boolean
+```
+第二个参数newValue变为必选。
+如果应用调用这个接口没有指定newValue参数，在替换新的sdk后会编译不过，需要手动指定newValue。
+
+**适配指导**
+
+```js
+let storage = new LocalStorage();
+storage.setOrCreate('propA', 'hello');
+```
+## cl.arkui.LocalStorage.3 link参数和返回类型变更
+**变更影响**
+
+原接口声明：
+```js
+link<T>(propName: string, linkUser?: T, subscribersName?: string): T
+```
+现接口声明：
+```js
+link<T>(propName: string): SubscribedAbstractProperty<T>
+```
+1. link第二三个参数为框架内部调用，不应对外开发，所以将接口变更为一个参数；
+2. 返回类型T变更为SubscribedAbstractProperty；
+
+**适配指导**
+
+```js
+let storage = new LocalStorage({"PropA": "47"});
+let linA = storage.link("PropA");
+linA.set(50);
+```
+
+## cl.arkui.LocalStorage.4 setAndLink参数和返回类型变更
+**变更影响**
+
+原接口声明：
+```js
+setAndLink<T>(propName: string, defaultValue: T, linkUser?: T, subscribersName?: string): T
+```
+现接口声明：
+```js
+setAndLink<T>(propName: string, defaultValue: T): SubscribedAbstractProperty<T>
+```
+1. setAndLink第三四个参数为框架内部调用，不应对外开发，所以将接口变更为2个参数；
+2. 返回类型T变更为SubscribedAbstractProperty；
+
+**适配指导**
+
+```js
+let storage = new LocalStorage({"PropA": "47"});
+let linA = storage.setAndLink("PropA", "48")
+linA.set(50);
+```
+
+## cl.arkui.LocalStorage.5 prop参数和返回类型变更
+**变更影响**
+
+原接口声明：
+```js
+prop<T>(propName: string, propUser?: T, subscribersName?: string): T
+```
+现接口声明：
+```js
+prop<S>(propName: string): SubscribedAbstractProperty<S>
+```
+1. prop第二三个参数为框架内部调用，不应对外开发，所以将接口变更为1个参数；
+2. 返回类型T变更为SubscribedAbstractProperty；
+
+**适配指导**
+
+```js
+let storage = new LocalStorage({"PropA": "47"});
+let propA = storage.prop("PropA");
+propA.set(51); // one-way sync
+```
+
+## cl.arkui.LocalStorage.6 setAndProp参数和返回类型变更
+**变更影响**
+
+原接口声明：
+```js
+setAndProp<T>(propName: string, defaultValue: T, propUser?: T, subscribersName?: string): T
+```
+现接口声明：
+```js
+setAndProp<S>(propName: string, defaultValue: S): SubscribedAbstractProperty<S>
+```
+1. setAndProp第三四个参数为框架内部调用，不应对外开发，所以将接口变更为2个参数；
+2. 返回类型T变更为SubscribedAbstractProperty；
+
+**适配指导**
+
+```js
+let storage = new LocalStorage({"PropA": "47"});
+let propA = storage.setAndProp("PropA", "48");
+propA.set(51); // one-way sync
+```
