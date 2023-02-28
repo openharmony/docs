@@ -46,9 +46,9 @@ During RPC or IPC, the sender can use the **write()** method provided by **Messa
 
 ### create
 
-static create(): MessageSequence
+  static create(): MessageSequence
 
-Creates a **MessageSequence** object. This API is a static method.
+  Creates a **MessageSequence** object. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2412,7 +2412,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -4870,7 +4870,7 @@ Reads the exception information from this **MessageParcel** object.
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -5201,7 +5201,7 @@ Duplicates a file descriptor. This API is a static method.
 
 containFileDescriptors(): boolean
 
-Checks whether this **MessageParcel** object contains a file descriptor.
+Checks whether this **MessageParcel** object contains file descriptors.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5209,7 +5209,7 @@ Checks whether this **MessageParcel** object contains a file descriptor.
 
 | Type   | Description                                                              |
 | ------- | ------------------------------------------------------------------ |
-| boolean |Returns **true** if the **MessageSequence** object contains a file descriptor; returns **false** otherwise.|
+| boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
@@ -5677,7 +5677,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -5800,7 +5800,7 @@ Queries the interface descriptor.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options** , a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options** , a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5912,7 +5912,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. The callback will be called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5923,7 +5923,7 @@ Registers a callback for receiving death notifications of the remote object. Thi
 | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
 | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -5970,7 +5970,7 @@ Unregisters the callback used to receive death notifications of the remote objec
 | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
 | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6015,7 +6015,7 @@ Obtains the interface descriptor (which is a string) of this object.
 | ------ | ---------------- |
 | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6116,7 +6116,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6186,7 +6186,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6264,7 +6264,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6335,7 +6335,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   function sendRequestCallback(result) {
       if (result.errCode === 0) {
@@ -6410,7 +6410,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   function sendRequestCallback(result) {
       if (result.errCode === 0) {
@@ -6459,7 +6459,7 @@ Obtains the **LocalInterface** object of an interface token.
 | ------------- | ------------------------------------------ |
 | IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6575,7 +6575,7 @@ Registers a callback for receiving death notifications of the remote object. The
 | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
 | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6604,7 +6604,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6670,7 +6670,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6702,7 +6702,7 @@ Unregisters the callback used to receive death notifications of the remote objec
 | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
 | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6731,7 +6731,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6798,7 +6798,7 @@ Removes the callback used to receive death notifications of the remote object.
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6830,7 +6830,7 @@ Obtains the interface descriptor (which is a string) of this proxy object.
 | ------ | ---------------- |
 | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6860,7 +6860,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6913,7 +6913,7 @@ Obtains the interface descriptor of this proxy object.
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -6943,7 +6943,7 @@ Checks whether the **RemoteObject** is dead.
 
   Obtain the service.
 
-  ```tsx
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6960,7 +6960,7 @@ Checks whether the **RemoteObject** is dead.
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.EntryAbility",
+      "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
@@ -7347,7 +7347,7 @@ Obtains the local device ID. This API is a static method.
 
 static isLocalCalling(): boolean
 
-Checks whether the peer end is a process of the local device. This API is a static method.
+Checks whether the remote process is a process of the local device. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8232,7 +8232,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
 | ------ | ---------------- |
 | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8624,7 +8624,7 @@ Creates the shared file mapping on the virtual address space of this process. Th
 | ------- | ------ | ---- | ------------------------------ |
 | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8682,7 +8682,7 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8734,7 +8734,7 @@ Maps the shared file to the read-only virtual address space of the process.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8792,7 +8792,7 @@ Sets the protection level of the memory region to which the shared file is mappe
 | -------------- | ------ | ---- | ------------------ |
 | protectionType | number | Yes  | Protection type to set.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8858,7 +8858,7 @@ Writes data to the shared file associated with this **Ashmem** object.
 | size   | number   | Yes  | Size of the data to write.                                |
 | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8936,7 +8936,7 @@ Reads data from the shared file associated with this **Ashmem** object.
 | -------- | ---------------- |
 | number[] | Data read.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
