@@ -43,7 +43,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
 * **语言限制**：C/C++语言
 
-* **操作系统限制**：OpenHarmony操作系统
+* **操作系统限制**：OpenHarmony轻量/小型系统
 
 * **AI服务启动的约束与限制**：SAMGR（System Ability Manager）启动且运行正常
 
