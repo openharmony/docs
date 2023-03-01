@@ -1,6 +1,6 @@
 # HAR共享包
 ## HAR共享包概述
-HAR（OpenHarmony Archive）是OpenHarmony静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR共享包，可以实现多个模块或多个工程共享OpenHarmony组件、资源等相关代码。HAR不同于HAP，不能独立安装运行在设备上，只能作为应用模块的依赖项被引用。
+HAR（OpenHarmony Archive）是OpenHarmony静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR共享包，可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。HAR不同于HAP，不能独立安装运行在设备上，只能作为应用模块的依赖项被引用。
 
 ## 创建HAR模块
 HAR包对应DevEco Studio工程中的“Library”类型的[Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-adding-deleting-module-0000001218760594-V3)，可以通过DevEco Studio创建一个HAR模块。HAR模块默认不开启混淆能力，开启混淆能力，需要把HAR模块的build-profile.json5文件中的artifactType字段设置为obfuscation，配置如下所示：
@@ -20,7 +20,7 @@ artifactType字段有以下两种取值，默认缺省为original。
 需要对代码资产进行保护时，建议开启混淆能力，混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 注意：artifactType字段设置为obfuscation时，apiType字段必须设置为stageMode，因为Stage模型才支持混淆。
 
-## 导出HAR共享包接口
+## 导出HAR的ArkUI组件、接口、资源
 index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的package.json文件中的main字段配置入口声明文件，配置如下所示：
 ```json
 {
@@ -83,7 +83,7 @@ HAR模块编译打包时会把资源打包到HAR包中。在编译构建HAP时�
 - HAP包自身模块。
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照依赖顺序进行覆盖（依赖顺序在前的优先级较高）。
 
-## 引用HAR共享包接口
+## 引用HAR的ArkUI组件、接口、资源
 引用HAR共享包前，需要先配置对HAR的依赖，配置方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391)。
 
 ### 引用HAR共享包的ArkUI组件
