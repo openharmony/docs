@@ -9,7 +9,7 @@ The **appManager** module implements application management. You can use the API
 ## Modules to Import
 
 ```ts
-import app from '@ohos.application.appManager';
+import appManager from '@ohos.application.appManager';
 ```
 
 ## appManager.isRunningInStabilityTest<sup>8+</sup>
@@ -161,7 +161,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
-> This API is deprecated since API Version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetprocessrunninginformation9) instead.
+> This API is deprecated since API version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetprocessrunninginformation9) instead.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -189,7 +189,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
-> This API is deprecated since API Version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetprocessrunninginformation9-1) instead.
+> This API is deprecated since API version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetprocessrunninginformation9-1) instead.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -199,7 +199,7 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Yes| Obtains information about the running processes. This API uses a promise to return the result.|
+| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Yes| Callback used to return the running processes. |
 
 **Example**
     
@@ -359,7 +359,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | observerId | number | Yes| Numeric code of the observer.|
@@ -421,7 +421,7 @@ Deregisters the application state observer. This API uses a promise to return th
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 Obtains information about the applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
-  
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core

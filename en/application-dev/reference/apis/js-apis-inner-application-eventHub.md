@@ -9,18 +9,16 @@ The **EventHub** module provides APIs to subscribe to, unsubscribe from, and tri
 
 ## Usage
 
-Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **UIAbility** instance.
+Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **Ability** instance.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    eventFunc(){
-        console.log("eventFunc is called");
+import Ability from '@ohos.application.Ability';
+export default class MainAbility extends Ability {
+    func1(){
+        console.log('func1 is called');
     }
-
     onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc);
+        this.context.eventHub.on('123', this.func1);
     }
 }
 ```
@@ -41,36 +39,33 @@ Subscribes to an event.
 | callback | Function | Yes| Callback invoked when the event is triggered.|
 
 **Example**
+    
+  ```ts
+  import Ability from '@ohos.application.Ability';
+  
+  export default class MainAbility extends Ability {
+      onForeground() {
+          this.context.eventHub.on('123', this.func1);
+          this.context.eventHub.on('123', () => {
+              console.log('call anonymous func 1');
+          });
+          // Result
+          // func1 is called
+          // call anonymous func 1
+          this.context.eventHub.emit('123'); 
+      }
+      func1() {
+          console.log('func1 is called');
+      }
+  }
+  ```
 
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc);
-        // Anonymous functions can be used to subscribe to events.
-        this.context.eventHub.on("myEvent", () => {
-            console.log("call anonymous eventFunc");
-        });
-        // Result
-        // eventFunc is called
-        // call anonymous eventFunc
-        this.context.eventHub.emit("myEvent"); 
-    }
-
-    eventFunc() {
-        console.log("eventFunc is called");
-    }
-}
-```
 
 ## EventHub.off
 
 off(event: string, callback?: Function): void;
 
-Unsubscribes from an event.
- - If **callback** is specified, this API unsubscribes from the given event with the specified callback.
- - If **callback** is not specified, this API unsubscribes from the given event with all callbacks.
+Unsubscribes from an event. 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -82,28 +77,27 @@ Unsubscribes from an event.
 | callback | Function | No| Callback for the event. If **callback** is unspecified, the given event with all callbacks is unsubscribed.|
 
 **Example**
+    
+  ```ts
+  import Ability from '@ohos.application.Ability';
+  
+  export default class MainAbility extends Ability {
+      onForeground() {
+          this.context.eventHub.on('123', this.func1);
+          this.context.eventHub.off('123', this.func1); // Unsubscribe from the myEvent event with the callback eventFunc1.
+          this.context.eventHub.on('123', this.func1);
+          this.context.eventHub.on('123', this.func2);
+          this.context.eventHub.off('123');  // Unsubscribe from the myEvent event with all the callbacks (eventFunc1 and eventFunc2).
+      }
+      func1() {
+          console.log('func1 is called');
+      }
+      func2() {
+          console.log('func2 is called');
+      }
+  }
+  ```
 
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc1);
-        this.context.eventHub.off("myEvent", this.eventFunc1); // Unsubscribe from the myEvent event with the callback eventFunc1.
-        this.context.eventHub.on("myEvent", this.eventFunc1);
-        this.context.eventHub.on("myEvent", this.eventFunc2);
-        this.context.eventHub.off("myEvent");  // Unsubscribe from the myEvent event with all the callbacks (eventFunc1 and eventFunc2).
-    }
-
-    eventFunc1() {
-        console.log("eventFunc1 is called");
-    }
-
-    eventFunc2() {
-        console.log("eventFunc2 is called");
-    }
-}
-```
 
 ## EventHub.emit
 
@@ -121,26 +115,25 @@ Triggers an event.
 | ...args | Object[] | Yes| Variable parameters, which are passed to the callback when the event is triggered.|
 
 **Example**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc);
-        // Result
-        // eventFunc is called,undefined,undefined
-        this.context.eventHub.emit("myEvent");
-        // Result
-        // eventFunc is called,1,undefined
-        this.context.eventHub.emit("myEvent", 1);
-        // Result
-        // eventFunc is called,1,2
-        this.context.eventHub.emit("myEvent", 1, 2);
-    }
-
-    eventFunc(argOne, argTwo) {
-        console.log("eventFunc is called," + argOne + "," + argTwo);
-    }
-}
-```
+    
+  ```ts
+  import Ability from '@ohos.application.Ability';
+  
+  export default class MainAbility extends Ability {
+      onForeground() {
+          this.context.eventHub.on('123', this.func1);
+          // Result
+          // func1 is called,undefined,undefined
+          this.context.eventHub.emit('123');
+          // Result
+          // func1 is called,1,undefined
+          this.context.eventHub.emit('123', 1);
+          // Result
+          // func1 is called,1,2
+          this.context.eventHub.emit('123', 1, 2);
+      }
+      func1(a, b) {
+          console.log('func1 is called,' + a + ',' + b);
+      }
+  }
+  ```

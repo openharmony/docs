@@ -27,7 +27,7 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 | FOREGROUND | 9 | The ability is in the foreground state. | 
 | BACKGROUND | 10 | The ability is in the background state. | 
 | FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
+| BACKGROUNDING | 12 | The ability is in the state of being switched to the background.  | 
 
 ## updateConfiguration
 
@@ -63,7 +63,7 @@ const config = {
   language: 'Zh-Hans',                 // Simplified Chinese.
   colorMode: COLOR_MODE_LIGHT,         // Light theme.
   direction: DIRECTION_VERTICAL,       // Vertical direction.
-  screenDensity: SCREEN_DENSITY_SDPI,  // The screen resolution is SDPI.
+  screenDensity: SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
   displayId: 1,                        // The application is displayed on the display with ID 1.
   hasPointerDevice: true,              // A pointer device is connected.
 };
@@ -121,7 +121,7 @@ const config = {
   language: 'Zh-Hans',                 // Simplified Chinese.
   colorMode: COLOR_MODE_LIGHT,         // Light theme.
   direction: DIRECTION_VERTICAL,       // Vertical direction.
-  screenDensity: SCREEN_DENSITY_SDPI,  // The screen resolution is SDPI.
+  screenDensity: SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
   displayId: 1,                        // The application is displayed on the display with ID 1.
   hasPointerDevice: true,              // A pointer device is connected.
 };
@@ -131,7 +131,7 @@ try {
         console.log('updateConfiguration success.');
     }).catch((err) => {
         console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -310,7 +310,7 @@ try {
         console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
         console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -384,5 +384,5 @@ abilityManager.getTopAbility().then((data) => {
     console.log('getTopAbility success, data: ' + JSON.stringify(data));
 }).catch((err) => {
     console.log('getTopAbility fail, err: '  + JSON.stringify(err));
-})
+});
 ```

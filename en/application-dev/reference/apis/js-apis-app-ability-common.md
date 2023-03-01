@@ -10,7 +10,7 @@ The **Common** module provides all level-2 module APIs for developers to export.
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common'
+import common from '@ohos.app.ability.common';
 ```
 
 **System capability**: SystemCapability.Ability.AbilityBase
@@ -33,7 +33,7 @@ import common from '@ohos.app.ability.common'
 
 **Example**
 ```ts
-import common from '@ohos.app.ability.common'
+import common from '@ohos.app.ability.common';
 
 let uiAbilityContext: common.UIAbilityContext;
 let abilityStageContext: common.AbilityStageContext;
