@@ -27,6 +27,14 @@ index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要�
   "main": "index.ets"
 }
 ```
+
+## HAR共享包开发注意事项
+- HAR不支持在配置文件中声明ability、extensionAbility组件。
+- HAR不支持在配置文件中声明pages页面。
+- HAR不支持在build-profile.json5文件的buildOption中配置worker。
+- FA模型与Stage模型的HAR不支持相互引用。
+- Stage模型的HAR，不能引用AppScope内的内容。在编译构建时不会将AppScope中的内容打包到HAR中，会导致资源引用失败。
+
 ### 导出ArkUI组件
 ArkUI组件的导出方式与ts的导出方式一致，通过export导出ArkUI组件，示例如下：
 ```js
@@ -139,7 +147,7 @@ struct Index {
 }
 ```
 ### 引用HAR共享包的资源
-通过$r引用HAR共享包中的资源，例如在HAR模块的src/main/resources里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
+通过'$r'引用HAR共享包中的资源，例如在HAR模块的'src/main/resources'里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
 ```js
 // entry/src/main/ets/pages/index.ets
 @Entry
@@ -161,9 +169,3 @@ struct Index {
   }
 }
 ```
-## HAR共享包开发注意事项
-- HAR不支持在配置文件中声明ability、extensionAbility组件。
-- HAR不支持在配置文件中声明pages页面。
-- HAR不支持在build-profile.json5文件的buildOption中配置worker。
-- FA模型与Stage模型的HAR不支持相互引用。
-- Stage模型的HAR，不能引用AppScope内的内容。在编译构建时不会将AppScope中的内容打包到HAR中，会导致资源引用失败。
