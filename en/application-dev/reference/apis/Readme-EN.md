@@ -224,8 +224,8 @@
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
-  - [@ohos.storageStatistics (Application Storage Statistics)](js-apis-storage-statistics.md)
-  - [@ohos.volumeManager (Volume Management)](js-apis-volumemanager.md)
+  - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
   - [@ohos.telephony.call (Call)](js-apis-call.md)
