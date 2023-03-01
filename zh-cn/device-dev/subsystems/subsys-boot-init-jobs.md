@@ -18,9 +18,23 @@ job可以在init.cfg中配置，也可以在模块的自定义cfg中配置。ini
 
 - 条件jobs(仅标准系统以上提供)
 
-  用户通过在jobs中添加condition条件，在条件触发时执行。
+  用户通过在jobs中添加condition配置，在条件满足时触发命令执行。
 
-  条件一般是某些系统参数值的组合，支持&& 、||等操作，例如"condition"："sys.usb.config = none && sys.usb.configfs = 0"。并且jobs在定义命令时，一般按照下面的规则"param:xxx", 可以根据不同的属性自行组合。
+  条件是系统参数值的组合，支持&& 、||等操作, 并且支持*匹配任意值。
+
+  一般情况可按如下示例配置：
+
+  ```
+  "condition"："sys.usb.config = none && sys.usb.configfs = 0"。
+  ```
+
+  如果特殊情况需要在boot阶段对参数做检查可按下面示例配置：
+
+  ```
+  "condition": "boot && const.debuggable=1"。
+  ```
+
+  并且jobs在定义命令时，按照下面的规则"param:xxx"命名, 可以根据不同的属性自行组合。
 
 ### 约束与限制
 在标准系统下有系统参数模块的支持，支持基本jobs、条件jobs、自定义jobs。在小型系统中只支持基本jobs。
