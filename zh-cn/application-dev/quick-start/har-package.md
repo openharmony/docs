@@ -25,7 +25,7 @@ artifactType字段有以下两种取值，默认缺省为original。
 - HAR不支持在配置文件中声明pages页面。
 - HAR不支持在build-profile.json5文件的buildOption中配置worker。
 - FA模型与Stage模型的HAR不支持相互引用。
-- Stage模型的HAR，不能引用AppScope内的内容。在编译构建时不会将AppScope中的内容打包到HAR中，会导致资源引用失败。
+- Stage模型的HAR，不能引用AppScope内的内容。在编译构建时APPScope中的内容不会打包到HAR中，导致HAR资源引用失败。
 
 ## 导出HAR的ArkUI组件、接口、资源
 index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的package.json文件中的main字段配置入口声明文件，配置如下所示：
@@ -160,7 +160,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         // 引用HAR共享包的图片资源
-        Image($r("app.media.icon_npm"))
+        Image($r("app.media.icon_har"))
       }
       .width('100%')
     }
