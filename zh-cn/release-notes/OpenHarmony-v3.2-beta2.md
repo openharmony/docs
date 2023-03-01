@@ -171,28 +171,28 @@
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 元能力 | MissionManager | 本示例通过调用系统任务管理的能力，对系统任务执行锁定、解锁、清理、切换到前台等操作。 | eTS |
-| 网络管理 | AirQuality | 空气质量（Air quality）的好坏反映了空气污染程度，它是依据空气中污染物浓度的高低来判断的。空气污染是一个复杂的现象，在特定时间和地点空气污染物浓度受到许多因素影响。来自固定和流动污染源的人为污染物排放大小是影响空气质量的最主要因素之一，本示例实现了一个简单空气质量应用，使用折行显示能力显示空气质量信息，使用柱形图展示历史记录。 | eTS |
-| ArkUI | TransitionAnimation | 本示例展示了转场动画的使用，包括页面间转场、组件内转场和共享元素转场。 | eTS |
-| 应用程序包管理 | ZipLib | 本示例通过构建解压，压缩文件场景，向用户展示\@ohos.zlib接口。 | eTS |
-| 工程能力 | Npm | 本示例展示了npm引用第三方js类库和本地库，主要展示了mathjs、dayjs和本地库应用。 | eTS |
-| 数据管理 | DistributedMusicPlayer | 本示例使用fileIo获取指定音频文件，并通过AudioPlayer完成了音乐的播放完成了基本的音乐播放、暂停、上一曲、下一曲功能；并使用DeviceManager完成了分布式设备列表的显示和分布式能力完成了音乐播放状态的跨设备迁移。 | eTS |
-| ArkUI | PatternLock | 本示例展示了图案密码锁组件的使用，实现了密码设置、验证和重置功能。 | eTS |
-| 安全 | UserAuth | 本示例展示了用户认证中人脸识别功能。 | eTS |
-| 安全 | Cipher | 本示例展示了加解密算法，包括RSA加密算法与AES加密算法。 | eTS |
-| 图形图像 | Screen | 本示例监听屏幕数量变化，创建、销毁虚拟屏幕模拟屏幕增减，读取屏幕属性并显示。 | eTS |
-| ArkUI | Search | 本示例展示了Search组件的使用，使用Search组件实现一个搜索界面。 | eTS |
-| 设备管理 | USBManager | 本示例展示了USB设备管理的使用，包括USB设备插拔状态监听和USB设备信息显示。 | eTS |
-| 数据管理 | DistributedDataGobang | 五子棋是一款比较流行的棋类游戏，此游戏使用分布式数据管理功能进行开发完成的。 | eTS |
-| 媒体 | Image | 本示例仿照相册应用，读取本地设备中图片，获取图片信息，可对图片进行旋转操作。 | eTS |
-| 安全 | AbilityAccessCtrl | 本示例通过模拟应用申请权限场景，向用户展示@ohos.abilityAccessCtrl接口。 | eTS |
-| 网络管理 | WebSocket | 本示例展示了WebSocket的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。 | eTS |
-| 通信与连接 | Bluetooth | 蓝牙技术是一种无线数据和语音通信开放的全球规范，它是基于低成本的近距离无线连接，为固定和移动设备建立通信环境的一种特殊的近距离无线技术连接。本示例实现蓝牙设备发现，配对，取消配对功能。 | eTS |
-| 媒体 | GamePuzzle | 拼图Demo是基于Grid组件进行开发，通过image (图片处理)和medialibrary (媒体库管理)接口实现获取图片，以及图片裁剪分割。 | eTS |
-| 网络管理 | UploadDownload | 上传就是将文件从个人终端设备传送至远程服务器，下载是将文件从远程服务器传送至个人终端设备，进而实现文件的存储，该示例使用上传下载的接口实现文件的上传下载。 | eTS |
-| 设备管理 | Location | 本示例使用方向传感器及GPS，实现获取当前位置信息。 | eTS |
-| 电话服务 | Observer | 本示例通过observer接口订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。 | eTS |
-| ArkUI | AdaptiveCapabilities | 此Demo展示在eTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | eTS |
+| 元能力 | MissionManager | 本示例通过调用系统任务管理的能力，对系统任务执行锁定、解锁、清理、切换到前台等操作。 | ArkTS |
+| 网络管理 | AirQuality | 空气质量（Air quality）的好坏反映了空气污染程度，它是依据空气中污染物浓度的高低来判断的。空气污染是一个复杂的现象，在特定时间和地点空气污染物浓度受到许多因素影响。来自固定和流动污染源的人为污染物排放大小是影响空气质量的最主要因素之一，本示例实现了一个简单空气质量应用，使用折行显示能力显示空气质量信息，使用柱形图展示历史记录。 | ArkTS |
+| ArkUI | TransitionAnimation | 本示例展示了转场动画的使用，包括页面间转场、组件内转场和共享元素转场。 | ArkTS |
+| 应用程序包管理 | ZipLib | 本示例通过构建解压，压缩文件场景，向用户展示\@ohos.zlib接口。 | ArkTS |
+| 工程能力 | Npm | 本示例展示了npm引用第三方js类库和本地库，主要展示了mathjs、dayjs和本地库应用。 | ArkTS |
+| 数据管理 | DistributedMusicPlayer | 本示例使用fileIo获取指定音频文件，并通过AudioPlayer完成了音乐的播放完成了基本的音乐播放、暂停、上一曲、下一曲功能；并使用DeviceManager完成了分布式设备列表的显示和分布式能力完成了音乐播放状态的跨设备迁移。 | ArkTS |
+| ArkUI | PatternLock | 本示例展示了图案密码锁组件的使用，实现了密码设置、验证和重置功能。 | ArkTS |
+| 安全 | UserAuth | 本示例展示了用户认证中人脸识别功能。 | ArkTS |
+| 安全 | Cipher | 本示例展示了加解密算法，包括RSA加密算法与AES加密算法。 | ArkTS |
+| 图形图像 | Screen | 本示例监听屏幕数量变化，创建、销毁虚拟屏幕模拟屏幕增减，读取屏幕属性并显示。 | ArkTS |
+| ArkUI | Search | 本示例展示了Search组件的使用，使用Search组件实现一个搜索界面。 | ArkTS |
+| 设备管理 | USBManager | 本示例展示了USB设备管理的使用，包括USB设备插拔状态监听和USB设备信息显示。 | ArkTS |
+| 数据管理 | DistributedDataGobang | 五子棋是一款比较流行的棋类游戏，此游戏使用分布式数据管理功能进行开发完成的。 | ArkTS |
+| 媒体 | Image | 本示例仿照相册应用，读取本地设备中图片，获取图片信息，可对图片进行旋转操作。 | ArkTS |
+| 安全 | AbilityAccessCtrl | 本示例通过模拟应用申请权限场景，向用户展示@ohos.abilityAccessCtrl接口。 | ArkTS |
+| 网络管理 | WebSocket | 本示例展示了WebSocket的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。 | ArkTS |
+| 通信与连接 | Bluetooth | 蓝牙技术是一种无线数据和语音通信开放的全球规范，它是基于低成本的近距离无线连接，为固定和移动设备建立通信环境的一种特殊的近距离无线技术连接。本示例实现蓝牙设备发现，配对，取消配对功能。 | ArkTS |
+| 媒体 | GamePuzzle | 拼图Demo是基于Grid组件进行开发，通过image (图片处理)和medialibrary (媒体库管理)接口实现获取图片，以及图片裁剪分割。 | ArkTS |
+| 网络管理 | UploadDownload | 上传就是将文件从个人终端设备传送至远程服务器，下载是将文件从远程服务器传送至个人终端设备，进而实现文件的存储，该示例使用上传下载的接口实现文件的上传下载。 | ArkTS |
+| 设备管理 | Location | 本示例使用方向传感器及GPS，实现获取当前位置信息。 | ArkTS |
+| 电话服务 | Observer | 本示例通过observer接口订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。 | ArkTS |
+| ArkUI | AdaptiveCapabilities | 此Demo展示在ArkTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | ArkTS |
 | ArkUI | JsAdaptiveCapabilities | 此Demo展示在JS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | JS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
