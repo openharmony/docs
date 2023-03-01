@@ -253,8 +253,8 @@ try {
         }
         console.log('Callback returned to indicate a successful vibration.');
     });
-} catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (error) {
+    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
 }
 
 try {
@@ -266,8 +266,8 @@ try {
         }
         console.log('Callback returned to indicate successful.');
     })
-} catch (err) {
-    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
 }
   ```
 
@@ -303,8 +303,8 @@ try {
     }, (error) => {
         console.error('error.code' + error.code + 'error.message' + error.message);
     });
-} catch (err) {
-    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (error) {
+    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
 }
 
 try {
@@ -314,8 +314,8 @@ try {
     }, (error) => {
         console.log('error.code' + error.code + 'error.message' + error.message);
     });
-} catch (err) {
-    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
 }
   ```
 
@@ -356,12 +356,12 @@ try {
                         console.log('VibrateTest003 vibrator success');
                     }
                 });
-            } catch (err) {
-                console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+            } catch (error) {
+                console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
             }
         }
     })
-} catch (err) {
+} catch (error) {
     console.error('exception in, error:' + JSON.stringify(error));
 }
   ```
