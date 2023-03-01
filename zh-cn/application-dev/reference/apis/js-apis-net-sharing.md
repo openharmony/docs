@@ -1,6 +1,6 @@
 # @ohos.net.sharing (网络共享管理)
 
-网络共享管理分享设备已有网络给其他连接设备，支持Wi-Fi热点共享和蓝牙共享，同时提供网络共享状态、共享流量查询功能。
+网络共享管理分享设备已有网络给其他连接设备，支持Wi-Fi热点共享、蓝牙共享和USB共享，同时提供网络共享状态、共享流量查询功能。
 
 > **说明：**
 >
@@ -30,6 +30,15 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true代表支持网络共享。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **示例：**
 
 ```js
@@ -56,6 +65,15 @@ isSharingSupported(): Promise\<boolean>
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
 | Promise\<boolean> | 以Promise形式返回是否支持共享结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.           |
 
 **示例：**
 
@@ -85,6 +103,14 @@ isSharing(callback: AsyncCallback\<boolean>): void
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true代表网络共享中。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
@@ -111,6 +137,14 @@ isSharing(): Promise\<boolean>
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
 | Promise\<boolean> | 以Promise形式返回网络共享状态结果，返回true代表网络共享中。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **示例：**
 
@@ -141,11 +175,27 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | type | [SharingIfaceType](#sharingifacetype) | 是   | 共享类型，0：Wi-Fi 1：USB 2：BLUETOOTH。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数，返回开启网络共享结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.           |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202009 | Network share enable forwarding error.       |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **示例：**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.startSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+let SHARING_WIFI=0;
+sharing.startSharing(SHARING_WIFI, (error) => {
     console.log(JSON.stringify(error));
 });
 ```
@@ -174,11 +224,27 @@ startSharing(type: SharingIfaceType): Promise\<void>
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | 以Promise形式返回开启共享执行结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.           |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202009 | Network share enable forwarding error.       |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **示例：**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.startSharing(SharingIfaceType.SHARING_WIFI).then(() => {
+let SHARING_WIFI=0;
+sharing.startSharing(SHARING_WIFI).then(() => {
     console.log("start wifi sharing successful");
 }).catch(error => {
     console.log("start wifi sharing failed");
@@ -204,11 +270,25 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | type | [SharingIfaceType](#sharingifacetype) | 是   | 共享类型，0：Wi-Fi 1：USB 2：BLUETOOTH。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数,返回停止网络共享结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **示例：**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.stopSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+let SHARING_WIFI=0;
+sharing.stopSharing(SHARING_WIFI, (error) => {
     console.log(JSON.stringify(error));
 });
 ```
@@ -237,11 +317,25 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | 以Promise形式返回关闭共享执行结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **示例：**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.stopSharing(SharingIfaceType.SHARING_WIFI).then(() => {
+let SHARING_WIFI=0;
+sharing.stopSharing(SHARING_WIFI).then(() => {
     console.log("stop wifi sharing successful");
 }).catch(error => {
     console.log("stop wifi sharing failed");
@@ -265,6 +359,14 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<number> | 是   | 回调函数，number代表数据量，单位：KB。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **示例：**
 
@@ -292,6 +394,14 @@ getStatsRxBytes(): Promise\<number>
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
 | Promise\<number> | 以Promise形式返回共享网络接收数据量，单位：KB。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **示例：**
 
@@ -321,6 +431,14 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<number> | 是   | 回调函数，number代表数据量，单位：KB。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
@@ -347,6 +465,14 @@ getStatsTxBytes(): Promise\<number>
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
 | Promise\<number> | 以Promise形式返回共享网络发送数据量，单位：KB。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **示例：**
 
@@ -376,6 +502,14 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<number> | 是   | 回调函数，number代表数据量，单位：KB。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
@@ -402,6 +536,14 @@ getStatsTotalBytes(): Promise\<number>
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
 | Promise\<number> | 以Promise形式返回共享网络总数据量，单位：KB。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **示例：**
 
@@ -432,11 +574,22 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 | state    | [SharingIfaceState](#sharingifacestate) | 是   | 网络共享状态。 |
 | callback | AsyncCallback\<Array\<string>> | 是   | 回调函数，返回指定状态的网卡名称列表。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingIfaces(SharingIfaceState.SHARING_NIC_CAN_SERVER, (error, data) => {
+let SHARING_BLUETOOTH=2;
+sharing.getSharingIfaces(SHARING_BLUETOOTH, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -466,11 +619,22 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 | --------------------------------- | ------------------------------------- |
 | Promise\<Array\<string>> | 以Promise形式返回指定状态网卡名称列表。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingIfaces(SharingIfaceState.SHARING_NIC_CAN_SERVER).then(data => {
+let SHARING_BLUETOOTH=2;
+sharing.getSharingIfaces(SHARING_BLUETOOTH).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
@@ -496,11 +660,22 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 | type | [SharingIfaceType](#sharingifacetype) | 是   | 共享类型，0：Wi-Fi 1：USB 2：BLUETOOTH。 |
 | callback | AsyncCallback\<[SharingIfaceState](#sharingifacestate)> | 是   | 回调函数，返回指定类型网络共享状态。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharingState(SharingIfaceType.SHARING_WIFI, (error, data) => {
+let SHARING_WIFI=0;
+sharing.getSharingState(SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -524,6 +699,16 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 | -------- | --------------------------------------- | ---- | ---------- |
 | type | [SharingIfaceType](#sharingifacetype) | 是   | 共享类型，0：Wi-Fi 1：USB 2：BLUETOOTH。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **返回值：**
 
 | 类型                              | 说明                                  |
@@ -534,7 +719,8 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharingState(SharingIfaceType.SHARING_WIFI).then(data => {
+let SHARING_WIFI=0;
+sharing.getSharingState(SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
@@ -560,11 +746,22 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 | type | [SharingIfaceType](#sharingifacetype) | 是   | 共享类型，0：Wi-Fi 1：USB 2：BLUETOOTH。 |
 | callback | AsyncCallback\<Array\<string>> | 是   | 回调函数，返回指定类型网卡名称正则表达式列表。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharableRegexes(SharingIfaceType.SHARING_WIFI, (error, data) => {
+let SHARING_WIFI=0;
+sharing.getSharableRegexes(SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -594,11 +791,22 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 | --------------------------------- | ------------------------------------- |
 | Promise\<Array\<string>> | 以Promise形式返回正则表达式列表。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **示例：**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharableRegexes(SharingIfaceType.SHARING_WIFI).then(data => {
+let SHARING_WIFI=0;
+sharing.getSharableRegexes(SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
@@ -624,12 +832,18 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 | type | string | 是   | 事件名称。 |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回网络共享状态。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **示例：**
 
 ```js
-sharing.on('sharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+   sharing.on('sharingStateChange', (data) => {
+    console.log('on sharingStateChange：' + JSON.stringify(data));
 });
 ```
 
@@ -652,11 +866,17 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 | type | string | 是   | 事件名称。 |
 | callback | AsyncCallback\<boolean> | 否   | 回调函数，返回网络共享状态。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **示例：**
 
 ```js
-sharing.off('sharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
+sharing.off('sharingStateChange', (data) => {
     console.log(JSON.stringify(data));
 });
 ```
@@ -680,12 +900,18 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIface
 | type | string | 是   | 事件名称。 |
 | callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | 是   | 回调函数,指定网卡共享状态变化时调用。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **示例：**
 
 ```js
-sharing.on('interfaceSharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+ sharing.on('interfaceSharingStateChange', (data) => {
+    console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
 ```
 
@@ -708,11 +934,17 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfa
 | type | string | 是   | 事件名称。 |
 | callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | 否   | 回调函数，注销指定网卡共享状态变化通知。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **示例：**
 
 ```js
-sharing.off('interfaceSharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
+sharing.off('interfaceSharingStateChange', (data) => {
     console.log(JSON.stringify(data));
 });
 ```
@@ -736,12 +968,18 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 | type | string | 是   | 事件名称。 |
 | callback | AsyncCallback\<NetHandle> | 是   | 回调函数，上行网络变化时调用。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **示例：**
 
 ```js
-sharing.on('sharingUpstreamChange', (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  sharing.on('sharingUpstreamChange', (data) => {
+    console.log('on sharingUpstreamChange：' + JSON.stringify(data));
 });
 ```
 
@@ -764,11 +1002,17 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 | type | string | 是   | 事件名称。 |
 | callback | AsyncCallback\<NetHandle> | 否   | 回调函数，注销上行网络变化事件。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **示例：**
 
 ```js
-sharing.off('sharingUpstreamChange', (error, data) => {
-    console.log(JSON.stringify(error));
+sharing.off('sharingUpstreamChange', (data) => {
     console.log(JSON.stringify(data));
 });
 ```
@@ -789,7 +1033,7 @@ sharing.off('sharingUpstreamChange', (error, data) => {
 
 ## SharingIfaceType
 
-网络共享类型（暂不支持USB共享）。
+网络共享类型。
 
 **系统接口**：此接口为系统接口。
 
