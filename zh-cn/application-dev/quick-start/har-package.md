@@ -20,14 +20,6 @@ artifactType字段有以下两种取值，默认缺省为original。
 需要对代码资产进行保护时，建议开启混淆能力，混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 注意：artifactType字段设置为obfuscation时，apiType字段必须设置为stageMode，因为Stage模型才支持混淆。
 
-## 导出HAR的ArkUI组件、接口、资源
-index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的package.json文件中的main字段配置入口声明文件，配置如下所示：
-```json
-{
-  "main": "index.ets"
-}
-```
-
 ## HAR共享包开发注意事项
 - HAR不支持在配置文件中声明ability、extensionAbility组件。
 - HAR不支持在配置文件中声明pages页面。
@@ -35,8 +27,15 @@ index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要�
 - FA模型与Stage模型的HAR不支持相互引用。
 - Stage模型的HAR，不能引用AppScope内的内容。在编译构建时不会将AppScope中的内容打包到HAR中，会导致资源引用失败。
 
+## 导出HAR的ArkUI组件、接口、资源
+index.ets文件是HAR共享包导出声明文件的入口，HAR共享包需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的package.json文件中的main字段配置入口声明文件，配置如下所示：
+```json
+{
+  "main": "index.ets"
+}
+```
 ### 导出ArkUI组件
-ArkUI组件的导出方式与ts的导出方式一致，通过export导出ArkUI组件，示例如下：
+ArkUI组件的导出方式与ts的导出方式一致，通过`export`导出ArkUI组件，示例如下：
 ```js
 // library/src/main/ets/components/MainPage/MainPage.ets
 @Component
@@ -61,7 +60,7 @@ HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
 export { MainPage } from './src/main/ets/components/MainPage/MainPage'
 ```
 ### 导出ts类和方法
-通过export导出ts类和方法，支持导出多个ts类和方法，示例如下所示：
+通过`export`导出ts类和方法，支持导出多个ts类和方法，示例如下所示：
 ```js
 // library/src/main/ts/test.ets
 export class Log {
@@ -96,7 +95,7 @@ HAR模块编译打包时会把资源打包到HAR包中。在编译构建HAP时�
 
 ### 引用HAR共享包的ArkUI组件
 
-HAR共享包的依赖配置成功后，可以引用HAR共享包的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过import引入HAR共享包导出的ArkUI组件，示例如下所示：
+HAR共享包的依赖配置成功后，可以引用HAR共享包的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入HAR共享包导出的ArkUI组件，示例如下所示：
 ```js
 // entry/src/main/ets/pages/index.ets
 import { MainPage } from "@ohos/library"
@@ -121,7 +120,7 @@ struct Index {
 }
 ```
 ### 引用HAR共享包的类和方法
-通过import引用HAR共享包导出的ts类和方法，示例如下所示：
+通过`import`引用HAR共享包导出的ts类和方法，示例如下所示：
 ```js
 // entry/src/main/ets/pages/index.ets
 import { Log } from "@ohos/library"
@@ -147,7 +146,7 @@ struct Index {
 }
 ```
 ### 引用HAR共享包的资源
-通过'$r'引用HAR共享包中的资源，例如在HAR模块的'src/main/resources'里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
+通过`$r`引用HAR共享包中的资源，例如在HAR模块的`src/main/resources`里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
 ```js
 // entry/src/main/ets/pages/index.ets
 @Entry
