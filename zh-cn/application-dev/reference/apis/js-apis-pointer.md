@@ -278,21 +278,23 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.getPointerStyle(windowId, (error, style) => {
-        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-      });
-    } catch (error) {
-      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.getPointerStyle(windowId, (error, style) => {
+      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+    });
+  } catch (error) {
+    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 
@@ -321,21 +323,23 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.getPointerStyle(windowId).then((style) => {
-        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-      });
-    } catch (error) {
-      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.getPointerStyle(windowId).then((style) => {
+      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+    });
+  } catch (error) {
+    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 
@@ -360,21 +364,23 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
-        console.log(`Set pointer style success`);
-      });
-    } catch (error) {
-      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
+      console.log(`Set pointer style success`);
+    });
+  } catch (error) {
+    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 ## pointer.setPointerStyle<sup>9+</sup>
@@ -398,21 +404,23 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-        console.log(`Set pointer style success`);
-      });
-    } catch (error) {
-      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
+      console.log(`Set pointer style success`);
+    });
+  } catch (error) {
+    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 ## PointerStyle<sup>9+</sup>
