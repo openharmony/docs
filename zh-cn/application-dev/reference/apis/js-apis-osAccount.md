@@ -304,13 +304,13 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
   }
   ```
 
-### checkConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>9+</sup>
 
-checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
+checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断指定系统帐号是否具有指定约束。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -337,25 +337,25 @@ checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallb
   let localId = 100;
   let constraint = "constraint.wifi";
   try {
-    accountManager.checkConstraintEnabled(localId, constraint, (err, isEnabled)=>{
+    accountManager.checkOsAccountConstraintEnabled(localId, constraint, (err, isEnabled)=>{
       if (err) {
-        console.log("checkConstraintEnabled failed, error: " + JSON.stringify(err));
+        console.log("checkOsAccountConstraintEnabled failed, error: " + JSON.stringify(err));
       } else {
-        console.log("checkConstraintEnabled successfully, isEnabled: " + isEnabled);
+        console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkConstraintEnabled exception: " + JSON.stringify(err));
+    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
   }
   ```
 
-### checkConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>9+</sup>
 
-checkConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
+checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否具有指定约束。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -387,13 +387,13 @@ checkConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&
   let localId = 100;
   let constraint = "constraint.wifi";
   try {
-    accountManager.checkConstraintEnabled(localId, constraint).then((isEnabled) => {
-      console.log("checkConstraintEnabled successfully, isEnabled: " + isEnabled);
+    accountManager.checkOsAccountConstraintEnabled(localId, constraint).then((isEnabled) => {
+      console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
     }).catch((err) => {
-      console.log("checkConstraintEnabled failed, error: "  + JSON.stringify(err));
+      console.log("checkOsAccountConstraintEnabled failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkConstraintEnabled exception: " + JSON.stringify(err));
+    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
   }
   ```
 
@@ -973,9 +973,9 @@ getOsAccountCount(): Promise&lt;number&gt;
   }
   ```
 
-### queryOsAccountLocalIdFromProcess<sup>9+</sup>
+### getOsAccountLocalId<sup>9+</sup>
 
-queryOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 获取当前进程所属的系统帐号ID，使用callback异步回调。
 
@@ -998,21 +998,21 @@ queryOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromProcess((err, localId) => {
+    accountManager.getOsAccountLocalId((err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromProcess failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalId failed, error: " + JSON.stringify(err));
       } else {
-        console.log("queryOsAccountLocalIdFromProcess successfully, localId: " + localId);
+        console.log("getOsAccountLocalId successfully, localId: " + localId);
       }
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromProcess exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalId exception: " + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromProcess<sup>9+</sup>
+### getOsAccountLocalId<sup>9+</sup>
 
-queryOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
+getOsAccountLocalId(): Promise&lt;number&gt;
 
 获取当前进程所属的系统帐号ID，使用Promise异步回调。
 
@@ -1035,19 +1035,19 @@ queryOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromProcess().then((localId) => {
-      console.log("queryOsAccountLocalIdFromProcess successfully, localId: " + localId);
+    accountManager.getOsAccountLocalId().then((localId) => {
+      console.log("getOsAccountLocalId successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromProcess failed, error: "  + JSON.stringify(err));
+      console.log("getOsAccountLocalId failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromProcess exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalId exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromUid<sup>9+</sup>
+### getOsAccountLocalIdForUid<sup>9+</sup>
 
-queryOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 根据uid查询对应的系统帐号ID，使用callback异步回调。
 
@@ -1073,20 +1073,20 @@ queryOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;)
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   try {
-    accountManager.queryOsAccountLocalIdFromUid(uid, (err, localId) => {
+    accountManager.getOsAccountLocalIdForUid(uid, (err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
       }
-      console.log("queryOsAccountLocalIdFromUid successfully, localId: " + localId);
+      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromUid exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalIdForUid exception: " + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromUid<sup>9+</sup>
+### getOsAccountLocalIdForUid<sup>9+</sup>
 
-queryOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
+getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 根据uid查询对应的系统帐号ID，使用Promise异步回调。
 
@@ -1117,19 +1117,19 @@ queryOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   try {
-    accountManager.queryOsAccountLocalIdFromUid(uid).then((localId) => {
-      console.log("queryOsAccountLocalIdFromUid successfully, localId: " + localId);
+    accountManager.getOsAccountLocalIdForUid(uid).then((localId) => {
+      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+      console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromUid exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForUid exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromDomain<sup>9+</sup>
+### getOsAccountLocalIdForDomain<sup>9+</sup>
 
-queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
 根据域帐号信息，获取与其关联的系统帐号ID。使用callback异步回调。
 
@@ -1157,21 +1157,21 @@ queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCa
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromDomain(domainInfo, (err, localId) => {
+    accountManager.getOsAccountLocalIdForDomain(domainInfo, (err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromDomain failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalIdForDomain failed, error: " + JSON.stringify(err));
       } else {
-        console.log("queryOsAccountLocalIdFromDomain successfully, localId: " + localId);
+        console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
       }
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromDomain exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromDomain<sup>9+</sup>
+### getOsAccountLocalIdForDomain<sup>9+</sup>
 
-queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
+getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
@@ -1204,13 +1204,13 @@ queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;numbe
   let accountManager = account_osAccount.getAccountManager();
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
-    accountManager.queryOsAccountLocalIdFromDomain(domainInfo).then((localId) => {
-      console.log("queryOsAccountLocalIdFromDomain successfully, localId: " + localId);
+    accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId) => {
+      console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromDomain failed, error: "  + JSON.stringify(err));
+      console.log("getOsAccountLocalIdForDomain failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromDomain exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalIdForDomain exception: " + JSON.stringify(err));
   }
   ```
 
@@ -1456,9 +1456,9 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
   }
   ```
 
-### getActivatedOsAccountIds<sup>9+</sup>
+### getActivatedOsAccountLocalIds<sup>9+</sup>
 
-getActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 查询当前处于激活状态的系统帐号的ID列表。使用callback异步回调。
 
@@ -1481,21 +1481,21 @@ getActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): vo
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.getActivatedOsAccountIds((err, idArray)=>{
-      console.log('getActivatedOsAccountIds err:' + JSON.stringify(err));
-      console.log('getActivatedOsAccountIds idArray length:' + idArray.length);
+    accountManager.getActivatedOsAccountLocalIds((err, idArray)=>{
+      console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
       for(let i=0;i<idArray.length;i++) {
         console.info('activated os account id: ' + idArray[i]);
       }
     });
   } catch (e) {
-    console.log('getActivatedOsAccountIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
   }
   ```
 
-### getActivatedOsAccountIds<sup>9+</sup>
+### getActivatedOsAccountLocalIds<sup>9+</sup>
 
-getActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
+getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 查询当前处于激活状态的系统帐号的ID列表。使用Promise异步回调。
 
@@ -1518,13 +1518,13 @@ getActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.getActivatedOsAccountIds().then((idArray) => {
-      console.log('getActivatedOsAccountIds, idArray: ' + idArray);
+    accountManager.getActivatedOsAccountLocalIds().then((idArray) => {
+      console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
     }).catch((err) => {
-      console.log('getActivatedOsAccountIds err: '  + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getActivatedOsAccountIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2214,9 +2214,9 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
   }
   ```
 
-### queryOsAccountLocalIdBySerialNumber<sup>9+</sup>
+### getOsAccountLocalIdForSerialNumber<sup>9+</sup>
 
-queryOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用callback异步回调。
 
@@ -2243,7 +2243,7 @@ queryOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallbac
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber = 12345;
   try {
-    accountManager.queryOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
+    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err, localId)=>{
       console.log('ger localId err:' + JSON.stringify(err));
       console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
     });
@@ -2252,9 +2252,9 @@ queryOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallbac
   }
   ```
 
-### queryOsAccountLocalIdBySerialNumber<sup>9+</sup>
+### getOsAccountLocalIdForSerialNumber<sup>9+</sup>
 
-queryOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
+getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
@@ -2286,19 +2286,19 @@ queryOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber = 12345;
   try {
-    accountManager.queryOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
-      console.log('queryOsAccountLocalIdBySerialNumber localId: ' + localId);
+    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId) => {
+      console.log('getOsAccountLocalIdForSerialNumber localId: ' + localId);
     }).catch((err) => {
-      console.log('queryOsAccountLocalIdBySerialNumber err: '  + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForSerialNumber err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccountLocalIdBySerialNumber exception: '  + JSON.stringify(e));
+    console.log('getOsAccountLocalIdForSerialNumber exception: '  + JSON.stringify(e));
   }
   ```
 
-### querySerialNumberByOsAccountLocalId<sup>9+</sup>
+### getSerialNumberForOsAccountLocalId<sup>9+</sup>
 
-querySerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
+getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用callback异步回调。
 
@@ -2325,7 +2325,7 @@ querySerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
   try {
-    accountManager.querySerialNumberByOsAccountLocalId(localId, (err, serialNumber)=>{
+    accountManager.getSerialNumberForOsAccountLocalId(localId, (err, serialNumber)=>{
       console.log('ger serialNumber err:' + JSON.stringify(err));
       console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
     });
@@ -2334,9 +2334,9 @@ querySerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;
   }
   ```
 
-### querySerialNumberByOsAccountLocalId<sup>9+</sup>
+### getSerialNumberForOsAccountLocalId<sup>9+</sup>
 
-querySerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
+getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用Promise异步回调。
 
@@ -2368,13 +2368,13 @@ querySerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
   try {
-    accountManager.querySerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
-      console.log('querySerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
+    accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber) => {
+      console.log('getSerialNumberForOsAccountLocalId serialNumber: ' + serialNumber);
     }).catch((err) => {
-      console.log('querySerialNumberByOsAccountLocalId err: '  + JSON.stringify(err));
+      console.log('getSerialNumberForOsAccountLocalId err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('querySerialNumberByOsAccountLocalId exception:' + JSON.stringify(e));
+    console.log('getSerialNumberForOsAccountLocalId exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2462,9 +2462,9 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
   }
   ```
 
-### getBundleIdFromUid<sup>9+</sup>
+### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
+getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
 通过uid查询对应的bundleId，使用callback异步回调。
 
@@ -2492,17 +2492,17 @@ getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
   let accountManager = account_osAccount.getAccountManager();
   let testUid = 1000000;
   try {
-    accountManager.getBundleIdFromUid(testUid, (err, bundleId) => {
-      console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
-      console.info('getBundleIdFromUid bundleId:' + JSON.stringify(bundleId));
+    accountManager.getBundleIdForUid(testUid, (err, bundleId) => {
+      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
     });
   } catch (e) {
-    console.info('getBundleIdFromUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
   }
   ```
-### getBundleIdFromUid<sup>9+</sup>
+### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
+getBundleIdForUid(uid: number): Promise&lt;number&gt;;
 
 通过uid查询对应的bundleId，使用Promise异步回调。
 
@@ -2535,13 +2535,13 @@ getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
   let accountManager = account_osAccount.getAccountManager();
   let testUid = 1000000;
   try {
-    accountManager.getBundleIdFromUid(testUid).then((result) => {
-      console.info('getBundleIdFromUid bundleId:' + JSON.stringify(result));
+    accountManager.getBundleIdForUid(testUid).then((result) => {
+      console.info('getBundleIdForUid bundleId:' + JSON.stringify(result));
     }).catch((err)=>{
-      console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
+      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdFromUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2620,9 +2620,9 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
     console.info('isMainOsAccount exception:' + JSON.stringify(e));
   }
   ```
-### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
 
 查询指定系统帐号的指定约束来源信息，使用callback异步回调。
 
@@ -2653,18 +2653,18 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callbac
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
-      console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
-      console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
+    accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
+      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
     });
   } catch (e) {
-    console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
   }
   ```
 
-### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
 查询指定系统帐号的指定约束来源信息，使用Promise异步回调。
 
@@ -2700,13 +2700,13 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
-      console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(result));
+    accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
+      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err)=>{
-      console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
+      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2852,7 +2852,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkConstraintEnabled](#checkconstraintenabled9)。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2889,7 +2889,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkConstraintEnabled](#checkconstraintenabled9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3158,7 +3158,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9)。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalId](#getosaccountlocalid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3189,7 +3189,7 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalId](#getosaccountlocalid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3218,7 +3218,7 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9)。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3251,7 +3251,7 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3287,7 +3287,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3322,7 +3322,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9-1)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3430,7 +3430,7 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3459,7 +3459,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountIds](#getactivatedosaccountids9-1)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1)。
 
 查询当前处于激活状态的系统帐号的ID列表。使用Promise异步回调。
 
@@ -3669,7 +3669,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3699,7 +3699,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9-1)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3735,7 +3735,7 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3765,7 +3765,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9-1)。
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
