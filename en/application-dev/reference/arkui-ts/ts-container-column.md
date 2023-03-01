@@ -29,7 +29,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **HorizontalAlign.Center**|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | Alignment mode of the child components in the vertical direction.<br>Default value: **FlexAlign.Start**|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the vertical direction.<br>Default value: **FlexAlign.Start**|
 
 ## Example
 
