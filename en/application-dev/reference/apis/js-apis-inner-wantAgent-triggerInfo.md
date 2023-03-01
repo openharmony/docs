@@ -6,7 +6,7 @@ The **TriggerInfo** module defines the information required for triggering the W
 
 | Name      | Type                | Mandatory| Description       |
 | ---------- | --- |-------------------- | ----------- |
-| code       | number               | Yes  | Custom result code provided for the target WantAgent.|
+| code       | number               | Yes  | Result code.|
 | want       | Want                 | No  | Want.       |
 | permission | string               | No  | Permission.   |
 | extraInfo  | {[key: string]: any} | No  | Extra information.   |

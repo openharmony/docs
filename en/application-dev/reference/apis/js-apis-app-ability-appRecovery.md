@@ -21,8 +21,8 @@ Enumerates the application restart flags. This enum is used as an input paramete
 | Name      | Value  | Description      |
 | ---------- | ---- | ---------- |
 | ALWAYS_RESTART   | 0    | The application is restarted in all cases.|
-| RESTART_WHEN_JS_CRASH   | 0x0001    | The application is restarted in the case of JS_CRASH.|
-| RESTART_WHEN_APP_FREEZE   | 0x0002    | The application is restarted in the case of APP_FREEZE.|
+| RESTART_WHEN_JS_CRASH   | 0x0001    | The application is restarted in the case of JS_CRASH. |
+| RESTART_WHEN_APP_FREEZE   | 0x0002    | The application is restarted in the case of APP_FREEZE. |
 | NO_RESTART           | 0xFFFF    | The application is not restarted in any case.|
 
 ## appRecovery.SaveOccasionFlag

@@ -8,7 +8,7 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 
 ## Modules to Import
 
-```js
+```ts
 import wantConstant from '@ohos.app.ability.wantConstant';
 ```
 
@@ -79,4 +79,4 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                                 |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write data to the URI.                                 |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                              |
