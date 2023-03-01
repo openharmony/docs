@@ -325,8 +325,6 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 查询是否支持传入的参数effectId。
 
-**需要权限**：ohos.permission.VIBRATE
-
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
@@ -373,8 +371,6 @@ try {
 isSupportEffect(effectId: string): Promise&lt;void&gt;
 
 查询是否支持传入的参数effectId。
-
-**需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
