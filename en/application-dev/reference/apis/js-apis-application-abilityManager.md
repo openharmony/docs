@@ -49,13 +49,13 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 **Example**
 
 ```ts
-var config = {
+let config = {
   language: 'chinese' 
-}
+};
 
 abilityManager.updateConfiguration(config, () => {
     console.log('------------ updateConfiguration -----------');
-})
+});
 ```
 
 ## updateConfiguration
@@ -83,15 +83,15 @@ Updates the configuration. This API uses a promise to return the result.
 **Example**
 
 ```ts
-var config = {
+let config = {
   language: 'chinese' 
-}
+};
 
 abilityManager.updateConfiguration(config).then(() => {
   console.log('updateConfiguration success');
 }).catch((err) => {
   console.log('updateConfiguration fail');
-})
+});
 ```
 
 ## getAbilityRunningInfos
@@ -114,7 +114,7 @@ Obtains the ability running information. This API uses an asynchronous callback 
 
 ```ts
 abilityManager.getAbilityRunningInfos((err,data) => { 
-    console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
+    console.log('getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -138,115 +138,8 @@ Obtains the ability running information. This API uses a promise to return the r
 
 ```ts
 abilityManager.getAbilityRunningInfos().then((data) => {
-    console.log("getAbilityRunningInfos  data: " + JSON.stringify(data))
+    console.log('getAbilityRunningInfos  data: ${JSON.stringify(data)}');
 }).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err)
+  console.log('getAbilityRunningInfos err: ${JSON.stringify(err)}');
 });
-```
-
-## getExtensionRunningInfos<sup>9+</sup>
-
-getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
-
-Obtains the extension running information. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-| Name       | Type                                      | Mandatory  | Description            |
-| --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | Yes| Maximum number of messages that can be obtained.|
-| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | Yes   | Callback used to return the result.     |
-
-**Example**
-
-```ts
-var upperLimit = 0;
-
-abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => { 
-    console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
-});
-```
-
-## getExtensionRunningInfos<sup>9+</sup>
-
-getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
-
-Obtains the extension running information. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-| Name       | Type                                      | Mandatory  | Description            |
-| --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | Yes| Maximum number of messages that can be obtained.|
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | Promise used to return the result.|
-
-**Example**
-
-```ts
-var upperLimit = 0;
-
-abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-  console.log("getAbilityRunningInfos data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err);
-})
-```
-
-## getTopAbility<sup>9+</sup>
-
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
-
-Obtains the top ability, which is the ability that has the window focus. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-| Name       | Type                                      | Mandatory  | Description            |
-| --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | Yes   | Callback used to return the result.     |
-
-**Example**
-
-```ts
-abilityManager.getTopAbility((err,data) => { 
-    console.log("getTopAbility err: "  + err + " data: " + JSON.stringify(data));
-});
-```
-
-## getTopAbility<sup>9+</sup>
-
-getTopAbility(): Promise\<ElementName>;
-
-Obtains the top ability, which is the ability that has the window focus. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| Promise used to return the result.|
-
-**Example**
-
-```ts
-abilityManager.getTopAbility().then((data) => {
-  console.log("getTopAbility data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getTopAbility err: "  + err);
-})
 ```

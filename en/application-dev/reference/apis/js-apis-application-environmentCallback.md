@@ -11,7 +11,7 @@ The **EnvironmentCallback** module provides APIs, such as **onConfigurationUpdat
 ## Modules to Import
 
 ```ts
-import EnvironmentCallback from "@ohos.application.EnvironmentCallback";
+import EnvironmentCallback from '@ohos.application.EnvironmentCallback';
 ```
 
 
@@ -41,37 +41,37 @@ Called when the system memory level changes.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | level  | [MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | Yes| New memory level.|
+  | level  | [MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| New memory level.|
 
 **Example**
 
   ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-var callbackId;
+let callbackId;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
-        console.log("MyAbility onCreate")
+        console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback  =  {
             onConfigurationUpdated(config){
-                console.log("onConfigurationUpdated config:" + JSON.stringify(config));
+                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             },
             onMemoryLevel(level){
-                console.log("onMemoryLevel level:" + level);
+                console.log('onMemoryLevel level: ${level}');
             }
-        }
+        };
         // 1. Obtain an applicationContext object.
         let applicationContext = globalThis.applicationContext;
         // 2. Register a listener for the environment changes through the applicationContext object.
         callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
-        console.log("registerEnvironmentCallback number: " + JSON.stringify(callbackId));
+        console.log('registerEnvironmentCallback number: ${JSON.stringify(callbackId)}');
     }
     onDestroy() {
         let applicationContext = globalThis.applicationContext;
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+            console.log('unregisterEnvironmentCallback success, err: ${JSON.stringify(error)}');
         });
     }
 }

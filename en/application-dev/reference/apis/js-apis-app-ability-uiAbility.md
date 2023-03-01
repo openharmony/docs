@@ -47,7 +47,7 @@ Called to initialize the service logic when a UIAbility is created.
   ```ts
   class MyUIAbility extends UIAbility {
       onCreate(want, param) {
-          console.log('onCreate, want:' + want.abilityName);
+          console.log('onCreate, want: ${want.abilityName}');
       }
   }
   ```
@@ -202,11 +202,11 @@ Called to save data during the ability migration preparation process.
 **Example**
     
   ```ts
-  import AbilityConstant from "@ohos.app.ability.AbilityConstant"
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   class MyUIAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
-          wantParams["myData"] = "my1234567";
+          wantParams['myData'] = 'my1234567';
           return AbilityConstant.OnContinueResult.AGREE;
       }
   }
@@ -233,8 +233,8 @@ Called when a new Want is passed in and this UIAbility is started again.
   ```ts
   class MyUIAbility extends UIAbility {
       onNewWant(want, launchParams) {
-          console.log('onNewWant, want:' + want.abilityName);
-          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
+          console.log('onNewWant, want: ${want.abilityName}');
+          console.log('onNewWant, launchParams: ${JSON.stringify(launchParams)}');
       }
   }
   ```
@@ -258,8 +258,8 @@ Dumps client information.
   ```ts
   class MyUIAbility extends UIAbility {
       onDump(params) {
-          console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          console.log('dump, params: ${JSON.stringify(params)}');
+          return ['params'];
       }
   }
   ```
@@ -289,12 +289,12 @@ Called when the framework automatically saves the UIAbility state in the case of
 **Example**
 
   ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyUIAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
-        wantParam["myData"] = "my1234567";
+        wantParam['myData'] = 'my1234567';
         return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
     }
 }
@@ -339,8 +339,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     
   ```ts
   class MyMessageAble{ // Custom sequenceable data structure.
-    name:""
-    str:""
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
@@ -349,38 +349,36 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     marshalling(messageParcel) {
       messageParcel.writeInt(this.num);
       messageParcel.writeString(this.str);
-      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
     unmarshalling(messageParcel) {
       this.num = messageParcel.readInt();
       this.str = messageParcel.readString();
-      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
       return true;
     }
   };
-  var method = 'call_Function'; // Notification message string negotiated by the two abilities.
-  var caller;
+  let method = 'call_Function'; // Notification message string negotiated by the two abilities.
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble("msg", "world"); // See the definition of Sequenceable.
+        let msg = new MyMessageAble('msg', 'world'); // See the definition of Sequenceable.
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
           })
           .catch((callErr) => {
-            console.log('Caller.call catch error, error.code: ' + JSON.stringify(callErr.code) +
-              ' error.message: ' + JSON.stringify(callErr.message));
+            console.log('Caller.call catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -420,8 +418,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   ```ts
   class MyMessageAble{
-    name:""
-    str:""
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
@@ -430,40 +428,38 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     marshalling(messageParcel) {
       messageParcel.writeInt(this.num);
       messageParcel.writeString(this.str);
-      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
     unmarshalling(messageParcel) {
       this.num = messageParcel.readInt();
       this.str = messageParcel.readString();
-      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      console.log('MyMessageAble unmarshalling num[${this.num] str[${this.str}]');
       return true;
     }
   };
-  var method = 'call_Function';
-  var caller;
+  let method = 'call_Function';
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, "world");
+        let msg = new MyMessageAble(1, 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, "");
+            let retmsg = new MyMessageAble(0, '');
             data.readSequenceable(retmsg);
           })
           .catch((callErr) => {
-            console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
-              ' error.message: ' + JSON.stringify(callErr.message));
+            console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -490,24 +486,22 @@ Releases the caller interface of the target ability.
 **Example**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
-            ' error.message: ' + JSON.stringify(releaseErr.message));
+          console.log('Caller.release catch error, error.code: ${JSON.stringify(releaseErr.code)}, error.message: ${JSON.stringify(releaseErr.message)}');
         }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -525,31 +519,29 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used for the **onRelease** API.|
+| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Example**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
             caller.onRelease((str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
+                console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.log('Caller.onRelease catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -557,7 +549,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 ## Caller.on
 
- on(type: "release", callback: OnReleaseCallback): void;
+ on(type: 'release', callback: OnReleaseCallback): void;
 
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
@@ -568,7 +560,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used for the **onRelease** API.|
+| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -581,31 +573,127 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
-            caller.on("release", (str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
+            caller.on('release', (str) => {
+                console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.log('Caller.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
   ```
 
+## Caller.off
+
+off(type: 'release', callback: OnReleaseCallback): void;
+
+Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is fixed at **release**.|
+| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+    
+  ```ts
+  let caller;
+  export default class MainUIAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
+      }).then((obj) => {
+          caller = obj;
+          try {
+            let onReleaseCallBack = (str) => {
+                console.log(' Caller OnRelease CallBack is called ${str}');
+            };
+            caller.on('release', onReleaseCallBack);
+            caller.off('release', onReleaseCallBack);
+          } catch (error) {
+            console.log('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+      });
+    }
+  }
+  ```
+
+## Caller.off
+
+off(type: 'release'): void;
+
+Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is fixed at **release**.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+    
+  ```ts
+  let caller;
+  export default class MainUIAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
+      }).then((obj) => {
+          caller = obj;
+          try {
+            let onReleaseCallBack = (str) => {
+                console.log(' Caller OnRelease CallBack is called ${str}');
+            };
+            caller.on('release', onReleaseCallBack);
+            caller.off('release');
+          } catch (error) {  
+            console.error('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          }
+      }).catch((err) => {
+        console.error('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+      });
+    }
+  }
+  ```
 
 ## Callee
 
@@ -638,8 +726,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   ```ts
   class MyMessageAble{
-      name:""
-      str:""
+      name:''
+      str:''
       num: 1
       constructor(name, str) {
         this.name = name;
@@ -648,22 +736,22 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
           messageParcel.writeString(this.str);
-          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+          console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
           return true;
       }
       unmarshalling(messageParcel) {
           this.num = messageParcel.readInt();
           this.str = messageParcel.readString();
-          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+          console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
           return true;
       }
   };
-  var method = 'call_Function';
+  let method = 'call_Function';
   function funcCallBack(pdata) {
-      console.log('Callee funcCallBack is called ' + pdata);
-      let msg = new MyMessageAble("test", "");
+      console.log('Callee funcCallBack is called ${pdata}');
+      let msg = new MyMessageAble('test', '');
       pdata.readSequenceable(msg);
-      return new MyMessageAble("test1", "Callee test");
+      return new MyMessageAble('test1', 'Callee test');
   }
   export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -671,8 +759,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
     }
   }
@@ -704,15 +791,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
   ```ts
-  var method = 'call_Function';
+  let method = 'call_Function';
   export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
     }
   }

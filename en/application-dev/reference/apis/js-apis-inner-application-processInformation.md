@@ -28,5 +28,3 @@ appManager.getRunningProcessInformation((error, data) => {
 | uid | number | Yes| No| User ID.|
 | processName | string | Yes| No| Process name.|
 | bundleNames | Array&lt;string&gt; | Yes| No| Names of all running bundles in the process.|
-
- <!--no_check--> 
