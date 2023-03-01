@@ -146,6 +146,8 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 获取网络的全局代理配置信息，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -175,6 +177,8 @@ connection.getGlobalHttpProxy((error,data) => {
 getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 获取网络的全局代理配置信息，使用Promise方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -207,6 +211,8 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 
 设置网络全局Http代理配置信息，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -231,12 +237,12 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let ExclusionList=""
-let array = ExclusionList.split(',');
+let exclusionStr="192.168,baidu.com"
+let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
-   host: "host",
-   port: 1,
-   parsedExclusionList: array
+    host: "192.168.xx.xxx",
+    port: 8080,
+    exclusionList: exclusionArray
 }
 connection.setGlobalHttpProxy(httpProxy, (error, data) => {
    console.info(JSON.stringify(error));
@@ -249,6 +255,8 @@ connection.setGlobalHttpProxy(httpProxy, (error, data) => {
 setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 
 设置网络全局Http代理配置信息，使用Promise方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
@@ -279,12 +287,12 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 **示例：**
 
 ```js
-let ExclusionList=""
-let array = ExclusionList.split(',');
+let exclusionStr="192.168,baidu.com"
+let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
-    host: "host",
-    port: 1,
-    parsedExclusionList: array
+    host: "192.168.xx.xxx",
+    port: 8080,
+    exclusionList: exclusionArray
 }
 connection.setGlobalHttpProxy(httpProxy).then((error, data) => {
    console.info(JSON.stringify(data));
@@ -317,10 +325,10 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```js
-connection.getAppNet(function(error, data)) {
+connection.getAppNet(function(error, data) {
    console.log(JSON.stringify(error))
    console.log(JSON.stringify(data))
-}
+})
 ```
 
 ## connection.getAppNet<sup>9+</sup>
@@ -799,6 +807,8 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 **系统接口**：此接口为系统接口。
 
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -829,6 +839,8 @@ enableAirplaneMode(): Promise\<void>
 开启飞行模式，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -861,6 +873,8 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 **系统接口**：此接口为系统接口。
 
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -891,6 +905,8 @@ disableAirplaneMode(): Promise\<void>
 关闭飞行模式，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1807,7 +1823,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | BEARER_WIFI     | 1    | Wi-Fi网络。 |
 | BEARER_ETHERNET | 3 | 以太网网络。 |
 
-## HttpProxy
+## HttpProxy<sup>10+</sup>
 
 网络全局代理配置信息
 
@@ -1817,7 +1833,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | ------ | ------ | --- |------------------------- |
 | host  | string | 否  |  代理服务器主机名。 |
 | port  | number | 否  |  主机端口。 |
-| parsedExclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表。 |
+| exclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表。 |
 
 ## NetSpecifier
 

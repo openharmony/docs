@@ -57,7 +57,7 @@ ethernet.setIfaceConfig("eth0", {
     domain: "2.2.2.2"
 }, (error) => {
     if (error) {
-        console.log("setIfaceConfig callback error = " + error);
+        console.log("setIfaceConfig callback error = " + JSON.stringify(error));
     } else {
         console.log("setIfaceConfig callback ok ");
     }
@@ -116,7 +116,7 @@ ethernet.setIfaceConfig("eth0", {
 }).then(() => {
     console.log("setIfaceConfig promiss ok ");
 }).catch(error => {
-    console.log("setIfaceConfig promiss error = " + error);
+    console.log("setIfaceConfig promiss error = " + JSON.stringify(error));
 });
 ```
 
@@ -155,15 +155,15 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 ```js
 ethernet.getIfaceConfig("eth0", (error, value) => {
     if (error) {
-        console.log("getIfaceConfig  callback error = " + error);
+        console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
     } else {
-        console.log("getIfaceConfig callback mode = " + value.mode);
-        console.log("getIfaceConfig callback ipAddr = " + value.ipAddr);
-        console.log("getIfaceConfig callback route = " + value.route);
-        console.log("getIfaceConfig callback gateway = " + value.gateway);
-        console.log("getIfaceConfig callback netMask = " + value.netMask);
-        console.log("getIfaceConfig callback dnsServers = " + value.dnsServers);
-        console.log("getIfaceConfig callback domain = " + value.domain);
+        console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
+        console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
+        console.log("getIfaceConfig callback route = " + JSON.stringify(value.route));
+        console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
+        console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
+        console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
+        console.log("getIfaceConfig callback domain = " + JSON.stringify(value.domain));
     }
 });
 ```
@@ -207,15 +207,15 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 ```js
 ethernet.getIfaceConfig("eth0").then((data) => {
-    console.log("getIfaceConfig promiss mode = " + data.mode);
-    console.log("getIfaceConfig promiss ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig promiss route = " + data.route);
-    console.log("getIfaceConfig promiss gateway = " + data.gateway);
-    console.log("getIfaceConfig promiss netMask = " + data.netMask);
-    console.log("getIfaceConfig promiss dnsServers = " + data.dnsServers);
-    console.log("getIfaceConfig promiss domain = " + data.domain);
+    console.log("getIfaceConfig promiss mode = " + JSON.stringify(data.mode));
+    console.log("getIfaceConfig promiss ipAddr = " + JSON.stringify(data.ipAddr));
+    console.log("getIfaceConfig promiss route = " + JSON.stringify(data.route));
+    console.log("getIfaceConfig promiss gateway = " + JSON.stringify(data.gateway));
+    console.log("getIfaceConfig promiss netMask = " + JSON.stringify(data.netMask));
+    console.log("getIfaceConfig promiss dnsServers = " + JSON.stringify(data.dnsServers));
+    console.log("getIfaceConfig promiss domain = " + JSON.stringify(data.domain));
 }).catch(error => {
-    console.log("getIfaceConfig promiss error = " + error);
+    console.log("getIfaceConfig promiss error = " + JSON.stringify(error));
 });
 ```
 
@@ -254,9 +254,9 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 ```js
 ethernet.isIfaceActive("eth0", (error, value) => {
     if (error) {
-        console.log("whether2Activate callback error = " + error);
+        console.log("whether2Activate callback error = " + JSON.stringify(error));
     } else {
-        console.log("whether2Activate callback = " + value);
+        console.log("whether2Activate callback = " + JSON.stringify(value));
     }
 });
 ```
@@ -300,9 +300,9 @@ isIfaceActive(iface: string): Promise\<number>
 
 ```js
 ethernet.isIfaceActive("eth0").then((data) => {
-    console.log("isIfaceActive promiss = " + data);
+    console.log("isIfaceActive promiss = " + JSON.stringify(data));
 }).catch(error => {
-    console.log("isIfaceActive promiss error = " + error);
+    console.log("isIfaceActive promiss error = " + JSON.stringify(error));
 });
 ```
 
@@ -337,11 +337,11 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 ```js
 ethernet.getAllActiveIfaces((error, value) => {
     if (error) {
-        console.log("getAllActiveIfaces callback error = " + error);
+        console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
     } else {
-        console.log("getAllActiveIfaces callback value.length = " + value.length);
+        console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
         for (let i = 0; i < value.length; i++) {
-            console.log("getAllActiveIfaces callback = " + value[i]);
+            console.log("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
         }
     }
 });
@@ -377,12 +377,12 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 
 ```js
 ethernet.getAllActiveIfaces().then((data) => {
-    console.log("getAllActiveIfaces promiss data.length = " + data.length);
+    console.log("getAllActiveIfaces promiss data.length = " + JSON.stringify(data.length));
     for (let i = 0; i < data.length; i++) {
-        console.log("getAllActiveIfaces promiss  = " + data[i]);
+        console.log("getAllActiveIfaces promiss  = " + JSON.stringify(data[i]));
     }
 }).catch(error => {
-    console.log("getAllActiveIfaces promiss error = " + error);
+    console.log("getAllActiveIfaces promiss error = " + JSON.stringify(error));
 });
 ```
 
