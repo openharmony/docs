@@ -26,7 +26,7 @@ This scenario is possible when an application contains multiple UIAbility compon
 
 Assume that your application has two UIAbility components: EntryAbility and FuncAbility, either in the same module or different modules. You are required to start FuncAbility from EntryAbility.
 
-1. In EntryAbility, call **startAbility()** to start UIAbility. The [want](../reference/apis/js-apis-app-ability-want.md) parameter is the entry parameter for starting the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module; **parameters** is used to carry custom information. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start UIAbility. The [want](../reference/apis/js-apis-app-ability-want.md) parameter is the entry parameter for starting the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module; **parameters** is used to carry custom information. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
    
    ```ts
    let wantInfo = {
@@ -62,21 +62,27 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    }
    ```
 
-3. To stop the **UIAbility** instance after the FuncAbility service is complete, call **terminateSelf()** in FuncAbility.
+3. To stop the **UIAbility** instance after the FuncAbility service is complete, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) in FuncAbility.
    
    ```ts
-   // context is the ability context of the UIAbility instance to stop.
+   // context is the ability-level context of the UIAbility instance to stop.
    this.context.terminateSelf((err) => {
        // ...
    });
    ```
+   
+   > **NOTE**
+   >
+   > When [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
+   
+4. To stop all UIAbility instances of the application, call [killProcessBySelf()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses9) of [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) to stop all processes of the application.
 
 
 ## Starting UIAbility in the Same Application and Obtaining the Return Result
 
 When starting FuncAbility from EntryAbility, you want the result to be returned after the FuncAbility service is finished. For example, your application uses two independent UIAbility components to carry the entry and sign-in functionalities. After the sign-in operation is finished in the sign-in UIAbility, the sign-in result needs to be returned to the entry UIAbility.
 
-1. In EntryAbility, call **startAbilityForResult()** to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
    
    ```ts
    let wantInfo = {
@@ -96,7 +102,7 @@ When starting FuncAbility from EntryAbility, you want the result to be returned 
    })
    ```
 
-2. Call **terminateSelfWithResult()** to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
+2. Call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -111,13 +117,13 @@ When starting FuncAbility from EntryAbility, you want the result to be returned 
            },
        },
    }
-   // context is the ability context of the callee UIAbility.
+   // context is the ability-level context of the callee UIAbility.
    this.context.terminateSelfWithResult(abilityResult, (err) => {
        // ...
    });
    ```
 
-3. After FuncAbility stops itself, EntryAbility uses the **startAbilityForResult()** method to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as the preceding value.
+3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as the preceding value.
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -145,11 +151,11 @@ There are two ways to start **UIAbility**: [explicit and implicit](want-overview
 
 - Explicit Want launch: This mode is used to start a determined UIAbility component of an application. You need to set **bundleName** and **abilityName** of the target application in the **want** parameter.
 
-- Implicit Want launch: The user selects a UIAbility to start based on the matching conditions. That is, the UIAbility to start is not determined (the **abilityName** parameter is not specified). When the **startAbility()** method is called, the **want** parameter specifies a series of parameters such as [entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity) and [actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction). **entities** provides additional type information of the target UIAbility, such as the browser or video player. **actions** specifies the common operations to perform, such as viewing, sharing, and application details. Then the system analyzes the **want** parameter to find the right UIAbility to start. You usually do not know whether the target application is installed and what **bundleName** and **abilityName** of the target application are. Therefore, implicit Want launch is usually used to start the UIAbility of another application.
+- Implicit Want launch: The user selects a UIAbility to start based on the matching conditions. That is, the UIAbility to start is not determined (the **abilityName** parameter is not specified). When [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the want parameter specifies a series of parameters such as **entities** and **actions**. **entities** provides category information of the target UIAbility, such as the browser or video player. **actions** specifies the common operations to perform, such as viewing, sharing, and application details. Then the system analyzes the **want** parameter to find the right UIAbility to start. You usually do not know whether the target application is installed and what **bundleName** and **abilityName** of the target application are. Therefore, implicit Want launch is usually used to start the UIAbility of another application.
 
 This section describes how to start the UIAbility of another application through implicit Want.
 
-1. Install multiple document applications on your device. In the **module.json5** file of each UIAbility component, configure [entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity) and [actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction) under **skills**.
+1. Install multiple document applications on your device. In the [module.json5 file](../quick-start/module-configuration-file.md) of each UIAbility component, configure **entities** and **actions** under **skills**.
    
    ```json
    {
@@ -196,13 +202,13 @@ This section describes how to start the UIAbility of another application through
    ```
 
    The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select.
-   
+
    ![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)
    
-3. To stop the **UIAbility** instance after the document application is used, call **terminateSelf()**.
+3. To stop the **UIAbility** instance after the document application is used, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
    
    ```ts
-   // context is the ability context of the UIAbility instance to stop.
+   // context is the ability-level context of the UIAbility instance to stop.
    this.context.terminateSelf((err) => {
        // ...
    });
@@ -211,9 +217,9 @@ This section describes how to start the UIAbility of another application through
 
 ## Starting UIAbility of Another Application and Obtaining the Return Result
 
-If you want to obtain the return result when using implicit Want to start the UIAbility of another application, use the **startAbilityForResult()** method. An example scenario is that the main application needs to start a third-party payment application and obtain the payment result.
+If you want to obtain the return result when using implicit Want to start the UIAbility of another application, use [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult). An example scenario is that the main application needs to start a third-party payment application and obtain the payment result.
 
-1. In the **module.json5** file of the UIAbility corresponding to the payment application, set [entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity) and [actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction) under **skills**.
+1. In the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility corresponding to the payment application, set **entities** and **actions** under **skills**.
    
    ```json
    {
@@ -239,7 +245,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    }
    ```
 
-2. Call the **startAbilityForResult()** method to start the UIAbility of the payment application. Include **entities** and **actions** of the caller's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the caller after the payment UIAbility stops itself. After the system matches the UIAbility that meets the **entities** and **actions** information, a dialog box is displayed, showing the list of matched UIAbility instances for users to select.
+2. Call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start the UIAbility of the payment application. Include **entities** and **actions** of the caller's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the caller after the payment UIAbility stops itself. After the system matches the UIAbility that meets the **entities** and **actions** information, a dialog box is displayed, showing the list of matched UIAbility instances for users to select.
    
    ```ts
    let wantInfo = {
@@ -259,7 +265,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    })
    ```
 
-3. After the payment is finished, call the **terminateSelfWithResult()** method to stop the payment UIAbility and return the **abilityResult** parameter.
+3. After the payment is finished, call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop the payment UIAbility and return the **abilityResult** parameter.
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -274,13 +280,13 @@ If you want to obtain the return result when using implicit Want to start the UI
            },
        },
    }
-   // context is the ability context of the callee UIAbility.
+   // context is the ability-level context of the callee UIAbility.
    this.context.terminateSelfWithResult(abilityResult, (err) => {
        // ...
    });
    ```
 
-4. Receive the information returned by the payment application in the callback of the **startAbilityForResult()** method. The value of **RESULT_CODE** must be the same as that returned by **terminateSelfWithResult()**.
+4. Receive the information returned by the payment application in the callback of the [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) method. The value of **RESULT_CODE** must be the same as that returned by [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -443,7 +449,7 @@ Ability call is usually used in the following scenarios:
 
 The following figure shows the ability call process.
 
-**Figure 1** Ability call process 
+Figure 1 Ability call process
 
 ![call](figures/call.png)
 
@@ -490,24 +496,23 @@ For the callee ability, implement the callback to receive data and the methods t
    
    Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
 
-| JSON Field| Description|
-| -------- | -------- |
-| "launchType" | Ability launch type. Set this parameter to **singleton**.|
+   | JSON Field| Description|
+   | -------- | -------- |
+   | "launchType" | Ability launch type. Set this parameter to **singleton**.|
 
-An example of the ability configuration is as follows:
+   An example of the ability configuration is as follows:
 
-
-   ```json
-   "abilities":[{
-     "name": ".CalleeAbility",
-     "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
-     "launchType": "singleton",
-     "description": "$string:CalleeAbility_desc",
-     "icon": "$media:icon",
-     "label": "$string:CalleeAbility_label",
-     "visible": true
-   }]
-   ```
+      ```json
+      "abilities":[{
+        "name": ".CalleeAbility",
+        "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+        "launchType": "singleton",
+        "description": "$string:CalleeAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:CalleeAbility_label",
+        "visible": true
+      }]
+      ```
 
 2. Import the **UIAbility** module.
 
@@ -518,7 +523,6 @@ An example of the ability configuration is as follows:
 3. Define the agreed sequenceable data.
 
    The data formats sent and received by the caller and callee abilities must be consistent. In the following example, the data formats are number and string.
-
 
    ```ts
    export default class MySequenceable {
@@ -547,7 +551,6 @@ An example of the ability configuration is as follows:
 4. Implement **Callee.on** and **Callee.off**.
 
    The time to register a listener for the callee ability depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-
 
    ```ts
    const TAG: string = '[CalleeAbility]';
@@ -597,7 +600,6 @@ An example of the ability configuration is as follows:
 2. Obtain the caller interface.
    
    The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
-
 
    ```ts
    // Register the onRelease() listener of the caller ability.
