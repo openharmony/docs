@@ -920,10 +920,12 @@
           - [continuationResult](reference/apis/js-apis-continuation-continuationResult.md)
     - 公共事件与通知
       - [@ohos.commonEventManager (公共事件模块)](reference/apis/js-apis-commonEventManager.md)
+      - [commonEvent-definitions (系统公共事件定义)(推荐)](reference/apis/commonEventManager-definitions.md)
       - [@ohos.events.emitter (Emitter)](reference/apis/js-apis-emitter.md)
       - [@ohos.notificationManager (NotificationManager模块)(推荐)](reference/apis/js-apis-notificationManager.md)
       - [@ohos.notificationSubscribe (NotificationSubscribe模块)(推荐)](reference/apis/js-apis-notificationSubscribe.md)
       - [@ohos.commonEvent (公共事件模块)(待停用)](reference/apis/js-apis-commonEvent.md)
+      - [commonEvent-definitions (系统公共事件定义)(待停用)](reference/apis/commonEvent-definitions.md)
       - [@ohos.notification (Notification模块)(待停用)](reference/apis/js-apis-notification.md)
       - application
         - [EventHub](reference/apis/js-apis-inner-application-eventHub.md)
