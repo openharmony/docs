@@ -30,6 +30,7 @@ Radio(options: {value: string, group: string})
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | checked | boolean | 设置单选框的选中状态。<br/>默认值：false |
+| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle对象说明) | 设置单选框选中状态和非选中状态的样式。 |
 
 ## 事件
 
@@ -39,6 +40,13 @@ Radio(options: {value: string, group: string})
 | -------- | -------- |
 | onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 |
 
+## RadioStyle对象说明
+
+| 名称                   | 类型                                       | 必填 | 默认值  | 描述                   |
+| ---------------------- | ------------------------------------------ | ---- | ------- | ---------------------- |
+| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | #007DFF | 开启状态底板颜色。     |
+| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | #182431 | 关闭状态描边颜色。     |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | #FFFFFF | 开启状态内部圆饼颜色。 |
 
 ## 示例
 
