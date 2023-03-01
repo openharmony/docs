@@ -177,7 +177,7 @@ dataShareHelper.on("dataChange", uri, onCallback);
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
-取消订阅指定URI对应的数据资源的变更通知。使用callback异步回调。
+取消订阅指定URI下指定callback对应的数据资源的变更通知。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -187,18 +187,19 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当取消订阅指定URI对应的数据资源的变更通知成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
 
 **示例：**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-function offCallback() {
-    console.info("**** Observer off callback ****");
+function callback() {
+    console.info("**** Observer callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.off("dataChange", uri, offCallback);
+dataShareHelper.on("dataChange", uri, callback);
+dataShareHelper.off("dataChange", uri, callback);
 ```
 
 ### insert
