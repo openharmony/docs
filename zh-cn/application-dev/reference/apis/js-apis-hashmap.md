@@ -374,7 +374,7 @@ let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
 hashMap.set("dfsghsf", 357);
 hashMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

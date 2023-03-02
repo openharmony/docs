@@ -1,13 +1,14 @@
 # 线性容器Vector
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 Vector是一种线性数据结构，底层基于数组实现。当Vector的内存用尽时，会自动分配更大的连续内存区，将原先的元素复制到新的内存区，并释放旧的内存区。使用Vector能够高效快速地访问元素。
 
 Vector和[ArrayList](js-apis-arraylist.md)相似，都是基于数组实现，但Vector提供了更多操作数组的接口。它们都可以动态调整容量，但Vector每次扩容增加1倍，ArrayList只扩容0.5倍。
 
 **推荐使用场景：** 当数据量大时，一般使用Vector来存取数据。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -247,7 +248,7 @@ remove(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
 
-**返回值：**
+**示例：**
 
 ```ts
 let vector = new Vector();
@@ -318,11 +319,9 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.replaceAllElements((value: number, index: number) => {
-  return value = 2 * value;
-});
-vector.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+vector.replaceAllElements((value) => {
+    // 用户操作逻辑根据实际场景进行添加。
+    return value;
 });
 ```
 
@@ -359,7 +358,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.forEach((value, index) => {
-  console.log("value:" + value, index)
+    console.log("value:" + value, "index:" + index);
 });
 
 ```
@@ -419,7 +418,7 @@ subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 | -------- | -------- |
 | Vector&lt;T&gt; | 返回Vector对象实例。 |
 
-**返回值：**
+**示例：**
 
 ```ts
 let vector = new Vector();
@@ -441,7 +440,7 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**返回值：**
+**示例：**
 
 ```ts
 let vector = new Vector();
@@ -636,18 +635,6 @@ copyToArray(array: Array&lt;T&gt;): void
 | -------- | -------- | -------- | -------- |
 | array | Array&lt;T&gt; | 是 | 指定数组。 |
 
-**示例：**
-
-```ts
-let vector = new Vector();
-vector.add(2);
-vector.add(4);
-vector.add(5);
-vector.add(4);
-let array = ["a", "b", "c", "d", "e", "f"];
-let result = vector.copyToArray(array);
-```
-
 ### getFirstElement
 
 getFirstElement(): T
@@ -840,17 +827,6 @@ set(index: number, element: T): T
   | 类型 | 说明 |
   | -------- | -------- |
   | T | 返回替换后的元素。 |
-
-**示例：**
-
-  ```ts
-  let vector = new Vector();
-  vector.add(2);
-  vector.add(4);
-  vector.add(5);
-  vector.add(4);
-  let result = vector.set(2, "A");
-  ```
 
 ### [Symbol.iterator]
 

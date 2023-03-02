@@ -393,7 +393,7 @@ let treeSet = new TreeSet();
 treeSet.add("sdfs");
 treeSet.add("dfsghsf");
 treeSet.forEach((value, key) => {
-  console.log("value:" + value, key)
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

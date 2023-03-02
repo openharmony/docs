@@ -490,7 +490,7 @@ let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
 treeMap.set("dfsghsf", 357);
 treeMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
