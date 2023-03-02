@@ -42,14 +42,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.log('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
@@ -75,14 +72,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.info('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
@@ -92,7 +86,7 @@ async function example() {
 
 ### 按指定顺序排列
 
-下面以查询图片并按文件添加日期降序排列为例。实际开发中可以设置升序（AESC）和降序（DESC）。
+下面以查询图片并按文件添加日期降序排列为例。实际开发中可以设置升序（ASC）和降序（DESC）。
 
 order： FileKey.DATE_ADDED，根据文件添加日期排序；并设置排列顺序为DESC降序。
 
@@ -108,14 +102,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.info('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
