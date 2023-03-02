@@ -15,6 +15,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 - [启动其他应用的UIAbility并获取返回结果](#启动其他应用的uiability并获取返回结果)
 
+- [启动UIAbility指定窗口模式（仅对系统应用开放）](#启动uiability指定窗口模式仅对系统应用开放)
+
 - [启动UIAbility的指定页面](#启动uiability的指定页面)
 
 - [通过Call调用实现UIAbility交互（仅对系统应用开放）](#通过call调用实现uiability交互仅对系统应用开放)
@@ -201,9 +203,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-   效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。
-
-   ![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)
+   效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。   
+   ![](figures/uiability-intra-device-interaction.png)
    
 3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
    
@@ -307,6 +308,55 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
+## 启动UIAbility指定窗口模式（仅对系统应用开放）
+
+当用户打开应用时，应用程序会以不同的窗口模式进行展示，即启动UIAbility的窗口模式。应用程序可以启动为全屏模式，悬浮窗模式或分屏模式。
+
+全屏模式是指应用程序启动后，占据整个屏幕，用户无法同时查看其他窗口或应用程序。全屏模式通常适用于那些要求用户专注于特定任务或界面的应用程序。
+
+悬浮窗模式是指应用程序启动后，以浮动窗口的形式显示在屏幕上，用户可以轻松切换到其他窗口或应用程序。悬浮窗通常适用于需要用户同时处理多个任务的应用程序。
+
+分屏模式允许用户在同一屏幕上同时运行两个应用程序，其中一个应用程序占据屏幕左侧/上侧的一部分，另一个应用程序占据右侧/下侧的一部分。分屏模式主要用于提高用户的多任务处理效率。
+
+使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过在入参中增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性来配置启动UIAbility的窗口模式。
+
+> **说明：**
+>
+> 1. 如果在使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，入参中未指定[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性，那么UIAbility将以系统默认的窗口展示形态启动。
+> 2. 为了确保启动的UIAbility展示形态能够被支持，需要在该UIAbility对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段确认启动的展示形态被支持。
+
+以下是具体的操作步骤，以悬浮窗模式为例，假设需要从EntryAbility的页面中启动FuncAbility：
+
+1. 在调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数。
+2. 在[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数中设置`windowMode`字段为`WINDOW_MODE_FLOATING`，表示启动的UIAbility将以悬浮窗的形式展示。
+
+示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
+
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let wantInfo = {
+  deviceId: '', // deviceId为空表示本设备
+  bundleName: 'com.example.myapplication',
+  abilityName: 'FuncAbility',
+  moduleName: 'module1', // moduleName非必选
+  parameters: { // 自定义信息
+    info: '来自EntryAbility Index页面',
+  },
+}
+let options = {
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+}
+// context为调用方UIAbility的UIAbilityContext
+this.context.startAbility(wantInfo, options).then(() => {
+  // ...
+}).catch((err) => {
+  // ...
+})
+```
+
+效果示意如下图所示。   
+![](figures/start-uiability-floating-window.png)
 
 ## 启动UIAbility的指定页面
 
