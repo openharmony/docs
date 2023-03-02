@@ -77,43 +77,48 @@ try {
 5. 设置鼠标光标样式为默认样式。
 
 ```js
+import pointer from '@ohos.multimodalInput.pointer';
 import window from '@ohos.window';
 
 // 1.开发者使能取色功能
 // 2.调用窗口实例获取对应的窗口id
-window.getTopWindow((error, windowClass) => {
-  windowClass.getProperties((error, data) => {
-    var windowId = data.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      // 3.设置鼠标光标样式为取色器样式
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
-        console.log(`Successfully set mouse pointer style`);
-      });
-    } catch (error) {
-      console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(message)}`);
-    }
-  });
+window.getLastWindow(this.context, (error, windowClass) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  var windowId = windowClass.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    // 3.设置鼠标光标样式为取色器样式
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
+      console.log(`Successfully set mouse pointer style`);
+    });
+  } catch (error) {
+    console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+  }
 });
 // 4.取色结束
-window.getTopWindow((error, windowClass) => {
-  windowClass.getProperties((error, data) => {
-    var windowId = data.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      // 5.设置鼠标光标样式为默认样式
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
-        console.log(`Successfully set mouse pointer style`);
-      });
-    } catch (error) {
-      console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(message)}`);
-    }
-  });
+window.getLastWindow(this.context, (error, windowClass) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  var windowId = windowClass.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    // 5.设置鼠标光标样式为默认样式
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
+      console.log(`Successfully set mouse pointer style`);
+    });
+  } catch (error) {
+    console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+  }
 });
 ```
