@@ -1,4 +1,4 @@
-# @ohos.notificationSubscribe
+# @ohos.notificationSubscribe (NotificationSubscribe)
 
 The **NotificationSubscribe** module provides APIs for notification subscription, notification unsubscription, subscription removal, and more. In general cases, only system applications can call these APIs.
 
@@ -36,6 +36,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -56,12 +58,12 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
-var info = {
+};
+let info = {
     bundleNames: ["bundleName1","bundleName2"]
-}
+};
 NotificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
 
@@ -88,6 +90,8 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -107,9 +111,9 @@ function subscribeCallback(err) {
 function onConsumeCallback(data) {
 	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
+};
 NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
@@ -136,6 +140,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -148,7 +154,7 @@ Subscribes to a notification with the subscription information specified. This A
 function onConsumeCallback(data) {
     console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 NotificationSubscribe.subscribe(subscriber).then(() => {
@@ -179,6 +185,8 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -198,9 +206,9 @@ function unsubscribeCallback(err) {
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
-}
+};
 NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
@@ -226,6 +234,8 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -238,7 +248,7 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 function onDisconnectCallback(data) {
 	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onDisconnect: onDisconnectCallback
 };
 NotificationSubscribe.unsubscribe(subscriber).then(() => {
@@ -271,6 +281,8 @@ Removes a notification for a specified application. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -289,14 +301,14 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+};
+let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
@@ -324,6 +336,8 @@ Removes a notification for a specified application. This API uses a promise to r
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -335,14 +349,14 @@ Removes a notification for a specified application. This API uses a promise to r
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+};
+let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
@@ -372,6 +386,8 @@ Removes a specified notification. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -382,7 +398,7 @@ Removes a specified notification. This API uses an asynchronous callback to retu
 **Example**
 
 ```js
-var hashCode = 'hashCode'
+let hashCode = 'hashCode';
 
 function removeCallback(err) {
     if (err) {
@@ -391,7 +407,7 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-var reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 NotificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
@@ -418,6 +434,8 @@ Removes a specified notification. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -428,8 +446,8 @@ Removes a specified notification. This API uses a promise to return the result.
 **Example**
 
 ```js
-var hashCode = 'hashCode'
-var reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let hashCode = 'hashCode';
+let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 NotificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
@@ -458,6 +476,8 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -475,9 +495,9 @@ function removeAllCallback(err) {
         console.info("removeAll success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 NotificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
@@ -502,6 +522,8 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -545,6 +567,8 @@ Removes all notifications for a specified application. This API uses a promise t
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -582,6 +606,8 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -600,7 +626,7 @@ function removeAllCallback(err) {
     }
 }
 
-var userId = 1
+let userId = 1;
 
 NotificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -625,6 +651,8 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -643,7 +671,7 @@ function removeAllCallback(err) {
     }
 }
 
-var userId = 1
+let userId = 1;
 
 NotificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -689,7 +717,7 @@ function onConsumeCallback(data) {
     console.info('===> onConsume callback req.id:' + req.id);
 };
 
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 
@@ -729,7 +757,7 @@ function onCancelCallback(data) {
     console.info('===> onCancel callback req.id:' + req.id);
 }
 
-var subscriber = {
+let subscriber = {
     onCancel: onCancelCallback
 };
 
@@ -767,7 +795,7 @@ function onUpdateCallback(map) {
     console.info('===> onUpdateCallback map:' + JSON.stringify(map));
 }
 
-var subscriber = {
+let subscriber = {
     onUpdate: onUpdateCallback
 };
 
@@ -799,7 +827,7 @@ function onConnectCallback() {
     console.info('===> onConnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback
 };
 
@@ -841,7 +869,7 @@ function onDisconnectCallback() {
     console.info('===> onDisconnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback,
     onDisconnect: onDisconnectCallback
 };
@@ -877,7 +905,7 @@ function onDestroyCallback() {
     console.info('===> onDestroy in test');
 }
 
-var subscriber = {
+let subscriber = {
     onDestroy: onDestroyCallback
 };
 
@@ -915,7 +943,7 @@ function onDoNotDisturbDateChangeCallback(mode) {
     console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
-var subscriber = {
+let subscriber = {
     onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 
@@ -956,7 +984,7 @@ function onEnabledNotificationChangedCallback(callbackData) {
     console.info("enable: ", callbackData.enable);
 };
 
-var subscriber = {
+let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 
@@ -1011,7 +1039,7 @@ NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## NotificationSorting
 
-Provides sorting information of activity notifications.
+Provides sorting information of active notifications.
 
 **System capability**: SystemCapability.Notification.Notification
 
