@@ -16,6 +16,10 @@
 | ohos.vibrator | startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | 根据指定振动效果和振动属性触发马达振动，使用Callback异步回调。 |
 | ohos.vibrator | stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | 按照指定模式停止马达的振动。                                 |
 | ohos.vibrator | stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | 按照指定模式停止马达的振动。                                 |
+| ohos.vibrator | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动。                                     |
+| ohos.vibrator | stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动。                                     |
+| ohos.vibrator | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。                             |
+| ohos.vibrator | isSupportEffect(effectId: string): Promise&lt;void&gt;       | 查询是否支持传入的参数effectId。                             |
 
 
 ## 开发步骤
@@ -63,6 +67,57 @@
    }
    ```
    
+4. 停止所有模式的马达振动。
+
+   ```js
+   import vibrator from '@ohos.vibrator';
+   try {
+       // 停止所有模式的马达振动
+       vibrator.stopVibration(function (error) {
+           if (error) {
+               console.log('error.code' + error.code + 'error.message' + error.message);
+               return;
+           }
+           console.log('Callback returned to indicate successful.');
+       })
+   } catch (error) {
+       console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+   }
+   ```
+
+5. 查询是否支持传入的参数effectId。
+
+   ```js
+   import vibrator from '@ohos.vibrator';
+   try {
+       // 查询是否支持'haptic.clock.timer'
+       vibrator.isSupportEffect('haptic.clock.timer', function (state) {
+           console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
+           if (state) {
+               try {
+       		    vibrator.startVibration({
+                   type: 'preset',
+                   effectId: 'haptic.clock.timer',
+                   count: 1,
+                   }, {
+                       usage: 'unknown'
+                   }, (error) => {
+                       if(error) {
+                           console.log('haptic.clock.timer vibrator error');
+                       } else {
+                           console.log('haptic.clock.timer vibrator success');
+                       }
+                   });
+               } catch (error) {
+                   console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+               }
+           }
+       })
+   } catch (error) {
+       console.error('exception in, error:' + JSON.stringify(error));
+   }
+   ```
+
    
 
 ## 相关实例

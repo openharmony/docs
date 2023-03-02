@@ -351,9 +351,9 @@ try {
                     usage: 'unknown'
                 }, (error) => {
                     if(error) {
-                        console.log('VibrateTest003 vibrator error');
+                        console.log('haptic.clock.timer vibrator error');
                     } else {
-                        console.log('VibrateTest003 vibrator success');
+                        console.log('haptic.clock.timer vibrator success');
                     }
                 });
             } catch (error) {
