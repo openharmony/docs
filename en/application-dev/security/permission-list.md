@@ -76,7 +76,7 @@ Allows an application to read telephony information.
 
 ## ohos.permission.REQUIRE_FORM
 
-Allows an application to obtain widgets.
+Allows an application to obtain the Ability Form.
 
 **Permission level**: system_basic
 
@@ -1144,6 +1144,8 @@ Allows an application to obtain the device location.
 
 **Enable via ACL**: TRUE
 
+**Application conditions**: The applications developed using the SDK earlier than API version 9 can directly apply for this permission. For the applications developed using the SDK of API version 9 or later, you need to apply for [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) before applying for this permission.
+
 ## ohos.permission.APPROXIMATELY_LOCATION
 
 Allows an application to obtain the approximate location information of a device.
@@ -1154,9 +1156,11 @@ Allows an application to obtain the approximate location information of a device
 
 **Enable via ACL**: FALSE
 
+**Application conditions**: Only applications developed using the SDK of API version 9 or later can apply for this permission.
+
 ## ohos.permission.MEDIA_LOCATION
 
-Allow an application to access geographical locations in the user's media file.
+Allows an application to access geographical locations in the user's media file.
 
 **Permission level**: normal
 
