@@ -899,15 +899,15 @@ requestCredential(requestInfo: string, callback: AsyncCallback<{registerInfo: st
     "userId" : "123"
   }
   try {
-    dmClass.requestCredential(credentialInfo, (data) => {
+    dmClass.requestCredentialRegisterInfo(credentialInfo, (data) => {
       if (data) {
-          console.info("requestCredential result:" + JSON.stringify(data));
+          console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
-          console.info.push("requestCredential result: data is null");
+          console.info.push("requestCredentialRegisterInfo result: data is null");
       }
     });
   } catch (err) {
-    console.error("requestCredential err:" + err.code + "," + err.message);
+    console.error("requestCredentialRegisterInfo err:" + err.code + "," + err.message);
   }
   ```
 
