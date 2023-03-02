@@ -78,7 +78,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     build() {
       Column() {
         //通过resource协议加载本地资源文件
-        Web({ src: "resource://rawfile/index.html"), controller: this.controller })
+        Web({ src: "resource://rawfile/index.html", controller: this.controller })
       }
     }
   }
