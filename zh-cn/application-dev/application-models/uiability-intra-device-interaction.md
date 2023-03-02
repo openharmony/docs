@@ -204,7 +204,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    ```
 
    效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。   
-   <img src="figures/uiability-intra-device-interaction.png" alt="uiability-intra-device-interaction" height="600" />
+   ![](figures/uiability-intra-device-interaction.png)
    
 3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
    
@@ -356,7 +356,7 @@ this.context.startAbility(wantInfo, options).then(() => {
 ```
 
 效果示意如下图所示。   
-<img src="figures/start-uiability-floating-window.png" alt="start-uiability-floating-window" height="600"  />
+![](figures/start-uiability-floating-window.png)
 
 ## 启动UIAbility的指定页面
 

@@ -67,7 +67,7 @@ function implicitStartAbility() {
 - `ability.picker.fileNames`和`ability.picker.fileSizes`是数组，两者一一对应。
 
 效果示意如下图所示。   
-<img src="figures/ability-startup-with-implicit-want2.png" alt="ability-startup-with-implicit-want2" height="600" />
+![](figures/ability-startup-with-implicit-want2.png)
 
 ## 被分享方
 
