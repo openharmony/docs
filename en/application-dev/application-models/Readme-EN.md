@@ -19,6 +19,7 @@
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [DataShareExtensionAbility](datashareextensionability.md)
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
+      - [StaticSubscriberExtensionAbility](static-subscriber-extension-ability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want
