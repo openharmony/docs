@@ -62,11 +62,11 @@ Allows an application to access the notification policy on the device.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information. 
+Allows an application to read telephony information.
 
 **Permission level**: system_basic
 
@@ -166,7 +166,7 @@ Allows an application to set the system time zone.
 
 ## ohos.permission.DOWNLOAD_SESSION_MANAGER
 
-Allows an application to manage the download sessions.
+Allows an application to manage download sessions.
 
 **Permission level**: system_core
 
@@ -672,7 +672,7 @@ Allows an application to access the system identity credential information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_USER_IDM
 
@@ -682,7 +682,7 @@ Allows an application to use the system identity credential management capabilit
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_BIOMETRIC
 
@@ -702,7 +702,7 @@ Allows an application to use the system identity authentication capability to au
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_PIN_AUTH
 
@@ -712,7 +712,7 @@ Allows a system application to call the PIN input APIs to present a password inp
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.GET_RUNNING_INFO
 
@@ -852,7 +852,7 @@ Allows an application to obtain all application account information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -872,7 +872,7 @@ Allows an application to access system event logging data.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -932,7 +932,7 @@ Allows an application to read NFC tag information.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.NFC_CARD_EMULATION
 
@@ -942,7 +942,7 @@ Allows an application to implement card emulation.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.PERMISSION_USED_STATS
 
@@ -1132,7 +1132,7 @@ Allows an application running in the background to obtain the device location.
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.LOCATION
 
@@ -1154,7 +1154,7 @@ Allows an application to obtain the approximate location information of a device
 
 **Authorization mode**: user_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 **Application conditions**: Only applications developed using the SDK of API version 9 or later can apply for this permission.
 
@@ -1276,7 +1276,7 @@ Allows networking between different devices.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_DLP_FILE
 
@@ -1386,7 +1386,7 @@ Allows an application to report risk data for security guard.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT
 
@@ -1406,7 +1406,7 @@ Allows an application to obtain detailed risk data.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.READ_ACCESSIBILITY_CONFIG
 
@@ -1416,7 +1416,7 @@ Allows an application to read the accessibility configuration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
@@ -1426,7 +1426,7 @@ Allows an application to set the accessibility configuration.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_CERT_MANAGER_INTERNAL
 
@@ -1436,7 +1436,7 @@ Allows an application to install, uninstall, enable, and disable certificates an
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1446,7 +1446,7 @@ Allows an application to manage private credentials and query certificate status
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.ACCESS_PUSH_SERVICE
 
@@ -1466,7 +1466,7 @@ Allows an application to subscribe to the startup broadcast.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MANAGE_CAMERA_CONFIG
 
@@ -1476,7 +1476,7 @@ Allows an application to enable or disable cameras globally.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.READ_WHOLE_CALENDAR
 
@@ -1526,7 +1526,7 @@ Allows an application to mount and unmount external cards.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -1536,7 +1536,7 @@ Allows an application to format external cards.
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: FALSE
 
 ## ohos.permission.STORAGE_MANAGER
 
