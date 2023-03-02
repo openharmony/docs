@@ -19,7 +19,7 @@
 | ohos.vibrator | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动。                                     |
 | ohos.vibrator | stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动。                                     |
 | ohos.vibrator | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。                             |
-| ohos.vibrator | isSupportEffect(effectId: string): Promise&lt;void&gt;       | 查询是否支持传入的参数effectId。                             |
+| ohos.vibrator | isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | 查询是否支持传入的参数effectId。                             |
 
 
 ## 开发步骤

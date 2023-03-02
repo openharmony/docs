@@ -368,7 +368,7 @@ try {
 
 ## vibrator.isSupportEffect<sup>10+</sup>
 
-isSupportEffect(effectId: string): Promise&lt;void&gt;
+isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 查询是否支持传入的参数effectId。
 
@@ -382,9 +382,9 @@ isSupportEffect(effectId: string): Promise&lt;void&gt;
 
 **返回值：** 
 
-| 类型                | 说明          |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise对象。 |
+| 类型                   | 说明                                                    |
+| ---------------------- | ------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。当返回true则支持该振动效果id，否则不支持。 |
 
 **示例：** 
 
