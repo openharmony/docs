@@ -874,9 +874,9 @@ setUserOperation(operateAction: number, params: string): void;
   }
   ```
 
-### requestCredential<sup>10+</sup>
+### requestCredentialRegisterInfo<sup>10+</sup>
 
-requestCredential(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
 
 获取凭据的注册信息。
 
