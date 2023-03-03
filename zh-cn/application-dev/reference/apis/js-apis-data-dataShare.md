@@ -49,7 +49,7 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
+| context  | [Context](js-apis-app-ability-uiAbility.md)        | 是   | 应用的上下文环境。                                           |
 | uri      | string                                                   | 是   | 指示要连接的服务端应用的路径。                               |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当创建DataShareHelper实例成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
@@ -94,7 +94,7 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 
 | 参数名  | 类型                                          | 必填 | 说明                           |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
-| context | [Context](js-apis-application-context.md#context) | 是   | 应用的上下文环境。             |
+| context | [Context](js-apis-app-ability-uiAbility.md) | 是   | 应用的上下文环境。             |
 | uri     | string                                            | 是   | 指示要连接的服务端应用的路径。 |
 
 **返回值：**
