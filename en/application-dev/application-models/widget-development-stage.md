@@ -100,7 +100,7 @@ The widget provider development based on the [stage model](stage-model-developme
 
 - [Configuring the Widget Configuration File](#configuring-the-widget-configuration-file): Configure the application configuration file **module.json5** and profile configuration file.
 
-- [Persistently Storing Widget Data](#persistently-storing-widget-data): Perform persistent management on widget information.
+- [Persistently Storing Widget Data](#persistently-storing-widget-data): This operation is a form of widget data exchange.
 
 - [Updating Widget Data](#updating-widget-data): Call **updateForm()** to update the information displayed on a widget.
 
@@ -597,3 +597,13 @@ The following is an example:
   };
   ```
 
+## Restrictions
+
+To minimize the abuse of **FormExtensionAbility** by third-party applications, the following APIs cannot be invoked in **FormExtensionAbility**:
+
+- @ohos.ability.particleAbility.d.ts
+- @ohos.backgroundTaskManager.d.ts
+- @ohos.resourceschedule.backgroundTaskManager.d.ts
+- @ohos.multimedia.camera.d.ts
+- @ohos.multimedia.audio.d.ts
+- @ohos.multimedia.media.d.ts
