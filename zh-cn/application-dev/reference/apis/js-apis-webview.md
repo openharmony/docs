@@ -245,7 +245,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setHttpDns
+### setHttpDns<sup>10+</sup>
 
 static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
@@ -4860,7 +4860,7 @@ struct WebComponent {
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
 
-## SecureDnsMode
+## SecureDnsMode<sup>10+</sup>
 
 Web組件使用HTTPDNS的模式。
 
@@ -4869,5 +4869,5 @@ Web組件使用HTTPDNS的模式。
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
 | Off           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
-| Automatic     | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至built-in DNS及系统DNS。|
+| Auto          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
 | SecureOnly    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
