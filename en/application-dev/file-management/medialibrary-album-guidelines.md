@@ -39,19 +39,19 @@ The following describes how to create an album named **myAlbum**.
 
 ```ts
 async function example() {
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    // myAlbum is the path for storing the new file and the name of the new album.
-    media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
-        if (fileAsset != undefined) {
-        console.info('createAlbum successfully, message = ' + fileAsset);
-        } else {
-        console.info('createAlbum failed, message = ' + err);
-        }
-    });
+  let mediaType = mediaLibrary.MediaType.IMAGE;
+  let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const path = await media.getPublicDirectory(DIR_IMAGE);
+  // myAlbum is the path for storing the new file and the name of the new album.
+  media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
+    if (fileAsset === undefined) {
+      console.error('createAlbum failed, message = ' + err);
+    } else {
+      console.info('createAlbum successfully, message = ' + JSON.stringify(fileAsset));
+    }
+  });
 }
 ```
 
@@ -75,20 +75,20 @@ The following describes how to rename the album **newAlbum**.
 
 ```ts
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    let album = albumList[0];
-    album.albumName = 'newAlbum';
-    // Void callback.
-    album.commitModify().then(function() {
-        console.info("albumRename successfully");
-    }).catch(function(err){
-        console.info("albumRename failed with error: " + err);
-    });
+  let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  let album = albumList[0];
+  album.albumName = 'newAlbum';
+  // Void callback.
+  album.commitModify().then(() => {
+    console.info("albumRename successfully");
+  }).catch((err) => {
+    console.error("albumRename failed with error: " + err);
+  });
 }
 ```
