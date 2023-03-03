@@ -2367,7 +2367,7 @@ on(type: 'captureStart', callback: AsyncCallback<number\>): void
 
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听。开始拍照即可触发该事件并返回对应结果。 |
+| type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听。每次拍照，底层开始曝光时触发该事件并返回。 |
 | callback | AsyncCallback<number\> | 是   | 使用callback的方式获取Capture ID。            |
 
 **示例：**
@@ -2390,7 +2390,7 @@ on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
 
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
-| type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。拍照图像获取成功时触发该事件发生并返回相应信息（captureId跟获取时间）。 |
+| type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。 |
 | callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | 是   | 回调函数，用于获取相关信息。该回调返回意味着可以再次下发拍照请求。             |
 
 **示例：**
