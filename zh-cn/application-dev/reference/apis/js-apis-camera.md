@@ -479,7 +479,7 @@ on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
 
 | 参数名     | 类型            | 必填 | 说明       |
 | -------- | -----------------| ---- | --------- |
-| type     | string           | 是   | 监听事件，固定为'cameraStatus'。cameraManager对象获取成功后可监听。对设备打开或者关闭会触发该事件并返回对应信息 |
+| type     | string           | 是   | 监听事件，固定为'cameraStatus'。cameraManager对象获取成功后可监听。目前只支持对设备打开或者关闭会触发该事件并返回对应信息 |
 | callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | 是   | 回调函数，用于获取镜头状态变化信息。 |                 |
 
 **示例：**
@@ -728,7 +728,7 @@ on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<BusinessErr
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如（设备不可用或者冲突等返回对应错误码） |
+| type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如（设备不可用或者冲突等返回对应错误信息） |
 | cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
 | callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)   |
 
@@ -2054,7 +2054,7 @@ on(type: 'frameStart', callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                                     |
 | -------- | -------------------- | ---- | --------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'frameStart'，previewOutput创建成功可监听。开始预览并有预览第一帧时触发该事件并返回 |
+| type     | string               | 是   | 监听事件，固定为'frameStart'，previewOutput创建成功可监听。底层第一次开始曝光时触发该事件并返回 |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明预览开始                     |
 
 **示例：**
@@ -2077,7 +2077,7 @@ on(type: 'frameEnd', callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'frameEnd'，previewOutput创建成功可监听。预览结束最后一帧时触发该事件并返回， |
+| type     | string               | 是   | 监听事件，固定为'frameEnd'，previewOutput创建成功可监听。预览完全结束最后一帧时触发该事件并返回， |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明预览结束                 |
 
 **示例：**
@@ -2100,7 +2100,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用（start（），release（））等接口发生错误时返回对应错误码。|
+| type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用（start（），release（））等接口发生错误时返回对应错误信息。|
 | callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
 
 **示例：**
@@ -2367,7 +2367,7 @@ on(type: 'captureStart', callback: AsyncCallback<number\>): void
 
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听。开始拍照即可触发该事件并返回对应结果 |
+| type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听。开始拍照即可触发该事件并返回对应结果。 |
 | callback | AsyncCallback<number\> | 是   | 使用callback的方式获取Capture ID。            |
 
 **示例：**
@@ -2414,7 +2414,7 @@ on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
 
 | 参数名     | 类型           | 必填 | 说明                                       |
 | -------- | --------------- | ---- | ---------------------------------------- |
-| type     | string          | 是   | 监听事件，固定为'captureEnd'，photoOutput创建成功后可监听。拍照结束可触发该事件发生并返回相应信息。 |
+| type     | string          | 是   | 监听事件，固定为'captureEnd'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
 | callback | AsyncCallback<[CaptureEndInfo](#captureendinfo)\> | 是   | 回调函数，用于获取相关信息。                  |
 
 **示例：**
@@ -2438,7 +2438,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
-| type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。拍照接口调用时出现错误触发该事件并返回错误码。 |
+| type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。拍照接口调用时出现错误触发该事件并返回错误信息。 |
 | callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)             |
 
 **示例：**
@@ -2638,7 +2638,7 @@ on(type: 'frameStart', callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ----------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'frameStart'，videoOutput创建成功后可监听。录像开始获取第一帧图像时触发该事件并返回。 |
+| type     | string               | 是   | 监听事件，固定为'frameStart'，videoOutput创建成功后可监听。底层第一次曝光时触发该事件并返回。 |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。  只要有该事件返回就证明录像开始                     |
 
 **示例：**
@@ -2661,7 +2661,7 @@ on(type: 'frameEnd', callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ------------------------------------------ |
-| type     | string               | 是   | 监听事件，固定为'frameEnd'，videoOutput创建成功后可监听。录像结束获取最后一帧图像时触发该事件并返回  。 |
+| type     | string               | 是   | 监听事件，固定为'frameEnd'，videoOutput创建成功后可监听。录像完全结束最后一帧时触发该事件并返回  。 |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 只要有该事件返回就证明录像结束                      |
 
 **示例：**
@@ -2684,7 +2684,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 | 参数名     | 类型       | 必填 | 说明                                    |
 | -------- | ----------- | ---- | -------------------------------------- |
-| type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。录像接口调用出现错误时触发该事件并返回对应错误码,比如调用（start(),release()）接口时出现错误返回对应错误码。 |
+| type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。录像接口调用出现错误时触发该事件并返回对应错误码,比如调用（start(),release()）接口时出现错误返回对应错误信息。 |
 | callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)                 |
 
 **示例：**
@@ -2834,7 +2834,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
-| type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。metadata接口使用错误时触发该事件并返回对应错误码，比如调用（start（），release（））接口时发生错误返回对应错误码。 |
+| type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。metadata接口使用错误时触发该事件并返回对应错误码，比如调用（start（），release（））接口时发生错误返回对应错误信息。 |
 | callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)            |
 
 **示例：**
