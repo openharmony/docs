@@ -1850,7 +1850,7 @@ on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
 
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。相机对焦状态发生改变时可触发该事件并返回当前状态 |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。仅当自动对焦模式时,且相机对焦状态发生改变时可触发该事件 |
 | callback | AsyncCallback<[FocusState](#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**
@@ -1873,7 +1873,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（beginConfig()，commitConfig()，addInput）等接口发生错误时返回对应错误码。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（beginConfig()，commitConfig()，addInput）等接口发生错误时返回错误信息。 |
 | callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)        |
 
 **示例：**
@@ -2391,7 +2391,7 @@ on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。拍照图像获取成功时触发该事件发生并返回相应信息（captureId跟获取时间）。 |
-| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | 是   | 回调函数，用于获取相关信息。             |
+| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | 是   | 回调函数，用于获取相关信息。该回调返回意味着可以再次下发拍照请求。             |
 
 **示例：**
 
