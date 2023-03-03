@@ -184,13 +184,6 @@ This version has the following updates to OpenHarmony 3.2 Beta3.
 | DFX | - HiTrace provides a unified dotting interface and call link interface.<br>- The power consumption data and system event data can be collected.<br>- Perf data can be collected during the startup of the JS HAP.<br>The following requirements are involved:<br>I5X4TY [New feature] Unified dotting interface of HiTrace: HiTraceMeter<br>I5X4U1 [New feature] Unified call link interface of HiTrace: HiTraceChain<br>I5X4TD [New feature] Power consumption data collection<br>I5X4TE [New feature] System event data collection<br>I5X4TL [New feature] Collection of perf data during JS HAP startup| NA |
 
 
-
-For details about the API changes, see the following:
-
-[API Differences](api-diff/v3.2-beta4/js-apidiff-ability.md)
-
-
-
 ### Chip and Development Board Adaptation
 
 For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
@@ -201,21 +194,13 @@ The following samples written in ArkTS are added.
 
   **Table 4** New samples
 
-| Subsystem<div style="width:100px"></div>| Name| Introduction|
+| Subsystem | Name| Introduction|
 | -------- | -------- | -------- |
-| Common event and notification subsystem| [Event Notification](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CustomEmitter)| This sample shows the in-process event notification. After a user selects an offering and submits an order, the selected offering is displayed in the order list.|
-| Data management subsystem| [Cross-Application Data Sharing](https://gitee.com/openharmony/applications_app_samples/tree/master/data/CrossAppDataShare)| This sample implements cross-application data sharing. It provides contacts (data provider) and contacts assistant (data user). Contacts support functionalities such as adding, deleting, modifying, and querying contacts data. Contacts assistant supports contacts data synchronization and merging of duplicate data.|
-| Multimedia subsystem| [Background Music Playback](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/PlayMusicBackground)| This sample implements the request for a continuous task to continue music playback in the background. It is based on the stage model.|
-| Resource scheduler subsystem| [Agent-Powered Scheduled Reminder](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/ReminderAgentManager)| This sample uses agent-powered scheduled reminder to create three types of scheduled reminders: alarm clocks, calendar events, and countdown timers. Agent-powered scheduled reminder ensures that the timing and pop-up notification functions will be performed by the system service agent in the background when the application is frozen or exits.|
-| File management subsystem| [Storage Space Statistics](https://gitee.com/openharmony/applications_app_samples/tree/master/FileManager/StorageStatistic)| This sample uses the application package management, application space statistics, and volume management modules to implement the viewing of storage space information of the current device, all installed applications, and all available volumes.|
-| Window manager| [Screenshot](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Screenshot)| This sample uses the screenshot, window, and display modules to take screenshots, switch the privacy window, and query the privacy window, in sequence.|
-| Bundle management framework| [Multi-HAP](https://gitee.com/openharmony/applications_app_samples/tree/master/bundle/MultiHap)| This sample shows the development of multi-HAP. The sample app includes one entry HAP and two feature HAPs. The two feature HAPs provide audio and video playback components, respectively. The two components are also used in the entry component.|
-| Ability framework| [Ability Launch Mode](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityStartMode)| This sample shows how to implement the standard, singleton, and specified ability launch modes in the stage model.|
-| Resource management| [Application Theme Switch](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ApplicationThemeSwitch)| This sample creates the **dark** and **light** folders at the same level as the **base** folder to configure resources related to the dark and light themes. The custom theme file is configured in the **ThemeConst** file to implement multi-theme switching by controlling variables.|
+| Common event and notification subsystem| [Emitter: Prcessing In-Process Events](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Notification/Emitter) | This sample shows the in-process event notification. After a user selects an offering and submits an order, the selected offering is displayed in the order list.|
+| Resource scheduler subsystem| [AlarmClock: Agent-Powered Scheduled Reminder](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Notification/AlarmClock)| This sample uses agent-powered scheduled reminder to create an alarm clock. Agent-powered scheduled reminder ensures that the timing and pop-up notification functions will be performed by the system service agent in the background when the application is frozen or exits. |
+| Window manager| [Window](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/Graphics/Window)| This sample shows how to create a window and display an app in a floating window or split-screen mode.|
 
-For more information, visit [Samples](https://gitee.com/openharmony/app_samples).
-
-
+For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).
 
 ## Resolved Issues
 
