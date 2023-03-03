@@ -287,7 +287,7 @@
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials  
-  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/samples_monthly_0730/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
   - Component Reference (eTS-based Declarative Development Paradigm)
