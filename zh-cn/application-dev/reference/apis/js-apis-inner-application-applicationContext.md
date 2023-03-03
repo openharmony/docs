@@ -298,7 +298,7 @@ let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error: ${JSON.stringify(error)}');
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -372,7 +372,9 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.killAllProcesses(err => {
-    console.error('killAllProcesses result: ${JSON.stringify(err)}');
+applicationContext.killAllProcesses(error => {
+    if (error && error.code !== 0) {
+        console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+    }
 });
 ```

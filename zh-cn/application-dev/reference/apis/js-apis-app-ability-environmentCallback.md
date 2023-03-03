@@ -73,7 +73,11 @@ export default class MyAbility extends UIAbility {
     onDestroy() {
         let applicationContext = globalThis.applicationContext;
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log('unregisterEnvironmentCallback success, err: ${JSON.stringify(error)}');
+            if (error && error.code !== 0) {
+                console.error('unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}');
+            } else {
+                console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
+            }
         });
     }
 }

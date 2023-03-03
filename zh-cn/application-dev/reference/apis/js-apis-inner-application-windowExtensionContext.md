@@ -58,7 +58,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
     this.context.startAbility(want, options, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -110,7 +110,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常

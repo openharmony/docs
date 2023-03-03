@@ -429,11 +429,11 @@ function onConnectCallback(element, remote) {
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+    console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
 }
 
 let connId = particleAbility.connectAbility(
@@ -449,9 +449,9 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(' data: ${data}');
+    console.log('data: ${data}');
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ${error.code}');
+    console.error('particleAbilityTest result errCode: ${error.code}');
 });
 ```
 
@@ -480,11 +480,11 @@ function onConnectCallback(element, remote) {
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+    console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
 }
 
 let connId = particleAbility.connectAbility(
@@ -500,7 +500,7 @@ let connId = particleAbility.connectAbility(
 );
 
 particleAbility.disconnectAbility(connId, (err) => {
-    console.log('particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
+    console.error('particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
 });
 ```
 
@@ -530,11 +530,11 @@ function onConnectCallback(element, remote) {
 }
 
 function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+    console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
 }
 
 function onFailedCallback(code) {
-    console.log('particleAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
 }
 
 let connId = particleAbility.connectAbility(
@@ -552,7 +552,7 @@ let connId = particleAbility.connectAbility(
 particleAbility.disconnectAbility(connId).then((data) => {
     console.log(' data: ${data}');
 }).catch((error) => {
-    console.log('particleAbilityTest result errCode : ${error.code}');
+    console.error('particleAbilityTest result errCode : ${error.code}');
 });
 
 ```

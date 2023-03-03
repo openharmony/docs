@@ -46,13 +46,13 @@ try {
   let formId = '12400633174999288';
   formHost.deleteForm(formId, (error) => {
   if (error) {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   } else {
     console.log('formHost deleteForm success');
   }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -96,10 +96,10 @@ try {
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -136,11 +136,11 @@ try {
   let formId = '12400633174999288';
   formHost.releaseForm(formId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -178,11 +178,11 @@ try {
   let formId = '12400633174999288';
   formHost.releaseForm(formId, true, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -226,10 +226,10 @@ try {
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -266,11 +266,11 @@ try {
   let formId = '12400633174999288';
   formHost.requestForm(formId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -313,10 +313,10 @@ try {
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 
 ```
@@ -354,11 +354,11 @@ try {
   let formId = '12400633174999288';
   formHost.castToNormalForm(formId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -401,10 +401,10 @@ try {
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -441,11 +441,11 @@ try {
   let formId = ['12400633174999288'];
   formHost.notifyVisibleForms(formId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -488,10 +488,10 @@ try {
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -528,11 +528,11 @@ try {
   let formId = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -575,10 +575,10 @@ try {
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -615,11 +615,11 @@ try {
   let formId = ['12400633174999288'];
   formHost.enableFormsUpdate(formId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -662,10 +662,10 @@ try {
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -702,11 +702,11 @@ try {
   let formId = ['12400633174999288'];
   formHost.disableFormsUpdate(formId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -749,10 +749,10 @@ try {
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -778,11 +778,11 @@ import formHost from '@ohos.app.form.formHost';
 try {
   formHost.isSystemReady((error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -809,10 +809,10 @@ try {
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -840,13 +840,13 @@ import formHost from '@ohos.app.form.formHost';
 try {
   formHost.getAllFormsInfo((error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
       console.log('formHost getAllFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -875,10 +875,10 @@ try {
   formHost.getAllFormsInfo().then((data) => {
     console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -914,13 +914,13 @@ import formHost from '@ohos.app.form.formHost';
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
       console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -957,13 +957,13 @@ import formHost from '@ohos.app.form.formHost';
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
       console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1006,10 +1006,10 @@ try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
     console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1039,13 +1039,13 @@ try {
   let formIds = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
       console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1081,10 +1081,10 @@ try {
   formHost.deleteInvalidForms(formIds).then((data) => {
     console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1130,13 +1130,13 @@ let want = {
 try {
   formHost.acquireFormState(want, (error, data) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
       console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1188,10 +1188,10 @@ try {
   formHost.acquireFormState(want).then((data) => {
     console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1281,11 +1281,11 @@ let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1329,10 +1329,10 @@ try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1370,11 +1370,11 @@ let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1418,10 +1418,10 @@ try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 ## shareForm
@@ -1459,11 +1459,11 @@ let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2
 try {
   formHost.shareForm(formId, deviceId, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1508,10 +1508,10 @@ try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1549,11 +1549,11 @@ let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true, (error) => {
     if (error) {
-      console.log(`error, code: ${error.code}, message: ${error.message}`);
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1595,10 +1595,10 @@ try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
   }).catch((error) => {
-    console.log(`error, code: ${error.code}, message: ${error.message}`);
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
 
