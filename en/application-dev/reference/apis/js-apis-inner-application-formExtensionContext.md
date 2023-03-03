@@ -22,8 +22,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let formContext = this.context; // Obtain a FormExtensionContext instance.
     // ...
     let dataObj1 = {
-      temperature: "11c",
-      "time": "11:00"
+      temperature: '11c',
+      'time': '11:00'
     };
     let obj1 = formBindingData.createFormBindingData(dataObj1);
     return obj1;
@@ -56,18 +56,18 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId, message) {
     // Call startAbility() when the message event is triggered.
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
+    console.log('FormExtensionAbility onFormEvent, formId: ${formId}, message:${message}');
     let want = {
-      deviceId: "",
-      bundleName: "com.example.formstartability",
-      abilityName: "EntryAbility",
+      deviceId: '',
+      bundleName: 'com.example.formstartability',
+      abilityName: 'EntryAbility',
       parameters: {
-        "message": message
+        'message': message
       }
     };
     this.context.startAbility(want, (error, data) => {
       if (error) {
-        console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
+        console.log('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -106,19 +106,19 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId, message) {
     // Call startAbility() when the message event is triggered.
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
+    console.log('FormExtensionAbility onFormEvent, formId:${formId}, message:${message}');
     let want = {
-      deviceId: "",
-      bundleName: "com.example.formstartability",
-      abilityName: "EntryAbility",
+      deviceId: '',
+      bundleName: 'com.example.formstartability',
+      abilityName: 'EntryAbility',
       parameters: {
-        "message": message
+        'message': message
       }
     };
     this.context.startAbility(want).then(() => {
-      console.info("StartAbility Success");
+      console.info('StartAbility Success');
     }).catch((error) => {
-      console.info("StartAbility failed");
+      console.info('StartAbility failed');
     });
   }
 };

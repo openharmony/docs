@@ -65,7 +65,7 @@ typedef struct {
 2.  Modify the JSON file configuration of the sandbox.
     - Go to the **/system/etc/sandbox/** directory, and run **cat system-sandbox.json** and **cat chipset-sandbox.json**. 
      If you are using a 64-bit system, run **cat system-sandbox64.json** and **cat chipset-sandbox64.json** instead.
-    - Modify the sandbox configuration files in the **base/startup/init_lite/interfaces/innerkits/sandbox** directory. After that, restart the system.
+    - Modify the sandbox configuration files in the **base/startup/init/interfaces/innerkits/sandbox** directory. After that, restart the system.
 
 ### Development Example
 Sandbox JSON File Configuration

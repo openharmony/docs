@@ -25,6 +25,8 @@
         - [多HAP使用规则](quick-start/multi-hap-rules.md)
         - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
       - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
+      - 共享包
+        - [HAR共享包](quick-start/har-package.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)

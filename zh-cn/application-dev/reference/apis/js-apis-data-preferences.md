@@ -58,6 +58,7 @@ try {
 	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 	        return;
 	    }
+	    preferences = val;
 	    console.info("Succeeded in getting preferences.");
 	})
 } catch (err) {
@@ -68,28 +69,25 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
+let preferences = null;
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.getPreferences(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                preferences = val;
+                console.info("Succeeded in getting preferences.");
+            })
+        } catch (err) {
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        }
     }
-}
-
-let preferences = null;
-try {
-    data_preferences.getPreferences(context, 'mystore', function (err, val) {
-	    if (err) {
-	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-	        return;
-	    }
-	    console.info("Succeeded in getting preferences.");
-	})
-} catch (err) {
-	console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -130,38 +128,34 @@ try {
         preferences = object;
         console.info("Succeeded in getting preferences.");
     }).catch((err) => {
-        console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
+let preferences = null;
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.getPreferences(this.context, 'mystore');
+            promise.then((object) => {
+                preferences = object;
+                console.info("Succeeded in getting preferences.");
+            }).catch((err) => {
+                console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        }
     }
-}
-
-let preferences = null;
-try {
-    let promise = data_preferences.getPreferences(context, 'mystore');
-    promise.then((object) => {
-        preferences = object;
-        console.info("Succeeded in getting preferences.");
-    }).catch((err) => {
-        console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -218,27 +212,22 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
-
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
-
-try {
-    data_preferences.deletePreferences(context, 'mystore', function (err, val) {
-        if (err) {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.deletePreferences(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Succeeded in deleting preferences." );
+            })
+        } catch (err) {
             console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-            return;
         }
-        console.info("Succeeded in deleting preferences." );
-    })
-} catch (err) {
-    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+    }
 }
 ```
 
@@ -299,26 +288,21 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
-
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
+    onWindowStageCreate(windowStage) {
+        try{
+            let promise = data_preferences.deletePreferences(this.context, 'mystore');
+            promise.then(() => {
+                console.info("Succeeded in deleting preferences.");
+            }).catch((err) => {
+                console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        }
     }
-}
-
-try{
-    let promise = data_preferences.deletePreferences(context, 'mystore');
-    promise.then(() => {
-        console.info("Succeeded in deleting preferences.");
-    }).catch((err) => {
-        console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -365,27 +349,22 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
-
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
-
-try {
-    data_preferences.removePreferencesFromCache(context, 'mystore', function (err, val) {
-        if (err) {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Succeeded in removing preferences.");
+            })
+        } catch (err) {
             console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-            return;
         }
-        console.info("Succeeded in removing preferences.");
-    })
-} catch (err) {
-    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+    }
 }
 
 ```
@@ -437,24 +416,21 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
-let context = null;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
 
-try {
-    let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
-	promise.then(() => {
-    	console.info("Succeeded in removing preferences.");
-    }).catch((err) => {
-        console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore');
+            promise.then(() => {
+                console.info("Succeeded in removing preferences.");
+            }).catch((err) => {
+                console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
 }
 ```
 
@@ -804,10 +780,10 @@ try {
 	promise.then(() => {
         console.info("Succeeded in deleting the key 'startup'.");
     }).catch((err) => {
-        console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+        console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+    console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
 }
 ```
 

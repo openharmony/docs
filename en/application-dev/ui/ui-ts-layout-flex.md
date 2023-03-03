@@ -356,7 +356,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // The it
 }.width('90%').height(220).backgroundColor(0xAFEEEE)
 ```
 
-![](figures/alignself.png)
+![alignself](figures/alignself.png)
 
 In the preceding example, both **alignItems** of the **\<Flex>** component and the **alignSelf** attribute of the child component are set. In this case, the **alignSelf** settings take effect.
 
@@ -452,7 +452,7 @@ Use the **alignContent** parameter to set how space is distributed between and a
 - **FlexAlign.SpaceEvenly**: The items are evenly distributed in the container along the cross axis. The spacing between each two adjacent items, the spacing between the start edge and the first item, and the spacing between the end edge and the last item, are the same.
 
     ```ts
-    Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceAround }) {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceEvenly }) {
       Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
       Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
       Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
@@ -496,7 +496,7 @@ When the size of the container in the flex layout is not large enough, the follo
   }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
   
-  ![](figures/flexbasis.png)
+  ![flexbasis](figures/flexbasis.png)
 
 - **flexGrow**: percentage of the flex layout's remaining space that is allocated to the child component. In other words, it is the grow factor of the child component.
 
@@ -508,7 +508,7 @@ When the size of the container in the flex layout is not large enough, the follo
       .height(100)
       .backgroundColor(0xF5DEB3)
     
-    Text('flexGrow(3)')
+    Text('flexGrow(2)')
       .flexGrow(2)
       .width(100)
       .height(100)
@@ -521,7 +521,7 @@ When the size of the container in the flex layout is not large enough, the follo
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
   
-  ![](figures/flexgrow.png)
+  ![flexgrow](figures/flexgrow.png)
 
 In the preceding figure, the width of the parent container is 400 vp, the original width of the three child components is 100 vp, which adds up to the total width of 300 vp. The remaining space 100 vp is allocated to the child components based on their **flexGrow** settings. Child components that do not have **flexGrow** set are not involved in the allocation of remaining space.
 The first child component and the second child component receive their share of remaining space at the 2:3 ratio. The width of the first child component is 100 vp + 100 vp x 2/5 = 140 vp, and the width of the second child component is 100 vp + 100 vp x 3/5 = 160 vp.
@@ -549,7 +549,7 @@ The first child component and the second child component receive their share of 
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE) 
   ```
   
-  ![](figures/flexshrink.png)
+  ![flexshrink](figures/flexshrink.png)
 
 ## Example Scenario
 

@@ -1,6 +1,6 @@
 # AbilityStageContext
 
-The **AbilityStageContext** module, inherited from [Context](js-apis-application-context.md), implements the context of an ability stage.
+The **AbilityStageContext** module, inherited from [Context](js-apis-inner-application-context.md), implements the context of an ability stage.
 
 This module provides APIs for accessing a specific ability stage. You can use the APIs to obtain the **ModuleInfo** object and environment configuration of an ability stage.
 
@@ -29,5 +29,5 @@ class MyAbilityStage extends AbilityStage {
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | HapModuleInfo | Yes| No| **ModuleInfo** object corresponding to the **AbilityStage**.|
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| **ModuleInfo** object corresponding to the **AbilityStage**.|
 | config | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| Configuration for the environment where the application is running.|

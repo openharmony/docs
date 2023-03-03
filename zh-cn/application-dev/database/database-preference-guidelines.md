@@ -114,21 +114,19 @@
    ```ts
    // 获取context
    import UIAbility from '@ohos.app.ability.UIAbility';
-   let context = null;
    let preferences = null;
    export default class EntryAbility extends UIAbility {
-       onWindowStageCreate(windowStage){
-           context = this.context;
+       onWindowStageCreate(windowStage) {
+           let promise = data_preferences.getPreferences(this.context, 'mystore');
+            promise.then((pref) => {
+                preferences = pref;
+            }).catch((err) => {
+                console.info("Failed to get preferences.");
+            })
        }
    }
    
-   let promise = data_preferences.getPreferences(context, 'mystore');
    
-   promise.then((pref) => {
-       preferences = pref;
-   }).catch((err) => {
-       console.info("Failed to get preferences.");
-   })
    ```
 
 3. 存入数据。

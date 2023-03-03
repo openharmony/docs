@@ -19,28 +19,27 @@ Called when the mission continuation is complete.
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
 
   let continueDeviceInfo = {
-      srcDeviceId: "123",
-      dstDeviceId: "456",
+      srcDeviceId: '123',
+      dstDeviceId: '456',
       missionId: 123,
       wantParam: {
-          "key":"value"
+          'key':'value'
       }
   };
 
   let continueCallback = {
       onContinueDone(result) {
-          console.log('onContinueDone, result: ' + JSON.stringify(result));
+          console.log('onContinueDone, result: ${JSON.stringify(result)}');
       }
   };
 
   distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
       if (error && error.code) {
-          console.log('continueMission failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+          console.log('continueMission failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
       console.log('continueMission finished');
-  })
+  });
   ```

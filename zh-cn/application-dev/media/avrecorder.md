@@ -69,14 +69,14 @@ export class AVRecorderDemo {
     let surfaceID; // 从getInputSurface获取surfaceID，传递给相机的videoOutput
     await this.getFd('01.mp4');
 
-    // 音视频录制相关参数配置
+    // 音视频录制相关参数配置，配置参数以实际硬件设备支持的范围为准
     let avProfile = {
         audioBitrate : 48000,
         audioChannels : 2,
         audioCodec : media.CodecMimeType.AUDIO_AAC,
         audioSampleRate : 48000,
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-        videoBitrate : 48000,
+        videoBitrate : 2000000,
         videoCodec : media.CodecMimeType.VIDEO_MPEG4,
         videoFrameWidth : 640,
         videoFrameHeight : 480,
@@ -365,10 +365,10 @@ export class VideoRecorderDemo {
     let surfaceID; // 从getInputSurface获取surfaceID，传递给相机的videoOutput
     await this.getFd('01.mp4');
 
-    // 纯视频录制相关参数配置
+    // 纯视频录制相关参数配置，配置参数以实际硬件设备支持的范围为准
     let videoProfile = {
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-        videoBitrate : 48000,
+        videoBitrate : 2000000,
         videoCodec : media.CodecMimeType.VIDEO_MPEG4,
         videoFrameWidth : 640,
         videoFrameHeight : 480,

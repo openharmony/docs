@@ -49,7 +49,6 @@ Enumerates the widget types.
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
 | JS      | 1    | JS widget.  |
-| eTS<sup>9+<sup>     | 2    | eTS widget.|
 
 ## ColorMode
 
@@ -94,48 +93,10 @@ Enumerates the widget parameters.
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY<sup>9+</sup>     | "ohos.extra.param.key.form_identity"    | Widget ID.<br>**System API**: This is a system API.  |
-| DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | Widget dimension.  |
-| NAME_KEY       | "ohos.extra.param.key.form_name"   | Widget name.  |
-| MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | Name of the module to which the widget belongs.  |
-| WIDTH_KEY        | "ohos.extra.param.key.form_width"   | Widget width.  |
-| HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | Widget height.  |
-| TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | Temporary widget.  |
-| ABILITY_NAME_KEY<sup>9+</sup>   | "ohos.extra.param.key.ability_name"   | Ability name.  |
-| DEVICE_ID_KEY<sup>9+</sup>      | "ohos.extra.param.key.device_id"   | Device ID.  |
-| BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | Key that specifies the target bundle name.|
-
-##  FormDimension<sup>9+</sup>
-
-Enumerates the widget dimensions.
-
-**System capability**: SystemCapability.Ability.Form
-
-| Name       | Value  | Description        |
-| ----------- | ---- | ------------ |
-| Dimension_1_2 <sup>9+</sup>      | 1   | 1 x 2.  |
-| Dimension_2_2 <sup>9+</sup>      | 2   | 2 x 2.  |
-| Dimension_2_4 <sup>9+</sup>      | 3   | 2 x 4.  |
-| Dimension_4_4 <sup>9+</sup>      | 4   | 4 x 4.  |
-| Dimension_2_1 <sup>9+</sup>      | 5   | 2 x 1.  |  
-
-## FormInfoFilter<sup>9+</sup>
-
-Defines the widget information filter. Only the widget information that meets the filter is returned.
-
-**System capability**: SystemCapability.Ability.Form
-
-| Name       | Description        |
-| ----------- | ------------ |
-| moduleName<sup>9+</sup>   | Optional. Only the information about the widget whose **moduleName** is the same as the provided value is returned.<br>If this parameter is not set, **moduleName** is not used for filtering.|
-
-## VisibilityType<sup>9+</sup>
-
-Enumerates the visibility types of the widget.
-
-**System capability**: SystemCapability.Ability.Form
-
-| Name       |  Value  | Description        |
-| ----------- | ---- | ------------ |
-| FORM_VISIBLE<sup>9+<sup>   | 1   | The widget is visible.|
-| FORM_INVISIBLE<sup>9+<sup>   | 2   | The widget is invisible.|
+| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | Widget ID.<br>**System API**: This is a system API.  |
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | Widget dimension.  |
+| NAME_KEY       | 'ohos.extra.param.key.form_name'   | Widget name.  |
+| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | Name of the module to which the widget belongs.  |
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | Widget width.  |
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | Widget height.  |
+| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | Temporary widget.  |

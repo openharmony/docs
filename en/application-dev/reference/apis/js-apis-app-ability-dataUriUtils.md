@@ -36,10 +36,10 @@ Obtains the ID attached to the end of a given URI.
 
 ```ts
 try {
-    var id = dataUriUtils.getId("com.example.dataUriUtils/1221")
-    console.info('get id: ' + id)
+    let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
+    console.info('get id: ${id}');
 } catch(err) {
-    console.error('get id err ,check the uri' + err)
+    console.error('get id err ,check the uri ${err}');
 }
 ```
 
@@ -69,15 +69,15 @@ Attaches an ID to the end of a given URI.
 **Example**
 
 ```ts
-var id = 1122;
+let id = 1122;
 try {
-    var uri = dataUriUtils.attachId(
-        "com.example.dataUriUtils",
+    let uri = dataUriUtils.attachId(
+        'com.example.dataUriUtils',
         id,
-    )
-    console.info('attachId the uri is: ' + uri)
+    );
+    console.info('attachId the uri is: ${uri}');
 } catch (err) {
-    console.error('get id err ,check the uri' + err)
+    console.error('get id err ,check the uri ${err}');
 }
 
 ```
@@ -108,10 +108,10 @@ Deletes the ID from the end of a given URI.
 
 ```ts
 try {
-    var uri = dataUriUtils.deleteId("com.example.dataUriUtils/1221")
-    console.info('delete id with the uri is: ' + uri)
+    let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
+    console.info('delete id with the uri is: ${uri}');
 } catch(err) {
-    console.error('delete uri err, check the input uri' + err)
+    console.error('delete uri err, check the input uri ${err}');
 }
 
 ```
@@ -144,12 +144,12 @@ Updates the ID in a given URI.
 ```ts
 
 try {
-    var id = 1122;
-    var uri = dataUriUtils.updateId(
-        "com.example.dataUriUtils/1221",
+    let id = 1122;
+    let uri = dataUriUtils.updateId(
+        'com.example.dataUriUtils/1221',
         id
-    )
+    );
 } catch (err) {
-    console.error('delete uri err, check the input uri' + err)
+    console.error('delete uri err, check the input uri ${err}');
 }
 ```

@@ -11,33 +11,33 @@ The **DataAbilityResult** module defines the operation result on DataAbilities. 
 
 | Name      | Type |     Mandatory   |       Description  |
 | --------  | --------  | --------    | --------    |
-| uri?      | string    |      No   | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx". |
+| uri?      | string    |      No   | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'. |
 | count?     | number    |      No   | Number of rows affected by the operation. |
 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 
 // Perform database operations in batches.
 function executeBatchOperation() {
-    let dataAbilityUri = ("dataability:///com.example.myapplication.TestDataAbility");
+    let dataAbilityUri = ('dataability:///com.example.myapplication.TestDataAbility');
     let DAHelper;
     try {
         DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
-        if (DAHelper == null) {
+        if (DAHelper === null) {
             console.error('DAHelper is null');
             return;
         }
     } catch (err) {
-        console.error('acquireDataAbilityHelper fail, error:' + JSON.stringify(err));
+        console.error('acquireDataAbilityHelper fail, error: ${JSON.stringify(err)}');
         return;
     }
 
     let valueBucket = {
-        "name": "DataAbilityHelperTest",
-        "age": 24,
-        "salary": 2024.20,
+        'name': 'DataAbilityHelperTest',
+        'age': 24,
+        'salary': 2024.20,
     };
     let operations = [
     {
@@ -64,14 +64,14 @@ function executeBatchOperation() {
         DAHelper.executeBatch(dataAbilityUri, operations).then((data) => {
             for (let i = 0; i < data.length; i++) {
                 let dataAbilityResult = data[i];
-                console.log('dataAbilityResult.uri: ' + dataAbilityResult.uri);
-                console.log('dataAbilityResult.count: ' + dataAbilityResult.count);
+                console.log('dataAbilityResult.uri: ${dataAbilityResult.uri}');
+                console.log('dataAbilityResult.count: ${dataAbilityResult.count}');
             }
         }).catch(err => {
-            console.error('executeBatch error: ' + JSON.stringify(err));
+            console.error('executeBatch error: ${JSON.stringify(err)}');
         });
     } catch (err) {
-        console.error('executeBatch error: ' + JSON.stringify(err));
+        console.error('executeBatch error: ${JSON.stringify(err)}');
     }
 }
 ```

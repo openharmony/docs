@@ -25,7 +25,7 @@ Select(options: Array\<[SelectOption](#selectoption)\>)
 
 | Name                   | Type                             | Description                                         |
 | ----------------------- | ------------------------------------- | --------------------------------------------- |
-| selected                | number                                | Index of the initial selected option in the drop-down list box. The index of the first option is **0**.|
+| selected                | number                                | Index of the initial selected option in the drop-down list box. The index of the first option is **0**.<br>If this attribute is not set, the default value **-1** is used, indicating that no option is selected.|
 | value                   | string                                | Text of the drop-down button.                 |
 | font                    | [Font](ts-types.md#font)          | Text font of the drop-down button.                 |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | Text color of the drop-down button.                 |

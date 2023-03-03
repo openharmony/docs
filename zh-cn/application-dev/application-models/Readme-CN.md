@@ -20,6 +20,9 @@
       - [DataShareExtensionAbility（仅对系统应用开放）](datashareextensionability.md)
       - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
       - [StaticSubscriberExtensionAbility](static-subscriber-extension-ability.md)
+      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
+      - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility](windowextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
@@ -52,7 +55,7 @@
     - [任务管理场景介绍](mission-management-overview.md)
     - [任务管理与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
-    - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot)
+    - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   - [Stage模型应用配置文件](config-file-stage.md)
 - FA模型开发指导
   - [FA模型开发概述](fa-model-development-overview.md)
