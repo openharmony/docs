@@ -15,7 +15,9 @@
 
 应用需要在工程配置文件中，对需要的权限逐个声明，未在配置文件中声明的权限，应用将无法获得授权。OpenHarmony提供了两种应用模型，分别为FA模型和Stage模型，更多信息可以参考[应用模型解读](../application-models/application-model-description.md)。不同的应用模型的应用包结构不同，所使用的配置文件不同。
 
-> **说明**：应用默认的APL等级为`normal`，当应用需要申请`system_basic`和`system_core`等级时，除了在配置文件中进行权限声明之外，还需要通过[ACL方式](#acl方式声明)进行声明使用。
+> **说明**：
+>
+> 应用默认的APL等级为`normal`，当应用需要申请`system_basic`和`system_core`等级时，除了在配置文件中进行权限声明之外，还需要通过[ACL方式](#acl方式声明)进行声明使用。
 
 配置文件标签说明如下表所示。
 
