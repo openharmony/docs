@@ -100,9 +100,9 @@
 
 ## ACL方式声明
 
-应用在申请`system_basic`和`system_core`等级权限时，高于应用默认的`normal`等级。当应用需要申请权限项的等级高于应用默认的等级时，需要通过ACL方式进行声明使用。
+当应用需要申请`system_basic`和`system_core`等级的权限时，比应用默认权限等级`normal`更高。如果需要申请的权限等级高于应用默认的等级，需要使用ACL方式声明使用。
 
-例如应用在申请访问用户公共目录下音乐类型的文件，需要申请` ohos.permission.WRITE_AUDIO`权限，该权限为`system_basic`等级；以及应用在申请截取屏幕图像功能，该权限为`system_core`等级，需要申请` ohos.permission.CAPTURE_SCREEN`权限。此时需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
+例如，如果应用需要访问用户公共目录中的音乐文件，需要申请`ohos.permission.WRITE_AUDIO`权限，该权限属于`system_basic`等级。如果应用需要截取屏幕图像，则需要申请`ohos.permission.CAPTURE_SCREEN`权限，该权限属于`system_core`等级。此时，需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
 
 ```json
 {
