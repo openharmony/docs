@@ -1,4 +1,4 @@
-# 泛Sensor子系统Miscdevice Changelog
+# 泛Sensor子系统Changelog
 
 ## cl.vibrator.isSupportEffect接口新增
 
