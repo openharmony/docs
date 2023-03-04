@@ -16,10 +16,10 @@
 | ohos.vibrator | startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | 根据指定振动效果和振动属性触发马达振动，使用Callback异步回调。 |
 | ohos.vibrator | stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | 按照指定模式停止马达的振动。                                 |
 | ohos.vibrator | stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | 按照指定模式停止马达的振动。                                 |
-| ohos.vibrator | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动。                                     |
 | ohos.vibrator | stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动。                                     |
-| ohos.vibrator | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持 |
+| ohos.vibrator | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动。                                     |
 | ohos.vibrator | isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持 |
+| ohos.vibrator | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持 |
 
 
 ## 开发步骤
@@ -86,7 +86,7 @@
            }
            console.log('Callback returned to indicate a successful vibration.');
        });
-       // 停止所有模式的马达振动
+       // 停止所有类型的马达振动
        vibrator.stopVibration(function (error) {
            if (error) {
                console.log('error.code' + error.code + 'error.message' + error.message);

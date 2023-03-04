@@ -403,15 +403,11 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 import vibrator from '@ohos.vibrator';
 try {
     // 查询是否支持'haptic.clock.timer'
-    vibrator.isSupportEffect('haptic.clock.timer').then((err, state) => {
-        if (err) {
-            console.error('isSupportEffect failed. Error msg:' + JSON.stringify(err));
-            return;
-        }
+    vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
         console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
         if (state) {
             try {
-                vibrator.startVibration({ // 使用startVibration需要ohos.permission.VIBRATE权限
+                vibrator.startVibration({
                     type: 'preset',
                     effectId: 'haptic.clock.timer',
                     count: 1,

@@ -6,7 +6,7 @@
 
 **变更影响**
 
-基于OpenHarmony4.0.5.2及之后的SDK版本开发的应用，可使用isSupportEffect接口查询传入effectId是否支持；使用stopVibration接口停止所有类型的振动的。
+基于OpenHarmony4.0.5.2及之后的SDK版本开发的应用，可使用isSupportEffect接口查询传入effectId是否支持。
 
 **关键接口/组件变更**
 
@@ -62,7 +62,7 @@ try {
 
 **变更影响**
 
-基于OpenHarmony4.0.5.2及之后的SDK版本开发的应用，可使用stopVibration接口停止所有类型的振动的。
+基于OpenHarmony4.0.5.2及之后的SDK版本开发的应用，可使用stopVibration接口停止所有类型的振动。
 
 **关键接口/组件变更**
 
@@ -75,40 +75,21 @@ try {
 
 **适配指导**<br>
 
-通过调用isSupportEffect接口查询是否支持传入的参数effectId。
+通过调用stopVibration接口停止所有类型的振动。
 
 ```ts
 import vibrator from '@ohos.vibrator';
 try {
-    // 查询是否支持'haptic.clock.timer'
-    vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
-        if (err) {
-            console.error('isSupportEffect failed, error:' + JSON.stringify(err));
+    // 停止所有模式的马达振动
+    vibrator.stopVibration(function (error) {
+        if (error) {
+            console.log('error.code' + error.code + 'error.message' + error.message);
             return;
         }
-        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
-        if (state) {
-            try {
-                vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
-                    type: 'preset',
-                    effectId: 'haptic.clock.timer',
-                    count: 1,
-                }, {
-                    usage: 'unknown'
-                }, (error) => {
-                    if(error) {
-                        console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
-                    } else {
-                        console.log('haptic.clock.timer vibrator success');
-                    }
-                });
-            } catch (error) {
-                console.error('Exception in, error:' + JSON.stringify(error));
-            }
-        }
+        console.log('Callback returned to indicate successful.');
     })
 } catch (error) {
-    console.error('Exception in, error:' + JSON.stringify(error));
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
 }
 ```
 
