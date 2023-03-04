@@ -209,8 +209,9 @@ Curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
 
 interpolate(fraction:&nbsp;number): number
 
-
 插值曲线的插值计算函数，可以通过传入的归一化时间参数返回当前的插值
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
