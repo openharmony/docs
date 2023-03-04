@@ -335,10 +335,10 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                         | 必填 | 说明                                                 |
-| -------- | ---------------------------- | ---- | ---------------------------------------------------- |
-| effectId | string                       | 是   | 振动效果id                                           |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当返回true则支持该振动效果id，否则不支持。 |
+| 参数名   | 类型                         | 必填 | 说明                                                   |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------ |
+| effectId | string                       | 是   | 振动效果id                                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当返回true则表示支持该effectId，否则不支持。 |
 
 **示例：** 
 
@@ -354,7 +354,7 @@ try {
         console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
         if (state) {
             try {
-                vibrator.startVibration({ // 使用startVibration需要ohos.permission.VIBRATE权限
+                vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
                     type: 'preset',
                     effectId: 'haptic.clock.timer',
                     count: 1,
@@ -393,15 +393,16 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **返回值：** 
 
-| 类型                   | 说明                                                    |
-| ---------------------- | ------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。当返回true则支持该振动效果id，否则不支持。 |
+| 类型                   | 说明                                                      |
+| ---------------------- | --------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，否则不支持。 |
 
 **示例：** 
 
   ```js
 import vibrator from '@ohos.vibrator';
 try {
+    // 查询是否支持'haptic.clock.timer'
     vibrator.isSupportEffect('haptic.clock.timer').then((err, state) => {
         if (err) {
             console.error('isSupportEffect failed. Error msg:' + JSON.stringify(err));
