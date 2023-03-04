@@ -17,29 +17,31 @@
 
 Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | start | boolean | 是 | 控制跑马灯是否进入播放状态。 |
 | step | number | 否 | 滚动动画文本滚动步长。<br/>默认值：6，单位vp |
-| loop | number | 否 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1 |
+| loop | number | 否 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。 |
 | fromStart | boolean | 否 | 设置文本从头开始滚动或反向滚动。<br/>默认值：true |
 | src | string | 是 | 需要滚动的文本。 |
 
 ## 属性
 
-| 名称       | 参数类型 | 描述                                 |
-| ---------- | -------- | ------------------------------------ |
-| allowScale | boolean  | 是否允许文本缩放。<br/>默认值：false |
+| 名称       | 参数类型 | 描述                                                         |
+| ---------- | -------- | ------------------------------------------------------------ |
+| allowScale | boolean  | 是否允许文本缩放。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 事件
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 开始滚动时触发回调。 |
-| onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
-| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动全部循环次数完成时触发回调。 |
+| onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 开始滚动时触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动全部循环次数完成时触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例
