@@ -31,7 +31,7 @@
    ```js
    import vibrator from '@ohos.vibrator';
    try {
-       vibrator.startVibration({
+       vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
            type: 'time',
            duration: 1000,
        }, {
@@ -54,7 +54,7 @@
    ```js
    import vibrator from '@ohos.vibrator';
    try {
-     // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+     // 按照VIBRATOR_STOP_MODE_TIME模式停止振动， 使用stopVibration需要添加ohos.permission.VIBRATE权限
      vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
          if (error) {
              console.log('error.code' + error.code + 'error.message' + error.message);
@@ -71,7 +71,21 @@
 
    ```js
    import vibrator from '@ohos.vibrator';
+   // 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
    try {
+       vibrator.startVibration({
+           type: 'time',
+           duration: 1000,
+       }, {
+           id: 0,
+           usage: 'alarm'
+       }, (error) => {
+           if (error) {
+               console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+               return;
+           }
+           console.log('Callback returned to indicate a successful vibration.');
+       });
        // 停止所有模式的马达振动
        vibrator.stopVibration(function (error) {
            if (error) {
@@ -91,30 +105,34 @@
    import vibrator from '@ohos.vibrator';
    try {
        // 查询是否支持'haptic.clock.timer'
-       vibrator.isSupportEffect('haptic.clock.timer', function (state) {
+       vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+           if (err) {
+               console.error('isSupportEffect failed, error:' + JSON.stringify(err));
+               return;
+           }
            console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
            if (state) {
                try {
-       		    vibrator.startVibration({
-                   type: 'preset',
-                   effectId: 'haptic.clock.timer',
-                   count: 1,
+                   vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+                       type: 'preset',
+                       effectId: 'haptic.clock.timer',
+                       count: 1,
                    }, {
                        usage: 'unknown'
                    }, (error) => {
                        if(error) {
-                           console.log('haptic.clock.timer vibrator error');
+                           console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
                        } else {
                            console.log('haptic.clock.timer vibrator success');
                        }
                    });
                } catch (error) {
-                   console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+                   console.error('Exception in, error:' + JSON.stringify(error));
                }
            }
        })
    } catch (error) {
-       console.error('exception in, error:' + JSON.stringify(error));
+       console.error('Exception in, error:' + JSON.stringify(error));
    }
    ```
 

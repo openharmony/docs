@@ -42,6 +42,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 示例：
 
 ```js
+import vibrator from '@ohos.vibrator';
 try {
     vibrator.startVibration({
         type: 'time',
@@ -95,6 +96,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     vibrator.startVibration({
         type: 'time',
@@ -132,6 +134,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // 按照固定时长振动
     vibrator.startVibration({
@@ -190,6 +193,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // 按照固定时长振动
     vibrator.startVibration({
@@ -238,6 +242,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // 按照固定时长振动
     vibrator.startVibration({
@@ -290,6 +295,7 @@ stopVibration(): Promise&lt;void&gt;
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // 按照固定时长振动
     vibrator.startVibration({
@@ -337,32 +343,37 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // 查询是否支持'haptic.clock.timer'
-    vibrator.isSupportEffect('haptic.clock.timer', function (state) {
+    vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+        if (err) {
+            console.error('isSupportEffect failed, error:' + JSON.stringify(err));
+            return;
+        }
         console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
         if (state) {
             try {
-    		    vibrator.startVibration({
-                type: 'preset',
-                effectId: 'haptic.clock.timer',
-                count: 1,
+                vibrator.startVibration({ // 使用startVibration需要ohos.permission.VIBRATE权限
+                    type: 'preset',
+                    effectId: 'haptic.clock.timer',
+                    count: 1,
                 }, {
                     usage: 'unknown'
                 }, (error) => {
                     if(error) {
-                        console.log('haptic.clock.timer vibrator error');
+                        console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
                     } else {
                         console.log('haptic.clock.timer vibrator success');
                     }
                 });
             } catch (error) {
-                console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+                console.error('Exception in, error:' + JSON.stringify(error));
             }
         }
     })
 } catch (error) {
-    console.error('exception in, error:' + JSON.stringify(error));
+    console.error('Exception in, error:' + JSON.stringify(error));
 }
   ```
 
@@ -389,31 +400,36 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
-    vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
+    vibrator.isSupportEffect('haptic.clock.timer').then((err, state) => {
+        if (err) {
+            console.error('isSupportEffect failed. Error msg:' + JSON.stringify(err));
+            return;
+        }
         console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
         if (state) {
             try {
-                vibrator.startVibration({
-                type: 'preset',
-                effectId: 'haptic.clock.timer',
-                count: 1,
+                vibrator.startVibration({ // 使用startVibration需要ohos.permission.VIBRATE权限
+                    type: 'preset',
+                    effectId: 'haptic.clock.timer',
+                    count: 1,
                 }, {
                     usage: 'unknown'
                 }).then(()=>{
                     console.log('Promise returned to indicate a successful vibration');
                 }).catch((error)=>{
-                    console.error('error.code' + error.code + 'error.message' + error.message);
-                });	 
+                    console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
+                });
             } catch (error) {
                 console.error('exception in, error:' + JSON.stringify(error));
             }
         }
     }, (error) => {
-        console.error('error.code' + error.code + 'error.message' + error.message);
+        console.error('isSupportEffect failed, error:' + JSON.stringify(error));
     })
 } catch (error) {
-    console.error('exception in, error:' + JSON.stringify(error));
+    console.error('Exception in, error:' + JSON.stringify(error));
 }
   ```
 
