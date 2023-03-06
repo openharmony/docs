@@ -33,10 +33,9 @@ The following figure shows the audio renderer state transitions.
 For details about the APIs, see [AudioRenderer in Audio Management](../reference/apis/js-apis-audio.md#audiorenderer8).
 
 1. Use **createAudioRenderer()** to create an **AudioRenderer** instance.
+
+   Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. This instance is used to render audio, control and obtain the rendering status, and register a callback for notification.
    
-
-Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. This instance is used to render audio, control and obtain the rendering status, and register a callback for notification.
-
    ```js
  import audio from '@ohos.multimedia.audio';
    
@@ -59,7 +58,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
     let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
     console.log("Create audio renderer success.");
    ```
-
+   
 2. Use **start()** to start audio rendering.
 
    ```js
@@ -82,15 +81,15 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
      }
    }
    ```
-   The renderer state will be **STATE_RUNNING** once the audio renderer is started. The application can then begin reading buffers.
 
+   The renderer state will be **STATE_RUNNING** once the audio renderer is started. The application can then begin reading buffers.
 
 3. Call **write()** to write data to the buffer.
 
    Read the audio data to be played to the buffer. Call **write()** repeatedly to write the data to the buffer.
 
    ```js
-   import fileio from '@ohos.fileio';
+   import fs from '@ohos.file.fs';
    import audio from '@ohos.multimedia.audio';
 
    async function writeBuffer(buf) {
@@ -109,35 +108,33 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
    // Set a proper buffer size for the audio renderer. You can also select a buffer of another size.
    const bufferSize = await audioRenderer.getBufferSize();
    let dir = globalThis.fileDir; // You must use the sandbox path.
-   const path = dir + '/file_example_WAV_2MG.wav'; // The file to render is in the following path: /data/storage/el2/base/haps/entry/files/file_example_WAV_2MG.wav
-   console.info(`file path: ${ path}`);
-   let ss = fileio.createStreamSync(path, 'r');
-   const totalSize = fileio.statSync(path).size; // Size of the file to render.
-   let discardHeader = new ArrayBuffer(bufferSize);
-   ss.readSync(discardHeader);
-   let rlen = 0;
-   rlen += bufferSize;
-    
-   let id = setInterval(() => {
-     if (audioRenderer.state == audio.AudioState.STATE_RELEASED) { // The rendering stops if the audio renderer is in the STATE_RELEASED state.
-       ss.closeSync();
-       await audioRenderer.stop();
-       clearInterval(id);
+   const filePath = dir + '/file_example_WAV_2MG.wav'; // The file to render is in the following path: /data/storage/el2/base/haps/entry/files/file_example_WAV_2MG.wav
+   console.info(`file filePath: ${ filePath}`);
+
+   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+   let stat = await fs.stat(filePath); // Music file information.
+   let buf = new ArrayBuffer(bufferSize);
+   let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+   for (let i = 0;i < len; i++) {
+     let options = {
+       offset: i * this.bufferSize,
+       length: this.bufferSize
      }
-     if (audioRenderer.state == audio.AudioState.STATE_RUNNING) {
-       if (rlen >= totalSize) { // The rendering stops if the file finishes reading.
-         ss.closeSync();
-         await audioRenderer.stop();
-         clearInterval(id);
-       }
-       let buf = new ArrayBuffer(bufferSize);
-       rlen += ss.readSync(buf);
-       console.info(`Total bytes read from file: ${rlen}`);
-       writeBuffer(buf);
-     } else {
-       console.info('check after next interval');
-     }
-   }, 30); // The timer interval is set based on the audio format. The unit is millisecond.
+     let readsize = await fs.read(file.fd, buf, options)
+     let writeSize = await new Promise((resolve,reject)=>{
+       this.audioRenderer.write(buf,(err,writeSize)=>{
+         if(err){
+           reject(err)
+         }else{
+           resolve(writeSize)
+         }
+       })
+     })	
+   }
+
+   fs.close(file)
+   await audioRenderer.stop(); // Stop rendering.
+   await audioRenderer.release(); // Releases the resources.
    ```
 
 4. (Optional) Call **pause()** or **stop()** to pause or stop rendering.
@@ -242,7 +239,7 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
    let audioTime : number = await audioRenderer.getAudioTime();
 
    // Obtain a proper minimum buffer size.
-   let bufferSize : number = await audioRenderer.getBuffersize();
+   let bufferSize : number = await audioRenderer.getBufferSize();
 
    // Obtain the audio renderer rate.
    let renderRate : audio.AudioRendererRate = await audioRenderer.getRenderRate();
@@ -424,35 +421,31 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
        let dir = globalThis.fileDir; // You must use the sandbox path.
        const path1 = dir + '/music001_48000_32_1.wav'; // The file to render is in the following path: /data/storage/el2/base/haps/entry/files/music001_48000_32_1.wav
        console.info(`audioRender1 file path: ${ path1}`);
-       let ss1 = await fileio.createStream(path1,'r');
-       const totalSize1 = fileio.statSync(path1).size; // Size of the file to render.
-       console.info(`totalSize1   -------: ${totalSize1}`);
-       let discardHeader = new ArrayBuffer(bufferSize);
-       ss1.readSync(discardHeader);
-      let rlen = 0;
-       rlen += bufferSize;
-    
+       let file1 = fs.openSync(path1, fs.OpenMode.READ_ONLY);
+       let stat = await fs.stat(path1); // Music file information.
+       let buf = new ArrayBuffer(bufferSize);
+       let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+       
        // 1.7 Render the original audio data in the buffer by using audioRender.
-       let id = setInterval(async () => {
-         if (audioRenderer1.state == audio.AudioState.STATE_RELEASED) { // The rendering stops if the audio renderer is in the STATE_RELEASED state.
-           ss1.closeSync();
-           audioRenderer1.stop();
-           clearInterval(id);
+       for (let i = 0;i < len; i++) {
+         let options = {
+           offset: i * this.bufferSize,
+           length: this.bufferSize
          }
-         if (audioRenderer1.state == audio.AudioState.STATE_RUNNING) {
-           if (rlen >= totalSize1) { // The rendering stops if the file finishes reading.
-             ss1.closeSync();
-             await audioRenderer1.stop();
-             clearInterval(id);
-           }
-           let buf = new ArrayBuffer(bufferSize);
-           rlen += ss1.readSync(buf);
-           console.info(`Total bytes read from file: ${rlen}`);
-           await writeBuffer(buf, that.audioRenderer1);
-         } else {
-           console.info('check after next interval');
-         }
-      }, 30); // The timer interval is set based on the audio format. The unit is millisecond.
+         let readsize = await fs.read(file.fd, buf, options)
+         let writeSize = await new Promise((resolve,reject)=>{
+           this.audioRenderer1.write(buf,(err,writeSize)=>{
+             if(err){
+               reject(err)
+             }else{
+               resolve(writeSize)
+             }
+           })
+         })	
+       }
+       fs.close(file1)
+       await audioRenderer1.stop(); // Stop rendering.
+      await audioRenderer1.release(); Releases the resources.
      }
     
      async runningAudioRender2(){
@@ -499,36 +492,32 @@ Set parameters of the **AudioRenderer** instance in **audioRendererOptions**. Th
        // 2.6 Read the original audio data file.
        let dir = globalThis.fileDir; // You must use the sandbox path.
        const path2 = dir + '/music002_48000_32_1.wav'; // The file to render is in the following path: /data/storage/el2/base/haps/entry/files/music002_48000_32_1.wav
-       console.error(`audioRender1 file path: ${ path2}`);
-       let ss2 = await fileio.createStream(path2,'r');
-       const totalSize2 = fileio.statSync(path2).size; // Size of the file to render.
-       console.error(`totalSize2   -------: ${totalSize2}`);
-       let discardHeader2 = new ArrayBuffer(bufferSize);
-       ss2.readSync(discardHeader2);
-      let rlen = 0;
-       rlen += bufferSize;
-    
+       console.info(`audioRender2 file path: ${ path2}`);
+       let file2 = fs.openSync(path2, fs.OpenMode.READ_ONLY);
+       let stat = await fs.stat(path2); // Music file information.
+       let buf = new ArrayBuffer(bufferSize);
+       let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+       
        // 2.7 Render the original audio data in the buffer by using audioRender.
-       let id = setInterval(async () => {
-         if (audioRenderer2.state == audio.AudioState.STATE_RELEASED) { // The rendering stops if the audio renderer is in the STATE_RELEASED state.
-           ss2.closeSync();
-           that.audioRenderer2.stop();
-           clearInterval(id);
+       for (let i = 0;i < len; i++) {
+         let options = {
+           offset: i * this.bufferSize,
+           length: this.bufferSize
          }
-         if (audioRenderer1.state == audio.AudioState.STATE_RUNNING) {
-           if (rlen >= totalSize2) { // The rendering stops if the file finishes reading.
-             ss2.closeSync();
-             await audioRenderer2.stop();
-             clearInterval(id);
-           }
-           let buf = new ArrayBuffer(bufferSize);
-           rlen += ss2.readSync(buf);
-           console.info(`Total bytes read from file: ${rlen}`);
-           await writeBuffer(buf, that.audioRenderer2);
-         } else {
-           console.info('check after next interval');
-         }
-      }, 30); // The timer interval is set based on the audio format. The unit is millisecond.
+         let readsize = await fs.read(file.fd, buf, options)
+         let writeSize = await new Promise((resolve,reject)=>{
+           this.audioRenderer2.write(buf,(err,writeSize)=>{
+             if(err){
+               reject(err)
+             }else{
+               resolve(writeSize)
+             }
+           })
+         })	
+       }
+       fs.close(file2)
+       await audioRenderer2.stop(); // Stop rendering.
+      await audioRenderer2.release(); // Releases the resources.
      }
     
      async writeBuffer(buf, audioRender) {
