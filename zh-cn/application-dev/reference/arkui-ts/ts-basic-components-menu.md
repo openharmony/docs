@@ -22,7 +22,9 @@ Menu()
 
 | 名称     | 参数类型                  | 描述                                                             |
 | -------- | ------------------------- | ---------------------------------------------------------------- |
-| fontSize | [Length](ts-types.md#length) | 统一设置Menu中所有文本的尺寸，Length为number类型时，使用fp单位。 |
+| fontSize<sup>deprecated</sup> | [Length](ts-types.md#length) | 统一设置Menu中所有文本的尺寸，Length为number类型时，使用fp单位。<br/>从API Version 10开始废弃，建议使用font代替。 |
+| font<sup>10+</sup> | [Font](ts-types.md#font) | 统一设置Menu中所有文本的字体样式。 |
+| fontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 统一设置Menu中所有文本的颜色。 |
 
 ## 示例
 
