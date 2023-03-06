@@ -2296,7 +2296,6 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   }
   ```
 
-  **示例：**
   ```ts
   // xxx.ets API10
   import web_webview from '@ohos.web.webview'
