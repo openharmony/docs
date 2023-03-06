@@ -160,7 +160,7 @@ queue.add(4);
 queue.add(5);
 queue.add(4);
 queue.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 
 ```

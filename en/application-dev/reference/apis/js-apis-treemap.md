@@ -1,9 +1,5 @@
 # Nonlinear Container TreeMap 
 
-> **NOTE**
->
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **TreeMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
 
 **TreeMap** is implemented using a red-black tree, which is a binary search tree where keys are stored in sorted order for efficient insertion and removal.
@@ -11,6 +7,10 @@
 **[HashMap](js-apis-treemap.md)** is faster in accessing data than **TreeMap**, because the former accesses data based on the hash code of the key, whereas the latter stores and accesses the keys in sorted order.
 
 Recommended use case: Use **TreeMap** when you need to store KV pairs in sorted order.
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -490,7 +490,7 @@ let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
 treeMap.set("dfsghsf", 357);
 treeMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
