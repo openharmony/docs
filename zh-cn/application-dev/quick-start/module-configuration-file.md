@@ -75,11 +75,11 @@ module.json5配置文件包含以下标签。
 | type | 标识当前Module的类型。类型有两种，分别：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，标签值为字符串（最长为127字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，标签值是字符串类型（最长255字节）或对描述内容的字符串资源索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| process | 标识当前Module的进程名，标签值为字符串类型（最长为31个字节）。如果在HAP标签下配置了process，该应用的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>- 仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 可缺省，缺省为app.json5文件下app标签下的bundleName。 |
+| process | 标识当前Module的进程名，标签值为字符串类型（最长为31个字节）。如果在HAP标签下配置了process，该应用的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>> **说明：**<br/>> 仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称或者ExtensionAbility名称。标签最大字节长度为255。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上，标签值采用字符串数组的表示。 | 字符串数组 | 该标签不可缺省，可以为空值。 |
 | deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，表示该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
-| installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>- 当应用的entry类型Module的该字段配置为true时，该应用的feature类型的该字段也需要配置为true。<br/>- 当应用的entry类型Module的该字段配置为false时，该应用的feature类型的该字段根据业务需求配置true或false。 | 布尔值 | 该标签不可缺省。 |
+| installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>> **说明：**<br/>> 当应用的entry类型Module的该字段配置为true时，该应用的feature类型的该字段也需要配置为true。<br/>> 当应用的entry类型Module的该字段配置为false时，该应用的feature类型的该字段根据业务需求配置true或false。 | 布尔值 | 该标签不可缺省。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。<br/>该标签值为字符串。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
 | [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息。该标签最大长度为255个字节。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
 | [metadata](#metadata标签) | 标识当前Module的自定义元信息，标签值为数组类型，只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
@@ -150,7 +150,7 @@ deviceTypes示例：
 
 该标签标识HAP的自定义元信息，标签值为数组类型，包含name，value，resource三个子标签。
 
-  **表3** **metadata标签说明**
+**表3** **metadata标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -269,7 +269,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 | description | 标识当前UIAbility组件的描述信息，标签值是字符串类型（最长255字节）或对描述内容的资源索引，要求采用资源索引方式，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前UIAbility组件的图标，标签值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>如果UIAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
-| permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。<br/>> **说明：**<br/>> 仅支持系统应用配置，三方应用配置不生效。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | continuable | 标识当前UIAbility组件是否可以[迁移](../application-models/hop-cross-device-migration.md)。<br/>-&nbsp;true：表示可以被迁移。<br/>-&nbsp;false：表示不可以被迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -280,14 +280,14 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 | removeMissionAfterTerminate | 标识当前UIAbility组件销毁后是否从任务列表中移除任务，为布尔类型：<br/>-&nbsp;true表示销毁后移除任务。<br/>-&nbsp;false表示销毁后不移除任务。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | orientation | 标识当前UIAbility组件启动时的方向。该方向的取值范围包括：<br/>-&nbsp;unspecified：未指定方向，由系统自动判断显示方向。<br/>-&nbsp;landscape：横屏。<br/>-&nbsp;portrait：竖屏。<br/>-&nbsp;landscape_inverted：反向横屏。<br/>-&nbsp;portrait_inverted：反向竖屏。<br/>-&nbsp;auto_rotation：随传感器旋转。<br/>-&nbsp;auto_rotation_landscape：传感器横屏旋转，包括了横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait：传感器竖屏旋转，包括了竖屏和反向竖屏。<br/>-&nbsp;auto_rotation_restricted：传感器开关打开，方向可随传感器旋转。<br/>-&nbsp;auto_rotation_landscape_restricted：传感器开关打开，方向可随传感器旋转为横屏，&nbsp;包括了横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait_restricted：传感器开关打开，方向随可传感器旋转为竖屏，&nbsp;包括了横屏和反向横屏。<br/>-&nbsp;locked：传感器开关关闭，方向锁定。 | 字符串 | 该标签可缺省，缺省值为unspecified。 |
 | supportWindowMode | 标识当前UIAbility组件所支持的窗口模式，包含：<br/>-&nbsp;fullscreen：全屏模式。<br/>-&nbsp;split：分屏模式。<br/>-&nbsp;floating：悬浮窗模式。 | 字符串数组 | 该标签可缺省，缺省值为<br/>["fullscreen",&nbsp;"split",&nbsp;"floating"]。 |
-| priority | 标识当前UIAbility组件的优先级，仅支持系统应用配置，三方应用配置不生效。[隐式查询](../application-models/explicit-implicit-want-mappings.md)时，优先级越高，UIAbility在返回列表越靠前。该标签取值为integer类型，取值范围0-10。数值越大，优先级越高。 | 数值 | 该标签可缺省，缺省值为0。 |
+| priority | 标识当前UIAbility组件的优先级。[隐式查询](../application-models/explicit-implicit-want-mappings.md)时，优先级越高，UIAbility在返回列表越靠前。该标签取值为integer类型，取值范围0-10。数值越大，优先级越高。<br/>> **说明：**<br/>> 仅支持系统应用配置，三方应用配置不生效。 | 数值 | 该标签可缺省，缺省值为0。 |
 | maxWindowRatio | 标识当前UIAbility组件支持的最大的宽高比。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最大的宽高比。 |
 | minWindowRatio | 标识当前UIAbility组件支持的最小的宽高比。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的宽高比。 |
 | maxWindowWidth | 标识当前UIAbility组件支持的最大的窗口宽度，宽度单位为vp。该标签最小取值为0，但不能小于minWindowWidth；最大取值不能超过平台支持的最大窗口宽度。窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。 | 数值 | 该标签可缺省，缺省值为平台支持的最大的窗口宽度。 |
 | minWindowWidth | 标识当前UIAbility组件支持的最小的窗口宽度,&nbsp;宽度单位为vp。该标签最小取值为0，但不能小于平台支持的最小窗口宽度；最大取值不能大于maxWindowWidth。窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口宽度。 |
 | maxWindowHeight | 标识当前UIAbility组件支持的最大的窗口高度,&nbsp;高度单位为vp。该标签最小取值为0，但不能小于minWindowHeight；最大取值不能超过平台支持的最大窗口高度。 窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最大的窗口高度。 |
 | minWindowHeight | 标识当前UIAbility组件支持的最小的窗口高度,&nbsp;高度单位为vp。该标签最小取值为0，但不能小于平台支持的最小窗口高度；最大取值不能大于maxWindowHeight。窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口高度。 |
-| excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>- 仅支持系统应用配置，三方应用配置不生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>> **说明：**<br/>> 仅支持系统应用配置，三方应用配置不生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | recoverable | 标识当前是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 abilities示例：
@@ -424,8 +424,6 @@ skills示例：
     12. uri = 'http://exampleap.com:8080/path' 可以匹配 配置1<br>
     13. uri = 'http://example.com:9180/path' 可以匹配 配置1 配置2<br>
     14. uri = 'http://example.com:8080/path' 可以匹配 配置1 配置2 配置3<br>
-  
-
 
 ## extensionAbilities标签
 
@@ -439,11 +437,11 @@ skills示例：
 | srcEntry | 标识当前ExtensionAbility组件所对应的代码路径，标签值最大长度为127字节。 | 字符串 | 该标签不可缺省。 |
 | description | 标识当前ExtensionAbility组件的描述，标签值最大长度为255字节，标签也可以是描述内容的资源索引，用于支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前ExtensionAbility组件的图标，标签值为资源文件的索引。如果ExtensionAbility组件被配置为MainElement，该标签必须配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| label | 标识当前ExtensionAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>**说明：**<br/>- 如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
-| type | 标识当前ExtensionAbility组件的类型，取值为：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;fileShare：文件共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>**说明：**<br/>- 其中service和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
+| label | 标识当前ExtensionAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>> **说明：**<br/>> 如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
+| type | 标识当前ExtensionAbility组件的类型，取值为：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;fileShare：文件共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>> **说明：**<br/>> 其中service和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
 | permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| uri | 标识当前ExtensionAbility组件提供的数据URI，为字符数组类型（最大长度255），用反向域名的格式表示。<br/>**说明：**<br/>- 该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
-|skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>**说明：**<br/>- OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>- OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
+| uri | 标识当前ExtensionAbility组件提供的数据URI，为字符数组类型（最大长度255），用反向域名的格式表示。<br/>> **说明：**<br/>> 该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
+|skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>> **说明：**<br/>> OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>> OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。 | 对象 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前ExtensionAbility组件是否可以被其他应用调用，为布尔类型。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
@@ -495,8 +493,8 @@ extensionAbilities示例：
 | 属性 | 含义 | 类型 | 取值范围 | 默认值 |
 | -------- | -------- | -------- | -------- | -------- |
 | name | 必须，填写需要使用的权限名称。 | 字符串 | 自定义。 | 无。 |
-| reason | 可选，当申请的权限为user_grant权限时此字段必填，用于描述申请权限的原因。<br/>**说明：**<br/>- 当申请的权限为user_grant权限时，如果未填写该字段则不允许在应用市场上架，并且需要进行多语种适配。 | 字符串 | 使用string类资源引用。格式为$string:&nbsp;\*\*\*。 | 空。 |
-| usedScene | 可选，当申请的权限为user_grant权限时此字段必填。描述权限使用的场景由abilities和when组成。其中abilities可以配置为多个UIAbility组件，when表示调用时机。<br/>**说明：**<br/>- 默认为可选，当申请的权限为user_grant权限时，abilities标签必填，when标签可选。 | abilities：UIAbility或者ExtensionAbility名称的字符串数组<br/>when：字符串 | abilities：UIAbility或者ExtensionAbility组件的名称。<br/>when：inuse（使用时）、always（始终）。 | abilities：空。<br/>when：空。 |
+| reason | 可选，当申请的权限为user_grant权限时此字段必填，用于描述申请权限的原因。<br/>> **说明：**<br/>> 当申请的权限为user_grant权限时，如果未填写该字段则不允许在应用市场上架，并且需要进行多语种适配。 | 字符串 | 使用string类资源引用。格式为$string:&nbsp;\*\*\*。 | 空。 |
+| usedScene | 可选，当申请的权限为user_grant权限时此字段必填。描述权限使用的场景由abilities和when组成。其中abilities可以配置为多个UIAbility组件，when表示调用时机。<br/>> **说明：**<br/>> 默认为可选，当申请的权限为user_grant权限时，abilities标签必填，when标签可选。 | abilities：UIAbility或者ExtensionAbility名称的字符串数组<br/>when：字符串 | abilities：UIAbility或者ExtensionAbility组件的名称。<br/>when：inuse（使用时）、always（始终）。 | abilities：空。<br/>when：空。 |
 
 requestPermissions示例：
 
@@ -536,7 +534,7 @@ metadata中指定shortcut信息，其中：
 | shortcutId | 标识快捷方式的ID。字符串的最大长度为63字节。 | 字符串 | 该标签不可缺省。 |
 | label | 标识快捷方式的标签信息，即快捷方式对外显示的文字描述信息。取值可以是描述性内容，也可以是标识label的资源索引。字符串最大长度为255字节。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识快捷方式的图标，标签值为资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| [wants](../application-models/want-overview.md) | 标识快捷方式内定义的目标wants信息集合，每个wants可配置bundleName和abilityName两个子标签。<br/>bundleName：表示快捷方式的目标Bundle名称，字符串类型。<br/>abilityName：表示快捷方式的目标组件名，字符串类型。 | 对象 | 该标签可缺省，缺省为空。 |
+| [wants](../application-models/want-overview.md) | 标识快捷方式内定义的目标wants信息集合，每个wants可配置bundleName和abilityName两个子标签。<br/>- bundleName：表示快捷方式的目标Bundle名称，字符串类型。<br/>- abilityName：表示快捷方式的目标组件名，字符串类型。 | 对象 | 该标签可缺省，缺省为空。 |
 
 
 1. 在/resource/base/profile/目录下配置shortcuts_config.json配置文件。
@@ -695,7 +693,7 @@ metadata中指定shortcut信息，其中：
 
 此标签用于支持对测试框架的配置。
 
-  **表14** **testRunner标签说明**
+**表14** **testRunner标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
