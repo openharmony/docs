@@ -76,4 +76,4 @@ function implicitStartAbility() {
 4. 调用方传入的want参数的type不为空，待匹配Ability的skills配置中的type不为空且包含调用方传入的want参数的type，type匹配成功。
 
 当有多个匹配应用时，会被应用选择器展示给用户进行选择。 示意效果如下图所示。  
-![](figures/ability-startup-with-implicit-want2.png)
+![](figures/ability-startup-with-implicit-want1.png)
