@@ -404,11 +404,9 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.replaceAllElements((value: number, index: number)=> {
-  return value = 2 * value;
-});
-arrayList.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+arrayList.replaceAllElements((value) => {
+    // Add the user operation logic based on the actual scenario.
+    return value;
 });
 ```
 
@@ -453,7 +451,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value, index) => {
-  console.log(`value:${value}`, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -796,14 +794,14 @@ arrayList.add(4);
 
 // Method 1:
 for (let item of arrayList) { 
-  console.log(`value:${item}`); 
+    console.log(`value:${item}`); 
 } 
 
 // Method 2:
 let iter = arrayList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(`value:${temp}`);
-  temp = iter.next().value;
+    console.log(`value:${temp}`);
+    temp = iter.next().value;
 }
 ```
