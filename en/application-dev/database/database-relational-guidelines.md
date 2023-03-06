@@ -37,14 +37,14 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   
 - **Updating Data**
   
-  Call **update()** to update data based on the passed data and the conditions specified by **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
+  Call **update()** to pass the new data and specify the update conditions by using **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
   
   **Table 3** API for updating data
   
 
   | Class      | API                                                      | Description                                                        |
   | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStore | update(values: ValuesBucket, predicates: RdbPredicates): Promise&lt;number&gt; | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data. |
+  | RdbStore | update(values: ValuesBucket, predicates: RdbPredicates): Promise&lt;number&gt; | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data.|
   
 - **Deleting Data**
   
@@ -55,7 +55,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
 
   | Class      | API                                                    | Description                                                        |
   | ---------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
-  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows deleted.<br>- **predicates**: conditions for deleting data. |
+  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows deleted.<br>- **predicates**: conditions for deleting data.|
   
 - **Querying Data**
 
@@ -201,76 +201,81 @@ You can obtain the distributed table name for a remote device based on the local
    FA model:
 
     ```js
-   import data_rdb from '@ohos.data.relationalStore'
+   import relationalStore from '@ohos.data.relationalStore'
    import featureAbility from '@ohos.ability.featureAbility'
    
+   var store;
+   
    // Obtain the context.
-   let context = featureAbility.getContext()
+   let context = featureAbility.getContext();
    
    const STORE_CONFIG = { 
        name: "RdbTest.db",
-       securityLevel: data_rdb.SecurityLevel.S1
-   }
+       securityLevel: relationalStore.SecurityLevel.S1
+   };
    
    // Assume that the current RDB store version is 3.
-   data_rdb.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
-        // When an RDB store is created, the default version is 0.
-        if (rdbStore.version == 0) {
-            rdbStore.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null)
-            // Set the RDB store version. The input parameter must be an integer greater than 0.
-            rdbStore.version = 3
-        }
+   relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
+     store = rdbStore;
+     // When an RDB store is created, the default version is 0.
+     if (store.version == 0) {
+       store.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null);
+       // Set the RDB store version. The input parameter must be an integer greater than 0.
+       store.version = 3;
+     }
         
-        // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
-        if (rdbStore.version != 3 && rdbStore.version == 1) {
-            // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
-            rdbStore.executeSql("ALTER TABLE student ADD COLUMN score REAL", null)
-            rdbStore.version = 2
-        }
+     // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
+     if (store.version != 3 && store.version == 1) {
+       // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
+       store.executeSql("ALTER TABLE student ADD COLUMN score REAL", null);
+       store.version = 2;
+     }
         
-        // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
-        if (rdbStore.version != 3 && rdbStore.version == 2) {
-            // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
-            rdbStore.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null)
-            rdbStore.version = 3
-        }
+     // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
+     if (store.version != 3 && store.version == 2) {
+       // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
+       store.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null);
+       store.version = 3;
+     }
    })
     ```
     Stage model:
      ```ts
-   import data_rdb from '@ohos.data.relationalStore'
+   import relationalStore from '@ohos.data.relationalStore'
    import UIAbility from '@ohos.app.ability.UIAbility'
    
    class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
-           const STORE_CONFIG = { 
-               name: "rdbstore.db",
-               securityLevel: data_rdb.SecurityLevel.S1
-           }
+         var store;   
+         const STORE_CONFIG = {
+           name: "RdbTest.db",
+           securityLevel: relationalStore.SecurityLevel.S1
+         };
    
-           // Assume that the current RDB store version is 3.
-           data_rdb.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
-               // When an RDB store is created, the default version is 0.
-               if (rdbStore.version == 0) {
-                   rdbStore.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null)
-                   // Set the RDB store version. The input parameter must be an integer greater than 0.
-                   rdbStore.version = 3
-               }
+         // Assume that the current RDB store version is 3.
+         relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+           store = rdbStore;
+           // When an RDB store is created, the default version is 0.
+           if (store.version == 0) {
+             store.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null);
+             // Set the RDB store version. The input parameter must be an integer greater than 0.
+             store.version = 3;
+           }
     
-               // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
-               if (rdbStore.version != 3 && rdbStore.version == 1) {
-                   // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
-                   rdbStore.executeSql("ALTER TABLE student ADD COLUMN score REAL", null)
-                   rdbStore.version = 2
-               }
+           // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
+           if (store.version != 3 && store.version == 1) {
+             // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
+             store.executeSql("ALTER TABLE student ADD COLUMN score REAL", null);
+             store.version = 2;
+           }
     
-               // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
-               if (rdbStore.version != 3 && rdbStore.version == 2) {
-                   // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
-                   rdbStore.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null)
-                   rdbStore.version = 3
-               }
-           })
+           // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
+           if (store.version != 3 && store.version == 2) {
+             // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
+             store.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null);
+             store.version = 3;
+           }
+         })
        }
    }
      ```
@@ -284,23 +289,24 @@ You can obtain the distributed table name for a remote device based on the local
    The sample code is as follows:
 
     ```js
-    let u8 = new Uint8Array([1, 2, 3])
-    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
-    let insertPromise = rdbStore.insert("test", valueBucket)
+    let u8 = new Uint8Array([1, 2, 3]);
+    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
+    let insertPromise = store.insert("test", valueBucket);
     ```
    
     ```js
     // Use a transaction to insert data.
-    beginTransaction()
     try {
-        let u8 = new Uint8Array([1, 2, 3])
-        const valueBucket1 = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
-        const valueBucket2 = { "name": "Jam", "age": 19, "salary": 200.5, "blobType": u8 }
-        let insertPromise1 = rdbStore.insert("test", valueBucket1)
-        let insertPromise2 = rdbStore.insert("test", valueBucket2)
-        commit()
-    } catch (e) {
-        rollBack()
+      store.beginTransaction();
+      let u8 = new Uint8Array([1, 2, 3]);
+      const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
+      let promise = store.insert("test", valueBucket);
+      promise.then(() => {
+        store.commit();
+      })
+    } catch (err) {
+      console.error(`Transaction failed, err: ${err}`);
+      store.rollBack();
     }
     ```
 
@@ -315,17 +321,17 @@ You can obtain the distributed table name for a remote device based on the local
    The sample code is as follows:
 
     ```js
-    let predicates = new data_rdb.RdbPredicates("test");
-    predicates.equalTo("name", "Tom")
-    let promisequery = rdbStore.query(predicates)
+    let predicates = new relationalStore.RdbPredicates("test");
+    predicates.equalTo("name", "Tom");
+    let promisequery = store.query(predicates);
     promisequery.then((resultSet) => {
-        resultSet.goToFirstRow()
-        const id = resultSet.getLong(resultSet.getColumnIndex("id"))
-        const name = resultSet.getString(resultSet.getColumnIndex("name"))
-        const age = resultSet.getLong(resultSet.getColumnIndex("age"))
-        const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
-        const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
-        resultSet.close()
+      resultSet.goToFirstRow();
+      const id = resultSet.getLong(resultSet.getColumnIndex("id"));
+      const name = resultSet.getString(resultSet.getColumnIndex("name"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("age"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"));
+      const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"));
+      resultSet.close();
     })
     ```
 
@@ -335,9 +341,9 @@ You can obtain the distributed table name for a remote device based on the local
 
     ```json
     "requestPermissions": 
-      {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-      }
+    {
+      "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }
     ```
 
     (2) Obtain the required permissions.
@@ -351,13 +357,13 @@ You can obtain the distributed table name for a remote device based on the local
     ```js
     let context = featureAbility.getContext();
     context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-        console.info(`result.requestCode=${result.requestCode}`)
+      console.info(`result.requestCode=${result.requestCode}`);
     })
-    let promise = rdbStore.setDistributedTables(["test"])
+    let promise = store.setDistributedTables(["test"]);
     promise.then(() => {
-        console.info("setDistributedTables success.")
+      console.info(`setDistributedTables success.`);
     }).catch((err) => {
-        console.info("setDistributedTables failed.")
+      console.error(`setDistributedTables failed, ${err}`);
     })
     ```
 
@@ -372,16 +378,16 @@ You can obtain the distributed table name for a remote device based on the local
     The sample code is as follows:
 
     ```js
-    let predicate = new data_rdb.RdbPredicates('test')
-    predicate.inDevices(['12345678abcde'])
-    let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicate)
+    let predicate = new relationalStore.RdbPredicates('test');
+    predicate.inDevices(['12345678abcde']);
+    let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicate);
     promise.then((result) => {
-        console.log('sync done.')
-        for (let i = 0; i < result.length; i++) {
-            console.log('device=' + result[i][0] + 'status=' + result[i][1])
-        }
+      console.info(`sync done.`);
+      for (let i = 0; i < result.length; i++) {
+        console.info(`device=${result[i][0]}, status=${result[i][1]}`);
+      }
     }).catch((err) => {
-        console.log('sync failed')
+      console.error(`sync failed, err: ${err}`);
     })
     ```
 
@@ -395,15 +401,15 @@ You can obtain the distributed table name for a remote device based on the local
 
     ```js
     function storeObserver(devices) {
-        for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + 'data changed')
-        }
+      for (let i = 0; i < devices.length; i++) {
+        console.info(`device= ${devices[i]} data changed`);
+      }
     }
     
     try {
-        rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+      store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
     } catch (err) {
-        console.log('register observer failed')
+      console.error(`register observer failed, err: ${err}`);
     }
     ```
 
@@ -416,8 +422,24 @@ You can obtain the distributed table name for a remote device based on the local
     The sample code is as follows:
 
     ```js
-    let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
-    let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
+   import deviceManager from '@ohos.distributedHardware.deviceManager'
+  
+   let deviceIds = [];
+   deviceManager.createDeviceManager('bundleName', (err, value) => {
+     if (!err) {
+       let devManager = value;
+       if (devManager != null) {
+         // Obtain device IDs.
+         let devices = devManager.getTrustedDeviceListSync();
+         for (let i = 0; i < devices.length; i++) {
+           deviceIds[i] = devices[i].deviceId;
+         }
+       }
+     }
+   })
+   
+   let tableName = store.obtainDistributedTableName(deviceIds[0], "test");
+   let resultSet = store.querySql("SELECT * FROM " + tableName);
     ```
     
 8. Query data of a remote device.
@@ -429,19 +451,19 @@ You can obtain the distributed table name for a remote device based on the local
    The sample code is as follows:
 
    ```js
-    let rdbPredicate = new data_rdb.RdbPredicates('employee')
-    predicates.greaterThan("id", 0) 
-    let promiseQuery = rdbStore.remoteQuery('12345678abcde', 'employee', rdbPredicate)
+    let rdbPredicate = new relationalStore.RdbPredicates('employee');
+    predicates.greaterThan("id", 0) ;
+    let promiseQuery = store.remoteQuery('12345678abcde', 'employee', rdbPredicate);
     promiseQuery.then((resultSet) => {
-        while (resultSet.goToNextRow()) {
-            let idx = resultSet.getLong(0);
-            let name = resultSet.getString(1);
-            let age = resultSet.getLong(2);
-            console.info(idx + " " + name + " " + age);
-        }
-        resultSet.close();
+      while (resultSet.goToNextRow()) {
+        let idx = resultSet.getLong(0);
+        let name = resultSet.getString(1);
+        let age = resultSet.getLong(2);
+        console.info(`indx: ${idx}, name: ${name}, age: ${age}`);
+      }
+      resultSet.close();
     }).catch((err) => {
-        console.info("failed to remoteQuery, err: " + err)
+      console.error(`failed to remoteQuery, err: ${err}`);
     })
    ```
 
@@ -452,11 +474,11 @@ You can obtain the distributed table name for a remote device based on the local
    The sample code is as follows:
 
    ```js
-    let promiseBackup = rdbStore.backup("dbBackup.db")
+    let promiseBackup = store.backup("dbBackup.db");
     promiseBackup.then(() => {
-       console.info('Backup success.')
+      console.info(`Backup success.`);
     }).catch((err) => {
-       console.info('Backup failed, err: ' + err)
+      console.error(`Backup failed, err: ${err}`);
     })
    ```
    
@@ -465,10 +487,10 @@ You can obtain the distributed table name for a remote device based on the local
    The sample code is as follows:
 
    ```js
-    let promiseRestore = rdbStore.restore("dbBackup.db")
+    let promiseRestore = store.restore("dbBackup.db");
     promiseRestore.then(() => {
-       console.info('Restore success.')
+      console.info(`Restore success.`);
     }).catch((err) => {
-       console.info('Restore failed, err: ' + err)
+      console.error(`Restore failed, err: ${err}`);
     })
    ```

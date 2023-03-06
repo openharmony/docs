@@ -71,13 +71,13 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
     let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
       if (error) {
-          console.info( `applyQuickFix failed with error: ${error}`);
+          console.error( `applyQuickFix failed with error: ${error}`);
       } else {
           console.info( 'applyQuickFix success');
       }
     });
   } catch (paramError) {
-    console.log('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
 ```
 
@@ -113,10 +113,10 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
       console.info('applyQuickFix success');
     }).catch((error) => {
-      console.info(`applyQuickFix err: ${error}`);
+      console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}‘);
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
 ```
 
@@ -146,13 +146,13 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
       if (error) {
-        console.info(`getApplicationQuickFixInfo error: ${error}`);
+        console.error(`getApplicationQuickFixInfo error: ${error}`);
       } else {
         console.info(`getApplicationQuickFixInfo success: ${data}`);
       }
-    })
+    });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
 ```
 
@@ -188,9 +188,9 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
       console.info(`getApplicationQuickFixInfo success: ${data}`);
     }).catch((error) => {
-      console.info(`getApplicationQuickFixInfo err: ${error}`);
+      console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
   ```

@@ -38,7 +38,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
+    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
 let monitor = {
@@ -47,8 +47,8 @@ let monitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info('addAbilityMonitor callback');
+abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+    console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -122,8 +122,8 @@ let monitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
-    console.info('removeAbilityMonitor callback');
+abilityDelegator.removeAbilityMonitor(monitor, (error : any) => {
+    console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -197,8 +197,12 @@ let monitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
-    console.info('waitAbilityMonitor callback');
+abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
+    if (error && error.code !== 0) {
+        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -231,11 +235,15 @@ function onAbilityCreateCallback(data) {
 let monitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) => {
-    console.info('waitAbilityMonitor callback');
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : any, data : any) => {
+    if (error && error.code !== 0) {
+        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 

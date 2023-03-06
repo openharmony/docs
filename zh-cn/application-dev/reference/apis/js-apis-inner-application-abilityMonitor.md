@@ -19,6 +19,7 @@ Ability监听器
 | 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
 | abilityName                                                  | string   | 是   | 是   | 当前AbilityMonitor绑定的ability名称 |
+| moduleName?                                                  | string   | 是   | 是   | 当前AbilityMonitor绑定的模块名称 |
 | onAbilityCreate?:(data: [UIAbility](js-apis-app-ability-uiAbility.md)) | function | 是   | 是   | ability被启动初始化时的回调函数<br/>不设置该属性则不能收到该生命周期回调 |
 | onAbilityForeground?:(data: [UIAbility](js-apis-app-ability-uiAbility.md)) | function | 是   | 是   | ability状态变成前台时的回调函数<br/>不设置该属性则不能收到该生命周期回调 |
 | onAbilityBackground?:(data: [UIAbility](js-apis-app-ability-uiAbility.md)) | function | 是   | 是   | ability状态变成后台时的回调函数<br/>不设置该属性则不能收到该生命周期回调 |
@@ -33,17 +34,20 @@ Ability监听器
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
+    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
 let monitor = {
     abilityName: 'abilityname',
+    moduleName: "moduleName",
     onAbilityCreate: onAbilityCreateCallback
 };
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info('addAbilityMonitor callback');
+abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+    if (error && error.code !== 0) {
+        console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    }
 });
 ```
 

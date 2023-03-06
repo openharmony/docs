@@ -724,8 +724,8 @@ Defines virtual screen parameters.
 | Name     | Type| Readable| Writable| Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | name      | string   | Yes  | Yes  | Name of a virtual screen.     |
-| width     | number   | Yes  | Yes  | Width of the virtual screen.     |
-| height    | number   | Yes  | Yes  | Height of the virtual screen.     |
+| width     | number   | Yes  | Yes  | Width of the virtual screen, in pixels.|
+| height    | number   | Yes  | Yes  | Height of the virtual screen, in pixels.|
 | density   | number   | Yes  | Yes  | Density of the virtual screen.     |
 | surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.|
 
@@ -734,6 +734,8 @@ Defines virtual screen parameters.
 Implements a **Screen** instance.
 
 Before calling any API in **Screen**, you must use **[getAllScreens()](#screengetallscreens)** or **[createVirtualScreen()](#screencreatevirtualscreen)** to obtain a **Screen** instance.
+
+### Attributes
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -744,6 +746,7 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.  |
 | activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode.|
 | orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.            |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.            |
 
 ### setOrientation
 
@@ -997,6 +1000,19 @@ Enumerates the screen orientations.
 | REVERSE_VERTICAL   | 3    | Reverse vertical.    |
 | REVERSE_HORIZONTAL | 4    | Reverse horizontal.    |
 
+## ScreenSourceMode<sup>10+</sup>
+
+Enumerates the display content source modes of the screen.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name              | Value  | Description                            |
+| ------------------ | ---- | -------------------------------- |
+| SCREEN_MAIN         | 0    | The primary screen is displayed (default).|
+| SCREEN_MIRROR       | 1    | The mirror is displayed.        |
+| SCREEN_EXTEND       | 2    | The extended screen is displayed.        |
+| SCREEN_ALONE        | 3    | The source is unspecified.    |
+
 ## ScreenModeInfo
 
 Defines the screen mode information.
@@ -1006,6 +1022,6 @@ Defines the screen mode information.
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
 | id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate.|
-| width       | number   | Yes  | Yes  | Screen width.                                      |
-| height      | number   | Yes  | Yes  | Screen height.                                      |
+| width       | number   | Yes  | Yes  | Width of the screen, in pixels.                               |
+| height      | number   | Yes  | Yes  | Height of the screen, in pixels.                               |
 | refreshRate | number   | Yes  | Yes  | Screen refresh rate.                                    |

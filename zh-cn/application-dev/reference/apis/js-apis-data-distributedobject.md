@@ -15,7 +15,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 
 ## distributedObject.create<sup>9+</sup>
 
-create(context: Context, source: object): DistributedObjectV9
+create(context: Context, source: object): DataObject
 
 创建一个分布式数据对象。
 
@@ -25,14 +25,14 @@ create(context: Context, source: object): DistributedObjectV9
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
   | source | object | 是 | 设置分布式数据对象的属性。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [DistributedObjectV9](#distributedobjectv9) | 创建完成的分布式数据对象。 |
+| [DataObject](#dataobject) | 创建完成的分布式数据对象。 |
 
 **示例：**
 
@@ -44,7 +44,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 import featureAbility from '@ohos.ability.featureAbility';
 // 获取context
 let context = featureAbility.getContext();
-// 创建对象，该对象包含4个属性类型，string,number,boolean和Object
+// 创建对象，该对象包含4个属性类型：string、number、boolean和Object
 let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 ```
 
@@ -55,15 +55,14 @@ Stage模型示例：
 import distributedObject from '@ohos.data.distributedDataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-// 获取context
-let context;
+let g_object = null;
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
+        g_object = distributedObject.create(this.context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
     }
 }
-// 创建对象，该对象包含4个属性类型，string,number,boolean和Object
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 ```
 
 ## distributedObject.genSessionId
@@ -109,9 +108,9 @@ revokeSave接口回调信息。
 | -------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 多设备协同的唯一标识。 |
 
-## DistributedObjectV9
+## DataObject
 
-表示一个分布式数据对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributedobjectcreate9)获取DataObject对象。
 
 ### setSessionId<sup>9+</sup>
 
@@ -140,36 +139,10 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
-});
-```
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
+    console.info("join session");
 });
 ```
 
@@ -199,44 +172,14 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
+    console.info("join session");
 });
 // 退出分布式组网
 g_object.setSessionId(() => {
-    console.log("leave all lession.");
-});
-```
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
-});
-// 退出分布式组网
-g_object.setSessionId(() => {
-    console.log("leave all lession.");
+    console.info("leave all lession.");
 });
 ```
 
@@ -272,41 +215,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
-    console.log("join session.");
-    }).catch((error)=>{
-        console.info("error:" + error.code + error.message);
-});
-// 退出分布式组网
-g_object.setSessionId().then (()=>{
-    console.log("leave all lession.");
-    }).catch((error)=>{
-        console.info("error:" + error.code + error.message);
-});
-```
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
     console.info("join session.");
@@ -315,7 +224,7 @@ g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
 });
 // 退出分布式组网
 g_object.setSessionId().then (()=>{
-    console.log("leave all lession.");
+    console.info("leave all lession.");
     }).catch((error)=>{
         console.info("error:" + error.code + error.message);
 });
@@ -338,39 +247,7 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.changeCallback = (sessionId, changeData) => {
-    console.info("change" + sessionId);
-    if (changeData != null && changeData != undefined) {
-        changeData.forEach(element => {
-        console.info("changed !" + element + " " + g_object[element]);
-        });
-    }
-}
-g_object.on("change", globalThis.changeCallback);
-```
-
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
@@ -400,34 +277,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// 删除数据变更回调changeCallback
-g_object.off("change", globalThis.changeCallback);
-// 删除所有的数据变更回调
-g_object.off("change");
-```
-
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // 删除数据变更回调changeCallback
 g_object.off("change", globalThis.changeCallback);
 // 删除所有的数据变更回调
@@ -451,37 +301,10 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-g_object.on("status", globalThis.statusCallback);
-```
-
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 g_object.on("status", globalThis.statusCallback);
 ```
 
@@ -503,37 +326,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject'; 
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
-}
-// 删除上下线回调changeCallback
-g_object.off("status",globalThis.statusCallback);
-// 删除所有的上下线回调
-g_object.off("status");
-```
-
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject'; 
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -568,38 +361,10 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 
 **示例：**
 
-FA模型示例
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local", (result) => {
-    console.log("save callback");
-    console.info("save sessionId: " + result.sessionId);
-    console.info("save version: " + result.version);
-    console.info("save deviceId:  " + result.deviceId);
-});
-```
-
-Stage模型示例
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-g_object.save("local", (result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId: " + result.sessionId);
     console.info("save version: " + result.version);
     console.info("save deviceId:  " + result.deviceId);
@@ -637,37 +402,9 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 **示例：**
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
-    console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
-}, () => {
-    console.error("save failed");
-});
-```
-
-```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-g_object.save("local").then((result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
@@ -695,55 +432,19 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
 **示例：**
 
-FA模型示例
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 // 持久化数据
 g_object.save("local", (result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
 });
 // 删除持久化保存的数据
 g_object.revokeSave((result) => {
-  console.log("revokeSave callback");
-  console.log("revokeSave sessionId " + result.sessionId);
-});
-```
-
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-// 持久化数据
-g_object.save("local", (result) => {
-    console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
-});
-// 删除持久化保存的数据
-g_object.revokeSave((result) => {
-  console.log("revokeSave callback");
-  console.log("revokeSave sessionId " + result.sessionId);
+  console.info("revokeSave callback");
+  console.info("revokeSave sessionId " + result.sessionId);
 });
 ```
 
@@ -766,18 +467,11 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
 **示例：**
 
-FA模型示例
-
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// 获取context
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 // 持久化数据
 g_object.save("local").then((result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
@@ -786,41 +480,8 @@ g_object.save("local").then((result) => {
 });
 // 删除持久化保存的数据
 g_object.revokeSave().then((result) => {
-    console.log("revokeSave callback");
-    console.log("sessionId" + result.sessionId);
-}, () => {
-    console.error("revokeSave failed");
-});
-```
-
-Stage模型示例
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// 获取context
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-g_object.save("local").then((result) => {
-    console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
-}, () => {
-    console.error("save failed");
-});
-
-// 删除持久化保存的数据
-g_object.revokeSave().then((result) => {
-    console.log("revokeSave callback");
-    console.log("sessionId" + result.sessionId);
+    console.info("revokeSave callback");
+    console.info("sessionId" + result.sessionId);
 }, () => {
     console.error("revokeSave failed");
 });
@@ -861,7 +522,7 @@ let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, is
 
 ## DistributedObject<sup>(deprecated)</sup>
 
-表示一个分布式数据对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributedobjectcreatedistributedobjectdeprecated)获取DistributedObject对象。
 
 ### setSessionId<sup>(deprecated)</sup>
 

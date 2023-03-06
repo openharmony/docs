@@ -59,6 +59,6 @@ try {
   };
   formBindingData.createFormBindingData(obj);
 } catch (error) {
-  console.log('catch error, error: ${JSON.stringify(error)}');
+  console.error('catch error, error: ${JSON.stringify(error)}');
 }
 ```

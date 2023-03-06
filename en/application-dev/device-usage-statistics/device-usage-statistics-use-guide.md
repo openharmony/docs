@@ -225,7 +225,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-7. Check whether the application specified by **bundleName** is in the idle state. This requires no permission to be configured. A third-party application can only check the idle status of itself.
+7. Check whether the application specified by **bundleName** is in the idle state. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'

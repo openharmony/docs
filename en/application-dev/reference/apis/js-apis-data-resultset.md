@@ -331,7 +331,7 @@ Obtains the value in the specified column in the current row as a string.
 
 getLong(columnIndex: number): number
 
-Obtains the value in the specified column in the current row as a Long.
+Obtains the value in the specified column in the current row as a Long integer.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -343,9 +343,9 @@ Obtains the value in the specified column in the current row as a Long.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | number | Value in the specified column as a Long.|
+| Type| Description|
+| -------- | -------- |
+| number | Value in the specified column as a Long integer.<br>The value range supported by this API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
 
 **Example**
 

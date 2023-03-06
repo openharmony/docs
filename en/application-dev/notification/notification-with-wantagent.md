@@ -5,6 +5,7 @@ A [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md) object encapsu
 Below you can see the process of adding a **WantAgent** object to a notification. The notification publisher requests a **WantAgent** object from the Ability Manager Service (AMS), and then sends a notification carrying the **WantAgent** object to the home screen. When the user touches the notification from the notification panel on the home screen, the **WantAgent** object is triggered.
 
   **Figure 1** Publishing a notification with a WantAgent object
+
 ![notification-with-wantagent](figures/notification-with-wantagent.png)
 
 
@@ -14,11 +15,11 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
 
 | Name| Description|
 | -------- | -------- |
-| getWantAgent(info: WantAgentInfo, callback: AsyncCallback&lt;WantAgent&gt;): void | Creates a **WantAgent** object.|
-| trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback&lt;CompleteData&gt;): void | Triggers a **WantAgent** object.|
-| cancel(agent: WantAgent, callback: AsyncCallback&lt;void&gt;): void | Cancels a **WantAgent** object.|
-| getWant(agent: WantAgent, callback: AsyncCallback&lt;Want&gt;): void | Obtains a **WantAgent** object.|
-| equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether two **WantAgent** objects are equal. |
+|getWantAgent(info: WantAgentInfo, callback: AsyncCallback&lt;WantAgent&gt;): void | Creates a **WantAgent** object.|
+|trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback&lt;CompleteData&gt;): void | Triggers a **WantAgent** object.|
+|cancel(agent: WantAgent, callback: AsyncCallback&lt;void&gt;): void | Cancels a **WantAgent** object.|
+|getWant(agent: WantAgent, callback: AsyncCallback&lt;Want&gt;): void | Obtains a **WantAgent** object.|
+|equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether two **WantAgent** objects are equal.|
 
 
 ## How to Develop
@@ -95,7 +96,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
 
    ```typescript
    // Create a NotificationRequest object.
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
        content: {
            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
            normal: {
@@ -111,7 +112,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    
    notificationManager.publish(notificationRequest, (err) => {
        if (err) {
-           console.error(`[ANS] failed to publish, error[${err}]`);
+           console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
            return;
        }
        console.info(`[ANS] publish success`);

@@ -11,7 +11,7 @@ To implement your own unit test framework, extend this class and override its AP
 ## Modules to Import
 
 ```ts
-import TestRunner from '@ohos.application.testRunner'
+import TestRunner from '@ohos.application.testRunner';
 ```
 
 ## TestRunner.onPrepare
@@ -27,7 +27,7 @@ Prepares the unit test environment to run test cases.
 ```ts
 export default class UserTestRunner implements TestRunner {
     onPrepare() {
-        console.log("Trigger onPrepare")
+        console.log('Trigger onPrepare');
     }
     onRun() {}
 };
@@ -49,7 +49,7 @@ Runs test cases.
 export default class UserTestRunner implements TestRunner {
     onPrepare() {}
     onRun() {
-        console.log("Trigger onRun")
+        console.log('Trigger onRun');
     }
 };
 ```

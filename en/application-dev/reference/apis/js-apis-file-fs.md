@@ -5,6 +5,7 @@ The **fs** module provides APIs for file operations, including basic file manage
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
@@ -15,7 +16,7 @@ import fs from '@ohos.file.fs';
 
 ## Guidelines
 
-Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the application sandbox as follows:
+Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the file or directory in the application sandbox as follows:
 
 **Stage Model**
 
@@ -147,7 +148,7 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 | Type                 | Description                          |
 | ------------------- | ---------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return a Boolean value. |
+| Promise&lt;boolean&gt; | Promise used to return a Boolean value.|
 
 **Example**
 
@@ -554,7 +555,7 @@ Synchronously opens a file. File URIs are supported.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Path of the file in the application sandbox or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator  (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -1079,7 +1080,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Path of the file in the application sandbox.                                  |
 | options  | Object                      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the content read.                        |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the content read.                        |
 
 **Example**
 
@@ -1169,7 +1170,7 @@ Obtains information about a symbolic link. This API uses an asynchronous callbac
 | Name  | Type                              | Mandatory| Description                                  |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
 | path     | string                             | Yes  | Path of the symbolic link in the application sandbox.|
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback used to return the symbolic link information obtained.      |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the symbolic link information obtained.      |
 
 **Example**
 
@@ -1215,7 +1216,7 @@ Obtains information about a symbolic link synchronously.
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-Renames a file. This API uses a promise to return the result.
+Renames a file or directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1248,7 +1249,7 @@ Renames a file. This API uses a promise to return the result.
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Renames a file. This API uses an asynchronous callback to return the result.
+Renames a file or directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1278,7 +1279,7 @@ Renames a file. This API uses an asynchronous callback to return the result.
 
 renameSync(oldPath: string, newPath: string): void
 
-Synchronously renames a file.
+Renames a file or directory synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1366,7 +1367,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 fsyncSync(fd: number): void
 
-Flushes data of a file to disk in synchronous mode.
+Flushes data of a file to disk synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1454,7 +1455,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 fdatasyncSync(fd: number): void
 
-Synchronizes data in a file in synchronous mode.
+Synchronizes data in a file synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1558,6 +1559,239 @@ Synchronously creates a symbolic link based on a file path.
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
   fs.symlinkSync(srcFile, dstFile);
+  ```
+
+## fs.listFile
+listFile(path: string, options?: {
+    recursion?: boolean;
+    listNum?: number;
+    filter?: Filter;
+}): Promise<string[]>;
+
+Lists all files in a directory. This API uses a promise to return the result.<br>This API supports recursive listing of all files (including files in subdirectories) and file filtering.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| path | string | Yes   | Path of the directory in the application sandbox.|
+| options | Object | No   | File filtering options.|
+
+**options parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| recursion | boolean | No   | Whether to list all files in subdirectories recursively. The default value is **false**.|
+| listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
+| filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
+
+**Return value**
+
+| Type                  | Description        |
+| --------------------- | ---------- |
+| Promise&lt;string[]&gt; | Promise used to return the files names listed.|
+
+**Example**
+
+  ```js
+  let options = {
+    "recursion": false,
+    "listNum": 0,
+    "filter": {
+      "suffix": [".png", ".jpg", ".jpeg"],
+      "displayName": ["%abc", "efg%"],
+      "fileSizeOver": 1024,
+      "lastModifiedAfter": new Date().getTime(),
+    }
+  };
+  fs.listFile(pathDir, options).then((filenames) => {
+    console.info("listFile succeed");
+    for (let i = 0; i < filenames.size; i++) {
+      console.info("fileName: %s", filenames[i]);
+    }
+  }).catch((err) => {
+      console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## fs.listFile
+listFile(path: string, options?: {
+    recursion?: boolean;
+    listNum?: number;
+    filter?: Filter;
+}, callback: AsyncCallback<string[]>): void;
+
+Lists all files in a directory. This API uses an asynchronous callback to return the result.<br>This API supports recursive listing of all files (including files in subdirectories) and file filtering.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| path | string | Yes   | Path of the directory in the application sandbox.|
+| options | Object | No   | File filtering options.|
+| callback | AsyncCallback&lt;string[]&gt; | Yes   | Callback invoked to return the file names listed.             |
+
+**options parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| recursion | boolean | No   | Whether to list all files in subdirectories recursively. The default value is **false**.|
+| listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
+| filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
+
+**Example**
+
+  ```js
+  let options = {
+    "recursion": false,
+    "listNum": 0,
+    "filter": {
+      "suffix": [".png", ".jpg", ".jpeg"],
+      "displayName": ["%abc", "efg%"],
+      "fileSizeOver": 1024,
+      "lastModifiedAfter": new Date().getTime(),
+    }
+  };
+  fs.listFile(pathDir, options, (err, filenames) => {
+    if (err) {
+      console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("listFile succeed");
+      for (let i = 0; i < filenames.size; i++) {
+        console.info("filename: %s", filenames[i]);
+      }
+    }
+  });
+  ```
+
+## listFileSync
+
+listFileSync(path: string, options?: {
+    recursion?: boolean;
+    listNum?: number;
+    filter?: Filter;
+}): string[];
+
+Lists all files in a directory synchronously. This API supports recursive listing of all files (including files in subdirectories) and file filtering.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| path | string | Yes   | Path of the directory in the application sandbox.|
+| options | Object | No   | File filtering options.|
+
+**options parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| recursion | boolean | No   | Whether to list all files in subdirectories recursively. The default value is **false**.|
+| listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
+| filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
+
+**Return value**
+
+| Type                  | Description        |
+| --------------------- | ---------- |
+| string[] | File names listed.|
+
+**Example**
+
+  ```js
+  let options = {
+    "recursion": false,
+    "listNum": 0,
+    "filter": {
+      "suffix": [".png", ".jpg", ".jpeg"],
+      "displayName": ["%abc", "efg%"],
+      "fileSizeOver": 1024,
+      "lastModifiedAfter": new Date().getTime(),
+    }
+  };
+  let filenames = fs.listFileSync(pathDir, options);
+  console.info("listFile succeed");
+  for (let i = 0; i < filenames.size; i++) {
+    console.info("filename: %s", filenames[i]);
+  }
+  ```
+## moveFile
+
+moveFile(src: string, dest: string, mode?: number): Promise<void>;
+
+Moves a file. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Path of the file to move in the application sandbox.|
+| dest | string | Yes   | Destination path of the file in the application sandbox.|
+| mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
+
+**Example**
+
+  ```js
+  fs.moveFile(srcPath, destPath, 0).then(() => {
+      console.info("move file succeed");
+  }).catch((err) => {
+      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## moveFile
+
+moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>): void;
+
+Moves a file. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Path of the file to move in the application sandbox.|
+| dest | string | Yes   | Destination path of the file in the application sandbox.|
+| mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is moved.             |
+
+**Example**
+
+  ```js
+  fs.moveFile(srcPath, destPath, 0, (err) => {
+    if (err) {
+      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("move file succeed");
+    }  
+  });
+  ```
+
+## moveFileSync
+
+moveFile(src: string, dest: string, mode?: number): void;
+
+Moves a file synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Path of the file to move in the application sandbox.|
+| dest | string | Yes   | Destination path of the file in the application sandbox.|
+| mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
+
+**Example**
+
+  ```js
+  fs.moveFileSync(srcPath, destPath, 0);
+  console.info("move file succeed");
   ```
 
 ## fs.mkdtemp
@@ -2354,6 +2588,104 @@ Represents a **File** object opened by **open()**.
 | ---- | ------ | ---- | ---- | ------- |
 | fd | number | Yes   | No   | FD of the file.|
 
+### lock
+
+lock(exclusive?: boolean): Promise<void>;
+
+Applies an exclusive lock or a shared lock on this file in blocking mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+
+**Return value**
+
+| Type                                | Description    |
+| ---------------------------------- | ------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+  ```js
+  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  file.lock(true).then(() => {
+    console.log("lock file successful");
+  }).catch((err) => {
+      console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### lock
+
+lock(exclusive?: boolean, callback: AsyncCallback<void>): void;
+
+Applies an exclusive lock or a shared lock on this file in blocking mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is locked.  |
+
+**Example**
+
+  ```js
+  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  file.lock(true, (err) => {
+    if (err) {
+      console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.log("lock file successful");
+    }
+  });
+  ```
+
+### tryLock
+
+tryLock(exclusive?: boolean): void;
+
+Applies an exclusive lock or a shared lock on this file in non-blocking mode.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+
+**Example**
+
+  ```js
+  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  file.tryLock(true);
+  console.log("lock file successful");
+  ```
+
+### unlock
+
+unlock(): void;
+
+Unlocks this file synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Example**
+
+  ```js
+  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  file.tryLock(true);
+  file.unlock();
+  console.log("unlock file successful");
+  ```
+
 ## OpenMode
 
 Defines the constants of the **mode** parameter used in **open()**. It species the mode for opening a file.
@@ -2372,3 +2704,18 @@ Defines the constants of the **mode** parameter used in **open()**. It species t
 | DIR | number | 0o200000    | If **path** does not point to a directory, throw an exception.|
 | NOFOLLOW | number | 0o400000    | If **path** points to a symbolic link, throw an exception.|
 | SYNC | number | 0o4010000    | Open the file in synchronous I/O mode.|
+
+## Filter
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+Defines the file filtering configuration, which can be used by **listFile()**.
+
+| Name       | Type      | Description               |
+| ----------- | --------------- | ------------------ |
+| suffix | Array&lt;string&gt;     | Locate files that fully match the specified file name extensions, which are of the OR relationship.          |
+| displayName    | Array&lt;string&gt;     | Locate files that fuzzy match the specified file names, which are of the OR relationship.|
+| mimeType    | Array&lt;string&gt; | Locate files that fully match the specified MIME types, which are of the OR relationship.      |
+| fileSizeOver    | number | Locate files that are greater than or equal to the specified size.      |
+| lastModifiedAfter    | number | Locate files whose last modification time is the same or later than the specified time.      |
+| excludeMedia    | boolean | Whether to exclude the files already in **Media**.      |

@@ -1,5 +1,6 @@
 # ServiceExtensionAbility
 
+
 [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) is an ExtensionAbility component of the service type that provides extension capabilities related to background services.
 
 
@@ -40,28 +41,24 @@ This feature applies only to system applications. [ServiceExtensionAbility](../r
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
 
 - **onCreate**
-  
 
-This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
+  This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
 
   > **NOTE**
->
+  >
   > If a service has been created, starting it again does not trigger the **onCreate()** callback.
 
 - **onRequest**
-  
 
-This callback is triggered when another component calls the **startServiceExtensionAbility()** method to start the service. After being started, the service runs in the background.
+  This callback is triggered when another component calls the **startServiceExtensionAbility()** method to start the service. After being started, the service runs in the background.
 
 - **onConnect**
-  
 
-This callback is triggered when another component calls the **connectServiceExtensionAbility()** method to connect to the service. In this method, a remote proxy object (IRemoteObject) is returned, through which the client communicates with the server by means of RPC.
+  This callback is triggered when another component calls the **connectServiceExtensionAbility()** method to connect to the service. In this method, a remote proxy object (IRemoteObject) is returned, through which the client communicates with the server by means of RPC.
 
 - **onDisconnect**
-  
 
-This callback is triggered when a component calls the **disconnectServiceExtensionAbility()** method to disconnect from the service.
+  This callback is triggered when a component calls the **disconnectServiceExtensionAbility()** method to disconnect from the service.
 
 - **onDestroy**
   

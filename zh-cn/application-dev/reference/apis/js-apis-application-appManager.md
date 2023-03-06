@@ -29,10 +29,13 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
     
   ```ts
-  appManager.isRunningInStabilityTest((err, flag) => {
-    console.log('error: ${JSON.stringify(err)}');
-    console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
-  })  
+  appManager.isRunningInStabilityTest((error, flag) => {
+    if (error && error.code !== 0) {
+        console.error('isRunningInStabilityTest fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}');
+    }
+  });
   ```
 
 
@@ -56,7 +59,7 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
   appManager.isRunningInStabilityTest().then((flag) => {
       console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -81,7 +84,7 @@ isRamConstrainedDevice(): Promise\<boolean>;
   appManager.isRamConstrainedDevice().then((data) => {
       console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -102,10 +105,13 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 **示例：**
     
   ```ts
-  appManager.isRamConstrainedDevice((err, data) => {
-      console.log('error: ${JSON.stringify(err)}');
-      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
-  })
+  appManager.isRamConstrainedDevice((error, data) => {
+      if (error && error.code !== 0) {
+          console.error('isRamConstrainedDevice fail, error: ${JSON.stringify(error)}');
+      } else {
+          console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
+      }
+  });
   ```
 
 ## appManager.getAppMemorySize
@@ -128,7 +134,7 @@ getAppMemorySize(): Promise\<number>;
   appManager.getAppMemorySize().then((data) => {
       console.log('The size of app memory is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -149,9 +155,12 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 **示例：**
     
   ```ts
-  appManager.getAppMemorySize((err, data) => {
-      console.log('error: ${JSON.stringify(err)}');
-      console.log('The size of app memory is: ${JSON.stringify(data)}');
+  appManager.getAppMemorySize((error, data) => {
+      if (error && error.code !== 0) {
+          console.error('getAppMemorySize fail, error: ${JSON.stringify(error)}');
+      } else {
+          console.log('The size of app memory is: ${JSON.stringify(data)}');
+      }
   });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
@@ -178,7 +187,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
   appManager.getProcessRunningInfos().then((data) => {
       console.log('The process running infos is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -203,9 +212,12 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 **示例：**
     
   ```ts
-  appManager.getProcessRunningInfos((err, data) => {
-      console.log('error: ${JSON.stringify(err)}');
-      console.log('The process running infos is: ${JSON.stringify(data)}');
+  appManager.getProcessRunningInfos((error, data) => {
+      if (error && error.code !== 0) {
+          console.error('getProcessRunningInfos fail, error: ${JSON.stringify(error)}');
+      } else {
+          console.log('getProcessRunningInfos success, data: ${JSON.stringify(data)}');
+      }
   });
   ```
 
@@ -320,7 +332,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 
   function unregisterApplicationStateObserverCallback(err) {
     if (err) {
-        console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
+        console.error('------------ unregisterApplicationStateObserverCallback ------------', err);
     }
   }
   appManager.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
@@ -360,7 +372,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>;
       console.log('----------- unregisterApplicationStateObserver success ----------', data);
   })
   .catch((err) => {
-      console.log('----------- unregisterApplicationStateObserver fail ----------', err);
+      console.error('----------- unregisterApplicationStateObserver fail ----------', err);
   });
   ```
 
@@ -387,7 +399,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
   ```ts
   function getForegroundApplicationsCallback(err, data) {
     if (err) {
-        console.log('--------- getForegroundApplicationsCallback fail ---------', err);
+        console.error('--------- getForegroundApplicationsCallback fail ---------', err);
     } else {
         console.log('--------- getForegroundApplicationsCallback success ---------', data);
     }
@@ -421,7 +433,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
       console.log('--------- getForegroundApplications success -------', data);
   })
   .catch((err) => {
-      console.log('--------- getForegroundApplications fail -------', err);
+      console.error('--------- getForegroundApplications fail -------', err);
   });
   ```
 
@@ -454,7 +466,7 @@ appManager.killProcessWithAccount(bundleName, accountId)
        console.log('------------ killProcessWithAccount success ------------', data);
    })
    .catch((err) => {
-       console.log('------------ killProcessWithAccount fail ------------', err);
+       console.error('------------ killProcessWithAccount fail ------------', err);
    });
 ```
 
@@ -486,7 +498,7 @@ let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
    if (err) {
-       console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
+       console.error('------------- killProcessWithAccountCallback fail, err: --------------', err);
    } else {
        console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
    }
@@ -519,7 +531,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
   let bundleName = 'bundleName';
   function killProcessesByBundleNameCallback(err, data) {
     if (err) {
-        console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
+        console.error('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
     } else {
         console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
     }
@@ -560,7 +572,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
         console.log('------------ killProcessesByBundleName success ------------', data);
     })
     .catch((err) => {
-        console.log('------------ killProcessesByBundleName fail ------------', err);
+        console.error('------------ killProcessesByBundleName fail ------------', err);
     });
   ```
 
@@ -589,7 +601,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
   let bundleName = 'bundleName';
   function clearUpApplicationDataCallback(err, data) {
     if (err) {
-        console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
+        console.error('------------- clearUpApplicationDataCallback fail, err: --------------', err);
     } else {
         console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
     }
@@ -630,6 +642,6 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
         console.log('------------ clearUpApplicationData success ------------', data);
     })
     .catch((err) => {
-        console.log('------------ clearUpApplicationData fail ------------', err);
+        console.error('------------ clearUpApplicationData fail ------------', err);
     });
   ```

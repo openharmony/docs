@@ -69,7 +69,6 @@ struct PolygonExample {
       Polygon({ width: 100, height: 100 })
         .points([[0, 0], [50, 100], [100, 0]])
         .fill(Color.Green)
-        .stroke(Color.Transparent)
       // 在 100 * 100 的矩形框中绘制一个四边形，起点(0, 0)，经过(0, 100)和(100, 100)，终点(100, 0)
       Polygon().width(100).height(100)
         .points([[0, 0], [0, 100], [100, 100], [100, 0]])
@@ -81,7 +80,6 @@ struct PolygonExample {
         .points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]])
         .fill(Color.Red)
         .fillOpacity(0.6)
-        .stroke(Color.Transparent)
     }.width('100%').margin({ top: 10 })
   }
 }

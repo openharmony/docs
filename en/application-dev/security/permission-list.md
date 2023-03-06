@@ -1498,6 +1498,26 @@ Allows an application to to access the Ability of the push service.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.READ_APP_PUSH_DATA
+
+Allows the push service to read data from an application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.WRITE_APP_PUSH_DATA
+
+Allows the push service to write data to an application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 Allows an application to subscribe to the startup broadcast.
@@ -1667,3 +1687,33 @@ Allows an application to call the system API of the lock screen service.
 **Authorization mode**: system_grant
 
 **Enable ACL**: FALSE
+
+## ohos.permission.PRINT
+
+Allows an application to obtain the print framework capability.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.MANAGE_PRINT_JOB
+
+Allows an application to obtain the capability of managing print tasks.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
+
+Allows a system application to disable the application with the overlay feature enabled.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE

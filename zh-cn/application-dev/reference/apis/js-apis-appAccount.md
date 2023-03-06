@@ -4561,7 +4561,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 表示返回码的枚举。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议查看[错误码文档](../errorcodes/errorcode-app-account.md)替代。
+> 从API version 8开始支持，从API version 9开始废弃。相关信息建议查看[错误码文档](../errorcodes/errorcode-account.md)替代。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -4909,9 +4909,9 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 | labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回检查结果。 |
 
-### isAccountRemovable<sup>9+</sup>
+### checkAccountRemovable<sup>9+</sup>
 
-isAccountRemovable(name: string, callback: AuthCallback): void;
+checkAccountRemovable(name: string, callback: AuthCallback): void;
 
 判断帐号是否可以删除，并使用callback异步回调返回结果。
 
@@ -4969,7 +4969,7 @@ getRemoteObject(): rpc.RemoteObject;
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
   
-    isAccountRemovable(name, callback) {
+    checkAccountRemovable(name, callback) {
       var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }

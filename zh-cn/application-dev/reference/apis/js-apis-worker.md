@@ -94,6 +94,14 @@ const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/work
 // 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
 // entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
 // scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
+
+// Stage模型工程esmodule编译场景下，支持新增的scriptURL规格：@bundle:bundlename/entryname/ets/workerdir/workerfile
+// @bundle:为固定标签，bundlename为当前应用包名，entryname为当前模块名，ets为当前使用语言
+// workerdir为worker文件所在目录，workerfile为worker文件名
+// Stage模型-目录同级（entry模块下，workers目录与pages目录同级），假设bundlename是com.example.workerdemo
+const workerStageModel03 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
+// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录），假设bundlename是com.example.workerdemo
+const workerStageModel04 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
 同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
@@ -177,7 +185,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void;
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.postMessage("hello world");
 
@@ -212,7 +220,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.postMessage("hello world");
 
@@ -247,7 +255,7 @@ on(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -281,7 +289,7 @@ once(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -315,7 +323,7 @@ off(type: string, listener?: WorkerEventListener): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 //使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
 ```
@@ -340,7 +348,7 @@ terminate(): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.terminate();
 ```
 
@@ -371,7 +379,7 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onexit = function(e) {
     console.log("onexit");
 }
@@ -411,7 +419,7 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onerror = function(e) {
     console.log("onerror");
 }
@@ -444,7 +452,7 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onmessage = function(e) {
     // e : MessageEvents, 用法如下：
     // let data = e.data;
@@ -479,7 +487,7 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onmessageerror= function(e) {
     console.log("onmessageerror");
 }
@@ -512,7 +520,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -545,7 +553,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -584,7 +592,7 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
 ```
@@ -592,7 +600,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
 workerInstance.on("alert_on", (e)=>{
@@ -651,7 +659,7 @@ removeAllListener(): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -687,7 +695,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -720,7 +728,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -759,7 +767,7 @@ dispatchEvent(event: Event): boolean
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
 ```
@@ -767,7 +775,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
 workerInstance.on("alert_on", (e)=>{
@@ -826,7 +834,7 @@ removeAllListener(): void
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -867,7 +875,7 @@ Worker线程向宿主线程发送消息。
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
@@ -876,7 +884,7 @@ workerInstance.onmessage = function(e) {
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e){
@@ -915,7 +923,7 @@ Worker线程向宿主线程发送消息。
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
@@ -924,7 +932,7 @@ workerInstance.onmessage = function(e) {
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e){
@@ -955,11 +963,11 @@ close(): void
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e) {
@@ -997,12 +1005,12 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e) {
@@ -1040,11 +1048,11 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
 parentPort.onmessageerror = function(e) {
@@ -1085,7 +1093,7 @@ parentPort.onmessageerror = function(e) {
 **示例：**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1125,11 +1133,11 @@ GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用�
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js")
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort
 workerPort.onerror = function(e){

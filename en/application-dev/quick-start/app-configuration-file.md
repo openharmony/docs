@@ -13,12 +13,10 @@ This document gives an overview of the **app.json5** configuration file. To star
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "description": "$string:description_application",
-    "distributedNotificationEnabled": true,
     "minAPIVersion": 9,
     "targetAPIVersion": 9,
     "apiReleaseType": "Release",
     "debug": false,
-    "entityType": "media",
     "car": {
       "minAPIVersion": 8,
     }
@@ -46,9 +44,8 @@ As shown above, the **app.json5** file contains several tags.
 | minAPIVersion | Minimum API version required for running the application.| Number| Yes (initial value: value of **compatibleSdkVersion** in **build-profile.json5**)|
 | targetAPIVersion | Target API version required for running the application.| Number| Yes (initial value: value of **compileSdkVersion** in **build-profile.json5**)|
 | apiReleaseType | Type of the target API version required for running the application. The value can be **"CanaryN"**, **"BetaN"**, or **"Release"**, where **N** represents a positive integer.<br>- **Canary**: indicates a restricted release.<br>- **Beta**: indicates a publicly released beta version.<br>- **Release**: indicates a publicly released official version.<br>The value is set by DevEco Studio reading the stage of the SDK in use.| String| Yes (initial value: set by DevEco Studio)|
-| distributedNotificationEnabled | Whether distributed notification is enabled for the application. When distributed notification is enabled and device A and device B where the application is installed are on the same distributed network, the devices behave in this way: If device A receives a message, device B will receive a distributed notification prompting the user to check the message received on device A.<br>- **true**: Distributed notification is enabled.<br>- **false**: Distributed notification is not enabled.| Boolean| Yes (initial value: **false**)|
-| entityType | Type of the application. The options are as follows:<br>- game<br>- media<br>- communication<br>- news<br>- travel<br>- utility<br>- shopping<br>- education<br>- kids<br>- business<br>- photography<br>- unspecified| String| Yes (initial value: **"unspecified"**)|
-| multiProjects | Whether the application supports joint development of multiple projects.<br>- **true**: The application supports joint development of multiple projects.<br>- **false**: The application does not support joint development of multiple projects.| Boolean| Yes (initial value: **false**)|
+| multiProjects | Whether the application supports joint development of multiple projects.<br>- **true**: The application supports joint development of multiple projects.<br>- **false**: The application does not support joint development of multiple projects. For details about multi-project development, see [Multi-Project Build](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/ohos-building-overview-0000001263360495-V3#section71471033104216).| Boolean| Yes (initial value: **false**)|
+| assanEnabled | Whether to enable AddressSanitizer (ASan) to detect memory corruption issues such as buffer overflows.<br>- **true**: ASan is enabled.<br>- **false**: ASan is disabled. Note that ASan is not available in the Release version.| Boolean| Yes (initial value: **false**)|
 | tablet | Tablet-specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on tablets, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | tv | TV-specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on TVs, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | wearable | Wearable-specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on wearables, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|

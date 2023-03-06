@@ -63,65 +63,65 @@ let media = mediaLibrary.getMediaLibrary(context);
 
 1. 在配置文件module.json5中声明权限。在配置文件的“module”标签内，增加“requestPermissions”标签，标签内容请根据实际情况填写。标签说明可参考[访问控制（权限）开发指导](../security/accesstoken-guidelines.md)。
 
-   ```json
-   {
-       "module": {
-           "requestPermissions": [
-               {
-                   "name": "ohos.permission.MEDIA_LOCATION",
-                   "reason": "$string:reason",
-                   "usedScene": {
-                       "abilities": [
-                         "EntryAbility"
-                       ],
-                       "when": "always"
-               }
-               },
-               {
-                   "name": "ohos.permission.READ_MEDIA",
-                   "reason": "$string:reason",
-                   "usedScene": {
-                       "abilities": [
-                           "EntryAbility"
-                       ],
-                       "when": "always"
-                   }
-               },
-               {
-                   "name": "ohos.permission.WRITE_MEDIA",
-                   "reason": "$string:reason",
-                   "usedScene": {
-                       "abilities": [
-                           "EntryAbility"
-                       ],
-                       "when": "always"
-                   }
-               }
-           ]
-       }
-   }    
-   ```
+```json
+{
+  "module": {
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      }
+    ]
+  }
+}    
+```
 
 2. 在Ability.ts中onWindowStageCreate里调用requestPermissionsFromUser进行权限校验，可以选择需要动态申请获取的权限自行添加相应代码
 
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-   
-   export default class EntryAbility extends UIAbility {
-        onWindowStageCreate(windowStage) {
-            let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
-            let permissionRequestResult;
-            let atManager = abilityAccessCtrl.createAtManager();
-            atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
-                if (err) {
-                    console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
-                } else {
-                    permissionRequestResult=result;
-                    console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
-                }    
-            });       
-        }
-    }
-   ```
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage) {
+    let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
+    let permissionRequestResult;
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
+      if (err) {
+        console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
+      } else {
+        permissionRequestResult = result;
+        console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+      }
+    });       
+  }
+}
+```
 

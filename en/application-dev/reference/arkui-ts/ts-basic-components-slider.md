@@ -24,7 +24,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**|
 | step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]|
-| style | SliderStyle | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
+| style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
 | reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
 

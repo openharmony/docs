@@ -3335,7 +3335,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 
 **错误码：**
 
@@ -4355,7 +4355,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | radius  | number | 是   | 表示窗口边缘阴影的模糊半径，取值范围为大于等于0，0表示关闭窗口边缘阴影。 |
-| color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量，单位为px。                    |
 | offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量，单位为px。                    |
 
@@ -4657,6 +4657,98 @@ try {
     });
 } catch (exception) {
     console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
+
+**示例：**
+
+```js
+try {
+    let enable = true;
+    let promise = windowClass.setWaterMarkFlag(enable);
+    promise.then(()=> {
+        console.info('Succeeded in setting water mark flag of window.');
+    }).catch((err)=>{
+        console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+为当前窗口添加或删除安全水印标志，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                              |
+| -------- | ------------------------- | ---  | ----------------------------------------------- |
+| enable   | boolean                   | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
+
+**示例：**
+
+```js
+try {
+    let enable = true;
+    windowClass.setWaterMarkFlag(enable, (err) => {
+        if (err.code) {
+            console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting water mark flag of window.');
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5796,7 +5888,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -5828,7 +5920,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 
 **返回值：**
 
@@ -6339,7 +6431,7 @@ WindowStage生命周期。
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
 
-下列API示例中都需在[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
+下列API示例中都需在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
 ### getMainWindow<sup>9+</sup>
 

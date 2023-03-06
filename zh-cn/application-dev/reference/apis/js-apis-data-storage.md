@@ -8,7 +8,7 @@
 > -  本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > -  从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.data.preferences`](js-apis-data-preferences.md)。
-> 
+>
 > -  本模块接口仅可在FA模型下使用。
 
 
@@ -24,8 +24,8 @@ import data_storage from '@ohos.data.storage';
 
 | 名称             | 类型 | 可读 | 可写 | 说明                                  |
 | ---------------- | -------- | ---- | ---- | ------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | key的最大长度限制，需小于80字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | value的最大长度限制，需小于8192字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | key的最大长度限制为80字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | value的最大长度限制为8192字节。 |
 
 
 ## data_storage.getStorageSync
@@ -172,7 +172,7 @@ context.getFilesDir().then((filePath) => {
     console.info("======================>getFilesDirPromise====================>");
 
     data_storage.deleteStorageSync(path + '/mystore');
-});  
+});
 ```
 
 ## data_storage.deleteStorage
@@ -276,9 +276,9 @@ let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
-    
+
     data_storage.removeStorageFromCacheSync(path + '/mystore');
-});  
+});
 ```
 
 
@@ -367,7 +367,7 @@ context.getFilesDir().then((filePath) => {
 
 getSync(key: string, defValue: ValueType): ValueType
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -396,7 +396,7 @@ console.info("The value of startup is " + value);
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据。使用callback方式返回结果，此方法为异步方法。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。使用callback方式返回结果，此方法为异步方法。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -425,7 +425,7 @@ storage.get('startup', 'default', function(err, value) {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-获取键对应的值，如果值为null或者非默认值类型，返默认数据。使用Promise方式返回结果，此方法为异步方法。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。使用Promise方式返回结果，此方法为异步方法。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 

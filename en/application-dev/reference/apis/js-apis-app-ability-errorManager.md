@@ -8,12 +8,12 @@ The **ErrorManager** module provides APIs for registering and deregistering erro
 
 ## Modules to Import
 ```ts
-import errorManager from '@ohos.app.ability.errorManager'
+import errorManager from '@ohos.app.ability.errorManager';
 ```
 
 ## ErrorManager.on
 
-on(type: "error", observer: ErrorObserver): number;
+on(type: 'error', observer: ErrorObserver): number;
 
 Registers an error observer.
 
@@ -35,22 +35,22 @@ Registers an error observer.
 **Example**
     
 ```ts
-var observer = {
+let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
     }
-}
-var observerId = -1;
+};
+let observerId = -1;
 try {
-    observerId = errorManager.on("error", observer);
+    observerId = errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
 
 Deregisters an error observer. This API uses an asynchronous callback to return the result.
 
@@ -67,7 +67,7 @@ Deregisters an error observer. This API uses an asynchronous callback to return 
 **Example**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 
 function unregisterErrorObserverCallback(err) {
     if (err) {
@@ -75,15 +75,15 @@ function unregisterErrorObserverCallback(err) {
     }
 }
 try {
-    errorManager.off("error", observerId, unregisterErrorObserverCallback);
+    errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
 ## ErrorManager.off
 
-off(type: "error", observerId: number): Promise\<void>;
+off(type: 'error', observerId: number): Promise\<void>;
 
 Deregisters an error observer. This API uses a promise to return the result.
 
@@ -105,17 +105,17 @@ Deregisters an error observer. This API uses a promise to return the result.
 **Example**
     
 ```ts
-var observerId = 100;
+let observerId = 100;
 try {
-    errorManager.off("error", observerId)
+    errorManager.off('error', observerId)
         .then((data) => {
             console.log('----------- unregisterErrorObserver success ----------', data);
         })
         .catch((err) => {
             console.log('----------- unregisterErrorObserver fail ----------', err);
-    })
+    });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.log('error: ${paramError.code}, ${paramError.message}');
 }
 
 ```

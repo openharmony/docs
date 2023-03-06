@@ -16,6 +16,14 @@
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 ```
 
+## 属性
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| context | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
+
 ## WorkSchedulerExtensionAbility.onWorkStart
 
 onWorkStart(work: workScheduler.WorkInfo): void

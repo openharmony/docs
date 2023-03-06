@@ -22,8 +22,8 @@ The **Context** module provides context for abilities or applications. It allows
 | preferencesDir | string | Yes   | No   | Preferences directory.|
 | bundleCodeDir | string | Yes   | No   | Bundle code directory.|
 | distributedFilesDir | string | Yes   | No   | Distributed file directory.|
-| eventHub | string | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
-| area | [AreaMode](#areamode) | Yes   | No   | Area in which the file to be access is located.|
+| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Area in which the file to be access is located.|
 
 ## Context.createBundleContext
 
@@ -60,10 +60,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 let bundleContext;
 try {
-    bundleContext = this.context.createBundleContext("com.example.test");
+    bundleContext = this.context.createBundleContext('com.example.test');
 } catch (error) {
-    console.log('createBundleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('createBundleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -100,12 +99,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("entry");
+    moduleContext = this.context.createModuleContext('entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
+
+## Context.createModuleContext
 
 createModuleContext(bundleName: string, moduleName: string): Context;
 
@@ -139,10 +139,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("com.example.test", "entry");
+    moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -167,18 +166,6 @@ let applicationContext;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {
-    console.log('getApplicationContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.log('getApplicationContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
-
-## AreaMode
-
-Enumerates the areas in which the file to be access can be located.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| EL1 | 0 | Device-level encryption area, which is accessible after the device is powered on.|
-| EL2 | 1 | User-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).|

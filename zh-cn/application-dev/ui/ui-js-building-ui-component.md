@@ -25,21 +25,15 @@
 
 针对组件开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsComponentCollection)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
 - [`JsPanel`：内容展示面板（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsPanel)
 
 - [`Popup`：气泡（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Popup)
 
-- [`RefreshContainer`：下拉刷新容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/RefreshContainer)
-
-- [`JSComponments`：Js组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JSComponments)
-
 - [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsUserRegistration)
 
-- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
-
-- [`JsVideo`：视频播放（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/JsVideo)
+- [`MediaCollections`：媒体管理合集（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
 
 - [rating（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 

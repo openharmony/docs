@@ -83,7 +83,7 @@ export default class EntryAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
-        console.log('registerAbilityLifecycleCallback number: ' + JSON.stringify(lifecycleId));
+        console.log('registerAbilityLifecycleCallback lifecycleId: ${lifecycleId)}');
     }
 }
 ```
@@ -114,9 +114,13 @@ let lifecycleId;
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        console.log('stage applicationContext: ' + applicationContext);
+        console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off(type: 'abilityLifecycle', lifecycleId, (error, data) => {
-            console.log('unregisterAbilityLifecycleCallback success, err: ' + JSON.stringify(error));
+            if (error && error.code !== 0) {
+                console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
+            } else {
+                console.log('unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}');
+            }
         });
     }
 }
@@ -147,7 +151,7 @@ let lifecycleId;
 export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        console.log('stage applicationContext: ' + applicationContext);
+        console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off(type: 'abilityLifecycle', lifecycleId);
     }
 }
@@ -185,19 +189,19 @@ export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate')
         globalThis.applicationContext = this.context.getApplicationContext();
-        let EnvironmentCallback = {
+        let environmentCallback = {
             onConfigurationUpdated(config){
-                console.log('onConfigurationUpdated config:' + JSON.stringify(config));
+                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             },
             onMemoryLevel(level){
-                console.log('onMemoryLevel level:' + level);
+                console.log('onMemoryLevel level: ${level}');
             }
-        }
+        };
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
-        // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.on('environment', EnvironmentCallback);
-        console.log('registerEnvironmentCallback number: ' + JSON.stringify(callbackId));
+        // 2.通过applicationContext注册监听系统环境变化
+        callbackId = applicationContext.on('environment', environmentCallback);
+        console.log('registerEnvironmentCallback callbackId: ${callbackId}');
     }
 }
 ```
@@ -229,7 +233,11 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {
-            console.log('unregisterEnvironmentCallback success, err: ' + JSON.stringify(error));
+            if (error && error.code !== 0) {
+                console.error('unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}');
+            } else {
+                console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
+            }
         });
     }
 }
@@ -265,9 +273,9 @@ export default class MyAbility extends Ability {
 }
 ```
 
-## ApplicationContext.getProcessRunningInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
@@ -281,22 +289,22 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInfo.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.getProcessRunningInformation().then((data) => {
+applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error: ${JSON.stringify(error)}');
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
-## ApplicationContext.getProcessRunningInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
 
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
 获取有关运行进程的信息。
 
@@ -310,15 +318,15 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 类型 | 说明 |
 | -------- | -------- |
-|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInfo.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.getProcessRunningInformation((err, data) => {
+applicationContext.getRunningProcessInformation((err, data) => {
     if (err.code !== 0) {
-        console.error('getProcessRunningInformation faile, err: ${JSON.stringify(err)}');
+        console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
     }
@@ -364,7 +372,9 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
-applicationContext.killAllProcesses(err => {
-    console.error('killAllProcesses result: ${JSON.stringify(err)}');
+applicationContext.killAllProcesses(error => {
+    if (error && error.code !== 0) {
+        console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+    }
 });
 ```

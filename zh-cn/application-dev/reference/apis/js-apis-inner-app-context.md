@@ -40,8 +40,12 @@ getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getOrCreateLocalDir((err, data)=>{
-    console.info('getOrCreateLocalDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getOrCreateLocalDir((error, data)=>{
+    if (error && error.code !== 0) {
+        console.error('getOrCreateLocalDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getOrCreateLocalDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -96,8 +100,12 @@ import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
 let context = featureAbility.getContext();
 bundle.getBundleInfo('com.context.test', 1, (err, datainfo) =>{
-    context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (err, data) =>{
-        console.info('verifyPermission err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (error, data) =>{
+        if (error && error.code !== 0) {
+            console.error('verifyPermission fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('verifyPermission success, data: ${JSON.stringify(data)}');
+        }
     });
 });
 ```
@@ -125,8 +133,12 @@ verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.verifyPermission('com.example.permission', (err, data) =>{
-    console.info('verifyPermission err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.verifyPermission('com.example.permission', (error, data) =>{
+    if (error && error.code !== 0) {
+        console.error('verifyPermission fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('verifyPermission success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -192,8 +204,12 @@ context.requestPermissionsFromUser(
      'com.example.permission4',
      'com.example.permission5'],
     1,
-    (err, data) => {
-        console.info('requestPermissionsFromUser err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('requestPermissionsFromUser fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('requestPermissionsFromUser success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -258,8 +274,12 @@ getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getApplicationInfo((err, data) => {
-    console.info('getApplicationInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getApplicationInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getApplicationInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getApplicationInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -310,8 +330,12 @@ getBundleName(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getBundleName((err, data) => {
-    console.info('getBundleName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getBundleName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -360,8 +384,12 @@ getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getDisplayOrientation((err, data) => {
-    console.info('getDisplayOrientation err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getDisplayOrientation((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getDisplayOrientation fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getDisplayOrientation success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -408,8 +436,12 @@ getExternalCacheDir(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getExternalCacheDir((err, data) => {
-    console.info('getExternalCacheDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getExternalCacheDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getExternalCacheDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getExternalCacheDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -459,8 +491,8 @@ import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle';
 let context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
-context.setDisplayOrientation(orientation, (err) => {
-    console.info('setDisplayOrientation err: ${JSON.stringify(err)}');
+context.setDisplayOrientation(orientation, (error) => {
+    console.error('setDisplayOrientation fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -512,8 +544,8 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 let show = true;
-context.setShowOnLockScreen(show, (err) => {
-    console.info('setShowOnLockScreen err: ${JSON.stringify(err)}');
+context.setShowOnLockScreen(show, (error) => {
+    console.error('setShowOnLockScreen fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -569,8 +601,8 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 let wakeUp = true;
-context.setWakeUpScreen(wakeUp, (err) => {
-    console.info('setWakeUpScreen err: ${JSON.stringify(err)}');
+context.setWakeUpScreen(wakeUp, (error) => {
+    console.error('setWakeUpScreen fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -627,8 +659,12 @@ getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getProcessInfo((err, data) => {
-    console.info('getProcessInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getProcessInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getProcessInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getProcessInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -681,8 +717,12 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getElementName((err, data) => {
-    console.info('getElementName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getElementName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getElementName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getElementName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -733,8 +773,12 @@ getProcessName(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getProcessName((err, data) => {
-    console.info('getProcessName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getProcessName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getProcessName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getProcessName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -785,8 +829,12 @@ getCallingBundle(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getCallingBundle((err, data) => {
-    console.info('getCallingBundle err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getCallingBundle((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getCallingBundle fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getCallingBundle success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -835,8 +883,12 @@ getCacheDir(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getCacheDir((err, data) => {
-    console.info('getCacheDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getCacheDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getCacheDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getCacheDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -883,8 +935,12 @@ getFilesDir(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getFilesDir((err, data) => {
-    console.info('getFilesDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getFilesDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getFilesDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getFilesDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -933,8 +989,12 @@ getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getOrCreateDistributedDir((err, data) => {
-    console.info('getOrCreateDistributedDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getOrCreateDistributedDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getOrCreateDistributedDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getOrCreateDistributedDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -983,8 +1043,12 @@ getAppType(callback: AsyncCallback\<string>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getAppType((err, data) => {
-    console.info('getAppType err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getAppType((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getAppType fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getAppType success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1031,8 +1095,12 @@ getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getHapModuleInfo((err, data) => {
-    console.info('getHapModuleInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getHapModuleInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getHapModuleInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getHapModuleInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1079,8 +1147,12 @@ getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getAppVersionInfo((err, data) => {
-    console.info('getAppVersionInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getAppVersionInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getAppVersionInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getAppVersionInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1127,8 +1199,12 @@ getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getAbilityInfo((err, data) => {
-    console.info('getAbilityInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getAbilityInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getAbilityInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getAbilityInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1196,8 +1272,12 @@ isUpdatingConfigurations(callback: AsyncCallback\<boolean>): void;
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.isUpdatingConfigurations((err, data) => {
-    console.info('isUpdatingConfigurations err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.isUpdatingConfigurations((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('isUpdatingConfigurations fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('isUpdatingConfigurations success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1292,13 +1372,3 @@ context.printDrawnCompleted().then((data) => {
 | requestCode | 只读   | number         | 是    | 用户传入的请求代码。 |
 | permissions | 只读   | Array\<string> | 是    | 用户传入的权限。   |
 | authResults | 只读   | Array\<number> | 是    | 请求权限的结果。   |
-
-## AppVersionInfo<sup>7+</sup>
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称          | 类型     | 可读   | 可写   | 说明      |
-| ----------- | ------ | ---- | ---- | ------- |
-| appName     | string | 是    | 否    | 模块名称。   |
-| versionCode | number | 是    | 否    | 模块描述信息。 |
-| versionName | string | 是    | 否    | 描述信息ID。 |

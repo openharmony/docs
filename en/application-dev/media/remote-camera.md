@@ -5,7 +5,7 @@
 You can call the APIs provided by the **Camera** module to develop a distributed camera that provides the basic camera functions such as shooting and video recording.
 
 ## How to Develop
-Connect your calculator to a distributed device. Your calculator will call **getCameras()** to obtain the camera list and traverse the returned camera list to check **ConnectionType** of the **Camera** objects. If **ConnectionType** of a **Camera** object is **CAMERA_CONNECTION_REMOTE**, your calculator will use this object to create a **CameraInput** object. The subsequent call process is the same as that of the local camera development. For details about the local camera development, see [Camera Development](./camera.md).
+Connect your calculator to a distributed device. Your calculator will call **getSupportedCameras()** to obtain the camera list and traverse the returned camera list to check **ConnectionType** of the **Camera** objects. If **ConnectionType** of a **Camera** object is **CAMERA_CONNECTION_REMOTE**, your calculator will use this object to create a **cameraInput** object. The subsequent call process is the same as that of the local camera development. For details about the local camera development, see [Camera Development](./camera.md).
 
 For details about the APIs, see [Camera Management](../reference/apis/js-apis-camera.md).
 
@@ -24,15 +24,11 @@ import media from '@ohos.multimedia.media'
 import featureAbility from '@ohos.ability.featureAbility'
 
 // Create a CameraManager object.
-let cameraManager
-await camera.getCameraManager(globalThis.Context, (err, manager) => {
-    if (err) {
-        console.error('Failed to get the CameraManager instance ${err.message}');
-        return;
-    }
-    console.log('Callback returned with the CameraManager instance');
-    cameraManager = manager
-})
+let cameraManager = camera.getCameraManager(globalThis.Context)
+if (!cameraManager) {
+    console.error("camera.getCameraManager error")
+    return;
+} 
 
 // Register a callback to listen for camera status changes and obtain the updated camera status information.
 cameraManager.on('cameraStatus', (cameraStatusInfo) => {
@@ -41,16 +37,12 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 })
 
 // Obtain the camera list.
-let cameraArray
 let remoteCamera
-await cameraManager.getCameras((err, cameras) => {
-    if (err) {
-        console.error('Failed to get the cameras. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with an array of supported cameras: ' + cameras.length);
-    cameraArray = cameras
-})
+let cameraArray = cameraManager.getSupportedCameras();
+if (cameraArray.length <= 0) {
+    console.error("cameraManager.getSupportedCameras error")
+    return;
+} 
 
 for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex++) {
     console.log('cameraId : ' + cameraArray[cameraIndex].cameraId)                          // Obtain the camera ID.
@@ -58,15 +50,16 @@ for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex++) {
     console.log('cameraType : ' + cameraArray[cameraIndex].cameraType)                      // Obtain the camera type.
     console.log('connectionType : ' + cameraArray[cameraIndex].connectionType)              // Obtain the camera connection type.
     if (cameraArray[cameraIndex].connectionType == CAMERA_CONNECTION_REMOTE) {
-        remoteCamera = cameraArray[cameraIndex].cameraId
+        remoteCamera = cameraArray[cameraIndex]
     }
 }
 
 // Create a camera input stream.
 let cameraInput
-await cameraManager.createCameraInput(remoteCamera).then((input) => {
-    console.log('Promise returned with the CameraInput instance');
-    cameraInput = input
-})
+try {
+    cameraInput = cameraManager.createCameraInput(remoteCamera);
+} catch () {
+   console.error('Failed to createCameraInput errorCode = ' + error.code);
+}
 ```
 For details about the subsequent steps, see [Camera Development](./camera.md).

@@ -438,4 +438,4 @@ export default {
 
 基于后台任务管理，有以下相关实例可供参考：
 
-- [`BackgroundTaskManager`：后台任务管理（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)
+- [`ContinuousTask`：长时任务（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)

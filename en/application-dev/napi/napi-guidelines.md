@@ -4,9 +4,7 @@ OpenHarmony applications use JavaScript (JS) when calling native APIs. The nativ
 
 ## How to Develop
 
-The DevEco Studio has a default project that uses NAPIs. 
-
-You can choose **File** > **New** > **Create Project** to create a **Native C++** project. The **cpp** directory is generated in the **main** directory. You can use the NAPIs provided by the **ace_napi** repository for development.
+The DevEco Studio has a default project that uses NAPIs. You can choose **File** > **New** > **Create Project** to create a **Native C++** project. The **cpp** directory is generated in the **main** directory. You can use the NAPIs provided by the **ace_napi** repository for development.
 
 You can import the native .so that contains the JS processing logic. For example, **import hello from 'libhello.so'** to use the **libhello.so** capability. Then, the JS object created using the NAPI can be passed to the **hello** object of the application to call the native capability.
 
@@ -19,7 +17,10 @@ You can import the native .so that contains the JS processing logic. For example
 
 ### .so Naming Rules
 
-Each module has a .so file. For example, if the module name is **hello**, name the .so file **libhello.so**. The **nm_modname** field in **napi_module** must be **hello**, which is the same as the module name. The sample code for importing the .so file is **import hello from 'libhello.so'**.
+The .so file names must comply with the following rules:
+
+* Each module has a .so file.
+* The **nm_modname** field in **napi_module** must be the same as the module name. For example, if the module name is **hello**, name the .so file **libhello.so**. The sample code for importing the .so file is **import hello from 'libhello.so'**.
 
 ### JS Objects and Threads
 

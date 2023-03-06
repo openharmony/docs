@@ -116,7 +116,7 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 | 2300999 | Unknown Other Error.                                  |
 
 >**错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -189,7 +189,7 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 | 2300999 | Unknown Other Error.                                  |
 
 >**错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -277,7 +277,7 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 | 2300999 | Unknown Other Error.                                  |
 
 >**错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html) 
 
 **示例：**

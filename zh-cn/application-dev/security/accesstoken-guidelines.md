@@ -13,9 +13,11 @@
 
 ## 配置文件权限声明
 
-应用需要在工程配置文件中，对需要的权限逐个声明，未在配置文件中声明的权限，应用将无法获得授权。OpenHarmony提供了两种应用模型，分别为FA模型和Stage模型，更多信息可以参考[应用模型解读](../application-models/application-model-description.md)。不同的应用模型的应用包结构不同，所使用的配置文件不同。
+应用需要在项目的配置文件中逐个声明所需的权限，否则应用将无法获取授权。
 
-> **说明**：应用默认的APL等级为`normal`，当应用需要申请`system_basic`和`system_core`等级时，除了在配置文件中进行权限声明之外，还需要通过[ACL方式](#acl方式声明)进行声明使用。
+> **说明**：
+>
+> 应用在申请`system_basic`和`system_core`等级权限时，需要提升权限等级，因为应用默认的权限等级为`normal`。如果应用需要申请高于默认等级的权限，除了在配置文件中进行声明之外，还需要通过[ACL方式](#acl方式声明)进行声明使用。
 
 配置文件标签说明如下表所示。
 
@@ -98,9 +100,9 @@
 
 ## ACL方式声明
 
-应用在申请`system_basic`和`system_core`等级权限时，高于应用默认的`normal`等级。当应用需要申请权限项的等级高于应用默认的等级时，需要通过ACL方式进行声明使用。
+当应用需要申请`system_basic`和`system_core`等级的权限时，比应用默认权限等级`normal`更高。如果需要申请的权限等级高于应用默认的等级，需要使用ACL方式声明使用。
 
-例如应用在申请访问用户公共目录下音乐类型的文件，需要申请` ohos.permission.WRITE_AUDIO`权限，该权限为`system_basic`等级；以及应用在申请截取屏幕图像功能，该权限为`system_core`等级，需要申请` ohos.permission.CAPTURE_SCREEN`权限。此时需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
+例如，如果应用需要访问用户公共目录中的音乐文件，需要申请`ohos.permission.WRITE_AUDIO`权限，该权限属于`system_basic`等级。如果应用需要截取屏幕图像，则需要申请`ohos.permission.CAPTURE_SCREEN`权限，该权限属于`system_core`等级。此时，需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
 
 ```json
 {
@@ -116,11 +118,14 @@
 
 ## 向用户申请授权
 
-应用需要获取用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或者录制视频等，需要向用户申请授权。此时应用申请的权限包括了`user_grant`类型权限，需要先通过权限校验，判断当前调用者是否具备相应权限。当权限校验结果显示当前应用尚未被授权该权限时，再通过动态弹框授权方式给用户提供手动授权入口。示意效果如下图所示。
+当应用需要访问用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，应该向用户请求授权。这需要使用 `user_grant` 类型权限。在此之前，应用需要进行权限校验，以判断当前调用者是否具备所需的权限。如果权限校验结果表明当前应用尚未被授权该权限，则应使用动态弹框授权方式，为用户提供手动授权的入口。示意效果如下图所示。
 
-![](figures/permission-read_calendar.jpeg)
+图1 向用户申请授权   
+![](figures/permission-read_calendar.png)
 
-> **说明**：每次访问受目标权限保护的接口前，都需要调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口请求权限，用户在动态授予后可能通过设置取消应用的权限，因此不能把之前授予的授权状态持久化。
+> **说明**：
+>
+> 每次访问受目标权限保护的接口之前，都需要使用 [requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) 接口请求相应的权限。用户可能在动态授予权限后通过系统设置来取消应用的权限，因此不能将之前授予的授权状态持久化。
 
 ### Stage模型
 
@@ -128,70 +133,123 @@
 
 1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#配置文件权限声明)。
 
-2. 可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口动态申请权限，也可以根据业务需要在UI界面中向用户申请授权。根据[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口返回值判断是否已获取目标权限，如果当前已经获取权限，则可以继续正常访问目标接口。
+2. 校验当前是否已经授权。
+
+   在进行权限申请之前，需要先检查当前应用程序是否已经被授予了权限。可以通过调用[checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9)方法来校验当前是否已经授权。如果已经授权，则可以直接访问目标操作，否则需要进行下一步操作，即向用户申请授权。
+
+   ```ts
+   import bundleManager from '@ohos.bundle.bundleManager';
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    
-   在UIAbility中动态申请授权。
+   async function checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
+     let atManager = abilityAccessCtrl.createAtManager();
+     let grantStatus: abilityAccessCtrl.GrantStatus;
    
+     // 获取应用程序的accessTokenID
+     let tokenId: number;
+     try {
+       let bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
+       let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
+       tokenId = appInfo.accessTokenId;
+     } catch (err) {
+       console.error(`getBundleInfoForSelf failed, code is ${err.code}, message is ${err.message}`);
+     }
+   
+     // 校验应用是否被授予权限
+     try {
+       grantStatus = await atManager.checkAccessToken(tokenId, permission);
+     } catch (err) {
+       console.error(`checkAccessToken failed, code is ${err.code}, message is ${err.message}`);
+     }
+   
+     return grantStatus;
+   }
+   
+   async function checkPermissions(): Promise<void> {
+     const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
+     let grantStatus: abilityAccessCtrl.GrantStatus = await checkAccessToken(permissions[0]);
+   
+     if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+       // 已经授权，可以继续访问目标操作
+     } else {
+       // 申请日历权限
+     }
+   }
+   ```
+
+3. 动态向用户申请授权。
+
+   动态向用户申请权限是指在应用程序运行时向用户请求授权的过程。可以通过调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来实现。该方法接收一个权限列表参数，例如位置、日历、相机、麦克风等。用户可以选择授予权限或者拒绝授权。
+
+   可以在UIAbility的`onWindowStageCreate()`回调中调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来动态申请权限，也可以根据业务需要在UI中向用户申请授权。
+
+   在UIAbility中向用户申请授权。
+
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
    import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
    
+   const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
+   
    export default class EntryAbility extends UIAbility {
-       // ...
+     // ...
    
-       onWindowStageCreate(windowStage: window.WindowStage) {
-           // Main window is created, set main page for this ability
-           let context = this.context;
-           let atManager = abilityAccessCtrl.createAtManager();
-           // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-           const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-           atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-               console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
-               let grantStatus: Array<number> = data.authResults;
-               let length: number = grantStatus.length;
-               for (let i = 0; i < length; i++) {
-                   if (grantStatus[i] !== 0) {
-                       // 授权失败
-                       return;
-                   }
-               }
-               // 授权成功
-           }).catch((err) => {
-               console.error(`[requestPermissions] Failed to start request permissions. Error: ${JSON.stringify(err)}`);
-           })
-           
-           // ...
-       }
-   }
-   ```
-   
-   在UI界面中向用户申请授权。
-   ```typescript
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   import common from '@ohos.app.ability.common';
-   
-   @Entry
-   @Component
-   struct Index {
-     reqPermissions() {
-       let context = getContext(this) as common.UIAbilityContext;
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       // Main window is created, set main page for this ability
+       let context = this.context;
        let atManager = abilityAccessCtrl.createAtManager();
        // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-       const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
+   
        atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-         console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
          let grantStatus: Array<number> = data.authResults;
          let length: number = grantStatus.length;
          for (let i = 0; i < length; i++) {
-           if (grantStatus[i] !== 0) {
-             // 授权失败
+           if (grantStatus[i] === 0) {
+             // 用户授权，可以继续访问目标操作
+           } else {
+             // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
              return;
            }
          }
          // 授权成功
        }).catch((err) => {
-         console.error(`[requestPermissions] Failed to start request permissions. Error: ${JSON.stringify(err)}`);
+         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
+       })
+   
+       // ...
+     }
+   }
+   ```
+
+   在UI中向用户申请授权。
+   ```typescript
+   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+   import common from '@ohos.app.ability.common';
+   
+   const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
+   
+   @Entry
+   @Component
+   struct Index {
+     reqPermissionsFromUser(permissions: Array<Permissions>): void {
+       let context = getContext(this) as common.UIAbilityContext;
+       let atManager = abilityAccessCtrl.createAtManager();
+       // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+         let grantStatus: Array<number> = data.authResults;
+         let length: number = grantStatus.length;
+         for (let i = 0; i < length; i++) {
+           if (grantStatus[i] === 0) {
+             // 用户授权，可以继续访问目标操作
+           } else {
+             // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
+             return;
+           }
+         }
+         // 授权成功
+       }).catch((err) => {
+         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
        })
      }
    
@@ -199,6 +257,27 @@
      build() {
        // ...
      }
+   }
+   ```
+
+4. 处理授权结果。
+
+   调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限。
+
+   ```ts
+   function openPermissionsInSystemSettings(): void {
+     let context = getContext(this) as common.UIAbilityContext;
+     let wantInfo = {
+       action: 'action.settings.app.info',
+       parameters: {
+         settingsParamBundleName: 'com.example.myapplication' // 打开指定应用的详情页面
+       }
+     }
+     context.startAbility(wantInfo).then(() => {
+       // ...
+     }).catch((err) => {
+       // ...
+     })
    }
    ```
 
@@ -255,5 +334,5 @@ reqPermissions() {
 
 针对访问控制，有以下相关实例可供参考：
 
-- [AbilityAccessCtrl：访问权限控制（ArkTS）（Full SDK）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [AbilityAccessCtrl：访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AbilityAccessCtrl)
 - [为应用添加运行时权限（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

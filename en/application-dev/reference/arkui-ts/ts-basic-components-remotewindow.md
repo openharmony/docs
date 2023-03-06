@@ -18,12 +18,14 @@ RemoteWindow(target: WindowAnimationTarget)
 
 Creates a **\<RemoteWindow>** through a window animation object.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | target | [WindowAnimationTarget](#windowanimationtarget) | Yes| - | Description of the animation window to control.|
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| target | [WindowAnimationTarget](#windowanimationtarget) | Yes| - | Description of the animation window to control.|
 
 ## WindowAnimationTarget
+
 Implements a target window, which is used to remotely control the animation.
 
 | Name     | Type    | Description|
@@ -34,6 +36,7 @@ Implements a target window, which is used to remotely control the animation.
 | missionId  | number | Mission ID.|
 
 ## RRect
+
 Implements a rounded rectangle.
 
 | Name     | Type    | Description|

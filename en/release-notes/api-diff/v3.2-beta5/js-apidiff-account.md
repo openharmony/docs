@@ -1,0 +1,16 @@
+| Change Type | Old Version | New Version | d.ts File |
+| ---- | ------ | ------ | -------- |
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: InputerManager|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: InputerManager<br>Method or attribute name: static registerInputer(authType: AuthType, inputer: IInputer): void;|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: InputerManager<br>Method or attribute name: static unregisterInputer(authType: AuthType): void;|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: DomainPlugin|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: DomainPlugin<br>Method or attribute name: auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void;|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: DomainAccountManager|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: DomainAccountManager<br>Method or attribute name: static registerPlugin(plugin: DomainPlugin): void;|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: DomainAccountManager<br>Method or attribute name: static unregisterPlugin(): void;|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: AuthType<br>Method or attribute name: DOMAIN = 1024|@ohos.account.osAccount.d.ts|
+|Added|NA|Module name: ohos.account.osAccount<br>Class name: AuthSubType<br>Method or attribute name: DOMAIN_MIXED = 10240001|@ohos.account.osAccount.d.ts|
+|Permission deleted|Class name: AppAccountManager<br>Method or attribute name: getAllAccounts(callback: AsyncCallback<Array<AppAccountInfo>>): void;<br>Permission: ohos.permission.GET_ALL_APP_ACCOUNTS|Class name: AppAccountManager<br>Method or attribute name: getAllAccounts(callback: AsyncCallback<Array<AppAccountInfo>>): void;<br>Permission: N/A|@ohos.account.appAccount.d.ts|
+|Permission deleted|Class name: AppAccountManager<br>Method or attribute name: getAllAccounts(): Promise<Array<AppAccountInfo>>;<br>Permission: ohos.permission.GET_ALL_APP_ACCOUNTS|Class name: AppAccountManager<br>Method or attribute name: getAllAccounts(): Promise<Array<AppAccountInfo>>;<br>Permission: N/A|@ohos.account.appAccount.d.ts|
+|Permission deleted|Class name: AppAccountManager<br>Method or attribute name: getAccountsByOwner(owner: string, callback: AsyncCallback<Array<AppAccountInfo>>): void;<br>Permission: ohos.permission.GET_ALL_APP_ACCOUNTS|Class name: AppAccountManager<br>Method or attribute name: getAccountsByOwner(owner: string, callback: AsyncCallback<Array<AppAccountInfo>>): void;<br>Permission: N/A|@ohos.account.appAccount.d.ts|
+|Permission deleted|Class name: AppAccountManager<br>Method or attribute name: getAccountsByOwner(owner: string): Promise<Array<AppAccountInfo>>;<br>Permission: ohos.permission.GET_ALL_APP_ACCOUNTS|Class name: AppAccountManager<br>Method or attribute name: getAccountsByOwner(owner: string): Promise<Array<AppAccountInfo>>;<br>Permission: N/A|@ohos.account.appAccount.d.ts|

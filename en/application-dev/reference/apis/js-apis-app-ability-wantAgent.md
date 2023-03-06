@@ -16,7 +16,7 @@ import WantAgent from '@ohos.app.ability.wantAgent';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -85,20 +85,20 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(err));
+        console.error('getWantAgent failed, error: ${JSON.stringify(err)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.error('getWantAgent failed, error: ${JSON.stringify(err)}');
 }
 ```
 
@@ -108,7 +108,7 @@ try {
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-Obtains a **WantAgent** object. This API uses a promise to return the result.
+Obtains a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -180,16 +180,16 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
     wantAgent = data;
 }).catch((err) => {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 });
 } catch (err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -268,33 +268,33 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
     // getBundleName callback
     function getBundleNameCallback(err, data) {
         if(err) {
-            console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         } else {
-            console.info('getBundleName ok!' + JSON.stringify(data));
+            console.info('getBundleName ok! ${JSON.stringify(data)}');
         }
     }
     try {
         WantAgent.getBundleName(wantAgent, getBundleNameCallback);
     } catch(err) {
-        console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -378,29 +378,29 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed! ${JSON.stringify(wantAgent)}');
     }
     try {
         WantAgent.getBundleName(wantAgent).then((data)=>{
-            console.info('getBundleName ok!' + JSON.stringify(data));
+            console.info('getBundleName ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
-        })
+            console.info('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        });
     } catch(err){
-        console.info('getBundleName failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -480,33 +480,33 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(err));
+        console.info('getWantAgent failed ${JSON.stringify(err)}');
     }
     // getUid callback
     function getUidCallback(err, data) {
         if(err) {
-            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         } else {
-            console.info('getUid ok!' + JSON.stringify(data));
+            console.info('getUid ok! ${JSON.stringify(data)}');
         }
     }
     try {
         WantAgent.getUid(wantAgent, getUidCallback);
     } catch(err) {
-        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -590,29 +590,29 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed! ${JSON.stringify(wantAgent)}');
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
-            console.info('getUid ok!' + JSON.stringify(data));
+            console.info('getUid ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
-        })
+            console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        });
     } catch(err){
-        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -692,33 +692,33 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
-    // getUid callback
+    // getWant callback
     function getWantCallback(err, data) {
         if(err) {
-            console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('getWant failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         } else {
-            console.info('getWant ok!' + JSON.stringify(data));
+            console.info('getWant ok! ${JSON.stringify(data)}');
         }
     }
     try {
-        WantAgent.getWant(wantAgent, getBundleNameCallback);
+        WantAgent.getWant(wantAgent, getWantCallback);
     } catch(err) {
-        console.info('getWant failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getWant failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -804,29 +804,29 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed! ${JSON.stringify(wantAgent)}');
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
-            console.info('getUid ok!' + JSON.stringify(data));
+            console.info('getUid ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
-        })
+            console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        });
     } catch(err){
-        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -905,33 +905,33 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
-    // getUid callback
+    // cancel callback
     function cancelCallback(err, data) {
         if(err) {
-            console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         } else {
             console.info('cancel ok!');
         }
     }
     try {
-        WantAgent.cancel(wantAgent, getBundleNameCallback);
+        WantAgent.cancel(wantAgent, cancelCallback);
     } catch(err) {
-        console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -1015,29 +1015,29 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed! ${JSON.stringify(wantAgent)}');
     }
     try {
         WantAgent.cancel(wantAgent).then((data)=>{
             console.info('cancel ok!');
         }).catch((err)=>{
-            console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
-        })
+            console.info('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        });
     } catch(err){
-        console.info('cancel failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -1091,8 +1091,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 let wantAgent;
 // triggerInfo
 let triggerInfo = {
-        code: 0 // Custom result code.
-    }
+    code: 0 // Custom result code.
+};
 // WantAgentInfo object
 let wantAgentInfo = {
     wants: [
@@ -1119,33 +1119,33 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
-    // getUid callback
+    // trigger callback
     function triggerCallback(err, data) {
         if(err) {
-            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         } else {
-            console.info('getUid ok!' + JSON.stringify(data));
+            console.info('getUid ok! ${JSON.stringify(data)}');
         }
     }
     try {
         WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
     } catch(err) {
-        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -1164,7 +1164,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
+| otherAgent | WantAgent                | Yes  | Target **WantAgent** object.                          |
 | callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -1226,7 +1226,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
@@ -1234,26 +1234,26 @@ function getWantAgentCallback(err, data) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
-    // getUid callback
+    // equal callback
     function equalCallback(err, data) {
         if(err) {
-            console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         } else {
-            console.info('equal ok!' + JSON.stringify(data));
+            console.info('equal ok! ${JSON.stringify(data)}');
         }
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2,equalCallback);
     } catch(err) {
-        console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -1272,7 +1272,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
 | agent      | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | WantAgent | Yes  | The second **WantAgent** object.|
+| otherAgent | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -1339,7 +1339,7 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
@@ -1347,22 +1347,22 @@ function getWantAgentCallback(err, data) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed! ${JSON.stringify(wantAgent)}');
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
-            console.info('equal ok!' + JSON.stringify(data));
+            console.info('equal ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         })
     } catch(err){
-        console.info('equal failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -1439,33 +1439,33 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
-    // getUid callback
+    // getOperationTypeCallback callback
     function getOperationTypeCallback(err, data) {
         if(err) {
-            console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
         } else {
-            console.info('getOperationType ok!' + JSON.stringify(data));
+            console.info('getOperationType ok! ${JSON.stringify(data)}');
         }
     }
     try {
-        WantAgent.getOperationTypeCallback(wantAgent, getBundleNameCallback);
+        WantAgent.getOperationTypeCallback(wantAgent, getOperationTypeCallback);
     } catch(err) {
-        console.info('getOperationTypeCallback failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getOperationTypeCallback failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -1547,29 +1547,29 @@ let wantAgentInfo = {
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
+};
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed!' + JSON.stringify(wantAgent));
+        console.info('getWantAgent failed! ${JSON.stringify(wantAgent)}');
     }
     try {
         WantAgent.getOperationType(wantAgent).then((data)=>{
-            console.info('getOperationType ok!' + JSON.stringify(data));
+            console.info('getOperationType ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
-        })
+            console.info('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        });
     } catch(err){
-        console.info('getOperationType failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
 }
 ```
 
@@ -1615,5 +1615,5 @@ try {
 | info           | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
 | want           | Want                            | Yes  | An existing triggered **want**.    |
 | finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
-| finalData      | string                          | No  | Final data collected by the common event. |
+| finalData      | string                          | Yes  | Final data collected by the common event. |
 | extraInfo      | {[key: string]: any}            | No  | Extra information.              |
