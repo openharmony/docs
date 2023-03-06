@@ -1,5 +1,4 @@
 # Application Development
-
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
   - Getting Started
@@ -438,7 +437,7 @@
     - [Common Event Manager](tools/anm-tool.md)
     - [Advanced Notification Manager](tools/cem-tool.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Beta5/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
   - [SystemCapability](reference/syscap.md)
