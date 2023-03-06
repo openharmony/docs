@@ -66,7 +66,6 @@ struct RectExample {
         // 绘制90% * 50矩形
         Rect({ width: '90%', height: 50 })
           .fill(Color.Pink)
-          .stroke(Color.Transparent)
         // 绘制90% * 50的矩形框
         Rect()
           .width('90%')
@@ -81,7 +80,6 @@ struct RectExample {
           .radiusHeight(20)
           .radiusWidth(40)
           .fill(Color.Pink)
-          .stroke(Color.Transparent)
         // 绘制90% * 80的矩形, 圆角宽高为20
         Rect({ width: '90%', height: 80 })
           .radius(20)
@@ -92,7 +90,6 @@ struct RectExample {
       Rect({ width: '90%', height: 80 })
         .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
         .fill(Color.Pink)
-        .stroke(Color.Transparent)
     }.width('100%').margin({ top: 5 })
   }
 }
