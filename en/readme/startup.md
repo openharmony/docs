@@ -39,7 +39,7 @@ The startup subsystem is responsible for starting key system processes and servi
 | base/startup/appspawn_lite     | appspawn module of the Lite edition for spawning application processes. It receives Ability Manager Service (AMS) messages via IPC, parses the messages, starts application processes based on the parsing result, and grants permissions to them. | Platforms using the LiteOS Cortex-A kernel          |
 | base/startup/appspawn_standard | appspawn module of the Standard version for spawning application processes. It receives Ability Manager Service (AMS) messages via IPC, parses the messages, starts application processes based on the parsing result, and grants permissions to them. | Platforms using the Linux kernel                    |
 | base/startup/bootstrap_lite    | bootstrap module for starting all services except core system services. | Platforms using the LiteOS Cortex-M kernel          |
-| base/startup/init_lite         | init_lite module for implementing the init process, which is the first user-space process loaded after the kernel is initialized. Upon startup, the process parses the configuration file in **/etc/init.cfg**. Based on the parsing result, the process then starts other key system processes and grants required permissions to them. | Platforms using the LiteOS Cortex-A or Linux kernel |
+| base/startup/init         | init module for implementing the init process, which is the first user-space process loaded after the kernel is initialized. Upon startup, the process parses the configuration file in **/etc/init.cfg**. Based on the parsing result, the process then starts other key system processes and grants required permissions to them. | Platforms using the LiteOS Cortex-A or Linux kernel |
 | base/startup/syspara_lite      | syspara module that provides APIs to obtain device information, including the product name, brand name, category name, and manufacturer name. | All platforms                                       |
 
 
@@ -60,7 +60,7 @@ base/startup/
 ├── bootstrap_lite           # bootstrap module
 │   └── services
 │       └── source            # Source files 
-├── init_lite                 # init module
+├── init                 # init module
 │   ├── initsync              # Source files
 │   ├── interfaces            # External APIs
 │   └── services

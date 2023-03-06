@@ -161,7 +161,7 @@ OpenHarmony-3.0-LTS
 **Solution**
 
 1. For case 1, leave **caps** unspecified.
-2. For case 2, correctly configure **caps** by referring to the definition of the **capStrCapNum** data structure in **base/startup/init_lite/services/init/init_capability.c**.
+2. For case 2, correctly configure **caps** by referring to the definition of the **capStrCapNum** data structure in **base/startup/init/services/init/init_capability.c**.
 
 ### Sandbox Not Enabled
 
@@ -175,7 +175,7 @@ None.
 
 **Solution**
 
-Set **const.sandbox** to **enable** in **base/startup/init_lite/services/etc/param/ohos.para**. For details, see [Sandbox Management](../subsystems/subsys-boot-init-sandbox.md).
+Set **const.sandbox** to **enable** in **base/startup/init/services/etc/param/ohos.para**. For details, see [Sandbox Management](../subsystems/subsys-boot-init-sandbox.md).
 
 ### How to Check the Sandbox Mounting Status
 

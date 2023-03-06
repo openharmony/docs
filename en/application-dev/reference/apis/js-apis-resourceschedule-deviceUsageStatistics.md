@@ -35,7 +35,11 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the application specified by **bundleName** is in the idle state. This API uses an asynchronous callback to return the result. A third-party application can only check the idle status of itself.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -53,8 +57,8 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.         | 
 | 10000002   | Parcel operation failed.         | 
 | 10000003   | System service operation failed. | 
-| 10000004   | IPC Communication failed.        | 
-| 10000006   | Get application info failed.     |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.    |
 
 **Example**
   ```js
@@ -77,7 +81,11 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 Checks whether the application specified by **bundleName** is in the idle state. This API uses a promise to return the result. A third-party application can only check the idle status of itself.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -100,8 +108,8 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.         | 
 | 10000002   | Parcel operation failed.         | 
 | 10000003   | System service operation failed. | 
-| 10000004   | IPC Communication failed.        | 
-| 10000006   | Get application info failed.     |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.     |
 
 **Example**
 
@@ -140,10 +148,10 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -182,10 +190,10 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -232,9 +240,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -292,9 +300,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -346,9 +354,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -405,9 +413,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -456,9 +464,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -514,9 +522,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -561,9 +569,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -615,9 +623,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.      |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -664,9 +672,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -714,9 +722,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -771,9 +779,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -821,9 +829,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -878,10 +886,10 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
+| 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -927,10 +935,10 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
+| 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -977,9 +985,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
 
 **Return value**
 
@@ -1033,9 +1041,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
 
 **Example**
 
@@ -1083,8 +1091,8 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **Return value**
 
@@ -1142,13 +1150,14 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 
 **Example**
 
 ```javascript
+    // @ts-nocheck
     let onBundleGroupChanged = (err, res) =>{
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
@@ -1197,8 +1206,8 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **Example**
 
@@ -1241,8 +1250,8 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **Example**
 
@@ -1294,9 +1303,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 
@@ -1342,9 +1351,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.           |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.           |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 
@@ -1397,9 +1406,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 
@@ -1445,9 +1454,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 

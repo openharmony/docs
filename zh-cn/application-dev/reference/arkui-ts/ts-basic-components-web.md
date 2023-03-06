@@ -78,7 +78,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     build() {
       Column() {
         //通过resource协议加载本地资源文件
-        Web({ src: "resource://rawfile/index.html"), controller: this.controller })
+        Web({ src: "resource://rawfile/index.html", controller: this.controller })
       }
     }
   }
@@ -2856,6 +2856,40 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
           console.log('onFaviconReceived:' + JSON.stringify(event))
           this.icon = event.favicon;
         })
+      }
+    }
+  }
+  ```
+
+### onAudioStateChanged<sup>10+</sup>
+
+onAudioStateChanged(callback: (event: { playing: boolean }) => void)
+
+设置网页上的音频播放状态发生改变时的回调函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                       | 参数描述                            |
+| ------- | ---------------------------------------------- | ----------------------------------- |
+| playing | boolean | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State playing: boolean = false
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onAudioStateChanged(event => {
+            this.playing = event.playing
+            console.debug('onAudioStateChanged playing: ' + this.playing)
+          })
       }
     }
   }

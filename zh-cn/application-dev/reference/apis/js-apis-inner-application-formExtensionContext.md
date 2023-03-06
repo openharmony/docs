@@ -67,7 +67,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want, (error, data) => {
       if (error) {
-        console.log('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
+        console.error('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -118,7 +118,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error) => {
-      console.info('StartAbility failed');
+      console.error('StartAbility failed');
     });
   }
 };

@@ -4909,9 +4909,9 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 | labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回检查结果。 |
 
-### isAccountRemovable<sup>9+</sup>
+### checkAccountRemovable<sup>9+</sup>
 
-isAccountRemovable(name: string, callback: AuthCallback): void;
+checkAccountRemovable(name: string, callback: AuthCallback): void;
 
 判断帐号是否可以删除，并使用callback异步回调返回结果。
 
@@ -4969,7 +4969,7 @@ getRemoteObject(): rpc.RemoteObject;
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
   
-    isAccountRemovable(name, callback) {
+    checkAccountRemovable(name, callback) {
       var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }

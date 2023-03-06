@@ -1664,7 +1664,7 @@ listFile(path: string, options?: {
   });
   ```
 
-## listFileSync
+## fs.listFileSync
 
 listFileSync(path: string, options?: {
     recursion?: boolean;
@@ -1714,7 +1714,7 @@ listFileSync(path: string, options?: {
     console.info("filename: %s", filenames[i]);
   }
   ```
-## moveFile
+## fs.moveFile
 
 moveFile(src: string, dest: string, mode?: number): Promise<void>;
 
@@ -1740,7 +1740,7 @@ moveFile(src: string, dest: string, mode?: number): Promise<void>;
   });
   ```
 
-## moveFile
+## fs.moveFile
 
 moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>): void;
 
@@ -1769,7 +1769,7 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>
   });
   ```
 
-## moveFileSync
+## fs.moveFileSync
 
 moveFile(src: string, dest: string, mode?: number): void;
 

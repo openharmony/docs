@@ -35,7 +35,7 @@ Line(value?: {width?: string | number, height?: string | number})
 | endPoint   | Array&lt;Length&gt; | [0,&nbsp;0] | 直线终点坐标点(相对坐标)，单位vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | 设置填充区域颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Line组件无法形成闭合区域，该属性设置无效。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Line组件无法形成闭合区域，该属性设置无效。 |
-| stroke | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | 设置线条颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -60,6 +60,7 @@ struct LineExample {
       Line()
         .startPoint([0, 0])
         .endPoint([50, 100])
+        .stroke(Color.Black)
         .backgroundColor('#F5F5F5')
       Line()
         .width(200)
@@ -74,6 +75,7 @@ struct LineExample {
       Line({ width: 50, height: 50 })
         .startPoint([0, 0])
         .endPoint([100, 100])
+        .stroke(Color.Black)
         .strokeWidth(3)
         .strokeDashArray([10, 3])
         .backgroundColor('#F5F5F5')
@@ -81,6 +83,7 @@ struct LineExample {
       Line({ width: 50, height: 50 })
         .startPoint([0, 0])
         .endPoint([100, 100])
+        .stroke(Color.Black)
         .strokeWidth(3)
         .strokeDashArray([10, 3])
         .strokeDashOffset(5)
@@ -107,6 +110,7 @@ struct LineExample1 {
         .height(200)
         .startPoint([50, 50])
         .endPoint([50, 200])
+        .stroke(Color.Black)
         .strokeWidth(20)
         .strokeLineCap(LineCapStyle.Butt)
         .backgroundColor('#F5F5F5').margin(10)
@@ -116,6 +120,7 @@ struct LineExample1 {
         .height(200)
         .startPoint([50, 50])
         .endPoint([50, 200])
+        .stroke(Color.Black)
         .strokeWidth(20)
         .strokeLineCap(LineCapStyle.Round)
         .backgroundColor('#F5F5F5')
@@ -125,6 +130,7 @@ struct LineExample1 {
         .height(200)
         .startPoint([50, 50])
         .endPoint([50, 200])
+        .stroke(Color.Black)
         .strokeWidth(20)
         .strokeLineCap(LineCapStyle.Square)
         .backgroundColor('#F5F5F5')
@@ -147,29 +153,34 @@ struct LineExample {
       Line()
         .startPoint([50, 30])
         .endPoint([300, 30])
+        .stroke(Color.Black)
         .strokeWidth(10)
       // 设置strokeDashArray的数组间隔为 50
       Line()
         .startPoint([50, 20])
         .endPoint([300, 20])
+        .stroke(Color.Black)
         .strokeWidth(10)
         .strokeDashArray([50])
       // 设置strokeDashArray的数组间隔为 50, 10
       Line()
         .startPoint([50, 20])
         .endPoint([300, 20])
+        .stroke(Color.Black)
         .strokeWidth(10)
         .strokeDashArray([50, 10])
       // 设置strokeDashArray的数组间隔为 50, 10, 20
       Line()
         .startPoint([50, 20])
         .endPoint([300, 20])
+        .stroke(Color.Black)
         .strokeWidth(10)
         .strokeDashArray([50, 10, 20])
       // 设置strokeDashArray的数组间隔为 50, 10, 20, 30
       Line()
         .startPoint([50, 20])
         .endPoint([300, 20])
+        .stroke(Color.Black)
         .strokeWidth(10)
         .strokeDashArray([50, 10, 20, 30])
 

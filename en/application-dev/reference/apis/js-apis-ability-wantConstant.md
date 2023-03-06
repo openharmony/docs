@@ -44,7 +44,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 |  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | Action of displaying selection options with an action selector.                            |
 |  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | Title of the character sequence dialog box used with the action selector.               |
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | Action of selecting a file.                                         |
-|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent.                         |
+|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent. The value must be an array of the string type. |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
 |  ACTION_APP_ACCOUNT_AUTH <sup>9+</sup>     | account.appAccount.action.auth     | Action of providing the authentication service.                                     |
 |  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | Action of downloading an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |

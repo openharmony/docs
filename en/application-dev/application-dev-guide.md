@@ -24,7 +24,7 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
-- [Common Event and Notification](notification/notification-brief.md)
+- [Common Event and Notification](notification/notification-overview.md)
 - [Window Manager](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/audio-overview.md)
