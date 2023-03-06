@@ -13,11 +13,10 @@ The **ProcessData** module defines process data. If a lifecycle change listener 
 | uid<sup>8+</sup>         | number   | Yes  | No  | UID of the application.                 |
 | isContinuousTask<sup>9+</sup>         | boolean   | Yes  | No  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
 | isKeepAlive<sup>9+</sup>         | boolean   | Yes  | No  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
-| state<sup>9+</sup>       | number   | Yes  | No  | Application state. The value can be **0** (newly created), **2** (foreground), **4** (background), or **5** (terminated).    |
 
 **Example**
 ```ts
-import appManager from '@ohos.application.appManager'
+import appManager from '@ohos.application.appManager';
 
 let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
@@ -39,6 +38,6 @@ let applicationStateObserver = {
         console.log('onProcessStateChanged processData.isContinuousTask : ' +  JSON.stringify(processData.isContinuousTask));
         console.log('onProcessStateChanged processData.isKeepAlive : ' +  JSON.stringify(processData.isKeepAlive));
     }
-}
+};
 let observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
 ```
