@@ -46,7 +46,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ### Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/samples_monthly_0730/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
 
 ### API References
 
@@ -55,6 +55,7 @@ API references encompass all components and APIs available in OpenHarmony, helpi
 They are organized as follows:
 -   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-universal-events-click.md)
 -   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attributes.md)
+-   [JS Service Widget UI Components](reference/js-service-widget-ui/js-service-widget-file.md)
 -   [JS and TS APIs](reference/apis/js-apis-DataUriUtils.md)
 -   Native APIs
     -   [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
