@@ -1162,7 +1162,7 @@ Unsubscribes from the event that checks whether the bit rate is successfully set
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Event type, which is **'bitrateDone'** in this case|
+| type   | string | Yes  | Event type, which is **'bitrateDone'** in this case.|
 
 **Example**
 
@@ -1720,13 +1720,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+// Configure the parameters based on those supported by the hardware device.
 let AVRecorderProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : media.CodecMimeType.AUDIO_AAC,
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : media.CodecMimeType.VIDEO_MPEG4,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
@@ -1790,13 +1791,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+// Configure the parameters based on those supported by the hardware device.
 let AVRecorderProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : media.CodecMimeType.AUDIO_AAC,
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : media.CodecMimeType.VIDEO_MPEG4,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
@@ -2484,7 +2486,7 @@ Describes the audio and video recording parameters.
 | audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.                  |
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | No  | Type of the video source to record. This parameter is mandatory for video recording.                  |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.                                   |
-| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br> ![img](figures/en-us_image_url.png)<br>This parameter is mandatory. |
+| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory. |
 | rotation        | number                                   | No  | Rotation angle of the recorded video. The value can only be 0, 90, 180, or 270.                 |
 | location        | [Location](#location)                    | No  | Geographical location of the recorded video.                                            |
 
@@ -2606,13 +2608,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+// Configure the parameters based on those supported by the hardware device.
 let videoProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : 'audio/mp4a-latm',
     audioSampleRate : 48000,
     fileFormat : 'mp4',
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : 'video/mp4v-es',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
@@ -2676,13 +2679,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+// Configure the parameters based on those supported by the hardware device.
 let videoProfile = {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : 'audio/mp4a-latm',
     audioSampleRate : 48000,
     fileFormat : 'mp4',
-    videoBitrate : 48000,
+    videoBitrate : 2000000,
     videoCodec : 'video/mp4v-es',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
@@ -3801,7 +3805,7 @@ audioPlayer.on('error', (error) => {           // Set the 'error' event callback
     console.info(`audio error called, error: ${error}`);
 });
 
-// Set the FD (local playback) of the video file selected by the user.
+// Set the FD (local playback) of the audio file selected by the user.
 let fdPath = 'fd://';
 // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
