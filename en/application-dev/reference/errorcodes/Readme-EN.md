@@ -32,7 +32,7 @@
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
 - Security
- - [Ability Access Control Error Codes](errorcode-access-token.md)
+  - [Ability Access Control Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
   - [Certificate Error Codes](errorcode-cert.md)
@@ -63,8 +63,7 @@
   - [Time and Time Zone Service Error Codes](errorcode-time.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
-  - [Account Error Codes](errorcode-account.md)
-  - [App Account Error Codes](errorcode-app-account.md)
+  - [Account Management Error Codes](errorcode-account.md)
 - Device Management
   - [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md)
   - [Brightness Error Codes](errorcode-brightness.md)
