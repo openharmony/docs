@@ -395,6 +395,10 @@ Example of the **extensionAbilities** structure:
 
 The **requestPermissions** tage represents a set of permissions that the application needs to request from the system for running correctly.
 
+> **NOTE**
+>
+> The permission settings configured in the **requestPermissions** tag apply to the entire application.
+
   **Table 8** requestPermissions
 
 | Name| Description| Data Type| Value Range| Default Value|
