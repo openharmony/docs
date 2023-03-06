@@ -81,7 +81,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
             console.log('getRdbStore done, data : ${data}');
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                console.log('executeSql done, error message : ${err}');
+                console.error('executeSql done, error message : ${err}');
             });
             if (callback) {
                 callback();

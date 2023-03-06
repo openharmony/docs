@@ -24,8 +24,11 @@ let abilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err: any, data: any) => {
-    console.info('executeShellCommand callback, result: ', err);
-    console.info('executeShellCommand callback, data: ', data);
+abilityDelegator.executeShellCommand(cmd, (error: any, data: any) => {
+    if (error && error.code !== 0) {
+        console.error('executeShellCommand fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('executeShellCommand success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
