@@ -1,6 +1,6 @@
-# PackInfo
+# BundlePackInfo
 
-The **PackInfo** module provides information in the **pack.info** file. The information can be obtained using [freeInstall.getBundlePackInfo](js-apis-freeInstall.md).
+The **BundlePackInfo** module provides information in the **pack.info** file. The information can be obtained using [freeInstall.getBundlePackInfo](js-apis-freeInstall.md).
 
 > **NOTE**
 >
@@ -91,7 +91,7 @@ The **PackInfo** module provides information in the **pack.info** file. The info
 | ------- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | name    | string                                      | Yes  | No  | Name of the ability. The name must be unique in the bundle.           |
 | label   | string                                      | Yes  | No  | Name of the ability displayed to users. The value is a resource index to names in multiple languages.|
-| visible | boolean                                     | Yes  | No  | Whether the ability can be called by other bundles. The value **true** means that the ability can be called by other bundles, and **false** means the opposite.|
+| exported | boolean                                     | Yes  | No  | Whether the ability can be called by other bundles. The value **true** means that the ability can be called by other bundles, and **false** means the opposite.|
 | forms   | Array\<[AbilityFormInfo](#abilityforminfo)> | Yes  | No  | Widget information.                                                  |
 
 ## ExtensionAbility
