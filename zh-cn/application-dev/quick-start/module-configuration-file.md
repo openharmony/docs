@@ -72,7 +72,7 @@ module.json5配置文件包含以下标签。
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | name | 标识当前Module的名称，标签值采用字符串表示（最大长度31个字节），该名称在整个应用要唯一，不支持中文。 | 字符串 | 该标签不可缺省。 |
-| type | 标识当前Module的类型。类型有两种，分别：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。 | 字符串 | 该标签不可缺省。 |
+| type | 标识当前Module的类型。类型有4种，分别：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，标签值为字符串（最长为127字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，标签值是字符串类型（最长255字节）或对描述内容的字符串资源索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | process | 标识当前Module的进程名，标签值为字符串类型（最长为31个字节）。如果在HAP标签下配置了process，该应用的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>> **说明：**<br/>> 仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 可缺省，缺省为app.json5文件下app标签下的bundleName。 |
