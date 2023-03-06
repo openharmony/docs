@@ -6,32 +6,40 @@ Below is the process of developing, debugging, releasing, and deploying multiple
 ![hap-release](figures/hap-release.png)
 
 ## Development
-You can use [DevEco Studio](https://developer.harmonyos.com/en/develop/deveco-studio) to create multiple modules based on service requirements and develop services in independent modules.
+You can use [DevEco Studio](https://developer.harmonyos.com/en/develop/deveco-studio) to create multiple modules as needed and develop services in respective modules.
 
 ## Debugging
-You can use DevEco Studio to build code into one or more HAP files. Then, you can debug the HAP files.
+After building code into one or more HAP files and installing or updating these HAP files, you can debug them by using the methods:
 * Using DevEco Studio for debugging
 
    Follow the instructions in [Debugging Configuration](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section10491183521520).
 
-* Using [hdc_std](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) for debugging
+* Using [hdc](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) (which can be obtained in the **toolchains** directory of the OpenHarmony SDK) for debugging
+   
+   Before debugging HAP files, install or update them using either of the methods:
 
-    You can obtain the hdc_std tool from the **toolchains** directory of the SDK. When using this tool to install an HAP file, the HAP file path is the one on the operating platform. In this example, the Windows operating platform is used. The command reference is as follows:
+ 1. Use hdc to install and update the HAP files.
+
+    When specifying the HAP files, use the paths of the files on the operating system, for example, Windows.
+
     ```
     // Installation and update: Multiple file paths can be specified.
-    hdc_std install C:\entry.hap C:\feature.hap
+    hdc install C:\entry.hap C:\feature.hap
     // The execution result is as follows:
     install bundle successfully.
     // Uninstall
-    hdc_std uninstall com.example.myapplication
+    hdc uninstall com.example.myapplication
     // The execution result is as follows:
     uninstall bundle successfully.
     ```
+ 
+ 2. Run the hdc shell command, and then use the Bundle Manager (bm) tool to install and update the HAP files.
 
-* Using [Bundle Manager (bm)](../../application-dev/tools/bm-tool.md) for debugging
-
-    When using bm to install or update an HAP file, the HAP file path is the one on the real device. The command reference is as follows:
+    When specifying the HAP files, use the paths of the files on the real device. The sample code is as follows:
+    
     ```
+    // Run the hdc shell command before using the bm tool.
+    hdc shell
     // Installation and update: Multiple file paths can be specified.
     bm install -p /data/app/entry.hap /data/app/feature.hap
     // The execution result is as follows:
@@ -41,6 +49,8 @@ You can use DevEco Studio to build code into one or more HAP files. Then, you ca
     // The execution result is as follows:
     uninstall bundle successfully.
     ```
+    After the HAP files are installed or updated, you can debug them by following the instructions in [Ability Assistant](https://docs.openharmony.cn/pages/v3.2Beta/en/application-dev/tools/aa-tool.md/).
+
 ## Release
 When your application package meets the release requirements, you can package and build it into an App Pack and release it to the application market on the cloud. The application market verifies the signature of the App Pack. If the signature verification is successful, the application market obtains the HAP files from the App Pack, signs them, and distributes the signed HAP files.
 
