@@ -18,6 +18,12 @@
 
 Scroll(scroller?: Scroller)
 
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| scroller | [Scroller](#scroller) | 否 | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -42,12 +48,12 @@ Scroll(scroller?: Scroller)
 
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。<br/>\- offset：即将发生的滚动量。<br/>\- state：当前滚动状态。<br/>- offsetRemain：水平方向实际滚动量。 |
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。<br/>\- offset：即将发生的滚动量。<br/>\- state：当前滚动状态。<br/>- offsetRemain：实际滚动量。 |
 | onScroll(event: (xOffset: number, yOffset: number) => void)  | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。          |
 | onScrollEdge(event: (side: Edge) => void)                    | 滚动到边缘事件回调。                                         |
-| onScrollEnd(event: () => void)                               | 滚动停止事件回调。<br>该事件从API9开始废弃，使用onScrollStop事件替代。     |
-| onScrollStart<sup>9+</sup>(event: () => void) | 滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](#scroller)滚动控制器触发的滚动，不会触发该事件。 |
-| onScrollStop<sup>9+</sup>(event: () => void) | 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件；使用[Scroller](#scroller)滚动控制器触发的滚动，不会触发该事件。 |
+| onScrollEnd<sup>(deprecated) </sup>(event: () => void)                               | 滚动停止事件回调。<br>该事件从API9开始废弃，使用onScrollStop事件替代。     |
+| onScrollStart<sup>9+</sup>(event: () => void) | 滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画开始时会触发该事件。 |
+| onScrollStop<sup>9+</sup>(event: () => void) | 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。 |
 
 >  **说明：**
 >
@@ -111,7 +117,7 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 ### currentOffset
 
-currentOffset()
+currentOffset(): { xOffset: number, yOffset: number }
 
 
 返回当前的滚动偏移量。
