@@ -316,7 +316,7 @@ struct GridRowSample1 {
   @State private currentBreakpoint: string = 'unknown'
   build() {
     // 修改断点的取值范围同时启用更多断点，注意，修改的断点值后面必须加上vp单位。
-    GridRow(breakpoints: {value: ['600vp', '700vp', '800vp', '900vp', '1000vp'],
+    GridRow({breakpoints: {value: ['600vp', '700vp', '800vp', '900vp', '1000vp'],
       reference: BreakpointsReference.WindowSize}}) {
       GridCol({span:{xs: 12, sm: 12, md: 12, lg:12, xl: 12, xxl:12}}) {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
