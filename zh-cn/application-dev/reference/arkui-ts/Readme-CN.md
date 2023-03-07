@@ -42,6 +42,7 @@
     - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
     - [背景模糊设置](ts-universal-attributes-backgroundBlurStyle.md)
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
+    - [前景色设置](ts-universal-attributes-foreground-color.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
