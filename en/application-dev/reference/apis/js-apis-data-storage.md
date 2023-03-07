@@ -8,7 +8,6 @@ Lightweight storage provides applications with data processing capability and al
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-
 ## Modules to Import
 
 ```js
@@ -19,10 +18,10 @@ import data_storage from '@ohos.data.storage';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name             | Type   | Readable | Writable | Description                                                 |
-| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------- |
-| MAX_KEY_LENGTH   | string | Yes      | No       | Maximum length of a key. It must be less than 80 bytes.     |
-| MAX_VALUE_LENGTH | string | Yes      | No       | Maximum length of a value. It must be less than 8192 bytes. |
+| Name            | Type| Readable| Writable| Description                                 |
+| ---------------- | -------- | ---- | ---- | ------------------------------------- |
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. It must be less than 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. It must be less than 8192 bytes.|
 
 
 ## data_storage.getStorageSync
@@ -76,7 +75,7 @@ Reads the specified file and loads its data to the **Storage** instance for data
 | Name  | Type                                    | Mandatory| Description                      |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
 | path     | string                                   | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback used to return the execution result.                |
+| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback invoked to return the result.                |
 
 **Example**
 
@@ -185,7 +184,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value. |
 
 **Example**
 
@@ -227,7 +226,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -292,7 +291,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.      |
 
 **Example**
 
@@ -334,7 +333,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -364,7 +363,7 @@ Provides APIs for obtaining and modifying storage data.
 
 getSync(key: string, defValue: ValueType): ValueType
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -393,7 +392,7 @@ console.info("The value of startup is " + value);
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses an asynchronous callback to return the result.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -403,7 +402,7 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 | -------- | ------------------------------ | ---- | ----------------------------------------- |
 | key      | string                         | Yes  | Key of the data. It cannot be empty.          |
 | defValue | [ValueType](#valuetype)        | Yes  | Default value to be returned. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback used to return the execution result.                               |
+| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback invoked to return the result.                               |
 
 **Example**
 
@@ -422,7 +421,7 @@ storage.get('startup', 'default', function(err, value) {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses a promise to return the result.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -487,7 +486,7 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.            |
 | value    | [ValueType](#valuetype)   | Yes  | New value to store. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.                              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.                               |
 
 **Example**
 
@@ -521,7 +520,7 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -578,7 +577,7 @@ Checks whether the storage object contains data with a given key. This API uses 
 | Name  | Type                        | Mandatory| Description                           |
 | -------- | ---------------------------- | ---- | ------------------------------- |
 | key      | string                       | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the execution result.                     |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.                     |
 
 **Return value**
 
@@ -669,7 +668,7 @@ Deletes data with the specified key from this storage object. This API uses an a
 | Name  | Type                     | Mandatory| Description                           |
 | -------- | ------------------------- | ---- | ------------------------------- |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.      |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.                     |
 
 **Example**
 
@@ -702,7 +701,7 @@ Deletes data with the specified key from this storage object. This API uses a pr
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -743,7 +742,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
 
@@ -770,7 +769,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -811,7 +810,7 @@ Clears this **Storage** object. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
 
@@ -837,7 +836,7 @@ Clears this **Storage** object. This API uses a promise to return the result.
 **Return value**
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -864,7 +863,7 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 | Name  | Type                                               | Description                                    |
 | -------- | --------------------------------------------------- | ---------------------------------------- |
 | type     | string                                              | Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                          |
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback invoked to return the data change.                          |
 
 **Example**
 
@@ -891,7 +890,7 @@ Unsubscribes from data changes.
 | Name  | Type                                               | Description                                    |
 | -------- | --------------------------------------------------- | ---------------------------------------- |
 | type     | string                                              | Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                |
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback for the data change.                |
 
 **Example**
 
