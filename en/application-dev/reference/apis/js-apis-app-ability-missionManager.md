@@ -73,7 +73,7 @@ export default class EntryAbility extends UIAbility {
                 });
             }
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
@@ -84,7 +84,7 @@ export default class EntryAbility extends UIAbility {
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
 
         windowStage.loadContent('pages/index', (err, data) => {
@@ -155,7 +155,7 @@ export default class EntryAbility extends UIAbility {
                 });
             }
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
@@ -166,7 +166,7 @@ export default class EntryAbility extends UIAbility {
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
 
         windowStage.loadContent('pages/index', (err, data) => {
@@ -242,7 +242,7 @@ export default class EntryAbility extends UIAbility {
                 });
             }
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
@@ -253,7 +253,7 @@ export default class EntryAbility extends UIAbility {
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
 
         windowStage.loadContent('pages/index', (err, data) => {
@@ -306,7 +306,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
     missionManager.getMissionInfo('', testMissionId, (error, mission) => {
         if (error) {
-            console.log('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         } else {
             console.log('mission.missionId = ${mission.missionId}');
             console.log('mission.runningState = ${mission.runningState}');
@@ -317,7 +317,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
         }
     });
   } catch (paramError) {
-    console.log('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -392,14 +392,14 @@ Obtains information about all missions. This API uses an asynchronous callback t
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error) {
-          console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       } else {
         console.log('size = ${missions.length}');
         console.log('missions = ${JSON.stringify(missions)}');
       }
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
   ```
 
