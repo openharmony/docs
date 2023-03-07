@@ -139,56 +139,46 @@ button{
 
 ```js
 // xxx.js
-import promptAction from '@ohos.promptAction';
-export default{
-  data:{
-    animation:'',
-  },
-  onInit(){
-  },
-  onShow(){
-    var options = {
-      duration: 1500,
-      easing: 'friction',
-      delay: 500,
-      fill: 'forwards',
-      iterations: 2,
-      direction: 'normal',
-    };
-    var frames = [
-      {transform: {translate: '-120px -0px'}, opacity: 0.1, offset: 0.0},
-      {transform: {translate: '120px 0px'}, opacity: 1.0, offset: 1.0}
-    ];
-    this.animation = this.$element('idName').animate(frames, options);
-    // handle finish event
-    this.animation.onfinish = function(){
-      promptAction.showToast({
-        message: "The animation is finished."
-      });
-    };
-    // handle cancel event
-    this.animation.oncancel = function(){
-      promptAction.showToast({
-        message: "The animation is canceled."
-      });
-    };
-    // handle repeat event
-    this.animation.onrepeat = function(){
-       promptAction.showToast({
-          message: "The animation is repeated."
-       });
-    };
-  },
-  start(){
-    this.animation.play();
-  },
-  cancel(){
-    this.animation.cancel();
-  }
+export default {
+    data: {
+        animation: '',
+        options: {},
+        frames: {}
+    },
+    onInit() {
+        this.options = {
+            duration: 1500,
+            easing: 'friction',
+            delay: 500,
+            fill: 'forwards',
+            iterations: 2,
+            direction: 'normal',
+        };
+        this.frames = [
+            {
+                transform: {
+                    translate: '-120px -0px'
+                }, opacity: 0.1, offset: 0.0
+            },
+            {
+                transform: {
+                    translate: '120px 0px'
+                }, opacity: 1.0, offset: 1.0
+            }
+        ];
+    },
+
+    start() {
+        this.animation = this.$element('idName').animate(this.frames, this.options);
+        this.animation.play();
+    },
+    cancel() {
+        this.animation.cancel();
+    }
 }
 ```
 
-![animationapi-4](figures/animationapi-4.gif)
+![en-us_image_0000001229677045](figures/en-us_image_0000001229677045.gif)
 
 ## getBoundingClientRect
 

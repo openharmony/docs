@@ -16,7 +16,7 @@ You can draw an image around a component.
 
 | Name        | Type                                    | Description                                     |
 | ---------- | ---------------------------------------- | --------------------------------------- |
-| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.                           |
+| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image. |
 | slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Slice width of the border image.<br>Default value: **0**                  |
 | width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Width of the border image.<br>Default value: **0**                    |
 | outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                |
@@ -32,7 +32,6 @@ You can draw an image around a component.
 | Stretch | The source image's slices stretched to fill the border box.               |
 | Round   | The source image's slices are tiled to fill the border box. Tiles may be compressed when needed.|
 | Space   | The source image's slices are tiled to fill the border box. Extra space will be filled in between tiles.  |
-
 
 ## Example
 
@@ -85,7 +84,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
+        Text('This is gradient color.').textAlign(TextAlign.Center).height(50).width(200)
           .borderImage({
             source: {
               angle: 90,
