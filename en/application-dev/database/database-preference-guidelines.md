@@ -114,21 +114,19 @@ You can use the following APIs to delete a **Preferences** instance or data file
    ```ts
    // Obtain the context.
    import UIAbility from '@ohos.app.ability.UIAbility';
-   let context = null;
    let preferences = null;
    export default class EntryAbility extends UIAbility {
-       onWindowStageCreate(windowStage){
-           context = this.context;
+       onWindowStageCreate(windowStage) {
+           let promise = data_preferences.getPreferences(this.context, 'mystore');
+            promise.then((pref) => {
+                preferences = pref;
+            }).catch((err) => {
+                console.info("Failed to get the preferences.");
+            })
        }
    }
    
-   let promise = data_preferences.getPreferences(context, 'mystore');
    
-   promise.then((pref) => {
-       preferences = pref;
-   }).catch((err) => {
-       console.info("Failed to get the preferences.");
-   })
    ```
 
 3. Write data.
