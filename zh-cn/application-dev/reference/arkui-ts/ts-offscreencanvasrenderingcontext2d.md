@@ -727,7 +727,7 @@ fillRect(x: number, y: number, w: number, h: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.fillRect(0,30,100,100)
+            this.offContext.fillRect(30,30,100,100)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
          })
