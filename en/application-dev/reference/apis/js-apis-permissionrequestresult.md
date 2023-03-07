@@ -14,7 +14,7 @@ The **PermissionRequestResult** module defines the result of a permission reques
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| No| Permissions requested.|
-| authResults | Array&lt;number&gt; | Yes| No| Whether the requested permissions are granted. The value **0** means that the requests permissions are granted, and a non-zero value means the opposite.|
+| authResults | Array&lt;number&gt; | Yes| No|Result of the permission Request.<br>**-1**: The permission has been set and no dialog box will be displayed. Users can modify the permission in **Settings**.<br>**0**: No operation is required.<br>**1**: Dynamic user authorization is required via a dialog window .<br>**2**: The request is invalid. Possible causes are as follows:<br>- The permission is not declared in the configuration file.<br>- The permission name is invalid.<br>- Special conditions for applying for the permission do not satisfied. See [ohos.permission.LOCATION](../../security/permission-list.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/permission-list.md#ohospermissionapproximately_location).|
 
 ## Usage
 
@@ -36,5 +36,3 @@ try {
   console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
-
- <!--no_check--> 

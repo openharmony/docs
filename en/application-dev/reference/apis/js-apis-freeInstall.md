@@ -267,7 +267,7 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This 
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName     | string                                                       | Yes  | Bundle name.                                            |
 | bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | Yes  | Flag of the bundle package.                                    |
-| callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundlePackInfo** object obtained; otherwise, **err** is an error object.|
+| callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundlePackInfo** object obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -318,7 +318,7 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundleFlag**. This API 
 
 | Type                                                      | Description                               |
 | ---------------------------------------------------------- | ----------------------------------- |
-| Promise<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | Promise used to return the **BundlePackInfo** object obtained.|
+| Promise<[BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)> | Promise used to return the **BundlePackInfo** object obtained.|
 
 **Error codes**
 

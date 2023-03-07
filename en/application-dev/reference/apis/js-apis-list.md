@@ -1,8 +1,5 @@
 # @ohos.util.List (Linear Container List)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **List** is implemented based on the singly linked list. Each node has a reference pointing to the next element. When querying an element, the system traverses the list from the beginning. **List** offers efficient insertion and removal operations but supports low query efficiency. **List** allows null elements.
 
 Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **List** is a singly linked list that does not support insertion or removal at both ends.
@@ -11,6 +8,10 @@ Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **Lis
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -505,7 +506,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.forEach((value, index) => {
-  console.log("value: " + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 

@@ -37,15 +37,15 @@ The following describes how to obtain the public directory that stores camera fi
 
 ```ts
 async function example(){
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
-    const dicResult = await media.getPublicDirectory(DIR_CAMERA);
-    if (dicResult == 'Camera/') {
-        console.info('mediaLibraryTest : getPublicDirectory passed');
-    } else {
-        console.info('mediaLibraryTest : getPublicDirectory failed');
-    }
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
+  const dicResult = await media.getPublicDirectory(DIR_CAMERA);
+  if (dicResult == 'Camera/') {
+    console.info('mediaLibraryTest : getPublicDirectory passed');
+  } else {
+    console.error('mediaLibraryTest : getPublicDirectory failed');
+  }
 }
 ```
 
@@ -59,47 +59,52 @@ Users can access files stored in the public directories through the system appli
 
 You can call [mediaLibrary.FileAsset.open](../reference/apis/js-apis-medialibrary.md#open8-1) to open a file in a public directory.
 
-You can call [fileio.open](../reference/apis/js-apis-fileio.md#fileioopen7) to open a file in the application sandbox. The sandbox directory can be accessed only through the application context.
+You can call [fs.open](../reference/apis/js-apis-file-fs.md#fsopen) to open a file in the application sandbox. The sandbox directory can be accessed only through the application context.
 
 **Prerequisites**
 
 - You have obtained a **MediaLibrary** instance.
-- You have granted the permission **ohos.permission.WRITE_MEDIA**.
-- You have imported the module [@ohos.fileio](../reference/apis/js-apis-fileio.md) in addition to @ohos.multimedia.mediaLibrary.
+- You have granted the permissions **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA**.
+- You have imported the module [@ohos.file.fs](../reference/apis/js-apis-file-fs.md) in addition to @ohos.multimedia.mediaLibrary.
+- The **testFile.txt** file has been created and contains content.
 
 **How to Develop**
 
-1. Call [context.filesDir](../reference/apis/js-apis-inner-app-context.md#contextgetfilesdir) to obtain the directory of the application sandbox.
+1. Call [context.filesDir](../reference/apis/js-apis-file-fs.md) to obtain the directory of the application sandbox.
 2. Call **MediaLibrary.getFileAssets** and **FetchFileResult.getFirstObject** to obtain the first file in the result set of the public directory.
-3. Call **fileio.open** to open the file in the sandbox.
+3. Call **fs.open** to open the file in the sandbox.
 4. Call **fileAsset.open** to open the file in the public directory.
-5. Call **fileio.copyfile** to copy the file.
-6. Call **fileAsset.close** and **fileio.close** to close the file.
+5. Call [fs.copyfile](../reference/apis/js-apis-file-fs.md#fscopyfile) to copy the file.
+6. Call **fileAsset.close** and [fs.close](../reference/apis/js-apis-file-fs.md#fsclose) to close the file.
 
 **Example 1: Copying Files from the Public Directory to the Sandbox**
 
 ```ts
 async function copyPublic2Sandbox() {
+  try {
     const context = getContext(this);
     let media = mediaLibrary.getMediaLibrary(context);
-    let sandboxDirPath = globalThis.context.filesDir;
+    let sandboxDirPath = context.filesDir;
     let fileKeyObj = mediaLibrary.FileKey;
     let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?',
-        selectionArgs: ['testFile.txt'],
+      selections: fileKeyObj.DISPLAY_NAME + '= ?',
+      selectionArgs: ['testFile.txt'],
     };
     let fetchResult = await media.getFileAssets(fileAssetFetchOp);
     let fileAsset = await fetchResult.getFirstObject();
 
     let fdPub = await fileAsset.open('rw');
-    let fdSand = await fileio.open(sandboxDirPath + '/testFile.txt', 0o2 | 0o100, 0o666);
-    await fileio.copyFile(fdPub, fdSand);
+    let fdSand = await fs.open(sandboxDirPath + '/testFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    await fs.copyFile(fdPub, fdSand.fd);
 
     await fileAsset.close(fdPub);
-    await fileio.close(fdSand);
+    await fs.close(fdSand.fd);
 
-    let content_sand = await fileio.readText(sandboxDirPath + '/testFile.txt');
-    console.log('content read from sandbox file: ', content_sand)
+    let content_sand = await fs.readText(sandboxDirPath + '/testFile.txt');
+    console.info('content read from sandbox file: ', content_sand)
+  } catch (err) {
+    console.info('[demo] copyPublic2Sandbox fail, err: ', err);
+  }
 }
 ```
 
@@ -107,81 +112,81 @@ async function copyPublic2Sandbox() {
 
 ```ts
 async function copySandbox2Public() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let sandboxDirPath = globalThis.context.filesDir;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let sandboxDirPath = context.filesDir;
 
-    let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-    const publicDirPath = await media.getPublicDirectory(DIR_DOCUMENTS);
-    try {
-        let fileAsset = await media.createAsset(mediaLibrary.MediaType.FILE, 'testFile02.txt', publicDirPath);
-        console.info('createFile successfully, message = ' + fileAsset);
-    } catch (err) {
-        console.info('createFile failed, message = ' + err);
-    }
-    try {
-        let fileKeyObj = mediaLibrary.FileKey;
-        let fileAssetFetchOp = {
-            selections: fileKeyObj.DISPLAY_NAME + '= ?',
-            selectionArgs: ['testFile02.txt'],
-        };
-        let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-        var fileAsset = await fetchResult.getFirstObject();
-    } catch (err) {
-        console.info('file asset get failed, message = ' + err);
-    }
-    let fdPub = await fileAsset.open('rw');
-    let fdSand = await fileio.open(sandboxDirPath + 'testFile.txt', 0o2);
-    await fileio.copyFile(fdSand, fdPub);
-    await fileio.close(fdPub);
-    await fileio.close(fdSand);
-    let fdPubRead = await fileAsset.open('rw');
-    try {
-        let arrayBuffer = new ArrayBuffer(4096);
-        await fileio.read(fdPubRead, arrayBuffer);
-        var content_pub = String.fromCharCode(...new Uint8Array(arrayBuffer));
-        fileAsset.close(fdPubRead);
-    } catch (err) {
-        console.log('read text failed, message = ', err);
-    }
-    console.log('content read from public file: ', content_pub);
+  let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
+  const publicDirPath = await media.getPublicDirectory(DIR_DOCUMENTS);
+  try {
+    let fileAsset = await media.createAsset(mediaLibrary.MediaType.FILE, 'testFile02.txt', publicDirPath);
+    console.info('createFile successfully, message = ' + fileAsset);
+  } catch (err) {
+    console.error('createFile failed, message = ' + err);
+  }
+  try {
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileAssetFetchOp = {
+      selections: fileKeyObj.DISPLAY_NAME + '= ?',
+      selectionArgs: ['testFile02.txt'],
+    };
+    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+    var fileAsset = await fetchResult.getFirstObject();
+  } catch (err) {
+    console.error('file asset get failed, message = ' + err);
+  }
+  let fdPub = await fileAsset.open('rw');
+  let fdSand = await fs.open(sandboxDirPath + 'testFile.txt', OpenMode.READ_WRITE);
+  await fs.copyFile(fdSand.fd, fdPub);
+  await fileAsset.close(fdPub);
+  await fs.close(fdSand.fd);
+  let fdPubRead = await fileAsset.open('rw');
+  try {
+    let arrayBuffer = new ArrayBuffer(4096);
+    await fs.read(fdPubRead, arrayBuffer);
+    var content_pub = String.fromCharCode(...new Uint8Array(arrayBuffer));
+    fileAsset.close(fdPubRead);
+  } catch (err) {
+    console.error('read text failed, message = ', err);
+  }
+  console.info('content read from public file: ', content_pub);
 }
 ```
 
 ### Reading and Writing a File
 
-You can use **FileAsset.open** and **FileAsset.close** of [mediaLibrary](../reference/apis/js-apis-medialibrary.md) to open and close a file, and use **fileio.read** and **fileio.write** of [fileio](../reference/apis/js-apis-fileio.md) to read and write a file.
+You can use **FileAsset.open** and **FileAsset.close** of [mediaLibrary](../reference/apis/js-apis-medialibrary.md) to open and close a file, and use **fs.read** and **fs.write** in [file.fs](../reference/apis/js-apis-file-fs.md) to read and write the file.
 
 **Prerequisites**
 
 - You have obtained a **MediaLibrary** instance.
-- You have granted the permission **ohos.permission.WRITE_MEDIA**.
-- You have imported the module [@ohos.fileio](../reference/apis/js-apis-fileio.md) in addition to @ohos.multimedia.mediaLibrary.
+- You have granted the permissions **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA**.
+- You have imported the module [@ohos.file.fs](../reference/apis/js-apis-file-fs.md) in addition to @ohos.multimedia.mediaLibrary.
 
 **How to Develop**
 
 1. Create a file.
 
-   ```ts
-   async function example() {
-       let mediaType = mediaLibrary.MediaType.FILE;
-       let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-       const context = getContext(this);
-       let media = mediaLibrary.getMediaLibrary(context);
-       const path = await media.getPublicDirectory(DIR_DOCUMENTS);
-       media.createAsset(mediaType, "testFile.text", path).then (function (asset) {
-           console.info("createAsset successfully:" + JSON.stringify(asset));
-       }).catch(function(err){
-           console.info("createAsset failed with error: " + err);
-       });
-   }
-   ```
+```ts
+async function example() {
+  let mediaType = mediaLibrary.MediaType.FILE;
+  let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const path = await media.getPublicDirectory(DIR_DOCUMENTS);
+  media.createAsset(mediaType, "testFile.text", path).then((asset) => {
+    console.info("createAsset successfully:" + JSON.stringify(asset));
+  }).catch((err) => {
+    console.error("createAsset failed with error: " + err);
+  });
+}
+```
 
 2. Call **FileAsset.open** to open the file.
 
-3. Call **fileio.write** to write a string to the file.
+3. Call [fs.write](../reference/apis/js-apis-file-fs.md#fswrite) to write a string to the file.
 
-4. Call **fileio.read** to read the file and save the data read in an array buffer.
+4. Call [fs.read](../reference/apis/js-apis-file-fs.md#fsread) to read the file and save the data read in an array buffer.
 
 5. Convert the array buffer to a string.
 
@@ -191,25 +196,25 @@ You can use **FileAsset.open** and **FileAsset.close** of [mediaLibrary](../refe
 
 ```ts
 async function writeOnlyPromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?',
-        selectionArgs: ['testFile.txt'],
-    };
-    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-    let fileAsset = await fetchResult.getFirstObject();
-    console.info('fileAssetName: ', fileAsset.displayName);
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileAssetFetchOp = {
+    selections: fileKeyObj.DISPLAY_NAME + '= ?',
+    selectionArgs: ['testFile.txt'],
+  };
+  let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+  let fileAsset = await fetchResult.getFirstObject();
+  console.info('fileAssetName: ', fileAsset.displayName);
 
-    try {
-        let fd = await fileAsset.open('w');
-        console.info('file descriptor: ', fd);
-        await fileio.write(fd, "Write file test content.");
-        await fileAsset.close(fd);
-    } catch (err) {
-        console.info('write file failed, message = ', err);
-    }
+  try {
+    let fd = await fileAsset.open('w');
+    console.info('file descriptor: ', fd);
+    await fs.write(fd, "Write file test content.");
+    await fileAsset.close(fd);
+  } catch (err) {
+    console.error('write file failed, message = ', err);
+  }
 }
 ```
 
@@ -217,28 +222,28 @@ async function writeOnlyPromise() {
 
 ```ts
 async function readOnlyPromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileAssetFetchOp = {
-        selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
-        selectionArgs: ['testFile.txt'],
-    };
-    let fetchResult = await media.getFileAssets(fileAssetFetchOp);
-    let fileAsset = await fetchResult.getFirstObject();
-    console.info('fileAssetName: ', fileAsset.displayName);
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileAssetFetchOp = {
+    selections: fileKeyObj.DISPLAY_NAME + '= ?' ,
+    selectionArgs: ['testFile.txt'],
+  };
+  let fetchResult = await media.getFileAssets(fileAssetFetchOp);
+  let fileAsset = await fetchResult.getFirstObject();
+  console.info('fileAssetName: ', fileAsset.displayName);
 
-    try {
-        let fd = await fileAsset.open('r');
-        let arrayBuffer = new ArrayBuffer(4096);
-        await fileio.read(fd, arrayBuffer);
-        let fileContent = String.fromCharCode(...new Uint8Array(arrayBuffer));
-        globalThis.fileContent = fileContent;
-        globalThis.fileName = fileAsset.displayName;
-        console.info('file content: ', fileContent);
-        await fileAsset.close(fd);
-    } catch (err) {
-        console.info('read file failed, message = ', err);
-    }
+  try {
+    let fd = await fileAsset.open('r');
+    let arrayBuffer = new ArrayBuffer(4096);
+    await fs.read(fd, arrayBuffer);
+    let fileContent = String.fromCharCode(...new Uint8Array(arrayBuffer));
+    globalThis.fileContent = fileContent;
+    globalThis.fileName = fileAsset.displayName;
+    console.info('file content: ', fileContent);
+    await fileAsset.close(fd);
+  } catch (err) {
+    console.error('read file failed, message = ', err);
+  }
 }
 ```

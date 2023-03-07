@@ -36,5 +36,5 @@ Currently you can have access to statistics on the application usage, and the no
   Deregister the callback for application group changes.
 
 ## Required Permissions
-- Before calling the following system APIs, you need to apply for the **ohos.permission.BUNDLE_ACTIVE_INFO** permission: **queryBundleActiveStates**, **queryBundleStateInfos**, **queryBundleStateInfoByInterval**, **queryBundleActiveEventStates**, **queryAppNotificationNumber**, **queryAppUsagePriorityGroup(bundleName?)**, **setBundleGroup**, **registerGroupCallBack**, and **unRegisterGroupCallBack**.
-- This permission is not required for calling third-party APIs: **queryCurrentBundleActiveStates**, **queryAppUsagePriorityGroup()**, and **isIdleState**.
+- Before calling the following system APIs, you must request the **ohos.permission.BUNDLE_ACTIVE_INFO** permission: **isIdleState**, **queryBundleEvents**, **queryBundleStatsInfos**, **queryBundleStatsInfoByInterval**, **queryDeviceEventStats**, **queryNotificationEventStats**, **queryAppGroup(bundleName)**, **setAppGroup**, **registerAppGroupCallBack**, **unregisterAppGroupCallBack**, **queryModuleUsageRecords**, and **queryModuleUsageRecords(maxnum)**.
+- You do not need to request this permission before calling **queryCurrentBundleEvents** and **queryAppGroup()**, which are third-party APIs.

@@ -35,12 +35,12 @@ Opens a file with a specified URI. This API uses an asynchronous callback to ret
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-var mode = "rw";
-DAHelper.openFile("dataability:///com.example.DataAbility", mode, (err, data) => {
-    console.info("openFile err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+let mode = 'rw';
+DAHelper.openFile('dataability:///com.example.DataAbility', mode, (err, data) => {
+    console.info('openFile err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -69,12 +69,12 @@ Opens a file with a specified URI. This API uses a promise to return a file desc
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-var mode = "rw";
-DAHelper.openFile("dataability:///com.example.DataAbility", mode).then((data) => {
-    console.info("openFile data: " + JSON.stringify(data));
+let mode = 'rw';
+DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) => {
+    console.info('openFile data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -90,7 +90,7 @@ Registers an observer to listen for changes in the data specified by a given URI
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | The value **dataChange** means data changes.              |
+| type     | string               | Yes  | The value **'dataChange'** means data changes.              |
 | uri      | string               | Yes  | URI of the data.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked when the data is changed.  |
 
@@ -98,15 +98,15 @@ Registers an observer to listen for changes in the data specified by a given URI
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 function onChangeNotify() {
-    console.info("onChangeNotify call back");
+    console.info('onChangeNotify call back');
 };
 DAHelper.on(
-    "dataChange",
-    "dataability:///com.example.DataAbility",
+    'dataChange',
+    'dataability:///com.example.DataAbility',
     onChangeNotify
 );
 ```
@@ -123,7 +123,7 @@ Deregisters the observer that listens for changes in the data specified by a giv
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | The value **dataChange** means data changes.              |
+| type     | string               | Yes  | The value **'dataChange'** means data changes.              |
 | uri      | string               | Yes  | URI of the data.|
 | callback | AsyncCallback\<void> | No  | Callback of the listener to deregister. If the callback is set to **null**, all data change listeners are canceled.      |
 
@@ -131,20 +131,20 @@ Deregisters the observer that listens for changes in the data specified by a giv
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 function onChangeNotify() {
-    console.info("onChangeNotify call back");
+    console.info('onChangeNotify call back');
 };
 DAHelper.off(
-    "dataChange",
-    "dataability:///com.example.DataAbility",
+    'dataChange',
+    'dataability:///com.example.DataAbility',
     onChangeNotify
 );
 DAHelper.off(
-    "dataChange",
-    "dataability:///com.example.DataAbility",
+    'dataChange',
+    'dataability:///com.example.DataAbility',
 );
 ```
 
@@ -167,11 +167,11 @@ Obtains the media resource type of the data specified by a given URI. This API u
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.getType("dataability:///com.example.DataAbility", (err, data) => {
-    console.info("getType err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.getType('dataability:///com.example.DataAbility', (err, data) => {
+    console.info('getType err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -199,11 +199,11 @@ Obtains the media resource type of the data specified by a given URI. This API u
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.getType("dataability:///com.example.DataAbility").then((data) => {
-    console.info("getType data: " + JSON.stringify(data));
+DAHelper.getType('dataability:///com.example.DataAbility').then((data) => {
+    console.info('getType data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -227,11 +227,11 @@ Obtains the supported media resource types of a specified file. This API uses an
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.getFileTypes( "dataability:///com.example.DataAbility", "image/*", (err, data) => {
-    console.info("getFileTypes err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.getFileTypes( 'dataability:///com.example.DataAbility', 'image/*', (err, data) => {
+    console.info('getFileTypes err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -260,11 +260,11 @@ Obtains the supported media resource types of a specified file. This API uses a 
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.getFileTypes("dataability:///com.example.DataAbility", "image/*").then((data) => {
-    console.info("getFileTypes data: " + JSON.stringify(data));
+DAHelper.getFileTypes('dataability:///com.example.DataAbility', 'image/*').then((data) => {
+    console.info('getFileTypes data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -287,11 +287,11 @@ Converts the URI that refers to a Data ability into a normalized URI. This API u
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.normalizeUri("dataability:///com.example.DataAbility", (err, data) => {
-    console.info("normalizeUri err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.normalizeUri('dataability:///com.example.DataAbility', (err, data) => {
+    console.info('normalizeUri err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -319,11 +319,11 @@ Converts the URI that refers to a Data ability into a normalized URI. This API u
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.normalizeUri("dataability:///com.example.DataAbility",).then((data) => {
-    console.info("normalizeUri data: " + JSON.stringify(data));
+DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => {
+    console.info('normalizeUri data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -346,11 +346,11 @@ Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: str
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.denormalizeUri("dataability:///com.example.DataAbility", (err, data) => {
-    console.info("denormalizeUri err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.denormalizeUri('dataability:///com.example.DataAbility', (err, data) => {
+    console.info('denormalizeUri err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -378,11 +378,11 @@ Converts a normalized URI generated by **DataAbilityHelper.normalizeUri(uri: str
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.denormalizeUri("dataability:///com.example.DataAbility",).then((data) => {
-    console.info("denormalizeUri data: " + JSON.stringify(data));
+DAHelper.denormalizeUri('dataability:///com.example.DataAbility',).then((data) => {
+    console.info('denormalizeUri data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -405,11 +405,11 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.notifyChange("dataability:///com.example.DataAbility", (err) => {
-    console.info("==========================>Called=======================>");
+DAHelper.notifyChange('dataability:///com.example.DataAbility', (err) => {
+    console.info('==========================>Called=======================>');
 });
 ```
 
@@ -437,11 +437,11 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-DAHelper.notifyChange("dataability:///com.example.DataAbility").then(() => {
-    console.info("================>notifyChangeCallback================>");
+DAHelper.notifyChange('dataability:///com.example.DataAbility').then(() => {
+    console.info('================>notifyChangeCallback================>');
 });
 ```
 
@@ -465,17 +465,17 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 const valueBucket = {
-    "name": "rose",
-    "age": 22,
-    "salary": 200.5,
-    "blobType": "u8",
+    'name': 'rose',
+    'age': 22,
+    'salary': 200.5,
+    'blobType': 'u8',
 };
-DAHelper.insert("dataability:///com.example.DataAbility", valueBucket, (err, data) => {
-    console.info("insert err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.insert('dataability:///com.example.DataAbility', valueBucket, (err, data) => {
+    console.info('insert err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -504,17 +504,17 @@ Inserts a single data record into the database. This API uses a promise to retur
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 const valueBucket = {
-    "name": "rose1",
-    "age": 221,
-    "salary": 20.5,
-    "blobType": "u8",
+    'name': 'rose1',
+    'age': 221,
+    'salary': 20.5,
+    'blobType': 'u8',
 };
-DAHelper.insert("dataability:///com.example.DataAbility", valueBucket).then((data) => {
-    console.info("insert data: " + JSON.stringify(data));
+DAHelper.insert('dataability:///com.example.DataAbility', valueBucket).then((data) => {
+    console.info('insert data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -538,14 +538,14 @@ Inserts multiple data records into the database. This API uses an asynchronous c
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
-DAHelper.batchInsert("dataability:///com.example.DataAbility", cars, (err, data) => {
-    console.info("batchInsert err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
+                     {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
+                     {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',});
+DAHelper.batchInsert('dataability:///com.example.DataAbility', cars, (err, data) => {
+    console.info('batchInsert err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -574,14 +574,14 @@ Inserts multiple data records into the database. This API uses a promise to retu
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",});
-DAHelper.batchInsert("dataability:///com.example.DataAbility", cars).then((data) => {
-    console.info("batchInsert data: " + JSON.stringify(data));
+let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
+                     {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
+                     {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',});
+DAHelper.batchInsert('dataability:///com.example.DataAbility', cars).then((data) => {
+    console.info('batchInsert data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -606,12 +606,12 @@ Deletes one or more data records from the database. This API uses an asynchronou
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
-DAHelper.delete("dataability:///com.example.DataAbility", da, (err, data) => {
-    console.info("delete err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.delete('dataability:///com.example.DataAbility', da, (err, data) => {
+    console.info('delete err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -641,12 +641,12 @@ Deletes one or more data records from the database. This API uses a promise to r
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
-DAHelper.delete("dataability:///com.example.DataAbility", da).then((data) => {
-    console.info("delete data: " + JSON.stringify(data));
+DAHelper.delete('dataability:///com.example.DataAbility', da).then((data) => {
+    console.info('delete data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -672,18 +672,18 @@ Updates data records in the database. This API uses an asynchronous callback to 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-    "blobType": "u8",
+    'name': 'roe1',
+    'age': 21,
+    'salary': 20.5,
+    'blobType': 'u8',
 };
 let da = new ohos_data_ability.DataAbilityPredicates();
-DAHelper.update("dataability:///com.example.DataAbility", va, da, (err, data) => {
-    console.info("update err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.update('dataability:///com.example.DataAbility', va, da, (err, data) => {
+    console.info('update err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -714,18 +714,18 @@ Updates data records in the database. This API uses a promise to return the resu
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-    "blobType": "u8",
+    'name': 'roe1',
+    'age': 21,
+    'salary': 20.5,
+    'blobType': 'u8',
 };
 let da = new ohos_data_ability.DataAbilityPredicates();
-DAHelper.update("dataability:///com.example.DataAbility", va, da).then((data) => {
-    console.info("update data: " + JSON.stringify(data));
+DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) => {
+    console.info('update data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -751,13 +751,13 @@ Queries data in the database. This API uses an asynchronous callback to return t
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-var cars=new Array("value1", "value2", "value3", "value4");
+let cars=new Array('value1', 'value2', 'value3', 'value4');
 let da = new ohos_data_ability.DataAbilityPredicates();
-DAHelper.query("dataability:///com.example.DataAbility", cars, da, (err, data) => {
-    console.info("query err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+DAHelper.query('dataability:///com.example.DataAbility', cars, da, (err, data) => {
+    console.info('query err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -790,13 +790,13 @@ Queries data in the database. This API uses a promise to return the result.
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-var DAHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let DAHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
-var cars = new Array("value1", "value2", "value3", "value4");
+let cars = new Array('value1', 'value2', 'value3', 'value4');
 let da = new ohos_data_ability.DataAbilityPredicates();
-DAHelper.query("dataability:///com.example.DataAbility", cars, da).then((data) => {
-    console.info("query data: " + JSON.stringify(data));
+DAHelper.query('dataability:///com.example.DataAbility', cars, da).then((data) => {
+    console.info('query data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -812,7 +812,7 @@ Calls an extended API of the DataAbility. This API uses an asynchronous callback
 
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".          |
+| uri        | string                 | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.          |
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  | Parameter to pass in.     |
 | extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
@@ -824,15 +824,15 @@ Calls an extended API of the DataAbility. This API uses an asynchronous callback
 import featureAbility from '@ohos.ability.featureAbility';
 
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility"
+    'dataability:///com.example.jsapidemo.UserDataAbility'
 );
-dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
-    "method", "arg", {"key1":"value1"}, (err, data) => {
+dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
+    'method', 'arg', {'key1':'value1'}, (err, data) => {
     if (err) {
-        console.error('Operation failed. Cause: ' + err);
+        console.error('Operation failed. Cause: ${err}');
         return;
     }
-    console.info('Operation succeeded: ' + data);
+    console.info('Operation succeeded: ${data}');
 });
 ```
 
@@ -848,7 +848,7 @@ Calls an extended API of the DataAbility. This API uses a promise to return the 
 
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".          |
+| uri        | string                 | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.          |
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  | Parameter to pass in.     |
 | extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
@@ -865,13 +865,13 @@ Calls an extended API of the DataAbility. This API uses a promise to return the 
 import featureAbility from '@ohos.ability.featureAbility';
 
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility"
+    'dataability:///com.example.jsapidemo.UserDataAbility'
 );
-dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility",
-    "method", "arg", {"key1":"value1"}).then((data) => {
-    console.info('Operation succeeded: ' + data);
+dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
+    'method', 'arg', {'key1':'value1'}).then((data) => {
+    console.info('Operation succeeded: ${data}');
 }).catch((error) => {
-    console.error('Operation failed. Cause: ' + error);
+    console.error('Operation failed. Cause: ${error}');
 });
 ```
 
@@ -887,7 +887,7 @@ Operates data in the database in batches. This API uses an asynchronous callback
 
 | Name       | Type                         | Mandatory| Description                                            |
 | ----------| ---------------------------------| ---- | ------------------------------------------------ |
-| uri       | string                           | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".|
+| uri       | string                           | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | Yes  | An array holding the data operations on the database.  |
 | callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | Yes  | Callback used to return the result of each operation in the **DataAbilityResult** array.     |
 
@@ -899,14 +899,14 @@ import featureAbility from '@ohos.ability.featureAbility';
 // Select the operations to be performed on the database according to the DataAbilityOperation array.
 let op=new Array();
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility"
+    'dataability:///com.example.jsapidemo.UserDataAbility'
 );
-dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op, (err, data) => {
+dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op, (err, data) => {
     if (err) {
-        console.error('Operation failed. Cause: ' + err);
+        console.error('Operation failed. Cause: ${err}');
         return;
     }
-    console.info('Operation succeeded: ' + data);
+    console.info('Operation succeeded: ${data}');
 });
 ```
 
@@ -922,7 +922,7 @@ Operates data in the database in batches. This API uses a promise to return the 
 
 | Name         | Type                           | Mandatory| Description                                            |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
-| uri           | string                         | Yes  | URI of the DataAbility. Example: "dataability:///com.example.xxx.xxxx".|
+| uri           | string                         | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | Yes  | An array holding the data operations on the database.  |
 
 **Return value**
@@ -939,12 +939,12 @@ import featureAbility from '@ohos.ability.featureAbility';
 // Select the operations to be performed on the database according to the DataAbilityOperation array.
 let op=new Array();
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.jsapidemo.UserDataAbility"
+    'dataability:///com.example.jsapidemo.UserDataAbility'
 );
-dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op).then((data) => {
-    console.info('Operation succeeded: ' + data);
+dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op).then((data) => {
+    console.info('Operation succeeded: ${data}');
 }).catch((error) => {
-    console.error('Operation failed. Cause: ' + error);
+    console.error('Operation failed. Cause: ${error}');
 });
 
 ```

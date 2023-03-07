@@ -15,17 +15,17 @@ The **MissionParameter** module defines the parameters required for mission sync
 import distributedMissionManager from '@ohos.distributedMissionManager';
 
 let missionParameter = {
-    deviceId: "123456",
+    deviceId: '123456',
     fixConflict: true,
     tag: 123
 };
 try {
     distributedMissionManager.startSyncRemoteMissions(missionParameter,
         (err, data) => {
-            console.log("startSyncRemoteMissions, data: " + JSON.stringify(data));
+            console.log('startSyncRemoteMissions, data: ${JSON.stringify(data)}');
         }
     );
 } catch (err) {
-    console.error('startSyncRemoteMissions fail: ' + JSON.stringify(err));
+    console.error('startSyncRemoteMissions fail: ${JSON.stringify(err)}');
 }
 ```

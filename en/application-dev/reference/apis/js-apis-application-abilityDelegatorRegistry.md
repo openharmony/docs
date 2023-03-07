@@ -1,6 +1,6 @@
 # @ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-The **AbilityDelegatorRegistry** module provides APIs for storing the global registers of the registered **AbilityDelegator** and **AbilityDelegatorArgs** objects. You can use the APIs to obtain the **AbilityDelegator** and **AbilityDelegatorArgs** objects of an application.
+The **AbilityDelegatorRegistry** module provides APIs for storing the global registers of the registered **AbilityDelegator** and **AbilityDelegatorArgs** objects. You can use the APIs to obtain the **AbilityDelegator** and **AbilityDelegatorArgs** objects of an application. The APIs can be used only in the test framework.
 
 > **NOTE**
 > 
@@ -43,7 +43,7 @@ Obtains the **AbilityDelegator** object of the application.
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
@@ -65,8 +65,8 @@ Obtains the **AbilityDelegatorArgs** object of the application.
 **Example**
 
 ```ts
-var args = AbilityDelegatorRegistry.getArguments();
-console.info("getArguments bundleName:" + args.bundleName);
-console.info("getArguments testCaseNames:" + args.testCaseNames);
-console.info("getArguments testRunnerClassName:" + args.testRunnerClassName);
+let args = AbilityDelegatorRegistry.getArguments();
+console.info('getArguments bundleName: ${args.bundleName}');
+console.info('getArguments testCaseNames: ${args.testCaseNames}');
+console.info('getArguments testRunnerClassName: ${args.testRunnerClassName}');
 ```

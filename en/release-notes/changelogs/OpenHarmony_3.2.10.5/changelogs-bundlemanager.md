@@ -9,7 +9,7 @@ If the value of **bundle-name** is different from the value of **bundleName** in
 error: verify signature failed.
 ```
 
-**Change Impacts**
+**Change Impact**
 
 For applications using system images of 3.2.10.5 or later, if the **bundle-name** field in the signing certificate profile is different from the bundle name of the application, application installation fails. This change has no impact on applications using system images earlier than 3.2.10.5.
 
@@ -18,19 +18,20 @@ For applications using system images of 3.2.10.5 or later, if the **bundle-name*
 No API or component change is involved.
 
 **Adaptation Guide**
+If "error: verify signature failed" is displayed, change **bundle-name** in the signing certificate profile to the bundle name of the application, generate a new signing certificate (with the file name extension .p7b), and sign the application again.
 
-If "error: verify signature failed" is displayed, change **bundle-name** in the signing certificate profile to the bundle name of the application, generate a new signing certificate (with the file name extension .p7b), and sign the application again. For details about how to use the signing tool and generate a signing certificate, see [hapsigner Guide](../../../application-dev/security/hapsigntool-guidelines.md).
+For details about how to use the signing tool and generate a signing certificate, see [hapsigner Guide](../../../application-dev/security/hapsigntool-guidelines.md).
 
 ## cl.bundlemanager.2 Changed Underlying Capability by Adding Control over Applications Without Entry Icons
 
 If no entry icon is configured for an application that has not requested the **AllowHideDesktopIcon** privilege, a default icon is displayed on the home screen. Any click on the icon redirects to the application details page. An application is determined to have no entry icon in either of the following scenarios:
 1. The **abilities** field is not configured for the application.
-2. The **abilities** field is configured for the application, but the **skills** field under the ability of any page type does not contain both **action.system.home** and **entity.system.home**, as follows:
+2. The **abilities** field is configured for the application, but the **skills** field under the ability of any page type does not contain both **ohos.want.action.home** and **entity.system.home**, as follows:
     ```json
      "skills": [
               {
                 "actions": [
-                  "action.system.home"
+                  "ohos.want.action.home"
                 ],
                 "entities": [
                   "entity.system.home"
@@ -42,9 +43,9 @@ If the application installation mode is **hdc_std install** or **bm install**, a
 
 If your application does not need an icon to be displayed on the home screen, request the **AllowHideDesktopIcon** privilege and configure it in the signing certificate or trustlist (**install_list_capability.json**). For details, see [Application Privilege Configuration Guide](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
-If your application needs an icon to be displayed on the home screen, select an ability from **abilities** and configure its **skills** field to contain both **action.system.home** and **entity.system.home**.
+If your application needs an icon to be displayed on the home screen, select an ability from **abilities** and configure its **skills** field to contain both **ohos.want.action.home** and **entity.system.home**.
 
-**Change Impacts**
+**Change Impact**
 
 For applications using system images of 3.2.10.5 and later versions, if no entry icon is configured for an application, the default icon is displayed on the home screen when the application is installed using the CLI. This change has no impact on applications using system images earlier than 3.2.10.5.
 
@@ -56,7 +57,7 @@ No API or component change is involved.
 
 If your application does not need an icon to be displayed on the home screen, request the **AllowHideDesktopIcon** privilege and configure it in the signing certificate or trustlist (**install_list_capability.json**). For details, see [Application Privilege Configuration Guide](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
-If your application needs an icon to be displayed on the home screen, select an ability from **abilities** and configure its **skills** field to contain both **action.system.home** and **entity.system.home**.
+If your application needs an icon to be displayed on the home screen, select an ability from **abilities** and configure its **skills** field to contain both **ohos.want.action.home** and **entity.system.home**.
 
 ## cl.bundlemanager.3 Changed Underlying Capability by Restricting AllowAppUsePrivilegeExtension, AllowAppMultiProcess, and AllowFormVisibleNotify from Being Configured in the Signing Certificate
 
@@ -71,7 +72,7 @@ For the XTS or local debugging demo, if the **install_list_capability.json** fil
 
 The **AllowAppUsePrivilegeExtension** privilege is requested by configuring it under the **extensionAbilities** field, with the **type** attribute set to **dataShare** or **service**, in the application configuration file. If this privilege is not configured, the installation fails.
 
-**Change Impacts**
+**Change Impact**
 
 For applications using system images of 3.2.10.5 or later, if the required privileges are not requested using the trustlist (**install_list_capability.json**), application installation may fail. This change has no impact on applications using system images earlier than 3.2.10.5.
 
@@ -93,7 +94,7 @@ For the XTS or local debugging demo, if the **install_list_capability.json** fil
 
 The HAP will no longer be decompressed during installation. After the installation is complete, only the HAP file exists in the installation directory. As a result, the application must use the standard resource management interface, rather than a combined path, to access a resource file.
 
-**Change Impacts**
+**Change Impact**
 
 If the application uses a combined path to access a resource file, the access fails. It must use the resource management interface.
 

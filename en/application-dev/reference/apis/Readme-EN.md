@@ -19,8 +19,6 @@
     - [@ohos.application.DataShareExtensionAbility (DataShare Extension Ability)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
   - Stage Model (To Be Deprecated Soon)
-    - [@ohos.application.Ability (Ability)](js-apis-application-ability.md)
-    - [@ohos.application.AbilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-application-abilityLifecycleCallback.md)
     - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
   - FA Model
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
@@ -34,6 +32,7 @@
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
     - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationConstant.md)
     - [@ohos.app.ability.dataUriUtils (DataUriUtils)](js-apis-app-ability-dataUriUtils.md)
+    - [@ohos.app.ability.dialogRequest (dialogRequest)](js-apis-app-ability-dialogRequest.md)
     - [@ohos.app.ability.errorManager (ErrorManager)](js-apis-app-ability-errorManager.md)
     - [@ohos.app.ability.missionManager (missionManager)](js-apis-app-ability-missionManager.md)
     - [@ohos.app.ability.quickFixManager (quickFixManager)](js-apis-app-ability-quickFixManager.md)
@@ -53,7 +52,6 @@
     - [@ohos.application.appManager (appManager)](js-apis-application-appManager.md)
     - [@ohos.application.Configuration (Configuration)](js-apis-application-configuration.md)
     - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-application-configurationConstant.md)
-    - [@ohos.application.errorManager (ErrorManager)](js-apis-application-errorManager.md)
     - [@ohos.application.formBindingData (formBindingData)](js-apis-application-formBindingData.md)
     - [@ohos.application.formError (FormError)](js-apis-application-formError.md)
     - [@ohos.application.formHost (FormHost)](js-apis-application-formHost.md)
@@ -76,7 +74,6 @@
       - [context](js-apis-inner-app-context.md)
       - [processInfo](js-apis-inner-app-processInfo.md)
     - application
-      - [AbilityContext](js-apis-ability-context.md)
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
@@ -107,6 +104,7 @@
       - [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
+      - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
@@ -117,10 +115,12 @@
       - [continuationResult](js-apis-continuation-continuationResult.md)
 
 - Common Event and Notification
+  - [System Common Events](commonEventManager-definitions.md)
   - [@ohos.commonEventManager (Common Event) (Recommended)](js-apis-commonEventManager.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notificationManager (NotificationManager) (Recommended)](js-apis-notificationManager.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe) (Recommended)](js-apis-notificationSubscribe.md)
+  - [System Common Events (To Be Deprecated Soon)](commonEvent-definitions.md)
   - [@ohos.commonEvent (Common Event) (To Be Deprecated Soon)](js-apis-commonEvent.md)
   - [@ohos.notification (Notification) (To Be Deprecated Soon)](js-apis-notification.md)
   - application
@@ -139,13 +139,13 @@
     - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
     - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
     - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
+    - [BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)
     - [dispatchInfo](js-apis-bundleManager-dispatchInfo.md)
     - [elementName](js-apis-bundleManager-elementName.md)
     - [extensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)
     - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
     - [launcherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
     - [metadata](js-apis-bundleManager-metadata.md)
-    - [packInfo](js-apis-bundleManager-packInfo.md)
     - [permissionDef](js-apis-bundleManager-permissionDef.md)
     - [remoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
@@ -185,6 +185,7 @@
   - [@ohos.resourceschedule.workScheduler (Work Scheduler)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](js-apis-resourceschedule-deviceUsageStatistics.md)
   - [@ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)](js-apis-WorkSchedulerExtensionAbility.md)
+  
 - Security
   - [@ohos.abilityAccessCtrl (Ability Access Control)](js-apis-abilityAccessCtrl.md)
   - [@ohos.privacyManager (Privacy Management)](js-apis-privacyManager.md)
@@ -216,10 +217,11 @@
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
+  - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
   - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
-  - [@ohos.storageStatistics (Application Storage Statistics)](js-apis-storage-statistics.md)
-  - [@ohos.volumeManager (Volume Management)](js-apis-volumemanager.md)
+
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
   - [@ohos.telephony.call (Call)](js-apis-call.md)
@@ -271,7 +273,7 @@
   - [@ohos.InputMethodSubtype (Input Method Subtype)](js-apis-inputmethod-subtype.md)
   - [@ohos.pasteboard (Pasteboard)](js-apis-pasteboard.md)
   - [@ohos.screenLock (Screenlock)](js-apis-screen-lock.md)
-  - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
+  - [@ohos.systemDateTime (System Time and Time Zone)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (System Timer)](js-apis-system-timer.md)
   - [@ohos.wallpaper (Wallpaper)](js-apis-wallpaper.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
@@ -279,6 +281,9 @@
   - [Timer](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)
+  - imf
+    - [InputMethodCommon](js-apis-inputmethod-InputMethodCommon.md)
+
 - Device Management
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (Battery Statistics)](js-apis-batteryStatistics.md)
@@ -314,10 +319,11 @@
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
 - Custom Management
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
-  - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
-  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
+  - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
+  - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
+  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
 
  - Language Base Class Library 
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
@@ -364,6 +370,7 @@
   - [@ohos.reminderAgent (Reminder Agent)](js-apis-reminderAgent.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.systemParameter (System Parameter)](js-apis-system-parameter.md)
+  - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
   - [@ohos.usb (USB Management)](js-apis-usb-deprecated.md)
   - [@ohos.usbV9 (USB Management)](js-apis-usb.md)
   - [@system.app (Application Context)](js-apis-system-app.md)

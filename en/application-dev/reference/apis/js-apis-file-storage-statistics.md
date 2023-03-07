@@ -1,29 +1,29 @@
-# @ohos.storageStatistics (Application Storage Statistics)
+# @ohos.file.storageStatistics (Application Storage Statistics)
 
 The **storageStatistics** module provides APIs for obtaining storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 ## Modules to Import
 
 ```js
-import storageStatistics from "@ohos.storageStatistics";
+import storageStatistics from "@ohos.file.storageStatistics";
 ```
 
 ## storageStatistics.getTotalSizeOfVolume
 
 getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-Asynchronously obtains the total size of the specified volume. This API uses a promise to return the result.
+Obtains the total size (in bytes) of the specified volume in an external storage device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
@@ -36,7 +36,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the total size of the volume.|
+  | Promise&lt;number&gt; | Promise used to return the total volume size obtained.|
 
 **Example**
 
@@ -53,14 +53,14 @@ This is a system API and cannot be called by third-party applications.
 
 getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): void
 
-Asynchronously obtains the total size of the specified volume. This API uses a callback to return the result.
+Obtains the total size (in bytes) of the specified volume in an external storage device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
@@ -68,7 +68,7 @@ This is a system API and cannot be called by third-party applications.
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                      |
-  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total size of the volume.|
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total volume size obtained.|
 
 **Example**
 
@@ -84,14 +84,14 @@ This is a system API and cannot be called by third-party applications.
 
 getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-Asynchronously obtains the available space of the specified volume. This API uses a promise to return the result.
+Obtains the available space (in bytes) of the specified volume in an external storage device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
@@ -104,7 +104,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Type                 | Description              |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available space of the volume.|
+  | Promise&lt;number&gt; | Promise used to return the available volume space obtained.|
 
 **Example**
 
@@ -122,14 +122,14 @@ This is a system API and cannot be called by third-party applications.
 
 getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): void
 
-Asynchronously obtains the available space of the specified volume. This API uses a callback to return the result.
+Obtains the available space (in bytes) of the specified volume in an external storage device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
@@ -137,7 +137,7 @@ This is a system API and cannot be called by third-party applications.
   | Name    | Type                                | Mandatory| Description                        |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                        |
-  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the volume.|
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available volume space obtained.|
 
 **Example**
 
@@ -153,14 +153,14 @@ This is a system API and cannot be called by third-party applications.
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-Asynchronously obtains space information of an application. This API uses a promise to return the result.
+Obtains the space (in bytes) of an application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
@@ -173,7 +173,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the space information obtained.|
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application space obtained.|
 
 **Example**
 
@@ -190,14 +190,14 @@ This is a system API and cannot be called by third-party applications.
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Asynchronously obtains space information of an application. This API uses a callback to return the result.
+Obtains the space (in bytes) of an application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
@@ -205,7 +205,7 @@ This is a system API and cannot be called by third-party applications.
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name of the application.|
-  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the space information obtained.|
+  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the application space obtained.|
 
 **Example**
 
@@ -221,7 +221,7 @@ This is a system API and cannot be called by third-party applications.
 
 getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
-Asynchronously obtains space information of the current third-party application. This API uses a promise to return the result.
+Obtains the space (in bytes) of this third-party application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -229,7 +229,7 @@ Asynchronously obtains space information of the current third-party application.
 
   | Type                                       | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the space information obtained.     |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application space obtained.     |
 
 **Example**
 
@@ -242,7 +242,7 @@ Asynchronously obtains space information of the current third-party application.
 
 getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Asynchronously obtains space information of the current third-party application. This API uses a callback to return the result.
+Obtains the space (in bytes) of this third-party application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -250,7 +250,7 @@ Asynchronously obtains space information of the current third-party application.
 
   | Name   | Type                                                      | Mandatory | Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the space information obtained.       |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
 
 **Example**
 
@@ -268,34 +268,33 @@ Asynchronously obtains space information of the current third-party application.
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
 
 | Name     | Type  | Readable| Writable| Description          |
 | --------- | ------ | --- | ---- | -------------- |
-| appSize   | number | Yes| No| Size of the application.   |
-| cacheSize | number | Yes| No| Cache size of the application.  |
-| dataSize  | number | Yes| No| Total data size of the application.|
+| appSize   | number | Yes| No| Size of the application, in bytes.   |
+| cacheSize | number | Yes| No| Cache size of the application, in bytes.  |
+| dataSize  | number | Yes| No| Total data size of the application, in bytes.|
 
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
 
 getTotalSize(): Promise&lt;number&gt;
 
-Obtains the total space of the built-in memory card. This API uses a promise to return the result.
+Obtains the total size (in bytes) of the built-in storage. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Return value**
 
   | Type                  | Description              |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the total space of the built-in memory card.  |
+  | Promise&lt;number&gt; | Promise used to return the built-in storage size obtained.  |
 
 **Example**
 
@@ -308,21 +307,21 @@ This is a system API and cannot be called by third-party applications.
 
 getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total space of the built-in memory card. This API uses a callback to return the result.
+Obtains the total size (in bytes) of the built-in storage. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
 
   | Name   | Type                                 | Mandatory | Description                    |
   | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total space of the built-in memory card.|
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the built-in storage size obtained.|
 
 **Example**
 
@@ -338,21 +337,21 @@ This is a system API and cannot be called by third-party applications.
 
 getFreeSize(): Promise&lt;number&gt;
 
-Obtains the available space of the built-in memory card. This API uses a promise to return the result.
+Obtains the available space (in bytes) of the built-in storage. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Return value**
 
   | Type                  | Description              |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available space of the built-in memory card.|
+  | Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
 
 **Example**
 
@@ -366,21 +365,21 @@ This is a system API and cannot be called by third-party applications.
 
 getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the available space of the built-in memory card. This API uses a callback to return the result.
+Obtains the available space (in bytes) of the built-in storage. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
 
   | Name   | Type                                 | Mandatory| Description                      |
   | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in memory card.|
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in storage obtained.|
 
 **Example**
 
@@ -395,21 +394,21 @@ This is a system API and cannot be called by third-party applications.
 
 getSystemSize(): Promise&lt;number&gt;
 
-Asynchronously obtains the system space. This API uses a promise to return the result.
+Obtains the system data space, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the system space obtained.|
+  | Promise&lt;number&gt; | Promise used to return the system data space obtained.|
 
 **Example**
 
@@ -425,21 +424,21 @@ This is a system API and cannot be called by third-party applications.
 
 getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
-Asynchronously obtains the system space. This API uses a callback to return the result.
+Obtains the system data space, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the system space obtained.|
+  | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback invoked to return the system data space obtained.|
 
 **Example**
 
@@ -452,23 +451,17 @@ This is a system API and cannot be called by third-party applications.
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
+getUserStorageStats(): Promise&lt;StorageStats&gt;
 
-Asynchronously obtains the space occupied by each type of user data. This API uses a promise to return the result.
+Obtains the storage statistics (in bytes) of this user. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
-
-**Parameters**
-
-  | Name    | Type  | Mandatory| Description|
-  | ---------- | ------ | ---- | ---- |
-  | userId | number | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
 
 **Return value**
 
@@ -479,7 +472,69 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  let userId = 1;
+  storageStatistics.getUserStorageStats().then(function(StorageStats){
+      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  }).catch(function(err){
+      console.info("getUserStorageStats failed with error:"+ err);
+  });
+  ```
+
+## storageStatistics.getUserStorageStats<sup>9+</sup>
+
+getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
+
+Obtains the storage statistics (in bytes) of this user. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+
+This is a system API.
+
+
+**Parameters**
+
+  | Name    | Type                                | Mandatory| Description                      |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
+
+**Example**
+
+  ```js
+  storageStatistics.getUserStorageStats(function(error, StorageStats){
+      // Do something.
+      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  });
+  ```
+getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
+
+Obtains the storage statistics (in bytes) of the specified user. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+
+This is a system API.
+
+
+**Parameters**
+
+  | Name    | Type  | Mandatory| Description|
+  | ---------- | ------ | ---- | ---- |
+  | userId | number | Yes  | User ID.|
+
+**Return value**
+
+  | Type                 | Description            |
+  | --------------------- | ---------------- |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
+
+**Example**
+
+  ```js
+  let userId = 100;
   storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   }).catch(function(err){
@@ -489,29 +544,29 @@ This is a system API and cannot be called by third-party applications.
 
 ## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId?: number, callback: AsyncCallback&lt;StorageStats&gt;): void
+getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;): void
 
-Asynchronously obtains the space occupied by each type of user data. This API uses a callback to return the result.
+Obtains the storage statistics (in bytes) of the specified user. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 
 **Parameters**
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | number                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
+  | userId | number                               | Yes  | User ID.|
   | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
 
 **Example**
 
   ```js
-  let userId = 1;
+  let userId = 100;
   storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
       // Do something.
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
@@ -526,13 +581,13 @@ This is a system API and cannot be called by third-party applications.
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 | Name     | Type  | Readable | Writable | Description          |
 | --------- | ------ | ---- | ----- | -------------- |
-| total   | number | Yes| No| Total space of the built-in memory card.   |
-| audio | number  |Yes| No| Space occupied by audio data.  |
-| video  | number | Yes| No| Space occupied by video data.|
-| image   | number | Yes| No| Space occupied by image data.   |
-| file | number | Yes| No| Space occupied by files.  |
-| app  | number | Yes| No| Space occupied by application data.|
+| total   | number | Yes| No| Total size of the built-in storage, in bytes.   |
+| audio | number  |Yes| No| Space occupied by audio data, in bytes. |
+| video  | number | Yes| No| Space occupied by video data, in bytes.|
+| image   | number | Yes| No| Space occupied by image data, in bytes.  |
+| file | number | Yes| No| Space occupied by files, in bytes. |
+| app  | number | Yes| No| Space occupied by application data, in bytes.|

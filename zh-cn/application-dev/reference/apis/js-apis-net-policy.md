@@ -84,7 +84,7 @@ setBackgroundPolicy(isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))).then((error, data) {
+policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -151,7 +151,7 @@ isBackgroundAllowed(): Promise\<boolean>;
 **示例：**
 
 ```js
-policy.isBackgroundAllowed().then((error, data) {
+policy.isBackgroundAllowed().then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -236,7 +236,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 let param = {
     uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then((error, data) {
+policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -313,7 +313,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 **示例：**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(this.firstParam)).then((error, data) {
+policy.getPolicyByUid(Number.parseInt(this.firstParam)).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -390,7 +390,7 @@ function getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then((error, data) {
+policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -456,7 +456,7 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 **示例：**
 
 ```js
-policy.getNetQuotaPolicies().then((error, data) {
+policy.getNetQuotaPolicies().then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -541,7 +541,7 @@ let param = {netType:Number.parseInt(this.netType), iccid:this.iccid, ident:this
     limitBytes:Number.parseInt(this.limitBytes), lastWarningRemind:this.lastWarningRemind, lastLimitRemind:this.lastLimitRemind, metered:Boolean(Number.parseInt(this.metered)), limitAction:this.limitAction};
 this.netQuotaPolicyList.push(param);
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList).then((error, data) {
+policy.setNetQuotaPolicies(this.netQuotaPolicyList).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -619,7 +619,7 @@ restoreAllPolicies(iccid: string): Promise\<void>;
 
 ```js
 this.firstParam = iccid;
-policy.restoreAllPolicies(this.firstParam).then((error, data){
+policy.restoreAllPolicies(this.firstParam).then(function(error, data){
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -706,7 +706,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 let param = {
     uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then((error, data) {
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -792,7 +792,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 let param = {
     uid: Number.parseInt(this.firstParam), iface: this.secondParam
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then((error, data) {
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -877,7 +877,7 @@ setDeviceIdleAllowList(uid: number, isAllowed: boolean): Promise\<void>;
 let param = {
     uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then((error, data) {
+policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -943,7 +943,7 @@ getDeviceIdleAllowList(): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getDeviceIdleAllowList().then((error, data) {
+policy.getDeviceIdleAllowList().then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -1021,7 +1021,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 
 ```js
 this.firstParam = uid
-policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then((error, data) {
+policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -1098,11 +1098,11 @@ resetPolicies(iccid: string): Promise\<void>;
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then((error, data) {
+policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function(error, data) {
 
 })
 this.firstParam = iccid
-policy.resetPolicies(this.firstParam).then((error, data) {
+policy.resetPolicies(this.firstParam).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -1189,7 +1189,7 @@ updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType):
 let param = {
     netType: Number.parseInt(this.netType), iccid: this.firstParam, remindType: this.currentRemindType
 }
-policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType)).then((error, data) {
+policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType)).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -1274,7 +1274,7 @@ setPowerSaveAllowList(uid: number, isAllowed: boolean): Promise\<void>;
 let param = {
     uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then((error, data) {
+policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
@@ -1340,7 +1340,7 @@ getPowerSaveAllowList(): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getPowerSaveAllowList().then((error, data) {
+policy.getPowerSaveAllowList().then(function(error, data) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })

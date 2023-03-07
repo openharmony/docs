@@ -15,11 +15,15 @@ aboutToAppear?(): void
 
 aboutToAppear函数在创建自定义组件的新实例后，在执行其build函数之前执行。允许在aboutToAppear函数中改变状态变量，更改将在后续执行build函数中生效。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void
 
 aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **示例1：** 
 
@@ -122,6 +126,8 @@ onLayout?(children: Array\<LayoutChild\>, constraint: ConstraintSizeOptions): vo
 
 框架会在自定义组件布局时，将该自定义组件的子节点信息和自身的尺寸范围通过onLayout传递给该自定义组件。不允许在onLayout函数中改变状态变量。
 
+该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名     | 类型                                                                             | 说明                   |
@@ -135,6 +141,8 @@ onMeasure?(children: Array\<LayoutChild\>, constraint: ConstraintSizeOptions): v
 
 框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
 
+该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名     | 类型                                                                             | 说明                   |
@@ -145,6 +153,8 @@ onMeasure?(children: Array\<LayoutChild\>, constraint: ConstraintSizeOptions): v
 ## LayoutChild<sup>9+</sup>
 
 子组件布局信息。
+
+该接口支持在ArkTS卡片中使用。
 
 | 参数       | 参数类型                                                                                                    | 描述                                   |
 | ---------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------- |
@@ -160,6 +170,8 @@ onMeasure?(children: Array\<LayoutChild\>, constraint: ConstraintSizeOptions): v
 
 子组件border信息。
 
+该接口支持在ArkTS卡片中使用。
+
 | 参数        | 参数类型                                                   | 描述                                           |
 | ----------- | ---------------------------------------------------------- | ---------------------------------------------- |
 | borderWidth | [EdgeWidths](../reference/arkui-ts/ts-types.md#edgewidths) | 边框宽度类型，用于描述组件边框不同方向的宽度。 |
@@ -169,6 +181,8 @@ onMeasure?(children: Array\<LayoutChild\>, constraint: ConstraintSizeOptions): v
 ## LayoutInfo<sup>9+</sup>
 
 子组件layout信息。
+
+该接口支持在ArkTS卡片中使用。
 
 | 参数       | 参数类型                                                                         | 描述             |
 | ---------- | -------------------------------------------------------------------------------- | ---------------- |

@@ -41,11 +41,11 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest((err, flag) => {
     if (err && err.code !== 0) {
-        console.log('isRunningInStabilityTest fail, err: ${JSON.stringify(err)}');
+        console.error('isRunningInStabilityTest fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
     }
-})  
+});  
 ```
 
 
@@ -79,7 +79,7 @@ import appManager from '@ohos.app.ability.appManager';
 appManager.isRunningInStabilityTest().then((flag) => {
     console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
 }).catch((error) => {
-    console.log('error: ${JSON.stringify(error)}');
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -114,7 +114,7 @@ import appManager from '@ohos.app.ability.appManager';
 appManager.isRamConstrainedDevice().then((data) => {
     console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error: ${JSON.stringify(error)}');
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -147,11 +147,11 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice((err, data) => {
     if (err && err.code !== 0) {
-        console.log('isRamConstrainedDevice fail, err: ${JSON.stringify(err)}');
+        console.error('isRamConstrainedDevice fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.getAppMemorySize
@@ -184,7 +184,7 @@ import appManager from '@ohos.app.ability.appManager';
 appManager.getAppMemorySize().then((data) => {
     console.log('The size of app memory is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error: ${JSON.stringify(error)}');
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -217,11 +217,11 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize((err, data) => {
     if (err && err.code !== 0) {
-        console.log('getAppMemorySize fail, err: ${JSON.stringify(err)}');
+        console.error('getAppMemorySize fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The size of app memory is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.getRunningProcessInformation
@@ -256,7 +256,7 @@ import appManager from '@ohos.app.ability.appManager';
 appManager.getRunningProcessInformation().then((data) => {
     console.log('The running process information is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('error: ${JSON.stringify(error)}');
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -291,11 +291,11 @@ import appManager from '@ohos.app.ability.appManager';
 
 appManager.getRunningProcessInformation((err, data) => {
     if (err && err.code !== 0) {
-        console.log('getRunningProcessInformation fail, err: ${JSON.stringify(err)}');
+        console.error('getRunningProcessInformation fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.on
@@ -352,12 +352,12 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 try {
     const observerId = appManager.on('applicationState', applicationStateObserver);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
 ```
 
@@ -416,13 +416,13 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
 ```
 
@@ -478,19 +478,19 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
 
 // 2. Deregister the application state observer.
 function unregisterApplicationStateObserverCallback(err) {
     if (err && err.code !== 0) {
-        console.log('unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}');
+        console.error('unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('unregisterApplicationStateObserverCallback success.');
     }
@@ -498,7 +498,7 @@ function unregisterApplicationStateObserverCallback(err) {
 try {
     appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -559,13 +559,13 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
     
 // 2. Deregister the application state observer.
@@ -573,10 +573,10 @@ try {
     appManager.off('applicationState', observerId).then((data) => {
         console.log('unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}');
     }).catch((err) => {
-        console.log('unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}');
-    })
+        console.error('unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}');
+    });
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -613,7 +613,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundApplicationsCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}');
+        console.error('getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}');
     }
@@ -621,7 +621,7 @@ function getForegroundApplicationsCallback(err, data) {
 try {
     appManager.getForegroundApplications(getForegroundApplicationsCallback);
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -659,8 +659,8 @@ import appManager from '@ohos.app.ability.appManager';
 appManager.getForegroundApplications().then((data) => {
     console.log('getForegroundApplications success, data: ${JSON.stringify(data)}');
 }).catch((err) => {
-    console.log('getForegroundApplications fail, err: ${JSON.stringify(err)}');
-})
+    console.error('getForegroundApplications fail, err: ${JSON.stringify(err)}');
+});
 ```
 
 ## appManager.killProcessWithAccount
@@ -702,7 +702,7 @@ try {
         console.log('killProcessWithAccount success');
     }).catch((err) => {
         console.error('killProcessWithAccount fail, err: ${JSON.stringify(err)}');
-    })
+    });
 } catch (paramError) {
     console.error('error: ${paramError.code}, ${paramError.message}');
 }
@@ -746,7 +746,7 @@ let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}');
+        console.error('killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('killProcessWithAccountCallback success.');
     }
@@ -789,7 +789,7 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 function killProcessesByBundleNameCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}');
+        console.error('killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('killProcessesByBundleNameCallback success.');
     }
@@ -797,7 +797,7 @@ function killProcessesByBundleNameCallback(err, data) {
 try {
     appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -843,10 +843,10 @@ try {
     appManager.killProcessesByBundleName(bundleName).then((data) => {
         console.log('killProcessesByBundleName success.');
     }).catch((err) => {
-        console.log('killProcessesByBundleName fail, err: ${JSON.stringify(err)}');
-    })
+        console.error('killProcessesByBundleName fail, err: ${JSON.stringify(err)}');
+    });
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -885,7 +885,7 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 function clearUpApplicationDataCallback(err, data) {
     if (err && err.code !== 0) {
-        console.log('clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}');
+        console.error('clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('clearUpApplicationDataCallback success.');
     }
@@ -893,7 +893,7 @@ function clearUpApplicationDataCallback(err, data) {
 try {
     appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -939,10 +939,10 @@ try {
     appManager.clearUpApplicationData(bundleName).then((data) => {
         console.log('clearUpApplicationData success.');
     }).catch((err) => {
-        console.log('clearUpApplicationData fail, err: ${JSON.stringify(err)}');
-    })
+        console.error('clearUpApplicationData fail, err: ${JSON.stringify(err)}');
+    });
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 

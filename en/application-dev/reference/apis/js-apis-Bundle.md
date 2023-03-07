@@ -1230,7 +1230,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name  | Type                                        | Mandatory| Description                   |
 | -------- | -------------------------------------------- | ---- | ----------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.      |
-| callback | AsyncCallback\<boolean>                      | Yes  | Callback used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean>                      | Yes  | Callback used to return the result. If the ability is enabled, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
 
@@ -1603,7 +1603,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon) instead.
+> This API is deprecated since API version 9. You are advised to use [resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9) instead.
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
 
@@ -1646,7 +1646,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon) instead.
+> This API is deprecated since API version 9. You are advised to use [resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9) instead.
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 

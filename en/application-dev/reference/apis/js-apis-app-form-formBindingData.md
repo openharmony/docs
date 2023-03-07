@@ -35,7 +35,7 @@ Creates a **FormBindingData** object.
 
 | Name| Type          | Mandatory| Description                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object\|string | No  | Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by "formImages", and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {"formImages": {"key1": fd1, "key2": fd2}}.|
+| obj    | Object\|string | No  | Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.|
 
 
 **Return value**
@@ -48,14 +48,14 @@ Creates a **FormBindingData** object.
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
 import formBindingData from '@ohos.app.form.formBindingData';
+import fs from '@ohos.file.fs';
 
 try {
-  let fd = fs.openSync('/path/to/form.png')
+  let fd = fs.openSync('/path/to/form.png');
   let obj = {
-    "temperature": "21°",
-    "formImages": { "image": fd }
+    'temperature': '21°',
+    'formImages': { 'image': fd }
   };
   formBindingData.createFormBindingData(obj);
 } catch (error) {

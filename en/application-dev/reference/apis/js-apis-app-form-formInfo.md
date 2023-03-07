@@ -31,7 +31,6 @@ Describes widget information.
 | isDefault    | boolean      | Yes   | No    | Whether the widget is the default one.                             |
 | updateEnabled  | boolean               | Yes   | No    | Whether the widget is updatable.                   |
 | formVisibleNotify  | boolean        | Yes   | No    | Whether to send a notification when the widget is visible.           |
-| relatedBundleName | string               | Yes   | No    | Name of the associated bundle to which the widget belongs.          |
 | scheduledUpdateTime        | string               | Yes   | No    | Time when the widget was updated.    |
 | formConfigAbility | string               | Yes   | No    | Configuration ability of the widget, that is, the ability corresponding to the option in the selection box displayed when the widget is long pressed.  |
 | updateDuration        | number       | Yes   | No    | Update period of the widget.|
@@ -93,16 +92,16 @@ Enumerates the widget parameters.
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | Widget ID.  |
-| DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | Widget dimension.  |
-| NAME_KEY       | "ohos.extra.param.key.form_name"   | Widget name.  |
-| MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | Name of the module to which the widget belongs.  |
-| WIDTH_KEY        | "ohos.extra.param.key.form_width"   | Widget width.  |
-| HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | Widget height.  |
-| TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | Temporary widget.  |
-| ABILITY_NAME_KEY   | "ohos.extra.param.key.ability_name"   | Ability name. |
-| DEVICE_ID_KEY    | "ohos.extra.param.key.device_id"   | Device ID.  |
-| BUNDLE_NAME_KEY    | "ohos.extra.param.key.bundle_name"   | Key that specifies the target bundle name.|
+| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | Widget ID.  |
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | Widget dimension.  |
+| NAME_KEY       | 'ohos.extra.param.key.form_name'   | Widget name.  |
+| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | Name of the module to which the widget belongs.  |
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | Widget width.  |
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | Widget height.  |
+| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | Temporary widget.  |
+| ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | Ability name. |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | Device ID.  |
+| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Key that specifies the target bundle name.|
 
 ##  FormDimension
 

@@ -78,7 +78,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     build() {
       Column() {
         //通过resource协议加载本地资源文件
-        Web({ src: "resource://rawfile/index.html"), controller: this.controller })
+        Web({ src: "resource://rawfile/index.html", controller: this.controller })
       }
     }
   }
@@ -2259,7 +2259,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
   **示例：**
   ```ts
-  // xxx.ets
+  // xxx.ets API9
   import web_webview from '@ohos.web.webview'
   @Entry
   @Component
@@ -2292,6 +2292,106 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
             return true
           })
       }
+    }
+  }
+  ```
+
+  ```ts
+  // xxx.ets API10
+  import web_webview from '@ohos.web.webview'
+  import bundle from '@ohos.bundle'
+
+  let uri = "";
+
+  export default class CertManagerService {
+    private static sInstance: CertManagerService;
+    private authUri = "";
+
+    public static getInstance(): CertManagerService {
+      if (CertManagerService.sInstance == null) {
+        CertManagerService.sInstance = new CertManagerService();
+      }
+      return CertManagerService.sInstance;
+    }
+
+    async grantAppPm(callback) {
+      let message = '';
+      //注：com.example.myapplication需要写实际应用名称
+      let bundleInfo = await bundle.getBundleInfo("com.example.myapplication", bundle.BundleFlag.GET_BUNDLE_DEFAULT)
+      let clientAppUid = bundleInfo.uid
+      let appUid = clientAppUid.toString()
+
+      //注：globalThis.AbilityContext需要在MainAbility.ts文件的onCreate函数里添加globalThis.AbilityContext = this.context
+      await globalThis.AbilityContext.startAbilityForResult(
+        {
+          bundleName: "com.ohos.certmanager",
+          abilityName: "MainAbility",
+          uri: "requestAuthorize",
+          parameters: {
+            appUid: appUid, //传入申请应用的appUid
+          }
+        })
+        .then((data) => {
+          if (!data.resultCode) {
+            this.authUri = data.want.parameters.authUri; //授权成功后获取返回的authUri
+          }
+        })
+      message += "after grantAppPm authUri: " + this.authUri;
+      uri = this.authUri;
+      callback(message)
+    }
+  }
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    @State message: string = 'Hello World' //message主要是调试观察使用
+    certManager = CertManagerService.getInstance();
+
+    build() {
+      Row() {
+        Column() {
+          Row() {
+            //第一步：需要先进行授权，获取到uri
+            Button('GrantApp')
+              .onClick(() => {
+                this.certManager.grantAppPm((data) => {
+                  this.message = data;
+                });
+              })
+            //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+            Button("ClientCertAuth")
+              .onClick(() => {
+                this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+              })
+          }
+
+          Web({ src: 'https://www.example1.com', controller: this.controller })
+            .fileAccess(true)
+            .javaScriptAccess(true)
+            .domStorageAccess(true)
+            .onlineImageAccess(true)
+
+          .onClientAuthenticationRequest((event) => {
+            AlertDialog.show({
+              title: 'ClientAuth',
+              message: 'Text',
+              confirm: {
+                value: 'Confirm',
+                action: () => {
+                  event.handler.confirm(uri);
+                }
+              },
+              cancel: () => {
+                event.handler.cancel();
+              }
+            })
+          })
+        }
+      }
+      .width('100%')
+      .height('100%')
     }
   }
   ```
@@ -2861,6 +2961,40 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
   }
   ```
 
+### onAudioStateChanged<sup>10+</sup>
+
+onAudioStateChanged(callback: (event: { playing: boolean }) => void)
+
+设置网页上的音频播放状态发生改变时的回调函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                       | 参数描述                            |
+| ------- | ---------------------------------------------- | ----------------------------------- |
+| playing | boolean | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State playing: boolean = false
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onAudioStateChanged(event => {
+            this.playing = event.playing
+            console.debug('onAudioStateChanged playing: ' + this.playing)
+          })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -3370,6 +3504,18 @@ confirm(priKeyFile : string, certChainFile : string): void
 | ------------- | ------ | ---- | ------------------ |
 | priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
 | certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
+
+### confirm<sup>10+</sup>
+
+confirm(authUri : string): void
+
+通知Web组件使用指定的凭据(从证书管理模块获得)。
+
+**参数：**
+
+| 参数名   | 参数类型  | 必填  | 参数描述  |
+| ------- | ------ | ----  | ------------- |
+| authUri | string | 是    | 凭据的关键值。  |
 
 ### cancel<sup>9+</sup>
 

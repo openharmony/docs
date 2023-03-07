@@ -22,17 +22,20 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
   ```ts
-  appManager.isRunningInStabilityTest((err, flag) => {
-    console.log('error: ${JSON.stringify(err)}');
-    console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
-  })  
+  appManager.isRunningInStabilityTest((error, flag) => {
+    if (error && error.code !== 0) {
+        console.error('isRunningInStabilityTest fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}');
+    }
+  });
   ```
 
 
@@ -46,9 +49,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -56,7 +59,7 @@ Checks whether this application is undergoing a stability test. This API uses a 
   appManager.isRunningInStabilityTest().then((flag) => {
       console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -71,9 +74,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -81,7 +84,7 @@ Checks whether this application is running on a RAM constrained device. This API
   appManager.isRamConstrainedDevice().then((data) => {
       console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -95,17 +98,20 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
   ```ts
-  appManager.isRamConstrainedDevice((err, data) => {
-      console.log('error: ${JSON.stringify(err)}');
-      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
-  })
+  appManager.isRamConstrainedDevice((error, data) => {
+      if (error && error.code !== 0) {
+          console.error('isRamConstrainedDevice fail, error: ${JSON.stringify(error)}');
+      } else {
+          console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
+      }
+  });
   ```
 
 ## appManager.getAppMemorySize
@@ -118,9 +124,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the memory size, in MB.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the memory size, in MB.| 
 
 **Example**
     
@@ -128,7 +134,7 @@ Obtains the memory size of this application. This API uses a promise to return t
   appManager.getAppMemorySize().then((data) => {
       console.log('The size of app memory is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -142,16 +148,19 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB.| 
 
 **Example**
     
   ```ts
-  appManager.getAppMemorySize((err, data) => {
-      console.log('error: ${JSON.stringify(err)}');
-      console.log('The size of app memory is: ${JSON.stringify(data)}');
+  appManager.getAppMemorySize((error, data) => {
+      if (error && error.code !== 0) {
+          console.error('getAppMemorySize fail, error: ${JSON.stringify(error)}');
+      } else {
+          console.log('The size of app memory is: ${JSON.stringify(data)}');
+      }
   });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
@@ -178,7 +187,7 @@ Obtains information about the running processes. This API uses a promise to retu
   appManager.getProcessRunningInfos().then((data) => {
       console.log('The process running infos is: ${JSON.stringify(data)}');
   }).catch((error) => {
-      console.log('error: ${JSON.stringify(error)}');
+      console.error('error: ${JSON.stringify(error)}');
   });
   ```
 
@@ -203,9 +212,12 @@ Obtains information about the running processes. This API uses an asynchronous c
 **Example**
     
   ```ts
-  appManager.getProcessRunningInfos((err, data) => {
-      console.log('error: ${JSON.stringify(err)}');
-      console.log('The process running infos is: ${JSON.stringify(data)}');
+  appManager.getProcessRunningInfos((error, data) => {
+      if (error && error.code !== 0) {
+          console.error('getProcessRunningInfos fail, error: ${JSON.stringify(error)}');
+      } else {
+          console.log('getProcessRunningInfos success, data: ${JSON.stringify(data)}');
+      }
   });
   ```
 
@@ -320,7 +332,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
   function unregisterApplicationStateObserverCallback(err) {
     if (err) {
-        console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
+        console.error('------------ unregisterApplicationStateObserverCallback ------------', err);
     }
   }
   appManager.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
@@ -360,7 +372,7 @@ Deregisters the application state observer. This API uses a promise to return th
       console.log('----------- unregisterApplicationStateObserver success ----------', data);
   })
   .catch((err) => {
-      console.log('----------- unregisterApplicationStateObserver fail ----------', err);
+      console.error('----------- unregisterApplicationStateObserver fail ----------', err);
   });
   ```
 
@@ -387,7 +399,7 @@ Obtains information about the applications that are running in the foreground. T
   ```ts
   function getForegroundApplicationsCallback(err, data) {
     if (err) {
-        console.log('--------- getForegroundApplicationsCallback fail ---------', err);
+        console.error('--------- getForegroundApplicationsCallback fail ---------', err);
     } else {
         console.log('--------- getForegroundApplicationsCallback success ---------', data);
     }
@@ -421,7 +433,7 @@ Obtains information about the applications that are running in the foreground. T
       console.log('--------- getForegroundApplications success -------', data);
   })
   .catch((err) => {
-      console.log('--------- getForegroundApplications fail -------', err);
+      console.error('--------- getForegroundApplications fail -------', err);
   });
   ```
 
@@ -454,7 +466,7 @@ appManager.killProcessWithAccount(bundleName, accountId)
        console.log('------------ killProcessWithAccount success ------------', data);
    })
    .catch((err) => {
-       console.log('------------ killProcessWithAccount fail ------------', err);
+       console.error('------------ killProcessWithAccount fail ------------', err);
    });
 ```
 
@@ -486,7 +498,7 @@ let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
    if (err) {
-       console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
+       console.error('------------- killProcessWithAccountCallback fail, err: --------------', err);
    } else {
        console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
    }
@@ -519,7 +531,7 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
   let bundleName = 'bundleName';
   function killProcessesByBundleNameCallback(err, data) {
     if (err) {
-        console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
+        console.error('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
     } else {
         console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
     }
@@ -560,7 +572,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
         console.log('------------ killProcessesByBundleName success ------------', data);
     })
     .catch((err) => {
-        console.log('------------ killProcessesByBundleName fail ------------', err);
+        console.error('------------ killProcessesByBundleName fail ------------', err);
     });
   ```
 
@@ -589,7 +601,7 @@ Clears application data by bundle name. This API uses an asynchronous callback t
   let bundleName = 'bundleName';
   function clearUpApplicationDataCallback(err, data) {
     if (err) {
-        console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
+        console.error('------------- clearUpApplicationDataCallback fail, err: --------------', err);
     } else {
         console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
     }
@@ -630,6 +642,6 @@ Clears application data by bundle name. This API uses a promise to return the re
         console.log('------------ clearUpApplicationData success ------------', data);
     })
     .catch((err) => {
-        console.log('------------ clearUpApplicationData fail ------------', err);
+        console.error('------------ clearUpApplicationData fail ------------', err);
     });
   ```

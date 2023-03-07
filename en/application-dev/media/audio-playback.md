@@ -38,7 +38,7 @@ For details about the **src** types supported by **AudioPlayer**, see the [src a
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 // Print the stream track information.
 function printfDescription(obj) {
@@ -112,14 +112,8 @@ async function audioPlayerDemo() {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
-    await fileIO.open(path).then((fdNumber) => {
-        fdPath = fdPath + '' + fdNumber;
-        console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-        console.info('open fd failed err is' + err);
-    }).catch((err) => {
-        console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
 }
 ```
@@ -128,7 +122,7 @@ async function audioPlayerDemo() {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 export class AudioDemo {
   // Set the player callbacks.
@@ -154,14 +148,8 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }
@@ -171,7 +159,7 @@ export class AudioDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 export class AudioDemo {
 // Set the player callbacks.
@@ -202,14 +190,8 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let nextpath = pathDir  + '/02.mp3'
-    await fileIO.open(nextpath).then((fdNumber) => {
-      nextFdPath = nextFdPath + '' + fdNumber;
-      console.info('open fd success fd is' + nextFdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let nextFile = await fs.open(nextpath);
+    nextFdPath = nextFdPath + '' + nextFile.fd;
     audioPlayer.src = nextFdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 
@@ -220,14 +202,8 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }
@@ -237,7 +213,7 @@ export class AudioDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 export class AudioDemo {
   // Set the player callbacks.
@@ -259,14 +235,8 @@ export class AudioDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
     let path = pathDir  + '/01.mp3'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }
