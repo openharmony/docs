@@ -51,7 +51,7 @@ For details about how to create an XComponent, see [XComponent](../reference/ark
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // Report an error in the case of a function invocation failure.
   failureCallback(error) {
@@ -82,14 +82,8 @@ export class VideoPlayerDemo {
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // Call createVideoPlayer to create a VideoPlayer instance.
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
@@ -180,7 +174,7 @@ export class VideoPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // Report an error in the case of a function invocation failure.
   failureCallback(error) {
@@ -211,14 +205,8 @@ export class VideoPlayerDemo {
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // Call createVideoPlayer to create a VideoPlayer instance.
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
@@ -267,7 +255,7 @@ export class VideoPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // Report an error in the case of a function invocation failure.
   failureCallback(error) {
@@ -299,14 +287,8 @@ export class VideoPlayerDemo {
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     let nextPath = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/MP4_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // Call createVideoPlayer to create a VideoPlayer instance.
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
@@ -341,14 +323,8 @@ export class VideoPlayerDemo {
 
     // Obtain the next video FD address.
     fdPath = 'fd://'
-    await fileIO.open(nextPath).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let nextFile = await fs.open(nextPath);
+    fdPath = fdPath + '' + nextFile.fd;
     // Set the second video playback source.
     videoPlayer.url = fdPath;
 
@@ -378,7 +354,7 @@ export class VideoPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 export class VideoPlayerDemo {
   // Report an error in the case of a function invocation failure.
   failureCallback(error) {
@@ -409,14 +385,8 @@ export class VideoPlayerDemo {
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     // Call createVideoPlayer to create a VideoPlayer instance.
     await media.createVideoPlayer().then((video) => {
       if (typeof (video) != 'undefined') {
