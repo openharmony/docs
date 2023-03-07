@@ -18,6 +18,8 @@
 
 DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名            | 参数类型   | 必填  | 参数描述 |
@@ -26,8 +28,10 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 | max               | number     | 否    |   -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
 | type<sup>8+</sup> | [DataPanelType](#datapaneltype枚举说明) | 否 | 数据面板的类型（不支持动态修改）。<br/>默认值：DataPanelType.Circle |
 
-
 ## DataPanelType枚举说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称 | 描述 |
 | -------| ------------ |
 | Line   | 线型数据面板。 |
