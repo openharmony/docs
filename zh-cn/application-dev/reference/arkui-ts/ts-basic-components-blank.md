@@ -16,6 +16,8 @@
 
 Blank(min?: number&nbsp;|&nbsp;string)
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -28,7 +30,7 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置空白填充的填充颜色。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置空白填充的填充颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

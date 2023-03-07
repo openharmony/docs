@@ -11,9 +11,12 @@
 
 | 名称                                       | 支持冒泡 | 功能描述                              |
 | ---------------------------------------- | ---- | --------------------------------- |
-| onClick(event:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否    | 点击动作触发该回调，event返回值见ClickEvent对象说明。 |
+| onClick(event:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否    | 点击动作触发该回调，event返回值见ClickEvent对象说明。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## ClickEvent对象说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称            | 类型                                 | 描述                                                     |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
 | screenX             | number                               | 点击位置相对于应用窗口左上角的X坐标。                      |
@@ -25,6 +28,8 @@
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
 
 ## EventTarget<sup>8+</sup>对象说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称   | 参数类型                      | 描述         |
 | ---- | ------------------------- | ---------- |
