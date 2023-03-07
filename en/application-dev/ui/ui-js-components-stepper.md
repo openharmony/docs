@@ -43,7 +43,7 @@ text{
 }
 ```
 
-![en-us_image_0000001223287656](figures/en-us_image_0000001223287656.gif)
+![en-us_image_0000001234289455](figures/en-us_image_0000001234289455.gif)
 
 
 ## Setting the Index
@@ -82,7 +82,7 @@ text{
 }
 ```
 
-![en-us_image_0000001267767837](figures/en-us_image_0000001267767837.gif)
+![en-us_image_0000001234011019](figures/en-us_image_0000001234011019.gif)
 
 Set the **label** attribute to customize the label for the **\<stepper-item>**.
 
@@ -143,7 +143,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001267767841](figures/en-us_image_0000001267767841.gif)
+![en-us_image_0000001163531210](figures/en-us_image_0000001163531210.gif)
 
 
 ## Setting Styles
@@ -187,7 +187,7 @@ text{
 }
 ```
 
-![en-us_image_0000001223287668](figures/en-us_image_0000001223287668.png)
+![en-us_image_0000001234130975](figures/en-us_image_0000001234130975.png)
 
 
 ## Adding Events
@@ -290,7 +290,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001267607869](figures/en-us_image_0000001267607869.gif)
+![en-us_image_0000001189089950](figures/en-us_image_0000001189089950.gif)
 
 
 ## Example Scenario
@@ -404,4 +404,4 @@ export default {
 }
 ```
 
-![en-us_image_0000001267887817](figures/en-us_image_0000001267887817.gif)
+![en-us_image_0000001189249862](figures/en-us_image_0000001189249862.gif)
