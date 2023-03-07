@@ -1,4 +1,4 @@
-# Account Error Codes
+# Account Management Error Codes
 
 The following includes the error codes for OS accounts, distributed accounts, and app accounts.
 
@@ -13,13 +13,13 @@ System service works abnormally.
 The possible causes are as follows:
 1. The account management service cannot start properly.
 2. The IPC object for account management cannot be obtained.
-3. The services on which the account management depends cannot start properly or the IPC object cannot be obtained.
+3. The services on which the account management depends cannot start properly, or the IPC object on which the account management depends cannot be obtained.
 4. The service is not initialized.
 5. The disk space is insufficient.
 6. The file read or write fails.
-7. Directories cannot be created successfully. 
-8. Files cannot be created or deleted successfully.
-9. The database cannot be read or written successfully.
+7. Directories cannot be created. 
+8. Files cannot be created or deleted.
+9. The database cannot be read or written.
 
 **Solution**
 
@@ -74,15 +74,15 @@ The account does not exist.
 The possible causes are as follows:
 1. The account to query, activate, or delete is not created.
 2. The account to query, activate, or delete has been deleted.
-3. The constraint, user name, or profile phone is set for an account that has been deleted.
+3. The constraint, user name, or profile photo is set for an account that has been deleted.
 4. The account to update is not created.
-5. The access permission is set for an account that does not exist.
-6. The password is set, deleted, or queried for an account that does not exist.
-7. The token is set or deleted for an account that does not exist.
-8. Additional information is set for an account that does not exist.
-9. Credentials are set for an account that does not exist.
-10. Custom data is set for an account that does not exist.
-11. Distributed synchronization is enabled for an account that does not exist.
+5. The access permission is to be set for an account that does not exist.
+6. The password is to be set, deleted, or queried for an account that does not exist.
+7. The token is to be set or deleted for an account that does not exist.
+8. Additional information is to be set for an account that does not exist.
+9. Credentials are to be set for an account that does not exist.
+10. Custom data is to be set for an account that does not exist.
+11. Distributed synchronization is to be enabled for an account that does not exist.
 
 **Solution**
 
@@ -96,7 +96,6 @@ The account already exists.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The account to create already exists.
 
 **Solution**
@@ -111,7 +110,6 @@ Multi-user is not supported.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The device does not support multiple users.
 
 **Solution**
@@ -126,7 +124,6 @@ The account type is not supported.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The device does not support the account type.
 
 **Solution**
@@ -141,12 +138,11 @@ The number of accounts has reached the limit.
 
 **Possible Causes**
 
-The possible causes are as follows:
-A maximum of 1000 OS accounts or app accounts can be created.
+A maximum of 1,000 OS accounts or app accounts can be created.
 
 **Solution**
 
-Delete the accounts that are no longer used.
+Delete the accounts that are no longer used, and try again.
 
 ## 12300008 The Account Is Restricted
 
@@ -173,12 +169,11 @@ The account has been activated.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The account to activate is already activated.
 
 **Solution**
 
-No action is required.
+No further action is required.
 
 ## 12300010 Account Service Not Respond
 
@@ -189,7 +184,7 @@ The account service does not respond.
 **Possible Causes**
 
 The possible causes are as follows:
-1. Repeated requests, such as the requests for activating an account or for applying the same settings, are submitted in a short period of time.
+1. Repeated requests, such as the requests for activating an account or applying the same settings, are submitted in a short period of time.
 2. When the number of authentication sessions for app accounts reaches 256, new authentication requests cannot be processed.
 
 **Solution**
@@ -204,7 +199,6 @@ The event listener has been registered.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The listener to register has been registered with the system already.
 
 **Solution**
@@ -219,7 +213,6 @@ The event listener has not been registered.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The event listener to unregister has not been registered.
 
 **Solution**
@@ -268,7 +261,6 @@ The crdential inputer already exists.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The PIN inputer has been registered and cannot be registered again before deregistration.
 
 **Solution**
@@ -283,7 +275,6 @@ The credential inputer is not found.
 
 **Possible Causes**
 
-The possible causes are as follows:
 No credential inputer is registered when a credential is authenticated, added or modified.
 
 **Solution**
@@ -298,7 +289,6 @@ The trust level is not supported.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The trust level passed in is not supported.
 
 **Solution**
@@ -313,7 +303,6 @@ The authentication type is not supported.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The authentication type passed in is not supported.
 
 **Solution**
@@ -328,7 +317,6 @@ The authentication type does not exist.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The specified authentication type does not exist when a token is queried or deleted.
 
 **Solution**
@@ -342,8 +330,6 @@ Use an existing authentication type.
 The authentication session does not exist.
 
 **Possible Causes**
-
-The possible causes are as follows:
 
 The session callback to query does not exist.
 
@@ -359,7 +345,6 @@ The authentication is canceled.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The user cancels the authentication.
 
 **Solution**
@@ -374,7 +359,6 @@ The authentication is locked.
 
 **Possible Causes**
 
-The possible causes are as follows:
 The number of authentication type errors exceeds the limit.
 
 **Solution**
@@ -407,9 +391,8 @@ The authentication service does not respond.
 **Possible Causes**
 
 The possible causes are as follows:
-
-- The total number of OS accounts being authenticated exceeds 5.
-- The authentication service of the third-party app does not respond.
+The total number of OS accounts being authenticated exceeds 5.
+The authentication service of the third-party app does not respond.
 
 **Solution**
 
@@ -423,17 +406,16 @@ The account authentication service does not exist.
 
 **Possible Causes**
 
-The possible causes are as follows:
 For app accounts:
 1. When an authentication is requested, the app does not support the authentication service.
 2. When an account is added implicitly, the app does not support the authentication service.
 3. When the credential of a specified account is verified, the app does not support the authentication service.
 4. When the authenticator attributes are set for an app, the app does not support the authentication service.
-5. During the account tags are checked, the specified app does not support the authentication service.
+5. When the account tags are checked, the specified app does not support the authentication service.
 
 **Solution**
 
-Cancel the operation or authenticate the app that supports the authentication service.
+Cancel the operation or authenticate an app that supports the authentication service.
 
 ## 12300114 Authentication Service Abnormal
 
@@ -451,3 +433,76 @@ The possible causes are as follows:
 
 1. Try again or restart the system.
 2. Use the app authenticator that complies with specifications.
+
+## 12400001 Application Not Exist
+
+**Error Message**
+
+The application does not exist.
+
+**Possible Causes**
+
+The possible causes are as follows:
+1. The target app does not exist when the app permission is set.
+2. The target app does not exist when the app permission is authorized.
+
+**Solution**
+
+Check that the target app has been installed and use the bundle of the app.
+
+## 12400002 Custom Data Not Exist
+
+**Error Message**
+
+The custom data does not exist.
+
+**Possible Causes**
+
+The key does not exist when you query the custom data of the account.
+
+**Solution**
+
+Query the custom data with a key that is already defined.
+
+## 12400003 Custom Data Records Reached the Limit
+
+**Error Message**
+
+The number of custom data reaches upper limit.
+
+**Possible Causes**
+
+The number of custom data records of the target account has reached 512.
+
+**Solution**
+
+Delete the custom data records that are no longer used.
+
+## 12400004 Token Count Reached the Limit
+
+**Error Message**
+
+The number of token reaches upper limit.
+
+**Possible Causes**
+
+The number of tokens of the target account has reached 1024.
+
+**Solution**
+
+Delete the tokens that are not longer used, and try again.
+
+## 12400005 Bundles in the OAuth List Reached the Limit
+
+**Error Message**
+
+The size of authorization list reaches upper limit.
+
+**Possible Causes**
+
+The number of bundles in the authorization list has reached 1024.
+
+**Solution**
+
+Revoke authorization from the apps that do not require the authorization and try again.
+
