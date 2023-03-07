@@ -15,6 +15,8 @@
 
 Path(value?: { width?: number | string; height?: number | string; commands?: string })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名   | 参数类型         | 必填 | 参数描述                            |
@@ -29,18 +31,18 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 | 名称     | 类型                                | 默认值  | 描述                                     |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| commands | string                              | ''   | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | - |设置边框颜色，不设置时，默认没有边框。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置线条拐角绘制样式。 |
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置线条透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 |
-| strokeWidth | Length | 1 | 设置线条宽度。 |
-| antiAlias | boolean | true | 是否开启抗锯齿效果。 |
+| commands | string                              | ''   | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| stroke | [ResourceColor](ts-types.md) | - |设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置线条拐角绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置线条透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeWidth | Length | 1 | 设置线条宽度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 commands支持的绘制命令如下：
 

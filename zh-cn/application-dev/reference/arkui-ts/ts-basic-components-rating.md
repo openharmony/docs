@@ -16,6 +16,8 @@
 
 Rating(options?: { rating: number, indicator?: boolean })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -28,16 +30,16 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| stars | number | 设置评星总数。<br/>默认值：5 |
-| stepSize | number | 操作评级的步长。<br/>默认值：0.5 |
-| starStyle | {<br/>backgroundUri:&nbsp;string,<br/>foregroundUri:&nbsp;string,<br/>secondaryUri?:&nbsp;string<br/>} | backgroundUri：未选中的星级的图片链接，可由用户自定义或使用系统默认图片，仅支持本地图片。<br/>foregroundUri：选中的星级的图片路径，可由用户自定义或使用系统默认图片，仅支持本地图片。<br/>secondaryUir：部分选中的星级的图片路径，可由用户自定义或使用系统默认图片，仅支持本地图片。 |
+| stars | number | 设置评星总数。<br/>默认值：5 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| stepSize | number | 操作评级的步长。<br/>默认值：0.5 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| starStyle | {<br/>backgroundUri:&nbsp;string,<br/>foregroundUri:&nbsp;string,<br/>secondaryUri?:&nbsp;string<br/>} | backgroundUri：未选中的星级的图片链接，可由用户自定义或使用系统默认图片，仅支持本地图片。<br/>foregroundUri：选中的星级的图片路径，可由用户自定义或使用系统默认图片，仅支持本地图片。<br/>secondaryUir：部分选中的星级的图片路径，可由用户自定义或使用系统默认图片，仅支持本地图片。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 操作评分条的评星发生改变时触发该回调。 |
+| onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 操作评分条的评星发生改变时触发该回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 
