@@ -2,7 +2,7 @@
 
 > **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.telephony.observer`](js-apis-observer.md)。
-> 
+>
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -122,7 +122,9 @@ export default {
 
 ## NetworkResponse
 
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| metered | boolean | 是否按照流量计费。 |
-| type | string | 网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| metered | boolean | 否 |是否按照流量计费。 |
+| type | string | 是|网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |

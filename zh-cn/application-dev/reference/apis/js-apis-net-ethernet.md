@@ -3,7 +3,6 @@
 以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS等信息
 
 > **说明：**
->
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -32,18 +31,37 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | ic       | [InterfaceConfiguration](#interfaceconfiguration) | 是   | 要设置的网络接口配置信息                   |
 | callback | AsyncCallback\<void>                     | 是   | 回调函数，成功无返回，失败返回对应错误码。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+| 2201006 | Device disconnected.                    |
+| 2201007 | Failed to write the user configuration.    |
+
 **示例：**
 
 ```js
-ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", routeAddr:"192.168.1.1",
-    gateAddr:"192.168.1.1", maskAddr:"255.255.255.0", dnsAddr0:"1.1.1.1", dnsAddr1:"2.2.2.2"},
-    (error) => {
-        if (error) {
-            console.log("setIfaceConfig callback error = " + error);
-        } else {
-            console.log("setIfaceConfig callback ok ");
-        }
-    });
+ethernet.setIfaceConfig("eth0", {
+    mode: 0,
+    ipAddr: "192.168.xx.xxx",
+    route: "192.168.xx.xxx",
+    gateway: "192.168.xx.xxx",
+    netMask: "255.255.255.0",
+    dnsServers: "1.1.1.1",
+    domain: "2.2.2.2"
+}, (error) => {
+    if (error) {
+        console.log("setIfaceConfig callback error = " + JSON.stringify(error));
+    } else {
+        console.log("setIfaceConfig callback ok ");
+    }
+});
 ```
 
 ## ethernet.setIfaceConfig
@@ -71,14 +89,34 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | ------------------- | ----------------------------------------------------------- |
 | Promise\<void>       | 以Promise形式返回执行结果。成功无返回，失败返回对应错误码。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+| 2201006 | Device disconnected.                   |
+| 2201007 | Failed to write the user configuration.    |
+
 **示例：**
 
 ```js
-ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.1.123", routeAddr:"192.168.1.1",
-    gateAddr:"192.168.1.1", maskAddr:"255.255.255.0", dnsAddr0:"1.1.1.1", dnsAddr1:"2.2.2.2"}).then(() => {
+ethernet.setIfaceConfig("eth0", {
+    mode: 0,
+    ipAddr: "192.168.xx.xxx",
+    route: "192.168.xx.xxx",
+    gateway: "192.168.xx.xxx",
+    netMask: "255.255.255.0",
+    dnsServers: "1.1.1.1",
+    domain: "2.2.2.2"
+}).then(() => {
     console.log("setIfaceConfig promiss ok ");
-}).catch((error) => {
-    console.log("setIfaceConfig promiss error = " + error);
+}).catch(error => {
+    console.log("setIfaceConfig promiss error = " + JSON.stringify(error));
 });
 ```
 
@@ -101,20 +139,31 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | iface    | string                                          | 是    | 指定网络接口 |
 | callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration)> | 是    | 回调函数，返回指定网络接口信息   |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+
 **示例：**
 
 ```js
 ethernet.getIfaceConfig("eth0", (error, value) => {
     if (error) {
-        console.log("getIfaceConfig  callback error = " + error);
+        console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
     } else {
-        console.log("getIfaceConfig callback mode = " + value.mode);
-        console.log("getIfaceConfig callback ipAddr = " + value.ipAddr);
-        console.log("getIfaceConfig callback routeAddr = " + value.routeAddr);
-        console.log("getIfaceConfig callback gateAddr = " + value.gateAddr);
-        console.log("getIfaceConfig callback maskAddr = " + value.maskAddr);
-        console.log("getIfaceConfig callback dns0Addr = " + value.dns0Addr);
-        console.log("getIfaceConfig callback dns1Addr = " + value.dns1Addr);
+        console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
+        console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
+        console.log("getIfaceConfig callback route = " + JSON.stringify(value.route));
+        console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
+        console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
+        console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
+        console.log("getIfaceConfig callback domain = " + JSON.stringify(value.domain));
     }
 });
 ```
@@ -143,19 +192,30 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | --------------------------------- | ---------------------------------- |
 | Promise\<[InterfaceConfiguration](#interfaceconfiguration)>   | 以Promise形式返回接口信息。        |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+
 **示例：**
 
 ```js
 ethernet.getIfaceConfig("eth0").then((data) => {
-    console.log("getIfaceConfig promiss mode = " + data.mode);
-    console.log("getIfaceConfig promiss ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig promiss routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig promiss gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig promiss maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig promiss dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig promiss dns1Addr = " + data.dns1Addr);
-}).catch((error) => {
-    console.log("getIfaceConfig promiss error = " + error);
+    console.log("getIfaceConfig promiss mode = " + JSON.stringify(data.mode));
+    console.log("getIfaceConfig promiss ipAddr = " + JSON.stringify(data.ipAddr));
+    console.log("getIfaceConfig promiss route = " + JSON.stringify(data.route));
+    console.log("getIfaceConfig promiss gateway = " + JSON.stringify(data.gateway));
+    console.log("getIfaceConfig promiss netMask = " + JSON.stringify(data.netMask));
+    console.log("getIfaceConfig promiss dnsServers = " + JSON.stringify(data.dnsServers));
+    console.log("getIfaceConfig promiss domain = " + JSON.stringify(data.domain));
+}).catch(error => {
+    console.log("getIfaceConfig promiss error = " + JSON.stringify(error));
 });
 ```
 
@@ -178,15 +238,26 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | iface    | string                      | 是   | 接口名。为空时代表查询是否存在激活接口             |
 | callback | AsyncCallback\<number>       | 是   | 回调函数，已激活:1,未激活:0,其他为获取失败错误码。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+
 **示例：**
 
 ```js
 ethernet.isIfaceActive("eth0", (error, value) => {
-  if (error) {
-    console.log("whether2Activate callback error = " + error);
-  } else {
-    console.log("whether2Activate callback = " + value);
-  }
+    if (error) {
+        console.log("whether2Activate callback error = " + JSON.stringify(error));
+    } else {
+        console.log("whether2Activate callback = " + JSON.stringify(value));
+    }
 });
 ```
 
@@ -214,13 +285,24 @@ isIfaceActive(iface: string): Promise\<number>
 | ----------------| ------------------------------------------------------------------ |
 | Promise\<number> | 以Promise形式返回获取结果。已激活:1,未激活:0,其他为获取失败错误码。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 401     | Parameter error.                        |
+| 2200001 | Invalid parameter value.                |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+| 2201005 | The device information does not exist.  |
+
 **示例：**
 
 ```js
 ethernet.isIfaceActive("eth0").then((data) => {
-  console.log("isIfaceActive promiss = " + data);
-}).catch((error) => {
-  console.log("isIfaceActive promiss error = " + error);
+    console.log("isIfaceActive promiss = " + JSON.stringify(data));
+}).catch(error => {
+    console.log("isIfaceActive promiss error = " + JSON.stringify(error));
 });
 ```
 
@@ -242,18 +324,26 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | -------- | ------------------------------------ | ---- | ------------------------------ |
 | callback | AsyncCallback\<Array\<string>>         | 是   | 回调函数，返回值为对应接口名。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+
 **示例：**
 
 ```js
 ethernet.getAllActiveIfaces((error, value) => {
-  if (error) {
-    console.log("getAllActiveIfaces callback error = " + error);
-  } else {
-      console.log("getAllActiveIfaces callback value.length = " + value.length);
-    for (let i = 0; i < value.length; i++) {
-      console.log("getAllActiveIfaces callback = " + value[i]);
+    if (error) {
+        console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
+    } else {
+        console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
+        for (let i = 0; i < value.length; i++) {
+            console.log("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
+        }
     }
-  }
 });
 ```
 
@@ -275,16 +365,24 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | ------------------------------ | ----------------------------------------------- |
 | Promise\<Array\<string>>         | 以Promise形式返回获取结果。返回值为对应接口名。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                 |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 2200002 | Operation failed. Cannot connect to service.|
+| 2200003 | System internal error.                  |
+
 **示例：**
 
 ```js
 ethernet.getAllActiveIfaces().then((data) => {
-    console.log("getAllActiveIfaces promiss data.length = " + data.length);
-  for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promiss  = " + data[i]);
-  }
-}).catch((error) => {
-  console.log("getAllActiveIfaces promiss error = " + error);
+    console.log("getAllActiveIfaces promiss data.length = " + JSON.stringify(data.length));
+    for (let i = 0; i < data.length; i++) {
+        console.log("getAllActiveIfaces promiss  = " + JSON.stringify(data[i]));
+    }
+}).catch(error => {
+    console.log("getAllActiveIfaces promiss error = " + JSON.stringify(error));
 });
 ```
 
