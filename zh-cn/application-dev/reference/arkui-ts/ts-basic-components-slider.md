@@ -16,6 +16,8 @@
 
 Slider(options?: {value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -30,6 +32,8 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 ## SliderStyle枚举说明
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | OutSet | 滑块在滑轨上。 |
@@ -42,12 +46,12 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 |
-| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。 |
-| showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false |
-| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false |
-| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。 |
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
@@ -56,9 +60,11 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：拖动状态。 |
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：拖动状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## SliderChangeMode枚举说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
