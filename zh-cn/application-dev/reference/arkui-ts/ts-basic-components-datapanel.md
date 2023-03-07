@@ -34,6 +34,43 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 | Circle | 环形数据面板。 |
 
 
+## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#LinearGradient对象说明)> | 是 | 各数据段颜色 ( ResourceColor为纯色，LinearGradient为渐变色)。|
+| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 是 | 底板颜色。|
+| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 是 | 圆环粗细。 |
+| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#DataPanelShadowOption对象说明) | 是 | 投影样式，不设置为不开启投影。|
+
+
+## DataPanelShadowOption对象说明
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| radius<sup>10+</sup> | number \| [Resource](ts-types.md#resource类型) | 否 | 阴影模糊半径。 <br/>默认值：5vp |
+| colors<sup>10+</sup> | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#LinearGradient对象说明)> | 否 | 各数据段阴影的颜色。 <br/>默认值：与valueColors一致 |
+| offsetX<sup>10+</sup> | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5vp |
+| offsetY<sup>10+</sup> | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5vp |
+
+
+## LinearGradient对象说明
+线性渐变。
+
+LinearGradient(colorStops: ColorStop[])<sup>10+</sup>
+
+
+## ColorStop对象说明
+颜色断点类型，用于描述渐进色颜色断点。
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| color<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
+| offset<sup>10+</sup> | [Length](ts-types.md#Length) | 是 | 渐变色断点（0~1之间的比例值）。|
+
+
+
 ## 示例
 
 ```ts
