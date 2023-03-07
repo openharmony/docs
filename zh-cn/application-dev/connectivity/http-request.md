@@ -30,7 +30,7 @@ HTTP数据请求功能主要由http模块提供。
 | on\('dataProgress'\)<sup>10+</sup>        | 订阅HTTP流式响应数据接收进度事件。  |
 | off\('dataProgress'\)<sup>10+</sup>       | 取消订阅HTTP流式响应数据接收进度事件。 |
 
-## 开发步骤
+## request接口开发步骤
 
 1. 从@ohos.net.http.d.ts中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -83,11 +83,93 @@ httpRequest.request(
             console.info('error:' + JSON.stringify(err));
             // 取消订阅HTTP响应头事件
             httpRequest.off('headersReceive');
-            // 当该请求使用完毕时，调用destroy方法主动销毁。
+            // 当该请求使用完毕时，调用destroy方法主动销毁
             httpRequest.destroy();
         }
     }
 );
+```
+
+## request2接口开发步骤
+
+1. 从@ohos.net.http.d.ts中导入http命名空间。
+2. 调用createHttp()方法，创建一个HttpRequest2对象。
+3. 调用该对象的on()方法，订阅HTTP流式响应相关事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
+4. 调用该对象的request2()方法，传入http请求的url地址和可选参数，发起网络请求。
+5. 调用该对象的off()方法，取消订阅http响应头事件。
+6. 当该请求使用完毕时，调用destroy()方法主动销毁。
+
+```js
+// 引入包名
+import http from '@ohos.net.http';
+
+// 每一个httpRequest对应一个HTTP请求任务，不可复用
+let httpRequest2 = http.createHttp();
+
+// 订阅HTTP流式响应数据接收事件的回调函数
+function dataReceive_on_callback(data) {
+    console.info("request2_dataReceive callback function receive len: " + JSON.stringify(data.byteLength));
+}
+// 订阅HTTP流式响应数据接收进度事件的回调函数
+function dataEnd_on_callback() {
+    console.info(`request2_dataEnd callback function`);
+}
+// 订阅HTTP流式响应数据接收完毕事件的回调函数
+function dataProgress_on_callback(data) {
+    console.info("request2_dataProgress callback function receive dataProgress: " + JSON.stringify(data));
+}
+
+try {
+    // 用于订阅HTTP响应头，此接口会比request2请求先返回。可以根据业务需要订阅此消息
+    // 从API 10开始，支持订阅HTTP流式响应相关事件
+
+    // 订阅HTTP流式响应数据接收事件
+    httpRequest2.on("dataReceive", dataReceive_on_callback);
+    // 订阅HTTP流式响应数据接收进度事件
+    httpRequest2.on("dataProgress", dataProgress_on_callback);
+    // 订阅HTTP流式响应数据接收完毕事件
+    httpRequest2.on("dataEnd", dataEnd_on_callback);
+
+    httpRequest2.request2(
+    // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
+    "EXAMPLE_URL",
+    {
+        method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+        // 开发者根据自身业务需要添加header字段
+        header: {
+            'Content-Type': 'application/json'
+        },
+        // 当使用POST请求时此字段用于传递内容
+        extraData: {
+            "data": "data to send",
+        },
+        expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+        usingCache: true, // 可选，默认为true
+        priority: 1, // 可选，默认为1
+        connectTimeout: 60000, // 可选，默认为60000ms
+        readTimeout: 60000, // 可选，默认为60000ms
+        usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
+        usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+    }).then(function () {
+        console.info("request2 OK!");
+        // 订阅HTTP流式响应数据接收事件
+        httpRequest2.off("dataReceive");
+        console.info("off dataReceive success!");
+        // 订阅HTTP流式响应数据接收进度事件
+        httpRequest2.off("dataProgress");
+        console.info("off dataProgress success!");
+        // 订阅HTTP流式响应数据接收完毕事件
+        httpRequest2.off("dataEnd");
+        console.info("off dataEnd success!");
+        // 当该请求使用完毕时，调用destroy方法主动销毁
+        httpRequest2.destroy();
+    }).catch(function (err) {
+        console.info("request2 ERROR : " + JSON.stringify(err));
+    });
+} catch (error) {
+    console.info("request2 ERROR : " + JSON.stringify(error));
+}
+
 ```
 
 ## 相关实例
