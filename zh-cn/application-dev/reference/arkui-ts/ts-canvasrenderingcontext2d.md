@@ -1922,6 +1922,8 @@ setTransform(transform?: Matrix2D): void
 
 以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。该接口为空接口。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 
 ### translate
 
