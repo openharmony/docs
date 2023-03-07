@@ -79,9 +79,9 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 ## WindowMode<sup>9+</sup>
 
-**系统能力**：SystemCapability.Test.UiTest
-
 窗口的窗口模式。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |
@@ -92,9 +92,9 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 ## DisplayRotation<sup>9+</sup>
 
-**系统能力**：SystemCapability.Test.UiTest
-
 设备显示器的显示方向。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称         | 值   | 说明                                     |
 | ------------ | ---- | ---------------------------------------- |
@@ -118,9 +118,9 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 ## UiDirection<sup>10+</sup>
 
-**系统能力**：SystemCapability.Test.UiTest
-
 进行抛滑等UI操作时的方向。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称  | 值   | 说明   |
 | ----- | ---- | ------ |
@@ -131,9 +131,9 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 ## MouseButton<sup>10+</sup>
 
-**系统能力**：SystemCapability.Test.UiTest
-
 模拟注入的鼠标按钮。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称                | 值   | 说明         |
 | ------------------- | ---- | ------------ |
