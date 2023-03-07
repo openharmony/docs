@@ -22,7 +22,7 @@
 4. 编译：./build.sh --product-name ohos-sdk
 
 
-编译成功后导出即可
+编译成功后导出out/sdk/packages/ohos-sdk/目录下的文件即可
 
 ## 替换SDK
 
