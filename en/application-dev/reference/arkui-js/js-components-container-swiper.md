@@ -118,16 +118,19 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
 }
 .swiperContent1{
   height: 100%;
+  width: 100%;
   justify-content: center;
   background-color: #007dff;
 }
 .swiperContent2{
   height: 100%;
+  width: 100%;
   justify-content: center;
   background-color: #ff7500;
 }
 .swiperContent3{
   height: 100%;
+  width: 100%;
   justify-content: center;
   background-color: #41ba41;
 }

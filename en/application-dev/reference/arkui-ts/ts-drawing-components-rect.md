@@ -40,7 +40,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.|
 | fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.|
 | stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, the component does not have any stroke.|
-| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes. |
+| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes.|
 | strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.|
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.|
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.|
@@ -84,6 +84,7 @@ struct RectExample {
         Rect({ width: '90%', height: 80 })
           .radius(20)
           .fill(Color.Pink)
+          .stroke(Color.Transparent)
       }.width('100%').margin({ top: 10 })
       // Draw a 90% x 50 rectangle, with the width and height of its rounded corners as follows: 40 for the upper left rounded corner, 20 for the upper right rounded corner, 40 for the lower right rounded corner, and 20 for the lower left rounded corner.
       Rect({ width: '90%', height: 80 })
