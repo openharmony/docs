@@ -38,7 +38,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).                                                |
+| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
 | name     | string                                           | Yes  | Name of the **Preferences** instance.|
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
 
@@ -55,41 +55,39 @@ let preferences = null;
 try {
     data_preferences.getPreferences(context, 'mystore', function (err, val) {
         if (err) {
-	        console.info("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
+	        console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
 	        return;
 	    }
-	    console.info("Got the preferences successfully.");
+	    preferences = val;
+	    console.info("Obtained the preferences successfully.");
 	})
 } catch (err) {
-    console.info("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
 Stage model:
 
 ```ts
-// Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
+let preferences = null;
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.getPreferences(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                preferences = val;
+                console.info("Obtained the preferences successfully.");
+            })
+        } catch (err) {
+            console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+        }
     }
-}
-
-let preferences = null;
-try {
-    data_preferences.getPreferences(context, 'mystore', function (err, val) {
-	    if (err) {
-	        console.info("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
-	        return;
-	    }
-	    console.info("Got the preferences successfully.");
-	})
-} catch (err) {
-	console.info("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -105,7 +103,7 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
@@ -128,40 +126,36 @@ try {
     let promise = data_preferences.getPreferences(context, 'mystore');
     promise.then((object) => {
         preferences = object;
-        console.info("Got the preferences successfully.");
+        console.info("Obtained the preferences successfully.");
     }).catch((err) => {
-        console.log("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
 Stage model:
 
 ```ts
-// Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
+let preferences = null;
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.getPreferences(this.context, 'mystore');
+            promise.then((object) => {
+                preferences = object;
+                console.info("Obtained the preferences successfully.");
+            }).catch((err) => {
+                console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to obtain the preferences. code =" + err.code + ", message =" + err.message);
+        }
     }
-}
-
-let preferences = null;
-try {
-    let promise = data_preferences.getPreferences(context, 'mystore');
-    promise.then((object) => {
-        preferences = object;
-        console.info("Got the preferences successfully.");
-    }).catch((err) => {
-        console.log("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.log("Failed to get the preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -181,7 +175,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
+| context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to delete.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
@@ -218,27 +212,22 @@ try {
 Stage model:
 
 ```ts
-// Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
-
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
-
-try {
-    data_preferences.deletePreferences(context, 'mystore', function (err, val) {
-        if (err) {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.deletePreferences(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Deleted the preferences successfully." );
+            })
+        } catch (err) {
             console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
-            return;
         }
-        console.info("Deleted the preferences successfully." );
-    })
-} catch (err) {
-    console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+    }
 }
 ```
 
@@ -258,7 +247,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to delete.|
 
 **Return value**
@@ -299,26 +288,21 @@ try {
 Stage model:
 
 ```ts
-// Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
-
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
+    onWindowStageCreate(windowStage) {
+        try{
+            let promise = data_preferences.deletePreferences(this.context, 'mystore');
+            promise.then(() => {
+                console.info("Deleted the preferences successfully.");
+            }).catch((err) => {
+                console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
+        }
     }
-}
-
-try{
-    let promise = data_preferences.deletePreferences(context, 'mystore');
-    promise.then(() => {
-        console.info("Deleted the preferences successfully.");
-    }).catch((err) => {
-        console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.info("Failed to delete the preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -336,7 +320,7 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
+| context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to remove.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
@@ -365,27 +349,22 @@ try {
 Stage model:
 
 ```ts
-// Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let context = null;
-
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
-
-try {
-    data_preferences.removePreferencesFromCache(context, 'mystore', function (err, val) {
-        if (err) {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Removed the preferences successfully.");
+            })
+        } catch (err) {
             console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
-            return;
         }
-        console.info("Removed the preferences successfully.");
-    })
-} catch (err) {
-    console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+    }
 }
 
 ```
@@ -404,7 +383,7 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 
 | Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).           |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to remove.|
 
 **Return value**
@@ -437,24 +416,21 @@ try {
 Stage model:
 
 ```ts
-// Obtain the context.
 import UIAbility from '@ohos.app.ability.UIAbility';
-let context = null;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
 
-try {
-    let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
-	promise.then(() => {
-    	console.info("Removed the preferences successfully.");
-    }).catch((err) => {
-        console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore');
+            promise.then(() => {
+                console.info("Removed the preferences successfully.");
+            }).catch((err) => {
+                console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to remove the preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
 }
 ```
 
@@ -469,7 +445,7 @@ Before calling any method of **Preferences**, you must obtain a **Preferences** 
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value of a key. This API uses an asynchronous callback to return the result. If the value is **null** or is not the type of the default value, the default value is returned.
+Obtains the value of a key. This API uses an asynchronous callback to return the result. If the value is **null** or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -487,13 +463,13 @@ Obtains the value of a key. This API uses an asynchronous callback to return the
 try {
     preferences.get('startup', 'default', function (err, val) {
         if (err) {
-            console.info("Failed to get the value of 'startup'. code =" + err.code + ", message =" + err.message);
+            console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;
         }
         console.info("Obtained the value of 'startup' successfully. val: " + val);
     })
 } catch (err) {
-    console.info("Failed to get the value of 'startup'. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -502,7 +478,7 @@ try {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value of a key. This API uses a promise to return the result. If the value is **null** or is not the type of the default value, the default value is returned.
+Obtains the value of a key. This API uses a promise to return the result. If the value is **null** or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -530,7 +506,7 @@ try {
         console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.info("Failed to get the value of 'startup'. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
 }
 ```
 
@@ -672,7 +648,7 @@ try {
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses an asynchronous callback to return the result..
+Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -708,7 +684,7 @@ try {
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses a promise to return the result..
+Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -804,10 +780,10 @@ try {
 	promise.then(() => {
         console.info("Deleted the key 'startup'.");
     }).catch((err) => {
-        console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+        console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+    console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
 }
 ```
 
@@ -955,7 +931,7 @@ Subscribes to data changes. A callback will be triggered to return the new value
 try {
 	data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
 		if (err) {
-			console.info("Failed to get the preferences.");
+			console.info("Failed to obtain the preferences.");
 			return;
 		}
 		let observer = function (key) {
@@ -1005,7 +981,7 @@ Unsubscribes from data changes.
 try {
     data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
         if (err) {
-            console.info("Failed to get the preferences.");
+            console.info("Failed to obtain the preferences.");
             return;
         }
         let observer = function (key) {

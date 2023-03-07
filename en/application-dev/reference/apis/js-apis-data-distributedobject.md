@@ -15,7 +15,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 
 ## distributedObject.create<sup>9+</sup>
 
-create(context: Context, source: object): DistributedObjectV9
+create(context: Context, source: object): DataObject
 
 Creates a distributed data object.
 
@@ -25,14 +25,14 @@ Creates a distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
 | source | object | Yes| Attributes of the distributed data object.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DistributedObjectV9](#distributedobjectv9) | Distributed data object created.|
+| [DataObject](#dataobject) | Distributed data object created.|
 
 **Example**
 
@@ -55,15 +55,14 @@ Stage model:
 import distributedObject from '@ohos.data.distributedDataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-// Obtain the context.
-let context;
+let g_object = null;
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
-        context = this.context
+        // Create a distributed data object, which has attributes of the string, number, boolean, and object types.
+        g_object = distributedObject.create(this.context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
     }
 }
-// Create a distributed data object, which contains attributes of the string, number, boolean, and object types.
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 ```
 
 ## distributedObject.genSessionId
@@ -109,9 +108,9 @@ Called when the **revokeSave()** API is successfully called.
 | -------- | -------- | -------- | -------- |
 | sessionId | string | Yes| Unique ID for multi-device collaboration.|
 
-## DistributedObjectV9
+## DataObject
 
-Provides APIs for managing a distributed data object.
+Provides APIs for managing a distributed data object. Before using any API of this class, use [create()](#distributedobjectcreate9) to create a **DataObject** object.
 
 ### setSessionId<sup>9+</sup>
 
@@ -132,7 +131,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Error codes**
 
-  For details about the error codes, see [Distributed Data Object Error Codes] (../errorcodes/errorcode-distributed-dataObject.md).
+For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -140,36 +139,10 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // Add g_object to the distributed network.
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
-});
-```
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// Add g_object to the distributed network.
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
+    console.info("join session");
 });
 ```
 
@@ -191,7 +164,7 @@ Exits all joined sessions.
 
 **Error codes**
 
-  For details about the error codes, see [Distributed Data Object Error Codes] (../errorcodes/errorcode-distributed-dataObject.md).
+  For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -199,44 +172,14 @@ Exits all joined sessions.
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // Add g_object to the distributed network.
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
+    console.info("join session");
 });
 // Exit the distributed network.
 g_object.setSessionId(() => {
-    console.log("leave all lession.");
-});
-```
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// Add g_object to the distributed network.
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
-    console.log("join session");
-});
-// Exit the distributed network.
-g_object.setSessionId(() => {
-    console.log("leave all lession.");
+    console.info("leave all lession.");
 });
 ```
 
@@ -264,7 +207,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Error codes**
 
-  For details about the error codes, see [Distributed Data Object Error Codes] (../errorcodes/errorcode-distributed-dataObject.md).
+  For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -272,41 +215,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// Add g_object to the distributed network.
-g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
-    console.log("join session.");
-    }).catch((error)=>{
-        console.info("error:" + error.code + error.message);
-});
-// Exit the distributed network.
-g_object.setSessionId().then (()=>{
-    console.log("leave all lession.");
-    }).catch((error)=>{
-        console.info("error:" + error.code + error.message);
-});
-```
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // Add g_object to the distributed network.
 g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
     console.info("join session.");
@@ -315,7 +224,7 @@ g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
 });
 // Exit the distributed network.
 g_object.setSessionId().then (()=>{
-    console.log("leave all lession.");
+    console.info("leave all lession.");
     }).catch((error)=>{
         console.info("error:" + error.code + error.message);
 });
@@ -338,39 +247,7 @@ Subscribes to data changes of this distributed data object.
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.changeCallback = (sessionId, changeData) => {
-    console.info("change" + sessionId);
-    if (changeData != null && changeData != undefined) {
-        changeData.forEach(element => {
-        console.info("changed !" + element + " " + g_object[element]);
-        });
-    }
-}
-g_object.on("change", globalThis.changeCallback);
-```
-
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
@@ -394,40 +271,13 @@ Unsubscribes from the data changes of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes. |
+| type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes.|
 | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback for data changes. If this parameter is not specified, all data change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-// Unregister the specified data change callback.
-g_object.off("change", globalThis.changeCallback);
-// Unregister all data change callbacks.
-g_object.off("change");
-```
-
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // Unregister the specified data change callback.
 g_object.off("change", globalThis.changeCallback);
 // Unregister all data change callbacks.
@@ -451,37 +301,10 @@ Subscribes to statue changes of this distributed data object.
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-g_object.on("status", globalThis.statusCallback);
-```
-
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 g_object.on("status", globalThis.statusCallback);
 ```
 
@@ -503,37 +326,7 @@ Unsubscribes from the status change of this distributed data object.
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject'; 
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-globalThis.statusCallback = (sessionId, networkId, status) => {
-    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
-}
-// Unregister the specified status change callback.
-g_object.off("status",globalThis.statusCallback);
-// Unregister all status change callbacks.
-g_object.off("status");
-```
-
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject'; 
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -568,38 +361,10 @@ The saved data will be released in the following cases:
 
 **Example**
 
-FA model:
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local", (result) => {
-    console.log("save callback");
-    console.info("save sessionId: " + result.sessionId);
-    console.info("save version: " + result.version);
-    console.info("save deviceId:  " + result.deviceId);
-});
-```
-
-Stage model:
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-g_object.save("local", (result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId: " + result.sessionId);
     console.info("save version: " + result.version);
     console.info("save deviceId:  " + result.deviceId);
@@ -637,37 +402,9 @@ The saved data will be released in the following cases:
 **Example**
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 g_object.save("local").then((result) => {
-    console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
-}, () => {
-    console.error("save failed");
-});
-```
-
-```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context,{name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-g_object.save("local").then((result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
@@ -680,7 +417,7 @@ g_object.save("local").then((result) => {
 
 revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
-Revokes the saving operation of a distributed data object. This API uses an asynchronous callback to return the result.
+Revokes the saving operation of this distributed data object. This API uses an asynchronous callback to return the result.
 
 If the object is saved on the local device, the data saved on all trusted devices will be deleted.
 If the object is stored on another device, the data on the local device will be deleted.
@@ -695,55 +432,19 @@ If the object is stored on another device, the data on the local device will be 
 
 **Example**
 
-FA model:
-
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 // Save data for persistence. 
 g_object.save("local", (result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
 });
 // Delete the persistence data.
 g_object.revokeSave((result) => {
-  console.log("revokeSave callback");
-  console.log("revokeSave sessionId " + result.sessionId);
-});
-```
-
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-// Save data for persistence.
-g_object.save("local", (result) => {
-    console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
-});
-// Delete the persistence data.
-g_object.revokeSave((result) => {
-  console.log("revokeSave callback");
-  console.log("revokeSave sessionId " + result.sessionId);
+  console.info("revokeSave callback");
+  console.info("revokeSave sessionId " + result.sessionId);
 });
 ```
 
@@ -751,7 +452,7 @@ g_object.revokeSave((result) => {
 
 revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
-Revokes the saving operation of a distributed data object. This API uses a promise to return the result.
+Revokes the saving operation of this distributed data object. This API uses a promise to return the result.
 
 If the object is saved on the local device, the data saved on all trusted devices will be deleted.
 If the object is stored on another device, the data on the local device will be deleted.
@@ -766,18 +467,11 @@ If the object is stored on another device, the data on the local device will be 
 
 **Example**
 
-FA model:
-
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-// Obtain the context.
-let context = featureAbility.getContext();
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
 // Save data for persistence.
 g_object.save("local").then((result) => {
-    console.log("save callback");
+    console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
@@ -786,41 +480,8 @@ g_object.save("local").then((result) => {
 });
 // Delete the persistence data.
 g_object.revokeSave().then((result) => {
-    console.log("revokeSave callback");
-    console.log("sessionId" + result.sessionId);
-}, () => {
-    console.error("revokeSave failed");
-});
-```
-
-Stage model:
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-// Obtain the context.
-let context;
-class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        context = this.context
-    }
-}
-let g_object = distributedObject.create(context, {name:"Amy", age:18, isVis:false});
-g_object.setSessionId("123456");
-g_object.save("local").then((result) => {
-    console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
-}, () => {
-    console.error("save failed");
-});
-
-// Delete the persistence data.
-g_object.revokeSave().then((result) => {
-    console.log("revokeSave callback");
-    console.log("sessionId" + result.sessionId);
+    console.info("revokeSave callback");
+    console.info("sessionId" + result.sessionId);
 }, () => {
     console.error("revokeSave failed");
 });
@@ -861,7 +522,7 @@ let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, is
 
 ## DistributedObject<sup>(deprecated)</sup>
 
-Provides APIs for managing a distributed data object.
+Provides APIs for managing a distributed data object. Before using any API of this class, use [createDistributedObject()](#distributedobjectcreatedistributedobjectdeprecated) to create a **DistributedObject** object.
 
 ### setSessionId<sup>(deprecated)</sup>
 
@@ -1004,7 +665,7 @@ Unsubscribes from the status change of this distributed data object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [off('status')](#offstatus9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [off('status')](#offstatus9).
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
