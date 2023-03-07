@@ -273,3 +273,21 @@ The task to cancel is being executed.
 **Solution**
 
 Before canceling a task, ensure that the task finishes execution.
+
+## 10200017 Failed to Delete an Element That Does Not Exist
+
+**Error Message**
+
+The element does not exist in this container.
+
+**Description**
+
+This error code is reported when you attempt to delete an element that does not exist in the container.
+
+**Possible Causes**
+
+The element to delete does not exist in the container.
+
+**Solution**
+
+Before deleting an element, ensure that the element exists in this container.
