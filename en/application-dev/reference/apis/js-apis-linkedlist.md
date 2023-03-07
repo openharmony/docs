@@ -1,8 +1,5 @@
 # @ohos.util.LinkedList (Linear Container LinkedList)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **LinkedList** is implemented based on the doubly linked list. Each node of the doubly linked list has references pointing to the previous element and the next element. When querying an element, the system traverses the list from the beginning or end. **LinkedList** offers efficient insertion and removal operations but supports low query efficiency. **LinkedList** allows null elements.
 
 Unlike **[List](js-apis-list.md)**, which is a singly linked list, **LinkedList** is a doubly linked list that supports insertion and removal at both ends.
@@ -13,6 +10,11 @@ Unlike **[List](js-apis-list.md)**, which is a singly linked list, **LinkedList*
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -505,6 +507,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 10200011 | The removeFirstFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200017 | The element does not exist in this container. |
 
 **Example**
 
@@ -545,6 +548,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 10200011 | The removeLastFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200017 | The element does not exist in this container. |
 
 **Example**
 
@@ -631,7 +635,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
