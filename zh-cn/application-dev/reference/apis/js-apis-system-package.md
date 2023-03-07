@@ -23,8 +23,6 @@ hasInstalled(options: CheckPackageHasInstalledOptions): void
 
 查询指定应用是否存在，或者原生应用是否安装。
 
-**需要权限：** None
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
 **参数：**
@@ -65,7 +63,7 @@ export default {
 
 **系统能力:** SystemCapability.BundleManager.BundleFramework。
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 |result | boolean | 是 | 指示应用是否已安装。 |
 
