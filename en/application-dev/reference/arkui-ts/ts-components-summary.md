@@ -69,6 +69,12 @@
 - [Swiper](ts-container-swiper.md)
 
     A container that is able to display child components in looping mode.
+- [WaterFlow](ts-container-waterflow.md)
+
+    A container that consists of cells formed by rows and columns and arranges items of different sizes from top to bottom according to the preset rules.
+- [FlowItem](ts-container-flowitem.md)
+
+    A child component of the **\<WaterFlow>** container that is used to display specific items in the container layout.
 
 
 ## Navigation
@@ -103,7 +109,7 @@
 
 - [Button](ts-basic-components-button.md)
 
-    A component that can be used to create different types of buttons.
+    A component that is used to create different types of buttons.
 - [Toggle](ts-basic-components-toggle.md)
 
     A component that provides a clickable element in the check box, button, or switch type.
@@ -225,7 +231,7 @@
 
 - [Canvas](ts-components-canvas-canvas.md)
 
-    A component that can be used to customize drawings.
+    A component that is used to customize drawings.
 - [Circle](ts-drawing-components-circle.md)
 
     A component that is used to draw a circle.
@@ -256,7 +262,7 @@
 
 - [Web](ts-basic-components-web.md)
 
-    A component that can be used to display web pages.
+    A component that is used to display web pages.
 
 
 ## Miscellaneous
