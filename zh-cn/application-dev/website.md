@@ -91,7 +91,7 @@
         - [线程模型](application-models/thread-model-stage.md)
         - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
         - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
-      - 任务管理
+      - 后台任务管理
         - [任务管理场景介绍](application-models/mission-management-overview.md)
         - [任务管理与启动模式](application-models/mission-management-launch-type.md)
         - [页面栈及任务链](application-models/page-mission-stack.md)
@@ -982,7 +982,7 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    - 资源调度
+    - 后台任务
       - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
@@ -1230,8 +1230,9 @@
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)
-    - 资源调度
+    - 后台任务
       - [backgroundTaskManager错误码](reference/errorcodes/errorcode-backgroundTaskMgr.md)
+      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager错误码](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/errorcodes/errorcode-workScheduler.md)
     - 安全
@@ -1282,7 +1283,6 @@
       - [系统参数错误码](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB服务错误码](reference/errorcodes/errorcode-usb.md)
       - [升级错误码](reference/errorcodes/errorcode-update.md)
-      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
     - 定制管理
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
