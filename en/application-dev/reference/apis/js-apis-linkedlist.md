@@ -496,7 +496,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 

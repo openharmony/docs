@@ -1,14 +1,15 @@
 # Nonlinear Container TreeSet 
 
-> **NOTE**
->
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **TreeSet** is implemented based on **[TreeMap](js-apis-treemap.md)**. In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
 
 **[HashSet](js-apis-hashset.md)** stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
 
 Recommended use case: Use **TreeSet** when you need to store data in sorted order.
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -392,7 +393,7 @@ let treeSet = new TreeSet();
 treeSet.add("sdfs");
 treeSet.add("dfsghsf");
 treeSet.forEach((value, key) => {
-  console.log("value:" + value, key)
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

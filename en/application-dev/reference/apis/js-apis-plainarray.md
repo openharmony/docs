@@ -482,7 +482,7 @@ let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
 plainArray.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
