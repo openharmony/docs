@@ -20,27 +20,27 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name                                 | Value     | Description                                         |
-| ------------------------------------- | ------- | --------------------------------------------- |
-| CHECK_PARAM_ERROR                     | 401     | Parameter check failed.                               |
-| OS_MMAP_ERROR                         | 1900001 | Failed to call mmap.                       |
-| OS_IOCTL_ERROR                        | 1900002 | Failed to call **ioctl** with the shared memory file descriptor.|
-| WRITE_TO_ASHMEM_ERROR                 | 1900003 | Failed to write data to the shared memory.                       |
-| READ_FROM_ASHMEM_ERROR                | 1900004 | Failed to read data from the shared memory.                       |
-| ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | This operation is allowed only on the proxy object.                    |
-| ONLY_REMOTE_OBJECT_PERMITTED_ERROR    | 1900006 | This operation is allowed only on the remote object.                   |
-| COMMUNICATION_ERROR                   | 1900007 | Failed to communicate with the remote object over IPC.               |
-| PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 1900008 | Invalid proxy or remote object.                 |
-| WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR  | 1900009 | Failed to write data to MessageSequence.                |
-| READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | Failed to read data from MessageSequence.                |
-| PARCEL_MEMORY_ALLOC_ERROR             | 1900011 | Failed to allocate memory during serialization.                   |
-| CALL_JS_METHOD_ERROR                  | 1900012 | Failed to invoke the JS callback.                         |
-| OS_DUP_ERROR                          | 1900013 | Failed to call dup.                        |
+  | Name                                 | Value     | Description                                         |
+  | ------------------------------------- | ------- | --------------------------------------------- |
+  | CHECK_PARAM_ERROR                     | 401     | Parameter check failed.                               |
+  | OS_MMAP_ERROR                         | 1900001 | Failed to call mmap.                       |
+  | OS_IOCTL_ERROR                        | 1900002 | Failed to call **ioctl** with the shared memory file descriptor.|
+  | WRITE_TO_ASHMEM_ERROR                 | 1900003 | Failed to write data to the shared memory.                       |
+  | READ_FROM_ASHMEM_ERROR                | 1900004 | Failed to read data from the shared memory.                       |
+  | ONLY_PROXY_OBJECT_PERMITTED_ERROR     | 1900005 | This operation is allowed only on the proxy object.                    |
+  | ONLY_REMOTE_OBJECT_PERMITTED_ERROR    | 1900006 | This operation is allowed only on the remote object.                   |
+  | COMMUNICATION_ERROR                   | 1900007 | Failed to communicate with the remote object over IPC.               |
+  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 1900008 | Invalid proxy or remote object.                 |
+  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR  | 1900009 | Failed to write data to MessageSequence.                |
+  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | Failed to read data from MessageSequence.                |
+  | PARCEL_MEMORY_ALLOC_ERROR             | 1900011 | Failed to allocate memory during serialization.                   |
+  | CALL_JS_METHOD_ERROR                  | 1900012 | Failed to invoke the JS callback.                         |
+  | OS_DUP_ERROR                          | 1900013 | Failed to call dup.                        |
 
 
 ## MessageSequence<sup>9+</sup>
 
-Provides APIs for reading and writing data in specific format. 
+Provides APIs for reading and writing data in specific format.
 
 During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
@@ -54,9 +54,9 @@ During RPC or IPC, the sender can use the **write()** method provided by **Messa
 
 **Return value**
 
-| Type           | Description                           |
-| --------------- | ------------------------------- |
-| MessageSequence | **MessageSequence** object created.|
+  | Type           | Description                           |
+  | --------------- | ------------------------------- |
+  | MessageSequence | **MessageSequence** object created.|
 
 **Example**
 
@@ -90,18 +90,18 @@ Serializes a remote object and writes it to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                     |
-| ------ | ------------------------------- | ---- | ----------------------------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageSequence** object.|
+  | Name| Type                           | Mandatory| Description                                     |
+  | ------ | ------------------------------- | ---- | ----------------------------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageSequence** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900008 | proxy or remote object is invalid |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -131,18 +131,18 @@ Reads the remote object from **MessageSequence**. You can use this API to deseri
 
 **Return value**
 
-| Type                           | Description              |
-| ------------------------------- | ------------------ |
-| [IRemoteObject](#iremoteobject) | Remote object obtained.|
+  | Type                           | Description              |
+  | ------------------------------- | ------------------ |
+  | [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900008 | proxy or remote object is invalid |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -173,17 +173,17 @@ Writes an interface token to this **MessageSequence** object. The remote object 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| token  | string | Yes  | Interface token to write.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | token  | string | Yes  | Interface token to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -207,17 +207,17 @@ Reads the interface token from this **MessageSequence** object. The interface to
 
 **Return value**
 
-| Type  | Description                    |
-| ------ | ------------------------ |
-| string | Interface token obtained.|
+  | Type  | Description                    |
+  | ------ | ------------------------ |
+  | string | Interface token obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ----- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | ----- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -234,7 +234,7 @@ class Stub extends rpc.RemoteObject {
         return true;
     }
 }
-```
+  ```
 
 ### getSize
 
@@ -246,9 +246,9 @@ Obtains the data size of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description                                           |
-| ------ | ----------------------------------------------- |
-| number | Size of the **MessageSequence** object obtained, in bytes.|
+  | Type  | Description                                           |
+  | ------ | ----------------------------------------------- |
+  | number | Size of the **MessageSequence** object obtained, in bytes.|
 
 **Example**
 
@@ -268,9 +268,9 @@ Obtains the capacity of this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description|
-| ------ | ----- |
-| number | **MessageSequence** capacity obtained, in bytes.|
+  | Type  | Description|
+  | ------ | ----- |
+  | number | **MessageSequence** capacity obtained, in bytes.|
 
 **Example**
 
@@ -290,9 +290,9 @@ Sets the size of the data contained in this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description|
-| ------ | ------ | ---- | ------ |
-| size   | number | Yes  | Data size to set, in bytes.|
+  | Name| Type  | Mandatory| Description|
+  | ------ | ------ | ---- | ------ |
+  | size   | number | Yes  | Data size to set, in bytes.|
 
 **Example**
 
@@ -317,17 +317,17 @@ Sets the storage capacity of this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                         |
-| ------ | ------ | ---- | --------------------------------------------- |
-| size   | number | Yes  | Storage capacity of the **MessageSequence** object to set, in bytes.|
+  | Name| Type  | Mandatory| Description                                         |
+  | ------ | ------ | ---- | --------------------------------------------- |
+  | size   | number | Yes  | Storage capacity of the **MessageSequence** object to set, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------ |
-| 1900011 | parcel memory alloc failed |
+  | ID| Error Message|
+  | -------- | ------ |
+  | 1900011 | parcel memory alloc failed |
 
 **Example**
 
@@ -352,9 +352,9 @@ Obtains the writable capacity (in bytes) of this **MessageSequence** object.
 
 **Return value**
 
-| Type| Description|
-| ------ | ------ |
-| number | Writable capacity of the **MessageSequence** instance, in bytes.|
+  | Type| Description|
+  | ------ | ------ |
+  | number | Writable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
@@ -366,7 +366,7 @@ class Stub extends rpc.RemoteObject {
         return true;
     }
 }
-```
+  ```
 
 ### getReadableBytes
 
@@ -378,9 +378,9 @@ Obtains the readable capacity of this **MessageSequence** object.
 
 **Return value**
 
-| Type| Description|
-| ------ | ------- |
-| number | Readable capacity of the **MessageSequence** instance, in bytes.|
+  | Type| Description|
+  | ------ | ------- |
+  | number | Readable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
@@ -404,9 +404,9 @@ Obtains the read position of this **MessageSequence** object.
 
 **Return value**
 
-| Type| Description|
-| ------ | ------ |
-| number | Read position obtained.|
+  | Type| Description|
+  | ------ | ------ |
+  | number | Read position obtained.|
 
 **Example**
 
@@ -426,9 +426,9 @@ Obtains the write position of this **MessageSequence** object.
 
 **Return value**
 
-| Type| Description|
-| ------ | ----- |
-| number | Write position obtained.|
+  | Type| Description|
+  | ------ | ----- |
+  | number | Write position obtained.|
 
 **Example**
 
@@ -449,9 +449,9 @@ Moves the read pointer to the specified position.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------ | ------ | ---- | ------- |
-| pos    | number | Yes  | Position from which data is to read.|
+  | Name| Type| Mandatory| Description|
+  | ------ | ------ | ---- | ------- |
+  | pos    | number | Yes  | Position from which data is to read.|
 
 **Example**
 
@@ -481,9 +481,9 @@ Moves the write pointer to the specified position.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------ | ------ | ---- | ----- |
-| pos    | number | Yes  | Position from which data is to write.|
+  | Name| Type| Mandatory| Description|
+  | ------ | ------ | ---- | ----- |
+  | pos    | number | Yes  | Position from which data is to write.|
 
 **Example**
 
@@ -511,17 +511,17 @@ Writes a byte value to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description|
-| ----- | ------ | ---- | ----- |
-| val | number | Yes| Byte value to write.|
+  | Name| Type  | Mandatory| Description|
+  | ----- | ------ | ---- | ----- |
+  | val | number | Yes| Byte value to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -545,17 +545,17 @@ Reads the byte value from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description|
-| ------ | ----- |
-| number | Byte value read.|
+  | Type  | Description|
+  | ------ | ----- |
+  | number | Byte value read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | --------  |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | --------  |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -586,17 +586,17 @@ Writes a short integer to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description|
-| ------ | ------ | --- | --- |
-| val | number | Yes| Short integer to write.|
+  | Name| Type  | Mandatory| Description|
+  | ------ | ------ | --- | --- |
+  | val | number | Yes| Short integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------ |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | ------ |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -620,17 +620,17 @@ Reads the short integer from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Short integer read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Short integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -661,17 +661,17 @@ Writes an integer to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Integer to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -695,17 +695,17 @@ Reads the integer from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Integer read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -736,17 +736,17 @@ Writes a long integer to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Long integer to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Long integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -770,17 +770,17 @@ Reads the long integer from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Long integer read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Long integer read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -811,17 +811,17 @@ Writes a floating-point number to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ----- | ---- | ---- | ----- |
-| val | number | Yes| Floating-point number to write.|
+  | Name| Type| Mandatory| Description|
+  | ----- | ---- | ---- | ----- |
+  | val | number | Yes| Floating-point number to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -845,17 +845,17 @@ Reads the floating-pointer number from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Floating-point number read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Floating-point number read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -886,17 +886,17 @@ Writes a double-precision floating-point number to this **MessageSequence** obje
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
-| ------ | ------ | ---- | ---------------------- |
-| val    | number | Yes  | Double-precision floating-point number to write.|
+  | Name| Type  | Mandatory| Description                  |
+  | ------ | ------ | ---- | ---------------------- |
+  | val    | number | Yes  | Double-precision floating-point number to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -920,17 +920,17 @@ Reads the double-precision floating-point number from this **MessageSequence** o
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| number | Double-precision floating-point number read.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | number | Double-precision floating-point number read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -961,17 +961,17 @@ Writes a Boolean value to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description            |
-| ------ | ------- | ---- | ---------------- |
-| val    | boolean | Yes  | Boolean value to write.|
+  | Name| Type   | Mandatory| Description            |
+  | ------ | ------- | ---- | ---------------- |
+  | val    | boolean | Yes  | Boolean value to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -995,17 +995,17 @@ Reads the Boolean value from this **MessageSequence** object.
 
 **Return value**
 
-| Type   | Description                |
-| ------- | -------------------- |
-| boolean | Boolean value read.|
+  | Type   | Description                |
+  | ------- | -------------------- |
+  | boolean | Boolean value read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1036,17 +1036,17 @@ Writes a character to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| val    | number | Yes  | Single character to write.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | val    | number | Yes  | Single character to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1070,17 +1070,17 @@ Reads the character from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description|
-| ------ | ---- |
-| number | Character read.|
+  | Type  | Description|
+  | ------ | ---- |
+  | number | Character read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------ | --------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------ | --------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1111,17 +1111,17 @@ Writes a string to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                     |
-| ------ | ------ | ---- | ----------------------------------------- |
-| val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+  | Name| Type  | Mandatory| Description                                     |
+  | ------ | ------ | ---- | ----------------------------------------- |
+  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1145,17 +1145,17 @@ Reads the string from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| string | String read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | string | String read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1186,17 +1186,17 @@ Writes a **Parcelable** object to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------ | --------- | ---- | ------ |
-| val    | Parcelable | Yes  | **Parcelable** object to write.|
+  | Name| Type| Mandatory| Description|
+  | ------ | --------- | ---- | ------ |
+  | val    | Parcelable | Yes  | **Parcelable** object to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1239,18 +1239,18 @@ Reads a **Parcelable** object from this **MessageSequence** object to the specif
 
 **Parameters**
 
-| Name| Type                     | Mandatory| Description                                     |
-| ------ | ------------------------- | ---- | ----------------------------------------- |
-| dataIn | Parcelable | Yes  | **Parcelable** object to read.|
+  | Name| Type                     | Mandatory| Description                                     |
+  | ------ | ------------------------- | ---- | ----------------------------------------- |
+  | dataIn | Parcelable | Yes  | **Parcelable** object to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900010 | read data from message sequence failed |
-| 1900012 | call js callback function failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
+  | 1900012 | call js callback function failed |
 
 **Example**
 
@@ -1295,17 +1295,17 @@ Writes a byte array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description              |
-| --------- | -------- | ---- | ------------------ |
-| byteArray | number[] | Yes  | Byte array to write.|
+  | Name   | Type    | Mandatory| Description              |
+  | --------- | -------- | ---- | ------------------ |
+  | byteArray | number[] | Yes  | Byte array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1330,17 +1330,17 @@ Reads a byte array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Byte array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Byte array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1372,17 +1372,17 @@ Reads the byte array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Byte array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Byte array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1414,17 +1414,17 @@ Writes a short array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                |
-| ---------- | -------- | ---- | -------------------- |
-| shortArray | number[] | Yes  | Short array to write.|
+  | Name    | Type    | Mandatory| Description                |
+  | ---------- | -------- | ---- | -------------------- |
+  | shortArray | number[] | Yes  | Short array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ----- | ----- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ----- | ----- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1448,17 +1448,17 @@ Reads a short array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Short array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Short array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------ | ------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------ | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1489,17 +1489,17 @@ Reads the short array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Short array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Short array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1530,17 +1530,17 @@ Writes an integer array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description              |
-| -------- | -------- | ---- | ------------------ |
-| intArray | number[] | Yes  | Integer array to write.|
+  | Name  | Type    | Mandatory| Description              |
+  | -------- | -------- | ---- | ------------------ |
+  | intArray | number[] | Yes  | Integer array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ----- | --------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ----- | --------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1564,17 +1564,17 @@ Reads an integer array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Integer array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Integer array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1605,17 +1605,17 @@ Reads the integer array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Integer array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Integer array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ----- | ------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ----- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1646,17 +1646,17 @@ Writes a long array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                |
-| --------- | -------- | ---- | -------------------- |
-| longArray | number[] | Yes  | Long array to write.|
+  | Name   | Type    | Mandatory| Description                |
+  | --------- | -------- | ---- | -------------------- |
+  | longArray | number[] | Yes  | Long array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------  | ----- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | -------  | ----- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1680,17 +1680,17 @@ Reads a long array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Long array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Long array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------ |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | ------ |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1721,17 +1721,17 @@ Reads the long array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Long array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Long array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1762,17 +1762,17 @@ Writes a floating-point array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                                                                                                                   |
-| ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name    | Type    | Mandatory| Description                                                                                                                   |
+  | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1796,17 +1796,17 @@ Reads a floating-point array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                                                                                                   |
-| ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name| Type    | Mandatory| Description                                                                                                                   |
+  | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1837,17 +1837,17 @@ Reads the floating-point array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Floating-point array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Floating-point array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1878,17 +1878,17 @@ Writes a double-precision floating-point array to this **MessageSequence** objec
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description                    |
-| ----------- | -------- | ---- | ------------------------ |
-| doubleArray | number[] | Yes  | Double-precision floating-point array to write.|
+  | Name     | Type    | Mandatory| Description                    |
+  | ----------- | -------- | ---- | ------------------------ |
+  | doubleArray | number[] | Yes  | Double-precision floating-point array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -1912,17 +1912,17 @@ Reads a double-precision floating-point array from this **MessageSequence** obje
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                    |
-| ------ | -------- | ---- | ------------------------ |
-| dataIn | number[] | Yes  | Double-precision floating-point array to read.|
+  | Name| Type    | Mandatory| Description                    |
+  | ------ | -------- | ---- | ------------------------ |
+  | dataIn | number[] | Yes  | Double-precision floating-point array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1953,17 +1953,17 @@ Reads the double-precision floating-point array from this **MessageSequence** ob
 
 **Return value**
 
-| Type    | Description                |
-| -------- | -------------------- |
-| number[] | Double-precision floating-point array read.|
+  | Type    | Description                |
+  | -------- | -------------------- |
+  | number[] | Double-precision floating-point array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -1994,17 +1994,17 @@ Writes a Boolean array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name      | Type     | Mandatory| Description              |
-| ------------ | --------- | ---- | ------------------ |
-| booleanArray | boolean[] | Yes  | Boolean array to write.|
+  | Name      | Type     | Mandatory| Description              |
+  | ------------ | --------- | ---- | ------------------ |
+  | booleanArray | boolean[] | Yes  | Boolean array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -2028,17 +2028,17 @@ Reads a Boolean array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type     | Mandatory| Description              |
-| ------ | --------- | ---- | ------------------ |
-| dataIn | boolean[] | Yes  | Boolean array to read.|
+  | Name| Type     | Mandatory| Description              |
+  | ------ | --------- | ---- | ------------------ |
+  | dataIn | boolean[] | Yes  | Boolean array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2069,17 +2069,17 @@ Reads the Boolean array from this **MessageSequence** object.
 
 **Return value**
 
-| Type     | Description          |
-| --------- | -------------- |
-| boolean[] | Boolean array read.|
+  | Type     | Description          |
+  | --------- | -------------- |
+  | boolean[] | Boolean array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2110,17 +2110,17 @@ Writes a character array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                  |
-| --------- | -------- | ---- | ---------------------- |
-| charArray | number[] | Yes  | Character array to write.|
+  | Name   | Type    | Mandatory| Description                  |
+  | --------- | -------- | ---- | ---------------------- |
+  | charArray | number[] | Yes  | Character array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------ |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | -------- | ------ |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -2144,17 +2144,17 @@ Reads a character array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                  |
-| ------ | -------- | ---- | ---------------------- |
-| dataIn | number[] | Yes  | Character array to read.|
+  | Name| Type    | Mandatory| Description                  |
+  | ------ | -------- | ---- | ---------------------- |
+  | dataIn | number[] | Yes  | Character array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2185,17 +2185,17 @@ Reads the character array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description              |
-| -------- | ------------------ |
-| number[] | Character array read.|
+  | Type    | Description              |
+  | -------- | ------------------ |
+  | number[] | Character array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2227,17 +2227,17 @@ Writes a string array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description                                                   |
-| ----------- | -------- | ---- | ------------------------------------------------------- |
-| stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+  | Name     | Type    | Mandatory| Description                                                   |
+  | ----------- | -------- | ---- | ------------------------------------------------------- |
+  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -2261,17 +2261,17 @@ Reads a string array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | string[] | Yes  | String array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | string[] | Yes  | String array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2302,17 +2302,17 @@ Reads the string array from this **MessageSequence** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| string[] | String array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | string[] | String array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2345,9 +2345,9 @@ Writes information to this **MessageSequence** object indicating that no excepti
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -2387,9 +2387,9 @@ Reads the exception information from this **MessageSequence** object.
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2417,7 +2417,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -2459,17 +2459,17 @@ Writes a **Parcelable** array to this **MessageSequence** object.
 
 **Parameters**
 
-| Name         | Type        | Mandatory| Description                      |
-| --------------- | ------------ | ---- | -------------------------- |
-| parcelableArray | Parcelable[] | Yes  | **Parcelable** array to write.|
+  | Name         | Type        | Mandatory| Description                      |
+  | --------------- | ------------ | ---- | -------------------------- |
+  | parcelableArray | Parcelable[] | Yes  | **Parcelable** array to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -2515,18 +2515,18 @@ Reads a **Parcelable** array from this **MessageSequence** object.
 
 **Parameters**
 
-| Name         | Type        | Mandatory| Description                      |
-| --------------- | ------------ | ---- | -------------------------- |
-| parcelableArray | Parcelable[] | Yes  | **Parcelable** array to read.|
+  | Name         | Type        | Mandatory| Description                      |
+  | --------------- | ------------ | ---- | -------------------------- |
+  | parcelableArray | Parcelable[] | Yes  | **Parcelable** array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
-| 1900012 | call js callback function failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
+  | 1900012 | call js callback function failed |
 
 **Example**
 
@@ -2576,17 +2576,17 @@ Writes an array of **IRemoteObject** objects to this **MessageSequence** object.
 
 **Parameters**
 
-| Name     | Type           | Mandatory| Description                                          |
-| ----------- | --------------- | ---- | ---------------------------------------------- |
-| objectArray | IRemoteObject[] | Yes  | Array of **IRemoteObject** objects to write.|
+  | Name     | Type           | Mandatory| Description                                          |
+  | ----------- | --------------- | ---- | ---------------------------------------------- |
+  | objectArray | IRemoteObject[] | Yes  | Array of **IRemoteObject** objects to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------- |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | ------- |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -2623,17 +2623,17 @@ Reads an array of **IRemoteObject** objects from this **MessageSequence** object
 
 **Parameters**
 
-| Name | Type           | Mandatory| Description                                          |
-| ------- | --------------- | ---- | ---------------------------------------------- |
-| objects | IRemoteObject[] | Yes  | **IRemoteObject** array to read.|
+  | Name | Type           | Mandatory| Description                                          |
+  | ------- | --------------- | ---- | ---------------------------------------------- |
+  | objects | IRemoteObject[] | Yes  | **IRemoteObject** array to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2676,17 +2676,17 @@ Reads the **IRemoteObject** object array from this **MessageSequence** object.
 
 **Return value**
 
-| Type           | Description                       |
-| --------------- | --------------------------- |
-| IRemoteObject[] | **IRemoteObject** object array read.|
+  | Type           | Description                       |
+  | --------------- | --------------------------- |
+  | IRemoteObject[] | **IRemoteObject** object array read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2724,9 +2724,9 @@ Closes a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| fd     | number | Yes  | File descriptor to close.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | fd     | number | Yes  | File descriptor to close.|
 
 **Example**
 
@@ -2752,23 +2752,23 @@ Duplicates a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| fd     | number | Yes  | File descriptor to duplicate.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | fd     | number | Yes  | File descriptor to duplicate.|
 
 **Return value**
 
-| Type  | Description                |
-| ------ | -------------------- |
-| number | New file descriptor.|
+  | Type  | Description                |
+  | ------ | -------------------- |
+  | number | New file descriptor.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------- |
-| 1900013 | call os dup function failed |
+  | ID| Error Message|
+  | ------- | ------- |
+  | 1900013 | call os dup function failed |
 
 **Example**
 
@@ -2794,9 +2794,9 @@ Checks whether this **MessageSequence** object contains file descriptors.
 
 **Return value**
 
-| Type   | Description                                                                |
-| ------- | -------------------------------------------------------------------- |
-| boolean | Returns **true** if the **MessageSequence** object contains file descriptors; returns **false** otherwise.|
+  | Type   | Description                                                                |
+  | ------- | -------------------------------------------------------------------- |
+  | boolean | Returns **true** if the **MessageSequence** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
@@ -2832,17 +2832,17 @@ Writes a file descriptor to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
-| ------ | ------ | ---- | ------------ |
-| fd     | number | Yes  | File descriptor to write.|
+  | Name| Type  | Mandatory| Description        |
+  | ------ | ------ | ---- | ------------ |
+  | fd     | number | Yes  | File descriptor to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------ |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | -------- | ------ |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -2869,17 +2869,17 @@ Reads the file descriptor from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| number | File descriptor read.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | number | File descriptor read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -2912,17 +2912,17 @@ Writes an anonymous shared object to this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                 |
-| ------ | ------ | ---- | ------------------------------------- |
-| ashmem | Ashmem | Yes  | Anonymous shared object to write.|
+  | Name| Type  | Mandatory| Description                                 |
+  | ------ | ------ | ---- | ------------------------------------- |
+  | ashmem | Ashmem | Yes  | Anonymous shared object to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------- |
-| 1900003 | write to ashmem failed |
+  | ID| Error Message|
+  | ------- | ------- |
+  | 1900003 | write to ashmem failed |
 
 **Example**
 
@@ -2954,17 +2954,17 @@ Reads the anonymous shared object from this **MessageSequence** object.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| Ashmem | Anonymous share object read.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | Ashmem | Anonymous share object read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900004 | read from ashmem failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900004 | read from ashmem failed |
 
 **Example**
 
@@ -3002,9 +3002,9 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 
 **Return value**
 
-| Type  | Description                                                        |
-| ------ | ------------------------------------------------------------ |
-| number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageSequence** object.|
+  | Type  | Description                                                        |
+  | ------ | ------------------------------------------------------------ |
+  | number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageSequence** object.|
 
 **Example**
 
@@ -3024,18 +3024,18 @@ Writes raw data to this **MessageSequence** object.
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description                              |
-| ------- | -------- | ---- | ---------------------------------- |
-| rawData | number[] | Yes  | Raw data to write.                |
-| size    | number   | Yes  | Size of the raw data, in bytes.|
+  | Name | Type    | Mandatory| Description                              |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | number[] | Yes  | Raw data to write.                |
+  | size    | number   | Yes  | Size of the raw data, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------ |
-| 1900009 | write data to message sequence failed |
+  | ID| Error Message|
+  | ------- | ------ |
+  | 1900009 | write data to message sequence failed |
 
 **Example**
 
@@ -3060,23 +3060,23 @@ Reads raw data from this **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| size   | number | Yes  | Size of the raw data to read.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-| Type    | Description                          |
-| -------- | ------------------------------ |
-| number[] | Raw data read, in bytes.|
+  | Type    | Description                          |
+  | -------- | ------------------------------ |
+  | number[] | Raw data read, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900010 | read data from message sequence failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **Example**
 
@@ -3116,9 +3116,9 @@ Creates a **MessageParcel** object. This method is a static method.
 
 **Return value**
 
-| Type         | Description                         |
-| ------------- | ----------------------------- |
-| MessageParcel | **MessageParcel** object created.|
+  | Type         | Description                         |
+  | ------------- | ----------------------------- |
+  | MessageParcel | **MessageParcel** object created.|
 
 **Example**
 
@@ -3152,15 +3152,15 @@ Serializes a remote object and writes it to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                   |
-| ------ | ------------------------------- | ---- | --------------------------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageParcel** object.|
+  | Name| Type                           | Mandatory| Description                                   |
+  | ------ | ------------------------------- | ---- | --------------------------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | Remote object to serialize and write to the **MessageParcel** object.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3199,9 +3199,9 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 
 **Return value**
 
-| Type                           | Description              |
-| ------------------------------- | ------------------ |
-| [IRemoteObject](#iremoteobject) | Remote object obtained.|
+  | Type                           | Description              |
+  | ------------------------------- | ------------------ |
+  | [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
 **Example**
 
@@ -3241,15 +3241,15 @@ Writes an interface token to this **MessageParcel** object. The remote object ca
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| token  | string | Yes  | Interface token to write.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | token  | string | Yes  | Interface token to write.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3270,9 +3270,9 @@ Reads the interface token from this **MessageParcel** object. The interface toke
 
 **Return value**
 
-| Type  | Description                    |
-| ------ | ------------------------ |
-| string | Interface token obtained.|
+  | Type  | Description                    |
+  | ------ | ------------------------ |
+  | string | Interface token obtained.|
 
 **Example**
 
@@ -3296,9 +3296,9 @@ Obtains the data size of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                         |
-| ------ | --------------------------------------------- |
-| number | Size of the **MessageParcel** object obtained, in bytes.|
+  | Type  | Description                                         |
+  | ------ | --------------------------------------------- |
+  | number | Size of the **MessageParcel** object obtained, in bytes.|
 
 **Example**
 
@@ -3318,9 +3318,9 @@ Obtains the capacity of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                         |
-| ------ | --------------------------------------------- |
-| number | **MessageParcel** capacity obtained, in bytes.|
+  | Type  | Description                                         |
+  | ------ | --------------------------------------------- |
+  | number | **MessageParcel** capacity obtained, in bytes.|
 
 **Example**
 
@@ -3340,15 +3340,15 @@ Sets the size of data contained in this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                       |
-| ------ | ------ | ---- | ------------------------------------------- |
-| size   | number | Yes  | Data size to set, in bytes.|
+  | Name| Type  | Mandatory| Description                                       |
+  | ------ | ------ | ---- | ------------------------------------------- |
+  | size   | number | Yes  | Data size to set, in bytes.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3368,15 +3368,15 @@ Sets the storage capacity of this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                       |
-| ------ | ------ | ---- | ------------------------------------------- |
-| size   | number | Yes  | Storage capacity to set, in bytes.|
+  | Name| Type  | Mandatory| Description                                       |
+  | ------ | ------ | ---- | ------------------------------------------- |
+  | size   | number | Yes  | Storage capacity to set, in bytes.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3396,9 +3396,9 @@ Obtains the writable capacity of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                               |
-| ------ | --------------------------------------------------- |
-| number | **MessageParcel** writable capacity obtained, in bytes.|
+  | Type  | Description                                               |
+  | ------ | --------------------------------------------------- |
+  | number | **MessageParcel** writable capacity obtained, in bytes.|
 
 **Example**
 
@@ -3422,9 +3422,9 @@ Obtains the readable capacity of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                               |
-| ------ | --------------------------------------------------- |
-| number | **MessageParcel** object readable capacity, in bytes.|
+  | Type  | Description                                               |
+  | ------ | --------------------------------------------------- |
+  | number | **MessageParcel** object readable capacity, in bytes.|
 
 **Example**
 
@@ -3448,9 +3448,9 @@ Obtains the read position of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                   |
-| ------ | --------------------------------------- |
-| number | Current read position of the **MessageParcel** object.|
+  | Type  | Description                                   |
+  | ------ | --------------------------------------- |
+  | number | Current read position of the **MessageParcel** object.|
 
 **Example**
 
@@ -3470,9 +3470,9 @@ Obtains the write position of this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description                                   |
-| ------ | --------------------------------------- |
-| number | Current write position of the **MessageParcel** object.|
+  | Type  | Description                                   |
+  | ------ | --------------------------------------- |
+  | number | Current write position of the **MessageParcel** object.|
 
 **Example**
 
@@ -3493,15 +3493,15 @@ Moves the read pointer to the specified position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| pos    | number | Yes  | Position from which data is to read.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | pos    | number | Yes  | Position from which data is to read.|
 
 **Return value**
 
-| Type   | Description                                             |
-| ------- | ------------------------------------------------- |
-| boolean | Returns **true** if the read position changes; returns **false** otherwise.|
+  | Type   | Description                                             |
+  | ------- | ------------------------------------------------- |
+  | boolean | Returns **true** if the read position changes; returns **false** otherwise.|
 
 **Example**
 
@@ -3526,15 +3526,15 @@ Moves the write pointer to the specified position.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| pos    | number | Yes  | Position from which data is to write.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | pos    | number | Yes  | Position from which data is to write.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the write position changes; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the write position changes; returns **false** otherwise.|
 
 **Example**
 
@@ -3557,15 +3557,15 @@ Writes a Byte value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Byte value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Byte value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3585,9 +3585,9 @@ Reads the Byte value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Byte value read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Byte value read.|
 
 **Example**
 
@@ -3609,15 +3609,15 @@ Writes a Short int value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| val    | number | Yes  | Short int value to write.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | val    | number | Yes  | Short int value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -3637,9 +3637,9 @@ Reads the Short int value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Short int value read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Short int value read.|
 
 **Example**
 
@@ -3661,15 +3661,15 @@ Writes an Int value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Int value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Int value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -3689,9 +3689,9 @@ Reads the Int value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Int value read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Int value read.|
 
 **Example**
 
@@ -3713,15 +3713,15 @@ Writes a Long int value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Long int value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Long int value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -3741,9 +3741,9 @@ Reads the Long int value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| number | Long int value read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | number | Long int value read.|
 
 **Example**
 
@@ -3765,15 +3765,15 @@ Writes a Float value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| val    | number | Yes  | Float value to write.|
+  | Name| Type  | Mandatory| Description            |
+  | ------ | ------ | ---- | ---------------- |
+  | val    | number | Yes  | Float value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -3793,9 +3793,9 @@ Reads the Float value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description        |
-| ------ | ------------ |
-| number | Float value read.|
+  | Type  | Description        |
+  | ------ | ------------ |
+  | number | Float value read.|
 
 **Example**
 
@@ -3817,15 +3817,15 @@ Writes a Double value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                  |
-| ------ | ------ | ---- | ---------------------- |
-| val    | number | Yes  | Double value to write.|
+  | Name| Type  | Mandatory| Description                  |
+  | ------ | ------ | ---- | ---------------------- |
+  | val    | number | Yes  | Double value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -3845,9 +3845,9 @@ Reads the Double value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| number | Double value read.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | number | Double value read.|
 
 **Example**
 
@@ -3869,15 +3869,15 @@ Writes a Boolean value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description            |
-| ------ | ------- | ---- | ---------------- |
-| val    | boolean | Yes  | Boolean value to write.|
+  | Name| Type   | Mandatory| Description            |
+  | ------ | ------- | ---- | ---------------- |
+  | val    | boolean | Yes  | Boolean value to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -3897,9 +3897,9 @@ Reads the Boolean value from this **MessageParcel** object.
 
 **Return value**
 
-| Type   | Description                |
-| ------- | -------------------- |
-| boolean | Boolean value read.|
+  | Type   | Description                |
+  | ------- | -------------------- |
+  | boolean | Boolean value read.|
 
 **Example**
 
@@ -3921,15 +3921,15 @@ Writes a Char value to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| val    | number | Yes  | Char value to write.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | val    | number | Yes  | Char value to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -3949,9 +3949,9 @@ Reads the Char value from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| number | Char value read.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | number | Char value read.|
 
 **Example**
 
@@ -3973,15 +3973,15 @@ Writes a string to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                     |
-| ------ | ------ | ---- | ----------------------------------------- |
-| val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
+  | Name| Type  | Mandatory| Description                                     |
+  | ------ | ------ | ---- | ----------------------------------------- |
+  | val    | string | Yes  | String to write. The length of the string must be less than 40960 bytes.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4001,9 +4001,9 @@ Reads the string from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description          |
-| ------ | -------------- |
-| string | String read.|
+  | Type  | Description          |
+  | ------ | -------------- |
+  | string | String read.|
 
 **Example**
 
@@ -4025,15 +4025,15 @@ Writes a sequenceable object to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                |
-| ------ | ----------------------------- | ---- | -------------------- |
-| val    | [Sequenceable](#sequenceable) | Yes  | Sequenceable object to write.|
+  | Name| Type                         | Mandatory| Description                |
+  | ------ | ----------------------------- | ---- | -------------------- |
+  | val    | [Sequenceable](#sequenceable) | Yes  | Sequenceable object to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4072,15 +4072,15 @@ Reads member variables from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description                                   |
-| ------ | ----------------------------- | ---- | --------------------------------------- |
-| dataIn | [Sequenceable](#sequenceabledeprecated) | Yes  | Object that reads member variables from the **MessageParcel** object.|
+  | Name| Type                         | Mandatory| Description                                   |
+  | ------ | ----------------------------- | ---- | --------------------------------------- |
+  | dataIn | [Sequenceable](#sequenceabledeprecated) | Yes  | Object that reads member variables from the **MessageParcel** object.|
 
 **Return value**
 
-| Type   | Description                                       |
-| ------- | ------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                       |
+  | ------- | ------------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -4122,15 +4122,15 @@ Writes a byte array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description              |
-| --------- | -------- | ---- | ------------------ |
-| byteArray | number[] | Yes  | Byte array to write.|
+  | Name   | Type    | Mandatory| Description              |
+  | --------- | -------- | ---- | ------------------ |
+  | byteArray | number[] | Yes  | Byte array to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4151,9 +4151,9 @@ Reads a byte array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Byte array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Byte array to read.|
 
 **Example**
 
@@ -4176,9 +4176,9 @@ Reads the byte array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Byte array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Byte array read.|
 
 **Example**
 
@@ -4201,15 +4201,15 @@ Writes a short array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                |
-| ---------- | -------- | ---- | -------------------- |
-| shortArray | number[] | Yes  | Short array to write.|
+  | Name    | Type    | Mandatory| Description                |
+  | ---------- | -------- | ---- | -------------------- |
+  | shortArray | number[] | Yes  | Short array to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4229,9 +4229,9 @@ Reads a short array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Short array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Short array to read.|
 
 **Example**
 
@@ -4253,9 +4253,9 @@ Reads the short array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Short array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Short array read.|
 
 **Example**
 
@@ -4277,15 +4277,15 @@ Writes an integer array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description              |
-| -------- | -------- | ---- | ------------------ |
-| intArray | number[] | Yes  | Integer array to write.|
+  | Name  | Type    | Mandatory| Description              |
+  | -------- | -------- | ---- | ------------------ |
+  | intArray | number[] | Yes  | Integer array to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4305,9 +4305,9 @@ Reads an integer array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description              |
-| ------ | -------- | ---- | ------------------ |
-| dataIn | number[] | Yes  | Integer array to read.|
+  | Name| Type    | Mandatory| Description              |
+  | ------ | -------- | ---- | ------------------ |
+  | dataIn | number[] | Yes  | Integer array to read.|
 
 **Example**
 
@@ -4329,9 +4329,9 @@ Reads the integer array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | Integer array read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | Integer array read.|
 
 **Example**
 
@@ -4353,15 +4353,15 @@ Writes a long array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                |
-| --------- | -------- | ---- | -------------------- |
-| longArray | number[] | Yes  | Long array to write.|
+  | Name   | Type    | Mandatory| Description                |
+  | --------- | -------- | ---- | -------------------- |
+  | longArray | number[] | Yes  | Long array to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4381,9 +4381,9 @@ Reads a long array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | number[] | Yes  | Long array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | number[] | Yes  | Long array to read.|
 
 **Example**
 
@@ -4405,9 +4405,9 @@ Reads the long array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Long array read.|
+ | Type    | Description            |
+ | -------- | ---------------- |
+ | number[] | Long array read.|
 
 **Example**
 
@@ -4429,15 +4429,15 @@ Writes a FloatArray to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ---------- | -------- | ---- | --- |
-| floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name| Type| Mandatory| Description|
+  | ---------- | -------- | ---- | --- |
+  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4457,9 +4457,9 @@ Reads a FloatArray from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------ | -------- | ---- | ------ |
-| dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | Name| Type| Mandatory| Description|
+  | ------ | -------- | ---- | ------ |
+  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Example**
 
@@ -4481,9 +4481,9 @@ Reads the FloatArray from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description          |
-| -------- | -------------- |
-| number[] | FloatArray read.|
+  | Type    | Description          |
+  | -------- | -------------- |
+  | number[] | FloatArray read.|
 
 **Example**
 
@@ -4505,15 +4505,15 @@ Writes a DoubleArray to this **MessageParcel** object.
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description                    |
-| ----------- | -------- | ---- | ------------------------ |
-| doubleArray | number[] | Yes  | DoubleArray to write.|
+  | Name     | Type    | Mandatory| Description                    |
+  | ----------- | -------- | ---- | ------------------------ |
+  | doubleArray | number[] | Yes  | DoubleArray to write.|
 
 **Return value**
 
-| Type   | Description                         |
-| ------- | ----------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                         |
+  | ------- | ----------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4533,9 +4533,9 @@ Reads a DoubleArray from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                    |
-| ------ | -------- | ---- | ------------------------ |
-| dataIn | number[] | Yes  | DoubleArray to read.|
+  | Name| Type    | Mandatory| Description                    |
+  | ------ | -------- | ---- | ------------------------ |
+  | dataIn | number[] | Yes  | DoubleArray to read.|
 
 **Example**
 
@@ -4557,9 +4557,9 @@ Reads the DoubleArray from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description                |
-| -------- | -------------------- |
-| number[] | DoubleArray read.|
+  | Type    | Description                |
+  | -------- | -------------------- |
+  | number[] | DoubleArray read.|
 
 **Example**
 
@@ -4581,15 +4581,15 @@ Writes a Boolean array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name      | Type     | Mandatory| Description              |
-| ------------ | --------- | ---- | ------------------ |
-| booleanArray | boolean[] | Yes  | Boolean array to write.|
+  | Name      | Type     | Mandatory| Description              |
+  | ------------ | --------- | ---- | ------------------ |
+  | booleanArray | boolean[] | Yes  | Boolean array to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4609,9 +4609,9 @@ Reads a Boolean array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type     | Mandatory| Description              |
-| ------ | --------- | ---- | ------------------ |
-| dataIn | boolean[] | Yes  | Boolean array to read.|
+  | Name| Type     | Mandatory| Description              |
+  | ------ | --------- | ---- | ------------------ |
+  | dataIn | boolean[] | Yes  | Boolean array to read.|
 
 **Example**
 
@@ -4633,9 +4633,9 @@ Reads the Boolean array from this **MessageParcel** object.
 
 **Return value**
 
-| Type     | Description          |
-| --------- | -------------- |
-| boolean[] | Boolean array read.|
+  | Type     | Description          |
+  | --------- | -------------- |
+  | boolean[] | Boolean array read.|
 
 **Example**
 
@@ -4657,15 +4657,15 @@ Writes a character array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name   | Type    | Mandatory| Description                  |
-| --------- | -------- | ---- | ---------------------- |
-| charArray | number[] | Yes  | Character array to write.|
+  | Name   | Type    | Mandatory| Description                  |
+  | --------- | -------- | ---- | ---------------------- |
+  | charArray | number[] | Yes  | Character array to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4685,9 +4685,9 @@ Reads a character array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                  |
-| ------ | -------- | ---- | ---------------------- |
-| dataIn | number[] | Yes  | Character array to read.|
+  | Name| Type    | Mandatory| Description                  |
+  | ------ | -------- | ---- | ---------------------- |
+  | dataIn | number[] | Yes  | Character array to read.|
 
 **Example**
 
@@ -4709,9 +4709,9 @@ Reads the character array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description              |
-| -------- | ------------------ |
-| number[] | Character array read.|
+  | Type    | Description              |
+  | -------- | ------------------ |
+  | number[] | Character array read.|
 
 **Example**
 
@@ -4733,15 +4733,15 @@ Writes a string array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name     | Type    | Mandatory| Description|
-| ----------- | -------- | ---- | ---------------- |
-| stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
+  | Name     | Type    | Mandatory| Description|
+  | ----------- | -------- | ---- | ---------------- |
+  | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Return value**
 
-| Type   | Description|
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description|
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4761,9 +4761,9 @@ Reads a string array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                |
-| ------ | -------- | ---- | -------------------- |
-| dataIn | string[] | Yes  | String array to read.|
+  | Name| Type    | Mandatory| Description                |
+  | ------ | -------- | ---- | -------------------- |
+  | dataIn | string[] | Yes  | String array to read.|
 
 **Example**
 
@@ -4785,9 +4785,9 @@ Reads the string array from this **MessageParcel** object.
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| string[] | String array read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | string[] | String array read.|
 
 **Example**
 
@@ -4850,7 +4850,7 @@ Reads the exception information from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Example**
-
+ 
   Obtain the service.
 
   ```ts
@@ -4875,7 +4875,7 @@ Reads the exception information from this **MessageParcel** object.
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -4912,15 +4912,15 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name           | Type          | Mandatory| Description                      |
-| ----------------- | -------------- | ---- | -------------------------- |
-| sequenceableArray | Sequenceable[] | Yes  | Sequenceable array to write.|
+  | Name           | Type          | Mandatory| Description                      |
+  | ----------------- | -------------- | ---- | -------------------------- |
+  | sequenceableArray | Sequenceable[] | Yes  | Sequenceable array to write.|
 
 **Return value**
 
-| Type   | Description                             |
-| ------- | --------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                             |
+  | ------- | --------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -4962,9 +4962,9 @@ Reads a sequenceable array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name           | Type          | Mandatory| Description                      |
-| ----------------- | -------------- | ---- | -------------------------- |
-| sequenceableArray | Sequenceable[] | Yes  | Sequenceable array to read.|
+  | Name           | Type          | Mandatory| Description                      |
+  | ----------------- | -------------- | ---- | -------------------------- |
+  | sequenceableArray | Sequenceable[] | Yes  | Sequenceable array to read.|
 
 **Example**
 
@@ -5008,15 +5008,15 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
 **Parameters**
 
-| Name     | Type           | Mandatory| Description|
-| ----------- | --------------- | ---- | ----- |
-| objectArray | IRemoteObject[] | Yes  | Array of **IRemoteObject** objects to write.|
+  | Name     | Type           | Mandatory| Description|
+  | ----------- | --------------- | ---- | ----- |
+  | objectArray | IRemoteObject[] | Yes  | Array of **IRemoteObject** objects to write.|
 
 **Return value**
 
-| Type   | Description                                                                                                                |
-| ------- | -------------------------------------------------------------------------------------------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                                                                                                                |
+  | ------- | -------------------------------------------------------------------------------------------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5060,9 +5060,9 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name | Type           | Mandatory| Description|
-| ------- | --------------- | ---- | --------- |
-| objects | IRemoteObject[] | Yes  | **IRemoteObject** array to read.|
+  | Name | Type           | Mandatory| Description|
+  | ------- | --------------- | ---- | --------- |
+  | objects | IRemoteObject[] | Yes  | **IRemoteObject** array to read.|
 
 **Example**
 
@@ -5107,9 +5107,9 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 **Return value**
 
-| Type| Description|
-| --------------- | -------- |
-| IRemoteObject[] | **IRemoteObject** object array obtained.|
+  | Type| Description|
+  | --------------- | -------- |
+  | IRemoteObject[] | **IRemoteObject** object array obtained.|
 
 **Example**
 
@@ -5155,9 +5155,9 @@ Closes a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| fd     | number | Yes  | File descriptor to close.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | fd     | number | Yes  | File descriptor to close.|
 
 **Example**
 
@@ -5178,15 +5178,15 @@ Duplicates a file descriptor. This API is a static method.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| fd     | number | Yes  | File descriptor to duplicate.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | fd     | number | Yes  | File descriptor to duplicate.|
 
 **Return value**
 
-| Type  | Description                |
-| ------ | -------------------- |
-| number | New file descriptor.|
+  | Type  | Description                |
+  | ------ | -------------------- |
+  | number | New file descriptor.|
 
 **Example**
 
@@ -5207,9 +5207,9 @@ Checks whether this **MessageParcel** object contains file descriptors.
 
 **Return value**
 
-| Type   | Description                                                              |
-| ------- | ------------------------------------------------------------------ |
-| boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
+  | Type   | Description                                                              |
+  | ------- | ------------------------------------------------------------------ |
+  | boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
@@ -5235,15 +5235,15 @@ Writes a file descriptor to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description        |
-| ------ | ------ | ---- | ------------ |
-| fd     | number | Yes  | File descriptor to write.|
+  | Name| Type  | Mandatory| Description        |
+  | ------ | ------ | ---- | ------------ |
+  | fd     | number | Yes  | File descriptor to write.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -5266,9 +5266,9 @@ Reads the file descriptor from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| number | File descriptor read.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | number | File descriptor read.|
 
 **Example**
 
@@ -5292,15 +5292,15 @@ Writes an anonymous shared object to this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                               |
-| ------ | ------ | ---- | ----------------------------------- |
-| ashmem | Ashmem | Yes  | Anonymous shared object to write.|
+  | Name| Type  | Mandatory| Description                               |
+  | ------ | ------ | ---- | ----------------------------------- |
+  | ashmem | Ashmem | Yes  | Anonymous shared object to write.|
 
 **Return value**
 
-| Type   | Description                                                                |
-| ------- | -------------------------------------------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                                                                |
+  | ------- | -------------------------------------------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5321,9 +5321,9 @@ Reads the anonymous shared object from this **MessageParcel** object.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| Ashmem | Anonymous share object obtained.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | Ashmem | Anonymous share object obtained.|
 
 **Example**
 
@@ -5346,9 +5346,9 @@ Obtains the maximum amount of raw data that can be held by this **MessageParcel*
 
 **Return value**
 
-| Type  | Description                                                      |
-| ------ | ---------------------------------------------------------- |
-| number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageParcel** object.|
+  | Type  | Description                                                      |
+  | ------ | ---------------------------------------------------------- |
+  | number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageParcel** object.|
 
 **Example**
 
@@ -5368,16 +5368,16 @@ Writes raw data to this **MessageParcel** object.
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description                              |
-| ------- | -------- | ---- | ---------------------------------- |
-| rawData | number[] | Yes  | Raw data to write.                |
-| size    | number   | Yes  | Size of the raw data, in bytes.|
+  | Name | Type    | Mandatory| Description                              |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | number[] | Yes  | Raw data to write.                |
+  | size    | number   | Yes  | Size of the raw data, in bytes.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -5398,15 +5398,15 @@ Reads raw data from this **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| size   | number | Yes  | Size of the raw data to read.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | Yes  | Size of the raw data to read.|
 
 **Return value**
 
-| Type    | Description                          |
-| -------- | ------------------------------ |
-| number[] | Raw data obtained, in bytes.|
+  | Type    | Description                          |
+  | -------- | ------------------------------ |
+  | number[] | Raw data obtained, in bytes.|
 
 **Example**
 
@@ -5433,15 +5433,15 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
 
 **Parameters**
 
-| Name | Type           | Mandatory| Description                                       |
-| ------- | --------------- | ---- | ------------------------------------------- |
-| dataOut | MessageSequence | Yes  | **MessageSequence** object to which the **Parcelable** object is to be marshaled.|
+  | Name | Type           | Mandatory| Description                                       |
+  | ------- | --------------- | ---- | ------------------------------------------- |
+  | dataOut | MessageSequence | Yes  | **MessageSequence** object to which the **Parcelable** object is to be marshaled.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 **Example**
 
   ```ts
@@ -5482,15 +5482,15 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 **Parameters**
 
-| Name| Type           | Mandatory| Description                                           |
-| ------ | --------------- | ---- | ----------------------------------------------- |
-| dataIn | MessageSequence | Yes  | **MessageSequence** object from which the **Parcelable** object is to be unmarshaled.|
+  | Name| Type           | Mandatory| Description                                           |
+  | ------ | --------------- | ---- | ----------------------------------------------- |
+  | dataIn | MessageSequence | Yes  | **MessageSequence** object from which the **Parcelable** object is to be unmarshaled.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -5538,15 +5538,15 @@ Marshals the sequenceable object into a **MessageParcel** object.
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                     |
-| ------- | ------------------------------- | ---- | ----------------------------------------- |
-| dataOut | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object to which the sequenceable object is to be marshaled.|
+  | Name | Type                           | Mandatory| Description                                     |
+  | ------- | ------------------------------- | ---- | ----------------------------------------- |
+  | dataOut | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object to which the sequenceable object is to be marshaled.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 **Example**
 
   ```ts
@@ -5587,15 +5587,15 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                         |
-| ------ | ------------------------------- | ---- | --------------------------------------------- |
-| dataIn | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
+  | Name| Type                           | Mandatory| Description                                         |
+  | ------ | ------------------------------- | ---- | --------------------------------------------- |
+  | dataIn | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -5641,9 +5641,9 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Return value**
 
-| Type | Description|
-| ---- | ----- |
-| [IRemoteObject](#iremoteobject) | Returns the **RemoteObject** if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
+  | Type | Description|
+  | ---- | ----- |
+  | [IRemoteObject](#iremoteobject) | Returns the **RemoteObject** if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
 
 **Example**
 
@@ -5681,9 +5681,9 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   };
   FA.connectAbility(want, connect);
   ```
-
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
-
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
+  
   ```ts
   class TestProxy {
       remote: rpc.RemoteObject;
@@ -5726,12 +5726,12 @@ Defines the response to the request.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name   | Type           | Readable| Writable| Description                                 |
-| ------- | --------------- | ---- | ---- |-------------------------------------- |
-| errCode | number          | Yes  | No  | Error Code                             |
-| code    | number          | Yes  | No  | Message code.                           |
-| data    | MessageSequence | Yes  | No  | **MessageSequence** object sent to the remote process.|
-| reply   | MessageSequence | Yes  | No  | **MessageSequence** object returned by the remote process.  |
+  | Name   | Type           | Readable| Writable| Description                                 |
+  | ------- | --------------- | ---- | ---- |-------------------------------------- |
+  | errCode | number          | Yes  | No  | Error Code                             |
+  | code    | number          | Yes  | No  | Message code.                           |
+  | data    | MessageSequence | Yes  | No  | **MessageSequence** object sent to the remote process.|
+  | reply   | MessageSequence | Yes  | No  | **MessageSequence** object returned by the remote process.  |
 
 ## SendRequestResult<sup>8+(deprecated)</sup>
 
@@ -5741,12 +5741,12 @@ Defines the response to the request.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name   | Type         | Readable| Writable| Description                               |
-| ------- | ------------- | ---- | ---- | ----------------------------------- |
-| errCode | number        | Yes  | No  | Error Code                           |
-| code    | number        | Yes  | No  | Message code.                         |
-| data    | MessageParcel | Yes  | No  | **MessageParcel** object sent to the remote process.|
-| reply   | MessageParcel | Yes  | No  | **MessageParcel** object returned by the remote process.  |
+  | Name   | Type         | Readable| Writable| Description                               |
+  | ------- | ------------- | ---- | ---- | ----------------------------------- |
+  | errCode | number        | Yes  | No  | Error Code                           |
+  | code    | number        | Yes  | No  | Message code.                         |
+  | data    | MessageParcel | Yes  | No  | **MessageParcel** object sent to the remote process.|
+  | reply   | MessageParcel | Yes  | No  | **MessageParcel** object returned by the remote process.  |
 
 ## IRemoteObject
 
@@ -5762,15 +5762,15 @@ Obtains the interface descriptor.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                |
-| ---------- | ------ | ---- | -------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                         |
-| ------------- | --------------------------------------------- |
-| IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+  | Type         | Description                                         |
+  | ------------- | --------------------------------------------- |
+  | IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -5784,15 +5784,15 @@ Queries the interface descriptor.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                |
-| ---------- | ------ | ---- | -------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                         |
-| ------------- | --------------------------------------------- |
-| IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+  | Type         | Description                                         |
+  | ------------- | --------------------------------------------- |
+  | IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
 
 ### sendRequest<sup>(deprecated)</sup>
 
@@ -5806,18 +5806,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name | Type| Mandatory| Description |
-| ------- | ------------------------------- | ---- | ---- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type| Mandatory| Description |
+  | ------- | ------------------------------- | ---- | ---- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 
 ### sendRequest<sup>8+(deprecated)</sup>
@@ -5832,18 +5832,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                            | Description                                         |
-| -------------------------------- | --------------------------------------------- |
-| Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+  | Type                            | Description                                         |
+  | -------------------------------- | --------------------------------------------- |
+  | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
 
 ### sendMessageRequest<sup>9+</sup>
@@ -5856,18 +5856,18 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                        | Description                                     |
-| ---------------------------- | ----------------------------------------- |
-| Promise&lt;RequestResult&gt; | Promise used to return the **requestResult** object.|
+  | Type                        | Description                                     |
+  | ---------------------------- | ----------------------------------------- |
+  | Promise&lt;RequestResult&gt; | Promise used to return the **requestResult** object.|
 
 
 ### sendMessageRequest<sup>9+</sup>
@@ -5880,13 +5880,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name  | Type                              | Mandatory| Description                                                                                  |
-| -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                              | Mandatory| Description                                                                                  |
+  | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -5900,13 +5900,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory| Description                                                                                  |
-| -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply    | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options  | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                                  | Mandatory| Description                                                                                  |
+  | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply    | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options  | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -5918,18 +5918,18 @@ Registers a callback for receiving death notifications of the remote object. The
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900008 | proxy or remote object is invalid |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
@@ -5943,16 +5943,16 @@ Adds a callback for receiving death notifications of the remote object. This met
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 
 ### unregisterDeathRecipient<sup>9+</sup>
@@ -5965,18 +5965,18 @@ Unregisters the callback used to receive death notifications of the remote objec
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900008 | proxy or remote object is invalid |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
@@ -5990,16 +5990,16 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 ### getDescriptor<sup>9+</sup>
 
@@ -6011,17 +6011,17 @@ Obtains the interface descriptor (which is a string) of this object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900008 | proxy or remote object is invalid |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
@@ -6036,9 +6036,9 @@ Obtains the interface descriptor (which is a string) of this object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 
 ### isObjectDead
@@ -6051,9 +6051,9 @@ Checks whether this object is dead.
 
 **Return value**
 
-| Type   | Description                                       |
-| ------- | ------------------------------------------- |
-| boolean | Returns **true** if the object is dead; returns **false** otherwise.|
+  | Type   | Description                                       |
+  | ------- | ------------------------------------------- |
+  | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
 
 
 ## RemoteProxy
@@ -6082,18 +6082,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -6120,9 +6120,9 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   };
   FA.connectAbility(want, connect);
   ```
-
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
-
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  
   ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6152,18 +6152,18 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply   | [MessageSequence](#messagesequence9)  | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply   | [MessageSequence](#messagesequence9)  | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                        | Description                                     |
-| ---------------------------- | ----------------------------------------- |
-| Promise&lt;RequestResult&gt; | Promise used to return the **requestResult** object.|
+  | Type                        | Description                                     |
+  | ---------------------------- | ----------------------------------------- |
+  | Promise&lt;RequestResult&gt; | Promise used to return the **requestResult** object.|
 
 **Example**
 
@@ -6190,8 +6190,8 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   };
   FA.connectAbility(want, connect);
   ```
-
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6230,18 +6230,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                            | Description                                         |
-| -------------------------------- | --------------------------------------------- |
-| Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+  | Type                            | Description                                         |
+  | -------------------------------- | --------------------------------------------- |
+  | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
 **Example**
 
@@ -6269,7 +6269,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6300,22 +6300,22 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If **options** is the synchronous mode, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
 
-| Name  | Type                              | Mandatory| Description                                                                                  |
-| -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                              | Mandatory| Description                                                                                  |
+  | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
-
+  
   Obtain the service.
 
   ```ts
@@ -6353,7 +6353,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6381,13 +6381,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory| Description                                                                                  |
-| -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply    | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options  | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                                  | Mandatory| Description                                                                                  |
+  | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply    | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options  | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
 
@@ -6428,7 +6428,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6449,23 +6449,23 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                  |
-| --------- | ------ | ---- | ---------------------- |
-| interface | string | Yes  | Interface descriptor.|
+  | Name   | Type  | Mandatory| Description                  |
+  | --------- | ------ | ---- | ---------------------- |
+  | interface | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                      |
-| ------------- | ------------------------------------------ |
-| IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
+  | Type         | Description                                      |
+  | ------------- | ------------------------------------------ |
+  | IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | --------  |
-| 1900006 | only remote object permitted |
+  | ID| Error Message|
+  | ------- | --------  |
+  | 1900006 | only remote object permitted |
 
 **Example**
 
@@ -6488,12 +6488,12 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   let want = {
       "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.EntryAbility",
+      "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   try {
@@ -6517,15 +6517,15 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                  |
-| --------- | ------ | ---- | ---------------------- |
-| interface | string | Yes  | Interface descriptor.|
+  | Name   | Type  | Mandatory| Description                  |
+  | --------- | ------ | ---- | ---------------------- |
+  | interface | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                      |
-| ------------- | ------------------------------------------ |
-| IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
+  | Type         | Description                                      |
+  | ------------- | ------------------------------------------ |
+  | IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
 
 **Example**
 
@@ -6548,12 +6548,12 @@ Obtains the **LocalInterface** object of an interface token.
   };
   let want = {
       "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.EntryAbility",
+      "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
-
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   let broker = proxy.queryLocalInterface("testObject");
@@ -6570,18 +6570,18 @@ Registers a callback for receiving death notifications of the remote object. The
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900008 | proxy or remote object is invalid |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 **Example**
 
@@ -6609,8 +6609,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
-
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
+  
   ```ts
   class MyDeathRecipient {
       onRemoteDied() {
@@ -6638,16 +6638,16 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description                             |
-| --------- | --------------------------------- | ---- | --------------------------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.         |
-| flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
+  | Name   | Type                             | Mandatory| Description                             |
+  | --------- | --------------------------------- | ---- | --------------------------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.         |
+  | flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -6674,8 +6674,8 @@ Adds a callback for receiving the death notifications of the remote object, incl
   };
   FA.connectAbility(want, connect);
   ```
-
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
 
   ```ts
   class MyDeathRecipient {
@@ -6697,23 +6697,23 @@ Unregisters the callback used to receive death notifications of the remote objec
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description          |
-| --------- | --------------------------------- | ---- | -------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
-| flags     | number                            | Yes  | Flag of the death notification.|
+  | Name   | Type                             | Mandatory| Description          |
+  | --------- | --------------------------------- | ---- | -------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
+  | flags     | number                            | Yes  | Flag of the death notification.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900008 | proxy or remote object is invalid |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 **Example**
 
   Obtain the service.
-
+  
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6735,8 +6735,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   FA.connectAbility(want, connect);
   ```
-
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
   ```ts
   class MyDeathRecipient {
@@ -6766,16 +6766,16 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Parameters**
 
-| Name   | Type                             | Mandatory| Description                             |
-| --------- | --------------------------------- | ---- | --------------------------------- |
-| recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.               |
-| flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
+  | Name   | Type                             | Mandatory| Description                             |
+  | --------- | --------------------------------- | ---- | --------------------------------- |
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.               |
+  | flags     | number                            | Yes  | Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 **Example**
 
@@ -6802,8 +6802,8 @@ Removes the callback used to receive death notifications of the remote object.
   };
   FA.connectAbility(want, connect);
   ```
-
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
 
   ```ts
   class MyDeathRecipient {
@@ -6826,18 +6826,18 @@ Obtains the interface descriptor (which is a string) of this proxy object.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900008 | proxy or remote object is invalid |
-| 1900007 | communication failed              |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900007 | communication failed              |
 
 **Example**
 
@@ -6864,7 +6864,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   FA.connectAbility(want, connect);
   ```
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
 
   ```ts
   try {
@@ -6888,9 +6888,9 @@ Obtains the interface descriptor of this proxy object.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| string | Interface descriptor obtained.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | string | Interface descriptor obtained.|
 
 **Example**
 
@@ -6916,7 +6916,7 @@ Obtains the interface descriptor of this proxy object.
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
-  ```
+    ```
 
 The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
 
@@ -6935,9 +6935,9 @@ Checks whether the **RemoteObject** is dead.
 
 **Return value**
 
-| Type   | Description                                                     |
-| ------- | --------------------------------------------------------- |
-| boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
+  | Type   | Description                                                     |
+  | ------- | --------------------------------------------------------- |
+  | boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
 
 **Example**
 
@@ -6965,7 +6965,7 @@ Checks whether the **RemoteObject** is dead.
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
 
   ```ts
   let isDead = proxy.isObjectDead();
@@ -6978,12 +6978,12 @@ Provides common message options (flag and wait time). Use the specified flag to 
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-| Name         | Value  | Description                                                       |
-| ------------- | ---- | ----------------------------------------------------------- |
-| TF_SYNC       | 0    | Synchronous call.                                                 |
-| TF_ASYNC      | 1    | Asynchronous call.                                                 |
-| TF_ACCEPT_FDS | 0x10 | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
-| TF_WAIT_TIME  | 8    | Default waiting time, in seconds.                                         |
+  | Name         | Value  | Description                                                       |
+  | ------------- | ---- | ----------------------------------------------------------- |
+  | TF_SYNC       | 0    | Synchronous call.                                                 |
+  | TF_ASYNC      | 1    | Asynchronous call.                                                 |
+  | TF_ACCEPT_FDS | 0x10 | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
+  | TF_WAIT_TIME  | 8    | Default waiting time, in seconds.                                         |
 
 
 ### constructor<sup>9+</sup>
@@ -6996,9 +6996,9 @@ A constructor used to create a **MessageOption** object.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                                  |
-| --------- | ------ | ---- | -------------------------------------- |
-| syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
+  | Name   | Type  | Mandatory| Description                                  |
+  | --------- | ------ | ---- | -------------------------------------- |
+  | syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
 
 
 **Example**
@@ -7021,10 +7021,10 @@ A constructor used to create a **MessageOption** object.
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                                         |
-| --------- | ------ | ---- | --------------------------------------------- |
-| syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.       |
-| waitTime  | number | No  | Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
+  | Name   | Type  | Mandatory| Description                                         |
+  | --------- | ------ | ---- | --------------------------------------------- |
+  | syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.       |
+  | waitTime  | number | No  | Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
 
 **Example**
 
@@ -7045,9 +7045,9 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
 **Return value**
 
-| Type   | Description                                |
-| ------- | ------------------------------------ |
-| boolean | Returns **true** if **SendMessageRequest** is called synchronously; returns **false** if **SendMessageRequest** is called asynchronously.|
+  | Type   | Description                                |
+  | ------- | ------------------------------------ |
+  | boolean | Returns **true** if **SendMessageRequest** is called synchronously; returns **false** if **SendMessageRequest** is called asynchronously.|
 
 **Example**
 
@@ -7082,9 +7082,9 @@ Obtains the call flag, which can be synchronous or asynchronous.
 
 **Return value**
 
-| Type  | Description                                |
-| ------ | ------------------------------------ |
-| number | Call mode obtained.|
+  | Type  | Description                                |
+  | ------ | ------------------------------------ |
+  | number | Call mode obtained.|
 
 **Example**
 
@@ -7102,7 +7102,7 @@ Obtains the call flag, which can be synchronous or asynchronous.
       console.info("error " + error);
   }
   ```
-
+  
 ### setFlags
 
 setFlags(flags: number): void
@@ -7113,9 +7113,9 @@ Sets the call flag, which can be synchronous or asynchronous.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| flags  | number | Yes  | Call flag to set.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | flags  | number | Yes  | Call flag to set.|
 
 **Example**
 
@@ -7141,9 +7141,9 @@ Obtains the maximum wait time for this RPC call.
 
 **Return value**
 
-| Type  | Description             |
-| ------ | ----------------- |
-| number | Maximum wait time obtained.|
+  | Type  | Description             |
+  | ------ | ----------------- |
+  | number | Maximum wait time obtained.|
 
 **Example**
 
@@ -7170,9 +7170,9 @@ Sets the maximum wait time for this RPC call.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                 |
-| -------- | ------ | ---- | --------------------- |
-| waitTime | number | Yes  | Maximum wait time to set.|
+  | Name  | Type  | Mandatory| Description                 |
+  | -------- | ------ | ---- | --------------------- |
+  | waitTime | number | Yes  | Maximum wait time to set.|
 
 **Example**
 
@@ -7201,9 +7201,9 @@ Obtains the system capability manager. This API is a static method.
 
 **Return value**
 
-| Type                           | Description                |
-| ------------------------------- | -------------------- |
-| [IRemoteObject](#iremoteobject) | System capability manager obtained.|
+  | Type                           | Description                |
+  | ------------------------------- | -------------------- |
+  | [IRemoteObject](#iremoteobject) | System capability manager obtained.|
 
 **Example**
 
@@ -7222,9 +7222,9 @@ Obtains the PID of the caller. This API is a static method, which is invoked by 
 
 **Return value**
 
-| Type  | Description             |
-| ------ | ----------------- |
-| number | PID of the caller.|
+  | Type  | Description             |
+  | ------ | ----------------- |
+  | number | PID of the caller.|
 
 **Example**
 
@@ -7248,9 +7248,9 @@ Obtains the UID of the caller. This API is a static method, which is invoked by 
 
 **Return value**
 
-| Type  | Description             |
-| ------ | ----------------- |
-| number | UID of the caller.|
+  | Type  | Description             |
+  | ------ | ----------------- |
+  | number | UID of the caller.|
 
 **Example**
 
@@ -7273,11 +7273,11 @@ Obtains the caller's token ID, which is used to verify the caller identity.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-
-| Type  | Description                 |
-| ------ | --------------------- |
-| number | Token ID of the caller obtained.|
-
+ 
+   | Type  | Description                 |
+   | ------ | --------------------- |
+   | number | Token ID of the caller obtained.|
+  
 **Example**
 
   ```ts
@@ -7301,9 +7301,9 @@ Obtains the ID of the device hosting the caller's process. This API is a static 
 
 **Return value**
 
-| Type  | Description                        |
-| ------ | ---------------------------- |
-| string | Device ID obtained.|
+  | Type  | Description                        |
+  | ------ | ---------------------------- |
+  | string | Device ID obtained.|
 
 **Example**
 
@@ -7327,9 +7327,9 @@ Obtains the local device ID. This API is a static method.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
-| string | Local device ID obtained.|
+  | Type  | Description              |
+  | ------ | ------------------ |
+  | string | Local device ID obtained.|
 
 **Example**
 
@@ -7353,9 +7353,9 @@ Checks whether the remote process is a process of the local device. This API is 
 
 **Return value**
 
-| Type   | Description                                                     |
-| ------- | --------------------------------------------------------- |
-| boolean | Returns **true** if the local and remote processes are on the same device; returns **false** otherwise.|
+  | Type   | Description                                                     |
+  | ------- | --------------------------------------------------------- |
+  | boolean | Returns **true** if the local and remote processes are on the same device; returns **false** otherwise.|
 
 **Example**
 
@@ -7379,9 +7379,9 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description               |
-| ------ | ------------------------------- | ---- | ------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
+  | Name| Type                           | Mandatory| Description               |
+  | ------ | ------------------------------- | ---- | ------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
 
 
 **Example**
@@ -7413,15 +7413,15 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description               |
-| ------ | ------------------------------- | ---- | ------------------- |
-| object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
+  | Name| Type                           | Mandatory| Description               |
+  | ------ | ------------------------------- | ---- | ------------------- |
+  | object | [IRemoteObject](#iremoteobject) | Yes  | **RemoteProxy** specified. |
 
 **Return value**
 
-| Type  | Description                                                                             |
-| ------ | --------------------------------------------------------------------------------- |
-| number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
+  | Type  | Description                                                                             |
+  | ------ | --------------------------------------------------------------------------------- |
+  | number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
 
 **Example**
 
@@ -7460,9 +7460,9 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 **Return value**
 
-| Type  | Description                                |
-| ------ | ------------------------------------ |
-| string | String containing the UID and PID of the remote user.|
+  | Type  | Description                                |
+  | ------ | ------------------------------------ |
+  | string | String containing the UID and PID of the remote user.|
 
 **Example**
 
@@ -7487,9 +7487,9 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                              |
-| -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
+  | Name  | Type  | Mandatory| Description                                                              |
+  | -------- | ------ | ---- | ------------------------------------------------------------------ |
+  | identity | string | Yes  | String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Example**
 
@@ -7520,15 +7520,15 @@ Sets the UID and PID of the remote user. This API is a static method. It is usua
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                              |
-| -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
+  | Name  | Type  | Mandatory| Description                                                              |
+  | -------- | ------ | ---- | ------------------------------------------------------------------ |
+  | identity | string | Yes  | String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -7562,9 +7562,9 @@ A constructor used to create a **RemoteObject** object.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description        |
-| ---------- | ------ | ---- | ------------ |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description        |
+  | ---------- | ------ | ---- | ------------ |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 
 ### sendRequest<sup>(deprecated)</sup>
@@ -7579,18 +7579,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type   | Description                                         |
-| ------- | --------------------------------------------- |
-| boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -7645,18 +7645,18 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                            | Description                                         |
-| -------------------------------- | --------------------------------------------- |
-| Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+  | Type                            | Description                                         |
+  | -------------------------------- | --------------------------------------------- |
+  | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
 **Example**
 
@@ -7715,18 +7715,18 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description                                                                                  |
-| ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | Name | Type                           | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-| Type                        | Description                                         |
-| ---------------------------- | --------------------------------------------- |
-| Promise&lt;RequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+  | Type                        | Description                                         |
+  | ---------------------------- | --------------------------------------------- |
+  | Promise&lt;RequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
 **Example**
 
@@ -7771,13 +7771,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name       | Type                              | Mandatory| Description                                                                                  |
-| ------------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code          | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data          | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply         | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options       | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| AsyncCallback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name       | Type                              | Mandatory| Description                                                                                  |
+  | ------------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code          | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data          | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
+  | reply         | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options       | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | AsyncCallback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
 
@@ -7821,13 +7821,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name       | Type                                  | Mandatory| Description                                                                                  |
-| ------------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code          | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data          | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply         | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options       | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| AsyncCallback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name       | Type                                  | Mandatory| Description                                                                                  |
+  | ------------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code          | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data          | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply         | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options       | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
 
@@ -7885,18 +7885,18 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                   |
-| ------ | ------------------------------- | ---- | --------------------------------------- |
-| code   | number                          | Yes  | Service request code sent by the remote end.                 |
-| data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
-| reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
-| option | [MessageOption](#messageoption) | Yes  | Whether the operation is synchronous or asynchronous.               |
+  | Name| Type                           | Mandatory| Description                                   |
+  | ------ | ------------------------------- | ---- | --------------------------------------- |
+  | code   | number                          | Yes  | Service request code sent by the remote end.                 |
+  | data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
+  | reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
+  | option | [MessageOption](#messageoption) | Yes  | Whether the operation is synchronous or asynchronous.               |
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -7946,19 +7946,19 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                     |
-| ------ | ------------------------------- | ---- | ----------------------------------------- |
-| code   | number                          | Yes  | Service request code sent by the remote end.                   |
-| data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
-| reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
-| option | [MessageOption](#messageoption) | Yes  | Whether the operation is synchronous or asynchronous.                 |
+  | Name| Type                           | Mandatory| Description                                     |
+  | ------ | ------------------------------- | ---- | ----------------------------------------- |
+  | code   | number                          | Yes  | Service request code sent by the remote end.                   |
+  | data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
+  | reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
+  | option | [MessageOption](#messageoption) | Yes  | Whether the operation is synchronous or asynchronous.                 |
 
 **Return value**
 
-| Type             | Description                                                                                          |
-| ----------------- | ---------------------------------------------------------------------------------------------- |
-| boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
-| Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
+  | Type             | Description                                                                                          |
+  | ----------------- | ---------------------------------------------------------------------------------------------- |
+  | boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
+  | Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
 
 **Example**: Overload **onRemoteMessageRequest** to process requests synchronously.
 
@@ -8076,9 +8076,9 @@ Obtains the UID of the remote process.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
-| Type  | Description                   |
-| ------ | ----------------------- |
-| number | UID of the remote process obtained.|
+  | Type  | Description                   |
+  | ------ | ----------------------- |
+  | number | UID of the remote process obtained.|
 
 **Example**
 
@@ -8102,9 +8102,9 @@ Obtains the PID of the remote process.
 
 **Return value**
 
-| Type  | Description                   |
-| ------ | ----------------------- |
-| number | PID of the remote process obtained.|
+  | Type  | Description                   |
+  | ------ | ----------------------- |
+  | number | PID of the remote process obtained.|
 
 **Example**
 
@@ -8128,15 +8128,15 @@ Obtains the interface descriptor.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                |
-| ---------- | ------ | ---- | -------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                |
+  | ---------- | ------ | ---- | -------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                         |
-| ------------- | --------------------------------------------- |
-| IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+  | Type         | Description                                         |
+  | ------------- | --------------------------------------------- |
+  | IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
 
 
 **Example**
@@ -8182,15 +8182,15 @@ Checks whether the remote object corresponding to the specified interface token 
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                  |
-| ---------- | ------ | ---- | ---------------------- |
-| descriptor | string | Yes  | Interface descriptor.|
+  | Name    | Type  | Mandatory| Description                  |
+  | ---------- | ------ | ---- | ---------------------- |
+  | descriptor | string | Yes  | Interface descriptor.|
 
 **Return value**
 
-| Type         | Description                                                              |
-| ------------- | ------------------------------------------------------------------ |
-| IRemoteBroker | Returns the remote object if a match is found; returns **Null** otherwise.|
+  | Type         | Description                                                              |
+  | ------------- | ------------------------------------------------------------------ |
+  | IRemoteBroker | Returns the remote object if a match is found; returns **Null** otherwise.|
 
 **Example**
 
@@ -8228,17 +8228,17 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900008 | proxy or remote object is invalid |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 **Example**
 
@@ -8284,9 +8284,9 @@ Obtains the interface descriptor.
 
 **Return value**
 
-| Type  | Description            |
-| ------ | ---------------- |
-| string | Interface descriptor obtained.|
+  | Type  | Description            |
+  | ------ | ---------------- |
+  | string | Interface descriptor obtained.|
 
 **Example**
 
@@ -8325,10 +8325,10 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 **Parameters**
 
-| Name        | Type         | Mandatory| Description                                 |
-| -------------- | ------------- | ---- | ------------------------------------- |
-| localInterface | IRemoteBroker | Yes  | **IRemoteBroker** object.  |
-| descriptor     | string        | Yes  | Interface descriptor.|
+  | Name        | Type         | Mandatory| Description                                 |
+  | -------------- | ------------- | ---- | ------------------------------------- |
+  | localInterface | IRemoteBroker | Yes  | **IRemoteBroker** object.  |
+  | descriptor     | string        | Yes  | Interface descriptor.|
 
 **Example**
 
@@ -8376,10 +8376,10 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 **Parameters**
 
-| Name        | Type         | Mandatory| Description                                 |
-| -------------- | ------------- | ---- | ------------------------------------- |
-| localInterface | IRemoteBroker | Yes  | **IRemoteBroker** object.  |
-| descriptor     | string        | Yes  | Interface descriptor.|
+  | Name        | Type         | Mandatory| Description                                 |
+  | -------------- | ------------- | ---- | ------------------------------------- |
+  | localInterface | IRemoteBroker | Yes  | **IRemoteBroker** object.  |
+  | descriptor     | string        | Yes  | Interface descriptor.|
 
 **Example**
 
@@ -8418,12 +8418,12 @@ Provides methods related to anonymous shared memory objects, including creating,
 
 The table below describes the protection types of the mapped memory.
 
-| Name      | Value | Description              |
-| ---------- | --- | ------------------ |
-| PROT_EXEC  | 4   | The mapped memory is executable.  |
-| PROT_NONE  | 0   | The mapped memory is inaccessible.|
-| PROT_READ  | 1   | The mapped memory is readable.    |
-| PROT_WRITE | 2   | The mapped memory is writeable.    |
+  | Name      | Value | Description              |
+  | ---------- | --- | ------------------ |
+  | PROT_EXEC  | 4   | The mapped memory is executable.  |
+  | PROT_NONE  | 0   | The mapped memory is inaccessible.|
+  | PROT_READ  | 1   | The mapped memory is readable.    |
+  | PROT_WRITE | 2   | The mapped memory is writeable.    |
 
 ### create<sup>9+</sup>
 
@@ -8435,16 +8435,16 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ------ | ------ | ---- | ---------------------------- |
-| name   | string | Yes  | Name of the **Ashmem** object to create.  |
-| size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | name   | string | Yes  | Name of the **Ashmem** object to create.  |
+  | size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
 
 **Return value**
 
-| Type  | Description                                          |
-| ------ | ---------------------------------------------- |
-| Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
+  | Type  | Description                                          |
+  | ------ | ---------------------------------------------- |
+  | Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
 **Example**
 
@@ -8472,16 +8472,16 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ------ | ------ | ---- | ---------------------------- |
-| name   | string | Yes  | Name of the **Ashmem** object to create.  |
-| size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | name   | string | Yes  | Name of the **Ashmem** object to create.  |
+  | size   | number | Yes  | Size (in bytes) of the **Ashmem** object to create.|
 
 **Return value**
 
-| Type  | Description                                          |
-| ------ | ---------------------------------------------- |
-| Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
+  | Type  | Description                                          |
+  | ------ | ---------------------------------------------- |
+  | Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
 **Example**
 
@@ -8501,15 +8501,15 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| ashmem | Ashmem | Yes  | Existing **Ashmem** object.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | ashmem | Ashmem | Yes  | Existing **Ashmem** object.|
 
 **Return value**
 
-| Type  | Description                  |
-| ------ | ---------------------- |
-| Ashmem | **Ashmem** object created.|
+  | Type  | Description                  |
+  | ------ | ---------------------- |
+  | Ashmem | **Ashmem** object created.|
 
 
 **Example**
@@ -8539,15 +8539,15 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| ashmem | Ashmem | Yes  | Existing **Ashmem** object.|
+  | Name| Type  | Mandatory| Description                |
+  | ------ | ------ | ---- | -------------------- |
+  | ashmem | Ashmem | Yes  | Existing **Ashmem** object.|
 
 **Return value**
 
-| Type  | Description                  |
-| ------ | ---------------------- |
-| Ashmem | **Ashmem** object created.|
+  | Type  | Description                  |
+  | ------ | ---------------------- |
+  | Ashmem | **Ashmem** object created.|
 
 **Example**
 
@@ -8598,9 +8598,9 @@ Obtains the memory size of this **Ashmem** object.
 
 **Return value**
 
-| Type  | Description                      |
-| ------ | -------------------------- |
-| number | **Ashmem** size obtained.|
+  | Type  | Description                      |
+  | ------ | -------------------------- |
+  | number | **Ashmem** size obtained.|
 
 **Example**
 
@@ -8620,17 +8620,17 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                          |
-| ------- | ------ | ---- | ------------------------------ |
-| mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
+  | Name | Type  | Mandatory| Description                          |
+  | ------- | ------ | ---- | ------------------------------ |
+  | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | ------ |
-| 1900001     | call mmap function failed |
+  | ID| Error Message|
+  | ------- | ------ |
+  | 1900001     | call mmap function failed |
 
 **Example**
 
@@ -8656,15 +8656,15 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                          |
-| ------- | ------ | ---- | ------------------------------ |
-| mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
+  | Name | Type  | Mandatory| Description                          |
+  | ------- | ------ | ---- | ------------------------------ |
+  | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
@@ -8686,9 +8686,9 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900001 | call mmap function failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900001 | call mmap function failed |
 
 **Example**
 
@@ -8714,9 +8714,9 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
@@ -8738,9 +8738,9 @@ Maps the shared file to the read-only virtual address space of the process.
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900001 | call mmap function failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900001 | call mmap function failed |
 
 **Example**
 
@@ -8766,9 +8766,9 @@ Maps the shared file to the read-only virtual address space of the process.
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
@@ -8788,17 +8788,17 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **Parameters**
 
-| Name        | Type  | Mandatory| Description              |
-| -------------- | ------ | ---- | ------------------ |
-| protectionType | number | Yes  | Protection type to set.|
+  | Name        | Type  | Mandatory| Description              |
+  | -------------- | ------ | ---- | ------------------ |
+  | protectionType | number | Yes  | Protection type to set.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| -------- | ------- |
-| 1900002 | call os ioctl function failed |
+  | ID| Error Message|
+  | -------- | ------- |
+  | 1900002 | call os ioctl function failed |
 
 **Example**
 
@@ -8824,15 +8824,15 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **Parameters**
 
-| Name        | Type  | Mandatory| Description              |
-| -------------- | ------ | ---- | ------------------ |
-| protectionType | number | Yes  | Protection type to set.|
+  | Name        | Type  | Mandatory| Description              |
+  | -------------- | ------ | ---- | ------------------ |
+  | protectionType | number | Yes  | Protection type to set.|
 
 **Return value**
 
-| Type   | Description                                     |
-| ------- | ----------------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type   | Description                                     |
+  | ------- | ----------------------------------------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -8852,19 +8852,19 @@ Writes data to the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                              |
-| ------ | -------- | ---- | -------------------------------------------------- |
-| buf    | number[] | Yes  | Data to write.                            |
-| size   | number   | Yes  | Size of the data to write.                                |
-| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+  | Name| Type    | Mandatory| Description                                              |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | number[] | Yes  | Data to write.                            |
+  | size   | number   | Yes  | Size of the data to write.                                |
+  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID| Error Message|
-| ------- | -------- |
-| 1900003 | write to ashmem failed |
+  | ID| Error Message|
+  | ------- | -------- |
+  | 1900003 | write to ashmem failed |
 
 **Example**
 
@@ -8892,17 +8892,17 @@ Writes data to the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                                              |
-| ------ | -------- | ---- | -------------------------------------------------- |
-| buf    | number[] | Yes  | Data to write.                            |
-| size   | number   | Yes  | Size of the data to write.                                |
-| offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+  | Name| Type    | Mandatory| Description                                              |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | number[] | Yes  | Data to write.                            |
+  | size   | number   | Yes  | Size of the data to write.                                |
+  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-| Type   | Description                                                                                     |
-| ------- | ----------------------------------------------------------------------------------------- |
-| boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
+  | Type   | Description                                                                                     |
+  | ------- | ----------------------------------------------------------------------------------------- |
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -8925,24 +8925,24 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                              |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| size   | number | Yes  | Size of the data to read.                              |
-| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+  | Name| Type  | Mandatory| Description                                              |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | Yes  | Size of the data to read.                              |
+  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Data read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Data read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-| ID | Error Message|
-| -------- | -------- |
-| 1900004 | read from ashmem failed |
+  | ID | Error Message|
+  | -------- | -------- |
+  | 1900004 | read from ashmem failed |
 
 **Example**
 
@@ -8972,16 +8972,16 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                              |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| size   | number | Yes  | Size of the data to read.                              |
-| offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+  | Name| Type  | Mandatory| Description                                              |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | Yes  | Size of the data to read.                              |
+  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
 **Return value**
 
-| Type    | Description            |
-| -------- | ---------------- |
-| number[] | Data read.|
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | number[] | Data read.|
 
 **Example**
 
@@ -8994,4 +8994,4 @@ Reads data from the shared file associated with this **Ashmem** object.
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
   console.log("RpcTest: read to Ashmem result is  : " + readResult);
- ```
+  ```
