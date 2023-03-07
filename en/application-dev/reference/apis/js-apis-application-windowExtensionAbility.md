@@ -101,7 +101,7 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
     window.loadContent('WindowExtAbility/pages/index1').then(() => {
       window.getProperties().then((pro) => {
         console.log('WindowExtension ' + JSON.stringify(pro));
-      })
+      });
       window.show();
     })
   }
