@@ -103,19 +103,6 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 | ROTATION_180 | 2    | 设备显示器顺时针旋转180°，逆向垂直显示。 |
 | ROTATION_270 | 3    | 设备显示器顺时针旋转270°，逆向水平显示。 |
 
-## DisplayRotation<sup>9+</sup>
-
-**系统能力**：SystemCapability.Test.UiTest
-
-设备显示器的显示方向。
-
-| 名称         | 值   | 说明                                     |
-| ------------ | ---- | ---------------------------------------- |
-| ROTATION_0   | 0    | 设备显示器不旋转，初始形态垂直显示。     |
-| ROTATION_90  | 1    | 设备显示器顺时针旋转90°，水平显示。      |
-| ROTATION_180 | 2    | 设备显示器顺时针旋转180°，逆向垂直显示。 |
-| ROTATION_270 | 3    | 设备显示器顺时针旋转270°，逆向水平显示。 |
-
 ## WindowFilter<sup>9+</sup>
 
 窗口的标志属性信息。
@@ -2350,7 +2337,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | ------ | ---------------- | ---- | --------------------------------------------------- |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                    |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下。                              |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120的像素点。 |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。 |
 | key1   | number           | 是   | 指定的第一个key值。                                 |
 | key2   | number           | 否   | 指定的第二个key值。                                 |
 
