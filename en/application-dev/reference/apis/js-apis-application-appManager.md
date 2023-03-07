@@ -9,7 +9,7 @@ The **appManager** module implements application management. You can use the API
 ## Modules to Import
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import app from '@ohos.application.appManager';
 ```
 
 ## appManager.isRunningInStabilityTest<sup>8+</sup>
