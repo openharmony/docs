@@ -109,7 +109,7 @@
 
 - [Button](ts-basic-components-button.md)
 
-    A component that can be used to create different types of buttons.
+    A component that is used to create different types of buttons.
 - [Toggle](ts-basic-components-toggle.md)
 
     A component that provides a clickable element in the check box, button, or switch type.
@@ -231,7 +231,7 @@
 
 - [Canvas](ts-components-canvas-canvas.md)
 
-    A component that can be used to customize drawings.
+    A component that is used to customize drawings.
 - [Circle](ts-drawing-components-circle.md)
 
     A component that is used to draw a circle.
@@ -262,10 +262,10 @@
 
 - [Web](ts-basic-components-web.md)
 
-    A component that can be used to display web pages.
+    A component that is used to display web pages.
 
 
-##  Miscellaneous
+## Miscellaneous
 
 - [ScrollBar](ts-basic-components-scrollbar.md)
 
@@ -288,3 +288,15 @@
 - [RemoteWindow](ts-basic-components-remotewindow.md)
 
     A component that is used to control the application window, providing the component animator and application window linkage animator during application startup and exit.
+- [Formcomponent](ts-basic-components-formcomponent.md)
+
+    A component that is used to display widgets.
+- [Menu](ts-basic-components-menu.md)
+
+    A component that is used to present a vertical list of items to the user. Preferentially used on computers.
+- [MenuItem](ts-basic-components-menuitem.md)
+
+    A component that is used to represent an item in a menu.
+- [MenuItemGroup](ts-basic-components-menuitemgroup.md)
+
+    A component that is used to represent a group of menu items.
