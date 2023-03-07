@@ -44,7 +44,7 @@ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.m
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
+setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
 以异步方法设置数据标签，以promise形式返回结果。
 
@@ -55,7 +55,7 @@ setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 | 参数名    | 类型       | 必填 | 说明                                         |
 | --------- | ------    | ---- | -------------------------------------------- |
 | path      | string    | 是   | 文件路径                                     |
-| type      | dataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | DataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
 **返回值：**
 
@@ -75,7 +75,7 @@ setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt;):void
+setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
 以异步方法设置数据标签，以callback形式返回结果。
 
@@ -86,7 +86,7 @@ setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt
 | 参数名    | 类型                      | 必填 | 说明                                         |
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | 是   | 文件路径                                     |
-| type      | dataLevel                 | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | DataLevel                 | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 是否设置数据标签之后的回调                   |
 
 **示例：**
@@ -103,7 +103,7 @@ setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt
 
 ## securityLabel.setSecurityLabelSync
 
-setSecurityLabelSync(path:string, type:dataLevel):void
+setSecurityLabelSync(path:string, type:DataLevel):void
 
 以同步方法设置数据标签。
 
@@ -114,7 +114,7 @@ setSecurityLabelSync(path:string, type:dataLevel):void
 | 参数名    | 类型   | 必填 | 说明                                         |
 | --------- | ------ | ---- | -------------------------------------------- |
 | path      | string | 是   | 文件路径                                     |
-| type      | dataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | DataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
 **示例：**
 

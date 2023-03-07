@@ -2063,11 +2063,83 @@ fdopenStreamSync(fd: number, mode: string): Stream
   fs.closeSync(file);
   ```
 
+## fs.createWatcher<sup>10+</sup>
+
+createWatcher(path: string, events: number, listener: WatchEventListener): Watcher
+
+创建Watcher对象，用来监听文件或目录变动。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                                       |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | path   | string | 是    | 监听文件或目录的沙箱路径。                             |
+  | events | number | 是    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，打开进行写操作的文件被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，打开未进行写操作的文件或目录被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文化或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。|
+  | listener   | WatchEventListener | 是    | 监听事件发生后的回调。监听事件每发生一次，回调一次。                             |
+
+**返回值：**
+
+  | 类型                | 说明        |
+  | ------------------ | --------- |
+  | [Watcher](#watcher10) | 返回Watcher对象。 |
+
+**示例：**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent) => {
+    if (watchEvent.event == 0x2) {
+      console.info(watchEvent.fileName + 'was modified');
+    } else if (watchEvent.event == 0x10) {
+      console.info(watchEvent.fileName + 'was closed');
+    }
+  });
+  watcher.start();
+  fs.writeSync(file.fd, 'test');
+  fs.closeSync(file);
+  watcher.stop();
+  ```
+
+## WatchEventListener<sup>10+</sup>
+
+(event: WatchEvent): void
+
+事件监听类。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                                       |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | event   | WatchEvent | 是    | 回调的事件类。                             |
+ 
+## WatchEvent<sup>10+</sup>
+
+事件类
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称   | 类型   | 可读   | 可写   | 说明      |
+| ---- | ------ | ---- | ---- | ------- |
+| fileName | string | 是    | 否    | 发生监听事件的文件名。 |
+| event | number | 是    | 否    | 发生的监听事件。与[createWatcher](#fscreatewatcher10)中events事件集一致。 |
+| cookie | number | 是    | 否    | 绑定相关事件的cookie。当前仅支持事件IN_MOVED_FROM与IN_MOVED_TO，同一个文件的移动事件IN_MOVED_FROM和IN_MOVED_TO具有相同的cookie值。 |
+
 ## Stat
 
 文件具体信息，在调用Stat的方法前，需要先通过[stat()](#fsstat)方法（同步或异步）来构建一个Stat实例。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 ### 属性
 
@@ -2682,6 +2754,48 @@ unlock(): void;
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
+  ```
+
+## Watcher<sup>10+</sup>
+
+文件目录变化监听对象。由createWatcher接口获得。
+
+### start<sup>10+</sup>
+
+start(): void
+
+开启监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
+  ```
+
+### stop<sup>10+</sup>
+
+stop(): void
+
+停止监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
   ```
 
 ## OpenMode
