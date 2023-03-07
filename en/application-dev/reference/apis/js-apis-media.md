@@ -105,7 +105,7 @@ media.createVideoPlayer().then((video) => {
 createAudioRecorder(): AudioRecorder
 
 Creates an **AudioRecorder** instance to control audio recording.
-Only one **AudioRecorder** instance can be created per device.
+Only one **AudioRecorder** instance can be created for a device.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -213,13 +213,13 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name                           | Type                               | Readable| Writable| Description                                                        |
-| ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                              | Yes  | Yes  | Audio file URI. The mainstream audio formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**NOTE**<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
-| loop                            | boolean                             | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
-| currentTime                     | number                              | Yes  | No  | Current audio playback position.                      |
-| duration                        | number                              | Yes  | No  | Audio duration.                                |
-| state                           | [AudioState](#audiostate)           | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
+| Name       | Type                     | Readable| Writable| Description                                                        |
+| ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| src         | string                    | Yes  | Yes  | Audio file URI. The mainstream audio formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>4. HLS network playback: http://xx or https://xx<br>**NOTE**<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
+| currentTime | number                    | Yes  | No  | Current audio playback position.                                        |
+| duration    | number                    | Yes  | No  | Audio duration.                                                  |
+| state       | [AudioState](#audiostate) | Yes  | No  | Audio playback state.                                            |
 
 ### play<a name=audioplayer_play></a>
 
@@ -512,7 +512,7 @@ audioPlayer.on('error', (error) => {           // Set the 'error' event callback
     console.info(`audio error called, errMessage is ${error.message}`);
 });
 
-// Set the FD (local playback) of the video file selected by the user.
+// Set the FD (local playback) of the audio file selected by the user.
 let fdPath = 'fd://'
 // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
@@ -559,7 +559,7 @@ audioPlayer.seek(30000); // Seek to 30000 ms.
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to audio playback error events.
+Subscribes to the audio playback error event.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -587,13 +587,13 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name              | Type  | Description                                          |
-| ------------------ | ------ | ---------------------------------------------- |
-| idle               | string | No audio playback is in progress.|
-| playing            | string | Audio playback is in progress.          |
-| paused             | string | Audio playback is paused.         |
-| stopped            | string | Audio playback is stopped.     |
-| error<sup>8+</sup> | string | Audio playback is in the error state.                                    |
+| Name              | Type  | Description          |
+| ------------------ | ------ | -------------- |
+| idle               | string | The audio player is idle.|
+| playing            | string | Audio playback is in progress.|
+| paused             | string | Audio playback is paused.|
+| stopped            | string | Audio playback is stopped.|
+| error<sup>8+</sup> | string | Audio playback is in the error state.    |
 
 ## VideoPlayer<sup>8+</sup>
 
@@ -607,13 +607,13 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**NOTE**<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>4. HLS network playback: http://xx or https://xx<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
-| currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                      |
-| duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live mode.            |
+| currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                                        |
+| duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live mode.                              |
 | state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | Yes  | No  | Video playback state.                                            |
-| width<sup>8+</sup>       | number                             | Yes  | No  | Video width.                                  |
-| height<sup>8+</sup>      | number                             | Yes  | No  | Video height.                                  |
+| width<sup>8+</sup>       | number                             | Yes  | No  | Video width.                                                    |
+| height<sup>8+</sup>      | number                             | Yes  | No  | Video height.                                                    |
 
 ### setDisplaySurface<sup>8+</sup>
 
@@ -1352,7 +1352,7 @@ videoPlayer.on('videoSizeChanged', (width, height) => {
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to video playback error events.
+Subscribes to the video playback error event.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1371,7 +1371,7 @@ videoPlayer.on('error', (error) => {      // Set the 'error' event callback.
     console.info(`video error called, errCode is ${error.code}`);      // Print the error code.
     console.info(`video error called, errMessage is ${error.message}`);// Print the detailed description of the error type.
 });
-videoPlayer.setVolume(3);  //  Set volume to an invalid value to trigger the 'error' event.
+videoPlayer.setVolume(3);  // Set volume to an invalid value to trigger the 'error' event.
 ```
 
 ## VideoPlayState<sup>8+</sup>
@@ -1655,7 +1655,7 @@ audioRecorder.prepare(audioRecorderConfig)                                      
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to audio recording error events.
+Subscribes to the audio recording error event.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -1669,12 +1669,19 @@ Subscribes to audio recording error events.
 **Example**
 
 ```js
+let audioRecorderConfig = {
+    audioEncoder : media.AudioEncoder.AAC_LC,
+    audioEncodeBitRate : 22050,
+    audioSampleRate : 22050,
+    numberOfChannels : 2,
+    format : media.AudioOutputFormat.AAC_ADTS,
+    uri : 'fd://xx',                                                     // The file must be created by the caller and granted with proper permissions.
+    location : { latitude : 30, longitude : 130},
+}
 audioRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
-    console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
-    console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
-    console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
+    console.info(`audio error called, error: ${error}`); 
 });
-audioRecorder.prepare();                                                  // Do no set any parameter in prepare and trigger the 'error' event callback.
+audioRecorder.prepare(audioRecorderConfig);                            // Set any parameter in prepare and trigger the 'error' event callback.
 ```
 
 ## AudioRecorderConfig
@@ -1691,7 +1698,7 @@ Describes audio recording configurations.
 | numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.                                 |
 | format<sup>(deprecated)</sup>                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.<br>**Note**: This parameter is deprecated since API version 8. Use **fileFormat** instead.                        |
 | location              | [Location](#location)                   | No  | Geographical location of the recorded audio.                                        |
-| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
+| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
 | audioEncoderMime<sup>8+</sup>      | [CodecMimeType](#codecmimetype8)        | No  | Audio encoding format.          |
 | fileFormat<sup>8+</sup>      | [ContainerFormatType](#containerformattype8)        | No  | Audio encoding format.        |
 
