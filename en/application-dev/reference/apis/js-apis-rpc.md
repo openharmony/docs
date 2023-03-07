@@ -40,7 +40,7 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 ## MessageSequence<sup>9+</sup>
 
-Provides APIs for reading and writing data in specific format. 
+Provides APIs for reading and writing data in specific format.
 
 During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
@@ -2417,7 +2417,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -4875,7 +4875,7 @@ Reads the exception information from this **MessageParcel** object.
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -5682,7 +5682,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
 
   ```ts
   class TestProxy {
@@ -6121,7 +6121,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6191,7 +6191,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6269,7 +6269,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6300,7 +6300,7 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If **options** is the synchronous mode, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6353,7 +6353,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6428,7 +6428,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
   let option = new rpc.MessageOption();
@@ -6488,12 +6488,12 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   let want = {
       "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.EntryAbility",
+      "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   try {
@@ -6548,12 +6548,12 @@ Obtains the **LocalInterface** object of an interface token.
   };
   let want = {
       "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.EntryAbility",
+      "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
   let broker = proxy.queryLocalInterface("testObject");
@@ -6609,7 +6609,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
 
   ```ts
   class MyDeathRecipient {
@@ -6675,7 +6675,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
 
   ```ts
   class MyDeathRecipient {
@@ -6689,7 +6689,7 @@ The proxy object in the **onConnect** callback can be assigned a value only afte
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 Unregisters the callback used to receive death notifications of the remote object.
 
@@ -6736,7 +6736,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
   ```ts
   class MyDeathRecipient {
@@ -6803,7 +6803,7 @@ Removes the callback used to receive death notifications of the remote object.
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
 
   ```ts
   class MyDeathRecipient {
@@ -6864,7 +6864,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   };
   FA.connectAbility(want, connect);
   ```
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
 
   ```ts
   try {
@@ -6965,7 +6965,7 @@ Checks whether the **RemoteObject** is dead.
   FA.connectAbility(want, connect);
   ```
 
-The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
 
   ```ts
   let isDead = proxy.isObjectDead();
