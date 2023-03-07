@@ -364,7 +364,7 @@ For details about the AVPlayer demo, see [AVPlayer Development](../../media/avpl
 | surfaceId<sup>9+</sup>                              | string                                                 | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
 | loop<sup>9+</sup>                                   | boolean                                                | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode. The default value is **INDEPENDENT_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                       | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
 | currentTime<sup>9+</sup>                            | number                                                 | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.|
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                 | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live streaming scenarios, **-1** is returned by default.|
@@ -1161,7 +1161,7 @@ Unsubscribes from the event that checks whether the bit rate is successfully set
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Event type, which is **'bitrateDone'** in this case|
+| type   | string | Yes  | Event type, which is **'bitrateDone'** in this case.|
 
 **Example**
 
@@ -1690,9 +1690,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 Sets audio and video recording parameters. This API uses an asynchronous callback to return the result.
 
-**Required permissions:** ohos.permission.MICROPHONE
-
-This permission is required only if audio recording is involved.
+**Required permissions:** ohos.permission.MICROPHONE (required only if audio recording is involved) and ohos.permission.CAMERA (required only if the camera is used to record videos)
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1753,9 +1751,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 Sets audio and video recording parameters. This API uses a promise to return the result.
 
-**Required permissions:** ohos.permission.MICROPHONE
-
-This permission is required only if audio recording is involved.
+**Required permissions:** ohos.permission.MICROPHONE (required only if audio recording is involved) and ohos.permission.CAMERA (required only if the camera is used to record videos)
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2479,7 +2475,7 @@ Describes the audio and video recording parameters.
 | audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.                  |
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | No  | Type of the video source to record. This parameter is mandatory for video recording.                  |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.                                   |
-| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br> This parameter is mandatory. |
+| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory. |
 | rotation        | number                                   | No  | Rotation angle of the recorded video. The value can only be 0, 90, 180, or 270.                 |
 | location        | [Location](#location)                    | No  | Geographical location of the recorded video.                                            |
 
@@ -3796,7 +3792,7 @@ audioPlayer.on('error', (error) => {           // Set the 'error' event callback
     console.info(`audio error called, error: ${error}`);
 });
 
-// Set the FD (local playback) of the video file selected by the user.
+// Set the FD (local playback) of the audio file selected by the user.
 let fdPath = 'fd://';
 // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
