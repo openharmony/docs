@@ -1,4 +1,4 @@
-# @ohos.UiTest (UiTest)
+# @ohos.UiTest 
 
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
 
@@ -20,7 +20,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块 
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -2093,7 +2093,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.fling({X: 500, Y: 480},{X: 450, Y: 480},5,600);
+    await driver.fling({x: 500, Y: 480},{x: 450, Y: 480},5,600);
 }
 ```
 
@@ -2132,12 +2132,12 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 async function demo() {
     let driver = Driver.create();
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
     await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2196,12 +2196,12 @@ setPoint(finger: number, step: number, point: Point): void
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
 }
 ```
 
