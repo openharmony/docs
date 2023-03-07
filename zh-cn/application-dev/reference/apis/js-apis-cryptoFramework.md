@@ -2217,6 +2217,8 @@ sign(data : DataBlob) : Promise\<DataBlob>
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
+**错误码：**
+
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 17620001 | memory error.          |
