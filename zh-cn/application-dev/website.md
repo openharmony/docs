@@ -89,7 +89,7 @@
         - [线程模型](application-models/thread-model-stage.md)
         - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
         - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
-      - 后台任务管理
+      - 任务管理
         - [任务管理场景介绍](application-models/mission-management-overview.md)
         - [任务管理与启动模式](application-models/mission-management-launch-type.md)
         - [页面栈及任务链](application-models/page-mission-stack.md)
@@ -372,7 +372,7 @@
     - 文件访问框架
       - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
     - [文件选择器使用指导](file-management/filepicker-guidelines.md)
-  - 任务管理
+  - 后台任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
