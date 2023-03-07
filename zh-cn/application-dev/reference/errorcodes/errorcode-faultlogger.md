@@ -4,11 +4,11 @@
 
 **错误信息**
 
-The service is not running or broken.
+The service is not started or is faulty.
 
 **错误描述**
 
-服务未启动/故障。
+服务未启动或者遇到未知错误。
 
 **可能原因**
 
