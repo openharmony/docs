@@ -15,9 +15,9 @@ You can use the APIs of this module to configure the concerned information, obta
 Before using the **AccessibilityExtensionContext** module, you must define a child class that inherits from **AccessibilityExtensionAbility**.
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 let axContext;
-class EntryAbility extends AccessibilityExtensionAbility {
+class MainAbility extends AccessibilityExtensionAbility {
     onConnect(): void {
         console.log('AxExtensionAbility onConnect');
         axContext = this.context;
@@ -542,7 +542,7 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-import GesturePath from "@ohos.accessibility.GesturePath";
+import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
 let gesturePath = new GesturePath.GesturePath(100);
 try {
@@ -585,7 +585,7 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-import GesturePath from "@ohos.accessibility.GesturePath";
+import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
 let gesturePath = new GesturePath.GesturePath(100);
 try {
