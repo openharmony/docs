@@ -420,44 +420,44 @@ Enumerates mouse pointer styles.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-| Name                              | Value   | Description    |
-| -------------------------------- | ---- | ------ |
-| DEFAULT                          | 0    | Default     |
-| EAST                             | 1    | East arrow  |
-| WEST                             | 2    | West arrow  |
-| SOUTH                            | 3    | South arrow  |
-| NORTH                            | 4    | North arrow  |
-| WEST_EAST                        | 5    | West-east arrow |
-| NORTH_SOUTH                      | 6    | North-south arrow |
-| NORTH_EAST                       | 7    | North-east arrow |
-| NORTH_WEST                       | 8    | North-west arrow |
-| SOUTH_EAST                       | 9    | South-east arrow |
-| SOUTH_WEST                       | 10   | South-west arrow |
-| NORTH_EAST_SOUTH_WEST            | 11   | North-east and south-west adjustment|
-| NORTH_WEST_SOUTH_EAST            | 12   | North-west and south-east adjustment|
-| CROSS                            | 13   | Cross (accurate selection)  |
-| CURSOR_COPY                      | 14   | Copy cursor    |
-| CURSOR_FORBID                    | 15   | Forbid cursor   |
-| COLOR_SUCKER                     | 16   | Sucker    |
-| HAND_GRABBING                    | 17   | Grabbing hand  |
-| HAND_OPEN                        | 18   | Opening hand  |
-| HAND_POINTING                    | 19   | Hand-shaped pointer  |
-| HELP                             | 20   | Help   |
-| MOVE                             | 21   | Move    |
-| RESIZE_LEFT_RIGHT                | 22   | Left and right resizing|
-| RESIZE_UP_DOWN                   | 23   | Up and down resizing|
-| SCREENSHOT_CHOOSE                | 24   | Screenshot crosshair|
-| SCREENSHOT_CURSOR                | 25   | Screenshot cursor    |
-| TEXT_CURSOR                      | 26   | Text cursor  |
-| ZOOM_IN                          | 27   | Zoom in    |
-| ZOOM_OUT                         | 28   | Zoom out    |
-| MIDDLE_BTN_EAST                  | 29   | Scrolling east  |
-| MIDDLE_BTN_WEST                  | 30   | Scrolling west  |
-| MIDDLE_BTN_SOUTH                 | 31   | Scrolling south  |
-| MIDDLE_BTN_NORTH                 | 32   | Scrolling north  |
-| MIDDLE_BTN_NORTH_SOUTH           | 33   | Scrolling north-south |
-| MIDDLE_BTN_NORTH_EAST            | 34   | Scrolling north-east |
-| MIDDLE_BTN_NORTH_WEST            | 35   | Scrolling north-west |
-| MIDDLE_BTN_SOUTH_EAST            | 36   | Scrolling south-east |
-| MIDDLE_BTN_SOUTH_WEST            | 37   | Scrolling south-west |
-| MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | Moving as a cone in four directions|
+| Name                              | Value   | Description    |Legend|
+| -------------------------------- | ---- | ------ |------ |
+| DEFAULT                          | 0    | Default     |![Default.png](./figures/Default.png)|
+| EAST                             | 1    | East arrow  |![East.png](./figures/East.png)|
+| WEST                             | 2    | West arrow  |![West.png](./figures/West.png)|
+| SOUTH                            | 3    | South arrow  |![South.png](./figures/South.png)|
+| NORTH                            | 4    | North arrow  |![North.png](./figures/North.png)|
+| WEST_EAST                        | 5    | West-east arrow |![West_East.png](./figures/West_East.png)|
+| NORTH_SOUTH                      | 6    | North-south arrow |![North_South.png](./figures/North_South.png)|
+| NORTH_EAST                       | 7    | North-east arrow |![North_East.png](./figures/North_East.png)|
+| NORTH_WEST                       | 8    | North-west arrow |![North_West.png](./figures/North_West.png)|
+| SOUTH_EAST                       | 9    | South-east arrow |![South_East.png](./figures/South_East.png)|
+| SOUTH_WEST                       | 10   | South-west arrow |![South_West.png](./figures/South_West.png)|
+| NORTH_EAST_SOUTH_WEST            | 11   | North-east and south-west adjustment|![North_East_South_West.png](./figures/North_East_South_West.png)|
+| NORTH_WEST_SOUTH_EAST            | 12   | North-west and south-east adjustment|![North_West_South_East.png](./figures/North_West_South_East.png)|
+| CROSS                            | 13   | Cross (accurate selection)  |![Cross.png](./figures/Cross.png)|
+| CURSOR_COPY                      | 14   | Copy cursor    |![Copy.png](./figures/Copy.png)|
+| CURSOR_FORBID                    | 15   | Forbid cursor   |![Forbid.png](./figures/Forbid.png)|
+| COLOR_SUCKER                     | 16   | Sucker    |![Colorsucker.png](./figures/Colorsucker.png)|
+| HAND_GRABBING                    | 17   | Grabbing hand  |![Hand_Grabbing.png](./figures/Hand_Grabbing.png)|
+| HAND_OPEN                        | 18   | Opening hand  |![Hand_Open.png](./figures/Hand_Open.png)|
+| HAND_POINTING                    | 19   | Hand-shaped pointer  |![Hand_Poniting.png](./figures/Hand_Pointing.png)|
+| HELP                             | 20   | Help   |![Help.png](./figures/Help.png)|
+| MOVE                             | 21   | Move    |![Move.png](./figures/Move.png)|
+| RESIZE_LEFT_RIGHT                | 22   | Left-and-right resizing|![Resize_Left_Right.png](./figures/Resize_Left_Right.png)|
+| RESIZE_UP_DOWN                   | 23   | Up-and-down resizing|![Resize_Up_Down.png](./figures/Resize_Up_Down.png)|
+| SCREENSHOT_CHOOSE                | 24   | Screenshot crosshair|![Screenshot_Cross.png](./figures/Screenshot_Cross.png)|
+| SCREENSHOT_CURSOR                | 25   | Screenshot cursor    |![Screenshot_Cursor.png](./figures/Screenshot_Cursor.png)|
+| TEXT_CURSOR                      | 26   | Text cursor  |![Text_Cursor.png](./figures/Text_Cursor.png)|
+| ZOOM_IN                          | 27   | Zoom in    |![Zoom_In.png](./figures/Zoom_In.png)|
+| ZOOM_OUT                         | 28   | Zoom out    |![Zoom_Out.png](./figures/Zoom_Out.png)|
+| MIDDLE_BTN_EAST                  | 29   | Scrolling east  |![MID_Btn_East.png](./figures/MID_Btn_East.png)|
+| MIDDLE_BTN_WEST                  | 30   | Scrolling west  |![MID_Btn_West.png](./figures/MID_Btn_West.png)|
+| MIDDLE_BTN_SOUTH                 | 31   | Scrolling south  | ![MID_Btn_South.png](./figures/MID_Btn_South.png)            |
+| MIDDLE_BTN_NORTH                 | 32   | Scrolling north  |![MID_Btn_North.png](./figures/MID_Btn_North.png)|
+| MIDDLE_BTN_NORTH_SOUTH           | 33   | Scrolling north-south |![MID_Btn_North_South.png](./figures/MID_Btn_North_South.png)|
+| MIDDLE_BTN_NORTH_EAST            | 34   | Scrolling north-east |![MID_Btn_North_East.png](./figures/MID_Btn_North_East.png)|
+| MIDDLE_BTN_NORTH_WEST            | 35   | Scrolling north-west |![MID_Btn_North_West.png](./figures/MID_Btn_North_West.png)|
+| MIDDLE_BTN_SOUTH_EAST            | 36   | Scrolling south-east |![MID_Btn_South_East.png](./figures/MID_Btn_South_East.png)|
+| MIDDLE_BTN_SOUTH_WEST            | 37   | Scrolling south-west |![MID_Btn_South_West.png](./figures/MID_Btn_South_West.png)|
+| MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | Moving as a cone in four directions|![MID_Btn_North_South_West_East.png](./figures/MID_Btn_North_South_West_East.png)|
