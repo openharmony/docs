@@ -134,7 +134,7 @@ After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state,
 
 - Restore data.
 
-After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onSaveState(state, wantParams)** of **MainAbility** is called, and the saved data is in **parameters** of **want**.
+After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onCreate(want, launchParam)** of **MainAbility** is called, and the saved data is in **parameters** of **want**.
 
 ```ts
 storage: LocalStorage
