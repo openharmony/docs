@@ -36,12 +36,12 @@ Provides additional information required for dragging an item.
 | selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This attribute is valid only in the drag event of the **\<ListItem>** component.|
 | insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This attribute is valid only in the drag event of the **\<List>** component.|
 
-### DragEvent
+## DragEvent
 
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
-| getX() | number | X-coordinate of the item that is being dragged, in vp.|
-| getY() | number | Y-coordinate of the item that is being dragged, in vp.|
+| getX() | number | X-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
+| getY() | number | Y-coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 
 ## Example
 
