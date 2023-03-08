@@ -371,6 +371,10 @@ Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-pla
 | width<sup>9+</sup>                                  | number                                                 | 是   | 否   | 视频宽，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 | height<sup>9+</sup>                                 | number                                                 | 是   | 否   | 视频高，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 
+**说明：**
+
+请不要将同一个资源句柄（fd）分别传递给多个媒体播放器，会导致读取媒体文件时存在竞争关系。可以多次打开同一个媒体文件，获取多个资源句柄（fd），再分别设置给不同的媒体播放器。
+
 ### on('stateChange')<sup>9+</sup><a name = stateChange_on></a>
 
 on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReason) => void): void
