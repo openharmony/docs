@@ -1,4 +1,4 @@
-# @ohos.reminderAgentManager (Reminder Agent Management)
+# @ohos.reminderAgentManager (reminderAgentManager)
 
 The **reminderAgentManager** module provides APIs for publishing scheduled reminders through the reminder agent.
 
@@ -11,16 +11,14 @@ You can use the APIs to create scheduled reminders for countdown timers, calenda
 
 ## Modules to Import
 
-```ts
+```
 import reminderAgentManager from'@ohos.reminderAgentManager';
 ```
 
 
 ## reminderAgentManager.publishReminder
 
-```ts
-publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback<number>): void
-```
+publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
 Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
 
@@ -33,7 +31,7 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
-  | callback | AsyncCallback\<number\> | Yes| Callback used to return the published reminder's ID.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the published reminder's ID.|
 
 **Error codes**
 
@@ -45,12 +43,11 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 | 1700002    | The number of reminders exceeds the limit. |
 
 **Example**
-```ts
+```js
 let timer = {
     reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
     triggerTimeInSeconds: 10
 }
-
 try {
     reminderAgentManager.publishReminder(timer, (err, reminderId) => {
         if (err) {
@@ -67,9 +64,7 @@ try {
 
 ## reminderAgentManager.publishReminder
 
-```ts
-publishReminder(reminderReq: ReminderRequest): Promise<number>
-```
+publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
 
@@ -85,7 +80,7 @@ Publishes a reminder through the reminder agent. This API uses a promise to retu
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise\<number\> | Promise used to return the published reminder's ID.|
+  | Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
 
 **Error codes**
 
@@ -97,12 +92,11 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 | 1700002    | The number of reminders exceeds the limit. |
 
 **Example**
-```ts
+```js
 let timer = {
     reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
     triggerTimeInSeconds: 10
 }
-
 try {
     reminderAgentManager.publishReminder(timer).then((reminderId) => {
         console.log("promise, reminderId = " + reminderId);
@@ -117,9 +111,7 @@ try {
 
 ## reminderAgentManager.cancelReminder
 
-```ts
-cancelReminder(reminderId: number, callback: AsyncCallback<void>): void
-```
+cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Cancels the reminder with the specified ID. This API uses an asynchronous callback to return the cancellation result.
 
@@ -130,7 +122,7 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderId | number | Yes| ID of the reminder to cancel.|
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Error codes**
 
@@ -143,7 +135,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 
-```ts
+```js
 try {
     reminderAgentManager.cancelReminder(1, (err, data) => {
         if (err) {
@@ -160,9 +152,7 @@ try {
 
 ## reminderAgentManager.cancelReminder
 
-```ts
-cancelReminder(reminderId: number): Promise<void>
-```
+cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 Cancels the reminder with the specified ID. This API uses a promise to return the cancellation result.
 
@@ -178,7 +168,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\>	 | Promise used to return the result.|
+| Promise&lt;void&gt;	 | Promise used to return the result.|
 
 **Error codes**
 
@@ -191,7 +181,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 
-```ts
+```js
 try {
     reminderAgentManager.cancelReminder(1).then(() => {
         console.log("cancelReminder promise");
@@ -203,12 +193,10 @@ try {
 };
 ```
 
+
 ## reminderAgentManager.getValidReminders
 
-```ts
-getValidReminders(callback: AsyncCallback<Array<ReminderRequest>>): void
-
-```
+getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the reminders.
 
@@ -218,7 +206,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)\>\> | Yes| Asynchronous callback used to return an array of all valid reminders set by the current application.|
+| callback | AsyncCallback&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | Yes| Asynchronous callback used to return an array of all valid reminders set by the current application.|
 
 **Error codes**
 
@@ -230,7 +218,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 
-```ts
+```js
 try {
     reminderAgentManager.getValidReminders((err, reminders) => {
         if (err) {
@@ -265,11 +253,10 @@ try {
 };
 ```
 
+
 ## reminderAgentManager.getValidReminders
 
-```ts
-getValidReminders(): Promise<Array<ReminderRequest>>
-```
+getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 Obtains all valid (not yet expired) reminders set by the current application. This API uses a promise to return the reminders.
 
@@ -279,7 +266,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)\>\> | Promise used to return an array of all valid reminders set by the current application.|
+| Promise&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | Promise used to return an array of all valid reminders set by the current application.|
 
 **Error codes**
 
@@ -291,7 +278,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 
-```ts
+```js
 try {
     reminderAgentManager.getValidReminders().then((reminders) => {
         console.log("promise, getValidReminders length = " + reminders.length);
@@ -327,9 +314,7 @@ try {
 
 ## reminderAgentManager.cancelAllReminders
 
-```ts
-cancelAllReminders(callback: AsyncCallback<void>): void
-```
+cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 Cancels all reminders set by the current application. This API uses an asynchronous callback to return the cancellation result.
 
@@ -339,7 +324,7 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Error codes**
 
@@ -351,7 +336,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 
-```ts
+```js
 try {
     reminderAgentManager.cancelAllReminders((err, data) =>{
         if (err) {
@@ -368,9 +353,7 @@ try {
 
 ## reminderAgentManager.cancelAllReminders
 
-```ts
-cancelAllReminders(): Promise<void>
-```
+cancelAllReminders(): Promise&lt;void&gt;
 
 Cancels all reminders set by the current application. This API uses a promise to return the cancellation result.
 
@@ -380,7 +363,7 @@ Cancels all reminders set by the current application. This API uses a promise to
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -392,7 +375,7 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 
-```ts
+```js
 try {
     reminderAgentManager.cancelAllReminders().then(() => {
         console.log("cancelAllReminders promise")
@@ -407,9 +390,7 @@ try {
 
 ## reminderAgentManager.addNotificationSlot
 
-```ts
-addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback<void>): void
-```
+addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void
 
 Adds a notification slot. This API uses an asynchronous callback to return the result.
 
@@ -420,11 +401,11 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
 
-```ts
+```js
 import notification from '@ohos.notification'
 
 let mySlot = {
@@ -446,9 +427,7 @@ try {
 
 ## reminderAgentManager.addNotificationSlot
 
-```ts
-addNotificationSlot(slot: NotificationSlot): Promise<void>
-```
+addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 Adds a notification slot. This API uses a promise to return the result.
 
@@ -464,11 +443,11 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
-```ts
+```js
 import notification from '@ohos.notification'
 
 let mySlot = {
@@ -488,9 +467,7 @@ try {
 
 ## reminderAgentManager.removeNotificationSlot
 
-```ts
-removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void
-```
+removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void
 
 Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
@@ -501,11 +478,11 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
-| callback | AsyncCallback\<void\> | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
 
-```ts
+```js
 import notification from '@ohos.notification'
 
 try {
@@ -524,9 +501,7 @@ try {
 
 ## reminderAgentManager.removeNotificationSlot
 
-```ts
-removeNotificationSlot(slotType: notification.SlotType): Promise<void>
-```
+removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
 Removes a notification slot of a specified type. This API uses a promise to return the result.
 
@@ -542,11 +517,11 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
-```ts
+```js
 import notification from '@ohos.notification'
 
 try {
@@ -655,8 +630,8 @@ Defines a reminder for a calendar event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | dateTime | [LocalDateTime](#localdatetime) | Yes| Reminder time.|
-| repeatMonths | Array\<number\> | No| Month in which the reminder repeats.|
-| repeatDays | Array\<number\> | No| Date on which the reminder repeats.|
+| repeatMonths | Array&lt;number&gt; | No| Month in which the reminder repeats.|
+| repeatDays | Array&lt;number&gt; | No| Date on which the reminder repeats.|
 
 
 ## ReminderRequestAlarm
@@ -671,7 +646,7 @@ Defines a reminder for an alarm.
 | -------- | -------- | -------- | -------- |
 | hour | number | Yes| Hour portion of the reminder time.|
 | minute | number | Yes| Minute portion of the reminder time.|
-| daysOfWeek | Array\<number\> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
+| daysOfWeek | Array&lt;number&gt; | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
 
 
 ## ReminderRequestTimer
@@ -696,8 +671,8 @@ Sets the time information for a calendar reminder.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | year | number | Yes| Year.|
-| month | number | Yes| Month.|
-| day | number | Yes| Date.|
-| hour | number | Yes| Hour.|
-| minute | number | Yes| Minute.|
-| second | number | No| Second.|
+| month | number | Yes| Month. The value ranges from 1 to 12.|
+| day | number | Yes| Day. The value ranges from 1 to 31.|
+| hour | number | Yes| Hour. The value ranges from 0 to 23.|
+| minute | number | Yes| Minute. The value ranges from 0 to 59.|
+| second | number | No| Second. The value ranges from 0 to 59.|
