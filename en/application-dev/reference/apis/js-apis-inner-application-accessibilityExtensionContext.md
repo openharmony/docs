@@ -703,10 +703,10 @@ try {
         console.log('get attribute value by name success');
         attributeValue = data;
     }).catch((err) => {
-        console.log('failed to get attribute value, because ${JSON.stringify(err)}');
+        console.error('failed to get attribute value, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to get attribute value, because ${JSON.stringify(exception)}');
+    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
 ## AccessibilityElement.attributeValue
@@ -749,7 +749,7 @@ try {
         console.info('get attribute value success');
     });
 } catch (exception) {
-    console.log('failed to get attribute value, because ${JSON.stringify(exception)}');
+    console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
 ## actionNames
@@ -775,7 +775,7 @@ rootElement.actionNames().then((data) => {
     console.log('get action names success');
     actionNames = data;
 }).catch((err) => {
-    console.log('failed to get action names because ${JSON.stringify(err)}');
+    console.error('failed to get action names because ${JSON.stringify(err)}');
 });
 ```
 ## actionNames
@@ -843,10 +843,10 @@ try {
     rootElement.performAction('action').then((data) => {
         console.info('perform action success');
     }).catch((err) => {
-        console.log('failed to perform action, because ${JSON.stringify(err)}');
+        console.error('failed to perform action, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to perform action, because ${JSON.stringify(exception)}');
+    console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
 ## performAction
@@ -885,7 +885,7 @@ try {
         console.info('perform action success');
     });
 } catch (exception) {
-    console.log('failed to perform action, because ${JSON.stringify(exception)}');
+    console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
 ## performAction
@@ -929,7 +929,7 @@ try {
         console.info('perform action success');
     });
 } catch (exception) {
-    console.log('failed to perform action, because ${JSON.stringify(exception)}');
+    console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('content')
@@ -965,10 +965,10 @@ try {
         elements = data;
         console.log('find element success');
     }).catch((err) => {
-        console.log('failed to find element, because ${JSON.stringify(err)}');
+        console.error('failed to find element, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to find element, because ${JSON.stringify(exception)}');
+    console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('content')
@@ -1004,7 +1004,7 @@ try {
         console.info('find element success');
     });
 } catch (exception) {
-    console.log('failed to find element, because ${JSON.stringify(exception)}');
+    console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusType')
@@ -1040,10 +1040,10 @@ try {
         element = data;
         console.log('find element success');
     }).catch((err) => {
-        console.log('failed to find element, because ${JSON.stringify(err)}');
+        console.error('failed to find element, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to find element, because ${JSON.stringify(exception)}');
+    console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusType')
@@ -1079,7 +1079,7 @@ try {
         console.info('find element success');
     });
 } catch (exception) {
-    console.log('failed to find element, because ${JSON.stringify(exception)}');
+    console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusDirection')
@@ -1115,10 +1115,10 @@ try {
         element = data;
         console.log('find element success');
     }).catch((err) => {
-        console.log('failed to find element, because ${JSON.stringify(err)}');
+        console.error('failed to find element, because ${JSON.stringify(err)}');
     });
 } catch (exception) {
-    console.log('failed to find element, because ${JSON.stringify(exception)}');
+    console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
 ## findElement('focusDirection')
@@ -1154,6 +1154,6 @@ try {
         console.info('find element success');
     });
 } catch (exception) {
-    console.log('failed to find element, because ${JSON.stringify(exception)}');
+    console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
