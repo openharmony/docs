@@ -62,6 +62,8 @@
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
           - [DataShareExtensionAbility](application-models/datashareextensionability.md)
           - [FormExtensionAbility (Widget)](application-models/widget-development-stage.md)
+          - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
+          - [WindowExtensionAbility](application-models/windowextensionability.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
         - Want
@@ -297,10 +299,10 @@
       - [Audio Routing and Device Management Development](media/audio-routing-manager.md)
       - [AVPlayer Development (Recommended)](media/avplayer-playback.md)
       - [AVRecorder Development (Recommended)](media/avrecorder.md)
-      - [Audio Playback Development](media/audio-playback.md)
-      - [Audio Recording Development](media/audio-recorder.md)
-      - [Video Playback Development](media/video-playback.md)
-      - [Video Recording Development](media/video-recorder.md)
+      - [Audio Playback Development (To Be Deprecated)](media/audio-playback.md)
+      - [Audio Recording Development (To Be Deprecated)](media/audio-recorder.md)
+      - [Video Playback Development (To Be Deprecated)](media/video-playback.md)
+      - [Video Recording Development (To Be Deprecated)](media/video-recorder.md)
     - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - [AVSession Development](media/avsession-guidelines.md)
@@ -887,6 +889,7 @@
         - [abilityInfo](reference/apis/js-apis-bundleManager-abilityInfo.md)
         - [applicationInfo](reference/apis/js-apis-bundleManager-applicationInfo.md)
         - [bundleInfo](reference/apis/js-apis-bundleManager-bundleInfo.md)
+        - [BundlePackInfo](reference/apis/js-apis-bundleManager-BundlePackInfo.md)
         - [dispatchInfo](reference/apis/js-apis-bundleManager-dispatchInfo.md)
         - [elementName](reference/apis/js-apis-bundleManager-elementName.md)
         - [extensionAbilityInfo](reference/apis/js-apis-bundleManager-extensionAbilityInfo.md)
@@ -1175,6 +1178,7 @@
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
     - Resource Scheduling
       - [backgroundTaskManager Error Codes](reference/errorcodes/errorcode-backgroundTaskMgr.md)
+      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager Error Codes](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler Error Codes](reference/errorcodes/errorcode-workScheduler.md)
     - Security
@@ -1223,7 +1227,6 @@
       - [System Parameter Error Codes](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB Error Codes](reference/errorcodes/errorcode-usb.md)
       - [Update Error Codes](reference/errorcodes/errorcode-update.md)
-      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
     - Customization Management
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Language Base Class Library
