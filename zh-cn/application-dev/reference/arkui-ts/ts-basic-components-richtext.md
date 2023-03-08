@@ -88,12 +88,10 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
-        .width(80)
-        .height(80)
+        .width(400)
+        .height(400)
         .margin(20)
-    }
-    Row() {
-       RichText('layoutWeight(1)')
+      RichText('layoutWeight(1)')
         .onStart(() => {
           console.info('RichText onStart');
         })
@@ -101,7 +99,8 @@ struct RichTextExample {
           console.info('RichText onComplete');
         })
         .size({ width: '30%', height: 110 })
-        .layoutWeight(2)
+        .backgroundColor(Color.Blue)
+        .layoutWeight(1)
 
       RichText('layoutWeight(2)')
         .onStart(() => {
@@ -111,6 +110,7 @@ struct RichTextExample {
           console.info('RichText onComplete');
         })
         .size({ width: '30%', height: 110 })
+        .backgroundColor(Color.Yellow)
         .layoutWeight(2)
     }
   }
