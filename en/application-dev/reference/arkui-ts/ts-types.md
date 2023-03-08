@@ -128,6 +128,14 @@ The **ResourceColor** type is used to describe the color types of resources.
 | string                                   | Color in RGB or RGBA notation.                             |
 | [Resource](#resource)                    | Color referenced from system or application resources.|
 
+## ColoringStrategy
+
+The **ColoringStrategy** type is used to describe the foreground colors.
+
+| Name       | Description     |
+| ---------  | ------- |
+| Invert  | Inverse of the component background color.|
+
 ## LengthConstrain
 
 The **LengthConstrain** type is used to describe the maximum and minimum lengths of a component.
