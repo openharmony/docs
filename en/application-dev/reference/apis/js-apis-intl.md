@@ -1,6 +1,6 @@
 # @ohos.intl (Internationalization)
 
-The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402.
+ The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402.
 The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the intl module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
@@ -48,9 +48,9 @@ Creates a **Locale** object.
 **Example**
   ```js
   // The default constructor uses the current system locale to create a Locale object.
-  let locale = new Intl.Locale()
+  let locale = new Intl.Locale();
   // Return the current system locale.
-  let localeID = locale.toString()
+  let localeID = locale.toString();
   ```
 
 
@@ -72,8 +72,8 @@ Creates a **Locale** object.
 **Example**
   ```js
   // Create a Locale object named zh-CN.
-  let locale = new Intl.Locale("zh-CN")
-  let localeID = locale.toString() // localeID = "zh-CN"
+  let locale = new Intl.Locale("zh-CN");
+  let localeID = locale.toString(); // localeID = "zh-CN"
   ```
 
 
@@ -429,7 +429,7 @@ Obtains the options of the **NumberFormat** object.
   // Obtain the options of the NumberFormat object.
   let options = numfmt.resolvedOptions();
   let style = options.style; // style = decimal
-  let notation = options.notation // notation = scientific
+  let notation = options.notation; // notation = scientific
   ```
 
 
@@ -552,7 +552,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
   // Obtain the options of the Collator object.
   let options = collator.resolvedOptions();
   let usage = options.usage; // usage = "sort"
-  let ignorePunctuation = options.ignorePunctuation // ignorePunctuation = true
+  let ignorePunctuation = options.ignorePunctuation; // ignorePunctuation = true
   ```
 
 
@@ -631,7 +631,7 @@ Obtains a string that represents the singular-plural type of the specified numbe
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| string | Singular-plural type. The value can be any of the following: **one**, **two**, **few**, **many**, **others**.|
+| string | Singular-plural type. The value can be any of the following: **zero**, **one**, **two**, **few**, **many**, **others**.|
 
 **Example**
   ```js

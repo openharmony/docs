@@ -15,8 +15,8 @@ import resourceManager from '@ohos.resourceManager';
 
 ## Instruction
 
-Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model.
-For details about how to reference **context** in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model. For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
+For details about how to reference context in the stage model, see [Context in the Stage Model](../..//application-models/application-context-stage.md).
 
 ```ts
 import Ability from '@ohos.application.Ability';
@@ -60,6 +60,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
       });
   });
   ```
+> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 
 ## resourceManager.getResourceManager
@@ -116,6 +117,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
       console.log("error is " + error);
   });
   ```
+> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 
 ## resourceManager.getResourceManager
@@ -1767,7 +1769,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 

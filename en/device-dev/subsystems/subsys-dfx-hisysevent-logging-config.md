@@ -30,18 +30,18 @@ Understanding the following concepts would be helpful for you in configuring HiS
 
   | Field| Description|
   | ----- | ----- |
-  | type | Indicates the type of the event. This field is mandatory. <br><br>Value:<ul><li>**FAULT**: fault </li><li>**STATISTIC**: statistics </li><li>**SECURITY**: security </li><li>**BEHAVIOR**: user behavior</li></ul> |
-  | level | Indicates the level of the event. This field is mandatory. <br><br>Value: <ul><li>**CRITICAL**: critical </li><li>**MINOR**: minor</li></ul> |
-  | tag | Indicates the tag of the event. This field is mandatory. <br><br>Rule:<ul><li>You can define a maximum of five tags separated with a space. </li><li>A single tag can contain a maximum of 16 characters, including a to z, A to Z, and 0 to 9.</li></ul>|
-  | desc | Describes the event name. This field is mandatory. <br><br>Rule:<ul><li>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (&#95;).</li></ul>|
+  | type | Indicates the type of the event. This field is mandatory.<br/>Value:<br/>- **FAULT**: fault<br/>- **STATISTIC**: statistics<br/>- **SECURITY**: security<br/>- **BEHAVIOR**: user behavior |
+  | level | Indicates the level of the event. This field is mandatory.<br/>Value:<br/>- **CRITICAL**: critical<br/>- **MINOR**: minor |
+  | tag | Indicates the tag of the event. This field is mandatory.<br/>Rule:<br/>- You can define a maximum of five tags separated with a space.<br/>- A single tag can contain a maximum of 16 characters, including a to z, A to Z, and 0 to 9. |
+  | desc | Describes the event name. This field is mandatory.<br/>Rule:<br/>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (&#95;).|
 
   **Table 2** Description of custom parameters
 
   | Field| Description|
   | ----- | ----- |
-  | type | Indicates the type of a parameter. This field is mandatory. <br><br>Value: <ul><li>BOOL</li><li>UINT8</li><li>UINT16</li><li>INT32</li><li>UINT32</li><li>UINT64</li><li>FLOAT</li><li>DOUBLE</li><li>STRING</li></ul>|
-  | arrsize | Specifies the length of the parameter of the array type. This field is optional. <br><br>Value range: <ul><li>1-100</li></ul>|
-  | desc | Describes the parameter. This field is mandatory. <br><br>Rule:<ul><li>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (&#95;).</li></ul>|
+  | type | Indicates the type of a parameter. This field is mandatory.<br/>Value:<br/>- BOOL<br/>- INT8<br/>- UINT8<br/>- INT16<br/>- UINT16<br/>- INT32<br/>- UINT32<br/>- INT64<br/>- UINT64<br/>- FLOAT<br/>- DOUBLE<br/>- STRING |
+  | arrsize | Specifies the length of the parameter of the array type. This field is optional.<br/>Value range:<br/>1-100 |
+  | desc | Describes the parameter. This field is mandatory.<br/>Rule:<br/>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (&#95;). |
 
 ## Writing a YAML File<a name="section123181432175113"></a>
 
