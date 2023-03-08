@@ -82,24 +82,32 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import worker from '@ohos.worker';
 // Create a Worker instance.
 
-// In the FA model, the worker script directory and pages directory are at the same level.
+// In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const workerFAModel01 = new worker.ThreadWorker("workers/worker.js", {name:"first worker in FA model"});
-// In the FA model, the worker script directory and pages directory are at different levels.
+// In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
 const workerFAModel02 = new worker.ThreadWorker("../workers/worker.js");
 
-// In the stage model, the worker script directory and pages directory are at the same level.
+// In the stage model, the workers directory is at the same level as the pages directory in the entry module.
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the worker script directory and pages directory are at different levels.
+// In the stage model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
 const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
 
 // For the script URL "entry/ets/workers/worker.ts" in the stage model:
-// entry is the value of the name attribute under module in the module.json5 file.
-// ets indicates the programming language in use.
+// entry is the value of the name attribute under module in the module.json5 file, and ets indicates the programming language in use.
+// The script URL is related to the level of the workers directory where the worker file is located and is irrelevant to the file where the new worker is located.
+
+// In the esmodule build scenario of the stage model, the script URL specification @bundle:bundlename/entryname/ets/workerdir/workerfile is added.
+// @bundle is a fixed label, bundlename indicates the bundle name, entryname indicates the module name, and ets indicates the programming language in use.
+// workerdir indicates the directory where the worker file is located, and workerfile indicates the worker file name.
+// In the stage model, the workers directory is at the same level as the pages directory in the entry module, and bundlename is com.example.workerdemo.
+const workerStageModel03 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
+// In the stage model, the workers directory is at the same level as the parent directory of the pages directory in the entry module, and bundlename is com.example.workerdemo.
+const workerStageModel04 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
-Depending on whether the worker script directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
+Depending on whether the **workers** directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
 
-(1) The worker script directory and **pages** directory are at the same level.
+(1) The **workers** directory and **pages** directory are at the same level.
 
 In the FA model:
 
@@ -125,7 +133,7 @@ In the stage model:
   }
 ```
 
-(2) The worker script directory and **pages** directory are at different levels.
+(2) The **workers** directory and **pages** directory are at different levels.
 
 In the FA model:
 
@@ -178,7 +186,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.postMessage("hello world");
 
@@ -213,7 +221,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.postMessage("hello world");
 
@@ -248,7 +256,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -282,7 +290,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -316,7 +324,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 // Use on, once, or addEventListener to add a listener for the "alert" event, and use off to remove the listener.
 workerInstance.off("alert");
 ```
@@ -341,7 +349,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.terminate();
 ```
 
@@ -372,7 +380,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onexit = function(e) {
     console.log("onexit");
 }
@@ -412,7 +420,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onerror = function(e) {
     console.log("onerror");
 }
@@ -445,7 +453,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onmessage = function(e) {
     // e: MessageEvents. The usage is as follows:
     // let data = e.data;
@@ -480,7 +488,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.onmessageerror= function(e) {
     console.log("onmessageerror");
 }
@@ -513,7 +521,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -546,7 +554,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -585,173 +593,16 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
-// Usage 1:
-workerInstance.on("alert_on", (e)=>{
-    console.log("alert listener callback");
-})
-workerInstance.once("alert_once", (e)=>{
-    console.log("alert listener callback");
-})
-workerInstance.addEventListener("alert_add", (e)=>{
-    console.log("alert listener callback");
-})
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
-// The event listener created by once is removed after being executed once.
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is not supported yet.
-// The event listener created by on will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will be always valid and will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-
-// Usage 2:
-// The event type can be customized, and the special types "message", "messageerror", and "error" exist.
-// When type = "message", the event handler defined by onmessage will also be executed.
-// When type = "messageerror", the event handler defined by onmessageerror will also be executed.
-// When type = "error", the event handler defined by onerror will also be executed.
-// removeEventListener or off can be used to remove an event listener that is created by addEventListener, on, or once.
-
-workerInstance.addEventListener("message", (e)=>{
-    console.log("message listener callback");
-})
-workerInstance.onmessage = function(e) {
-    console.log("onmessage : message listener callback");
-}
-// When dispatchEvent is called to distribute the "message" event, the callback passed in addEventListener and onmessage will be invoked.
-workerInstance.dispatchEvent({type:"message", timeStamp:0});
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
 ```
 
-
-### removeAllListener<sup>9+</sup>
-
-removeAllListener(): void
-
-Removes all event listeners for the worker thread.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                     |
-| -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
-
-**Example**
+The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.addEventListener("alert", (e)=>{
-    console.log("alert listener callback");
-})
-workerInstance.removeAllListener();
-```
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
-## WorkerEventTarget<sup>9+</sup>
-
-### addEventListener<sup>9+</sup>
-
-addEventListener(type: string, listener: WorkerEventListener): void
-
-Adds an event listener for the worker thread. This API provides the same functionality as [on<sup>9+</sup>](#on9).
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name  | Type                                        | Mandatory| Description            |
-| -------- | -------------------------------------------- | ---- | ---------------- |
-| type     | string                                       | Yes  | Type of the event to listen for.|
-| listener | [WorkerEventListener](#workereventlistener9) | Yes  | Callback to invoke when an event of the specified type occurs.    |
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                                  |
-| -------- | -------------------------------------------- |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
-
-**Example**
-
-```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.addEventListener("alert", (e)=>{
-    console.log("alert listener callback");
-})
-```
-
-
-### removeEventListener<sup>9+</sup>
-
-removeEventListener(type: string, callback?: WorkerEventListener): void
-
-Removes an event listener for the worker thread. This API provides the same functionality as [off<sup>9+</sup>](#off9).
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name  | Type                                        | Mandatory| Description                        |
-| -------- | -------------------------------------------- | ---- | ---------------------------- |
-| type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. |
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                     |
-| -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
-
-**Example**
-
-```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
-workerInstance.addEventListener("alert", (e)=>{
-    console.log("alert listener callback");
-})
-workerInstance.removeEventListener("alert");
-```
-
-
-### dispatchEvent<sup>9+</sup>
-
-dispatchEvent(event: Event): boolean
-
-Dispatches the event defined for the worker thread.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type           | Mandatory| Description            |
-| ------ | --------------- | ---- | ---------------- |
-| event  | [Event](#event) | Yes  | Event to dispatch.|
-
-**Return value**
-
-| Type   | Description                           |
-| ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
-
-| ID| Error Message                     |
-| -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
-
-**Example**
-
-```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
 // Usage 1:
 workerInstance.on("alert_on", (e)=>{
     console.log("alert listener callback");
@@ -809,7 +660,182 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.removeAllListener();
+```
+
+## WorkerEventTarget<sup>9+</sup>
+
+### addEventListener<sup>9+</sup>
+
+addEventListener(type: string, listener: WorkerEventListener): void
+
+Adds an event listener for the worker thread. This API provides the same functionality as [on<sup>9+</sup>](#on9).
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description            |
+| -------- | -------------------------------------------- | ---- | ---------------- |
+| type     | string                                       | Yes  | Type of the event to listen for.|
+| listener | [WorkerEventListener](#workereventlistener9) | Yes  | Callback to invoke when an event of the specified type occurs.    |
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                  |
+| -------- | -------------------------------------------- |
+| 10200004 | Worker instance is not running.              |
+| 10200005 | The invoked API is not supported in workers. |
+
+**Example**
+
+```js
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
+```
+
+
+### removeEventListener<sup>9+</sup>
+
+removeEventListener(type: string, callback?: WorkerEventListener): void
+
+Removes an event listener for the worker thread. This API provides the same functionality as [off<sup>9+</sup>](#off9).
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                        |
+| -------- | -------------------------------------------- | ---- | ---------------------------- |
+| type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
+| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                     |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
+**Example**
+
+```js
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+workerInstance.addEventListener("alert", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.removeEventListener("alert");
+```
+
+
+### dispatchEvent<sup>9+</sup>
+
+dispatchEvent(event: Event): boolean
+
+Dispatches the event defined for the worker thread.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type           | Mandatory| Description            |
+| ------ | --------------- | ---- | ---------------- |
+| event  | [Event](#event) | Yes  | Event to dispatch.|
+
+**Return value**
+
+| Type   | Description                           |
+| ------- | ------------------------------- |
+| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                     |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
+**Example**
+
+```js
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
+```
+
+The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
+
+```js
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+
+// Usage 1:
+workerInstance.on("alert_on", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.once("alert_once", (e)=>{
+    console.log("alert listener callback");
+})
+workerInstance.addEventListener("alert_add", (e)=>{
+    console.log("alert listener callback");
+})
+
+// The event listener created by once is removed after being executed once.
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is not supported yet.
+// The event listener created by on will not be proactively deleted.
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+// The event listener created by addEventListener will be always valid and will not be proactively deleted.
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+
+// Usage 2:
+// The event type can be customized, and the special types "message", "messageerror", and "error" exist.
+// When type = "message", the event handler defined by onmessage will also be executed.
+// When type = "messageerror", the event handler defined by onmessageerror will also be executed.
+// When type = "error", the event handler defined by onerror will also be executed.
+// removeEventListener or off can be used to remove an event listener that is created by addEventListener, on, or once.
+
+workerInstance.addEventListener("message", (e)=>{
+    console.log("message listener callback");
+})
+workerInstance.onmessage = function(e) {
+    console.log("onmessage : message listener callback");
+}
+// When dispatchEvent is called to distribute the "message" event, the callback passed in addEventListener and onmessage will be invoked.
+workerInstance.dispatchEvent({type:"message", timeStamp:0});
+```
+
+
+### removeAllListener<sup>9+</sup>
+
+removeAllListener(): void
+
+Removes all event listeners for the worker thread.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                     |
+| -------- | ------------------------------- |
+| 10200004 | Worker instance is not running. |
+
+**Example**
+
+```js
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -850,7 +876,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
@@ -859,7 +885,7 @@ workerInstance.onmessage = function(e) {
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e){
@@ -898,7 +924,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
     // let data = e.data;
@@ -907,7 +933,7 @@ workerInstance.onmessage = function(e) {
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e){
@@ -938,11 +964,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e) {
@@ -980,12 +1006,12 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
 workerPort.onmessage = function(e) {
@@ -1023,11 +1049,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.workerPort;
 parentPort.onmessageerror = function(e) {
@@ -1068,7 +1094,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-const workerInstance = new worker.ThreadWorker("workers/worker.js");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1108,11 +1134,11 @@ Defines the event handler to be called when an exception occurs during worker ex
 ```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.ThreadWorker("workers/worker.js")
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
 
 ```js
-// worker.js
+// worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort
 workerPort.onerror = function(e){
@@ -1168,23 +1194,23 @@ A constructor used to create a **Worker** instance.
 import worker from '@ohos.worker';
 // Create a Worker instance.
 
-// In the FA model, the worker script directory and pages directory are at the same level.
+// In the FA model, the workers directory is at the same level as the pages directory.
 const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker in FA model"});
-// In the FA model, the worker script directory and pages directory are at different levels.
+// In the FA model, the workers directory is at the same level as the parent directory of the pages directory.
 const workerFAModel02 = new worker.Worker("../workers/worker.js");
 
-// In the stage model, the worker script directory and pages directory are at the same level.
+// In the stage model, the workers directory is at the same level as the pages directory.
 const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the worker script directory and pages directory are at different levels.
+// In the stage model, the workers directory is at the same level as the child directory of the pages directory.
 const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
 
 // For the script URL "entry/ets/workers/worker.ts" in the stage model:
 // entry is the value of the name attribute under module in the module.json5 file.
 // ets indicates the programming language in use.
 ```
-Depending on whether the worker script directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
+Depending on whether the **workers** directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
 
-(1) The worker script directory and **pages** directory are at the same level.
+(1) The **workers** directory and **pages** directory are at the same level.
 
 In the FA model:
 
@@ -1207,7 +1233,7 @@ In the stage model:
     }
   }
 ```
-(2) The worker script directory and **pages** directory are at different levels.
+(2) The **workers** directory and **pages** directory are at different levels.
 
 In the FA model:
 ```json
@@ -1590,6 +1616,14 @@ Dispatches the event defined for the worker thread.
 | boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
 
 **Example**
+
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
+```
+
+The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
@@ -2056,7 +2090,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 ### FA Model
 
 ```js
-// main.js (The following assumes that the worker script directory and pages directory are at the same level.)
+// main.js (The following assumes that the workers directory and pages directory are at the same level.)
 import worker from '@ohos.worker';
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
@@ -2121,7 +2155,7 @@ Configuration of the **build-profile.json5** file:
 ```
 ### Stage Model
 ```js
-// main.js (The following assumes that the worker script directory and pages directory are at different levels.)
+// main.js (The following assumes that the workers directory and pages directory are at different levels.)
 import worker from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
