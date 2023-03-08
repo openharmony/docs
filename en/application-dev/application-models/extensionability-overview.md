@@ -9,7 +9,7 @@ An [ExtensionAbilityType](../reference/apis/js-apis-bundleManager.md#extensionab
 
 - [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md): ExtensionAbility component of the form type, which provides APIs related to widgets.
 
-- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-resourceschedule-workScheduler.md): ExtensionAbility component of the work_scheduler type, which provides callbacks for Work Scheduler tasks.
+- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md): ExtensionAbility component of the work_scheduler type, which provides callbacks for Work Scheduler tasks.
 
 - [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md): ExtensionAbility component of the input_method type, which provides an input method framework that can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
 
@@ -21,7 +21,7 @@ An [ExtensionAbilityType](../reference/apis/js-apis-bundleManager.md#extensionab
 
 - [StaticSubscriberExtensionAbility](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md): ExtensionAbility component of the static_subscriber type, which provides APIs for static broadcast.
 
-- [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md): ExtensionAbility component of the window type, which allows system applications to display UIs of other applications.
+- [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md): ExtensionAbility component of the window type, which allows a system application to be embedded in and displayed over another application.
 
 - [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md): ExtensionAbility component of the enterprise_admin type, which provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.
 
