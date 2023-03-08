@@ -22,8 +22,8 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | ------------ | ---------- | ---- | -------------------- |
 | result        | number | 是   | 认证结果。       |
 | token        | Uint8Array | 否   | 用户身份认证通过的凭证。 |
-| remainAttempts  | number     | 否   | 剩余的认证操作次数。 |
-| lockoutDuration | number     | 否   | 认证操作的冻结时间。 |
+| remainAttempts  | number     | 否   | 剩余的认证尝试次数。 |
+| lockoutDuration | number     | 否   | 认证操作的锁定时长，时间单位为毫秒ms。 |
 
 ## TipInfo<sup>9+</sup>
 
