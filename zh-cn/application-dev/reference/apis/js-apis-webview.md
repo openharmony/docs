@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-提供web控制能力。
+@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供具有网页显示能力。
 
 > **说明：**
 >
