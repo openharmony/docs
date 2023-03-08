@@ -108,10 +108,10 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type|  Mandatory| Description                                                        |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
-| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or ARGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
 
@@ -164,7 +164,7 @@ Describes the callback for a single system bar.
 | type            | [WindowType](#windowtype7) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed. The value **true** means that the system bar is displayed, and **false** means the opposite.|
 | region          | [Rect](#rect7)             | Yes  | No  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 | contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
@@ -3116,7 +3116,7 @@ Sets the background color for this window. In the stage model, this API must be 
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | Yes| Background color to set. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| color | string | Yes| Background color to set. The value is a hexadecimal RGB or ARGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 
 **Error codes**
 
@@ -4136,7 +4136,7 @@ Sets the shadow for the window borders.
 | Name    | Type   | Mandatory | Description                                                  |
 | ------- | ------ | --------- | ------------------------------------------------------------ |
 | radius  | number | Yes       | Radius of the shadow. The value is greater than or equal to 0. The value **0** means that the shadow is disabled for the window borders. |
-| color   | string | No        | Color of the shadow. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| color   | string | No        | Color of the shadow. The value is a hexadecimal RGB or ARGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 | offsetX | number | No        | Offset of the shadow along the x-axis, in pixels.            |
 | offsetY | number | No        | Offset of the shadow along the y-axis, in pixels.            |
 
@@ -5330,7 +5330,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| color    | string                    | Yes       | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| color    | string                    | Yes       | Background color to set. The value is a hexadecimal RGB or ARGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -5362,7 +5362,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name  | Type   | Mandatory | Description                                                  |
 | ----- | ------ | --------- | ------------------------------------------------------------ |
-| color | string | Yes       | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| color | string | Yes       | Background color to set. The value is a hexadecimal RGB or ARGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 
 **Return value**
 
@@ -5873,7 +5873,7 @@ Describes the lifecycle of a window stage.
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
 
 ### getMainWindow<sup>9+</sup>
 

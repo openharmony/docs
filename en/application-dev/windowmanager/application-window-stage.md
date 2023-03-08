@@ -49,7 +49,7 @@ The table below lists the common APIs used for application window development. F
 
 ## Setting the Main Window of an Application
 
-In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. 
+In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [module.json5 file](../quick-start/module-configuration-file.md#abilities).
 
 
 ### How to Develop
@@ -282,7 +282,7 @@ To create a better video watching and gaming experience, you can use the immersi
 
 ## Setting a Floating Window
 
-A floating window is created based on an existing task. It is always displayed in the foreground, even if the task used for creating the floating window is switched to the background. You can create a floating window and set its properties.
+A floating window is created based on an existing task. It is always displayed in the foreground, even if the task used for creating the floating window is switched to the background. Generally, the floating window is above all application windows. You can create a floating window and set its properties.
 
 
 ### How to Develop
