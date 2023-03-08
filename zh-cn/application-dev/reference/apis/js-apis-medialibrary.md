@@ -1,7 +1,10 @@
 # @ohos.multimedia.medialibrary (媒体库管理)
 
 > **说明：**
-> 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 从API Version 9开始废弃。保留至API Version 13版本。
+> - 部分功能变更为系统接口，仅供系统应用使用，请使用[@ohos.filemanagement.userFileManager](js-apis-userFileManager.md)相应接口替代。
+> - 媒体资源选择和保存功能仍开放给普通应用，请使用[@ohos.file.picker](js-apis-file-picker.md)相应接口替代。
 
 ## 导入模块
 ```js
@@ -130,17 +133,12 @@ async function example() {
             console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
             // 调用 getNextObject 接口获取下一个资源，直到最后一个
             for (let i = 1; i < count; i++) {
-                fetchFileResult.getNextObject((error, fileAsset) => {
-                    if (fileAsset == undefined) {
-                        console.error('get next object failed with error: ' + error);
-                        return;
-                    }
-                    console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-                })
+                let fileAsset = await fetchFileResult.getNextObject();
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
             }
+            // 释放FetchFileResult实例并使其失效。无法调用其他方法
+            fetchFileResult.close();
         });
-        // 释放FetchFileResult实例并使其失效。无法调用其他方法
-        fetchFileResult.close();
     });
 }
 ```
@@ -198,18 +196,15 @@ async function example() {
             console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
             // 调用 getNextObject 接口获取下一个资源，直到最后一个
             for (let i = 1; i < count; i++) {
-                fetchFileResult.getNextObject().then((fileAsset) => {
-                    console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-                }).catch((error) => {
-                    console.error('get next object failed with error: ' + error);
-                })
+                let fileAsset = await fetchFileResult.getNextObject();
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
             }
+            // 释放FetchFileResult实例并使其失效。无法调用其他方法
+            fetchFileResult.close();
         }).catch((error) => {
             // 调用getFirstObject接口失败
             console.error('get first object failed with error: ' + error);
         });
-        // 释放FetchFileResult实例并使其失效。无法调用其他方法
-        fetchFileResult.close();
     }).catch((error) => {
         // 调用getFileAssets接口失败
         console.error('get file assets failed with error: ' + error);
@@ -499,7 +494,7 @@ async function example() {
 
 ### getAlbums<sup>7+</sup>
 
-getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void
+getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&gt;&gt;): void
 
 获取相册列表，使用callback 方式返回结果。
 
@@ -534,7 +529,7 @@ async function example() {
 
 ### getAlbums<sup>7+</sup>
 
-getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
+getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 获取相册列表，使用 promise 方式返回结果。
 
@@ -614,13 +609,13 @@ release(): Promise&lt;void&gt;
 media.release()
 ```
 
-### storeMediaAsset<sup>(deprecated)</sup>
+### storeMediaAsset
 
 storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
 
 保存媒体资源，以异步方法获取保存成功的URI，使用callback形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**：此接口为API Version 6开始支持，只支持FA模型使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -650,13 +645,13 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option, (error, value) => {
 ```
 
 
-### storeMediaAsset<sup>(deprecated)</sup>
+### storeMediaAsset
 
 storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 保存媒体资源，以异步方法获取保存成功的URI，使用Promise形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**：此接口为API Version 6开始支持，只支持FA模型使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -689,13 +684,15 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 ```
 
 
-### startImagePreview<sup>(deprecated)</sup>
+### startImagePreview
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
+> **说明**： 
+> 此接口为API Version 6开始支持，只支持FA模型使用。
+> 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -731,13 +728,15 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
 ```
 
 
-### startImagePreview<sup>(deprecated)</sup>
+### startImagePreview
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 启动图片预览界面，可以预览列表中首张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
+> **说明**： 
+> 此接口为API Version 6开始支持，只支持FA模型使用。
+> 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -771,13 +770,15 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 ```
 
 
-### startImagePreview<sup>(deprecated)</sup>
+### startImagePreview
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
-> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
+> **说明**： 
+> 此接口为API Version 6开始支持，只支持FA模型使用。
+> 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -816,13 +817,15 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
 ```
 
 
-### startMediaSelect<sup>(deprecated)</sup>
+### startMediaSelect
 
 startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
+> **说明**： 
+> 此接口为API Version 6开始支持，只支持FA模型使用。
+> 建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -830,7 +833,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| option   | [MediaSelectOption](#mediaselectoptiondeprecated)  | 是    | 媒体选择选项。                              |
+| option   | [MediaSelectOption](#mediaselectoption)  | 是    | 媒体选择选项。                              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 媒体选择回调，返回选择的媒体URI（datashare://）列表。 |
 
 **示例：**
@@ -851,13 +854,15 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option, (error, value) => {
 ```
 
 
-### startMediaSelect<sup>(deprecated)</sup>
+### startMediaSelect
 
 startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
+> **说明**： 
+> 此接口为API Version 6开始支持，只支持FA模型使用。
+> 建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -865,7 +870,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名    | 类型                                      | 必填   | 说明      |
 | ------ | --------------------------------------- | ---- | ------- |
-| option | [MediaSelectOption](#mediaselectoptiondeprecated) | 是    | 媒体选择选项。 |
+| option | [MediaSelectOption](#mediaselectoption) | 是    | 媒体选择选项。 |
 
 **返回值：**
 
@@ -1907,9 +1912,9 @@ async function example() {
         if(i == fetchCount - 1) {
             var result = fetchFileResult.isAfterLast();
             console.info('mediaLibrary fileAsset isAfterLast result: ' + result);
+            fetchFileResult.close();
         }
     }
-    fetchFileResult.close();
 }
 ```
 
@@ -1969,8 +1974,8 @@ async function example() {
             return;
         }
         console.info('getFirstObject successfully, displayName : ' + fileAsset.displayName);
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2002,10 +2007,10 @@ async function example() {
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getFirstObject().then((fileAsset) => {
         console.info('getFirstObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getFirstObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2038,16 +2043,16 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (！fetchFileResult.isAfterLast) {
+    if (!fileAsset.isAfterLast) {
         fetchFileResult.getNextObject((error, fileAsset) => {
             if (error) {
                 console.error('fetchFileResult getNextObject failed with error: ' + error);
                 return;
             }
             console.log('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
+            fetchFileResult.close();
         })
     }
-    fetchFileResult.close();
 }
 
 ```
@@ -2081,14 +2086,14 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (！fetchFileResult.isAfterLast) {
+    if (!fileAsset.isAfterLast) {
         fetchFileResult.getNextObject().then((fileAsset) => {
             console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
+            fetchFileResult.close();
         }).catch((error) => {
             console.error('fetchFileResult getNextObject failed with error: ' + error);
         })
     }
-    fetchFileResult.close();
 }
 ```
 
@@ -2124,8 +2129,8 @@ async function example() {
             return;
         }
         console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2157,10 +2162,10 @@ async function example() {
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getLastObject().then((fileAsset) => {
         console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getLastObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2197,8 +2202,8 @@ async function example() {
             return;
         }
         console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2236,10 +2241,10 @@ async function example() {
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getPositionObject(0).then((fileAsset) => {
         console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getPositionObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2276,9 +2281,9 @@ async function example() {
         }
         for (let i = 0; i < fetchFileResult.getCount(); i++) {
             console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
-        } 
+        }
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2312,10 +2317,10 @@ async function example() {
         for (let i = 0; i < fetchFileResult.getCount(); i++) {
             console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
         } 
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getAllObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2447,10 +2452,10 @@ async function example() {
             console.error('album getFileAssets failed with error: ' + error);
             return;
         }
-        let count = fetchFileResult.getcount();
+        let count = fetchFileResult.getCount();
         console.info('album getFileAssets successfully, count: ' + count);
+        fetchFileResult.close();
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2484,7 +2489,7 @@ async function example() {
         selections: '',
         selectionArgs: [],
     };
-        let fileNoArgsfetchOp = {
+    let fileNoArgsfetchOp = {
         selections: '',
         selectionArgs: [],
     };
@@ -2492,13 +2497,13 @@ async function example() {
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源
-    album.getFileAssets(fileNoArgsfetchOp).then((albumFetchFileResult) => {
-        let count = fetchFileResult.getcount();
+    album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
+        let count = fetchFileResult.getCount();
         console.info('album getFileAssets successfully, count: ' + count);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('album getFileAssets failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2622,11 +2627,9 @@ async function example() {
 | width  | number | 是    | 是    | 宽（单位：像素） |
 | height | number | 是    | 是    | 高（单位：像素） |
 
-## MediaAssetOption<sup>(deprecated)</sup>
+## MediaAssetOption
 
 媒体资源选项。
-
-> **说明**： 从API Version 9开始废弃。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2637,16 +2640,14 @@ async function example() {
 | mimeType     | string | 是   | 是   | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
 | relativePath | string | 是   | 是   | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
 
-## MediaSelectOption<sup>(deprecated)</sup>
+## MediaSelectOption
 
 媒体资源类型选项。
-
-> **说明**： 从API Version 9开始废弃。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称    | 类型     | 可读 | 可写 | 说明                   |
 | ----- | ------ | ---- | ---- | -------------------- |
 | type  | 'image' &#124; 'video' &#124; 'media' | 是    | 是  | 媒体类型，包括：image, video, media，当前仅支持media类型 |
-| count | number | 是    | 是  | 媒体选择，count = 1表示单选，count大于1表示多选。            |
+| count | number | 是    | 是  | 可以选择媒体数量的最大值，count = 1表示单选，count大于1表示多选。            |
 
