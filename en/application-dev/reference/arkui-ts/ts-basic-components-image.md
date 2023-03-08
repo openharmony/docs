@@ -27,7 +27,7 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 | Name| Type                                                    | Mandatory| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://path** prefix are supported, which are used to access the image path provided by a data ability. Before loading images, the application must [request the required permissions](../../file-management/medialibrary-overview.md#requesting-permissions).<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the files in the directory package path have the read permission.|
+| src    | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Yes  | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://path** prefix are supported, which are used to access the image path provided by a data ability. Before loading images, the application must [request the required permissions](../../file-management/medialibrary-overview.md#requesting-permissions).<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the files in the directory package path have the read permission.|
 
 ## Attributes
 
@@ -40,7 +40,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | Whether the image is repeated.<br>Default value: **ImageRepeat.NoRepeat**<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | interpolation         | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>Default value: **ImageInterpolation.None**<br>**NOTE**<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
 | renderMode            | [ImageRenderMode](#imagerendermode)                     | Rendering mode of the image.<br>Default value: **ImageRenderMode.Original**<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| sourceSize            | {<br>width: number,<br>height: number<br>} | Size of the decoded image. The original image is decoded into a **pixelMap** of the specified size, in px.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects.|
+| sourceSize            | {<br>width: number,<br>height: number<br>} | Size of the decoded image. The original image is decoded into a **pixelMap** of the specified size, in px.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects or SVG images.|
 | matchTextDirection     | boolean | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**  |
 | fitOriginalSize        | boolean | Whether to fit the component to the original size of the image source when the component size is not set.<br>Default value: **false**   |
 | fillColor              | [ResourceColor](ts-types.md#resourcecolor) | Fill color. This attribute only applies to an SVG image. Once set, the fill color will replace that of the SVG image.|
@@ -52,7 +52,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >  **NOTE**
 >
 >  To use shortcut keys to copy the image, the image must be in focus. To enable the image to gain focus, set both the **focusable** and **focusOnTouch** attributes to **true**.
->  For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, **animate**, **animateMotion**, and **animateTransform**.
+>  For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, and **animate**.
 
 ### ImageInterpolation
 
@@ -99,21 +99,21 @@ struct ImageExample1 {
         Text('default').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
           Image($r('app.media.ic_png'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.ic_gif'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.ic_svg'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
         Row({ space: 5 }) {
           Image($r('app.media.img_example'))
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image(this.src)
-            .width(110).height(110).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .width(110).height(110).border({ width: 1 })
             .overlay('network', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }.margin({ top: 25, bottom: 10 })
       }
@@ -122,25 +122,25 @@ struct ImageExample1 {
         Text('objectFit').fontSize(16).fontColor(0xcccccc).height(30)
         Row({ space: 5 }) {
           Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.None).width(110).height(110)
             .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.Fill).width(110).height(110)
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_example'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.Cover).width(110).height(110)
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
         Row({ space: 5 }) {
           Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.Contain).width(110).height(110)
             .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_example_w250'))
-            .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+            .border({ width: 1 })
             .objectFit(ImageFit.ScaleDown).width(110).height(110)
             .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }.margin({ top: 25 })
@@ -160,7 +160,7 @@ The default network timeout period is 5 minutes for loading online images. When 
 
 ```tsx
 // @ts-nocheck
-import http from '@ohos.net.http';
+import http from '@ohos.net.http'
 import ResponseCode from '@ohos.net.http'
 import image from '@ohos.multimedia.image'
 
@@ -198,7 +198,7 @@ struct Index {
           let code = data.responseCode
           if(ResponseCode.ResponseCode.OK == code) {
             let imageSource = image.createImageSource(data.result)
-            let options = {alphaType: 0,                     // Transparency
+            let options = {alphaType: 0,                     // Opacity
                            editable: false,                  // Whether the image is editable
                            pixelFormat: 3,                   // Pixel format
                            scaleMode: 1,                     // Scale mode
@@ -233,18 +233,18 @@ struct ImageExample2 {
       Row({ space: 50 }) {
         Image($r('app.media.img_example'))
           .renderMode(ImageRenderMode.Original).width(100).height(100)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.img_example'))
           .renderMode(ImageRenderMode.Template).width(100).height(100)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       }
       
       Text('alt').fontSize(12).fontColor(0xcccccc).width('96%').height(30)
       Image('')
         .alt($r('app.media.Image_none'))
-        .width(100).height(100).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+        .width(100).height(100).border({ width: 1 })
         
       Text('sourceSize').fontSize(12).fontColor(0xcccccc).width('96%')
       Row({ space: 50 }) {
@@ -254,7 +254,7 @@ struct ImageExample2 {
             height: 150
           })
           .objectFit(ImageFit.ScaleDown).width('25%').aspectRatio(1)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('w:150 h:150', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.img_example'))
           .sourceSize({
@@ -262,22 +262,22 @@ struct ImageExample2 {
             height: 200
           })
           .objectFit(ImageFit.ScaleDown).width('25%').aspectRatio(1)
-          .border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .border({ width: 1 })
           .overlay('w:200 h:200', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       }
       
       Text('objectRepeat').fontSize(12).fontColor(0xcccccc).width('96%').height(30)
       Row({ space: 5 }) {
         Image($r('app.media.ic_health_heart'))
-          .width(120).height(125).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .width(120).height(125).border({ width: 1 })
           .objectRepeat(ImageRepeat.XY).objectFit(ImageFit.ScaleDown)
           .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.ic_health_heart'))
-          .width(110).height(125).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .width(110).height(125).border({ width: 1 })
           .objectRepeat(ImageRepeat.Y).objectFit(ImageFit.ScaleDown)
           .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.ic_health_heart'))
-          .width(110).height(125).border({ width: 1 }).borderStyle(BorderStyle.Dashed)
+          .width(110).height(125).border({ width: 1 })
           .objectRepeat(ImageRepeat.X).objectFit(ImageFit.ScaleDown)
           .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       }
