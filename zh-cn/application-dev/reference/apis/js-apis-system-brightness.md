@@ -45,7 +45,7 @@ getValue(options?: GetBrightnessOptions): void
 
 ## brightness.setValue
 
-etValue(options?: SetBrightnessOptions): void
+setValue(options?: SetBrightnessOptions): void
 
 设置设备当前的屏幕亮度值。
 
@@ -74,7 +74,7 @@ etValue(options?: SetBrightnessOptions): void
 
 ## brightness.getMode
 
-getMode(options?: GetBrightnessModeOptions: void
+getMode(options?: GetBrightnessModeOptions): void
 
 获得当前屏幕亮度模式。
 
@@ -161,6 +161,8 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 获取屏幕亮度的参数对象。
 
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | success  | (data: [BrightnessResponse](#brightnessresponse)) => void | 否   | 接口调用成功的回调函数。data为[BrightnessResponse](#brightnessresponse)类型的返回值。 |
@@ -170,6 +172,8 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 ## SetBrightnessOptions
 
 设置屏幕亮度的参数对象。
+
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
 
 | 名称     | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -182,13 +186,17 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 包含屏幕亮度的对象。
 
-| 名称 | 类型  | 说明 |
-| -------- | -------- | -------- |
-| value | number | 屏幕亮度，范围：1到255。 |
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| value | number | 是 | 否 | 屏幕亮度，范围：1到255。 |
 
 ## GetBrightnessModeOptions
 
 获取屏幕亮度模式的参数对象。
+
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
 
 | 名称     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -199,6 +207,8 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 ## SetBrightnessModeOptions
 
 设置屏幕亮度模式的参数对象。
+
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
 
 | 名称     | 类型                                 | 必填 | 说明                                                   |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------ |
@@ -211,13 +221,17 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 包含屏幕亮度模式的对象。
 
-| 名称 | 类型  | 说明 |
-| -------- | -------- | -------- |
-| mode | number | 0表示手动调节屏幕亮度模式，1表示自动调节屏幕亮度模式。 |
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| mode | number | 是 | 否 | 0表示手动调节屏幕亮度模式，1表示自动调节屏幕亮度模式。 |
 
 ## SetKeepScreenOnOptions
 
 设置屏幕常亮的参数对象。
+
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
 
 | 名称         | 类型                                 | 必填 | 说明                                                   |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------ |
