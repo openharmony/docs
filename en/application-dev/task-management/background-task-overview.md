@@ -16,7 +16,7 @@ For more targeted management of background applications, OpenHarmony classifies 
 
 - **Work Scheduler task**: The Work Scheduler provides a mechanism for applications to execute non-real-time tasks when the system is idle. If the preset conditions are met, the tasks will be placed in the execution queue and scheduled when the system is idle.
 
-- **Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including CPU, WORK_SCHEDULER, software, and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and the WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
+- **Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including software and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and the WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
 
 ## Selecting a Background Task
 
@@ -41,7 +41,7 @@ Adhere to the following constraints and rules when using transient tasks:
 
 - **When to cancel**: The application shall proactively cancel the request when the transient task is complete, rather than waiting for a system callback. Otherwise, the time frame allowed for the application to run in the background will be affected.
 
-- **Quota mechanism**: To prevent abuse of the keepalive, each application has a certain quota every day (dynamically adjusted based on user habits). After using up the quota, an application cannot request transient tasks. Therefore, applications should cancel their request immediately after the transient tasks are complete, to avoid quota consumption. (Note: The quota refers to the requested duration and does not include the time when the application runs in the background.)
+- **Quota mechanism**: To prevent abuse of the keepalive, each application has a certain quota every day (dynamically adjusted based on user habits). The default quota for a single day is 10 minutes, and the maximum quota for each request is 3 minutes. After using up the quota, an application cannot request transient tasks. Therefore, applications should cancel their request immediately after the transient tasks are complete, to avoid quota consumption. (Note: The quota refers to the requested duration and does not include the time when the application runs in the background.)
 
 ## Continuous Tasks
 Continuous tasks provide background running lifecycle support for services that can be directly perceived by users and need to run in the background. For example, if a service needs to play audio or continue with navigation and positioning in the background, which can be perceived by users, it can execute a continuous task in the respective background mode.
@@ -58,7 +58,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 | audioRecording        | Audio input                     | A recording task is running.    | -                         |
 | location              | Positioning and navigation                    | A positioning task is running.    | -                         |
 | bluetoothInteraction  | Bluetooth transmission                     | A Bluetooth-related task is running.  | -                         |
-| multiDeviceConnection | Distributed interconnection                  | A distributed task is running.   | -                         |
+| multiDeviceConnection | Multi-device application collaboration                  | A distributed task is running.   | -                         |
 | wifiInteraction       | WLAN transmission                   | A WLAN-related task is running.| System API, which is available only to system applications|
 | voip                  | Voice and video calls over VoIP               | A call-related task is running.  | System API, which is available only to system applications|
 | taskKeeping           | Computing task                     | A computing task is running    | Effective only for specific devices                 |
@@ -105,7 +105,7 @@ Efficiency resources are classified into CPU, WORK_SCHEDULER, software, and hard
 
 An application or process is assigned the privileges associated with the obtained efficiency resources.
   * With the CPU resources, the application or process will not be suspended.
-  * With the WORK_SCHEDULER resources, the application or process has more time to execute a task and is not restricted by the execution frequency.
+  * With the WORK_SCHEDULER resources, the application has more time to execute a task and is not restricted by the execution frequency.
   * With the COMMON_EVENT resources, the application can still receive common events when it is suspended in the background.
   * With the TIMER resources, the application can use the timer to execute precise scheduled tasks.
   * With the hardware resources, the application can still be woken up by related services to execute tasks when it is suspended in the background.
@@ -116,12 +116,12 @@ An application or process is assigned the privileges associated with the obtaine
 | Name           | Value | Description                 |
 | -------------- | ---- | ------------------- |
 | CPU            | 1    | CPU resources, which prevent the application from being suspended.      |
-| COMMON_EVENT   | 2    | A type of software resources, which prevent common events from being proxied when the application is suspended. |
-| TIMER          | 4    | A type of software resources, which prevent timers from being proxied when the application is suspended.  |
+| COMMON_EVENT   | 2    | COMMON_EVENT resources, which prevent common events from being proxied when the application is suspended. |
+| TIMER          | 4    | TIMER resources, which prevent timers from being proxied when the application is suspended.  |
 | WORK_SCHEDULER | 8    | WORK_SCHEDULER resources, which ensure that the application has more time to execute the task.   |
-| BLUETOOTH      | 16   | A type of hardware resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
-| GPS            | 32   | A type of hardware resources, which prevent GPS resources from being proxied when the application is suspended.|
-| AUDIO          | 64   | A type of hardware resources, which prevent audio resources from being proxied when the application is suspended. |
+| BLUETOOTH      | 16   | BLUETOOTH resources, which prevent Bluetooth resources from being proxied when the application is suspended. |
+| GPS            | 32   | GPS resources, which prevent GPS resources from being proxied when the application is suspended.|
+| AUDIO          | 64   | AUDIO resources, which prevent audio resources from being proxied when the application is suspended. |
 
 ### Restrictions on Using Efficiency Resources
 - Applications or processes are responsible for requesting and releasing efficiency resources. A process can release the resources requested by itself, whereas an application can release the resources requested by both itself and its processes. For example, an application requests CPU resources, and its process requests CPU and WORK_SCHEDULER resources. If the application initiates CPU resource release, the CPU resources requested by the process are also released. However, the WORK_SCHEDULER resources are not released. If the process initiates CPU resource release, the CPU resources requested by the application are retained until being released by the application.
