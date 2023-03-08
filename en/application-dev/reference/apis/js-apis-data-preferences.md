@@ -22,8 +22,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. The key must be less than 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. The value must be less than 8192 bytes.|
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. The maximum key length is 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. The maximum value length is 8192 bytes.|
 
 
 ## data_preferences.getPreferences
