@@ -9,7 +9,7 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 ## Modules to Import
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 ```
 
 ## Attributes
@@ -137,7 +137,7 @@ Called when an event that matches the specified bundle and event type occurs. In
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onAccessibilityEvent(event) {
         console.log('AxExtensionAbility onAccessibilityEvent');
-        if (event.eventType == 'click') {
+        if (event.eventType === 'click') {
             console.log('AxExtensionAbility onAccessibilityEvent: click');
         }
     }
@@ -164,7 +164,7 @@ Called when a physical key is pressed. In this API, you can determine whether to
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onKeyEvent(keyEvent) {
         console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.keyCode == 22) {
+        if (keyEvent.keyCode === 22) {
             console.log('AxExtensionAbility onKeyEvent: intercept 22');
             return true;
         }
