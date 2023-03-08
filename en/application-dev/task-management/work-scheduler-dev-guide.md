@@ -2,7 +2,8 @@
 
 ## When to Use
 
-If your application needs to execute a non-real-time task or a persistent task, for example, data learning, you can harness the Work Scheduler mechanism, which will schedule the task based on the storage space, power consumption, temperature, and more when the preset conditions are met. Your application must implement the callbacks provided by [WorkSchedulerExtensionAbility](./workscheduler-extensionability.md) for Work Scheduler tasks. For details about the restrictions, see [Restrictions on Using Work Scheduler](./background-task-overview.md#restrictions-on-using-work-scheduler).
+If your application needs to execute a non-real-time task or a persistent task, for example, data learning, you can harness the Work Scheduler mechanism, which will schedule the task based on the storage space, power consumption, temperature, and more when the preset conditions are met. Your application must implement the callbacks provided by [WorkSchedulerExtensionAbility](./workscheduler-extensionability.md) for Work Scheduler tasks.
+For details about the restrictions, see [Restrictions on Using Work Scheduler](./background-task-overview.md#restrictions-on-using-work-scheduler).
 
 ## Available APIs
 
@@ -38,7 +39,7 @@ storageRequest| [StorageRequest](../reference/apis/js-apis-resourceschedule-work
 isRepeat| boolean |Whether the task is repeated.
 repeatCycleTime| number |Repeat interval.
 repeatCount | number|Number of repeat times.
-parameters | {[key: string]: any} |Carried parameters.
+parameters | {[key: string]: number | string | boolean} |Carried parameters.
 
 **Table 3** Work Scheduler callbacks
 
@@ -64,135 +65,134 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
 
 2. Develop an ExtensionAbility to execute a Work Scheduler task. For details about the ExtensionAbility, see [ExtensionAbility Component Overview](../application-models/extensionability-overview.md) and [WorkSchedulerExtensionAbility Development](./workscheduler-extensionability.md).
 
-```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+   ```ts
+   import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 
-export default class MyExtension extends WorkSchedulerExtensionAbility {
-    onWorkStart(workInfo) {
-        console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
-    }
-    onWorkStop(workInfo) {
-        console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
-    }
-}
-```
+   export default class MyExtension extends WorkSchedulerExtensionAbility {
+       onWorkStart(workInfo) {
+           console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
+       }
+       onWorkStop(workInfo) {
+           console.log('MyWorkSchedulerExtensionAbility onWorkStop' + JSON.stringify(workInfo));
+       }
+   }
+   ```
 
 
 3. Start a Work Scheduler task.
 
-```ts
-import workScheduler from '@ohos.resourceschedule.workScheduler';
+   ```ts
+   import workScheduler from '@ohos.resourceschedule.workScheduler';
     
-let workInfo = {
-    workId: 1,
-    batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
-    isRepeat: false,
-    isPersisted: true,
-    bundleName: "com.example.myapplication",
-    abilityName: "MyExtension",
-    parameters: {
-      mykey0: 1,
-      mykey1: "string value",
-      mykey2: true,
-      mykey3: 1.5
-  }
-}
-try{
-  workScheduler.startWork(workInfo);
-  console.info('workschedulerLog startWork success');
-} catch (error) {
-  console.error(`workschedulerLog startwork failed. code is ${error.code} message is ${error.message}`);
-}
-```
+   let workInfo = {
+       workId: 1,
+       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+       isRepeat: false,
+       isPersisted: true,
+       bundleName: "com.example.myapplication",
+       abilityName: "MyExtension",
+       parameters: {
+         mykey0: 1,
+         mykey1: "string value",
+         mykey2: true,
+         mykey3: 1.5
+     }
+   }
+   try{
+     workScheduler.startWork(workInfo);
+     console.info('workschedulerLog startWork success');
+   } catch (error) {
+     console.error(`workschedulerLog startwork failed. code is       ${error.code} message is ${error.message}`);
+   }
+   ```
 
 
 4. Stop the Work Scheduler task.
 
-```ts
-import workScheduler from '@ohos.resourceschedule.workScheduler';
+   ```ts
+   import workScheduler from '@ohos.resourceschedule.workScheduler';
 
-let workInfo = {
-    workId: 1,
-    batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
-    isRepeat: false,
-    isPersisted: true,
-    bundleName: "com.example.myapplication",
-    abilityName: "MyExtension",
-    parameters: {
-      mykey0: 1,
-      mykey1: "string value",
-      mykey2: true,
-      mykey3: 1.5
-  }
-}
-try{
-  workScheduler.stopWork(workInfo, false);
-  console.info('workschedulerLog stopWork success');
-} catch (error) {
-  console.error(`workschedulerLog stopWork failed. code is ${error.code} message is ${error.message}`);
-}
-```
+   let workInfo = {
+       workId: 1,
+       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
+       isRepeat: false,
+       isPersisted: true,
+       bundleName: "com.example.myapplication",
+       abilityName: "MyExtension",
+       parameters: {
+         mykey0: 1,
+         mykey1: "string value",
+         mykey2: true,
+         mykey3: 1.5
+       }
+   }
+   try{
+       workScheduler.stopWork(workInfo, false);
+       console.info('workschedulerLog stopWork success');
+   } catch (error) {
+       console.error(`workschedulerLog stopWork failed. code is    ${error.code} message is ${error.message}`);
+   }
+   
+   ```
 
 
 5. Obtain a specified Work Scheduler task.
 
-```ts
-try{
-  workScheduler.getWorkStatus(50, (error, res) => {
-    if (error) {
-      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-    } else {
-      for (let item in res) {
-        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-      }
-    }
-  });
-} catch (error) {
-  console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-}
-```
-
+   ```ts
+   try{
+     workScheduler.getWorkStatus(50, (error, res) => {
+       if (error) {
+         console.error(`workschedulerLog getWorkStatus failed. code is    ${error.code} message is ${error.message}`);
+       } else {
+         for (let item in res) {
+           console.info(`workschedulerLog getWorkStatus success, ${item}    is: ${res[item]}`);
+         }
+       }
+     });
+   } catch (error) {
+     console.error(`workschedulerLog getWorkStatus failed. code is    ${error.code} message is ${error.message}`);
+   }
+   ```
 
 6. Obtain all the Work Scheduler tasks.
 
-```ts
-try{
-  workScheduler.obtainAllWorks((error, res) =>{
-    if (error) {
-      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-    } else {
-      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-    }
-  });
-} catch (error) {
-  console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-}
-```
+   ```ts
+   try{
+     workScheduler.obtainAllWorks((error, res) =>{
+       if (error) {
+         console.error(`workschedulerLog obtainAllWorks failed. code is    ${error.code} message is ${error.message}`);
+       } else {
+         console.info(`workschedulerLog obtainAllWorks success, data is:    ${JSON.stringify(res)}`);
+       }
+     });
+   } catch (error) {
+     console.error(`workschedulerLog obtainAllWorks failed. code is    ${error.code} message is ${error.message}`);
+   }
+   ```
 
 7. Stop and clear all the Work Scheduler tasks.
 
-```ts
-try{
-  workScheduler.stopAndClearWorks();
-  console.info(`workschedulerLog stopAndClearWorks success`);
-} catch (error) {
-  console.error(`workschedulerLog stopAndClearWorks failed. code is ${error.code} message is ${error.message}`);
-}
-```
+   ```ts
+   try{
+     workScheduler.stopAndClearWorks();
+     console.info(`workschedulerLog stopAndClearWorks success`);
+   } catch (error) {
+     console.error(`workschedulerLog stopAndClearWorks failed. code is    ${error.code} message is ${error.message}`);
+   }
+   ```
 
 8. Check whether the last execution of a specified Work Scheduler task has timed out.
 
-```ts
-try{
-  workScheduler.isLastWorkTimeOut(500, (error, res) =>{
-    if (error) {
-      onsole.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-    } else {
-      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-    }
-  });
-} catch (error) {
-  console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-}
-```
-
+   ```ts
+   try{
+     workScheduler.isLastWorkTimeOut(500, (error, res) =>{
+       if (error) {
+         onsole.error(`workschedulerLog isLastWorkTimeOut failed. code   is ${error.code} message is ${error.message}`);
+       } else {
+         console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+       }
+     });
+   } catch (error) {
+     console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+   }
+   ```

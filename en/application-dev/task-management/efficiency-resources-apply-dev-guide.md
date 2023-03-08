@@ -6,6 +6,9 @@ To further balance power consumption overhead of the system, privileged system a
 
 To upgrade your application as a privileged application, you must evaluate your service requirements and submit a request to the application center. The application center will determine whether to accept the request based on the conditions.
 
+## Constraints
+Only system applications can request efficiency resources.
+
 ## Available APIs
 
 **Table 1** Main APIs for efficiency resources
@@ -22,32 +25,32 @@ To upgrade your application as a privileged application, you must evaluate your 
 
 2. When the task is complete, release the resources in time. You can choose whether to release some or all resources.
 
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
-// Request efficiency resources.
-let request = {
-    resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT |
-        backgroundTaskManager.ResourceType.TIMER,
-    isApply: true,
-    timeOut: 0,
-    reason: "apply",
-    isPersist: true,
-    isProcess: true,
-};
-let res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
-
-// Release some efficiency resources.
-request = {
-    resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT,
-    isApply: false,
-    timeOut: 0,
-    reason: "reset",
-};
-res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
-
-// Release all efficiency resources.
-backgroundTaskManager.resetAllEfficiencyResources();
-```
+   ```js
+   import backgroundTaskManager from '@ohos.backgroundTaskManager';
+   
+   // Request efficiency resources.
+   let request = {
+       resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT |
+           backgroundTaskManager.ResourceType.TIMER,
+       isApply: true,
+       timeOut: 0,
+       reason: "apply",
+       isPersist: true,
+       isProcess: true,
+   };
+   let res = backgroundTaskManager.applyEfficiencyResources(request);
+   console.info("the result of request is: " + res);
+   
+   // Release some efficiency resources.
+   request = {
+       resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT,
+       isApply: false,
+       timeOut: 0,
+       reason: "reset",
+   };
+   res = backgroundTaskManager.applyEfficiencyResources(request);
+   console.info("the result of request is: " + res);
+   
+   // Release all efficiency resources.
+   backgroundTaskManager.resetAllEfficiencyResources();
+   ```
