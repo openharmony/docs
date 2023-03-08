@@ -41,7 +41,7 @@ Adhere to the following constraints and rules when using transient tasks:
 
 - **When to cancel**: The application shall proactively cancel the request when the transient task is complete, rather than waiting for a system callback. Otherwise, the time frame allowed for the application to run in the background will be affected.
 
-- **Quota mechanism**: To prevent abuse of the keepalive, each application has a certain quota every day (dynamically adjusted based on user habits). After using up the quota, an application cannot request transient tasks. Therefore, applications should cancel their request immediately after the transient tasks are complete, to avoid quota consumption. (Note: The quota refers to the requested duration and does not include the time when the application runs in the background.)
+- **Quota mechanism**: To prevent abuse of the keepalive, each application has a certain quota every day (dynamically adjusted based on user habits). The default quota for a single day is 10 minutes, and the maximum quota for each request is 3 minutes. After using up the quota, an application cannot request transient tasks. Therefore, applications should cancel their request immediately after the transient tasks are complete, to avoid quota consumption. (Note: The quota refers to the requested duration and does not include the time when the application runs in the background.)
 
 ## Continuous Tasks
 Continuous tasks provide background running lifecycle support for services that can be directly perceived by users and need to run in the background. For example, if a service needs to play audio or continue with navigation and positioning in the background, which can be perceived by users, it can execute a continuous task in the respective background mode.
@@ -58,7 +58,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 | audioRecording        | Audio input                     | A recording task is running.    | -                         |
 | location              | Positioning and navigation                    | A positioning task is running.    | -                         |
 | bluetoothInteraction  | Bluetooth transmission                     | A Bluetooth-related task is running.  | -                         |
-| multiDeviceConnection | Distributed interconnection                  | A distributed task is running.   | -                         |
+| multiDeviceConnection | Multi-device application collaboration                  | A distributed task is running.   | -                         |
 | wifiInteraction       | WLAN transmission                   | A WLAN-related task is running.| System API, which is available only to system applications|
 | voip                  | Voice and video calls over VoIP               | A call-related task is running.  | System API, which is available only to system applications|
 | taskKeeping           | Computing task                     | A computing task is running    | Effective only for specific devices                 |
