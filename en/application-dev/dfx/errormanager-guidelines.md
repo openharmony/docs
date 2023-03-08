@@ -37,10 +37,10 @@ When an asynchronous callback is used, the return value can be processed directl
 ## Development Example
 ```ts
 import Ability from '@ohos.application.Ability'
-import errorManager from '@ohos.application.errorManager'
+import errorManager from '@ohos.app.ability.errorManager';
 
-var registerId = -1;
-var callback = {
+let registerId = -1;
+let callback = {
     onUnhandledException: function (errMsg) {
         console.log(errMsg);
     }
@@ -48,13 +48,13 @@ var callback = {
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility onCreate")
-        registerId = errorManager.registerErrorObserver(callback);
+        registerId = errorManager.on("error", callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
         console.log("[Demo] MainAbility onDestroy")
-        errorManager.unregisterErrorObserver(registerId, (result) => {
+        errorManager.off("error", registerId, (result) => {
             console.log("[Demo] result " + result.code + ";" + result.message)
         });
     }
