@@ -136,3 +136,39 @@ The widget does not belong to the application.
 
 1. Check the ownership of the widget ID.
 2. Upgrade the application permission to **SystemApp**.
+
+## 16501004 Ability Not Installed
+
+**Error Message**
+
+The ability is not installed.
+
+**Description**
+
+The specified ability is not installed.
+
+**Possible Causes**
+
+The specified ability is not installed.
+
+**Solution**
+
+Pass in valid **abilityName** and **bundleName**.
+
+## 16501005 Failed to Connect to FormRenderService
+
+**Error Message**
+
+Connect FormRenderService failed, please try again later.
+
+**Description**
+
+The FormRenderService fails to be connected.
+
+**Possible Causes**
+
+The service is busy.
+
+**Solution**
+
+Try again later.
