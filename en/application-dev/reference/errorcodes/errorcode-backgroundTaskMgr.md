@@ -34,7 +34,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-IPC failed.
+Inner transact failed.
 
 **Possible Causes**
 
@@ -63,7 +63,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-Continuous task verification failed.
+Background task verification failed.
 
 **Possible Causes**
 
@@ -135,7 +135,7 @@ Caller information verification failed for a transient task.
 
 **Error Message**
 
-Transient task verification failed.
+Background task verification failed.
 
 **Possible Causes**
 
