@@ -82,24 +82,24 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import worker from '@ohos.worker';
 // Create a Worker instance.
 
-// In the FA model, the worker script directory and pages directory are at the same level.
+// In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const workerFAModel01 = new worker.ThreadWorker("workers/worker.js", {name:"first worker in FA model"});
-// In the FA model, the worker script directory and pages directory are at different levels.
+// In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
 const workerFAModel02 = new worker.ThreadWorker("../workers/worker.js");
 
-// In the stage model, the worker script directory and pages directory are at the same level.
+// In the stage model, the workers directory is at the same level as the pages directory in the entry module.
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the worker script directory and pages directory are at different levels.
+// In the stage model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
 const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
 
 // For the script URL "entry/ets/workers/worker.ts" in the stage model:
-// entry is the value of the name attribute under module in the module.json5 file.
-// ets indicates the programming language in use.
+// entry is the value of the name attribute under module in the module.json5 file, and ets indicates the programming language in use.
+// The script URL is related to the level of the workers directory where the worker file is located and is irrelevant to the file where the new worker is located.
 ```
 
-Depending on whether the worker script directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
+Depending on whether the **workers** directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
 
-(1) The worker script directory and **pages** directory are at the same level.
+(1) The **workers** directory and **pages** directory are at the same level.
 
 In the FA model:
 
@@ -125,7 +125,7 @@ In the stage model:
   }
 ```
 
-(2) The worker script directory and **pages** directory are at different levels.
+(2) The **workers** directory and **pages** directory are at different levels.
 
 In the FA model:
 
@@ -586,6 +586,15 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
+```
+
+The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
 // Usage 1:
 workerInstance.on("alert_on", (e)=>{
     console.log("alert listener callback");
@@ -602,7 +611,7 @@ workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is n
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will be always valid and will not be proactively deleted.
+// The event listener created by addEventListener will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 
@@ -699,7 +708,7 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. |
+| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
 
 **Error codes**
 
@@ -752,6 +761,15 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```js
 const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
+```
+
+The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
+
+```js
+const workerInstance = new worker.ThreadWorker("workers/worker.js");
+
 // Usage 1:
 workerInstance.on("alert_on", (e)=>{
     console.log("alert listener callback");
@@ -768,7 +786,7 @@ workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is n
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-// The event listener created by addEventListener will not be proactively deleted.
+// The event listener created by addEventListener will be always valid and will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 
@@ -1168,23 +1186,23 @@ A constructor used to create a **Worker** instance.
 import worker from '@ohos.worker';
 // Create a Worker instance.
 
-// In the FA model, the worker script directory and pages directory are at the same level.
+// In the FA model, the workers directory is at the same level as the pages directory.
 const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker in FA model"});
-// In the FA model, the worker script directory and pages directory are at different levels.
+// In the FA model, the workers directory is at the same level as the parent directory of the pages directory.
 const workerFAModel02 = new worker.Worker("../workers/worker.js");
 
-// In the stage model, the worker script directory and pages directory are at the same level.
+// In the stage model, the workers directory is at the same level as the pages directory.
 const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the worker script directory and pages directory are at different levels.
+// In the stage model, the workers directory is at the same level as the child directory of the pages directory.
 const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
 
 // For the script URL "entry/ets/workers/worker.ts" in the stage model:
 // entry is the value of the name attribute under module in the module.json5 file.
 // ets indicates the programming language in use.
 ```
-Depending on whether the worker script directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
+Depending on whether the **workers** directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
 
-(1) The worker script directory and **pages** directory are at the same level.
+(1) The **workers** directory and **pages** directory are at the same level.
 
 In the FA model:
 
@@ -1207,7 +1225,7 @@ In the stage model:
     }
   }
 ```
-(2) The worker script directory and **pages** directory are at different levels.
+(2) The **workers** directory and **pages** directory are at different levels.
 
 In the FA model:
 ```json
@@ -1590,6 +1608,14 @@ Dispatches the event defined for the worker thread.
 | boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
 
 **Example**
+
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+
+workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
+```
+
+The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
@@ -2056,7 +2082,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 ### FA Model
 
 ```js
-// main.js (The following assumes that the worker script directory and pages directory are at the same level.)
+// main.js (The following assumes that the workers directory and pages directory are at the same level.)
 import worker from '@ohos.worker';
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
@@ -2121,7 +2147,7 @@ Configuration of the **build-profile.json5** file:
 ```
 ### Stage Model
 ```js
-// main.js (The following assumes that the worker script directory and pages directory are at different levels.)
+// main.js (The following assumes that the workers directory and pages directory are at different levels.)
 import worker from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
