@@ -17,14 +17,14 @@ import process from '@ohos.process';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| egid | number | Yes| No| Effective group identifier (EGID) of a process. This is a system API and cannot be called by third-party applications.|
-| euid | number | Yes| No| Effective user identifier (EUID) of a process. This is a system API and cannot be called by third-party applications.|
-| gid | number | Yes| No| Group identifier (GID) of a process. This is a system API and cannot be called by third-party applications.|
-| uid | number | Yes| No| User identifier (UID) of a process.|
+| egid | number | Yes| No| Effective group identifier (EGID) of the process. This is a system API and cannot be called by third-party applications.|
+| euid | number | Yes| No| Effective user identifier (EUID) of the process. This is a system API and cannot be called by third-party applications.|
+| gid | number | Yes| No| Group identifier (GID) of the process. This is a system API and cannot be called by third-party applications.|
+| uid | number | Yes| No| User identifier (UID) of the process.|
 | groups | number[] | Yes| No| Array with supplementary group IDs. This is a system API and cannot be called by third-party applications.|
-| pid | number | Yes| No| Process ID (PID) of a process.|
-| ppid | number | Yes| No| Parent process ID (PPID) of a process. This is a system API and cannot be called by third-party applications.|
-| tid<sup>8+</sup> | number | Yes| No| Thread ID (TID) of a process.|
+| pid | number | Yes| No| Process ID (PID) of the process.|
+| ppid | number | Yes| No| Parent process ID (PPID) of the process. This is a system API and cannot be called by third-party applications.|
+| tid<sup>8+</sup> | number | Yes| No| Thread ID (TID) of the thread.|
 
 
 ## ChildProcess
