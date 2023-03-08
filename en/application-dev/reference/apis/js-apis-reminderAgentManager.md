@@ -1,4 +1,4 @@
-# @ohos.reminderAgentManager (Reminder Agent Management)
+# @ohos.reminderAgentManager (reminderAgentManager)
 
 The **reminderAgentManager** module provides APIs for publishing scheduled reminders through the reminder agent.
 
@@ -696,8 +696,8 @@ Sets the time information for a calendar reminder.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | year | number | Yes| Year.|
-| month | number | Yes| Month.|
-| day | number | Yes| Date.|
-| hour | number | Yes| Hour.|
-| minute | number | Yes| Minute.|
-| second | number | No| Second.|
+| month | number | Yes| Month. The value ranges from 1 to 12.|
+| day | number | Yes| Day. The value ranges from 1 to 31.|
+| hour | number | Yes| Hour. The value ranges from 0 to 23.|
+| minute | number | Yes| Minute. The value ranges from 0 to 59.|
+| second | number | No| Second. The value ranges from 0 to 59.|
