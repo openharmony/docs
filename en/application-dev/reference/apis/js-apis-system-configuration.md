@@ -50,4 +50,3 @@ Defines attributes of the current locale.
 | language | string | Yes   | No   | Language, for example, **zh**.|
 | countryOrRegion | string | Yes   | No   | Country or region, for example, **CN** or **US**.|
 | dir | string | Yes   | No   | Text layout direction. The value can be:<br>- **ltr**: from left to right<br>- **rtl**: from right to left|
-| unicodeSetting<sup>5+</sup> | string | Yes   | No   | Unicode language key set determined by the locale. If current locale does not have a specific key set, an empty set is returned.<br>For example, **{"nu":"arab"}** indicates that current locale uses Arabic numerals.|
