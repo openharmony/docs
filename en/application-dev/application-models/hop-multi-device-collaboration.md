@@ -1,9 +1,9 @@
-# Multi-device Collaboration
+# Multi-device Collaboration (System Applications Only)
 
 
 ## When to Use
 
-Multi-device coordination is available only for system applications. It involves the following scenarios:
+Multi-device coordination involves the following scenarios:
 
 - [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned)
 

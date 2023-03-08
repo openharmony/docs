@@ -17,7 +17,7 @@
     - ExtensionAbility Component
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [DataShareExtensionAbility](datashareextensionability.md)
+      - [DataShareExtensionAbility (System Applications Only)](datashareextensionability.md)
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
@@ -31,8 +31,8 @@
     - [Component Startup Rules](component-startup-rules.md)
     - Inter-Device Application Component Interaction (Continuation) 
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
-      - [Cross-Device Migration](hop-cross-device-migration.md)
-      - [Multi-device Collaboration](hop-multi-device-collaboration.md)
+      - [Cross-Device Migration (System Applications Only)](hop-cross-device-migration.md)
+      - [Multi-device Collaboration (System Applications Only)](hop-multi-device-collaboration.md)
   - IPC
     - [Process Model](process-model-stage.md)
     - Common Events
@@ -49,7 +49,6 @@
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission Management and Launch Type](mission-management-launch-type.md)
     - [Page Stack and MissionList](page-mission-stack.md)
-  - [Application Configuration File](config-file-stage.md)
 - FA Model Development
   - [FA Model Development Overview](fa-model-development-overview.md)
   - FA Mode Application Components
@@ -62,7 +61,7 @@
       - [Creating a PageAbility](create-pageability.md)
       - [Starting a Local PageAbility](start-local-pageability.md)
       - [Stopping a PageAbility](stop-pageability.md)
-      - [Starting a Remote PageAbility](start-remote-pageability.md)
+      - [Starting a Remote PageAbility (System Applications Only)](start-remote-pageability.md)
       - [Starting a Specified Page](start-page.md)
       - [Window Properties](window-properties.md)
       - [Requesting Permissions](request-permissions.md)
@@ -94,7 +93,6 @@
     - [Thread Model](thread-model-fa.md)
     - [Inter-Thread Communication](itc-fa-overview.md)
   - [Mission Management](mission-management-fa.md)
-  - [Application Configuration File](config-file-fa.md)
 - Development of Component Interaction Between the FA Model and Stage Model
   - [Component Interaction Between the FA Model and Stage Model](fa-stage-interaction-overview.md)
   - [Starting a UIAbility from the FA Model](start-uiability-from-fa.md)
