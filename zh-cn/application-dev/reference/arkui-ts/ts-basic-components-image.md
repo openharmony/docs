@@ -23,11 +23,13 @@ Image(src: string | PixelMap | Resource)
 
 通过图片数据源获取图片，用于后续渲染展示。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：** 
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持跨包/跨模块调用该Image组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`datashare://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。图片加载前需要申请[媒体库功能相关权限](../../file-management/medialibrary-overview.md#申请媒体库功能相关权限)<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。 |
+| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持跨包/跨模块调用该Image组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`datashare://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。图片加载前需要申请[媒体库功能相关权限](../../file-management/medialibrary-overview.md#申请媒体库功能相关权限)<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持`http://`等网络相关路径前缀、`datashare://`路径前缀以及`file://data/storage`路径前缀的字符串<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)类型 |
 
 ## 属性
 
@@ -35,20 +37,20 @@ Image(src: string | PixelMap | Resource)
 
 | 名称                  | 参数类型                                                | 描述                                                         |
 | --------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。                 |
-| objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover                  |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat<br/>**说明：**<br/>svg类型图源不支持该属性。 |
-| interpolation         | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
-| renderMode            | [ImageRenderMode](#imagerendermode)                     | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>**说明：**<br/>svg类型图源不支持该属性。 |
-| sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>**说明：**<br/>PixelMap资源和SVG图片不支持该属性。 |
-| matchTextDirection     | boolean | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false   |
-| fitOriginalSize        | boolean | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false    |
-| fillColor              | [ResourceColor](ts-types.md#resourcecolor) | 填充颜色。设置的填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的fill颜色。 |
-| autoResize             | boolean | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。<br/>默认值：true |
-| syncLoad<sup>8+</sup> | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | 设置图片是否可复制（SVG图片不支持复制）。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None |
-| colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9) | 给图像设置颜色滤镜效果。 |
-| draggable<sup>9+</sup> | boolean | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false |
+| alt                   | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| interpolation         | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>默认值：ImageInterpolation.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。<br/>PixelMap资源不支持该属性。 |
+| renderMode            | [ImageRenderMode](#imagerendermode)                     | 设置图片渲染的模式。<br/>默认值：ImageRenderMode.Original<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
+| sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>PixelMap资源和SVG图片不支持该属性。 |
+| matchTextDirection     | boolean | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fitOriginalSize        | boolean | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fillColor              | [ResourceColor](ts-types.md#resourcecolor) | 填充颜色。设置的填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的fill颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| autoResize             | boolean | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| syncLoad<sup>8+</sup> | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | 设置图片是否可复制（SVG图片不支持复制）。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None<br/>该接口支持在ArkTS卡片中使用。 |
+| colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9) | 给图像设置颜色滤镜效果。<br/>该接口支持在ArkTS卡片中使用。 |
+| draggable<sup>9+</sup> | boolean | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false<br/>该接口支持在ArkTS卡片中使用。 |
 
 >  **说明：**
 >
@@ -56,6 +58,8 @@ Image(src: string | PixelMap | Resource)
 >  图片设置svg图源时，支持的标签范围有限，目前支持的svg标签包括svg、rect、circle、ellipse、path、line、polyline、polygon、animate。
 
 ### ImageInterpolation
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                        |
 | ------ | ------------------------- |
@@ -65,6 +69,8 @@ Image(src: string | PixelMap | Resource)
 | Low    | 插值图片数据的使用率低。              |
 
 ### ImageRenderMode
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称       | 描述                    |
 | -------- | --------------------- |
@@ -77,9 +83,9 @@ Image(src: string | PixelMap | Resource)
 
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图片尺寸。<br>- width：图片的宽，单位为像素。<br/>- height：图片的高，单位为像素。<br/>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>- loadingStatus：图片加载成功的状态。<br/> |
-| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。 |
-| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)                | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 |
+| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图片尺寸。<br>- width：图片的宽，单位为像素。<br/>- height：图片的高，单位为像素。<br/>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>- loadingStatus：图片加载成功的状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)                | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 

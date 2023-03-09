@@ -25,7 +25,7 @@
 | onStateChange            | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。      |
 | arrowOffset<sup>9+</sup> | [Length](ts-types.md#length)                                 | 否   | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。 |
 | showInSubWindow<sup>9+</sup> | boolean | 否 | 是否在子窗口显示气泡，默认值为false。 |
-| mask<sup>10+</sup> | boolean | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。 |
+| mask<sup>10+</sup> | boolean&nbsp;\|&nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否 | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。 |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
 
@@ -39,7 +39,7 @@
 | onStateChange            | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。 |
 | arrowOffset<sup>9+</sup> | [Length](ts-types.md#length) | 否 | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。 |
 | showInSubWindow<sup>9+</sup> | boolean | 否 | 是否在子窗口显示气泡，默认值为false。 |
-| mask<sup>10+</sup> | boolean | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。 |
+| mask<sup>10+</sup> | boolean&nbsp;\|&nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否 | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。 |
 
 
 ## 示例

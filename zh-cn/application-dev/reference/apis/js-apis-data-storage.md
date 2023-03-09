@@ -8,7 +8,7 @@
 > -  本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > -  从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.data.preferences`](js-apis-data-preferences.md)。
-> 
+>
 > -  本模块接口仅可在FA模型下使用。
 
 
@@ -24,8 +24,8 @@ import data_storage from '@ohos.data.storage';
 
 | 名称             | 类型 | 可读 | 可写 | 说明                                  |
 | ---------------- | -------- | ---- | ---- | ------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | key的最大长度限制，需小于80字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | value的最大长度限制，需小于8192字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | key的最大长度限制为80字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | value的最大长度限制为8192字节。 |
 
 
 ## data_storage.getStorageSync
@@ -172,7 +172,7 @@ context.getFilesDir().then((filePath) => {
     console.info("======================>getFilesDirPromise====================>");
 
     data_storage.deleteStorageSync(path + '/mystore');
-});  
+});
 ```
 
 ## data_storage.deleteStorage
@@ -276,9 +276,9 @@ let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
-    
+
     data_storage.removeStorageFromCacheSync(path + '/mystore');
-});  
+});
 ```
 
 

@@ -211,7 +211,6 @@ Obtains information about the device root nodes of the file management service t
 getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void;
 
 Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses an asynchronous callback to return the result.
-
 The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) through [next()](#rootiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
@@ -255,7 +254,7 @@ The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) 
 
 listFile(filter?: Filter) : FileIterator
 
-Synchronously obtains the **FileIterator** object of the first-level files (file directory) matching the conditions of the filter from the device root node. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
+Synchronously obtains the **FileIterator** object of the first-level files (directory) matching the conditions of the filter from the device root node. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -356,7 +355,7 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 listFile(filter?: Filter) : FileIterator
 
-Synchronously obtains the **FileIterator** object of the next-level files (file directories) matching the conditions of the filter from a directory. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
+Synchronously obtains the **FileIterator** object of the next-level files (directories) matching the conditions of the filter from a directory. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 

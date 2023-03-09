@@ -108,6 +108,11 @@ struct CustomDialogUser {
     customStyle: false
   })
 
+  aboutToDisappear() {
+    delete this.dialogController,
+    this.dialogController = undefined
+  }
+
   onCancel() {
     console.info('Callback when the first button is clicked')
   }
@@ -124,7 +129,9 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          this.dialogController.open()
+          if (this.dialogController != undefined) {
+            this.dialogController.open()
+          }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }

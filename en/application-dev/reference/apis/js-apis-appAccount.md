@@ -1,4 +1,4 @@
-# @ohos.account.appAccount (App Account Management) 
+# @ohos.account.appAccount (App Account Management)
 
 The **appAccount** module provides APIs for adding, deleting, modifying, and querying app account information, and supports inter-app authentication and distributed data synchronization.
 
@@ -1685,7 +1685,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | name     | string | Yes   | Name of the target app account.    |
 | owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string | Yes   | Authentication type.       |
-| token    | string | Yes   | Token to delete.|
+| token    | string | Yes   | Authorization token to delete.|
 
 **Return value**
 
@@ -4561,8 +4561,8 @@ Enumerates the constants.
 
 Enumerates the result codes.
 
-> **NOTE**
-> This enum is supported since API version 8 and deprecated since API version 9. From API version 9, error codes are used. For details about the error codes, see [App Account Error Codes](../errorcodes/errorcode-app-account.md).
+> **NOTE**<br>
+> This enum is supported since API version 8 and deprecated since API version 9. Error codes are used from API version 9. For details, see [Account Management Error Codes](../errorcodes/errorcode-account.md).
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4910,9 +4910,9 @@ Checks the account labels. This API uses an asynchronous callback to return the 
 | labels    | Array&lt;string&gt;          | Yes   | Labels to check.                  |
 | callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the check result.|
 
-### isAccountRemovable<sup>9+</sup>
+### checkAccountRemovable<sup>9+</sup>
 
-isAccountRemovable(name: string, callback: AuthCallback): void;
+checkAccountRemovable(name: string, callback: AuthCallback): void;
 
 Checks whether an app account can be deleted. This API uses an asynchronous callback to return the result.
 
@@ -4970,7 +4970,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
   
-    isAccountRemovable(name, callback) {
+    checkAccountRemovable(name, callback) {
       var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }

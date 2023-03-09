@@ -191,7 +191,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | ArkUI | AdaptiveCapabilities | This sample shows multi-device adaptation in eTS, including resource qualifiers, atomic layouts, and responsive layouts.| eTS |
 | ArkUI | JsAdaptiveCapabilities | This sample shows multi-device adaptation in JS, including resource qualifiers, atomic layouts, and responsive layouts.| JS |
 
-For more information, visit [Samples](https://gitee.com/openharmony/app_samples).
+For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).
 
 
 ## Resolved Issues

@@ -16,6 +16,8 @@
 
 Counter()
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 
 ## 事件
 
@@ -23,8 +25,8 @@ Counter()
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。 |
-| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。 |
+| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

@@ -683,7 +683,7 @@ fillRect(x: number, y: number, w: number, h: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.fillRect(0,30,100,100)
+            this.context.fillRect(30,30,100,100)
          })
         }
       .width('100%')
@@ -1921,6 +1921,8 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 setTransform(transform?: Matrix2D): void
 
 以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。该接口为空接口。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 
 ### translate

@@ -33,30 +33,33 @@ To specify the image as the media type, set **selectionArgs** to **MediaType.IMA
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.IMAGE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
-        }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.IMAGE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  fetchFileResult.getFirstObject().then((fileAsset) => {
+    console.log('getFirstObject.displayName : ' + fileAsset.displayName);
+    for (let i = 1; i < fetchFileResult.getCount(); i++) {
+      fetchFileResult.getNextObject().then((fileAsset) => {
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }).catch((err) => {
+        console.error('Failed to get next object: ' + err);
+      });
+    }
+  }).catch((err) => {
+    console.error('Failed to get first object: ' + err);
+  });
 }
 ```
 
 ### Querying Media Assets with the Specified Date
 
-The following describes how to obtain media assets that are added on the specified date. You can also use the modification date and shooting date as the retrieval conditions.
+The following describes how to obtain all the media assets that are added from the specified date. You can also use the modification date and shooting date as the retrieval conditions.
 
 To specify the date when the files are added as the retrieval condition, set **selections** to **FileKey.DATE_ADDED**.
 
@@ -64,23 +67,26 @@ To specify the date 2022-8-5, set **selectionArgs** to **2022-8-5**.
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let option = {
-        selections: fileKeyObj.DATE_ADDED + '= ?',
-        selectionArgs: ['2022-8-5'],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
-        }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+  let fileKeyObj = mediaLibrary.FileKey;
+  let option = {
+    selections: fileKeyObj.DATE_ADDED + '> ?',
+    selectionArgs: ['2022-8-5'],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  fetchFileResult.getFirstObject().then((fileAsset) => {
+    console.info('getFirstObject.displayName : ' + fileAsset.displayName);
+    for (let i = 1; i < fetchFileResult.getCount(); i++) {
+      fetchFileResult.getNextObject().then((fileAsset) => {
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }).catch((err) => {
+        console.error('Failed to get next object: ' + err);
+      });
+    }
+  }).catch((err) => {
+    console.error('Failed to get first object: ' + err);
+  });
 }
 ```
 
@@ -92,25 +98,28 @@ To sort files in descending order by the date when they are added, set **order**
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.IMAGE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-        order: fileKeyObj.DATE_ADDED + " DESC",
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
-        }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.IMAGE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+    order: fileKeyObj.DATE_ADDED + " DESC",
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  fetchFileResult.getFirstObject().then((fileAsset) => {
+    console.info('getFirstObject.displayName : ' + fileAsset.displayName);
+    for (let i = 1; i < fetchFileResult.getCount(); i++) {
+      fetchFileResult.getNextObject().then((fileAsset) => {
+        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+      }).catch((err) => {
+        console.error('Failed to get next object: ' + err);
+      });
+    }
+  }).catch((err) => {
+    console.error('Failed to get first object: ' + err);
+  });
 }
 ```
 
@@ -124,31 +133,29 @@ To specify the album name **'myAlbum'**, set **selectionArgs** to **'myAlbum'**.
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.IMAGE;
-    let option = {
-        selections: fileKeyObj.ALBUM_NAME + '= ?',
-        selectionArgs: ['myAlbum'],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    for (let i = 0; i < fetchFileResult.getCount(); i++) {
-        fetchFileResult.getNextObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
-        }
-        console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-        })
-    } 
+  let fileKeyObj = mediaLibrary.FileKey;
+  let option = {
+    selections: fileKeyObj.ALBUM_NAME + '= ?',
+    selectionArgs: ['myAlbum'],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  if (albumList.length > 0) {
+    fetchFileResult.getFirstObject().then((album) => {
+      console.info('getFirstObject.displayName : ' + album.albumName);
+    }).catch((err) => {
+      console.error('Failed to get first object: ' + err);
+    });
+  } else {
+    console.info('getAlbum list is: 0');
+  }
 }
 ```
 
 ## Obtaining Images and Videos in an Album
 
 You can obtain media assets in an album in either of the following ways:
-
 - Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified, as described in [Querying Media Assets with the Specfied Album Name](#querying-media-assets-with-the-specified-album-name).
 - Call [Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3) to obtain an **Album** instance, so as to obtain the media assets in it.
 
@@ -163,24 +170,24 @@ The following describes how to obtain videos in an album named **New Album 1**.
 
 1. Create a retrieval condition for obtaining the target **Album** instance.
 
-   ```ts
-   let fileKeyObj = mediaLibrary.FileKey;
-   let AlbumNoArgsFetchOp = {
-       selections: fileKeyObj.ALBUM_NAME + '= ?',
-       selectionArgs:['New Album 1']
-   }
-   ```
+```ts
+let fileKeyObj = mediaLibrary.FileKey;
+let AlbumNoArgsFetchOp = {
+  selections: fileKeyObj.ALBUM_NAME + '= ?',
+  selectionArgs:['New Album 1']
+}
+```
 
 2. Create a retrieval condition for obtaining videos in the target album.
 
-   ```ts
-   let fileKeyObj = mediaLibrary.FileKey;
-   let imageType = mediaLibrary.MediaType.VIDEO;
-   let imagesFetchOp  = {
-       selections: fileKeyObj.MEDIA_TYPE + '= ?',
-       selectionArgs: [imageType.toString()],
-   }
-   ```
+```ts
+let fileKeyObj = mediaLibrary.FileKey;
+let videoType = mediaLibrary.MediaType.VIDEO;
+let videoFetchOp  = {
+  selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  selectionArgs: [videoType.toString()],
+}
+```
 
 3. Call **Album.getFileAssets** to obtain the videos in the target album.
 
@@ -188,28 +195,28 @@ Complete sample code:
 
 ```ts
 async function getCameraImagePromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-    }
-    let AlbumNoArgsFetchOp = {
-        selections: fileKeyObj.ALBUM_NAME + '= ?',
-        selectionArgs:['New Album 1']
-    }
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let videoType = mediaLibrary.MediaType.VIDEO;
+  let videoFetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [videoType.toString()],
+  }
+  let AlbumNoArgsFetchOp = {
+    selections: fileKeyObj.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1']
+  }
 
-    let albumList = await media.getAlbums(AlbumNoArgsFetchOp);
-    if (albumList.length > 0) {
-        const album = albumList[0];
-        let fetchFileResult = await album.getFileAssets(imagesFetchOp);
-        let count = fetchFileResult.getCount();
-        console.info("get mediaLibrary IMAGE number", count);
-    } else {
-        console.info('getAlbum list is: 0');
-    }
+  let albumList = await media.getAlbums(AlbumNoArgsFetchOp);
+  if (albumList.length > 0) {
+    const album = albumList[0];
+    let fetchFileResult = await album.getFileAssets(videoFetchOp);
+    let count = fetchFileResult.getCount();
+    console.info("get mediaLibrary VIDEO number", count);
+  } else {
+    console.info('getAlbum list is: 0');
+  }
 }
 ```
 
@@ -235,31 +242,32 @@ The following describes how to obtain the thumbnail (size: 720 x 720) of the fir
 
 ```ts
 async function getFirstThumbnailPromise() {
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-    }
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let fileKeyObj = mediaLibrary.FileKey;
+  let imageType = mediaLibrary.MediaType.IMAGE;
+  let imagesFetchOp = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [imageType.toString()],
+  }
 
-    let size = { width: 720, height: 720 };
-    const fetchFileResult = await media.getFileAssets(imagesFetchOp);
-    if (fetchFileResult != undefined) {
-        const asset = await fetchFileResult.getFirstObject();
-        asset.getThumbnail(size).then((pixelMap) => {
-          pixelMap.getImageInfo().then((info) => {
-              console.info('get Thumbnail info: ' + "width: " + info.size.width + " height: " + info.size.height);
-          }).catch((err) => {
-              console.info("getImageInfo failed with error:" + err);
-          });
-        }).catch((err) => {
-            console.info("getImageInfo failed with error:" + err);
-        });
-    } else {
-        console.info("get image failed with error");
-    }
+  let size = { width: 720, height: 720 };
+  const fetchFileResult = await media.getFileAssets(imagesFetchOp);
+  if (fetchFileResult === undefined) {
+    console.error("get image failed with error");
+    return;
+  } else {
+    const asset = await fetchFileResult.getFirstObject();
+    asset.getThumbnail(size).then((pixelMap) => {
+      pixelMap.getImageInfo().then((info) => {
+        console.info('get Thumbnail info: ' + "width: " + info.size.width + " height: " + info.size.height);
+      }).catch((err) => {
+        console.error("getImageInfo failed with error: " + err);
+      });
+    }).catch((err) => {
+      console.error("getImageInfo failed with error: " + err);
+    });
+  }
 }
 ```
 
@@ -277,16 +285,16 @@ The following describes how to create a file of the **MediaType.FILE** type.
 
 ```ts
 async function example() {
-    let mediaType = mediaLibrary.MediaType.FILE;
-    let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const path = await media.getPublicDirectory(DIR_DOCUMENTS);
-    media.createAsset(mediaType, "testFile.text", path).then ((asset) => {
-        console.info("createAsset successfully:"+ JSON.stringify(asset));
-    }).catch((err) => {
-        console.info("createAsset failed with error:"+ err);
-    });
+  let mediaType = mediaLibrary.MediaType.FILE;
+  let DIR_DOCUMENTS = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const path = await media.getPublicDirectory(DIR_DOCUMENTS);
+  media.createAsset(mediaType, "testFile.text", path).then((asset) => {
+    console.info("createAsset successfully:"+ JSON.stringify(asset));
+  }).catch((err) => {
+    console.error("createAsset failed with error: " + err);
+  });
 }
 ```
 
@@ -312,26 +320,26 @@ The following describes how to move the first file in the result set to the recy
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.FILE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-      console.error('asset not exist');
-      return;
-    }
-    // Void callback.
-    asset.trash(true).then(() => {
-        console.info("trash successfully");
-    }).catch((err) => {
-        console.info("trash failed with error: " + err);
-    });
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.FILE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  let asset = await fetchFileResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset not exist');
+    return;
+  }
+  // Void callback.
+  asset.trash(true).then(() => {
+    console.info("trash successfully");
+  }).catch((err) => {
+    console.error("trash failed with error: " + err);
+  });
 }
 ```
 
@@ -346,7 +354,7 @@ Before renaming a file, you must obtain the file, for example, by calling [Fetch
 - You have obtained a **MediaLibrary** instance.
 - You have granted the permission **ohos.permission.WRITE_MEDIA**.
 
-The following describes how to rename the first file in the result set as **newtitle.text**.
+The following describes how to rename the first file in the result set as **newImage.jpg**.
 
 **How to Develop**
 
@@ -358,28 +366,28 @@ The following describes how to rename the first file in the result set as **newt
 
 ```ts
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileType = mediaLibrary.MediaType.FILE;
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    let media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-      console.error('asset not exist');
+  let fileKeyObj = mediaLibrary.FileKey;
+  let fileType = mediaLibrary.MediaType.IMAGE;
+  let option = {
+    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+    selectionArgs: [fileType.toString()],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const fetchFileResult = await media.getFileAssets(option);
+  let asset = await fetchFileResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset not exist');
+    return;
+  }
+  asset.displayName = 'newImage.jpg';
+  // Void callback.
+  asset.commitModify((err) => {
+    if (err) {
+      console.error('fileRename Failed ');
       return;
     }
-    asset.displayName = 'newImage.jpg';
-    // Void callback.
-    asset.commitModify((err) => {
-       if (err) {
-           console.error('fileRename Failed ');
-           return;
-       }
-       console.log('fileRename successful.');
-    });
+    console.info('fileRename successful.');
+  });
 }
 ```

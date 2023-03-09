@@ -367,7 +367,7 @@ Provides APIs for obtaining and modifying storage data.
 
 getSync(key: string, defValue: ValueType): ValueType
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -396,7 +396,7 @@ console.info("The value of startup is " + value);
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses an asynchronous callback to return the result.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -425,7 +425,7 @@ storage.get('startup', 'default', function(err, value) {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses a promise to return the result.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 

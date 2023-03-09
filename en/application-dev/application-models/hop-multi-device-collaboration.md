@@ -1,9 +1,9 @@
-# Multi-device Collaboration
+# Multi-device Collaboration (System Applications Only)
 
 
 ## When to Use
 
-Multi-device coordination is available only for system applications. It involves the following scenarios:
+Multi-device coordination involves the following scenarios:
 
 - [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned)
 
@@ -305,7 +305,7 @@ A system application can connect to a service on another device by calling [conn
 
 ## Using Cross-Device Ability Call
 
-The basic principle of cross-device ability call is the same as that of intra-device ability call. For details, see [Using Ability Call to Implement UIAbility Interaction](uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction).
+The basic principle of cross-device ability call is the same as that of intra-device ability call. For details, see [Using Ability Call to Implement UIAbility Interaction (System Applications Only)](uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction-system-applications-only).
 
 The following describes how to implement multi-device collaboration through cross-device ability call.
 

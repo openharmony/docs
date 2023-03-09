@@ -27,7 +27,7 @@ The mission snapshot information can be obtained by using **getMissionSnapShot**
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
       }
       console.log('size = ${missions.length}');
@@ -36,7 +36,7 @@ The mission snapshot information can be obtained by using **getMissionSnapShot**
 
       missionManager.getMissionSnapShot('', id, (err, snapshot) => {
         if (err.code) {
-          console.log('getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}');
+          console.error('getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}');
           return;
         }
 
@@ -45,6 +45,6 @@ The mission snapshot information can be obtained by using **getMissionSnapShot**
       });
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
 ```

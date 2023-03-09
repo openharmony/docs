@@ -19,7 +19,7 @@ import matrix4 from '@ohos.matrix4'
 init(array: Array&lt;number&gt;): Matrix4Transit
 
 
-Matrix constructor, which is used to create a 4x4 matrix by using the input parameter. Column-major order is used.
+Matrix constructor, which is used to create a 4 x 4 matrix by using the input parameter. Column-major order is used.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -33,7 +33,7 @@ Matrix constructor, which is used to create a 4x4 matrix by using the input para
 
 | Type          | Description                        |
 | -------------- | ---------------------------- |
-| Matrix4Transit | 4x4 matrix object created based on the input parameter.|
+| Matrix4Transit | 4 x 4 matrix object created based on the input parameter.|
 
 **array** parameters
 
@@ -458,7 +458,7 @@ struct Test {
         .width('600px')
         .height('300px')
         .margin({ top: 50 })
-      Text(`Coordinates before matrix transformation: [${this.transformPoint}]`)
+      Text(`Coordinates after matrix transformation: [${this.transformPoint}]`)
         .fontSize(16)
         .margin({ top: 100 })
       Image($r("app.media.image"))

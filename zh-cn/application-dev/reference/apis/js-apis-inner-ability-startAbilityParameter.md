@@ -36,11 +36,14 @@ let startAbilityParameter = {
 };
 
 try {
-    featureAbility.startAbility(startAbilityParameter, (err, data) => {
-        console.log('errCode : ${JSON.stringify(err)}');
-        console.log('data : ${JSON.stringify(data)}');
+    featureAbility.startAbility(startAbilityParameter, (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbility success, data: ${JSON.stringify(data)}');
+        }
     });
 } catch(error) {
-    console.log('startAbility error: ${JSON.stringify(error)}');
+    console.error('startAbility error: ${JSON.stringify(error)}');
 }
 ```

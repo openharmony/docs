@@ -57,8 +57,12 @@ featureAbility.startAbility(
             uri: ''
         },
     },
-    (err, data) => {
-        console.info('startAbility err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbility success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -193,8 +197,12 @@ featureAbility.startAbilityForResult(
             uri:''
         },
     },
-    (err, data) => {
-        console.info('startAbilityForResult err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbilityForResult fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbilityForResult success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -309,8 +317,8 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
-    (err) => {
-        console.error('err: ${JSON.stringify(err)}');
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 );
 ```
@@ -389,8 +397,12 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus((err, data) => {
-    console.info('hasWindowFocus err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+featureAbility.hasWindowFocus((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('hasWindowFocus fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('hasWindowFocus success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -435,8 +447,12 @@ getWant(callback: AsyncCallback\<Want>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant((err, data) => {
-    console.info('getWant err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+featureAbility.getWant((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWant fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWant success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -482,8 +498,12 @@ getContext(): Context
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getBundleName((err, data) => {
-    console.info('getBundleName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getBundleName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -506,8 +526,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
-    (err) => {
-        console.error('err: ${JSON.stringify(err)}');
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 )
 ```
@@ -574,7 +594,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -617,7 +637,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -631,8 +651,12 @@ let connectId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connectId, (err) => {
-    console.error('featureAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
+featureAbility.disconnectAbility(connectId, (error) => {
+    if (error && error.code !== 0) {
+        console.error('disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('disconnectAbility success， connectId: ${connectId}');
+    }
 });
 ```
 
@@ -668,7 +692,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -707,8 +731,12 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```ts
-featureAbility.getWindow((err, data) => {
-    console.info('getWindow err: ${JSON.stringify(err)}, data: ${typeof(data)}');
+featureAbility.getWindow((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWindow fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWindow success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 

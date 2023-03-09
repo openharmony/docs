@@ -12,7 +12,7 @@ You can set the opacity of a component.
 
 | Name     | Type                                    | Description                                      |
 | ------- | ---------------------------------------- | ---------------------------------------- |
-| opacity | number \| [Resource](ts-types.md#resource) | Opacity of the component. The value ranges from 0 to 1. The value **1** means opaque, and **0** means completely transparent. When being completely transparent, the component is hidden, but still takes up space in the layout.<br>**NOTE**<br>A child component can inherit this attribute of its parent component. Default value: **1**|
+| opacity | number \| [Resource](ts-types.md#resource) | Opacity of the component. The value ranges from 0 to 1. The value **1** means opaque, and **0** means completely transparent. When being completely transparent, the component is hidden, but still takes up space in the layout. Default value: **1**<br>**NOTE**<br> A component inherits the opacity setting from its parent component and multiplies it by its own setting. For example, if the opacity of a component is 0.8 and that of its parent component is 0.1, then the actual opacity of the component is 0.1 x 0.8 = 0.8.|
 
 
 ## Example

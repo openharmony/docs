@@ -18,11 +18,13 @@ LoadingProgress()
 
 创建加载进展组件。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 ## 属性
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置加载进度条前景色。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置加载进度条前景色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 

@@ -14,7 +14,11 @@ ProcessInformation模块提供对进程运行信息进行查询的能力。
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getRunningProcessInformation((error, data) => { 
-    console.log('error: ${error.code}, data: ${JSON.stringify(data)}');
+    if (error && error.code !== 0) {
+        console.error('getRunningProcessInformation fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getRunningProcessInformation success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 

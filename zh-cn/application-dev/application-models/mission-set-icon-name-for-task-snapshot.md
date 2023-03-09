@@ -5,7 +5,7 @@
 默认情况下任务快照的图标和名称采用的是[module.json5配置文件](../quick-start/module-configuration-file.md)的[abilities标签](../quick-start/module-configuration-file.md#abilities标签)中的icon和label字段，如下图所示。
 
 图1 UIAbility对应的任务快照   
-<img src="figures/mission-list-recent.png" alt="mission-list-recent" height="400" />
+![](figures/mission-list-recent.png)
 
 也可以使用[UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon)和[UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法，根据需要自定义任务快照的图标和名称。例如，对于UIAbility的标准实例启动模式，可以根据不同的功能配置相应的任务快照的图标和名称。
 
@@ -28,7 +28,7 @@ this.context.setMissionIcon(imagePixelMap, (err) => {
 效果示意如下图所示。
 
 图2 设置任务快照的图标   
-<img src="figures/mission-set-task-snapshot-icon.png" alt="mission-set-task-snapshot-icon" height="400" />
+![](figures/mission-set-task-snapshot-icon.png)
 
 ## 设置任务快照的名称
 
@@ -36,13 +36,13 @@ this.context.setMissionIcon(imagePixelMap, (err) => {
 
 ```ts
 this.context.setMissionLabel('test').then(() => {
-  console.log('setMissionLabel succeeded.');
+  console.info('setMissionLabel succeeded.');
 }).catch((err) => {
-  console.log(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
 效果示意如下图所示。
 
 图3 设置任务快照的名称   
-<img src="figures/mission-set-task-snapshot-label.png" alt="mission-set-task-snapshot-label" height="400" />
+![](figures/mission-set-task-snapshot-label.png)

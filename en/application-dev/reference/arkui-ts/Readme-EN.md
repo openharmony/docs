@@ -42,6 +42,7 @@
     - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
     - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
     - [restoreId](ts-universal-attributes-restoreId.md)
+    - [Foreground Color](ts-universal-attributes-foreground-color.md)
   - Gesture Processing
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
@@ -60,11 +61,15 @@
   - [DataPanel](ts-basic-components-datapanel.md)
   - [DatePicker](ts-basic-components-datepicker.md)
   - [Divider](ts-basic-components-divider.md)
+  - [Formcomponent](ts-basic-components-formcomponent.md)
   - [Gauge](ts-basic-components-gauge.md)
   - [Image](ts-basic-components-image.md)
   - [ImageAnimator](ts-basic-components-imageanimator.md)
   - [LoadingProgress](ts-basic-components-loadingprogress.md)
   - [Marquee](ts-basic-components-marquee.md)
+  - [Menu](ts-basic-components-menu.md)
+  - [MenuItem](ts-basic-components-menuitem.md)
+  - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
   - [Navigation](ts-basic-components-navigation.md)
   - [NavRouter](ts-basic-components-navrouter.md)
   - [NavDestination](ts-basic-components-navdestination.md)

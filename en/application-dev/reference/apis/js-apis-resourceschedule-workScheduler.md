@@ -430,7 +430,7 @@ Provides detailed information about the task. For details about the constraints 
 | isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.       |
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state.    |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state.          |
-| parameters      | {[key: string]: any}              | No   | Carried parameters.          |
+| parameters      | {[key: string]: number | string | boolean}              | No   | Carried parameters.          |
 
 ## NetworkType
 Enumerates the network types that can trigger the task.

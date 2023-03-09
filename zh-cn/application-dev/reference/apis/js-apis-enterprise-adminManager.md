@@ -955,4 +955,6 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 | -------------------------- | ---- | ------------- |
 | MANAGED_EVENT_BUNDLE_ADDED | 0    | 应用安装事件。 |
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | 应用卸载事件。 |
+| MANAGED_EVENT_APP_START | 2    | 应用启动事件。 |
+| MANAGED_EVENT_APP_STOP | 3  | 应用停止事件。 |
 

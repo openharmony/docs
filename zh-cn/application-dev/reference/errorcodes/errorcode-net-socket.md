@@ -54,11 +54,11 @@ No such process.
 
 排查进程信息。
 
-## 2300004 Interrupted system call
+## 2301004 系统调用中断
 
 **错误信息**
 
-Couldn't resolve host name.
+Interrupted system call.
 
 **错误描述**
 

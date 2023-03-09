@@ -57,10 +57,10 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 > **NOTE**
 >
@@ -73,13 +73,13 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
     let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
       if (error) {
-          console.info( `applyQuickFix failed with error: ${error}`);
+          console.error( `applyQuickFix failed with error: ${error}`);
       } else {
           console.info( 'applyQuickFix success');
       }
     });
   } catch (paramError) {
-    console.log('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
 ```
 
@@ -97,15 +97,15 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -115,10 +115,10 @@ Applies a quick fix patch. This API uses a promise to return the result.
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
       console.info('applyQuickFix success');
     }).catch((error) => {
-      console.info(`applyQuickFix err: ${error}`);
+      console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
 ```
 
@@ -148,13 +148,13 @@ Obtains the quick fix information of the application. This API uses an asynchron
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
       if (error) {
-        console.info(`getApplicationQuickFixInfo error: ${error}`);
+        console.error(`getApplicationQuickFixInfo error: ${error}`);
       } else {
         console.info(`getApplicationQuickFixInfo success: ${data}`);
       }
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
 ```
 
@@ -178,9 +178,9 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
 
 **Example**
 
@@ -190,9 +190,9 @@ Obtains the quick fix information of the application. This API uses a promise to
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
       console.info(`getApplicationQuickFixInfo success: ${data}`);
     }).catch((error) => {
-      console.info(`getApplicationQuickFixInfo err: ${error}`);
+      console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
   ```

@@ -39,8 +39,8 @@ When an asynchronous callback is used, the return value can be processed directl
 import UIAbility from '@ohos.app.ability.UIAbility';
 import errorManager from '@ohos.app.ability.errorManager';
 
-var registerId = -1;
-var callback = {
+let registerId = -1;
+let callback = {
     onUnhandledException: function (errMsg) {
         console.log(errMsg);
     }
@@ -48,13 +48,13 @@ var callback = {
 export default class EntryAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] EntryAbility onCreate")
-        registerId = errorManager.registerErrorObserver(callback);
+        registerId = errorManager.on("error", callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
         console.log("[Demo] EntryAbility onDestroy")
-        errorManager.unregisterErrorObserver(registerId, (result) => {
+        errorManager.off("error", registerId, (result) => {
             console.log("[Demo] result " + result.code + ";" + result.message)
         });
     }

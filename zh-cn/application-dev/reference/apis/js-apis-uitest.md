@@ -1,4 +1,4 @@
-# @ohos.uitest (UiTest)
+# @ohos.UiTest
 
 UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要支持如点击、双击、长按、滑动等UI操作能力。
 
@@ -20,7 +20,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块 
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -61,8 +61,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 | 名称 | 类型   | 可读 | 可写 | 说明             |
 | ---- | ------ | ---- | ---- | ---------------- |
-| X    | number | 是   | 否   | 坐标点的横坐标。 |
-| Y    | number | 是   | 否   | 坐标点的纵坐标。 |
+| x    | number | 是   | 否   | 坐标点的横坐标。 |
+| y    | number | 是   | 否   | 坐标点的纵坐标。 |
 
 ## Rect<sup>9+</sup>
 
@@ -79,9 +79,9 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 ## WindowMode<sup>9+</sup>
 
-**系统能力**：SystemCapability.Test.UiTest
-
 窗口的窗口模式。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |
@@ -92,9 +92,9 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 ## DisplayRotation<sup>9+</sup>
 
-**系统能力**：SystemCapability.Test.UiTest
-
 设备显示器的显示方向。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称         | 值   | 说明                                     |
 | ------------ | ---- | ---------------------------------------- |
@@ -115,6 +115,31 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 | title      | string  | 是   | 否   | 窗口的标题信息。           |
 | focused    | boolean | 是   | 否   | 窗口是否处于获焦状态。     |
 | actived    | boolean | 是   | 否   | 窗口是否正与用户进行交互。 |
+
+## UiDirection<sup>10+</sup>
+
+进行抛滑等UI操作时的方向。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称  | 值   | 说明   |
+| ----- | ---- | ------ |
+| LEFT  | 0    | 向左。 |
+| RIGHT | 1    | 向右。 |
+| UP    | 2    | 向上。 |
+| DOWN  | 3    | 向下。 |
+
+## MouseButton<sup>10+</sup>
+
+模拟注入的鼠标按钮。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称                | 值   | 说明         |
+| ------------------- | ---- | ------------ |
+| MOUSE_BUTTON_LEFT   | 0    | 鼠标左键。   |
+| MOUSE_BUTTON_RIGHT  | 1    | 鼠标右键。   |
+| MOUSE_BUTTON_MIDDLE | 2    | 鼠标中间键。 |
 
 ## On<sup>9+</sup>
 
@@ -466,6 +491,58 @@ isAfter(on: On): On
 
 ```js
 let on = ON.isAfter(ON.text('123')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
+```
+
+### within<sup>10+</sup>
+
+within(on: On): On
+
+指定目标控件位于给出的特征属性控件之内，返回On对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                 |
+| ------ | ---------- | ---- | -------------------- |
+| on     | [On](#on9) | 是   | 特征控件的属性要求。 |
+
+**返回值：**
+
+| 类型       | 说明                                               |
+| ---------- | -------------------------------------------------- |
+| [On](#on9) | 返回指定目标控件位于给出的特征属性控件内的On对象。 |
+
+**示例：**
+
+```js
+let on = ON.within(ON.type('List')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之内。
+```
+
+### inWindow<sup>10+</sup>
+
+inWindow(bundleName: string): On;
+
+指定目标控件位于给出的应用窗口内，返回On对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明             |
+| ---------- | ------ | ---- | ---------------- |
+| bundleName | string | 是   | 应用窗口的包名。 |
+
+**返回值：**
+
+| 类型       | 说明                                           |
+| ---------- | ---------------------------------------------- |
+| [On](#on9) | 返回指定目标控件位于给出的应用窗口内的On对象。 |
+
+**示例：**
+
+```js
+let on = ON.inWindow(ON.inWindow('com.uitestScene.acts')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的应用窗口内。
 ```
 
 ## Component<sup>9+</sup>
@@ -1816,7 +1893,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.screenCap('/local/tmp/1.png');
+    await driver.screenCap('/data/storage/el2/base/cache/1.png');
 }
 ```
 
@@ -2078,7 +2155,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                   |
 | to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                     |
 | stepLen | number           | 是   | 间隔距离，单位：像素点。                                     |
-| speed   | number           | 是   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
@@ -2093,7 +2170,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.fling({X: 500, Y: 480},{X: 450, Y: 480},5,600);
+    await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
 }
 ```
 
@@ -2132,13 +2209,183 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 async function demo() {
     let driver = Driver.create();
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
     await driver.injectMultiPointerAction(pointers);
+}
+```
+
+### fling<sup>10+</sup>
+
+fling(direction: UiDirection, speed: number): Promise<void>;
+
+指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名    | 类型                          | 必填 | 说明                                                         |
+| --------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                             |
+| speed     | number                        | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.fling(UiDirection.DOWN, 10000);
+}
+```
+
+### screenCapture<sup>10+</sup>
+
+screenCapture(savePath: string, rect?: Rect): Promise<boolean>;
+
+捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型           | 必填 | 说明                   |
+| -------- | -------------- | ---- | ---------------------- |
+| savePath | string         | 是   | 文件保存路径。         |
+| rect     | [Rect](#rect9) | 否   | 截图区域，默认为全屏。 |
+
+**返回值：**
+
+| 类型              | 说明                                   |
+| ----------------- | -------------------------------------- |
+| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.screenCapture('/data/storage/el2/base/cache/1.png', {left: 0, top: 0, right: 100, bottom: 100});
+}
+```
+
+### mouseClick<sup>10+</sup>
+
+mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise<void>;
+
+在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明                |
+| ------ | ----------------------------- | ---- | ------------------- |
+| p      | [Point](#point9)              | 是   | 鼠标点击的坐标。    |
+| btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
+| key1   | number                        | 是   | 指定的第一个key值。 |
+| key2   | number                        | 否   | 指定的第二个key值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
+}
+```
+
+### mouseScroll<sup>10+</sup>
+
+mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise<void>;
+
+在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明                                                |
+| ------ | ---------------- | ---- | --------------------------------------------------- |
+| p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                    |
+| down   | boolean          | 是   | 滚轮滑动方向是否向下。                              |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。 |
+| key1   | number           | 是   | 指定的第一个key值。                                 |
+| key2   | number           | 否   | 指定的第二个key值。                                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+}
+```
+
+### mouseMoveTo<sup>10+</sup>
+
+mouseMoveTo(p: Point): Promise<void>;
+
+将鼠标光标移到目标点。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| p      | [Point](#point9) | 是   | 目标点的坐标。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseMoveTo({x:100, y:100})
 }
 ```
 
@@ -2196,12 +2443,12 @@ setPoint(finger: number, step: number, point: Point): void
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
 }
 ```
 
@@ -3673,6 +3920,6 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 ```js
 async function demo() {
     let driver = UiDriver.create();
-    await driver.screenCap('/local/tmp/1.png');
+    await driver.screenCap('/data/storage/el2/base/cache/1.png');
 }
 ```

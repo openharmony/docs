@@ -104,7 +104,7 @@ The full playback process includes creating an instance, setting resources, sett
 ```js
 import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio';
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -223,14 +223,8 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" command.
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }
@@ -240,7 +234,7 @@ export class AVPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -280,7 +274,7 @@ export class AVPlayerDemo {
           break;
         case 'stopped': // This state is reported upon a successful callback of stop().
           console.info(TAG + 'state stopped called')
-          this.avPlayer.reset() // Call reset() to initialize the AVPlayer state.
+          this.avPlayer.release() // Call reset() to initialize the AVPlayer state.
           break;
         case 'released':
           console.info(TAG + 'state released called')
@@ -302,24 +296,18 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" command.
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }
 ```
 
-### Switching to the Next Video Clip
+### Looping a Song
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -362,7 +350,7 @@ export class AVPlayerDemo {
           break;
         case 'stopped': // This state is reported upon a successful callback of stop().
           console.info(TAG + 'state stopped called')
-          this.avPlayer.reset() // Call reset() to initialize the AVPlayer state.
+          this.avPlayer.release() // Call reset() to initialize the AVPlayer state.
           break;
         case 'released':
           console.info(TAG + 'state released called')
@@ -393,23 +381,17 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" command.
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }
 ```
-### Looping a Song
+### Switching to the Next Video Clip
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -422,14 +404,8 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_MP3.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" command.
     let path = pathDir  + '/H264_MP3.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath // The initialized state is reported again.
   }
 
@@ -493,14 +469,8 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" command.
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }

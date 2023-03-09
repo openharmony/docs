@@ -17,7 +17,7 @@ This topic describes the UIAbility interaction modes in the following scenarios.
 
 - [Starting a Specified Page of UIAbility](#starting-a-specified-page-of-uiability)
 
-- [Using Ability Call to Implement UIAbility Interaction](#using-ability-call-to-implement-uiability-interaction)
+- [Using Ability Call to Implement UIAbility Interaction (System Applications Only)](#using-ability-call-to-implement-uiability-interaction-system-applications-only)
 
 
 ## Starting UIAbility in the Same Application
@@ -422,9 +422,9 @@ In summary, when a UIAbility instance of application A has been created and the 
 > When the [launch type of the callee UIAbility](uiability-launch-type.md) is set to **standard**, a new instance is created each time the callee UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
 
 
-## Using Ability Call to Implement UIAbility Interaction
+## Using Ability Call to Implement UIAbility Interaction (System Applications Only)
 
-This feature applies only to system applications. Ability call is an extension of the UIAbility capability. It enables the UIAbility to be invoked by and communicate with external systems. The UIAbility invoked can be either started in the foreground or created and run in the background. You can use the ability call to implement data sharing between two UIAbility instances (caller ability and callee ability) through IPC.
+Ability call is an extension of the UIAbility capability. It enables the UIAbility to be invoked by and communicate with external systems. The UIAbility invoked can be either started in the foreground or created and run in the background. You can use the ability call to implement data sharing between two UIAbility instances (caller ability and callee ability) through IPC.
 
 The core API used for the ability call is **startAbilityByCall**, which differs from **startAbility** in the following ways:
 
