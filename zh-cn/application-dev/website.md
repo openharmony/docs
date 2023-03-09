@@ -927,6 +927,11 @@
       - [@ohos.notification (Notification模块)(待停用)](reference/apis/js-apis-notification.md)
       - application
         - [EventHub](reference/apis/js-apis-inner-application-eventHub.md)
+      - commonEvent
+        - [CommonEventData](reference/apis/js-apis-inner-commonEvent-commonEventData.md)
+        - [CommonEventPublishData](reference/apis/js-apis-inner-commonEvent-commonEventPublishData.md)
+        - [CommonEventSubscriber](reference/apis/js-apis-inner-commonEvent-commonEventSubscriber.md)
+        - [CommonEventSubscribeInfo](reference/apis/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
     - 包管理
       - [@ohos.bundle.appControl (appControl模块)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
