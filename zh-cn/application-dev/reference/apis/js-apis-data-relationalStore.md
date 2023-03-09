@@ -363,6 +363,8 @@ class EntryAbility extends UIAbility {
 
 描述订阅类型。
 
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称                  | 值   | 说明               |
