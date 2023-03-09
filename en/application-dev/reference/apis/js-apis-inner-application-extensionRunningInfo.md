@@ -33,7 +33,7 @@ let upperLimit = 1;
 function getExtensionInfos() {
     abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
         if (error && error.code) {
-            console.log('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
             return;
         }
 
