@@ -2215,7 +2215,7 @@ try {
 
 ### bundleManager.getProfileByAbility
 
-getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback<Array\<string>>): void;
+getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void;
 
 Obtains the JSON strings of the configuration file based on the given module ame, ability name, and metadata name. This API uses an asynchronous callback to return the result.
 
@@ -2266,7 +2266,7 @@ try {
 
 ### bundleManager.getProfileByAbility
 
-getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise<Array\<string>>;
+getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 Obtains the JSON strings of the configuration file based on the given module ame, ability name, and metadata name. This API uses a promise to return the result.
 
@@ -2336,7 +2336,7 @@ try {
 
 ### bundleManager.getProfileByExtensionAbility
 
-getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback<Array\<string>>): void;
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void;
 
 Obtains the JSON strings of the configuration file based on the given module ame, Extension ability name, and metadata name. This API uses an asynchronous callback to return the result.
 
@@ -2386,7 +2386,7 @@ try {
 
 ### bundleManager.getProfileByExtensionAbility
 
-getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise<Array\<string>>;
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 Obtains the JSON strings of the configuration file based on the given module ame, Extension ability name, and metadata name. This API uses a promise to return the result.
 
@@ -2658,7 +2658,6 @@ try {
 ### bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
-getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
 Synchronously obtains the application information based on the given bundle name, application flags, and user ID.
 
@@ -2709,6 +2708,42 @@ try {
 }
 ```
 
+### bundleManager.getApplicationInfoSync
+
+getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
+
+Synchronously obtains the application information based on the given bundle name and application flags.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name          | Type                      | Mandatory| Description                                                 |
+| ---------------- | -------------------------- | ---- | ----------------------------------------------------- |
+| bundleName       | string                     | Yes  | Bundle name.                           |
+| applicationFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.|
+
+**Return value**
+
+| Type                                                       | Description                     |
+| ----------------------------------------------------------- | ------------------------- |
+| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Application information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
+
+**Example**
+
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
@@ -2726,7 +2761,6 @@ try {
 ### bundleManager.getBundleInfoSync
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
-getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
 Synchronously obtains the bundle information based on the given bundle name, bundle flags, and user ID.
 
@@ -2742,7 +2776,7 @@ Synchronously obtains the bundle information based on the given bundle name, bun
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | Yes  | Bundle name.                                |
 | bundleFlags | [number](#bundleflag) | Yes  | Type of the bundle information to obtain.|
-| userId      | number | No  | User ID.                                            |
+| userId      | number | Yes  | User ID.                                            |
 
 **Return value**
 
@@ -2777,6 +2811,42 @@ try {
 }
 ```
 
+### bundleManager.getBundleInfoSync
+
+getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
+
+Synchronously obtains the bundle information based on the given bundle name and bundle flags.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name     | Type                 | Mandatory| Description                                                  |
+| ----------- | --------------------- | ---- | ------------------------------------------------------ |
+| bundleName  | string                | Yes  | Bundle name.                            |
+| bundleFlags | [number](#bundleflag) | Yes  | Type of the bundle information to obtain.|
+
+**Return value**
+
+| Type                                             | Description                |
+| ------------------------------------------------- | -------------------- |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
+
+**Example**
+
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
@@ -2789,3 +2859,37 @@ try {
     hilog.error(0x0000, 'testTag', 'getBundleInfoSync failed: %{public}s', err.message);
 }
 ```
+
+## ModuleType
+
+Enumerates the module types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name   | Value  | Description                |
+| ------- | ---- | -------------------- |
+| ENTRY   | 1    | Main module of the application.  |
+| FEATURE | 2    | Dynamic feature module of the application.|
+| SHARED  | 3    | Dynamic shared library module of the application. |
+
+## BundleType
+
+Enumerates the bundle types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name          | Value  | Description           |
+| -------------- | ---- | --------------- |
+| APP            | 0    | The bundle is a common application.   |
+| ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
+
+## AtomicServiceModuleType
+
+Enumerates the module types of an atomic service.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name  | Value  | Description                       |
+| ------ | ---- | --------------------------- |
+| NORMAL | 0    | Page package in the atomic service.    |
+| MAIN   | 1    | Landing page package in the atomic service.|

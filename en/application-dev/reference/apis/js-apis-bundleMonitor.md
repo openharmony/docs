@@ -33,7 +33,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
 ## bundleMonitor.on
 
-on(type: BundleChangedEvent, callback: callback\<BundleChangedInfo>): void;
+on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 Subscribes to bundle installation, uninstall, and update events.
 
@@ -66,7 +66,7 @@ try {
 
 ## bundleMonitor.off
 
-off(type: BundleChangedEvent, callback?: callback\<BundleChangedInfo>): void;
+off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 Unsubscribes from bundle installation, uninstall, and update events.
 
