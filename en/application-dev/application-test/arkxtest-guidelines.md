@@ -108,7 +108,7 @@ You write a UI test script based on the unit test framework, adding the invoking
 In this example, the UI test script is written based on the preceding unit test script. First, add the dependency package, as shown below:
 
 ```js
-import {UiDriver,BY,UiComponent,MatchPattern} from '@ohos.uitest'
+import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
 ```
 
 Then, write specific test code. Specifically, implement the click action on the started application page and add checkpoint check cases.
@@ -131,16 +131,16 @@ export default function abilityTest() {
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       //ui test code
-      //init uidriver
-      var driver = await UiDriver.create();
+      //init driver
+      var driver = await Driver.create();
       await driver.delayMs(1000);
-      //find button by text 'Next'
-      var button = await driver.findComponent(BY.text('Next'));
+      //find button on text 'Next'
+      var button = await driver.findComponent(ON.text('Next'));
       //click button
       await button.click();
       await driver.delayMs(1000);
       //check text
-      await driver.assertComponentExist(BY.text('after click'));
+      await driver.assertComponentExist(ON.text('after click'));
       await driver.pressBack();
       done();
     })
@@ -195,14 +195,15 @@ The framework supports multiple test case execution modes, which are triggered b
 | itName       | Test case to be executed.                                        | {itName}                                                     | -s itName testAttributeIt                 |
 | timeout      | Timeout interval for executing a test case.                                       | Positive integer (unit: ms). If no value is set, the default value 5000 is used.                       | -s timeout 15000                          |
 | breakOnError | Whether to enable break-on-error mode. When this mode is enabled, the test execution process exits if a test assertion error or any other error occurs.| **true**/**false** (default value)                                          | -s breakOnError true                      |
+| random | Whether to execute test cases in random sequence.| **true**/**false** (default value)                                          | -s random true                      |
 | testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
 | level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
-| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small         |
+| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small       |
 | stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
 
 **Running Commands**
 
-> Configure hdc-related environment variables, and then perform the following:
+> Before running commands in the CLI, make sure hdc-related environment variables have been configured.
 
 - Open the CLI.
 - Run the **aa test** commands.
