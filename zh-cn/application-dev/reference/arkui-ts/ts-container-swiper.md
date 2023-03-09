@@ -32,7 +32,7 @@ Swiper(controller?: SwiperController)
 | index                       | number                                   | 设置当前在容器中显示的子组件的索引值。<br/>默认值：0                     |
 | autoPlay                    | boolean                                  | 子组件是否自动播放，自动播放状态下，导航点不可操作。<br/>默认值：false    |
 | interval                    | number                                   | 使用自动播放时播放的时间间隔，单位为毫秒。<br/>默认值：3000                    |
-| indicator                   | boolean                                  | 是否启用导航点指示器。<br/>默认值：true                              |
+| indicator<sup>10+</sup>   | [DotIndicator](#dotindicator) \| [DigitIndicator](#digitindicator) \| boolean |  设置可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
 | loop                        | boolean                                  | 是否开启循环。<br>设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。<br/>默认值：true |
 | duration                    | number                                   | 子组件切换的动画时长，单位为毫秒。<br/>默认值：400                        |
 | vertical                    | boolean                                  | 是否为纵向滑动。<br/>默认值：false                                 |
@@ -79,6 +79,44 @@ finishAnimation(callback?: () => void): void
 | 参数名    | 参数类型   | 必填项 | 参数描述 |
 | --------- | ---------- | ------ | -------- |
 | callback  | () => void | 否     | 动画结束的回调。 |
+
+## Indicator<sup>10+</sup>对象说明
+
+设置导航点距离Swiper组件距离。
+
+| 参数名 | 参数类型 | 必填项 | 参数描述                             |
+| ------ | -------- | ------ | ------------------------------------ |
+| left   | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件左边的距离。 |
+| top    | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件顶部的距离。 |
+| right  | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件右边的距离。 |
+| bottom | [Length](ts-types.md#length)   | 否     | 设置导航点距离Swiper组件底部的距离。 |
+
+### DotIndicator
+
+圆点指示器属性及功能继承自Indicator。
+
+| 参数名             | 参数类型      | 必填项 | 参数描述                                               |
+| ------------------ | ------------- | ------ | ------------------------------------------------------ |
+| itemWidth          | [Length](ts-types.md#length)        | 否     | 设置Swiper组件圆点导航指示器的宽。               |
+| itemHeight         | [Length](ts-types.md#length)        | 否     | 设置Swiper组件圆点导航指示器的高。               |
+| selectedItemWidth  | [Length](ts-types.md#length)        | 否     | 设置选中Swiper组件圆点导航指示器的宽。           |
+| selectedItemHeight | [Length](ts-types.md#length)        | 否     | 设置选中Swiper组件圆点导航指示器的高。           |
+| mask               | boolean       | 否     | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。 |
+| color              | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置Swiper组件圆点导航指示器的颜色。             |
+| selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置选中Swiper组件圆点导航指示器的颜色。         |
+
+### DigitIndicator
+
+数字指示器属性及功能继承自Indicator。
+
+| 参数名            | 参数类型                                                     | 必填项 | 参数描述                                                     |
+| ----------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| fontColor         | [ResourceColor](ts-types.md#resourcecolor)                                                | 否     | 设置Swiper组件数字导航点的字体颜色。                       |
+| selectedFontColor | [ResourceColor](ts-types.md#resourcecolor)                                                | 否     | 设置选中Swiper组件数字导航点的字体颜色。                   |
+| digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否     | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小。<br/>\- weight：数字导航点指示器的字重。 |
+| selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 否     | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小。<br/>\- weight：数字导航点选中指示器的字重。 |
+
+
 
 ## 事件
 
