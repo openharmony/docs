@@ -12,7 +12,7 @@ This Charter is formulated by the API SIG and approved by the PMC for release. A
 
 The OpenHarmony software stack contains multiple roles. Naturally, OpenHarmony APIs have multiple types.
 
-<img src="figures/API-Category.png" width="800" />
+![API-Category](figures/API-Category.png)
 
 Different types of APIs have different compatibility requirements, as described in the table below.
 
@@ -59,7 +59,7 @@ The content described in this Charter is irrelevant to the programming language 
 ### API Review Process
 The API review process is as follows:
 
-<img src="figures/API-Workflow.png" width="800" />
+![API-Workflow](figures/API-Workflow.png)
 
 The main process is as follows:
 
