@@ -4,11 +4,13 @@ The **DataShare** module allows an application to manage its own data and share 
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs provided by this module are system APIs.
+>
+>
+> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -49,7 +51,7 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-application-context.md#context)        | Yes  | Context of an application.                                          |
+| context  | [Context](js-apis-app-ability-uiAbility.md)        | Yes  | Context of an application.                                          |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
@@ -94,7 +96,7 @@ Creates a **DataShareHelper** instance. This API uses a promise to return the re
 
 | Name | Type                                         | Mandatory| Description                          |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
-| context | [Context](js-apis-application-context.md#context) | Yes  | Context of an application.            |
+| context | [Context](js-apis-app-ability-uiAbility.md) | Yes  | Context of an application.            |
 | uri     | string                                            | Yes  | URI of the server application to connect.|
 
 **Return value**
