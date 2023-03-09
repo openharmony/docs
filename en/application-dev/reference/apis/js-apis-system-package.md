@@ -23,8 +23,6 @@ hasInstalled(options: CheckPackageHasInstalledOptions): void
 
 Checks whether an application exists, or whether a native application has been installed.
 
-**Required permissions**: none
-
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
