@@ -24,6 +24,8 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型                            | 必填 | 说明                           |
@@ -71,6 +73,8 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 创建会话对象，一个Ability只能存在一个会话，重复创建会失败，结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -501,6 +505,8 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
@@ -530,6 +536,8 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 取消会话服务死亡监听，取消后，不再进行服务死亡监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -763,6 +771,8 @@ avSession.sendSystemControlCommand(avcommand, function (err) {
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 
 | 名称      | 类型   | 可读 | 可写 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
@@ -781,6 +791,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 设置会话元数据。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -836,6 +848,8 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                  |
@@ -887,6 +901,8 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型                                | 必填 | 说明                                           |
@@ -933,6 +949,8 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                | 必填 | 说明                                           |
@@ -975,6 +993,8 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 设置一个WantAgent用于拉起会话的Ability。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1046,6 +1066,8 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                              | 必填 | 说明                                                        |
@@ -1113,6 +1135,8 @@ getController(): Promise\<AVSessionController>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                                 | 说明                          |
@@ -1146,6 +1170,8 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 获取本会话相应的控制器。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1183,6 +1209,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                           | 说明                              |
@@ -1214,6 +1242,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 通过会话获取播放设备相关信息。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1249,6 +1279,8 @@ activate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1280,6 +1312,8 @@ activate(callback: AsyncCallback\<void>): void
 激活会话，激活后可正常使用会话。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1315,6 +1349,8 @@ deactivate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1348,6 +1384,8 @@ deactivate(callback: AsyncCallback\<void>): void
 禁用当前会话的功能，可通过[activate](#activate)恢复。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1383,6 +1421,8 @@ destroy(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1413,8 +1453,9 @@ destroy(callback: AsyncCallback\<void>): void
 
 销毁当前会话，使当前会话完全失效。结果通过callback异步回调方式返回。
 
-
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1449,6 +1490,8 @@ on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind',
 设置播放命令监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1499,6 +1542,8 @@ on(type: 'seek', callback: (time: number) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
@@ -1529,6 +1574,8 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 设置播放速率的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1561,6 +1608,8 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名    | 类型                                   | 必填 | 说明  |
@@ -1591,6 +1640,8 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 设置是否收藏的监听事件
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1623,6 +1674,8 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -1654,6 +1707,8 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -1684,6 +1739,8 @@ off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward
 取消会话相关事件监听，关闭后，不再进行相关事件回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1720,6 +1777,8 @@ off(type: 'seek', callback?: (time: number) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                                          |
@@ -1748,6 +1807,8 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 取消监听播放速率变化事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1778,6 +1839,8 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明     |
@@ -1806,6 +1869,8 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 取消监听是否收藏的事件
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1836,6 +1901,8 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -1864,6 +1931,8 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 取消监听播放设备变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1896,6 +1965,7 @@ session.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                    |
 | :-------- | :----- | :--- | :--- | :-------------------------------------- |
@@ -1919,6 +1989,8 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 获取当前会话播放状态相关信息。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **返回值：**
 
@@ -1951,6 +2023,8 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 获取当前播放状态相关信息。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1986,6 +2060,8 @@ getAVMetadata(): Promise\<AVMetadata>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                | 说明                          |
@@ -2017,6 +2093,8 @@ getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 获取会话元数据。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2052,6 +2130,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                            | 说明                              |
@@ -2082,6 +2162,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 获取播放设备信息。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2116,6 +2198,8 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 发送按键事件到控制器对应的会话。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2161,6 +2245,8 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明       |
@@ -2202,6 +2288,8 @@ getLaunchAbility(): Promise\<WantAgent>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                        | 说明                                                         |
@@ -2236,6 +2324,8 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 获取应用在会话中保存的WantAgent对象。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2274,6 +2364,8 @@ getRealPlaybackPositionSync(): number
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型   | 说明               |
@@ -2301,6 +2393,8 @@ isActive(): Promise\<boolean>
 获取会话是否被激活。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **返回值：**
 
@@ -2334,6 +2428,8 @@ isActive(callback: AsyncCallback\<boolean>): void
 判断会话是否被激活。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2370,6 +2466,8 @@ destroy(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -2401,6 +2499,8 @@ destroy(callback: AsyncCallback\<void>): void
 销毁当前控制器，销毁后当前控制器不可再用。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2436,6 +2536,8 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                                         | 说明                              |
@@ -2468,6 +2570,8 @@ getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 获取会话支持的有效命令。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2503,6 +2607,8 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 通过控制器发送命令到其对应的会话。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2557,6 +2663,8 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
@@ -2607,6 +2715,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -2643,6 +2753,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 设置播放状态变化的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2681,6 +2793,8 @@ on(type: 'sessionDestroy', callback: () => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型       | 必填 | 说明                                                         |
@@ -2712,6 +2826,8 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
@@ -2742,6 +2858,8 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 会话支持的有效命令变化监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2775,6 +2893,8 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -2806,6 +2926,8 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                               | 必填 | 说明                                                    |
@@ -2833,6 +2955,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 控制器取消监听播放状态变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2862,6 +2986,8 @@ off(type: 'sessionDestroy', callback?: () => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型       | 必填 | 说明                                                      |
@@ -2889,6 +3015,8 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 控制器取消监听会话激活状态变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2918,6 +3046,8 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
@@ -2945,6 +3075,8 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 控制器取消监听分布式设备变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2987,6 +3119,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口。
+
 | 名称  | 类型   | 说明 |
 | ----- | ------ | ---- |
 | audio | string | 音频 |
@@ -3016,6 +3150,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称           | 类型   | 说明         |
 | -------------- | ------ | ------------ |
 | play           | string | 播放         |
@@ -3036,6 +3172,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVControlCommandType](#avcontrolcommandtype)     | 是   | 命令           |
@@ -3046,6 +3184,8 @@ controller.off('outputDeviceChange');
 媒体元数据的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
@@ -3071,6 +3211,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
 | state        | [PlaybackState](#playbackstate)       | 否   | 播放状态 |
@@ -3086,6 +3228,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称        | 类型   | 必填 | 说明               |
 | ----------- | ------ | ---- | ------------------ |
 | elapsedTime | number | 是   | 已用时间，单位毫秒（ms）。 |
@@ -3096,6 +3240,8 @@ controller.off('outputDeviceChange');
 播放设备的相关信息。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -3108,6 +3254,8 @@ controller.off('outputDeviceChange');
 表示媒体播放状态的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -3126,6 +3274,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称               | 值   | 说明     |
 | ------------------ | ---- | -------- |
 | LOOP_MODE_SEQUENCE | 0    | 顺序播放 |
@@ -3138,6 +3288,8 @@ controller.off('outputDeviceChange');
 会话发生错误时的错误码。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称                           | 值      | 说明                             |
 | ------------------------------ | ------- | ------------------------------- |
