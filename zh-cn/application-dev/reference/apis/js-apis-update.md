@@ -2036,7 +2036,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | WAITING_INSTALL  | 30   | 待安装。  |
 | UPDATING         | 31   | 更新中。  |
 | WAITING_APPLY    | 40   | 待生效。  |
-| APPLYING         | 21   | 生效中。  |
+| APPLYING         | 41   | 生效中。  |
 | UPGRADE_SUCCESS  | 50   | 升级成功。 |
 | UPGRADE_FAIL     | 51   | 升级失败。 |
 
@@ -2058,7 +2058,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                     | 值        | 说明     |
 | ---------------------- | ---------- | ------ |
-| EVENT_TASK_BASE        | 0x01000000 | 任务事件。   |
+| EVENT_TASK_BASE        | EventClassify.TASK | 任务事件。   |
 | EVENT_TASK_RECEIVE     | 0x01000001 | 收到任务。   |
 | EVENT_TASK_CANCEL      | 0x01000010 | 取消任务。   |
 | EVENT_DOWNLOAD_WAIT    | 0x01000011 | 待下载。    |
