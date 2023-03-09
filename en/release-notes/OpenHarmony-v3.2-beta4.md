@@ -183,9 +183,11 @@ This version has the following updates to OpenHarmony 3.2 Beta3.
 | File management subsystem| High-frequency APIs, such as APIs for opening and reading a file, are compatible across platforms.<br>The following requirements are involved:<br>I5X5E5 [fileAPI] [Capability bridging] Bridging the file I/O capability of the target platform<br>I5X5E6 [fileAPI] [Capability bridging] Bridging the file I/O capability of the target platform<br>I5X4P2 [filePicker] Modification to the file access framework interface| NA |
 | DFX | - HiTrace provides a unified dotting interface and call link interface.<br>- The power consumption data and system event data can be collected.<br>- Perf data can be collected during the startup of the JS HAP.<br>The following requirements are involved:<br>I5X4TY [New feature] Unified dotting interface of HiTrace: HiTraceMeter<br>I5X4U1 [New feature] Unified call link interface of HiTrace: HiTraceChain<br>I5X4TD [New feature] Power consumption data collection<br>I5X4TE [New feature] System event data collection<br>I5X4TL [New feature] Collection of perf data during JS HAP startup| NA |
 
+For details on the API difference list, see [API Differences](api-change/v3.2-beta4/Readme-EN.md).
+
+For details about the API differences of each subsystem, see [Changelogs](changelogs/v3.2-beta4/Readme-EN.md)
 
 ### Chip and Development Board Adaptation
-
 For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
 
 ### Samples
