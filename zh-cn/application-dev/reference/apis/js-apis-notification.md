@@ -894,7 +894,7 @@ function unsubscribeCallback(err) {
     }
 }
 function onDisconnectCallback() {
-	console.info("sunscribe disconnect");
+	console.info("subscribe disconnect");
 }
 let subscriber = {
     onDisconnect: onDisconnectCallback

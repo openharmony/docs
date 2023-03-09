@@ -991,6 +991,46 @@ let subscriber = {
 NotificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
+### onBadgeChanged<sup>10+</sup>
+
+ onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata)) => void
+
+监听应用角标个数变化。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata)\> | 是   | 回调返回监听到的应用信息。 |
+
+**示例：**
+
+```javascript
+function subscribeCallback(err) {
+    if (err) {
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("subscribeCallback");
+    }
+};
+
+function onBadgeChangedCallback(data) {
+    console.info("bundle: ", data.bundle);
+    console.info("uid: ", data.uid);
+    console.info("badgeNumber: ", data.badgeNumber);
+};
+
+let subscriber = {
+    onBadgeChanged: onBadgeChangedCallback
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
+
 
 ## RemoveReason
 
