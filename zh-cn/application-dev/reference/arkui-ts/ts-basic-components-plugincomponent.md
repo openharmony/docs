@@ -174,7 +174,7 @@ external.json文件由开发者创建。external.json中以键值对形式存放
 
 ```ts
 //PluginUserExample.ets
-import plugin from "plugin_component.js"
+import plugin from "./plugin_component.js"
 
 @Entry
 @Component
@@ -230,7 +230,7 @@ struct PluginUserExample {
 
 ```ts
 //PluginProviderExample.ets
-import plugin from "plugin_component.js"
+import plugin from "./plugin_component.js"
 
 @Entry
 @Component

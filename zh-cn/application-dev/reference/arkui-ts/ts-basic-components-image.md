@@ -353,20 +353,16 @@ struct ImageExample3 {
 ###  渲染沙箱路径图片
 
 ```ts
-import fileio from '@ohos.fileio'
-import fs from '@ohos.file.fs'
-import context from '@ohos.application.context'
+import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
+import context from '@ohos.app.ability.common';
 
 @Entry
 @Component
 struct LoadImageExample {
   @State resourcesPath: string = ''
   @State sandboxPath: string = ''
-  context: context.AbilityContext
-
-  aboutToAppear() {
-    this.context = getContext(this) as context.AbilityContext
-  }
+  context: context.UIAbility = getContext(this) as context.UIAbilityContext
 
   build() {
     Column() {
