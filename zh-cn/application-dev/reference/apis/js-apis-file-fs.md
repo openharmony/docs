@@ -474,7 +474,7 @@ mkdirSync(path: string): void
 **示例：**
 
   ```js
-  let dirPath = path + '/testDir';
+  let dirPath = pathDir + '/testDir';
   fs.mkdirSync(dirPath);
   ```
 
@@ -1606,7 +1606,7 @@ listFile(path: string, options?: {
   };
   fs.listFile(pathDir, options).then((filenames) => {
     console.info("listFile succeed");
-    for (let i = 0; i < filenames.size; i++) {
+    for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
     }
   }).catch((err) => {
@@ -1657,7 +1657,7 @@ listFile(path: string, options?: {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("listFile succeed");
-      for (let i = 0; i < filenames.size; i++) {
+      for (let i = 0; i < filenames.length; i++) {
         console.info("filename: %s", filenames[i]);
       }
     }
@@ -1710,7 +1710,7 @@ listFileSync(path: string, options?: {
   };
   let filenames = fs.listFileSync(pathDir, options);
   console.info("listFile succeed");
-  for (let i = 0; i < filenames.size; i++) {
+  for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
   }
   ```
@@ -1733,6 +1733,8 @@ moveFile(src: string, dest: string, mode?: number): Promise<void>;
 **示例：**
 
   ```js
+  let srcPath = pathDir + '/source.txt';
+  let destPath = pathDir + '/dest.txt';
   fs.moveFile(srcPath, destPath, 0).then(() => {
       console.info("move file succeed");
   }).catch((err) => {
@@ -1760,6 +1762,8 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>
 **示例：**
 
   ```js
+  let srcPath = pathDir + '/source.txt';
+  let destPath = pathDir + '/dest.txt';
   fs.moveFile(srcPath, destPath, 0, (err) => {
     if (err) {
       console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
@@ -1788,6 +1792,8 @@ moveFile(src: string, dest: string, mode?: number): void;
 **示例：**
 
   ```js
+  let srcPath = pathDir + '/source.txt';
+  let destPath = pathDir + '/dest.txt';
   fs.moveFileSync(srcPath, destPath, 0);
   console.info("move file succeed");
   ```
