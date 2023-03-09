@@ -56,7 +56,7 @@ abilityDelegator.startAbility(want, (err) => {
     if (!err || err.code === 0) {
         console.log('Success start ability.');
     } else {
-        console.log('Failed start ability, error: ${JSON.stringify(err)}');
+        console.error('Failed start ability, error: ${JSON.stringify(err)}');
     }
 });
 ```
