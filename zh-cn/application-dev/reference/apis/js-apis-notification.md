@@ -893,8 +893,8 @@ function unsubscribeCallback(err) {
         console.info("unsubscribe success");
     }
 }
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
+function onDisconnectCallback() {
+	console.info("sunscribe disconnect");
 }
 let subscriber = {
     onDisconnect: onDisconnectCallback
@@ -925,8 +925,8 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 **示例：**
 
 ```js
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
+function onDisconnectCallback() {
+	console.info("subscribe disconnect");
 }
 let subscriber = {
     onDisconnect: onDisconnectCallback
