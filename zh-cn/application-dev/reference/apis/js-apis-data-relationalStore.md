@@ -30,7 +30,7 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 | 参数名   | 类型                                           | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig)               | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
 
@@ -108,7 +108,7 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 | 参数名  | 类型                             | 必填 | 说明                                                         |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -188,7 +188,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -249,7 +249,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -2430,9 +2430,9 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(['12345678abcde']);
 let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-promise.then((resultSet) =>{
+promise.then((result) =>{
   console.info(`Sync done.`);
-  for (let i = 0; i < resultSet.length; i++) {
+  for (let i = 0; i < result.length; i++) {
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
 }).catch((err) => {
@@ -2511,10 +2511,12 @@ try {
 首先需要获取resultSet对象。
 
 ```js
+let resultSet = null;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
+promise.then((result) => {
+  resultSet = result;
   console.info(`resultSet columnNames: ${resultSet.columnNames}`);
   console.info(`resultSet columnCount: ${resultSet.columnCount}`);
 });
@@ -2685,7 +2687,7 @@ goToRow(position: number): boolean
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  resultSet.(5);
+  resultSet.goToRow(5);
   resultSet.close();
 }).catch((err) => {
   console.error(`query failed, err: ${err}`);
