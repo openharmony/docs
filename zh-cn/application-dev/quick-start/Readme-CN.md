@@ -20,11 +20,11 @@
     - [应用程序包安装和卸载流程](application-package-install-uninstall.md)
     - [应用程序包更新流程](application-package-update.md)
     - 共享包
-      - [共享包概述](quick-start/shared-guide.md)
-      - [HAR](quick-start/har-package.md)
+      - [共享包概述](shared-guide.md)
+      - [HAR](har-package.md)
       - HSP
-        - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-        - [应用间HSP开发指导（仅对系统应用开放）](quick-start/cross-app-hsp.md)
+        - [应用内HSP开发指导](in-app-hsp.md)
+        - [应用间HSP开发指导（仅对系统应用开放）](cross-app-hsp.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复调试指导](quickfix-debug.md)
