@@ -27,9 +27,9 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 | Name     | Description                        |
 | ------- | -------------------------- |
-| Push    | Navigates to a specified page in the application.              |
+| Push    | Navigates to the specified page in the application.              |
 | Replace | Replaces the current page with another one in the application and destroys the current page.|
-| Back    | Returns to the previous page or a specified page.             |
+| Back    | Returns to the specified page. If the specified page does not exist in the stack, no response is returned. If no page is specified, the previous page is returned to.|
 
 
 ## Attributes
