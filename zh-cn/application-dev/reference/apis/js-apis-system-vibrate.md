@@ -32,7 +32,7 @@ import vibrator from '@system.vibrator';
 
 | 参数名  | 类型                              | 必填 | 说明       |
 | ------- | --------------------------------- | ---- | ---------- |
-| options | [VibrateOptions](#VibrateOptions) | 是   | 振动模式。 |
+| options | [VibrateOptions](#vibrateoptions) | 是   | 振动模式。 |
 
 **示例：**
 
