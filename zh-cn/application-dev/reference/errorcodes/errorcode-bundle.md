@@ -394,4 +394,60 @@ Failed to install the HAP because the overlay check of the HAP is failed.
 3. 检查目标应用是否不为overlay特征的应用
 4. 检查目标module是否不为overlay特征的module。
 
+## 17700032 指定的应用不包含overlay特征的module
+
+**错误信息**<br/>
+The specified bundle does not contain any overlay module.
+
+**错误描述**<br/>
+查询指定应用中overlay特征module的overlayModuleInfo时, 指定的应用不包含overlay特征module。
+
+**可能原因**<br/>
+指定的应用不包含overlay特征module。
+
+**处理步骤**<br/>
+检查指定的应用是否不包含overlay特征module。
+
+## 17700033 指定的module不是overlay特征的module
+
+**错误信息**<br/>
+The specified module is not overlay module.
+
+**错误描述**<br/>
+查询指定的overlay特征module的overlayModuleInfo时, 指定的module不是overlay特征module。
+
+**可能原因**<br/>
+指定的module不是overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的module是否不为overlay特征的module。
+
+## 17700034 指定的module是overlay特征的module
+
+**错误信息**<br/>
+The specified module is overlay module.
+
+**错误描述**<br/>
+查询指定的目标module所关联的overlayModuleInfo时, 指定的module是overlay特征module。
+
+**可能原因**<br/>
+指定的module是overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的module是否为overlay特征的module。
+
+## 17700035 指定的应用只包含overlay特征的module
+
+**错误信息**<br/>
+The specified bundle is overlay bundle.
+
+**错误描述**<br/>
+查询指定应用的目标module所关联的overlayModuleInfo时, 指定的应用只包含overlay特征的module。
+
+**可能原因**<br/>
+指定的应用只包含overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的应用是否只包含overlay特征的module。
+
 <!--no_check-->
