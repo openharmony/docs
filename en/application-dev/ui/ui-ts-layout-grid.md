@@ -159,7 +159,7 @@ Grid() {
         .fontSize(16)
         .textAlign(TextAlign.Center)
         .textStyle()
-    }.rowStart(2).rowEnd(3) // The grid item spans the second and third columns.
+    }.rowStart(2).rowEnd(3) // The grid item spans the second and third rows.
 
     GridItem() {
       Text('4')

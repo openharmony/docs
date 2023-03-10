@@ -12,7 +12,7 @@ Layout constraints refer to constraints on the aspect ratio and display priority
 | Name             | Type  | Description                                      |
 | --------------- | ------ | ---------------------------------------- |
 | aspectRatio     | number | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.                             |
-| displayPriority | number | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components. |
+| displayPriority | number | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components.|
 
 
 ## Example
@@ -55,6 +55,7 @@ struct AspectRatioExample {
             Text(item)
               .backgroundColor(0xbbb2cb)
               .fontSize(40)
+              .height(160)
               .aspectRatio(1.5)
           }
         }, item => item)
@@ -69,12 +70,10 @@ struct AspectRatioExample {
 }
 ```
 
-**Figure 1** Portrait display
-
+**Figure 1** Portrait display<br>
 ![en-us_image_0000001256978379](figures/en-us_image_0000001256978379.gif)
 
-**Figure 2** Landscape display
-
+**Figure 2** Landscape display<br>
 ![en-us_image_0000001212218476](figures/en-us_image_0000001212218476.gif)
 
 ```ts

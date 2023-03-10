@@ -90,7 +90,7 @@ let config = {
 abilityManager.updateConfiguration(config).then(() => {
   console.log('updateConfiguration success');
 }).catch((err) => {
-  console.log('updateConfiguration fail');
+  console.error('updateConfiguration fail');
 });
 ```
 
@@ -140,6 +140,6 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 abilityManager.getAbilityRunningInfos().then((data) => {
     console.log('getAbilityRunningInfos  data: ${JSON.stringify(data)}');
 }).catch((err) => {
-  console.log('getAbilityRunningInfos err: ${JSON.stringify(err)}');
+  console.error('getAbilityRunningInfos err: ${JSON.stringify(err)}');
 });
 ```

@@ -23,13 +23,45 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>> **NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.|
+| tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.|
 
 >  **NOTE**
 > - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
 > - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
-> - The **\<TabContent>** component does not support setting of the [touch target](ts-universal-attributes-touch-target.md).
 
+## SubTabBarStyle<sup>9+</sup>
+
+Implements the subtab style.
+
+### constructor<sup>9+</sup>
+
+constructor(content: string | Resource)
+
+A constructor used to create a **SubTabBarStyle** instance.
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| content | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab.|
+
+## BottomTabBarStyle<sup>9+</sup>
+
+Implements the bottom and side tab style.
+
+### constructor<sup>9+</sup>
+
+constructor(icon: string | Resource, text: string | Resource)
+
+A constructor used to create a **BottomTabBarStyle** instance.
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| icon | string \| [Resource](ts-types.md#resource) | Yes| Image for the tab.|
+| text | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab.|
 
 ## Example
 
@@ -194,3 +226,101 @@ struct TabContentExample {
 ```
 
 ![tabContent](figures/tabContent2.gif)
+
+Example 3:
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column({ space: 5 }) {
+      Text ("Subtab Style")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new SubTabBarStyle('Pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new SubTabBarStyle('Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new SubTabBarStyle('Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new SubTabBarStyle('Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text ("Bottom Tab Style")
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text ("Side Tab Style")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(true).scrollable(true).barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(400)
+    }
+  }
+}
+```
+
+![tabbarStyle](figures/TabBarStyle.jpeg)

@@ -14,6 +14,8 @@
 
 Checkbox(options?:&nbsp;{name?: string,  group?: string })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名  | 参数类型 | 必填  | 参数描述 |
@@ -28,16 +30,16 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 
 | 名称          | 参数类型 | 描述 |
 | ------------- | ------- | -------- |
-| select        | boolean | 设置多选框是否选中。<br/>默认值：false |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。 |
+| select        | boolean | 设置多选框是否选中。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称      | 功能描述 |
-| ----------| -------- |
-|onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。（只有手动触发且Checkbox状态改变时才会触发onChange回调）<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。 |
+| 名称                                         | 功能描述                                                     |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。（只有手动触发且Checkbox状态改变时才会触发onChange回调）<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 

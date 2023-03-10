@@ -270,7 +270,7 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
 deque.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 

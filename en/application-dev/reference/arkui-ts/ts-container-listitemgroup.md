@@ -5,7 +5,9 @@ The **\<ListItemGroup>** component is used to display list item groups. It must 
 > **NOTE**
 >
 > This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+
 ## Usage Guidelines
+
 If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Vertical**, the **height** attribute of the **\<ListItemGroup>** component cannot be set. The height of a **\<ListItemGroup>** component is the sum of its header height, footer height, and total height of the list items. If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Horizontal**, the **width** attribute of the **\<ListItemGroup>** component cannot be set. The width of a **\<ListItemGroup>** component is the sum of its header width, footer width, and total width of the list items.
 
 The list items in the **\<ListItemGroup>** component cannot be edited, selected, or dragged. That is, the **editable** and **selectable** attributes of these list items do not take effect.

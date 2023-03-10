@@ -36,22 +36,22 @@ import Want from '@ohos.app.ability.Want';
 
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
-        console.log('ServiceAbility onCreate, want: ' + want.abilityName);
+        console.log('ServiceAbility onCreate, want: ${want.abilityName}');
         // Pass ExtensionContext to entry via globalThis.
         globalThis.ExtensionContext = this.context;
     }
 
     onRequest(want, startId) {
-        console.log('ServiceAbility onRequest, want: ' + want.abilityName + ', startId: ' + startId);
+        console.log('ServiceAbility onRequest, want: ${want.abilityName}, startId: ${startId}');
     }
 
     onConnect(want) {
-        console.log('ServiceAbility onConnect, want:' + want.abilityName);
+        console.log('ServiceAbility onConnect, want: ${want.abilityName}');
         return null;
     }
 
     onDisconnect(want) {
-        console.log('ServiceAbility onDisconnect, want:' + want.abilityName);
+        console.log('ServiceAbility onDisconnect, want: ${want.abilityName}');
     }
 
     onDestroy() {
@@ -66,11 +66,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.log('[Demo] EntryAbility onCreate');
         let wantExt = {
-            deviceId: "",
-            bundleName: "com.example.TheServiceExtension",
-            abilityName: "TheServiceExtension",
+            deviceId: '',
+            bundleName: 'com.example.TheServiceExtension',
+            abilityName: 'TheServiceExtension',
         };
         this.context.startServiceExtensionAbility(wantExt);
     }
@@ -85,29 +85,29 @@ export default class ServiceModel {
     constructor() {}
 
     executeTask() {
-        if (globalThis.ExtensionContext == undefined) {
-            console.log("ERROR, ServiceExtension does not exist");
+        if (globalThis.ExtensionContext === undefined) {
+            console.log('ERROR, ServiceExtension does not exist');
             return;
         }
 
-        var moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
+        let moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
         this.moduleName = moduleInfo.name;
         // Execute service logic based on the module name, which differentiates devices with different performance.
         switch (this.moduleName) {
-            case "highPerformance":
-                console.log("This is high performance device.");
+            case 'highPerformance':
+                console.log('This is high performance device.');
                 // Execute the corresponding service logic.
                 break;
-            case "midPerformance":
-                console.log("This is mid performance device.");
+            case 'midPerformance':
+                console.log('This is mid performance device.');
                 // Execute the corresponding service logic.
                 break;
-            case "lowPerformance":
-                console.log("This is low performance device.");
+            case 'lowPerformance':
+                console.log('This is low performance device.');
                 // Execute the corresponding service logic.
                 break;
             default:
-                console.log("ERROR, invalid moduleName.");
+                console.log('ERROR, invalid moduleName.');
                 break;
         }
     }

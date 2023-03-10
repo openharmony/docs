@@ -506,7 +506,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.forEach((value, index) => {
-  console.log("value: " + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 

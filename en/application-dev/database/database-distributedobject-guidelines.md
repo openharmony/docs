@@ -19,7 +19,7 @@ Call **createDistributedObject()** to create a distributed data object instance.
 
 | Bundle Name| API| Description|
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.<br>- **source**: attributes of the distributed data object to set.<br>- **DistributedObject**: returns the distributed data object created. |
+| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.<br>- **source**: attributes of the distributed data object to create.<br>- **DistributedObject**: returns the distributed data object created.|
 
 ### Generating a Session ID
 
@@ -91,10 +91,9 @@ The following example shows how to implement distributed data object synchroniza
    ```js   
    import distributedObject from '@ohos.data.distributedDataObject';   
    ```
-   
 2. Apply for the permission.
 
-   Add the permissions required (FA model) to the **config.json** file.
+   Add the required permission (FA model) to the **config.json** file.
 
    ```json
    {
@@ -112,18 +111,43 @@ The following example shows how to implement distributed data object synchroniza
    This permission must also be granted by the user when the application is started for the first time.
 
    ```js
+   // FA model
    import featureAbility from '@ohos.ability.featureAbility';
-	
+
    function grantPermission() {
        console.info('grantPermission');
        let context = featureAbility.getContext();
        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-           console.info(`result.requestCode=${result.requestCode}`)
-    
+           console.info(`requestPermissionsFromUser CallBack`);
+
        })
        console.info('end grantPermission');
    }
-    
+
+   grantPermission();
+   ```
+
+   ```ts
+   // Stage model
+   import UIAbility from '@ohos.app.ability.UIAbility';
+
+   let context = null;
+
+   class EntryAbility  extends UIAbility  {
+     onWindowStageCreate(windowStage) {
+       context = this.context;
+     }
+   }
+
+   function grantPermission() {
+     let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+     context.requestPermissionsFromUser(permissions).then((data) => {
+       console.info('success: ${data}');
+     }).catch((error) => {
+       console.error('failed: ${error}');
+     });
+   }
+
    grantPermission();
    ```
    
@@ -139,10 +163,10 @@ The following example shows how to implement distributed data object synchroniza
    });
    let sessionId = distributedObject.genSessionId();
    ```
-   
+
 4. Add the distributed data object instance to a network for data synchronization. The data objects in the synchronization network include the local and remote objects.
-   
-```js
+
+   ```js
    // Local object
    let localObject = distributedObject.createDistributedObject({
        name: "jack",
@@ -164,7 +188,7 @@ The following example shows how to implement distributed data object synchroniza
    // After learning that the local device goes online, the remote object synchronizes data. That is, name changes to jack and age to 18.
    remoteObject.setSessionId(sessionId);
    ```
-   
+
 5. Observe the data changes of the distributed data object. You can subscribe to data changes of the remote object. When the data in the remote object changes, a callback will be invoked to return the data changes.
    
    ```js
@@ -202,33 +226,29 @@ The following example shows how to implement distributed data object synchroniza
    localObject.parent.mother = "mom";
    ```
 
-7. Access the distributed data object. 
-
-   Obtain the distributed data object attributes, which are the latest data on the network.
+7. Access the distributed data object.<br>Obtain the distributed data object attributes, which are the latest data on the network.
 
    ```js
-console.info("name " + localObject["name"]); 
+   console.info("name " + localObject["name"]); 
    ```
-   
 8. Unsubscribe from data changes. You can specify the callback to unregister. If you do not specify the callback, all data change callbacks of the distributed data object will be unregistered.
 
    ```js
-// Unregister the specified data change callback.
+   // Unregister the specified data change callback.
    localObject.off("change", changeCallback);
    // Unregister all data change callbacks. 
    localObject.off("change"); 
    ```
-   
 9. Subscribe to status changes of this distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.
-   
-```js
+
+   ```js
    function statusCallback(sessionId, networkId, status) {
        this.response += "status changed " + sessionId + " " + status + " " + networkId;
    }
    
    localObject.on("status", this.statusCallback);
    ```
-   
+
 10. Save a distributed data object and delete it.
 
     ```js
@@ -247,20 +267,16 @@ console.info("name " + localObject["name"]);
         console.info("revokeSave failed.");
     });
     ```
-
-11. Unsubscribe from the status changes of the distributed data object. 
-
-    You can specify the callback to unregister. If you do not specify the callback, all status change callbacks of this distributed data object will be unregistered.
+11. Unsubscribe from the status changes of this distributed data object. You can specify the callback to unregister. If you do not specify the callback, this API unregisters all status change callbacks of this distributed data object.
 
     ```js
-// Unregister the specified status change callback.
+    // Unregister the specified status change callback.
     localObject.off("status", this.statusCallback);
     // Unregister all status change callbacks.
     localObject.off("status");
     ```
-    
 12. Remove the distributed data object from the synchronization network. The data changes on the local object will not be synchronized to the removed distributed data object.
 
     ```js
-localObject.setSessionId("");
+    localObject.setSessionId("");
     ```

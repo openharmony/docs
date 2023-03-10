@@ -16,7 +16,7 @@ You can draw an image around a component.
 
 | Name        | Type                                    | Description                                     |
 | ---------- | ---------------------------------------- | --------------------------------------- |
-| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.                           |
+| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.<br>**NOTE**<br>The border image source applies only to container components, such as **\<Row>**, **\<Column>**, and **\<Flex>**.|
 | slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Slice width of the border image.<br>Default value: **0**                  |
 | width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Width of the border image.<br>Default value: **0**                    |
 | outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                |
@@ -33,48 +33,9 @@ You can draw an image around a component.
 | Round   | The source image's slices are tiled to fill the border box. Tiles may be compressed when needed.|
 | Space   | The source image's slices are tiled to fill the border box. Extra space will be filled in between tiles.  |
 
-
 ## Example
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Index {
-  @State outSetValue: number = 40
-
-  build() {
-    Row() {
-      Column() {
-        Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
-          .borderImage({
-            source: $r('app.media.heart'),
-            slice: `${this.outSetValue}%`,
-            width: `${this.outSetValue}px`,
-            outset: '5px',
-            repeat: RepeatMode.Repeat,
-            fill: false
-          })
-        Slider({
-          value: this.outSetValue,
-          min: 0,
-          max: 100,
-          style: SliderStyle.OutSet
-        })
-          .margin({ top: 30 })
-          .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValue = value
-            console.info('value:' + value + 'mode:' + mode.toString())
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![en-us_image_borderImage](figures/borderImage.gif)
+### Example 1
 
 
 ```ts
@@ -85,7 +46,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text('This is gradient color.').textAlign(TextAlign.Center).width(68)
+        Text('This is gradient color.').textAlign(TextAlign.Center).height(50).width(200)
           .borderImage({
             source: {
               angle: 90,
@@ -106,3 +67,48 @@ struct Index {
 ```
 
 ![en-us_image_borderImageGradient](figures/borderImageGradient.png)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State outSetValue: number = 40
+
+  build() {
+    Row() {
+      Column() {
+        Row() {
+          Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
+        }
+        .borderImage({
+          source: $r('app.media.icon'),
+          slice: `${this.outSetValue}%`,
+          width: `${this.outSetValue}px`,
+          outset: '5px',
+          repeat: RepeatMode.Repeat,
+          fill: false
+        })
+
+        Slider({
+          value: this.outSetValue,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .margin({ top: 30 })
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.outSetValue = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_borderImage](figures/borderImage.gif)

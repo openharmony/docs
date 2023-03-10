@@ -131,12 +131,12 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 名称            | 类型                                | 必填   | 说明                |
 | ------------- | --------------------------------- | ---- | ----------------- |
 | subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 |
-| mode          | [DiscoverMode ](#discovermode)    | 否    | 发现模式。             |
-| medium        | [ExchangeMedium](#exchangemedium) | 否    | 发现类型。             |
-| freq          | [ExchangeFreq](#exchangefreq)     | 否    | 发现频率。             |
-| isSameAccount | boolean                           | 否    | 是否同帐号。            |
-| isWakeRemote  | boolean                           | 否    | 是否唤醒设备。           |
-| capability    | [SubscribeCap](#subscribecap)     | 否    | 发现能力。             |
+| mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
+| medium        | [ExchangeMedium](#exchangemedium) | 是    | 发现类型。             |
+| freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
+| isSameAccount | boolean                           | 是    | 是否同帐号。            |
+| isWakeRemote  | boolean                           | 是    | 是否唤醒设备。           |
+| capability    | [SubscribeCap](#subscribecap)     | 是    | 发现能力。             |
 
 
 ## DiscoverMode 
@@ -871,6 +871,134 @@ setUserOperation(operateAction: number, params: string): void;
     dmInstance.setUserOperation(operation, "extra")
     } catch (err) {
       console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### requestCredentialRegisterInfo<sup>10+</sup>
+
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+
+获取凭据的注册信息。
+
+**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名       | 类型            | 必填  | 说明                |
+  | ------------- | --------------- | ---- | ------------------- |
+  | requestInfo   | string          | 是    | 请求凭据信息。       |
+  | callback      | AsyncCallback<{registerInfo: string}>         | 是    | 凭据的注册信息回调。 |
+
+**示例：**
+
+  ```js
+  let credentialInfo = {
+    "version" : "1.2.3",
+    "userId" : "123"
+  }
+  try {
+    dmClass.requestCredentialRegisterInfo(credentialInfo, (data) => {
+      if (data) {
+          console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
+      } else {
+          console.info.push("requestCredentialRegisterInfo result: data is null");
+      }
+    });
+  } catch (err) {
+    console.error("requestCredentialRegisterInfo err:" + err.code + "," + err.message);
+  }
+  ```
+
+### importCredential<sup>10+</sup>
+
+importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+
+导入凭据信息。
+
+**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名       | 类型            | 必填  | 说明                |
+  | ------------- | --------------- | ---- | ------------------- |
+  | credentialInfo| string          | 是    | 导入凭据信息。       |
+  | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 导入凭据结果回调。 |
+
+**示例：**
+
+  ```js
+  let credentialInfo = {
+    "processType" : 1,
+    "authType" : 1,
+    "userId" : "123",
+    "deviceId" : "aaa",
+    "version" : "1.2.3",
+    "devicePk" : "0000",
+    "credentialData" : 
+    [
+      {
+        "credentialType" : 2,
+        "credentialId" : "102",
+        "serverPk" : "3059301306072A8648CE3D020106082A8648CE3D03",
+        "pkInfoSignature" : "30440220490BCB4F822004C9A76AB8D97F80041FC0E",
+        "pkInfo" : "",
+        "authCode" : "",
+        "peerDeviceId" : ""
+      }
+    ]
+  }
+  try {
+    dmClass.importCredential(credentialInfo, (data) => {
+      if (data) {
+          console.info("importCredential result:" + JSON.stringify(data));
+      } else {
+          console.info.push("importCredential result: data is null");
+      }
+    });
+  } catch (err) {
+    console.error("importCredential err:" + err.code + "," + err.message);
+  }
+  ```
+
+### deleteCredential<sup>10+</sup>
+
+deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+
+删除凭据信息。
+
+**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名       | 类型            | 必填  | 说明                |
+  | ------------- | --------------- | ---- | ------------------- |
+  | queryInfo     | string          | 是    | 删除凭据信息。       |
+  | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 删除凭据结果回调。 |
+
+**示例：**
+
+  ```js
+  let queryInfo = {
+    "processType" : 1,
+    "authType" : 1,
+    "userId" : "123"
+  }
+  try {
+    dmClass.deleteCredential(queryInfo, (data) => {
+      if (data) {
+          console.info("deleteCredential result:" + JSON.stringify(data));
+      } else {
+          console.info.push("deleteCredential result: data is null");
+      }
+    });
+  } catch (err) {
+    console.error("deleteCredential err:" + err.code + "," + err.message);
   }
   ```
 

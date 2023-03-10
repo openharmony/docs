@@ -87,7 +87,7 @@ struct SearchExample {
         .searchButton('SEARCH')
         .width(400)
         .height(40)
-        .backgroundColor(Color.White)
+        .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .textFont({ size: 14, weight: 400 })

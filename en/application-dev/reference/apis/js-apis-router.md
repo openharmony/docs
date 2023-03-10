@@ -100,13 +100,13 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-})
-  .then(() => {
-    // success
-  })
-  .catch(err => {
+}, (err) => {
+  if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+    return;
+  }
+  console.info('pushUrl success');
+})
 ```
 ## router.pushUrl<sup>9+</sup>
 
@@ -473,9 +473,9 @@ Describes the page routing state.
 | name  | string | No  | Name of the current page, that is, the file name.                          |
 | path  | string | Yes  | Path of the current page.                                        |
 
-## router.enableBackPageAlert<sup>9+</sup>
+## router.showAlertBeforeBackPage<sup>9+</sup>
 
-enableBackPageAlert(options: EnableAlertOptions): void
+showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 Enables the display of a confirm dialog box before returning to the previous page.
 
@@ -499,11 +499,11 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
   ```js    
 try {
-  router.enableBackPageAlert({            
+  router.showAlertBeforeBackPage({            
     message: 'Message Info'        
   });
 } catch(error) {
-  console.error(`enableBackPageAlert failed, code is ${error.code}, message is ${error.message}`);
+  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
 }
   ```
 ## EnableAlertOptions
@@ -516,9 +516,9 @@ Describes the confirm dialog box.
 | ------- | ------ | ---- | -------- |
 | message | string | Yes   | Content displayed in the confirm dialog box.|
 
-## router.disableAlertBeforeBackPage
+## router.hideAlertBeforeBackPage<sup>9+</sup>
 
-disableAlertBeforeBackPage(): void
+hideAlertBeforeBackPage(): void
 
 Disables the display of a confirm dialog box before returning to the previous page.
 
@@ -527,7 +527,7 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **Example**
 
 ```js
-router.disableAlertBeforeBackPage();    
+router.hideAlertBeforeBackPage();    
 ```
 
 ##  router.getParams
@@ -574,7 +574,7 @@ Enumerates the routing modes.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Standard | Standard mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.|
+| Standard | Standard mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If the routing mode is not used, the page is redirected to in standard mode.|
 | Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page closest to the top of the stack is moved as a new page to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in standard mode.|
 
 ## Examples
@@ -749,7 +749,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 Enables the display of a confirm dialog box before returning to the previous page.
 
-This API is deprecated since API version 9. You are advised to use [enableBackPageAlert<sup>9+</sup>](#routerenablebackpagealert9) instead.
+This API is deprecated since API version 9. You are advised to use [showAlertBeforeBackPage<sup>9+</sup>](#routershowalertbeforebackpage9) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -766,3 +766,19 @@ This API is deprecated since API version 9. You are advised to use [enableBackPa
     message: 'Message Info'        
   });    
   ```
+
+## router.disableAlertBeforeBackPage<sup>(deprecated)</sup>
+
+disableAlertBeforeBackPage(): void
+
+Disables the display of a confirm dialog box before returning to the previous page.
+
+This API is deprecated since API version 9. You are advised to use [hideAlertBeforeBackPage<sup>9+</sup>](#routerhidealertbeforebackpage9) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+```js
+router.disableAlertBeforeBackPage();    
+```

@@ -28,6 +28,19 @@ Enumerates the display states.
 | STATE_VR | 5 | The display is in VR mode.|
 | STATE_ON_SUSPEND | 6 | The display is powered on, and the CPU is suspended.|
 
+## Orientation<sup>10+</sup>
+
+Enumerates the orientations of the display.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| PORTRAIT | 0 | The display is in portrait mode.|
+| LANDSCAPE | 1 | The display is in landscape mode.|
+| PORTRAIT_INVERTED | 2 | The display is in reverse portrait mode.|
+| LANDSCAPE_INVERTED | 3 | The display is in reverse landscape mode.|
+
 ## Rect<sup>9+</sup>
 
 Describes a rectangle on the display.
@@ -420,6 +433,7 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | width | number | Yes| No| Width of the display, in pixels.|
 | height | number | Yes| No| Height of the display, in pixels.|
 | densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. Generally, the value is **160** or **480**.|
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.|
 | densityPixels | number | Yes| No| Logical density of the display, which is a scaling coefficient independent of the pixel unit. Generally, the value is **1** or **3**.|
 | scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. Generally, the value is the same as that of **densityPixels**.|
 | xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction.|

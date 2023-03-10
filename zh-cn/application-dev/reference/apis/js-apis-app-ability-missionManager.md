@@ -47,13 +47,13 @@ import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------')},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------')},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------')},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------')},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------')},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------')},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------')}
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
@@ -73,7 +73,7 @@ export default class EntryAbility extends UIAbility {
                 });
             }
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
@@ -84,7 +84,7 @@ export default class EntryAbility extends UIAbility {
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
 
         windowStage.loadContent('pages/index', (err, data) => {
@@ -129,13 +129,13 @@ import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------')},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------')},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------')},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------')},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------')},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------')},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------')}
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
@@ -155,7 +155,7 @@ export default class EntryAbility extends UIAbility {
                 });
             }
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
@@ -166,7 +166,7 @@ export default class EntryAbility extends UIAbility {
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
 
         windowStage.loadContent('pages/index', (err, data) => {
@@ -216,13 +216,13 @@ import missionManager from '@ohos.app.ability.missionManager';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 let listener = {
-    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------')},
-    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------')},
-    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------')},
-    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------')},
-    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------')},
-    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------')},
-    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------')}
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
 };
 
 let listenerId = -1;
@@ -242,7 +242,7 @@ export default class EntryAbility extends UIAbility {
                 });
             }
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
         console.log('[Demo] EntryAbility onDestroy');
     }
@@ -253,7 +253,7 @@ export default class EntryAbility extends UIAbility {
         try {
             listenerId = missionManager.on('mission', listener);
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
 
         windowStage.loadContent('pages/index', (err, data) => {
@@ -306,7 +306,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
     missionManager.getMissionInfo('', testMissionId, (error, mission) => {
         if (error) {
-            console.log('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         } else {
             console.log('mission.missionId = ${mission.missionId}');
             console.log('mission.runningState = ${mission.runningState}');
@@ -317,7 +317,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
         }
     });
   } catch (paramError) {
-    console.log('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -392,14 +392,14 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error) {
-          console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       } else {
         console.log('size = ${missions.length}');
         console.log('missions = ${JSON.stringify(missions)}');
       }
-    })
+    });
   } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
   }
   ```
 

@@ -3,7 +3,7 @@
 本模块主要提供管理系统剪贴板的能力，为系统复制、粘贴功能提供支持。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -63,7 +63,7 @@ createData(mimeType: string, value: ValueType): PasteData
 
   ```js
   let dataXml = new ArrayBuffer(256);
-  let pasteData = pasteboard.createData('app/xml', dataXml);
+let pasteData = pasteboard.createData('app/xml', dataXml);
   ```
 
 ## pasteboard.createRecord<sup>9+</sup>
@@ -90,8 +90,8 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 **示例：**
 
   ```js
-  let dataXml = new ArrayBuffer(256);
-  let pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
+let dataXml = new ArrayBuffer(256);
+let pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
   ```
 
 ## pasteboard.getSystemPasteboard
@@ -120,11 +120,11 @@ let systemPasteboard = pasteboard.getSystemPasteboard();
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 值 | 说明                |
-| ---- |---|-------------------|
-| InApp | 0 | 表示仅允许同应用内粘贴。      |
-| LocalDevice | 1 | 表示允许在此设备中任何应用内粘贴。 |
-| CrossDevice | 2 | 表示允许跨设备在任何应用内粘贴。  |
+| 名称          | 值 | 说明                |
+|-------------|---|-------------------|
+| INAPP       | 0 | 表示仅允许同应用内粘贴。      |
+| LOCALDEVICE | 1 | 表示允许在此设备中任何应用内粘贴。 |
+| CROSSDEVICE | 2 | 表示允许跨设备在任何应用内粘贴。  |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -374,14 +374,14 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置的其他附加属性数据。 |
-| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
-| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
-| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
+| 名称 | 类型 | 可读 | 可写 | 说明                                                                                         |
+| -------- | -------- | -------- | -------- |--------------------------------------------------------------------------------------------|
+| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置的其他附加属性数据。                                                                               |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                     |
+| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                   |
+| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                        |
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”。默认值为true。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CrossDevice。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                              |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -401,38 +401,11 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 | pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
 | data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
 
-### convertToTextV9<sup>9+</sup>
+### toPlainText<sup>9+</sup>
 
-convertToTextV9(callback: AsyncCallback&lt;string&gt;): void
+toPlainText(): string
 
-将一个PasteData中的内容强制转换为文本内容，使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，当转换成功，err为undefined，data为强制转换的文本内容；否则返回错误信息。 |
-
-**示例：**
-
-```js
-let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-record.convertToTextV9((err, data) => {
-    if (err) {
-        console.error(`Failed to convert to text. Cause: ${err.message}`);
-        return;
-    }
-    console.info(`Succeeded in converting to text. Data: ${data}`);
-});
-```
-
-### convertToTextV9<sup>9+</sup>
-
-convertToTextV9(): Promise&lt;string&gt;
-
-将一个PasteData中的内容强制转换为文本内容，使用Promise异步回调。
+将一个PasteData中的内容强制转换为文本内容。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -440,17 +413,14 @@ convertToTextV9(): Promise&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise对象，返回强制转换的文本内容。 |
+| string | 纯文本内容。 |
 
 **示例：**
 
 ```js
 let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-record.convertToTextV9().then((data) => {
-    console.info(`Succeeded in converting to text. Data: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to convert to text. Cause: ${err.message}`);
-});
+let data = record.toPlainText();
+console.info(`Succeeded in converting to text. Data: ${data}`);
 ```
 
 ### convertToText<sup>(deprecated)</sup>
@@ -460,7 +430,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 将一个PasteData中的内容强制转换为文本内容，使用callback异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[convertToTextV9](#converttotextv99)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -474,8 +444,8 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 ```js
 let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
-record.convertToText((err, data) => {    
-    if (err) {        
+record.convertToText((err, data) => {
+    if (err) {
         console.error(`Failed to convert to text. Cause: ${err.message}`);
         return;   
       }
@@ -490,7 +460,7 @@ convertToText(): Promise&lt;string&gt;
 将一个PasteData中的内容强制转换为文本内容，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[convertToTextV9](#converttotextv99-1)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[toPlainText](#toplaintext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -782,7 +752,7 @@ setProperty(property: PasteDataProperty): void
 ```js
 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
-prop.shareOption = pasteboard.ShareOption.InApp;
+prop.shareOption = pasteboard.ShareOption.INAPP;
 pasteData.setProperty(prop);
 ```
 
@@ -999,8 +969,8 @@ addWantRecord(want: Want): void
 
 ```js
 let pasteData = pasteboard.createPlainTextData('hello');
-let object = { 
-    bundleName: "com.example.aafwk.test",    
+let object = {
+    bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
 pasteData.addWantRecord(object);
@@ -1255,7 +1225,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.clearData((err, data) => { 
+systemPasteboard.clearData((err, data) => {
     if (err) {
         console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
         return;
@@ -1282,7 +1252,7 @@ clearData(): Promise&lt;void&gt;
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.clearData().then((data) => { 
+systemPasteboard.clearData().then((data) => {
     console.info('Succeeded in clearing the pasteboard.');
 }).catch((err) => {
     console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
@@ -1318,7 +1288,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 ```js
 let pasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setData(pasteData, (err, data) => { 
+systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
         console.error('Failed to set PasteData. Cause: ' + err.message);
         return;
@@ -1394,7 +1364,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getData((err, pasteData) => {  
+systemPasteboard.getData((err, pasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
         return;
@@ -1429,7 +1399,7 @@ getData(): Promise&lt;PasteData&gt;
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getData().then((pasteData) => { 
+systemPasteboard.getData().then((pasteData) => {
     let text = pasteData.getPrimaryText();
 }).catch((err) => {
     console.error('Failed to get PasteData. Cause: ' + err.message);
@@ -1481,7 +1451,7 @@ hasData(): Promise&lt;boolean&gt;
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.hasData().then((data) => { 
+systemPasteboard.hasData().then((data) => {
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
     console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -1508,8 +1478,8 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-systemPasteboard.clear((err, data) => { 
-    if (err) {        
+systemPasteboard.clear((err, data) => {
+    if (err) {
         console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
         return;
     }
@@ -1537,9 +1507,9 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-systemPasteboard.clear().then((data) => { 
+systemPasteboard.clear().then((data) => {
     console.info('Succeeded in clearing the PasteData.');
-}).catch((err) => {    
+}).catch((err) => {
     console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
 });
 ```
@@ -1595,7 +1565,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getPasteData().then((pasteData) => { 
+systemPasteboard.getPasteData().then((pasteData) => {
     let text = pasteData.getPrimaryText();
 }).catch((err) => {
     console.error('Failed to get PasteData. Cause: ' + err.message);
@@ -1651,7 +1621,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-systemPasteboard.hasPasteData().then((data) => { 
+systemPasteboard.hasPasteData().then((data) => {
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
     console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -1681,7 +1651,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 ```js
 let pasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setPasteData(pasteData, (err, data) => { 
+systemPasteboard.setPasteData(pasteData, (err, data) => {
     if (err) {
         console.error('Failed to set PasteData. Cause: ' + err.message);
         return;

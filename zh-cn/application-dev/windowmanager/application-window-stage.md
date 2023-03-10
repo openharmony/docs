@@ -382,4 +382,4 @@ export default class EntryAbility extends UIAbility {
 
 针对window开发（Stage模型），有以下相关实例可供参考：
 
-- [`Window`：窗口（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window)
+- [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)

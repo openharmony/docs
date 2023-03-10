@@ -42,6 +42,7 @@
     - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
     - [背景模糊设置](ts-universal-attributes-backgroundBlurStyle.md)
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
+    - [前景色设置](ts-universal-attributes-foreground-color.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -105,6 +106,7 @@
   - [ColumnSplit](ts-container-columnsplit.md)
   - [Counter](ts-container-counter.md)
   - [Flex](ts-container-flex.md)
+  - [FlowItem](ts-container-flowitem.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
@@ -124,6 +126,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [WaterFlow](ts-container-waterflow.md)
 - 媒体组件
   - [Video](ts-media-components-video.md)
 - 绘制组件

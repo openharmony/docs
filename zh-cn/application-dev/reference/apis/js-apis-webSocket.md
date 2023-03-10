@@ -442,11 +442,6 @@ on\(type: 'open', callback: AsyncCallback<Object\>\): void
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 是   | 回调函数。                    |
 
-**错误码：**
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
 
 **示例：**
 
@@ -475,12 +470,6 @@ off\(type: 'open', callback?: AsyncCallback<Object\>\): void
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 否   | 回调函数。                    |
-
-**错误码：**
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
 
 **示例：**
 
@@ -513,12 +502,6 @@ on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
 | type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
-**错误码：**
-
-| 错误码ID  | 错误信息                      |
-|--------|---------------------------|
-| 401    | Parameter error.          |
-
 **示例：**
 
 ```js
@@ -547,12 +530,6 @@ off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
 | type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
-
-**错误码：**
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
 
 **示例：**
 
@@ -605,12 +582,6 @@ off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback<{ code: number, reason: string }> | 否   | 回调函数。                     |
 
-**错误码：**
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
-
 **示例：**
 
 ```js
@@ -633,12 +604,6 @@ on\(type: 'error', callback: ErrorCallback\): void
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                      |
-
-**错误码：**
-
-| 错误码ID | 错误信息                      |
-|-------|---------------------------|
-| 401   | Parameter error.          |
 
 **示例：**
 
@@ -667,12 +632,6 @@ off\(type: 'error', callback?: ErrorCallback\): void
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                      |
-
-**错误码：**
-
-| 错误码ID  | 错误信息                      |
-|--------|---------------------------|
-| 401    | Parameter error.          |
 
 **示例：**
 

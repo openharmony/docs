@@ -50,6 +50,7 @@
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
+  - [Wi-Fi Error Codes](errorcode-wifi.md)
 - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
@@ -62,8 +63,7 @@
   - [Time and Time Zone Service Error Codes](errorcode-time.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
-  - [Account Error Codes](errorcode-account.md)
-  - [App Account Error Codes](errorcode-app-account.md)
+  - [Account Management Error Codes](errorcode-account.md)
 - Device Management
   - [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md)
   - [Brightness Error Codes](errorcode-brightness.md)

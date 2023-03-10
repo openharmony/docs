@@ -1,7 +1,11 @@
 # Ability Assistant
 
 
-The Ability Assistant provides the application debugging and testing capabilities that enable you to start applications and test cases. With this tool, you can send commands (started with **aa**) in the hdc shell to perform various system operations, such as starting application components, forcibly stopping processes, and printing application component information.
+The ability assistant enables you to start applications and test cases. It provides basic application debugging and testing capabilities, for example, starting application components, forcibly stopping processes, and printing application component information.
+
+> **NOTE**
+>
+> Before using this tool, you must obtain the [hdc tool](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) and run the hdc shell command.
 
 
 - help

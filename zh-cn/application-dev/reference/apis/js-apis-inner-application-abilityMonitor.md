@@ -34,7 +34,7 @@ Ability监听器
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
+    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
 let monitor = {
@@ -44,8 +44,10 @@ let monitor = {
 };
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info('addAbilityMonitor callback');
+abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+    if (error && error.code !== 0) {
+        console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    }
 });
 ```
 

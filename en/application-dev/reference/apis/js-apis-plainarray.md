@@ -621,7 +621,7 @@ let plainArray = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 

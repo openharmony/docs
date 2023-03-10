@@ -65,6 +65,7 @@ struct PolygonExample {
       Polygon({ width: 100, height: 100 })
         .points([[0, 0], [50, 100], [100, 0]])
         .fill(Color.Green)
+        .stroke(Color.Transparent)
       // Draw a quadrilateral in a 100 x 100 rectangle. The start point is (0, 0), the end point is (100, 0), and the passing points are (0, 100) and (100, 100).
       Polygon().width(100).height(100)
         .points([[0, 0], [0, 100], [100, 100], [100, 0]])
@@ -76,6 +77,7 @@ struct PolygonExample {
         .points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]])
         .fill(Color.Red)
         .fillOpacity(0.6)
+        .stroke(Color.Transparent)
     }.width('100%').margin({ top: 10 })
   }
 }

@@ -16,6 +16,14 @@ When developing an application, you can override the APIs of this module and add
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 ```
 
+## Attributes
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| context | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | Yes| No| Context of the **WorkSchedulerExtension**. This context is inherited from **ExtensionContext**.|
+
 ## WorkSchedulerExtensionAbility.onWorkStart
 
 onWorkStart(work: workScheduler.WorkInfo): void

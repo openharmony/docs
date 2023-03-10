@@ -57,8 +57,12 @@ featureAbility.startAbility(
             uri: ''
         },
     },
-    (err, data) => {
-        console.info('startAbility err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbility success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -99,7 +103,7 @@ featureAbility.startAbility(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -182,7 +186,7 @@ featureAbility.startAbilityForResult(
    {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -193,8 +197,12 @@ featureAbility.startAbilityForResult(
             uri:''
         },
     },
-    (err, data) => {
-        console.info('startAbilityForResult err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbilityForResult fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbilityForResult success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -236,7 +244,7 @@ featureAbility.startAbilityForResult(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -288,7 +296,7 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -309,8 +317,8 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
-    (err) => {
-        console.error('err: ${JSON.stringify(err)}');
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 );
 ```
@@ -345,7 +353,7 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -389,8 +397,12 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus((err, data) => {
-    console.info('hasWindowFocus err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+featureAbility.hasWindowFocus((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('hasWindowFocus fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('hasWindowFocus success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -435,8 +447,12 @@ getWant(callback: AsyncCallback\<Want>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant((err, data) => {
-    console.info('getWant err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+featureAbility.getWant((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWant fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWant success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -482,8 +498,12 @@ getContext(): Context
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getBundleName((err, data) => {
-    console.info('getBundleName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getBundleName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -506,8 +526,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
-    (err) => {
-        console.error('err: ${JSON.stringify(err)}');
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 )
 ```
@@ -574,7 +594,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -617,7 +637,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -631,8 +651,12 @@ let connectId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connectId, (err) => {
-    console.error('featureAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
+featureAbility.disconnectAbility(connectId, (error) => {
+    if (error && error.code !== 0) {
+        console.error('disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('disconnectAbility success， connectId: ${connectId}');
+    }
 });
 ```
 
@@ -668,7 +692,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -707,8 +731,12 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```ts
-featureAbility.getWindow((err, data) => {
-    console.info('getWindow err: ${JSON.stringify(err)}, data: ${typeof(data)}');
+featureAbility.getWindow((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWindow fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWindow success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -823,7 +851,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是否是可反向的。                               |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 表示如果未安装指定的Ability，将安装该Ability。                       |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 表示如果未安装指定的Ability，将在后台安装该Ability。                       |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](#featureabilitystartability)方法的参数对象[parameter](js-apis-inner-ability-startAbilityParameter.md)下的[Want](js-apis-application-want.md)设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 表示在已有的任务栈上创建任务的操作。                       |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 表示如果启动的Ability的现有实例已位于任务栈顶，则将重用该实例。否则，将创建一个新的Ability实例。 |
 

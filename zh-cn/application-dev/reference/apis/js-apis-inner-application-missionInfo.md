@@ -25,7 +25,7 @@ try {
   missionManager.getMissionInfo('', 1, (error, data) => {
     if (error.code) {
         // 处理业务逻辑错误
-        console.log('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
     }
 
@@ -39,6 +39,6 @@ try {
     console.log('getMissionInfo continuable is: ${JSON.stringify(data.continuable)}');
     });
 } catch (paramError) {
-    console.log('error: ${paramError.code}, ${paramError.message}');
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```

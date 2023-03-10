@@ -3,13 +3,9 @@
 The **\<Flex>** component allows for flexible layout of child components.
 
 > **NOTE**
+> 
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[\<Column>](ts-container-column.md)** or **[\<Row>](ts-container-row.md)** instead under scenarios where consistently high performance is required.
-
-
-## Required Permissions
-
-None
 
 
 ## Child Components
@@ -23,14 +19,15 @@ Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: Fle
 
 Creates a standard **\<Flex>** component.
 
-- Parameters
-  | Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
-  | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
-  | direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
-  | wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
-  | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
-  | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
-  | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**. |
+**Parameters**
+
+| Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
+| -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**. |
 
 
 ## Example
@@ -96,7 +93,7 @@ struct FlexExample1 {
 }
 ```
 
-![en-us_image_0000001256978365](figures/en-us_image_0000001256978365.gif)
+![en-us_image_0000001219744189](figures/en-us_image_0000001219744189.PNG)
 
 ```ts
 // xxx.ets
@@ -142,7 +139,7 @@ struct FlexExample2 {
 }
 ```
 
-![en-us_image_0000001211898500](figures/en-us_image_0000001211898500.png)
+![en-us_image_0000001174264366](figures/en-us_image_0000001174264366.png)
 
 ```ts
 // xxx.ets
@@ -191,7 +188,7 @@ struct FlexExample3 {
 }
 ```
 
-![en-us_image_0000001212218462](figures/en-us_image_0000001212218462.gif)
+![en-us_image_0000001174582854](figures/en-us_image_0000001174582854.PNG)
 
 ```ts
 // xxx.ets
@@ -289,4 +286,4 @@ struct FlexExample5 {
 }
 ```
 
-![en-us_image_0000001256858413](figures/en-us_image_0000001256858413.gif)
+![en-us_image_0000001174422906](figures/en-us_image_0000001174422906.PNG)

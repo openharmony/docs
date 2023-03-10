@@ -1478,8 +1478,8 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 ```js
 imageSourceApi.createPixelMap((err, pixelmap) => {
-                    console.info('Succeeded in creating pixelmap object.');
-                })
+    console.info('Succeeded in creating pixelmap object.');
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1512,6 +1512,177 @@ let decodingOptions = {
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
     console.log('Succeeded in creating pixelmap object.');
 })
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
+
+通过图片解码参数创建PixelMap数组。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | 否   | 解码参数。                 |
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| Promise<Array<[PixelMap](#pixelmap7)>> | 异步返回PixeMap数组。 |
+
+**示例：**
+
+```js
+let decodeOpts = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: RGBA_8888,
+    index: 0,
+};
+let pixelmaplist = await imageSourceApi.createPixelMapList(decodeOpts);
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
+
+通过默认参数创建PixelMap数组，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
+
+**示例：**
+
+```js
+imageSourceApi.createPixelMap( pixelmaplist => {
+    console.info('Succeeded in creating pixelmaplist object.');
+})
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void;
+
+通过图片解码参数创建PixelMap数组，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                               |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| options | [DecodingOptions](#decodingoptions7) | 是 | 解码参数。 |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
+
+**示例：**
+
+```js
+let decodeOpts = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: RGBA_8888,
+    index: 0,
+};
+imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
+    console.log('Succeeded in creating pixelmaplist object.');
+})
+```
+
+### getDelayTime<sup>10+</sup>
+
+getDelayTime(callback: AsyncCallback<Array\<number>>): void;
+
+获取图像延迟时间数组，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                               |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback<Array\<number>> | 是   | 通过回调返回延迟时间数组。 |
+
+**示例：**
+
+```js
+imageSourceApi.getDelayTime( delayTimes => {
+    console.log('Succeeded in getting delay time.');
+});
+```
+
+### getDelayTime<sup>10+</sup>
+
+getDelayTime(): Promise<Array\<number>>;
+
+获取图像延迟时间数组，使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<Array\<number>> | Promise实例，异步返回延迟时间数组。 |
+
+**示例：**
+
+```js
+let delayTimes = await imageSourceApi.getDelayTime();
+```
+
+### getFrameCount<sup>10+</sup>
+
+getFrameCount(callback: AsyncCallback<number>): void;
+
+获取图像帧数，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                               |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<number> | 是   | 通过回调返回图像帧数。 |
+
+**示例：**
+
+```js
+imageSourceApi.getFrameCount( frameCount => {
+    console.log('Succeeded in getting frame count.');
+});
+```
+
+### getFrameCount<sup>10+</sup>
+
+getFrameCount(): Promise\<number>;
+
+获取图像帧数，使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<number> | Promise实例，异步返回图像帧数。 |
+
+**示例：**
+
+```js
+let frameCount = await imageSourceApi.getFrameCount();
 ```
 
 ### release

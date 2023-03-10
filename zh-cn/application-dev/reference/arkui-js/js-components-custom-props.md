@@ -21,7 +21,7 @@ export default {
 
 ```html
 <!-- xxx.hml -->
-<element name='comp' src='../../common/component/comp/comp.hml'></element>
+<element name='comp' src='../common/component/comp/comp.hml'></element>
 <div class="container"> 
    <comp comp-prop="{{title}}"></comp> 
 </div>
@@ -57,7 +57,7 @@ export default {
 
 ```html
 <!-- xxx.hml -->
-<element name='comp' src='../../common/component/comp/comp.hml'></element>
+<element name='comp' src='../common/component/comp/comp.hml'></element>
 <div class="container"> 
    <comp title="自定义组件"></comp> 
 </div>

@@ -839,6 +839,92 @@ inputMethodController.stopInput().then((result) => {
 })
 ```
 
+### on('selectByRange')<sup>10+</sup>
+
+on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
+
+Enables listening for the selection-by-range event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Listening type.<br>The value **selectByRange** indicates the selection-by-range event.|
+| callback | Callback&lt;[Range](./js-apis-inputmethod-InputMethodCommon.md#range)&gt; | Yes  | Callback used to return the range of the text to be selected.<br>Your application needs to select the text in the returned range in the text box.|
+
+**Example**
+
+```js
+inputMethodController.on('selectByRange', (range) => {
+    console.info('Succeeded in subscribing selectByRange: start: ' + range.start + " , end: " + range.end);
+});
+```
+
+### off('selectByRange')<sup>10+</sup>
+
+off(type: 'selectByRange'): void
+
+Disables listening for the selection-by-range event.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Listening type.<br>The value **selectByRange** indicates the selection-by-range event.|
+
+**Example**
+
+```js
+inputMethodController.off('selectByRange');
+```
+
+### on('selectByMovement')<sup>10+</sup>
+
+on(type: 'selectByMovement', callback: Callback&lt;Range&gt;): void
+
+Enables listening for the selection-by-cursor-movement event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Listening type.<br>The value **selectByMovement** indicates the selection-by-cursor-movement event.|
+| callback | Callback&lt;[Movement](./js-apis-inputmethod-InputMethodCommon.md#movement)&gt; | Yes  | Callback used to return the range of the text to be selected.<br>Your application needs to select the text in the returned range in the text box.|
+
+**Example**
+
+```js
+inputMethodController.on('selectByMovement', (movement) => {
+    console.info('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+});
+```
+
+### off('selectByMovement')<sup>10+</sup>
+
+off(type: 'selectByMovement'): void
+
+Disables listening for the selection-by-cursor-movement event.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Listening type.<br>The value **selectByMovement** indicates the selection-by-cursor-movement event.|
+
+**Example**
+
+```js
+inputMethodController.off('selectByMovement');
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 In the following API examples, you must first use [getSetting](#inputmethodgetsetting9) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.

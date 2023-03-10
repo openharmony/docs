@@ -35,13 +35,9 @@ Stage模型的设计，主要是为了开发者更加方便地开发出分布式
 
 ## 相关实例
 
-### FA 模型
-
-- [Page内和Page间导航跳转（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)
-
 ### Stage 模型
 
-- [Stage模型介绍（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/StageModel)
-- [窗口扩展（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/WindowExtAbility)
-- [系统任务管理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/MissionManager)
-- [仿桌面应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/Launcher)
+- [Stage模型介绍（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)
+- [窗口扩展（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)
+- [系统任务管理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/MissionManager)
+- [仿桌面应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/Launcher)

@@ -18,9 +18,23 @@ job可以在init.cfg中配置，也可以在模块的自定义cfg中配置。ini
 
 - 条件jobs(仅标准系统以上提供)
 
-  用户通过在jobs中添加condition条件，在条件触发时执行。
+  用户通过在jobs中添加condition配置，在条件满足时触发命令执行。
 
-  条件一般是某些系统参数值的组合，支持&& 、||等操作，例如"condition"："sys.usb.config = none && sys.usb.configfs = 0"。并且jobs在定义命令时，一般按照下面的规则"param:xxx", 可以根据不同的属性自行组合。
+  条件是系统参数值的组合，支持&& 、||等操作, 并且支持*匹配任意值。
+
+  一般情况可按如下示例配置：
+
+  ```
+  "condition"："sys.usb.config = none && sys.usb.configfs = 0"。
+  ```
+
+  如果特殊情况需要在boot阶段对参数做检查可按下面示例配置：
+
+  ```
+  "condition": "boot && const.debuggable=1"。
+  ```
+
+  并且jobs在定义命令时，按照下面的规则"param:xxx"命名, 可以根据不同的属性自行组合。
 
 ### 约束与限制
 在标准系统下有系统参数模块的支持，支持基本jobs、条件jobs、自定义jobs。在小型系统中只支持基本jobs。
@@ -37,7 +51,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
    | mkdir | mkdir 目标文件夹 [mode] [owner] [group]<br/>如：mkdir /storage/myDirectory<br>mkdir /storage/myDirectory 0755 root root| 创建文件夹命令，mkdir和目标文件夹之间有且只能有一个空格。<B><br>系统类型：小型系统和标准系统 |
    | chmod | chmod&nbsp;权限&nbsp;目标<br/>如：chmod&nbsp;0600&nbsp;/storage/myFile.txt<br/>chmod&nbsp;0750&nbsp;/storage/myDir | 修改权限命令，chmod权限目标之间间隔有且仅有一个空格，权限必须为0xxx格式。<B><br>系统类型：小型系统和标准系统|
    | chown | chown&nbsp;uid&nbsp;gid&nbsp;目标<br/>如：chown&nbsp;900&nbsp;800&nbsp;/storage/myDir<br/>chown&nbsp;100&nbsp;100&nbsp;/storage/myFile.txt | 修改属组命令，chown&nbsp;uid&nbsp;gid目标之间间隔有且仅有一个空格。<B><br>系统类型：小型系统和标准系统 |
-   | mount | mount&nbsp;fileSystemType&nbsp;src&nbsp;dst&nbsp;flags&nbsp;[data]<br/>如：mount&nbsp;vfat&nbsp;/dev/mmcblk0&nbsp;/sdc&nbsp;rw,umask=000<br/>mount&nbsp;jffs2&nbsp;/dev/mtdblock3&nbsp;/storage&nbsp;nosuid | 挂载命令，各参数之间有且仅有一个空格。flags参考base/startup/init_lite/services/init/init_common_cmds.c中mountFlagMap函数mountFlagMap[]，data为可选字段。<B><br>系统类型：小型系统和标准系统 |
+   | mount | mount&nbsp;fileSystemType&nbsp;src&nbsp;dst&nbsp;flags&nbsp;[data]<br/>如：mount&nbsp;vfat&nbsp;/dev/mmcblk0&nbsp;/sdc&nbsp;rw,umask=000<br/>mount&nbsp;jffs2&nbsp;/dev/mtdblock3&nbsp;/storage&nbsp;nosuid | 挂载命令，各参数之间有且仅有一个空格。flags参考base/startup/init/services/init/init_common_cmds.c中mountFlagMap函数mountFlagMap[]，data为可选字段。<B><br>系统类型：小型系统和标准系统 |
    | start | start&nbsp;serviceName<br/>如：start&nbsp;foundation| 启动服务命令，start后面跟着service名称，该service名称必须能够在services数组中找到。<B><br>系统类型：小型系统和标准系统 |
    | export | export key value<br>如：export TEST /data/test | 设置环境变量命令。后面跟两个参数，第一个参数是环境变量名，第二个参数是环境变量值。<B><br>系统类型：小型系统和标准系统 |
    | rm | rm filename<br>如：rm /data/testfile | 删除文件命令。后面跟一个参数，即文件的绝对路径。<B><br>系统类型：小型系统和标准系统 |

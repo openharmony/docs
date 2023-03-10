@@ -42,6 +42,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 示例：
 
 ```js
+import vibrator from '@ohos.vibrator';
 try {
     vibrator.startVibration({
         type: 'time',
@@ -95,6 +96,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     vibrator.startVibration({
         type: 'time',
@@ -132,6 +134,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // 按照固定时长振动
     vibrator.startVibration({
@@ -190,6 +193,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 **示例：** 
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // 按照固定时长振动
     vibrator.startVibration({
@@ -216,6 +220,213 @@ try {
     });
 } catch (err) {
     console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+  ```
+
+## vibrator.stopVibration<sup>10+</sup>
+
+stopVibration(callback: AsyncCallback&lt;void&gt;): void
+
+停止所有模式的马达振动。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+
+**示例：** 
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // 按照固定时长振动
+    vibrator.startVibration({
+        type: 'time',
+        duration: 1000,
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }, (error) => {
+        if (error) {
+            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate a successful vibration.');
+    });
+} catch (error) {
+    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+
+try {
+    // 停止所有模式的马达振动
+    vibrator.stopVibration(function (error) {
+        if (error) {
+            console.log('error.code' + error.code + 'error.message' + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate successful.');
+    })
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+  ```
+
+## vibrator.stopVibration<sup>10+</sup>
+
+stopVibration(): Promise&lt;void&gt;
+
+停止所有模式的马达振动。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**返回值：** 
+
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例：** 
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // 按照固定时长振动
+    vibrator.startVibration({
+        type: 'time',
+        duration: 1000
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }).then(() => {
+        console.log('Promise returned to indicate a successful vibration');
+    }, (error) => {
+        console.error('error.code' + error.code + 'error.message' + error.message);
+    });
+} catch (error) {
+    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+
+try {
+    // 停止所有模式的马达振动
+    vibrator.stopVibration().then(() => {
+        console.log('Promise returned to indicate a successful vibration.');
+    }, (error) => {
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    });
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+  ```
+
+## vibrator.isSupportEffect<sup>10+</sup>
+
+isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
+
+查询是否支持传入的参数effectId。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型                         | 必填 | 说明                                                   |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------ |
+| effectId | string                       | 是   | 振动效果id                                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当返回true则表示支持该effectId，否则不支持。 |
+
+**示例：** 
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // 查询是否支持'haptic.clock.timer'
+    vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+        if (err) {
+            console.error('isSupportEffect failed, error:' + JSON.stringify(err));
+            return;
+        }
+        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
+        if (state) {
+            try {
+                vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+                    type: 'preset',
+                    effectId: 'haptic.clock.timer',
+                    count: 1,
+                }, {
+                    usage: 'unknown'
+                }, (error) => {
+                    if(error) {
+                        console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
+                    } else {
+                        console.log('haptic.clock.timer vibrator success');
+                    }
+                });
+            } catch (error) {
+                console.error('Exception in, error:' + JSON.stringify(error));
+            }
+        }
+    })
+} catch (error) {
+    console.error('Exception in, error:' + JSON.stringify(error));
+}
+  ```
+
+## vibrator.isSupportEffect<sup>10+</sup>
+
+isSupportEffect(effectId: string): Promise&lt;boolean&gt;
+
+查询是否支持传入的参数effectId。
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明         |
+| -------- | ------ | ---- | ------------ |
+| effectId | string | 是   | 振动效果id。 |
+
+**返回值：** 
+
+| 类型                   | 说明                                                      |
+| ---------------------- | --------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，否则不支持。 |
+
+**示例：** 
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // 查询是否支持'haptic.clock.timer'
+    vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
+        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
+        if (state) {
+            try {
+                vibrator.startVibration({
+                    type: 'preset',
+                    effectId: 'haptic.clock.timer',
+                    count: 1,
+                }, {
+                    usage: 'unknown'
+                }).then(()=>{
+                    console.log('Promise returned to indicate a successful vibration');
+                }).catch((error)=>{
+                    console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
+                });
+            } catch (error) {
+                console.error('exception in, error:' + JSON.stringify(error));
+            }
+        }
+    }, (error) => {
+        console.error('isSupportEffect failed, error:' + JSON.stringify(error));
+    })
+} catch (error) {
+    console.error('Exception in, error:' + JSON.stringify(error));
 }
   ```
 

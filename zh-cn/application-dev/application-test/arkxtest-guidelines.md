@@ -195,6 +195,7 @@ export default function abilityTest() {
 | itName       | 指定要执行的测试用例                                         | {itName}                                                     | -s itName testAttributeIt                 |
 | timeout      | 测试用例执行的超时时间                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
 | breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程 | true/false(默认值)                                           | -s breakOnError true                      |
+| random | 测试用例随机顺序执行 | true/false(默认值)                                           | -s random true                      |
 | testType     | 指定要执行用例的用例类型                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
 | level        | 指定要执行用例的用例级别                                      | 0,1,2,3,4                                                    | -s level 0                                |
 | size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small        

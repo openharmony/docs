@@ -42,7 +42,7 @@ import Want from '@ohos.application.Want';
     };
     this.context.startAbility(want, (error) => {
         // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.log('error.code = ${error.code}');
+        console.error('error.code = ${error.code}');
     });
   ```
 
@@ -114,7 +114,7 @@ import Want from '@ohos.application.Want';
             try {
                 fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
             } catch(e) {
-                console.log('openSync fail: ${JSON.stringify(e)}');
+                console.error('openSync fail: ${JSON.stringify(e)}');
             }
             let want = {
                 'deviceId': '', // deviceId为空表示本设备
@@ -127,7 +127,7 @@ import Want from '@ohos.application.Want';
             };
             this.context.startAbility(want, (error) => {
                 // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-                console.log('error.code = ${error.code}');
+                console.error('error.code = ${error.code}');
             });
         ```
 

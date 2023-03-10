@@ -246,7 +246,7 @@ export class AudioDemo {
 
 针对音频播放开发，有以下相关实例可供参考：
 
-- [`JsDistributedMusicPlayer:`分布式音乐播放（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/JsDistributedMusicPlayer)
-- [`JsAudioPlayer`：音频播放和管理（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/JsAudioPlayer)
-- [`eTsAudioPlayer`: 音频播放器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [`JsDistributedMusicPlayer:`分布式音乐播放（JS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
+- [`MediaCollections`：媒体管理合集（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
+- [`Recorder`: 录音机（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Recorder)
 - [音频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

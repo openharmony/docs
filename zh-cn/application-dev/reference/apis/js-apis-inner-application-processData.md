@@ -39,6 +39,6 @@ let applicationStateObserver = {
         console.log('onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}');
         console.log('onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}');
     }
-}
+};
 let observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
 ```

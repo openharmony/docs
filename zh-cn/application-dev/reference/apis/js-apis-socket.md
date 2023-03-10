@@ -714,7 +714,7 @@ Socket的连接信息。
 
 ## UDP 错误码说明
 
-UDP 其余错误码映射形式为：2301000 + 内核错误码。
+UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
@@ -1592,7 +1592,7 @@ TCPSocket连接的其他属性。
 
 ## TCP 错误码说明
 
-TCP 其余错误码映射形式为：2301000 + 内核错误码。
+TCP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 

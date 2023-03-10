@@ -36,18 +36,12 @@
 
 - [`AtomicLayout`：原子布局（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/AtomicLayout)
 
-- [`JsFA`：FA示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsFA)
+- [`FaModel`：FA示例应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)
 
 - [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsShopping)
 
 - [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Stack)
 
-- [`JsAdaptivePortalList`：多设备自适应的效率型首页（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAdaptivePortalList)
-
-- [`JsAdaptivePortalPage`：多设备自适应的FA页面（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAdaptivePortalPage)
-
-- [`JsGallery`：图库示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsGallery)
-
-- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Badge)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
 - [购物应用（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)

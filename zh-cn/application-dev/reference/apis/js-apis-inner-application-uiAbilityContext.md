@@ -1916,7 +1916,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 
 setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
-设置当前ability在任务中显示的图标（callback形式）。
+设置当前ability在任务中显示的图标, 图标大小最大为600M（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1966,7 +1966,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
-设置当前ability在任务中显示的图标（promise形式）。
+设置当前ability在任务中显示的图标, 图标大小最大为600M（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2112,7 +2112,7 @@ try {
       return;
     }
     // 执行正常业务
-    console.info('requestDialogService succeed, result = ' + JSON.stringify(result));
+    console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
   });
 } catch (err) {
   // 处理入参错误异常
@@ -2160,7 +2160,7 @@ try {
   this.context.requestDialogService(want)
     .then((result) => {
       // 执行正常业务
-      console.info('requestDialogService succeed, result = ' + JSON.stringify(result));
+      console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
     })
     .catch((err) => {
       // 处理业务逻辑错误

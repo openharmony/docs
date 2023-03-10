@@ -921,3 +921,7 @@ Indicates that the SPN displayed has been updated.
 Indicates the result of applying a quick fix to the application.
 - Value: **usual.event.QUICK_FIX_APPLY_RESULT**
 - Required subscriber permissions: none
+## COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+<sup>
+Indicates that the HTTP proxy configuration has changed.
+- Value: **usual.event.HTTP_PROXY_CHANGE**
+- Required subscriber permissions: none

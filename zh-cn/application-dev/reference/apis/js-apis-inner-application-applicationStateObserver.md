@@ -34,6 +34,6 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log('onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}');
     }
-}
+};
 let observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
 ```

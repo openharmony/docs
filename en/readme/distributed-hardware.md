@@ -4,7 +4,11 @@
 
 ### **Distributed Hardware Subsystem**
 
-The distributed hardware subsystem manages hardware information of all the devices in a Super Device so that the hardware capabilities can be shared and called across devices.
+Super Device allows multiple devices to collaborate with each other to provide optimal user experience.
+
+The distributed hardware subsystem shares peripheral capabilities between devices in a Super Device. It manages the hardware information of each device in a virtual hardware resource pool and centrally shares and schedules the hardware capabilities across devices. The distributed hardware subsystem breaks device boundaries and redefines product forms and user experience through software. For example, you can display the content of your smartphone on a TV screen, and leverage the smartphone cameras to provide enhanced video recording capabilities for your PC.
+
+The distributed hardware platform uses a hardware virtualization component to implement hardware resource pooling of all devices in a Super Device. Each device has a virtual hardware instance registered with the platform. The hardware virtualization component implements the interaction between the virtual hardware and physical hardware to complete the control over the hardware and data transmission. Hardware resource pooling implements hardware virtualization over the hardware device interface (HDI). Each service subsystem at the service layer can use distributed hardware like using local hardware.
 
 ### Architecture
 
@@ -24,15 +28,15 @@ foundation/distributedhardware
 
 ### DeviceManager
 
-DeviceManager provides authentication and networking for devices of a Super Device, including discovering distributed devices, performing authentication, and listening for device online/offline status.
+OpenHarmony DeviceManager provides authentication and networking capabilities for distributed devices and provides a set of APIs for detecting the online/offline device status, and  discovering and authenticating distributed devices. The DeviceManager implements trusted status management, online/offline status management, device discovery, and authentication management. The discovered and authenticated devices can form a Super Device. In the Super Device, hardware resources are automatically synchronized to all devices and uniformly managed by the distributed hardware subsystem.
 
 ### Distributed Hardware Framework
 
-As an information management component of the distributed hardware subsystem, the distributed hardware framework implements unified hardware access, information query, and hardware enablement.
+The distributed hardware framework provides information management capabilities for the distributed hardware subsystem. It implements unified hardware access, query, and enablement for the distributed hardware subsystem.
 
 ### Distributed Camera
 
-The distributed camera component implements collaboration of cameras of multiple devices that form a Super Device. Instead of directly interacting with applications, the distributed camera component only provides C++ interfaces for the distributed hardware framework. Applications can call the APIs of the camera framework to use the distributed camera component to operate cameras of other devices, just like operating a local camera.
+Distributed camera implements collaboration of cameras of multiple devices that form a Super Device. The distributed camera component provides C++ interfaces for the distributed hardware framework, but not directly interacting with applications. Applications can call the APIs of the camera framework to use the distributed camera component to operate cameras of other devices, just like operating a local camera.
 
 ### Distributed Screen
 

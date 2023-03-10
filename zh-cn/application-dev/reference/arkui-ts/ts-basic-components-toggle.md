@@ -19,6 +19,8 @@
 
 Toggle(options: { type: ToggleType, isOn?: boolean })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名 | 参数类型 | 必填   | 参数描述           |
@@ -28,6 +30,9 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 
 ## ToggleType枚举说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称       | 描述                 |
 | -------- | ---------------- |
 | Checkbox | 提供单选框样式。<br>**说明：**<br/>[通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 14 vp,<br>&nbsp;right: 6 vp,<br>&nbsp;bottom: 14 vp,<br>&nbsp;left: 6 vp<br> } |
@@ -39,15 +44,15 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 名称                | 参数                           | 参数描述                  |
 | ---------------- | --------------------------- | ---------------------- |
-| selectedColor    | [ResourceColor](ts-types.md#resourcecolor)  | 设置组件打开状态的背景颜色。 |
-| switchPointColor | [ResourceColor](ts-types.md#resourcecolor)  | 设置Switch类型的圆形滑块颜色。<br/>**说明：**<br/>仅对type为ToggleType.Switch生效。 |
+| selectedColor    | [ResourceColor](ts-types.md#resourcecolor)  | 设置组件打开状态的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| switchPointColor | [ResourceColor](ts-types.md#resourcecolor)  | 设置Switch类型的圆形滑块颜色。<br/>**说明：**<br/>仅对type为ToggleType.Switch生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | 开关状态切换时触发该事件。 |
+| onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | 开关状态切换时触发该事件。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 
 ## 示例

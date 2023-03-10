@@ -10,11 +10,11 @@
   ![context-inheritance](figures/context-inheritance.png)
 
 - The figure below illustrates the holding relationship of contexts.
-  
+
   ![context-holding](figures/context-holding.png)
 
 - The following describes the information provided by different contexts.
-  - [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate the ability, obtain the ability configuration, and more.
+  - [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -25,6 +25,10 @@
          }
      }
      ```
+     
+     > **NOTE**
+     >
+     > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
   - Scenario-specific [ExtensionContext](../reference/apis/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
     
      ```ts
@@ -47,7 +51,7 @@
          }
      }
      ```
-  - [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to ability lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from UIAbility, ExtensionAbility, and AbilityStage.
+  - [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from UIAbility, ExtensionAbility, and AbilityStage.
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -179,13 +183,10 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   > To obtain the context of another application:
   >
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-  >
-  > - This is a system API and cannot be called by third-party applications. 
-  > 
   > - This is a system API and cannot be called by third-party applications.
 
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
-  
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -198,7 +199,6 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
       }
   }
   ```
-  
 
 - Call **createModuleContext(bundleName:string, moduleName:string)** to obtain the context of a specified module of another application. After obtaining the context, you can obtain the resource information of that module.
   > **NOTE**
@@ -206,9 +206,6 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   > To obtain the context of a specified module of another application:
   >
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-  >
-  > - This is a system API and cannot be called by third-party applications.
-  > 
   > - This is a system API and cannot be called by third-party applications.
 
   ```ts
@@ -223,7 +220,7 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
       }
   }
   ```
-  
+
 - Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
   
   ```ts
