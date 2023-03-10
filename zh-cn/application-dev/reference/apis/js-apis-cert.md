@@ -922,7 +922,7 @@ getKeyUsage() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory error.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2130,7 +2130,7 @@ let validator = cryptoCert.createCertChainValidator("PKIX");
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.Cert
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | -------------------------- |
