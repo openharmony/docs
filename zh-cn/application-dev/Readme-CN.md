@@ -17,7 +17,6 @@
       - 应用程序包结构
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-        - [HAR包结构](quick-start/har-structure.md)
       - 应用程序包多HAP机制
         - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
         - [多HAP构建视图](quick-start/multi-hap-build-view.md)
@@ -26,11 +25,11 @@
         - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
       - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
       - 共享包
+        - [共享包概述](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
         - HSP
-          - [HSP概述](quick-start/hsp-guide.md)
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-          - [应用间HSP开发指导](quick-start/cross-app-hsp.md)
+          - [应用间HSP开发指导（仅对系统应用开放）](quick-start/cross-app-hsp.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
