@@ -67,7 +67,7 @@ httpRequest.request(
 
 ## http.createHttp
 
-createHttp\(\): HttpRequest
+createHttp(): HttpRequest
 
 创建一个HTTP请求，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header事件。每一个HttpRequest对象对应一个HTTP请求。如需发起多个HTTP请求，须为每个HTTP请求创建对应HttpRequest对象。
 
@@ -88,11 +88,11 @@ let httpRequest = http.createHttp();
 
 ## HttpRequest
 
-HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp\(\)](#httpcreatehttp)创建一个任务。
+HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp()](#httpcreatehttp)创建一个任务。
 
 ### request
 
-request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
+request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
 
@@ -140,7 +140,7 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 
 ### request
 
-request\(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>\):void
+request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
 根据URL地址和相关配置项，发起HTTP网络请求，使用callback方式作为异步方法。
 
@@ -223,7 +223,7 @@ httpRequest.request("EXAMPLE_URL",
 
 ### request
 
-request\(url: string, options? : HttpRequestOptions\): Promise\<HttpResponse\>
+request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 根据URL地址，发起HTTP网络请求，使用Promise方式作为异步方法。
 
@@ -309,7 +309,7 @@ promise.then((data) => {
 
 ### destroy
 
-destroy\(\): void
+destroy(): void
 
 中断请求任务。
 
@@ -323,7 +323,7 @@ httpRequest.destroy();
 
 ### request2<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback<void>): void
+request2(url: string, callback: AsyncCallback\<void\>): void
 
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -359,7 +359,7 @@ request2(url: string, callback: AsyncCallback<void>): void
 ```js
 httpRequest.request2("EXAMPLE_URL", (err) => {
     if (!err) {
-        console.info(request2 OK!);
+        console.info("request2 OK!");
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -368,7 +368,7 @@ httpRequest.request2("EXAMPLE_URL", (err) => {
 
 ### request2<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback<void>): void
+request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<void\>): void
 
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -437,7 +437,7 @@ httpRequest.request2("EXAMPLE_URL",
     connectTimeout: 60000
 }, (err) => {
     if (!err) {
-        console.info(request2 OK!);
+        console.info("request2 OK!");
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -445,7 +445,7 @@ httpRequest.request2("EXAMPLE_URL",
 ```
 ### request2<sup>10+</sup>
 
-request2\(url: string, options? : HttpRequestOptions\): Promise\<void\>
+request2(url: string, options? : HttpRequestOptions): Promise\<void\>
 
 根据URL地址，发起HTTP网络请求并返回流式响应，使用Promise方式作为异步方法。
 
@@ -518,20 +518,20 @@ let promise = httpRequest.request("EXAMPLE_URL", {
     }
 });
 promise.then(() => {
-    console.info(request2 OK!);
+    console.info("request2 OK!");
 }).catch((err) => {
     console.info("request2 ERROR : err = " + JSON.stringify(err));
 });
 ```
 
-### on\('headerReceive'\)
+### on('headerReceive')
 
-on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
+on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
 >![](public_sys-resources/icon-note.gif) **说明：**
->此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
+>此接口已废弃，建议使用[on('headersReceive')<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -554,15 +554,15 @@ httpRequest.on('headerReceive', (err, data) => {
 });
 ```
 
-### off\('headerReceive'\)
+### off('headerReceive')
 
-off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
+off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
 >![](public_sys-resources/icon-note.gif) **说明：**
 >
->1. 此接口已废弃，建议使用[off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8)替代。
+>1. 此接口已废弃，建议使用[off('headersReceive')<sup>8+</sup>](#offheadersreceive8)替代。
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -581,9 +581,9 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 httpRequest.off('headerReceive');
 ```
 
-### on\('headersReceive'\)<sup>8+</sup>
+### on('headersReceive')<sup>8+</sup>
 
-on\(type: 'headersReceive', callback: Callback<Object\>\): void
+on(type: 'headersReceive', callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
@@ -604,9 +604,9 @@ httpRequest.on('headersReceive', (header) => {
 });
 ```
 
-### off\('headersReceive'\)<sup>8+</sup>
+### off('headersReceive')<sup>8+</sup>
 
-off\(type: 'headersReceive', callback?: Callback<Object\>\): void
+off(type: 'headersReceive', callback?: Callback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
@@ -628,9 +628,9 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 httpRequest.off('headersReceive');
 ```
 
-### once\('headersReceive'\)<sup>8+</sup>
+### once('headersReceive')<sup>8+</sup>
 
-once\(type: 'headersReceive', callback: Callback<Object\>\): void
+once(type: 'headersReceive', callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件，但是只触发一次。一旦触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
@@ -650,9 +650,9 @@ httpRequest.once('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
 ```
-### on\('dataReceive'\)<sup>10+</sup>
+### on('dataReceive')<sup>10+</sup>
 
-on\(type: 'dataReceive', callback: Callback\<ArrayBuffer\>\): void
+on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
@@ -673,9 +673,9 @@ httpRequest.on('dataReceive', (data) => {
 });
 ```
 
-### off\('dataReceive'\)<sup>10+</sup>
+### off('dataReceive')<sup>10+</sup>
 
-off\(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>\): void
+off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
 
 取消订阅HTTP流式响应数据接收事件。
 
@@ -697,9 +697,9 @@ off\(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>\): void
 httpRequest.off('dataReceive');
 ```
 
-### on\('dataEnd'\)<sup>10+</sup>
+### on('dataEnd')<sup>10+</sup>
 
-on\(type: 'dataEnd', callback: Callback\<void\>\): void
+on(type: 'dataEnd', callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
 
@@ -720,7 +720,7 @@ httpRequest.on('dataReceive', () => {
 });
 ```
 
-### off\('dataEnd'\)<sup>10+</sup>
+### off('dataEnd')<sup>10+</sup>
 
 off(type: 'dataEnd', callback?: Callback\<void\>): void
 
@@ -744,9 +744,9 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 httpRequest.off('dataEnd');
 ```
 
-### on\('dataProgress'\)<sup>10+</sup>
+### on('dataProgress')<sup>10+</sup>
 
- on\(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>\): void
+ on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -757,7 +757,7 @@ httpRequest.off('dataEnd');
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataProgress'。 |
-| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | 是   | 回调函数。                        |
+| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | 是   | 回调函数。<br>receiveSize：已接收的数据字节数，totalSize待接收的字节总数 |
 
 **示例：**
 
@@ -769,7 +769,7 @@ httpRequest.on('dataProgress', (data) => {
 });
 ```
 
-### off\('dataProgress'\)<sup>10+</sup>
+### off('dataProgress')<sup>10+</sup>
 
 off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
@@ -919,7 +919,7 @@ let httpResponseCache = http.createHttpResponseCache();
 
 ### flush<sup>9+</sup>
 
-flush(callback: AsyncCallback\<void>): void
+flush(callback: AsyncCallback\<void\>): void
 
 将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用callback方式作为异步方法。
 
@@ -929,7 +929,7 @@ flush(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数返回写入结果。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数返回写入结果。 |
 
 **示例：**
 
@@ -945,7 +945,7 @@ httpResponseCache.flush(err => {
 
 ### flush<sup>9+</sup>
 
-flush(): Promise\<void>
+flush(): Promise\<void\>
 
 将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用Promise方式作为异步方法。
 
@@ -955,7 +955,7 @@ flush(): Promise\<void>
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void>> | 以Promise形式返回写入结果。 |
+| Promise\<void\> | 以Promise形式返回写入结果。 |
 
 **示例：**
 
@@ -969,7 +969,7 @@ httpResponseCache.flush().then(() => {
 
 ### delete<sup>9+</sup>
 
-delete(callback: AsyncCallback\<void>): void
+delete(callback: AsyncCallback\<void\>): void
 
 禁用缓存并删除其中的数据，使用callback方式作为异步方法。
 
@@ -979,7 +979,7 @@ delete(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数返回删除结果。|
+| callback | AsyncCallback\<void\> | 是   | 回调函数返回删除结果。|
 
 **示例：**
 
@@ -994,7 +994,7 @@ httpResponseCache.delete(err => {
 ```
 ### delete<sup>9+</sup>
 
-delete(): Promise\<void>
+delete(): Promise\<void\>
 
 禁用缓存并删除其中的数据，使用Promise方式作为异步方法。
 
@@ -1004,7 +1004,7 @@ delete(): Promise\<void>
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回删除结果。 |
+| Promise\<void\> | 以Promise形式返回删除结果。 |
 
 **示例：**
 
@@ -1023,7 +1023,7 @@ http的数据类型。
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 值 | 说明     |
-| ------------------ | -- | ----------- |
+| ------------------  | -- | ----------- |
 | STRING              | 0 | 字符串类型。 |
 | OBJECT              | 1 | 对象类型。    |
 | ARRAY_BUFFER        | 2 | 二进制数组类型。|
