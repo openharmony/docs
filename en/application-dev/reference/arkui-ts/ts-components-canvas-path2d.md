@@ -14,6 +14,8 @@ addPath(path: path2D, transform?:Matrix2D): void
 
 Adds a path to this path.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
   | Name| Type| Mandatory| Default Value| Description| 
@@ -61,6 +63,8 @@ closePath(): void
 
 Moves the current point of the path back to the start point of the path, and draws a straight line between the current point and the start point. If the shape has already been closed or has only one point, this method does nothing.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Example**
 
   ```ts
@@ -100,6 +104,8 @@ Moves the current point of the path back to the start point of the path, and dra
 moveTo(x: number, y: number): void
 
 Moves the current coordinate point of the path to the target point, without drawing a line during the movement.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -148,6 +154,8 @@ lineTo(x: number, y: number): void
 
 Draws a straight line from the current point to the target point.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
   | Name| Type| Mandatory| Default Value| Description| 
@@ -195,6 +203,8 @@ Draws a straight line from the current point to the target point.
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
 Draws a cubic bezier curve on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -245,6 +255,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 
 Draws a quadratic curve on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
   | Name| Type| Mandatory| Default Value| Description| 
@@ -291,6 +303,8 @@ Draws a quadratic curve on the canvas.
 arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 Draws an arc on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -340,6 +354,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 Draws an arc based on the radius and points on the arc.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
   | Name| Type| Mandatory| Default Value| Description| 
@@ -386,6 +402,8 @@ Draws an arc based on the radius and points on the arc.
 ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 Draws an ellipse in the specified rectangular region on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -436,6 +454,8 @@ Draws an ellipse in the specified rectangular region on the canvas.
 rect(x: number, y: number, w: number, h: number): void
 
 Creates a rectangle on the canvas.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 

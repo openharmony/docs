@@ -17,6 +17,8 @@ Not supported
 
 Gauge(options:{value: number, min?: number, max?: number})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -31,15 +33,17 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**|
-| startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**|
-| endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**|
-| colors | Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.|
-| strokeWidth | Length | Stroke width of the chart.|
+| value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| colors | Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeWidth | Length | Stroke width of the chart.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## ColorStop
 
 Describes a gradient stop.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Type            | Description                                                        |
 | --------- | -------------------- | ------------------------------------------------------------ |
