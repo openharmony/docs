@@ -683,7 +683,7 @@ Fills a rectangle on the canvas.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.fillRect(0,30,100,100)
+            this.context.fillRect(30,30,100,100)
          })
         }
       .width('100%')
@@ -769,7 +769,7 @@ Clears the content in a rectangle on the canvas.
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffffff')
+          .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.fillStyle = 'rgb(0,0,255)'
             this.context.fillRect(20,20,200,200)
@@ -1579,7 +1579,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.context.fillStyle = 'green'
+          this.context.fillStyle = '#00ff00'
           this.context.fill(region, "evenodd")
         })
     }
@@ -1666,10 +1666,15 @@ struct Clip {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           let region = new Path2D()
-          region.rect(80,10,20,130)
-          region.rect(40,50,100,50)
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           this.context.clip(region,"evenodd")
-          this.context.fillStyle = "rgb(255,0,0)"
+          this.context.fillStyle = "rgb(0,255,0)"
           this.context.fillRect(0, 0, this.context.width, this.context.height)
         })
     }
@@ -1745,7 +1750,7 @@ Rotates a canvas clockwise around its coordinate axes.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.rotate(45 * Math.PI / 180) // Rotate the rectangle 45 degrees
+            this.context.rotate(45 * Math.PI / 180)
             this.context.fillRect(70, 20, 50, 50)
           })
       }
@@ -1917,6 +1922,8 @@ Resets the existing transformation matrix and creates a new transformation matri
 setTransform(transform?: Matrix2D): void
 
 Resets the current transformation to the identity matrix, and then creates a new transformation matrix based on the specified **Matrix2D** object. This API is a void API.
+
+Since API version 9, this API can be used for ArkTS widgets.
 
 
 ### translate
@@ -2413,7 +2420,7 @@ Restores the saved drawing context.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2451,7 +2458,7 @@ Saves all states of the canvas in the stack. This API is usually called when the
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2498,9 +2505,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
@@ -2549,9 +2556,9 @@ Creates a linear gradient.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })

@@ -108,7 +108,7 @@ You write a UI test script based on the unit test framework, adding the invoking
 In this example, the UI test script is written based on the preceding unit test script. First, add the dependency package, as shown below:
 
 ```js
-import {UiDriver,BY,UiComponent,MatchPattern} from '@ohos.uitest'
+import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
 ```
 
 Then, write specific test code. Specifically, implement the click action on the started application page and add checkpoint check cases.
@@ -131,16 +131,16 @@ export default function abilityTest() {
         expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
       })
       //ui test code
-      //init uidriver
-      var driver = await UiDriver.create();
+      //init driver
+      var driver = await Driver.create();
       await driver.delayMs(1000);
       //find button by text 'Next'
-      var button = await driver.findComponent(BY.text('Next'));
+      var button = await driver.findComponent(ON.text('Next'));
       //click button
       await button.click();
       await driver.delayMs(1000);
       //check text
-      await driver.assertComponentExist(BY.text('after click'));
+      await driver.assertComponentExist(ON.text('after click'));
       await driver.pressBack();
       done();
     })

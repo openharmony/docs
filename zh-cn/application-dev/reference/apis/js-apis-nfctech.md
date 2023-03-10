@@ -26,8 +26,6 @@ getSak(): number
 
 获取NFC-A标签的SAK值。
 
-**需要权限：** ohos.permission.NFC_TAG
-
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
@@ -51,8 +49,6 @@ console.log("nfcA sak: " + sak);
 getAtqa(): number[]
 
 获取NFC-A标签的Atqa值。
-
-**需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
@@ -86,8 +82,6 @@ getRespAppData(): number[]
 
 获取标签的应用程序数据。
 
-**需要权限：** ohos.permission.NFC_TAG
-
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
@@ -111,8 +105,6 @@ console.log("nfcB respAppData: " + respAppData);
 getRespProtocol(): number[]
 
 获取标签的协议信息。
-
-**需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
@@ -146,8 +138,6 @@ getSystemCode(): number[]
 
 从标签实例获取系统代码。
 
-**需要权限：** ohos.permission.NFC_TAG
-
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
@@ -171,8 +161,6 @@ console.log("nfcF systemCode: " + systemCode);
 getPmm(): number[]
 
 从标签实例获取PMm（由IC代码和制造商参数组成）。
-
-**需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
@@ -206,8 +194,6 @@ getResponseFlags(): number
 
 从标签实例实例获取响应标志。
 
-**需要权限：** ohos.permission.NFC_TAG
-
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
@@ -231,8 +217,6 @@ console.log("nfcV responseFlags: " + responseFlags);
 getDsfId(): number
 
 从标签实例实例获取数据存储格式标识符（DSFID）。
-
-**需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 

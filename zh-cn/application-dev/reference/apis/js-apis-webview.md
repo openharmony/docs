@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-提供web控制能力。
+@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供具有网页显示能力。
 
 > **说明：**
 >
@@ -232,15 +232,15 @@ static initializeWebEngine(): void
 
 ```ts
 // xxx.ts
-import Ability from '@ohos.application.Ability'
-import web_webview from '@ohos.web.webview'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         globalThis.abilityWant = want
-        console.log("MainAbility onCreate done")
+        console.log("EntryAbility onCreate done")
     }
 }
 ```
