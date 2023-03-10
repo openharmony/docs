@@ -521,7 +521,7 @@ sensor.unsubscribeGyroscope();
 
 ## subscribeAccelerometerOptions
 
-用于监听加速度传感器数据的回调函数的执行频率 。
+用于监听加速度传感器数据的回调函数的执行频率。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -658,7 +658,7 @@ sensor.unsubscribeGyroscope();
 
 ## SubscribeHeartRateOptions
 
-当心率传感器数据发生变化时调用 。
+当心率传感器数据发生变化时调用。
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
@@ -704,7 +704,7 @@ sensor.unsubscribeGyroscope();
 
 ## GetOnBodyStateOptions
 
- 获取传感器磨损状态时调用 。
+ 获取传感器磨损状态时调用。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -716,7 +716,7 @@ sensor.unsubscribeGyroscope();
 
 ## SubscribeDeviceOrientationOptions<sup>6+</sup>
 
-用于监听设备方向传感器数据的回调函数的执行频率 。
+用于监听设备方向传感器数据的回调函数的执行频率。
 
 系统能力**：SystemCapability.Sensors.Sensor
 
@@ -740,7 +740,7 @@ sensor.unsubscribeGyroscope();
 
 ## SubscribeGyroscopeOptions<sup>6+</sup> 
 
-用于侦听陀螺仪传感器数据的回调函数的执行频率 。
+用于侦听陀螺仪传感器数据的回调函数的执行频率。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
