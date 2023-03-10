@@ -21,7 +21,7 @@ import sensor from '@system.sensor';
 
 ## sensor.subscribeAccelerometer
 
- subscribeAccelerometer(options: SubscribeAccelerometerOptions): void
+ subscribeAccelerometer(options: subscribeAccelerometerOptions): void
 
 观察加速度数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
@@ -33,7 +33,7 @@ import sensor from '@system.sensor';
 
 | 参数名  | 类型                                                         | 必填 | 说明                                       |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [SubscribeAccelerometerOptions](#subscribeaccelerometeroptions) | 是   | 监听加速度传感器数据的回调函数的执行频率。 |
+| options | [subscribeAccelerometerOptions](#subscribeaccelerometeroptions) | 是   | 监听加速度传感器数据的回调函数的执行频率。 |
 
 **示例：**
 
