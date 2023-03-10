@@ -263,7 +263,7 @@ subscribeBarometer(options: SubscribeBarometerOptions): void
 
 | 参数名  | 类型                                                    | 必填 | 说明                               |
 | ------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| options | [SubscribeBarometerOptions](#subscribesarometeroptions) | 是   | 当气压计传感器数据发生变化时调用。 |
+| options | [SubscribeBarometerOptions](#subscribebarometeroptions) | 是   | 当气压计传感器数据发生变化时调用。 |
 
 **示例：**
 
