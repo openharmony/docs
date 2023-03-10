@@ -108,7 +108,7 @@ struct CardExample {
         .visibility(Visibility.Visible)
         .onAcquired((form)=>{
           console.log(`form info : ${JSON.stringify(form)}`);
-          this.fomId = form.id;
+          this.formId = form.id;
         })
         .onError((err)=>{
           console.log(`fail to add form, err: ${JSON.stringify(err)}`);

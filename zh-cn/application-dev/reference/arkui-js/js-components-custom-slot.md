@@ -20,7 +20,7 @@
 引用该自定义组件方式如下：
 ```html
 <!-- xxx.hml --> 
- <element name='comp' src='../../common/component/comp.hml'></element>  
+ <element name='comp' src='../common/component/comp.hml'></element>  
  <div class="container">  
    <comp>
      <text class="text-style">父组件中定义的内容</text> 
@@ -45,7 +45,7 @@
 引用该自定义组件方式如下：
 ```html
 <!-- xxx.hml --> 
- <element name='comp' src='../../common/component/comp.hml'></element>  
+ <element name='comp' src='../common/component/comp.hml'></element>  
  <div class="container">  
    <comp>
      <text class="text-style" slot="second">插入第二个插槽中</text> 
