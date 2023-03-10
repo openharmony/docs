@@ -708,7 +708,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -742,7 +742,7 @@ hide(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -837,7 +837,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
  **示例：**
 
@@ -886,7 +886,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -928,7 +928,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -974,7 +974,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1013,7 +1013,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1059,7 +1059,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1099,7 +1099,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1149,7 +1149,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1192,7 +1192,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1242,7 +1242,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1281,7 +1281,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1326,7 +1326,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1366,7 +1366,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1401,7 +1401,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1435,7 +1435,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1479,7 +1479,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 

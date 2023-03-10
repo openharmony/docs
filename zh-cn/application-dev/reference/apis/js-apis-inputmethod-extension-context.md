@@ -51,7 +51,7 @@ this.context.destroy((err) => {
 
 ## InputMethodExtensionContext.destroy
 
-destroy(): Promise<void&gt;
+destroy(): Promise\<void>;
 
 停止输入法应用自身。通过Promise异步回调。
 
@@ -61,7 +61,7 @@ destroy(): Promise<void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void&gt; | 无返回结果的Promise对象。 |
+| Promise\<void>; | 无返回结果的Promise对象。 |
 
 **示例：**
 
