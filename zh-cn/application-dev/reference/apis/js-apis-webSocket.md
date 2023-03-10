@@ -64,7 +64,7 @@ ws.connect(defaultIpAddress, (err, value) => {
 
 ## webSocket.createWebSocket
 
-createWebSocket\(\): WebSocket
+createWebSocket(): WebSocket
 
 创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
@@ -89,7 +89,7 @@ let ws = webSocket.createWebSocket();
 
 ### connect
 
-connect\(url: string, callback: AsyncCallback<boolean\>\): void
+connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
@@ -99,7 +99,7 @@ connect\(url: string, callback: AsyncCallback<boolean\>\): void
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                         |
+| 名称   | 类型                     | 必填 | 说明                         |
 | -------- | ------------------------ | ---- | ---------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                   |
@@ -128,7 +128,7 @@ ws.connect(url, (err, value) => {
 
 ### connect
 
-connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<boolean\>\): void
+connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
 根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
 
@@ -138,7 +138,7 @@ connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                                                    |
+| 名称   | 类型                     | 必填 | 说明                                                    |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。                            |
 | options  | WebSocketRequestOptions  | 是   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
@@ -173,7 +173,7 @@ ws.connect(url, {
 
 ### connect
 
-connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
+connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 根据URL地址和header，建立一个WebSocket连接，使用Promise方式作为异步方法。
 
@@ -183,7 +183,7 @@ connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
 
 **参数：**
 
-| 参数名  | 类型                    | 必填 | 说明                                                    |
+| 名称  | 类型                    | 必填 | 说明                                                    |
 | ------- | ----------------------- | ---- | ------------------------------------------------------- |
 | url     | string                  | 是   | 建立WebSocket连接的URL地址。                            |
 | options | WebSocketRequestOptions | 否   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
@@ -217,7 +217,7 @@ promise.then((value) => {
 
 ### send
 
-send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
+send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
 通过WebSocket连接发送数据，使用callback方式作为异步方法。
 
@@ -227,9 +227,9 @@ send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明         |
+| 名称   | 类型                     | 必填 | 说明         |
 | -------- | ------------------------ | ---- | ------------ |
-| data     | string \| ArrayBuffer <sup>8+</sup> | 是   | 发送的数据。 |
+| data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。   |
 
 **错误码：**
@@ -258,7 +258,7 @@ ws.connect(url, (err, value) => {
 
 ### send
 
-send\(data: string | ArrayBuffer\): Promise<boolean\>
+send(data: string | ArrayBuffer): Promise\<boolean\>
 
 通过WebSocket连接发送数据，使用Promise方式作为异步方法。
 
@@ -268,9 +268,9 @@ send\(data: string | ArrayBuffer\): Promise<boolean\>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明         |
+| 名称 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| data     | string \| ArrayBuffer <sup>8+</sup> | 是   | 发送的数据。 |
+| data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
 
 **返回值：**
 
@@ -303,7 +303,7 @@ ws.connect(url, (err, value) => {
 
 ### close
 
-close\(callback: AsyncCallback<boolean\>\): void
+close(callback: AsyncCallback\<boolean\>): void
 
 关闭WebSocket连接，使用callback方式作为异步方法。
 
@@ -313,7 +313,7 @@ close\(callback: AsyncCallback<boolean\>\): void
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明       |
+| 名称   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。 |
 
@@ -341,7 +341,7 @@ ws.close((err, value) => {
 
 ### close
 
-close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
+close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
 
@@ -351,7 +351,7 @@ close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                                                  |
+| 名称   | 类型                     | 必填 | 说明                                                  |
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | 是   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                            |
@@ -383,7 +383,7 @@ ws.close({
 
 ### close
 
-close\(options?: WebSocketCloseOptions\): Promise<boolean\>
+close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 根据可选参数code和reason，关闭WebSocket连接，使用Promise方式作为异步方法。
 
@@ -393,7 +393,7 @@ close\(options?: WebSocketCloseOptions\): Promise<boolean\>
 
 **参数：**
 
-| 参数名  | 类型                  | 必填 | 说明                                                  |
+| 名称  | 类型                  | 必填 | 说明                                                  |
 | ------- | --------------------- | ---- | ----------------------------------------------------- |
 | options | WebSocketCloseOptions | 否   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
 
@@ -427,9 +427,9 @@ promise.then((value) => {
 ```
 
 
-### on\('open'\)
+### on('open')
 
-on\(type: 'open', callback: AsyncCallback<Object\>\): void
+on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
@@ -437,7 +437,7 @@ on\(type: 'open', callback: AsyncCallback<Object\>\): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                          |
+| 名称   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 是   | 回调函数。                    |
@@ -453,9 +453,9 @@ ws.on('open', (err, value) => {
 ```
 
 
-### off\('open'\)
+### off('open')
 
-off\(type: 'open', callback?: AsyncCallback<Object\>\): void
+off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 取消订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
@@ -466,7 +466,7 @@ off\(type: 'open', callback?: AsyncCallback<Object\>\): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                          |
+| 名称   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 否   | 回调函数。                    |
@@ -484,20 +484,20 @@ ws.off('open', callback1);
 ```
 
 
-### on\('message'\)
+### on('message')
 
-on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
+on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
->AsyncCallback中的数据可以是字符串\(API 6\)或ArrayBuffer\(API 8\)。
+>AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                         |
+| 名称   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
@@ -512,21 +512,21 @@ ws.on('message', (err, value) => {
 ```
 
 
-### off\('message'\)
+### off('message')
 
-off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
+off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
->AsyncCallback中的数据可以是字符串\(API 6\)或ArrayBuffer\(API 8\)。
+>AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                                                | 必填 | 说明                                         |
+| 名称   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
 | type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
@@ -539,9 +539,9 @@ ws.off('message');
 ```
 
 
-### on\('close'\)
+### on('close')
 
-on\(type: 'close', callback: AsyncCallback<\{ code: number, reason: string \}\>\): void
+on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): void
 
 订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
@@ -549,10 +549,10 @@ on\(type: 'close', callback: AsyncCallback<\{ code: number, reason: string \}\>\
 
 **参数：**
 
-| 参数名   | 类型                                            | 必填 | 说明                           |
+| 名称   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
-| callback | AsyncCallback<{ code: number, reason: string }> | 是   | 回调函数。                     |
+| callback | AsyncCallback\<{ code: number, reason: string }\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
 
@@ -564,9 +564,9 @@ ws.on('close', (err, value) => {
 ```
 
 
-### off\('close'\)
+### off('close')
 
-off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\>\): void
+off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>): void
 
 取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
@@ -577,10 +577,10 @@ off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\
 
 **参数：**
 
-| 参数名   | 类型                                            | 必填 | 说明                           |
+| 名称   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
-| callback | AsyncCallback<{ code: number, reason: string }> | 否   | 回调函数。                     |
+| callback | AsyncCallback\<{ code: number, reason: string }\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
 
@@ -590,9 +590,9 @@ ws.off('close');
 ```
 
 
-### on\('error'\)
+### on('error')
 
-on\(type: 'error', callback: ErrorCallback\): void
+on(type: 'error', callback: ErrorCallback): void
 
 订阅WebSocket的Error事件，使用callback方式作为异步方法。
 
@@ -600,7 +600,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 
 **参数：**
 
-| 参数名   | 类型          | 必填 | 说明                            |
+| 名称   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                      |
@@ -615,9 +615,9 @@ ws.on('error', (err) => {
 ```
 
 
-### off\('error'\)
+### off('error')
 
-off\(type: 'error', callback?: ErrorCallback\): void
+off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅WebSocket的Error事件，使用callback方式作为异步方法。
 
@@ -628,7 +628,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 
 **参数：**
 
-| 参数名   | 类型          | 必填 | 说明                            |
+| 名称   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                      |
