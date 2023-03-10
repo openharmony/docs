@@ -1,7 +1,7 @@
-# HSP概述
+# 共享包概述
 
-`HSP`（`Harmony Shared Package`）是Harmony动态共享包，可以包含代码、C++库、资源和配置文件。
-`HSP`与[HAR（Harmony Achive）](har-package.md)都是为了实现代码和资源的共享，最大的不同之处在于，`HAR`中的代码和资源跟随使用方编译，如果有多个使用方，它们的编译产物中会存在多份相同拷贝。**而`HSP`中的代码和资源可以独立编译，运行时在一个进程中代码也只会存在一份。**
+Harmony提供了两种共享包，[HAR（Harmony Achive）](har-package.md)静态共享包，和`HSP`（`Harmony Shared Package`）动态共享包。
+`HAR`与`HSP`都是为了实现代码和资源的共享，都可以包含代码、C++库、资源和配置文件，最大的不同之处在于，`HAR`中的代码和资源跟随使用方编译，如果有多个使用方，它们的编译产物中会存在多份相同拷贝。**而`HSP`中的代码和资源可以独立编译，运行时在一个进程中代码也只会存在一份。**
 
 **图1** `HAR`和`HSP`在`APP`包中的形态示意图
 ![in-app-hsp-har](figures/in-app-hsp-har.png)
