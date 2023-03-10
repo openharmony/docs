@@ -1,4 +1,5 @@
 # Application Development
+
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
   - Getting Started
@@ -60,7 +61,7 @@
         - ExtensionAbility Component
           - [ExtensionAbility Component Overview](application-models/extensionability-overview.md)
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
-          - [DataShareExtensionAbility](application-models/datashareextensionability.md)
+          - [DataShareExtensionAbility (System Applications Only)](application-models/datashareextensionability.md)
           - [FormExtensionAbility (Widget)](application-models/widget-development-stage.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
@@ -74,8 +75,8 @@
         - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
         - Inter-Device Application Component Interaction (Continuation) 
           - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
-          - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
-          - [Multi-device Collaboration](application-models/hop-multi-device-collaboration.md)
+          - [Cross-Device Migration (System Applications Only)](application-models/hop-cross-device-migration.md)
+          - [Multi-device Collaboration (System Applications Only)](application-models/hop-multi-device-collaboration.md)
       - IPC
         - [Process Model](application-models/process-model-stage.md)
         - Common Events
@@ -104,7 +105,7 @@
           - [Creating a PageAbility](application-models/create-pageability.md)
           - [Starting a Local PageAbility](application-models/start-local-pageability.md)
           - [Stopping a PageAbility](application-models/stop-pageability.md)
-          - [Starting a Remote PageAbility](application-models/start-remote-pageability.md)
+          - [Starting a Remote PageAbility (System Applications Only)](application-models/start-remote-pageability.md)
           - [Starting a Specified Page](application-models/start-page.md)
           - [Window Properties](application-models/window-properties.md)
           - [Requesting Permissions](application-models/request-permissions.md)
@@ -271,11 +272,12 @@
       - [Custom Components](ui/ui-js-custom-components.md)
   - Notification
     - [Notification Overview](notification/notification-overview.md)
-    - [Notification Subscription (Open Only to System Applications)](notification/notification-subscription.md)
+    - [Notification Subscription (System Applications Only)](notification/notification-subscription.md)
     - [Enabling Notification](notification/notification-enable.md)
     - Publishing a Notification
       - [Publishing a Basic Notification](notification/text-notification.md)
       - [Publishing a Progress Notification](notification/progress-bar-notification.md)
+
       - [Adding a WantAgent Object to a Notification](notification/notification-with-wantagent.md)
   - Window Manager
     - [Window Overview](windowmanager/window-overview.md)
@@ -400,6 +402,8 @@
     - Update Service
       - [Sample Server Overview](device/sample-server-overview.md)
       - [Sample Server Development](device/sample-server-guidelines.md)
+    - Stationary
+      - [Stationary Development](device/stationary-guidelines.md)
   - Device Usage Statistics
     - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
     - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
@@ -418,6 +422,7 @@
     - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
     - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
     - [wukong User Guide](application-test/wukong-guidelines.md)
+
   - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
@@ -1177,8 +1182,9 @@
     - Resource Management
       - [I18N Error Codes](reference/errorcodes/errorcode-i18n.md)
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
-    - Resource Scheduling
+    - Background Tasks
       - [backgroundTaskManager Error Codes](reference/errorcodes/errorcode-backgroundTaskMgr.md)
+      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager Error Codes](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler Error Codes](reference/errorcodes/errorcode-workScheduler.md)
     - Security
@@ -1227,7 +1233,6 @@
       - [System Parameter Error Codes](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB Error Codes](reference/errorcodes/errorcode-usb.md)
       - [Update Error Codes](reference/errorcodes/errorcode-update.md)
-      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
     - Customization Management
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Language Base Class Library
@@ -1244,6 +1249,7 @@
         - [EGL Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/egl-symbol.md)
         - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
 - FAQs
+  - [Guide to Building Full SDK](quick-start/full-sdk-compile-guide.md)
   - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)
   - [Programming Languages](faqs/faqs-language.md)
   - [Ability Framework Development](faqs/faqs-ability.md)

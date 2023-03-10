@@ -137,9 +137,9 @@ This version has the following updates to OpenHarmony 3.2 Beta4.
 
 ### SDK Updates
 
-From this version, only the public SDK is released. It can also be downloaded through DevEco Studio.
+From this version, only the public SDK is released. You can obtain the public SDK from the mirror or download it through DevEco Studio.
 
-To use the full SDK, you must download the source code, build the source code, and switch to the full SDK. For details, see [Guide to Building Full SDK](../application-dev/quick-start/full-sdk-compile-guide.md).
+To use the full SDK that contains the system APIs, you must download the full source code, build a SDK file, and switch to the full SDK on DevEco Studio. For details, see [Guide to Building Full SDK](../application-dev/quick-start/full-sdk-compile-guide.md).
 
 
 ### Feature Updates
@@ -162,9 +162,11 @@ To use the full SDK, you must download the source code, build the source code, a
 | File storage| - Unified URI processing is added for application files.<br>- Temporary authorization and unified open entry are added for user data.<br>The following requirements are involved:<br>I687C8 [New capability] Unified URI processing for application files<br>I64U8W [Basic capability] Temporary authorization and unified open entry for user data| NA |
 | Ability framework| - The restart of resident processes is optimized.<br>- The widget database can be switched.<br>- The asynchronous **onConnected** lifecycle is provided.<br>The following requirements are involved:<br>I65M3F [Basic capability] ShellCommand execution control<br>I65V83 [Basic capability] ServiceExtensionAbility support for asynchronous **onConnected** lifecycle<br>I61H21 [Basic capability] Change of the local widget database<br>I63UJ5 [Ability] [ability_runtime] Exception handling in API version 8 and earlier versions<br>I6BDCW [Basic capability] Forbidden to load code in the **data** directory during application loading<br>I6BDDU [Basic capability] Default ability launch mode of the FA model: Standard<br>I6BDE2 [Basic capability] Protection against frequent restart of resident applications| NA |
 
+For details on the API difference list, see [API Differences](api-change/v3.2-beta5/Readme-EN.md).
+
+For details about the API differences of each subsystem, see [Changelogs](changelogs/v3.2-beta5/Readme-EN.md)
 
 ### Chip and Development Board Adaptation
-
 For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
 
 
