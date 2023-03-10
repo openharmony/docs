@@ -40,6 +40,8 @@
 - [应用测试](application-test/arkxtest-guidelines.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
 - [Native API的相关指导](napi/napi-guidelines.md)
+- [文件管理](file-management/medialibrary-overview.md)
+- [一次开发，多端部署](key-features/multi-device-app-dev/foreword.md)
 
 
 ### 工具
