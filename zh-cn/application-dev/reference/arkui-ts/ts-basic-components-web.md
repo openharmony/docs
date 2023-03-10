@@ -1,6 +1,6 @@
 # Web
 
-提供具有网页显示能力的Web组件。
+提供具有网页显示能力的Web组件，[@ohos.web.webview](../apis/js-apis-webview.md)提供web控制能力。
 
 > **说明：**
 >
