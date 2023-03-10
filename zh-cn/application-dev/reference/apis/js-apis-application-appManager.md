@@ -252,49 +252,6 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
   console.log('-------- observerCode: ---------', observerCode);
   ```
 
-## appManager.registerApplicationStateObserver<sup>9+</sup>
-
-registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
-
-注册指定应用程序状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
-| bundleNameList | Array<string> | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
-
-**示例：**
-    
-  ```ts
-  let applicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
-    },
-    onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------', processData);
-    },
-    onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------', processData);
-    },
-    onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------', processData);
-    }
-  };
-  let bundleNameList = ['bundleName1', 'bundleName2'];
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
-  console.log('-------- observerCode: ---------', observerCode);
-  ```
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
 unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;

@@ -106,7 +106,7 @@ Extension生命周期回调，如果是startAbility或者startServiceExtensionAb
 
 ## ServiceExtensionAbility.onConnect
 
-onConnect(want: Want): rpc.RemoteObject;
+onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 
 Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于和客户端进行通信。
 
@@ -148,7 +148,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 ## ServiceExtensionAbility.onDisconnect
 
-onDisconnect(want: Want): void;
+onDisconnect(want: Want): void | Promise<void>;
 
 Extension的生命周期，断开服务连接时回调。
 
