@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import NotificationSubscribe from '@ohos.notificationSubscribe';
+import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
 
@@ -50,7 +50,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 //subscribe回调
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe success");
     }
@@ -64,10 +64,8 @@ let subscriber = {
 let info = {
     bundleNames: ["bundleName1","bundleName2"]
 };
-NotificationSubscribe.subscribe(subscriber, info, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
-
-
 
 ## NotificationSubscribe.subscribe
 
@@ -103,7 +101,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 ```js
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe success");
     }
@@ -114,7 +112,7 @@ function onConsumeCallback(data) {
 let subscriber = {
     onConsume: onConsumeCallback
 };
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 
@@ -157,7 +155,7 @@ function onConsumeCallback(data) {
 let subscriber = {
     onConsume: onConsumeCallback
 };
-NotificationSubscribe.subscribe(subscriber).then(() => {
+notificationSubscribe.subscribe(subscriber).then(() => {
 	console.info("subscribe success");
 });
 ```
@@ -198,7 +196,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 ```js
 function unsubscribeCallback(err) {
     if (err) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("unsubscribe success");
     }
@@ -209,10 +207,8 @@ function onDisconnectCallback() {
 let subscriber = {
     onDisconnect: onDisconnectCallback
 };
-NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
+notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
-
-
 
 ## NotificationSubscribe.unsubscribe
 
@@ -251,12 +247,10 @@ function onDisconnectCallback() {
 let subscriber = {
     onDisconnect: onDisconnectCallback
 };
-NotificationSubscribe.unsubscribe(subscriber).then(() => {
+notificationSubscribe.unsubscribe(subscriber).then(() => {
 	console.info("unsubscribe success");
 });
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -274,7 +268,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 参数名            | 类型                                | 必填 | 说明                 |
 | --------------- |   ----------------------------------| ---- | -------------------- |
-| bundle          | [BundleOption](js-apis-inner-notification-bundleOption.md)       | 是   | 指定应用的包信息。           |
+| bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)       | 是   | 指定应用的包信息。           |
 | notificationKey | [NotificationKey](js-apis-notification.md#notificationkey) | 是   | 通知键值。             |
 | reason          | [RemoveReason](#removereason)      | 是   | 通知删除原因。         |
 | callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
@@ -296,7 +290,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 ```js
 function removeCallback(err) {
     if (err) {
-        console.info("remove failed " + JSON.stringify(err));
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("remove success");
     }
@@ -308,8 +302,8 @@ let notificationKey = {
     id: 0,
     label: "label",
 };
-let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
 
@@ -330,7 +324,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 参数名            | 类型            | 必填 | 说明       |
 | --------------- | --------------- | ---- | ---------- |
-| bundle          | [BundleOption](js-apis-inner-notification-bundleOption.md)    | 是   | 指定应用的包信息。 |
+| bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | 是   | 指定应用的包信息。 |
 | notificationKey | [NotificationKey]((js-apis-notification.md#notificationkey)) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
@@ -357,12 +351,10 @@ let notificationKey = {
     label: "label",
 };
 let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
+notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -402,16 +394,14 @@ let hashCode = 'hashCode';
 
 function removeCallback(err) {
     if (err) {
-        console.info("remove failed " + JSON.stringify(err));
+        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("remove success");
     }
 }
 let reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
-NotificationSubscribe.remove(hashCode, reason, removeCallback);
+notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
-
-
 
 ## NotificationSubscribe.remove
 
@@ -447,13 +437,11 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 ```js
 let hashCode = 'hashCode';
-let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
-NotificationSubscribe.remove(hashCode, reason).then(() => {
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 });
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -471,7 +459,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                         |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption]((js-apis-inner-notification-bundleOption.md))          | 是   | 指定应用的包信息。                   |
+| bundle   | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption))          | 是   | 指定应用的包信息。                   |
 | callback | AsyncCallback\<void\> | 是   | 删除指定应用的所有通知回调函数。 |
 
 **错误码：**
@@ -490,7 +478,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -500,8 +488,6 @@ let bundle = {
 };
 NotificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -536,16 +522,14 @@ removeAll(callback: AsyncCallback\<void\>): void
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
 }
 
-NotificationSubscribe.removeAll(removeAllCallback);
+notificationSubscribe.removeAll(removeAllCallback);
 ```
-
-
 
 ## NotificationSubscribe.removeAll
 
@@ -563,7 +547,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption]((js-apis-inner-notification-bundleOption.md)) | 否   | 指定应用的包信息。 |
+| bundle | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption)) | 否   | 指定应用的包信息。 |
 
 **错误码：**
 
@@ -580,7 +564,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 ```js
 // 不指定应用时，删除所有通知
-NotificationSubscribe.removeAll().then(() => {
+notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
 });
 ```
@@ -620,7 +604,7 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -628,7 +612,7 @@ function removeAllCallback(err) {
 
 let userId = 1;
 
-NotificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
 ## Notification.removeAll
@@ -665,7 +649,7 @@ removeAll(userId: number): Promise\<void>
 ```js
 function removeAllCallback(err) {
     if (err) {
-        console.info("removeAll failed " + JSON.stringify(err));
+        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAll success");
     }
@@ -673,10 +657,8 @@ function removeAllCallback(err) {
 
 let userId = 1;
 
-NotificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
-
-
 
 ## NotificationSubscriber
 
@@ -705,7 +687,7 @@ onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecall
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -721,7 +703,7 @@ let subscriber = {
     onConsume: onConsumeCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onCancel
@@ -745,7 +727,7 @@ onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallba
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -761,7 +743,7 @@ let subscriber = {
     onCancel: onCancelCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onUpdate
@@ -785,7 +767,7 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationso
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -799,7 +781,7 @@ let subscriber = {
     onUpdate: onUpdateCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onConnect
@@ -817,7 +799,7 @@ onConnect?:() => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -831,7 +813,7 @@ let subscriber = {
     onConnect: onConnectCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onDisconnect
@@ -849,14 +831,14 @@ onDisconnect?:() => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
 };
 function unsubscribeCallback(err) {
     if (err.code) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
+        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("unsubscribeCallback");
     }
@@ -875,9 +857,9 @@ let subscriber = {
 };
 
 // 订阅通知后会收到onConnect回调
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 // 取消订阅后会收到onDisconnect回调
-NotificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
+notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
 ### onDestroy
@@ -895,7 +877,7 @@ onDestroy?:() => void
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -909,7 +891,7 @@ let subscriber = {
     onDestroy: onDestroyCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onDoNotDisturbDateChange
@@ -933,7 +915,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -947,7 +929,7 @@ let subscriber = {
     onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 
@@ -972,7 +954,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 ```javascript
 function subscribeCallback(err) {
     if (err) {
-        console.info("subscribe failed " + JSON.stringify(err));
+        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeCallback");
     }
@@ -988,7 +970,7 @@ let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 
-NotificationSubscribe.subscribe(subscriber, subscribeCallback);
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ### onBadgeChanged<sup>10+</sup>
@@ -1042,3 +1024,15 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
 | CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
+
+## BadgeNumberCallbackData<sup>10+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 名称        | 类型   | 可读 | 可写 | 描述         |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundle      | string | 是   | 否   | 应用的包名。 |
+| uid         | number | 是   | 否   | 应用的uid。  |
+| badgeNumber | number | 是   | 否   | 角标个数。   |
