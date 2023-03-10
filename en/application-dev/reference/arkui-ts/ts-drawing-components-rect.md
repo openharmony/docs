@@ -17,6 +17,8 @@ Not supported
 Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
   {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Default Value| Description|
@@ -34,20 +36,20 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| radiusWidth | string \| number | 0 | Width of the rounded corner. The width and height are the same when only the width is set.|
-| radiusHeight | string \| number | 0 | Height of the rounded corner. The width and height are the same only when the height is set.|
-| radius | string \| number \| Array&lt;string \| number&gt; | 0 | Radius of the rounded corner. You can set separate radiuses for four rounded corners.|
-| fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.|
-| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.|
-| stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, the component does not have any stroke.|
-| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes.|
-| strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.|
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.|
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.|
-| strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>**NOTE**<br>This attribute must be set to a value greater than or equal to 1 and takes effect when **strokeLineJoin** is set to **LineJoinStyle.Miter**.|
-| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Stroke opacity.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.|
-| strokeWidth | Length | 1 | Stroke width.|
-| antiAlias | boolean | true | Whether anti-aliasing is enabled.|
+| radiusWidth | string \| number | 0 | Width of the rounded corner. The width and height are the same when only the width is set.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| radiusHeight | string \| number | 0 | Height of the rounded corner. The width and height are the same only when the height is set.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| radius | string \| number \| Array&lt;string \| number&gt; | 0 | Radius of the rounded corner. You can set separate radiuses for four rounded corners.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, the component does not have any stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>**NOTE**<br>This attribute must be set to a value greater than or equal to 1 and takes effect when **strokeLineJoin** is set to **LineJoinStyle.Miter**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Stroke opacity.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeWidth | Length | 1 | Stroke width.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| antiAlias | boolean | true | Whether anti-aliasing is enabled.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
@@ -66,7 +68,6 @@ struct RectExample {
         // Draw a 90% x 50 rectangle.
         Rect({ width: '90%', height: 50 })
           .fill(Color.Pink)
-          .stroke(Color.Transparent)
         // Draw a 90% x 50 rectangle.
         Rect()
           .width('90%')
@@ -81,7 +82,6 @@ struct RectExample {
           .radiusHeight(20)
           .radiusWidth(40)
           .fill(Color.Pink)
-          .stroke(Color.Transparent)
         // Draw a 90% x 80 rectangle, with the width and height of its rounded corners being both 20.
         Rect({ width: '90%', height: 80 })
           .radius(20)
@@ -92,7 +92,6 @@ struct RectExample {
       Rect({ width: '90%', height: 80 })
         .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
         .fill(Color.Pink)
-        .stroke(Color.Transparent)
     }.width('100%').margin({ top: 5 })
   }
 }

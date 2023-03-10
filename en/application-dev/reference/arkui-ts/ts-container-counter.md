@@ -16,6 +16,8 @@ Supported
 
 Counter()
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 
 ## Events
 
@@ -23,8 +25,8 @@ The universal events and gestures are not supported. Only the following events a
 
 | Name| Description|
 | -------- | -------- |
-| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased.|
-| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased.|
+| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example

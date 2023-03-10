@@ -14,6 +14,8 @@ Not supported
 
 Canvas(context?: CanvasRenderingContext2D)
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name    | Type                                    | Mandatory  | Default Value | Description                        |
@@ -30,7 +32,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                           | Parameter  | Description                  |
 | ----------------------------- | ---- | -------------------- |
-| onReady(event: () => void) | -   | Triggered when a canvas is ready. When this event is triggered, the width and height of the canvas can be obtained, and you can use the canvas APIs to draw images.|
+| onReady(event: () => void) | -   | Triggered when a canvas is ready. When this event is triggered, the width and height of the canvas can be obtained, and you can use the canvas APIs to draw images.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 **Example**
