@@ -16,7 +16,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | Permission                                | Permission Level   | Description                          |
 | ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_core | Permission to listen for bundle installation, uninstall, and updates.|
+| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
@@ -94,3 +94,4 @@ try {
     console.log(`errData is errCode:${errData.errCode}  message:${errData.message}`);
 }
 ```
+
