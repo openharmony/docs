@@ -87,14 +87,14 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 **示例：**
   ```js
-  async function promiseFn() {
-      return Promise.reject('value');
-  }
-  var cb = util.callbackWrapper(promiseFn);
-  cb((err, ret) => {
-      console.log(err);
-      console.log(ret);
-  })
+async function fn() {
+   return 'hello world';
+}
+let cb = util.callbackWrapper(fn);
+cb(1, (err, ret) => {
+   if (err) throw err;
+   console.log(ret);
+});
   ```
 
 
