@@ -515,7 +515,7 @@ unsubscribeGyroscope(): void
 
 **示例：**
 
-```
+```js
 sensor.unsubscribeGyroscope();
 ```
 
@@ -541,11 +541,11 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称 | 类型   | 说明          |
-| ---- | ------ | ------------- |
-| x    | number | x轴的加速度。 |
-| y    | number | y轴的加速度。 |
-| z    | number | z轴的加速度。 |
+| 名称 | 类型   | 必填 | 说明          |
+| ---- | ------ | ---- | ------------- |
+| x    | number | 是   | x轴的加速度。 |
+| y    | number | 是   | y轴的加速度。 |
+| z    | number | 是   | z轴的加速度。 |
 
 ## SubscribeCompassOptions
 
@@ -564,9 +564,9 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称      | 类型   | 说明                 |
-| --------- | ------ | -------------------- |
-| direction | number | 设备面对的方向度数。 |
+| 名称      | 类型   | 必填 | 说明                 |
+| --------- | ------ | ---- | -------------------- |
+| direction | number | 是   | 设备面对的方向度数。 |
 
 ## SubscribeProximityOptions
 
@@ -585,9 +585,9 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称     | 类型   | 说明                                       |
-| -------- | ------ | ------------------------------------------ |
-| distance | number | 可见物体相对于设备显示屏的接近或远离状态。 |
+| 名称     | 类型   | 必填 | 说明                                       |
+| -------- | ------ | ---- | ------------------------------------------ |
+| distance | number | 是   | 可见物体相对于设备显示屏的接近或远离状态。 |
 
 ## SubscribeLightOptions
 
@@ -606,13 +606,15 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称      | 类型   | 说明                  |
-| --------- | ------ | --------------------- |
-| intensity | number | 光线强度，单位为lux。 |
+| 名称      | 类型   | 必填 | 说明                  |
+| --------- | ------ | ---- | --------------------- |
+| intensity | number | 是   | 光线强度，单位为lux。 |
 
 ## SubscribeStepCounterOptions
 
 当步进计数器传感器数据发生变化时调用。
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -629,9 +631,9 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称  | 类型   | 说明                             |
-| ----- | ------ | -------------------------------- |
-| steps | number | 计步传感器重启后累计记录的步数。 |
+| 名称  | 类型   | 必填 | 说明                             |
+| ----- | ------ | ---- | -------------------------------- |
+| steps | number | 是   | 计步传感器重启后累计记录的步数。 |
 
 ## SubscribeBarometerOptions
 
@@ -650,13 +652,15 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称     | 类型   | 说明                   |
-| -------- | ------ | ---------------------- |
-| pressure | number | 气压值，单位：帕斯卡。 |
+| 名称     | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| pressure | number | 是   | 气压值，单位：帕斯卡。 |
 
 ## SubscribeHeartRateOptions
 
 当心率传感器数据发生变化时调用 。
+
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -669,13 +673,13 @@ sensor.unsubscribeGyroscope();
 
 心率传感器数据改变后的回调函数，默认频率5s/次。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称      | 类型   | 说明     |
-| --------- | ------ | -------- |
-| heartRate | number | 心率值。 |
+| 名称      | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | -------- |
+| heartRate | number | 是   | 心率值。 |
 
 ## SubscribeOnBodyStateOptions
 
@@ -690,13 +694,13 @@ sensor.unsubscribeGyroscope();
 
 ## OnBodyStateResponse 
 
-穿戴状态改变后的回调函数。
+传感器是否磨损。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称  | 类型    | 说明         |
-| ----- | ------- | ------------ |
-| value | boolean | 是否已佩戴。 |
+| 名称  | 类型    | 必填 | 说明         |
+| ----- | ------- | ---- | ------------ |
+| value | boolean | 是   | 是否已佩戴。 |
 
 ## GetOnBodyStateOptions
 
@@ -728,15 +732,17 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称  | 类型   | 说明                                                         |
-| ----- | ------ | ------------------------------------------------------------ |
-| alpha | number | 当设备坐标&nbsp;X/Y&nbsp;和地球&nbsp;X/Y&nbsp;重合时，绕着&nbsp;Z&nbsp;轴转动的夹角为&nbsp;alpha。 |
-| beta  | number | 当设备坐标&nbsp;Y/Z&nbsp;和地球&nbsp;Y/Z&nbsp;重合时，绕着&nbsp;X&nbsp;轴转动的夹角为&nbsp;beta。 |
-| gamma | number | 当设备&nbsp;X/Z&nbsp;和地球&nbsp;X/Z&nbsp;重合时，绕着&nbsp;Y&nbsp;轴转动的夹角为&nbsp;gamma。 |
+| 名称  | 类型   | 必填 | 说明                                                         |
+| ----- | ------ | ---- | ------------------------------------------------------------ |
+| alpha | number | 是   | 当设备坐标&nbsp;X/Y&nbsp;和地球&nbsp;X/Y&nbsp;重合时，绕着&nbsp;Z&nbsp;轴转动的夹角为&nbsp;alpha。 |
+| beta  | number | 是   | 当设备坐标&nbsp;Y/Z&nbsp;和地球&nbsp;Y/Z&nbsp;重合时，绕着&nbsp;X&nbsp;轴转动的夹角为&nbsp;beta。 |
+| gamma | number | 是   | 当设备&nbsp;X/Z&nbsp;和地球&nbsp;X/Z&nbsp;重合时，绕着&nbsp;Y&nbsp;轴转动的夹角为&nbsp;gamma。 |
 
 ## SubscribeGyroscopeOptions<sup>6+</sup> 
 
 用于侦听陀螺仪传感器数据的回调函数的执行频率 。
+
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -750,12 +756,12 @@ sensor.unsubscribeGyroscope();
 
 感应到陀螺仪数据变化后的回调函数。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称 | 类型   | 说明              |
-| ---- | ------ | ----------------- |
-| x    | number | x轴的旋转角速度。 |
-| y    | number | y轴的旋转角速度。 |
-| z    | number | z轴的旋转角速度。 |
+| 名称 | 类型   | 必填 | 说明              |
+| ---- | ------ | ---- | ----------------- |
+| x    | number | 是   | x轴的旋转角速度。 |
+| y    | number | 是   | y轴的旋转角速度。 |
+| z    | number | 是   | z轴的旋转角速度。 |
