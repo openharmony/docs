@@ -965,7 +965,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)   | 是   | 指定应用的包信息。        |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)   | 是   | 指定应用的包信息。        |
 | enable   | boolean               | 是   | 使能状态。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知使能回调函数。 |
 
@@ -1012,7 +1012,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
 
 **错误码：**
@@ -1053,7 +1053,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)          | 是   | 指定应用的包信息。            |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。            |
 | callback | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
 
 **错误码：**
@@ -1099,7 +1099,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1187,7 +1187,7 @@ isNotificationEnabled(): Promise\<boolean\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1230,7 +1230,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)          | 是   | 指定应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
 | enable   | boolean               | 是   | 使能状态。             |
 | callback | AsyncCallback\<void\> | 是   | 设定角标使能回调函数。 |
 
@@ -1277,7 +1277,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
 
 **错误码：**
@@ -1318,7 +1318,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)          | 是   | 指定应用的包信息。               |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。               |
 | callback | AsyncCallback\<void\> | 是   | 获取角标使能状态回调函数。 |
 
 **错误码：**
@@ -1364,7 +1364,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1483,7 +1483,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)          | 是   | 指定应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
 | slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | 是   | 通知通道。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知通道回调函数。 |
 
@@ -1533,7 +1533,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 通知通道。 |
 
 **错误码：**
@@ -1577,7 +1577,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)                             | 是   | 指定应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
 | callback | AsyncCallback<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | 是   | 获取通知通道回调函数。 |
 
 **错误码：**
@@ -1623,7 +1623,7 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1669,7 +1669,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)              | 是   | 指定应用的包信息。             |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)              | 是   | 指定应用的包信息。             |
 | callback | AsyncCallback\<number\> | 是   | 获取通知通道数量回调函数。 |
 
 **错误码：**
@@ -1715,7 +1715,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -2052,7 +2052,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 | 参数名      | 类型                  | 必填 | 说明                         |
 | --------- | --------------------- | ---- | ---------------------------- |
-| bundle    | [BundleOption](./js-apis-inner-notification-bundleOption.md)          | 是   | 应用的包信息。                   |
+| bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 应用的包信息。                   |
 | groupName | string                | 是   | 通知组名称。               |
 | callback  | AsyncCallback\<void\> | 是   | 删除指定应用指定组下通知的回调函数。 |
 
@@ -2100,7 +2100,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 | 参数名      | 类型         | 必填 | 说明           |
 | --------- | ------------ | ---- | -------------- |
-| bundle    | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 应用的包信息。     |
+| bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。     |
 | groupName | string       | 是   | 通知组名称。 |
 
 **错误码：**
@@ -2888,7 +2888,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)             | 是   | 应用的包信息。                   |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
 | enable   | boolean                  | 是   | 是否支持。                       |
 | callback | AsyncCallback\<void\> | 是   | 应用程序是否支持分布式通知的回调函数。 |
 
@@ -2942,7 +2942,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)             | 是   | 应用的包。                |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
 | enable   | boolean                  | 是   | 是否支持。                  |
 
 **错误码：**
@@ -2987,7 +2987,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)             | 是   | 应用的包。                     |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                     |
 | callback | AsyncCallback\<boolean\> | 是   | 查询指定应用是否支持分布式通知的回调函数。 |
 
 **错误码：**
@@ -3036,7 +3036,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md)             | 是   | 应用的包。                |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
 
 **返回值：**
 
@@ -3391,7 +3391,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 参数名   | 类型                          | 必填 | 说明                   |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
 | enable   | boolean                       | 是   | 使能状态。             |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。 |
@@ -3442,7 +3442,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 应用的包信息。   |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
 | type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
 | enable | boolean                       | 是   | 使能状态。     |
 
@@ -3485,7 +3485,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 | 参数名   | 类型                          | 必填 | 说明                   |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 渠道类型。         |
 | callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数。 |
 
@@ -3534,7 +3534,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](./js-apis-inner-notification-bundleOption.md) | 是   | 应用的包信息。   |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
 | type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
 
 **返回值：**
