@@ -68,7 +68,7 @@ promise.then(data => {
 
 ### grantUserGrantedPermission
 
-grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
+grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlags: number): Promise&lt;number&gt;
 
 授予应用user grant权限，使用Promise方式异步返回结果。
 
@@ -84,7 +84,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。            |
 | permissionName | string              | 是   | 被授予的权限名称。 |
-| permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 
 **返回值：**
 
@@ -97,7 +97,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 ```
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let permissionFlags = 1;
+let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -107,7 +108,7 @@ promise.then(data => {
 
 ### grantUserGrantedPermission
 
-grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
+grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlags: number, callback: AsyncCallback&lt;number&gt;): void
 
 授予应用user grant权限，使用callback回调异步返回结果。
 
@@ -123,7 +124,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。           |
 | permissionName | string              | 是   | 被授予的权限名称。 |
-| permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 检查授予应用user grant权限的操作结果同步的回调。 |
 
 **示例：**
@@ -131,15 +132,15 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 ```
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-let permissionFlag = 1;
-AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
+let permissionFlags = 1;
+AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlags, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
 ### revokeUserGrantedPermission
 
-revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
+revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlags: number): Promise&lt;number&gt;
 
 撤销应用user grant权限，使用Promise方式异步返回结果。
 
@@ -155,7 +156,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。            |
 | permissionName | string              | 是   | 被撤销的权限名称。 |
-| permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 
 **返回值：**
 
@@ -168,8 +169,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 ```
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-let permissionFlag = 1;
-let promise = AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
+let permissionFlags = 1;
+let promise = AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -177,7 +178,7 @@ promise.then(data => {
 
 ### revokeUserGrantedPermission
 
-revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
+revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlags: number, callback: AsyncCallback&lt;number&gt;): void
 
 撤销应用user grant权限，使用callback回调异步返回结果。
 
@@ -193,7 +194,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。            |
 | permissionName | string              | 是   | 被撤销的权限名称。 |
-| permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 检查撤销应用user grant权限的操作结果同步的回调。 |
 
 **示例：**
@@ -201,7 +202,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 ```
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
+let permissionFlags = 1;
+AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlags, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
