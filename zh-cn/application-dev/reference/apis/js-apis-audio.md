@@ -4539,15 +4539,15 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     let writeSize = await new Promise((resolve,reject)=>{
-      this.audioRenderer.write(buf,(err,writeSize)=>{
+      audioRenderer.write(buf,(err,writeSize)=>{
         if(err){
           reject(err)
         }else{
@@ -4593,15 +4593,15 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     try{
-       let writeSize = await this.audioRenderer.write(buf);
+       let writeSize = await audioRenderer.write(buf);
     } catch(err) {
        console.error(`audioRenderer.write err: ${err}`);
     }   

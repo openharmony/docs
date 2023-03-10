@@ -41,8 +41,12 @@ If this API is called for the first time, a root directory will be created.
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getOrCreateLocalDir((err, data)=>{
-    console.info('getOrCreateLocalDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getOrCreateLocalDir((error, data)=>{
+    if (error && error.code !== 0) {
+        console.error('getOrCreateLocalDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getOrCreateLocalDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -97,8 +101,12 @@ import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
 let context = featureAbility.getContext();
 bundle.getBundleInfo('com.context.test', 1, (err, datainfo) =>{
-    context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (err, data) =>{
-        console.info('verifyPermission err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (error, data) =>{
+        if (error && error.code !== 0) {
+            console.error('verifyPermission fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('verifyPermission success, data: ${JSON.stringify(data)}');
+        }
     });
 });
 ```
@@ -126,8 +134,12 @@ Verifies whether the current PID and UID have the given permission. This API use
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.verifyPermission('com.example.permission', (err, data) =>{
-    console.info('verifyPermission err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.verifyPermission('com.example.permission', (error, data) =>{
+    if (error && error.code !== 0) {
+        console.error('verifyPermission fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('verifyPermission success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -193,8 +205,12 @@ context.requestPermissionsFromUser(
      'com.example.permission4',
      'com.example.permission5'],
     1,
-    (err, data) => {
-        console.info('requestPermissionsFromUser err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('requestPermissionsFromUser fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('requestPermissionsFromUser success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -259,8 +275,12 @@ Obtains information about the current application. This API uses an asynchronous
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getApplicationInfo((err, data) => {
-    console.info('getApplicationInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getApplicationInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getApplicationInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getApplicationInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -311,8 +331,12 @@ Obtains the bundle name of this ability. This API uses an asynchronous callback 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getBundleName((err, data) => {
-    console.info('getBundleName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getBundleName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -361,8 +385,12 @@ Obtains the display orientation of this ability. This API uses an asynchronous c
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getDisplayOrientation((err, data) => {
-    console.info('getDisplayOrientation err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getDisplayOrientation((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getDisplayOrientation fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getDisplayOrientation success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -409,8 +437,12 @@ Obtains the external cache directory of the application. This API uses an asynch
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getExternalCacheDir((err, data) => {
-    console.info('getExternalCacheDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getExternalCacheDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getExternalCacheDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getExternalCacheDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -460,8 +492,8 @@ import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle';
 let context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
-context.setDisplayOrientation(orientation, (err) => {
-    console.info('setDisplayOrientation err: ${JSON.stringify(err)}');
+context.setDisplayOrientation(orientation, (error) => {
+    console.error('setDisplayOrientation fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -513,8 +545,8 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 let show = true;
-context.setShowOnLockScreen(show, (err) => {
-    console.info('setShowOnLockScreen err: ${JSON.stringify(err)}');
+context.setShowOnLockScreen(show, (error) => {
+    console.error('setShowOnLockScreen fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -570,8 +602,8 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 let wakeUp = true;
-context.setWakeUpScreen(wakeUp, (err) => {
-    console.info('setWakeUpScreen err: ${JSON.stringify(err)}');
+context.setWakeUpScreen(wakeUp, (error) => {
+    console.error('setWakeUpScreen fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -628,8 +660,12 @@ Obtains information about the current process, including the PID and process nam
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getProcessInfo((err, data) => {
-    console.info('getProcessInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getProcessInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getProcessInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getProcessInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -682,8 +718,12 @@ This API is available only to Page abilities.
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getElementName((err, data) => {
-    console.info('getElementName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getElementName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getElementName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getElementName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -734,8 +774,12 @@ Obtains the name of the current process. This API uses an asynchronous callback 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getProcessName((err, data) => {
-    console.info('getProcessName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getProcessName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getProcessName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getProcessName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -786,8 +830,12 @@ Obtains the bundle name of the caller ability. This API uses an asynchronous cal
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getCallingBundle((err, data) => {
-    console.info('getCallingBundle err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getCallingBundle((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getCallingBundle fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getCallingBundle success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -836,8 +884,12 @@ Obtains the cache directory of the application in the internal storage. This API
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getCacheDir((err, data) => {
-    console.info('getCacheDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getCacheDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getCacheDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getCacheDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -884,8 +936,12 @@ Obtains the file directory of the application in the internal storage. This API 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getFilesDir((err, data) => {
-    console.info('getFilesDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getFilesDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getFilesDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getFilesDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -934,8 +990,12 @@ If the distributed file path does not exist, the system will create one and retu
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getOrCreateDistributedDir((err, data) => {
-    console.info('getOrCreateDistributedDir err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getOrCreateDistributedDir((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getOrCreateDistributedDir fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getOrCreateDistributedDir success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -984,8 +1044,12 @@ Obtains the application type. This API uses an asynchronous callback to return t
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getAppType((err, data) => {
-    console.info('getAppType err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getAppType((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getAppType fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getAppType success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1032,8 +1096,12 @@ Obtains the **ModuleInfo** object of the application. This API uses an asynchron
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getHapModuleInfo((err, data) => {
-    console.info('getHapModuleInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getHapModuleInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getHapModuleInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getHapModuleInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1080,8 +1148,12 @@ Obtains the version information of the application. This API uses an asynchronou
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getAppVersionInfo((err, data) => {
-    console.info('getAppVersionInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getAppVersionInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getAppVersionInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getAppVersionInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1128,8 +1200,12 @@ Obtains information about this ability. This API uses an asynchronous callback t
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getAbilityInfo((err, data) => {
-    console.info('getAbilityInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getAbilityInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getAbilityInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getAbilityInfo success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -1197,8 +1273,12 @@ Checks whether the configuration of this ability is being updated. This API uses
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.isUpdatingConfigurations((err, data) => {
-    console.info('isUpdatingConfigurations err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.isUpdatingConfigurations((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('isUpdatingConfigurations fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('isUpdatingConfigurations success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 

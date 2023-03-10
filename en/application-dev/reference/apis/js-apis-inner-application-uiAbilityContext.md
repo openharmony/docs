@@ -1916,7 +1916,7 @@ Sets a label for this UIAbility in the mission. This API uses a promise to retur
 
 setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
-Sets an icon for this ability in the mission. This API uses an asynchronous callback to return the result.
+Sets an icon for this ability in the mission. This API uses an asynchronous callback to return the result. The maximum size of the icon is 600 MB.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1966,7 +1966,7 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
-Sets an icon for this ability in the mission. This API uses a promise to return the result.
+Sets an icon for this ability in the mission. This API uses a promise to return the result. The maximum size of the icon is 600 MB.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2112,7 +2112,7 @@ try {
       return;
     }
     // Carry out normal service processing.
-    console.info('requestDialogService succeed, result = ' + JSON.stringify(result));
+    console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
   });
 } catch (err) {
   // Process input parameter errors.
@@ -2160,7 +2160,7 @@ try {
   this.context.requestDialogService(want)
     .then((result) => {
       // Carry out normal service processing.
-      console.info('requestDialogService succeed, result = ' + JSON.stringify(result));
+      console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
     })
     .catch((err) => {
       // Process service logic errors.
