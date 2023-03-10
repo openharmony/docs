@@ -679,7 +679,7 @@ getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo\>): voi
 
 获取SIM卡账户信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -721,7 +721,7 @@ getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
 获取SIM卡账户信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -770,7 +770,7 @@ getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo\>>): vo
 
 获取活跃SIM卡账户信息列表。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -810,7 +810,7 @@ getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 
 获取活跃SIM卡账户信息列表。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -852,7 +852,7 @@ setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 设置默认语音业务的卡槽ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -894,7 +894,7 @@ setDefaultVoiceSlotId(slotId: number): Promise\<void\>
 
 设置默认语音业务的卡槽ID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -943,7 +943,7 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): voi
 
 设置指定卡槽SIM卡显示的名称。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -985,7 +985,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 
 设置指定卡槽SIM卡显示的名称。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1035,7 +1035,7 @@ getShowName(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽SIM卡的名称。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1076,7 +1076,7 @@ getShowName(slotId: number): Promise<string\>
 
 获取指定卡槽SIM卡的名称。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1124,7 +1124,7 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\):
 
 设置指定卡槽SIM卡的号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1167,7 +1167,7 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 设置指定卡槽SIM卡的号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1217,7 +1217,7 @@ getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽SIM卡的号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1258,7 +1258,7 @@ getShowNumber(slotId: number): Promise<string\>
 
 获取指定卡槽SIM卡的号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1306,7 +1306,7 @@ activateSim(slotId: number, callback: AsyncCallback<void\>): void
 
 激活指定卡槽SIM卡。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1347,7 +1347,7 @@ activateSim(slotId: number): Promise\<void\>
 
 激活指定卡槽SIM卡。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1395,7 +1395,7 @@ deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 
 禁用指定卡槽SIM卡。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1436,7 +1436,7 @@ deactivateSim(slotId: number): Promise\<void\>
 
 禁用指定卡槽SIM卡。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1484,7 +1484,7 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 
 设置指定卡槽SIM卡的锁状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1532,7 +1532,7 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 
 设置指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1587,7 +1587,7 @@ getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockSta
 
 获取指定卡槽SIM卡的锁状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1630,7 +1630,7 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 
 获取指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1680,7 +1680,7 @@ alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback
 
 更改Pin密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1724,7 +1724,7 @@ alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResp
 
 更改Pin密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1775,7 +1775,7 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallb
 
 更改Pin2密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1819,7 +1819,7 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusR
 
 更改Pin2密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1870,7 +1870,7 @@ unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusRespons
 
 解锁指定卡槽SIM卡密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1914,7 +1914,7 @@ unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1965,7 +1965,7 @@ unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<L
 
 解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2011,7 +2011,7 @@ unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusRes
 
 解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2064,7 +2064,7 @@ unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusRespo
 
 解锁指定卡槽SIM卡密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2108,7 +2108,7 @@ unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2159,7 +2159,7 @@ unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallbac
 
 解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2205,7 +2205,7 @@ unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatus
 
 解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2278,7 +2278,7 @@ getSimIccId(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽SIM卡的ICCID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2319,7 +2319,7 @@ getSimIccId(slotId: number): Promise<string\>
 
 获取指定卡槽SIM卡的ICCID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2367,7 +2367,7 @@ getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡语音信箱的alpha标识符。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2408,7 +2408,7 @@ getVoiceMailIdentifier(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡语音信箱的alpha标识符。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2456,7 +2456,7 @@ getVoiceMailNumber(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的语音信箱号。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2497,7 +2497,7 @@ getVoiceMailNumber(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的语音信箱号。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2546,7 +2546,7 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback:
 
 设置语音邮件信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2590,7 +2590,7 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<
 
 设置语音邮件信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2641,7 +2641,7 @@ getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的MSISDN。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2682,7 +2682,7 @@ getSimTelephoneNumber(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的MSISDN。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2730,7 +2730,7 @@ getSimGid1(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的组标识符级别1（GID1）。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2771,7 +2771,7 @@ getSimGid1(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的组标识符级别1（GID1）。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2819,7 +2819,7 @@ getIMSI(slotId: number, callback: AsyncCallback<string\>): void
 
 获取国际移动用户识别码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2860,7 +2860,7 @@ getIMSI(slotId: number): Promise<string\>
 
 获取国际移动用户识别码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2908,7 +2908,7 @@ getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\
 
 获取运营商配置。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2949,7 +2949,7 @@ getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
 
 获取运营商配置。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2997,7 +2997,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallba
 
 查询SIM卡联系人号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3040,7 +3040,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<Dialli
 
 查询SIM卡联系人号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3090,7 +3090,7 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 添加SIM卡联系人号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -3139,7 +3139,7 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 添加SIM卡联系人号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -3194,7 +3194,7 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 删除SIM卡联系人号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -3244,7 +3244,7 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 删除SIM卡联系人号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -3299,7 +3299,7 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 
 更新SIM卡联系人号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -3349,7 +3349,7 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 
 更新SIM卡联系人号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -3405,7 +3405,7 @@ sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): vo
 
 发送信封命令。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3447,7 +3447,7 @@ sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
 
 发送信封命令。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3496,7 +3496,7 @@ sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<voi
 
 发送终端响应命令。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3538,7 +3538,7 @@ sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
 
 发送终端响应命令。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3588,7 +3588,7 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<L
 
 解锁SIM卡锁。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3635,7 +3635,7 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusRespon
 
 解锁SIM卡锁。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -3899,7 +3899,7 @@ SIM卡状态。
 
 锁类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -3912,7 +3912,7 @@ SIM卡状态。
 
 锁状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -3925,7 +3925,7 @@ SIM卡状态。
 
 定制锁类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -3946,7 +3946,7 @@ SIM卡状态。
 
 锁状态响应。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -3959,7 +3959,7 @@ SIM卡状态。
 
 锁状态响应。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -3973,7 +3973,7 @@ SIM卡状态。
 
 锁状态响应。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -3986,7 +3986,7 @@ SIM卡状态。
 
 Icc账户信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -4004,7 +4004,7 @@ Icc账户信息。
 
 运营商配置。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -4017,7 +4017,7 @@ Icc账户信息。
 
 拨号号码信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -4032,7 +4032,7 @@ Icc账户信息。
 
 联系人类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -4045,7 +4045,7 @@ Icc账户信息。
 
 运营商配置键。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
