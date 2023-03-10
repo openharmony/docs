@@ -110,7 +110,7 @@ export { nativeMulti } from './utils/nativeTest'
     "library": "file:../library"
 }
 ```
-然后就可以像使用`HAR`包一样调用`HSP`的对外接口了。
+然后就可以像使用`HAR`一样调用`HSP`的对外接口了。
 例如，上面的`library`已经导出了下面这些接口：
 ```ts
 // library/src/main/ets/index.ets

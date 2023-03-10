@@ -1,17 +1,17 @@
 # 应用间HSP开发指导
 
 应用间`HSP`用于不同应用间的代码、资源共享。
-应用间`HSP`的宿主应用是一种特殊状态的应用，只能由一个[HSP](hsp-guide.md)包组成，不会独立运行在设备上，而是被普通应用模块的依赖项引用。当普通应用运行时，通过动态调用的方式使用应用间`HSP`提供的能力，从而实现应用自身所需要的功能。
+应用间`HSP`的宿主应用是一种特殊状态的应用，只能由一个[HSP](hsp-guide.md)组成，不会独立运行在设备上，而是被普通应用模块的依赖项引用。当普通应用运行时，通过动态调用的方式使用应用间`HSP`提供的能力，从而实现应用自身所需要的功能。
 
 ## 应用间HSP的使用
 应用间HSP会分为两部分对外发布：
 
-一部分为[HAR包](har-package.md)，这部分`HAR`包中不会包含具体的功能实现代码，而仅仅包含导出的对象与方法，所以体积很小。应用开发者将`HAR`包集成到自身的工程中，然后就可以通过调用`HAR`包中提供的对象与方法完成自身的应用功能。
+一部分为[HAR](har-package.md)，这部分`HAR`中不会包含具体的功能实现代码，而仅仅包含导出的对象与方法，所以体积很小。应用开发者将`HAR`集成到自身的工程中，然后就可以通过调用`HAR`中提供的对象与方法完成自身的应用功能。
 
 另外一部分为[HSP](hsp-guide.md)，这部分为应用间`HSP`的具体实现，里面包含js/ts代码、C++库、资源和配置文件。这部分会上架到应用市场或者集成到系统版本中。
 
-### 集成应用间HSP的HAR包
-`HAR`包中的`index.d.ets`文件是应用间`HSP`导出的声明文件的入口，所有需要导出的接口，统一在`index.d.ets`文件中定义。`index.d.ets`文件路径如下：
+### 集成应用间HSP的HAR
+`HAR`中的`index.d.ets`文件是应用间`HSP`导出的声明文件的入口，所有需要导出的接口，统一在`index.d.ets`文件中定义。`index.d.ets`文件路径如下：
 ```
 src
 ├── main
@@ -110,8 +110,8 @@ extern "C" __attribute__((constructor)) void RegisterLibaModule(void) {
     napi_module_register(&demoModule);
 }
 ```
-### 使用HAR包导出的能力
-引用`HAR`包前，需要先配置对`HAR`的依赖，配置方式可参考[文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391)。`HAR`包配置成功后，在配置模块的`module.json`中会生成相关依赖项信息，如下所示：
+### 使用HAR导出的能力
+引用`HAR`前，需要先配置对`HAR`的依赖，配置方式可参考[文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391)。`HAR`配置成功后，在配置模块的`module.json`中会生成相关依赖项信息，如下所示：
 ```json
 "dependencies": [
       {
@@ -122,8 +122,8 @@ extern "C" __attribute__((constructor)) void RegisterLibaModule(void) {
 ]
 ```
 其中`bundleName`为应用间`HSP`的`bundle`名称，`moduleName`为应用间`HSP`的模块名称，`versionCode`为应用间`HSP`的版本号。
-#### **使用HAR包中的ArkUI组件**
-`HAR`共享包的依赖配置成功后，可以引用`HAR`共享包的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入`HAR`共享包导出的ArkUI组件，示例如下所示：
+#### **使用HAR中的ArkUI组件**
+`HAR`的依赖配置成功后，可以引用`HAR`的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入`HAR`导出的ArkUI组件，示例如下所示：
 ``` ts
 import { UIComponent } from 'liba'
 
@@ -133,7 +133,7 @@ struct Index {
   @State message: string = 'Hello World'
   build() {
     Row() {
-      // 引用HAR共享包的ArkUI组件
+      // 引用HAR的ArkUI组件
       UIComponent()
       Column() {
         Text(this.message)
@@ -147,8 +147,8 @@ struct Index {
 }
 ```
 
-#### **使用HAR包中的ts方法**
-通过`import`引用`HAR`共享包导出的ts类和方法，示例如下所示：
+#### **使用HAR中的ts方法**
+通过`import`引用`HAR`导出的ts类和方法，示例如下所示：
 ``` ts
 import { foo1 } from 'liba'
 import { foo2 } from 'liba'
@@ -160,7 +160,7 @@ struct Index {
       Column() {
         Button('Button')
           .onClick(()=>{
-            // 引用HAR共享包的ts方法
+            // 引用HAR的ts方法
             foo1();
             foo2();
         })
@@ -171,8 +171,8 @@ struct Index {
   }
 }
 ```
-#### **使用HAR包中的native方法**
-通过`import`引用`HAR`共享包导出的native方法，示例如下所示：
+#### **使用HAR中的native方法**
+通过`import`引用`HAR`导出的native方法，示例如下所示：
 ``` ts
 import { nativeHello } from 'liba'
 
@@ -183,7 +183,7 @@ struct Index {
       Column() {
         Button('Button')
           .onClick(()=>{
-            // 引用HAR共享包的native方法
+            // 引用HAR的native方法
             nativeHello();
         })
       }
