@@ -4,7 +4,7 @@
 
 **错误信息**
 
-NFC opening or closing state is abnormal in service.
+NFC state is abnormal in service.
 
 **错误描述**
 
@@ -12,11 +12,13 @@ NFC服务内部执行NFC打开或关闭异常。
 
 **可能原因**
 
-和NFC服务建立通信异常。
+1. 和NFC服务建立通信异常。
+2. NFC芯片通信异常。
 
 **处理步骤**
 
-重新执行打开或关闭NFC。
+1. 重新执行打开或关闭NFC。
+2. 重新执行打开或关闭NFC，或重启设备尝试。
 
 ## 3100201
 
