@@ -130,6 +130,15 @@
     - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
     - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
     - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+  - notification
+    - [NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)
+    - [NotificationCommonDef](js-apis-inner-notification-notificationCommonDef.md)
+    - [NotificationContent](js-apis-inner-notification-notificationContent.md)
+    - [NotificationFlags](js-apis-inner-notification-notificationFlags.md)
+    - [NotificationRequest](js-apis-inner-notification-notificationRequest.md)
+    - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
+    - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
+    - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
 - 包管理
   - [@ohos.bundle.appControl (appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
