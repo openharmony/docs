@@ -21,7 +21,7 @@ import sensor from '@system.sensor';
 
 ## sensor.subscribeAccelerometer
 
- subscribeAccelerometer(options: subscribeAccelerometerOptions): void
+ subscribeAccelerometer(options: SubscribeAccelerometerOptions): void
 
 观察加速度数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
@@ -718,7 +718,7 @@ sensor.unsubscribeGyroscope();
 
 用于监听设备方向传感器数据的回调函数的执行频率。
 
-系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称     | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
