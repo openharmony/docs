@@ -33,7 +33,7 @@ import sensor from '@system.sensor';
 
 | 参数名  | 类型                                                         | 必填 | 说明                                       |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [SubscribeAccelerometerOptions](#subscribeAccelerometerOptions) | 是   | 监听加速度传感器数据的回调函数的执行频率。 |
+| options | [SubscribeAccelerometerOptions](#subscribeaccelerometeroptions) | 是   | 监听加速度传感器数据的回调函数的执行频率。 |
 
 **示例：**
 
@@ -82,7 +82,7 @@ sensor.unsubscribeAccelerometer();
 
 | 参数名  | 类型                                                | 必填 | 说明                             |
 | ------- | --------------------------------------------------- | ---- | -------------------------------- |
-| options | [SubscribeCompassOptions](#SubscribeCompassOptions) | 是   | 当罗盘传感器数据发生变化时调用。 |
+| options | [SubscribeCompassOptions](#subscribecompassoptions) | 是   | 当罗盘传感器数据发生变化时调用。 |
 
 **示例：**
 
@@ -126,7 +126,7 @@ sensor.unsubscribeCompass();
 
 | 参数名  | 类型                                                    | 必填 | 说明                             |
 | ------- | ------------------------------------------------------- | ---- | -------------------------------- |
-| options | [SubscribeProximityOptions](#SubscribeProximityOptions) | 是   | 当距离传感器数据发生变化时调用。 |
+| options | [SubscribeProximityOptions](#subscribeproximityoptions) | 是   | 当距离传感器数据发生变化时调用。 |
 
 **示例：**
 
@@ -170,7 +170,7 @@ sensor.unsubscribeProximity();
 
 | 参数名  | 类型                                            | 必填 | 说明                               |
 | ------- | ----------------------------------------------- | ---- | ---------------------------------- |
-| options | [SubscribeLightOptions](#SubscribeLightOptions) | 是   | 当环境光传感器数据发生变化时调用。 |
+| options | [SubscribeLightOptions](#subscribelightoptions) | 是   | 当环境光传感器数据发生变化时调用。 |
 
 **示例：**
 
@@ -216,7 +216,7 @@ sensor.unsubscribeLight();
 
 | 参数名  | 类型                                                        | 必填 | 说明                                   |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
-| options | [SubscribeStepCounterOptions](#SubscribeStepCounterOptions) | 是   | 当步进计数器传感器数据发生变化时调用。 |
+| options | [SubscribeStepCounterOptions](#subscribestepcounteroptions) | 是   | 当步进计数器传感器数据发生变化时调用。 |
 
 **示例：**
 
@@ -263,7 +263,7 @@ subscribeBarometer(options: SubscribeBarometerOptions): void
 
 | 参数名  | 类型                                                    | 必填 | 说明                               |
 | ------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| options | [SubscribeBarometerOptions](#SubscribeBarometerOptions) | 是   | 当气压计传感器数据发生变化时调用。 |
+| options | [SubscribeBarometerOptions](#subscribesarometeroptions) | 是   | 当气压计传感器数据发生变化时调用。 |
 
 **示例：**
 
@@ -311,7 +311,7 @@ sensor.unsubscribeBarometer();
 
 | 参数名  | 类型                                                    | 必填 | 说明                             |
 | ------- | ------------------------------------------------------- | ---- | -------------------------------- |
-| options | [SubscribeHeartRateOptions](#SubscribeHeartRateOptions) | 是   | 当心率传感器数据发生变化时调用。 |
+| options | [SubscribeHeartRateOptions](#subscribeheartrateoptions) | 是   | 当心率传感器数据发生变化时调用。 |
 
 **示例：**
 
@@ -358,7 +358,7 @@ sensor.unsubscribeHeartRate();
 
 | 参数名  | 类型                                                        | 必填 | 说明                   |
 | ------- | ----------------------------------------------------------- | ---- | ---------------------- |
-| options | [SubscribeOnBodyStateOptions](#SubscribeOnBodyStateOptions) | 是   | 当穿着状态改变时调用。 |
+| options | [SubscribeOnBodyStateOptions](#subscribeonbodystateoptions) | 是   | 当穿着状态改变时调用。 |
 
 **示例：**
 
@@ -402,7 +402,7 @@ sensor.unsubscribeOnBodyState();
 
 | 参数名  | 类型                                            | 必填 | 说明                       |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
-| options | [GetOnBodyStateOptions](#GetOnBodyStateOptions) | 是   | 获取传感器磨损状态时调用。 |
+| options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器磨损状态时调用。 |
 
 **示例：**
 
@@ -431,7 +431,7 @@ sensor.getOnBodyState({
 
 | 参数名  | 类型                                                         | 必填 | 说明                                             |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| options | [SubscribeDeviceOrientationOptions](#SubscribeDeviceOrientationOptions) | 是   | 用于监听设备方向传感器数据的回调函数的执行频率。 |
+| options | [SubscribeDeviceOrientationOptions](#subscribedeviceorientationoptions) | 是   | 用于监听设备方向传感器数据的回调函数的执行频率。 |
 
 **示例：**
 
@@ -482,7 +482,7 @@ sensor.unsubscribeDeviceOrientation();
 
 | 参数名  | 类型                                                    | 必填 | 说明                                           |
 | ------- | ------------------------------------------------------- | ---- | ---------------------------------------------- |
-| options | [SubscribeGyroscopeOptions](#SubscribeGyroscopeOptions) | 是   | 用于侦听陀螺仪传感器数据的回调函数的执行频率。 |
+| options | [SubscribeGyroscopeOptions](#subscribegyroscopeoptions) | 是   | 用于侦听陀螺仪传感器数据的回调函数的执行频率。 |
 
 **示例：**
 
@@ -530,7 +530,7 @@ sensor.unsubscribeGyroscope();
 | 名称     | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | interval | string                                          | 是   | 频率参数，加速度的回调函数执行频率。 默认为normal，可选值有： - game：极高的回调频率，20ms/次，适用于游戏。 - ui：较高的回调频率，60ms/次，适用于UI更新。 - normal：普通的回调频率，200ms/次，低功耗。 |
-| success  | [AccelerometerResponse](#AccelerometerResponse) | 是   | 感应到加速度数据变化后的回调函数。                           |
+| success  | [AccelerometerResponse](#accelerometerresponse) | 是   | 感应到加速度数据变化后的回调函数。                           |
 | fail     | Function                                        | 否   | 接口调用失败的回调函数。                                     |
 
 ## AccelerometerResponse 
@@ -555,7 +555,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                                | 必填 | 说明                           |
 | ------- | ----------------------------------- | ---- | ------------------------------ |
-| success | [CompassResponse](#CompassResponse) | 是   | 罗盘数据改变后触发的回调函数。 |
+| success | [CompassResponse](#compassresponse) | 是   | 罗盘数据改变后触发的回调函数。 |
 | fail    | Function                            | 否   | 接口调用失败的回调函数。       |
 
 ## CompassResponse 
@@ -576,7 +576,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                                    | 必填 | 说明                               |
 | ------- | --------------------------------------- | ---- | ---------------------------------- |
-| success | [ProximityResponse](#ProximityResponse) | 是   | 距离感应数据改变后调用的回调函数。 |
+| success | [ProximityResponse](#proximityresponse) | 是   | 距离感应数据改变后调用的回调函数。 |
 | fail    | Function                                | 否   | 接口调用失败的回调函数。           |
 
 ## ProximityResponse 
@@ -597,7 +597,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                            | 必填 | 说明                           |
 | ------- | ------------------------------- | ---- | ------------------------------ |
-| success | [LightResponse](#LightResponse) | 是   | 光线感应数据改变后的回调函数。 |
+| success | [LightResponse](#lightresponse) | 是   | 光线感应数据改变后的回调函数。 |
 | fail    | Function                        | 否   | 接口调用失败的回调函数。       |
 
 ## LightResponse 
@@ -620,7 +620,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                                        | 必填 | 说明                             |
 | ------- | ------------------------------------------- | ---- | -------------------------------- |
-| success | [StepCounterResponse](#StepCounterResponse) | 是   | 计步传感器数据改变后的回调函数。 |
+| success | [StepCounterResponse](#stepcounterresponse) | 是   | 计步传感器数据改变后的回调函数。 |
 | fail    | Function                                    | 否   | 接口调用失败的回调函数。         |
 
 ## StepCounterResponse 
@@ -643,7 +643,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                                    | 必填 | 说明                             |
 | ------- | --------------------------------------- | ---- | -------------------------------- |
-| success | [BarometerResponse](#BarometerResponse) | 是   | 气压传感器数据改变后的回调函数。 |
+| success | [BarometerResponse](#barometerresponse) | 是   | 气压传感器数据改变后的回调函数。 |
 | fail    | Function                                | 否   | 接口调用失败的回调函数。         |
 
 ## BarometerResponse 
@@ -666,7 +666,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                                    | 必填 | 说明                                            |
 | ------- | --------------------------------------- | ---- | ----------------------------------------------- |
-| success | [HeartRateResponse](#HeartRateResponse) | 是   | 心率传感器数据改变后的回调函数，默认频率5s/次。 |
+| success | [HeartRateResponse](#heartrateresponse) | 是   | 心率传感器数据改变后的回调函数，默认频率5s/次。 |
 | fail    | Function                                | 否   | 接口调用失败的回调函数。                        |
 
 ## HeartRateResponse 
@@ -689,7 +689,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                                        | 必填 | 说明                       |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
-| success | [OnBodyStateResponse](#OnBodyStateResponse) | 是   | 穿戴状态改变后的回调函数。 |
+| success | [OnBodyStateResponse](#onbodystateresponse) | 是   | 穿戴状态改变后的回调函数。 |
 | fail    | Function                                    | 否   | 接口调用失败的回调函数。   |
 
 ## OnBodyStateResponse 
@@ -710,7 +710,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称     | 类型                                        | 必填 | 说明                     |
 | -------- | ------------------------------------------- | ---- | ------------------------ |
-| success  | [OnBodyStateResponse](#OnBodyStateResponse) | 否   | 接口调用成功的回调函数。 |
+| success  | [OnBodyStateResponse](#onbodystateresponse) | 否   | 接口调用成功的回调函数。 |
 | fail     | Function                                    | 否   | 接口调用失败的回调函数。 |
 | complete | Function                                    | 否   | 接口调用结束的回调函数。 |
 
@@ -723,7 +723,7 @@ sensor.unsubscribeGyroscope();
 | 名称     | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | interval | string                                                  | 是   | 频率参数，设备方向传感器的回调函数执行频率。<br/>默认为normal，可选值有：<br/>-&nbsp;game：极高的回调频率，20ms/次，适用于游戏。<br/>-&nbsp;ui：较高的回调频率，60ms/次，适用于UI更新。<br/>-&nbsp;normal：普通的回调频率，200ms/次，低功耗。 |
-| success  | [DeviceOrientationResponse](#DeviceOrientationResponse) | 是   | 感应到设备方向传感器数据变化后的回调函数。                   |
+| success  | [DeviceOrientationResponse](#deviceorientationresponse) | 是   | 感应到设备方向传感器数据变化后的回调函数。                   |
 | fail     | Function                                                | 否   | 接口调用失败的回调函数。                                     |
 
 ## DeviceOrientationResponse<sup>6+</sup> 
@@ -749,7 +749,7 @@ sensor.unsubscribeGyroscope();
 | 名称     | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | interval | string                                  | 是   | 频率参数，陀螺仪的回调函数执行频率。<br/>默认为normal，可选值有：<br/>-&nbsp;game：极高的回调频率，20ms/次，适用于游戏。<br/>-&nbsp;ui：较高的回调频率，60ms/次，适用于UI更新。<br/>-&nbsp;normal：普通的回调频率，200ms/次，低功耗。 |
-| success  | [GyroscopeResponse](#GyroscopeResponse) | 是   | 感应到陀螺仪数据变化后的回调函数。                           |
+| success  | [GyroscopeResponse](#gyroscoperesponse) | 是   | 感应到陀螺仪数据变化后的回调函数。                           |
 | fail     | Function                                | 否   | 接口调用失败的回调函数。                                     |
 
 ## GyroscopeResponse<sup>6+</sup> 
