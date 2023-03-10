@@ -11,7 +11,7 @@
 
 | Name  | Type    | Description                        |
 | -----| -------- | ----------------------------- |
-| id   | string   | Unique ID you assigned to the component.<br>Default value: **''**|
+| id   | string   | Unique ID you assigned to the component.<br>Default value: **''**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## APIs

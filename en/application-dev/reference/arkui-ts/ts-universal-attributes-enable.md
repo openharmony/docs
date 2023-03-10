@@ -10,9 +10,9 @@ The **enabled** attribute sets whether a component responds to user interactions
 ## Attributes
 
 
-| Name     | Type   | Description                                      |
-| ------- | ------- | ---------------------------------------- |
-| enabled | boolean | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions, and **false** means the opposite.<br>Default value: **true** |
+| Name   | Type| Description                                                        |
+| ------- | -------- | ------------------------------------------------------------ |
+| enabled | boolean  | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions, and **false** means the opposite.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets. |
 
 
 ## Example
