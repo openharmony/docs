@@ -1194,7 +1194,7 @@ getInstance(locale?:string): IndexUtil
 
 **示例：** 
   ```js
-  let indexUtil= I18n.getInstance("zh-CN");
+  let indexUtil = I18n.getInstance("zh-CN");
   ```
 
 
@@ -1267,7 +1267,7 @@ getIndex(text: string): string
 
 **示例：** 
   ```js
-  let indexUtil= I18n.getInstance("zh-CN");
+  let indexUtil = I18n.getInstance("zh-CN");
   let index = indexUtil.getIndex("hi");  // index = "H"
   ```
 
@@ -1382,7 +1382,7 @@ first(): number
 
 **示例：** 
   ```js
-  let iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let firstPos = iterator.first(); // firstPos = 0
   ```
