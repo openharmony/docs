@@ -38,7 +38,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | Color of the caret in the text box.                              |
 | maxLength                | number                                   | Maximum number of characters in the text input.                           |
 | inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
-| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.|
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.|
 | showPasswordIcon<sup>9+</sup> | boolean | Whether to display the show password icon at the end of the password text box.<br>Default value: **true**|
 | style<sup>9+</sup> | TextInputStyle | Text input style.<br>Default value: **TextInputStyle.Default**|
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | Alignment mode of the text in the text box.<br>Default value: **TextAlign.Start** |
@@ -53,7 +53,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Next   | The Enter key is labeled "Next."|
 | Done   | The Enter key is labeled "Done."    |
 
-## InputType enums
+## InputType
 
 | Name                | Description           |
 | ------------------ | ------------- |
@@ -70,7 +70,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Default   | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.  |
 | Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.     |
 
-## Event
+## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
