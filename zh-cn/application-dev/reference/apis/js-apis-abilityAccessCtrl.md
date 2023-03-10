@@ -139,7 +139,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
-| permissionFlags  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 
 **返回值：**
 
@@ -196,7 +196,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
-| permissionFlags  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefine；否则为错误对象。 |
 
 **错误码：**
@@ -250,7 +250,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
-| permissionFlags  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 
 **返回值：**
 
@@ -307,7 +307,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
-| permissionFlags  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
+| permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefine；否则为错误对象。 |
 
 **错误码：**
@@ -461,6 +461,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import bundle from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
@@ -511,6 +512,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import bundle from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
@@ -582,7 +584,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
+| 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **示例：**
 
@@ -628,7 +630,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
+| 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **示例：**
 
