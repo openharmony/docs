@@ -683,7 +683,7 @@ Fills a rectangle on the canvas.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.fillRect(0,30,100,100)
+            this.context.fillRect(30,30,100,100)
          })
         }
       .width('100%')
@@ -798,6 +798,7 @@ Draws filled text on the canvas.
 | text     | string | Yes  | ''     | Text to draw.         |
 | x        | number | Yes  | 0      | X-coordinate of the lower left corner of the text.|
 | y        | number | Yes  | 0      | Y-coordinate of the lower left corner of the text.|
+
 **Example**
 
   ```ts
@@ -1418,7 +1419,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
 | rotation         | number  | Yes   | 0     | Rotation angle of the ellipse. The unit is radian.   |
 | startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse. The unit is radian.|
 | endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.|
-| counterclockwise | boolean | No   | false | Whether to draw the ellipse in the counterclockwise direction.<br>**true**: Draw the arc counterclockwise.<br>**false**: Draw the arc clockwise.    |
+| counterclockwise | boolean | No    | false | Whether to draw the ellipse in the counterclockwise direction.<br>**true**: Draw the arc counterclockwise.<br>**false**: Draw the arc clockwise.    |
 
 **Example**
 
@@ -1664,10 +1665,15 @@ struct Clip {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           let region = new Path2D()
-          region.rect(80,10,20,130)
-          region.rect(40,50,100,50)
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           this.context.clip(region,"evenodd")
-          this.context.fillStyle = "rgb(255,0,0)"
+          this.context.fillStyle = "rgb(0,255,0)"
           this.context.fillRect(0, 0, this.context.width, this.context.height)
         })
     }
@@ -1980,8 +1986,8 @@ Draws an image on the canvas.
 | sy    | number                                   | No   | 0    | Y-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
 | sw    | number                                   | No   | 0    | Target width to crop the source image.                          |
 | sh    | number                                   | No   | 0    | Target height to crop the source image.                          |
-| dx    | number                                   | Yes   | 0    | X-coordinate of the upper left corner of the drawing area on the canvas.                          |
-| dy    | number                                   | Yes   | 0    | Y-coordinate of the upper left corner of the drawing area on the canvas.                    |
+| dx    | number                                   | Yes  | 0    | X-coordinate of the upper left corner of the drawing area on the canvas.                          |
+| dy    | number                                   | Yes  | 0    | Y-coordinate of the upper left corner of the drawing area on the canvas.                    |
 | dw    | number                                   | No   | 0    | Width of the drawing area. If the width of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.|
 | dh    | number                                   | No   | 0    | Height of the drawing area. If the height of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.|
 
