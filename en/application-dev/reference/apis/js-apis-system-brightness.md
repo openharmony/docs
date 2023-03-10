@@ -45,7 +45,7 @@ Obtains the current screen brightness.
 
 ## brightness.setValue
 
-etValue(options?: SetBrightnessOptions): void
+setValue(options?: SetBrightnessOptions): void
 
 Sets the screen brightness.
 
@@ -74,7 +74,7 @@ Sets the screen brightness.
 
 ## brightness.getMode
 
-getMode(options?: GetBrightnessModeOptions: void
+getMode(options?: GetBrightnessModeOptions): void
 
 Obtains the screen brightness adjustment mode.
 
@@ -132,7 +132,8 @@ Sets the screen brightness adjustment mode.
 
 setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
->This API is no longer maintained since API version 7. It is recommended that you use [window.setKeepScreenOn](js-apis-window.md#setkeepscreenon) instead.
+> NOTE
+> This API is no longer maintained since API version 7. It is recommended that you use [window.setKeepScreenOn](js-apis-window.md#setkeepscreenon) instead.
 
 Sets whether to always keep the screen on. Call this API in **onShow()**.
 
@@ -161,6 +162,8 @@ Sets whether to always keep the screen on. Call this API in **onShow()**.
 
 Defines the options for obtaining the screen brightness.
 
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+
 | Name    | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | success  | (data: [BrightnessResponse](#brightnessresponse)) => void | No  | Called when API call is successful. **data** is a return value of the [BrightnessResponse](#brightnessresponse) type.|
@@ -170,6 +173,8 @@ Defines the options for obtaining the screen brightness.
 ## SetBrightnessOptions
 
 Defines the options for setting the screen brightness.
+
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager
 
 | Name    | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -182,13 +187,15 @@ Defines the options for setting the screen brightness.
 
 Defines a response that returns the screen brightness.
 
-| Parameter| Type | Description|
-| -------- | -------- | -------- |
-| value | number | Screen brightness. The value ranges from 1 to 255.|
+| Parameter| Type |  Readable | Writable | Description|
+| -------- | -------- | -------- | -------- | -------- |
+| value | number | Yes | No | Screen brightness. The value ranges from 1 to 255.|
 
 ## GetBrightnessModeOptions
 
-Defines the options for obtaining the screen brightness mode.
+Gets the options of the screen brightness mode.
+
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -198,7 +205,9 @@ Defines the options for obtaining the screen brightness mode.
 
 ## SetBrightnessModeOptions
 
-Defines the options for setting the screen brightness mode.
+Sets the options of the screen brightness mode.
+
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager
 
 | Name    | Type                                | Mandatory| Description                                                  |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------ |
@@ -211,13 +220,15 @@ Defines the options for setting the screen brightness mode.
 
 Defines a response that returns the screen brightness mode.
 
-| Name| Type | Description|
-| -------- | -------- | -------- |
-| mode | number | The value **0** indicates the manual adjustment mode, and the value **1** indicates the automatic adjustment mode.|
+| Parameter| Type |  Readable | Writable | Description|
+| -------- | -------- | -------- | -------- | -------- |
+| mode | number |  Yes | No | The value **0** indicates the manual adjustment mode, and the value **1** indicates the automatic adjustment mode.|
 
 ## SetKeepScreenOnOptions
 
-Defines the options for setting the screen to be steady on.
+Sets the options for keeping the screen steady on.
+
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager
 
 | Name        | Type                                | Mandatory| Description                                                  |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------ |
