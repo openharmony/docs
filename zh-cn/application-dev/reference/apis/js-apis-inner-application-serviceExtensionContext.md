@@ -55,6 +55,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -126,6 +127,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -195,6 +197,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -271,6 +274,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -346,6 +350,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -430,6 +435,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -1312,6 +1318,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
 | 16000008 | Crowdtest App Expiration. |
 | 16000009 | Can not start ability in wukong mode. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal Error. |
 
 **示例：**
