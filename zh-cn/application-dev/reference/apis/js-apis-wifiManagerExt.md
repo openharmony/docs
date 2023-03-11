@@ -12,9 +12,9 @@
 import wifiManagerExt from '@ohos.wifiManagerExt';
 ```
 
-## wifiext.enableHotspot
+## wifiext.enableHotspot<sup>9+</sup>
 
-enableHotspot(): boolean;
+enableHotspot(): void;
 
 使能WLAN热点。
 
@@ -30,9 +30,9 @@ enableHotspot(): boolean;
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
-## wifiext.disableHotspot
+## wifiext.disableHotspot<sup>9+</sup>
 
-disableHotspot(): boolean;
+disableHotspot(): void;
 
 去使能WLAN热点。
 
@@ -48,7 +48,7 @@ disableHotspot(): boolean;
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
-## wifiext.getSupportedPowerModel
+## wifiext.getSupportedPowerModel<sup>9+</sup>
 
 getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
 
@@ -85,9 +85,9 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
 | THROUGH_WALL | 2 | 穿墙模式。 |
 
 
-## wifiext.getSupportedPowerModel
+## wifiext.getSupportedPowerMode<sup>9+</sup>
 
-getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): void
+getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): void
 
 获取支持的功率模式，使用callback异步回调。
 
@@ -109,9 +109,9 @@ getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): 
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
-## wifiext.getPowerModel
+## wifiext.getPowerMode<sup>9+</sup>
 
-getPowerModel(): Promise&lt;PowerModel&gt;
+getPowerMode(): Promise&lt;PowerModel&gt;
 
 获取功率模式，使用Promise异步回调。
 
@@ -133,9 +133,9 @@ getPowerModel(): Promise&lt;PowerModel&gt;
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
-## wifiext.getPowerModel
+## wifiext.getPowerMode<sup>9+</sup>
 
-getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
+getPowerMode(callback: AsyncCallback&lt;PowerModel&gt;): void
 
 获取功率模式，使用callback异步回调。
 
@@ -157,9 +157,9 @@ getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
-## wifiext.setPowerModel
+## wifiext.setPowerMode<sup>9+</sup>
 
-setPowerModel(model: PowerModel) : boolean;
+setPowerMode(model: PowerModel) : boolean;
 
  设置功率模式。
 
