@@ -18,7 +18,7 @@ import stationary from '@ohos.stationary'
 
 Defines the response interface to receive the device status.
 
-**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary:
 
 ### Attributes
 
@@ -30,7 +30,7 @@ Defines the response interface to receive the device status.
 
 Enumerates the device status types.
 
-**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary:
 
 | Name| Description|
 | -------- | -------- |
@@ -41,7 +41,7 @@ Enumerates the device status types.
 
 Enumerates the device status events.
 
-**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary:
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
@@ -53,7 +53,7 @@ Enumerates the device status events.
 
 Enumerates the device statuses.
 
-**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary:
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
@@ -66,11 +66,11 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 
 Subscribes to the device status.
 
-**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary:
 
 **Parameters**
 
-| Name                 | Type                                              | Mandatory| Description                         |
+| Parameter Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | event  | [ActivityEvent](#activityevent)  | Yes  | Event type.             |
@@ -92,11 +92,11 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 Obtains the device status.
 
-**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary:
 
 **Parameters**
 
-| Name                 | Type                                              | Mandatory| Description                         |
+| Parameter Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | callback             | Callback<[ActivityResponse](#activityresponse)\>  | Yes  | Callback used to receive reported data.   |
@@ -115,11 +115,11 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 
 Unsubscribes from the device status.
 
-**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary:
 
 **Parameters**
 
-| Name                 | Type                                              | Mandatory| Description                         |
+| Parameter Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | event  | [ActivityEvent](#activityevent)  | Yes  | Event type.             |
