@@ -47,11 +47,11 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
     
 
   ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let callbackId;
 
-export default class MyAbility extends Ability {
+export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();

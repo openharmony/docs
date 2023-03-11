@@ -24,7 +24,6 @@ import common from '@ohos.app.ability.common';
 | Context   | [Context](js-apis-inner-application-context.md)               | 否   | Context二级模块。 |
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | 否   | ExtensionContext二级模块。 |
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | 否   | FormExtensionContext二级模块。 |
-| AreaMode   | [AreaMode](#areamode)               | 否   | AreaMode枚举值。 |
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | 否   | EventHub二级模块。 |
 | PermissionRequestResult   | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | 否   | PermissionRequestResult二级模块。 |
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | 否   | PacMap二级模块。 |
@@ -42,7 +41,6 @@ let baseContext: common.BaseContext;
 let context: common.Context;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
-let areaMode: common.AreaMode;
 let eventHub: common.EventHub;
 let permissionRequestResult: common.PermissionRequestResult;
 let pacMap: common.PacMap;

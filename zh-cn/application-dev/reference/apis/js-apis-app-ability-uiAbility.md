@@ -205,7 +205,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
     
   ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  class MyUIAbility extends UIAbility {
+  class MyUIAbility extends Ability {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams['myData'] = 'my1234567';
@@ -233,7 +233,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 **示例：**
     
   ```ts
-   class MyUIAbility extends UIAbility {
+   class MyUIAbility extends Ability {
       onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
           console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
@@ -293,7 +293,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Objec
   ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-class MyUIAbility extends UIAbility {
+class MyUIAbility extends Ability {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
         wantParam['myData'] = 'my1234567';
@@ -339,7 +339,6 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{ // 自定义的Sequenceable数据结构
     name:''
     str:''
@@ -420,7 +419,6 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageParc
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
     name:''
     str:''
@@ -492,7 +490,6 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -533,7 +530,6 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -584,7 +580,6 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -636,7 +631,7 @@ off(type: 'release', callback: OnReleaseCallback): void;
     
   ```ts
   let caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainUIAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -687,7 +682,7 @@ off(type: 'release'): void;
     
   ```ts
   let caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainUIAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -742,7 +737,6 @@ on(method: string, callback: CalleeCallback): void;
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:''
       str:''
@@ -809,7 +803,6 @@ off(method: string): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let method = 'call_Function';
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {

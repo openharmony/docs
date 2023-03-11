@@ -12,7 +12,7 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 在使用eventHub的功能前，需要通过Ability实例的成员变量context获取。
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import Ability from '@ohos.app.ability.UIAbility';
 export default class MainAbility extends Ability {
     func1(){
         console.log('func1 is called');
@@ -41,7 +41,7 @@ on(event: string, callback: Function): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.UIAbility';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -79,7 +79,7 @@ off(event: string, callback?: Function): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.UIAbility';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -117,7 +117,7 @@ emit(event: string, ...args: Object[]): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.UIAbility';
   
   export default class MainAbility extends Ability {
       onForeground() {

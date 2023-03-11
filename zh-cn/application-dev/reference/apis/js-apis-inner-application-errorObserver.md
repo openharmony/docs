@@ -19,12 +19,12 @@ onUnhandledException(errMsg: string): void;
 **示例：**
 
 ```ts
-import errorManager from '@ohos.application.errorManager';
+import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ' + JSON.stringify(errorMsg));
     }
 };
-errorManager.registerErrorObserver(observer);
+errorManager.on('error',observer);
 ```

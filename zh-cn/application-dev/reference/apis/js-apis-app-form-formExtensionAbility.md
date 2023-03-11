@@ -45,6 +45,8 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from'@ohos.app.form.formBindingData';
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want) {
     console.log('FormExtensionAbility onAddForm, want:' + want.abilityName);
