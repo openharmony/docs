@@ -60,9 +60,9 @@ Calculates a hash value for a file. This API uses a promise to return the result
 
 **Return value**
 
-| Type                   | Description                        |
-| --------------------- | -------------------------- |
-| Promise&lt;string&gt; | Promise used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
+  | Type                   | Description                        |
+  | --------------------- | -------------------------- |
+  | Promise&lt;string&gt; | Promise used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Example**
 
@@ -93,6 +93,7 @@ Calculates a hash value for a file. This API uses an asynchronous callback to re
 
 **Example**
   ```js
+  let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256", (err, str) => {
     if (err) {
       console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);

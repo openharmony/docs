@@ -35,7 +35,7 @@ Creates a **FormBindingData** object.
 
 | Name| Type          | Mandatory| Description                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object\|string | No  | Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by "formImages", and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {"formImages": {"key1": fd1, "key2": fd2}}.|
+| obj    | Object\|string | No  | Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.|
 
 
 **Return value**
@@ -48,17 +48,16 @@ Creates a **FormBindingData** object.
 **Example**
 
 ```ts
-import formBindingData from @ohos.application.formBindingData;
-import fs from '@ohos.file.fs';
-
-try {
-  let fd = fs.openSync('/path/to/form.png')
+import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
+let context=featureAbility.getContext();
+context.getOrCreateLocalDir((err,data)=>{
+  let path=data+'/xxx.jpg';
+  let fd = fileio.openSync(path);
   let obj = {
-    "temperature": "21°",
-    "formImages": { "image": fd }
+    'temperature': '21°',
+    'formImages': {'image': fd}
   };
-  formBindingData.createFormBindingData(obj);
-} catch (error.code) {
-  console.log('catch error, error:' + JSON.stringify(error));
-}
+  let formBindingDataObj = formBindingData.createFormBindingData(obj);
+});
 ```

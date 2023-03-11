@@ -142,7 +142,7 @@
    function grantPermission() {
      let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
      context.requestPermissionsFromUser(permissions).then((data) => {
-       console.log('success: ${data}');
+       console.info('success: ${data}');
      }).catch((error) => {
        console.error('failed: ${error}');
      });

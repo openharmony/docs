@@ -24,7 +24,7 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
-- [Common Event and Notification](notification/notification-brief.md)
+- [Common Event and Notification](notification/notification-overview.md)
 - [Window Manager](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/audio-overview.md)
@@ -48,7 +48,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ### Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/monthly_20221018/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
 
 ### API References
 

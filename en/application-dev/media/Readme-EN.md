@@ -1,9 +1,7 @@
 # Media
 
-- Audio
+- Audio and Video
   - [Audio Overview](audio-overview.md)
-  - [Audio Playback Development](audio-playback.md) 
-  - [Audio Recording Development](audio-recorder.md) 
   - [Audio Rendering Development](audio-renderer.md)
   - [Audio Stream Management Development](audio-stream-manager.md)
   - [Audio Capture Development](audio-capturer.md)
@@ -12,10 +10,12 @@
   - [Audio Interruption Mode Development](audio-interruptmode.md)
   - [Volume Management Development](audio-volume-manager.md)
   - [Audio Routing and Device Management Development](audio-routing-manager.md)
-
-- Video
-  - [Video Playback Development](video-playback.md)
-  - [Video Recording Development](video-recorder.md)
+  - [AVPlayer Development (Recommended)](avplayer-playback.md)
+  - [AVRecorder Development (Recommended)](avrecorder.md)
+  - [Audio Playback Development (To Be Deprecated)](audio-playback.md) 
+  - [Audio Recording Development (To Be Deprecated)](audio-recorder.md) 
+  - [Video Playback Development (To Be Deprecated)](video-playback.md)
+  - [Video Recording Development (To Be Deprecated)](video-recorder.md)
 
 - AVSession
   - [AVSession Overview](avsession-overview.md)

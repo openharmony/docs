@@ -21,14 +21,14 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 
 **System API**: This enum is an internal definition of a system API and cannot be called by third-party applications.
 
-| Name| Value| Description|
+| Name| Value| Description| 
 | -------- | -------- | -------- |
-| INITIAL | 0 | The ability is in the initial state.|
-| FOCUS | 2 | The ability has the focus.|
-| FOREGROUND | 9 | The ability is in the foreground state. |
-| BACKGROUND | 10 | The ability is in the background state. |
-| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. |
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. |
+| INITIAL | 0 | The ability is in the initial state.| 
+| FOCUS | 2 | The ability has the focus. |
+| FOREGROUND | 9 | The ability is in the foreground state. | 
+| BACKGROUND | 10 | The ability is in the background state. | 
+| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
+| BACKGROUNDING | 12 | The ability is in the state of being switched to the background.  | 
 
 ## updateConfiguration
 
@@ -39,7 +39,7 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
+ 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -64,7 +64,7 @@ const config = {
   language: 'Zh-Hans',                 // Simplified Chinese.
   colorMode: COLOR_MODE_LIGHT,         // Light theme.
   direction: DIRECTION_VERTICAL,       // Vertical direction.
-  screenDensity: SCREEN_DENSITY_SDPI,  // The screen resolution is SDPI.
+  screenDensity: SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
   displayId: 1,                        // The application is displayed on the display with ID 1.
   hasPointerDevice: true,              // A pointer device is connected.
 };
@@ -76,7 +76,7 @@ try {
         } else {
             console.log('updateConfiguration success.');
         }
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -122,7 +122,7 @@ const config = {
   language: 'Zh-Hans',                 // Simplified Chinese.
   colorMode: COLOR_MODE_LIGHT,         // Light theme.
   direction: DIRECTION_VERTICAL,       // Vertical direction.
-  screenDensity: SCREEN_DENSITY_SDPI,  // The screen resolution is SDPI.
+  screenDensity: SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
   displayId: 1,                        // The application is displayed on the display with ID 1.
   hasPointerDevice: true,              // A pointer device is connected.
 };
@@ -132,7 +132,7 @@ try {
         console.log('updateConfiguration success.');
     }).catch((err) => {
         console.log('updateConfiguration fail, err: ' + JSON.stringify(err));
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -153,7 +153,7 @@ Obtains the UIAbility running information. This API uses an asynchronous callbac
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in this callback.  |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in this callback.     |
 
 **Error codes**
 
@@ -274,7 +274,7 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 Obtains the ExtensionAbility running information. This API uses a promise to return the result.
-
+ 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -311,7 +311,7 @@ try {
         console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
     }).catch((err) => {
         console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
-    })
+    });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
         + ' error.message: ' + JSON.stringify(paramError.message));
@@ -359,7 +359,7 @@ abilityManager.getTopAbility((err, data) => {
 getTopAbility(): Promise\<ElementName>;
 
 Obtains the top ability, which is the ability that has the window focus. This API uses a promise to return the result.
-
+ 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -385,5 +385,5 @@ abilityManager.getTopAbility().then((data) => {
     console.log('getTopAbility success, data: ' + JSON.stringify(data));
 }).catch((err) => {
     console.log('getTopAbility fail, err: '  + JSON.stringify(err));
-})
+});
 ```

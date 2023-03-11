@@ -91,7 +91,7 @@ The **animate** attributes and the attributes in the following table are support
 ```
 
 
-![animate-transform](figures/animate-transform.gif)
+![en-us_image_0000001127285004](figures/en-us_image_0000001127285004.gif)
 
 
 Animation overlay
@@ -150,7 +150,7 @@ Animation overlay
 ```
 
 
-![animate-transform2](figures/animate-transform2.gif)
+![en-us_image_0000001127125192](figures/en-us_image_0000001127125192.gif)
 
 
 Example of involved components

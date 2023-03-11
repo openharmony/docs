@@ -1,8 +1,5 @@
 # @ohos.util.HashMap (Nonlinear Container HashMap)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **HashMap** is a map implemented based on the array, linked list, and red-black tree. It provides efficient data query, insertion, and removal. The elements in a **HashMap** instance are mappings of key-value pairs. Each key must be unique and have only one value.
 
 **HashMap** is faster in accessing data than **[TreeMap](js-apis-treemap.md)**, because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
@@ -14,6 +11,11 @@
 This topic uses the following to identify the use of generics:
 - K: Key
 - V: Value
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -482,7 +484,7 @@ let hashMap = new HashMap();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
 hashMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

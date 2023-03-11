@@ -3434,20 +3434,3 @@ isSymbolicLink(): boolean
   let dir = fileio.opendirSync(pathDir);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```
-
-## Filter<sup>9+</sup>
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.File.FileIO
-
-文件过滤器配置项。
-
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| suffix | Array&lt;string&gt;     | 文件后缀名，各个关键词OR关系。           |
-| displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。 |
-| mimeType    | Array&lt;string&gt; | mime类型匹配，各个关键词OR关系。       |
-| fileSizeOver    | number | 文件大小匹配，大于等于指定大小的文件。       |
-| lastModifiedAfter    | Date | 修改时间匹配，在指定时间点后的文件。       |
-| excludeMedia    | Boolean | 是否排除Media中已有的文件。       |

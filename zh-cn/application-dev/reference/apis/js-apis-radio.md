@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import radio from '@ohos.telephony.radio'
+import radio from '@ohos.telephony.radio';
 ```
 
 ## radio.getRadioTech
@@ -46,7 +46,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 ```js
 let slotId = 0;
-radio.getRadioTech(slotId, (err, data) =>{ 
+radio.getRadioTech(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -130,7 +130,7 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 **示例：**
 
 ```js
-radio.getNetworkState((err, data) =>{
+radio.getNetworkState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```

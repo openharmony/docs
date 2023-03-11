@@ -154,3 +154,21 @@ The ability is not installed.
 **处理步骤**
 
 检查传入的abilityName与bundleName是否有效。
+
+## 16501005 连接卡片渲染服务失败
+
+**错误信息**
+
+Connect FormRenderService failed, please try again later.
+
+**错误描述**
+
+连接卡片渲染服务失败时，系统会报此错误码。
+
+**可能原因**
+
+服务繁忙。
+
+**处理步骤**
+
+服务繁忙，请稍后重试。

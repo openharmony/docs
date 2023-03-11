@@ -1,4 +1,4 @@
-# @ohos.account.osAccount
+# @ohos.account.osAccount (OS Account Management)
 
 The **osAccount** module provides basic capabilities for managing OS accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account.
 
@@ -155,7 +155,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -192,7 +192,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                       |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -304,13 +304,13 @@ Checks whether an OS account is activated. This API uses a promise to return the
   }
   ```
 
-### checkConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>9+</sup>
 
-checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
+checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the specified constraint is enabled for an OS account. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -337,25 +337,25 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   let localId = 100;
   let constraint = "constraint.wifi";
   try {
-    accountManager.checkConstraintEnabled(localId, constraint, (err, isEnabled)=>{
+    accountManager.checkOsAccountConstraintEnabled(localId, constraint, (err, isEnabled)=>{
       if (err) {
-        console.log("checkConstraintEnabled failed, error: " + JSON.stringify(err));
+        console.log("checkOsAccountConstraintEnabled failed, error: " + JSON.stringify(err));
       } else {
-        console.log("checkConstraintEnabled successfully, isEnabled: " + isEnabled);
+        console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkConstraintEnabled exception: " + JSON.stringify(err));
+    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
   }
   ```
 
-### checkConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>9+</sup>
 
-checkConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
+checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
 Checks whether the specified constraint is enabled for an OS account. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -387,13 +387,13 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   let localId = 100;
   let constraint = "constraint.wifi";
   try {
-    accountManager.checkConstraintEnabled(localId, constraint).then((isEnabled) => {
-      console.log("checkConstraintEnabled successfully, isEnabled: " + isEnabled);
+    accountManager.checkOsAccountConstraintEnabled(localId, constraint).then((isEnabled) => {
+      console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
     }).catch((err) => {
-      console.log("checkConstraintEnabled failed, error: "  + JSON.stringify(err));
+      console.log("checkOsAccountConstraintEnabled failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkConstraintEnabled exception: " + JSON.stringify(err));
+    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
   }
   ```
 
@@ -973,9 +973,9 @@ Obtains the number of OS accounts created. This API uses a promise to return the
   }
   ```
 
-### queryOsAccountLocalIdFromProcess<sup>9+</sup>
+### getOsAccountLocalId<sup>9+</sup>
 
-queryOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the ID of the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
 
@@ -998,21 +998,21 @@ Obtains the ID of the OS account to which the current process belongs. This API 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromProcess((err, localId) => {
+    accountManager.getOsAccountLocalId((err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromProcess failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalId failed, error: " + JSON.stringify(err));
       } else {
-        console.log("queryOsAccountLocalIdFromProcess successfully, localId: " + localId);
+        console.log("getOsAccountLocalId successfully, localId: " + localId);
       }
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromProcess exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalId exception: " + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromProcess<sup>9+</sup>
+### getOsAccountLocalId<sup>9+</sup>
 
-queryOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
+getOsAccountLocalId(): Promise&lt;number&gt;
 
 Obtains the ID of the OS account to which the current process belongs. This API uses a promise to return the result.
 
@@ -1035,19 +1035,19 @@ Obtains the ID of the OS account to which the current process belongs. This API 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromProcess().then((localId) => {
-      console.log("queryOsAccountLocalIdFromProcess successfully, localId: " + localId);
+    accountManager.getOsAccountLocalId().then((localId) => {
+      console.log("getOsAccountLocalId successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromProcess failed, error: "  + JSON.stringify(err));
+      console.log("getOsAccountLocalId failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromProcess exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalId exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromUid<sup>9+</sup>
+### getOsAccountLocalIdForUid<sup>9+</sup>
 
-queryOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on the process UID. This API uses an asynchronous callback to return the result.
 
@@ -1073,20 +1073,20 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   try {
-    accountManager.queryOsAccountLocalIdFromUid(uid, (err, localId) => {
+    accountManager.getOsAccountLocalIdForUid(uid, (err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
       }
-      console.log("queryOsAccountLocalIdFromUid successfully, localId: " + localId);
+      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromUid exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalIdForUid exception: " + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromUid<sup>9+</sup>
+### getOsAccountLocalIdForUid<sup>9+</sup>
 
-queryOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
+getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the process UID. This API uses a promise to return the result.
 
@@ -1117,19 +1117,19 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   try {
-    accountManager.queryOsAccountLocalIdFromUid(uid).then((localId) => {
-      console.log("queryOsAccountLocalIdFromUid successfully, localId: " + localId);
+    accountManager.getOsAccountLocalIdForUid(uid).then((localId) => {
+      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+      console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromUid exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForUid exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromDomain<sup>9+</sup>
+### getOsAccountLocalIdForDomain<sup>9+</sup>
 
-queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on the domain account information. This API uses an asynchronous callback to return the result.
 
@@ -1157,21 +1157,21 @@ Obtains the OS account ID based on the domain account information. This API uses
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromDomain(domainInfo, (err, localId) => {
+    accountManager.getOsAccountLocalIdForDomain(domainInfo, (err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromDomain failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalIdForDomain failed, error: " + JSON.stringify(err));
       } else {
-        console.log("queryOsAccountLocalIdFromDomain successfully, localId: " + localId);
+        console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
       }
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromDomain exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromDomain<sup>9+</sup>
+### getOsAccountLocalIdForDomain<sup>9+</sup>
 
-queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
+getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the domain account information. This API uses a promise to return the result.
 
@@ -1204,13 +1204,13 @@ Obtains the OS account ID based on the domain account information. This API uses
   let accountManager = account_osAccount.getAccountManager();
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
-    accountManager.queryOsAccountLocalIdFromDomain(domainInfo).then((localId) => {
-      console.log("queryOsAccountLocalIdFromDomain successfully, localId: " + localId);
+    accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId) => {
+      console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromDomain failed, error: "  + JSON.stringify(err));
+      console.log("getOsAccountLocalIdForDomain failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromDomain exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalIdForDomain exception: " + JSON.stringify(err));
   }
   ```
 
@@ -1456,9 +1456,9 @@ Obtains information about all the OS accounts created. This API uses a promise t
   }
   ```
 
-### getActivatedOsAccountIds<sup>9+</sup>
+### getActivatedOsAccountLocalIds<sup>9+</sup>
 
-getActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains information about all activated OS accounts. This API uses an asynchronous callback to return the result.
 
@@ -1481,21 +1481,21 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.getActivatedOsAccountIds((err, idArray)=>{
-      console.log('getActivatedOsAccountIds err:' + JSON.stringify(err));
-      console.log('getActivatedOsAccountIds idArray length:' + idArray.length);
+    accountManager.getActivatedOsAccountLocalIds((err, idArray)=>{
+      console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
       for(let i=0;i<idArray.length;i++) {
         console.info('activated os account id: ' + idArray[i]);
       }
     });
   } catch (e) {
-    console.log('getActivatedOsAccountIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
   }
   ```
 
-### getActivatedOsAccountIds<sup>9+</sup>
+### getActivatedOsAccountLocalIds<sup>9+</sup>
 
-getActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
+getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains information about all activated OS accounts. This API uses a promise to return the result.
 
@@ -1518,13 +1518,13 @@ Obtains information about all activated OS accounts. This API uses a promise to 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.getActivatedOsAccountIds().then((idArray) => {
-      console.log('getActivatedOsAccountIds, idArray: ' + idArray);
+    accountManager.getActivatedOsAccountLocalIds().then((idArray) => {
+      console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
     }).catch((err) => {
-      console.log('getActivatedOsAccountIds err: '  + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getActivatedOsAccountIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
   }
   ```
 
@@ -1690,7 +1690,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
 | Type                                          | Description                                   |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account created.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the information about the created OS account.|
 
 **Error codes**
 
@@ -2214,9 +2214,9 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
   }
   ```
 
-### queryOsAccountLocalIdBySerialNumber<sup>9+</sup>
+### getOsAccountLocalIdForSerialNumber<sup>9+</sup>
 
-queryOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on the serial number (SN). This API uses an asynchronous callback to return the result.
 
@@ -2243,7 +2243,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber = 12345;
   try {
-    accountManager.queryOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
+    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err, localId)=>{
       console.log('ger localId err:' + JSON.stringify(err));
       console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
     });
@@ -2252,9 +2252,9 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
   }
   ```
 
-### queryOsAccountLocalIdBySerialNumber<sup>9+</sup>
+### getOsAccountLocalIdForSerialNumber<sup>9+</sup>
 
-queryOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
+getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the SN. This API uses a promise to return the result.
 
@@ -2286,19 +2286,19 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber = 12345;
   try {
-    accountManager.queryOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
-      console.log('queryOsAccountLocalIdBySerialNumber localId: ' + localId);
+    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId) => {
+      console.log('getOsAccountLocalIdForSerialNumber localId: ' + localId);
     }).catch((err) => {
-      console.log('queryOsAccountLocalIdBySerialNumber err: '  + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForSerialNumber err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccountLocalIdBySerialNumber exception: '  + JSON.stringify(e));
+    console.log('getOsAccountLocalIdForSerialNumber exception: '  + JSON.stringify(e));
   }
   ```
 
-### querySerialNumberByOsAccountLocalId<sup>9+</sup>
+### getSerialNumberForOsAccountLocalId<sup>9+</sup>
 
-querySerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
+getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the SN of an OS account based on the account ID. This API uses an asynchronous callback to return the result.
 
@@ -2325,7 +2325,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
   try {
-    accountManager.querySerialNumberByOsAccountLocalId(localId, (err, serialNumber)=>{
+    accountManager.getSerialNumberForOsAccountLocalId(localId, (err, serialNumber)=>{
       console.log('ger serialNumber err:' + JSON.stringify(err));
       console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
     });
@@ -2334,9 +2334,9 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
   }
   ```
 
-### querySerialNumberByOsAccountLocalId<sup>9+</sup>
+### getSerialNumberForOsAccountLocalId<sup>9+</sup>
 
-querySerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
+getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 Obtains the SN of an OS account based on the account ID. This API uses a promise to return the result.
 
@@ -2368,13 +2368,13 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
   try {
-    accountManager.querySerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
-      console.log('querySerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
+    accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber) => {
+      console.log('getSerialNumberForOsAccountLocalId serialNumber: ' + serialNumber);
     }).catch((err) => {
-      console.log('querySerialNumberByOsAccountLocalId err: '  + JSON.stringify(err));
+      console.log('getSerialNumberForOsAccountLocalId err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('querySerialNumberByOsAccountLocalId exception:' + JSON.stringify(e));
+    console.log('getSerialNumberForOsAccountLocalId exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2462,9 +2462,9 @@ Unsubscribes from the OS account activation states, including the states of the 
   }
   ```
 
-### getBundleIdFromUid<sup>9+</sup>
+### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
+getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains the bundle ID based on the UID. This API uses an asynchronous callback to return the result.
 
@@ -2492,17 +2492,17 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
   let accountManager = account_osAccount.getAccountManager();
   let testUid = 1000000;
   try {
-    accountManager.getBundleIdFromUid(testUid, (err, bundleId) => {
-      console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
-      console.info('getBundleIdFromUid bundleId:' + JSON.stringify(bundleId));
+    accountManager.getBundleIdForUid(testUid, (err, bundleId) => {
+      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
     });
   } catch (e) {
-    console.info('getBundleIdFromUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
   }
   ```
-### getBundleIdFromUid<sup>9+</sup>
+### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
+getBundleIdForUid(uid: number): Promise&lt;number&gt;;
 
 Obtains the bundle ID based on the UID. This API uses a promise to return the result.
 
@@ -2535,13 +2535,13 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
   let accountManager = account_osAccount.getAccountManager();
   let testUid = 1000000;
   try {
-    accountManager.getBundleIdFromUid(testUid).then((result) => {
-      console.info('getBundleIdFromUid bundleId:' + JSON.stringify(result));
+    accountManager.getBundleIdForUid(testUid).then((result) => {
+      console.info('getBundleIdForUid bundleId:' + JSON.stringify(result));
     }).catch((err)=>{
-      console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
+      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdFromUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2620,9 +2620,9 @@ Checks whether the current process belongs to the main OS account. This API uses
     console.info('isMainOsAccount exception:' + JSON.stringify(e));
   }
   ```
-### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
 
 Obtains the constraint source information of an OS account. This API uses an asynchronous callback to return the result.
 
@@ -2653,18 +2653,18 @@ Obtains the constraint source information of an OS account. This API uses an asy
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
-      console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
-      console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
+    accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
+      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
     });
   } catch (e) {
-    console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
   }
   ```
 
-### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
 Obtains the constraint source information of an OS account. This API uses a promise to return the result.
 
@@ -2700,15 +2700,16 @@ Obtains the constraint source information of an OS account. This API uses a prom
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
-      console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(result));
+    accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
+      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err)=>{
-      console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
+      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
   }
   ```
+
 ### isMultiOsAccountEnable<sup>(deprecated)</sup>
 
 isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
@@ -2725,7 +2726,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
@@ -2756,7 +2757,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                      |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
@@ -2851,7 +2852,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkConstraintEnabled](#checkconstraintenabled9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2888,7 +2889,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkConstraintEnabled](#checkconstraintenabled9-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9-1).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3157,7 +3158,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalId](#getosaccountlocalid9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3188,7 +3189,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalId](#getosaccountlocalid9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3217,7 +3218,7 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3250,7 +3251,7 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3286,7 +3287,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3321,7 +3322,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3429,7 +3430,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountIds](#getactivatedosaccountids9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3458,7 +3459,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountIds](#getactivatedosaccountids9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1).
 
 Obtains information about all activated OS accounts. This API uses a promise to return the result.
 
@@ -3668,7 +3669,7 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3698,7 +3699,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3734,7 +3735,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3764,7 +3765,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -4280,12 +4281,17 @@ Register a PIN inputer.
 | ----------| ----------------------- | --- | -------------------------- |
 | inputer   | [IInputer](#iinputer8)  | Yes | PIN inputer, which is used to obtain the PIN.|
 
+**Return value**
+
+| Type   | Description                                          |
+| :------ | :-------------------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
 **Error codes**
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
 
 **Example**
@@ -4294,8 +4300,8 @@ Register a PIN inputer.
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     let result = pinAuth.registerInputer({
-        onGetData: (authSubType, callback) => {
-          callback.onSetData(authSubType, password);
+        onGetData: (pinSubType, callback) => {
+          callback.onSetData(pinSubType, password);
         }
     });
     console.log('registerInputer result = ' + result);
@@ -4320,91 +4326,6 @@ Unregisters this PIN inputer.
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
-  ```
-
-### InputerManager <sup>10+</sup>
-
-Provides APIs for managing credential inputers.
-
-### registerInputer<sup>10+</sup>
-
-registerInputer(authType: AuthType, inputer: IInputer): void;
-
-Register a credential inputer.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Account.OsAccount
-
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL or ohos.permission.MANAGE_USER_IDM
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description                     |
-| ----------| ----------------------- | --- | -------------------------- |
-| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
-| inputer   | [IInputer](#iinputer8)  | Yes | Credential inputer to register.|
-
-**Error codes**
-
-| ID| Error Message                    |
-| -------- | --------------------------- |
-| 12300001 | System service exception. |
-| 12300102 | Invalid authType or inputer. |
-| 12300103 | The credential inputer has been registered. |
-| 12300106 | Unsupported authType. |
-
-**Example**
-  ```js
-  let inputerMgr = new account_osAccount.InputerManager();
-  let authType = account_osAccount.AuthType.DOMAIN;
-  let password = new Uint8Array([0, 0, 0, 0, 0]);
-  try {
-    InputerMgr.registerInputer(authType, {
-        onGetData: (authSubType, callback) => {
-          callback.onSetData(authSubType, password);
-        }
-    });
-    console.log('registerInputer success.');
-  } catch (e) {
-    console.log('registerInputer exception = ' + JSON.stringify(e));
-  }
-  ```
-
-### unregisterInputer<sup>10+</sup>
-
-unregisterInputer(authType: AuthType): void;
-
-Unregisters this credential inputer.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Account.OsAccount
-
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL or ohos.permission.MANAGE_USER_IDM
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description                     |
-| ----------| ----------------------- | --- | -------------------------- |
-| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
-
-**Error codes**
-
-| ID| Error Message                    |
-| -------- | --------------------------- |
-| 12300002  | Invalid authType. |
-
-**Example**
-  ```js
-  let inputerMgr = new account_osAccount.InputerManager();
-  let authType = account_osAccount.AuthType.DOMAIN;
-  try {
-    inputerMgr.unregisterInputer(authType);
-    console.log('unregisterInputer success.');
-  } catch(err) {
-    console.log("unregisterInputer err:" + JSON.stringify(err));
-  }
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -4536,8 +4457,8 @@ Adds credential information, including the credential type, subtype, and token (
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.registerInputer({
-    onGetData: (authSubType, callback) => {
-      callback.onSetData(authSubType, password);
+    onGetData: (pinSubType, callback) => {
+      callback.onSetData(pinSubType, password);
     }
   });
   let credentialInfo = {
@@ -4550,12 +4471,12 @@ Adds credential information, including the credential type, subtype, and token (
     try {
     userIDM.addCredential(credentialInfo, {
       onResult: (result, extraInfo) => {
-        console.log('addCredential result = ' + result);
-        console.log('addCredential extraInfo = ' + extraInfo);
+        console.log('updateCredential result = ' + result);
+        console.log('updateCredential extraInfo = ' + extraInfo);
       }
     });
     } catch (e) {
-      console.log('addCredential exception = ' + JSON.stringify(e));
+      console.log('updateCredential exception = ' + JSON.stringify(e));
     }
   });
   ```
@@ -4600,8 +4521,8 @@ Updates credential information. This API uses a callback to return the result.
     token: null
   };
   pinAuth.registerInputer({
-    onGetData: (authSubType, callback) => {
-      callback.onSetData(authSubType, password);
+    onGetData: (pinSubType, callback) => {
+      callback.onSetData(pinSubType, password);
     }
   });
   userIDM.openSession((err, challenge) => {
@@ -4900,7 +4821,7 @@ Provides callbacks for PIN operations.
 
 ### onSetData<sup>8+</sup>
 
-onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
+onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 **System API**: This is a system API.
 
@@ -4912,7 +4833,7 @@ Called to set data in a PIN operation.
 
 | Name     | Type                                    | Mandatory| Description                                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| authSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
+| pinSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
 | data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
 
 **Example**
@@ -4920,11 +4841,11 @@ Called to set data in a PIN operation.
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (authSubType, callback) => {
-        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(authSubType, passwordNumber);
+    onGetData: (pinSubType, callback) => {
+        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(pinSubType, passwordNumber);
         } else {
-          callback.onSetData(authSubType, password);
+          callback.onSetData(pinSubType, password);
         }
     }
   };
@@ -4932,13 +4853,13 @@ Called to set data in a PIN operation.
 
 ## IInputer<sup>8+</sup>
 
-Provides callbacks for credential inputers.
+Provides callbacks for the PIN input box.
 
 **System API**: This is a system API.
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
 
 Called to obtain data.
 
@@ -4957,11 +4878,11 @@ Called to obtain data.
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (authSubType, callback) => {
-        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(authSubType, passwordNumber);
+    onGetData: (pinSubType, callback) => {
+        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(pinSubType, passwordNumber);
         } else {
-          callback.onSetData(authSubType, password);
+          callback.onSetData(pinSubType, password);
         }
     }
   };
@@ -5237,8 +5158,6 @@ Enumerates the authentication credential types.
 | ----- | ----- | ---------------- |
 | PIN   | 1     | PIN authentication.|
 | FACE  | 2     | Facial authentication.|
-| FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication.|
-| DOMAIN<sup>10+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5255,7 +5174,6 @@ Enumerates the authentication credential subtypes.
 | PIN_MIXED  | 10002 | Custom mixed credentials.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
-| DOMAIN_MIXED<sup>10+</sup>    | 10240001 | Mixed domain authentication credentials.  |
 
 ## AuthTrustLevel<sup>8+</sup>
 

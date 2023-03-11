@@ -20,6 +20,7 @@
       - [DataShareExtensionAbility（仅对系统应用开放）](datashareextensionability.md)
       - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility](windowextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)

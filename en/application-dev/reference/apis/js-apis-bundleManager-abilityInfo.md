@@ -22,7 +22,7 @@ The **AbilityInfo** module defines the ability information. A system application
 | icon                  | string                                                   | Yes  | No  | Index of the ability icon resource file.                |
 | iconId                | number                                                   | Yes  | No  | ID of the ability icon.                      |
 | process               | string                                                   | Yes  | No  | Process in which the ability runs. If this parameter is not set, the bundle name is used.|
-| isVisible             | boolean                                                  | Yes  | No  | Whether the ability can be called by other bundles.        |
+| exported             | boolean                                                  | Yes  | No  | Whether the ability can be called by other bundles.        |
 | type                  | [AbilityType](js-apis-bundleManager.md#abilitytype)      | Yes  | No  | Ability type.<br>This attribute can be used only in the FA model.|
 | orientation           | [DisplayOrientation](js-apis-bundleManager.md#displayorientation)  | Yes  | No  | Ability display orientation.                        |
 | launchType            | [LaunchType](js-apis-bundleManager.md#launchtype)        | Yes  | No  | Ability launch mode.                        |

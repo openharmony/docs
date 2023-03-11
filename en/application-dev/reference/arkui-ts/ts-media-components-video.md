@@ -48,7 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | muted     | boolean                                  | Whether to mute the video.<br>Default value: **false**         |
 | autoPlay  | boolean                                  | Whether to enable auto play.<br>Default value: **false**       |
 | controls  | boolean                                  | Whether to display the video playback control bar.<br>Default value: **true**|
-| objectFit | [ImageFit](ts-basic-components-image.md) | Video scale type.<br>Default value: **Cover**     |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | Video scale type.<br>Default value: **Cover**     |
 | loop      | boolean                                  | Whether to repeat the video.<br>Default value: **false**   |
 
 ## Events
@@ -243,5 +243,3 @@ struct VideoCreateComponent {
   }
 }
 ```
-
-<!--no_check-->

@@ -15,7 +15,7 @@ import fs from '@ohos.file.fs';
 
 ## Guidelines
 
-Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the application sandbox as follows:
+Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the file or directory in the application sandbox as follows:
 
 **Stage Model**
 
@@ -147,7 +147,7 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 | Type                 | Description                          |
 | ------------------- | ---------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return a Boolean value. |
+| Promise&lt;boolean&gt; | Promise used to return a Boolean value.|
 
 **Example**
 
@@ -1079,7 +1079,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Path of the file in the application sandbox.                                  |
 | options  | Object                      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the content read.                        |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the content read.                        |
 
 **Example**
 
@@ -1169,7 +1169,7 @@ Obtains information about a symbolic link. This API uses an asynchronous callbac
 | Name  | Type                              | Mandatory| Description                                  |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
 | path     | string                             | Yes  | Path of the symbolic link in the application sandbox.|
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback used to return the symbolic link information obtained.      |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the symbolic link information obtained.      |
 
 **Example**
 
@@ -1215,7 +1215,7 @@ Obtains information about a symbolic link synchronously.
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-Renames a file. This API uses a promise to return the result.
+Renames a file or directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1248,7 +1248,7 @@ Renames a file. This API uses a promise to return the result.
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Renames a file. This API uses an asynchronous callback to return the result.
+Renames a file or directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1278,7 +1278,7 @@ Renames a file. This API uses an asynchronous callback to return the result.
 
 renameSync(oldPath: string, newPath: string): void
 
-Synchronously renames a file.
+Renames a file or directory synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1366,7 +1366,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 fsyncSync(fd: number): void
 
-Flushes data of a file to disk in synchronous mode.
+Flushes data of a file to disk synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1454,7 +1454,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 fdatasyncSync(fd: number): void
 
-Synchronizes data in a file in synchronous mode.
+Synchronizes data in a file synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 

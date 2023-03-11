@@ -16,6 +16,8 @@
 
 Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -28,8 +30,8 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：HorizontalAlign.Center |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start |
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：HorizontalAlign.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 

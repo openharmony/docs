@@ -1,7 +1,12 @@
 # Bundle Manager
 
 
-The Bundle Manager provides the bundle debugging and testing capabilities that enable you to install, uninstall, update, and query a bundle (application). With this tool, you can send commands (started with **bm**) in the hdc shell to perform various system operations, such as installing and uninstalling a bundle and querying bundle information.
+The Bundle Manager enables you to install, uninstall, update, and query a bundle (application). It provides the bundle debugging capabilities, for example, installing and uninstalling a bundle and querying bundle information.
+
+> **NOTE**
+>
+> Before using this tool, you must obtain the [hdc tool](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) and run the hdc shell command.
+
 
 **Table 1** bm commands
 
@@ -41,6 +46,7 @@ bm help
 bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 ```
 
+
 **Table 3** Installation command parameters
 
 | Name| Mandatory| Description|
@@ -67,6 +73,7 @@ install bundle successfully.
 bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 ```
 
+
 **Table 4** Uninstall command parameters
 
 | Name| Mandatory| Description|
@@ -81,7 +88,7 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 Example
 
 ```bash
-bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 -k
+bm uninstall -n com.ohos.app -m com.ohos.app.MainAbility -u 100 -k
 // The execution result is as follows:
 uninstall bundle successfully.
 ```
@@ -95,6 +102,7 @@ bm dump [-h help] [-a] [-n bundleName] [-s shortcutInfo] [-u userId] [-d deviceI
 
 
 If **-u** is not specified, the command applies to all users.
+
 
 **Table 5** Dump command parameters
 
@@ -131,6 +139,7 @@ bm clean [-h] [-c] [-n  bundleName] [-d] [-u userId]
 
 If **-u** is not specified, the command applies to all active users.
 
+
 **Table 6** Clean command parameters
 
 | Name| Description|
@@ -164,6 +173,7 @@ bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
 If **-u** is not specified, the command applies to all active users.
 
+
 **Table 7** Enable command parameters
 
 | Name| Description|
@@ -178,7 +188,7 @@ Example
 
 ```bash
 # Enable a bundle.
-bm enable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
+bm enable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
 // The execution result is as follows:
 enable bundle successfully.
 ```
@@ -193,6 +203,7 @@ bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
 If **-u** is not specified, the command applies to all active users.
 
+
 **Table 8** Disabled command parameters
 
 | Name| Description|
@@ -206,7 +217,7 @@ Example
 
 ```bash
 # Disable a bundle.
-bm disable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
+bm disable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
 // The execution result is as follows:
 disable bundle successfully.
 ```
@@ -217,6 +228,7 @@ disable bundle successfully.
 ```bash
 bm get [-h] [-u]
 ```
+
 
 **Table 9** Parameters used in the command for obtaining the UDID
 
@@ -242,6 +254,7 @@ udid of current device is :
 ```bash
 bm quickfix [-h] [-a -f filePath] [-q -b bundleName]
 ```
+
 
 **Table 10** Parameters used in the command for quick fix
 

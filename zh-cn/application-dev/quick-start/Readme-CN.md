@@ -19,6 +19,10 @@
       - [多HAP使用规则](multi-hap-rules.md)
       - [多HAP运行机制及数据通信方式](multi-hap-principles.md)
     - [应用程序包安装和卸载流程](application-package-install-uninstall.md)
+    - [应用程序包更新流程](application-package-update.md)
+    - 应用程序包快速修复
+      - [快速修复概述](quickfix-principles.md)
+      - [快速修复调试指导](quickfix-debug.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)

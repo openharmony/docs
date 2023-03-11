@@ -67,14 +67,14 @@ export class AVRecorderDemo {
     let surfaceID; // The surface ID is obtained by calling getInputSurface and transferred to the videoOutput object of the camera.
     await this.getFd('01.mp4');
 
-    // Configure the parameters related to audio and video recording.
+    // Configure the parameters related to audio and video recording based on those supported by the hardware device.
     let avProfile = {
         audioBitrate : 48000,
         audioChannels : 2,
         audioCodec : media.CodecMimeType.AUDIO_AAC,
         audioSampleRate : 48000,
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-        videoBitrate : 48000,
+        videoBitrate : 2000000,
         videoCodec : media.CodecMimeType.VIDEO_MPEG4,
         videoFrameWidth : 640,
         videoFrameHeight : 480,
@@ -363,10 +363,10 @@ export class VideoRecorderDemo {
     let surfaceID; // The surface ID is obtained by calling getInputSurface and transferred to the videoOutput object of the camera.
     await this.getFd('01.mp4');
 
-    // Configure the parameters related to video recording.
+    // Configure the parameters related to pure video recording based on those supported by the hardware device.
     let videoProfile = {
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-        videoBitrate : 48000,
+        videoBitrate : 2000000,
         videoCodec : media.CodecMimeType.VIDEO_MPEG4,
         videoFrameWidth : 640,
         videoFrameHeight : 480,

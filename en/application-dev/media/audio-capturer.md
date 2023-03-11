@@ -21,7 +21,7 @@ This following figure shows the audio capturer state transitions.
 
 ## Constraints
 
-Before developing the audio data collection feature, configure the **ohos.permission.MICROPHONE** permission for your application. For details about permission configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+Before developing the audio data collection feature, configure the **ohos.permission.MICROPHONE** permission for your application. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md).
 
 ## How to Develop
 
@@ -72,7 +72,7 @@ For details about the APIs, see [AudioCapturer in Audio Management](../reference
      }
      await audioCapturer.start();
 
-     let state = audioCapturer.state;
+     state = audioCapturer.state;
      if (state == audio.AudioState.STATE_RUNNING) {
        console.info('AudioRecLog: Capturer started');
      } else {
@@ -86,7 +86,7 @@ For details about the APIs, see [AudioCapturer in Audio Management](../reference
    The following example shows how to write recorded data into a file.
 
    ```js
-   import fileio from '@ohos.fileio';
+   import fs from '@ohos.file.fs';
 
     let state = audioCapturer.state;
     // The read operation can be performed only when the state is STATE_RUNNING.
@@ -96,31 +96,36 @@ For details about the APIs, see [AudioCapturer in Audio Management](../reference
     }
       
    const path = '/data/data/.pulse_dir/capture_js.wav'; // Path for storing the collected audio file.
-   let fd = fileio.openSync(path, 0o102, 0o777);
-   if (fd !== null) {
-     console.info('AudioRecLog: file fd created');
-   }
-   else{
-     console.info('AudioRecLog: file fd create : FAILED');
+   let file = fs.openSync(filePath, 0o2);
+   let fd = file.fd;
+   if (file !== null) {
+     console.info('AudioRecLog: file created');
+   } else {
+     console.info('AudioRecLog: file create : FAILED');
      return;
    }
-      
-   fd = fileio.openSync(path, 0o2002, 0o666);
+
    if (fd !== null) {
      console.info('AudioRecLog: file fd opened in append mode');
    }
       
    let numBuffersToCapture = 150; // Write data for 150 times.
+   let count = 0;
    while (numBuffersToCapture) {
+     let bufferSize = await audioCapturer.getBufferSize();
      let buffer = await audioCapturer.read(bufferSize, true);
+     let options = {
+       offset: count * this.bufferSize,
+       length: this.bufferSize
+     }
      if (typeof(buffer) == undefined) {
        console.info('AudioRecLog: read buffer failed');
      } else {
-       let number = fileio.writeSync(fd, buffer);
+       let number = fs.writeSync(fd, buffer, options);
        console.info(`AudioRecLog: data written: ${number}`);
-     }
-      
+     } 
      numBuffersToCapture--;
+     count++;
    }
    ```
 
@@ -178,18 +183,18 @@ For details about the APIs, see [AudioCapturer in Audio Management](../reference
    
    // Obtain the audio capturer information.
    let audioCapturerInfo : audio.AuduioCapturerInfo = await audioCapturer.getCapturerInfo();
-
+   
    // Obtain the audio stream information.
    let audioStreamInfo : audio.AudioStreamInfo = await audioCapturer.getStreamInfo();
-
+   
    // Obtain the audio stream ID.
    let audioStreamId : number = await audioCapturer.getAudioStreamId();
-
+   
    // Obtain the Unix timestamp, in nanoseconds.
    let audioTime : number = await audioCapturer.getAudioTime();
-
+   
    // Obtain a proper minimum buffer size.
-   let bufferSize : number = await audioCapturer.getBuffersize();
+   let bufferSize : number = await audioCapturer.getBufferSize();
    ```
 
 7. (Optional) Use **on('markReach')** to subscribe to the mark reached event, and use **off('markReach')** to unsubscribe from the event.

@@ -44,7 +44,7 @@ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.m
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
+setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
 以异步方法设置数据标签，以promise形式返回结果。
 
@@ -55,7 +55,7 @@ setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 | 参数名    | 类型       | 必填 | 说明                                         |
 | --------- | ------    | ---- | -------------------------------------------- |
 | path      | string    | 是   | 文件路径                                     |
-| type      | dataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | DataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
 **返回值：**
 
@@ -66,7 +66,8 @@ setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 **示例：**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0").then(() => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0").then(() => {
       console.info("setSecurityLabel successfully");
   }).catch((err) => {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -75,7 +76,7 @@ setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt;):void
+setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
 以异步方法设置数据标签，以callback形式返回结果。
 
@@ -86,13 +87,14 @@ setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt
 | 参数名    | 类型                      | 必填 | 说明                                         |
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | 是   | 文件路径                                     |
-| type      | dataLevel                 | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | DataLevel                 | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 是否设置数据标签之后的回调                   |
 
 **示例：**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0", (err) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0", (err) => {
     if (err) {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -103,7 +105,7 @@ setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt
 
 ## securityLabel.setSecurityLabelSync
 
-setSecurityLabelSync(path:string, type:dataLevel):void
+setSecurityLabelSync(path:string, type:DataLevel):void
 
 以同步方法设置数据标签。
 
@@ -114,12 +116,13 @@ setSecurityLabelSync(path:string, type:dataLevel):void
 | 参数名    | 类型   | 必填 | 说明                                         |
 | --------- | ------ | ---- | -------------------------------------------- |
 | path      | string | 是   | 文件路径                                     |
-| type      | dataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | DataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
 **示例：**
 
 ```js
-securityLabel.setSecurityLabelSync(path, "s0");
+let filePath = pathDir + '/test.txt';
+securityLabel.setSecurityLabelSync(filePath, "s0");
 ```
 
 ## securityLabel.getSecurityLabel
@@ -145,7 +148,8 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```js
-  securityLabel.getSecurityLabel(path).then((type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath).then((type) => {
       console.log("getSecurityLabel successfully, Label: " + type);
   }).catch((err) => {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -170,7 +174,8 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  securityLabel.getSecurityLabel(path, (err, type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath, (err, type) => {
     if (err) {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -201,6 +206,7 @@ getSecurityLabelSync(path:string):string
 **示例：**
 
 ```js
-let type = securityLabel.getSecurityLabelSync(path);
+let filePath = pathDir + '/test.txt';
+let type = securityLabel.getSecurityLabelSync(filePath);
 console.log("getSecurityLabel successfully, Label: " + type);
 ```

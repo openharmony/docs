@@ -13,7 +13,7 @@
 
 | 接口名称                                                     | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br/>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | 创建一个`KVManager`对象实例，用于管理数据库对象。            |
+| createKVManager(config: KVManagerConfig): KVManager | 创建一个`KVManager`对象实例，用于管理数据库对象。            |
 | getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br/>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | 指定`Options`和`storeId`，创建并获取指定类型`KVStore`数据库。 |
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br/>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | 插入和更新数据。                                             |
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br/>delete(key: string): Promise&lt;void> | 删除数据。                                                   |
@@ -117,16 +117,10 @@
        bundleName: 'com.example.datamanagertest',
        context:context,
      }
-     distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-       if (err) {
-         console.error(`Failed to createKVManager.code is ${err.code},message is ${err.message}`);
-         return;
-       }
-       console.log('Succeeded in creating KVManager');
-       kvManager = manager;
-     });
+     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+     console.log("Succeeded in creating KVManager");
    } catch (e) {
-     console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+     console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
    }
    ```
 

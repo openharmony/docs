@@ -10,6 +10,7 @@
   - [zlib Error Codes](errorcode-zlib.md)
 - Common Event and Notification
   - [Event Error Codes](errorcode-CommonEventService.md)
+  - [Notification Error Codes](errorcode-notification.md)
   - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
   - [Animator Error Codes](errorcode-animator.md)
@@ -26,8 +27,9 @@
 - Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
-- Background Tasks
+- Background Task
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
+  - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
 - Security
@@ -60,8 +62,7 @@
   - [Time and Time Zone Service Error Codes](errorcode-time.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
-  - [Account Error Codes](errorcode-account.md)
-  - [App Account Error Codes](errorcode-app-account.md)
+  - [Account Management Error Codes](errorcode-account.md)
 - Device Management
   - [Power Consumption Statistics Error Codes](errorcode-batteryStatistics.md)
   - [Brightness Error Codes](errorcode-brightness.md)
@@ -76,7 +77,6 @@
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
   - [Update Error Codes](errorcode-update.md)
-  - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
 - Customization Management
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
 - Utils

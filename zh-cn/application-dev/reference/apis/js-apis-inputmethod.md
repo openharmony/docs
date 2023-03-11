@@ -1149,8 +1149,6 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
-
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1188,8 +1186,6 @@ try {
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

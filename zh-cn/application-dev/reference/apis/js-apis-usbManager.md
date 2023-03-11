@@ -30,7 +30,7 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 ```js
 let devicesList = usb.getDevices();
-console.log(`devicesList = ${JSON.stringify(devicesList)}`);
+cconsole.log(`devicesList = ${devicesList}`);
 //devicesList  返回的数据结构
 //此处提供一个简单的示例，如下
 [
@@ -119,13 +119,12 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
 usb.requestRight(device.name);
 let devicepipe = usb.connectDevice(device);
-console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
+console.log(`devicepipe = ${devicepipe}`);
 ```
 
 ## usb.hasRight
@@ -155,7 +154,7 @@ hasRight(deviceName: string): boolean
 ```js
 let devicesName="1-1";
 let bool = usb.hasRight(devicesName);
-console.log(bool);
+console.log(`${bool}`);
 ```
 
 ## usb.requestRight
@@ -183,7 +182,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 ```js
 let devicesName="1-1";
 usb.requestRight(devicesName).then((ret) => {
-  console.log(`requestRight = ${JSON.stringify(ret)}`);
+  console.log(`requestRight = ${ret}`);
 });
 ```
 
@@ -211,7 +210,7 @@ removeRight(deviceName: string): boolean
 
 ```js
 let devicesName="1-1";
-if (usb.removeRight(devicesName) {
+if usb.removeRight(devicesName) {
   console.log(`Succeed in removing right`);
 }
 ```
@@ -246,7 +245,7 @@ addRight(bundleName: string, deviceName: string): boolean
 ```js
 let devicesName = "1-1";
 let bundleName = "com.example.hello";
-if (usb.addRight(bundleName, devicesName) {
+if usb.addRight(bundleName, devicesName) {
   console.log(`Succeed in adding right`);
 }
 ```
@@ -455,8 +454,9 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 **示例：**
 
 ```js
-usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
- console.log(`controlTransfer = ${JSON.stringify(ret)}`);
+let param = new usb.USBControlParams();
+usb.controlTransfer(devicepipe, param).then((ret) => {
+ console.log(`controlTransfer = ${ret}`);
 })
 ```
 
@@ -492,7 +492,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 //把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
 //才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${JSON.stringify(ret)}`);
+ console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -579,7 +579,7 @@ usbFunctionsToString(funcs: FunctionType): string
 **示例：**
 
 ```js
-let funcs = ACM | ECM;
+let funcs = usb.ACM | usb.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -608,7 +608,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 **示例：**
 
 ```js
-let funcs = HDC;
+let funcs = usb.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
 }).catch(err => {
@@ -716,7 +716,7 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 ```js
 let portId = 1;
-usb.usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
 }).catch(err => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);

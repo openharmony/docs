@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import observer from '@ohos.telephony.observer'
+import observer from '@ohos.telephony.observer';
 ```
 
 ## observer.on('networkStateChange')
@@ -45,7 +45,7 @@ on\(type: \'networkStateChange\', callback: Callback<NetworkState\>\): void;
 **示例：**
 
 ```js
-observer.on('networkStateChange', data =>{ 
+observer.on('networkStateChange', data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -84,7 +84,7 @@ on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callbac
 **示例：**
 
 ```js
-observer.on('networkStateChange', {slotId: 0}, data =>{ 
+observer.on('networkStateChange', {slotId: 0}, data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -159,7 +159,7 @@ on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>):
 **示例：**
 
 ```js
-observer.on('signalInfoChange', data =>{ 
+observer.on('signalInfoChange', data => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -196,7 +196,7 @@ on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<
 **示例：**
 
 ```js
-observer.on('signalInfoChange', {slotId: 0}, data =>{ 
+observer.on('signalInfoChange', {slotId: 0}, data => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -274,7 +274,7 @@ on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: stri
 **示例：**
 
 ```js
-observer.on('callStateChange', value =>{ 
+observer.on('callStateChange', value => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -310,7 +310,7 @@ on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ st
 **示例：**
 
 ```js
-observer.on('callStateChange', {slotId: 0}, value =>{ 
+observer.on('callStateChange', {slotId: 0}, value => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -388,7 +388,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: Data
 **示例：**
 
 ```js
-observer.on('cellularDataConnectionStateChange', value =>{
+observer.on('cellularDataConnectionStateChange', value => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -424,7 +424,7 @@ on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, call
 **示例：**
 
 ```js
-observer.on('cellularDataConnectionStateChange', {slotId: 0}, value =>{
+observer.on('cellularDataConnectionStateChange', {slotId: 0}, value => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -502,7 +502,7 @@ on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void;
 **示例：**
 
 ```js
-observer.on('cellularDataFlowChange', data =>{
+observer.on('cellularDataFlowChange', data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -538,7 +538,7 @@ on\(type: 'cellularDataFlowChange', options: { slotId: number },  callback: Call
 **示例：**
 
 ```js
-observer.on('cellularDataFlowChange', {slotId: 0}, data =>{
+observer.on('cellularDataFlowChange', {slotId: 0}, data => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 });
 ```
@@ -616,7 +616,7 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void;
 **示例：**
 
 ```js
-observer.on('simStateChange', data =>{
+observer.on('simStateChange', data => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -652,7 +652,7 @@ on\(type: 'simStateChange', options: { slotId: number }, callback: Callback\<Sim
 **示例：**
 
 ```js
-observer.on('simStateChange', {slotId: 0}, data =>{
+observer.on('simStateChange', {slotId: 0}, data => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```

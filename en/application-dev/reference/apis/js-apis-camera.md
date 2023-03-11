@@ -2,7 +2,8 @@
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -476,10 +477,10 @@ Listens for camera status changes. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                                                   | Mandatory| Description      |
-| -------- | ----------------------------------------------------- | ---- | --------- |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'cameraStatus'**. The callback function returns the camera information, including the device and device status (available or unavailable). The event can be listened for only when a **CameraManager** instance is obtained.|
-| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.                |
+| Name    | Type           | Mandatory| Description      |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the corresponding information is returned only when the device is enabled or disabled.|
+| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.|                 |
 
 **Example**
 
@@ -504,8 +505,8 @@ This is a system API.
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**. The callback function returns the mute status changes. The event can be listened for only when a **CameraManager** instance is obtained.|
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the camera mute status.              |
+| type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the status is returned when the camera is enabled or disabled.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the mute status. The value **true** means that the camera is enabled, and **false** means that the camera is disabled.              |
 
 **Example**
 
@@ -727,7 +728,7 @@ Listens for **CameraInput** errors. This API uses a callback to return the resul
 
 | Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The callback function returns an error code, for example, an error code indicating that the device is unavailable or a conflict occurs. The event can be listened for only when a **CameraInput** instance is obtained.|
+| type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera. For example, if the device is unavailable or a conflict occurs, the error information is returned.|
 | cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | **CameraDevice** object.|
 | callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
 
@@ -1391,7 +1392,7 @@ try {
 
 setMeteringPoint(point: Point): void
 
-Sets the metering point for the device.  
+Sets the metering point, which is the center point of the metering rectangle.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1448,7 +1449,7 @@ try {
 
 setExposureBias(exposureBias: number): void
 
-Sets an exposure compensation value for the device.
+Sets an exposure compensation value (EV).
 
 Before the setting, you are advised to use **[getExposureBiasRange](#getexposurebiasrange)** to obtain the supported values.
 
@@ -1590,7 +1591,7 @@ try {
 
 setFocusPoint(point: Point): void
 
-Sets a focal point for the device.
+Sets the focal point.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1697,7 +1698,7 @@ try {
 
 setZoomRatio(zoomRatio: number): void
 
-Sets a zoom ratio for the device.
+Sets a zoom ratio.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1849,7 +1850,7 @@ Listens for focus state changes. This API uses an asynchronous callback to retur
 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The callback function returns the focus state change. The event can be listened for only when the session is created.|
+| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
 | callback | AsyncCallback<[FocusState](#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**
@@ -1872,7 +1873,7 @@ Listens for **CaptureSession** errors. This API uses a callback to return the er
 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The callback function returns the error code corresponding to an error that occurs during the call of a **CaptureSession** API, for example, **beginConfig()**, **commitConfig()**, or **addInput()**.|
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as **beginConfig()**, **commitConfig()**, and **addInput**.|
 | callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
 
 **Example**
@@ -2053,8 +2054,8 @@ Listens for preview frame start events. This API uses an asynchronous callback t
 
 | Name     | Type                 | Mandatory| Description                                    |
 | -------- | -------------------- | ---- | --------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The callback is invoked when the preview on the first frame starts. This event can be listened for only when a **previewOutput** instance is created.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                    |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure for the first time.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The preview starts as long as this event is returned.                    |
 
 **Example**
 
@@ -2076,8 +2077,8 @@ Listens for preview frame end events. This API uses an asynchronous callback to 
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The callback is invoked when the preview on the last frame ends. This event can be listened for only when a **previewOutput** instance is created.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                 |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the last frame of preview ends.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The preview ends as long as this event is returned.                |
 
 **Example**
 
@@ -2097,9 +2098,9 @@ Listens for **PreviewOutput** errors. This API uses a callback to return the err
 
 **Parameters**
 
-| Name    | Type                                                              | Mandatory| Description                      |
-| -------- | ----------------------------------------------------------------- | ---- | ------------------------ |
-| type     | string                                               | Yes  | Event type. The value is fixed at **'error'**. The callback function returns the error code corresponding to an error that occurs during the call of a **PreviewOutput** API, for example, **start()** or **release()**.|
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a preview-related API such as **start()** or **release()**.|
 | callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
 **Example**
@@ -2366,7 +2367,7 @@ Listens for shooting start events. This API uses an asynchronous callback to ret
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The callback function returns the shooting start event.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure each time a photo is taken.|
 | callback | AsyncCallback<number\> | Yes  | Callback used to return the capture ID.           |
 
 **Example**
@@ -2387,10 +2388,10 @@ Listens for frame shutter events. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                                  | Mandatory| Description                                 |
-| -------- | ----------------------------------------------------- | --- | ------------------------------------ |
-| type     | string                                           | Yes  | Event type. The value is fixed at **'frameShutter'**. The callback function returns the captured frame information (captureId and time).|
-| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result.            |
+| Name    | Type     | Mandatory| Description                                 |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a **photoOutput** instance is created.|
+| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result. A new photographing request can be delivered as long as this event is returned.            |
 
 **Example**
 
@@ -2411,9 +2412,9 @@ Listens for shooting end events. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                                      |
-| -------- | ------------------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                            | Yes  | Event type. The value is fixed at **'captureEnd'**. The callback function returns the shooting end event.|
+| Name    | Type          | Mandatory| Description                                      |
+| -------- | --------------- | ---- | ---------------------------------------- |
+| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
 | callback | AsyncCallback<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                 |
 
 **Example**
@@ -2435,9 +2436,9 @@ Listens for **PhotoOutput** errors. This API uses a callback to return the error
 
 **Parameters**
 
-| Name    | Type                                                   | Mandatory| Description                                |
-| -------- | ----------------------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'error'**. The callback function returns an error code when an API call fails.|
+| Name    | Type        | Mandatory| Description                                |
+| -------- | ------------- | ---- | ----------------------------------- |
+| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photographing-related API.|
 | callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
 
 **Example**
@@ -2637,8 +2638,8 @@ Listens for video recording start events. This API uses an asynchronous callback
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ----------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The callback is invoked when the recording on the first frame of an image starts.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                      |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **videoOutput** instance is created. The event is triggered and the corresponding information is returned when the bottom layer starts exposure for the first time.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.  The recording starts as long as this event is returned.                    |
 
 **Example**
 
@@ -2660,8 +2661,8 @@ Listens for video recording stop events. This API uses an asynchronous callback 
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ------------------------------------------ |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The callback is invoked when the recording on the last frame of an image stops.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                      |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and returned when the last frame of recording is complete.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The recording ends as long as this event is returned.                     |
 
 **Example**
 
@@ -2681,9 +2682,9 @@ Listens for errors that occur during video recording. This API uses a callback t
 
 **Parameters**
 
-| Name    | Type                                              | Mandatory| Description                                   |
-| -------- | ------------------------------------------------ | ---- | -------------------------------------- |
-| type     | string                                           | Yes  | Event type. The value is fixed at **'error'**. The callback function returns the error code corresponding to an error that occurs during the call of a **VideoOutput** API, for example, **start()** or **release()**.|
+| Name    | Type      | Mandatory| Description                                   |
+| -------- | ----------- | ---- | -------------------------------------- |
+| type     | string      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a recording-related API such as **start()** and **release()**.|
 | callback | Callback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
 
 **Example**
@@ -2808,9 +2809,9 @@ Listens for metadata objects. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory| Description                                 |
-| -------- | ------------------------------------------------ | ---- | ------------------------------------ |
-| type     | string                            | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The callback function returns the valid metadata. This event can be listened for only when a **MetadataOutput** instance is created.|
+| Name     | Type        | Mandatory| Description                                 |
+| -------- | -------------- | ---- | ------------------------------------ |
+| type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding metadata is returned when valid metadata is detected.|
 | callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the metadata.|
 
 **Example**
@@ -2831,9 +2832,9 @@ Listens for metadata errors. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name    | Type                                              | Mandatory| Description                                    |
-| -------- | ------------------------------------------------ | ---- | --------------------------------------- |
-| type     | string                                           | Yes  | Event type. The value is fixed at **'error'**. The callback function returns the error code corresponding to an error that occurs during the call of a **MetadataOutput** instance API, for example, **start()** or **release()**.|
+| Name    | Type        | Mandatory| Description                                    |
+| -------- | ------------- | ---- | --------------------------------------- |
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a metadata-related API such as **start()** and **release()**.|
 | callback | Callback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
 
 **Example**

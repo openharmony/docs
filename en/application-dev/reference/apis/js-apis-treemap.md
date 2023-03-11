@@ -1,8 +1,5 @@
 # @ohos.util.TreeMap (Nonlinear Container TreeMap)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **TreeMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
 
 **TreeMap** is implemented using a red-black tree, which is a binary search tree where keys are stored in sorted order for efficient insertion and removal.
@@ -12,8 +9,14 @@
 Recommended use case: Use **TreeMap** when you need to store KV pairs in sorted order.
 
 This topic uses the following to identify the use of generics:
+
 - K: Key
+
 - V: Value
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -609,7 +612,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
 
 callbackfn
 | Name| Type| Mandatory| Description|
@@ -633,7 +636,7 @@ let treeMap = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

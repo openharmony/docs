@@ -16,6 +16,8 @@
 
 QRCode(value: string)
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -28,8 +30,8 @@ QRCode(value: string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码颜色。<br/>默认值：Color.Black |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码颜色。<br/>默认值：Color.Black <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 
 ## 事件

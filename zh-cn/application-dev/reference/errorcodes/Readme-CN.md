@@ -27,8 +27,9 @@
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)
-- 资源调度
+- 后台任务
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
+  - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)
 - 安全
@@ -49,6 +50,12 @@
   - [电话子系统错误码](errorcode-telephony.md)
 - 网络管理
   - [上传下载错误码](errorcode-request.md)
+  - [HTTP错误码](errorcode-net-http.md)
+  - [Socket错误码](errorcode-net-socket.md)
+  - [网络连接管理错误码](errorcode-net-connection.md)
+  - [以太网连接错误码](errorcode-net-ethernet.md)
+  - [网络共享错误码](errorcode-net-sharing.md)
+  - [策略管理错误码](errorcode-net-policy.md)
 - 通信与连接
   - [NFC错误码](errorcode-nfc.md)
   - [RPC错误码](errorcode-rpc.md)
@@ -78,7 +85,6 @@
   - [系统参数错误码](errorcode-system-parameterV9.md)
   - [USB服务错误码](errorcode-usb.md)
   - [升级错误码](errorcode-update.md)
-  - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
 - 定制管理
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 - 语言基础类库

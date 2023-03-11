@@ -1,10 +1,10 @@
 # @ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)
 
-The **ServiceExtensionAbility** module provides lifecycle callbacks when a ServiceExtensionAbility (background service) is created, destroyed, connected, or disconnected.
+The **ServiceExtensionAbility** module provides APIs for ServiceExtensionAbilities.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are supported since API version 9 and are deprecated in versions later than API version 9. You are advised to use [@ohos.app.ability.ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -80,7 +80,7 @@ Called when this ServiceExtensionAbility is destroyed to clear resources.
 
 onRequest(want: Want, startId: number): void;
 
-Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()**. The value of **startId** is incremented for each ability that is started.
+Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ability that is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -129,7 +129,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 **Example**
 
   ```ts
-  import rpc from '@ohos.rpc'
+  import rpc from '@ohos.rpc';
   class StubTest extends rpc.RemoteObject{
       constructor(des) {
           super(des);
@@ -140,7 +140,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
   class ServiceExt extends ServiceExtension {
     onConnect(want) {
       console.log('onConnect , want:' + want.abilityName);
-      return new StubTest("test");
+      return new StubTest('test');
     }
   }
   ```
@@ -150,7 +150,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 onDisconnect(want: Want): void;
 
-Called when a client is disconnected from this ServiceExtensionAbility.
+Called when this ServiceExtensionAbility is disconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -176,7 +176,7 @@ Called when a client is disconnected from this ServiceExtensionAbility.
 
 onReconnect(want: Want): void;
 
-Called when a new client attempts to connect to this ServiceExtensionAbility after all previous clients are disconnected. This capability is reserved.
+Called when this ServiceExtensionAbility is reconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -246,7 +246,8 @@ Dumps the client information.
   class ServiceExt extends ServiceExtension {
       onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          return ['params'];
       }
   }
   ```
+

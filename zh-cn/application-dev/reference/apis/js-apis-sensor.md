@@ -2660,7 +2660,7 @@ try {
 ## sensor.getAngleVariation<sup>9+</sup>
 
  getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 计算两个旋转矩阵之间的角度变化。
 
@@ -2716,7 +2716,7 @@ try {
 
 ## sensor.getAngleVariation<sup>9+</sup>
 
-getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 得到两个旋转矩阵之间的角度变化。
 
@@ -2776,7 +2776,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void
+getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 根据旋转矢量获取旋转矩阵。
 
@@ -2818,7 +2818,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup>
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;> 
+getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 根据旋转矢量获取旋转矩阵。
 
@@ -2865,7 +2865,7 @@ try {
 ## sensor.transformRotationMatrix<sup>9+</sup> 
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 根据指定坐标系映射旋转矩阵。
 
@@ -2912,7 +2912,7 @@ try {
 
 ## sensor.transformRotationMatrix<sup>9+</sup>
 
-transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise<Array&lt;number&gt;> 
+transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
 根据指定坐标系映射旋转矩阵。
 
@@ -2963,7 +2963,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup> 
 
-getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 根据旋转向量计算归一化四元数。
 
@@ -3005,7 +3005,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup>
 
-getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 根据旋转向量计算归一化四元数。
 
@@ -3051,7 +3051,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 根据旋转矩阵计算设备方向。
 
@@ -3100,7 +3100,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 根据旋转矩阵计算设备的方向。
 
@@ -3192,7 +3192,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵。
 
@@ -3238,7 +3238,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
-getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 获取设备上的所有传感器信息。
 
@@ -3248,7 +3248,7 @@ getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
 
 | 参数名   | 类型                                           | 必填 | 说明             |
 | -------- | ---------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 回调函数，返回传感器属性列表。 |
+| callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 回调函数，返回传感器属性列表。 |
 
 **错误码**： 
 
@@ -3278,7 +3278,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
- getSensorList(): Promise< Array&lt;Sensor&gt;>
+ getSensorList(): Promise&lt;Array&lt;Sensor&gt;&gt;
 
 获取设备上的所有传感器信息。
 
@@ -3288,7 +3288,7 @@ try {
 
 | 参数名  | 类型                                     | 必填 | 说明             |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | Promise对象，返回传感器属性列表。 |
+| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | Promise对象，返回传感器属性列表。 |
 
 **错误码**： 
 

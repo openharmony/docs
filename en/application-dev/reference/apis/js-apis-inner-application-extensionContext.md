@@ -31,8 +31,8 @@ To adapt to devices with different performance, an application provides three mo
 
 Define a **ServiceExtension** with the same name for the three modules.
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
-import Want from '@ohos.application.Want'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.application.Want';
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
         console.log('ServiceAbility onCreate, want: ' + want.abilityName);
@@ -61,15 +61,14 @@ export default class TheServiceExtension extends ServiceExtension {
 
 Start **ServiceExtension** within the **onCreate** callback of the main ability of the entry.
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
+import Ability from '@ohos.app.ability.Ability';
+export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
-        console.log("[Demo] EntryAbility onCreate");
+        console.log('[Demo] MainAbility onCreate');
         let wantExt = {
-            deviceId: "",
-            bundleName: "com.example.TheServiceExtension",
-            abilityName: "TheServiceExtension",
+            deviceId: '',
+            bundleName: 'com.example.TheServiceExtension',
+            abilityName: 'TheServiceExtension',
         };
         this.context.startServiceExtensionAbility(wantExt);
     }
@@ -84,29 +83,29 @@ export default class ServiceModel {
     constructor() {}
 
     executeTask() {
-        if (globalThis.ExtensionContext == undefined) {
-            console.log("ERROR, ServiceExtension does not exist");
+        if (globalThis.ExtensionContext === undefined) {
+            console.log('ERROR, ServiceExtension does not exist');
             return;
         }
 
-        var moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
+        let moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
         this.moduleName = moduleInfo.name;
         // Execute service logic based on the module name, which differentiates devices with different performance.
         switch (this.moduleName) {
-            case "highPerformance":
-                console.log("This is high performance device.");
+            case 'highPerformance':
+                console.log('This is high performance device.');
                 // Execute the corresponding service logic.
                 break;
-            case "midPerformance":
-                console.log("This is mid performance device.");
+            case 'midPerformance':
+                console.log('This is mid performance device.');
                 // Execute the corresponding service logic.
                 break;
-            case "lowPerformance":
-                console.log("This is low performance device.");
+            case 'lowPerformance':
+                console.log('This is low performance device.');
                 // Execute the corresponding service logic.
                 break;
             default:
-                console.log("ERROR, invalid moduleName.");
+                console.log('ERROR, invalid moduleName.');
                 break;
         }
     }

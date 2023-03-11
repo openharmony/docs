@@ -19,10 +19,10 @@ Take the stage model as an example. You can access the **stageMode** field throu
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-class EntryAbility extends UIAbility {
+class MainAbility extends UIAbility {
     onCreate(want, launchParam) {
-        // EntryAbility onCreate, isStageMode: true
-        console.log("EntryAbility onCreate, isStageMode: " + this.context.stageMode);
+        // MainAbility onCreate, isStageMode: true
+        console.log('MainAbility onCreate, isStageMode: ' + this.context.stageMode);
     }
 }
 ```

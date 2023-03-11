@@ -10,7 +10,7 @@ The **StaticSubscriberExtensionAbility** module provides Extension abilities for
 ## Modules to Import
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
 ```
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
@@ -27,17 +27,14 @@ Callback of the common event of a static subscriber.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | [CommonEventData](js-apis-commonEventManager.md#commoneventdata) | Yes| Common event of a static subscriber.|
+| event | [CommonEventData](js-apis-commonEvent.md#commoneventdata) | Yes| Common event of a static subscriber.|
 
 **Example**
     
   ```ts
-  var StaticSubscriberExtensionAbility = requireNapi("application.StaticSubscriberExtensionAbility")
-  {
-      onReceiveEvent(event){
-          console.log('onReceiveEvent,event:' + event.code);
-      }
-  }
-  export default MyStaticSubscriberExtensionAbility
-
+    class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+        onReceiveEvent(event) {
+            console.log('onReceiveEvent, event: ' + JSON.stringify(event));
+        }
+    }
   ```

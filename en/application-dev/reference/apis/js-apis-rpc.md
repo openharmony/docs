@@ -1,20 +1,18 @@
 # @ohos.rpc (RPC)
 
-The **rpc** module implements communication between processes, including inter-process communication (IPC) on a single device and remote procedure call (RPC) between processes on difference devices. IPC is implemented based on the Binder driver, and RPC is based on the DSoftBus driver.
+The **RPC** module implements communication between processes, including inter-process communication (IPC) on a single device and remote procedure call (RPC) between processes on difference devices. IPC is implemented based on the Binder driver, and RPC is based on the DSoftBus driver.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This module supports return of error codes since API version 9.
-
+> - This module supports return of error codes since API version 9.
 
 ## Modules to Import
 
 ```
 import rpc from '@ohos.rpc';
 ```
-
 
 ## ErrorCode<sup>9+</sup>
 
@@ -42,11 +40,13 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 ## MessageSequence<sup>9+</sup>
 
-  Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+Provides APIs for reading and writing data in specific format.
+
+During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
-  create(): MessageSequence
+  static create(): MessageSequence
 
   Creates a **MessageSequence** object. This API is a static method.
 
@@ -60,7 +60,7 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   console.log("RpcClient: data is " + data);
   ```
@@ -75,7 +75,7 @@ Reclaims the **MessageSequence** object that is no longer used.
 
 **Example**
 
-  ```
+  ```ts
   let reply = rpc.MessageSequence.create();
   reply.reclaim();
   ```
@@ -105,7 +105,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -146,7 +146,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -187,7 +187,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInterfaceToken("aaa");
@@ -219,22 +219,21 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   | ------- | ----- |
   | 1900010 | read data from message sequence failed |
 
-
 **Example**
 
-  ```
-  class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          try {
-              let interfaceToken = data.readInterfaceToken();
-              console.log("RpcServer: interfaceToken is " + interfaceToken);
-          } catch(error) {
-              console.info("RpcServer: read interfaceToken failed, errorCode " + error.code);
-              console.info("RpcServer: read interfaceToken failed, errorMessage " + error.message);
-          }
-          return true;
-      }
-  }
+```ts
+class Stub extends rpc.RemoteObject {
+    onRemoteRequest(code, data, reply, option) {
+        try {
+            let interfaceToken = data.readInterfaceToken();
+            console.log("RpcServer: interfaceToken is " + interfaceToken);
+        } catch(error) {
+            console.info("RpcServer: read interfaceToken failed, errorCode " + error.code);
+            console.info("RpcServer: read interfaceToken failed, errorMessage " + error.message);
+        }
+        return true;
+    }
+}
   ```
 
 ### getSize
@@ -253,7 +252,7 @@ Obtains the data size of this **MessageSequence** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
   console.log("RpcClient: size is " + size);
@@ -275,7 +274,7 @@ Obtains the capacity of this **MessageSequence** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
   console.log("RpcClient: capacity is " + result);
@@ -285,7 +284,7 @@ Obtains the capacity of this **MessageSequence** object.
 
 setSize(size: number): void
 
-Sets the size of data contained in this **MessageSequence** object.
+Sets the size of the data contained in this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -293,11 +292,11 @@ Sets the size of data contained in this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description|
   | ------ | ------ | ---- | ------ |
-  | size | number | Yes| Data size to set, in bytes.|
+  | size   | number | Yes  | Data size to set, in bytes.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.setSize(16);
@@ -332,7 +331,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.setCapacity(100);
@@ -347,7 +346,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 getWritableBytes(): number
 
-Obtains the writable capacity of this **MessageSequence** object.
+Obtains the writable capacity (in bytes) of this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -355,18 +354,18 @@ Obtains the writable capacity of this **MessageSequence** object.
 
   | Type| Description|
   | ------ | ------ |
-  | number | **MessageSequence** writable capacity obtained, in bytes.|
+  | number | Writable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
-  ```
-  class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          let getWritableBytes = data.getWritableBytes();
-          console.log("RpcServer: getWritableBytes is " + getWritableBytes);
-          return true;
-      }
-  }
+```ts
+class Stub extends rpc.RemoteObject {
+    onRemoteRequest(code, data, reply, option) {
+        let getWritableBytes = data.getWritableBytes();
+        console.log("RpcServer: getWritableBytes is " + getWritableBytes);
+        return true;
+    }
+}
   ```
 
 ### getReadableBytes
@@ -381,18 +380,18 @@ Obtains the readable capacity of this **MessageSequence** object.
 
   | Type| Description|
   | ------ | ------- |
-  | number | **MessageSequence** readable capacity obtained, in bytes.|
+  | number | Readable capacity of the **MessageSequence** instance, in bytes.|
 
 **Example**
 
-  ```
-  class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          let result = data.getReadableBytes();
-          console.log("RpcServer: getReadableBytes is " + result);
-          return true;
-      }
-  }
+  ```ts
+class Stub extends rpc.RemoteObject {
+    onRemoteRequest(code, data, reply, option) {
+        let result = data.getReadableBytes();
+        console.log("RpcServer: getReadableBytes is " + result);
+        return true;
+    }
+}
   ```
 
 ### getReadPosition
@@ -411,7 +410,7 @@ Obtains the read position of this **MessageSequence** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
   console.log("RpcClient: readPos is " + readPos);
@@ -433,7 +432,7 @@ Obtains the write position of this **MessageSequence** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
@@ -456,7 +455,7 @@ Moves the read pointer to the specified position.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
   data.writeString("sequence");
@@ -488,7 +487,7 @@ Moves the write pointer to the specified position.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
   try {
@@ -526,7 +525,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
@@ -560,7 +559,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeByte(2);
@@ -601,7 +600,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
@@ -635,7 +634,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShort(8);
@@ -644,12 +643,12 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("rpc write short fail, errorMessage" + error.message);
   }
   try {
-      let ret = data.readShort(8);
+      let ret = data.readShort();
+      console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
       console.info("rpc read short fail, errorCode " + error.code);
       console.info("rpc read short fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readByte is: " + ret);
   ```
 
 ### writeInt
@@ -676,7 +675,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
@@ -710,7 +709,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeInt(10);
@@ -751,7 +750,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
@@ -785,7 +784,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLong(10000);
@@ -826,7 +825,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
@@ -860,7 +859,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloat(1.2);
@@ -887,9 +886,9 @@ Writes a double-precision floating-point number to this **MessageSequence** obje
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ------ |
-  | val  number | Yes| Double-precision floating-point number to write.|
+  | Name| Type  | Mandatory| Description                  |
+  | ------ | ------ | ---- | ---------------------- |
+  | val    | number | Yes  | Double-precision floating-point number to write.|
 
 **Error codes**
 
@@ -901,7 +900,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
@@ -935,7 +934,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDouble(10.2);
@@ -976,7 +975,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
@@ -1010,7 +1009,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBoolean(false);
@@ -1051,7 +1050,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
@@ -1085,7 +1084,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeChar(97);
@@ -1126,7 +1125,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
@@ -1160,7 +1159,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeString('abc');
@@ -1201,7 +1200,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -1255,7 +1254,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -1310,7 +1309,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1345,7 +1344,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1387,7 +1386,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
   try {
@@ -1429,7 +1428,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1463,7 +1462,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1504,7 +1503,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeShortArray([11, 12, 13]);
@@ -1545,7 +1544,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1579,7 +1578,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1620,7 +1619,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeIntArray([100, 111, 112]);
@@ -1661,7 +1660,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1695,7 +1694,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1736,7 +1735,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeLongArray([1111, 1112, 1113]);
@@ -1777,7 +1776,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1811,7 +1810,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1852,7 +1851,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -1893,7 +1892,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -1927,7 +1926,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -1968,7 +1967,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -2009,7 +2008,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2043,7 +2042,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2084,7 +2083,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeBooleanArray([false, true, false]);
@@ -2125,7 +2124,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2159,7 +2158,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2200,7 +2199,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeCharArray([97, 98, 88]);
@@ -2242,7 +2241,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2276,7 +2275,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2317,7 +2316,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageSequence.create();
   try {
       data.writeStringArray(["abc", "def"]);
@@ -2352,7 +2351,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2394,7 +2393,9 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -2414,6 +2415,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -2467,7 +2473,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -2524,7 +2530,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -2584,7 +2590,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2631,7 +2637,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -2684,7 +2690,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -2712,7 +2718,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 static closeFileDescriptor(fd: number): void
 
-Closes a file descriptor.
+Closes a file descriptor. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2724,7 +2730,7 @@ Closes a file descriptor.
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -2740,7 +2746,7 @@ Closes a file descriptor.
 
 static dupFileDescriptor(fd: number) :number
 
-Duplicates a file descriptor.
+Duplicates a file descriptor. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2766,7 +2772,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
@@ -2795,7 +2801,7 @@ Checks whether this **MessageSequence** object contains file descriptors.
 **Example**
 
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2840,7 +2846,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2852,7 +2858,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
   }
   ```
-
 
 ### readFileDescriptor
 
@@ -2878,7 +2883,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
@@ -2896,7 +2901,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("rpc read file descriptor fail, errorMessage" + error.message);
   }
   ```
-
 
 ### writeAshmem
 
@@ -2922,7 +2926,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let ashmem;
   try {
@@ -2964,7 +2968,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let ashmem;
   try {
@@ -2988,7 +2992,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   }
   ```
 
-
 ### getRawDataCapacity
 
 getRawDataCapacity(): number
@@ -3005,12 +3008,11 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 
 **Example**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
   console.log("RpcTest: sequence get RawDataCapacity result is : " + result);
   ```
-
 
 ### writeRawData
 
@@ -3037,7 +3039,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
@@ -3047,7 +3049,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("rpc write rawdata fail, errorMessage" + error.message);
   }
   ```
-
 
 ### readRawData
 
@@ -3079,7 +3080,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
@@ -3101,11 +3102,13 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 >This class is no longer maintained since API version 9. You are advised to use [MessageSequence](#messagesequence9).
 
-Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+Provides APIs for reading and writing data in specific format. 
+
+During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
-create(): MessageParcel
+static create(): MessageParcel
 
 Creates a **MessageParcel** object. This method is a static method.
 
@@ -3119,7 +3122,7 @@ Creates a **MessageParcel** object. This method is a static method.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   console.log("RpcClient: data is " + data);
   ```
@@ -3134,7 +3137,7 @@ Reclaims the **MessageParcel** object that is no longer used.
 
 **Example**
 
-  ```
+  ```ts
   let reply = rpc.MessageParcel.create();
   reply.reclaim();
   ```
@@ -3161,7 +3164,7 @@ Serializes a remote object and writes it to this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3202,7 +3205,7 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3250,7 +3253,7 @@ Writes an interface token to this **MessageParcel** object. The remote object ca
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
   console.log("RpcServer: writeInterfaceToken is " + result);
@@ -3273,7 +3276,7 @@ Reads the interface token from this **MessageParcel** object. The interface toke
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let interfaceToken = data.readInterfaceToken();
@@ -3282,7 +3285,6 @@ Reads the interface token from this **MessageParcel** object. The interface toke
       }
   }
   ```
-
 
 ### getSize
 
@@ -3300,12 +3302,11 @@ Obtains the data size of this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
   console.log("RpcClient: size is " + size);
   ```
-
 
 ### getCapacity
 
@@ -3323,12 +3324,11 @@ Obtains the capacity of this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
   console.log("RpcClient: capacity is " + result);
   ```
-
 
 ### setSize
 
@@ -3352,12 +3352,11 @@ Sets the size of data contained in this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
   console.log("RpcClient: setSize is " + setSize);
   ```
-
 
 ### setCapacity
 
@@ -3381,12 +3380,11 @@ Sets the storage capacity of this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
   console.log("RpcClient: setCapacity is " + result);
   ```
-
 
 ### getWritableBytes
 
@@ -3404,7 +3402,7 @@ Obtains the writable capacity of this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let getWritableBytes = data.getWritableBytes();
@@ -3413,7 +3411,6 @@ Obtains the writable capacity of this **MessageParcel** object.
       }
   }
   ```
-
 
 ### getReadableBytes
 
@@ -3431,7 +3428,7 @@ Obtains the readable capacity of this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteRequest(code, data, reply, option) {
           let result = data.getReadableBytes();
@@ -3440,7 +3437,6 @@ Obtains the readable capacity of this **MessageParcel** object.
       }
   }
   ```
-
 
 ### getReadPosition
 
@@ -3458,12 +3454,11 @@ Obtains the read position of this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
   console.log("RpcClient: readPos is " + readPos);
   ```
-
 
 ### getWritePosition
 
@@ -3481,13 +3476,12 @@ Obtains the write position of this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
   console.log("RpcClient: bwPos is " + bwPos);
   ```
-
 
 ### rewindRead
 
@@ -3511,7 +3505,7 @@ Moves the read pointer to the specified position.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
   data.writeString("parcel");
@@ -3521,7 +3515,6 @@ Moves the read pointer to the specified position.
   let number2 = data.readInt();
   console.log("RpcClient: rewindRead is " + number2);
   ```
-
 
 ### rewindWrite
 
@@ -3545,7 +3538,7 @@ Moves the write pointer to the specified position.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
   data.rewindWrite(0);
@@ -3553,7 +3546,6 @@ Moves the write pointer to the specified position.
   let number = data.readInt();
   console.log("RpcClient: rewindWrite is: " + number);
   ```
-
 
 ### writeByte
 
@@ -3577,12 +3569,11 @@ Writes a Byte value to this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
   console.log("RpcClient: writeByte is: " + result);
   ```
-
 
 ### readByte
 
@@ -3600,14 +3591,13 @@ Reads the Byte value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
   console.log("RpcClient: writeByte is: " + result);
   let ret = data.readByte();
   console.log("RpcClient: readByte is: " + ret);
   ```
-
 
 ### writeShort
 
@@ -3627,16 +3617,15 @@ Writes a Short int value to this **MessageParcel** object.
 
   | Type   | Description                         |
   | ------- | ----------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
   console.log("RpcClient: writeShort is: " + result);
   ```
-
 
 ### readShort
 
@@ -3654,14 +3643,13 @@ Reads the Short int value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
   console.log("RpcClient: writeShort is: " + result);
   let ret = data.readShort();
   console.log("RpcClient: readShort is: " + ret);
   ```
-
 
 ### writeInt
 
@@ -3685,12 +3673,11 @@ Writes an Int value to this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
   console.log("RpcClient: writeInt is " + result);
   ```
-
 
 ### readInt
 
@@ -3708,14 +3695,13 @@ Reads the Int value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
   console.log("RpcClient: writeInt is " + result);
   let ret = data.readInt();
   console.log("RpcClient: readInt is " + ret);
   ```
-
 
 ### writeLong
 
@@ -3735,16 +3721,15 @@ Writes a Long int value to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
   console.log("RpcClient: writeLong is " + result);
   ```
-
 
 ### readLong
 
@@ -3762,14 +3747,13 @@ Reads the Long int value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
   console.log("RpcClient: writeLong is " + result);
   let ret = data.readLong();
   console.log("RpcClient: readLong is " + ret);
   ```
-
 
 ### writeFloat
 
@@ -3789,16 +3773,15 @@ Writes a Float value to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
   console.log("RpcClient: writeFloat is " + result);
   ```
-
 
 ### readFloat
 
@@ -3816,14 +3799,13 @@ Reads the Float value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
   console.log("RpcClient: writeFloat is " + result);
   let ret = data.readFloat();
   console.log("RpcClient: readFloat is " + ret);
   ```
-
 
 ### writeDouble
 
@@ -3843,16 +3825,15 @@ Writes a Double value to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
   console.log("RpcClient: writeDouble is " + result);
   ```
-
 
 ### readDouble
 
@@ -3870,7 +3851,7 @@ Reads the Double value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
   console.log("RpcClient: writeDouble is " + result);
@@ -3896,16 +3877,15 @@ Writes a Boolean value to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
   console.log("RpcClient: writeBoolean is " + result);
   ```
-
 
 ### readBoolean
 
@@ -3923,14 +3903,13 @@ Reads the Boolean value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
   console.log("RpcClient: writeBoolean is " + result);
   let ret = data.readBoolean();
   console.log("RpcClient: readBoolean is " + ret);
   ```
-
 
 ### writeChar
 
@@ -3950,16 +3929,15 @@ Writes a Char value to this **MessageParcel** object.
 
   | Type   | Description                         |
   | ------- | ----------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
   ```
-
 
 ### readChar
 
@@ -3977,14 +3955,13 @@ Reads the Char value from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
   let ret = data.readChar();
   console.log("RpcClient: readChar is " + ret);
   ```
-
 
 ### writeString
 
@@ -4004,16 +3981,15 @@ Writes a string to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
   console.log("RpcClient: writeString  is " + result);
   ```
-
 
 ### readString
 
@@ -4031,14 +4007,13 @@ Reads the string from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
   console.log("RpcClient: writeString  is " + result);
   let ret = data.readString();
   console.log("RpcClient: readString is " + ret);
   ```
-
 
 ### writeSequenceable
 
@@ -4058,11 +4033,11 @@ Writes a sequenceable object to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4087,7 +4062,6 @@ Writes a sequenceable object to this **MessageParcel** object.
   console.log("RpcClient: writeSequenceable is " + result);
   ```
 
-
 ### readSequenceable
 
 readSequenceable(dataIn: Sequenceable): boolean
@@ -4110,7 +4084,7 @@ Reads member variables from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4138,7 +4112,6 @@ Reads member variables from this **MessageParcel** object.
   console.log("RpcClient: writeSequenceable is " + result2);
   ```
 
-
 ### writeByteArray
 
 writeByteArray(byteArray: number[]): boolean
@@ -4157,17 +4130,16 @@ Writes a byte array to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
   console.log("RpcClient: writeByteArray is " + result);
   ```
-
 
 ### readByteArray
 
@@ -4185,7 +4157,7 @@ Reads a byte array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
@@ -4193,7 +4165,6 @@ Reads a byte array from this **MessageParcel** object.
   let array = new Array(5);
   data.readByteArray(array);
   ```
-
 
 ### readByteArray
 
@@ -4211,7 +4182,7 @@ Reads the byte array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
@@ -4219,7 +4190,6 @@ Reads the byte array from this **MessageParcel** object.
   let array = data.readByteArray();
   console.log("RpcClient: readByteArray is " + array);
   ```
-
 
 ### writeShortArray
 
@@ -4239,16 +4209,15 @@ Writes a short array to this **MessageParcel** object.
 
   | Type   | Description                         |
   | ------- | ----------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
   ```
-
 
 ### readShortArray
 
@@ -4266,14 +4235,13 @@ Reads a short array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
   let array = new Array(3);
   data.readShortArray(array);
   ```
-
 
 ### readShortArray
 
@@ -4291,14 +4259,13 @@ Reads the short array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
   console.log("RpcClient: writeShortArray is " + result);
   let array = data.readShortArray();
  console.log("RpcClient: readShortArray is " + array);
   ```
-
 
 ### writeIntArray
 
@@ -4318,16 +4285,15 @@ Writes an integer array to this **MessageParcel** object.
 
   | Type   | Description                         |
   | ------- | ----------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
   ```
-
 
 ### readIntArray
 
@@ -4345,14 +4311,13 @@ Reads an integer array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
   let array = new Array(3);
   data.readIntArray(array);
   ```
-
 
 ### readIntArray
 
@@ -4370,14 +4335,13 @@ Reads the integer array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
   console.log("RpcClient: writeIntArray is " + result);
   let array = data.readIntArray();
   console.log("RpcClient: readIntArray is " + array);
   ```
-
 
 ### writeLongArray
 
@@ -4397,16 +4361,15 @@ Writes a long array to this **MessageParcel** object.
 
   | Type   | Description                         |
   | ------- | ----------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
   ```
-
 
 ### readLongArray
 
@@ -4424,14 +4387,13 @@ Reads a long array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
   let array = new Array(3);
   data.readLongArray(array);
   ```
-
 
 ### readLongArray
 
@@ -4449,14 +4411,13 @@ Reads the long array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
   console.log("RpcClient: writeLongArray is " + result);
   let array = data.readLongArray();
   console.log("RpcClient: readLongArray is " + array);
   ```
-
 
 ### writeFloatArray
 
@@ -4476,16 +4437,15 @@ Writes a FloatArray to this **MessageParcel** object.
 
   | Type   | Description                         |
   | ------- | ----------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
   ```
-
 
 ### readFloatArray
 
@@ -4503,14 +4463,13 @@ Reads a FloatArray from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
   let array = new Array(3);
   data.readFloatArray(array);
   ```
-
 
 ### readFloatArray
 
@@ -4528,14 +4487,13 @@ Reads the FloatArray from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
   console.log("RpcClient: writeFloatArray is " + result);
   let array = data.readFloatArray();
   console.log("RpcClient: readFloatArray is " + array);
   ```
-
 
 ### writeDoubleArray
 
@@ -4555,16 +4513,15 @@ Writes a DoubleArray to this **MessageParcel** object.
 
   | Type   | Description                         |
   | ------- | ----------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
   ```
-
 
 ### readDoubleArray
 
@@ -4582,14 +4539,13 @@ Reads a DoubleArray from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
   let array = new Array(3);
   data.readDoubleArray(array);
   ```
-
 
 ### readDoubleArray
 
@@ -4607,14 +4563,13 @@ Reads the DoubleArray from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
   console.log("RpcClient: writeDoubleArray is " + result);
   let array = data.readDoubleArray();
   console.log("RpcClient: readDoubleArray is " + array);
   ```
-
 
 ### writeBooleanArray
 
@@ -4634,16 +4589,15 @@ Writes a Boolean array to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
   ```
-
 
 ### readBooleanArray
 
@@ -4661,14 +4615,13 @@ Reads a Boolean array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
   let array = new Array(3);
   data.readBooleanArray(array);
   ```
-
 
 ### readBooleanArray
 
@@ -4686,14 +4639,13 @@ Reads the Boolean array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
   console.log("RpcClient: writeBooleanArray is " + result);
   let array = data.readBooleanArray();
   console.log("RpcClient: readBooleanArray is " + array);
   ```
-
 
 ### writeCharArray
 
@@ -4713,16 +4665,15 @@ Writes a character array to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
   console.log("RpcClient: writeCharArray is " + result);
   ```
-
 
 ### readCharArray
 
@@ -4740,14 +4691,13 @@ Reads a character array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
   let array = new Array(3);
   data.readCharArray(array);
   ```
-
 
 ### readCharArray
 
@@ -4765,14 +4715,13 @@ Reads the character array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
   let array = data.readCharArray();
   console.log("RpcClient: readCharArray is " + array);
   ```
-
 
 ### writeStringArray
 
@@ -4792,16 +4741,15 @@ Writes a string array to this **MessageParcel** object.
 
   | Type   | Description|
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
   ```
-
 
 ### readStringArray
 
@@ -4819,14 +4767,13 @@ Reads a string array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
   let array = new Array(2);
   data.readStringArray(array);
   ```
-
 
 ### readStringArray
 
@@ -4844,14 +4791,13 @@ Reads the string array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
   console.log("RpcClient: writeStringArray is " + result);
   let array = data.readStringArray();
   console.log("RpcClient: readStringArray is " + array);
   ```
-
 
 ### writeNoException<sup>8+</sup>
 
@@ -4863,7 +4809,7 @@ Writes information to this **MessageParcel** object indicating that no exception
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -4904,8 +4850,10 @@ Reads the exception information from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Example**
+ 
+  Obtain the service.
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -4925,6 +4873,11 @@ Reads the exception information from this **MessageParcel** object.
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -4967,11 +4920,11 @@ Writes a sequenceable array to this **MessageParcel** object.
 
   | Type   | Description                             |
   | ------- | --------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -4999,7 +4952,6 @@ Writes a sequenceable array to this **MessageParcel** object.
   console.log("RpcClient: writeSequenceableArray is " + result);
   ```
 
-
 ### readSequenceableArray<sup>8+</sup>
 
 readSequenceableArray(sequenceableArray: Sequenceable[]): void
@@ -5016,7 +4968,7 @@ Reads a sequenceable array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5046,7 +4998,6 @@ Reads a sequenceable array from this **MessageParcel** object.
   data.readSequenceableArray(b);
   ```
 
-
 ### writeRemoteObjectArray<sup>8+</sup>
 
 writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
@@ -5065,11 +5016,11 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
   | Type   | Description                                                                                                                |
   | ------- | -------------------------------------------------------------------------------------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** if the operation fails or if the **IRemoteObject** array is null.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5099,7 +5050,6 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
   console.log("RpcClient: writeRemoteObjectArray is " + result);
   ```
 
-
 ### readRemoteObjectArray<sup>8+</sup>
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
@@ -5116,7 +5066,7 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5147,7 +5097,6 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
   data.readRemoteObjectArray(b);
   ```
 
-
 ### readRemoteObjectArray<sup>8+</sup>
 
 readRemoteObjectArray(): IRemoteObject[]
@@ -5164,7 +5113,7 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5196,12 +5145,11 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
   console.log("RpcClient: readRemoteObjectArray is " + b);
   ```
 
-
 ### closeFileDescriptor<sup>8+</sup>
 
 static closeFileDescriptor(fd: number): void
 
-Closes a file descriptor.
+Closes a file descriptor. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5213,19 +5161,18 @@ Closes a file descriptor.
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
   rpc.MessageParcel.closeFileDescriptor(fd);
   ```
 
-
 ### dupFileDescriptor<sup>8+</sup>
 
 static dupFileDescriptor(fd: number) :number
 
-Duplicates a file descriptor.
+Duplicates a file descriptor. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5243,19 +5190,18 @@ Duplicates a file descriptor.
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let filePath = "path/to/file";
   let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
   let newFd = rpc.MessageParcel.dupFileDescriptor(fd);
   ```
 
-
 ### containFileDescriptors<sup>8+</sup>
 
 containFileDescriptors(): boolean
 
-Checks whether this **MessageParcel** object contains a file descriptor.
+Checks whether this **MessageParcel** object contains file descriptors.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5263,11 +5209,11 @@ Checks whether this **MessageParcel** object contains a file descriptor.
 
   | Type   | Description                                                              |
   | ------- | ------------------------------------------------------------------ |
-  | boolean | Returns **true** if the **MessageParcel** object contains a file descriptor; returns **false** otherwise.|
+  | boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5278,7 +5224,6 @@ Checks whether this **MessageParcel** object contains a file descriptor.
   let containFD = parcel.containFileDescriptors();
   console.log("RpcTest: parcel after write fd containFd result is : " + containFD);
   ```
-
 
 ### writeFileDescriptor<sup>8+</sup>
 
@@ -5302,7 +5247,7 @@ Writes a file descriptor to this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5310,7 +5255,6 @@ Writes a file descriptor to this **MessageParcel** object.
   let writeResult = parcel.writeFileDescriptor(fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   ```
-
 
 ### readFileDescriptor<sup>8+</sup>
 
@@ -5328,7 +5272,7 @@ Reads the file descriptor from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   import fileio from '@ohos.fileio';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
@@ -5337,7 +5281,6 @@ Reads the file descriptor from this **MessageParcel** object.
   let readFD = parcel.readFileDescriptor();
   console.log("RpcTest: parcel read fd is : " + readFD);
   ```
-
 
 ### writeAshmem<sup>8+</sup>
 
@@ -5357,17 +5300,16 @@ Writes an anonymous shared object to this **MessageParcel** object.
 
   | Type   | Description                                                                |
   | ------- | -------------------------------------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
   console.log("RpcTest: write ashmem to result is : " + isWriteSuccess);
   ```
-
 
 ### readAshmem<sup>8+</sup>
 
@@ -5385,7 +5327,7 @@ Reads the anonymous shared object from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
@@ -5393,7 +5335,6 @@ Reads the anonymous shared object from this **MessageParcel** object.
   let readAshmem = parcel.readAshmem();
   console.log("RpcTest: read ashmem to result is : " + readAshmem);
   ```
-
 
 ### getRawDataCapacity<sup>8+</sup>
 
@@ -5411,12 +5352,11 @@ Obtains the maximum amount of raw data that can be held by this **MessageParcel*
 
 **Example**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
   console.log("RpcTest: parcel get RawDataCapacity result is : " + result);
   ```
-
 
 ### writeRawData<sup>8+</sup>
 
@@ -5437,17 +5377,16 @@ Writes raw data to this **MessageParcel** object.
 
   | Type   | Description                                     |
   | ------- | ----------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
   console.log("RpcTest: parcel write raw data result is : " + isWriteSuccess);
   ```
-
 
 ### readRawData<sup>8+</sup>
 
@@ -5471,7 +5410,7 @@ Reads raw data from this **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
@@ -5479,7 +5418,6 @@ Reads raw data from this **MessageParcel** object.
   let result = parcel.readRawData(5);
   console.log("RpcTest: parcel read raw data result is : " + result);
   ```
-
 
 ## Parcelable<sup>9+</sup>
 
@@ -5504,10 +5442,9 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
   | Type   | Description                                     |
   | ------- | ----------------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
 **Example**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -5534,7 +5471,6 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
   let result2 = data.readParcelable(ret);
   console.log("RpcClient: readParcelable is " + result2);
   ```
-
 
 ### unmarshalling
 
@@ -5558,7 +5494,7 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 **Example**
 
-  ```
+  ```ts
   class MyParcelable {
       num: number;
       str: string;
@@ -5585,7 +5521,6 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
   let result2 = data.readParcelable(ret);
   console.log("RpcClient: readParcelable is " + result2);
   ```
-
 
 ## Sequenceable<sup>(deprecated)</sup>
 
@@ -5612,10 +5547,9 @@ Marshals the sequenceable object into a **MessageParcel** object.
   | Type   | Description                                     |
   | ------- | ----------------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5642,7 +5576,6 @@ Marshals the sequenceable object into a **MessageParcel** object.
   let result2 = data.readSequenceable(ret);
   console.log("RpcClient: readSequenceable is " + result2);
   ```
-
 
 ### unmarshalling
 
@@ -5666,7 +5599,7 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 **Example**
 
-  ```
+  ```ts
   class MySequenceable {
       num: number;
       str: string;
@@ -5694,7 +5627,6 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
   console.log("RpcClient: readSequenceable is " + result2);
   ```
 
-
 ## IRemoteBroker
 
 Provides the holder of a remote proxy object.
@@ -5715,17 +5647,44 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Example**
 
-  ```
+  ```ts
   class TestAbility extends rpc.RemoteObject {
       asObject() {
           return this;
       }
   }
+  let remoteObject = new TestAbility().asObject();
   ```
 
 **Example**
 
+  Obtain the service.
+
+  ```ts
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function (elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function (elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function () {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
   ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
+  
+  ```ts
   class TestProxy {
       remote: rpc.RemoteObject;
       constructor(remote) {
@@ -5735,6 +5694,8 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
           return this.remote;
       }
   }
+  let iRemoteObject = new TestProxy(proxy).asObject();
+
   ```
 
 ## DeathRecipient
@@ -5751,7 +5712,7 @@ Called to perform subsequent operations when a death notification of the remote 
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -5795,7 +5756,7 @@ Provides methods to query of obtain interface descriptors, add or delete death n
 
 getLocalInterface(descriptor: string): IRemoteBroker
 
-Obtains the interface.
+Obtains the interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5817,7 +5778,7 @@ Obtains the interface.
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-Obtains the interface.
+Queries the interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5833,14 +5794,13 @@ Obtains the interface.
   | ------------- | --------------------------------------------- |
   | IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
 
-
 ### sendRequest<sup>(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options** , a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5857,7 +5817,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 
 ### sendRequest<sup>8+(deprecated)</sup>
@@ -5866,7 +5826,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5890,7 +5850,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5914,7 +5874,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5928,14 +5888,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   | options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
   | callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5949,12 +5908,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options  | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
   | callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
-
 ### registerDeathRecipient<sup>9+</sup>
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Adds a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. The callback will be called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5962,17 +5920,16 @@ Adds a callback for receiving death notifications of the remote object. This met
 
   | Name   | Type                             | Mandatory| Description          |
   | --------- | --------------------------------- | ---- | -------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.|
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
   | ------- | -------- |
   | 1900008 | proxy or remote object is invalid |
-
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
@@ -6002,7 +5959,7 @@ Adds a callback for receiving death notifications of the remote object. This met
 
 unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Removes the callback used to receive death notifications of the remote object.
+Unregisters the callback used to receive death notifications of the remote object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6010,17 +5967,16 @@ Removes the callback used to receive death notifications of the remote object.
 
   | Name   | Type                             | Mandatory| Description          |
   | --------- | --------------------------------- | ---- | -------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.|
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
   | ------- | -------- |
   | 1900008 | proxy or remote object is invalid |
-
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
@@ -6043,14 +5999,13 @@ Removes the callback used to receive death notifications of the remote object.
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the callback is removed successfully; returns **false** otherwise.|
-
+  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
 
-Obtains the interface descriptor of this object. The interface descriptor is a string.
+Obtains the interface descriptor (which is a string) of this object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6060,7 +6015,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
   | ------ | ---------------- |
   | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6075,7 +6030,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 getInterfaceDescriptor(): string
 
-Obtains the interface descriptor of this object. The interface descriptor is a string.
+Obtains the interface descriptor (which is a string) of this object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6115,14 +6070,13 @@ Provides APIs to implement **IRemoteObject**.
 | MIN_TRANSACTION_ID    | 1 (0x00000001)          | Minimum valid instruction code.                 |
 | MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | Maximum valid instruction code.                 |
 
-
 ### sendRequest<sup>(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6139,11 +6093,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6163,6 +6119,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6181,12 +6142,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   reply.reclaim();
   ```
 
-
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6207,7 +6167,9 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6227,6 +6189,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -6251,14 +6218,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       });
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6279,7 +6245,9 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6299,6 +6267,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6327,7 +6300,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6341,10 +6314,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   | options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
   | callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
-
 **Example**
+  
+  Obtain the service.
 
-  ```
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6377,6 +6351,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       result.reply.reclaim();
   }
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -6390,14 +6369,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   }
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6413,7 +6391,9 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6446,6 +6426,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       result.reply.reclaim();
   }
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6453,7 +6438,6 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   data.writeString("hello");
   proxy.sendRequest(1, data, reply, option, sendRequestCallback);
   ```
-
 
 ### getLocalInterface<sup>9+</sup>
 
@@ -6475,7 +6459,7 @@ Obtains the **LocalInterface** object of an interface token.
   | ------------- | ------------------------------------------ |
   | IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6485,7 +6469,9 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6505,6 +6491,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+
+  ```ts
   try {
       let broker = proxy.getLocalInterface("testObject");
       console.log("RpcClient: getLocalInterface is " + broker);
@@ -6513,7 +6504,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("rpc get local interface fail, errorMessage " + error.message);
   }
   ```
-
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -6539,7 +6529,9 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6559,16 +6551,20 @@ Obtains the **LocalInterface** object of an interface token.
       "abilityName":"com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+
+  ```ts
   let broker = proxy.queryLocalInterface("testObject");
   console.log("RpcClient: queryLocalInterface is " + broker);
   ```
-
 
 ### registerDeathRecipient<sup>9+</sup>
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Adds a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. The callback will be invoked when the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6576,10 +6572,10 @@ Adds a callback for receiving death notifications of the remote object. This met
 
   | Name   | Type                             | Mandatory| Description          |
   | --------- | --------------------------------- | ---- | -------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to add.|
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6589,7 +6585,9 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6609,6 +6607,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
+  
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6616,13 +6619,12 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
   }
   ```
-
 
 ### addDeathRecippient<sup>(deprecated)</sup>
 
@@ -6649,7 +6651,9 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6669,20 +6673,25 @@ Adds a callback for receiving the death notifications of the remote object, incl
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   ```
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Removes the callback used to receive death notifications of the remote object.
+Unregisters the callback used to receive death notifications of the remote object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6690,10 +6699,10 @@ Removes the callback used to receive death notifications of the remote object.
 
   | Name   | Type                             | Mandatory| Description          |
   | --------- | --------------------------------- | ---- | -------------- |
-  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to remove.|
+  | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6703,7 +6712,9 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  Obtain the service.
+  
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6723,6 +6734,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6737,7 +6753,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
   }
   ```
-
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
@@ -6760,11 +6775,13 @@ Removes the callback used to receive death notifications of the remote object.
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the callback is removed successfully; returns **false** otherwise.|
+  | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6784,6 +6801,11 @@ Removes the callback used to receive death notifications of the remote object.
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6794,12 +6816,11 @@ Removes the callback used to receive death notifications of the remote object.
   proxy.removeDeathRecipient(deathRecipient, 0);
   ```
 
-
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
 
-Obtains the interface descriptor of this object. The interface descriptor is a string.
+Obtains the interface descriptor (which is a string) of this proxy object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6809,7 +6830,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
   | ------ | ---------------- |
   | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6820,7 +6841,9 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6840,6 +6863,10 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
+
+  ```ts
   try {
       let descriptor = proxy.getDescriptor();
       console.log("RpcClient: descriptor is " + descriptor);
@@ -6848,7 +6875,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("rpc get interface descriptor fail, errorMessage " + error.message);
   }
   ```
-
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
@@ -6868,7 +6894,9 @@ Obtains the interface descriptor of this proxy object.
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6888,10 +6916,14 @@ Obtains the interface descriptor of this proxy object.
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+    ```
+
+The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
+
+  ```ts
   let descriptor = proxy.getInterfaceDescriptor();
   console.log("RpcClient: descriptor is " + descriptor);
   ```
-
 
 ### isObjectDead
 
@@ -6909,7 +6941,9 @@ Checks whether the **RemoteObject** is dead.
 
 **Example**
 
-  ```
+  Obtain the service.
+
+  ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
   let connect = {
@@ -6929,10 +6963,14 @@ Checks whether the **RemoteObject** is dead.
       "abilityName": "com.ohos.server.MainAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
+
+  ```ts
   let isDead = proxy.isObjectDead();
   console.log("RpcClient: isObjectDead is " + isDead);
   ```
-
 
 ## MessageOption
 
@@ -6963,6 +7001,16 @@ A constructor used to create a **MessageOption** object.
   | syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
 
 
+**Example**
+
+  ```ts
+  class TestRemoteObject extends rpc.MessageOption {
+    constructor(async) {
+        super(async);
+    }
+  }
+  ```
+
 ### constructor
 
 constructor(syncFlags?: number, waitTime?: number)
@@ -6978,7 +7026,15 @@ A constructor used to create a **MessageOption** object.
   | syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.       |
   | waitTime  | number | No  | Maximum wait time for an RPC call. The default value is **TF_WAIT_TIME**.|
 
+**Example**
 
+  ```ts
+  class TestRemoteObject extends rpc.MessageOption {
+    constructor(syncFlags,waitTime) {
+        super(syncFlags,waitTime);
+    }
+  }
+  ```
 ### isAsync<sup>9+</sup>
 
 isAsync(): boolean;
@@ -6991,8 +7047,14 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
   | Type   | Description                                |
   | ------- | ------------------------------------ |
-  | boolean | Call mode obtained.|
+  | boolean | Returns **true** if **SendMessageRequest** is called synchronously; returns **false** if **SendMessageRequest** is called asynchronously.|
 
+**Example**
+
+  ```ts
+  let option = new rpc.MessageOption();
+  let isAsync = option.isAsync();
+  ```
 
 ### setAsync<sup>9+</sup>
 
@@ -7002,6 +7064,13 @@ Sets whether **SendMessageRequest** is called synchronously or asynchronously.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
+**Example**
+
+  ```ts
+  let option = new rpc.MessageOption();
+  let setAsync = option.setAsync(true);
+  console.log("Set synchronization flag");
+  ```
 
 ### getFlags
 
@@ -7017,7 +7086,23 @@ Obtains the call flag, which can be synchronous or asynchronous.
   | ------ | ------------------------------------ |
   | number | Call mode obtained.|
 
+**Example**
 
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      console.info("create object successfully.");
+      let flog = option.getFlags();
+      console.info("run getFlags success, flog is " + flog);
+      option.setFlags(1)
+      console.info("run setFlags success");
+      let flog2 = option.getFlags();
+      console.info("run getFlags success, flog2 is " + flog2);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
+  
 ### setFlags
 
 setFlags(flags: number): void
@@ -7032,6 +7117,19 @@ Sets the call flag, which can be synchronous or asynchronous.
   | ------ | ------ | ---- | ------------------------ |
   | flags  | number | Yes  | Call flag to set.|
 
+**Example**
+
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      option.setFlags(1)
+      console.info("run setFlags success");
+      let flog = option.getFlags();
+      console.info("run getFlags success, flog is " + flog);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
 
 ### getWaitTime
 
@@ -7047,6 +7145,20 @@ Obtains the maximum wait time for this RPC call.
   | ------ | ----------------- |
   | number | Maximum wait time obtained.|
 
+**Example**
+
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      let time = option.getWaitTime();
+      console.info("run getWaitTime success");
+      option.setWaitTime(16);
+      let time2 = option.getWaitTime();
+      console.info("run getWaitTime success, time is " + time);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
 
 ### setWaitTime
 
@@ -7062,6 +7174,18 @@ Sets the maximum wait time for this RPC call.
   | -------- | ------ | ---- | --------------------- |
   | waitTime | number | Yes  | Maximum wait time to set.|
 
+**Example**
+
+  ```ts
+  try {
+      let option = new rpc.MessageOption();
+      option.setWaitTime(16);
+      let time = option.getWaitTime();
+      console.info("run getWaitTime success, time is " + time);
+  } catch (error) {
+      console.info("error " + error);
+  }
+  ```
 
 ## IPCSkeleton
 
@@ -7071,7 +7195,7 @@ Obtains IPC context information, including the UID and PID, local and remote dev
 
 static getContextObject(): IRemoteObject
 
-Obtains the system capability manager.
+Obtains the system capability manager. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7083,17 +7207,16 @@ Obtains the system capability manager.
 
 **Example**
 
-  ```
+  ```ts
   let samgr = rpc.IPCSkeleton.getContextObject();
   console.log("RpcServer: getContextObject result: " + samgr);
   ```
-
 
 ### getCallingPid
 
 static getCallingPid(): number
 
-Obtains the PID of the caller. This method is invoked by the **RemoteObject** object in the **onRemoteRequest** method. If this method is not invoked in the IPC context (**onRemoteRequest**), the PID of the process will be returned.
+Obtains the PID of the caller. This API is a static method, which is invoked by the **RemoteObject** object in the **onRemoteRequest** method. If this method is not invoked in the IPC context (**onRemoteRequest**), the PID of the process will be returned.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7105,7 +7228,7 @@ Obtains the PID of the caller. This method is invoked by the **RemoteObject** ob
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerPid = rpc.IPCSkeleton.getCallingPid();
@@ -7115,12 +7238,11 @@ Obtains the PID of the caller. This method is invoked by the **RemoteObject** ob
  }
   ```
 
-
 ### getCallingUid
 
 static getCallingUid(): number
 
-Obtains the UID of the caller. This method is invoked by the **RemoteObject** object in the **onRemoteRequest** method. If this method is not invoked in the IPC context (**onRemoteRequest**), the UID of the process will be returned.
+Obtains the UID of the caller. This API is a static method, which is invoked by the **RemoteObject** object in the **onRemoteRequest** method. If this method is not invoked in the IPC context (**onRemoteRequest**), the UID of the process will be returned.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7132,7 +7254,7 @@ Obtains the UID of the caller. This method is invoked by the **RemoteObject** ob
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerUid = rpc.IPCSkeleton.getCallingUid();
@@ -7142,7 +7264,6 @@ Obtains the UID of the caller. This method is invoked by the **RemoteObject** ob
   }
   ```
 
-
 ### getCallingTokenId<sup>8+</sup>
 
 static getCallingTokenId(): number;
@@ -7150,7 +7271,6 @@ static getCallingTokenId(): number;
 Obtains the caller's token ID, which is used to verify the caller identity.
 
 **System capability**: SystemCapability.Communication.IPC.Core
-
 
 **Return value**
  
@@ -7160,7 +7280,7 @@ Obtains the caller's token ID, which is used to verify the caller identity.
   
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
@@ -7175,7 +7295,7 @@ Obtains the caller's token ID, which is used to verify the caller identity.
 
 static getCallingDeviceID(): string
 
-Obtains the ID of the device hosting the caller's process.
+Obtains the ID of the device hosting the caller's process. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7187,7 +7307,7 @@ Obtains the ID of the device hosting the caller's process.
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
@@ -7197,12 +7317,11 @@ Obtains the ID of the device hosting the caller's process.
   }
   ```
 
-
 ### getLocalDeviceID
 
 static getLocalDeviceID(): string
 
-Obtains the local device ID.
+Obtains the local device ID. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7214,7 +7333,7 @@ Obtains the local device ID.
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
@@ -7224,12 +7343,11 @@ Obtains the local device ID.
   }
   ```
 
-
 ### isLocalCalling
 
 static isLocalCalling(): boolean
 
-Checks whether the remote process is a process of the local device.
+Checks whether the remote process is a process of the local device. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7241,7 +7359,7 @@ Checks whether the remote process is a process of the local device.
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
@@ -7251,12 +7369,11 @@ Checks whether the remote process is a process of the local device.
   }
   ```
 
-
 ### flushCmdBuffer<sup>9+</sup>
 
 static flushCmdBuffer(object: IRemoteObject): void
 
-Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. It is recommended that this method be called before any time-sensitive operation is performed.
+Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. It is recommended that this method be called before any time-sensitive operation is performed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7269,7 +7386,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7284,14 +7401,13 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
   }
   ```
 
-
 ### flushCommands<sup>(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [flushCmdBuffer](#flushcmdbuffer9).
 
 static flushCommands(object: IRemoteObject): number
 
-Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. It is recommended that this method be called before any time-sensitive operation is performed.
+Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. It is recommended that this method be called before any time-sensitive operation is performed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7309,7 +7425,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7338,7 +7454,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 static resetCallingIdentity(): string
 
-Changes the UID and PID of the remote user to the UID and PID of the local user. This method is used in scenarios such as identity authentication.
+Changes the UID and PID of the remote user to the UID and PID of the local user. This API is a static method. You can use it in scenarios such as identity authentication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7350,7 +7466,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
@@ -7365,7 +7481,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 static restoreCallingIdentity(identity: string): void
 
-Changes the UID and PID of the remote user to the UID and PID of the local user. This method is used in scenarios such as identity authentication.
+Changes the UID and PID of the remote user to the UID and PID of the local user. This API is a static method. You can use it in scenarios such as identity authentication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7377,7 +7493,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
@@ -7392,14 +7508,13 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
   }
   ```
 
-
 ### setCallingIdentity<sup>(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [restoreCallingIdentity](#restorecallingidentity9).
 
 static setCallingIdentity(identity: string): boolean
 
-Restores the UID and PID of the remote user. It is usually called when the UID and PID of the remote user are required. The UID and PID of the remote user are returned by **resetCallingIdentity**.
+Sets the UID and PID of the remote user. This API is a static method. It is usually called when the UID and PID of the remote user are required. The UID and PID of the remote user are returned by **resetCallingIdentity**.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7417,7 +7532,7 @@ Restores the UID and PID of the remote user. It is usually called when the UID a
 
 **Example**
 
-  ```
+  ```ts
   class Stub extends rpc.RemoteObject {
       onRemoteMessageRequest(code, data, reply, option) {
           let callingIdentity = null;
@@ -7432,7 +7547,6 @@ Restores the UID and PID of the remote user. It is usually called when the UID a
       }
   }
   ```
-
 
 ## RemoteObject
 
@@ -7459,7 +7573,7 @@ A constructor used to create a **RemoteObject** object.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7476,11 +7590,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7519,14 +7633,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   reply.reclaim();
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7547,7 +7660,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7596,7 +7709,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7617,7 +7730,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7648,12 +7761,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       });
   ```
 
-
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7669,7 +7781,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7697,14 +7809,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7720,7 +7831,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7762,7 +7873,6 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-
 ### onRemoteRequest<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [onRemoteMessageRequest](#onremotemessagerequest9).
@@ -7790,7 +7900,7 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
 **Example**
 
-  ```ets
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -7847,12 +7957,12 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
   | Type             | Description                                                                                          |
   | ----------------- | ---------------------------------------------------------------------------------------------- |
-  | boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. If the operation is successful, **true** is returned. Otherwise, **false** is returned.|
+  | boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
   | Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
 
 **Example**: Overload **onRemoteMessageRequest** to process requests synchronously.
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7872,7 +7982,7 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
   **Example**: Overload **onRemoteMessageRequest** to process requests asynchronously.
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7895,7 +8005,7 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
 **Example**: Overload **onRemoteMessageRequest** and **onRemoteRequest** to process requests synchronously.
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7926,7 +8036,7 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
   **Example**: Overload **onRemoteMessageRequest** and **onRemoteRequest** to process requests asynchronously.
 
-  ```ets
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7957,7 +8067,6 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
   }
   ```
 
-
 ### getCallingUid
 
 getCallingUid(): number
@@ -7973,7 +8082,7 @@ Obtains the UID of the remote process.
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -7999,7 +8108,7 @@ Obtains the PID of the remote process.
 
 **Example**
 
-  ```
+  ```ts
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -8013,7 +8122,7 @@ Obtains the PID of the remote process.
 
 getLocalInterface(descriptor: string): IRemoteBroker
 
-Obtains the interface.
+Obtains the interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8032,7 +8141,7 @@ Obtains the interface.
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8042,8 +8151,12 @@ Obtains the interface.
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8052,11 +8165,10 @@ Obtains the interface.
   try {
       let broker = testRemoteObject.getLocalInterface("testObject");
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
   ```
-
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -8082,7 +8194,7 @@ Checks whether the remote object corresponding to the specified interface token 
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8106,7 +8218,6 @@ Checks whether the remote object corresponding to the specified interface token 
   let broker = testRemoteObject.queryLocalInterface("testObject");
   ```
 
-
 ### getDescriptor<sup>9+</sup>
 
 getDescriptor(): string
@@ -8121,7 +8232,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
   | ------ | ---------------- |
   | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8131,7 +8242,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8141,8 +8252,12 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8151,12 +8266,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   try {
       let descriptor = testRemoteObject.getDescriptor();
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
   console.log("RpcServer: descriptor is: " + descriptor);
   ```
-
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
@@ -8176,7 +8290,7 @@ Obtains the interface descriptor.
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8201,7 +8315,6 @@ Obtains the interface descriptor.
   console.log("RpcServer: descriptor is: " + descriptor);
   ```
 
-
 ### modifyLocalInterface<sup>9+</sup>
 
 modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
@@ -8217,10 +8330,9 @@ Binds an interface descriptor to an **IRemoteBroker** object.
   | localInterface | IRemoteBroker | Yes  | **IRemoteBroker** object.  |
   | descriptor     | string        | Yes  | Interface descriptor.|
 
-
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8236,8 +8348,12 @@ Binds an interface descriptor to an **IRemoteBroker** object.
               console.info(rpc attach local interface fail, errorMessage " + error.message);
           }
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8267,7 +8383,7 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 **Example**
 
-  ```
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -8294,14 +8410,13 @@ Binds an interface descriptor to an **IRemoteBroker** object.
   let testRemoteObject = new TestRemoteObject("testObject");
   ```
 
-
 ## Ashmem<sup>8+</sup>
 
 Provides methods related to anonymous shared memory objects, including creating, closing, mapping, and unmapping an **Ashmem** object, reading data from and writing data to an **Ashmem** object, obtaining the **Ashmem** size, and setting **Ashmem** protection.
 
-The table below describes the protection types of the mapped memory.
-
 **System capability**: SystemCapability.Communication.IPC.Core
+
+The table below describes the protection types of the mapped memory.
 
   | Name      | Value | Description              |
   | ---------- | --- | ------------------ |
@@ -8310,12 +8425,11 @@ The table below describes the protection types of the mapped memory.
   | PROT_READ  | 1   | The mapped memory is readable.    |
   | PROT_WRITE | 2   | The mapped memory is writeable.    |
 
-
 ### create<sup>9+</sup>
 
 static create(name: string, size: number): Ashmem
 
-Creates an **Ashmem** object with the specified name and size.
+Creates an **Ashmem** object with the specified name and size. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8332,10 +8446,9 @@ Creates an **Ashmem** object with the specified name and size.
   | ------ | ---------------------------------------------- |
   | Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
-
 **Example**
 
-  ```
+  ```ts
   let ashmem;
   try {
       ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -8347,14 +8460,13 @@ Creates an **Ashmem** object with the specified name and size.
   console.log("RpcTest: get ashemm by create : " + ashmem + " size is : " + size);
   ```
 
-
 ### createAshmem<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [create](#create9).
 
 static createAshmem(name: string, size: number): Ashmem
 
-Creates an **Ashmem** object with the specified name and size.
+Creates an **Ashmem** object with the specified name and size. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8373,18 +8485,17 @@ Creates an **Ashmem** object with the specified name and size.
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
   console.log("RpcTest: get ashemm by createAshmem : " + ashmem + " size is : " + size);
   ```
 
-
 ### create<sup>9+</sup>
 
 static create(ashmem: Ashmem): Ashmem
 
-Creates an **Ashmem** object by copying the file descriptor (FD) of an existing Ashmem object. The two **Ashmem** objects point to the same shared memory region.
+Creates an **Ashmem** object by copying the file descriptor of an existing **Ashmem** object. The two **Ashmem** objects point to the same shared memory region.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8403,7 +8514,7 @@ Creates an **Ashmem** object by copying the file descriptor (FD) of an existing 
 
 **Example**
 
-  ```
+  ```ts
   let ashmem2;
   try {
       let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -8416,14 +8527,13 @@ Creates an **Ashmem** object by copying the file descriptor (FD) of an existing 
   console.log("RpcTest: get ashemm by create : " + ashmem2 + " size is : " + size);
   ```
 
-
 ### createAshmemFromExisting<sup>8+(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [create](#create9).
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
-Creates an **Ashmem** object by copying the file descriptor (FD) of an existing Ashmem object. The two **Ashmem** objects point to the same shared memory region.
+Creates an **Ashmem** object by copying the file descriptor of an existing **Ashmem** object. The two **Ashmem** objects point to the same shared memory region.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8441,13 +8551,12 @@ Creates an **Ashmem** object by copying the file descriptor (FD) of an existing 
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
   let size = ashmem2.getAshmemSize();
   console.log("RpcTest: get ashemm by createAshmemFromExisting : " + ashmem2 + " size is : " + size);
   ```
-
 
 ### closeAshmem<sup>8+</sup>
 
@@ -8459,11 +8568,10 @@ Closes this **Ashmem** object.
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.closeAshmem();
   ```
-
 
 ### unmapAshmem<sup>8+</sup>
 
@@ -8475,11 +8583,10 @@ Deletes the mappings for the specified address range of this **Ashmem** object.
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.unmapAshmem();
   ```
-
 
 ### getAshmemSize<sup>8+</sup>
 
@@ -8497,12 +8604,11 @@ Obtains the memory size of this **Ashmem** object.
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
   console.log("RpcTest: get ashmem is " + ashmem + " size is : " + size);
   ```
-
 
 ### mapTypedAshmem<sup>9+</sup>
 
@@ -8518,7 +8624,7 @@ Creates the shared file mapping on the virtual address space of this process. Th
   | ------- | ------ | ---- | ------------------------------ |
   | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8528,7 +8634,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
@@ -8537,7 +8643,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("Rpc map ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### mapAshmem<sup>8+(deprecated)</sup>
 
@@ -8559,16 +8664,15 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
   | Type   | Description                                     |
   | ------- | ----------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   console.log("RpcTest: map ashmem result is  : " + mapReadAndWrite);
   ```
-
 
 ### mapReadWriteAshmem<sup>9+</sup>
 
@@ -8578,7 +8682,7 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8588,7 +8692,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadWriteAshmem();
@@ -8597,7 +8701,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("Rpc map read and write ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
 
@@ -8613,16 +8716,15 @@ Maps the shared file to the readable and writable virtual address space of the p
 
   | Type   | Description                                     |
   | ------- | ----------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.log("RpcTest: map ashmem result is  : " + mapResult);
   ```
-
 
 ### mapReadonlyAshmem<sup>9+</sup>
 
@@ -8632,7 +8734,7 @@ Maps the shared file to the read-only virtual address space of the process.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8642,7 +8744,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.mapReadonlyAshmem();
@@ -8651,7 +8753,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("Rpc map read and write ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
 
@@ -8667,16 +8768,15 @@ Maps the shared file to the read-only virtual address space of the process.
 
   | Type   | Description                                     |
   | ------- | ----------------------------------------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
   console.log("RpcTest: Ashmem mapReadOnlyAshmem result is : " + mapResult);
   ```
-
 
 ### setProtectionType<sup>9+</sup>
 
@@ -8692,7 +8792,7 @@ Sets the protection level of the memory region to which the shared file is mappe
   | -------------- | ------ | ---- | ------------------ |
   | protectionType | number | Yes  | Protection type to set.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8702,7 +8802,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
       ashmem.setProtection(ashmem.PROT_READ);
@@ -8711,7 +8811,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("Rpc set protection type fail, errorMessage " + error.message);
   }
   ```
-
 
 ### setProtection<sup>8+(deprecated)</sup>
 
@@ -8737,12 +8836,11 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
   console.log("RpcTest: Ashmem setProtection result is : " + result);
   ```
-
 
 ### writeAshmem<sup>9+</sup>
 
@@ -8760,7 +8858,7 @@ Writes data to the shared file associated with this **Ashmem** object.
   | size   | number   | Yes  | Size of the data to write.                                |
   | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8770,7 +8868,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
   var ByteArrayVar = [1, 2, 3, 4, 5];
@@ -8781,7 +8879,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("Rpc write to ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
@@ -8805,11 +8902,11 @@ Writes data to the shared file associated with this **Ashmem** object.
 
   | Type   | Description                                                                                     |
   | ------- | ----------------------------------------------------------------------------------------- |
-  | boolean | Returns **true** is the data is written successfully; returns **false** otherwise.|
+  | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);
@@ -8817,7 +8914,6 @@ Writes data to the shared file associated with this **Ashmem** object.
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   ```
-
 
 ### readAshmem<sup>9+</sup>
 
@@ -8840,7 +8936,7 @@ Reads data from the shared file associated with this **Ashmem** object.
   | -------- | ---------------- |
   | number[] | Data read.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8850,7 +8946,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```
+  ```ts
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
   var ByteArrayVar = [1, 2, 3, 4, 5];
@@ -8863,7 +8959,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("Rpc read from ashmem fail, errorMessage " + error.message);
   }
   ```
-
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
@@ -8890,7 +8985,7 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **Example**
 
- ```
+ ```ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);

@@ -104,6 +104,12 @@ connect\(url: string, callback: AsyncCallback<boolean\>\): void
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                   |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -138,6 +144,12 @@ connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<
 | options  | WebSocketRequestOptions  | 是   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                              |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -182,6 +194,13 @@ connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
 | :----------------- | :-------------------------------- |
 | Promise\<boolean\> | 以Promise形式返回建立连接的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -212,6 +231,13 @@ send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer <sup>8+</sup> | 是   | 发送的数据。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -252,6 +278,13 @@ send\(data: string | ArrayBuffer\): Promise<boolean\>
 | :----------------- | :-------------------------------- |
 | Promise\<boolean\> | 以Promise形式返回发送数据的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -284,6 +317,13 @@ close\(callback: AsyncCallback<boolean\>\): void
 | -------- | ------------------------ | ---- | ---------- |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```js
@@ -315,6 +355,13 @@ close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | 是   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -355,6 +402,13 @@ close\(options?: WebSocketCloseOptions\): Promise<boolean\>
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
 | Promise\<boolean\> | 以Promise形式返回关闭连接的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
@@ -448,7 +502,6 @@ on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
 | type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
-
 **示例：**
 
 ```js
@@ -529,7 +582,6 @@ off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback<{ code: number, reason: string }> | 否   | 回调函数。                     |
 
-
 **示例：**
 
 ```js
@@ -552,7 +604,6 @@ on\(type: 'error', callback: ErrorCallback\): void
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                      |
-
 
 **示例：**
 
