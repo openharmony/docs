@@ -459,7 +459,7 @@ off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-let observeId = 0;
+let observerId = 0;
 
 // 1.注册应用状态监听器
 let applicationStateObserver = {
@@ -540,7 +540,7 @@ off(type: 'applicationState', observerId: number): Promise\<void>;
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-let observeId = 0;
+let observerId = 0;
 
 // 1.注册应用状态监听器
 let applicationStateObserver = {

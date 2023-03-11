@@ -124,7 +124,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ## UIAbility.onDestroy
 
-onDestroy(): void;
+onDestroy(): void | Promise&lt;void&gt;;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 
@@ -181,7 +181,7 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。
 
 ## UIAbility.onContinue
 
-onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
+onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
 
 当ability迁移准备迁移时触发，保存数据。
 
@@ -267,7 +267,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
@@ -308,7 +308,7 @@ class MyUIAbility extends UIAbility {
 
 ## Caller.call
 
-call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 向通用组件服务端发送约定序列化数据。
 
@@ -319,7 +319,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -387,7 +387,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageParcel&gt;;
 
 向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
 
@@ -398,7 +398,7 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -509,7 +509,7 @@ release(): void;
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallBack): void;
+ onRelease(callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -519,7 +519,7 @@ release(): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **示例：**
     
@@ -560,7 +560,7 @@ release(): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **错误码：**
 
@@ -609,7 +609,7 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回off回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
 
 **错误码：**
 
@@ -816,10 +816,10 @@ off(method: string): void;
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Sequenceable;
+(indata: rpc.MessageParcel): rpc.Parcelable;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 |
+| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 | 

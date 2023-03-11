@@ -27,11 +27,9 @@ function executeBatchOperation() {
         DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
         if (DAHelper === null) {
             console.error('DAHelper is null');
-            return;
         }
     } catch (err) {
         console.error('acquireDataAbilityHelper fail, error: ${JSON.stringify(err)}');
-        return;
     }
 
     let valueBucket = {

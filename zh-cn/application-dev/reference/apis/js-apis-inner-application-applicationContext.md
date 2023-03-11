@@ -115,7 +115,7 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log('stage applicationContext: ${applicationContext}');
-        applicationContext.off(type: 'abilityLifecycle', lifecycleId, (error, data) => {
+        applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
             if (error && error.code !== 0) {
                 console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
             } else {
@@ -152,7 +152,7 @@ export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log('stage applicationContext: ${applicationContext}');
-        applicationContext.off(type: 'abilityLifecycle', lifecycleId);
+        applicationContext.off('abilityLifecycle', lifecycleId);
     }
 }
 ```

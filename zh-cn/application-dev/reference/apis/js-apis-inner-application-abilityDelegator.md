@@ -11,8 +11,6 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
 ## AbilityDelegator

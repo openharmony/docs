@@ -59,12 +59,13 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 const config = {
   language: 'Zh-Hans',                 // 简体中文
-  colorMode: COLOR_MODE_LIGHT,         // 浅色模式
-  direction: DIRECTION_VERTICAL,       // 垂直方向
-  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕像素密度为'sdpi'
+  colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // 浅色模式
+  direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // 垂直方向
+  screenDensity: ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_SDPI,  // 屏幕像素密度为'sdpi'
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
 };
@@ -116,12 +117,13 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 const config = {
   language: 'Zh-Hans',                 // 简体中文
-  colorMode: COLOR_MODE_LIGHT,         // 浅色模式
-  direction: DIRECTION_VERTICAL,       // 垂直方向
-  screenDensity: SCREEN_DENSITY_SDPI,  // 屏幕像素密度为'sdpi'
+  colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // 浅色模式
+  direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // 垂直方向
+  screenDensity: ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_SDPI,  // 屏幕像素密度为'sdpi'
   displayId: 1,                        // 应用在Id为1的物理屏上显示
   hasPointerDevice: true,              // 指针类型设备已连接
 };
