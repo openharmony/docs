@@ -103,7 +103,18 @@ caretPosition(value:&nbsp;number): void
 | 参数名 | 参数类型 | 必填 | 参数描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | value  | number   | 是   | 从字符串开始到光标所在位置的字符长度。 |
+### setTextSelection<sup>10+</sup>
 
+setTextSelection(selectionStart:&nbsp;number, selectionStart:&nbsp;number): void
+
+设置文本选择区域并高亮显示。
+
+**参数：**
+
+| 参数名         | 参数类型 | 必填 | 参数描述               |
+| -------------- | -------- | ---- | ---------------------- |
+| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
+| selectionEnd   | number   | 是   | 文本选择区域结束位置。 |
 
 ## 示例
 
