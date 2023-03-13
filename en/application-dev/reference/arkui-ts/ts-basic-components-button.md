@@ -16,6 +16,8 @@ This component can contain only one child component.
 
 **API 1:** Button(options?: {type?: ButtonType, stateEffect?: boolean})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name        | Type      | Mandatory       | Description                             |
@@ -27,6 +29,8 @@ This component can contain only one child component.
 **API 2:** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
   Creates a button component based on text content. In this case, the component cannot contain child components.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -40,10 +44,13 @@ This component can contain only one child component.
 
 | Name         | Type          | Description                               |
 | ----------- | ----------- | --------------------------------- |
-| type        | ButtonType  |  Button type.<br>Default value: **ButtonType.Capsule**                      |
-| stateEffect | boolean     |  Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**|
+| type        | ButtonType  | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| stateEffect | boolean     | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## ButtonType enums
+
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name     | Description                |
 | ------- | ------------------ |
 | Capsule | Capsule-type button (the round corner is half of the height by default).|

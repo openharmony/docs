@@ -1923,7 +1923,7 @@ setTransform(transform?: Matrix2D): void
 
 Resets the current transformation to the identity matrix, and then creates a new transformation matrix based on the specified **Matrix2D** object. This API is a void API.
 
-Since API version 9, this API can be used for ArkTS widgets.
+Since API version 9, this API is supported in ArkTS widgets.
 
 
 ### translate

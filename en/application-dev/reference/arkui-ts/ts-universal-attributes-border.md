@@ -13,11 +13,11 @@ The border attributes are used to set border styles for components.
 
 | Name        | Type                                                    | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| border       | {<br>width?: [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup>,<br>color?:  [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup>,<br>radius?:  [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>,<br>style?: [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup><br>} | Unified border style.<br>- **width**: border width.<br>- **color**: border color.<br>- **radius**: radius of the rounded corner of the border.<br>- **style**: border style.|
-| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup> | Border style.<br>Default value: **BorderStyle.Solid**          |
-| borderWidth  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | Border width. The percentage format is not supported.                          |
-| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | Border color.<br>Default value: **Color.Black**                                       |
-| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | Border radius. The percentage format is not supported.                      |
+| border       | {<br>width?: [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup>,<br>color?:  [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup>,<br>radius?:  [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>,<br>style?: [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup><br>} | Unified border style.<br>- **width**: border width.<br>- **color**: border color.<br>- **radius**: radius of the rounded corner of the border.<br>- **style**: border style.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9)<sup>9+</sup> | Border style.<br>Default value: **BorderStyle.Solid**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| borderWidth  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | Border width. The percentage format is not supported.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | Border color.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | Border radius. The percentage format is not supported.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## EdgeWidths<sup>9+</sup>
 

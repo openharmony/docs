@@ -15,7 +15,10 @@ This component can contain the **\<GridCol>** child component.
 ## APIs
 GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
+
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
 |gutter|Length \| GutterOption|   No |Gutter of the grid layout. **x** indicates the horizontal direction.|
@@ -25,6 +28,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 ## GutterOption
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | x  | Length \| GridRowSizeOption | No  | Gutter in the horizontal direction.   |
@@ -33,6 +38,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 ## GridRowColumnOption
 
 Describes the numbers of grid columns for different device width types.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -47,6 +54,8 @@ Describes the numbers of grid columns for different device width types.
 
 Describes the gutter sizes for different device width types.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | Length | No   | Device of the minimum size.   |
@@ -57,6 +66,8 @@ Describes the gutter sizes for different device width types.
 | xxl | Length | No   | Ultra-large-sized device.   |
 
 ## BreakPoints
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -72,12 +83,18 @@ Describes the gutter sizes for different device width types.
 ```
 
 ## BreakpointsReference
+
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name| Description|
 | -------- | -------- |
 | WindowSize | The window is used as a reference.|
 | ComponentSize | The container is used as a reference.|
 
 ## GridRowDirection
+
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name| Description|
 | -------- | -------- |
 | Row | Grid elements are arranged in the row direction.|
@@ -117,6 +134,8 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 ### onBreakpointChange
 
 onBreakpointChange(callback: (breakpoints: string) => void)
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 

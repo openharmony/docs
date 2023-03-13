@@ -12,9 +12,11 @@ You can apply background blur effects to a component.
 
 | Name                 | Type                    | Description                    |
 | -------------------- | ----------------------- | ------------------------ |
-| backgroundBlurStyle  | [BlurStyle](#blurstyle) | Style of the blur between the background and content for the current component. The input parameter indicates a blur material.|
+| backgroundBlurStyle  | [BlurStyle](#blurstyle) | Style of the blur between the background and content for the current component. The input parameter indicates a blur material.<br>This API is supported in ArkTS widgets.|
 
 ## BlurStyle
+
+This API is supported in ArkTS widgets.
 
   | Name      | Description     |
   | ------- | ---------- |
