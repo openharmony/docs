@@ -2411,6 +2411,8 @@ toDataURL(type?: string, quality?: number): string
 
 生成一个包含图片展示的URL。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：** 
 
 | 参数名     | 参数类型   | 必填   | 描述                                       |
