@@ -190,7 +190,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
    let tlsTwoWay = socket.constructTLSSocketInstance();
 
    // 订阅TLS Socket相关的订阅事件
-   tcp.on('message', value => {
+   tlsTwoWay.on('message', value => {
        console.log("on message")
        let buffer = value.message
        let dataView = new DataView(buffer)
@@ -200,10 +200,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
        }
        console.log("on connect received:" + str)
    });
-   tcp.on('connect', () => {
+   tlsTwoWay.on('connect', () => {
        console.log("on connect")
    });
-   tcp.on('close', () => {
+   tlsTwoWay.on('close', () => {
        console.log("on close")
    });
 
@@ -247,22 +247,22 @@ UDP与TCP流程大体类似，下面以TCP为例：
    });
 
    // 连接使用完毕后，主动关闭。取消相关事件的订阅。
-   tls.close((err) => {
+   tlsTwoWay.close((err) => {
        if (err) {
            console.log("close callback error = " + err);
        } else {
            console.log("close success");
        }
-       tls.off('message');
-       tls.off('connect');
-       tls.off('close');
+       tlsTwoWay.off('message');
+       tlsTwoWay.off('connect');
+       tlsTwoWay.off('close');
    });
 
    // 创建一个（单向认证）TLS Socket连接，返回一个TLS Socket对象。
    let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 
    // 订阅TLS Socket相关的订阅事件
-   tcp.on('message', value => {
+   tlsTwoWay.on('message', value => {
        console.log("on message")
        let buffer = value.message
        let dataView = new DataView(buffer)
@@ -272,10 +272,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
        }
        console.log("on connect received:" + str)
    });
-   tcp.on('connect', () => {
+   tlsTwoWay.on('connect', () => {
        console.log("on connect")
    });
-   tcp.on('close', () => {
+   tlsTwoWay.on('close', () => {
        console.log("on close")
    });
 
@@ -308,15 +308,15 @@ UDP与TCP流程大体类似，下面以TCP为例：
    });
 
    // 连接使用完毕后，主动关闭。取消相关事件的订阅。
-   tls.close((err) => {
+   tlsTwoWay.close((err) => {
        if (err) {
            console.log("close callback error = " + err);
        } else {
            console.log("close success");
        }
-       tls.off('message');
-       tls.off('connect');
-       tls.off('close');
+       tlsTwoWay.off('message');
+       tlsTwoWay.off('connect');
+       tlsTwoWay.off('close');
    });
 ```
 

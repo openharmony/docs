@@ -77,7 +77,7 @@ createHttp(): HttpRequest
 
 | 类型        | 说明                                                         |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | 返回一个HttpRequest对象，里面包括request、destroy、on和off方法。 |
+| HttpRequest | 返回一个HttpRequest对象，里面包括request、request2、destroy、on和off方法。 |
 
 **示例：**
 
@@ -545,12 +545,8 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.on('headerReceive', (err, data) => {
-    if (!err) {
-        console.info('header: ' + JSON.stringify(data));
-    } else {
-        console.info('error:' + JSON.stringify(err));
-    }
+httpRequest.on('headerReceive', (data) => {
+    console.info('error:' + JSON.stringify(data));
 });
 ```
 
@@ -763,9 +759,7 @@ httpRequest.off('dataEnd');
 
 ```js
 httpRequest.on('dataProgress', (data) => {
-    if (!err) {
-        console.info('dataProgress:' + JSON.stringify(data));
-    }
+    console.info('dataProgress:' + JSON.stringify(data));
 });
 ```
 
@@ -915,7 +909,7 @@ let httpResponseCache = http.createHttpResponseCache();
 
 ## HttpResponseCache<sup>9+</sup>
 
-存储HTTP访问请求响应的对象。
+存储HTTP访问请求响应的对象。在调用HttpResponseCache的方法前，需要先通过[createHttpResponseCache()](#httpcreatehttpresponsecache9)创建一个任务。
 
 ### flush<sup>9+</sup>
 
