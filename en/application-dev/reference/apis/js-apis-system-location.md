@@ -68,9 +68,9 @@ export default {
       },            
       fail: function(data, code) {                
         console.log('fail to get location. code:' + code + ', data:' + data);            
-      },
+      }
     });    
-  },
+  }
 }
 ```
 
@@ -181,7 +181,7 @@ Cancels listening to the geographical location.
 export default {    
   unsubscribe() {        
     geolocation.unsubscribe();    
-  },
+  }
 }
 ```
 
