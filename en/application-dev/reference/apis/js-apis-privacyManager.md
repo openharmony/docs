@@ -513,8 +513,8 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The permissionName in list is all invalid or the list size is larger than 1024. |
-| 12100004 | The interface is not used together with "on()".|
+| 12100001 | The parameter is invalid. The permission names in the list are all invalid, or the list size is larger than 1024. |
+| 12100004 | The API is not used together with "on()". |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 

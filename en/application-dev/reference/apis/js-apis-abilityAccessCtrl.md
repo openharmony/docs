@@ -481,7 +481,7 @@ try {
 
 off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void;
 
-Unsubscribes from permission grant state changes of the specified applications and permissions. This API uses a  callback to return the result.
+Unsubscribes from permission grant state changes of the specified applications and permissions. This API uses a callback to return the result.
 
 **System API**: This is a system API.
 
@@ -504,8 +504,8 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID in list is all invalid. |
-| 12100004 | The interface is not used together with "on". |
+| 12100001 | The parameter is invalid. The tokenIDs in the list are all invalid. |
+| 12100004 | The API is not used together with "on()". |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
