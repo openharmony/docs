@@ -130,6 +130,15 @@
     - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
     - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
     - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+  - notification
+    - [NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)
+    - [NotificationCommonDef](js-apis-inner-notification-notificationCommonDef.md)
+    - [NotificationContent](js-apis-inner-notification-notificationContent.md)
+    - [NotificationFlags](js-apis-inner-notification-notificationFlags.md)
+    - [NotificationRequest](js-apis-inner-notification-notificationRequest.md)
+    - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
+    - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
+    - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
 - 包管理
   - [@ohos.bundle.appControl (appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
@@ -189,7 +198,7 @@
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
 
-- 资源调度
+- 后台任务
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)

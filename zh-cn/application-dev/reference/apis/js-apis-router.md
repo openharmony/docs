@@ -362,7 +362,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **示例：**
@@ -597,7 +597,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()[data1]);
+    console.info('showData1:' + router.getParams()['data1']);
   }
 }
 ```

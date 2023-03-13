@@ -4433,15 +4433,26 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 **示例：**
   ```js
   let plugin = {
-    auth: (domainInfo, credential, callback) => {
+    auth: (domainAccountInfo, credential, callback) => {
       // mock authentication
-      callback.onResult(0, {});
-    }
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
   let userAuth = new account_osAccount.UserAuth();
   let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
+  let authType = account_osAccount.AuthType.DOMAIN;
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
@@ -4453,6 +4464,235 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
   } catch (err) {
     console.log('auth exception = ' + JSON.stringify(err));
   }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback): void
+
+弹窗认证指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### authWithToken<sup>10+</sup>
+
+authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: IUserAuthCallback): void
+
+使用授权令牌认证指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| token   | Uint8Array  | 是   | 指示PIN码或生物识别认证成功时生成的授权令牌。|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+
+查询指定域帐号的信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domain   | string  | 是   | 指示帐号所属域。|
+| accountName   | string  | 是   | 指示帐号的名称。|
+| callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | 是   | 指示查询结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {
+      // mock getting account information
+      // notify result
+      callback({
+        code: 0
+      }, {
+        domain: domain,
+        accountName: accountName,
+        accountId: "xxxx"
+      })
+    },
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### getAuthStatusInfo<sup>10+</sup>
+
+getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;AuthStatusInfo&gt;): void
+
+查询指定域帐号的认证状态信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | 是   | 指示查询结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {
+      callback({
+        code: 0
+      }, {
+        remainTimes: 5,
+        freezingTime: 0
+      })
+    },
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### bindAccount<sup>10+</sup>
+
+bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: AsyncCallback&lt;void&gt;): void
+
+绑定指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {
+      // mock unbinding operation
+      // notify binding result
+      callback({code: 0})
+    },
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### unbindAccount<sup>10+</sup>
+
+unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;void&gt;): void
+
+解绑指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {
+      // mock unbinding operation
+      // notify unbinding result
+      callback({code: 0})
+    }
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ## DomainAccountManager <sup>9+</sup>
@@ -4480,15 +4720,18 @@ static registerPlugin(plugin: DomainPlugin): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300201 | The domain plugin has been registered. |
+| 12300201 | the domain plugin has been registered. |
 
 **示例：**
   ```js
   let plugin = {
-    auth: (domainInfo, credential, callback) => {
-      // mock authentication
-      callback.onResult(0, {});
-    }
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
   }
   try {
     account_osAccount.DomainAccountManager.registerPlugin(plugin);
@@ -4517,6 +4760,252 @@ static unregisterPlugin(): void
     console.log('unregisterPlugin success.');
   } catch(err) {
     console.log("unregisterPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### auth<sup>10+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+认证指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| credential   | Uint8Array  | 是   | 指示域帐号的凭据。|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainAccountInfo or credential. |
+| 12300003 | domain account does not exist. |
+| 12300013 | network exception. |
+| 12300101 | authentication failed. |
+| 12300109 | authentication is canceled. |
+| 12300110 | authentication is locked. |
+| 12300111 | authentication timeout. |
+| 12300112 | authentication service is busy. |
+| 12300113 | authentication service does not exist. |
+| 12300114 | authentication service exception. |
+
+**示例：**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  let credential = new Uint8Array([0])
+  try {
+    account_osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
+      onResult: (resultCode, authResult) => {
+        console.log('auth resultCode = ' + resultCode);
+        console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(callback: IUserAuthCallback): void
+
+弹框认证指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300003 | no domain account is bound. |
+| 12300013 | network exception. |
+| 12300101 | authentication failed. |
+| 12300109 | authentication is canceled. |
+| 12300110 | authentication is locked. |
+| 12300111 | authentication timeout. |
+| 12300112 | authentication service is busy. |
+| 12300113 | authentication service does not exist. |
+| 12300114 | authentication service exception. |
+
+**示例：**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.authWithPopup({
+      onResult: (resultCode, authResult) => {
+        console.log('auth resultCode = ' + resultCode);
+        console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    })
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(localId: number, callback: IUserAuthCallback): void
+
+弹框认证指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| localId   | number  | 是   | 指示绑定域帐号的系统帐号的本地标识。|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId. |
+| 12300003 | no domain account is bound. |
+| 12300013 | network exception. |
+| 12300101 | authentication failed. |
+| 12300109 | authentication is canceled. |
+| 12300110 | authentication is locked. |
+| 12300111 | authentication timeout. |
+| 12300112 | authentication service is busy. |
+| 12300113 | authentication service does not exist. |
+| 12300114 | authentication service exception. |
+
+**示例：**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.authWithPopup(100, {
+      onResult: (resultCode, authResult) => {
+        console.log('authWithPopup resultCode = ' + resultCode);
+        console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
+      }
+    })
+  } catch (err) {
+    console.log('authWithPopup exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### hasAccount<sup>10+</sup>
+
+hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;boolean&gt;): void
+
+检查是否存在指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| callback   | AsyncCallback&lt;boolean&gt;  | 是   | 指示检查结果回调。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainAccountInfo. |
+| 12300013 | network exception. |
+
+**示例：**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  try {
+    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err, result) => {
+      if (err) {
+        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+      } else {
+        console.log("hasAccount result: " + result);
+      }
+    });
+  } catch (err) {
+    console.log('hasAccount exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### hasAccount<sup>10+</sup>
+
+hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
+
+检查是否存在指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;boolean&gt; | Promise对象，返回指定的域帐号是否存在。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainAccountInfo. |
+| 12300013 | network exception. |
+
+**示例：**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  try {
+    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result) => {
+      console.log("hasAccount result: " + result);
+    }).catch((err) => {
+        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('hasAccount exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -5254,7 +5743,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | 是    | 指示结果。         |
 | authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。|
-| remainTimes  | number                                   | 否    | 指示剩余时间。     |
+| remainTimes  | number                                   | 否    | 指示剩余次数。     |
 | freezingTime | number                                   | 否    | 指示冻结时间。     |
 
 ## AuthResult<sup>8+</sup>
@@ -5268,7 +5757,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
 | token        | Uint8Array  | 否    | 指示认证令牌。     |
-| remainTimes  | number      | 否    | 指示剩余时间。     |
+| remainTimes  | number      | 否    | 指示剩余次数。     |
 | freezingTime | number      | 否    | 指示冻结时间。     |
 
 ## CredentialInfo<sup>8+</sup>
@@ -5490,6 +5979,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
+| accountId<sup>10+</sup> | string | 否   | 域帐号标识。 |
 
 ## 系统帐号约束列表
 
@@ -5586,3 +6076,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |
 | CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置   |
 | CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置   |
+
+## AuthStatusInfo<sup>10+</sup>
+
+表示认证状态信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| remainTimes  | number | 是   | 剩余次数   |
+| freezingTime | number | 是   | 冻结时间 |

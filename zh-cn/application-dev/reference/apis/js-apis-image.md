@@ -947,8 +947,18 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```js
-let context = featureAbility.getContext();
-let path = context.getCacheDir() + "test.jpg";
+//Stage模型
+const context = getContext(this);
+const path = context.getCacheDir() + "/test.jpg";
+const imageSourceApi = image.createImageSource(path);
+```
+
+```js
+//FA模型
+import featureAbility from '@ohos.ability.featureAbility';
+
+const context = featureAbility.getContext();
+const path = context.getCacheDir() + "/test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 

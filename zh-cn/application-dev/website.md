@@ -377,7 +377,7 @@
     - 文件访问框架
       - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
     - [文件选择器使用指导](file-management/filepicker-guidelines.md)
-  - 任务管理
+  - 后台任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
@@ -932,6 +932,15 @@
         - [CommonEventPublishData](reference/apis/js-apis-inner-commonEvent-commonEventPublishData.md)
         - [CommonEventSubscriber](reference/apis/js-apis-inner-commonEvent-commonEventSubscriber.md)
         - [CommonEventSubscribeInfo](reference/apis/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+      - notification
+        - [NotificationActionButton](reference/apis/js-apis-inner-notification-notificationActionButton.md)
+        - [NotificationCommonDef](reference/apis/js-apis-inner-notification-notificationCommonDef.md)
+        - [NotificationContent](reference/apis/js-apis-inner-notification-notificationContent.md)
+        - [NotificationFlags](reference/apis/js-apis-inner-notification-notificationFlags.md)
+        - [NotificationRequest](reference/apis/js-apis-inner-notification-notificationRequest.md)
+        - [NotificationSlot](reference/apis/js-apis-inner-notification-notificationSlot.md)
+        - [NotificationTemplate](reference/apis/js-apis-inner-notification-notificationTemplate.md)
+        - [NotificationUserInput](reference/apis/js-apis-inner-notification-notificationUserInput.md)
     - 包管理
       - [@ohos.bundle.appControl (appControl模块)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
@@ -986,7 +995,7 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    - 资源调度
+    - 后台任务
       - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
@@ -1234,8 +1243,9 @@
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)
-    - 资源调度
+    - 后台任务
       - [backgroundTaskManager错误码](reference/errorcodes/errorcode-backgroundTaskMgr.md)
+      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager错误码](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/errorcodes/errorcode-workScheduler.md)
     - 安全
@@ -1285,7 +1295,6 @@
       - [系统参数错误码](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB服务错误码](reference/errorcodes/errorcode-usb.md)
       - [升级错误码](reference/errorcodes/errorcode-update.md)
-      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
     - 定制管理
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库

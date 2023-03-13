@@ -30,7 +30,7 @@ HTTP数据请求功能主要由http模块提供。
 | on\('dataProgress'\)<sup>10+</sup>        | 订阅HTTP流式响应数据接收进度事件。  |
 | off\('dataProgress'\)<sup>10+</sup>       | 取消订阅HTTP流式响应数据接收进度事件。 |
 
-## 开发步骤
+## request接口开发步骤
 
 1. 从@ohos.net.http.d.ts中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -83,7 +83,7 @@ httpRequest.request(
             console.info('error:' + JSON.stringify(err));
             // 取消订阅HTTP响应头事件
             httpRequest.off('headersReceive');
-            // 当该请求使用完毕时，调用destroy方法主动销毁。
+            // 当该请求使用完毕时，调用destroy方法主动销毁
             httpRequest.destroy();
         }
     }

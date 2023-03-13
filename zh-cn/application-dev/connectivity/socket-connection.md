@@ -49,6 +49,7 @@ TLS Socket连接主要由tls_socket模块提供。具体接口说明如下表。
 
 | 接口名 | 功能描述 |
 | -------- | -------- |
+| constructTLSSocketInstance() | 创建一个TLSSocket对象。 |
 | bind() | 绑定IP地址和端口号。 |
 | close(type:&nbsp;'error') | 关闭连接。 |
 | connect() | 连接到指定的IP地址和端口。 |
