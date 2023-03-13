@@ -3,7 +3,7 @@
 The **pasteboard** module provides the copy and paste support for the system pasteboard. You can use the APIs of this module to operate pasteboard content of the plain text, HTML, URI, Want, pixel map, and other types.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -63,7 +63,7 @@ Creates a **PasteData** object of a custom type.
 
   ```js
   let dataXml = new ArrayBuffer(256);
-  let pasteData = pasteboard.createData('app/xml', dataXml);
+let pasteData = pasteboard.createData('app/xml', dataXml);
   ```
 
 ## pasteboard.createRecord<sup>9+</sup>
@@ -90,8 +90,8 @@ Creates a **PasteDataRecord** object of the custom type.
 **Example**
 
   ```js
-  let dataXml = new ArrayBuffer(256);
-  let pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
+let dataXml = new ArrayBuffer(256);
+let pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
   ```
 
 ## pasteboard.getSystemPasteboard
@@ -120,11 +120,11 @@ Enumerates the paste options of data.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name| Value| Description               |
-| ---- |---|-------------------|
-| InApp | 0 | Only intra-application pasting is allowed.     |
-| LocalDevice | 1 | Paste is allowed in any application on the local device.|
-| CrossDevice | 2 | Paste is allowed in any application across devices. |
+| Name         | Value| Description               |
+|-------------|---|-------------------|
+| INAPP       | 0 | Only intra-application pasting is allowed.     |
+| LOCALDEVICE | 1 | Paste is allowed in any application on the local device.|
+| CROSSDEVICE | 2 | Paste is allowed in any application across devices. |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -374,14 +374,14 @@ Defines the properties of all data records on the pasteboard, including the time
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| additions<sup>7+</sup> | {[key:string]:object} | Yes| Yes| Additional data.|
-| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard.|
-| tag<sup>7+</sup> | string | Yes| Yes| Custom tag.|
-| timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).|
+| Name| Type| Readable| Writable| Description                                                                                        |
+| -------- | -------- | -------- | -------- |--------------------------------------------------------------------------------------------|
+| additions<sup>7+</sup> | {[key:string]:object} | Yes| Yes| Additional data.                                                                              |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard.                                                                    |
+| tag<sup>7+</sup> | string | Yes| Yes| Custom tag.                                                                                  |
+| timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).                                                                       |
 | localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is set for local access only. The default value is **true**.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CrossDevice** is used.|
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.                                             |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -401,38 +401,11 @@ Provides **PasteDataRecord** APIs. A **PasteDataRecord** is an abstract definiti
 | pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| No| Pixel map.|
 | data<sup>9+</sup> | {[mimeType: string]: ArrayBuffer} | Yes| No| Content of custom data.|
 
-### convertToTextV9<sup>9+</sup>
+### toPlainText<sup>9+</sup>
 
-convertToTextV9(callback: AsyncCallback&lt;string&gt;): void
+toPlainText(): string
 
-Forcibly converts the content in a **PasteData** object to text. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.MiscServices.Pasteboard
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the text obtained from the conversion. Otherwise, **err** is error information.|
-
-**Example**
-
-```js
-let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-record.convertToTextV9((err, data) => {
-    if (err) {
-        console.error(`Failed to convert to text. Cause: ${err.message}`);
-        return;
-    }
-    console.info(`Succeeded in converting to text. Data: ${data}`);
-});
-```
-
-### convertToTextV9<sup>9+</sup>
-
-convertToTextV9(): Promise&lt;string&gt;
-
-Forcibly converts the content in a **PasteData** object to text. This API uses a promise to return the result.
+Forcibly converts the content in a **PasteData** object to text.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -440,17 +413,14 @@ Forcibly converts the content in a **PasteData** object to text. This API uses a
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the text obtained from the conversion.|
+| string | Plain text.|
 
 **Example**
 
 ```js
 let record = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-record.convertToTextV9().then((data) => {
-    console.info(`Succeeded in converting to text. Data: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to convert to text. Cause: ${err.message}`);
-});
+let data = record.toPlainText();
+console.info(`Succeeded in converting to text. Data: ${data}`);
 ```
 
 ### convertToText<sup>(deprecated)</sup>
@@ -460,7 +430,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 Forcibly converts the content in a **PasteData** object to text. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [convertToTextV9](#converttotextv99).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [toPlainText](#toplaintext9).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -474,8 +444,8 @@ Forcibly converts the content in a **PasteData** object to text. This API uses a
 
 ```js
 let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
-record.convertToText((err, data) => {    
-    if (err) {        
+record.convertToText((err, data) => {
+    if (err) {
         console.error(`Failed to convert to text. Cause: ${err.message}`);
         return;   
       }
@@ -490,7 +460,7 @@ convertToText(): Promise&lt;string&gt;
 Forcibly converts the content in a **PasteData** object to text. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [convertToTextV9](#converttotextv99-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [toPlainText](#toplaintext9).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -782,7 +752,7 @@ Sets the property (attributes) for the pasteboard data. Currently, only the **sh
 ```js
 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
-prop.shareOption = pasteboard.ShareOption.InApp;
+prop.shareOption = pasteboard.ShareOption.INAPP;
 pasteData.setProperty(prop);
 ```
 
@@ -999,8 +969,8 @@ The pasteboard supports a maximum number of 512 data records.
 
 ```js
 let pasteData = pasteboard.createPlainTextData('hello');
-let object = { 
-    bundleName: "com.example.aafwk.test",    
+let object = {
+    bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
 pasteData.addWantRecord(object);
@@ -1255,7 +1225,7 @@ Clears the system pasteboard. This API uses an asynchronous callback to return t
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.clearData((err, data) => { 
+systemPasteboard.clearData((err, data) => {
     if (err) {
         console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
         return;
@@ -1282,7 +1252,7 @@ Clears the system pasteboard. This API uses a promise to return the result.
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.clearData().then((data) => { 
+systemPasteboard.clearData().then((data) => {
     console.info('Succeeded in clearing the pasteboard.');
 }).catch((err) => {
     console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
@@ -1318,7 +1288,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 ```js
 let pasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setData(pasteData, (err, data) => { 
+systemPasteboard.setData(pasteData, (err, data) => {
     if (err) {
         console.error('Failed to set PasteData. Cause: ' + err.message);
         return;
@@ -1394,7 +1364,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getData((err, pasteData) => {  
+systemPasteboard.getData((err, pasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
         return;
@@ -1429,7 +1399,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getData().then((pasteData) => { 
+systemPasteboard.getData().then((pasteData) => {
     let text = pasteData.getPrimaryText();
 }).catch((err) => {
     console.error('Failed to get PasteData. Cause: ' + err.message);
@@ -1481,7 +1451,7 @@ Checks whether the system pasteboard contains data. This API uses a promise to r
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.hasData().then((data) => { 
+systemPasteboard.hasData().then((data) => {
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
     console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -1508,8 +1478,8 @@ Clears the system pasteboard. This API uses an asynchronous callback to return t
 **Example**
 
 ```js
-systemPasteboard.clear((err, data) => { 
-    if (err) {        
+systemPasteboard.clear((err, data) => {
+    if (err) {
         console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
         return;
     }
@@ -1537,9 +1507,9 @@ Clears the system pasteboard. This API uses a promise to return the result.
 **Example**
 
 ```js
-systemPasteboard.clear().then((data) => { 
+systemPasteboard.clear().then((data) => {
     console.info('Succeeded in clearing the PasteData.');
-}).catch((err) => {    
+}).catch((err) => {
     console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
 });
 ```
@@ -1595,7 +1565,7 @@ Obtains a **PasteData** object from the pasteboard. This API uses a promise to r
 
 ```js
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getPasteData().then((pasteData) => { 
+systemPasteboard.getPasteData().then((pasteData) => {
     let text = pasteData.getPrimaryText();
 }).catch((err) => {
     console.error('Failed to get PasteData. Cause: ' + err.message);
@@ -1651,7 +1621,7 @@ Checks whether the system pasteboard contains data. This API uses a promise to r
 **Example**
 
 ```js
-systemPasteboard.hasPasteData().then((data) => { 
+systemPasteboard.hasPasteData().then((data) => {
     console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
     console.error(`Failed to check the PasteData. Cause: ${err.message}`);
@@ -1681,7 +1651,7 @@ Writes a **PasteData** object to the pasteboard. This API uses an asynchronous c
 ```js
 let pasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setPasteData(pasteData, (err, data) => { 
+systemPasteboard.setPasteData(pasteData, (err, data) => {
     if (err) {
         console.error('Failed to set PasteData. Cause: ' + err.message);
         return;
