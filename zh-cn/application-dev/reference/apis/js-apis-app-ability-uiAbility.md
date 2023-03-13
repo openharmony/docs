@@ -319,7 +319,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -398,7 +398,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageParc
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -822,4 +822,4 @@ off(method: string): void;
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 | 
+| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 | 

@@ -24,7 +24,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
-| agent     | [WantAgent](js-apis-inner-wantAgent-wantAgent.md)              | 是   | WantAgent信息。           |
+| agent     | [WantAgent](js-apis-wantAgent.md)              | 是   | WantAgent信息。           |
 | callback | AsyncCallback\<Want\> | 是   | 获取WantAgent中的Want的回调方法。 |
 
 **示例：**
@@ -95,7 +95,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 参数名 | 类型          | 必填 | 说明          |
 | ---- | ------------- | ---- | ------------- |
-| agent | [WantAgent](js-apis-inner-wantAgent-wantAgent.md) | 是   | WantAgent信息。 |
+| agent | [WantAgent](js-apis-wantAgent.md) | 是   | WantAgent信息。 |
 
 **返回值：**
 
