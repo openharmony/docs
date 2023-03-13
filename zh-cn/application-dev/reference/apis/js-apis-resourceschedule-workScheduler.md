@@ -305,7 +305,6 @@ stopAndClearWorks(): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
 
 **示例**：
 
