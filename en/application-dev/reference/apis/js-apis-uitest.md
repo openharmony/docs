@@ -1,4 +1,4 @@
-# @ohos.uitest
+# @ohos.UiTest 
 
 The **UiTest** module provides APIs that you can use to simulate UI actions during testing, such as clicks, double-clicks, long-clicks, and swipes.
 
@@ -20,7 +20,7 @@ This module provides the following functions:
 ## Modules to Import
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -61,8 +61,8 @@ Provides the coordinates of a point.
 
 | Name| Type  | Readable| Writable| Description            |
 | ---- | ------ | ---- | ---- | ---------------- |
-| X    | number | Yes  | No  | X-coordinate of a point.|
-| Y    | number | Yes  | No  | Y-coordinate of a point.|
+| x    | number | Yes  | No  | X-coordinate of a point.|
+| y    | number | Yes  | No  | Y-coordinate of a point.|
 
 ## Rect<sup>9+</sup>
 
@@ -2093,7 +2093,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.fling({X: 500, Y: 480},{X: 450, Y: 480},5,600);
+    await driver.fling({x: 500, Y: 480},{x: 450, Y: 480},5,600);
 }
 ```
 
@@ -2132,12 +2132,12 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 async function demo() {
     let driver = Driver.create();
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
     await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2196,12 +2196,12 @@ Sets the coordinates for the action corresponding to the specified finger and st
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
 }
 ```
 
