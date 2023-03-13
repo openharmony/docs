@@ -1100,8 +1100,6 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 获取所有可访问的应用帐号信息。使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
-
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
@@ -1138,8 +1136,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 获取所有可访问的应用帐号信息。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
-
 **系统能力：** SystemCapability.Account.AppAccount
 
 **返回值：**
@@ -1173,8 +1169,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 根据应用帐号所有者获取调用方可访问的应用帐号列表。使用callback异步回调。
-
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1214,8 +1208,6 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 根据应用帐号所有者获取调用方可访问的应用帐号列表。使用Promise异步回调。
-
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1293,7 +1285,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 ### off('accountChange')<sup>9+</sup>
 
-off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 取消订阅帐号信息变更事件。
 
@@ -1304,7 +1296,7 @@ off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | 是    | 事件回调类型，支持的事件为'accountChange'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
 
 **错误码：**
 
@@ -3730,7 +3722,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 取消订阅帐号信息变更事件。
 
@@ -3745,7 +3737,7 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
 
 **示例：**
 

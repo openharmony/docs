@@ -325,9 +325,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
@@ -375,9 +375,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
@@ -474,8 +474,6 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否已验证。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
 **系统能力：** SystemCapability.Account.OsAccount
 
 **参数：**
@@ -488,9 +486,7 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
 
 **示例：**
 
@@ -530,9 +526,9 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：**
 
@@ -554,7 +550,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 ### checkOsAccountVerified<sup>9+</sup>
 
-checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
+checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证。使用Promise异步回调。
 
@@ -566,7 +562,7 @@ checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型   | 必填 | 说明                                                              |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | 否   | 系统帐号ID。不填则检查当前系统帐号是否已验证。 |
+| localId | number | 是   | 系统帐号ID。 |
 
 **返回值：**
 
@@ -578,9 +574,9 @@ checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：**
 
@@ -990,7 +986,7 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **示例：**
 
@@ -1027,7 +1023,7 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **示例：**
 
@@ -1063,8 +1059,8 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 
 | 错误码ID | 错误信息         |
 | -------- | --------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid.    |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid.    |
 
 **示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
@@ -1107,8 +1103,8 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
@@ -1147,8 +1143,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainInfo. |
 
 **示例：**
 
@@ -1194,8 +1190,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainInfo. |
 
 **示例：**
 
@@ -1473,7 +1469,7 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **示例：**
 
@@ -1510,7 +1506,7 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **示例：**
 
@@ -2232,9 +2228,9 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid serialNumber. |
+| 12300003 | the account indicated by serialNumber dose not exist. |
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
@@ -2275,9 +2271,9 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid serialNumber. |
+| 12300003 | the account indicated by serialNumber dose not exist. |
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
@@ -2314,9 +2310,9 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
@@ -2357,9 +2353,9 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
@@ -2482,8 +2478,8 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **示例：**
 
@@ -2525,8 +2521,8 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **示例：**
 
@@ -2643,9 +2639,9 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid name or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：**
 
@@ -2690,9 +2686,9 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid name or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **示例：**
 
@@ -4327,6 +4323,122 @@ unregisterInputer(): void;
   pinAuth.unregisterInputer();
   ```
 
+## DomainPlugin<sup>9+</sup>
+
+域插件，提供域帐号认证功能。
+
+**系统接口：** 此接口为系统接口。
+
+### auth<sup>9+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+认证指定的域帐号。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| credential   | Uint8Array  | 是   | 指示域帐号的凭据。|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    }
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin);
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.DOMAIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, {
+      onResult: (resultCode, authResult) => {
+          console.log('auth resultCode = ' + resultCode);
+          console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+## DomainAccountManager <sup>9+</sup>
+域帐号管理器类。
+
+### registerPlugin<sup>9+</sup>
+
+static registerPlugin(plugin: DomainPlugin): void
+
+注册域插件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| plugin   | [DomainPlugin](#domainplugin9)  | 是  | 指示域插件。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300201 | the domain plugin has been registered. |
+
+**示例：**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {}
+  }
+  try {
+    account_osAccount.DomainAccountManager.registerPlugin(plugin);
+    console.log('registerPlugin success.');
+  } catch(err) {
+    console.log("registerPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### unregisterPlugin<sup>9+</sup>
+
+static unregisterPlugin(): void
+
+注销域插件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**示例：**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.unregisterPlugin();
+    console.log('unregisterPlugin success.');
+  } catch(err) {
+    console.log("unregisterPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
 ## UserIdentityManager<sup>8+</sup>
 
 获取用户身份管理类。
@@ -4820,7 +4932,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 ### onSetData<sup>8+</sup>
 
-onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 **系统接口：** 此接口为系统接口。
 
@@ -4832,7 +4944,7 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 | 参数名      | 类型                                     | 必填 | 说明                                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#authsubtype8)             | 是   | 用于认证的凭据子类型。                            |
+| authSubType | [AuthSubType](#authsubtype8)             | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
 
 **示例：**
@@ -4840,11 +4952,11 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -4858,7 +4970,7 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 
 通知获取数据。
 
@@ -4877,11 +4989,11 @@ onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -5157,6 +5269,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ----- | ----- | ---------------- |
 | PIN   | 1     | 指示PIN认证类型。 |
 | FACE  | 2     | 指示脸部认证类型。|
+| DOMAIN<sup>9+</sup>  | 1024     | 表示域认证类型。|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5173,6 +5286,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
 | FACE_2D    | 20000 | 指示2D 人脸凭证。   |
 | FACE_3D    | 20001 | 指示3D 人脸凭证。   |
+| DOMAIN_MIXED<sup>9+</sup>    | 10240001 | 表示域认证混合凭证。   |
 
 ## AuthTrustLevel<sup>8+</sup>
 
