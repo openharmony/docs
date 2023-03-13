@@ -104,7 +104,7 @@ For the complete list of APIs and example code, see [Network Policy Management](
 
            // Specify whether the network is a metering network. The value true means a metering network and false means a non-metering network.
            metered:Boolean(Number.parseInt(this.metered)),https://gitee.com/openharmony/docs/pulls/14404
-           // For details about the action triggered after the traffic limit is reached, see [LimitAction](../reference/apis/js-apis-net-policy.md#limitation).
+           // For details about the action triggered after the traffic limit is reached, see [LimitAction](../reference/apis/js-apis-net-policy.md#limitaction).
            limitAction:Number.parseInt(this.limitAction)
        };
        this.netQuotaPolicyList.push(param);
