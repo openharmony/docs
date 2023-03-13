@@ -30,8 +30,8 @@ By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 | Breakpoint | Value Range (vp)|
 | --------| ------ |
 | xs | [0, 320)  |
-| sm | [320, 520) |
-| md | [520, 840) |
+| sm | [320, 600) |
+| md | [600, 840) |
 | lg | [840, +∞)  |
 
 In the **\<GridRow>** component, you can use **breakpoints** to customize the value range of breakpoints. A maximum of six breakpoints are supported.
@@ -55,10 +55,10 @@ In addition to the four default breakpoints, you can also enable the xl and xxl 
   Enables three breakpoints: xs, sm, and md. If the value is less than 100 vp, the breakpoint is xs. If the value is 100–200 vp, the breakpoint is sm. If the value is greater than 200 vp, the breakpoint is md.
 
   ```ts
-  breakpoints: {value: ["320vp", "520vp", "840vp", "1080vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp", "1080vp"]}
   ```
 
-  Enables five breakpoints: xs, sm, md, lg, and xl. If the value is less than 320 vp, the breakpoint is xs. If the value is 320–520 vp, the breakpoint is sm. If the value is 520–840 vp, the breakpoint is md. If the value is 840–1080vp, the breakpoint is lg. If the value is greater than 1080 vp, the breakpoint is xl.
+  Enables five breakpoints: xs, sm, md, lg, and xl. If the value is less than 320 vp, the breakpoint is xs. If the value is 320–600 vp, the breakpoint is sm. If the value is 600–840 vp, the breakpoint is md. If the value is 840–1080vp, the breakpoint is lg. If the value is greater than 1080 vp, the breakpoint is xl.
 
 
 - The grid system implements breakpoints by listening for the changes in the window or container size, and sets the breakpoint references through **reference**. Considering that the application may be displayed in non-full-screen mode, design the breakpoints with the application window width as the reference.
