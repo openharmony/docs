@@ -47,6 +47,8 @@
   - [File Management Error Codes](errorcode-filemanagement.md)
 - Network Management
   - [Upload and Download Error Codes](errorcode-request.md)
+  - [HTTP Error Codes](errorcode-http.md)
+  - [Socket Error Codes](errorcode-socket.md)
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
