@@ -28,8 +28,6 @@ import cipher from '@system.cipher';
 
 调用cipher rsa方法时，传入的参数。
 
-### 属性
-
 **系统能力**：SystemCapability.Security.Cipher
 
 | 名称         | 类型                                 | 必填 | 说明                                                         |
