@@ -10,7 +10,6 @@
   - [zlib Error Codes](errorcode-zlib.md)
 - Common Event and Notification
   - [Event Error Codes](errorcode-CommonEventService.md)
-  - [Notification Error Codes](errorcode-notification.md)
   - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
   - [Animator Error Codes](errorcode-animator.md)
@@ -27,13 +26,13 @@
 - Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
-- Background Task
+- Resource Scheduling
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
 - Security
-  - [Ability Access Control Error Codes](errorcode-access-token.md)
+  - [Application Access Control Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
   - [Certificate Error Codes](errorcode-cert.md)
@@ -51,6 +50,7 @@
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
+  - [Wi-Fi Error Codes](errorcode-wifi.md)
 - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
@@ -59,6 +59,7 @@
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   - [Pasteboard Error Codes](errorcode-pasteboard.md)
+  - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Time and Time Zone Service Error Codes](errorcode-time.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
