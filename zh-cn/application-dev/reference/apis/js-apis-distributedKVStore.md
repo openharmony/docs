@@ -28,7 +28,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context    | Context               | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context    | Context               | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | bundleName | string                | 是   | 调用方的包名。                                               |
 
 ## Constants
@@ -1241,7 +1241,7 @@ reset(): Query
 
 | 类型           | 说明                  |
 | -------------- | --------------------- |
-| [Query](query) | 返回重置的Query对象。 |
+| [Query](#query) | 返回重置的Query对象。 |
 
 **示例：**
 
@@ -1277,7 +1277,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1311,7 +1311,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1344,7 +1344,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1379,7 +1379,7 @@ lessThan(field: string, value: number|string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1414,7 +1414,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1449,7 +1449,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1482,7 +1482,7 @@ isNull(field: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1516,7 +1516,7 @@ inNumber(field: string, valueList: number[]): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1550,7 +1550,7 @@ inString(field: string, valueList: string[]): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1584,7 +1584,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1618,7 +1618,7 @@ notInString(field: string, valueList: string[]): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1652,7 +1652,7 @@ like(field: string, value: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1686,7 +1686,7 @@ unlike(field: string, value: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1713,7 +1713,7 @@ and(): Query
 
 | 类型           | 说明           |
 | -------------- | -------------- |
-| [Query](query) | 返回查询对象。 |
+| [Query](#query) | 返回查询对象。 |
 
 **示例：**
 
@@ -1742,7 +1742,7 @@ or(): Query
 
 | 类型           | 说明           |
 | -------------- | -------------- |
-| [Query](query) | 返回查询对象。 |
+| [Query](#query) | 返回查询对象。 |
 
 **示例：**
 
@@ -1777,7 +1777,7 @@ orderByAsc(field: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1811,7 +1811,7 @@ orderByDesc(field: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1846,7 +1846,7 @@ limit(total: number, offset: number): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1882,7 +1882,7 @@ isNotNull(field: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1909,7 +1909,7 @@ beginGroup(): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1938,7 +1938,7 @@ endGroup(): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -1973,7 +1973,7 @@ prefixKey(prefix: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -2007,7 +2007,7 @@ setSuggestIndex(index: string): Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -2041,7 +2041,7 @@ deviceId(deviceId:string):Query
 
 | 类型           | 说明            |
 | -------------- | --------------- |
-| [Query](query) | 返回Query对象。 |
+| [Query](#query) | 返回Query对象。 |
 
 **示例：**
 
@@ -3085,7 +3085,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名   | 类型                               | 必填 | 说明                                            |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------- |
-| query    | [Query](query)                         | 是   | 表示要匹配的键前缀。                            |
+| query    | [Query](#query)                         | 是   | 表示要匹配的键前缀。                            |
 | callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回与指定Query对象匹配的键值对列表。 |
 
 **错误码：**
@@ -3147,7 +3147,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 | 参数名 | 类型       | 必填 | 说明           |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | 是   | 表示查询对象。 |
+| query  | [Query](#query) | 是   | 表示查询对象。 |
 
 **返回值：**
 
@@ -3413,7 +3413,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名 | 类型       | 必填 | 说明           |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | 是   | 表示查询对象。 |
+| query  | [Query](#query) | 是   | 表示查询对象。 |
 
 **返回值：**
 
@@ -3660,7 +3660,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                    | 必填 | 说明                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------- |
-| query    | [Query](query)              | 是   | 表示查询对象。                              |
+| query    | [Query](#query)              | 是   | 表示查询对象。                              |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回与指定Query对象匹配的结果数。 |
 
 **错误码：**
@@ -3718,7 +3718,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 | 参数名 | 类型       | 必填 | 说明           |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | 是   | 表示查询对象。 |
+| query  | [Query](#query) | 是   | 表示查询对象。 |
 
 **返回值：**
 
@@ -4547,7 +4547,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| query     | [Query](query)        | 是   | 表示数据库的查询谓词条件                       |
+| query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件                       |
 | delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒）。     |
 
 **错误码：**
@@ -5323,7 +5323,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                  |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
-| query    | [Query](query)                         | 是   | 表示要匹配的键前缀。                                  |
+| query    | [Query](#query)                         | 是   | 表示要匹配的键前缀。                                  |
 | callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回本设备与指定Query对象匹配的键值对列表。 |
 
 **错误码：**
@@ -5385,7 +5385,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 | 参数名 | 类型           | 必填 | 说明           |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | 是   | 表示查询对象。 |
+| query  | [Query](#query) | 是   | 表示查询对象。 |
 
 **返回值：**
 
@@ -5452,7 +5452,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 | 参数名   | 类型                               | 必填 | 说明                                                    |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------- |
 | deviceId | string                                 | 是   | 键值对所属的设备ID。                                    |
-| query    | [Query](query)                         | 是   | 表示查询对象。                                          |
+| query    | [Query](#query)                         | 是   | 表示查询对象。                                          |
 | callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回与指定设备ID和Query对象匹配的键值对列表。 |
 
 **错误码：**
@@ -5521,7 +5521,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 | 参数名   | 类型       | 必填 | 说明                 |
 | -------- | -------------- | ---- | -------------------- |
 | deviceId | string         | 是   | 键值对所属的设备ID。 |
-| query    | [Query](query) | 是   | 表示查询对象。       |
+| query    | [Query](#query) | 是   | 表示查询对象。       |
 
 **返回值：**
 
@@ -5829,7 +5829,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 | 参数名   | 类型                                                     | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | 是   | KVStoreResultSet对象所属的设备ID。                           |
-| query    | [Query](query)                                               | 是   | 表示查询对象。                                               |
+| query    | [Query](#query)                                               | 是   | 表示查询对象。                                               |
 | callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和Query对象匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -5901,7 +5901,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 | 参数名   | 类型       | 必填 | 说明                               |
 | -------- | -------------- | ---- | ---------------------------------- |
 | deviceId | string         | 是   | KVStoreResultSet对象所属的设备ID。 |
-| query    | [Query](query) | 是   | 表示查询对象。                     |
+| query    | [Query](#query) | 是   | 表示查询对象。                     |
 
 **返回值：**
 
@@ -5974,7 +5974,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名 | 类型           | 必填 | 说明           |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | 是   | 表示查询对象。 |
+| query  | [Query](#query) | 是   | 表示查询对象。 |
 
 **返回值：**
 
@@ -6040,7 +6040,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 | 参数名   | 类型           | 必填 | 说明                               |
 | -------- | -------------- | ---- | ---------------------------------- |
 | deviceId | string         | 是   | KVStoreResultSet对象所属的设备ID。 |
-| query    | [Query](query) | 是   | 表示查询对象。                     |
+| query    | [Query](#query) | 是   | 表示查询对象。                     |
 
 **返回值：**
 
@@ -6340,7 +6340,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                              |
 | -------- | --------------------------- | ---- | ------------------------------------------------- |
-| query    | [Query](query)              | 是   | 表示查询对象。                                    |
+| query    | [Query](#query)              | 是   | 表示查询对象。                                    |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回与本设备指定Query对象匹配的结果数。 |
 
 **错误码：**
@@ -6398,7 +6398,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 | 参数名 | 类型           | 必填 | 说明           |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | 是   | 表示查询对象。 |
+| query  | [Query](#query) | 是   | 表示查询对象。 |
 
 **返回值：**
 
@@ -6462,7 +6462,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 | 参数名   | 类型                    | 必填 | 说明                                                |
 | -------- | --------------------------- | ---- | --------------------------------------------------- |
 | deviceId | string                      | 是   | KVStoreResultSet对象所属的设备ID。                  |
-| query    | [Query](query)              | 是   | 表示查询对象。                                      |
+| query    | [Query](#query)              | 是   | 表示查询对象。                                      |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回与指定设备ID和Query对象匹配的结果数。 |
 
 **错误码：**
@@ -6526,7 +6526,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 | 参数名   | 类型       | 必填 | 说明                               |
 | -------- | -------------- | ---- | ---------------------------------- |
 | deviceId | string         | 是   | KVStoreResultSet对象所属的设备ID。 |
-| query    | [Query](query) | 是   | 表示查询对象。                     |
+| query    | [Query](#query) | 是   | 表示查询对象。                     |
 
 **返回值：**
 
