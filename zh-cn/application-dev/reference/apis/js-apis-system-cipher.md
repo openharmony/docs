@@ -21,7 +21,7 @@ import cipher from '@system.cipher';
 
 | 名称 | 类型   | 可读 | 可写 |说明         |
 | ------ | ------ | ---- | ---- | ------------ |
-| text   | string | 是   | 是   | 返回的内容。 |
+| text   | string | 是   | 否   | 返回的内容。 |
 
 
 ## CipherRsaOptions
