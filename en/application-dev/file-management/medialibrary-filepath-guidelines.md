@@ -136,7 +136,7 @@ async function copySandbox2Public() {
     console.error('file asset get failed, message = ' + err);
   }
   let fdPub = await fileAsset.open('rw');
-  let fdSand = await fs.open(sandboxDirPath + 'testFile.txt', OpenMode.READ_WRITE);
+  let fdSand = await fs.open(sandboxDirPath + 'testFile.txt', fs.OpenMode.READ_WRITE);
   await fs.copyFile(fdSand.fd, fdPub);
   await fileAsset.close(fdPub);
   await fs.close(fdSand.fd);
@@ -174,7 +174,7 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const path = await media.getPublicDirectory(DIR_DOCUMENTS);
-  media.createAsset(mediaType, "testFile.text", path).then((asset) => {
+  media.createAsset(mediaType, "testFile.txt", path).then((asset) => {
     console.info("createAsset successfully:" + JSON.stringify(asset));
   }).catch((err) => {
     console.error("createAsset failed with error: " + err);
