@@ -41,7 +41,7 @@ Enumerates the device status types.
 
 Enumerates the device status events.
 
-**System capability:** SystemCapability.Msdp.DeviceStatus.Stationary:
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
@@ -53,7 +53,7 @@ Enumerates the device status events.
 
 Enumerates the device statuses.
 
-**System capability:** SystemCapability.Msdp.DeviceStatus.Stationary:
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
