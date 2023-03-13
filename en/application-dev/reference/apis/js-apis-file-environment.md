@@ -4,7 +4,7 @@ The **Environment** module provides APIs for obtaining the root directories of t
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
 > - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
@@ -26,7 +26,7 @@ Obtains the root directory of the storage. This API uses a promise to return the
 
 | Type                 | Description            |
 | --------------------- | ---------------- |
-| Promise&lt;string&gt; | Promise returned with the root directory of the storage.|
+| Promise&lt;string&gt; | Promise used to return the root directory of the storage.|
 
 **Example**
 
@@ -50,7 +50,7 @@ Obtains the root directory of the storage. This API uses an asynchronous callbac
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of the storage.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback invoked to return the root directory of the storage.|
 
 **Example**
 

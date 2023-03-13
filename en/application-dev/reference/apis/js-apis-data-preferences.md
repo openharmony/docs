@@ -5,7 +5,7 @@ The **Preferences** module provides APIs for processing data in the form of key-
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -22,8 +22,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. The maximum key length is 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. The maximum value length is 8192 bytes.|
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
 
 
 ## data_preferences.getPreferences
@@ -38,8 +38,8 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
-| name     | string                                           | Yes  | Name of the **Preferences** instance.|
+| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                                |
+| name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
 
 **Example**
@@ -213,7 +213,6 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
@@ -289,7 +288,6 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try{
@@ -350,7 +348,6 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
@@ -973,7 +970,7 @@ Unsubscribes from data changes.
 | Name  | Type                            | Mandatory| Description                                      |
 | -------- | -------------------------------- | ---- | ------------------------------------------ |
 | type     | string                           | Yes  | Event type to unsubscribe from. The value **change** indicates data change events.  |
-| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks used to subscribing to all data changes will be unregistered.|
+| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks for all data changes will be unregistered.|
 
 **Example**
 
