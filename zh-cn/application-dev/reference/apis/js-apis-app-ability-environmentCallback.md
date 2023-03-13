@@ -35,7 +35,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 注册系统环境变化的监听后，在系统内存变化时触发回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
@@ -47,11 +47,11 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
     
 
   ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let callbackId;
 
-export default class MyAbility extends Ability {
+export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();

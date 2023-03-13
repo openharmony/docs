@@ -126,7 +126,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ## Ability.onDestroy
 
-onDestroy(): void;
+onDestroy(): void | Promise&lt;void&gt;;
 
 Ability生命周期回调，在销毁时回调，执行资源清理等操作。
 
@@ -183,7 +183,7 @@ Ability生命周期回调，当应用从前台转到后台时触发。
 
 ## Ability.onContinue
 
-onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
+onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
 
 当ability迁移准备迁移时触发，保存数据。
 
@@ -205,7 +205,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
     
   ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  class MyUIAbility extends UIAbility {
+  class MyUIAbility extends Ability {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams['myData'] = 'my1234567';
@@ -233,7 +233,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 **示例：**
     
   ```ts
-   class MyUIAbility extends UIAbility {
+   class MyUIAbility extends Ability {
       onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
           console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
@@ -269,7 +269,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 ## Ability.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存Ability状态。
 
@@ -293,7 +293,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
   ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-class MyUIAbility extends UIAbility {
+class MyUIAbility extends Ability {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
         wantParam['myData'] = 'my1234567';
@@ -310,7 +310,7 @@ class MyUIAbility extends UIAbility {
 
 ## Caller.call
 
-call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 向通用组件服务端发送约定序列化数据。
 
@@ -321,7 +321,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 约定的服务端注册事件字符串。 | 
-  | data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+  | data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -339,7 +339,6 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{ // 自定义的Sequenceable数据结构
     name:''
     str:''
@@ -391,7 +390,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageParcel&gt;;
 
 向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
 
@@ -402,7 +401,7 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 约定的服务端注册事件字符串。 | 
-  | data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+  | data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
 
 **返回值：**
 
@@ -420,7 +419,6 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
     name:''
     str:''
@@ -492,7 +490,6 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -518,7 +515,7 @@ release(): void;
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallBack): void;
+ onRelease(callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -528,12 +525,11 @@ release(): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
+  | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
 
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -572,7 +568,7 @@ release(): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听releaseCall事件，固定为'release'。 | 
-  | callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
+  | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
 
 **错误码：**
 
@@ -584,7 +580,6 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -623,7 +618,7 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回off回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
 
 **错误码：**
 
@@ -636,7 +631,7 @@ off(type: 'release', callback: OnReleaseCallback): void;
     
   ```ts
   let caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainUIAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -687,7 +682,7 @@ off(type: 'release'): void;
     
   ```ts
   let caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainUIAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -742,7 +737,6 @@ on(method: string, callback: CalleeCallback): void;
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:''
       str:''
@@ -809,7 +803,6 @@ off(method: string): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let method = 'call_Function';
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
@@ -836,10 +829,10 @@ off(method: string): void;
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Sequenceable;
+(indata: rpc.MessageParcel): rpc.Parcelable;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 可读 | 可写 | 类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 | 
+| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 | 
