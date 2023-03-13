@@ -1,4 +1,4 @@
-# Ability Access Control Error Codes
+# Application Access Control Error Codes
 
 ## 12100001 Invalid Parameters
 
