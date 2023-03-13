@@ -70,7 +70,7 @@ Subscribes to the device status.
 
 **Parameters**
 
-| Name                 | Type                                              | Mandatory| Description                         |
+| Parameter Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | event  | [ActivityEvent](#activityevent)  | Yes  | Event type.             |
@@ -96,7 +96,7 @@ Obtains the device status.
 
 **Parameters**
 
-| Name                 | Type                                              | Mandatory| Description                         |
+| Parameter Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | callback             | Callback<[ActivityResponse](#activityresponse)\>  | Yes  | Callback used to receive reported data.   |
@@ -119,7 +119,7 @@ Unsubscribes from the device status.
 
 **Parameters**
 
-| Name                 | Type                                              | Mandatory| Description                         |
+| Parameter Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | event  | [ActivityEvent](#activityevent)  | Yes  | Event type.             |
