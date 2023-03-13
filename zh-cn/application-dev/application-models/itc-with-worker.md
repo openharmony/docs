@@ -19,7 +19,7 @@ Worker的开发步骤如下：
      }
    ```
 
-2. 根据build-profile.json5中的配置创建对应的worker.js文件。
+2. 根据build-profile.json5中的配置创建对应的worker.ts文件。
 
    ```ts
    import worker from '@ohos.worker';
@@ -59,7 +59,7 @@ Worker的开发步骤如下：
       ```ts
       import worker from '@ohos.worker';
 
-      let wk = new worker.ThreadWorker("../workers/worker.js");
+      let wk = new worker.ThreadWorker("../workers/worker.ts");
 
       // 发送消息到worker线程
       wk.postMessage("message from main thread.")
@@ -75,6 +75,6 @@ Worker的开发步骤如下：
 
 **说明：**
 
-- build-profile.json5中配置的worker.ts的相对路径都为`./src/main/ets/workers/worker.ts`时，在Stage模型下创建worker需要传入路径`entry/ets/workers/worker.ts`；在FA模型下创建worker需要传入路径`../workers/worker.js`。
+- build-profile.json5中配置的worker.ts的相对路径都为`./src/main/ets/workers/worker.ts`时，在Stage模型下创建worker需要传入路径`entry/ets/workers/worker.ts`；在FA模型下创建worker需要传入路径`../workers/worker.ts`。
 
-- 主线程与Worker线程间支持的数据类型参考[序列化支持类型](../reference/apis/js-apis-worker.md#%E5%BA%8F%E5%88%97%E5%8C%96%E6%94%AF%E6%8C%81%E7%B1%BB%E5%9E%8B)。
+- 主线程与Worker线程间支持的数据类型参考[序列化支持类型](../reference/apis/js-apis-worker.md#序列化支持类型)。
