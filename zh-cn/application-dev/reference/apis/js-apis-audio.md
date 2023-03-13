@@ -5424,7 +5424,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                |
 | :------- | :------------------- | :--- | :---------------------------------- |
-| callback | AsyncCallback<void\> | 是   | Callback used to return the result. |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。 |
 
 **示例：**
 
