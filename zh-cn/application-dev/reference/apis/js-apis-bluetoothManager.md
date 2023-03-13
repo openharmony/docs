@@ -1,83 +1,85 @@
-# @ohos.bluetooth (蓝牙)
+# @ohos.bluetoothManager (蓝牙)
 
 蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 > **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API Version 9开始，该接口不再维护，推荐使用新接口[bluetoothManager](js-apis-bluetoothManager.md)。
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 
 ## 导入模块
 
 ```js
-import bluetooth from '@ohos.bluetooth';
+import bluetoothManager from '@ohos.bluetoothManager';
 ```
 
 
-## bluetooth.enableBluetooth<sup>8+</sup><sup>(deprecated)</sup><a name="enableBluetooth"></a>
+## bluetoothManager.enableBluetooth<a name="enableBluetooth"></a>
 
-enableBluetooth(): boolean
+enableBluetooth(): void
 
 开启蓝牙。
 
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.enableBluetooth](js-apis-bluetoothManager.md#bluetoothmanagerenablebluetooth)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                       |
-| ------- | ------------------------ |
-| boolean | 打开蓝牙，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let enable = bluetooth.enableBluetooth();
+try {
+    bluetoothManager.enableBluetooth();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.disableBluetooth<sup>8+</sup><sup>(deprecated)</sup><a name="disableBluetooth"></a>
+## bluetoothManager.disableBluetooth<a name="disableBluetooth"></a>
 
-disableBluetooth(): boolean
+disableBluetooth(): void
 
 关闭蓝牙。
 
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.disableBluetooth](js-apis-bluetoothManager.md#bluetoothmanagerdisablebluetooth)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                       |
-| ------- | ------------------------ |
-| boolean | 关闭蓝牙，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let disable = bluetooth.disableBluetooth();
+try {
+    bluetoothManager.disableBluetooth();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getLocalName<sup>8+</sup><sup>(deprecated)</sup><a name="getLocalName"></a>
+## bluetoothManager.getLocalName<a name="getLocalName"></a>
 
 getLocalName(): string
 
 获取蓝牙本地设备名称。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getLocalName](js-apis-bluetoothManager.md#bluetoothmanagergetlocalname)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -89,22 +91,31 @@ getLocalName(): string
 | ------ | --------- |
 | string | 蓝牙本地设备名称。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let localName = bluetooth.getLocalName();
+try {
+    let localName = bluetoothManager.getLocalName();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getState<sup>(deprecated)</sup><a name="getState"></a>
+## bluetoothManager.getState
 
 getState(): BluetoothState
 
 获取蓝牙开关状态。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getState](js-apis-bluetoothManager.md#bluetoothmanagergetstate)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -116,22 +127,31 @@ getState(): BluetoothState
 | --------------------------------- | --------- |
 | [BluetoothState](#bluetoothstate) | 表示蓝牙开关状态。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let state = bluetooth.getState();
+try {
+    let state = bluetoothManager.getState();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getBtConnectionState<sup>(deprecated)</sup><a name="getBtConnectionState"></a>
+## bluetoothManager.getBtConnectionState
 
 getBtConnectionState(): ProfileConnectionState
 
 获取蓝牙设备的Profile连接状态。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getBtConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetbtconnectionstate)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -143,22 +163,32 @@ getBtConnectionState(): ProfileConnectionState
 | ---------------------------------------- | ------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | 表示蓝牙设备的Profile连接状态。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let connectionState = bluetooth.getBtConnectionState();
+try {
+    let connectionState = bluetoothManager.getBtConnectionState();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.setLocalName<sup>8+</sup><sup>(deprecated)</sup><a name="setLocalName"></a>
+## bluetoothManager.setLocalName<a name="setLocalName"></a>
 
-setLocalName(name: string): boolean
+setLocalName(name: string): void
 
 设置蓝牙本地设备名称。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.setLocalName](js-apis-bluetoothManager.md#bluetoothmanagersetlocalname)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -170,28 +200,32 @@ setLocalName(name: string): boolean
 | ---- | ------ | ---- | --------------------- |
 | name | string | 是    | 要设置的蓝牙名称，最大长度为248字节数。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                             |
-| ------- | ------------------------------ |
-| boolean | 设置蓝牙本地设备名称，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let ret = bluetooth.setLocalName('device_name');
+try {
+    bluetoothManager.setLocalName('device_name');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.pairDevice<sup>(deprecated)</sup><a name="pairDevice"></a>
+## bluetoothManager.pairDevice
 
-pairDevice(deviceId: string): boolean
+pairDevice(deviceId: string): void
 
 发起蓝牙配对。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.pairDevice](js-apis-bluetoothManager.md#bluetoothmanagerpairdevice)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -203,29 +237,33 @@ pairDevice(deviceId: string): boolean
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 发起蓝牙配对，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-// 实际的地址可由扫描流程获取
-let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
+try {
+    // 实际的地址可由扫描流程获取
+    bluetoothManager.pairDevice("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getProfileConnState<sup>8+</sup><sup>(deprecated)</sup><a name="getProfileConnState"></a>
+## bluetoothManager.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
-getProfileConnState(profileId: ProfileId): ProfileConnectionState
+getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
 
 获取profile的连接状态。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getProfileConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetprofileconnectionstate)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -243,22 +281,33 @@ getProfileConnState(profileId: ProfileId): ProfileConnectionState
 | ------------------------------------------------- | ------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | profile的连接状态。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let result = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+try {
+    let result = bluetoothManager.getProfileConnectionState(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.cancelPairedDevice<sup>8+</sup><sup>(deprecated)</sup><a name="cancelPairedDevice"></a>
+## bluetoothManager.cancelPairedDevice<a name="cancelPairedDevice"></a>
 
-cancelPairedDevice(deviceId: string): boolean
+cancelPairedDevice(deviceId: string): void
 
 删除配对的远程设备。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.cancelPairedDevice](js-apis-bluetoothManager.md#bluetoothmanagercancelpaireddevice)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -272,28 +321,32 @@ cancelPairedDevice(deviceId: string): boolean
 | -------- | ------ | ---- | ------------------------------------- |
 | deviceId | string | 是    | 表示要删除的远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 启动取消配对，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let result = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
+try {
+    bluetoothManager.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getRemoteDeviceName<sup>8+</sup><sup>(deprecated)</sup><a name="getRemoteDeviceName"></a>
+## bluetoothManager.getRemoteDeviceName<a name="getRemoteDeviceName"></a>
 
 getRemoteDeviceName(deviceId: string): string
 
 获取对端蓝牙设备的名称。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getRemoteDeviceName](js-apis-bluetoothManager.md#bluetoothmanagergetremotedevicename)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -311,22 +364,32 @@ getRemoteDeviceName(deviceId: string): string
 | ------ | ------------- |
 | string | 以字符串格式返回设备名称。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
+try {
+    let remoteDeviceName = bluetoothManager.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getRemoteDeviceClass<sup>8+</sup><sup>(deprecated)</sup><a name="getRemoteDeviceClass"></a>
+## bluetoothManager.getRemoteDeviceClass<a name="getRemoteDeviceClass"></a>
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
 获取对端蓝牙设备的类别。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getRemoteDeviceClass](js-apis-bluetoothManager.md#bluetoothmanagergetremotedeviceclass)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -344,22 +407,32 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 | --------------------------- | -------- |
 | [DeviceClass](#deviceclass) | 远程设备的类别。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let remoteDeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
+try {
+    let remoteDeviceClass = bluetoothManager.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getPairedDevices<sup>8+</sup><sup>(deprecated)</sup><a name="getPairedDevices"></a>
+## bluetoothManager.getPairedDevices<a name="getPairedDevices"></a>
 
 getPairedDevices(): Array&lt;string&gt;
 
 获取蓝牙配对列表。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getPairedDevices](js-apis-bluetoothManager.md#bluetoothmanagergetpaireddevices)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -371,22 +444,32 @@ getPairedDevices(): Array&lt;string&gt;
 | ------------------- | ------------- |
 | Array&lt;string&gt; | 已配对蓝牙设备的地址列表。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let devices = bluetooth.getPairedDevices();
+try {
+    let devices = bluetoothManager.getPairedDevices();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.setBluetoothScanMode<sup>8+</sup><sup>(deprecated)</sup><a name="setBluetoothScanMode"></a>
+## bluetoothManager.setBluetoothScanMode<a name="setBluetoothScanMode"></a>
 
-setBluetoothScanMode(mode: ScanMode, duration: number): boolean
+setBluetoothScanMode(mode: ScanMode, duration: number): void
 
 设置蓝牙扫描模式，可以被远端设备发现。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.setBluetoothScanMode](js-apis-bluetoothManager.md#bluetoothmanagersetbluetoothscanmode)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -399,29 +482,33 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 | mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。                      |
 | duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 设置蓝牙扫描，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-// 设置为可连接可发现才可被远端设备扫描到，可以连接。
-let result = bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+try {
+    // 设置为可连接可发现才可被远端设备扫描到，可以连接。
+    bluetoothManager.setBluetoothScanMode(bluetoothManager.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getBluetoothScanMode<sup>8+</sup><sup>(deprecated)</sup><a name="getBluetoothScanMode"></a>
+## bluetoothManager.getBluetoothScanMode<a name="getBluetoothScanMode"></a>
 
 getBluetoothScanMode(): ScanMode
 
 获取蓝牙扫描模式。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getBluetoothScanMode](js-apis-bluetoothManager.md#bluetoothmanagergetbluetoothscanmode)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -433,32 +520,46 @@ getBluetoothScanMode(): ScanMode
 | --------------------- | ------- |
 | [ScanMode](#scanmode) | 蓝牙扫描模式。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let scanMode = bluetooth.getBluetoothScanMode();
+try {
+    let scanMode = bluetoothManager.getBluetoothScanMode();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.startBluetoothDiscovery<sup>8+</sup><sup>(deprecated)</sup><a name="startBluetoothDiscovery"></a>
+## bluetoothManager.startBluetoothDiscovery<a name="startBluetoothDiscovery"></a>
 
-startBluetoothDiscovery(): boolean
+startBluetoothDiscovery(): void
 
 开启蓝牙扫描，可以发现远端设备。
 
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.startBluetoothDiscovery](js-apis-bluetoothManager.md#bluetoothmanagerstartbluetoothdiscovery)替代。
-
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 开启蓝牙扫描，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -467,47 +568,51 @@ let deviceId;
 function onReceiveEvent(data) {
     deviceId = data;
 }
-bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
-let result = bluetooth.startBluetoothDiscovery();
+try {
+    bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
+    bluetoothManager.startBluetoothDiscovery();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.stopBluetoothDiscovery<sup>8+</sup><sup>(deprecated)</sup><a name="stopBluetoothDiscovery"></a>
+## bluetoothManager.stopBluetoothDiscovery<a name="stopBluetoothDiscovery"></a>
 
-stopBluetoothDiscovery(): boolean
+stopBluetoothDiscovery(): void
 
 关闭蓝牙扫描。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.stopBluetoothDiscovery](js-apis-bluetoothManager.md#bluetoothmanagerstopbluetoothdiscovery)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 关闭蓝牙扫描，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let result = bluetooth.stopBluetoothDiscovery();
+try {
+    bluetoothManager.stopBluetoothDiscovery();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.setDevicePairingConfirmation<sup>8+</sup><sup>(deprecated)</sup><a name="setDevicePairingConfirmation"></a>
+## bluetoothManager.setDevicePairingConfirmation<a name="setDevicePairingConfirmation"></a>
 
-setDevicePairingConfirmation(device: string, accept: boolean): boolean
+setDevicePairingConfirmation(device: string, accept: boolean): void
 
 设置设备配对请求确认。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.setDevicePairingConfirmation](js-apis-bluetoothManager.md#bluetoothmanagersetdevicepairingconfirmation)替代。
 
 **需要权限**：ohos.permission.MANAGE_BLUETOOTH
 
@@ -520,33 +625,38 @@ setDevicePairingConfirmation(device: string, accept: boolean): boolean
 | device | string  | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | accept | boolean | 是    | 接受配对请求设置为true，否则设置为false。        |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                           |
-| ------- | ---------------------------- |
-| boolean | 设置设备配对确认，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-// 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
-function onReceivePinRequiredEvent(data) { // data为配对请求的入参，配对请求参数
-    console.info('pin required  = '+ JSON.stringify(data));
-    bluetooth.setDevicePairingConfirmation(data.deviceId, true);
+
+try {
+    // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
+    function onReceivePinRequiredEvent(data) { // data为配对请求的入参，配对请求参数
+        console.info('pin required  = '+ JSON.stringify(data));
+        bluetoothManager.setDevicePairingConfirmation(data.deviceId, true);
+    }
+    bluetoothManager.on("pinRequired", onReceivePinRequiredEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
-bluetooth.on("pinRequired", onReceivePinRequiredEvent);
 ```
 
 
-## bluetooth.on('bluetoothDeviceFind')<sup>8+</sup><sup>(deprecated)</sup><a name="bluetoothDeviceFind"></a>
+## bluetoothManager.on('bluetoothDeviceFind')
 
 on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
 订阅蓝牙设备发现上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.on('bluetoothDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanageronbluetoothdevicefind)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -559,9 +669,13 @@ on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): 
 | type     | string                              | 是    | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。 |
 | callback | Callback&lt;Array&lt;string&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -569,19 +683,19 @@ on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): 
 function onReceiveEvent(data) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('bluetoothDeviceFind')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('bluetoothDeviceFind')
 
 off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
 取消订阅蓝牙设备发现上报事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.off('bluetoothDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanageroffbluetoothdevicefind)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -594,9 +708,13 @@ off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;)
 | type     | string                              | 是    | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。   |
 | callback | Callback&lt;Array&lt;string&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -604,20 +722,20 @@ off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;)
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
-bluetooth.off('bluetoothDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
+    bluetoothManager.off('bluetoothDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.on('pinRequired')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('pinRequired')
 
 on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 
 订阅远端蓝牙设备的配对请求事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.on('pinRequired')](js-apis-bluetoothManager.md#bluetoothmanageronpinrequired)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -630,9 +748,13 @@ on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 | type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。     |
 | callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 是    | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -640,19 +762,19 @@ on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 function onReceiveEvent(data) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
-bluetooth.on('pinRequired', onReceiveEvent);
+try {
+    bluetoothManager.on('pinRequired', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('pinRequired')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('pinRequired')
 
 off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 
 取消订阅远端蓝牙设备的配对请求事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.off('pinRequired')](js-apis-bluetoothManager.md#bluetoothmanageroffpinrequired)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -665,9 +787,13 @@ off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 | type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。             |
 | callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 否    | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -675,20 +801,20 @@ off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 function onReceiveEvent(data) {
     console.info('pin required = '+ JSON.stringify(data));
 }
-bluetooth.on('pinRequired', onReceiveEvent);
-bluetooth.off('pinRequired', onReceiveEvent);
+try {
+    bluetoothManager.on('pinRequired', onReceiveEvent);
+    bluetoothManager.off('pinRequired', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.on('bondStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('bondStateChange')
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
 订阅蓝牙配对状态改变事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.on('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageronbondstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -701,9 +827,13 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
 | callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -711,19 +841,19 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 function onReceiveEvent(data) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
-bluetooth.on('bondStateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('bondStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('bondStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('bondStateChange')
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
 取消订阅蓝牙配对状态改变事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.off('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffbondstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -736,9 +866,13 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。     |
 | callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -746,20 +880,20 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 function onReceiveEvent(data) {
     console.info('bond state = '+ JSON.stringify(data));
 }
-bluetooth.on('bondStateChange', onReceiveEvent);
-bluetooth.off('bondStateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('bondStateChange', onReceiveEvent);
+    bluetoothManager.off('bondStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.on('stateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('stateChange')
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 订阅蓝牙连接状态改变事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.on('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageronstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -772,9 +906,13 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 | type     | string                                   | 是    | 填写"stateChange"字符串，表示蓝牙状态改变事件。   |
 | callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 是    | 表示回调函数的入参，蓝牙状态。回调函数由用户创建通过该接口注册。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -782,19 +920,19 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 function onReceiveEvent(data) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
-bluetooth.on('stateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('stateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('stateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('stateChange')
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 取消订阅蓝牙连接状态改变事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.off('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -807,9 +945,13 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 | type     | string                                   | 是    | 填写"stateChange"字符串，表示蓝牙状态改变事件。           |
 | callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 否    | 表示取消订阅蓝牙状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -817,20 +959,20 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 function onReceiveEvent(data) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
-bluetooth.on('stateChange', onReceiveEvent);
-bluetooth.off('stateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('stateChange', onReceiveEvent);
+    bluetoothManager.off('stateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppListen<sup>8+</sup><sup>(deprecated)</sup><a name="sppListen"></a>
+## bluetoothManager.sppListen<a name="sppListen"></a>
 
 sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
 创建一个服务端监听Socket。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.sppListen](js-apis-bluetoothManager.md#bluetoothmanagerspplisten)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -843,6 +985,17 @@ sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;
 | name     | string                      | 是    | 服务的名称。                  |
 | option   | [SppOption](#sppoption)     | 是    | spp监听配置参数。              |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，服务端Socket的id。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -857,19 +1010,19 @@ function serverSocket(code, number) {
 }
 
 let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
-bluetooth.sppListen('server1', sppOption, serverSocket);
+try {
+    bluetoothManager.sppListen('server1', sppOption, serverSocket);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppAccept<sup>8+</sup><sup>(deprecated)</sup><a name="sppAccept"></a>
+## bluetoothManager.sppAccept<a name="sppAccept"></a>
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 服务端监听socket等待客户端连接。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.sppAccept](js-apis-bluetoothManager.md#bluetoothmanagersppaccept)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -879,6 +1032,17 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 | ------------ | --------------------------- | ---- | ----------------------- |
 | serverSocket | number                      | 是    | 服务端socket的id。           |
 | callback     | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -900,19 +1064,19 @@ function acceptClientSocket(code, number) {
     clientNumber = number;
   }
 }
-bluetooth.sppAccept(serverNumber, acceptClientSocket);
+try {
+    bluetoothManager.sppAccept(serverNumber, acceptClientSocket);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppConnect<sup>8+</sup><sup>(deprecated)</sup><a name="sppConnect"></a>
+## bluetoothManager.sppConnect<a name="sppConnect"></a>
 
 sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
 客户端向远端设备发起spp连接。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.sppConnect](js-apis-bluetoothManager.md#bluetoothmanagersppconnect)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -925,6 +1089,17 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 | device   | string                      | 是    | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | option   | [SppOption](#sppoption)     | 是    | spp客户端连接配置参数。                  |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。        |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -940,19 +1115,19 @@ function clientSocket(code, number) {
   clientNumber = number;
 }
 let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
-bluetooth.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
+try {
+    bluetoothManager.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppCloseServerSocket<sup>8+</sup><sup>(deprecated)</sup><a name="sppCloseServerSocket"></a>
+## bluetoothManager.sppCloseServerSocket<a name="sppCloseServerSocket"></a>
 
 sppCloseServerSocket(socket: number): void
 
 关闭服务端监听Socket，入参socket由sppListen接口返回。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.sppCloseServerSocket](js-apis-bluetoothManager.md#bluetoothmanagersppcloseserversocket)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -961,6 +1136,15 @@ sppCloseServerSocket(socket: number): void
 | 参数名    | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
 | socket | number | 是    | 服务端监听socket的id。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -973,19 +1157,19 @@ function serverSocket(code, number) {
     serverNumber = number;
   }
 }
-bluetooth.sppCloseServerSocket(serverNumber);
+try {
+    bluetoothManager.sppCloseServerSocket(serverNumber);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppCloseClientSocket<sup>8+</sup><sup>(deprecated)</sup><a name="sppCloseClientSocket"></a>
+## bluetoothManager.sppCloseClientSocket<a name="sppCloseClientSocket"></a>
 
 sppCloseClientSocket(socket: number): void
 
 关闭客户端socket，入参socket由sppAccept或sppConnect接口获取。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.sppCloseClientSocket](js-apis-bluetoothManager.md#bluetoothmanagersppcloseclientsocket)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -995,6 +1179,15 @@ sppCloseClientSocket(socket: number): void
 | ------ | ------ | ---- | ------------- |
 | 参数名    | 类型     | 必填   | 说明            |
 | socket | number | 是    | 客户端socket的id。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1008,19 +1201,19 @@ function clientSocket(code, number) {
   // 获取的clientNumber用作客户端后续读/写操作socket的id。
   clientNumber = number;
 }
-bluetooth.sppCloseClientSocket(clientNumber);
+try {
+    bluetoothManager.sppCloseClientSocket(clientNumber);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppWrite<sup>8+</sup><sup>(deprecated)</sup><a name="sppWrite"></a>
+## bluetoothManager.sppWrite<a name="sppWrite"></a>
 
-sppWrite(clientSocket: number, data: ArrayBuffer): boolean
+sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 通过socket向远端发送数据，入参clientSocket由sppAccept或sppConnect接口获取 。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.sppWrite](js-apis-bluetoothManager.md#bluetoothmanagersppwrite)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1031,11 +1224,14 @@ sppWrite(clientSocket: number, data: ArrayBuffer): boolean
 | clientSocket | number      | 是    | 客户端socket的id。 |
 | data         | ArrayBuffer | 是    | 写入的数据。        |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                        |
-| ------- | ------------------------- |
-| boolean | 写数据操作，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2901054 | IO error.                                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1052,22 +1248,17 @@ function clientSocket(code, number) {
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
-let ret = bluetooth.sppWrite(clientNumber, arrayBuffer);
-if (ret) {
-  console.log('spp write successfully');
-} else {
-  console.log('spp write failed');
+try {
+    bluetoothManager.sppWrite(clientNumber, arrayBuffer);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-## bluetooth.on('sppRead')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('sppRead')
 
 on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.on('sppRead')](js-apis-bluetoothManager.md#bluetoothmanageronsppread)替代。
 
 订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。
 
@@ -1081,9 +1272,14 @@ on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 | clientSocket | number                      | 是    | 客户端socket的id。              |
 | callback     | Callback&lt;ArrayBuffer&gt; | 是    | 表示回调函数的入参，读取到的数据。          |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2901054 | IO error.                                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1101,19 +1297,19 @@ function dataRead(dataBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
-bluetooth.on('sppRead', clientNumber, dataRead);
+try {
+    bluetoothManager.on('sppRead', clientNumber, dataRead);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('sppRead')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('sppRead')
 
 off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
 取消订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.off('sppRead')](js-apis-bluetoothManager.md#bluetoothmanageroffsppread)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1124,10 +1320,6 @@ off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 | type         | string                      | 是    | 填写"sppRead"字符串，表示spp读请求事件。               |
 | clientSocket | number                      | 是    | 客户端Socket的id。                            |
 | callback     | Callback&lt;ArrayBuffer&gt; | 否    | 表示取消订阅spp读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
-
-**返回值：**
-
-无
 
 **示例：**
 
@@ -1141,19 +1333,18 @@ function clientSocket(code, number) {
   // 获取的clientNumber用作客户端后续读/写操作socket的id。
   clientNumber = number;
 }
-bluetooth.off('sppRead', clientNumber);
+try {
+    bluetoothManager.off('sppRead', clientNumber);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
+## bluetoothManager.getProfileInstance<a name="getProfileInstance"></a>
 
-## bluetooth.getProfile<sup>8+</sup><sup>(deprecated)</sup><a name="bt-getProfile"></a>
+getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
-getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile
-
-通过ProfileId，获取profile的对象实例。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.getProfileInstance](js-apis-bluetoothManager.md#bluetoothmanagergetprofileinstance)替代。
+通过ProfileId，获取profile的对象实例，API9新增了HidHostProfile，PanProfile。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1167,26 +1358,26 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile)或[HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofile)或 [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile)或[HidHostProfile](#hidhostprofile)或[PanProfile](#panprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
 
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+try {
+    let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.BLE
+## bluetoothManager.BLE
 
-### bluetooth.BLE.createGattServer<sup>(deprecated)</sup>
+### bluetoothManager.BLE.createGattServer
 
 createGattServer(): GattServer
 
 创建一个可使用的GattServer实例。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLE.createGattServer](js-apis-bluetoothManager.md#bluetoothmanagerblecreategattserver)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1199,19 +1390,15 @@ createGattServer(): GattServer
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 ```
 
 
-### bluetooth.BLE.createGattClientDevice<sup>(deprecated)</sup>
+### bluetoothManager.BLE.createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
 创建一个可使用的GattClientDevice实例。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLE.createGattClientDevice](js-apis-bluetoothManager.md#bluetoothmanagerblecreategattclientdevice)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1230,19 +1417,19 @@ createGattClientDevice(deviceId: string): GattClientDevice
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.getConnectedBLEDevices<sup>(deprecated)</sup>
+### bluetoothManager.BLE.getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
 获取和当前设备连接的BLE设备。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLE.getConnectedBLEDevices](js-apis-bluetoothManager.md#bluetoothmanagerblegetconnectedbledevices)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1254,24 +1441,34 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 | ------------------- | ------------------- |
 | Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let result = bluetooth.BLE.getConnectedBLEDevices();
+try {
+    let result = bluetoothManager.BLE.getConnectedBLEDevices();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.startBLEScan<sup>(deprecated)</sup>
+### bluetoothManager.BLE.startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
 
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLE.startBLEScan](js-apis-bluetoothManager.md#bluetoothmanagerblestartblescan)替代。
-
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH 和 ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1282,9 +1479,15 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 | filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，如果不使用过滤的方式，该参数设置为null。 |
 | options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置，可选参数。                     |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1292,56 +1495,62 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 function onReceiveEvent(data) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
-bluetooth.BLE.on("BLEDeviceFind", onReceiveEvent);
-bluetooth.BLE.startBLEScan(
-    [{
-        deviceId:"XX:XX:XX:XX:XX:XX",
-        name:"test",
-        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
-    }],
-    {
-        interval: 500,
-        dutyMode: bluetooth.ScanDuty.SCAN_MODE_LOW_POWER,
-        matchMode: bluetooth.MatchMode.MATCH_MODE_AGGRESSIVE,
-    }
-);
+try {
+    bluetoothManager.BLE.on("BLEDeviceFind", onReceiveEvent);
+    bluetoothManager.BLE.startBLEScan(
+        [{
+            deviceId:"XX:XX:XX:XX:XX:XX",
+            name:"test",
+            serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
+        }],
+        {
+            interval: 500,
+            dutyMode: bluetoothManager.ScanDuty.SCAN_MODE_LOW_POWER,
+            matchMode: bluetoothManager.MatchMode.MATCH_MODE_AGGRESSIVE,
+        }
+    );
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.stopBLEScan<sup>(deprecated)</sup>
+### bluetoothManager.BLE.stopBLEScan
 
 stopBLEScan(): void
 
 停止BLE扫描流程。
 
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLE.stopBLEScan](js-apis-bluetoothManager.md#bluetoothmanagerblestopblescan)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-bluetooth.BLE.stopBLEScan();
+try {
+    bluetoothManager.BLE.stopBLEScan();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.on('BLEDeviceFind')<sup>(deprecated)</sup>
+### bluetoothManager.BLE.on('BLEDeviceFind')
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 订阅BLE设备发现上报事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLE.on('BLEDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanagerbleonbledevicefind)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1354,9 +1563,13 @@ on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 | type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。   |
 | callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1364,19 +1577,19 @@ on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.BLE.on('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.off('BLEDeviceFind')<sup>(deprecated)</sup>
+### bluetoothManager.BLE.off('BLEDeviceFind')
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 取消订阅BLE设备发现上报事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLE.off('BLEDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanagerbleoffbledevicefind)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1389,9 +1602,13 @@ off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 | type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。        |
 | callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 否    | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1399,8 +1616,12 @@ off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
-bluetooth.BLE.off('BLEDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.BLE.on('BLEDeviceFind', onReceiveEvent);
+    bluetoothManager.BLE.off('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
@@ -1409,15 +1630,11 @@ bluetooth.BLE.off('BLEDeviceFind', onReceiveEvent);
 profile基类。
 
 
-### getConnectionDevices<sup>8+</sup><sup>(deprecated)</sup><a name="getConnectionDevices"></a>
+### getConnectionDevices<a name="getConnectionDevices"></a>
 
 getConnectionDevices(): Array&lt;string&gt;
 
 获取已连接设备列表。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BaseProfile.getConnectionDevices](js-apis-bluetoothManager.md#getconnectiondevices)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1429,22 +1646,33 @@ getConnectionDevices(): Array&lt;string&gt;
 | ------------------- | ------------- |
 | Array&lt;string&gt; | 返回已连接设备的地址列表。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let retArray = a2dpSrc.getConnectionDevices();
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let retArray = a2dpSrc.getConnectionDevices();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
-### getDeviceState<sup>8+</sup><sup>(deprecated)</sup><a name="getDeviceState"></a>
+### getDeviceState<a name="getDeviceState"></a>
 
 getDeviceState(device: string): ProfileConnectionState
 
 获取设备profile的连接状态。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BaseProfile.getDeviceState](js-apis-bluetoothManager.md#getdevicestate)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1462,11 +1690,26 @@ getDeviceState(device: string): ProfileConnectionState
 | ------------------------------------------------- | ----------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | 返回profile的连接状态。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 ## A2dpSourceProfile
@@ -1474,16 +1717,12 @@ let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 使用A2dpSourceProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>8+</sup><sup>(deprecated)</sup><a name="a2dp-connect"></a>
+### connect<a name="a2dp-connect"></a>
 
-connect(device: string): boolean
+connect(device: string): void
 
 发起设备的A2dp服务连接请求。
 
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.A2dpSourceProfile.connect](js-apis-bluetoothManager.md#connect)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
@@ -1494,30 +1733,35 @@ connect(device: string): boolean
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                  |
-| ------- | ------------------- |
-| boolean | 成功返回true，失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### disconnect<sup>8+</sup><sup>(deprecated)</sup><a name="a2dp-disconnect"></a>
+### disconnect<a name="a2dp-disconnect"></a>
 
-disconnect(device: string): boolean
+disconnect(device: string): void
 
 断开设备的a2dp服务连接。
 
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.A2dpSourceProfile.disconnect](js-apis-bluetoothManager.md#disconnect)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
@@ -1528,29 +1772,34 @@ disconnect(device: string): boolean
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                  |
-| ------- | ------------------- |
-| boolean | 成功返回true，失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### on('connectionStateChange')
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 订阅a2dp连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.A2dpSourceProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1571,20 +1820,16 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### off('connectionStateChange')
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 取消订阅a2dp连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.A2dpSourceProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1605,21 +1850,17 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState<sup>8+</sup><sup>(deprecated)</sup>
+### getPlayingState
 
 getPlayingState(device: string): PlayingState
 
 获取设备的播放状态。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.A2dpSourceProfile.getPlayingState](js-apis-bluetoothManager.md#getplayingstate)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1635,11 +1876,26 @@ getPlayingState(device: string): PlayingState
 | ----------------------------- | ---------- |
 | [PlayingState](#PlayingState) | 远端设备的播放状态。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
@@ -1648,16 +1904,12 @@ let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 使用HandsFreeAudioGatewayProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>8+</sup><sup>(deprecated)</sup><a name="hfp-connect"></a>
+### connect<a name="hfp-connect"></a>
 
-connect(device: string): boolean
+connect(device: string): void
 
 连接设备的HFP服务。
 
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.connect](js-apis-bluetoothManager.md#connect-1)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
@@ -1668,31 +1920,35 @@ connect(device: string): boolean
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                  |
-| ------- | ------------------- |
-| boolean | 成功返回true，失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
+try {
+    let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
+    hfpAg.connect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### disconnect<sup>8+</sup><sup>(deprecated)</sup><a name="hfp-disconnect"></a>
+### disconnect<a name="hfp-disconnect"></a>
 
-disconnect(device: string): boolean
+disconnect(device: string): void
 
 断开连接设备的HFP服务。
 
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.disconnect](js-apis-bluetoothManager.md#disconnect-1)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
@@ -1703,30 +1959,34 @@ disconnect(device: string): boolean
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                  |
-| ------- | ------------------- |
-| boolean | 成功返回true，失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
+try {
+    let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
+    hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### on('connectionStateChange')
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 订阅HFP连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange-1)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1737,31 +1997,23 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是    | 表示回调函数的入参。                               |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### off('connectionStateChange')
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 取消订阅HFP连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange-1)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1772,20 +2024,335 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否    | 表示回调函数的入参。                               |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
+```
+
+
+## HidHostProfile
+
+使用HidHostProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
+
+
+### connect<a name="HidHost-connect"></a>
+
+connect(device: string): void
+
+连接设备的HidHost服务。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| device | string | 是    | 远端设备地址。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### disconnect<a name="HidHost-disconnect"></a>
+
+disconnect(device: string): void
+
+断开连接设备的HidHost服务。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| device | string | 是    | 远端设备地址。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### on('connectionStateChange')
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+订阅HidHost连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是    | 表示回调函数的入参。                               |
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hidHost state = '+ JSON.stringify(data));
+}
+let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+hidHost.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')
+
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+取消订阅HidHost连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否   | 表示回调函数的入参。                                      |
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hidHost state = '+ JSON.stringify(data));
+}
+let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+hidHost.on('connectionStateChange', onReceiveEvent);
+hidHost.off('connectionStateChange', onReceiveEvent);
+```
+
+
+## PanProfile
+
+使用PanProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
+
+
+### disconnect<a name="PanP-disconnect"></a>
+
+disconnect(device: string): void
+
+断开连接设备的Pan服务。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| device | string | 是    | 远端设备地址。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    panProfile.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### on('connectionStateChange')
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+订阅Pan连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是    | 表示回调函数的入参。                               |
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+panProfile.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')
+
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+取消订阅Pan连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否   | 表示回调函数的入参。                                      |
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+panProfile.on('connectionStateChange', onReceiveEvent);
+panProfile.off('connectionStateChange', onReceiveEvent);
+```
+
+
+### setTethering<a name="setTethering"></a>
+
+setTethering(enable: boolean): void
+
+设置网络共享状态。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| value | boolean | 是    | 是否设置蓝牙共享。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    panProfile.setTethering(true);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### isTetheringOn<a name="isTetheringOn"></a>
+
+isTetheringOn(): boolean
+
+获取网络共享状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**返回值：**
+
+| 类型      | 说明                  |
+| --------------------- | --------------------------------- |
+| boolean | 网络共享开启返回true，网络共享关闭返回false。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let ret = panProfile.isTetheringOn();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
@@ -1794,15 +2361,11 @@ hfpAg.off('connectionStateChange', onReceiveEvent);
 server端类，使用server端方法之前需要创建该类的实例进行操作，通过createGattServer()方法构造此实例。
 
 
-### startAdvertising<sup>(deprecated)</sup>
+### startAdvertising
 
 startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void
 
 开始发送BLE广播。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.startAdvertising](js-apis-bluetoothManager.md#startadvertising)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1816,9 +2379,15 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 | advData     | [AdvertiseData](#advertisedata)       | 是    | BLE广播包内容。      |
 | advResponse | [AdvertiseData](#advertisedata)       | 否    | BLE回复扫描请求回复响应。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1836,8 +2405,9 @@ serviceValueBuffer[2] = 7;
 serviceValueBuffer[3] = 8;
 console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
 console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
-let gattServer = bluetooth.BLE.createGattServer();
-gattServer.startAdvertising({
+let gattServer = bluetoothManager.BLE.createGattServer();
+try {
+    gattServer.startAdvertising({
             interval:150,
             txPower:60,
             connectable:true,
@@ -1848,58 +2418,63 @@ gattServer.startAdvertising({
                  manufactureValue:manufactureValueBuffer.buffer
             }],
             serviceData:[{
-                 serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
+                serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+                serviceValue:serviceValueBuffer.buffer
             }],
         },{
             serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
             manufactureData:[{
-                 manufactureId:1789,
-                 manufactureValue:manufactureValueBuffer.buffer
+                manufactureId:1789,
+                manufactureValue:manufactureValueBuffer.buffer
             }],
             serviceData:[{
-                 serviceUuid:"00001889-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
+                serviceUuid:"00001889-0000-1000-8000-00805f9b34fb",
+                serviceValue:serviceValueBuffer.buffer
             }],
-});
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### stopAdvertising<sup>(deprecated)</sup>
+### stopAdvertising
 
 stopAdvertising(): void
 
 停止发送BLE广播。
 
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.stopAdvertising](js-apis-bluetoothManager.md#stopadvertising)替代。
-
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
-server.stopAdvertising();
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.stopAdvertising();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### addService<sup>(deprecated)</sup>
+### addService
 
-addService(service: GattService): boolean
+addService(service: GattService): void
 
 server端添加服务。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.addService](js-apis-bluetoothManager.md#addservice)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1911,11 +2486,15 @@ server端添加服务。
 | ------- | --------------------------- | ---- | ------------------------ |
 | service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 添加服务操作，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -1944,25 +2523,20 @@ characteristics[0] = characteristic;
 // 创建gattService
 let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.addService(gattService);
-if (ret) {
-   console.log("add service successfully");
-} else {
-   console.log("add service failed");
+let gattServer = bluetoothManager.BLE.createGattServer();
+try {
+    gattServer.addService(gattService);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### removeService<sup>(deprecated)</sup>
+### removeService
 
-removeService(serviceUuid: string): boolean
+removeService(serviceUuid: string): void
 
 删除已添加的服务。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.removeService](js-apis-bluetoothManager.md#removeservice)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1974,51 +2548,66 @@ removeService(serviceUuid: string): boolean
 | ----------- | ------ | ---- | ---------------------------------------- |
 | serviceUuid | string | 是    | service的UUID，例如“00001810-0000-1000-8000-00805F9B34FB”。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 删除服务操作，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
-server.removeService('00001810-0000-1000-8000-00805F9B34FB');
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.removeService('00001810-0000-1000-8000-00805F9B34FB');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### close<sup>(deprecated)</sup>
+### close
 
 close(): void
 
 关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
 
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.close](js-apis-bluetoothManager.md#close)替代。
-
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
-server.close();
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.close();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### notifyCharacteristicChanged<sup>(deprecated)</sup>
+### notifyCharacteristicChanged
 
-notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean
+notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): void
 
 server端特征值发生变化时，主动通知已连接的client设备。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.notifyCharacteristicChanged](js-apis-bluetoothManager.md#notifycharacteristicchanged)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2031,11 +2620,15 @@ server端特征值发生变化时，主动通知已连接的client设备。
 | deviceId             | string                                   | 是    | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。 |
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知的特征值数据。                               |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                       |
-| ------- | ------------------------ |
-| boolean | 通知操作，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -2054,20 +2647,20 @@ let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: characteristic.characteristicValue, confirm: false};
-let server = bluetooth.BLE.createGattServer();
-server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### sendResponse<sup>(deprecated)</sup>
+### sendResponse
 
-sendResponse(serverResponse: ServerResponse): boolean
+sendResponse(serverResponse: ServerResponse): void
 
 server端回复client端的读写请求。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.sendResponse](js-apis-bluetoothManager.md#sendresponse)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2079,11 +2672,15 @@ server端回复client端的读写请求。
 | -------------- | --------------------------------- | ---- | --------------- |
 | serverResponse | [ServerResponse](#serverresponse) | 是    | server端回复的响应数据。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 回复响应操作，成功返回true，否则返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -2100,25 +2697,20 @@ let serverResponse = {
     "value": arrayBufferCCC,
 };
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.sendResponse(serverResponse);
-if (ret) {
-  console.log('bluetooth sendResponse successfully');
-} else {
-  console.log('bluetooth sendResponse failed');
+let gattServer = bluetoothManager.BLE.createGattServer();
+try {
+    gattServer.sendResponse(serverResponse);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### on('characteristicRead')<sup>(deprecated)</sup>
+### on('characteristicRead')
 
-on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadReq&gt;): void
+on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
 server端订阅特征值读请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.on('characteristicRead')](js-apis-bluetoothManager.md#oncharacteristicread)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2129,11 +2721,7 @@ server端订阅特征值读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                    |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。 |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。            |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。            |
 
 **示例：**
 
@@ -2141,36 +2729,31 @@ server端订阅特征值读请求事件。
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-function ReadCharacteristicReq(CharacteristicReadReq) {
-  let deviceId = CharacteristicReadReq.deviceId;
-  let transId = CharacteristicReadReq.transId;
-  let offset = CharacteristicReadReq.offset;
-  let characteristicUuid = CharacteristicReadReq.characteristicUuid;
+function ReadCharacteristicReq(CharacteristicReadRequest) {
+    let deviceId = CharacteristicReadRequest.deviceId;
+    let transId = CharacteristicReadRequest.transId;
+    let offset = CharacteristicReadRequest.offset;
+    let characteristicUuid = CharacteristicReadRequest.characteristicUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("characteristicRead", ReadCharacteristicReq);
 ```
 
 
-### off('characteristicRead')<sup>(deprecated)</sup>
+### off('characteristicRead')
 
-off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadReq&gt;): void
+off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadRequest&gt;): void
 
 server端取消订阅特征值读请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.off('characteristicRead')](js-apis-bluetoothManager.md#offcharacteristicread)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2181,29 +2764,21 @@ server端取消订阅特征值读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。    |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | 否    | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 否    | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicRead");
 ```
 
 
-### on('characteristicWrite')<sup>(deprecated)</sup>
+### on('characteristicWrite')
 
-on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteReq&gt;): void
+on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 server端订阅特征值写请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.on('characteristicWrite')](js-apis-bluetoothManager.md#oncharacteristicwrite)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2214,51 +2789,42 @@ server端订阅特征值写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
 
 **示例：**
 
 ```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-function WriteCharacteristicReq(CharacteristicWriteReq) {
-  let deviceId = CharacteristicWriteReq.deviceId;
-  let transId = CharacteristicWriteReq.transId;
-  let offset = CharacteristicWriteReq.offset;
-  let isPrep = CharacteristicWriteReq.isPrep;
-  let needRsp = CharacteristicWriteReq.needRsp;
-  let value =  new Uint8Array(CharacteristicWriteReq.value);
-  let characteristicUuid = CharacteristicWriteReq.characteristicUuid;
+function WriteCharacteristicReq(CharacteristicWriteRequest) {
+    let deviceId = CharacteristicWriteRequest.deviceId;
+    let transId = CharacteristicWriteRequest.transId;
+    let offset = CharacteristicWriteRequest.offset;
+    let isPrep = CharacteristicWriteRequest.isPrep;
+    let needRsp = CharacteristicWriteRequest.needRsp;
+    let value =  new Uint8Array(CharacteristicWriteRequest.value);
+    let characteristicUuid = CharacteristicWriteRequest.characteristicUuid;
 
-  cccValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+    cccValue[0] = value[0];
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("characteristicWrite", WriteCharacteristicReq);
 ```
 
 
-### off('characteristicWrite')<sup>(deprecated)</sup>
+### off('characteristicWrite')
 
-off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteReq&gt;): void
+off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 server端取消订阅特征值写请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.off('characteristicWrite')](js-apis-bluetoothManager.md#offcharacteristicwrite)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2269,29 +2835,21 @@ server端取消订阅特征值写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。   |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 否    | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 否    | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicWrite");
 ```
 
 
-### on('descriptorRead')<sup>(deprecated)</sup>
+### on('descriptorRead')
 
-on(type: "descriptorRead", callback: Callback&lt;DescriptorReadReq&gt;): void
+on(type: "descriptorRead", callback: Callback&lt;DescriptorReadRequest&gt;): void
 
 server端订阅描述符读请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.on('descriptorRead')](js-apis-bluetoothManager.md#ondescriptorread)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2302,11 +2860,7 @@ server端订阅描述符读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。 |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。        |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。        |
 
 **示例：**
 
@@ -2314,36 +2868,31 @@ server端订阅描述符读请求事件。
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
-function ReadDescriptorReq(DescriptorReadReq) {
-  let deviceId = DescriptorReadReq.deviceId;
-  let transId = DescriptorReadReq.transId;
-  let offset = DescriptorReadReq.offset;
-  let descriptorUuid = DescriptorReadReq.descriptorUuid;
+function ReadDescriptorReq(DescriptorReadRequest) {
+    let deviceId = DescriptorReadRequest.deviceId;
+    let transId = DescriptorReadRequest.transId;
+    let offset = DescriptorReadRequest.offset;
+    let descriptorUuid = DescriptorReadRequest.descriptorUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("descriptorRead", ReadDescriptorReq);
 ```
 
 
-### off('descriptorRead')<sup>(deprecated)</sup>
+### off('descriptorRead')
 
-off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadReq&gt;): void
+off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadRequest&gt;): void
 
 server端取消订阅描述符读请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.off('descriptorRead')](js-apis-bluetoothManager.md#offdescriptorread)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2354,29 +2903,21 @@ server端取消订阅描述符读请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。        |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | 否    | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 否    | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorRead");
 ```
 
 
-### on('descriptorWrite')<sup>(deprecated)</sup>
+### on('descriptorWrite')
 
-on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteReq&gt;): void
+on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
 server端订阅描述符写请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.on('descriptorWrite')](js-apis-bluetoothManager.md#ondescriptorwrite)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2387,51 +2928,42 @@ server端订阅描述符写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                 |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。         |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。         |
 
 **示例：**
 
 ```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-function WriteDescriptorReq(DescriptorWriteReq) {
-  let deviceId = DescriptorWriteReq.deviceId;
-  let transId = DescriptorWriteReq.transId;
-  let offset = DescriptorWriteReq.offset;
-  let isPrep = DescriptorWriteReq.isPrep;
-  let needRsp = DescriptorWriteReq.needRsp;
-  let value = new Uint8Array(DescriptorWriteReq.value);
-  let descriptorUuid = DescriptorWriteReq.descriptorUuid;
+function WriteDescriptorReq(DescriptorWriteRequest) {
+    let deviceId = DescriptorWriteRequest.deviceId;
+    let transId = DescriptorWriteRequest.transId;
+    let offset = DescriptorWriteRequest.offset;
+    let isPrep = DescriptorWriteRequest.isPrep;
+    let needRsp = DescriptorWriteRequest.needRsp;
+    let value = new Uint8Array(DescriptorWriteRequest.value);
+    let descriptorUuid = DescriptorWriteRequest.descriptorUuid;
 
-  descValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+    descValue[0] = value[0];
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("descriptorRead", WriteDescriptorReq);
 ```
 
 
-### off('descriptorWrite')<sup>(deprecated)</sup>
+### off('descriptorWrite')
 
-off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteReq&gt;): void
+off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteRequest&gt;): void
 
 server端取消订阅描述符写请求事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.off('descriptorWrite')](js-apis-bluetoothManager.md#offdescriptorwrite)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2442,29 +2974,21 @@ server端取消订阅描述符写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。       |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 否    | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
-
-**返回值：**
-
-无
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 否    | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
 
-### on('connectStateChange')<sup>(deprecated)</sup>
+### on('connectStateChange')
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 server端订阅BLE连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.on('connectStateChange')](js-apis-bluetoothManager.md#onconnectstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2477,10 +3001,6 @@ server端订阅BLE连接状态变化事件。
 | type     | string                                   | 是    | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是    | 表示回调函数的入参，连接状态。                          |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
@@ -2489,20 +3009,16 @@ function Connected(BLEConnectChangedState) {
   let status = BLEConnectChangedState.state;
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("connectStateChange", Connected);
 ```
 
 
-### off('connectStateChange')<sup>(deprecated)</sup>
+### off('connectStateChange')
 
 off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 server端取消订阅BLE连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattServer.off('connectStateChange')](js-apis-bluetoothManager.md#offconnectstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2515,14 +3031,10 @@ server端取消订阅BLE连接状态变化事件。
 | type     | string                                   | 是    | 填写"connectStateChange"字符串，表示BLE连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否    | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("connectStateChange");
 ```
 
@@ -2532,101 +3044,109 @@ gattServer.off("connectStateChange");
 client端类，使用client端方法之前需要创建该类的实例进行操作，通过createGattClientDevice(deviceId: string)方法构造此实例。
 
 
-### connect<sup>(deprecated)</sup>
+### connect
 
-connect(): boolean
+connect(): void
 
 client端发起连接远端蓝牙低功耗设备。
 
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.connect](js-apis-bluetoothManager.md#connect-3)替代。
-
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                        |
-| ------- | ------------------------- |
-| boolean | 连接操作成功返回true，操作失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.connect();
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.connect();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### disconnect<sup>(deprecated)</sup>
+### disconnect
 
-disconnect(): boolean
+disconnect(): void
 
 client端断开与远端蓝牙低功耗设备的连接。
 
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnect-4)替代。
-
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                           |
-| ------- | ---------------------------- |
-| boolean | 断开连接操作，成功返回true，操作失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.disconnect();
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.disconnect();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### close<sup>(deprecated)</sup>
+### close
 
-close(): boolean
+close(): void
 
 关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevice)实例将不能再使用。
 
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.close](js-apis-bluetoothManager.md#close-1)替代。
-
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                         |
-| ------- | -------------------------- |
-| boolean | 关闭操作，成功返回true，操作失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.close();
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.close();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
 
 
-### getServices<sup>(deprecated)</sup>
+### getServices
 
 getServices(callback: AsyncCallback&lt;Array&lt;GattService&gt;&gt;): void
 
 client端获取蓝牙低功耗设备的所有服务，即服务发现 。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2638,9 +3158,14 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -2658,21 +3183,21 @@ function getServices(code, gattServices) {
   }
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.connect();
-device.getServices(getServices);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.connect();
+    device.getServices(getServices);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getServices<sup>(deprecated)</sup>
+### getServices
 
 getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 
 client端获取蓝牙低功耗设备的所有服务，即服务发现。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices-1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2684,27 +3209,36 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 | ---------------------------------------- | --------------------------- |
 | Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
 // Promise 模式
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.connect();
-device.getServices().then(result => {
-    console.info("getServices successfully:" + JSON.stringify(result));
-});
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.connect();
+    device.getServices().then(result => {
+        console.info("getServices successfully:" + JSON.stringify(result));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readCharacteristicValue<sup>(deprecated)</sup>
+### readCharacteristicValue
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
 client端读取蓝牙低功耗设备特定服务的特征值。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2717,9 +3251,15 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 | characteristic | [BLECharacteristic](#blecharacteristic)  | 是    | 待读取的特征值。                |
 | callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | client读取特征值，通过注册回调函数获取。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden。                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -2733,7 +3273,6 @@ function readCcc(code, BLECharacteristic) {
   console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2750,19 +3289,20 @@ let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
-device.readCharacteristicValue(characteristic, readCcc);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readCharacteristicValue(characteristic, readCcc);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readCharacteristicValue<sup>(deprecated)</sup>
+### readCharacteristicValue
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
 client端读取蓝牙低功耗设备特定服务的特征值。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue-1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2780,10 +3320,19 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 | ---------------------------------------- | -------------------------- |
 | Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | client读取特征值，通过promise形式获取。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden。                         |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2800,19 +3349,20 @@ let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
-device.readCharacteristicValue(characteristic);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readCharacteristicValue(characteristic);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readDescriptorValue<sup>(deprecated)</sup>
+### readDescriptorValue
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
 client端读取蓝牙低功耗设备特定的特征包含的描述符。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2825,42 +3375,51 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 | descriptor | [BLEDescriptor](#bledescriptor)          | 是    | 待读取的描述符。                |
 | callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | client读取描述符，通过注册回调函数获取。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden。                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
 function readDesc(code, BLEDescriptor) {
-  if (code.code != 0) {
-      return;
-  }
-  console.log('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
-  let value = new Uint8Array(BLEDescriptor.descriptorValue);
-  console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+    if (code.code != 0) {
+        return;
+    }
+    console.log('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
+    let value = new Uint8Array(BLEDescriptor.descriptorValue);
+    console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-device.readDescriptorValue(descriptor, readDesc);
+let descriptor = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorValue: bufferDesc
+};
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readDescriptorValue(descriptor, readDesc);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readDescriptorValue<sup>(deprecated)</sup>
+### readDescriptorValue
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
 client端读取蓝牙低功耗设备特定的特征包含的描述符。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue-1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2878,29 +3437,42 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 | ---------------------------------------- | -------------------------- |
 | Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | client读取描述符，通过promise形式获取。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden。                         |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-device.readDescriptorValue(descriptor);
+let descriptor = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorValue: bufferDesc
+};
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readDescriptorValue(descriptor);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### writeCharacteristicValue<sup>(deprecated)</sup>
+### writeCharacteristicValue
 
-writeCharacteristicValue(characteristic: BLECharacteristic): boolean
+writeCharacteristicValue(characteristic: BLECharacteristic): void
 
 client端向低功耗蓝牙设备写入特定的特征值。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.writeCharacteristicValue](js-apis-bluetoothManager.md#writecharacteristicvalue)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2912,16 +3484,19 @@ client端向低功耗蓝牙设备写入特定的特征值。
 | -------------- | --------------------------------------- | ---- | ------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | 是    | 蓝牙设备特征对应的二进制值及其它参数。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                          |
-| ------- | --------------------------- |
-| boolean | 写特征值操作成功返回true，操作失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901001 | Write forbidden。                        |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2937,24 +3512,20 @@ cccV[0] = 1;
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
-let retWriteCcc = device.writeCharacteristicValue(characteristic);
-if (retWriteCcc) {
-  console.log('write characteristic successfully');
-} else {
-  console.log('write characteristic failed');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.writeCharacteristicValue(characteristic);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### writeDescriptorValue<sup>(deprecated)</sup>
+### writeDescriptorValue
 
-writeDescriptorValue(descriptor: BLEDescriptor): boolean
+writeDescriptorValue(descriptor: BLEDescriptor): void
 
 client端向低功耗蓝牙设备特定的描述符写入二进制数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.writeDescriptorValue](js-apis-bluetoothManager.md#writedescriptorvalue)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2965,41 +3536,44 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 | 参数名        | 类型                              | 必填   | 说明                 |
 | ---------- | ------------------------------- | ---- | ------------------ |
 | descriptor | [BLEDescriptor](#bledescriptor) | 是    | 蓝牙设备描述符的二进制值及其它参数。 |
-
-**返回值：**
-
-| 类型      | 说明                          |
-| ------- | --------------------------- |
 | boolean | 写描述符操作成功返回true，操作失败返回false。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901001 | Write forbidden。                        |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-let retWriteDesc = device.writeDescriptorValue(descriptor);
-if (retWriteDesc) {
-  console.log('bluetooth write descriptor successfully');
-} else {
-  console.log('bluetooth write descriptor failed');
+let descriptor = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorValue: bufferDesc
+};
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.writeDescriptorValue(descriptor);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### setBLEMtuSize<sup>(deprecated)</sup>
+### setBLEMtuSize
 
-setBLEMtuSize(mtu: number): boolean
+setBLEMtuSize(mtu: number): void
 
 client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.setBLEMtuSize](js-apis-bluetoothManager.md#setblemtusize)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3011,29 +3585,32 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 | ---- | ------ | ---- | -------------- |
 | mtu  | number | 是    | 设置范围为22~512字节。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                           |
-| ------- | ---------------------------- |
-| boolean | MTU协商操作成功返回true，操作失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.setBLEMtuSize(128);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.setBLEMtuSize(128);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### setNotifyCharacteristicChanged<sup>(deprecated)</sup>
+### setNotifyCharacteristicChanged
 
-setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean
+setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): void
 
 向服务端发送设置通知此特征值请求。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.setNotifyCharacteristicChanged](js-apis-bluetoothManager.md#setnotifycharacteristicchanged)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3046,11 +3623,14 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 | characteristic | [BLECharacteristic](#blecharacteristic) | 是    | 蓝牙低功耗特征。                      |
 | enable         | boolean                                 | 是    | 启用接收notify设置为true，否则设置为false。 |
 
-**返回值：**
+**错误码**：
 
-| 类型      | 说明                        |
-| ------- | ------------------------- |
-| boolean | 设置操作成功返回true，操作失败返回false。 |
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
@@ -3067,20 +3647,21 @@ descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.setNotifyCharacteristicChanged(characteristic, false);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.setNotifyCharacteristicChanged(characteristic, false);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+
 ```
 
 
-### on('BLECharacteristicChange')<sup>(deprecated)</sup>
+### on('BLECharacteristicChange')
 
 on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
 
 订阅蓝牙低功耗设备的特征值变化事件。需要先调用setNotifyCharacteristicChanged接口才能接收server端的通知。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.on('BLECharacteristicChange')](js-apis-bluetoothManager.md#onblecharacteristicchange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3093,32 +3674,28 @@ on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;)
 | type     | string                                   | 是    | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | 表示蓝牙低功耗设备的特征值变化事件的回调函数。                  |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
 function CharacteristicChange(CharacteristicChangeReq) {
-  let serviceUuid = CharacteristicChangeReq.serviceUuid;
-  let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
-  let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
+    let serviceUuid = CharacteristicChangeReq.serviceUuid;
+    let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
+    let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.on('BLECharacteristicChange', CharacteristicChange);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.on('BLECharacteristicChange', CharacteristicChange);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### off('BLECharacteristicChange')<sup>(deprecated)</sup>
+### off('BLECharacteristicChange')
 
 off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
 
 取消订阅蓝牙低功耗设备的特征值变化事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.off('BLECharacteristicChange')](js-apis-bluetoothManager.md#offblecharacteristicchange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3131,27 +3708,23 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 | type     | string                                   | 是    | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的特征值变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.off('BLECharacteristicChange');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.off('BLECharacteristicChange');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### on('BLEConnectionStateChange')<sup>(deprecated)</sup>
+### on('BLEConnectionStateChange')
 
 on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 client端订阅蓝牙低功耗设备的连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.on('BLEConnectionStateChange')](js-apis-bluetoothManager.md#onbleconnectionstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3164,10 +3737,6 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 | type     | string                                   | 是    | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 是    | 表示连接状态，已连接或断开。                           |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
@@ -3175,20 +3744,20 @@ function ConnectStateChanged(state) {
   console.log('bluetooth connect state changed');
   let connectState = state.state;
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.on('BLEConnectionStateChange', ConnectStateChanged);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.on('BLEConnectionStateChange', ConnectStateChanged);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### off('BLEConnectionStateChange')<sup>(deprecated)</sup>
+### off('BLEConnectionStateChange')
 
 off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 取消订阅蓝牙低功耗设备的连接状态变化事件。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.off('BLEConnectionStateChange')](js-apis-bluetoothManager.md#offbleconnectionstatechange)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3201,27 +3770,23 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 | type     | string                                   | 是    | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
-**返回值：**
-
-无
-
 **示例：**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.off('BLEConnectionStateChange');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.off('BLEConnectionStateChange');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getDeviceName<sup>(deprecated)</sup>
+### getDeviceName
 
 getDeviceName(callback: AsyncCallback&lt;string&gt;): void
 
 client获取远端蓝牙低功耗设备名。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3233,31 +3798,37 @@ client获取远端蓝牙低功耗设备名。
 | -------- | --------------------------- | ---- | ------------------------------- |
 | callback | AsyncCallback&lt;string&gt; | 是    | client获取对端server设备名，通过注册回调函数获取。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let deviceName = gattClient.getDeviceName((err, data)=> {
-    console.info('device name err ' + JSON.stringify(err));
-    console.info('device name' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    gattClient.connect();
+    let deviceName = gattClient.getDeviceName((err, data)=> {
+        console.info('device name err ' + JSON.stringify(err));
+        console.info('device name' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getDeviceName<sup>(deprecated)</sup>
+### getDeviceName
 
 getDeviceName(): Promise&lt;string&gt;
 
 client获取远端蓝牙低功耗设备名。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename-1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3269,27 +3840,36 @@ client获取远端蓝牙低功耗设备名。
 | --------------------- | ---------------------------------- |
 | Promise&lt;string&gt; | client获取对端server设备名，通过promise形式获取。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let deviceName = gattClient.getDeviceName().then((data) => {
-    console.info('device name' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    gattClient.connect();
+    let deviceName = gattClient.getDeviceName().then((data) => {
+        console.info('device name' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getRssiValue<sup>(deprecated)</sup>
+### getRssiValue
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
 client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3301,32 +3881,36 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 | -------- | --------------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback&lt;number&gt; | 是    | 返回信号强度，单位&nbsp;dBm，通过注册回调函数获取。 |
 
-**返回值：**
+**错误码**：
 
-无
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let rssi = gattClient.getRssiValue((err, data)=> {
-    console.info('rssi err ' + JSON.stringify(err));
-    console.info('rssi value' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    gattClient.connect();
+    let rssi = gattClient.getRssiValue((err, data)=> {
+        console.info('rssi err ' + JSON.stringify(err));
+        console.info('rssi value' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getRssiValue<sup>(deprecated)</sup>
+### getRssiValue
 
 getRssiValue(): Promise&lt;number&gt;
 
 client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue-1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3338,23 +3922,31 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 | --------------------- | --------------------------------- |
 | Promise&lt;number&gt; | 返回信号强度，单位&nbsp;dBm，通过promise形式获取。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
+
 **示例：**
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let rssi = gattClient.getRssiValue().then((data) => {
-    console.info('rssi' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    let rssi = gattClient.getRssiValue().then((data) => {
+        console.info('rssi' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
-## ScanMode<sup>8+</sup><sup>(deprecated)</sup><a name="ScanMode"></a>
+## ScanMode<a name="ScanMode"></a>
 
 枚举，扫描模式。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ScanMode](js-apis-bluetoothManager.md#scanmode)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3367,13 +3959,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | 可连接general发现模式。 |
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | 可连接limited发现模式。 |
 
-## BondState<sup>8+</sup><sup>(deprecated)</sup><a name="BondState"></a>
+## BondState<a name="BondState"></a>
 
 枚举，配对状态。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BondState](js-apis-bluetoothManager.md#bondstate)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3384,13 +3972,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | BOND_STATE_BONDED  | 2    | 已配对。   |
 
 
-## SppOption<sup>8+</sup><sup>(deprecated)</sup><a name="SppOption"></a>
+## SppOption<a name="SppOption"></a>
 
 描述spp的配置参数。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.SppOption](js-apis-bluetoothManager.md#sppoption)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3401,13 +3985,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | type   | [SppType](#spptype) | 是    | 是    | Spp链路类型。    |
 
 
-## SppType<sup>8+</sup><sup>(deprecated)</sup><a name="SppType"></a>
+## SppType<a name="SppType"></a>
 
 枚举，Spp链路类型。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.SppType](js-apis-bluetoothManager.md#spptype)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3416,13 +3996,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | SPP_RFCOMM | 0    | 表示rfcomm链路类型。 |
 
 
-## GattService<sup>(deprecated)</sup>
+## GattService
 
 描述service的接口参数定义。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservice)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3434,13 +4010,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | includeServices | Array&lt;[GattService](#gattservice)&gt; | 是    | 是    | 当前服务依赖的其它服务。                             |
 
 
-## BLECharacteristic<sup>(deprecated)</sup>
+## BLECharacteristic
 
 描述characteristic的接口参数定义 。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLECharacteristic](js-apis-bluetoothManager.md#blecharacteristic)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3452,13 +4024,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | 是    | 特定特征的描述符列表。                              |
 
 
-## BLEDescriptor<sup>(deprecated)</sup>
+## BLEDescriptor
 
 描述descriptor的接口参数定义 。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLEDescriptor](js-apis-bluetoothManager.md#bledescriptor)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3470,13 +4038,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | descriptorValue    | ArrayBuffer | 是    | 是    | 描述符对应的二进制值。                              |
 
 
-## NotifyCharacteristic<sup>(deprecated)</sup>
+## NotifyCharacteristic
 
 描述server端特征值变化时发送的特征通知参数定义。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.NotifyCharacteristic](js-apis-bluetoothManager.md#notifycharacteristic)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3488,13 +4052,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | confirm             | boolean     | 是    | 是    | 如果是notification则对端回复确认设置为true，如果是indication则对端不需要回复确认设置为false。 |
 
 
-## CharacteristicReadReq<sup>(deprecated)</sup>
+## CharacteristicReadRequest
 
 描述server端订阅后收到的特征值读请求事件参数结构。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.CharacteristicReadRequest](js-apis-bluetoothManager.md#characteristicreadrequest)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3507,13 +4067,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
-## CharacteristicWriteReq<sup>(deprecated)</sup>
+## CharacteristicWriteRequest
 
 描述server端订阅后收到的特征值写请求事件参数结构。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.CharacteristicWriteRequest](js-apis-bluetoothManager.md#characteristicwriterequest)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3527,13 +4083,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
-## DescriptorReadReq<sup>(deprecated)</sup>
+## DescriptorReadRequest
 
 描述server端订阅后收到的描述符读请求事件参数结构。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.DescriptorReadRequest](js-apis-bluetoothManager.md#descriptorreadrequest)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3547,13 +4099,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
-## DescriptorWriteReq<sup>(deprecated)</sup>
+## DescriptorWriteRequest
 
 描述server端订阅后收到的描述符写请求事件参数结构。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.DescriptorWriteRequest](js-apis-bluetoothManager.md#descriptorwriterequest)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3570,13 +4118,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceUuid        | string      | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 
 
-## ServerResponse<sup>(deprecated)</sup>
+## ServerResponse
 
 描述server端回复client端读/写请求的响应参数结构。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ServerResponse](js-apis-bluetoothManager.md#serverresponse)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3589,13 +4133,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | value    | ArrayBuffer | 是    | 否    | 表示回复响应的二进制数据。                          |
 
 
-## BLEConnectChangedState<sup>(deprecated)</sup>
+## BLEConnectChangedState
 
 描述Gatt profile连接状态 。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BLEConnectChangedState](js-apis-bluetoothManager.md#bleconnectchangedstate)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3605,13 +4145,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 是   | 表示BLE连接状态的枚举。                       |
 
 
-## ProfileConnectionState<sup>(deprecated)</sup>
+## ProfileConnectionState
 
 枚举，蓝牙设备的profile连接状态。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ProfileConnectionState](js-apis-bluetoothManager.md#profileconnectionstate)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3623,13 +4159,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | STATE_DISCONNECTING | 3    | 表示profile正在断连。 |
 
 
-## ScanFilter<sup>(deprecated)</sup>
+## ScanFilter
 
 扫描过滤参数。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ScanFilter](js-apis-bluetoothManager.md#scanfilter)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3638,15 +4170,19 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | deviceId                                 | string      | 是   | 是   | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
 | name                                     | string      | 是   | 是   | 表示过滤的BLE设备名。                                        |
 | serviceUuid                              | string      | 是   | 是   | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuidMask             | string      | 是   | 是   | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceSolicitationUuid     | string      | 是   | 是   | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。 |
+| serviceSolicitationUuidMask | string      | 是   | 是   | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceData                 | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
+| serviceDataMask             | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
+| manufactureId               | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
+| manufactureData             | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
+| manufactureDataMask         | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
 
 
-## ScanOptions<sup>(deprecated)</sup>
+## ScanOptions
 
 扫描的配置参数。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ScanOptions](js-apis-bluetoothManager.md#scanoptions)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3657,13 +4193,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | matchMode | [MatchMode](#matchmode) | 是    | 是    | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。 |
 
 
-## ScanDuty<sup>(deprecated)</sup>
+## ScanDuty
 
 枚举，扫描模式。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ScanDuty](js-apis-bluetoothManager.md#scanduty)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3674,13 +4206,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | SCAN_MODE_LOW_LATENCY | 2    | 表示低延迟模式。     |
 
 
-## MatchMode<sup>(deprecated)</sup>
+## MatchMode
 
 枚举，硬件过滤匹配模式。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.MatchMode](js-apis-bluetoothManager.md#matchmode)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3690,13 +4218,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | MATCH_MODE_STICKY     | 2    | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。       |
 
 
-## ScanResult<sup>(deprecated)</sup>
+## ScanResult
 
 扫描结果上报数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ScanResult](js-apis-bluetoothManager.md#scanresult)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3707,13 +4231,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | data     | ArrayBuffer | 是    | 否    | 表示扫描到的设备发送的广播包。                    |
 
 
-## BluetoothState<sup>(deprecated)</sup>
+## BluetoothState
 
 枚举，蓝牙开关状态。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BluetoothState](js-apis-bluetoothManager.md#bluetoothstate)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3728,13 +4248,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | STATE_BLE_TURNING_OFF | 6    | 表示蓝牙正在关闭LE-only模式。 |
 
 
-## AdvertiseSetting<sup>(deprecated)</sup>
+## AdvertiseSetting
 
 描述蓝牙低功耗设备发送广播的参数。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.AdvertiseSetting](js-apis-bluetoothManager.md#advertisesetting)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3745,13 +4261,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true。                   |
 
 
-## AdvertiseData<sup>(deprecated)</sup>
+## AdvertiseData
 
 描述BLE广播数据包的内容。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.AdvertiseData](js-apis-bluetoothManager.md#advertisedata)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3762,13 +4274,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
 
 
-## ManufactureData<sup>(deprecated)</sup>
+## ManufactureData
 
 描述BLE广播数据包的内容。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ManufactureData](js-apis-bluetoothManager.md#manufacturedata)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3778,13 +4286,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | manufactureValue | ArrayBuffer         | 是    | 是    | 表示制造商发送的制造商数据。     |
 
 
-## ServiceData<sup>(deprecated)</sup>
+## ServiceData
 
 描述广播包中服务数据内容。
-
-> **说明：**<br/>
-> 从API version 7开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ServiceData](js-apis-bluetoothManager.md#servicedata)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3794,13 +4298,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceValue | ArrayBuffer | 是    | 是    | 表示服务数据。    |
 
 
-## PinRequiredParam<sup>8+</sup><sup>(deprecated)</sup><a name="PinRequiredParam"></a>
+## PinRequiredParam<a name="PinRequiredParam"></a>
 
 描述配对请求参数。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.PinRequiredParam](js-apis-bluetoothManager.md#pinrequiredparam)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3810,13 +4310,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
 
 
-## BondStateParam<sup>8+</sup><sup>(deprecated)</sup><a name="BondStateParam"></a>
+## BondStateParam<a name="BondStateParam"></a>
 
 描述配对状态参数。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.BondStateParam](js-apis-bluetoothManager.md#bondstateparam)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3826,13 +4322,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
 
 
-## StateChangeParam<sup>8+</sup><sup>(deprecated)</sup><a name="StateChangeParam"></a>
+## StateChangeParam<a name="StateChangeParam"></a>
 
 描述profile状态改变参数。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#statechangeparam)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3842,13 +4334,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
-## DeviceClass<sup>8+</sup><sup>(deprecated)</sup><a name="DeviceClass"></a>
+## DeviceClass<a name="DeviceClass"></a>
 
 描述蓝牙设备的类别。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.DeviceClass](js-apis-bluetoothManager.md#deviceclass)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3860,13 +4348,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 
 
-## MajorClass<sup>8+</sup><sup>(deprecated)</sup><a name="MajorClass"></a>
+## MajorClass<a name="MajorClass"></a>
 
 枚举，蓝牙设备主要类别。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.MajorClass](js-apis-bluetoothManager.md#majorclass)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3885,13 +4369,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。   |
 
 
-## MajorMinorClass<sup>8+</sup><sup>(deprecated)</sup><a name="MajorMinorClass"></a>
+## MajorMinorClass<a name="MajorMinorClass"></a>
 
 枚举，主要次要蓝牙设备类别。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.MajorMinorClass](js-apis-bluetoothManager.md#majorminorclass)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3977,7 +4457,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | HEALTH_DATA_DISPLAY                      | 0x091C | 表示数据显示健康设备。     |
 | HEALTH_STEP_COUNTER                      | 0x0920 | 表示阶梯计数器健康设备。    |
 | HEALTH_BODY_COMPOSITION_ANALYZER         | 0x0924 | 表示身体成分分析仪健康设备。  |
-| HEALTH_PEAK_FLOW_MOITOR                  | 0x0928 | 表示湿度计健康设备。      |
+| HEALTH_PEAK_FLOW_MONITOR                  | 0x0928 | 表示湿度计健康设备。      |
 | HEALTH_MEDICATION_MONITOR                | 0x092C | 表示药物监视仪健康设备。    |
 | HEALTH_KNEE_PROSTHESIS                   | 0x0930 | 表示膝盖假肢健康设备。     |
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | 表示脚踝假肢健康设备。     |
@@ -3985,13 +4465,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
 
 
-## PlayingState<sup>8+</sup><sup>(deprecated)</sup><a name="PlayingState"></a>
+## PlayingState<a name="PlayingState"></a>
 
 枚举，蓝牙A2DP 播放状态。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.PlayingState](js-apis-bluetoothManager.md#playingstate)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -4001,13 +4477,9 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
 
 
-## ProfileId<sup>8+</sup><sup>(deprecated)</sup><a name="ProfileId"></a>
+## ProfileId<a name="ProfileId"></a>
 
 蓝牙profile枚举，API9新增PROFILE_HID_HOST，PROFILE_PAN_NETWORK。
-
-> **说明：**<br/>
-> 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[bluetoothManager.ProfileId](js-apis-bluetoothManager.md#profileid)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -4015,3 +4487,5 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------------------------------- | ------ | --------------- |
 | PROFILE_A2DP_SOURCE              | 1 | 表示A2DP profile。 |
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
+| PROFILE_HID_HOST | 6 | 表示HID profile。  |
+| PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
