@@ -33,13 +33,7 @@ RichText(content:string)
 
 ## 属性
 
-| 名称           | 参数说明                                                     | 描述                                                         |
-| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| width          | [Length](ts-types.md#length)                                 | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。若子组件的宽大于父组件的宽，子组件则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height         | [Length](ts-types.md#length)                                 | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。若子组件的高大于父组件的高，子组件则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| size           | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置高宽尺寸。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| margin         | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 <br>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| layoutWeight   | number&nbsp;\|&nbsp;string                                   | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br>**说明：**<br/>仅在Row/Column/Flex布局中生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+只支持[通用属性](ts-universal-attributes-size.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
 
 ## 支持标签
 
@@ -88,9 +82,9 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
-        .width(400)
+        .width(500)
         .height(400)
-        .margin(20)
+        .backgroundColor(0XBDDB69)
       RichText('layoutWeight(1)')
         .onStart(() => {
           console.info('RichText onStart');
@@ -98,10 +92,9 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
-        .size({ width: '30%', height: 110 })
-        .backgroundColor(Color.Blue)
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92D6CC)
         .layoutWeight(1)
-
       RichText('layoutWeight(2)')
         .onStart(() => {
           console.info('RichText onStart');
@@ -109,8 +102,8 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
-        .size({ width: '30%', height: 110 })
-        .backgroundColor(Color.Yellow)
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92C48D)
         .layoutWeight(2)
     }
   }
