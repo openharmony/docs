@@ -63,7 +63,7 @@
    });
 
    // 调用startSharing方法，来开启指定类型共享
-   sharing.startSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 ```
@@ -88,7 +88,7 @@
    });
 
    // 调用stopSharing方法，来停止指定类型共享
-   sharing.stopSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 ```
@@ -107,7 +107,7 @@
    import sharing from '@ohos.net.sharing'
 
    // 调用startSharing方法，来开启指定类型共享
-   sharing.startSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 
@@ -118,7 +118,7 @@
    });
 
    // 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
-   sharing.stopSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 

@@ -77,7 +77,7 @@ createHttp(): HttpRequest
 
 | 类型        | 说明                                                         |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | 返回一个HttpRequest对象，里面包括request、destroy、on和off方法。 |
+| HttpRequest | 返回一个HttpRequest对象，里面包括request、request2、destroy、on和off方法。 |
 
 **示例：**
 
@@ -95,6 +95,9 @@ HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp
 request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
+
+>**说明：**
+>此接口仅支持数据大小为5M以内的数据传输。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -143,6 +146,9 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
 根据URL地址和相关配置项，发起HTTP网络请求，使用callback方式作为异步方法。
+
+>**说明：**
+>此接口仅支持数据大小为5M以内的数据传输。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -226,6 +232,9 @@ httpRequest.request("EXAMPLE_URL",
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 根据URL地址，发起HTTP网络请求，使用Promise方式作为异步方法。
+
+>**说明：**
+>此接口仅支持数据大小为5M以内的数据传输。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -530,7 +539,7 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >此接口已废弃，建议使用[on('headersReceive')<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -545,12 +554,8 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```js
-httpRequest.on('headerReceive', (err, data) => {
-    if (!err) {
-        console.info('header: ' + JSON.stringify(data));
-    } else {
-        console.info('error:' + JSON.stringify(err));
-    }
+httpRequest.on('headerReceive', (data) => {
+    console.info('error:' + JSON.stringify(data));
 });
 ```
 
@@ -560,7 +565,7 @@ off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >
 >1. 此接口已废弃，建议使用[off('headersReceive')<sup>8+</sup>](#offheadersreceive8)替代。
 >
@@ -610,7 +615,7 @@ off(type: 'headersReceive', callback?: Callback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -679,7 +684,7 @@ off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
 
 取消订阅HTTP流式响应数据接收事件。
 
->![](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -726,7 +731,7 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 
 取消订阅HTTP流式响应数据接收完毕事件。
 
->![](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -763,9 +768,7 @@ httpRequest.off('dataEnd');
 
 ```js
 httpRequest.on('dataProgress', (data) => {
-    if (!err) {
-        console.info('dataProgress:' + JSON.stringify(data));
-    }
+    console.info('dataProgress:' + JSON.stringify(data));
 });
 ```
 
@@ -775,7 +778,7 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 
 取消订阅HTTP流式响应数据接收进度事件。
 
->![](public_sys-resources/icon-note.gif) **说明：**
+>**说明：**
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -915,7 +918,7 @@ let httpResponseCache = http.createHttpResponseCache();
 
 ## HttpResponseCache<sup>9+</sup>
 
-存储HTTP访问请求响应的对象。
+存储HTTP访问请求响应的对象。在调用HttpResponseCache的方法前，需要先通过[createHttpResponseCache()](#httpcreatehttpresponsecache9)创建一个任务。
 
 ### flush<sup>9+</sup>
 

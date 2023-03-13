@@ -69,7 +69,7 @@ Use relative paths to reference pictures in the document.
 -   The text on pictures should be Chinese in Chinese documents and English in English documents.
 -   It is recommended that pictures be named based on the content. Using only a number is difficult for picture inheritance.
 
->![](public_sys-resources/icon-note.gif) **NOTE:** 
+>**NOTE:** 
 >Reference:
 >!\[\]\(./pic/pic-standard.png\)
 
