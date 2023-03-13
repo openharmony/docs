@@ -319,11 +319,14 @@
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
 - Custom Management
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
+  - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
+  - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)
 
  - Language Base Class Library 
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
