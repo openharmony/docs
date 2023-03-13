@@ -54,9 +54,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                    |
 | ---------- | ----------------------------     |
-| 10000001   | Memory operation failed.         | 
-| 10000002   | Parcel operation failed.         | 
-| 10000003   | System service operation failed. | 
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
 | 10000004   | IPC failed.        |
 | 10000006   | Failed to get the application information.    |
 
@@ -105,9 +105,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                    |
 | ---------- | ----------------------------     |
-| 10000001   | Memory operation failed.         | 
-| 10000002   | Parcel operation failed.         | 
-| 10000003   | System service operation failed. | 
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
 | 10000004   | IPC failed.        |
 | 10000006   | Failed to get the application information.     |
 
@@ -133,9 +133,11 @@ Queries the group of this application. This API uses a promise to return the res
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**System API**: This is a system API.
+
 **Return value**
 
-| Type             | Description                         |
+| Type             | Description                          |
 | --------------- | --------------------------- |
 | Promise&lt;number&gt; | Promise used to return the group.|
 
@@ -145,9 +147,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
@@ -175,6 +177,8 @@ Queries the group of this application. This API uses an asynchronous callback to
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name     | Type                   | Mandatory  | Description                        |
@@ -186,10 +190,10 @@ Queries the group of this application. This API uses an asynchronous callback to
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
@@ -236,10 +240,10 @@ Queries the application usage duration statistics based on the specified start t
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -296,10 +300,10 @@ Queries the application usage duration statistics based on the specified start t
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -350,10 +354,10 @@ Queries the application usage duration statistics in the specified time frame at
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -409,10 +413,10 @@ Queries the application usage duration statistics in the specified time frame at
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -461,9 +465,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -519,9 +523,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -552,8 +556,9 @@ Queries events of this application based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**Parameters**
+**System API**: This is a system API.
 
+**Parameters**
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
@@ -565,10 +570,10 @@ Queries events of this application based on the specified start time and end tim
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -601,8 +606,9 @@ Queries events of this application based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**Parameters**
+**System API**: This is a system API.
 
+**Parameters**
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | begin | number | Yes   | Start time, in milliseconds.|
@@ -619,10 +625,10 @@ Queries events of this application based on the specified start time and end tim
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.      |
 | 10000007   | Failed to get the system time.  |
@@ -668,10 +674,10 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -718,10 +724,10 @@ Queries FA usage records. This API uses an asynchronous callback to return a max
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -776,9 +782,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -826,9 +832,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
@@ -883,11 +889,11 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      | 
+| 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
 
@@ -932,11 +938,11 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
 | 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      | 
+| 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
 
@@ -982,9 +988,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
@@ -1037,10 +1043,10 @@ Sets a group for the application specified by **bundleName**. This API uses an a
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
@@ -1088,9 +1094,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1147,9 +1153,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1202,10 +1208,10 @@ Deregisters the callback for application group changes. This API uses a promise 
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1246,10 +1252,10 @@ Deregisters the callback for application group changes. This API uses an asynchr
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
@@ -1299,10 +1305,10 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
@@ -1348,9 +1354,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.           |
 | 10000007   | Failed to get the system time.     |
@@ -1403,9 +1409,9 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
@@ -1450,10 +1456,10 @@ Queries the number of notifications from all applications based on the specified
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
 | 10000004   | IPC failed.             |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
@@ -1557,6 +1563,8 @@ Provides the usage duration information of an application.
 Provides information about an application event.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
 
 | Name                  | Type    | Mandatory  | Description                                      |
 | --------------------- | ------ | ---- | ---------------------------------------- |
