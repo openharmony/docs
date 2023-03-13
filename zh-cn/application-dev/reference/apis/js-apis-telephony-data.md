@@ -85,7 +85,7 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 
 设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -126,7 +126,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 设置默认移动数据的SIM卡，使用Promise方式作为异步方法。 
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -426,7 +426,7 @@ enableCellularData(callback: AsyncCallback<void\>): void
 
 启用蜂窝数据服务，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -464,7 +464,7 @@ enableCellularData(): Promise<void\>
 
 启用蜂窝数据服务，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -505,7 +505,7 @@ disableCellularData(callback: AsyncCallback<void\>): void
 
 禁用蜂窝数据服务，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -543,7 +543,7 @@ disableCellularData(): Promise<void\>
 
 禁用蜂窝数据服务，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -584,7 +584,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 启用蜂窝数据漫游，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -623,7 +623,7 @@ enableCellularDataRoaming(slotId: number): Promise<void\>
 
 启用蜂窝数据漫游，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -670,7 +670,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 禁用蜂窝数据漫游，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -709,7 +709,7 @@ disableCellularDataRoaming(slotId: number): Promise<void\>
 
 禁用蜂窝数据漫游，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
