@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control.
+The **Webview** module provides APIs for web control. It can be used with the **[<Web\>](../arkui-ts/ts-basic-components-web.md)** component, which can be used to display web pages.
 
 > **NOTE**
 >
@@ -20,7 +20,7 @@ The **Webview** module provides APIs for web control.
 import web_webview from '@ohos.web.webview';
 ```
 
-### once
+## once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -43,7 +43,7 @@ import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
   console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("www.example.com", "a=b")
+  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
 })
 
 @Entry
@@ -245,6 +245,44 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setHttpDns<sup>10+</sup>
+
+static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
+
+Sets how the \<Web> component uses HTTPDNS for DNS resolution.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name             | Type   | Mandatory  |  Description|
+| ------------------ | ------- | ---- | ------------- |
+| secureDnsMode         |   [SecureDnsMode](#securednsmode)   | Yes  | Mode in which HTTPDNS is used.|
+| secureDnsConfig       | string | Yes| Information about the HTTPDNS server to use, which must use HTTPS. Only one HTTPDNS server can be configured.|
+
+**Example**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log("EntryAbility onCreate")
+        web_webview.WebviewController.initializeWebEngine()
+        try {
+            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
+        } catch(error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+        }
+
+        globalThis.abilityWant = want
+        console.log("EntryAbility onCreate done")
+    }
+}
+```
+
 ### Creating an Object
 
 ```ts
@@ -278,6 +316,8 @@ Sets whether to enable web debugging.
 | ------------------ | ------- | ---- | ------------- |
 | webDebuggingAccess | boolean | Yes  | Whether to enable web debugging.|
 
+**Example**
+
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -305,7 +345,7 @@ struct WebComponent {
 
 ### loadUrl
 
-loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
+loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 Loads a specified URL.
 
@@ -316,7 +356,7 @@ Loads a specified URL.
 | Name | Type            | Mandatory| Description                 |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string \| Resource | Yes  | URL to load.     |
-| headers | Array\<[HeaderV9](#headerv9)> | No  | Additional HTTP request header of the URL.|
+| headers | Array\<[WebHeader](#webheader)> | No  | Additional HTTP request header of the URL.|
 
 **Error codes**
 
@@ -344,6 +384,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
+            // The URL to be loaded is of the string type.
             this.controller.loadUrl('www.example.com');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -353,6 +394,95 @@ struct WebComponent {
     }
   }
 }
+```
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // The headers parameter is carried.
+            this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+Example of loading local web pages:
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // Load a local resource file through $rawfile.
+            this.controller.loadUrl($rawfile('xxx.html'));
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            // Load a local resource file through the resource protocol.
+            this.controller.loadUrl("resource://rawfile/xxx.html");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```html
+<!-- xxx.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
 ```
 
 ### loadData
@@ -413,7 +543,34 @@ struct WebComponent {
 }
 ```
 
-### accessforward
+Example of loading local resource:
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### accessForward
 
 accessForward(): boolean
 
@@ -829,7 +986,7 @@ struct WebComponent {
 
 ### getHitTest
 
-getHitTest(): HitTestTypeV9
+getHitTest(): WebHitTestType
 
 Obtains the element type of the area being clicked.
 
@@ -839,7 +996,7 @@ Obtains the element type of the area being clicked.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [HitTestTypeV9](#hittesttypev9)| Element type of the area being clicked.|
+| [WebHitTestType](#webhittesttype)| Element type of the area being clicked.|
 
 **Error codes**
 
@@ -1026,7 +1183,7 @@ Executes a JavaScript script. This API uses a promise to return the script execu
 
 | Type           | Description                                               |
 | --------------- | --------------------------------------------------- |
-| Promise\<string> | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed|
+| Promise\<string> | Promise used to return the result. Returns **null** if the JavaScript script fails to be executed|
 
 **Error codes**
 
@@ -1512,7 +1669,7 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2. Register a callback on a message port (for example, port 1) on the application side.
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                var msg = 'Got msg from HTML:';    
+                let msg = 'Got msg from HTML:';
                 if (typeof(result) == "string") {
                   console.log("received string message from html5, string is:" + result);
                   msg = msg + result;
@@ -1540,7 +1697,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.ports && this.ports[1]) {
-              this.ports[1].postMessageEvent("post message from ets to HTML");
+              this.ports[1].postMessageEvent(this.sendFromEts);
             } else {
               console.error(`ports is null, Please initialize first`);
             }
@@ -1582,7 +1739,7 @@ var output = document.querySelector('.output');
 window.addEventListener('message', function (event) {
     if (event.data == '__init_port__') {
         if (event.ports[0] != null) {
-            The h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
+            h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
             h5Port.onmessage = function (event) {
               // 2. Receive the message sent from the eTS side.
               var msg = 'Got message from ets:';
@@ -3101,6 +3258,358 @@ struct WebComponent {
 }
 ```
 
+### getCertificate<sup>10+</sup>
+
+getCertificate(): Promise<Array<cert.X509Cert>>
+
+Obtains the certificate information of the current website. When the \<Web> component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type      | Description                                         |
+| ---------- | --------------------------------------------- |
+| Promise<Array<cert.X509Cert>> | Promise used to obtain the X.509 certificate array of the current HTTPS website.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+function Uint8ArrayToString(dataArray) {
+  var dataString = ''
+  for (var i = 0; i < dataArray.length; i++) {
+    dataString += String.fromCharCode(dataArray[i])
+  }
+  return dataString
+}
+
+function ParseX509CertInfo(x509CertArray) {
+  let res: string = 'getCertificate success: len = ' + x509CertArray.length;
+  for (let i = 0; i < x509CertArray.length; i++) {
+    res += ', index = ' + i + ', issuer name = '
+    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
+    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
+    + x509CertArray[i].getNotBeforeTime()
+    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
+  }
+  return res
+}
+
+@Entry
+@Component
+struct Index {
+  // outputStr displays debug information on the UI.
+  @State outputStr: string = ''
+  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Row() {
+      Column() {
+        List({space: 20, initialIndex: 0}) {
+          ListItem() {
+            Button() {
+              Text('load bad ssl')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              // Load an expired certificate website and view the obtained certificate information.
+              this.webviewCtl.loadUrl('https://expired.badssl.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('load example')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              //Load an HTTPS website and view the certificate information of the website.
+              this.webviewCtl.loadUrl('https://www.example.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate Promise')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate().then(x509CertArray => {
+                  this.outputStr = ParseX509CertInfo(x509CertArray);
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate AsyncCallback')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                  if (error) {
+                    this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                  } else {
+                    this.outputStr = ParseX509CertInfo(x509CertArray);
+                  }
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+        }
+        .listDirection(Axis.Horizontal)
+        .height('10%')
+
+        Text(this.outputStr)
+          .width('100%')
+          .fontSize(10)
+
+        Web({ src: 'https://www.example.com', controller: this.webviewCtl })
+          .fileAccess(true)
+          .javaScriptAccess(true)
+          .domStorageAccess(true)
+          .onlineImageAccess(true)
+          .onPageEnd((e) => {
+            this.outputStr = 'onPageEnd : url = ' + e.url
+          })
+          .onSslErrorEventReceive((e) => {
+            // Ignore SSL certificate errors to test websites whose certificates have expired, for example, https://expired.badssl.com.
+            e.handler.handleConfirm()
+          })
+          .width('100%')
+          .height('70%')
+      }
+      .height('100%')
+    }
+  }
+}
+```
+
+### getCertificate<sup>10+</sup>
+
+getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
+
+Obtains the certificate information of the current website. When the \<Web> component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                    |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback<Array<cert.X509Cert>> | Yes  | Callback used to obtain the X.509 certificate array of the current HTTPS website.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+function Uint8ArrayToString(dataArray) {
+  var dataString = ''
+  for (var i = 0; i < dataArray.length; i++) {
+    dataString += String.fromCharCode(dataArray[i])
+  }
+  return dataString
+}
+
+function ParseX509CertInfo(x509CertArray) {
+  let res: string = 'getCertificate success: len = ' + x509CertArray.length;
+  for (let i = 0; i < x509CertArray.length; i++) {
+    res += ', index = ' + i + ', issuer name = '
+    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
+    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
+    + x509CertArray[i].getNotBeforeTime()
+    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
+  }
+  return res
+}
+
+@Entry
+@Component
+struct Index {
+  // outputStr displays debug information on the UI.
+  @State outputStr: string = ''
+  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Row() {
+      Column() {
+        List({space: 20, initialIndex: 0}) {
+          ListItem() {
+            Button() {
+              Text('load bad ssl')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              // Load an expired certificate website and view the obtained certificate information.
+              this.webviewCtl.loadUrl('https://expired.badssl.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('load example')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              //Load an HTTPS website and view the certificate information of the website.
+              this.webviewCtl.loadUrl('https://www.example.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate Promise')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate().then(x509CertArray => {
+                  this.outputStr = ParseX509CertInfo(x509CertArray);
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate AsyncCallback')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                  if (error) {
+                    this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                  } else {
+                    this.outputStr = ParseX509CertInfo(x509CertArray);
+                  }
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+        }
+        .listDirection(Axis.Horizontal)
+        .height('10%')
+
+        Text(this.outputStr)
+          .width('100%')
+          .fontSize(10)
+
+        Web({ src: 'https://www.example.com', controller: this.webviewCtl })
+          .fileAccess(true)
+          .javaScriptAccess(true)
+          .domStorageAccess(true)
+          .onlineImageAccess(true)
+          .onPageEnd((e) => {
+            this.outputStr = 'onPageEnd : url = ' + e.url
+          })
+          .onSslErrorEventReceive((e) => {
+            // Ignore SSL certificate errors to test websites whose certificates have expired, for example, https://expired.badssl.com.
+            e.handler.handleConfirm()
+          })
+          .width('100%')
+          .height('70%')
+      }
+      .height('100%')
+    }
+  }
+}
+```
+
+### setAudioMuted
+
+setAudioMuted(mute: boolean): void
+
+Mutes this web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                     |
+| -------- | ------- | ---- | -------------------------------------- |
+| mute | boolean | Yes  | Whether to mute the web page. The value **true** means to mute the web page, and **false** means the opposite.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  @State muted: boolean = false
+  build() {
+    Column() {
+      Button("Toggle Mute")
+        .onClick(event => {
+          this.muted = !this.muted
+          this.controller.setAudioMuted(this.muted)
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
@@ -3149,7 +3658,7 @@ struct WebComponent {
       Button('getCookie')
         .onClick(() => {
           try {
-            let value = web_webview.WebCookieManager.getCookie('www.example.com');
+            let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3201,7 +3710,7 @@ struct WebComponent {
       Button('setCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
+            web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3579,7 +4088,7 @@ Deletes all data in the specified origin.
 
 | Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| origin | string | Yes  | Index of the origin.|
+| origin | string | Yes  | Index of the origin, which is obtained through [getOrigins](#getorigins).|
 
 **Error codes**
 
@@ -4069,9 +4578,6 @@ struct WebComponent {
           try {
             this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
-            ForEach(this.username_password, (item) => {
-              console.log('username_password: ' + item);
-            }, item => item)
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
@@ -4140,7 +4646,7 @@ Checks whether any saved HTTP authentication credentials exist. This API returns
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist exists; returns **false** otherwise.|
+| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist; returns **false** otherwise.|
 
 **Example**
 
@@ -4203,133 +4709,6 @@ struct WebComponent {
   }
 }
 ```
-
-## WebAsyncController
-
-Implements a **WebAsyncController** object, which can be used to control the behavior of a **\<Web>** component with asynchronous callbacks. A **WebAsyncController **object controls one **\<Web>** component.
-
-### Creating an Object
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    webAsyncController: web_webview.WebAsyncController = new web_webview.WebAsyncController(this.controller)
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### constructor<sup>9+</sup>
-
-constructor(controller: WebController)
-
-Implements a **WebAsyncController** by binding it with a [WebController](../arkui-ts/ts-basic-components-web.md#webcontroller) object.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ----- | ---- | ---- | --- |
-| controller | [WebController](../arkui-ts/ts-basic-components-web.md#webcontroller) | Yes| **WebviewController** to bind.|
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
-
-Stores this web page. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name     | Type                                    | Mandatory  | Description                                 |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null. |
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.  |
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the save path if the operation is successful and null otherwise.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller)
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
-              if (filename != null) {
-                console.info(`save web archive success: ${filename}`)
-              }
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
-
-Stores this web page. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name     | Type                                    | Mandatory  | Description                                 |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null. |
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory. |
-
-**Return value**
-
-| Type             | Description                                                  |
-| ---------------- | ------------------------------------------------------------ |
-| Promise\<string> | Promise used to return the save path if the operation is successful and null otherwise. |
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller);
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
-              .then(filename => {
-                if (filename != null) {
-                  console.info(`save web archive success: ${filename}`)
-                }
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
 
 ## GeolocationPermissions
 
@@ -4686,7 +5065,7 @@ struct WebComponent {
   }
 }
 ```
-## HeaderV9
+## WebHeader
 Describes the request/response header returned by the **\<Web>** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
@@ -4696,7 +5075,7 @@ Describes the request/response header returned by the **\<Web>** component.
 | headerKey   | string | Yes| Yes| Key of the request/response header.  |
 | headerValue | string | Yes| Yes| Value of the request/response header.|
 
-## HitTestTypeV9
+## WebHitTestType
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4719,7 +5098,7 @@ Provides the element information of the area being clicked. For details about th
 
 | Name| Type| Readable| Writable| Description|
 | ---- | ---- | ---- | ---- |---- |
-| type | [HitTestTypeV9](#hittesttypev9) | Yes| No| Element type of the area being clicked.|
+| type | [WebHitTestType](#webhittesttype) | Yes| No| Element type of the area being clicked.|
 | extra | string        | Yes| No|Extra information of the area being clicked. If the area being clicked is an image or a link, the extra information is the URL of the image or link.|
 
 ## WebMessage
@@ -4788,7 +5167,7 @@ import image from "@ohos.multimedia.image"
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State icon: image.PixelMap = undefined;
-    
+
   build() {
     Column() {
       Button('getBackForwardEntries')
@@ -4796,8 +5175,8 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
-			console.log("HistoryItem: " + JSON.stringify(historyItem));
-  			this.icon = historyItem.icon;
+            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -4832,3 +5211,15 @@ Defines a custom URL scheme.
 | schemeName     | string    | Yes  | Yes  | Name of the custom URL scheme. The value can contain a maximum of 32 characters and include only lowercase letters, digits, periods (.), plus signs (+), and hyphens (-).       |
 | isSupportCORS  | boolean   | Yes  | Yes  | Whether to support cross-origin resource sharing (CORS).   |
 | isSupportFetch | boolean   | Yes  | Yes  | Whether to support fetch requests.          |
+
+## SecureDnsMode<sup>10+</sup>
+
+Describes the mode in which the **\<Web>** component uses HTTPDNS.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| Off           | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
+| Auto          | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.|
+| SecureOnly    | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|

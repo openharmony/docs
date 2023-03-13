@@ -15,6 +15,8 @@ Not supported
 
 Path(value?: { width?: number | string; height?: number | string; commands?: string })
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name  | Type        | Mandatory| Description                           |
@@ -29,18 +31,18 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name    | Type                               | Default Value | Description                                    |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| commands | string                              | ''   | Command for drawing the path. The unit is px. For details about how to convert pixel units, see [Pixel Units](ts-pixel-units.md).|
-| fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.|
-| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.|
-| stroke | [ResourceColor](ts-types.md) | - | Stroke color.|
-| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes.|
-| strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.|
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.|
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.|
-| strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>**NOTE**<br>This attribute must be set to a value greater than or equal to 1 and takes effect when **strokeLineJoin** is set to **LineJoinStyle.Miter**.|
-| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the stroke.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.|
-| strokeWidth | Length | 1 | Width of the stroke.|
-| antiAlias | boolean | true | Whether anti-aliasing is enabled.|
+| commands | string                              | ''   | Command for drawing the path. The unit is px. For details about how to convert pixel units, see [Pixel Units](ts-pixel-units.md).<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| stroke | [ResourceColor](ts-types.md) | - |Stroke color. If this attribute is not set, the component does not have any stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>**NOTE**<br>This attribute must be set to a value greater than or equal to 1 and takes effect when **strokeLineJoin** is set to **LineJoinStyle.Miter**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the stroke.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeWidth | Length | 1 | Width of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| antiAlias | boolean | true | Whether anti-aliasing is enabled.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 The supported commands are as follows:
 
@@ -74,9 +76,8 @@ struct PathExample {
         .width('90%')
       // Draw a straight line whose length is 900 px and width is 3 vp.
       Path()
-        .width(300)
         .height(10)
-        .commands('M0 0 L900 0')
+        .commands('M0 0 L600 0')
         .stroke(Color.Black)
         .strokeWidth(3)
 
@@ -85,55 +86,43 @@ struct PathExample {
         .fontColor(0xCCCCCC)
         .width('90%')
       // Draw a straight line.
-      Row({ space: 20 }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Path()
-          .width(100)
-          .height(100)
-          .commands('M150 0 L300 300 L0 300 Z')
+          .commands('M100 0 L200 240 L0 240 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M0 0 H300 V300 H0 Z')
+          .commands('M0 0 H200 V200 H0 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M150 0 L0 150 L60 300 L240 300 L300 150 Z')
+          .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
-      }.width('100%')
+      }.width('95%')
 
       Text('Curve graphics').fontSize(11).fontColor(0xCCCCCC).width('90%')
       // Draw an arc.
-      Row({ space: 20 }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Path()
-          .width(100)
-          .height(100)
-          .commands("M0 300 S150 0 300 300 Z")
+          .commands("M0 300 S100 0 240 300 Z")
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M0 150 C0 150 150 0 300 150 L150 300 Z')
+          .commands('M0 150 C0 100 140 0 200 150 L100 300 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M0 200 A30 20 20 0 0 250 200 Z')
+          .commands('M0 100 A30 20 20 0 0 200 100 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
-      }
+      }.width('95%')
     }.width('100%')
     .margin({ top: 5 })
   }

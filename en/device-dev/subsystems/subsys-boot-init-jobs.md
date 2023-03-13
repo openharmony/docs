@@ -98,7 +98,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         mount fileSystemType src dst flags data<br>Example:<br>mount vfat /dev/mmcblk0 /sdc rw,umask=000<br>mount jffs2 /dev/mtdblock3 /storage nosuid
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Mounts devices. Every two parameters must be separated by only one space. <br>For details about <strong>flags</strong>, see the <strong>mountFlagMap[]</strong> array of the <strong>mountFlagMap</strong> function in <strong>base/startup/init_lite/services/init/init_common_cmds.c</strong>. The <strong>data</strong> field is optional.
+                        Mounts devices. Every two parameters must be separated by only one space. <br>For details about <strong>flags</strong>, see the <strong>mountFlagMap[]</strong> array of the <strong>mountFlagMap</strong> function in <strong>base/startup/init/services/init/init_common_cmds.c</strong>. The <strong>data</strong> field is optional.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -294,7 +294,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         setrlimit resource <i>curValue</i> <i>maxValue</i><br>Example:<br>setrlimit RLIMIT_CPU 10 100
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Sets resource usage restrictions. <br>For details, see the <strong>resource[]</strong> array of the <strong>DoSetrlimit</strong> function in <strong>base/startup/init_lite/services/init/init_common_cmds.c</strong>.
+                        Sets resource usage restrictions. <br>For details, see the <strong>resource[]</strong> array of the <strong>DoSetrlimit</strong> function in <strong>base/startup/init/services/init/init_common_cmds.c</strong>.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems

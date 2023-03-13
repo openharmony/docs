@@ -76,14 +76,14 @@ export class VideoRecorderDemo {
     let surfaceID = null; // 用于保存getInputSurface返回的surfaceID
     // 获取需要录制的视频的fd地址
     await this.getFd('01.mp4');
-    // 录制相关参数配置
+    // 录制相关参数配置，配置参数以实际硬件设备支持的范围为准
     let videoProfile = {
       audioBitrate : 48000,
       audioChannels : 2,
       audioCodec : 'audio/mp4a-latm',
       audioSampleRate : 48000,
       fileFormat : 'mp4',
-      videoBitrate : 48000,
+      videoBitrate : 2000000,
       videoCodec : 'video/mp4v-es',
       videoFrameWidth : 640,
       videoFrameHeight : 480,

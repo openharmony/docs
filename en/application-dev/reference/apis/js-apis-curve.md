@@ -209,8 +209,9 @@ Curves.responsiveSpringMotion() // Create a responsive spring animation curve wi
 
 interpolate(fraction: number): number
 
-
 Implements calculation.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

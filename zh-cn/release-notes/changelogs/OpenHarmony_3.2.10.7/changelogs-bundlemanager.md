@@ -71,3 +71,163 @@ import {AbilityInfo} from 'bundleManger/AbilityInfo';
 import {ExtensionAbilityInfo} from 'bundleManger/ExtensionAbilityInfo';
 import {BundlePackInfo} from 'bundleManger/BundlePackInfo';
 ```
+
+## cl.bundlemanager.4 包管理LaunchType枚举类型名称变更，由STANDARD修改为MULTITON，枚举值不变。
+
+包管理[LaunchType](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleManager.d.ts)枚举类型变更，由STANDARD修改为MULTITON，枚举值不变，表示多实例类型。
+
+**变更影响**<br>
+使用之前已发布的API 9各beta版本且使用到了LaunchType.STANDARD的，需要改为使用LaunchType.MULTITON接口。
+
+**关键的接口/组件变更**<br>
+LaunchType枚举类型名称变更，由LaunchType.STANDARD修改为LaunchType.MULTITON。
+
+**适配指导**<br>
+由LaunchType.STANDARD修改为LaunchType.MULTITON。
+
+## cl.bundlemanager.5 包管理AbilityInfo结构体中isVisible字段修改为exported，类型不变。
+
+包管理[AbilityInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/AbilityInfo.d.ts)结构体中isVisible字段修改为exported，类型不变，表示当前ability是否支持导出，被其他的ability使用。
+
+**变更影响**<br>
+使用之前已发布的API 9各beta版本且使用到了isVisible的，需要改为使用exported。
+
+**关键的接口/组件变更**<br>
+包管理[AbilityInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/AbilityInfo.d.ts)结构体中isVisible字段修改为exported，类型不变。
+
+**适配指导**<br>
+由isVisible修改为exported。
+
+## cl.bundlemanager.6 包管理ExtensionAbilityInfo结构体中isVisible字段修改为exported，类型不变。
+
+包管理[ExtensionAbilityInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ExtensionAbilityInfo.d.ts)结构体中isVisible字段修改为exported，类型不变，表示当前ability是否支持导出，被其他的ability使用。
+
+**变更影响**<br>
+使用之前已发布的API 9各beta版本且使用到了isVisible的，需要改为使用exported。
+
+**关键的接口/组件变更**<br>
+包管理[ExtensionAbilityInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ExtensionAbilityInfo.d.ts)结构体中isVisible字段修改为exported，类型不变。
+
+**适配指导**<br>
+由isVisible修改为exported。
+
+## cl.bundlemanager.7 包管理ModuleAbilityInfo结构体中visible字段修改为exported，类型不变。
+
+包管理[ModuleAbilityInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundlePackInfo.d.ts)结构体中visible字段修改为exported，类型不变，表示当前ability是否支持导出，被其他的ability使用。
+
+**变更影响**<br>
+使用之前已发布的API 9各beta版本且使用到了visible的，需要改为使用exported。
+
+**关键的接口/组件变更**<br>
+包管理[ModuleAbilityInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundlePackInfo.d.ts)结构体中visible字段修改为exported，类型不变。
+
+**适配指导**<br>
+由visible修改为exported。
+
+## cl.bundlemanager.8 app.json配置文件删除distributedNotificationEnabled标签
+删除配置文件app.json中[distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.9 app.json配置文件删除entityType标签
+删除配置文件app.json中[entityType](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[entityType](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[entityType](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.10 app.json配置文件删除keepAlive标签
+删除配置文件app.json中[keepAlive](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[keepAlive](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[keepAlive](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.11 app.json配置文件删除removable标签
+删除配置文件app.json中[removable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[removable](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[removable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.12 app.json配置文件删除singleton标签
+删除配置文件app.json中[singleton](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[singleton](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[singleton](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.13 app.json配置文件删除userDataClearable标签
+删除配置文件app.json中[userDataClearable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件app.json中[userDataClearable](../../../application-dev/quick-start/app-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除[userDataClearable](../../../application-dev/quick-start/app-configuration-file.md)标签
+
+## cl.bundlemanager.14 module.json配置文件中module的name标签不再支持配置中文
+module.json配置文件中的module的[name](../../../application-dev/quick-start/module-configuration-file.md)不再支持配置中文
+
+**变更影响**<br>
+删除配置文件module.json中module的[name](../../../application-dev/quick-start/module-configuration-file.md)标签不再支持配置中文，IDE中配置该标签为中文，会导致IDE编译报错
+
+**适配指导**<br>
+使用英文语言配置module.json中module的[name](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+## cl.bundlemanager.15 module.json配置文件中ability的name标签不再支持配置中文
+module.json配置文件中的ability的[name](../../../application-dev/quick-start/module-configuration-file.md)不再支持配置中文
+
+**变更影响**<br>
+删除配置文件module.json中ability的[name](../../../application-dev/quick-start/module-configuration-file.md)标签不再支持配置中文，IDE中配置该标签为中文，会导致IDE编译报错
+
+**适配指导**<br>
+使用英文语言配置module.json中ability的[name](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+## cl.bundlemanager.16 module.json配置文件删除uiSyntax标签
+删除配置文件module.json中[uiSyntax](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+**变更影响**<br>
+删除配置文件module.json中[uiSyntax](../../../application-dev/quick-start/module-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[uiSyntax](../../../application-dev/quick-start/module-configuration-file.md)标签
+
+## cl.bundlemanager.17 module.json配置文件中module及ability中的srcEntrance标签修改为srcEntry
+配置文件module.json中[srcEntrance](../../../application-dev/quick-start/module-configuration-file.md)标签修改为srcEntry
+
+**变更影响**<br>
+删除配置文件module.json中[srcEntrance](../../../application-dev/quick-start/module-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[srcEntrance](../../../application-dev/quick-start/module-configuration-file.md)标签，使用srcEntry替代
+
+## cl.bundlemanager.18 删除module.json配置文件中distroFilter的apiVersion标签
+删除配置文件module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)的apiVersion标签
+
+**变更影响**<br>
+删除配置文件module.json[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)的apiVersion标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)的apiVersion标签
+
+## cl.bundlemanager.19 module.json配置文件中distroFilter修改为distributionFilter
+配置文件module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签修改为distributionFilter
+
+**变更影响**<br>
+删除配置文件module.json[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，IDE中不再支持配置该标签，使用该标签会导致IDE编译报错
+
+**适配指导**<br>
+删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，使用distributionFilter替代

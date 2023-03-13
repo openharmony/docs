@@ -92,16 +92,16 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | 卡片标识。   |
-| DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | 卡片规格样式。   |
-| NAME_KEY       | "ohos.extra.param.key.form_name"   | 卡片名称。   |
-| MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | 卡片所属模块名称。   |
-| WIDTH_KEY        | "ohos.extra.param.key.form_width"   | 卡片宽度。   |
-| HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | 卡片高度。   |
-| TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
-| ABILITY_NAME_KEY   | "ohos.extra.param.key.ability_name"   | ability名称。  |
-| DEVICE_ID_KEY    | "ohos.extra.param.key.device_id"   | 设备标识。   |
-| BUNDLE_NAME_KEY    | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑Bundle名称的键。 |
+| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。   |
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。   |
+| NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。   |
+| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。   |
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。   |
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。   |
+| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。   |
+| ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。  |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。   |
+| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
 
 ##  FormDimension
 

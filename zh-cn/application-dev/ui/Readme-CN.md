@@ -1,7 +1,7 @@
 # UI开发
 
 - [方舟开发框架（ArkUI）概述](arkui-overview.md)
-- UI开发（基于ArkTS的声明式开发范式）
+- 基于ArkTS的声明式开发范式
   - [概述](ui-ts-overview.md)
   - [声明式UI开发指导](ui-ts-developing-intro.md)
   - 声明式UI开发实例
@@ -27,7 +27,7 @@
   - [自定义组件的生命周期](ui-ts-custom-component-lifecycle-callbacks.md)
   - [Web组件开发指导](ui-ts-components-web.md)
   - [性能提升的推荐方法](ui-ts-performance-improvement-recommendation.md)
-- UI开发（兼容JS的类Web开发范式）
+- 兼容JS的类Web开发范式
   - [概述](ui-js-overview.md)
   - 框架说明
     - [文件组织](js-framework-file.md)

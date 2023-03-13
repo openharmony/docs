@@ -64,64 +64,64 @@ After configuring the permissions in the **module.json5** file, the application 
 
 1. Declare the permissions in the **module.json5** file. Add the **requestPermissions** tag under **module** in the file, and set the tag based on the project requirements. For details about the tag, see [Guide for Requesting Permissions from User](../security/accesstoken-guidelines.md).
 
-   ```json
-   {
-       "module": {
-           "requestPermissions": [
-               {
-                   "name": "ohos.permission.MEDIA_LOCATION",
-                   "reason": "$string:reason",
-                   "usedScene": {
-                       "abilities": [
-                         "EntryAbility"
-                       ],
-                       "when": "always"
-               }
-               },
-               {
-                   "name": "ohos.permission.READ_MEDIA",
-                   "reason": "$string:reason",
-                   "usedScene": {
-                       "abilities": [
-                           "EntryAbility"
-                       ],
-                       "when": "always"
-                   }
-               },
-               {
-                   "name": "ohos.permission.WRITE_MEDIA",
-                   "reason": "$string:reason",
-                   "usedScene": {
-                       "abilities": [
-                           "EntryAbility"
-                       ],
-                       "when": "always"
-                   }
-               }
-           ]
-       }
-   }    
-   ```
+```json
+{
+  "module": {
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
+      }
+    ]
+  }
+}    
+```
 
 2. In the **Ability.ts** file, call **requestPermissionsFromUser** in the **onWindowStageCreate** callback to check for the required permissions and if they are not granted, request the permissions from the user by displaying a dialog box.
 
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-   
-   export default class EntryAbility extends UIAbility {
-       onWindowStageCreate(windowStage) {
-           let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
-           let permissionRequestResult;
-           let atManager = abilityAccessCtrl.createAtManager();
-           atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
-               if (err) {
-                   console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
-               } else {
-                   permissionRequestResult=result;
-                   console.log('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
-               }    
-           });       
-       }
-   }
-   ```
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage) {
+    let list : Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
+    let permissionRequestResult;
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
+      if (err) {
+        console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
+      } else {
+        permissionRequestResult = result;
+        console.info('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+      }
+    });       
+  }
+}
+```

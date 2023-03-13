@@ -53,7 +53,7 @@ The Startup subsystem consists of the following modules:
 | -------- | -------- |
 | base/startup/appspawn_lite | Small-system devices (reference memory ≥ 1 MiB), for example, Hi3516D V300 and Hi3518E V300|
 | base/startup/bootstrap_lite | Mini-system devices (reference memory ≥ 128 KiB), for example, Hi3861 V100|
-| base/startup/init_lite | Small-system devices (reference memory ≥ 1 MiB), for example, Hi3516D V300 and Hi3518E V300|
+| base/startup/init | Small-system devices (reference memory ≥ 1 MiB), for example, Hi3516D V300 and Hi3518E V300|
 | base/startup/syspara_lite | - Mini-system devices (reference memory ≥ 128 KiB), for example, Hi3861 V100<br>- Small-system devices (reference memory ≥ 1 MiB), for example, Hi3516D V300 and Hi3518E V300|
 
 - init module

@@ -39,17 +39,17 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 ```ts
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
+let formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log(`formProvider setFormNextRefreshTime success`);
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -86,15 +86,15 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 ```ts
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
+let formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log(`formProvider setFormNextRefreshTime success`);
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -127,18 +127,18 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
+let formId = '12400633174999288';
 try {
-  let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log(`formProvider updateForm success`);
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -176,16 +176,16 @@ Updates a widget. This API uses a promise to return the result.
 import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
-let obj = formBindingData.createFormBindingData({ temperature: "22c", time: "22:00" });
+let formId = '12400633174999288';
+let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
 try {
   formProvider.updateForm(formId, obj).then(() => {
     console.log(`formProvider updateForm success`);
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -219,13 +219,13 @@ import formProvider from '@ohos.app.form.formProvider';
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 ## getFormsInfo
@@ -258,18 +258,18 @@ import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
-  moduleName: "entry"
+  moduleName: 'entry'
 };
 try {
   formProvider.getFormsInfo(filter, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -308,16 +308,16 @@ import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
-  moduleName: "entry"
+  moduleName: 'entry'
 };
 try {
   formProvider.getFormsInfo(filter).then((data) => {
-    console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -335,7 +335,7 @@ Requests to publish a widget carrying data to the widget host. This API uses an 
 
 | Name| Type                                                                   | Mandatory| Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](js-apis-application-want.md)                           | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want | [Want](js-apis-application-want.md)                           | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data used for creating the widget.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
@@ -353,24 +353,24 @@ import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
-  abilityName: "FormAbility",
+  abilityName: 'FormAbility',
   parameters: {
-    "ohos.extra.param.key.form_dimension": 2,
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.module_name": "entry"
+    'ohos.extra.param.key.form_dimension': 2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry'
   }
 };
 try {
-  let obj = formBindingData.createFormBindingData({ temperature: "22c", time: "22:00" });
+  let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
   formProvider.requestPublishForm(want, obj, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -388,7 +388,7 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](js-apis-application-want.md) | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want     | [Want](js-apis-application-want.md) | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | callback | AsyncCallback&lt;string&gt;         | Yes  |  Callback used to return the widget ID.|
 
 **Error codes**
@@ -404,23 +404,23 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
-  abilityName: "FormAbility",
+  abilityName: 'FormAbility',
   parameters: {
-    "ohos.extra.param.key.form_dimension": 2,
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.module_name": "entry"
+    'ohos.extra.param.key.form_dimension': 2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry'
   }
 };
 try {
   formProvider.requestPublishForm(want, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -438,7 +438,7 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 
 | Name         | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](js-apis-application-want.md)                          | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want            | [Want](js-apis-application-want.md)                          | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | No  | Data used for creating the widget.                                          |
 
 **Return value**
@@ -460,21 +460,21 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
-  abilityName: "FormAbility",
+  abilityName: 'FormAbility',
   parameters: {
-    "ohos.extra.param.key.form_dimension": 2,
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.module_name": "entry"
+    'ohos.extra.param.key.form_dimension': 2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry'
   }
 };
 try {
   formProvider.requestPublishForm(want).then((data) => {
-    console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+    console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -502,33 +502,33 @@ import formProvider from '@ohos.app.form.formProvider';
 try {
   formProvider.isRequestPublishFormSupported((error, isSupported) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       if (isSupported) {
         var want = {
-          abilityName: "FormAbility",
+          abilityName: 'FormAbility',
           parameters: {
-            "ohos.extra.param.key.form_dimension": 2,
-            "ohos.extra.param.key.form_name": "widget",
-            "ohos.extra.param.key.module_name": "entry"
+            'ohos.extra.param.key.form_dimension': 2,
+            'ohos.extra.param.key.form_name': 'widget',
+            'ohos.extra.param.key.module_name': 'entry'
           }
         };
         try {
           formProvider.requestPublishForm(want, (error, data) => {
             if (error) {
-              console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+              console.error(`callback error, code: ${error.code}, message: ${error.message})`);
             } else {
-              console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+              console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
             }
           });
         } catch (error) {
-          console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+          console.error(`catch error, code: ${error.code}, message: ${error.message})`);
         }
       }
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -557,27 +557,27 @@ try {
   formProvider.isRequestPublishFormSupported().then((isSupported) => {
     if (isSupported) {
       var want = {
-        abilityName: "FormAbility",
+        abilityName: 'FormAbility',
         parameters: {
-          "ohos.extra.param.key.form_dimension": 2,
-          "ohos.extra.param.key.form_name": "widget",
-          "ohos.extra.param.key.module_name": "entry"
+          'ohos.extra.param.key.form_dimension': 2,
+          'ohos.extra.param.key.form_name': 'widget',
+          'ohos.extra.param.key.module_name': 'entry'
         }
       };
       try {
         formProvider.requestPublishForm(want).then((data) => {
-          console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+          console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
         }).catch((error) => {
-          console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+          console.error(`promise error, code: ${error.code}, message: ${error.message})`);
         });
       } catch (error) {
-        console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+        console.error(`catch error, code: ${error.code}, message: ${error.message})`);
       }
     }
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```

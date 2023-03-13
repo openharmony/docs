@@ -566,7 +566,7 @@ while(temp != undefined) {
 
 values(): IterableIterator&lt;V&gt;
 
-返回包含此映射中键值对的新迭代器对象。
+返回包含此映射中键值的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -636,7 +636,7 @@ let treeMap = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

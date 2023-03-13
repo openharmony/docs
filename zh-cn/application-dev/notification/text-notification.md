@@ -45,7 +45,7 @@
    - 普通文本类型通知由标题、文本内容和附加信息三个字段组成，其中标题和文本内容是必填字段，大小均需要小于200字节。
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
@@ -71,7 +71,7 @@
    - 长文本类型通知继承了普通文本类型的字段，同时新增了长文本内容、内容概要和通知展开时的标题，其中长文本内容不超过1024字节，其他字段小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，内容为长文本内容。
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
@@ -101,7 +101,7 @@
    - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题，其字段均小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，多行文本内容多行显示。
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
@@ -127,11 +127,11 @@
    
       运行效果如下图所示。  
      ![zh-cn_image_0000001417062446](figures/zh-cn_image_0000001417062446.png)
-   - 图片类型通知继承了普通文本类型的字段，同时新增了图片内容、内容概要和通知展开时的标题，图片内容为PixelMap型对象，其大小不能超过2M。
+   - 图片类型通知继承了普通文本类型的字段，同时新增了图片内容、内容概要和通知展开时的标题，图片内容为[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)类型对象，其大小不能超过2M。
      
       ```ts
-      let notificationPicture: PixelMap = undefined; // 需要获取图片PixelMap信息
-      let notificationRequest = {
+      let imagePixelMap: PixelMap = undefined; // 需要获取图片PixelMap信息
+      let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
           content: {
       	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
@@ -141,7 +141,7 @@
                 additionalText: 'test_additionalText',
                 briefText: 'test_briefText',
                 expandedTitle: 'test_expandedTitle',
-                picture: notificationPicture
+                picture: imagePixelMap
               }
           }
       }

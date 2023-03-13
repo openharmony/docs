@@ -4,11 +4,11 @@
 
 ### System Capabilities and APIs
 
-SystemCapability (SysCap in short) refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
+SystemCapability (SysCap) refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
 
-For details about the SysCap sets in OpenHarmony, see [SysCap List](../reference/syscap-list.md).
+For details about the SysCap sets in OpenHarmony, see [SysCap List](syscap-list.md).
 
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 
@@ -93,19 +93,19 @@ By default, the associated SysCap set of an application is the union of multiple
 
 ### Checking Whether an API Is Available
 
-- Method 1: Use the **canIUse** API predefined in OpenHarmony.
+- Method 1: Use the **canIUse()** API to check whether a SysCap is supported.
 
-   ```
+   ```ts
    if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
-   	   console.log("This application supports SystemCapability.ArkUI.ArkUI.Full.");
+   	   console.log("This device supports SystemCapability.ArkUI.ArkUI.Full.");
    } else {
-	   console.log("This application does not support SystemCapability.ArkUI.ArkUI.Full".);
+	   console.log("This device does not support SystemCapability.ArkUI.ArkUI.Full.");
    }
    ```
 
 - Method 2: Import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
 
-   ```
+   ```ts
    import geolocation from '@ohos.geolocation';
 
    if (geolocation) {
@@ -122,7 +122,7 @@ You can also find out the SysCap to which an API belongs by referring to the API
 
 The performance of a SysCap may vary by device type. For example, a tablet is superior to a smart wearable device in terms of the camera capability.
 
-```
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authenticator = userAuth.getAuthenticator();

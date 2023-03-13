@@ -1,7 +1,6 @@
 # picker-view
 
 >  **NOTE**
->
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **\<picker-view>** component provides the view that shows an embedded scrollable selector on the screen.
@@ -77,7 +76,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | selected-font-size               | &lt;length&gt; | 20px       | No   | Font size of the selected item. The value is of the length type, in pixels.                  |
 | disappear-color<sup>5+</sup>     | &lt;color&gt;  | \#ffffff   | No   | Font color of the items that gradually disappear. Disappearing items are the top option and bottom option of a column containing five options in total.  |
 | disappear-font-size<sup>5+</sup> | &lt;length&gt; | 14px       | No   | Font size of the items that gradually disappear. Disappearing items are the top option and bottom option of a column containing five options in total.  |
-| font-family                      | string         | sans-serif | No   | Font family of the selector, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text. |
+| font-family                      | string         | sans-serif | No   | Font family of the selector, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
 
 
 ## Events
@@ -138,15 +137,13 @@ Not supported
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 454px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
         font-size: 30px;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 50%;
     }
     ```
     
@@ -164,8 +161,8 @@ Not supported
         },
     }
     ```
-    ![](figures/pickerview1.gif)
-
+    ![picker-view0](figures/picker-view0.gif)
+    
 2. Time Selector
     ```html
     <!-- xxx.hml -->
@@ -180,22 +177,16 @@ Not supported
     ```css
     /* xxx.css */
     .container {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      left: 0px;
-      top: 0px;
-      width: 454px;
-      height: 454px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
     }
     .title {
-      font-size: 30px;
-      text-align: center;
-    }
-    .time-picker {
-      width: 500px;
-      height: 400px;
-      margin-top: 20px;
+        font-size: 31px;
+        text-align: center;
+        margin-top: 50%;
     }
     ```
     
@@ -227,16 +218,16 @@ Not supported
     }
     ```
     
-    ![](figures/pickerview2.gif)
-
+    ![picker-view1](figures/picker-view1.gif)
+    
 3. Date Selector
     ```html
     <!-- xxx.hml -->
     <div class="container">
         <text class="title">
-            Selected: {{time}}
+            Selected: {{date}}
         </text>
-        <picker-view class="time-picker" type="time" selected="{{defaultTime}}" @change="handleChange"></picker-view>
+        <picker-view class="time-picker" type="date" selected="{{defaultTime}}" @change="handleChange" lunarswitch="true"></picker-view>
     </div>
     ```
     
@@ -246,20 +237,13 @@ Not supported
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 454px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
-        font-size: 30px;
+        font-size: 31px;
         text-align: center;
-        margin-top: 20px;
-    }
-    .date-picker {
-        width: 500px;
-        height: 400px;
-        margin-top: 50px;
+        margin-top: 50%;
     }
     ```
     
@@ -270,12 +254,12 @@ Not supported
             date: "",
         },
         handleChange(data) {
-            this.date = data.year + "" + data.month + "" + data.day + "";
+            this.date = data.year + "/" + data.month + "/" + data.day + "";
         },
     }
     ```
+    ![picker-view2](figures/picker-view2.gif)
     
-
 4. Date and Time Selector
     ```html
     <!-- xxx.hml -->
@@ -293,20 +277,13 @@ Not supported
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 500px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
-        font-size: 30px;
+        font-size: 31px;
         text-align: center;
-        margin-top: 20px;
-    }
-    .date-picker {
-        width: 500px;
-        height: 400px;
-        margin-top: 50px;
+        margin-top: 50%;
     }
     ```
     
@@ -317,12 +294,12 @@ Not supported
             datetime: "",
         },
         handleChange(data) {
-            this.datetime = data.year + "" + data.month + "" + data.day + "" + data.hour + "" + data.minute + "";
+            this.datetime = data.year + "/" + data.month + "/" + data.day + "" + data.hour + ":" + data.minute + "";
         },
     }
     ```
+    ![picker-view3](figures/picker-view3.gif)
     
-
 5. Multi-Column Text Selector
 
     ```html
@@ -341,15 +318,13 @@ Not supported
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 500px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
-        font-size: 30px;
+        font-size: 31px;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 50%;
     }
     ```
     
@@ -365,8 +340,8 @@ Not supported
             value: ""
         },
         handleChange(data) {
-            this.value = "Column: " + data.column + "," + "Value: " + data.newValue + ", Index:" + data.newSelected;
+            this.value = "Selected: " + data.column + "," + "value: " + data.newValue + ", index:" + data.newSelected;
         },
     }
     ```
-    ![](figures/pickerview5.gif)
+    ![picker-view4](figures/picker-view4.gif)

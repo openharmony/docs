@@ -9,7 +9,6 @@
 
 **起始版本：**
 
-
 9
 
 
@@ -51,29 +50,29 @@
 | -------- | -------- |
 | [OH_AI_ContextHandle](#oh_ai_contexthandle) | Mindspore的上下文信息的指针，该指针会指向Context。 |
 | [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) | Mindspore的运行设备信息的指针。 |
-| [OH_AI_DataType](#oh_ai_datatype) | MSTensor保存的数据支持的类型。 |
-| [OH_AI_Format](#oh_ai_format) | MSTensor保存的数据支持的排列格式。 |
+| [OH_AI_DataType](#oh_ai_datatype-1) | MSTensor保存的数据支持的类型。 |
+| [OH_AI_Format](#oh_ai_format-1) | MSTensor保存的数据支持的排列格式。 |
 | [OH_AI_ModelHandle](#oh_ai_modelhandle) | 指向模型对象的指针。 |
 | [OH_AI_TensorHandleArray](#oh_ai_tensorhandlearray) | 张量数组结构体，用于存储张量数组指针和张量数组长度。 |
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**MS_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | 回调函数中传入的算子信息。 |
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const OH_AI_TensorHandleArray inputs, const OH_AI_TensorHandleArray outputs, const OH_AI_CallBackParam kernel_Info) | 回调函数指针。 |
-| [OH_AI_Status](#oh_ai_status) | Minspore的状态码。 |
+| [OH_AI_Status](#oh_ai_status-1) | Minspore的状态码。 |
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄。 |
-| [OH_AI_ModelType](#oh_ai_modeltype) | 模型文件的类型。 |
-| [OH_AI_DeviceType](#oh_ai_devicetype) | 设备类型，该信息。 |
+| [OH_AI_ModelType](#oh_ai_modeltype-1) | 模型文件的类型。 |
+| [OH_AI_DeviceType](#oh_ai_devicetype-1) | 设备类型，该信息。 |
 
 
 ### 枚举
 
 | 枚举名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_DataType](#oh_ai_datatype) {<br/>OH_AI_DATATYPE_UNKNOWN = 0,<br/>OH_AI_DATATYPE_OBJECTTYPE_STRING = 12,<br/>OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, <br/>OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14, <br/>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, <br/>OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29,<br/>OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30,<br/>OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38,<br/>OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44,<br/>OH_AI_DATATYPE_NUMBERTYPE_END = 46,<br/>OH_AI_DataTypeInvalid = INT32_MAX } | MSTensor保存的数据支持的类型。 |
-| [OH_AI_Format](#oh_ai_format) {<br/>OH_AI_FORMAT_NCHW = 0,<br/>OH_AI_FORMAT_NHWC = 1,<br/>OH_AI_FORMAT_NHWC4 = 2,<br/>OH_AI_FORMAT_HWKC = 3,<br/>OH_AI_FORMAT_HWCK = 4,<br/>OH_AI_FORMAT_KCHW = 5,<br/>OH_AI_FORMAT_CKHW = 6,<br/>OH_AI_FORMAT_KHWC = 7,<br/>OH_AI_FORMAT_CHWK = 8,<br/>OH_AI_FORMAT_HW = 9,<br/>OH_AI_FORMAT_HW4 = 10,<br/>OH_AI_FORMAT_NC = 11,<br/>OH_AI_FORMAT_NC4 = 12,<br/>OH_AI_FORMAT_NC4HW4 = 13,<br/>OH_AI_FORMAT_NCDHW = 15,<br/>OH_AI_FORMAT_NWC = 16,<br/>OH_AI_FORMAT_NCW = 17 } | MSTensor保存的数据支持的排列格式。 |
+| [OH_AI_DataType](#oh_ai_datatype-1) {<br/>OH_AI_DATATYPE_UNKNOWN = 0,<br/>OH_AI_DATATYPE_OBJECTTYPE_STRING = 12,<br/>OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, <br/>OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14, <br/>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, <br/>OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29,<br/>OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30,<br/>OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38,<br/>OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44,<br/>OH_AI_DATATYPE_NUMBERTYPE_END = 46,<br/>OH_AI_DataTypeInvalid = INT32_MAX } | MSTensor保存的数据支持的类型。 |
+| [OH_AI_Format](#oh_ai_format-1) {<br/>OH_AI_FORMAT_NCHW = 0,<br/>OH_AI_FORMAT_NHWC = 1,<br/>OH_AI_FORMAT_NHWC4 = 2,<br/>OH_AI_FORMAT_HWKC = 3,<br/>OH_AI_FORMAT_HWCK = 4,<br/>OH_AI_FORMAT_KCHW = 5,<br/>OH_AI_FORMAT_CKHW = 6,<br/>OH_AI_FORMAT_KHWC = 7,<br/>OH_AI_FORMAT_CHWK = 8,<br/>OH_AI_FORMAT_HW = 9,<br/>OH_AI_FORMAT_HW4 = 10,<br/>OH_AI_FORMAT_NC = 11,<br/>OH_AI_FORMAT_NC4 = 12,<br/>OH_AI_FORMAT_NC4HW4 = 13,<br/>OH_AI_FORMAT_NCDHW = 15,<br/>OH_AI_FORMAT_NWC = 16,<br/>OH_AI_FORMAT_NCW = 17 } | MSTensor保存的数据支持的排列格式。 |
 | [OH_AI_CompCode](#oh_ai_compcode) {<br/>OH_AI_COMPCODE_CORE = 0x00000000u,<br/>OH_AI_COMPCODE_LITE = 0xF0000000u } | Minspore不同组件的代码、 |
-| [OH_AI_Status](#oh_ai_status) {<br/>OH_AI_STATUS_SUCCESS = 0,<br/>OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, <br/>OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), <br/>OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3),<br/>OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4),<br/>OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5),<br/>OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7),<br/>OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8),<br/>OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9),<br/>OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE, <br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR,<br/>OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102),<br/>OH_AI_STATUS_LITE_GRAPH_FILE_ERROR,<br/>OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),   OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301),<br/>OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302),<br/>OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE,<br/>OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500),<br/>OH_AI_STATUS_LITE_INFER_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -501),<br/>OH_AI_STATUS_LITE_INPUT_PARAM_INVALID } | Minspore的状态码。 |
-| [OH_AI_ModelType](#oh_ai_modeltype) {<br/>OH_AI_MODELTYPE_MINDIR = 0,<br/>OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | 模型文件的类型。 |
-| [OH_AI_DeviceType](#oh_ai_devicetype) {<br/>OH_AI_DEVICETYPE_CPU = 0,<br/>OH_AI_DEVICETYPE_KIRIN_NPU,<br/>OH_AI_DEVICETYPE_INVALID = 100 } | 设备类型，该信息。 |
+| [OH_AI_Status](#oh_ai_status-1) {<br/>OH_AI_STATUS_SUCCESS = 0,<br/>OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, <br/>OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), <br/>OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3),<br/>OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4),<br/>OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5),<br/>OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7),<br/>OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8),<br/>OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9),<br/>OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE, <br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR,<br/>OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102),<br/>OH_AI_STATUS_LITE_GRAPH_FILE_ERROR,<br/>OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),   OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301),<br/>OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302),<br/>OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE,<br/>OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500),<br/>OH_AI_STATUS_LITE_INFER_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -501),<br/>OH_AI_STATUS_LITE_INPUT_PARAM_INVALID } | Minspore的状态码。 |
+| [OH_AI_ModelType](#oh_ai_modeltype-1) {<br/>OH_AI_MODELTYPE_MINDIR = 0,<br/>OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | 模型文件的类型。 |
+| [OH_AI_DeviceType](#oh_ai_devicetype-1) {<br/>OH_AI_DEVICETYPE_CPU = 0,<br/>OH_AI_DEVICETYPE_KIRIN_GPU,<br/>OH_AI_DEVICETYPE_KIRIN_NPU,<br/>OH_AI_DEVICETYPE_NNRT = 60,<br/>OH_AI_DEVICETYPE_INVALID = 100 } | 设备类型信息，包含了目前支持的设备类型。 |
 
 
 ### 函数
@@ -363,7 +362,9 @@ enum OH_AI_DeviceType
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_AI_DEVICETYPE_CPU | 设备类型是CPU。 |
-| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU。 |
+| OH_AI_DEVICETYPE_GPU | 设备类型是GPU。预留选项，暂不支持。 |
+| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU。预留选项，暂不支持。 |
+| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt。OHOS设备范围是[60,80)。 |
 | OH_AI_DEVICETYPE_INVALID | 设备类型无效。 |
 
 
@@ -693,7 +694,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate (OH_AI_DeviceType device
 
 | 名称 | 描述 |
 | -------- | -------- |
-| device_type | 设备类型, 具体见[OH_AI_DeviceType](#oh_ai_devicetype)。 |
+| device_type | 设备类型, 具体见[OH_AI_DeviceType](#oh_ai_devicetype-1)。 |
 
 **返回:**
 
@@ -913,7 +914,8 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuild (OH_AI_ModelHandle model, const void * m
 
 **描述：**
 
-从内存缓冲区加载并编译MindSpore模型。
+从内存缓冲区加载并编译MindSpore模型。 
+注意，同一个[OH_AI_ContextHandle](#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](#oh_ai_contexthandle)。
 
 **参数:**
 
@@ -922,12 +924,12 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuild (OH_AI_ModelHandle model, const void * m
 | model | 模型对象指针。 |
 | model_data | 内存中已经加载的模型数据地址。 |
 | data_size | 模型数据的长度。 |
-| model_type | 模型文件类型，具体见[OH_AI_ModelType](#oh_ai_modeltype)。 |
+| model_type | 模型文件类型，具体见[OH_AI_ModelType](#oh_ai_modeltype-1)。 |
 | model_context | 模型运行时的上下文环境，具体见 [OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
 
 **返回:**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
 
 
 ### OH_AI_ModelBuildFromFile()
@@ -940,6 +942,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const 
 **描述：**
 
 通过模型文件加载并编译MindSpore模型。
+注意，同一个[OH_AI_ContextHandle](#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile)或者[OH_AI_ModelBuild](#oh_ai_modelbuild)一次，如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](#oh_ai_contexthandle)。
 
 **参数:**
 
@@ -947,12 +950,12 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const 
 | -------- | -------- |
 | model | 模型对象指针。 |
 | model_path | 模型文件路径。 |
-| model_type | 模型文件类型，具体见[OH_AI_ModelType](#oh_ai_modeltype)。 |
+| model_type | 模型文件类型，具体见[OH_AI_ModelType](#oh_ai_modeltype-1)。 |
 | model_context | 模型运行时的上下文环境，具体见 [OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
 
 **返回:**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
 
 
 ### OH_AI_ModelCreate()
@@ -1102,7 +1105,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelPredict (OH_AI_ModelHandle model, const OH_AI_
 
 **返回:**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
 
 
 ### OH_AI_ModelResize()
@@ -1127,7 +1130,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelResize (OH_AI_ModelHandle model, const OH_AI_T
 
 **返回:**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
 
 
 ### OH_AI_TensorClone()
@@ -1409,7 +1412,7 @@ OH_AI_API void OH_AI_TensorSetDataType (OH_AI_TensorHandle tensor, OH_AI_DataTyp
 | 名称 | 描述 |
 | -------- | -------- |
 | tensor | 张量对象句柄。 |
-| type | 数据类型，具体见[OH_AI_DataType](#oh_ai_datatype)。 |
+| type | 数据类型，具体见[OH_AI_DataType](#oh_ai_datatype-1)。 |
 
 
 ### OH_AI_TensorSetFormat()

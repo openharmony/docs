@@ -4,8 +4,6 @@
 
 To ensure smooth version evolution and continuous stability and reliability of historical versions, the OpenHarmony community periodically pulls branches such as Long Term Support (LTS), Release, and Beta from Master and manages them based on the OpenHarmony lifecycle definition.
 
-![1.png](figures/1.png)
-
 
 ### Master
 
@@ -13,11 +11,11 @@ Master is the main branch in the OpenHarmony community, to which code updates of
 
 ###  LTS
 
-LTS is a branch pulled from Master in the OpenHarmony community in the third quarter of each year. This branch is compiled, built, and tested in a centralized manner, and finally reviewed and released by the community.
+LTS is a branch pulled from Master in the OpenHarmony community by year. This branch is compiled, built, and tested in a centralized manner, and finally reviewed and released by the community.
 
 ### Release
 
-Release is a branch pulled from Master in the OpenHarmony community in the first quarter of each year. This branch is compiled, built, and tested in a centralized manner, and finally reviewed and released by the community. A Release branch has the same release requirements but a shorter maintenance period when compared with an LTS branch.
+Release is a stable branch released in the OpenHarmony community. This branch is compiled, built, and tested in a centralized manner, and finally reviewed and released by the community. A Release branch has the same release requirements but a shorter maintenance period when compared with an LTS branch.
 
 ### Beta
 
@@ -27,6 +25,16 @@ Beta is a branch pulled from Master in the OpenHarmony community irregularly. Th
 
 A tag version is a stable and reliable version created by applying patches to an LTS or a Release branch, with the purpose of fixing individual bugs, security vulnerabilities, and other necessary adaptation modifications.
 
+### Commands for Downloading Branches
+
+| Branch         | Download Command (repo + https)                                    | Download Command (repo + ssh)                                       |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1.0.1-Release | repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony_1.0.1_release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
+| 3.0-LTS       | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
+| 3.1-Release   | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
+
+
+
 ## Maintenance Policies
 
 ### Lifecycle Policies
@@ -35,11 +43,11 @@ OpenHarmony provides lifecycle management services for LTS and Release branches 
 
 #### Release -> Stop proactive maintenance
 
-The Release SIG periodically makes and maintains tag version plans to resolve individual bugs, security vulnerabilities, and other major issues to ensure continuously stable and available branches.
+​	The Release SIG periodically makes and maintains tag version plans to resolve individual bugs, security vulnerabilities, and other major issues to ensure continuously stable and available branches.
 
 #### Stop proactive maintenance -> Stop maintenance
 
-The Release SIG no longer proactively plans and releases tag versions. It only fixes security vulnerabilities and major defects in corresponding branches.
+​	The Release SIG no longer proactively plans and releases tag versions. It only fixes security vulnerabilities and major defects in corresponding branches.
 
 ### LTS and Release Maintenance Policies
 

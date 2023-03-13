@@ -9,7 +9,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 - [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)：FORM类型的ExtensionAbility组件，用于提供服务卡片场景相关能力。
 
-- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-resourceschedule-workScheduler.md)：WORK_SCHEDULER类型的ExtensionAbility组件，用于提供延迟任务回调实现的能力。
+- [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)：WORK_SCHEDULER类型的ExtensionAbility组件，用于提供延迟任务回调实现的能力。
 
 - [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)：INPUT_METHOD类型的ExtensionAbility组件，提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 
@@ -31,7 +31,9 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 所有类型的ExtensionAbility组件均不能被应用直接启动，而是由相应的系统管理服务拉起，以确保其生命周期受系统管控，使用时拉起，使用完销毁。ExtensionAbility组件的调用方无需关心目标ExtensionAbility组件的生命周期。
 
   以[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)组件为例进行说明，如下图所示，调用方应用发起对InputMethodExtensionAbility组件的调用，此时将先调用输入法管理服务，由输入法管理服务拉起[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)组件，返回给调用方，同时开始管理其生命周期。
+
   **图1** 使用InputMethodExtensionAbility组件
+
 ![ExtensionAbility-start](figures/ExtensionAbility-start.png)
 
 

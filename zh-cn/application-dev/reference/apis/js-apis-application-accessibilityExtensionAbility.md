@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 ```
 
 ## 属性
@@ -42,22 +42,22 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 | 名称            | 描述           |
 | ------------- | ------------ |
-| left          | 表示向左的手势。     |
-| leftThenRight | 表示先向左再向右的手势。 |
-| leftThenUp    | 表示先向左再向上的手势。 |
-| leftThenDown  | 表示先向左再向下的手势。 |
-| right         | 表示向右的手势。     |
-| rightThenLeft | 表示先向右再向左的手势。 |
-| rightThenUp   | 表示先向右再向上的手势。 |
-| rightThenDown | 表示先向右再向下的手势。 |
-| up            | 表示向上的手势。     |
-| upThenLeft    | 表示先向上再向左的手势。 |
-| upThenRight   | 表示先向上再向右的手势。 |
-| upThenDown    | 表示先向上再向下的手势。 |
-| down          | 表示向下的手势。     |
-| downThenLeft  | 表示先向下再向左的手势。 |
-| downThenRight | 表示先向下再向右的手势。 |
-| downThenUp    | 表示先向下再向上的手势。 |
+| left          | 类型为字符串，表示向左的手势。     |
+| leftThenRight | 类型为字符串，表示先向左再向右的手势。 |
+| leftThenUp    | 类型为字符串，表示先向左再向上的手势。 |
+| leftThenDown  | 类型为字符串，表示先向左再向下的手势。 |
+| right         | 类型为字符串，表示向右的手势。     |
+| rightThenLeft | 类型为字符串，表示先向右再向左的手势。 |
+| rightThenUp   | 类型为字符串，表示先向右再向上的手势。 |
+| rightThenDown | 类型为字符串，表示先向右再向下的手势。 |
+| up            | 类型为字符串，表示向上的手势。     |
+| upThenLeft    | 类型为字符串，表示先向上再向左的手势。 |
+| upThenRight   | 类型为字符串，表示先向上再向右的手势。 |
+| upThenDown    | 类型为字符串，表示先向上再向下的手势。 |
+| down          | 类型为字符串，表示向下的手势。     |
+| downThenLeft  | 类型为字符串，表示先向下再向左的手势。 |
+| downThenRight | 类型为字符串，表示先向下再向右的手势。 |
+| downThenUp    | 类型为字符串，表示先向下再向上的手势。 |
 
 ## PageUpdateType
 
@@ -67,8 +67,8 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 | 名称                | 描述        |
 | ----------------- | --------- |
-| pageContentUpdate | 表示页面内容刷新。 |
-| pageStateUpdate   | 表示页面状态刷新。 |
+| pageContentUpdate | 类型为字符串，表示页面内容刷新。 |
+| pageStateUpdate   | 类型为字符串，表示页面状态刷新。 |
 
 ## TouchGuideType
 
@@ -78,8 +78,8 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 | 名称         | 描述           |
 | ---------- | ------------ |
-| touchBegin | 表示触摸浏览时开始触摸。 |
-| touchEnd   | 表示触摸浏览时结束触摸。 |
+| touchBegin | 类型为字符串，表示触摸浏览时开始触摸。 |
+| touchEnd   | 类型为字符串，表示触摸浏览时结束触摸。 |
 
 ## AccessibilityExtensionAbility.onConnect
 
@@ -137,7 +137,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onAccessibilityEvent(event) {
         console.log('AxExtensionAbility onAccessibilityEvent');
-        if (event.eventType == 'click') {
+        if (event.eventType === 'click') {
             console.log('AxExtensionAbility onAccessibilityEvent: click');
         }
     }
@@ -164,7 +164,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onKeyEvent(keyEvent) {
         console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.keyCode == 22) {
+        if (keyEvent.keyCode === 22) {
             console.log('AxExtensionAbility onKeyEvent: intercept 22');
             return true;
         }

@@ -448,27 +448,27 @@ hiAppEvent.clearData();
 | BEHAVIOR  | 4    | 行为类型事件。 |
 
 
-## Event
+## event
 
 此接口提供了所有预定义事件的事件名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                      | 类型   | 可读 | 可写 | 说明                 |
-| ------------------------- | ------ | ---- | ---- | -------------------- |
-| USER_LOGIN                | string | 是   | 否   | 用户登录事件。       |
-| USER_LOGOUT               | string | 是   | 否   | 用户登出事件。       |
-| DISTRIBUTED_SERVICE_START | string | 是   | 否   | 分布式服务启动事件。 |
+| 名称                      | 类型   | 说明                 |
+| ------------------------- | ------ | -------------------- |
+| USER_LOGIN                | string | 用户登录事件。       |
+| USER_LOGOUT               | string | 用户登出事件。       |
+| DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。 |
 
 
-## Param
+## param
 
 此接口提供了所有预定义参数的参数名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                            | 类型   | 可读 | 可写 | 说明               |
-| ------------------------------- | ------ | ---- | ---- | ------------------ |
-| USER_ID                         | string | 是   | 否   | 用户自定义ID。     |
-| DISTRIBUTED_SERVICE_NAME        | string | 是   | 否   | 分布式服务名称。   |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 是   | 否   | 分布式服务实例ID。 |
+| 名称                            | 类型   | 说明               |
+| ------------------------------- | ------ | ------------------ |
+| USER_ID                         | string | 用户自定义ID。     |
+| DISTRIBUTED_SERVICE_NAME        | string | 分布式服务名称。   |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 分布式服务实例ID。 |

@@ -1,39 +1,36 @@
-# Commonlibrary Development Guidelines<a name="EN-US_TOPIC_0000001059307279"></a>
-## Overview
-The **commonlibrary** subsystem stores basic OpenHarmony components which provides common enhanced APIs for development in C, C++ and JS that are commonly used by OpenHarmony service subsystems and upper-layer applications. Including repositories:
+# Utils Development
+## Introduction
+Utils provides OpenHarmony basic components, which provide enhanced C, C++, and JS APIs for OpenHarmony service subsystems and upper-layer applications. Utils provides the following components in **/commonlibrary**:
 ```
 /commonlibrary
-    ├── c_utils                  # Enhanced basic C/C++ library for developers 
-    ├── ets_utils                # Enhanced basic JS library for developers
-    └── utils_lite               # Basic tools for liteOS, including C and JS.
+    ├── c_utils                  # c and c++ utils.
+    ├── ets_utils                # extended TypeScript (eTS) utils.
+    └── utils_lite               # Utils in c and JS for LiteOS.
 ```
- Features provided by every repositories are listed here:
+The following lists the functions provided by each utils.
 
 **c_utils**
 
 -   Enhanced APIs for operations related to files, paths, and strings
--   APIs related to the read-write lock, semaphore, timer, thread, and thread pool
--   APIs related to the security data container and data serialization
+-   APIs for read/write locks, semaphores, timers, threads, and thread pools
+-   APIs for security data containers and data serialization
 -   Error codes for each subsystem
--   Safe functions in C
 
 **ets_utils**
 
--   JSAPIs for operation of URI, URL and xml
--   JSAPIs for character encoder and decoder
--   JSAPIs for operation of process
--   Multithreading ability in JS
+-   JS APIs for URI, URL, and XML operations
+-   JS APIs for string encoding and decoding
+-   JS APIs for process-related operations
+-   Multithreading capability in JS
 
 **utils_lite**
 
--   Hardware Abstraction Layer (HAL) APIs for performing operations on standard files
+-   Hardware Abstraction Layer (HAL) APIs for file operations
 -   APIs for internal functions, such as the timer
 
-## Development Guidelines<a name="section1633115419401"></a>
+## Development Guide
+[c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README.md)
 
-[Related Documents for c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README.md)
-
-
-# Commonlibrary Subsystem FAQ
-## c_utils FAQ
-See [Related Documents for c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README.md), including FAQs for several scenarios.
+# FAQs
+## c_utils FAQs
+See [c_utils](https://gitee.com/openharmony/commonlibrary_c_utils/blob/master/README.md).

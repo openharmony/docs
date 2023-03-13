@@ -48,7 +48,7 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 | muted     | boolean                                  | 是否静音。<br/>默认值：false          |
 | autoPlay  | boolean                                  | 是否自动播放。<br/>默认值：false        |
 | controls  | boolean                                  | 控制视频播放的控制栏是否显示。<br/>默认值：true |
-| objectFit | [ImageFit](ts-basic-components-image.md) | 设置视频显示模式。<br/>默认值：Cover      |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 设置视频显示模式。<br/>默认值：Cover      |
 | loop      | boolean                                  | 是否单个视频循环播放。<br/>默认值：false    |
 
 ## 事件

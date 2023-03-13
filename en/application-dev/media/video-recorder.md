@@ -76,14 +76,14 @@ export class VideoRecorderDemo {
     let surfaceID = null; // Used to save the surface ID returned by getInputSurface.
     // Obtain the FD address of the video to be recorded.
     await this.getFd('01.mp4');
-    // Recording-related parameter settings
+    // Configure the parameters related to video recording based on those supported by the hardware device.
     let videoProfile = {
       audioBitrate : 48000,
       audioChannels : 2,
       audioCodec : 'audio/mp4a-latm',
       audioSampleRate : 48000,
       fileFormat : 'mp4',
-      videoBitrate : 48000,
+      videoBitrate : 2000000,
       videoCodec : 'video/mp4v-es',
       videoFrameWidth : 640,
       videoFrameHeight : 480,

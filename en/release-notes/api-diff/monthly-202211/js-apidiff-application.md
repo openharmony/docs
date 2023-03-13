@@ -1,4 +1,4 @@
-| Change Type | New Version | Old Version | d.ts File |
+| Change Type | Old Version | New Version | d.ts File |
 | ---- | ------ | ------ | -------- |
 |Permission added|Method or attribute name: hangup<br>Permission: N/A|Method or attribute name: hangup<br>Permission: ohos.permission.ANSWER_CALL|@ohos.telephony.call.d.ts|
 |Permission added|Method or attribute name: hangup<br>Permission: N/A|Method or attribute name: hangup<br>Permission: ohos.permission.ANSWER_CALL|@ohos.telephony.call.d.ts|

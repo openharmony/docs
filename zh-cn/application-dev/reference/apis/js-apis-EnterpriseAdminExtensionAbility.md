@@ -105,3 +105,55 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+
+## EnterpriseAdminExtensionAbility.onAppStart<sup>10+</sup>
+
+onAppStart(bundleName: string): void
+
+应用卸载事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 启动应用Bundle名称。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAppStart(bundleName: string) {
+    console.log("started bundle name: " + bundleName);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAppStop<sup>10+</sup>
+
+onAppStop(bundleName: string): void
+
+应用卸载事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 停止应用Bundle名称。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAppStop(bundleName: string) {
+    console.log("stopped bundle name: " + bundleName);
+  }
+};
+```

@@ -1,6 +1,6 @@
 # HapModuleInfo
 
-The **HapModuleInfo** module defines the HAP module information. A system application can obtain its own or others' HAP module information through [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo). A third-party application can obtain its own HAP module information through [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself). **GET_BUNDLE_INFO_WITH_HAP_MODULE** must be passed in to the input parameter [bundleFlags](js-apis-bundleManager.md#bundleflag) to obtain the information.
+The **HapModuleInfo** module defines the HAP module information. A system application can obtain its own or others' HAP module information through [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo). A third-party application can obtain its own HAP module information through [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself). The input parameter [bundleFlags](js-apis-bundleManager.md#bundleflag) must be set to **GET_BUNDLE_INFO_WITH_HAP_MODULE**.
 
 > **NOTE**
 >

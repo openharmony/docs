@@ -28,9 +28,9 @@ Not supported
 | end | &lt;time&gt; | 0 | No| Duration after which the animation ends. The value can be ms (ms), s (second), or m (minute). The default value is s (second). Other formats are not supported.|
 | repeatCount | &lt;number \| indefinite&gt; | 1 | No| Number of times the animation is played. The default value is indefinite. You can set the value to **1** to play the animation only once.|
 | fill | &lt;freeze \| remove&gt; | remove | No| State when the animation ends.|
-| calcMode | &lt;discrete \| linear \| paced \| spline&gt; | linear | No| Interpolation mode of the animation.<br>**discrete**: The value of **from** directly jumps to the value of **to**.<br>**linear**: linear.<br>**paced**: linear. After this value is set, the values of **keyTimes** and **keyPoints** are invalid.<br>**spline**: user-defined Bessel curve. The spline point is defined in the **keyTimes** attribute, and the control point of each interval is defined by **keySplines**.|
-| keyTimes | string | - | No| Start time of the key frame animation. The value ranges from 0 to 1, separated by semicolons (;), for example, **0;0.3;0.8;1**. **keyTimes**, **keySplines**, and **values** are combined to set the key frame animation. The number of **keyTimes** is the same as that of **values**. The number of **keySplines** is the number of **keyTimes** minus 1.|
-| keySplines | string | - | No| A set of Bessel control points associated with **keyTimes**. You can define the Bessel curves for each key frame. The curves are separated by semicolons (;). The format of the two controls in the curve is x1 y1 x2 y2. For example, **0.5 0 0.5 1; 0.5 0 0.5 1;0.5 0 0.5 1**.|
+| calcMode | &lt;discrete \| linear \| paced \| spline&gt; | linear | No| Interpolation mode of the animation.<br>**discrete**: The animation directly jumps from the value specified by **from** to the value specified by **to**.<br>**linear**: Linear interpolation between values is used.<br>**paced**: Interpolation that produces an even paced change is used. If this value is set, the values of **keyTimes** and **keyPoints** will not take effect.<br>**spline**: Interpolation is implemented based on a custom Bezier spline. The spline points are defined in the **keyTimes** attribute, and the control points of each interval are defined in the **keySplines** attribute.|
+| keyTimes | string | - | No| Start time of the key frame animation. The value is a semicolon-separated list of values ranging from 0 to 1, for example, **0;0.3;0.8;1**. **keyTimes**, **keySplines**, and **values** are combined to set the key frame animation. The number of values defined for **keyTimes** is the same as that for **values**. The number of values defined for **keySplines** is the number of values defined for **keyTimes** minus 1.|
+| keySplines | string | - | No| A set of Bezier control points associated with **keyTimes**. You can define the Bezier curves for each key frame, separating them with semicolons (;). The format of the two control points in the curve is x1 y1 x2 y2, for example, **0.5 0 0.5 1; 0.5 0 0.5 1;0.5 0 0.5 1**.|
 | by | number | - | No| Relative offset value to add to a specified attribute in the animation. The default value of **from** is the original attribute value.|
 | from | string | - | No| Start value of the attribute to which the animation is applied.<br>If the **values** attribute has been set, the **from** attribute is invalid.|
 | to | string | - | No| End value of the attribute to which the animation is applied.<br>If the **values** attribute has been set, the **to** attribute is invalid.|
@@ -76,7 +76,7 @@ Not supported
 <div class="container">
   <svg width="400" height="400">
     <rect x="20" y="20" width="100" height="100" fill="red" rx="0" ry="20">
-      <animate attributeName="rx" values="0;30" dur="1000" repeatCount="10" fill="freeze" calcMode="linear"></animate>
+      <animate attributeName="rx" values="0;30" dur="1000" repeatCount="indefinite" fill="freeze" calcMode="linear"></animate>
     </rect>
   </svg>
 </div>

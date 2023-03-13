@@ -5,7 +5,7 @@
 > 
 > 请使用**DevEco Studio V3.0.0.900 Beta3**及更高版本。
 > 
-> 为确保运行效果，本文以使用**DevEco Studio V3.1.0.100**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio 3.1 Beta1**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio)获取下载链接。
 
 
 ## 创建ArkTS工程
@@ -20,7 +20,7 @@
 
    > **说明：**
    >
-   > 支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
+   > 支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-ide-low-code-overview-0000001445605884-V3)方式。
    >
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
    >

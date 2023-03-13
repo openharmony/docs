@@ -9,7 +9,7 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 ## Modules to Import
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 ```
 
 ## Attributes
@@ -31,7 +31,7 @@ Defines an accessibility event.
 | Name       | Type                                    | Readable  | Writable  | Description        |
 | --------- | ---------------------------------------- | ---- | ---- | ---------- |
 | eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes   | No   | Event type.   |
-| target    | AccessibilityElement                     | Yes   | No   | Target component where the event occurs.|
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)                     | Yes   | No   | Target component where the event occurs.|
 | timeStamp | number                                   | Yes   | No   | Timestamp of the event.    |
 
 ## GestureType
@@ -78,8 +78,8 @@ Enumerates the touch guide event types.
 
 | Name        | Description          |
 | ---------- | ------------ |
-| touchBegin | Start of touch in touch guide mode. |
-| touchEnd   | End of touch in touch guide mode. |
+| touchBegin | Start of touch in touch guide mode.|
+| touchEnd   | End of touch in touch guide mode.|
 
 ## AccessibilityExtensionAbility.onConnect
 
@@ -137,7 +137,7 @@ Called when an event that matches the specified bundle and event type occurs. In
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onAccessibilityEvent(event) {
         console.log('AxExtensionAbility onAccessibilityEvent');
-        if (event.eventType == 'click') {
+        if (event.eventType === 'click') {
             console.log('AxExtensionAbility onAccessibilityEvent: click');
         }
     }
@@ -164,7 +164,7 @@ Called when a physical key is pressed. In this API, you can determine whether to
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onKeyEvent(keyEvent) {
         console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.keyCode == 22) {
+        if (keyEvent.keyCode === 22) {
             console.log('AxExtensionAbility onKeyEvent: intercept 22');
             return true;
         }

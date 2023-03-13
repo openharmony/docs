@@ -72,9 +72,9 @@ import AbilityStage from '@ohos.app.ability.AbilityStage';
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         appRecovery.enableAppRecovery(
-            appRecovery.RestartFlag::ALWAYS_RESTART,
-            appRecovery.SaveOccasionFlag::SAVE_WHEN_ERROR,
-            appRecovery.SaveModeFlag::SAVE_WITH_FILE
+            appRecovery.RestartFlag.ALWAYS_RESTART,
+            appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR,
+            appRecovery.SaveModeFlag.SAVE_WITH_FILE
         );
     }
 }
@@ -97,15 +97,15 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.restartApp();
     }
 };
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -131,14 +131,14 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg)
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState();
     }
 };
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```

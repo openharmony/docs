@@ -1,4 +1,4 @@
-# @ohos.wantAgent (wantAgent)
+# @ohos.wantAgent (WantAgent)
 
 The **WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object.
 
@@ -16,7 +16,7 @@ import WantAgent from '@ohos.wantAgent';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -75,7 +75,7 @@ WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-Obtains a **WantAgent** object. This API uses a promise to return the result.
+Obtains a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -160,8 +160,15 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    // getBundleName callback
+    function getBundleNameCallback(err, data) {
+        console.info('==========================>getBundleNameCallback=======================>');
+    }
+    WantAgent.getBundleName(wantAgent, getBundleNameCallback);
 }
 // WantAgentInfo object
 let wantAgentInfo = {
@@ -192,12 +199,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-// getBundleName callback
-function getBundleNameCallback(err, data) {
-	console.info('==========================>getBundleNameCallback=======================>');
-}
-WantAgent.getBundleName(wantAgent, getBundleNameCallback);
 ```
 
 
@@ -261,10 +262,11 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.getBundleName(wantAgent).then((data) => {
-	console.info('==========================>getBundleNameCallback=======================>');
+    if (wantAgent) {
+        WantAgent.getBundleName(wantAgent).then((data) => {
+            console.info('==========================>getBundleNameCallback=======================>');
+        });
+    }
 });
 ```
 
@@ -300,8 +302,15 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    // getUid callback
+    function getUidCallback(err, data) {
+        console.info('==========================>getUidCallback=======================>');
+    }
+    WantAgent.getUid(wantAgent, getUidCallback);
 }
 // WantAgentInfo object
 let wantAgentInfo = {
@@ -332,12 +341,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-// getUid callback
-function getUidCallback(err, data) {
-	console.info('==========================>getUidCallback=======================>');
-}
-WantAgent.getUid(wantAgent, getUidCallback);
 ```
 
 
@@ -402,10 +405,11 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.getUid(wantAgent).then((data) => {
-	console.info('==========================>getUidCallback=======================>');
+    if (wantAgent) {
+        WantAgent.getUid(wantAgent).then((data) => {
+        console.info('==========================>getUidCallback=======================>');
+    });
+    }
 });
 ```
 
@@ -440,8 +444,15 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    // cancel callback
+    function cancelCallback(err, data) {
+        console.info('==========================>cancelCallback=======================>');
+    }
+    WantAgent.cancel(wantAgent, cancelCallback);
 }
 // WantAgentInfo object
 let wantAgentInfo = {
@@ -472,12 +483,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-// cancel callback
-function cancelCallback(err, data) {
-	console.info('==========================>cancelCallback=======================>');
-}
-WantAgent.cancel(wantAgent, cancelCallback);
 ```
 
 
@@ -542,10 +547,11 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
-});
-
-WantAgent.cancel(wantAgent).then((data) => {
-	console.info('==========================>cancelCallback=======================>');
+    if (wantAgent) {        
+        WantAgent.cancel(wantAgent).then((data) => {
+            console.info('==========================>cancelCallback=======================>');
+        });
+    }
 });
 ```
 
@@ -582,8 +588,19 @@ function getWantAgentCallback(err, data) {
     if (err.code == 0) {
     	wantAgent = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    // trigger callback
+    function triggerCallback(data) {
+        console.info('==========================>triggerCallback=======================>');
+    }
+
+    var triggerInfo = {
+        code:0
+    }
+    WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 }
 // WantAgentInfo object
 let wantAgentInfo = {
@@ -614,16 +631,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-// trigger callback
-function triggerCallback(data) {
-	console.info('==========================>triggerCallback=======================>');
-}
-
-var triggerInfo = {
-    code:0
-}
-WantAgent.trigger(wantAgent, triggerInfo, triggerCallback)
 ```
 
 
@@ -661,8 +668,15 @@ function getWantAgentCallback(err, data) {
     	wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.info('----getWantAgent failed!----');
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
     }
+
+    // equal callback
+    function equalCallback(err, data) {
+        console.info('==========================>equalCallback=======================>');
+    }
+    WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 }
 // WantAgentInfo object
 let wantAgentInfo = {
@@ -693,12 +707,6 @@ let wantAgentInfo = {
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
-
-// equal callback
-function equalCallback(err, data) {
-	console.info('==========================>equalCallback=======================>');
-}
-WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
 ```
 
 
@@ -766,6 +774,11 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent1 = data;
     wantAgent2 = data;
+    if (data) {
+        WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
+            console.info('==========================>equalCallback=======================>');
+        });
+    }
 });
 
 WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
@@ -827,11 +840,12 @@ let wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
     wantAgent = data;
+    if (data) {
+        WantAgent.getOperationType(wantAgent, (OperationType) => {
+            console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
+        })
+    }
 });
-
-WantAgent.getOperationType(wantAgent, (OperationType) => {
-    console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
-})
 ```
 
 ## WantAgent.getOperationType<sup>9+</sup>
@@ -901,7 +915,6 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 });
 ```
 
-
 ## WantAgentFlags
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -940,5 +953,5 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 | info           | WantAgent                       | Yes  | A triggered **WantAgent** object.      |
 | want           | Want                            | Yes  | An existing triggered **want**.    |
 | finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
-| finalData      | string                          | No  | Final data collected by the common event. |
+| finalData      | string                          | Yes  | Final data collected by the common event. |
 | extraInfo      | {[key: string]: any}            | No  | Extra information.              |

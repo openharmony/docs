@@ -1,5 +1,6 @@
 # ServiceExtensionAbility
 
+
 [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) is an ExtensionAbility component of the service type that provides extension capabilities related to background services.
 
 
@@ -17,9 +18,9 @@ Each type of ExtensionAbility has its own context. ServiceExtensionAbility has [
 This topic describes how to use ServiceExtensionAbility in the following scenarios:
 
 
-- [Implementing a Background Service](#implementing-a-background-service)
+- [Implementing a Background Service (System Applications Only)](#implementing-a-background-service-system-applications-only)
 
-- [Starting a Background Service](#starting-a-background-service)
+- [Starting a Background Service (System Applications Only)](#starting-a-background-service-system-applications-only)
 
 - [Connecting to a Background Service](#connecting-to-a-background-service)
 
@@ -32,36 +33,32 @@ This topic describes how to use ServiceExtensionAbility in the following scenari
 > - Third-party applications can connect to ServiceExtensionAbility provided by the system only when they gain focus in the foreground.
 
 
-## Implementing a Background Service
+## Implementing a Background Service (System Applications Only)
 
-This feature applies only to system applications. [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) provides the callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestory()**. Override them as required. The following figure shows the lifecycle of ServiceExtensionAbility.
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) provides the callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestory()**. Override them as required. The following figure shows the lifecycle of ServiceExtensionAbility.
 
   **Figure 1** ServiceExtensionAbility lifecycle
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
 
 - **onCreate**
-  
 
-This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
+  This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
 
   > **NOTE**
->
+  >
   > If a service has been created, starting it again does not trigger the **onCreate()** callback.
 
 - **onRequest**
-  
 
-This callback is triggered when another component calls the **startServiceExtensionAbility()** method to start the service. After being started, the service runs in the background.
+  This callback is triggered when another component calls the **startServiceExtensionAbility()** method to start the service. After being started, the service runs in the background.
 
 - **onConnect**
-  
 
-This callback is triggered when another component calls the **connectServiceExtensionAbility()** method to connect to the service. In this method, a remote proxy object (IRemoteObject) is returned, through which the client communicates with the server by means of RPC.
+  This callback is triggered when another component calls the **connectServiceExtensionAbility()** method to connect to the service. In this method, a remote proxy object (IRemoteObject) is returned, through which the client communicates with the server by means of RPC.
 
 - **onDisconnect**
-  
 
-This callback is triggered when a component calls the **disconnectServiceExtensionAbility()** method to disconnect from the service.
+  This callback is triggered when a component calls the **disconnectServiceExtensionAbility()** method to disconnect from the service.
 
 - **onDestroy**
   
@@ -167,9 +164,9 @@ To implement a background service, manually create a ServiceExtensionAbility com
    ```
 
 
-## Starting a Background Service
+## Starting a Background Service (System Applications Only)
 
-This feature applies only to system applications. A system application uses the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest) callback is invoked, and the **Want** object passed by the caller is received through the callback. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service can still run. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability) to stop the background service.
+A system application uses the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest) callback is invoked, and the **Want** object passed by the caller is received through the callback. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service can still run. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability) to stop the background service.
 
 > **NOTE**
 >

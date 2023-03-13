@@ -27,32 +27,42 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
 
 详细API含义可参考：[音频管理API文档AudioCapturer](../reference/apis/js-apis-audio.md#audiocapturer8)
 
-1. 使用createAudioCapturer()创建一个AudioCapturer实例。
+1. 使用createAudioCapturer()创建一个全局的AudioCapturer实例。
 
    在audioCapturerOptions中设置音频采集器的相关参数。该实例可用于音频采集、控制和获取采集状态，以及注册通知回调。 
 
    ```js
-   import audio from '@ohos.multimedia.audio';
-
-   let audioStreamInfo = {
-     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-     channels: audio.AudioChannel.CHANNEL_1,
-     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-   }
-   
-   let audioCapturerInfo = {
-     source: audio.SourceType.SOURCE_TYPE_MIC,
-     capturerFlags: 0 // 0是音频采集器的扩展标志位，默认为0
-   }
-   
-   let audioCapturerOptions = {
-     streamInfo: audioStreamInfo,
-     capturerInfo: audioCapturerInfo
-   }
-   
-   let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
-   console.log('AudioRecLog: Create audio capturer success.');
+  import audio from '@ohos.multimedia.audio';
+  import fs from '@ohos.file.fs';  //便于步骤3 read函数调用
+  
+  //音频渲染相关接口自测试
+  @Entry
+  @Component
+  struct AudioRenderer {
+    @State message: string = 'Hello World'
+    private audioCapturer : audio.AudioCapturer;  //供全局调用
+  
+    async initAudioCapturer(){
+      let audioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+  
+      let audioCapturerInfo = {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0 // 0是音频采集器的扩展标志位，默认为0
+      }
+  
+      let audioCapturerOptions = {
+        streamInfo: audioStreamInfo,
+        capturerInfo: audioCapturerInfo
+      }
+  
+      this.audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
+      console.log('AudioRecLog: Create audio capturer success.');
+    }
    ```
 
 2. 调用start()方法来启动/恢复采集任务。
@@ -60,23 +70,18 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    启动完成后，采集器状态将变更为STATE_RUNNING，然后应用可以开始读取缓冲区。
 
    ```js
-   import audio from '@ohos.multimedia.audio';
-
-   async function startCapturer() {
-     let state = audioCapturer.state;
+   async  startCapturer() {
+     let state = this.audioCapturer.state;
      // Capturer start时的状态应该是STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一.
-     if (state != audio.AudioState.STATE_PREPARED || state != audio.AudioState.STATE_PAUSED ||
-       state != audio.AudioState.STATE_STOPPED) {
-       console.info('Capturer is not in a correct state to start');
-       return;
-     }
-     await audioCapturer.start();
-
-     state = audioCapturer.state;
-     if (state == audio.AudioState.STATE_RUNNING) {
-       console.info('AudioRecLog: Capturer started');
-     } else {
-       console.error('AudioRecLog: Capturer start failed');
+     if (state == audio.AudioState.STATE_PREPARED || state == audio.AudioState.STATE_PAUSED ||
+     state == audio.AudioState.STATE_STOPPED) {
+       await this.audioCapturer.start();
+       state = this.audioCapturer.state;
+       if (state == audio.AudioState.STATE_RUNNING) {
+         console.info('AudioRecLog: Capturer started');
+       } else {
+         console.error('AudioRecLog: Capturer start failed');
+       }
      }
    }
    ```
@@ -86,87 +91,88 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    参考以下示例，将采集到的数据写入文件。 
 
    ```js
-   import fileio from '@ohos.fileio';
-
-    let state = audioCapturer.state;
-    // 只有状态为STATE_RUNNING的时候才可以read.
-    if (state != audio.AudioState.STATE_RUNNING) {
-      console.info('Capturer is not in a correct state to read');
-      return;
-    }
-      
-   const path = '/data/data/.pulse_dir/capture_js.wav'; // 采集到的音频文件存储路径
-   let fd = fileio.openSync(path, 0o102, 0o777);
-   if (fd !== null) {
-     console.info('AudioRecLog: file fd created');
-   }
-   else{
-     console.info('AudioRecLog: file fd create : FAILED');
-     return;
-   }
-      
-   fd = fileio.openSync(path, 0o2002, 0o666);
-   if (fd !== null) {
-     console.info('AudioRecLog: file fd opened in append mode');
-   }
-      
-   let numBuffersToCapture = 150; // 循环写入150次
-   while (numBuffersToCapture) {
-     let bufferSize = await audioCapturer.getBuffersize();
-     let buffer = await audioCapturer.read(bufferSize, true);
-     if (typeof(buffer) == undefined) {
-       console.info('AudioRecLog: read buffer failed');
-     } else {
-       let number = fileio.writeSync(fd, buffer);
-       console.info(`AudioRecLog: data written: ${number}`);
+   async readData(){
+     let state = this.audioCapturer.state;
+     // 只有状态为STATE_RUNNING的时候才可以read.
+     if (state != audio.AudioState.STATE_RUNNING) {
+       console.info('Capturer is not in a correct state to read');
+       return;
      }
-      
-     numBuffersToCapture--;
+     const path = '/data/data/.pulse_dir/capture_js.wav'; // 采集到的音频文件存储路径
+     let file = fs.openSync(path, 0o2);
+     let fd = file.fd;
+     if (file !== null) {
+       console.info('AudioRecLog: file created');
+     } else {
+       console.info('AudioRecLog: file create : FAILED');
+       return;
+     }
+     if (fd !== null) {
+       console.info('AudioRecLog: file fd opened in append mode');
+     }
+     let numBuffersToCapture = 150; // 循环写入150次
+     let count = 0;
+     while (numBuffersToCapture) {
+       this.bufferSize = await this.audioCapturer.getBufferSize();
+       let buffer = await this.audioCapturer.read(this.bufferSize, true);
+       let options = {
+         offset: count * this.bufferSize,
+         length: this.bufferSize
+       }
+       if (typeof(buffer) == undefined) {
+         console.info('AudioRecLog: read buffer failed');
+       } else {
+         let number = fs.writeSync(fd, buffer, options);
+         console.info(`AudioRecLog: data written: ${number}`);
+       }
+       numBuffersToCapture--;
+       count++;
+     }
    }
    ```
 
 4. 采集完成后，调用stop方法，停止录制。
 
    ```js
-    async function StopCapturer() {
-      let state = audioCapturer.state;
-      // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
-      if (state != audio.AudioState.STATE_RUNNING && state != audio.AudioState.STATE_PAUSED) {
-        console.info('AudioRecLog: Capturer is not running or paused');
-        return;
-      }
-
-      await audioCapturer.stop();
-
-      state = audioCapturer.state;
-      if (state == audio.AudioState.STATE_STOPPED) {
-        console.info('AudioRecLog: Capturer stopped');
-      } else {
-        console.error('AudioRecLog: Capturer stop failed');
-      }
-    }
+   async  StopCapturer() {
+     let state = this.audioCapturer.state;
+     // 只有采集器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
+     if (state != audio.AudioState.STATE_RUNNING && state != audio.AudioState.STATE_PAUSED) {
+       console.info('AudioRecLog: Capturer is not running or paused');
+       return;
+     }
+   
+     await this.audioCapturer.stop();
+   
+     state = this.audioCapturer.state;
+     if (state == audio.AudioState.STATE_STOPPED) {
+       console.info('AudioRecLog: Capturer stopped');
+     } else {
+       console.error('AudioRecLog: Capturer stop failed');
+     }
+   }
    ```
 
 5. 任务结束，调用release()方法释放相关资源。
 
    ```js
-    async function releaseCapturer() {
-      let state = audioCapturer.state;
-      // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release
-      if (state == audio.AudioState.STATE_RELEASED || state == audio.AudioState.STATE_NEW) {
-        console.info('AudioRecLog: Capturer already released');
-        return;
-      }
-
-      await audioCapturer.release();
-
-      state = audioCapturer.state;
-      if (state == audio.AudioState.STATE_RELEASED) {
-        console.info('AudioRecLog: Capturer released');
-      } else {
-        console.info('AudioRecLog: Capturer release failed');
-      }
-    }
+   async releaseCapturer() {
+     let state = this.audioCapturer.state;
+     // 采集器状态不是STATE_RELEASED或STATE_NEW状态，才能release
+     if (state == audio.AudioState.STATE_RELEASED || state == audio.AudioState.STATE_NEW) {
+       console.info('AudioRecLog: Capturer already released');
+       return;
+     }
+   
+     await this.audioCapturer.release();
+   
+     state = this.audioCapturer.state;
+     if (state == audio.AudioState.STATE_RELEASED) {
+       console.info('AudioRecLog: Capturer released');
+     } else {
+       console.info('AudioRecLog: Capturer release failed');
+     }
+   }
    ```
 
 6. （可选）获取采集器相关信息
@@ -174,23 +180,20 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    通过以下代码，可以获取采集器的相关信息。
 
    ```js
-   // 获取当前采集器状态
-   let state = audioCapturer.state;
-   
-   // 获取采集器信息
-   let audioCapturerInfo : audio.AuduioCapturerInfo = await audioCapturer.getCapturerInfo();
-   
-   // 获取音频流信息
-   let audioStreamInfo : audio.AudioStreamInfo = await audioCapturer.getStreamInfo();
-   
-   // 获取音频流ID
-   let audioStreamId : number = await audioCapturer.getAudioStreamId();
-   
-   // 获取纳秒形式的Unix时间戳
-   let audioTime : number = await audioCapturer.getAudioTime();
-   
-   // 获取合理的最小缓冲区大小
-   let bufferSize : number = await audioCapturer.getBuffersize();
+   async getAudioCapturerInfo(){
+     // 获取当前采集器状态
+     let state = this.audioCapturer.state;
+     // 获取采集器信息
+     let audioCapturerInfo : audio.AudioCapturerInfo = await this.audioCapturer.getCapturerInfo();
+     // 获取音频流信息
+     let audioStreamInfo : audio.AudioStreamInfo = await this.audioCapturer.getStreamInfo();
+     // 获取音频流ID
+     let audioStreamId : number = await this.audioCapturer.getAudioStreamId();
+     // 获取纳秒形式的Unix时间戳
+     let audioTime : number = await this.audioCapturer.getAudioTime();
+     // 获取合理的最小缓冲区大小
+     let bufferSize : number = await this.audioCapturer.getBufferSize();
+   }
    ```
 
 7. （可选）使用on('markReach')方法订阅采集器标记到达事件，使用off('markReach')取消订阅事件。
@@ -198,12 +201,13 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
     注册markReach监听后，当采集器采集的帧数到达设定值时，会触发回调并返回设定的值。
    
     ```js
-    audioCapturer.on('markReach', (reachNumber) => {
-      console.info('Mark reach event Received');
-      console.info(`The Capturer reached frame: ${reachNumber}`);
-    });
-
-    audioCapturer.off('markReach'); // 取消markReach事件的订阅，后续将无法监听到“标记到达”事件
+    async markReach(){
+      this.audioCapturer.on('markReach', 10, (reachNumber) => {
+        console.info('Mark reach event Received');
+        console.info(`The Capturer reached frame: ${reachNumber}`);
+      });
+      this.audioCapturer.off('markReach'); // 取消markReach事件的订阅，后续将无法监听到“标记到达”事件
+    }
     ```
 
 8. （可选）使用on('periodReach')方法订阅采集器区间标记到达事件，使用off('periodReach')取消订阅事件。
@@ -211,40 +215,43 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
     注册periodReach监听后，**每当**采集器采集的帧数到达设定值时，会触发回调并返回设定的值。
    
     ```js
-    audioCapturer.on('periodReach', (reachNumber) => {
-      console.info('Period reach event Received');
-      console.info(`In this period, the Capturer reached frame: ${reachNumber}`);
-    });
-
-    audioCapturer.off('periodReach'); // 取消periodReach事件的订阅，后续将无法监听到“区间标记到达”事件
+    async periodReach(){
+      this.audioCapturer.on('periodReach', 10, (reachNumber) => {
+        console.info('Period reach event Received');
+        console.info(`In this period, the Capturer reached frame: ${reachNumber}`);
+      });
+      this.audioCapturer.off('periodReach'); // 取消periodReach事件的订阅，后续将无法监听到“区间标记到达”事件
+    }
     ```
 
 9. 如果应用需要在采集器状态更新时进行一些操作，可以订阅该事件，当采集器状态更新时，会受到一个包含有事件类型的回调。
 
     ```js
-    audioCapturer.on('stateChange', (state) => {
-      console.info(`AudioCapturerLog: Changed State to : ${state}`)
-      switch (state) {
-        case audio.AudioState.STATE_PREPARED:
-          console.info('--------CHANGE IN AUDIO STATE----------PREPARED--------------');
-          console.info('Audio State is : Prepared');
-          break;
-        case audio.AudioState.STATE_RUNNING:
-          console.info('--------CHANGE IN AUDIO STATE----------RUNNING--------------');
-          console.info('Audio State is : Running');
-          break;
-        case audio.AudioState.STATE_STOPPED:
-          console.info('--------CHANGE IN AUDIO STATE----------STOPPED--------------');
-          console.info('Audio State is : stopped');
-          break;
-        case audio.AudioState.STATE_RELEASED:
-          console.info('--------CHANGE IN AUDIO STATE----------RELEASED--------------');
-          console.info('Audio State is : released');
-          break;
-        default:
-          console.info('--------CHANGE IN AUDIO STATE----------INVALID--------------');
-          console.info('Audio State is : invalid');
-          break;
-      }
-    });
+    async stateChange(){
+      this.audioCapturer.on('stateChange', (state) => {
+        console.info(`AudioCapturerLog: Changed State to : ${state}`)
+        switch (state) {
+          case audio.AudioState.STATE_PREPARED:
+            console.info('--------CHANGE IN AUDIO STATE----------PREPARED--------------');
+            console.info('Audio State is : Prepared');
+            break;
+          case audio.AudioState.STATE_RUNNING:
+            console.info('--------CHANGE IN AUDIO STATE----------RUNNING--------------');
+            console.info('Audio State is : Running');
+            break;
+          case audio.AudioState.STATE_STOPPED:
+            console.info('--------CHANGE IN AUDIO STATE----------STOPPED--------------');
+            console.info('Audio State is : stopped');
+            break;
+          case audio.AudioState.STATE_RELEASED:
+            console.info('--------CHANGE IN AUDIO STATE----------RELEASED--------------');
+            console.info('Audio State is : released');
+            break;
+          default:
+            console.info('--------CHANGE IN AUDIO STATE----------INVALID--------------');
+            console.info('Audio State is : invalid');
+            break;
+        }
+      });
+    }
     ```

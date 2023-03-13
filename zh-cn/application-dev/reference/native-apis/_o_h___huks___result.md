@@ -20,9 +20,9 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [errorCode](#errorcode) | int32_t<br/>状态返回码。  | 
-| [errorMsg](#errormsg) | const char \*<br/>对状态返回码的说明信息。  | 
-| [data](#data) | uint8_t \*<br/>其他返回数据。  | 
+| [errorCode](#errorcode) | 状态返回码。  | 
+| [errorMsg](#errormsg) | 对状态返回码的说明信息。  | 
+| [data](#data) | 其他返回数据。  | 
 
 
 ## 结构体成员变量说明

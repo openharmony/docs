@@ -641,12 +641,12 @@ readShort(): number
       console.info("rpc write short fail, errorMessage" + error.message);
   }
   try {
-      let ret = data.readShort(8);
+      let ret = data.readShort();
+      console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
       console.info("rpc read short fail, errorCode " + error.code);
       console.info("rpc read short fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readByte is: " + ret);
   ```
 
 ### writeInt
@@ -5649,7 +5649,7 @@ asObject(): IRemoteObject
           return this;
       }
   }
-  let remoteObject = new TestAbility().asObject();
+  let remoteObject = new TestAbility("testObject").asObject();
   ```
 
 **示例：**
@@ -6058,7 +6058,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 名称                  | 默认值                      | 说明                              |
+| 名称                  | 值                      | 说明                              |
 | --------------------- | ----------------------- | --------------------------------- |
 | PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
 | DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
@@ -6685,7 +6685,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6974,7 +6974,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 默认值   | 说明                                                        |
+  | 名称          | 值   | 说明                                                        |
   | ------------- | ---- | ----------------------------------------------------------- |
   | TF_SYNC       | 0    | 同步调用标识。                                                  |
   | TF_ASYNC      | 1    | 异步调用标识。                                                  |
@@ -8147,8 +8147,12 @@ getLocalInterface(descriptor: string): IRemoteBroker
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8157,8 +8161,8 @@ getLocalInterface(descriptor: string): IRemoteBroker
   try {
       let broker = testRemoteObject.getLocalInterface("testObject");
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
   ```
 
@@ -8244,20 +8248,24 @@ getDescriptor(): string
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
       isObjectDead(): boolean {
           return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
+  console.log("RpcServer: descriptor is: " + descriptor);
   try {
       let descriptor = testRemoteObject.getDescriptor();
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
-  console.log("RpcServer: descriptor is: " + descriptor);
   ```
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
@@ -8332,12 +8340,16 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
           try {
               this.modifyLocalInterface(this, descriptor);
           } catch(error) {
-              console.info(rpc attach local interface fail, errorCode " + error.code);
-              console.info(rpc attach local interface fail, errorMessage " + error.message);
+              console.info(" rpc attach local interface fail, errorCode " + error.code);
+              console.info(" rpc attach local interface fail, errorMessage " + error.message);
           }
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // 方法逻辑需开发者根据业务需要实现
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8402,7 +8414,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 映射内存保护类型：
 
-  | 名称       | 默认值  | 说明               |
+  | 名称       | 值  | 说明               |
   | ---------- | --- | ------------------ |
   | PROT_EXEC  | 4   | 映射的内存可执行   |
   | PROT_NONE  | 0   | 映射的内存不可访问 |

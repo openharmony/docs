@@ -884,7 +884,7 @@ inputMethodController.off('selectByRange');
 
 ### on('selectByMovement')<sup>10+</sup>
 
-on(type: 'selectByMovement', callback: Callback&lt;Range&gt;): void
+on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 订阅输入法应用按光标动作选中文本事件。使用callback异步回调。
 
@@ -1235,8 +1235,6 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
-
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1274,8 +1272,6 @@ try {
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

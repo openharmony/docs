@@ -444,7 +444,7 @@ vendor
 
 #### 启动恢复子系统适配
 
-启动恢复子系统需要适配`bootstrap_lite`、`syspara_lite`、`appspawn_lite`、`init_lite`四个部件。请在`vendor/bearpi/bearpi_hm_micro/config.json`中新增对应的配置选项。
+启动恢复子系统需要适配`bootstrap_lite`、`syspara_lite`、`appspawn_lite`、`init`四个部件。请在`vendor/bearpi/bearpi_hm_micro/config.json`中新增对应的配置选项。
 
 ```
     {
@@ -453,7 +453,7 @@ vendor
         { "component": "syspara_lite", "features":[] },
         { "component": "bootstrap_lite", "features":[] },
         { "component": "appspawn_lite", "features":[] },
-        { "component": "init_lite", "features":[] }
+        { "component": "init", "features":[] }
      ]
     },
 ```

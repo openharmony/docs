@@ -39,7 +39,7 @@ If you need to add a configuration file, define its content as you want and copy
     For the standard system:
     ```
     ohos_prebuilt_etc("misc.cfg") {
-        source = "//base/startup/init_lite/services/etc/misc.cfg"
+        source = "//base/startup/init/services/etc/misc.cfg"
         relative_install_dir = "init"
         part_name = "init"
       }

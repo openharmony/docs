@@ -20,14 +20,8 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [tag](#tag) | uint32_t<br/>标签值  | 
-|  | union { | 
-|  | bool   [boolParam](#boolparam) | 
-|  | int32_t   [int32Param](#int32param) | 
-|  | uint32_t   [uint32Param](#uint32param) | 
-|  | uint64_t   [uint64Param](#uint64param) | 
-|  | struct [OH_Huks_Blob](_o_h___huks___blob.md)[blob](#blob) | 
-|  | }; | 
+| [tag](#tag) | 标签值  | 
+| union { <br>bool   [boolParam](#boolparam); <br>int32_t   [int32Param](#int32param); <br>uint32_t   [uint32Param](#uint32param); <br>uint64_t   [uint64Param](#uint64param); <br>struct [OH_Huks_Blob](_o_h___huks___blob.md)[blob](#blob);} | boolParam：bool型参数。 <br>int32Param：int32_t型参数。 <br>uint32Param：uint32_t型参数。<br>uint64Param：uint64_t型参数。<br>blob：struct OH_Huks_Blob型参数。| 
 
 
 ## 结构体成员变量说明

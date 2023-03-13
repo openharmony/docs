@@ -25,7 +25,7 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
 | 名称                    | 参数类型                              | 描述                                          |
 | ----------------------- | ------------------------------------- | --------------------------------------------- |
-| selected                | number                                | 设置下拉菜单初始选项的索引，第一项的索引为0。 |
+| selected                | number                                | 设置下拉菜单初始选项的索引，第一项的索引为0。<br>当不设置selected属性时，默认选择值为-1，菜单项不选中。 |
 | value                   | string                                | 设置下拉按钮本身的文本内容。                  |
 | font                    | [Font](ts-types.md#font)          | 设置下拉按钮本身的文本样式。                  |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉按钮本身的文本颜色。                  |

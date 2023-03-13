@@ -459,7 +459,7 @@ async function createTonePlayerBefore(){
 | SAMPLE_FORMAT_S16LE                | 1      | 带符号的16位整数，小尾数。 |
 | SAMPLE_FORMAT_S24LE                | 2      | 带符号的24位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 | SAMPLE_FORMAT_S32LE                | 3      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
-| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | 带符号的32位浮点数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 
 ## AudioErrors<sup>9+</sup>
 
@@ -4026,7 +4026,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 |
 | deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 |
-| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id。  |
+| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id，唯一。  |
 | name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。 |
 | address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。 |
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
@@ -4539,15 +4539,15 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     let writeSize = await new Promise((resolve,reject)=>{
-      this.audioRenderer.write(buf,(err,writeSize)=>{
+      audioRenderer.write(buf,(err,writeSize)=>{
         if(err){
           reject(err)
         }else{
@@ -4593,15 +4593,15 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     try{
-       let writeSize = await this.audioRenderer.write(buf);
+       let writeSize = await audioRenderer.write(buf);
     } catch(err) {
        console.error(`audioRenderer.write err: ${err}`);
     }   
@@ -5424,7 +5424,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                |
 | :------- | :------------------- | :--- | :---------------------------------- |
-| callback | AsyncCallback<void\> | 是   | Callback used to return the result. |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。 |
 
 **示例：**
 

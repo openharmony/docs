@@ -78,6 +78,7 @@ Defines device information.
 | deviceType             | [DeviceType](#devicetype) | Yes   | Device type.   |
 | networkId<sup>8+</sup> | string                    | Yes   | Network ID of the device. |
 | range<sup>9+</sup>     | number                    | Yes   | Distance between the device (discovered device) and the device that initiates device discovery. |
+| authForm<sup>10+</sup> | [AuthForm](#authform)     | Yes   | Authentication type of the device. |
 
 ## DeviceType
 
@@ -95,6 +96,18 @@ Enumerates the device types.
 | CAR          | 0x83 | Car.   |
 | UNKNOWN_TYPE | 0    | Unknown device type.|
 
+## AuthForm
+
+Enumerates the device authentication types.
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+| Name                | Value | Description            |
+| ------------------- | ---- | --------------- |
+| INVALID_TYPE        | -1   | No authentication.|
+| PEER_TO_PEER        | 0    | Point-to-point authentication for devices without accounts.  |
+| IDENTICAL_ACCOUNT   | 1    | Authentication for devices using the same account.  |
+| ACROSS_ACCOUNT      | 2    | Authentication for devices using different accounts.|
 
 ## DeviceStateChangeAction
 
@@ -588,8 +601,9 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 **Example**
 
   ```js
-  // The subscribeId input must be the same as that automatically generated in startDeviceDiscovery.
   try {
+    // stopDeviceDiscovery and startDeviceDiscovery must be used in pairs, and the input parameter **subscribeId** passed in them must be the same.
+    var subscribeId = 12345;
     dmInstance.stopDeviceDiscovery(subscribeId);
   } catch (err) {
     console.error("stopDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
@@ -630,7 +644,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
       "publishId": publishId,
       "mode": 0xAA, // Active discovery
       "freq": 2, // High frequency
-      "ranging": 1 // The device supports reporting the distance to the discovery initiator.
+      "ranging": true  // The device supports reporting the distance to the discovery initiator.
   };
   try {
     dmInstance.publishDeviceDiscovery(publishInfo); // A callback is invoked to notify the application when the device information is published.
@@ -666,8 +680,9 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 **Example**
 
   ```js
-  // The publishId input must be the same as that automatically generated in publishDeviceDiscovery.
   try {
+    // unPublishDeviceDiscovery and publishDeviceDiscovery must be used in pairs, and the input parameter **publishId** passed in them must be the same.
+    var publishId = 12345;
     dmInstance.unPublishDeviceDiscovery(publishId);
   } catch (err) {
     console.error("unPublishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
@@ -708,11 +723,19 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   var deviceInfo ={
       "deviceId": "XXXXXXXX",
       "deviceName": "",
-      deviceType: 0x0E
+      "deviceType": 0x0E,
+      "networkId" : "xxxxxxx",
+      "range" : 0
   };
+  let extraInfo = {
+          'targetPkgName': 'ohos.samples.xxx',
+          'appName': 'xxx',
+          'appDescription': 'xxx',
+          'business': '0'
+  }
   let authParam = {
-      "authType": 1, // Authentication type. The value 1 means no account PIN authentication.
-      "extraInfo": {} 
+      'authType': 1, // Authentication type. The value 1 means no account PIN authentication.
+      'extraInfo': extraInfo
   }
   try {
     dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {
@@ -756,6 +779,13 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
   ```js
   try {
+    var deviceInfo ={
+      "deviceId": "XXXXXXXX",
+      "deviceName": "",
+      "deviceType": 0x0E,
+      "networkId" : "xxxxxxx",
+      "range" : 0
+    };
     dmInstance.unAuthenticateDevice(deviceInfo);
   } catch (err) {
     console.error("unAuthenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
@@ -792,7 +822,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   ```js
   let authInfo = {
     "authType": 1,
-    "token": xxxxxx,
+    "token": 123456,
     "extraInfo": {}
   }
   try {
@@ -838,7 +868,7 @@ Sets a user operation.
       operateAction = 5 - Confirm the input in the PIN input box.
     */
     let operation = 0;
-    this.dmInstance.setUserOperation(operation, "extra")
+    dmInstance.setUserOperation(operation, "extra")
     } catch (err) {
       console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -868,11 +898,8 @@ Subscribes to UI status changes.
     dmInstance.on('uiStateChange', (data) => {
     console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
     var tmpStr = JSON.parse(data.param)
-    this.isShow = tmpStr.verifyFailed
-    console.log("uiStateChange executed, dialog closed" + this.isShow)
-    if (!this.isShow) {
-        this.destruction()
-    }
+    var isShow = tmpStr.verifyFailed
+    console.log("uiStateChange executed, dialog closed" + isShow)
   });
   } catch (err) {
     console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);

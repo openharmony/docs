@@ -16,19 +16,21 @@
 
 Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数时不生效。<br/>默认值：0，单位vp |
+| space | string&nbsp;\|&nbsp;number | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp |
 
 
 ## 属性
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在水平方向上的对齐格式。<br/>FlexAlign.Start |
+| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在水平方向上的对齐格式。<br/>FlexAlign.Start <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 
 ## 示例

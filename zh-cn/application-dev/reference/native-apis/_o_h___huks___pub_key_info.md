@@ -20,11 +20,11 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [keyAlg](#keyalg) | enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg)<br/>公钥的算法类型。  | 
-| [keySize](#keysize) | uint32_t<br/>公钥的长度。  | 
-| [nOrXSize](#norxsize) | uint32_t<br/>n或X值的长度。  | 
-| [eOrYSize](#eorysize) | uint32_t<br/>e或Y值的长度。  | 
-| [placeHolder](#placeholder) | uint32_t<br/>占位符大小。  | 
+| [keyAlg](#keyalg) | 公钥的算法类型。  | 
+| [keySize](#keysize) | 公钥的长度。  | 
+| [nOrXSize](#norxsize) | n或X值的长度。  | 
+| [eOrYSize](#eorysize) | e或Y值的长度。  | 
+| [placeHolder](#placeholder) | 占位符大小。  | 
 
 
 ## 结构体成员变量说明

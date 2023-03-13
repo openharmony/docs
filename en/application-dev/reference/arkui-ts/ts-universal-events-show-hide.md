@@ -9,10 +9,10 @@ The show/hide event is triggered when a component is mounted or unmounted from t
 
 ## Events
 
-| Name                                            | Bubbling Supported| Description                  |
-| ------------------------------------------------ | -------- | -------------------------- |
-| onAppear(event: () =&gt; void)    | No      | Triggered when the component is displayed.|
-| onDisAppear(event: () =&gt; void) | No      | Triggered when the component is hidden.|
+| Name                                            | Bubbling Supported| Description                                                    |
+| ------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| onAppear(event: () =&gt; void)    | No      | Triggered when the component is displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onDisAppear(event: () =&gt; void) | No      | Triggered when the component is hidden.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example

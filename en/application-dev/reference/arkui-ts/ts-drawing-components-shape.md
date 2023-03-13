@@ -37,7 +37,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | View port of the shape.|
 | fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.|
 | fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.|
-| stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, no stroke is displayed.|
+| stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, the component does not have any stroke.|
 | strokeDashArray | Array&lt;Length&gt; | [] | Stroke dashes.|
 | strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.|
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.|
@@ -145,91 +145,3 @@ struct ShapeExample {
 ```
 
 ![en-us_image_0000001184628104](figures/en-us_image_0000001184628104.png)
-
-### Example 2
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct ShapeMeshExample {
-  @State columnVal: number = 0
-  @State rowVal: number = 0
-  @State count: number = 0
-  @State verts: Array<number> = []
-  @State shapeWidth: number = 600
-  @State shapeHeight: number = 600
-
-  build() {
-    Column() {
-      Shape() {
-        Rect()
-          .width('250px')
-          .height('250px')
-          .radiusWidth('10px')
-          .radiusHeight('10px')
-          .stroke('10px')
-          .margin({ left: '10px', top: '10px' })
-          .strokeWidth('10px')
-          .fill(Color.Blue)
-        Rect()
-          .width('250px')
-          .height('250px')
-          .radiusWidth('10px')
-          .radiusHeight('10px')
-          .stroke('10px')
-          .margin({ left: '270px', top: '10px' })
-          .strokeWidth('10px')
-          .fill(Color.Red)
-      }
-      .mesh(this.verts, this.columnVal, this.rowVal)
-      .width(this.shapeWidth + 'px')
-      .height(this.shapeHeight + 'px')
-      // The mesh distortion effect is displayed when the component is touched.
-      .onTouch((event: TouchEvent) => {
-        var touchX = event.touches[0].x * 2
-        var touchY = event.touches[0].y * 2
-        this.columnVal = 20
-        this.rowVal = 20
-        this.count = (this.columnVal + 1) * (this.rowVal + 1)
-        var orig = [this.count * 2]
-        var index = 0
-        for (var i = 0; i <= this.rowVal; i++) {
-          var fy = this.shapeWidth * i / this.rowVal
-          for (var j = 0; j <= this.columnVal; j++) {
-            var fx = this.shapeWidth * j / this.columnVal
-            orig[index * 2 + 0] = this.verts[index * 2 + 0] = fx
-            orig[index * 2 + 1] = this.verts[index * 2 + 1] = fy
-            index++;
-          }
-        }
-        for (var k = 0; k < this.count * 2; k += 2) {
-          var dx = touchX - orig[k + 0]
-          var dy = touchY - orig[k + 1]
-          var dd = dx * dx + dy * dy
-          var d = Math.sqrt(dd)
-          var pull = 80000 / (dd * d)
-          if (pull >= 1) {
-            this.verts[k + 0] = touchX
-            this.verts[k + 1] = touchY
-          } else {
-            this.verts[k + 0] = orig[k + 0] + dx * pull
-            this.verts[k + 1] = orig[k + 1] + dy * pull
-          }
-        }
-      })
-    }
-    .width('600px')
-    .height('600px')
-    .border({ width: 3, color: Color.Black })
-  }
-}
-```
-
-Below is how the component is displayed when not being touched.
-
-![en-us_image1_0000001184628104](figures/en-us_image1_0000001184628104.png)
-
-The mesh distortion effect is displayed when the component is touched, as shown below.
-
-![en-us_image2_0000001184628104](figures/en-us_image2_0000001184628104.png)

@@ -20,13 +20,13 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [keyAlg](#keyalg) | enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg)<br/>密钥的算法类型。  | 
-| [keySize](#keysize) | uint32_t<br/>密钥的长度。  | 
-| [xSize](#xsize) | uint32_t<br/>x值的长度。  | 
-| [ySize](#ysize) | uint32_t<br/>y值的长度。  | 
-| [pSize](#psize) | uint32_t<br/>p值的长度。  | 
-| [qSize](#qsize) | uint32_t<br/>q值的长度。  | 
-| [gSize](#gsize) | uint32_t<br/>g值的长度。  | 
+| [keyAlg](#keyalg) | 密钥的算法类型。  | 
+| [keySize](#keysize) | 密钥的长度。  | 
+| [xSize](#xsize) | x值的长度。  | 
+| [ySize](#ysize) | y值的长度。  | 
+| [pSize](#psize) | p值的长度。  | 
+| [qSize](#qsize) | q值的长度。  | 
+| [gSize](#gsize) | g值的长度。  | 
 
 
 ## 结构体成员变量说明

@@ -107,5 +107,5 @@
   - [Hiview Development](subsys-dfx-hiview.md)
 - R&D Tools
   - [bytrace](subsys-toolchain-bytrace-guide.md)
-  - [hdc_std](subsys-toolchain-hdc-guide.md)
+  - [hdc](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)

@@ -74,7 +74,7 @@ The major APIs for notification subscription are described as follows. For detai
    ```ts
    notificationSubscribe.subscribe(subscriber, (err, data) => { // This API uses an asynchronous callback to return the result.
      if (err) {
-       console.error(`[ANS] failed to subscribe, error[${err}]`);
+       console.error(`[ANS] subscribe failed, code is ${err.code}, message is ${err.message}`);
        return;
      }
      console.info(`[ANS] subscribeTest success : + ${data}`);

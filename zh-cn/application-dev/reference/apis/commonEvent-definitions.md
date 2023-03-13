@@ -903,3 +903,7 @@
 - 值：usual.event.QUICK_FIX_APPLY_RESULT
 - 订阅者所需权限：无
 
+## COMMON_EVENT_USER_INFO_UPDATED<sup>9+<sup>
+表示用户信息已更新。
+- 值：usual.event.USER_INFO_UPDATED
+- 订阅者所需权限：无

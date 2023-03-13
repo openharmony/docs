@@ -1,6 +1,6 @@
 # State Management with Application-level Variables
 
-The state management module provides APIs for data storage, persistent data management, Ability data storage, and environment status required by applications. The APIs for Ability data storage are supported since API version 9.
+The state management module provides APIs for data storage, persistent data management, **Ability** data storage, and environment status required by applications.
 
 > **NOTE**
 >
@@ -77,7 +77,7 @@ let simple = AppStorage.Prop('simpleProp')
 
 ### SetAndProp
 
-SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S>;
+SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S>
 
 Works in a way similar to the **Prop** API. If the current key is stored in the **AppStorage**, the value corresponding to the key is returned. If the key has not been created, a **Prop** instance corresponding to the default value is created and returned.
 
@@ -162,7 +162,7 @@ Replaces the value of a saved key.
 | boolean | Returns **true** and the value if the key exists; returns **false** otherwise.|
 
 ```ts
-let simple = AppStorage.Set('simpleProp', 121);
+let simple = AppStorage.Set('simpleProp', 121)
 ```
 
 ### SetOrCreate
@@ -256,7 +256,7 @@ Deletes all attributes.
 | ------- | --------------------------------- |
 | boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
 
-```typescript
+```ts
 let simple = AppStorage.Clear()
 ```
 
@@ -313,7 +313,7 @@ Creates and initializes a **LocalStorage** object.
 | initializingProperties | Object | No   | All object attributes and their values returned by **object.keys(obj)**.|
 
 ```ts
-this.storage = new LocalStorage()
+let storage = new LocalStorage()
 ```
 
 ### GetShared<sup>9+</sup>
@@ -353,8 +353,8 @@ Checks whether the **LocalStorage** contains the specified attribute.
 | boolean | Returns whether the attribute exists.|
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.has('storageSimpleProp')
+let storage = new LocalStorage()
+storage.has('storageSimpleProp')
 ```
 
 ### get<sup>9+</sup>
@@ -376,8 +376,8 @@ Obtains the value of the specified key.
 | T \| undefined | Returns the value of the specified key if it exists; returns **undefined** otherwise.|
 
 ```ts
-this.storage = new LocalStorage()
-let simpleValue = this.storage.get('storageSimpleProp')
+let storage = new LocalStorage()
+let simpleValue = storage.get('storageSimpleProp')
 ```
 
 ### set<sup>9+</sup>
@@ -400,8 +400,8 @@ Sets a new value for the specified key.
 | boolean | Returns **true** and the value if the key exists; returns **false** otherwise.|
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.set('storageSimpleProp', 121)
+let storage = new LocalStorage()
+storage.set('storageSimpleProp', 121)
 ```
 
 ### setOrCreate<sup>9+</sup>
@@ -424,8 +424,8 @@ Creates or updates the value of the specified key.
 | boolean | Updates the value of the attribute and returns **true** if an attribute that has the same name as the specified key exists; creates an attribute with the specified value as its default value and returns false otherwise. **undefined** and **null** are not allowed.|
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.setOrCreate('storageSimpleProp', 121)
+let storage = new LocalStorage()
+storage.setOrCreate('storageSimpleProp', 121)
 ```
 
 ### link<sup>9+</sup>
@@ -447,8 +447,8 @@ Establishes two-way data binding between an attribute and this **LocalStorage** 
 | T    | Returns two-way binding to this attribute if there is data with a given key. This means that attribute changes made by a variable or component will be synchronized to the **LocalStorage**, and attribute changes made through the **LocalStorage** will be synchronized to the variable or component. returns **undefined** if the attribute with the given key does not exist.|
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.link('storageSimpleProp')
+let storage = new LocalStorage()
+let localStorage = storage.link('storageSimpleProp')
 ```
 
 ### setAndLink<sup>9+</sup>
@@ -471,8 +471,8 @@ Works in a way similar to the **Link** API.
 | @Link | Returns the value corresponding to the key if the current key is stored in the **LocalStorage**; creates and returns a **Link** instance corresponding to the default value if the key has not been created.|
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.setAndLink('storageSimpleProp', 121)
+let storage = new LocalStorage()
+let localStorage = storage.setAndLink('storageSimpleProp', 121)
 ```
 
 ### prop<sup>9+</sup>
@@ -494,8 +494,8 @@ Establishes one-way data binding with an attribute to update its status.
 | @Prop | Returns one-way binding to an attribute with a given key if the attribute exists; returns **undefined** otherwise. One-way binding means that attribute changes made through the **LocalStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will not be synchronized to the **LocalStorage**. This API returns immutable variables and is applicable to mutable and immutable state variables alike. |
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.prop('storageSimpleProp')
+let storage = new LocalStorage()
+let localStorage = storage.prop('storageSimpleProp')
 ```
 
 ### setAndProp<sup>9+</sup>
@@ -518,8 +518,8 @@ Works in a way similar to the **Prop** API.
 | @Prop | Returns the value corresponding to the given key if the key is stored in the **LocalStorage**; creates and returns a **Prop** instance corresponding to the default value if the key has not been created.|
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.setAndProp('storageSimpleProp', 121)
+let storage = new LocalStorage()
+let localStorage = storage.setAndProp('storageSimpleProp', 121)
 ```
 
 ### delete<sup>9+</sup>
@@ -538,11 +538,11 @@ Deletes the key-value pair that matches the specified key.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the key-value pair exists and is successfully deleted; returns **false** if the key-value pair does not exist, fails to be deleted, or is being referenced by a state variable.|
+| boolean | Returns **true** if the key-value pair exists and is successfully deleted; returns **false** otherwise.|
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.delete('storageSimpleProp')
+let storage = new LocalStorage()
+storage.delete('storageSimpleProp')
 ```
 
 ### keys<sup>9+</sup>
@@ -558,8 +558,8 @@ Searches for all keys.
 | array\<string> | Returns an array of strings containing all keys that are not serializable.|
 
 ```ts
-this.storage = new LocalStorage()
-let simple = this.storage.keys()
+let storage = new LocalStorage()
+let simple = storage.keys()
 ```
 
 ### size<sup>9+</sup>
@@ -575,8 +575,8 @@ Obtains the number of existing key-value pairs.
 | number | Returns the number of key-value pairs.|
 
 ```ts
-this.storage = new LocalStorage()
-let simple = this.storage.size()
+let storage = new LocalStorage()
+let simple = storage.size()
 ```
 
 ### Clear<sup>9+</sup>
@@ -592,8 +592,8 @@ Deletes all attributes.
 | boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
 
 ```ts
-this.storage = new LocalStorage()
-let simple = this.storage.clear()
+let storage = new LocalStorage()
+let simple = storage.clear()
 ```
 
 ## PersistentStorage
@@ -612,7 +612,7 @@ Creates a **persistentstorage** object.
 | storage    | Storage    | Yes   | **Storage** object.    |
 
 ```ts
-this.persistentstorage = new PersistentStorage(AppStorage,Storage)
+let persistentstorage = new PersistentStorage(AppStorage,Storage)
 ```
 
 ### PersistProp
@@ -650,7 +650,7 @@ PersistentStorage.DeleteProp('highScore')
 
 ### PersistProps
 
-PersistProps(properties: {key: string, defaultValue: any}[]): void;
+PersistProps(properties: {key: string, defaultValue: any}[]): void
 
 Changes the attributes that match the specified keys to persistent data in the **AppStorage**.
 

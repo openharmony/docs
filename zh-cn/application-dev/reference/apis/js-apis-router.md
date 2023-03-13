@@ -100,13 +100,13 @@ router.pushUrl({
       data3: [123, 456, 789]
     }
   }
-})
-  .then(() => {
-    // success
-  })
-  .catch(err => {
+}, (err) => {
+  if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-  })
+    return;
+  }
+  console.info('pushUrl success');
+})
 ```
 ## router.pushUrl<sup>9+</sup>
 
@@ -362,7 +362,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **示例：**
@@ -473,9 +473,9 @@ console.log('current path = ' + page.path);
 | name  | string | 否   | 表示当前页面的名称，即对应文件名。                           |
 | path  | string | 是   | 表示当前页面的路径。                                         |
 
-## router.enableBackPageAlert<sup>9+</sup>
+## router.showAlertBeforeBackPage<sup>9+</sup>
 
-enableBackPageAlert(options: EnableAlertOptions): void
+showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
@@ -499,11 +499,11 @@ enableBackPageAlert(options: EnableAlertOptions): void
 
   ```js    
 try {
-  router.enableBackPageAlert({            
+  router.showAlertBeforeBackPage({            
     message: 'Message Info'        
   });
 } catch(error) {
-  console.error(`enableBackPageAlert failed, code is ${error.code}, message is ${error.message}`);
+  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
 }
   ```
 ## EnableAlertOptions
@@ -516,9 +516,9 @@ try {
 | ------- | ------ | ---- | -------- |
 | message | string | 是    | 询问对话框内容。 |
 
-## router.disableAlertBeforeBackPage
+## router.hideAlertBeforeBackPage<sup>9+</sup>
 
-disableAlertBeforeBackPage(): void
+hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
@@ -527,7 +527,7 @@ disableAlertBeforeBackPage(): void
 **示例：**
 
 ```js
-router.disableAlertBeforeBackPage();    
+router.hideAlertBeforeBackPage();    
 ```
 
 ##  router.getParams
@@ -573,7 +573,7 @@ router.getParams();
 
 | 名称     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
-| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。 |
+| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。<br/>**说明：**不使用路由跳转模式时，按标准模式跳转。 |
 | Single   | 单实例模式。<br/>如果目标页面的url在页面栈中已经存在同url页面，离栈顶最近的页面会被移动到栈顶，移动后的页面为新建页。<br/>如目标页面的url在页面栈中不存在同url页面，按标准模式跳转。 |
 
 ## 完整示例
@@ -597,7 +597,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()[data1]);
+    console.info('showData1:' + router.getParams()['data1']);
   }
 }
 ```
@@ -748,7 +748,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
-从API version9开始不再维护，建议使用[enableBackPageAlert<sup>9+</sup>](#routerenablebackpagealert9)
+从API version9开始不再维护，建议使用[showAlertBeforeBackPage<sup>9+</sup>](#routershowalertbeforebackpage9)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -765,3 +765,19 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
     message: 'Message Info'        
   });    
   ```
+
+## router.disableAlertBeforeBackPage<sup>(deprecated)</sup>
+
+disableAlertBeforeBackPage(): void
+
+禁用页面返回询问对话框。
+
+从API version9开始不再维护，建议使用[hideAlertBeforeBackPage<sup>9+</sup>](#routerhidealertbeforebackpage9)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```js
+router.disableAlertBeforeBackPage();    
+```

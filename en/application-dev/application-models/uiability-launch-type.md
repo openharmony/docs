@@ -19,7 +19,7 @@ Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbility
 
 **Figure 1** Demonstration effect in singleton mode 
 
-<img src="figures/uiability-launch-type1.png" alt="uiability-launch-type1" width="40%;" />
+![uiability-launch-type1](figures/uiability-launch-type1.png)
 
 > **NOTE**
 >
@@ -49,7 +49,7 @@ In standard mode, each time [startAbility()](../reference/apis/js-apis-inner-app
 
 **Figure 2** Demonstration effect in standard mode 
 
-<img src="figures/standard-mode.png" alt="standard-mode" width="40%;" />
+![standard-mode](figures/standard-mode.png)
 
 To use the standard mode, set **launchType** in the [module.json5 configuration file](../quick-start/module-configuration-file.md) to **standard**.
 
@@ -75,7 +75,7 @@ The **specified** mode is used in some special scenarios. For example, in a docu
 
 **Figure 3** Demonstration effect in specified mode 
 
-<img src="figures/uiability-launch-type2.png" alt="uiability-launch-type2" style="zoom:50%;" />
+![uiability-launch-type2](figures/uiability-launch-type2.png)
 
 For example, there are EntryAbility and SpecifiedAbility, and the launch type of SpecifiedAbility is set to **specified**. You are required to start SpecifiedAbility from EntryAbility.
 

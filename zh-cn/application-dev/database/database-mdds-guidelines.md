@@ -13,7 +13,7 @@
 
 | 接口名称                                                     | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br/>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | 创建一个`KVManager`对象实例，用于管理数据库对象。            |
+| createKVManager(config: KVManagerConfig): KVManager | 创建一个`KVManager`对象实例，用于管理数据库对象。            |
 | getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br/>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | 指定`Options`和`storeId`，创建并获取指定类型`KVStore`数据库。 |
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br/>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | 插入和更新数据。                                             |
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br/>delete(key: string): Promise&lt;void> | 删除数据。                                                   |
@@ -117,16 +117,10 @@
        bundleName: 'com.example.datamanagertest',
        context:context,
      }
-     distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-       if (err) {
-         console.error(`Failed to createKVManager.code is ${err.code},message is ${err.message}`);
-         return;
-       }
-       console.log('Succeeded in creating KVManager');
-       kvManager = manager;
-     });
+     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+     console.log("Succeeded in creating KVManager");
    } catch (e) {
-     console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+     console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
    }
    ```
 
@@ -272,9 +266,7 @@
 
 针对分布式数据开发，有以下相关实例可供参考：
 
-- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
-- [`DistributedCalc`：分布式计算器（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
-- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedDataGobang)
-- [`DDMQuery`：结果集与谓词（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
-- [`KvStore`：分布式数据库（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
+- [`ArkTSDistributedCalc`：分布式计算器（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
+- [`KvStore`：分布式数据库（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/Kvstore)
 - [分布式数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)

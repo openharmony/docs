@@ -39,7 +39,7 @@ storageRequest| [StorageRequest](../reference/apis/js-apis-resourceschedule-work
 isRepeat| boolean |是否循环任务
 repeatCycleTime| number |循环间隔
 repeatCount | number|循环次数
-parameters | {[key: string]: any} |携带参数信息
+parameters | {[key: string]: number | string | boolean} |携带参数信息
 
 **表3** 延迟任务回调接口
 
@@ -200,4 +200,4 @@ try{
 
 基于延迟任务调度，有以下相关实例可供参考：
 
-- [`WorkScheduler`：延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/WorkScheduler)
+- [`WorkScheduler`：任务延时调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)

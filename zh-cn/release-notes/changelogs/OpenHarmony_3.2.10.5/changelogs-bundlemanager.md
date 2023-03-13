@@ -23,12 +23,12 @@ error: verify signature failed.
 
 增加对无图标应用的管控，如果应用未配置入口图标且未申请隐藏图标特权(AllowHideDesktopIcon)，则会在桌面上显示一个默认图标，点击后跳转至应用详情页。此处的未配置入口图标规则如下：
 1. 应用中未配置abilities字段
-2. 应用中配置了abilities字段，但是没有任何一个page类型的ability中skills如下，即同时包含"action.system.home"和"entity.system.home"：
+2. 应用中配置了abilities字段，但是没有任何一个page类型的ability中skills如下，即同时包含"ohos.want.action.home"和"entity.system.home"：
     ```json
      "skills": [
               {
                 "actions": [
-                  "action.system.home"
+                  "ohos.want.action.home"
                 ],
                 "entities": [
                   "entity.system.home"
@@ -40,7 +40,7 @@ error: verify signature failed.
 
 如果应用不需要再桌面显示图标，需要申请相应的隐藏图标特权AllowHideDesktopIcon，并在签名证书文件中或者白名单(install_list_capability.json)配置，可以参考：[应用特权配置指南](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
-如果应该需要在桌面显示图标，则需要在abilities中选择一个ability配置skills，同时包含"action.system.home"和"entity.system.home"。
+如果应该需要在桌面显示图标，则需要在abilities中选择一个ability配置skills，同时包含"ohos.want.action.home"和"entity.system.home"。
 
 **变更影响**<br>
 对之前的版本镜像无影响，对使用3.2.10.5版本及之后的系统镜像，如果应用未配置图标，通过命令行的安装方式会在桌面显示默认图标。
@@ -51,7 +51,7 @@ error: verify signature failed.
 **适配指导**<br>
 如果应用不需要再桌面显示图标，需要申请相应的隐藏图标特权AllowHideDesktopIcon，并在签名证书文件中或者白名单(install_list_capability.json)配置，可以参考：[应用特权配置指南](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
-如果应该需要在桌面显示图标，则需要在abilities中选择一个ability配置skills，同时包含"action.system.home"和"entity.system.home"。
+如果应该需要在桌面显示图标，则需要在abilities中选择一个ability配置skills，同时包含"ohos.want.action.home"和"entity.system.home"。
 
 ## cl.bundlemanager.3 底层能力变更，特权AllowAppUsePrivilegeExtension、AllowAppMultiProcess和AllowFormVisibleNotify不支持通过签名证书配置，仅支持通过白名单install_list_capability.json申请这三个特权。
 

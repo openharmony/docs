@@ -46,10 +46,9 @@ FA模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](h
 
 针对FA模型下的Ability开发，有以下相关实例可供参考：
 
-- [`FaModel`：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FaModel)
-- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
-- [`DistributedCalc`：分布式计算器（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
-- [`DistributeGraffiti`：分布式涂鸦（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DistributedGraffiti)
+- [`FaModel`：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)
+- [`ArkTSDistributedCalc`：分布式计算器（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
 - [分布式调度启动远程FA（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteStartFA)
 - [分布式新闻客户端（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/NewsDemo)
 - [分布式手写板（ArkTS）（Full SDK）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)

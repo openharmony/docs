@@ -934,6 +934,36 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_SET_WIFI
+
+允许设备管理员应用设置和查询WiFi信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_GET_NETWORK_INFO
+
+允许设备管理员应用查询网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
+
+允许设备管理员设置账户管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -1154,6 +1184,8 @@
 
 **ACL使能**：TRUE
 
+**申请条件**：使用API version 9以下版本的SDK开发的应用，可以直接申请此权限。使用API version 9及API version 9以上版本的SDK开发的应用，需要先申请权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+
 ## ohos.permission.APPROXIMATELY_LOCATION
 
 允许应用获取设备模糊位置信息。
@@ -1163,6 +1195,8 @@
 **授权方式**：user_grant
 
 **ACL使能**：FALSE
+
+**申请条件**：仅供使用API version 9及API version 9以上版本的SDK开发的应用申请。
 
 ## ohos.permission.MEDIA_LOCATION
 
@@ -1464,6 +1498,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.READ_APP_PUSH_DATA
+
+允许推送服务读取应用中推送服务存储的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.WRITE_APP_PUSH_DATA
+
+允许推送服务往应用中写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 允许应用订阅开机广播。
@@ -1633,3 +1687,33 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.PRINT
+
+允许应用获取打印框架的能力。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_PRINT_JOB
+
+允许应用获取管理打印任务的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
+
+允许系统应用禁用使能overlay特性的应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

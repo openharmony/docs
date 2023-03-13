@@ -306,9 +306,7 @@ struct CanvasExample {
         this.context.moveTo(140, 10)
         this.context.lineTo(140, 160)
         this.context.stroke()
-
         this.context.font = '18px sans-serif'
-
         this.context.textAlign = 'start'
         this.context.fillText('textAlign=start', 140, 60)
         this.context.textAlign = 'end'
@@ -351,9 +349,7 @@ struct TextBaseline {
           this.context.moveTo(0, 120)
           this.context.lineTo(400, 120)
           this.context.stroke()
-
           this.context.font = '20px sans-serif'
-
           this.context.textBaseline = 'top'
           this.context.fillText('Top', 10, 120)
           this.context.textBaseline = 'bottom'
@@ -392,11 +388,11 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-        this.context.fillStyle = 'rgb(255,0,0)'
-        this.context.fillRect(0, 0, 50, 50)
-        this.context.globalAlpha = 0.4
-        this.context.fillStyle = 'rgb(0,0,255)'
-        this.context.fillRect(50, 50, 50, 50)
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(0, 0, 50, 50)
+          this.context.globalAlpha = 0.4
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(50, 50, 50, 50)
       })
     }
     .width('100%')
@@ -687,7 +683,7 @@ Fills a rectangle on the canvas.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.fillRect(0,30,100,100)
+            this.context.fillRect(30,30,100,100)
          })
         }
       .width('100%')
@@ -1670,10 +1666,15 @@ struct Clip {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           let region = new Path2D()
-          region.rect(80,10,20,130)
-          region.rect(40,50,100,50)
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           this.context.clip(region,"evenodd")
-          this.context.fillStyle = "rgb(255,0,0)"
+          this.context.fillStyle = "rgb(0,255,0)"
           this.context.fillRect(0, 0, this.context.width, this.context.height)
         })
     }
@@ -1921,6 +1922,8 @@ Resets the existing transformation matrix and creates a new transformation matri
 setTransform(transform?: Matrix2D): void
 
 Resets the current transformation to the identity matrix, and then creates a new transformation matrix based on the specified **Matrix2D** object. This API is a void API.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 
 ### translate

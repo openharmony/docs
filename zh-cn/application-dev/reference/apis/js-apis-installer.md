@@ -117,6 +117,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
 
 **示例：**
 
@@ -174,7 +175,6 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | -------- | ------------------------------------------------------------ |
 | 17700004 | The specified user ID is not found.                          |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
-| 17700101 | The system service is excepted.                              |
 
 **示例：**
 
@@ -283,7 +283,7 @@ try {
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | 是                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#queryosaccountlocalidfromprocess9)获取当前进程所在用户。 |
+| userId                         | number                         | 是                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
 | installFlag                    | number                         | 是                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
 | isKeepData                     | boolean                        | 是                       | 卸载时是否保留数据目录。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 是 | 哈希值参数。         |

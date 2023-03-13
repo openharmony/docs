@@ -8,7 +8,7 @@ In Host mode, you can obtain the list of connected USB devices, enable or disabl
 
 The USB service provides the following functions: query of USB device list, bulk data transfer, control transfer, and access permission management.
 
-The following table lists the USB APIs currently available. For details, see the [API Reference](../reference/apis/js-apis-usb.md).
+The following table lists the USB APIs currently available. For details, see the [API Reference](../reference/apis/js-apis-usbManager.md).
 
 **Table  1**  Open USB APIs
 
@@ -18,7 +18,7 @@ The following table lists the USB APIs currently available. For details, see the
 | requestRight(deviceName: string): Promise\<boolean>          | Requests the temporary permission for a given application to access the USB device. This API uses a promise to return the result. |
 | connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device list returned by `getDevices()`. |
 | getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the list of USB devices connected to the USB host. If no USB device is connected, an empty list is returned. |
-| setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
+| setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | Claims a USB interface.                                       |
 | bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise\<number> | Performs bulk transfer.                                      |
@@ -36,7 +36,7 @@ You can set a USB device as the USB host to connect to other USB devices for dat
 
     ```js
     // Import the USB API package.
-    import usb from '@ohos.usbV9';
+    import usb from '@ohos.usbManager';
     // Obtain the USB device list.
     let deviceList = usb.getDevices();
     /*

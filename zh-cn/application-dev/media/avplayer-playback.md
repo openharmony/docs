@@ -111,7 +111,7 @@ AVPlayer主要工作是将Audio/Video媒体资源转码为可供渲染的图像�
 ```js
 import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio';
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -230,14 +230,8 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }
@@ -247,7 +241,7 @@ export class AVPlayerDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -309,24 +303,18 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }
 ```
 
-### 视频切换场景
+### 单曲循环场景
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -400,23 +388,17 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }
 ```
-### 单曲循环场景
+### 视频切换场景
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 const TAG = 'AVPlayerDemo:'
 export class AVPlayerDemo {
@@ -429,14 +411,8 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\H264_MP3.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/H264_MP3.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath // 再次触发initialized状态机上报
   }
 
@@ -500,14 +476,8 @@ export class AVPlayerDemo {
     let pathDir = "/data/storage/el2/base/haps/entry/files" // pathDir在FA模型和Stage模型的获取方式不同，请参考开发步骤首行的说明，根据实际情况自行获取。
     // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" 命令，将其推送到设备上
     let path = pathDir  + '/H264_AAC.mp4'
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber
-      console.info('open fd success fd is' + fdPath)
-    }, (err) => {
-      console.info('open fd failed err is' + err)
-    }).catch((err) => {
-      console.info('open fd failed err is' + err)
-    });
+    let file = await fs.open(path)
+    fdPath = fdPath + '' + file.fd
     this.avPlayer.url = fdPath
   }
 }

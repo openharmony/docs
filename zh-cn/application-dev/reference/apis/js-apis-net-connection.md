@@ -110,11 +110,43 @@ connection.getDefaultNet().then(function (data) {
 })
 ```
 
+## connection.getDefaultNetSync<sup>9+</sup>
+
+getDefaultNetSync(): NetHandle
+
+使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| NetHandle | 以同步方式返回默认激活的数据网络。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```js
+let netHandle = connection.getDefaultNetSync();
+```
+
 ## connection.getGlobalHttpProxy<sup>10+</sup>
 
 getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 获取网络的全局代理配置信息，使用callback方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -145,6 +177,8 @@ connection.getGlobalHttpProxy((error,data) => {
 getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 获取网络的全局代理配置信息，使用Promise方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -177,6 +211,8 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 
 设置网络全局Http代理配置信息，使用callback方式作为异步方法。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -201,12 +237,12 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let ExclusionList=""
-let array = ExclusionList.split(',');
+let exclusionStr="192.168,baidu.com"
+let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
-   host: "host",
-   port: 1,
-   parsedExclusionList: array
+    host: "192.168.xx.xxx",
+    port: 8080,
+    exclusionList: exclusionArray
 }
 connection.setGlobalHttpProxy(httpProxy, (error, data) => {
    console.info(JSON.stringify(error));
@@ -219,6 +255,8 @@ connection.setGlobalHttpProxy(httpProxy, (error, data) => {
 setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 
 设置网络全局Http代理配置信息，使用Promise方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
@@ -249,12 +287,12 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 **示例：**
 
 ```js
-let ExclusionList=""
-let array = ExclusionList.split(',');
+let exclusionStr="192.168,baidu.com"
+let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
-    host: "host",
-    port: 1,
-    parsedExclusionList: array
+    host: "192.168.xx.xxx",
+    port: 8080,
+    exclusionList: exclusionArray
 }
 connection.setGlobalHttpProxy(httpProxy).then((error, data) => {
    console.info(JSON.stringify(data));
@@ -287,10 +325,10 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```js
-connection.getAppNet(function(error, data)) {
+connection.getAppNet(function(error, data) {
    console.log(JSON.stringify(error))
    console.log(JSON.stringify(data))
-}
+})
 ```
 
 ## connection.getAppNet<sup>9+</sup>
@@ -404,36 +442,6 @@ connection.getDefaultNet().then(function (netHandle) {
         console.log(JSON.stringify(error))
    })
 })
-```
-
-## connection.getDefaultNetSync<sup>9+</sup>
-
-getDefaultNetSync(): NetHandle;
-
-使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
-**系统能力**：SystemCapability.Communication.NetManager.Core
-
-**返回值：**
-
-| 类型      | 说明                               |
-| --------- | ---------------------------------- |
-| NetHandle | 以同步方式返回默认激活的数据网络。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
-
-**示例：**
-
-```js
-let netHandle = connection.getDefaultNetSync();
 ```
 
 ## connection.getAllNets
@@ -799,6 +807,8 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 **系统接口**：此接口为系统接口。
 
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -829,6 +839,8 @@ enableAirplaneMode(): Promise\<void>
 开启飞行模式，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -861,6 +873,8 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 **系统接口**：此接口为系统接口。
 
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -891,6 +905,8 @@ disableAirplaneMode(): Promise\<void>
 关闭飞行模式，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1498,18 +1514,18 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 
 ```js
 import socket from "@ohos.net.socket";
-connection.getDefaultNet().then((netHandle)=>{
+connection.getDefaultNet().then((netHandle) => {
     var tcp = socket.constructTCPSocketInstance();
     var udp = socket.constructUDPSocketInstance();
     let socketType = "TCPSocket";
     if (socketType == "TCPSocket") {
         tcp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
-            netHandle.bindSocket(tcp, (error, data)=>{
+            netHandle.bindSocket(tcp, (error, data) => {
                 if (error) {
                     console.log(JSON.stringify(error));
                 } else {
@@ -1519,19 +1535,19 @@ connection.getDefaultNet().then((netHandle)=>{
         })
     } else {
         let callback = value => {
-            console.log(TAG + "on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+            console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
         }
         udp.on('message', callback);
         udp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
             udp.on('message', (data) => {
                 console.log(JSON.stringify(data))
             });
-            netHandle.bindSocket(udp,(error, data)=>{
+            netHandle.bindSocket(udp, (error, data) => {
                 if (error) {
                     console.log(JSON.stringify(error));
                 } else {
@@ -1576,45 +1592,41 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 ```js
 import socket from "@ohos.net.socket";
-connection.getDefaultNet().then((netHandle)=>{
+connection.getDefaultNet().then((netHandle) => {
     var tcp = socket.constructTCPSocketInstance();
     var udp = socket.constructUDPSocketInstance();
     let socketType = "TCPSocket";
     if (socketType == "TCPSocket") {
         tcp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
-            netHandle.bindSocket(tcp).then((err, data) => {
-                if (err) {
-                    console.log(JSON.stringify(err));
-                } else {
-                    console.log(JSON.stringify(data));
-                }
+            netHandle.bindSocket(tcp).then((data) => {
+                console.log(JSON.stringify(data));
+            }).catch(error => {
+                console.log(JSON.stringify(error));
             })
         })
     } else {
         let callback = value => {
-            console.log(TAG + "on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+            console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
         }
         udp.on('message', callback);
         udp.bind({
-            address: '192.168.xx.xxx', port: xxxx, family: 1
-        }, err => {
-            if (err) {
+            address: '192.168.xx.xxx', port: 8080, family: 1
+        }, error => {
+            if (error) {
                 console.log('bind fail');
             }
             udp.on('message', (data) => {
                 console.log(JSON.stringify(data));
             })
-            netHandle.bindSocket(udp).then((err, data) => {
-                if (err) {
-                    console.log(JSON.stringify(err));
-                } else {
-                    console.log(JSON.stringify(data));
-                }
+            netHandle.bindSocket(udp).then((data) => {
+                console.log(JSON.stringify(data));
+            }).catch(error => {
+                console.log(JSON.stringify(error));
             })
         })
     }
@@ -1811,7 +1823,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | BEARER_WIFI     | 1    | Wi-Fi网络。 |
 | BEARER_ETHERNET | 3 | 以太网网络。 |
 
-## HttpProxy
+## HttpProxy<sup>10+</sup>
 
 网络全局代理配置信息
 
@@ -1821,7 +1833,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | ------ | ------ | --- |------------------------- |
 | host  | string | 否  |  代理服务器主机名。 |
 | port  | number | 否  |  主机端口。 |
-| parsedExclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表。 |
+| exclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表。 |
 
 ## NetSpecifier
 

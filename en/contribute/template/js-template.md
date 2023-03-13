@@ -97,7 +97,7 @@ import call from '@ohos.telephony.call';
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-| Name            | Type                                     | Readable| Writable| Description                                      |
+| Name            | Type                                     | Read Only| Mandatory| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
 | pluggedType      | [BatteryPluggedType]\(#batterypluggedtype) | Yes  | No  | Charger type of the current device.            |
 | isBatteryPresent | boolean                                   | Yes  | No  | Whether the battery is supported or present.|
@@ -112,10 +112,10 @@ import call from '@ohos.telephony.call';
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-| Name            | Type                                     |                                      | Description                                      |
-| ---------------- | ----------------------------------------- | ------------------------------------------ | ------------------------------------------ |
-| uid              | number                                    | 1                                   | User identifier (UID) of a process.                          |
-| pid              | number                                    | 2                                   | Process ID (PID) of a process.                           |
+| Name            | Type                               |  Value     | Description                                      |
+| ---------------- | -----------------------------------| -------- | ------------------------------------------ |
+| uid              | number                             | 1        | User identifier (UID) of a process.                          |
+| pid              | number                             | 2        | Process ID (PID) of a process.                           |
 
 ## Methods
 
@@ -154,15 +154,15 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 | Name      | Type                                         | Mandatory| Description                                                        |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| parameterOne | number \| string \| [CustomType](#customtype) | Yes  | Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI.<br>Provide a link for each custom parameter type.|
-| callback     | Callback\<Array<[CustomType](#customtype)>>   | No  | Describe the parameter. For an optional parameter, describe the consequences if it is not specified.<br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.<br>For details about how to write callback methods, see item 14 in "General Writing Instructions."|
+| parameterOne | number \| string \| [CustomType](#classinterface) | Yes  | Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI.<br>Provide a link for each custom parameter type.|
+| callback     | Callback\<Array<[CustomType](#classinterface)>>   | No  | Describe the parameter. For an optional parameter, describe the consequences if it is not specified.<br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.<br>For details about how to write callback methods, see item 14 in "General Writing Instructions."|
 
 **Return value** (This part is optional. Delete it if there is no return value.)
 
 | Type                                      | Description                                           |
 | ------------------------------------------ | ----------------------------------------------- |
 | string                                     | Describe the return value, for example, what can be done after the return value is obtained.|
-| Promise\<Array<[CustomType](#customtype)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions."|
+| Promise\<Array<[CustomType](#classinterface)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions."|
 
 **Error codes** (This part is optional. Delete it if no error code is thrown.)
 
@@ -220,7 +220,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                               | Yes  | Describe the event and when or how it will be triggered. If a method involves multiple events, describe them separately.<br>**Example 1 (single event):**<br>Type of the event. The **'play'** event is triggered when the **play()** API is called and audio playback starts.<br>Example 2 (multiple events):<br>Type of the event. The following events are supported:<br/>- **'play'**: triggered when the **play()** API is called and audio playback starts.<br>- **'dataLoad'**: triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- **'finish'**: triggered when the audio playback is finished. |
-| callback | Callback\<[CustomType](#customtype)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
+| callback | Callback\<[CustomType](#classinterface)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
 
 **Return value** (This part is optional. Delete it if there is no return value.)
 
@@ -254,7 +254,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 > 2. Use the actual class or interface name as the level-2 heading.
 >
 > 3. If the class or interface contains both attributes and methods, write the attributes above the methods. Write their actual names in separate level-3 headings.
->    If the class or interface contains only attributes, you do not need to create a level-3 heading. Instead, use a table to display the attributes. For details, see [CustomType](#customtype).
+>    If the API contains only attributes, you do not need to create a level-3 heading. Instead, use a table to display the attributes.
 
 Describe the class or interface. If there are usage restrictions, describe them as well, for example, whether there is a prerequisite and whether an instance needs to be created by using any method.
 
@@ -262,7 +262,7 @@ Describe the class or interface. If there are usage restrictions, describe them 
 
 > *Writing Instructions*
 >
-> Except that a level-3 heading is used for attributes in classes/interfaces, other instructions are the same as those provided under [Attributes](#attributes).
+> Except that level-3 headings are used, other requirements are the same as those in [Attribute](#Attribute).
 
 ### Methods in Classes/Interfaces
 
@@ -289,43 +289,29 @@ Provide a brief description of the enum type. Example: Enumerates the charger ty
 | ---- | ---- | -------------------------- |
 | NONE | 1    | Unknown type.|
 
-## CustomType
-
-> *Writing Instructions*
->
-> This section is optional. Delete it if there is no custom type. It corresponds to **Interface** in the .d.ts file.
-
-The following is an example of the custom type of a key-value pair.
-
-**System capability**: SystemCapability.*A.B* (This part is mandatory.)
-
-| Name        | Type               | Mandatory | Description                                                        |
-| ------------ | ------------------- | ---- | ------------------------------------------------------------ |
-| parameterUrl | string              | Yes | Media output URI. Supported:<br>1. Relative path whose protocol type is **internal**. Example: <br/>Temporary directory: internal://cache/test.mp4<br>2. Absolute path. Example:<br/> file:///data/data/ohos.xxx.xxx/files/test.mp4|
-| parameterOne | [CustomEnum](#enums)| No  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
-
-## Type
+## Types
 
 > *Writing Instructions*
 >
 > 1. This section is optional. Delete it if there is no type. It corresponds to **type** in the .d.ts file.
 >
-> 2. By default, use **Type** as the heading of the first column. If all the values are specific strings, change the heading of the first column to **Value**.
+> 2. If the value range is of a specific value, such as a fixed string or enumerated value, describe the data type and specified value. If the value range is of a specified type, describe whether any value of the type or a value range is used.
 >
-> 3. If a type is of a custom type, create a link to the corresponding interface or enum.
+> 3. If the type is of a custom type, create a link to the corresponding interface or enum.
 
 Provide a brief description of the union type. Example: Enumerates the value types.
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-| Type      | Description                         |
+| Value Range   | Description                         |
 | -----------| ---------------------------- |
-| number     | The value is a number.            |
-| string     | The value is a string.            |
+| number     | The value can be any number.    |
+| string     | The value can be any string.    |
 
 ## Change History
 | Change Description                                                                | Date        |
 | ----------------------------------------------------------------------- | ------------ |
+| 1. Changed the template for **Attributes** from **Read**, **Write**, and **Mandatory** to **Read Only** and **Mandatory**.<br>2. Changed the template for **Types** by using **Value Range** and **Description**, and provided the related description.<br>3. Deleted the custom type, and incorporated the related description under **Classes/Interfaces**.|  2023/02/01  |
 | 1. Provided the general writing instructions in a table.<br>2. Added the description about how to reference an image in "Upload path".<br>3. Added the "Document structure" item to describe the sequence of nodes in the API reference document.<br>4. Added the description for multiple permissions in "Permission description".<br>5. Added the description of @FAModelOnly and @StageModelOnly in the API reference document.<br>6. Added the description of asynchronous methods (callback and promise).<br>7. Added the standards and specifications for the sample code programming language.<br>8. Added the standard format for links used in the API reference document.<br>9. Added examples for "Module description".<br>10. Added the description of on and off subscription methods.<br>11. Updated the description of @syscap.<br>12. Updated the description of @systemapi. Now only the sentence "This is a system API." is used.  <br>13. Deleted the MR version description.                                                                |  2022/6/24  |
 | Added the error code description.                                                         | 2022/10/11  |
 | 1. Added the template for **constant** and **type**.<br> 2. Modified the table of the custom type **interface** by deleting the **Readable** and **Writable** columns and adding the **Mandatory** column, for consistency with the content of the .d.ts file.<br> 3. Added the deprecated description for APIs with both the initial version and deprecated version.                         |2022/11/22   |

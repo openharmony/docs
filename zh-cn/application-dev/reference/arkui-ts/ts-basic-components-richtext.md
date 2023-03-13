@@ -40,7 +40,7 @@ RichText(content:string)
 | \<br/> | 插入一个简单的换行符。 | \<p>这是一个段落\<br/>这是换行段落\</p> |
 | \<font/> | 规定文本的字体、字体尺寸、字体颜色。 | \<font size="3" face="arial" color="red">这是一段红色字体。\</font> |
 | \<hr/> | 定义HTML页面中的主题变化（比如话题的转移），并显示为一条水平线。 | \<p>这个一个段落\</p>\<hr/>\<p>这是一个段落\</p> |
-| \<image>\</image> | 用来定义图片。 | \<image src="file:///data/storage/el1/bundle/entry/resources/rawfile/icon.png">\</image> |
+| \<image>\</image> | 用来定义图片。 | \<image src="resource://rawfile/icon.png">\</image> |
 | \<div>\</div> | 常用于组合块级元素，以便通过CSS来对这些元素进行格式化。 | \<div style='color:#0000FF'>\<h3>这是一个在div元素中的标题。\</h3>\</div> |
 | \<i>\</i> | 定义与文本中其余部分不同的部分，并把这部分文本呈现为斜体文本。 | \<i>这是一个斜体\</i> |
 | \<u>\</u> | 定义与常规文本风格不同的文本，像拼写错误的单词或者汉语中的专有名词，应尽量避免使用\<u>为文本加下划线，用户会把它混淆为一个超链接。 | \<p>\<u>这是带有下划线的段落\</u>\</p> |

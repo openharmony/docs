@@ -45,7 +45,7 @@
 4. 构造进度条模板对象，并发布通知。
    
    ```ts
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
      id: 1,
      content: {
        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,

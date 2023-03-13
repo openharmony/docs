@@ -111,18 +111,43 @@
    这个权限还需要在应用首次启动的时候弹窗获取用户授权。
 
    ```js
+   // FA模型
    import featureAbility from '@ohos.ability.featureAbility';
-	
+
    function grantPermission() {
        console.info('grantPermission');
        let context = featureAbility.getContext();
        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-           console.info(`result.requestCode=${result.requestCode}`)
-    
+           console.info(`requestPermissionsFromUser CallBack`);
+
        })
        console.info('end grantPermission');
    }
-    
+
+   grantPermission();
+   ```
+
+   ```ts
+   // Stage模型
+   import UIAbility from '@ohos.app.ability.UIAbility';
+
+   let context = null;
+
+   class EntryAbility  extends UIAbility  {
+     onWindowStageCreate(windowStage) {
+       context = this.context;
+     }
+   }
+
+   function grantPermission() {
+     let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+     context.requestPermissionsFromUser(permissions).then((data) => {
+       console.info('success: ${data}');
+     }).catch((error) => {
+       console.error('failed: ${error}');
+     });
+   }
+
    grantPermission();
    ```
    
@@ -255,9 +280,3 @@
     ```js
     localObject.setSessionId("");
     ```
-
-## 相关实例
-
-针对分布式数据对象，有以下相关实例可供参考：
-- [`DistributedNote`：分布式备忘录（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedNote)
-- [`DistributedObjectDms`：分布式跑马灯（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedObjectDms)

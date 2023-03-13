@@ -286,95 +286,6 @@ Uploads files. This API uses an asynchronous callback to return the result.
   });
   ```
 
-## request.upload<sup>(deprecated)</sup>
-
-upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
-
-Uploads files. This API uses a promise to return the result.
-
->  **NOTE**
->
->  This API is supported since API version 9 and is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
-
-**Example**
-
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
-      uploadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-  });
-  ```
-
-
-## request.upload<sup>(deprecated)</sup>
-
-upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
-
-Uploads files. This API uses an asynchronous callback to return the result.
-
->  **NOTE**
->
->  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
-
-**Example**
-
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig, (err, data) => {
-      if (err) {
-          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      uploadTask = data;
-  });
-  ```
-
 ## UploadTask
 
 Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object through [request.uploadFile<sup>9+</sup>](#requestuploadfile9) in promise mode or [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) in callback mode.
@@ -398,7 +309,7 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
 | callback | function | Yes| Callback for the upload progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -432,7 +343,7 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
 | callback | function | Yes| Callback for the HTTP Response Header event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -465,7 +376,7 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
 | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -507,7 +418,7 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
 | callback | function | No| Callback for the upload progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -541,7 +452,7 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
 | callback | function | No| Callback for the HTTP Response Header event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -573,7 +484,7 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
 | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -952,82 +863,6 @@ Downloads files. This API uses an asynchronous callback to return the result.
   });
   ```
 
-## request.download<sup>(deprecated)</sup>
-
-download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
-
-Downloads files. This API uses a promise to return the result.
-
->  **NOTE**
->
->  This API is supported since API version 9 and is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
-
-**Example**
-
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
-      downloadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-  })
-  ```
-
-
-## request.download<sup>(deprecated)</sup>
-
-download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
-
-Downloads files. This API uses an asynchronous callback to return the result.
-
->  **NOTE**
->
->  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
-
-**Example**
-
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
-  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-      if (err) {
-          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      downloadTask = data;
-  });
-  ```
-
-
 ## DownloadTask
 
 Implements file downloads. Before using any APIs of this class, you must obtain a **DownloadTask** object through [request.downloadFile<sup>9+</sup>](#requestdownloadfile9) in promise mode or [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1) in callback mode.
@@ -1050,7 +885,7 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
 | callback | function | Yes| Callback for the download progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1084,7 +919,7 @@ Unsubscribes from a download event. This API uses an asynchronous callback to re
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
 | callback | function | No| Callback for the download progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1172,7 +1007,7 @@ Subscribes to the download task failure event. This API uses an asynchronous cal
 | type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
 | callback | function | Yes| Callback for the download task failure event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1205,7 +1040,7 @@ Unsubscribes from the download task failure event. This API uses an asynchronous
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
 | callback | function | No| Callback for the download task failure event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1265,7 +1100,7 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result.|
 
 **Example**
 

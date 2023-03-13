@@ -60,10 +60,9 @@ createBundleContext(bundleName: string): Context;
 ```ts
 let bundleContext;
 try {
-    bundleContext = this.context.createBundleContext("com.example.test");
+    bundleContext = this.context.createBundleContext('com.example.test');
 } catch (error) {
-    console.log('createBundleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('createBundleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -100,12 +99,13 @@ createModuleContext(moduleName: string): Context;
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("entry");
+    moduleContext = this.context.createModuleContext('entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
+
+## Context.createModuleContext
 
 createModuleContext(bundleName: string, moduleName: string): Context;
 
@@ -139,10 +139,9 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("com.example.test", "entry");
+    moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -167,8 +166,7 @@ let applicationContext;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {
-    console.log('getApplicationContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('getApplicationContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 

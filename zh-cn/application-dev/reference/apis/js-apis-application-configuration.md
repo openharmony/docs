@@ -17,7 +17,6 @@
 
 **示例：**
   ```ts
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 
@@ -31,23 +30,24 @@ export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: Window.WindowStage) {
         let envCallback = {
             onConfigurationUpdated(config) {
-                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`)
+                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
                 let language = config.language;
                 let colorMode = config.colorMode;
+            },
+            onMemoryLevel(level){
+                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
             }
         };
 
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.registerEnvironmentCallback(envCallback);
+        applicationContext.on('environment',envCallback);
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {
-                hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.ERROR);
-                hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+                console.error('failed to load the content, error: ${JSON.stringify(err)}');
                 return;
             }
-            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-            hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+            console.info('Succeeded in loading the content, data: ${JSON.stringify(data)}');
         });
     }
 }

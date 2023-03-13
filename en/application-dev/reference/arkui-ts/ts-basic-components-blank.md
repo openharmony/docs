@@ -16,6 +16,8 @@ Not supported
 
 Blank(min?: number | string)
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -28,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
@@ -88,6 +90,6 @@ struct BlankExample {
   }
 }
 ```
-If the width of the parent container is not set, set **min** to specify the minimum width of the **\<Blank>** component. 
+If the width of the parent container is not set, set **min** to specify the minimum width of the **\<Blank>** component.
 
 ![blankmin](figures/blankmin.png)

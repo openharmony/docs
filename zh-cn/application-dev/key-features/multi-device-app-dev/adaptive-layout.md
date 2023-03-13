@@ -419,8 +419,8 @@ struct ScaleCapabilitySample {
       Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
         Column() {
           Image($r("app.media.illustrator")).width('100%').height('100%')
+            .aspectRatio(1)                           // 固定宽高比
         }
-        .aspectRatio(1)                           // 固定宽高比
         .border({ width: 2, color: "#66F1CCB8"})  // 边框，仅用于展示效果
       }
       .backgroundColor("#FFFFFF")

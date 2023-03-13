@@ -118,7 +118,7 @@ struct bindPopupPage {
 
     ![hello](figures/hello.PNG)
 
-## Initialization and Restrictions of Custom Components' Member Variables
+## Initialization Rules and Restrictions of Custom Components' Member Variables
 
 The member variables of a component can be initialized in either of the following ways:
 
@@ -133,7 +133,7 @@ The member variables of a component can be initialized in either of the followin
   MyComponent({counter: $myCounter})
   ```
 
-The allowed method depends on the decorator of the state variable, as shown in the following table.
+The allowed method depends on the decorator of the state variable, as described in the following table.
 
 | Decorator       | Local Initialization| Initialization Using Constructor Parameters|
 | ------------ | ----- | ----------- |

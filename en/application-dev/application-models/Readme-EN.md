@@ -17,8 +17,11 @@
     - ExtensionAbility Component
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [DataShareExtensionAbility](datashareextensionability.md)
+      - [DataShareExtensionAbility (System Applications Only)](datashareextensionability.md)
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
+      - [StaticSubscriberExtensionAbility](static-subscriber-extension-ability.md)
+      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [WindowExtensionAbility](windowextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want
@@ -31,8 +34,8 @@
     - [Component Startup Rules](component-startup-rules.md)
     - Inter-Device Application Component Interaction (Continuation) 
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
-      - [Cross-Device Migration](hop-cross-device-migration.md)
-      - [Multi-device Collaboration](hop-multi-device-collaboration.md)
+      - [Cross-Device Migration (System Applications Only)](hop-cross-device-migration.md)
+      - [Multi-device Collaboration (System Applications Only)](hop-multi-device-collaboration.md)
   - IPC
     - [Process Model](process-model-stage.md)
     - Common Events
@@ -62,7 +65,7 @@
       - [Creating a PageAbility](create-pageability.md)
       - [Starting a Local PageAbility](start-local-pageability.md)
       - [Stopping a PageAbility](stop-pageability.md)
-      - [Starting a Remote PageAbility](start-remote-pageability.md)
+      - [Starting a Remote PageAbility (System Applications Only)](start-remote-pageability.md)
       - [Starting a Specified Page](start-page.md)
       - [Window Properties](window-properties.md)
       - [Requesting Permissions](request-permissions.md)

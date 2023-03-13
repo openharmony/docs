@@ -108,7 +108,7 @@ UI测试脚本是在单元测试框架的基础上编写，主要就是增加了
 下面的示例代码是在上面的测试脚本基础上增量编写，首先需要增加依赖导包，如下示例代码所示：
 
 ```js
-import {UiDriver,BY,UiComponent,MatchPattern} from '@ohos.uitest'
+import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
 ```
 
 然后是具体测试代码编写，场景较为简单，就是在启动的应用页面上进行点击操作，然后增加检查点检查用例。
@@ -131,16 +131,16 @@ export default function abilityTest() {
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       //ui test code
-      //init uidriver
-      var driver = await UiDriver.create();
+      //init driver
+      var driver = await Driver.create();
       await driver.delayMs(1000);
-      //find button by text 'Next'
-      var button = await driver.findComponent(BY.text('Next'));
+      //find button on text 'Next'
+      var button = await driver.findComponent(ON.text('Next'));
       //click button
       await button.click();
       await driver.delayMs(1000);
       //check text
-      await driver.assertComponentExist(BY.text('after click'));
+      await driver.assertComponentExist(ON.text('after click'));
       await driver.pressBack();
       done();
     })
@@ -195,6 +195,7 @@ export default function abilityTest() {
 | itName       | 指定要执行的测试用例                                         | {itName}                                                     | -s itName testAttributeIt                 |
 | timeout      | 测试用例执行的超时时间                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
 | breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程 | true/false(默认值)                                           | -s breakOnError true                      |
+| random | 测试用例随机顺序执行 | true/false(默认值)                                           | -s random true                      |
 | testType     | 指定要执行用例的用例类型                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
 | level        | 指定要执行用例的用例级别                                      | 0,1,2,3,4                                                    | -s level 0                                |
 | size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small        

@@ -18,7 +18,7 @@
 - Certificate
   - [Certificate Overview](cert-overview.md)
   - [Certificate Development](cert-guidelines.md)
-- hapsigner  
+- hapsigner 
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
   - [HarmonyAppProvision Configuration File](app-provision-structure.md)

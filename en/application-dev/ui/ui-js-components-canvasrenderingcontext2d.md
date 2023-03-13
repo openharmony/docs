@@ -228,6 +228,8 @@ Globally define the canvas (**el**) and brush (**ctx**), and create a rectangle 
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -251,7 +253,6 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -596,7 +597,6 @@ After creating an image object, use the **drawImage** attribute to draw the imag
 /* xxx.css */
 .container{
   width: 100%;
-  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;

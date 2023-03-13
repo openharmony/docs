@@ -29,6 +29,8 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
@@ -44,13 +46,13 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 // publish callback
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
 }
 // NotificationRequest object
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -80,6 +82,8 @@ Publishes a notification. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
@@ -93,7 +97,7 @@ Publishes a notification. This API uses a promise to return the result.
 
 ```ts
 // NotificationRequest object
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     notificationId: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -132,6 +136,8 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
@@ -148,7 +154,7 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 // publish callback
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
@@ -156,7 +162,7 @@ function publishCallback(err) {
 // User ID
 let userId = 1;
 // NotificationRequest object
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -191,6 +197,8 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
@@ -204,7 +212,7 @@ Publishes a notification to a specified user. This API uses a promise to return 
 **Example**
 
 ```ts
-let notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     notificationId: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -242,6 +250,8 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -255,7 +265,7 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 // cancel callback
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
@@ -279,6 +289,8 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | label | string | No  | Notification label.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -312,6 +324,8 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -325,7 +339,7 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 // cancel callback
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
@@ -342,6 +356,8 @@ Cancels all notifications. This API uses an asynchronous callback to return the 
 **System capability**: SystemCapability.Notification.Notification
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -361,7 +377,7 @@ Cancels all notifications. This API uses an asynchronous callback to return the 
 // cancel callback
 function cancelAllCallback(err) {
     if (err) {
-        console.info("cancelAll failed " + JSON.stringify(err));
+        console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelAll success");
     }
@@ -378,6 +394,8 @@ Cancels all notifications. This API uses a promise to return the result.
 **System capability**: SystemCapability.Notification.Notification
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -414,6 +432,8 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -426,7 +446,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 // addSlot callback
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
@@ -457,6 +477,8 @@ Adds a notification slot. This API uses a promise to return the result.
 | slot | [NotificationSlot](#notificationslot) | Yes  | Notification slot to add.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -493,6 +515,8 @@ Adds a notification slot of a specified type. This API uses an asynchronous call
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -505,7 +529,7 @@ Adds a notification slot of a specified type. This API uses an asynchronous call
 // addSlot callback
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
@@ -528,6 +552,8 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 | type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -564,6 +590,8 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -576,7 +604,7 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 // addSlots callback
 function addSlotsCallBack(err) {
     if (err) {
-        console.info("addSlots failed " + JSON.stringify(err));
+        console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlots success");
     }
@@ -611,6 +639,8 @@ Adds an array of notification slots. This API uses a promise to return the resul
 | slots | Array\<[NotificationSlot](#notificationslot)\> | Yes  | Notification slots to add.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -651,6 +681,8 @@ Obtains a notification slot of a specified type. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -663,7 +695,7 @@ Obtains a notification slot of a specified type. This API uses an asynchronous c
 // getSlot callback
 function getSlotCallback(err,data) {
     if (err) {
-        console.info("getSlot failed " + JSON.stringify(err));
+        console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlot success");
     }
@@ -694,6 +726,8 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -719,6 +753,8 @@ Obtains all notification slots of this application. This API uses an asynchronou
 
 **Parameters**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | Yes  | Callback used to return all notification slots of the current application.|
@@ -737,7 +773,7 @@ Obtains all notification slots of this application. This API uses an asynchronou
 // getSlots callback
 function getSlotsCallback(err,data) {
     if (err) {
-        console.info("getSlots failed " + JSON.stringify(err));
+        console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlots success");
     }
@@ -760,6 +796,8 @@ Obtains all notification slots of this application. This API uses a promise to r
 | Promise\<Array\<[NotificationSlot](#notificationslot)\>\> | Promise used to return all notification slots of the current application.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -792,6 +830,8 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -804,7 +844,7 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 // removeSlot callback
 function removeSlotCallback(err) {
     if (err) {
-        console.info("removeSlot failed " + JSON.stringify(err));
+        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeSlot success");
     }
@@ -828,6 +868,8 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 | slotType | [SlotType](#slottype) | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -860,6 +902,8 @@ Removes all notification slots. This API uses an asynchronous callback to return
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -871,7 +915,7 @@ Removes all notification slots. This API uses an asynchronous callback to return
 ```ts
 function removeAllCallBack(err) {
     if (err) {
-        console.info("removeAllSlots failed " + JSON.stringify(err));
+        console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAllSlots success");
     }
@@ -888,6 +932,8 @@ Removes all notification slots. This API uses a promise to return the result.
 **System capability**: SystemCapability.Notification.Notification
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -925,6 +971,8 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -937,7 +985,7 @@ Sets whether to enable notification for a specified application. This API uses a
 ```ts
 function setNotificationEnablenCallback(err) {
     if (err) {
-        console.info("setNotificationEnablenCallback failed " + JSON.stringify(err));
+        console.error(`setNotificationEnablenCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setNotificationEnablenCallback success");
     }
@@ -968,6 +1016,8 @@ Sets whether to enable notification for a specified application. This API uses a
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1008,6 +1058,8 @@ Checks whether notification is enabled for a specified application. This API use
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1020,7 +1072,7 @@ Checks whether notification is enabled for a specified application. This API use
 ```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationEnabled success");
     }
@@ -1056,6 +1108,8 @@ Checks whether notification is enabled for a specified application. This API use
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1095,6 +1149,8 @@ Checks whether notification is enabled for this application. This API uses an as
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1106,7 +1162,7 @@ Checks whether notification is enabled for this application. This API uses an as
 ```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationEnabled success");
     }
@@ -1140,6 +1196,8 @@ Checks whether notification is enabled for the current application. This API use
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1178,6 +1236,8 @@ Sets whether to enable the notification badge for a specified application. This 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1190,7 +1250,7 @@ Sets whether to enable the notification badge for a specified application. This 
 ```ts
 function displayBadgeCallback(err) {
     if (err) {
-        console.info("displayBadge failed " + JSON.stringify(err));
+        console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("displayBadge success");
     }
@@ -1221,6 +1281,8 @@ Sets whether to enable the notification badge for a specified application. This 
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1261,6 +1323,8 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1273,7 +1337,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 ```ts
 function isBadgeDisplayedCallback(err, data) {
     if (err) {
-        console.info("isBadgeDisplayed failed " + JSON.stringify(err));
+        console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isBadgeDisplayed success");
     }
@@ -1310,6 +1374,8 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1326,6 +1392,79 @@ let bundle = {
 notificationManager.isBadgeDisplayed(bundle).then((data) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 });
+```
+
+## notificationManager.setBadgeNumber<sup>10+</sup>
+
+setBadgeNumber(badgeNumber: number): Promise\<void\>
+
+Sets the notification badge number. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| badgeNumber | number | Yes  | Notification badge number to set.|
+
+**Error codes**
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+let badgeNumber = 10
+notificationManager.setBadgeNumber(badgeNumber).then(() => {
+	console.info("displayBadge success");
+});
+```
+
+## notificationManager.setBadgeNumber<sup>10+</sup>
+
+setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
+
+Sets the notification badge number. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name     | Type                 | Mandatory| Description              |
+| ----------- | --------------------- | ---- | ------------------ |
+| badgeNumber | number                | Yes  | Notification badge number to set.        |
+| callback    | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+function setBadgeNumberCallback(err) {
+    if (err) {
+        console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("displayBadge success");
+    }
+}
+
+let badgeNumber = 10
+notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
 
 ## notificationManager.setSlotByBundle
@@ -1350,6 +1489,8 @@ Sets the notification slot for a specified application. This API uses an asynchr
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1362,7 +1503,7 @@ Sets the notification slot for a specified application. This API uses an asynchr
 ```ts
 function setSlotByBundleCallback(err) {
     if (err) {
-        console.info("setSlotByBundle failed " + JSON.stringify(err));
+        console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSlotByBundle success");
     }
@@ -1396,6 +1537,8 @@ Sets the notification slot for a specified application. This API uses a promise 
 | slot   | [NotificationSlot](#notificationslot) | Yes  | Notification slot.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1439,6 +1582,8 @@ Obtains the notification slots of a specified application. This API uses an asyn
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1451,7 +1596,7 @@ Obtains the notification slots of a specified application. This API uses an asyn
 ```ts
 function getSlotsByBundleCallback(err, data) {
     if (err) {
-        console.info("getSlotsByBundle failed " + JSON.stringify(err));
+        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlotsByBundle success");
     }
@@ -1487,6 +1632,8 @@ Obtains the notification slots of a specified application. This API uses a promi
 | Promise<Array\<[NotificationSlot](#notificationslot)\>> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1527,6 +1674,8 @@ Obtains the number of notification slots of a specified application. This API us
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1539,7 +1688,7 @@ Obtains the number of notification slots of a specified application. This API us
 ```ts
 function getSlotNumByBundleCallback(err, data) {
     if (err) {
-        console.info("getSlotNumByBundle failed " + JSON.stringify(err));
+        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlotNumByBundle success");
     }
@@ -1575,6 +1724,8 @@ Obtains the number of notification slots of a specified application. This API us
 | Promise\<number\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1626,7 +1777,7 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 ```ts
 function getAllActiveNotificationsCallback(err, data) {
     if (err) {
-        console.info("getAllActiveNotifications failed " + JSON.stringify(err));
+        console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getAllActiveNotifications success");
     }
@@ -1654,6 +1805,8 @@ Obtains all active notifications. This API uses a promise to return the result.
 | Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -1685,6 +1838,8 @@ Obtains the number of active notifications of this application. This API uses an
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1696,7 +1851,7 @@ Obtains the number of active notifications of this application. This API uses an
 ```ts
 function getActiveNotificationCountCallback(err, data) {
     if (err) {
-        console.info("getActiveNotificationCount failed " + JSON.stringify(err));
+        console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getActiveNotificationCount success");
     }
@@ -1720,6 +1875,8 @@ Obtains the number of active notifications of this application. This API uses a 
 | Promise\<number\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -1751,6 +1908,8 @@ Obtains active notifications of this application. This API uses an asynchronous 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1762,7 +1921,7 @@ Obtains active notifications of this application. This API uses an asynchronous 
 ```ts
 function getActiveNotificationsCallback(err, data) {
     if (err) {
-        console.info("getActiveNotifications failed " + JSON.stringify(err));
+        console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getActiveNotifications success");
     }
@@ -1786,6 +1945,8 @@ Obtains active notifications of this application. This API uses a promise to ret
 | Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -1818,6 +1979,8 @@ Cancels notifications under a notification group of this application. This API u
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1829,7 +1992,7 @@ Cancels notifications under a notification group of this application. This API u
 ```ts
 function cancelGroupCallback(err) {
     if (err) {
-        console.info("cancelGroup failed " + JSON.stringify(err));
+        console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelGroup success");
     }
@@ -1855,6 +2018,8 @@ Cancels notifications under a notification group of this application. This API u
 | groupName | string | Yes  | Name of the notification group.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -1893,6 +2058,8 @@ Removes notifications under a notification group of a specified application. Thi
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -1905,7 +2072,7 @@ Removes notifications under a notification group of a specified application. Thi
 ```ts
 function removeGroupByBundleCallback(err) {
     if (err) {
-        console.info("removeGroupByBundle failed " + JSON.stringify(err));
+        console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeGroupByBundle success");
     }
@@ -1937,6 +2104,8 @@ Removes notifications under a notification group of a specified application. Thi
 | groupName | string       | Yes  | Name of the notification group.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1976,6 +2145,8 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1987,7 +2158,7 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 ```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDoNotDisturbDate success");
     }
@@ -2021,6 +2192,8 @@ Sets the DND time. This API uses a promise to return the result.
 | date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2064,6 +2237,8 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2076,7 +2251,7 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 ```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDoNotDisturbDate success");
     }
@@ -2113,6 +2288,8 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2158,6 +2335,8 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2169,7 +2348,7 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 ```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDoNotDisturbDate success");
     }
@@ -2197,6 +2376,8 @@ Obtains the DND time. This API uses a promise to return the result.
 | Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2234,6 +2415,8 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2246,7 +2429,7 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 ```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDoNotDisturbDate success");
     }
@@ -2283,6 +2466,8 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2301,9 +2486,9 @@ notificationManager.getDoNotDisturbDate(userId).then((data) => {
 ```
 
 
-## notificationManager.supportDoNotDisturbMode
+## notificationManager.isSupportDoNotDisturbMode
 
-supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
+ isSupportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
 Checks whether DND mode is supported. This API uses an asynchronous callback to return the result.
 
@@ -2330,20 +2515,20 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-function supportDoNotDisturbModeCallback(err,data) {
+function isSupportDoNotDisturbModeCallback(err,data) {
     if (err) {
-        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+        console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("supportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success");
     }
 }
 
-notificationManager.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
+notificationManager.isSupportDoNotDisturbMode(isSupportDoNotDisturbModeCallback);
 ```
 
-## notificationManager.supportDoNotDisturbMode
+## notificationManager.isSupportDoNotDisturbMode
 
-supportDoNotDisturbMode(): Promise\<boolean\>
+isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 Checks whether DND mode is supported. This API uses a promise to return the result.
 
@@ -2361,6 +2546,8 @@ Checks whether DND mode is supported. This API uses a promise to return the resu
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2370,7 +2557,7 @@ Checks whether DND mode is supported. This API uses a promise to return the resu
 **Example**
 
 ```ts
-notificationManager.supportDoNotDisturbMode().then((data) => {
+notificationManager.isSupportDoNotDisturbMode().then((data) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
@@ -2392,6 +2579,8 @@ Checks whether a specified template is supported. This API uses an asynchronous 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2405,7 +2594,7 @@ Checks whether a specified template is supported. This API uses an asynchronous 
 let templateName = 'process';
 function isSupportTemplateCallback(err, data) {
     if (err) {
-        console.info("isSupportTemplate failed " + JSON.stringify(err));
+        console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isSupportTemplate success");
     }
@@ -2435,6 +2624,8 @@ Checks whether a specified template is supported. This API uses a promise to ret
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2469,6 +2660,8 @@ Requests notification to be enabled for this application. This API uses an async
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2480,7 +2673,7 @@ Requests notification to be enabled for this application. This API uses an async
 ```javascript
 function requestEnableNotificationCallback(err) {
     if (err) {
-        console.info("requestEnableNotification failed " + JSON.stringify(err));
+        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("requestEnableNotification success");
     }
@@ -2498,6 +2691,8 @@ Requests notification to be enabled for this application. This API uses a promis
 **System capability**: SystemCapability.Notification.Notification
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2536,6 +2731,8 @@ Sets whether this device supports distributed notifications. This API uses an as
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2548,7 +2745,7 @@ Sets whether this device supports distributed notifications. This API uses an as
 ```javascript
 function setDistributedEnableCallback() {
     if (err) {
-        console.info("setDistributedEnable failed " + JSON.stringify(err));
+        console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDistributedEnable success");
     }
@@ -2578,6 +2775,8 @@ Sets whether this device supports distributed notifications. This API uses a pro
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2613,6 +2812,8 @@ Checks whether this device supports distributed notifications. This API uses an 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2625,7 +2826,7 @@ Checks whether this device supports distributed notifications. This API uses an 
 ```javascript
 function isDistributedEnabledCallback(err, data) {
     if (err) {
-        console.info("isDistributedEnabled failed " + JSON.stringify(err));
+        console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isDistributedEnabled success " + JSON.stringify(data));
     }
@@ -2651,6 +2852,8 @@ Checks whether this device supports distributed notifications. This API uses a p
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2691,6 +2894,8 @@ Sets whether a specified application supports distributed notifications. This AP
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -2704,7 +2909,7 @@ Sets whether a specified application supports distributed notifications. This AP
 ```javascript
 function setDistributedEnableByBundleCallback(err) {
     if (err) {
-        console.info("enableDistributedByBundle failed " + JSON.stringify(err));
+        console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("enableDistributedByBundle success");
     }
@@ -2741,6 +2946,8 @@ Sets whether a specified application supports distributed notifications. This AP
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                 |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2785,6 +2992,8 @@ Checks whether a specified application supports distributed notifications. This 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -2798,7 +3007,7 @@ Checks whether a specified application supports distributed notifications. This 
 ```javascript
 function isDistributedEnabledByBundleCallback(data) {
     if (err) {
-        console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
+        console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
     }
@@ -2836,6 +3045,8 @@ Checks whether a specified application supports distributed notifications. This 
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2878,6 +3089,8 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2889,7 +3102,7 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 ```javascript
 function getDeviceRemindTypeCallback(err, data) {
     if (err) {
-        console.info("getDeviceRemindType failed " + JSON.stringify(err));
+        console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDeviceRemindType success");
     }
@@ -2917,6 +3130,8 @@ Obtains the notification reminder type. This API uses a promise to return the re
 | Promise\<[DeviceRemindType](#deviceremindtype)\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2956,6 +3171,8 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
@@ -2972,7 +3189,7 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 // publishAsBundle callback
 function callback(err) {
     if (err) {
-        console.info("publishAsBundle failed " + JSON.stringify(err));
+        console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publishAsBundle success");
     }
@@ -3019,6 +3236,8 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 | userId               | number                                      | Yes  | User ID.                           |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
@@ -3080,6 +3299,8 @@ Cancels a notification published by the reminder agent. This API uses an asynchr
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3094,7 +3315,7 @@ Cancels a notification published by the reminder agent. This API uses an asynchr
 // cancelAsBundle
 function cancelAsBundleCallback(err) {
     if (err) {
-        console.info("cancelAsBundle failed " + JSON.stringify(err));
+        console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelAsBundle success");
     }
@@ -3130,6 +3351,8 @@ Cancels a notification published by the reminder agent. This API uses a promise 
 | userId               | number | Yes  | User ID.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3175,6 +3398,8 @@ Sets whether to enable a specified notification slot type for a specified applic
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -3188,7 +3413,7 @@ Sets whether to enable a specified notification slot type for a specified applic
 // setNotificationEnableSlot
 function setNotificationEnableSlotCallback(err) {
     if (err) {
-        console.info("setNotificationEnableSlot failed " + JSON.stringify(err));
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setNotificationEnableSlot success");
     }
@@ -3222,6 +3447,8 @@ Sets whether to enable a specified notification slot type for a specified applic
 | enable | boolean                       | Yes  | Whether to enable notification.    |
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3264,6 +3491,8 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -3277,7 +3506,7 @@ Checks whether a specified notification slot type is enabled for a specified app
 // isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
     if (err) {
-        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationSlotEnabled success");
     }
@@ -3315,6 +3544,8 @@ Checks whether a specified notification slot type is enabled for a specified app
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3356,6 +3587,8 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3371,7 +3604,7 @@ let enable = true;
 
 function callback(err) {
     if (err) {
-        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
+        console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
@@ -3408,6 +3641,8 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3424,7 +3659,7 @@ let enable = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err) => {
-    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
+    console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3449,6 +3684,8 @@ Obtains whether the notification sync feature is enabled for devices where the a
 | callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3499,6 +3736,8 @@ Obtains whether the notification sync feature is enabled for devices where the a
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3737,7 +3976,7 @@ Describes the notification request.
 | label                 | string                                        | Yes | Yes | Notification label.                  |
 | badgeIconStyle        | number                                        | Yes | Yes | Notification badge type.              |
 | showDeliveryTime      | boolean                                       | Yes | Yes | Whether to display the time when the notification is delivered.          |
-| actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Yes | Yes | Buttons in the notification. Up to two buttons are allowed.    |
+| actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Yes | Yes | Buttons in the notification. Up to three buttons are allowed. |
 | smallIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Small notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
 | largeIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Large notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
 | creatorBundleName     | string                                        | Yes | No | Name of the bundle that creates the notification.            |

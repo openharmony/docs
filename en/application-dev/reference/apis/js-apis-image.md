@@ -736,9 +736,15 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 **Example**
 
 ```js
-async function Demo() {
-	await pixelmap.rotate(90.0);
-}
+var angle = 90.0;
+pixelmap.rotate(angle, (err) => {
+	if (err) {
+        console.error("Failed to set rotation.");
+        return;
+    } else {
+        console.log("Succeeded in setting rotation.");
+	}
+})
 ```
 
 ### rotate<sup>9+</sup>
@@ -942,7 +948,8 @@ Creates an **ImageSource** instance based on the URI.
 **Example**
 
 ```js
-let path = this.context.getApplicationContext().fileDirs + "test.jpg";
+let context = featureAbility.getContext();
+let path = context.getCacheDir() + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
@@ -2039,7 +2046,7 @@ Creates an **ImageCreator** instance by specifying the image width, height, form
 
 | Type                          | Description                                   |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
+| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|    
 
 **Example**
 
@@ -2524,7 +2531,7 @@ Defines the option for image packing.
 
 | Name   | Type  | Readable| Writable| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
+| format  | string | Yes  | Yes  | Format of the packed image.<br>Only the JPG and WebP formats are supported.|
 | quality | number | Yes  | Yes  | Quality of the output image in JPEG encoding. The value ranges from 1 to 100.|
 | bufferSize<sup>9+</sup> | number | Yes  | Yes  | Buffer size, which is used to set the image size. The default value is 10 MB.|
 

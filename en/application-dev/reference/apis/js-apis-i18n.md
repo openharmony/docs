@@ -1,6 +1,6 @@
 # @ohos.i18n (Internationalization)
 
-The **i18n** module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402.
+ The **i18n** module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402.
 The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the i18n module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
@@ -53,7 +53,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let displayCountry = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
   } catch(error) {
-    console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -92,7 +92,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let displayLanguage = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
-    console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -100,7 +100,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-Obtains the list of system languages.
+Obtains the list of system languages. For details about languages, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -123,7 +123,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let systemLanguages = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
-    console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -131,7 +131,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-Obtains the list of countries and regions supported for the specified language.
+Obtains the list of countries and regions supported for the specified language. For details about countries or regions, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -160,7 +160,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let systemCountries = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ], 240 countries or regions in total
   } catch(error) {
-    console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -198,7 +198,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let res = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
-    console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -206,7 +206,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
 
 static getSystemLanguage(): string
 
-Obtains the system language.
+Obtains the system language. For details about languages, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -229,7 +229,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let systemLanguage = I18n.System.getSystemLanguage(); // systemLanguage indicates the current system language.
   } catch(error) {
-    console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -264,7 +264,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     I18n.System.setSystemLanguage('zh'); // Set the current system language to zh.
   } catch(error) {
-    console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -272,7 +272,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
 
 static getSystemRegion(): string
 
-Obtains the system region.
+Obtains the system region. For details about system regions, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -295,7 +295,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let systemRegion = I18n.System.getSystemRegion(); // Obtain the current system region.
   } catch(error) {
-    console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -330,7 +330,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     I18n.System.setSystemRegion('CN'); // Set the current system region to CN.
   } catch(error) {
-    console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -338,7 +338,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
 
 static getSystemLocale(): string
 
-Obtains the system locale.
+Obtains the system locale. For details about system locales, see [Instantiating the Locale Object](../../internationalization/intl-guidelines.md#how-to-develop).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -361,7 +361,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let systemLocale = I18n.System.getSystemLocale(); // Obtain the current system locale.
   } catch(error) {
-    console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -396,7 +396,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     I18n.System.setSystemLocale('zh-CN'); // Set the current system locale to zh-CN.
   } catch(error) {
-    console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -427,7 +427,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let is24HourClock = I18n.System.is24HourClock(); // Check whether the 24-hour clock is enabled.
   } catch(error) {
-    console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -463,7 +463,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     I18n.System.set24HourClock(true);
   } catch(error) {
-    console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -502,7 +502,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     I18n.System.addPreferredLanguage(language, index); // Add zh-CN to the first place in the preferred language list.
   } catch(error) {
-    console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -539,7 +539,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     I18n.System.removePreferredLanguage(index);
   } catch(error) {
-    console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -570,7 +570,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let preferredLanguageList = I18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
   } catch(error) {
-    console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -601,7 +601,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage(); // Obtain the first language in the preferred language list.
   } catch(error) {
-    console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -632,7 +632,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // Obtain the preferred language of an application.
   } catch(error) {
-    console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -640,7 +640,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
 
 static setUsingLocalDigit(flag: boolean): void
 
-Sets whether to enable the local digit switch.
+Specifies whether to enable use of local digits.
 
 **System API**: This is a system API.
 
@@ -667,7 +667,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     I18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
   } catch(error) {
-    console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -675,7 +675,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
 
 static getUsingLocalDigit(): boolean
 
-Checks whether the local digit switch is turned on.
+Checks whether use of local digits is enabled.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -698,7 +698,7 @@ For details about the error codes, see [i18n Error Codes](../errorcodes/errorcod
   try {
     let status = I18n.System.getUsingLocalDigit(); // Check whether the local digit switch is enabled.
   } catch(error) {
-    console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1025,7 +1025,7 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | No   | Specified date in this **Calendar** object. If this parameter is left unspecified, the system checks whether the current date in the **Calendar** object is a weekend.|
+| date | Date | No   | Specified date in this **Calendar** object. If the **date** parameter is not specified, the system checks whether the current date is a weekend.|
 
 **Return value**
 

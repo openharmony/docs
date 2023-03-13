@@ -17,6 +17,8 @@ js侧通过`import`引入native侧包含处理js逻辑的so，如：`import hell
 
 ### so命名规则
 
+**so命名必须符合以下规则：**
+
 * 每个模块对应一个so。
 * 如模块名为`hello`，则so的名字为`libhello.so`，`napi_module`中`nm_modname`字段应为`hello`，大小写与模块名保持一致，应用使用时写作：`import hello from 'libhello.so'`。
 

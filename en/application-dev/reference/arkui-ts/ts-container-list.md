@@ -1,6 +1,6 @@
 # List
 
-The **\<list>** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
+The **\<List>** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
 
 > **NOTE**
 >
@@ -17,6 +17,8 @@ This component supports the **[\<ListItem>](ts-container-listitem.md)** and **[\
 
 List(value?:{space?: number | string, initialIndex?: number, scroller?: Scroller})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -31,19 +33,21 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| listDirection | [Axis](ts-appendix-enums.md#axis) | Direction in which the list items are arranged.<br>Default value: **Axis.Vertical**|
-| divider                      | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.|
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**|
-| cachedCount | number                                   | Number of list items or list item groups to be preloaded. A list item group is calculated as a whole, and all list items of the group are preloaded at the same time. For details, see [Minimizing White Blocks During Swiping](../../ui/ui-ts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**|
+| listDirection | [Axis](ts-appendix-enums.md#axis) | Direction in which the list items are arranged.<br>Default value: **Axis.Vertical**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| divider                      | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| cachedCount | number                                   | Number of list items or list item groups to be preloaded. A list item group is calculated as a whole, and all list items of the group are preloaded at the same time. For details, see [Minimizing White Blocks During Swiping](../../ui/ui-ts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | editMode<sup>(deprecated)</sup> | boolean | Whether to enter editing mode.<br>This API is deprecated since API version 9.<br>Default value: **false**|
-| edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Scroll effect.<br>Default value: **EdgeEffect.Spring**|
-| chainAnimation | boolean | Whether to display chained animations on this list when it slides or its top or bottom is dragged. The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.<br>Default value: **false**<br>- **false**: No chained animations are displayed.<br>- **true**: Chained animations are displayed.|
-| multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.|
-| lanes<sup>9+</sup> | number \| [LengthConstrain](ts-types.md#lengthconstrain) | In the following description, **listDirection** is set to **Axis.Vertical**:<br>Number of columns in which the list items are arranged along the cross axis.<br>Default value: **1**<br>The rules are as follows:<br>- If the value is set to a number, the column width is determined based on the specified number and the cross-axis width of the **\<List>** component.<br>- If the value is set to {minLength, maxLength}, the number of columns is adjusted adaptively based on the width of the **\<List>** component, ensuring that the width respects the {minLength, maxLength} constraints during adaptation. The **minLength** constraint is prioritized. For example, if **lanes** is set to **{minLength: 40vp, maxLength: 60vp}** and the width of the **\<List>** component is 70 vp, the list items are arranged in one column with their alignment compliant with the **alignListItem** settings. If the width of the **\<List>** component is changed to 80 vp, which is twice the value of **minLength**, the list items are arranged in two columns.|
-| alignListItem<sup>9+</sup> | ListItemAlign | Alignment mode of list items along the cross axis when: Cross-axis width of the **\<List>** component > Cross-axis width of list items x Value of **lanes**.<br>Default value: **ListItemAlign.Start**|
-| sticky<sup>9+</sup> | StickyStyle | Whether to pin the header to the top or the footer to the bottom in the **\<ListItemGroup>** component. This attribute is used together with the **[\<ListItemGroup>](ts-container-listitemgroup.md)** component.<br>Default value: **StickyStyle.None**<br>**NOTE**<br>The **sticky** attribute can be set to **StickyStyle.Header** or \| **StickyStyle.Footer** to support both the pin-to-top and pin-to-bottom features.|
+| edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Scroll effect.<br>Default value: **EdgeEffect.Spring**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| chainAnimation | boolean | Whether to display chained animations on this list when it slides or its top or bottom is dragged. The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.<br>Default value: **false**<br>- **false**: No chained animations are displayed.<br>- **true**: Chained animations are displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| lanes<sup>9+</sup> | number \| [LengthConstrain](ts-types.md#lengthconstrain) | In the following description, **listDirection** is set to **Axis.Vertical**:<br>Number of columns in which the list items are arranged along the cross axis.<br>Default value: **1**<br>The rules are as follows:<br>- If the value is set to a number, the column width is determined based on the specified number and the cross-axis width of the **\<List>** component.<br>- If the value is set to {minLength, maxLength}, the number of columns is adjusted adaptively based on the width of the **\<List>** component, ensuring that the width respects the {minLength, maxLength} constraints during adaptation. The **minLength** constraint is prioritized. For example, if **lanes** is set to **{minLength: 40vp, maxLength: 60vp}** and the width of the **\<List>** component is 70 vp, the list items are arranged in one column with their alignment compliant with the **alignListItem** settings. If the width of the **\<List>** component is changed to 80 vp, which is twice the value of **minLength**, the list items are arranged in two columns.<br>This API is supported in ArkTS widgets.|
+| alignListItem<sup>9+</sup> | ListItemAlign | Alignment mode of list items along the cross axis when: Cross-axis width of the **\<List>** component > Cross-axis width of list items x Value of **lanes**.<br>Default value: **ListItemAlign.Start**<br>This API is supported in ArkTS widgets.|
+| sticky<sup>9+</sup> | StickyStyle | Whether to pin the header to the top or the footer to the bottom in the **\<ListItemGroup>** component. This attribute is used together with the **[\<ListItemGroup>](ts-container-listitemgroup.md)** component.<br>Default value: **StickyStyle.None**<br>This API is supported in ArkTS widgets.<br>**NOTE**<br>The **sticky** attribute can be set to **StickyStyle.Header** or \| **StickyStyle.Footer** to support both the pin-to-top and pin-to-bottom features.|
 
 ## ListItemAlign<sup>9+</sup>
+
+This API is supported in ArkTS widgets.
 
 | Name  | Description                                  |
 | ------ | -------------------------------------- |
@@ -52,6 +56,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | End    | The list items are packed toward the end edge of the **\<List>** component in the cross axis.|
 
 ## StickyStyle<sup>9+</sup>
+
+This API is supported in ArkTS widgets.
 
 | Name  | Description                                  |
 | ------ | -------------------------------------- |
@@ -66,12 +72,13 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Description|
 | -------- | -------- |
 | onItemDelete<sup>(deprecated)</sup>(event: (index: number) => boolean) | Triggered when a list item is deleted.<br>This API is deprecated since API version 9.<br>- **index**: index of the deleted list item.|
-| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the list scrolls.<br>- **scrollOffset**: scroll offset.<br>- **[scrollState](#scrollstate)**: current scroll state.|
-| onScrollIndex(event: (start: number, end: number) => void) | Triggered when scrolling starts.<br>When calculating the index value, the **\<ListItemGroup>** accounts for one index value as a whole, and the index values of the list items within are not calculated.<br>- **start**: index of the scroll start position.<br>- **end**: index of the scroll end position.|
-| onReachStart(event: () => void) | Triggered when the list reaches the start position.|
-| onReachEnd(event: () => void) | Triggered when the list reaches the end position.|
-| onScrollBegin<sup>9+</sup>(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | Triggered when the list starts to scroll. The input parameters indicate the amount by which the list will scroll. The event handler then works out the amount by which the list needs to scroll based on the real-world situation and returns the result.<br>- **dx**: amount by which the list will scroll in the horizontal direction.<br>- **dy**: amount by which the list will scroll in the horizontal direction.<br>- **dxRemain**: amount by which the list actually scrolls in the horizontal direction.<br>- **dyRemain**: amount by which the list actually scrolls in the vertical direction.|
-| onScrollStop(event: () => void) | Triggered when the list stops scrolling after the user's finger leaves the screen. This event will not be triggered if the scrolling is initiated by using [Scroller](ts-container-scroll.md#scroller).|
+| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the list scrolls.<br>- **scrollOffset**: scroll offset.<br>- **[scrollState](#scrollstate)**: current scroll state.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onScrollIndex(event: (start: number, end: number) => void) | Triggered when scrolling starts.<br>When calculating the index value, the **\<ListItemGroup>** accounts for one index value as a whole, and the index values of the list items within are not calculated.<br>- **start**: index of the scroll start position.<br>- **end**: index of the scroll end position.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onReachStart(event: () => void) | Triggered when the list reaches the start position.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onReachEnd(event: () => void) | Triggered when the list reaches the end position.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the list starts to scroll. The input parameters indicate the amount by which the list will scroll. The event handler then works out the amount by which the list needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current sliding status.<br>- **offsetRemain**: actual amount by which the list scrolls.<br>This API is supported in ArkTS widgets.|
+| onScrollStart<sup>9+</sup>(event: () => void) | Triggered when the list starts scrolling initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.|
+| onScrollStop(event: () => void) | Triggered when the list stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | onItemMove(event: (from: number, to: number) => boolean) | Triggered when a list item moves.<br>- **from**: index of the item before moving.<br>- **to**: index of the item after moving.|
 | onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void) | Triggered when a list element starts to be dragged.<br>- **event**: See [ItemDragInfo](ts-container-grid.md#itemdraginfo).<br>- **itemIndex**: index of the dragged list element.|
 | onItemDragEnter(event: (event: ItemDragInfo) => void) | Triggered when the dragged item enters the drop target of the list.<br>- **event**: See [ItemDragInfo](ts-container-grid.md#itemdraginfo).|
@@ -80,6 +87,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | Triggered when the dragged item is dropped on the drop target of the list.<br>- **event**: See [ItemDragInfo](ts-container-grid.md#itemdraginfo).<br>- **itemIndex**: initial position of the dragged item.<br>- **insertIndex**: index of the position to which the dragged item will be dropped.<br>- **isSuccess**: whether the dragged item is successfully dropped.|
 
 ## ScrollState
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                    |
 | ------ | ------------------------- |

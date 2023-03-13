@@ -696,8 +696,8 @@ ReminderRequestTimer extends ReminderRequest
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | year | number | 是 | 年 |
-| month | number | 是 | 月 |
-| day | number | 是 | 日 |
-| hour | number | 是 | 时 |
-| minute | number | 是 | 分 |
-| second | number | 否 | 秒 |
+| month | number | 是 | 月，取值范围是[1, 12]。 |
+| day | number | 是 | 日，取值范围是[1, 31]。 |
+| hour | number | 是 | 时，取值范围是[0, 23]。 |
+| minute | number | 是 | 分，取值范围是[0, 59]。 |
+| second | number | 否 | 秒，取值范围是[0, 59]。 |

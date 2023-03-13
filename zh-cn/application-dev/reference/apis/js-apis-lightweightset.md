@@ -611,7 +611,7 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
 lightWeightSet.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

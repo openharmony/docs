@@ -374,4 +374,80 @@ The specified bundle does not support clearing of cache files.
 1.确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md%23bm%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4)查询对应的应用信息，查看isSystemApp是否为true。
 2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md%23bm%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4)查询对应的应用信息，查看userDataClearable是否为true。
 
+## 17700031 Overlay特性校验失败导致HAP安装失败
+
+**错误信息**<br/>
+Failed to install the HAP because the overlay check of the HAP is failed.
+
+**错误描述**<br/>
+当安装overlay特征的应用时，指定的应用和待安装的overlay特征应用不为预置应用，或者目标应用/目标module是overlay特征的应用/module。
+
+**可能原因**<br/>
+1. 使用应用间的overlay特性时，overlay特征应用必须为预置应用。
+2. 使用应用间的overlay特性时，目标应用必须为预置应用。
+3. 使用应用间的overlay特性时，目标应用不能是具有overlay特征的应用
+4. 目标module不能是具有overlay特征的module。
+
+**处理步骤**<br/>
+1. 检查overlay特征应用是否为预置应用。
+2. 检查目标应用是否为预置应用。
+3. 检查目标应用是否不为overlay特征的应用
+4. 检查目标module是否不为overlay特征的module。
+
+## 17700032 指定的应用不包含overlay特征的module
+
+**错误信息**<br/>
+The specified bundle does not contain any overlay module.
+
+**错误描述**<br/>
+查询指定应用中overlay特征module的overlayModuleInfo时, 指定的应用不包含overlay特征module。
+
+**可能原因**<br/>
+指定的应用不包含overlay特征module。
+
+**处理步骤**<br/>
+检查指定的应用是否不包含overlay特征module。
+
+## 17700033 指定的module不是overlay特征的module
+
+**错误信息**<br/>
+The specified module is not overlay module.
+
+**错误描述**<br/>
+查询指定的overlay特征module的overlayModuleInfo时, 指定的module不是overlay特征module。
+
+**可能原因**<br/>
+指定的module不是overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的module是否不为overlay特征的module。
+
+## 17700034 指定的module是overlay特征的module
+
+**错误信息**<br/>
+The specified module is overlay module.
+
+**错误描述**<br/>
+查询指定的目标module所关联的overlayModuleInfo时, 指定的module是overlay特征module。
+
+**可能原因**<br/>
+指定的module是overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的module是否为overlay特征的module。
+
+## 17700035 指定的应用只包含overlay特征的module
+
+**错误信息**<br/>
+The specified bundle is overlay bundle.
+
+**错误描述**<br/>
+查询指定应用的目标module所关联的overlayModuleInfo时, 指定的应用只包含overlay特征的module。
+
+**可能原因**<br/>
+指定的应用只包含overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的应用是否只包含overlay特征的module。
+
 <!--no_check-->
