@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control.
+The **Webview** module provides APIs for web control. It can be used with the **[<Web\>](../arkui-ts/ts-basic-components-web.md)** component, which can be used to display web pages.
 
 > **NOTE**
 >
@@ -20,7 +20,7 @@ The **Webview** module provides APIs for web control.
 import web_webview from '@ohos.web.webview';
 ```
 
-### once
+## once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -43,7 +43,7 @@ import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
   console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("www.example.com", "a=b")
+  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
 })
 
 @Entry
@@ -232,15 +232,15 @@ The following code snippet exemplifies calling this API after the MainAbility is
 
 ```ts
 // xxx.ts
-import Ability from '@ohos.application.Ability'
-import web_webview from '@ohos.web.webview'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("MainAbility onCreate")
+        console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         globalThis.abilityWant = want
-        console.log("MainAbility onCreate done")
+        console.log("EntryAbility onCreate done")
     }
 }
 ```
@@ -255,6 +255,46 @@ import web_webview from '@ohos.web.webview';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setWebDebuggingAccess
+
+static setWebDebuggingAccess(webDebuggingAccess: boolean): void
+
+Sets whether to enable web debugging.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name             | Type   | Mandatory  |  Description|
+| ------------------ | ------- | ---- | ------------- |
+| webDebuggingAccess | boolean | Yes  | Whether to enable web debugging.|
+
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  aboutToAppear():void {
+    try {
+      web_webview.WebviewController.setWebDebuggingAccess(true);
+    } catch(error) {
+      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+    }
+  }
 
   build() {
     Column() {
@@ -338,7 +378,6 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
-      .webDebuggingAccess(true)
     }
   }
 }
@@ -438,7 +477,34 @@ struct WebComponent {
 }
 ```
 
-### accessforward
+Example of loading local resource:
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### accessForward
 
 accessForward(): boolean
 
@@ -1565,7 +1631,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.ports && this.ports[1]) {
-              this.ports[1].postMessageEvent("this.sendFromEts");
+              this.ports[1].postMessageEvent(this.sendFromEts);
             } else {
               console.error(`ports is null, Please initialize first`);
             }
@@ -1607,7 +1673,7 @@ var output = document.querySelector('.output');
 window.addEventListener('message', function (event) {
     if (event.data == '__init_port__') {
         if (event.ports[0] != null) {
-            The h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
+            h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
             h5Port.onmessage = function (event) {
               // 2. Receive the message sent from the eTS side.
               var msg = 'Got message from ets:';
@@ -3174,7 +3240,7 @@ struct WebComponent {
       Button('getCookie')
         .onClick(() => {
           try {
-            let value = web_webview.WebCookieManager.getCookie('www.example.com');
+            let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3226,7 +3292,7 @@ struct WebComponent {
       Button('setCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
+            web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -4094,9 +4160,6 @@ struct WebComponent {
           try {
             this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
-            ForEach(this.username_password, (item) => {
-              console.log('username_password: ' + item);
-            }, item => item)
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
@@ -4165,7 +4228,7 @@ Checks whether any saved HTTP authentication credentials exist. This API returns
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist; returns **false** otherwise. |
+| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist; returns **false** otherwise.|
 
 **Example**
 
@@ -4730,3 +4793,4 @@ Defines a custom URL scheme.
 | schemeName     | string    | Yes  | Yes  | Name of the custom URL scheme. The value can contain a maximum of 32 characters and include only lowercase letters, digits, periods (.), plus signs (+), and hyphens (-).       |
 | isSupportCORS  | boolean   | Yes  | Yes  | Whether to support cross-origin resource sharing (CORS).   |
 | isSupportFetch | boolean   | Yes  | Yes  | Whether to support fetch requests.          |
+
