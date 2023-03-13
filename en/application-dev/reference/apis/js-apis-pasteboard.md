@@ -636,7 +636,7 @@ let opt = {
   scaleMode: 1
 };
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    let pasteData = pasteboard.createData(MIMETYPE_PIXELMAP, pixelMap);
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_PIXELMAP, pixelMap);
     let PixelMap = pasteData.getPrimaryPixelMap();
 });
 ```
@@ -812,7 +812,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900001 | The index is out of range. |
+| 12900001 | The index is out of the record. |
 
 **Example**
 
@@ -910,7 +910,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900001 | The index is out of range. |
+| 12900001 | The index is out of the record. |
 
 **Example**
 
@@ -940,7 +940,7 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900001 | The index is out of range. |
+| 12900001 | The index is out of the record. |
 
 **Example**
 
