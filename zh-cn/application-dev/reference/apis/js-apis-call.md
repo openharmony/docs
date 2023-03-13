@@ -20,6 +20,10 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 拨打电话。使用callback异步回调。
 
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#dialCall)替代。
+
 **需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
@@ -45,6 +49,10 @@ call.dial("138xxxxxxxx", (err, data) => {
 dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
 
 拨打电话，可设置通话参数。使用callback异步回调。
+
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#dialCall)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -74,6 +82,10 @@ call.dial("138xxxxxxxx", {
 dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 拨打电话，可设置通话参数。使用Promise异步回调。
+
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#dialCall)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
