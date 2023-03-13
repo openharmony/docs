@@ -22,7 +22,7 @@ import stationary from '@ohos.stationary'
 
 ### 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | state | [ActivityState](#activitystate) | 是 | 否 | 设备状态变化返回值。 |
 
@@ -32,7 +32,7 @@ import stationary from '@ohos.stationary'
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
-| 名称 | 描述 |
+| 名称 | 描述说明 |
 | -------- | -------- |
 | still | 绝对静止。 |
 | relativeStill | 相对静止。 |
