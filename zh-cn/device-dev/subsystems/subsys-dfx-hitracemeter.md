@@ -144,7 +144,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
     #include "hitrace_meter.h"//接口函数定义头文件
     ```
 
-3. 接口调用，需将要跟踪的Trace value传入参数，目前HiTraceMeter支持的Trace Tag在基本概念hitrace_meter.h中都已列出，我们以OHOS这个Tag为例，假设我们需要获取func1，func2函数的Trace数据，参考下面实例，在shell中执行hitrace命令后会自动抓取Trace数据，抓到的Trace数据中包括了函数调用过程以及调用过程消耗的内存和时间，可用于分析代码调用流程，代码性能问题。
+3. 接口调用，将需要跟踪的Trace value传入参数，目前HiTraceMeter支持的Trace Tag在基本概念hitrace_meter.h中都已列出，我们以OHOS这个Tag为例，假设我们需要获取func1，func2函数的Trace数据，参考下面实例，在shell中执行hitrace命令后会自动抓取Trace数据，抓到的Trace数据中包括了函数调用过程以及调用过程消耗的内存和时间，可用于分析代码调用流程，代码性能问题。
 
 
 ```cpp
