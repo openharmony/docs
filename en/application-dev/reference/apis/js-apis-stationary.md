@@ -18,7 +18,7 @@ import stationary from '@ohos.stationary'
 
 Defines the response interface to receive the device status.
 
-**System capability:** SystemCapability.Msdp.DeviceStatus.Stationary:
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
 ### Attributes
 
@@ -30,7 +30,7 @@ Defines the response interface to receive the device status.
 
 Enumerates the device status types.
 
-**System capability:** SystemCapability.Msdp.DeviceStatus.Stationary:
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
 | Name| Description|
 | -------- | -------- |
@@ -66,7 +66,7 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 
 Subscribes to the device status.
 
-**System capability:** SystemCapability.Msdp.DeviceStatus.Stationary:
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
 **Parameters**
 
@@ -92,7 +92,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 Obtains the device status.
 
-**System capability:** SystemCapability.Msdp.DeviceStatus.Stationary:
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
 **Parameters**
 
@@ -115,7 +115,7 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 
 Unsubscribes from the device status.
 
-**System capability:** SystemCapability.Msdp.DeviceStatus.Stationary:
+**System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
 **Parameters**
 
