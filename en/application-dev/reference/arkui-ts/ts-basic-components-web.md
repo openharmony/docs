@@ -1,6 +1,6 @@
 # Web
 
-The **<Web\>** component can be used to display web pages.
+The **<Web\>** component can be used to display web pages. It can be used with the [@ohos.web.webview](../apis/js-apis-webview.md) module, which provides APIs for web control.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ Not supported
 
 ## APIs
 
-Web(options: { src: ResourceStr, controller: WebController | WebviewController})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 > **NOTE**
 >
@@ -28,24 +28,11 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 | Name       | Type                                    | Mandatory  | Description   |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource.|
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) | Yes   | Controller.   |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
 
   Example of loading online web pages:
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -68,7 +55,7 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -4965,7 +4952,7 @@ Sets the cookie. This API returns the result synchronously. Returns **true** if 
       Column() {
         Button('setCookie')
           .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("www.example.com", "a=b")
+            let result = this.controller.getCookieManager().setCookie("https://www.example.com", "a=b")
             console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
