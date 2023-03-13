@@ -42,7 +42,7 @@ import bluetooth from '@system.bluetooth';
       console.log('call bluetooth.startBLEScan success.');
     },
     fail(code, data) {
-      console.log('call bluetooth.startBLEScan failed, code: ${code}, data: ${data}.');
+      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     },
     complete() {
       console.log('call bluetooth.startBLEScan complete.');
@@ -76,7 +76,7 @@ import bluetooth from '@system.bluetooth';
       console.log('call bluetooth.stopBLEScan success.');
     },
     fail(data, code) {
-      console.log('call bluethooth.stopBLEScan fail, code: ${code}, data: ${data}.');
+      console.log('call bluethooth.stopBLEScan fail, code:' + code + ', data:' + data);
     },
     complete() {
       console.log('call bluethooth.stopBLEScan complete.');
@@ -125,7 +125,7 @@ import bluetooth from '@system.bluetooth';
       console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
     },
     fail(data, code) {
-      console.log('call bluetooth.startBLEScan failed, data: ${data}, code: ${code}.');
+      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     }
   });
   ```
