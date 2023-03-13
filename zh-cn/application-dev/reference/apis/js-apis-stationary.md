@@ -18,7 +18,7 @@ import stationary from '@ohos.stationary'
 
 服务响应抽象接口。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary:
+**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
 
 ### 属性
 
