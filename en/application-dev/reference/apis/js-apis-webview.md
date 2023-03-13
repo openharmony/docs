@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control.
+The **Webview** module provides APIs for web control. It can be used with the **[<Web\>](../arkui-ts/ts-basic-components-web.md)** component, which can be used to display web pages.
 
 > **NOTE**
 >
@@ -20,7 +20,7 @@ The **Webview** module provides APIs for web control.
 import web_webview from '@ohos.web.webview';
 ```
 
-### once
+## once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -43,7 +43,7 @@ import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
   console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("www.example.com", "a=b")
+  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
 })
 
 @Entry
@@ -338,7 +338,6 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
-      .webDebuggingAccess(true)
     }
   }
 }
@@ -438,7 +437,34 @@ struct WebComponent {
 }
 ```
 
-### accessforward
+Example of loading local resource:
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  updataContent: string = '<body><div><image src=file:///data/storage/el1/bundle/entry/resources/rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### accessForward
 
 accessForward(): boolean
 
@@ -854,7 +880,7 @@ struct WebComponent {
 
 ### getHitTest
 
-getHitTest(): HitTestTypeV9
+getHitTest(): WebHitTestType
 
 Obtains the element type of the area being clicked.
 
@@ -1565,7 +1591,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.ports && this.ports[1]) {
-              this.ports[1].postMessageEvent("post message from ets to HTML");
+              this.ports[1].postMessageEvent(this.sendFromEts);
             } else {
               console.error(`ports is null, Please initialize first`);
             }
@@ -3174,7 +3200,7 @@ struct WebComponent {
       Button('getCookie')
         .onClick(() => {
           try {
-            let value = web_webview.WebCookieManager.getCookie('www.example.com');
+            let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3226,7 +3252,7 @@ struct WebComponent {
       Button('setCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
+            web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3604,7 +3630,7 @@ Deletes all data in the specified origin.
 
 | Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| origin | string | Yes  | Index of the origin.|
+| origin | string | Yes  | Index of the origin, which is obtained through [getOrigins](#getorigins). |
 
 **Error codes**
 
@@ -4094,9 +4120,6 @@ struct WebComponent {
           try {
             this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
-            ForEach(this.username_password, (item) => {
-              console.log('username_password: ' + item);
-            }, item => item)
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
