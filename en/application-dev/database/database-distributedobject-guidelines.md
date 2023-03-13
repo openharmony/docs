@@ -17,7 +17,7 @@ Call **createDistributedObject()** to create a distributed data object instance.
 
 **Table 1** API for creating a distributed data object instance
 
-| Bundle Name| API| Description|
+| Package | API| Description|
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.<br>- **source**: attributes of the distributed data object to create.<br>- **DistributedObject**: returns the distributed data object created.|
 
@@ -27,7 +27,7 @@ Call **genSessionId()** to generate a session ID randomly. The generated session
 
 **Table 2** API for generating a session ID randomly
 
-| Bundle Name| API| Description|
+| Package | API| Description|
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| genSessionId(): string | Generates a session ID, which can be used as the session ID of a distributed data object.|
 
@@ -201,7 +201,7 @@ The following example shows how to implement distributed data object synchroniza
            });
        }
    } 
-   
+
    // To refresh the page in changeCallback, correctly bind (this) to the changeCallback.
    localObject.on("change", this.changeCallback.bind(this));
    ```
