@@ -18,7 +18,7 @@ import stationary from '@ohos.stationary'
 
 服务响应抽象接口。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
 ### 属性
 
@@ -30,7 +30,7 @@ import stationary from '@ohos.stationary'
 
 设备状态类型。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -41,7 +41,7 @@ import stationary from '@ohos.stationary'
 
 设备状态事件。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
 | 名称                            | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
@@ -53,7 +53,7 @@ import stationary from '@ohos.stationary'
 
 设备状态返回值。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
 | 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
@@ -66,7 +66,7 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 
 设备状态管理，订阅设备状态服务。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
 **参数：**
 
@@ -92,7 +92,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 设备状态管理，查询设备状态。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
 **参数：**
 
@@ -115,7 +115,7 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 
 设备状态管理，取消订阅设备状态服务。
 
-**系统能力：** SystemCapability.Msdp.DeviceStatus.Stationary
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
 **参数：**
 
