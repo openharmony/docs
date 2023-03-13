@@ -32,7 +32,7 @@
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
 - Security
-  - [Ability Access Control Error Codes](errorcode-access-token.md)
+  - [Application Access Control Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
   - [Certificate Error Codes](errorcode-cert.md)
