@@ -59,6 +59,43 @@ buffer数组的列表。
 | FORMAT_DER | 0      | DER格式。 |
 | FORMAT_PEM | 1      | PEM格式。 |
 
+## CertItemType<sup>10+</sup>
+
+ 表示获取证书字段的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                             | 值   | 说明                           |
+| -------------------------------- | ---- | ------------------------------ |
+| CERT_ITEM_TYPE_TBS               | 0    | 表示获取证书的待签名信息。     |
+| CERT_ITEM_TYPE_PUBLIC_KEY        | 1    | 表示获取证书的公钥信息。       |
+| CERT_ITEM_TYPE_ISSUER_UNIQUE_ID  | 2    | 表示获取证书的颁发者唯一编号。 |
+| CERT_ITEM_TYPE_SUBJECT_UNIQUE_ID | 3    | 表示获取证书的主体唯一编号。   |
+| CERT_ITEM_TYPE_EXTENSIONS        | 4    | 表示获取证书的扩展域信息。     |
+
+## ExtensionOidType<sup>10+</sup>
+
+ 表示获取扩展域中对象标识符类型的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                          | 值   | 说明                                          |
+| ----------------------------- | ---- | --------------------------------------------- |
+| EXTENSION_OID_TYPE_ALL        | 0    | 表示获取扩展域中所有的对象标识符。            |
+| EXTENSION_OID_TYPE_CRITICAL   | 1    | 表示获取扩展域中critical为true的对象标识符。  |
+| EXTENSION_OID_TYPE_UNCRITICAL | 2    | 表示获取扩展域中critical为false的对象标识符。 |
+
+## ExtensionEntryType<sup>10+</sup>
+
+ 表示获取扩展域中对象类型的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                | 值   | 说明                         |
+| ----------------------------------- | ---- | ---------------------------- |
+| EXTENSION_ENTRY_TYPE_ENTRY          | 0    | 表示获取整个对象。           |
+| EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | 表示获取对象的critical属性。 |
+| EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | 表示获取对象的数据。         |
 
 ## EncodingBlob
 
@@ -1111,6 +1148,336 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     } else {
         console.log("createX509Cert success");
         let issuerAltNames = x509Cert.getIssuerAltNames();
+    }
+});
+```
+
+### getItem<sup>10+</sup>
+
+getItem(itemType: CertItemType) : DataBlob
+
+表示获取X509证书对应的字段。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| [DataBlob](#datablob) | 表示X509证书对应的字段，返回值为DER格式。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+};
+cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
+    if (error != null) {
+        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createX509Cert success");
+        let tbs = x509Cert.getItem(cryptoCert.CertItemType.CERT_ITEM_TYPE_TBS);
+        let pubKey = x509Cert.getItem(cryptoCert.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
+    }
+});
+```
+
+## cryptoCert.createCertExtension<sup>10+</sup> 
+
+createCertExtension(inStream : EncodingBlob, callback : AsyncCallback<CertExtension>) : void
+
+表示创建证书扩展域段的对象。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                          | 必填 | 说明                       |
+| -------- | ----------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书扩展域段序列化数据 |
+| callback | AsyncCallback\<CertExtension> | 是   | 回调函数。表示扩展域段对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+};
+cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
+    if (error != null) {
+        console.log("createCertExtension failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createCertExtension success");
+    }
+});
+```
+
+## cryptoCert.createCertExtension<sup>10+</sup>
+
+createCertExtension(inStream : EncodingBlob) : Promise<CertExtension>
+
+表示创建证书扩展域段的对象。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                          | 必填 | 说明                       |
+| -------- | ----------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书扩展域段序列化数据 |
+
+**返回值**：
+
+| 类型                    | 说明                 |
+| ----------------------- | -------------------- |
+| Promise\<CertExtension> | 表示证书扩展域段对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+};
+cryptoCert.createCertExtension(encodingBlob).then(certExt => {
+    console.log("createCertExtension success");
+}, error => {
+    console.log("createCertExtension failed, errCode: " + error.code + ", errMsg: " + error.message);
+});
+```
+
+## CertExtension<sup>10+</sup> 
+
+证书扩展域段类。
+
+### getEncoded<sup>10+</sup>
+
+getEncoded() : EncodingBlob
+
+表示获取证书扩展域段序列化数据。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                          | 说明                         |
+| ----------------------------- | ---------------------------- |
+| [EncodingBlob](#encodingblob) | 表示证书扩展域段序列化数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+};
+cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
+    if (error != null) {
+        console.log("createCertExtension failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createCertExtension success");
+        let encodingBlob = certExt.getEncoded()
+    }
+});
+```
+
+### getOidList<sup>10+</sup>
+
+getOidList(valueType : ExtensionOidType) : DataArray
+
+表示获取证书扩展域段对象标识符列表。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                                  | 必填 | 说明                           |
+| --------- | ------------------------------------- | ---- | ------------------------------ |
+| valueType | [ExtensionOidType](#extensionoidtype) | 是   | 表示证书扩展域段对象标识符类型 |
+
+**返回值**：
+
+| 类型                    | 说明                             |
+| ----------------------- | -------------------------------- |
+| [DataArray](#dataarray) | 表示证书扩展域段对象标识符列表。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+};
+cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
+    if (error != null) {
+        console.log("createCertExtension failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createCertExtension success");
+        let oidList = certExt.getOidList(cryptoCert.ExtensionOidType.EXTENSION_OID_TYPE_ALL)
+    }
+});
+```
+
+### getEntry<sup>10+</sup>
+
+getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
+
+表示获取证书扩展域段对象信息。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                                      | 必填 | 说明                             |
+| --------- | ----------------------------------------- | ---- | -------------------------------- |
+| valueType | [ExtensionEntryType](#extensionentrytype) | 是   | 表示证书扩展域段获取的类型       |
+| oid       | [DataBlob](#datablob)                     | 是   | 表示证书扩展域段获取的对象标识符 |
+
+**返回值**：
+
+| 类型                  | 说明                         |
+| --------------------- | ---------------------------- |
+| [DataBlob](#datablob) | 表示证书扩展域段对象的数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+};
+cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
+    if (error != null) {
+        console.log("createCertExtension failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createCertExtension success");
+        let oid = new Uint8Array([0x31, 0x2e, 0x32, 0x2e, 0x38, 0x2e, 0x31])
+        let oidBlob = {
+            data: oid
+        }
+        let entry = certExt.getEntry(cryptoCert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oidBlob)
+    }
+});
+```
+
+
+### checkCA<sup>10+</sup>
+
+checkCA() : number
+
+表示校验证书是否为CA证书。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 当证书扩展域段中密钥用途包含签名用途，并且基本约束中cA字段为true时，表示证书为CA证书。如果不是CA，则返回-1；否则返回基本约束中的路径长度。如果证书是CA证书，但是基本约束中未给定路径长度，则返回-2，表示无路径长度限制。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```js
+import cryptoCert from '@ohos.security.cert';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let encodingData = null;
+let encodingBlob = {
+    data: encodingData,
+    // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+};
+cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
+    if (error != null) {
+        console.log("createCertExtension failed, errCode: " + error.code + ", errMsg: " + error.message);
+    } else {
+        console.log("createCertExtension success");
+        let res = certExt.checkCA()
     }
 });
 ```
