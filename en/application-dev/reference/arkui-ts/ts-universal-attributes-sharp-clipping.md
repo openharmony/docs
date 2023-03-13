@@ -12,8 +12,8 @@ Shape clipping changes the visible portion of a component through clipping or ma
 
 | Name   | Type                                    | Description                                 |
 | -----| ------------------------------------------ | ------------------------------------ |
-| clip | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) \| boolean | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge outline of the parent container.<br>Default value: **false**|
-| mask | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) | Mask of the specified shape to add to the component.|
+| clip | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) \| boolean | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge outline of the parent container.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| mask | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md) | Mask of the specified shape to add to the component.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
