@@ -393,7 +393,7 @@ async function example() {
       console.error('DocumentViewPicker.save failed with err: ' + err);
     });
   } catch (err) {
-    console.errort('DocumentViewPicker failed with err: ' + err);
+    console.error('DocumentViewPicker failed with err: ' + err);
   }
 }
 ```
@@ -429,7 +429,7 @@ async function example() {
       console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
     });
   } catch (err) {
-    console.errort('DocumentViewPicker failed with err: ' + err);
+    console.error('DocumentViewPicker failed with err: ' + err);
   }
 }
 ```
@@ -462,7 +462,7 @@ async function example() {
       console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
     });
   } catch (err) {
-    console.errort('DocumentViewPicker failed with err: ' + err);
+    console.error('DocumentViewPicker failed with err: ' + err);
   }
 }
 ```
