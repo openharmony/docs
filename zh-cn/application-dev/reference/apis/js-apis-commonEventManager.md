@@ -335,9 +335,10 @@ function SubscribeCB(err, data) {
 }
 
 //创建订阅者回调
-function createCB(err, subscriber) {
+function createCB(err, commonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
         //订阅公共事件
         try {
             CommonEventManager.subscribe(subscriber, SubscribeCB);
@@ -391,11 +392,12 @@ function subscribeCB(err, data) {
     }
 }
 //创建订阅者回调
-function createCB(err, subscriber) {
+function createCB(err, commonEventSubscriber) {
     if (err) {
         console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
         //订阅公共事件
         try {
             CommonEventManager.subscribe(subscriber, subscribeCB);
