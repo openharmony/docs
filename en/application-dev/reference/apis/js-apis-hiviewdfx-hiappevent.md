@@ -1,8 +1,9 @@
 # @ohos.hiviewdfx.hiAppEvent (Application Event Logging)
 
-The **hiAppEvent** module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
+This module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -447,27 +448,27 @@ Enumerates event types.
 | BEHAVIOR  | 4    | Behavior event.|
 
 
-## Event
+## event
 
 Provides constants that define the names of all predefined events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name                     | Type  | Readable| Writable| Description                |
-| ------------------------- | ------ | ---- | ---- | -------------------- |
-| USER_LOGIN                | string | Yes  | No  | User login event.      |
-| USER_LOGOUT               | string | Yes  | No  | User logout event.      |
-| DISTRIBUTED_SERVICE_START | string | Yes  | No  | Distributed service startup event.|
+| Name                     | Type  | Description                |
+| ------------------------- | ------ | -------------------- |
+| USER_LOGIN                | string | User login event.      |
+| USER_LOGOUT               | string | User logout event.      |
+| DISTRIBUTED_SERVICE_START | string | Distributed service startup event.|
 
 
-## Param
+## param
 
 Provides constants that define the names of all predefined event parameters.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name                           | Type  | Readable| Writable| Description              |
-| ------------------------------- | ------ | ---- | ---- | ------------------ |
-| USER_ID                         | string | Yes  | No  | Custom user ID.    |
-| DISTRIBUTED_SERVICE_NAME        | string | Yes  | No  | Distributed service name.  |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Yes  | No  | Distributed service instance ID.|
+| Name                           | Type  | Description              |
+| ------------------------------- | ------ | ------------------ |
+| USER_ID                         | string | Custom user ID.    |
+| DISTRIBUTED_SERVICE_NAME        | string | Distributed service name.  |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Distributed service instance ID.|
