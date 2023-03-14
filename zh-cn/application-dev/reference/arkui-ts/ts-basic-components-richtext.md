@@ -31,6 +31,10 @@ RichText(content:string)
 | onStart(callback: () => void)    | 加载网页时触发。   |
 | onComplete(callback: () => void) | 网页加载结束时触发。 |
 
+## 属性
+
+只支持[通用属性](ts-universal-attributes-size.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
+
 ## 支持标签
 
 | 名称 | 描述 | 示例 |
@@ -78,6 +82,29 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
+        .width(500)
+        .height(400)
+        .backgroundColor(0XBDDB69)
+      RichText('layoutWeight(1)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92D6CC)
+        .layoutWeight(1)
+      RichText('layoutWeight(2)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92C48D)
+        .layoutWeight(2)
     }
   }
 }
