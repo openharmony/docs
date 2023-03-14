@@ -31,6 +31,8 @@ Multiple child components are supported.
 
 RelativeContainer()
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 ## Example
 
 ```ts
