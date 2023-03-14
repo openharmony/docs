@@ -18,6 +18,12 @@ This component supports only one child component.
 
 Scroll(scroller?: Scroller)
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| scroller | [Scroller](#scroller) | No| Scroller, which can be bound to scrollable components.|
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -42,12 +48,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: required amount to scroll by in the horizontal direction.|
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls.|
 | onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.         |
 | onScrollEdge(event: (side: Edge) => void)                    | Triggered when scrolling reaches the edge.                                        |
-| onScrollEnd(event: () => void)                               | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.    |
-| onScrollStart<sup>9+</sup>(event: () => void)                | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event will not be triggered if the scrolling is initiated by using [Scroller](#scroller).|
-| onScrollStop<sup>9+</sup>(event: () => void)                 | Triggered when scrolling stops after the user's finger leaves the screen. This event will not be triggered if the scrolling is initiated by using [Scroller](#scroller).|
+| onScrollEnd<sup>(deprecated) </sup>(event: () => void)                               | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.    |
+| onScrollStart<sup>9+</sup>(event: () => void) | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.|
+| onScrollStop<sup>9+</sup>(event: () => void) | Triggered when scrolling stops after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) stops.|
 
 >  **NOTE**
 >
@@ -111,7 +117,7 @@ Scrolls to the next or previous page.
 
 ### currentOffset
 
-currentOffset()
+currentOffset(): { xOffset: number, yOffset: number }
 
 
 Obtains the scrolling offset.
