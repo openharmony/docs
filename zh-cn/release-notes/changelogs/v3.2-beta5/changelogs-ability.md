@@ -1,7 +1,5 @@
 # 元能力子系统JS API变更Changelog
 
-OpenHarmony 3.2.10.1(Mr)版本相较于OpenHarmony 3.2.beta4版本，元能力子系统的API变更如下
-
 ## cl.ability.1 接口迁移
 ability子系统UIAbilityContext的接口requestPermissionsFromUser迁移到security子系统：
 

@@ -1,7 +1,5 @@
 # web子系统ChangeLog
 
-OpenHarmony 3.2.9.1 sp8版本相较于OpenHarmony 3.2.8.1版本，web的API变更如下
-
 ## cl.web.1 删除无用错误码
 
 web子系统webviewController接口存在变更：

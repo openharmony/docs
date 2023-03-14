@@ -1,7 +1,5 @@
 # 媒体子系统 JS API 变更 Changelog
 
-OpenHarmony3.2.10.3 相对 OpenHarmony3.2 Beta4 版本，媒体子系统 camera 部件 API 变更如下
-
 ## cl.subsystemname.1 camera 接口变更
 1. camera 部件在 API9 版本全量改为 SystemAPI
 2. 基于以下原因新增部分功能接口以及废弃部分接口：
@@ -217,304 +215,304 @@ OpenHarmony3.2.10.3 相对 OpenHarmony3.2 Beta4 版本，媒体子系统 camera 
 10. CameraManager 中接口 createCaptureSession 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 createCaptureSession(callback: AsyncCallback<CaptureSession>): void; 以及 createCaptureSession(): Promise<CaptureSession>; 变更为 createCaptureSession(): CaptureSession;
 
    参考代码如下：
-   
+
    ```
    let captureSession = cameraManager.createCaptureSession();
    ```
-   
+
 11. 枚举 CameraType 中，枚举值名称 CAMERA_TYPE_UNSPECIFIED 变更为 CAMERA_TYPE_DEFAULT。
 
 12. CameraInput 中，on 接口返回值类型由 CameraInputError 变更为 BusinessError，因此旧接口 on(type: 'error', camera: CameraDevice, callback: ErrorCallback<CameraInputError>): void; 变更为 on(type: 'error', camera: CameraDevice, callback: ErrorCallback<BusinessError>): void;
 
    参考代码如下：
-   
+
    ```
    let cameraDevice = cameras[0];
    cameraInput.on('error', cameraDevice, (BusinessError) => {
    
    })
    ```
-   
+
 13. CaptureSession 中接口 beginConfig 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 beginConfig(callback: AsyncCallback<void>): void; 以及 beginConfig(): Promise<void>; 变更为 beginConfig(): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.beginConfig();
    ```
-   
+
 14. CaptureSession 中接口 addInput 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 addInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void; 以及 addInput(cameraInput: CameraInput): Promise<void>; 变更为 addInput(cameraInput: CameraInput): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.addInput(cameraInput);
    ```
-   
+
 15. CaptureSession 中接口 removeInput 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 removeInput(cameraInput: CameraInput, callback: AsyncCallback<void>): void; 以及 removeInput(cameraInput: CameraInput): Promise<void>; 变更为 removeInput(cameraInput: CameraInput): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.removeInput(cameraInput);
    ```
-   
+
 16. CaptureSession 中接口 addOutput 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 addOutput(cameraOutput: CameraOutput, callback: AsyncCallback<void>): void; 以及 addOutput(cameraOutput: CameraOutput): Promise<void>; 变更为 addOutput(cameraOutput: CameraOutput): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.addOutput(previewOutput);
    ```
-   
+
 17. CaptureSession 中接口 removeOutput 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 removeOutput(cameraOutput: CameraOutput, callback: AsyncCallback<void>): void; 以及 removeOutput(cameraOutput: CameraOutput): Promise<void>; 变更为 removeOutput(cameraOutput: CameraOutput): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.removeOutput(previewOutput);
    ```
-   
+
 18. CaptureSession 中接口 hasFlash 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 hasFlash(callback: AsyncCallback<boolean>): void; 以及 hasFlash(): Promise<boolean>; 变更为 hasFlash(): boolean;
 
    参考代码如下：
-   
+
    ```
    let status = captureSession.hasFlash();
    ```
-   
+
 19. CaptureSession 中接口 isFlashModeSupported 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean>): void; 以及 isFlashModeSupported(flashMode: FlashMode): Promise<boolean>; 变更为 isFlashModeSupported(flashMode: FlashMode): boolean;
 
    参考代码如下：
-   
+
    ```
    let status = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
    ```
-   
+
 20. CaptureSession 中接口 getFlashMode 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getFlashMode(callback: AsyncCallback<FlashMode>): void; 以及 getFlashMode(): Promise<FlashMode>; 变更为 getFlashMode(): FlashMode;
 
    参考代码如下：
-   
+
    ```
    let flashMode = captureSession.getFlashMode();
    ```
-   
+
 21. CaptureSession 中接口 isExposureModeSupported 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean>): void; 以及 isExposureModeSupported(aeMode: ExposureMode): Promise<boolean>; 变更为 isExposureModeSupported(aeMode: ExposureMode): boolean;
 
    参考代码如下：
-   
+
    ```
    let isSupported = captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED);
    ```
-   
+
 22. CaptureSession 中接口 getExposureMode 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getExposureMode(callback: AsyncCallback<ExposureMode>): void; 以及 getExposureMode(): Promise<ExposureMode>; 变更为 getExposureMode(): ExposureMode;
 
    参考代码如下：
-   
+
    ```
    let exposureMode = captureSession.getExposureMode();
    ```
-   
+
 23. CaptureSession 中接口 setExposureMode 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void>): void; 以及 setExposureMode(aeMode: ExposureMode): Promise<void>; 变更为 setExposureMode(aeMode: ExposureMode): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED);
    ```
-   
+
 24. CaptureSession 中接口 getMeteringPoint 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getMeteringPoint(callback: AsyncCallback<Point>): void; 以及 getMeteringPoint(): Promise<Point>; 变更为 getMeteringPoint(): Point;
 
    参考代码如下：
-   
+
    ```
    let exposurePoint = captureSession.getMeteringPoint();
    ```
-   
+
 25. CaptureSession 中接口 setMeteringPoint 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 setMeteringPoint(point: Point, callback: AsyncCallback<void>): void; 以及 setMeteringPoint(point: Point): Promise<void>; 变更为 setMeteringPoint(point: Point): void;
 
    参考代码如下：
-   
+
    ```
    let Point2 = {x: 2, y: 2};
    captureSession.setMeteringPoint(Point2);
    ```
-   
+
 26. CaptureSession 中接口 getExposureBiasRange 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getExposureBiasRange(callback: AsyncCallback<Array<number>>): void; 以及 getExposureBiasRange(): Promise<Array<number>>; 变更为 getExposureBiasRange(): Array<number>;
 
    参考代码如下：
-   
+
    ```
    let biasRangeArray = captureSession.getExposureBiasRange();
    ```
-   
+
 27. CaptureSession 中接口 setExposureBias 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 setExposureBias(exposureBias: number, callback: AsyncCallback<void>): void; 以及 setExposureBias(exposureBias: number): Promise<void>; 变更为 setExposureBias(exposureBias: number): void;
 
    参考代码如下：
-   
+
    ```
    let exposureBias = biasRangeArray[0];
    captureSession.setExposureBias(exposureBias);
    ```
-   
+
 28. CaptureSession 中接口 getExposureValue 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getExposureValue(callback: AsyncCallback<number>): void; 以及 getExposureValue(): Promise<number>; 变更为 getExposureValue(): number;
 
    参考代码如下：
-   
+
    ```
    let exposureValue = captureSession.getExposureValue();
    ```
-   
+
 29. CaptureSession 中接口 isFocusModeSupported 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean>): void; 以及 isFocusModeSupported(afMode: FocusMode): Promise<boolean>; 变更为 isFocusModeSupported(afMode: FocusMode): boolean;
 
    参考代码如下：
-   
+
    ```
    let status = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO);
    ```
-   
+
 30. CaptureSession 中接口 getFocusMode 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getFocusMode(callback: AsyncCallback<FocusMode>): void; 以及 getFocusMode(): Promise<FocusMode>; 变更为 getFocusMode(): FocusMode;
 
    参考代码如下：
-   
+
    ```
    let afMode = captureSession.getFocusMode();
    ```
-   
+
 31. CaptureSession 中接口 setFocusMode 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 setFocusMode(afMode: FocusMode, callback: AsyncCallback<void>): void; 以及 setFocusMode(afMode: FocusMode): Promise<void>; 变更为 setFocusMode(afMode: FocusMode): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO);
    ```
-   
+
 32. CaptureSession 中接口 setFocusPoint 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 setFocusPoint(point: Point, callback: AsyncCallback<void>): void; 以及 setFocusPoint(point: Point): Promise<void>; 变更为 setFocusPoint(point: Point): void;
 
    参考代码如下：
-   
+
    ```
    let Point2 = {x: 2, y: 2};
    captureSession.setFocusPoint(Point2);
    ```
-   
+
 33. CaptureSession 中接口 getFocusPoint 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getFocusPoint(callback: AsyncCallback<Point>): void; 以及 getFocusPoint(): Promise<Point>; 变更为 getFocusPoint(): Point;
 
    参考代码如下：
-   
+
    ```
    let point = captureSession.getFocusPoint();
    ```
-   
+
 34. CaptureSession 中接口 getFocalLength 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getFocalLength(callback: AsyncCallback<number>): void; 以及 getFocalLength(): Promise<number>; 变更为 getFocalLength(): number;
 
    参考代码如下：
-   
+
    ```
    let focalLength = captureSession.getFocalLength();
    ```
-   
+
 35. CaptureSession 中接口 getZoomRatioRange 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getZoomRatioRange(callback: AsyncCallback<Array<number>>): void; 以及 getZoomRatioRange(): Promise<Array<number>>; 变更为 getZoomRatioRange(): Array<number>;
 
    参考代码如下：
-   
+
    ```
    let zoomRatioRange = captureSession.getZoomRatioRange();
    ```
-   
+
 36. CaptureSession 中接口 getZoomRatio 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getZoomRatio(callback: AsyncCallback<number>): void; 以及 getZoomRatio(): Promise<number>; 变更为 getZoomRatio(): number;
 
    参考代码如下：
-   
+
    ```
    let zoomRatio = captureSession.getZoomRatio();
    ```
-   
+
 37. CaptureSession 中接口 setZoomRatio 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 setZoomRatio(zoomRatio: number, callback: AsyncCallback<void>): void; 以及 setZoomRatio(zoomRatio: number): Promise<void>; 变更为 setZoomRatio(zoomRatio: number): void;
 
    参考代码如下：
-   
+
    ```
    let zoomRatio = zoomRatioRange[0];
    captureSession.setZoomRatio(zoomRatio);
    ```
-   
+
 38. CaptureSession 中接口 isVideoStabilizationModeSupported 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode, callback: AsyncCallback<boolean>): void; 以及 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): Promise<boolean>; 变更为 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean;
 
    参考代码如下：
-   
+
    ```
    let isSupported = captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.OFF);
    ```
-   
+
 39. CaptureSession 中接口 getActiveVideoStabilizationMode 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 getActiveVideoStabilizationMode(callback: AsyncCallback<VideoStabilizationMode>): void; 以及 getActiveVideoStabilizationMode(): Promise<VideoStabilizationMode>; 变更为 getActiveVideoStabilizationMode(): VideoStabilizationMode;
 
    参考代码如下：
-   
+
    ```
    let vsMode = captureSession.getActiveVideoStabilizationMode();
    ```
-   
+
 40. CaptureSession 中接口 setVideoStabilizationMode 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 setVideoStabilizationMode(mode: VideoStabilizationMode, callback: AsyncCallback<void>): void; 以及 setVideoStabilizationMode(mode: VideoStabilizationMode): Promise<void>; 变更为 setVideoStabilizationMode(mode: VideoStabilizationMode): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF);
    ```
-   
+
 41. CaptureSession 中，on(type: 'error') callback 类型由 ErrorCallback<CaptureSessionError> 变更为 ErrorCallback<BusinessError>，因此旧接口 on(type: 'error', callback: ErrorCallback<CaptureSessionError>): void; 变更为 on(type: 'error', callback: ErrorCallback<BusinessError>): void;
 
    参考代码如下：
-   
+
    ```
    captureSession.on('error', (BusinessError) => {
    
    })
    ```
-   
+
 42. PreviewOutput 中，on(type: 'error') callback 类型由 ErrorCallback<PreviewOutputError> 变更为 ErrorCallback<BusinessError>，因此旧接口 on(type: 'error', callback: ErrorCallback<PreviewOutputError>): void; 变更为 on(type: 'error', callback: ErrorCallback<BusinessError>): void;
 
    参考代码如下：
-   
+
    ```
    previewOutput.on('error', (BusinessError) => {
    
    })
    ```
-   
+
 43. PhotoOutput 中接口 isMirrorSupported 返回方式由异步 callback 跟异步 promise 变更为同步返回，因此旧接口 isMirrorSupported(callback: AsyncCallback<boolean>): void; 以及 isMirrorSupported(): Promise<boolean>; 变更为 isMirrorSupported(): boolean;
 
    参考代码如下：
-   
+
    ```
    let isSupported = photoOutput.isMirrorSupported();
    ```
-   
+
 44. PhotoOutput 中，on(type: 'error') callback 类型由 ErrorCallback<PhotoOutputError> 变更为 ErrorCallback<BusinessError>，因此旧接口 on(type: 'error', callback: ErrorCallback<PhotoOutputError>): void; 变更为 on(type: 'error', callback: ErrorCallback<BusinessError>): void;
 
    参考代码如下：
-   
+
    ```
    PhotoOutput.on('error', (BusinessError) => {
    
    })
    ```
-   
+
 45. VideoOutput 中，on(type: 'error') callback 类型由 ErrorCallback<VideoOutputError> 变更为 ErrorCallback<BusinessError>，因此旧接口 on(type: 'error', callback: ErrorCallback<VideoOutputError>): void; 变更为 on(type: 'error', callback: ErrorCallback<BusinessError>): void;
 
    参考代码如下：
-   
+
    ```
    VideoOutput.on('error', (BusinessError) => {
    
    })
    ```
-   
+
 46. MetadataOutput 中，on(type: 'error') callback 类型由 ErrorCallback<MetadataOutputError> 变更为 ErrorCallback<BusinessError>，因此旧接口 on(type: 'error', callback: ErrorCallback<MetadataOutputError>): void; 变更为 on(type: 'error', callback: ErrorCallback<BusinessError>): void;
 
    参考代码如下：
-   
+
    ```
    MetadataOutput.on('error', (BusinessError) => {
    

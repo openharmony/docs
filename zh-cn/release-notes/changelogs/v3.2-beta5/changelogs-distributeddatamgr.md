@@ -1,7 +1,5 @@
 # 分布式数据管理子系统JS API变更Changelog
 
-OpenHarmony 3.2.10.1(Mr)版本相较于OpenHarmony 3.2.beta4版本，分布式数据管理子系统的API变更如下
-
 ## cl.distributeddatamgr.1 接口变更
 distributeddatamgr子系统kv_store组件接口存在变更：
 

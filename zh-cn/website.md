@@ -81,7 +81,7 @@
         - [事件通知](release-notes/changelogs/v3.2-beta5/changelogs-notification.md)
         - 位置服务
           - [ohos.geoLocationManager](release-notes/changelogs/v3.2-beta5/changelogs-ohos-geoLocationManager.md)
-          - [ohos.geoLocation](release-notes/changelogs/v3.2-beta5/changelogs-ohos-geoLocation.md)
+          - [ohos.geolocation](release-notes/changelogs/v3.2-beta5/changelogs-ohos-geolocation.md)
           - [system.geolocation](release-notes/changelogs/v3.2-beta5/changelogs-system-geolocation.md)
         - [上传下载](release-notes/changelogs/v3.2-beta5/changelogs-request.md)
         - [资源调度](release-notes/changelogs/v3.2-beta5/changelogs-resourceschedule.md)
