@@ -46,7 +46,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -96,7 +96,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -267,7 +267,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -315,7 +315,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -370,7 +370,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -418,7 +418,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -468,7 +468,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -513,7 +513,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The permission names in the list are all invalid or the list size is larger than 1024. |
+| 12100001 | The parameter is invalid. The permissionName in list is all invalid or the list size is larger than 1024. |
 | 12100004 | The interface is not used together with "on()".|
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
