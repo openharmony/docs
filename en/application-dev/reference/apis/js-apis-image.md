@@ -948,8 +948,18 @@ Creates an **ImageSource** instance based on the URI.
 **Example**
 
 ```js
-let context = featureAbility.getContext();
-let path = context.getCacheDir() + "test.jpg";
+// Stage model
+const context = getContext(this);
+const path = context.getCacheDir() + "/test.jpg";
+const imageSourceApi = image.createImageSource(path);
+```
+
+```js
+// FA model
+import featureAbility from '@ohos.ability.featureAbility';
+
+const context = featureAbility.getContext();
+const path = context.getCacheDir() + "/test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
