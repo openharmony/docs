@@ -30,9 +30,10 @@ import hiAppEvent from '@ohos.hiAppEvent';
 事件参数为object类型，key为事件的参数名称，value为事件的参数值，其规格定义如下：
 
 - 参数名为string类型，字符串非空且长度在16个字符以内，有效的字符是0-9、a-z、下划线，只能以小写字母开头，不能以下划线结尾；
-- 参数值支持string、number、boolean、Array类型；
-- 参数值为string类型时，其长度需在8*1024个字符以内，超出会做截断处理；
-- 参数值为Array类型时，Array中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理；
+- 参数值支持string、number、boolean、数组类型；
+- 参数值为string类型时，其长度需在8*1024个字符以内，超出会做丢弃处理；
+- 参数值为number类型时，其取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；
+- 参数值为数组类型时，数组中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理；
 - 参数个数需在32以内，超出的参数会做丢弃处理。
 
 **事件回调**
