@@ -850,7 +850,7 @@ promise.then(data => {
 ```
 
 
-## call.answerCall<sup>7+</sup>
+## call.answerCall<sup>9+</sup>
 
 answerCall\(callId: number, callback: AsyncCallback<void\>\): void
 
@@ -890,7 +890,7 @@ call.answerCall(1, (err, data) => {
 ```
 
 
-## call.answerCall<sup>7+</sup>
+## call.answerCall<sup>9+</sup>
 
 answerCall(callId?: number\): Promise<void\>
 
@@ -977,7 +977,7 @@ call.answerCall((err, data) => {
 ```
 
 
-## call.hangUpCall<sup>7+</sup>
+## call.hangUpCall<sup>9+</sup>
 
 hangUpCall\(callId: number, callback: AsyncCallback<void\>\): void
 
@@ -1017,7 +1017,7 @@ call.hangUpCall(1, (err, data) => {
 ```
 
 
-## call.hangUpCall<sup>7+</sup>
+## call.hangUpCall<sup>9+</sup>
 
 hangUpCall\(callId?: number\): Promise<void\>
 
@@ -1146,7 +1146,7 @@ call.rejectCall(1, (err, data) => {
 ```
 
 
-## call.rejectCall<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
 rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
@@ -1190,7 +1190,7 @@ call.rejectCall(1, rejectMessageOptions, (err, data) => {
 ```
 
 
-## call.rejectCall<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
 rejectCall(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
