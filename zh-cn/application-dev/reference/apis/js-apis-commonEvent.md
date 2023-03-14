@@ -299,11 +299,12 @@ function subscribeCB(err, data) {
 }
 
 // 创建订阅者回调
-function createCB(err, subscriber) {
+function createCB(err, commonEventSubscriber) {
     if (err.code) {
         console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
         // 订阅公共事件
         CommonEvent.subscribe(subscriber, subscribeCB);
     }
