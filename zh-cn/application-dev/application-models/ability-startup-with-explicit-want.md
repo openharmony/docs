@@ -70,4 +70,4 @@
 
 5. 至此，当您点击CLICKME按钮时，应看到页面的跳转。
 
-   ![startAbilityWtExplicitWant](figures/startAbilityWtExplicitWant.PNG)
+   <img src="figures/startAbilityWtExplicitWant.PNG" alt="startAbilityWtExplicitWant" height="500" />
