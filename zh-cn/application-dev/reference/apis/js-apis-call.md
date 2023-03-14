@@ -20,6 +20,10 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 拨打电话。使用callback异步回调。
 
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
+
 **需要权限**：ohos.permission.PLACE_CALL
 
 **系统能力**：SystemCapability.Telephony.CallManager
@@ -45,6 +49,10 @@ call.dial("138xxxxxxxx", (err, data) => {
 dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
 
 拨打电话，可设置通话参数。使用callback异步回调。
+
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -74,6 +82,10 @@ call.dial("138xxxxxxxx", {
 dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 拨打电话，可设置通话参数。使用Promise异步回调。
+
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -232,12 +244,14 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 **示例：**
 
 ```js
-try {
-    call.dialCall('138xxxxxxxx');
+let promise = call.dialCall("138xxxxxxxx", {
+    extras: false
+});
+promise.then(data => {
     console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
-}
+}).catch(err => {
+    console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 
