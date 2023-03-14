@@ -172,6 +172,7 @@
   - [@ohos.pluginComponent(PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
+  - [@ohos.measure (文本计算)](js-apis-measure.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
