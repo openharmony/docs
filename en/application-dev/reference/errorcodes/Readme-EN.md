@@ -49,6 +49,10 @@
   - [Upload and Download Error Codes](errorcode-request.md)
   - [HTTP Error Codes](errorcode-net-http.md)
   - [Socket Error Codes](errorcode-net-socket.md)
+  - [Network Connection Management Error Codes](errorcode-net-connection.md)
+  - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
+  - [Network Sharing Error Codes](errorcode-net-sharing.md)
+  - [Policy Management Error Codes](errorcode-net-policy.md)
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
