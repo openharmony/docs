@@ -16,6 +16,8 @@ Not supported
 
 Rating(options?: { rating: number, indicator?: boolean })
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -28,16 +30,16 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| stars | number | Total number of stars.<br>Default value: **5**|
-| stepSize | number | Step of an operation.<br>Default value: **0.5**|
-| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | **backgroundUri**: image link of the unselected star. You can use the default image or a custom local image.<br>**foregroundUri**: image path of the selected star. You can use the default image or a custom local image.<br>**secondaryUir**: image path of the partially selected star. You can use the default image or a custom local image.|
+| stars | number | Total number of stars.<br>Default value: **5**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| stepSize | number | Step of an operation.<br>Default value: **0.5**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | **backgroundUri**: image link of the unselected star. You can use the default image or a custom local image.<br>**foregroundUri**: image path of the selected star. You can use the default image or a custom local image.<br>**secondaryUir**: image path of the partially selected star. You can use the default image or a custom local image.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.|
+| onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
 
