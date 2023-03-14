@@ -1,7 +1,5 @@
 # wantAgent的JS API变更Changelog
 
-OpenHarmony 3.2.9.1 sp8版本相较于OpenHarmony 3.2.8.1版本，wantAgent的API变更如下
-
 ## cl.url.1.trigger类接口变更
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback<CompleteData>): void ;
 

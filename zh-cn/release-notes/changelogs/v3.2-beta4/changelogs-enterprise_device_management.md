@@ -1,7 +1,5 @@
 # 定制子系统ChangeLog
 
-OpenHarmony 3.2.8.3 版本相较于OpenHarmony 3.2.8.1版本，定制子系统的API变更如下：
-
 ## cl.Customization.1 企业设备管理模块名称变更
 
 从Opeharmonny 3.2.8.3版本开始，将"@ohos.enterpriseDeviceManager.d.ts"改为"@ohos.enterprise.adminManager.d.ts"，开发者需要根据以下说明对应用进行适配。

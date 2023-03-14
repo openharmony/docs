@@ -1,7 +1,5 @@
 # 上传下载子系统ChangeLog
 
-OpenHarmony 3.2.8.1版本相较于OpenHarmony 3.2.beta3版本，request子系统的API变更如下
-
 ## cl.request.1 错误码定义及API部分接口名称变更
 
 - 新增上传下载接口的[错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-request.md)处理。
