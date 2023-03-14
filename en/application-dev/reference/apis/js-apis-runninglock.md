@@ -482,7 +482,7 @@ Enumerates the types of **RunningLock** objects.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-| Name                    | Value  | Description                                  |
-| ------------------------ | ---- | -------------------------------------- |
-| BACKGROUND               | 1    | A lock that prevents the system from hibernating when the screen is off.                    |
-| PROXIMITY_SCREEN_CONTROL | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.|
+| Name                             | Value  | Description                                                        |
+| --------------------------------- | ---- | ------------------------------------------------------------ |
+| BACKGROUND<sup>(deprecated)</sup> | 1    | A lock that prevents the system from hibernating when the screen is off.<br>**NOTE**<br>This parameter is supported since API version 7 and deprecated since API version 10.|
+| PROXIMITY_SCREEN_CONTROL          | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.                      |

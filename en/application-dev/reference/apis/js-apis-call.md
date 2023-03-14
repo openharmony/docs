@@ -4,9 +4,9 @@ The **call** module provides call management functions, including making calls, 
 
 To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange).
 
->**NOTE**<br>
+>**NOTE**
+>
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 ## Modules to Import
 
@@ -14,22 +14,22 @@ To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-
 import call from '@ohos.telephony.call';
 ```
 
-## call.dial
+## call.dial<sup>(deprecated)</sup>
 
 dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 Initiates a call. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.PLACE\_CALL (a system permission)
+**Required Permissions**: ohos.permission.PLACE_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                        | Mandatory | Description |
-| ----------- | ---------------------------- | ---- | -------------------------------- |
-| phoneNumber | string                        | Yes  | Phone number.  |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
+| Name     | Type                        | Mandatory| Description                                   |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | Yes  | Phone number.                             |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
 
@@ -40,23 +40,23 @@ call.dial("138xxxxxxxx", (err, data) => {
 ```
 
 
-## call.dial
+## call.dial<sup>(deprecated)</sup>
 
 dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
 
-Initiates a call based on the specified options. This API uses an asynchronous callback to return the result.
+Initiates a call. You can set call options as needed. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.PLACE\_CALL (a system permission)
+**Required Permissions**: ohos.permission.PLACE_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                        | Mandatory | Description                             |
+| Name     | Type                        | Mandatory| Description                                   |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                           |
-| options     | [DialOptions](#dialoptions)  | No  | Call option, which indicates whether the call is a voice call or video call. |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
+| phoneNumber | string                       | Yes  | Phone number.                             |
+| options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
 
@@ -69,28 +69,28 @@ call.dial("138xxxxxxxx", {
 ```
 
 
-## call.dial
+## call.dial<sup>(deprecated)</sup>
 
 dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
-Initiates a call based on the specified options. This API uses a promise to return the result.
+Initiates a call. You can set call options as needed. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.PLACE\_CALL (a system permission)
+**Required Permissions**: ohos.permission.PLACE_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                       | Mandatory | Description                            |
+| Name     | Type                       | Mandatory| Description                                  |
 | ----------- | --------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                      | Yes  | Phone number.                          |
-| options     | [DialOptions](#dialoptions) | Yes  | Call option, which indicates whether the call is a voice call or video call. |
+| phoneNumber | string                      | Yes  | Phone number.                            |
+| options     | [DialOptions](#dialoptions) | No  | Call option, which indicates whether the call is a voice call or video call.|
 
 **Return value**
 
-| Type                   | Description                                                       |
-| ---------------------- | ---------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure |
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
 
@@ -105,6 +105,142 @@ promise.then(data => {
 });
 ```
 
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
+
+Initiates a call. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                                   |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | Yes  | Phone number.                             |
+| callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.                             |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+call.dialCall("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback<void\>\): void
+
+Initiates a call. You can set call options as needed. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     |                    Type            | Mandatory| Description                                |
+| ----------- | ----------------------------------- | ---- | ------------------------------------ |
+| phoneNumber | string                              | Yes  | Phone number.                          |
+| options     | [DialCallOptions](#dialcalloptions9)| Yes  | Call options, which carry other configuration information of the call.   |
+| callback    | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                          |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+call.dialCall("138xxxxxxxx", {
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dialCall<sup>9+</sup>
+
+dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
+
+Initiates a call. You can set call options as needed. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     |                 Type               | Mandatory|                Description                   |
+| ----------- | ----------------------------------- | ---- | -------------------------------------- |
+| phoneNumber | string                              | Yes  | Phone number.                            |
+| options     | [DialCallOptions](#dialcalloptions9)| No  | Call option, which indicates whether the call is a voice call or video call.|
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt;    | Promise used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+try {
+    call.dialCall('138xxxxxxxx');
+    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
+} catch (error) {
+    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
+}
+```
+
+
 ## call.makeCall<sup>7+</sup>
 
 makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
@@ -115,16 +251,27 @@ Launches the call screen and displays the dialed number. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                     | Mandatory | Description                                      |
+| Name     | Type                     | Mandatory| Description                                      |
 | ----------- | ------------------------- | ---- | ------------------------------------------ |
 | phoneNumber | string                    | Yes  | Phone number.                                |
-| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
-call.makeCall("138xxxxxxxx", err => { 
-    console.log(`makeCall callback: err->${JSON.stringify(err)}`); 
+call.makeCall("138xxxxxxxx", err => {
+    console.log(`makeCall callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -139,24 +286,35 @@ Launches the call screen and displays the dialed number. This API uses a promise
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| phoneNumber | string | Yes  | Phone number. |
+| phoneNumber | string | Yes  | Phone number.|
 
 **Return value**
 
 | Type               | Description                             |
 | ------------------- | --------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
-let promise = call.makeCall("138xxxxxxxx"); 
-promise.then(() => { 
-    console.log(`makeCall success`); 
-}).catch(err => { 
-    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`); 
+let promise = call.makeCall("138xxxxxxxx");
+promise.then(() => {
+    console.log(`makeCall success`);
+}).catch(err => {
+    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -170,9 +328,9 @@ Checks whether a call is in progress. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                        | Mandatory | Description                                                        |
+| Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress.|
 
 **Example**
 
@@ -195,7 +353,7 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 
 | Type                  | Description                                   |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -219,9 +377,9 @@ Obtains the call status. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory | Description                                |
+| Name  | Type                                        | Mandatory| Description                                |
 | -------- | -------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;[CallState](#callstate)&gt; | Yes  | Callback used to return the result. |
+| callback | AsyncCallback&lt;[CallState](#callstate)&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -244,7 +402,7 @@ Obtains the call status. This API uses a promise to return the result.
 
 | Type                                  | Description                                   |
 | -------------------------------------- | --------------------------------------- |
-| Promise&lt;[CallState](#callstate)&gt; | Promise used to return the result. |
+| Promise&lt;[CallState](#callstate)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -269,7 +427,7 @@ Checks whether a device supports voice calls.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls. |
+| boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls.|
 
 ```js
 let result = call.hasVoiceCapability(); 
@@ -286,10 +444,21 @@ Checks whether the called number is an emergency number. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                        | Mandatory | Description                                                        |
+| Name     | Type                        | Mandatory| Description                                                        |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                       | Yes  | Phone number.                                                  |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number. |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -304,17 +473,28 @@ call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
 
 isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, callback: AsyncCallback<boolean\>\): void
 
-Checks whether the called number is an emergency number based on the specified phone number options. This API uses an asynchronous callback to return the result.
+Checks whether the called number is an emergency number based on the phone number. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                                              | Mandatory | Description                                                       |
-| ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
-| phoneNumber | string                                             | Yes  | Phone number.                                                 |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | No  | Phone number options.        |
-| callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number. |
+| Name     | Type                                              | Mandatory| Description                                                        |
+| ----------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                             | Yes  | Phone number.                                                  |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number.                                              |
+| callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result. - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -329,22 +509,33 @@ call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, data) => {
 
 isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\): Promise<boolean\>
 
-Checks whether the called number is an emergency number based on the specified phone number options. This API uses a promise to return the result.
+Checks whether the called number is an emergency number based on the phone number. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                                              | Mandatory | Description          |
+| Name     | Type                                              | Mandatory| Description          |
 | ----------- | -------------------------------------------------- | ---- | -------------- |
 | phoneNumber | string                                             | Yes  | Phone number.    |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number options. |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | No  | Phone number.|
 
 **Return value**
 
 | Type                  | Description                                               |
 | ---------------------- | --------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -369,10 +560,21 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Parameters**
 
-| Name     | Type                       | Mandatory | Description                                |
+| Name     | Type                       | Mandatory| Description                                |
 | ----------- | --------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                      | Yes  | Phone number.                          |
-| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. |
+| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -386,7 +588,7 @@ call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
 
 formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: AsyncCallback<string\>\): void
 
-Formats a phone number based on the specified formatting options. This API uses an asynchronous callback to return the result.
+Formats a phone number based on specified formatting options. This API uses an asynchronous callback to return the result.
 
 A formatted phone number is a standard numeric string, for example, 555 0100.
 
@@ -394,11 +596,22 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Parameters**
 
-| Name     | Type                                        | Mandatory | Description                                |
+| Name     | Type                                        | Mandatory| Description                                |
 | ----------- | -------------------------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                                       | Yes  | Phone number.                          |
-| options     | [NumberFormatOptions](#numberformatoptions7) | No  | Number formatting options, for example, country code.              |
-| callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result. |
+| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting options, for example, country code.              |
+| callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -415,7 +628,7 @@ call.formatPhoneNumber("138xxxxxxxx", {
 
 formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise<string\>
 
-Formats a phone number based on the specified formatting options. This API uses a promise to return the result.
+Formats a phone number based on specified formatting options. This API uses a promise to return the result.
 
 A formatted phone number is a standard numeric string, for example, 555 0100.
 
@@ -423,16 +636,27 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Parameters**
 
-| Name     | Type                                        | Mandatory | Description                  |
+| Name     | Type                                        | Mandatory| Description                  |
 | ----------- | -------------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                       | Yes  | Phone number.            |
-| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting options, for example, country code. |
+| options     | [NumberFormatOptions](#numberformatoptions7) | No  | Number formatting options, for example, country code.|
 
 **Return value**
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result. |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -459,11 +683,22 @@ The phone number must match the specified country code. For example, for a China
 
 **Parameters**
 
-| Name     | Type                       | Mandatory | Description                                                 |
+| Name     | Type                       | Mandatory| Description                                                 |
 | ----------- | --------------------------- | ---- | ----------------------------------------------------- |
 | phoneNumber | string                      | Yes  | Phone number.                                           |
 | countryCode | string                      | Yes  | Country code, for example, **CN** (China). All country codes are supported.             |
-| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. |
+| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -488,16 +723,27 @@ All country codes are supported.
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                                    |
+| Name     | Type  | Mandatory| Description                                    |
 | ----------- | ------ | ---- | ---------------------------------------- |
 | phoneNumber | string | Yes  | Phone number.                              |
-| countryCode | string | Yes  | Country code, for example, **CN** (China). All country codes are supported. |
+| countryCode | string | Yes  | Country code, for example, **CN** (China). All country codes are supported.|
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; | Promise used to return the result. |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -514,9 +760,9 @@ promise.then(data => {
 
 muteRinger\(callback: AsyncCallback<void\>\): void
 
-Mutes the ringtone while it is playing.  This API uses an asynchronous callback to return the result.
+Mutes the ringtone while it is playing. It does not work if the ringtone has been muted. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -527,6 +773,17 @@ This is a system API.
 | Name     | Type                     | Mandatory| Description      |
 | ----------- | ------------------------- | ---- | ---------- |
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -541,9 +798,9 @@ call.muteRinger((err, data) => {
 
 muteRinger\(\): Promise<void\>
 
-Mutes the ringtone while it is playing.  This API uses a promise to return the result.
+Mutes the ringtone while it is playing. It does not work if the ringtone has been muted. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -554,6 +811,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -566,13 +835,14 @@ promise.then(data => {
 });
 ```
 
-## call.answer<sup>7+</sup>
 
-answer\(callId: number, callback: AsyncCallback<void\>\): void
+## call.answerCall<sup>7+</sup>
 
-Answers a call based on the specified call ID. This API uses an asynchronous callback to return the result.
+answerCall\(callId: number, callback: AsyncCallback<void\>\): void
 
-This is a system API.
+Answers a call. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -585,22 +855,34 @@ This is a system API.
 | callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-call.answer(1, (err, data) => {
+call.answerCall(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.answer<sup>7+</sup>
+## call.answerCall<sup>7+</sup>
 
-answer(callId?: number\): Promise<void\>
+answerCall(callId?: number\): Promise<void\>
 
-Answers a call based on the specified call ID. This API uses a promise to return the result.
+Answers a call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -618,24 +900,37 @@ This is a system API.
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-let promise = call.answer(1);
+let promise = call.answerCall(1);
 promise.then(data => {
-    console.log(`answer success, promise: data->${JSON.stringify(data)}`);
+    console.log(`answerCall success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`answer fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`answerCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## call.hangup<sup>7+</sup>
 
-hangup\(callId: number, callback: AsyncCallback<void\>\): void
+## call.answerCall<sup>9+</sup>
 
-Ends a call. This API uses an asynchronous callback to return the result.
+answerCall\(callback: AsyncCallback<void\>\): void
 
-This is a system API.
+Answers a call. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -645,25 +940,36 @@ This is a system API.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
-call.hangup(1, (err, data) => {
+call.answerCall((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.answer<sup>9+</sup>
+## call.hangUpCall<sup>7+</sup>
 
-answer\(callback: AsyncCallback<void\>\): void
+hangUpCall\(callId: number, callback: AsyncCallback<void\>\): void
 
-Answers a call.This API uses an asynchronous callback to return the result.
+Ends a call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -673,24 +979,37 @@ This is a system API.
 
 | Name  | Type                     | Mandatory| Description                                           |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
+| callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
-call.answer((err, data) => {
+call.hangUpCall(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.hangup<sup>7+</sup>
+## call.hangUpCall<sup>7+</sup>
 
-hangup\(callId?: number\): Promise<void\>
+hangUpCall\(callId?: number\): Promise<void\>
 
-Ends a call based on the specified call ID. This API uses a promise to return the result.
+Ends a call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -708,24 +1027,37 @@ This is a system API.
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-let promise = call.hangup(1);
+let promise = call.hangUpCall(1);
 promise.then(data => {
-    console.log(`hangup success, promise: data->${JSON.stringify(data)}`);
+    console.log(`hangUpCall success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`hangup fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`hangUpCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## call.hangup<sup>9+</sup>
 
-hangup\(callback: AsyncCallback<void\>\): void
+## call.hangUpCall<sup>9+</sup>
+
+hangUpCall\(callback: AsyncCallback<void\>\): void
 
 Ends a call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -737,22 +1069,35 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+
 **Example**
 
 ```js
-call.hangup((err, data) => {
+call.hangUpCall((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.reject<sup>7+</sup>
+## call.rejectCall<sup>7+</sup>
 
-reject(callId: number, callback: AsyncCallback\<void>): void
+rejectCall(callId: number, callback: AsyncCallback\<void>): void
 
-Rejects a call based on the specified call ID. This API uses an asynchronous callback to return the result.
+Rejects a call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -765,22 +1110,35 @@ This is a system API.
 | callId   | number                    | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 
 **Example**
 
 ```js
-call.reject(1, (err, data) => {
+call.rejectCall(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
-## call.reject<sup>7+</sup>
 
-reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
+## call.rejectCall<sup>7+</sup>
 
-Rejects a call based on the specified call ID and options. This API uses an asynchronous callback to return the result.
+rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
-This is a system API.
+Rejects a call. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -794,25 +1152,37 @@ This is a system API.
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | Yes  | Options for the call rejection message.                                 |
 | callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.                                     |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
 let rejectMessageOptions={
     messageContent: "Unknown number blocked"
 }
-call.reject(1, rejectMessageOptions, (err, data) => {
+call.rejectCall(1, rejectMessageOptions, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.reject<sup>7+</sup>
+## call.rejectCall<sup>7+</sup>
 
-reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
+rejectCall(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
-Rejects a call based on the specified call ID and options. This API uses a promise to return the result.
+Rejects a call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -831,28 +1201,40 @@ This is a system API.
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
 let rejectMessageOptions={
     messageContent: "Unknown number blocked"
 }
-let promise = call.reject(1, rejectMessageOptions);
+let promise = call.rejectCall(1, rejectMessageOptions);
 promise.then(data => {
-    console.log(`reject success, promise: data->${JSON.stringify(data)}`);
+    console.log(`rejectCall success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`rejectCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## call.reject<sup>9+</sup>
+## call.rejectCall<sup>9+</sup>
 
-reject\(callback: AsyncCallback<void\>\): void
+rejectCall\(callback: AsyncCallback<void\>\): void
 
 Rejects a call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -864,22 +1246,34 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
-**Example:**
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
 
 ```js
-call.reject((err, data) => {
+call.rejectCall((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.reject<sup>9+</sup>
+## call.rejectCall<sup>9+</sup>
 
-reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
+rejectCall\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 Rejects a call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -892,13 +1286,25 @@ This is a system API.
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | Yes  | Options for the call rejection message.|
 | callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.    |
 
-**Example:**
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
 
 ```js
 let rejectMessageOptions={
     messageContent: "Unknown number blocked"
 }
-call.reject(rejectMessageOptions, (err, data) => {
+call.rejectCall(rejectMessageOptions, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -910,7 +1316,7 @@ holdCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 Holds a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -922,6 +1328,18 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | Yes  | Call ID.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -938,7 +1356,7 @@ holdCall\(callId: number\): Promise<void\>
 
 Holds a call based on the specified call ID. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -955,6 +1373,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -973,7 +1403,7 @@ unHoldCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 Unholds a call based on the specified call ID. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -985,6 +1415,18 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | Yes  | Call ID.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1001,7 +1443,7 @@ unHoldCall\(callId: number\): Promise<void\>
 
 Unholds a call based on the specified call ID. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -1018,6 +1460,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1036,7 +1490,7 @@ switchCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 Switches a call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -1048,6 +1502,18 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | Yes  | Call ID.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1064,7 +1530,7 @@ switchCall\(callId: number\): Promise<void\>
 
 Switches a call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.ANSWER_CALL
 
@@ -1081,6 +1547,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1099,7 +1577,7 @@ combineConference\(callId: number, callback: AsyncCallback<void\>\): void
 
 Combines two calls into a conference call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1109,6 +1587,17 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | Yes  | Call ID.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1125,7 +1614,7 @@ combineConference\(callId: number\): Promise<void\>
 
 Combines two calls into a conference call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1140,6 +1629,17 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1158,7 +1658,7 @@ getMainCallId\(callId: number, callback: AsyncCallback<number\>\): void
 
 Obtains the main call ID. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1168,6 +1668,18 @@ This is a system API.
 | -------- | --------------------------- | ---- | ------------------------ |
 | callId   | number                      | Yes  | Call ID.                |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.  |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 
 **Example**
 
@@ -1184,7 +1696,7 @@ getMainCallId\(callId: number\): Promise<number\>
 
 Obtains the main call ID. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1199,6 +1711,17 @@ This is a system API.
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1217,7 +1740,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback<Array<string\>\>\): vo
 
 Obtains the list of subcall IDs. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1227,6 +1750,17 @@ This is a system API.
 | -------- | ------------------------------ | ---- | ---------------------------- |
 | callId   | number                         | Yes  | Call ID.                    |
 | callback | AsyncCallback<Array<string\>\> | Yes  | Callback used to return the result.  |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1243,7 +1777,7 @@ getSubCallIdList\(callId: number\): Promise<Array<string\>\>
 
 Obtains the list of subcall IDs. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1258,6 +1792,17 @@ This is a system API.
 | Type                         | Description                               |
 | ----------------------------- | ----------------------------------- |
 | Promise&lt;Array<string\>&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1276,7 +1821,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback<Array<string
 
 Obtains the list of call IDs in a conference. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1286,6 +1831,17 @@ This is a system API.
 | -------- | ----------------------------------- | ---- | -------------------------------- |
 | callId   | number                              | Yes  | Call ID.                        |
 | callback | AsyncCallback&lt;Array<string\>&gt; | Yes  | Callback used to return the result.  |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1302,7 +1858,7 @@ getCallIdListForConference\(callId: number\): Promise<Array<string\>\>
 
 Obtains the list of call IDs in a conference. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1317,6 +1873,17 @@ This is a system API.
 | Type                         | Description                                   |
 | ----------------------------- | --------------------------------------- |
 | Promise&lt;Array<string\>&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1335,7 +1902,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback<CallWaitingStatus\
 
 Obtains the call waiting status. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1345,8 +1912,20 @@ This is a system API.
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2               |
-| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
+| slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
+| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br> <br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1363,7 +1942,7 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 
 Obtains the call waiting status. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1380,6 +1959,18 @@ This is a system API.
 | Type                                                   | Description                                                        |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;[CallWaitingStatus](#callwaitingstatus7)&gt; | Promise used to return the result.<br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1398,7 +1989,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback<void\
 
 Sets the call waiting switch. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1411,6 +2002,18 @@ This is a system API.
 | slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | activate | boolean              | Yes  | Whether to enable call waiting.<br>- **false**: Disable call waiting.<br>- **true**: Enable call waiting.|
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1427,7 +2030,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 
 Sets the call waiting switch. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1446,6 +2049,18 @@ This is a system API.
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1461,9 +2076,9 @@ promise.then(data => {
 
 startDTMF\(callId: number, character: string, callback: AsyncCallback<void\>\): void
 
-Enables dual-tone multifrequency (DTMF). This API uses an asynchronous callback to return the result.
+Enables DTMF. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1474,6 +2089,17 @@ This is a system API.
 | callId    | number               | Yes  | Call ID.  |
 | character | string               | Yes  | DTMF code.  |
 | callback  | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1490,7 +2116,7 @@ startDTMF\(callId: number, character: string\): Promise<void\>
 
 Enables DTMF. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1506,6 +2132,17 @@ This is a system API.
 | Type               | Description                   |
 | ------------------- | ----------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1524,7 +2161,7 @@ stopDTMF\(callId: number, callback: AsyncCallback<void\>\): void
 
 Stops DTMF. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1534,6 +2171,17 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | Yes  | Call ID.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1550,7 +2198,7 @@ stopDTMF\(callId: number\): Promise<void\>
 
 Stops DTMF. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1565,6 +2213,17 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1583,7 +2242,7 @@ isInEmergencyCall\(callback: AsyncCallback<boolean\>\): void
 
 Checks whether a call is an emergency call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1594,6 +2253,18 @@ This is a system API.
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1610,7 +2281,7 @@ isInEmergencyCall\(\): Promise<boolean\>
 
 Checks whether a call is an emergency call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1621,6 +2292,18 @@ This is a system API.
 | Type                  | Description                       |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1639,7 +2322,7 @@ on\(type: 'callDetailsChange', callback: Callback<CallAttributeOptions\>\): void
 
 Subscribes to **callDetailsChange** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1651,6 +2334,18 @@ This is a system API.
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
 | type     | string                                                  | Yes  | Call details change during a call.|
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | Yes  | Callback used to return the result.                |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1666,7 +2361,7 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 
 Subscribes to **callEventChange** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1678,6 +2373,18 @@ This is a system API.
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                           | Yes  | Call event change during a call.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | Yes  | Callback used to return the result.                |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1693,7 +2400,7 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 
 Subscribes to **callDisconnectedCause** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1705,6 +2412,18 @@ This is a system API.
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | Yes  | Cause of the call disconnection.|
 | callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | Yes  | Callback used to return the result.                |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1720,7 +2439,7 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 
 Subscribes to **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1732,6 +2451,18 @@ This is a system API.
 | -------- | -------------------------------------------- | ---- | --------------------- |
 | type     | string                                       | Yes  | Man-machine interface (MMI) code result.|
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | Yes  | Callback used to return the result.           |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1747,7 +2478,7 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 
 Unsubscribes from **callDetailsChange** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1757,8 +2488,20 @@ This is a system API.
 
 | Name  | Type                                                    | Mandatory| Description                              |
 | -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                   | Yes  | Unsubscription from call details changes when a call ends.|
+| type     | string                                                   | Yes  | IMS registration status changes.|
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | No  | Callback used to return the result.                        |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1774,7 +2517,7 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 
 Unsubscribes from **callEventChange** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1786,6 +2529,18 @@ This is a system API.
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
 | type     | string                                           | Yes  | Unsubscription from call event changes when a call ends.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | No  | Callback used to return the result.                        |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1801,7 +2556,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 
 Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1813,6 +2568,18 @@ This is a system API.
 | -------- | ---------------------------------------------------------- | ---- | -------------------- |
 | type     | 'callDisconnectedCause'                                    | Yes  | Unsubscription from the call disconnection cause when a call ends.|
 | callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | No  | Callback used to return the result.          |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1828,7 +2595,7 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 
 Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1840,6 +2607,18 @@ This is a system API.
 | -------- | ------------------------------------------------ | ---- | ----------- |
 | type     | 'mmiCodeResult'                                  | Yes  | MMI code result.|
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | No  | Callback used to return the result. |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1855,7 +2634,7 @@ isNewCallAllowed\(callback: AsyncCallback<boolean\>\): void
 
 Checks whether a new call is allowed. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1864,6 +2643,17 @@ This is a system API.
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1880,7 +2670,7 @@ isNewCallAllowed\(\): Promise<boolean\>
 
 Checks whether a new call is allowed. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1889,6 +2679,17 @@ This is a system API.
 | Type                  | Description                       |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1905,9 +2706,9 @@ promise.then(data => {
 
 separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 
-Separates a conference call. This API uses an asynchronous callback to return the result.
+Separates calls from a conference call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1917,6 +2718,17 @@ This is a system API.
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | Yes  | Call ID.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1931,9 +2743,9 @@ call.separateConference(1, (err, data) => {
 
 separateConference\(callId: number\): Promise<void\>
 
-Separates a conference call. This API uses a promise to return the result.
+Separates calls from a conference call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -1948,6 +2760,17 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1966,7 +2789,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 
 Obtains the call restriction status. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1979,6 +2802,18 @@ This is a system API.
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | type     | [CallRestrictionType](#callrestrictiontype8)                 | Yes  | Call restriction type.                       |
 | callback | AsyncCallback&lt;[RestrictionStatus](#restrictionstatus8)&gt; | Yes  | Callback used to return the result.                |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1995,7 +2830,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 
 Obtains the call restriction status. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -2014,6 +2849,18 @@ This is a system API.
 | ------------------------------------------------------- | --------------------------- |
 | Promise&lt;[RestrictionStatus](#restrictionstatus8)&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -2031,7 +2878,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 
 Sets the call restriction status. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2044,6 +2891,18 @@ This is a system API.
 | slotId   | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | Yes  | Call restriction information.                        |
 | callback | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2065,7 +2924,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 
 Sets the call restriction status. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2083,6 +2942,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2106,7 +2977,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 
 Obtains call transfer information. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -2120,10 +2991,22 @@ This is a system API.
 | type     | [CallTransferType](#calltransfertype8)                       | Yes  | Call transfer type.                        |
 | callback | AsyncCallback&lt;[CallTransferResult](#calltransferresult8)&gt; | Yes  | Callback used to return the result.            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-call.getCallTransferInfo(0, callTransferTyp, (err, data) => {
+call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2135,7 +3018,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 
 Obtains call transfer information. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -2154,6 +3037,18 @@ This is a system API.
 | --------------------------------------------------------- | --------------------------- |
 | Promise&lt;[CallTransferResult](#calltransferresult8)&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -2171,7 +3066,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 
 Sets call transfer information. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2184,6 +3079,18 @@ This is a system API.
 | slotId   | number                                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | info     | [CallTransferInfo](#calltransferinfo8) | Yes  | Call transfer information.                       |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2205,7 +3112,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 
 Sets call transfer information. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2223,6 +3130,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2246,7 +3165,7 @@ isRinging\(callback: AsyncCallback<boolean\>\): void
 
 Checks whether the ringtone is playing. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2257,6 +3176,18 @@ This is a system API.
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2273,7 +3204,7 @@ isRinging\(\): Promise<boolean\>
 
 Checks whether the ringtone is playing. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2284,6 +3215,18 @@ This is a system API.
 | Type                  | Description                       |
 | ---------------------- | --------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2302,7 +3245,7 @@ setMuted\(callback: AsyncCallback<void\>\): void
 
 Sets call muting. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2311,6 +3254,17 @@ This is a system API.
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2327,7 +3281,7 @@ setMuted\(\): Promise<void\>
 
 Sets call muting. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2336,6 +3290,17 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2354,7 +3319,7 @@ cancelMuted(callback: AsyncCallback<void\>): void
 
 Cancels call muting. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2363,6 +3328,17 @@ This is a system API.
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2379,7 +3355,7 @@ cancelMuted(): Promise<void\>
 
 Cancels call muting. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2388,6 +3364,17 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2400,13 +3387,13 @@ promise.then(data => {
 });
 ```
 
-## call.setAudioDevice<sup>9+</sup>
+## call.setAudioDevice<sup>8+</sup>
 
 setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 
 Sets the audio device for a call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2416,6 +3403,17 @@ This is a system API.
 | -------- | ---------------------------- | ---- | ---------- |
 | device   | [AudioDevice](#audiodevice8) | Yes  | Audio device.|
 | callback | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2432,7 +3430,7 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 
 Sets the audio device for a call based on the specified options. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2443,6 +3441,17 @@ This is a system API.
 | device   | [AudioDevice](#audiodevice8)               | Yes  | Audio device.    |
 | options  | [AudioDeviceOptions](#audiodeviceoptions9) | Yes  | Audio device parameters.|
 | callback | AsyncCallback&lt;void&gt;                  | Yes  | Callback used to return the result.    |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2456,13 +3465,13 @@ call.setAudioDevice(1, audioDeviceOptions, (err, data) => {
 ```
 
 
-## call.setAudioDevice<sup>8+</sup>
+## call.setAudioDevice<sup>9+</sup>
 
 setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions): Promise<void\>
 
 Sets the audio device for a call based on the specified options. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2478,6 +3487,17 @@ This is a system API.
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2499,7 +3519,7 @@ joinConference(mainCallId: number, callNumberList: Array<string\>, callback: Asy
 
 Joins a conference call. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2510,6 +3530,17 @@ This is a system API.
 | mainCallId     | number                    | Yes  | Main call ID.     |
 | callNumberList | Array<string\>            | Yes  | List of call numbers.|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.     |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2528,7 +3559,7 @@ joinConference(mainCallId: number, callNumberList: Array<string\>): Promise<void
 
 Joins a conference call. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2544,6 +3575,17 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2565,7 +3607,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<voi
 
 Updates the IMS call mode. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2576,6 +3618,17 @@ This is a system API.
 | callId   | number                       | Yes  | Call ID.      |
 | mode     | [ImsCallMode](#imscallmode8) | Yes  | IMS call mode.|
 | callback | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.    |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2591,7 +3644,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void\>
 
 Updates the IMS call mode. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2607,6 +3660,17 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2625,7 +3689,7 @@ enableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 
 Enables the IMS switch. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2637,6 +3701,18 @@ This is a system API.
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2652,7 +3728,7 @@ enableImsSwitch(slotId: number): Promise<void\>
 
 Enables the IMS switch. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2669,6 +3745,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2687,7 +3775,7 @@ disableImsSwitch(slotId: number, callback: AsyncCallback<void\>): void
 
 Disables the IMS switch. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2699,6 +3787,18 @@ This is a system API.
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2714,7 +3814,7 @@ disableImsSwitch(slotId: number): Promise<void\>
 
 Disables the IMS switch. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -2731,6 +3831,18 @@ This is a system API.
 | Type               | Description                       |
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2749,7 +3861,7 @@ isImsSwitchEnabled(slotId: number, callback: AsyncCallback<boolean\>): void
 
 Checks whether the IMS switch is enabled. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2759,6 +3871,17 @@ This is a system API.
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2774,7 +3897,7 @@ isImsSwitchEnabled(slotId: number): Promise<boolean\>
 
 Checks whether the IMS switch is enabled. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2790,6 +3913,17 @@ This is a system API.
 | ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -2801,20 +3935,32 @@ promise.then(data => {
 });
 ```
 
-
 ## DialOptions
 
-Defines the dialup options.
+Provides an option for determining whether a call is a video call.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name                  | Type                              | Mandatory| Description                                                        |
-| ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
+|        Name             | Type                              | Mandatory| Description                                                                                            |
+| ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
 | extras                   | boolean                            | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call|
-| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>This is a system API.         |
-| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                            |
-| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                |
-| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                |
+| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>This is a system API.                                   |
+| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                                                                |
+| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                                                    |
+| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                                                    |
+
+## DialCallOptions<sup>9+</sup>
+
+Defines options for initiating a call.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+|        Name             | Type                              | Mandatory| Description                                                        |
+| ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| accountId <sup>9+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>This is a system API.|
+| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                            |
+| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                |
+| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                |
 
 ## CallState
 
@@ -2827,33 +3973,33 @@ Enumerates call states.
 | CALL_STATE_UNKNOWN | -1   | The call status fails to be obtained and is unknown.                        |
 | CALL_STATE_IDLE    | 0    | No call is in progress.                                    |
 | CALL_STATE_RINGING | 1    | The call is in the ringing or waiting state.                                    |
-| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting. |
+| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting.|
 
 ## EmergencyNumberOptions<sup>7+</sup>
 
-Defines options for determining whether a number is an emergency number.
+Provides an option for determining whether a number is an emergency number for the SIM card in the specified slot.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type  | Mandatory | Description                                          |
+|  Name | Type  | Mandatory| Description                                          |
 | ------ | ------ | ---- | ---------------------------------------------- |
 | slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 ## NumberFormatOptions<sup>7+</sup>
 
-Defines the number formatting options.
+Provides an option for number formatting.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name     | Type  | Mandatory | Description                                                      |
+|    Name    | Type  | Mandatory| Description                                                      |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
-| countryCode | string | No  | Country code, for example, **CN** (China). All country codes are supported. The default value is **CN**. |
+| countryCode | string | No  | Country code, for example, **CN** (China). All country codes are supported. The default value is **CN**.|
 
 ## ImsCallMode<sup>8+</sup>
 
 Enumerates IMS call modes.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2869,23 +4015,23 @@ This is a system API.
 
 Enumerates audio devices.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 | Name                | Value  | Description        |
 | -------------------- | ---- | ------------ |
-| DEVICE_EARPIECE      | 0    | Earpiece.    |
-| DEVICE_SPEAKER       | 1    | Speaker.|
-| DEVICE_WIRED_HEADSET | 2    | Wired headset.|
+| DEVICE_EARPIECE      | 0    | Headset device.    |
+| DEVICE_SPEAKER       | 1    | Speaker device.|
+| DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
-| DEVICE_MIC           | 4    | Microphone. |
+| DEVICE_MIC           | 4    | Microphone device|
 
 ## CallRestrictionType<sup>8+</sup>
 
 Enumerates call restriction types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2904,7 +4050,7 @@ This is a system API.
 
 Defines the call transfer information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2915,14 +4061,14 @@ This is a system API.
 | settingType              | [CallTransferSettingType](#calltransfersettingtype8) | Yes  | Call transfer setting type.|
 | startHour<sup>9+</sup>   | number                                               | No  | Hour in the start time.|
 | startMinute<sup>9+</sup> | number                                               | No  | Minute in the start time.|
-| endHour<sup>9+</sup>     | number                                               | No  | Hour in the end time.|
+| endHour<sup>9+</sup>     | number                                               | No  | Minute in the end time.|
 | endMinute<sup>9+</sup>   | number                                               | No  | Minute in the end time.|
 
 ## CallTransferType<sup>8+</sup>
 
 Enumerates call transfer types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2937,7 +4083,7 @@ This is a system API.
 
 Enumerates call transfer setting types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2952,11 +4098,11 @@ This is a system API.
 
 Defines the call attribute options.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name         | Type                                    | Mandatory| Description          |
+|      Name      | Type                                    | Mandatory| Description          |
 | --------------- | ---------------------------------------- | ---- | -------------- |
 | accountNumber   | string                                   | Yes  | Account number.      |
 | speakerphoneOn  | boolean                                  | Yes  | Speakerphone on.|
@@ -2973,7 +4119,7 @@ This is a system API.
 
 Enumerates conference states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2988,7 +4134,7 @@ This is a system API.
 
 Enumerates call types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3001,9 +4147,9 @@ This is a system API.
 
 ## VideoStateType<sup>7+</sup>
 
-Enumerates video state types.
+Video state type.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3016,7 +4162,7 @@ This is a system API.
 
 Enumerates detailed call states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3036,11 +4182,11 @@ This is a system API.
 
 Defines the call restriction information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name  | Type                                        | Mandatory| Description        |
+|   Name  | Type                                        | Mandatory| Description        |
 | -------- | -------------------------------------------- | ---- | ------------ |
 | type     | [CallRestrictionType](#callrestrictiontype8) | Yes  | Call restriction type.|
 | password | string                                       | Yes  | Password.        |
@@ -3050,7 +4196,7 @@ This is a system API.
 
 Enumerates call restriction modes.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3063,11 +4209,11 @@ This is a system API.
 
 Defines the call event options.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name | Type                                      | Mandatory| Description          |
+|   Name | Type                                      | Mandatory| Description          |
 | ------- | ------------------------------------------ | ---- | -------------- |
 | eventId | [CallAbilityEventId](#callabilityeventid8) | Yes  | Call ability event ID.|
 
@@ -3075,7 +4221,7 @@ This is a system API.
 
 Enumerates call ability event IDs.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3088,7 +4234,7 @@ This is a system API.
 
 Enumerates dialup scenarios.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3102,7 +4248,7 @@ This is a system API.
 
 Enumerates dialup types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3116,11 +4262,11 @@ This is a system API.
 
 Defines options for the call rejection message.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name        | Type  | Mandatory| Description    |
+|     Name      | Type  | Mandatory| Description    |
 | -------------- | ------ | ---- | -------- |
 | messageContent | string | Yes  | Message content.|
 
@@ -3128,7 +4274,7 @@ This is a system API.
 
 Defines the call transfer result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3138,14 +4284,14 @@ This is a system API.
 | number                   | string                             |  Yes | Call transfer number.            |
 | startHour<sup>9+</sup>   | number                             |  Yes | Hour in the start time.|
 | startMinute<sup>9+</sup> | number                             |  Yes | Minute in the start time.|
-| endHour<sup>9+</sup>     | number                             |  Yes | Hour in the end time.|
+| endHour<sup>9+</sup>     | number                             |  Yes | Minute in the end time.|
 | endMinute<sup>9+</sup>   | number                             |  Yes | Minute in the end time.|
 
 ## CallWaitingStatus<sup>7+</sup>
 
 Enumerates call waiting states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3158,7 +4304,7 @@ This is a system API.
 
 Enumerates call restriction states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3171,7 +4317,7 @@ This is a system API.
 
 Enumerates call transfer states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3184,7 +4330,7 @@ This is a system API.
 
 Defines the cause of a call disconnection.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3197,7 +4343,7 @@ This is a system API.
 
 Enumerates causes of call disconnection.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3287,7 +4433,7 @@ This is a system API.
 
 Defines the MMI code result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3298,9 +4444,9 @@ This is a system API.
 
 ## MmiCodeResult<sup>9+</sup>
 
-Enumerates MMI code results.
+Defines the MMI code result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3313,7 +4459,7 @@ This is a system API.
 
 Defines audio device options.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CallManager
 

@@ -46,11 +46,11 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 ```js
 try {
     // Add a rule.
-    hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);}
+    hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
     // Add multiple rules.
-    hichecker.addCheckRule(
-        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
-catch (err) {
+    // hichecker.addCheckRule(
+    //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -76,9 +76,9 @@ try {
     // Remove a rule.
     hichecker.removeCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
     // Remove multiple rules.
-    hichecker.removeCheckRule(
-        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
-catch (err) {
+    // hichecker.removeCheckRule(
+    //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -113,7 +113,7 @@ try {
     // Check whether the added rule exists in the collection of added rules.
     hichecker.containsCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
     hichecker.containsCheckRule(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
-catch (err) {
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```

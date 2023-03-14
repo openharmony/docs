@@ -30,10 +30,10 @@ Describes battery information.
 | batteryTemperature                        | number                                         | Yes  | No  | Battery temperature of the device, in unit of 0.1°C.                   |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | Yes  | No  | Whether the battery is supported or present.                |
 | batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | Yes  | No  | Battery level of the device.                              |
-| estimatedRemainingChargeTime<sup>9+</sup> | number                                         | Yes  | No  | Estimated time for fully charging the current device, in unit of milliseconds. **System API**: This is a system API.         |
-| totalEnergy<sup>9+</sup>                  | number                                         | Yes  | No  | Total battery capacity of the device, in unit of mAh. **System API**: This is a system API.  |
-| nowCurrent<sup>9+</sup>                   | number                                         | Yes  | No  | Battery current of the device, in unit of mA. **System API**: This is a system API.      |
-| remainingEnergy<sup>9+</sup>              | number                                         | Yes  | No  | Remaining battery capacity of the device, in unit of mAh. **System API**: This is a system API.|
+| estimatedRemainingChargeTime<sup>9+</sup> | number                                         | Yes  | No  | Estimated time for fully charging the current device, in unit of milliseconds. This is a system API.         |
+| totalEnergy<sup>9+</sup>                  | number                                         | Yes  | No  | Total battery capacity of the device, in unit of mAh. This is a system API.  |
+| nowCurrent<sup>9+</sup>                   | number                                         | Yes  | No  | Battery current of the device, in unit of mA. This is a system API.      |
+| remainingEnergy<sup>9+</sup>              | number                                         | Yes  | No  | Remaining battery capacity of the device, in unit of mAh. This is a system API.|
 
 ## BatteryPluggedType
 
