@@ -3167,7 +3167,7 @@ static getCookie(url: string): string
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要获取的cookie所属的url。 |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
 
 **返回值：**
 
@@ -3223,7 +3223,7 @@ static setCookie(url: string, value: string): void
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要设置的cookie所属的url。 |
+| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
 | value  | string | 是   | 要设置的cookie的值。      |
 
 **错误码：**
