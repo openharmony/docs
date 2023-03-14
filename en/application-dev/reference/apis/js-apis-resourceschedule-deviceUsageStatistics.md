@@ -133,6 +133,8 @@ Queries the group of this application. This API uses a promise to return the res
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type             | Description                         |
@@ -174,6 +176,8 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 Queries the group of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -552,6 +556,8 @@ Queries events of this application based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                     |
@@ -600,6 +606,8 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 Queries events of this application based on the specified start time and end time. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1557,6 +1565,8 @@ Provides the usage duration information of an application.
 Provides information about an application event.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
 
 | Name                  | Type    | Mandatory  | Description                                      |
 | --------------------- | ------ | ---- | ---------------------------------------- |
