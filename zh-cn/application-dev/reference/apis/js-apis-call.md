@@ -22,7 +22,7 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 >**说明：** 
 >
->从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#dialCall)替代。
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialCall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -52,7 +52,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 >**说明：** 
 >
->从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#dialCall)替代。
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialCall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -85,7 +85,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 >**说明：** 
 >
->从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#dialCall)替代。
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialCall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
