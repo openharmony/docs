@@ -60,8 +60,10 @@
         - ExtensionAbility Component
           - [ExtensionAbility Component Overview](application-models/extensionability-overview.md)
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
-          - [DataShareExtensionAbility](application-models/datashareextensionability.md)
+          - [DataShareExtensionAbility (System Applications Only)](application-models/datashareextensionability.md)
           - [FormExtensionAbility (Widget)](application-models/widget-development-stage.md)
+          - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
+          - [WindowExtensionAbility](application-models/windowextensionability.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
         - Want
@@ -74,8 +76,8 @@
         - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
         - Inter-Device Application Component Interaction (Continuation) 
           - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
-          - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
-          - [Multi-device Collaboration](application-models/hop-multi-device-collaboration.md)
+          - [Cross-Device Migration (System Applications Only)](application-models/hop-cross-device-migration.md)
+          - [Multi-device Collaboration (System Applications Only)](application-models/hop-multi-device-collaboration.md)
       - IPC
         - [Process Model](application-models/process-model-stage.md)
         - Common Events
@@ -104,7 +106,7 @@
           - [Creating a PageAbility](application-models/create-pageability.md)
           - [Starting a Local PageAbility](application-models/start-local-pageability.md)
           - [Stopping a PageAbility](application-models/stop-pageability.md)
-          - [Starting a Remote PageAbility](application-models/start-remote-pageability.md)
+          - [Starting a Remote PageAbility (System Applications Only)](application-models/start-remote-pageability.md)
           - [Starting a Specified Page](application-models/start-page.md)
           - [Window Properties](application-models/window-properties.md)
           - [Requesting Permissions](application-models/request-permissions.md)
@@ -270,7 +272,7 @@
       - [Custom Components](ui/ui-js-custom-components.md)
   - Notification
     - [Notification Overview](notification/notification-overview.md)
-    - [Notification Subscription (Open Only to System Applications)](notification/notification-subscription.md)
+    - [Notification Subscription (System Applications Only)](notification/notification-subscription.md)
     - [Enabling Notification](notification/notification-enable.md)
     - Publishing a Notification
       - [Publishing a Basic Notification](notification/text-notification.md)
@@ -297,10 +299,10 @@
       - [Audio Routing and Device Management Development](media/audio-routing-manager.md)
       - [AVPlayer Development (Recommended)](media/avplayer-playback.md)
       - [AVRecorder Development (Recommended)](media/avrecorder.md)
-      - [Audio Playback Development](media/audio-playback.md)
-      - [Audio Recording Development](media/audio-recorder.md)
-      - [Video Playback Development](media/video-playback.md)
-      - [Video Recording Development](media/video-recorder.md)
+      - [Audio Playback Development (To Be Deprecated)](media/audio-playback.md)
+      - [Audio Recording Development (To Be Deprecated)](media/audio-recorder.md)
+      - [Video Playback Development (To Be Deprecated)](media/video-playback.md)
+      - [Video Recording Development (To Be Deprecated)](media/video-recorder.md)
     - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - [AVSession Development](media/avsession-guidelines.md)
@@ -337,6 +339,10 @@
       - [HTTP Data Request](connectivity/http-request.md)
       - [WebSocket Connection](connectivity/websocket-connection.md)
       - [Socket Connection](connectivity/socket-connection.md)
+      - [Network Policy Management](connectivity/net-policy-management.md)
+      - [Network Sharing](connectivity/net-sharing.md)
+      - [Ethernet Connection](connectivity/net-ethernet.md)
+      - [Network Connection Management](connectivity/net-connection-manager.md)
     - IPC & RPC
       - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
       - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
@@ -399,6 +405,8 @@
     - Update Service
       - [Sample Server Overview](device/sample-server-overview.md)
       - [Sample Server Development](device/sample-server-guidelines.md)
+    - Stationary
+      - [Stationary Development](device/stationary-guidelines.md)
   - Device Usage Statistics
     - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
     - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
@@ -508,6 +516,9 @@
       - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
       - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
       - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
+      - [Menu](reference/arkui-ts/ts-basic-components-menu.md)
+      - [MenuItem](reference/arkui-ts/ts-basic-components-menuitem.md)
+      - [MenuItemGroup](reference/arkui-ts/ts-basic-components-menuitemgroup.md)
       - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
       - [NavRouter](reference/arkui-ts/ts-basic-components-navrouter.md)
       - [NavDestination](reference/arkui-ts/ts-basic-components-navdestination.md)
@@ -882,6 +893,7 @@
         - [abilityInfo](reference/apis/js-apis-bundleManager-abilityInfo.md)
         - [applicationInfo](reference/apis/js-apis-bundleManager-applicationInfo.md)
         - [bundleInfo](reference/apis/js-apis-bundleManager-bundleInfo.md)
+        - [BundlePackInfo](reference/apis/js-apis-bundleManager-BundlePackInfo.md)
         - [dispatchInfo](reference/apis/js-apis-bundleManager-dispatchInfo.md)
         - [elementName](reference/apis/js-apis-bundleManager-elementName.md)
         - [extensionAbilityInfo](reference/apis/js-apis-bundleManager-extensionAbilityInfo.md)
@@ -1170,6 +1182,7 @@
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
     - Resource Scheduling
       - [backgroundTaskManager Error Codes](reference/errorcodes/errorcode-backgroundTaskMgr.md)
+      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager Error Codes](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler Error Codes](reference/errorcodes/errorcode-workScheduler.md)
     - Security
@@ -1186,6 +1199,8 @@
       - [Preferences Error Codes](reference/errorcodes/errorcode-preferences.md)
     - File Management
       - [File Management Error Codes](reference/errorcodes/errorcode-filemanagement.md)
+    - Telephony Service
+      - [Telephony Error Codes](reference/errorcodes/errorcode-telephony.md)
     - Network Management
       - [Upload and Download Error Codes](reference/errorcodes/errorcode-request.md)
     - Connectivity
@@ -1217,7 +1232,6 @@
       - [System Parameter Error Codes](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB Error Codes](reference/errorcodes/errorcode-usb.md)
       - [Update Error Codes](reference/errorcodes/errorcode-update.md)
-      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
     - Customization Management
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Language Base Class Library

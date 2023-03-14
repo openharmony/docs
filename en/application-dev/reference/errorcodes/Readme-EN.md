@@ -10,6 +10,7 @@
   - [zlib Error Codes](errorcode-zlib.md)
 - Common Event and Notification
   - [Event Error Codes](errorcode-CommonEventService.md)
+  - [Notification Error Codes](errorcode-notification.md)
   - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
   - [Animator Error Codes](errorcode-animator.md)
@@ -45,6 +46,8 @@
   - [Preferences Error Codes](errorcode-preferences.md)
 - File Management
   - [File Management Error Codes](errorcode-filemanagement.md)
+- Telephony Service
+  - [Telephony Error Codes](errorcode-telephony.md)
 - Network Management
   - [Upload and Download Error Codes](errorcode-request.md)
   - [HTTP Error Codes](errorcode-net-http.md)
@@ -54,9 +57,9 @@
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
   - [Policy Management Error Codes](errorcode-net-policy.md)
 - Connectivity
+  - [Wi-Fi Error Codes](errorcode-wifi.md)
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
-  - [Wi-Fi Error Codes](errorcode-wifi.md)
 - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
