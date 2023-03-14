@@ -3506,7 +3506,7 @@ confirm(priKeyFile : string, certChainFile : string): void
 | certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
 
 ### confirm<sup>10+</sup>
-## 需要权限
+#### 需要权限
 需要添加证书管理的权限:ohos.permission.ACCESS_CERT_MANAGER，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)
 
 confirm(authUri : string): void
