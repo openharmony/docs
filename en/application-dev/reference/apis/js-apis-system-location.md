@@ -70,10 +70,10 @@ export default {
         console.log('success get location data. latitude:' + data.latitude);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
-      },
+        console.log('fail to get location. code:' + code + ', data:' + data);
+      }
     });    
-  },
+  }
 }
 ```
 
@@ -192,8 +192,8 @@ Cancels listening to the geographic location.
 ```
 export default {    
   unsubscribe() {        
-    geolocation.unsubscribe();    
-  },
+    geolocation.unsubscribe();
+  }
 }
 ```
 
