@@ -60,7 +60,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-获取wifi开启状态，使用callback形式返回wifi开启状态。
+获取wifi开启状态，使用promise形式返回wifi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
