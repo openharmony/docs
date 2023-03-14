@@ -13,12 +13,12 @@ cpup [_mode_] [_taskID_]
 
 ## 参数说明
 
-  **表1** 参数说明
+**表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
-| mode | -&nbsp;缺省：显示系统最近10s内的CPU占用率。<br/>-&nbsp;0：显示系统最近10s内的CPU占用率。<br/>-&nbsp;1：显示系统最近1s内的CPU占用率。<br/>-&nbsp;其他数字：显示系统启动至今总的CPU&nbsp;占用率。 | [0,0xFFFFFFFF] | 
-| taskID | 任务ID号 | [0,0xFFFFFFFF] | 
+| mode | -&nbsp;缺省：显示系统最近10s内的CPU占用率。<br/>-&nbsp;0：显示系统最近10s内的CPU占用率。<br/>-&nbsp;1：显示系统最近1s内的CPU占用率。<br/>-&nbsp;其他数字：显示系统启动至今总的CPU&nbsp;占用率。 | [0, 0xFFFFFFFF] | 
+| taskID | 任务ID号 | [0, 0xFFFFFFFF] | 
 
 
 ## 使用指南
@@ -37,8 +37,8 @@ cpup [_mode_] [_taskID_]
 
 ## 输出说明
 
-  **示例**:指令输出结果
-  
+**示例** 指令输出结果
+
 ```
 OHOS # cpup 1 5pid 5 
 

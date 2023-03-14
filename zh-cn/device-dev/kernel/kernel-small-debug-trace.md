@@ -45,7 +45,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
      - IDENTITY类型UINTPTR，表示事件操作的主体对象。
      - Params类型UINTPTR，表示事件的参数。
           示例：
-          
+
         ```
         假设需要新增对文件（fd1、fd2）读写操作的简易插桩,
         自定义读操作为type：1， 写操作为type：2，则
@@ -63,7 +63,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
      - TYPE用于设置具体的事件类型，可以在头文件los_trace.h中的enum LOS_TRACE_TYPE中自定义事件类型。定义方法和规则可以参考其他事件类型。
      - IDENTITY和Params的类型及含义同简易插桩。
           示例：
-          
+
         ```
         1.在enum LOS_TRACE_MASK中定义事件掩码，即模块级别的事件类型。
           定义规范为TRACE_#MOD#_FLAG，#MOD#表示模块名。
@@ -86,9 +86,9 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
           LOS_TRACE(FS_READ, fp, fd, flag, size); // 读文件的代码桩,
           #TYPE#之后的入参就是上面3中的FS_READ_PARAMS函数的入参
         ```
-     
+
         > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-        > 预置的Trace事件及参数均可以通过上述方式进行裁剪，参数详见kernel\include\los_trace.h。
+        > 预置的Trace事件及参数均可以通过上述方式进行裁剪，参数详见 [kernel\include\los_trace.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_trace.h)。
 
 - Trace Mask事件过滤接口LOS_TraceEventMaskSet(UINT32 mask)，其入参mask仅高28位生效（对应LOS_TRACE_MASK中某模块的使能位），仅用于模块的过滤，暂不支持针对某个特定事件的细粒度过滤。例如：LOS_TraceEventMaskSet(0x202)，则实际设置生效的mask为0x200（TRACE_QUE_FLAG），QUE模块的所有事件均会被采集。一般建议使用的方法为： LOS_TraceEventMaskSet(TRACE_EVENT_FLAG | TRACE_MUX_FLAG | TRACE_SEM_FLAG | TRACE_QUE_FLAG);
 
@@ -100,8 +100,8 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 
 - 针对中断事件的Trace, 提供中断号过滤，用于解决某些场景下特定中断号频繁触发导致其他事件被覆盖的情况，用户可自定义中断过滤的规则，
     示例如下：
-    
-  ```
+
+  ```c
   BOOL Example_HwiNumFilter(UINT32 hwiNum)
   {
       if ((hwiNum == TIMER_INT) || (hwiNum == DMA_INT)) {
@@ -117,7 +117,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 
 ### 用户态
 
-新增trace字符设备，位于"/dev/trace",通过对设备节点的read、write、ioctl，实现用户态trace的读写和控制：
+新增trace字符设备，位于"/dev/trace"，通过对设备节点的read、write、ioctl，实现用户态trace的读写和控制：
 
 - read: 用户态读取Trace记录数据
 
@@ -125,8 +125,8 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 
 - ioctl: 用户态Trace控制操作，包括
 
-  
-```
+
+```c
 #define TRACE_IOC_MAGIC   'T'
 #define TRACE_START      _IO(TRACE_IOC_MAGIC, 1)
 #define TRACE_STOP       _IO(TRACE_IOC_MAGIC, 2)
@@ -148,7 +148,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 开启Trace调测的典型流程如下：
 
 1. 配置Trace模块相关宏。
-   配置Trace控制宏LOSCFG_KERNEL_TRACE，默认关，在kernel/liteos_a目录下执行 make update_config命令配置"Kernel-&gt;Enable Hook Feature-&gt;Enable Trace Feature"中打开：
+   配置Trace控制宏LOSCFG_KERNEL_TRACE，默认关，在 kernel/liteos_a 目录下执行 make update_config 命令配置 "Kernel-&gt;Enable Hook Feature-&gt;Enable Trace Feature" 中打开：
 
    | 配置项 | menuconfig选项 | 含义 | 设置值 |
    | -------- | -------- | -------- | -------- |
@@ -156,7 +156,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
    | LOSCFG_RECORDER_MODE_OFFLINE | Trace&nbsp;work&nbsp;mode&nbsp;-&gt;Offline&nbsp;mode | Trace工作模式为离线模式 | YES/NO |
    | LOSCFG_RECORDER_MODE_ONLINE | Trace&nbsp;work&nbsp;mode&nbsp;-&gt;Online&nbsp;mode | Trace工作模式为在线模式 | YES/NO |
    | LOSCFG_TRACE_CLIENT_INTERACT | Enable&nbsp;Trace&nbsp;Client&nbsp;Visualization&nbsp;and&nbsp;Control | 使能与Trace&nbsp;IDE&nbsp;（dev&nbsp;tools）的交互，包括数据可视化和流程控制 | YES/NO |
-   | LOSCFG_TRACE_FRAME_CORE_MSG | Enable&nbsp;Record&nbsp;more&nbsp;extended&nbsp;content&nbsp;-<br>&gt;Record&nbsp;cpuid,&nbsp;hardware&nbsp;interrupt<br>&nbsp;status,&nbsp;task&nbsp;lock&nbsp;status | 记录CPUID、中断状态、锁任务状态 | YES/NO |
+   | LOSCFG_TRACE_FRAME_CORE_MSG | Enable&nbsp;Record&nbsp;more&nbsp;extended content<br>->Record&nbsp;cpuid,&nbsp;hardware&nbsp;interrupt status,&nbsp;task&nbsp;lock&nbsp;status | 记录CPUID、中断状态、锁任务状态 | YES/NO |
    | LOSCFG_TRACE_FRAME_EVENT_COUNT | Enable&nbsp;Record&nbsp;more&nbsp;extended&nbsp;content<br>&nbsp;-&gt;Record&nbsp;event&nbsp;count,<br>&nbsp;which&nbsp;indicate&nbsp;the&nbsp;sequence&nbsp;of&nbsp;happend&nbsp;events | 记录事件的次序编号 | YES/NO |
    | LOSCFG_TRACE_FRAME_MAX_PARAMS | Record&nbsp;max&nbsp;params | 配置记录事件的最大参数个数 | INT |
    | LOSCFG_TRACE_BUFFER_SIZE | Trace&nbsp;record&nbsp;buffer&nbsp;size | 配置Trace的缓冲区大小 | INT |
@@ -165,7 +165,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 
 3. (可选)调用LOS_TraceStop停止Trace后，清除缓冲区LOS_TraceReset（系统默认已启动trace）。
 
-4. (可选)调用LOS_TraceEventMaskSet设置需要追踪的事件掩码（系统默认的事件掩码仅使能中断与任务事件），事件掩码参见los_trace.h 中的LOS_TRACE_MASK定义。
+4. (可选)调用LOS_TraceEventMaskSet设置需要追踪的事件掩码（系统默认的事件掩码仅使能中断与任务事件），事件掩码参见 [los_trace.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_trace.h) 中的LOS_TRACE_MASK定义。
 
 5. 在需要记录事件的代码起始点调用LOS_TraceStart。
 
@@ -203,50 +203,52 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 
 ### 内核态示例代码
 
+该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试。
 实例代码如下：
 
 
-```
+```c
 #include "los_trace.h"
 UINT32 g_traceTestTaskId;
 VOID Example_Trace(VOID)
-{ 
-    UINT32 ret;    
+{
+    UINT32 ret;
     LOS_TaskDelay(10);
     /* 开启trace */
-    ret = LOS_TraceStart();    
-    if (ret != LOS_OK) {        
-        dprintf("trace start error\n");        
-        return;    
-    }    
-    /* 触发任务切换的事件 */    
-    LOS_TaskDelay(1);    
-    LOS_TaskDelay(1);    
-    LOS_TaskDelay(1);    
-    /* 停止trace */    
-    LOS_TraceStop();    
+    ret = LOS_TraceStart();
+    if (ret != LOS_OK) {
+        dprintf("trace start error\n");
+        return;
+    }
+    /* 触发任务切换的事件 */
+    LOS_TaskDelay(1);
+    LOS_TaskDelay(1);
+    LOS_TaskDelay(1);
+    /* 停止trace */
+    LOS_TraceStop();
     LOS_TraceRecordDump(FALSE);
 }
-UINT32 Example_Trace_test(VOID){
-    UINT32 ret;    
-    TSK_INIT_PARAM_S traceTestTask;    
-    /* 创建用于trace测试的任务 */    
-    memset(&traceTestTask, 0, sizeof(TSK_INIT_PARAM_S));    
-    traceTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_Trace;    
-    traceTestTask.pcName       = "TestTraceTsk";    /* 测试任务名称 */    				     
-    traceTestTask.uwStackSize  = 0x800;    
-    traceTestTask.usTaskPrio   = 5;    
-    traceTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;    
-    ret = LOS_TaskCreate(&g_traceTestTaskId, &traceTestTask);    
-    if(ret != LOS_OK){        
-        dprintf("TraceTestTask create failed .\n");        
-        return LOS_NOK;    
-    }    
-    /* 系统默认情况下已启动trace, 因此可先关闭trace后清除缓存区后，再重启trace */                    	  
-    LOS_TraceStop();    
-    LOS_TraceReset();    
-    /* 开启任务模块事件记录 */    
-    LOS_TraceEventMaskSet(TRACE_TASK_FLAG);    
+UINT32 Example_Trace_test(VOID)
+{
+    UINT32 ret;
+    TSK_INIT_PARAM_S traceTestTask;
+    /* 创建用于trace测试的任务 */
+    memset(&traceTestTask, 0, sizeof(TSK_INIT_PARAM_S));
+    traceTestTask.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_Trace;
+    traceTestTask.pcName       = "TestTraceTsk";    /* 测试任务名称 */
+    traceTestTask.uwStackSize  = 0x800; // 0x800: trace test task stacksize
+    traceTestTask.usTaskPrio   = 5; // 5: trace test task priority
+    traceTestTask.uwResved   = LOS_TASK_STATUS_DETACHED;
+    ret = LOS_TaskCreate(&g_traceTestTaskId, &traceTestTask);
+    if (ret != LOS_OK) {
+        dprintf("TraceTestTask create failed .\n");
+        return LOS_NOK;
+    }
+    /* 系统默认情况下已启动trace, 因此可先关闭trace后清除缓存区后，再重启trace */
+    LOS_TraceStop();
+    LOS_TraceReset();
+    /* 开启任务模块事件记录 */
+    LOS_TraceEventMaskSet(TRACE_TASK_FLAG);
     return LOS_OK;
 }
 LOS_MODULE_INIT(Example_Trace_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
@@ -262,7 +264,7 @@ LOS_MODULE_INIT(Example_Trace_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ***TraceInfo begin***
 clockFreq = 50000000
 CurEvtIndex = 7
-Index   Time(cycles)      EventType      CurTask   Identity      params    
+Index   Time(cycles)      EventType      CurTask   Identity      params
 0       0x366d5e88        0x45           0x1       0x0           0x1f         0x4       0x0
 1       0x366d74ae        0x45           0x0       0x1           0x0          0x8       0x1f
 2       0x36940da6        0x45           0x1       0xc           0x1f         0x4       0x9
@@ -276,13 +278,13 @@ Index   Time(cycles)      EventType      CurTask   Identity      params
 
 输出的事件信息包括：发生时间、事件类型、事件发生在哪个任务中、事件操作的主体对象、事件的其他参数。
 
-- EventType：表示的具体事件可查阅头文件los_trace.h中的enum LOS_TRACE_TYPE。
+- EventType：表示的具体事件可查阅头文件 [los_trace.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_trace.h) 中的enum LOS_TRACE_TYPE。
 
 - CurrentTask：表示当前运行在哪个任务中，值为taskid。
 
-- Identity：表示事件操作的主体对象，可查阅头文件los_trace.h中的\#TYPE\#_PARAMS。
+- Identity：表示事件操作的主体对象，可查阅头文件 [los_trace.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_trace.h) 中的\#TYPE\#_PARAMS。
 
-- params：表示的事件参数可查阅头文件los_trace.h中的\#TYPE\#_PARAMS。
+- params：表示的事件参数可查阅头文件 [los_trace.h](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_trace.h) 中的\#TYPE\#_PARAMS。
 
 下面以序号为0的输出项为例，进行说明。
 
@@ -298,7 +300,7 @@ Index   Time(cycles)      EventType      CurTask   Identity      params
 
 - Identity和params的含义需要查看TASK_SWITCH_PARAMS宏定义：
 
-```
+```c
 #define TASK_SWITCH_PARAMS(taskId, oldPriority, oldTaskStatus, newPriority, newTaskStatus) \
 taskId, oldPriority, oldTaskStatus, newPriority, newTaskStatus
 ```

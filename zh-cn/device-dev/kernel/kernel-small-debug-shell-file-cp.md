@@ -47,9 +47,8 @@ cp [_SOURCEFILE_] [_DESTFILE_]
 
 ## 输出说明
 
-**示例:**同时拷贝两个文件至指定目录
+**示例** 同时拷贝两个文件至指定目录
 
-  
 ```
 OHOS:/$ ls
 bin  hello-OHOS.txt     proc     system    vendor
