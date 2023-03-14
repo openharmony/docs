@@ -662,7 +662,7 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
 订阅GNSS NMEA信息上报事件。
 
-**需要权限**：ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
@@ -705,7 +705,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 取消订阅GNSS NMEA信息上报事件。
 
-**需要权限**：ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
@@ -882,7 +882,6 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
 |3301500 | Failed to query the area information.                                       |
 
 
@@ -924,7 +923,6 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
 |3301500 | Failed to query the area information.                                       |
 
 **示例**
