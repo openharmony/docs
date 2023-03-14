@@ -12,7 +12,7 @@ OpenHarmony系统通过VDSO机制实现上层用户态程序可以快速读取�
 
 VDSO其核心思想就是内核看护一段内存，并将这段内存映射（只读）进用户态应用程序的地址空间，应用程序通过链接vdso.so后，将某些系统调用替换为直接读取这段已映射的内存从而避免系统调用达到加速的效果。
 
-VDSO总体可分为数据页与代码页两部分：
+**VDSO总体可分为数据页与代码页两部分：**
 
 - 数据页提供内核映射给用户进程的内核时数据；
 
@@ -21,7 +21,7 @@ VDSO总体可分为数据页与代码页两部分：
   **图1** VDSO系统设计
   ![zh-cn_image_0000001173586763](figures/zh-cn_image_0000001173586763.jpg)
 
-如图1所示，当前VDSO机制有以下几个主要步骤：
+**如图1所示，当前VDSO机制有以下几个主要步骤：**
 
 ①  内核初始化时进行VDSO数据页的创建；
 
@@ -42,6 +42,9 @@ VDSO总体可分为数据页与代码页两部分：
 ⑨  将从VDSO数据页获取到的数据作为结果返回给用户程序；
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 当前VDSO机制支持LibC库clock_gettime接口的CLOCK_REALTIME_COARSE与CLOCK_MONOTONIC_COARSE功能，clock_gettime接口的使用方法详见POSIX标准。用户调用C库接口clock_gettime(CLOCK_REALTIME_COARSE, &amp;ts)或者clock_gettime(CLOCK_MONOTONIC_COARSE, &amp;ts)即可使用VDSO机制。
-> 
-> - 使用VDSO机制得到的时间精度会与系统tick中断的精度保持一致，适用于对时间没有高精度要求且短时间内会高频触发clock_gettime或gettimeofday系统调用的场景，若有高精度要求，不建议采用VDSO机制。
+>
+>  - 当前VDSO机制支持LibC库clock_gettime接口的CLOCK_REALTIME_COARSE与CLOCK_MONOTONIC_COARSE功能，clock_gettime接口的使用方法详见POSIX标准。
+>
+>  - 用户调用C库接口clock_gettime(CLOCK_REALTIME_COARSE, &amp;ts)或者clock_gettime(CLOCK_MONOTONIC_COARSE, &amp;ts)即可使用VDSO机制。
+>
+>  - 使用VDSO机制得到的时间精度会与系统tick中断的精度保持一致，适用于对时间没有高精度要求且短时间内会高频触发clock_gettime或gettimeofday系统调用的场景，若有高精度要求，不建议采用VDSO机制。
