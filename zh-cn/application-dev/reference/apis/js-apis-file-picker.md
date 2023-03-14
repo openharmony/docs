@@ -40,7 +40,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| [PhotoSelectResult](#photoselectresult) | 返回photoPicker选择后的结果集 |
+| Promise&lt;[PhotoSelectResult](#photoselectresult)&gt; | Promise对象。返回photoPicker选择后的结果集 |
 
 **示例：**
 
@@ -150,7 +150,7 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | 返回photoPicker保存图片或视频文件后的结果集 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回photoPicker保存图片或视频文件后的结果集 |
 
 **示例：**
 
@@ -270,7 +270,7 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | 返回documentPicker选择后的结果集 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回documentPicker选择后的结果集 |
 
 **示例：**
 
@@ -377,7 +377,7 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | 返回documentPicker保存后的结果集 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回documentPicker保存后的结果集 |
 
 **示例：**
 
@@ -497,7 +497,7 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | 返回audioPicker选择音频后的结果集 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回audioPicker选择音频后的结果集 |
 
 **示例：**
 
@@ -603,7 +603,7 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                            | 说明    |
 | ----------------------------- | ---- |
-| &lt;Array&lt;string&gt;&gt; | 返回audioPicker保存音频文件后的结果集 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回audioPicker保存音频文件后的结果集 |
 
 **示例：**
 
