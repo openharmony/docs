@@ -2296,8 +2296,8 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   }
   ```
 
-  ```ts
   需要添加证书管理的权限:ohos.permission.ACCESS_CERT_MANAGER，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)
+  ```ts
   // xxx.ets API10
   import web_webview from '@ohos.web.webview'
   import bundle from '@ohos.bundle'
