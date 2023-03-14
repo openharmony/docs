@@ -239,6 +239,7 @@
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
   - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
+  - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
   - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
