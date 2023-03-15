@@ -131,12 +131,12 @@ Defines subscription information.
 | Name           | Type                               | Mandatory  | Description               |
 | ------------- | --------------------------------- | ---- | ----------------- |
 | subscribeId   | number                            | Yes   | Subscription ID, used to identify a device discovery period.|
-| mode          | [DiscoverMode ](#discovermode)    | No   | Device discovery mode.            |
-| medium        | [ExchangeMedium](#exchangemedium) | No   | Medium used for device discovery.            |
-| freq          | [ExchangeFreq](#exchangefreq)     | No   | Frequency of device discovery.            |
-| isSameAccount | boolean                           | No   | Whether the same account is used on the discovered device.           |
-| isWakeRemote  | boolean                           | No   | Whether to wake up the discovered device.          |
-| capability    | [SubscribeCap](#subscribecap)     | No   | Discovery capability.            |
+| mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
+| medium        | [ExchangeMedium](#exchangemedium) | Yes   | Medium used for device discovery.            |
+| freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
+| isSameAccount | boolean                           | Yes   | Whether the same account is used on the discovered device.           |
+| isWakeRemote  | boolean                           | Yes   | Whether to wake up the discovered device.          |
+| capability    | [SubscribeCap](#subscribecap)     | Yes   | Discovery capability.            |
 
 
 ## DiscoverMode 
@@ -871,6 +871,134 @@ Sets a user operation.
     dmInstance.setUserOperation(operation, "extra")
     } catch (err) {
       console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### requestCredentialRegisterInfo<sup>10+</sup>
+
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+
+Obtains the registration information of the credential.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | requestInfo   | string          | Yes   | Request credential information.      |
+  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback used to return the credential registration information.|
+
+**Example**
+
+  ```js
+  let credentialInfo = {
+    "version" : "1.2.3",
+    "userId" : "123"
+  }
+  try {
+    dmClass.requestCredentialRegisterInfo(credentialInfo, (data) => {
+      if (data) {
+          console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
+      } else {
+          console.info.push("requestCredentialRegisterInfo result: data is null");
+      }
+    });
+  } catch (err) {
+    console.error("requestCredentialRegisterInfo err:" + err.code + "," + err.message);
+  }
+  ```
+
+### importCredential<sup>10+</sup>
+
+importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+
+Imports credential information.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | credentialInfo| string          | Yes   | Credential information to import.      |
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+
+**Example**
+
+  ```js
+  let credentialInfo = {
+    "processType" : 1,
+    "authType" : 1,
+    "userId" : "123",
+    "deviceId" : "aaa",
+    "version" : "1.2.3",
+    "devicePk" : "0000",
+    "credentialData" : 
+    [
+      {
+        "credentialType" : 2,
+        "credentialId" : "102",
+        "serverPk" : "3059301306072A8648CE3D020106082A8648CE3D03",
+        "pkInfoSignature" : "30440220490BCB4F822004C9A76AB8D97F80041FC0E",
+        "pkInfo" : "",
+        "authCode" : "",
+        "peerDeviceId" : ""
+      }
+    ]
+  }
+  try {
+    dmClass.importCredential(credentialInfo, (data) => {
+      if (data) {
+          console.info("importCredential result:" + JSON.stringify(data));
+      } else {
+          console.info.push("importCredential result: data is null");
+      }
+    });
+  } catch (err) {
+    console.error("importCredential err:" + err.code + "," + err.message);
+  }
+  ```
+
+### deleteCredential<sup>10+</sup>
+
+deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+
+Deletes credential information.
+
+**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
+
+**System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Parameters**
+
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | queryInfo     | string          | Yes   | Credential information to delete.      |
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+
+**Example**
+
+  ```js
+  let queryInfo = {
+    "processType" : 1,
+    "authType" : 1,
+    "userId" : "123"
+  }
+  try {
+    dmClass.deleteCredential(queryInfo, (data) => {
+      if (data) {
+          console.info("deleteCredential result:" + JSON.stringify(data));
+      } else {
+          console.info.push("deleteCredential result: data is null");
+      }
+    });
+  } catch (err) {
+    console.error("deleteCredential err:" + err.code + "," + err.message);
   }
   ```
 
