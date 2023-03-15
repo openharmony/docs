@@ -58,6 +58,8 @@ isLocked(): boolean
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
+**系统接口**：此接口为系统接口。
+
 **返回值：** 
 
 | 类型    | 说明                                              |
@@ -70,26 +72,6 @@ isLocked(): boolean
 let isLocked = screenlock.isLocked();
 ```
 
-## screenlock.isSecure<sup>9+</sup>
-
-isSecure(): boolean
-
-判断当前设备的屏幕锁定是否安全（安全屏幕锁定意味着解锁屏幕需要密码、图案或其他用户身份识别）。
-
-**系统能力：** SystemCapability.MiscServices.ScreenLock
-
-**返回值：** 
-
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示当前设备的屏幕锁定安全；返回false表示当前设备的屏幕锁定不安全。 |
-
-**示例：** 
-
-```js
-let isSecure = screenlock.isSecure();
-```
-
 ## screenlock.unlock<sup>9+</sup>
 
 unlock(callback: AsyncCallback&lt;boolean&gt;): void
@@ -97,6 +79,8 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 解锁屏幕。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
 
 **参数：** 
 
@@ -131,6 +115,8 @@ unlock(): Promise&lt;boolean&gt;
 解锁屏幕。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
 
 **返回值：** 
 
@@ -347,7 +333,7 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -377,7 +363,7 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -405,7 +391,7 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -435,7 +421,7 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -462,7 +448,7 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -492,7 +478,7 @@ unlockScreen(): Promise&lt;void&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
