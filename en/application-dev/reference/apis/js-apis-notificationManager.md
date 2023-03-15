@@ -24,7 +24,7 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                       |
 
 **Error codes**
@@ -78,7 +78,7 @@ Publishes a notification. This API uses a promise to return the result.
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 
 **Error codes**
 
@@ -130,7 +130,7 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
@@ -192,7 +192,7 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 | Name    |  Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
 **Error codes**
@@ -427,7 +427,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](#notificationslot)       | Yes  | Notification slot to add.|
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | Yes  | Notification slot to add.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -474,7 +474,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type            | Mandatory| Description                |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](#notificationslot) | Yes  | Notification slot to add.|
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot to add.|
 
 **Error codes**
 
@@ -585,7 +585,7 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 
 | Name    | Type                     | Mandatory| Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](#notificationslot)\> | Yes  | Notification slots to add.|
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add.|
 | callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.    |
 
 **Error codes**
@@ -636,7 +636,7 @@ Adds an array of notification slots. This API uses a promise to return the resul
 
 | Name | Type                     | Mandatory| Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](#notificationslot)\> | Yes  | Notification slots to add.|
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add.|
 
 **Error codes**
 
@@ -677,7 +677,7 @@ Obtains a notification slot of a specified type. This API uses an asynchronous c
 | Name    | Type                             | Mandatory| Description                                                       |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype)                          | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
-| callback | AsyncCallback\<[NotificationSlot](#notificationslot)\> | Yes  | Callback used to return the result.                                       |
+| callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Callback used to return the result.                                       |
 
 **Error codes**
 
@@ -757,7 +757,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | Yes  | Callback used to return all notification slots of the current application.|
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return all notification slots of the current application.|
 
 **Error codes**
 
@@ -793,7 +793,7 @@ Obtains all notification slots of this application. This API uses a promise to r
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](#notificationslot)\>\> | Promise used to return all notification slots of the current application.|
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Promise used to return all notification slots of the current application.|
 
 **Error codes**
 
@@ -965,7 +965,7 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.       |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)   | Yes  | Bundle of the application.       |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1012,7 +1012,7 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Error codes**
@@ -1053,7 +1053,7 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -1099,7 +1099,7 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
@@ -1187,7 +1187,7 @@ Checks whether notification is enabled for the current application. This API use
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
@@ -1230,7 +1230,7 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.          |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.          |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1277,7 +1277,7 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Error codes**
@@ -1318,7 +1318,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.              |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -1364,7 +1364,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
@@ -1483,8 +1483,8 @@ Sets the notification slot for a specified application. This API uses an asynchr
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle of the application.          |
-| slot     | [NotificationSlot](#notificationslot)      | Yes  | Notification slot.            |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.          |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | Yes  | Notification slot.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -1533,8 +1533,8 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
-| slot   | [NotificationSlot](#notificationslot) | Yes  | Notification slot.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
+| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot.|
 
 **Error codes**
 
@@ -1577,8 +1577,8 @@ Obtains the notification slots of a specified application. This API uses an asyn
 
 | Name    | Type                                    | Mandatory| Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle of the application.          |
-| callback | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | Yes  | Callback used to return the result.|
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | Yes  | Bundle of the application.          |
+| callback | AsyncCallback<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1623,13 +1623,13 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<Array\<[NotificationSlot](#notificationslot)\>> | Promise used to return the result.|
+| Promise<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1669,7 +1669,7 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name    | Type                     | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption)              | Yes  | Bundle of the application.            |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)              | Yes  | Bundle of the application.            |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -1715,7 +1715,7 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle of the application.|
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 
 **Return value**
 
@@ -1762,7 +1762,7 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 | Name    | Type                                                        | Mandatory| Description                |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1788,7 +1788,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
 
 Obtains all active notifications. This API uses a promise to return the result.
 
@@ -1802,7 +1802,7 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1904,7 +1904,7 @@ Obtains active notifications of this application. This API uses an asynchronous 
 
 | Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1932,7 +1932,7 @@ notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 
 ## notificationManager.getActiveNotifications
 
-getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
+getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
 
 Obtains active notifications of this application. This API uses a promise to return the result.
 
@@ -1942,7 +1942,7 @@ Obtains active notifications of this application. This API uses a promise to ret
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1974,7 +1974,7 @@ Cancels notifications under a notification group of this application. This API u
 
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](#notificationrequest) when the notification is published.|
+| groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published.|
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -2052,7 +2052,7 @@ Removes notifications under a notification group of a specified application. Thi
 
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| bundle    | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
+| bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle information of the application.                  |
 | groupName | string                | Yes  | Name of the notification group.              |
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -2100,7 +2100,7 @@ Removes notifications under a notification group of a specified application. Thi
 
 | Name     | Type        | Mandatory| Description          |
 | --------- | ------------ | ---- | -------------- |
-| bundle    | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.    |
+| bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
 
 **Error codes**
@@ -2743,7 +2743,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function setDistributedEnableCallback() {
+function setDistributedEnableCallback(err) {
     if (err) {
         console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2888,7 +2888,7 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                      |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -2942,7 +2942,7 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.               |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.               |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                 |
 
 **Error codes**
@@ -2987,7 +2987,7 @@ Checks whether a specified application supports distributed notifications. This 
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                    |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                    |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -3005,7 +3005,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```javascript
-function isDistributedEnabledByBundleCallback(data) {
+function isDistributedEnabledByBundleCallback(err, data) {
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3036,7 +3036,7 @@ Checks whether a specified application supports distributed notifications. This 
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.               |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.               |
 
 **Return value**
 
@@ -3164,7 +3164,7 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 | Name              | Type                                       | Mandatory| Description                                    |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                      |
 | userId               | number                                      | Yes  | User ID.                                |
 | callback             | AsyncCallback                               | Yes  | Callback used to return the result.                |
@@ -3231,7 +3231,7 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 | Name              | Type                                       | Mandatory| Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
 
@@ -3391,9 +3391,9 @@ Sets whether to enable a specified notification slot type for a specified applic
 
 | Name  | Type                         | Mandatory| Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
-| enable   | boolean                       | Yes  | Whether to enable notification.            |
+| enable   | boolean                       | Yes  | Whether to enable the notification slot type.            |
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -3442,7 +3442,7 @@ Sets whether to enable a specified notification slot type for a specified applic
 
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.  |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
 | enable | boolean                       | Yes  | Whether to enable notification.    |
 
@@ -3485,7 +3485,7 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 | Name  | Type                         | Mandatory| Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
 | callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
 
@@ -3534,7 +3534,7 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.  |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
 
 **Return value**
@@ -3809,16 +3809,6 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 | LEVEL_HIGH                        | 4           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
 
 
-## BundleOption
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name  | Type  | Readable| Writable| Description  |
-| ------ | ------ |---- | --- |  ------ |
-| bundle | string | Yes | Yes | Bundle information of the application.|
-| uid    | number | Yes | Yes | User ID.|
-
-
 ## SlotType
 
 **System capability**: SystemCapability.Notification.Notification
@@ -3832,227 +3822,6 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes.|
 
 
-## NotificationActionButton
-
-Describes the button displayed in the notification.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name     | Type                                           | Readable| Writable| Description                     |
-| --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
-| title     | string                                          | Yes | Yes | Button title.                 |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | Yes | Yes | **WantAgent** of the button.|
-| extras    | { [key: string]: any }                          | Yes | Yes | Extra information of the button.             |
-| userInput | [NotificationUserInput](#notificationuserinput) | Yes | Yes | User input object.         |
-
-
-## NotificationBasicContent
-
-Describes the normal text notification.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name          | Type  | Readable| Writable| Description                              |
-| -------------- | ------ | ---- | ---- | ---------------------------------- |
-| title          | string | Yes  | Yes  | Notification title.                        |
-| text           | string | Yes  | Yes  | Notification content.                        |
-| additionalText | string | Yes  | Yes  | Additional information of the notification.|
-
-
-## NotificationLongTextContent
-
-Describes the long text notification.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name          | Type  | Readable| Writable| Description                            |
-| -------------- | ------ | ---- | --- | -------------------------------- |
-| title          | string | Yes | Yes | Notification title.                        |
-| text           | string | Yes | Yes | Notification content.                        |
-| additionalText | string | Yes | Yes | Additional information of the notification.|
-| longText       | string | Yes | Yes | Long text of the notification.                    |
-| briefText      | string | Yes | Yes | Brief text of the notification.|
-| expandedTitle  | string | Yes | Yes | Title of the notification in the expanded state.                |
-
-
-## NotificationMultiLineContent
-
-Describes the multi-line text notification.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name          | Type           | Readable| Writable| Description                            |
-| -------------- | --------------- | --- | --- | -------------------------------- |
-| title          | string          | Yes | Yes | Notification title.                        |
-| text           | string          | Yes | Yes | Notification content.                        |
-| additionalText | string          | Yes | Yes | Additional information of the notification.|
-| briefText      | string          | Yes | Yes | Brief text of the notification.|
-| longTitle      | string          | Yes | Yes | Title of the notification in the expanded state.                |
-| lines          | Array\<string\> | Yes | Yes | Multi-line text of the notification.                  |
-
-
-## NotificationPictureContent
-
-Describe the picture-attached notification.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name          | Type          | Readable| Writable| Description                            |
-| -------------- | -------------- | ---- | --- | -------------------------------- |
-| title          | string         | Yes | Yes | Notification title.                        |
-| text           | string         | Yes | Yes | Notification content.                        |
-| additionalText | string         | Yes | Yes | Additional information of the notification.|
-| briefText      | string         | Yes | Yes | Brief text of the notification.|
-| expandedTitle  | string         | Yes | Yes | Title of the notification in the expanded state.                |
-| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Picture attached to the notification.                  |
-
-
-## NotificationContent
-
-Describes the notification content.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name       | Type                                                        | Readable| Writable| Description              |
-| ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
-| contentType | [ContentType](#contenttype)                                  | Yes | Yes | Notification content type.      |
-| normal      | [NotificationBasicContent](#notificationbasiccontent)        | Yes | Yes | Normal text.  |
-| longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | Yes | Yes | Long text.|
-| multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | Yes | Yes | Multi-line text.  |
-| picture     | [NotificationPictureContent](#notificationpicturecontent)    | Yes | Yes | Picture-attached.  |
-
-
-## NotificationFlagStatus
-
-Describes the notification flag status.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name          | Value | Description                              |
-| -------------- | --- | --------------------------------- |
-| TYPE_NONE      | 0   | The default flag is used.                        |
-| TYPE_OPEN      | 1   | The notification flag is enabled.                    |
-| TYPE_CLOSE     | 2   | The notification flag is disabled.                    |
-
-
-## NotificationFlags
-
-Enumerates notification flags.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name            | Type                   | Readable| Writable| Description                              |
-| ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | Yes  | No  | Whether to enable the sound alert for the notification.                 |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | Yes  | No  |   Whether to enable vibration for the notification.              |
-
-
-## NotificationRequest
-
-Describes the notification request.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name                 | Type                                         | Readable| Writable| Description                      |
-| --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
-| content               | [NotificationContent](#notificationcontent)   | Yes | Yes | Notification content.                  |
-| id                    | number                                        | Yes | Yes | Notification ID.                    |
-| slotType              | [SlotType](#slottype)                         | Yes | Yes | Notification slot type.                  |
-| isOngoing             | boolean                                       | Yes | Yes | Whether the notification is an ongoing notification.            |
-| isUnremovable         | boolean                                       | Yes | Yes | Whether the notification can be removed.                |
-| deliveryTime          | number                                        | Yes | Yes | Time when the notification is sent.              |
-| tapDismissed          | boolean                                       | Yes | Yes | Whether the notification is automatically cleared.          |
-| autoDeletedTime       | number                                        | Yes | Yes | Time when the notification is automatically cleared.            |
-| wantAgent             | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected after being clicked.|
-| extraInfo             | {[key: string]: any}                          | Yes | Yes | Extended parameters.                  |
-| color                 | number                                        | Yes | Yes | Background color of the notification. Not supported currently.|
-| colorEnabled          | boolean                                       | Yes | Yes | Whether the notification background color can be enabled. Not supported currently.|
-| isAlertOnce           | boolean                                       | Yes | Yes | Whether the notification triggers an alert only once.|
-| isStopwatch           | boolean                                       | Yes | Yes | Whether to display the stopwatch.          |
-| isCountDown           | boolean                                       | Yes | Yes | Whether to display the countdown time.        |
-| isFloatingIcon        | boolean                                       | Yes | Yes | Whether the notification is displayed as a floating icon in the status bar.        |
-| label                 | string                                        | Yes | Yes | Notification label.                  |
-| badgeIconStyle        | number                                        | Yes | Yes | Notification badge type.              |
-| showDeliveryTime      | boolean                                       | Yes | Yes | Whether to display the time when the notification is delivered.          |
-| actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Yes | Yes | Buttons in the notification. Up to three buttons are allowed. |
-| smallIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Small notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
-| largeIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Large notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
-| creatorBundleName     | string                                        | Yes | No | Name of the bundle that creates the notification.            |
-| creatorUid            | number                                        | Yes | No | UID used for creating the notification.             |
-| creatorPid            | number                                        | Yes | No | PID used for creating the notification.             |
-| creatorUserId| number                                    | Yes | No | ID of the user who creates the notification.          |
-| hashCode              | string                                        | Yes | No | Unique ID of the notification.              |
-| classification        | string                                        | Yes | Yes | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| groupName| string                                        | Yes | Yes | Notification group name.                |
-| template | [NotificationTemplate](#notificationtemplate) | Yes | Yes | Notification template.                  |
-| isRemoveAllowed | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| source   | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| distributedOption   | [DistributedOptions](#distributedoptions)                 | Yes | Yes | Distributed notification options.         |
-| deviceId | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
-| notificationFlags | [NotificationFlags](#notificationflags)                    | Yes | No | Notification flags.         |
-| removalWantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected when it is removed.         |
-| badgeNumber | number                    | Yes | Yes | Number of notifications displayed on the application icon.         |
-
-
-## DistributedOptions
-
-Describes distributed options.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name                  | Type           | Readable| Writable| Description                              |
-| ---------------------- | -------------- | ---- | ---- | ---------------------------------- |
-| isDistributed          | boolean        | Yes  | Yes  | Whether the notification is a distributed notification.                 |
-| supportDisplayDevices  | Array\<string> | Yes  | Yes  | List of the devices to which the notification can be synchronized.        |
-| supportOperateDevices  | Array\<string> | Yes  | Yes  | List of the devices on which the notification can be opened.             |
-| remindType             | number         | Yes  | No  | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
-
-
-## NotificationSlot
-
-Describes the notification slot.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name                | Type                 | Readable| Writable| Description                                      |
-| -------------------- | --------------------- | ---- | --- | ------------------------------------------ |
-| type                 | [SlotType](#slottype) | Yes | Yes | Notification slot type.                                  |
-| level                | number                | Yes | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
-| desc                 | string                | Yes | Yes | Notification slot description.                          |
-| badgeFlag            | boolean               | Yes | Yes | Whether to display the badge.                              |
-| bypassDnd            | boolean               | Yes | Yes | Whether to bypass DND mode in the system.              |
-| lockscreenVisibility | number                | Yes | Yes | Mode for displaying the notification on the lock screen.                |
-| vibrationEnabled     | boolean               | Yes | Yes | Whether vibration is enabled for the notification.                                |
-| sound                | string                | Yes | Yes | Notification alert tone.                                |
-| lightEnabled         | boolean               | Yes | Yes | Whether the indicator blinks for the notification.                                  |
-| lightColor           | number                | Yes | Yes | Indicator color of the notification.                                |
-| vibrationValues      | Array\<number\>       | Yes | Yes | Vibration mode of the notification.                              |
-| enabled<sup>9+</sup> | boolean               | Yes | No | Whether the notification slot is enabled.                     |
-
-
-## NotificationTemplate
-
-Describes the notification template.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name| Type                   | Readable| Writable| Description      |
-| ---- | ---------------------- | ---- | ---- | ---------- |
-| name | string                 | Yes  | Yes  | Template name.|
-| data | {[key:string]: Object} | Yes  | Yes  | Template data.|
-
-
-## NotificationUserInput
-
-Provides the notification user input.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name    | Type  | Readable| Writable| Description                         |
-| -------- | ------ | --- | ---- | ----------------------------- |
-| inputKey | string | Yes | Yes | Key to identify the user input.|
 
 
 ## DeviceRemindType
