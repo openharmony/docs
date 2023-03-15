@@ -884,7 +884,7 @@ inputMethodController.off('selectByRange');
 
 ### on('selectByMovement')<sup>10+</sup>
 
-on(type: 'selectByMovement', callback: Callback&lt;Range&gt;): void
+on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 Enables listening for the selection-by-cursor-movement event. This API uses an asynchronous callback to return the result.
 
@@ -1235,8 +1235,6 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
-
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
@@ -1274,8 +1272,6 @@ try {
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 Displays a dialog box for selecting an input method. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
