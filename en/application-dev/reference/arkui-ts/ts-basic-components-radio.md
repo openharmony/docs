@@ -16,6 +16,8 @@ Not supported
 
 Radio(options: {value: string, group: string})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -29,7 +31,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| checked | boolean | Whether the radio button is selected.<br>Default value: **false**|
+| checked | boolean | Whether the radio button is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Events
 
@@ -37,7 +39,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | Triggered when the selected state of the radio button changes.<br> - If **isChecked** is **true**, the radio button is selected.<br> - If **isChecked** is **false**, the radio button is not selected.|
+| onChange(callback: (isChecked: boolean) => void) | Triggered when the selected state of the radio button changes.<br> - If **isChecked** is **true**, the radio button is selected.<br> - If **isChecked** is **false**, the radio button is not selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
