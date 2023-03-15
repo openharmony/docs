@@ -18,13 +18,6 @@
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
-  - Stage模型能力的接口(待停用)
-    - [@ohos.application.AbilityConstant (AbilityConstant)](js-apis-application-abilityConstant.md)
-    - [@ohos.application.AbilityStage (AbilityStage)](js-apis-application-abilityStage.md)
-    - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
-    - [@ohos.application.FormExtension (FormExtension)](js-apis-application-formExtension.md)
-    - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-application-serviceExtensionAbility.md)
-    - [@ohos.application.StartOptions (StartOptions)](js-apis-application-startOptions.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
@@ -36,6 +29,8 @@
     - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
     - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationConstant.md)
+    - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](js-apis-app-ability-dataUriUtils.md)
+    - [@ohos.app.ability.dialogRequest (dialogRequest模块)](js-apis-app-ability-dialogRequest.md)
     - [@ohos.app.ability.errorManager (ErrorManager)](js-apis-app-ability-errorManager.md)
     - [@ohos.app.ability.missionManager (missionManager)](js-apis-app-ability-missionManager.md)
     - [@ohos.app.ability.quickFixManager (quickFixManager)](js-apis-app-ability-quickFixManager.md)
@@ -241,12 +236,12 @@
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
   - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
+  - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
   - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
-  - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -261,13 +256,14 @@
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
   - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
+  - [@ohos.net.policy (网络策略管理)](js-apis-net-policy.md)
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
-  - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (蓝牙)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
@@ -383,6 +379,7 @@
 
 - 已停止维护的接口
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
+  - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager模块)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
@@ -411,6 +408,7 @@
   - [@system.fetch (数据请求)](js-apis-system-fetch.md)
   - [@system.file (文件存储)](js-apis-system-file.md)
   - [@system.geolocation (地理位置)](js-apis-system-location.md)
+  - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
   - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
   - [@system.network (网络状态)](js-apis-system-network.md)
   - [@system.notification (通知消息)](js-apis-system-notification.md)

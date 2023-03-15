@@ -23,8 +23,8 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 是 | 是 | 指示启动原因。 |
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 是 | 是 | 表示最后退出原因。 |
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 是 | 是 | 枚举类型，表示启动原因。 |
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 是 | 是 | 枚举类型，表示最后退出原因。 |
 
 ## AbilityConstant.LaunchReason
 
@@ -35,8 +35,8 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| START_ABILITY          | 1    | 通过[startAbility](js-apis-ability-context.md#abilitycontextstartability)接口启动ability。 |
-| CALL | 2    | 通过[startAbilityByCall](js-apis-ability-context.md#abilitycontextstartabilitybycall)接口启动ability。 |
+| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。 |
+| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
 
@@ -124,8 +124,8 @@ class MyAbility extends UIAbility {
 
 ```ts
 let want = {
-    bundleName: 'com.test.example',
-    abilityName: 'MainAbility'
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
 };
 let option = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
@@ -135,7 +135,7 @@ let option = {
 this.context.startAbility(want, option).then(()=>{
     console.log('Succeed to start ability.');
 }).catch((error)=>{
-    console.log('Failed to start ability with error: ' + JSON.stringify(error));
+    console.error('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
 

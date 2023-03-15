@@ -6,18 +6,16 @@ WantAgent提供了封装行为意图的能力，这里所说的行为意图主�
 
 为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请WantAgent，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发WantAgent动作。
 
-
   **图1** 携带行为意图的通知运行机制  
 ![notification-with-wantagent](figures/notification-with-wantagent.png)
 
 
 ## 接口说明
 
-具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-wantAgent.md#wantagent%E6%A8%A1%E5%9D%97)。
+具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-wantAgent.md)。
 
-| | |
-| -------- | -------- |
 | **接口名** | **描述** |
+| -------- | -------- |
 | getWantAgent(info:&nbsp;WantAgentInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;WantAgent&gt;):&nbsp;void | 创建WantAgent。 |
 | trigger(agent:&nbsp;WantAgent,&nbsp;triggerInfo:&nbsp;TriggerInfo,&nbsp;callback?:&nbsp;Callback&lt;CompleteData&gt;):&nbsp;void | 触发WantAgent意图。 |
 | cancel(agent:&nbsp;WantAgent,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消WantAgent。 |

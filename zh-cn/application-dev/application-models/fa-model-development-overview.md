@@ -12,4 +12,4 @@
 | 进程间通信 | 本章节介绍了FA模型的进程模型以及几种常用的进程间通信方式。 | [公共事件](common-event-fa.md)<br/>[后台服务](rpc.md) |
 | 线程间通信 | 本章节介绍了FA模型的线程模型以及几种常用的线程间通信方式。 | [线程间通信](itc-fa-overview.md) |
 | 任务管理 | 本章节介绍了FA模型中任务管理的基本概念和典型场景。 | [任务管理](mission-management-fa.md) |
-| 应用配置文件 | 本章节介绍FA模型中应用配置文件的开发要求。 | [FA模型应用配置文件](config-file-fa.md) |
+| 应用配置文件 | 本章节介绍FA模型中应用配置文件的开发要求。 | [FA模型应用配置文件](../quick-start/application-configuration-file-overview-fa.md) |

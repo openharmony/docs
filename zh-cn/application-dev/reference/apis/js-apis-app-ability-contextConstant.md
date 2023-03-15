@@ -1,6 +1,6 @@
 # @ohos.app.ability.contextConstant (ContextConstant)
 
-ContextConstant模块提供数据加密等级定义的能力。
+ContextConstant提供Context相关的枚举，当前仅包含数据加密等级的枚举。
 
 > **说明：**
 > 
@@ -19,7 +19,7 @@ import contextConstant from '@ohos.app.ability.contextConstant';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 值 | 说明 | 
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| EL1 | 0 | 设备级加密区。 | 
-| EL2 | 1 | 用户凭据加密区。 | 
+| EL1 | 0 | 设备级加密区，设备开机后可访问的数据区。 |
+| EL2 | 1 | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。 |

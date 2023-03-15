@@ -5,6 +5,7 @@
   - [HTTP数据请求](http-request.md)
   - [WebSocket连接](websocket-connection.md)
   - [Socket连接](socket-connection.md)
+  - [网络共享](net-sharing.md)
 - IPC与RPC通信
   - [IPC与RPC通信概述](ipc-rpc-overview.md)
   - [IPC与RPC通信开发指导](ipc-rpc-development-guideline.md)

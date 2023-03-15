@@ -1,11 +1,9 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-Ability模块提供对Ability生命周期、上下文环境等调用管理的能力，包括Ability创建、销毁、转储客户端信息等。
+UIAbility是包含UI界面的应用组件，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
 
-该模块提供以下Ability相关的常用功能：
-
-- [Caller](#caller)：通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
-- [Callee](#callee)：通用组件服务端注册和解除客户端caller通知送信的callback接口。
+- [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
+- [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
 
 > **说明：**
 > 
@@ -22,14 +20,14 @@ import Ability from '@ohos.app.ability.UIAbility';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 类型 | 可读 | 可写 | 说明 | 
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 | 
-| launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability启动时的参数。 | 
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability最后请求时的参数。| 
-| callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。| 
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 否 | 上下文。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility启动时的参数。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | UIAbility最后请求时的参数。 |
+| callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。|
 
-## Ability.onCreate
+## UIAbility.onCreate
 
 onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
 
@@ -39,10 +37,10 @@ Ability创建时回调，执行初始化业务逻辑操作。
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
-  | param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 |
+| param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建UIAbility、上次异常退出的原因信息。 |
 
 **示例：**
 
@@ -55,7 +53,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
   ```
 
 
-## Ability.onWindowStageCreate
+## UIAbility.onWindowStageCreate
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
@@ -65,9 +63,9 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
     
@@ -80,7 +78,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
   ```
 
 
-## Ability.onWindowStageDestroy
+## UIAbility.onWindowStageDestroy
 
 onWindowStageDestroy(): void
 
@@ -99,7 +97,7 @@ onWindowStageDestroy(): void
   ```
 
 
-## Ability.onWindowStageRestore
+## UIAbility.onWindowStageRestore
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
@@ -109,9 +107,9 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
 
 **示例：**
     
@@ -124,7 +122,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
   ```
 
 
-## Ability.onDestroy
+## UIAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;;
 
@@ -143,7 +141,7 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
   ```
 
 
-## Ability.onForeground
+## UIAbility.onForeground
 
 onForeground(): void;
 
@@ -162,7 +160,7 @@ Ability生命周期回调，当应用从后台转到前台时触发。
   ```
 
 
-## Ability.onBackground
+## UIAbility.onBackground
 
 onBackground(): void;
 
@@ -181,7 +179,7 @@ Ability生命周期回调，当应用从前台转到后台时触发。
   ```
 
 
-## Ability.onContinue
+## UIAbility.onContinue
 
 onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
 
@@ -191,15 +189,15 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
 
 **示例：**
     
@@ -215,7 +213,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
   ```
 
 
-## Ability.onNewWant
+## UIAbility.onNewWant
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
@@ -225,10 +223,10 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
-  | launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
+| launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
     
@@ -241,7 +239,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
    }
   ```
 
-## Ability.onDump
+## UIAbility.onDump
 
 onDump(params: Array\<string>): Array\<string>;
 
@@ -251,9 +249,9 @@ onDump(params: Array\<string>): Array\<string>;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | params | Array\<string> | 是 | 表示命令形式的参数。| 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| params | Array\<string> | 是 | 表示命令形式的参数。|
 
 **示例：**
     
@@ -267,7 +265,7 @@ onDump(params: Array\<string>): Array\<string>;
   ```
 
 
-## Ability.onSaveState
+## UIAbility.onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
 
@@ -277,16 +275,16 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Objec
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
-  | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+| wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | AbilityConstant.OnSaveResult | 是否同意保存当前Ability的状态。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| AbilityConstant.OnSaveResult | 是否同意保存当前Ability的状态。 |
 
 **示例：**
 
@@ -325,9 +323,9 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise形式返回应答。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise形式返回应答。 |
 
 **错误码：**
 
@@ -476,7 +474,7 @@ release(): void;
 
 主动释放通用组件服务端的通信接口。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
 
 **错误码：**
 
@@ -523,9 +521,9 @@ release(): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **示例：**
     
@@ -565,10 +563,10 @@ release(): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 监听releaseCall事件，固定为'release'。 | 
-  | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听releaseCall事件，固定为'release'。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **错误码：**
 
@@ -784,13 +782,13 @@ off(method: string): void;
 
 解除通用组件服务端注册消息通知callback。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | method | string | 是 | 已注册的通知事件字符串。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| method | string | 是 | 已注册的通知事件字符串。 |
 
 **错误码：**
 
@@ -823,9 +821,9 @@ off(method: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 可读 | 可写 | 类型 | 说明 | 
+| 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 | 
+| (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 |
 
 ## CalleeCallback
 
@@ -833,6 +831,6 @@ off(method: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称 | 可读 | 可写 | 类型 | 说明 | 
+| 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |

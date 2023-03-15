@@ -59,6 +59,7 @@
 - 通信与连接
   - [NFC错误码](errorcode-nfc.md)
   - [RPC错误码](errorcode-rpc.md)
+  - [蓝牙服务子系统错误码](errorcode-bluetoothManager.md)
 - 系统基础能力
   - [无障碍子系统错误码](errorcode-accessibility.md)
   - [Faultlogger错误码](errorcode-faultlogger.md)
