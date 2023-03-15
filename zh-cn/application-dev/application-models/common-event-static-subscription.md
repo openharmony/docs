@@ -90,9 +90,9 @@
 
    - events: 订阅的目标事件列表
 
-3. 静态订阅功能调试
+3. 修改设备系统配置文件
 
-    如果您希望在调试阶段尝试使用该功能，可修改设备系统配置文件/etc/static_subscriber_config.json,将待调试应用的包名添加至json文件中即可。
+    修改设备系统配置文件 **/etc/static_subscriber_config.json**，将静态订阅应用者的包名添加至该json文件中即可。
 
     ```json
     {
