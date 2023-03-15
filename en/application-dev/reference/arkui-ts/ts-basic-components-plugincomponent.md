@@ -174,7 +174,7 @@ For details, see [external.json](#externaljson).
 
 ```ts
 //PluginUserExample.ets
-import plugin from "plugin_component.js"
+import plugin from "./plugin_component.js"
 
 @Entry
 @Component
@@ -230,7 +230,7 @@ struct PluginUserExample {
 
 ```ts
 //PluginProviderExample.ets
-import plugin from "plugin_component.js"
+import plugin from "./plugin_component.js"
 
 @Entry
 @Component
