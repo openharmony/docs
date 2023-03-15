@@ -111,7 +111,7 @@
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions9)。
    
    ```js
    let options = {dateStyle: "full", timeStyle: "full"};
