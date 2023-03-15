@@ -23,9 +23,9 @@ import audio from '@ohos.multimedia.audio';
 
 | Name                                   | Type     | Readable | Writable| Description              |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Volume      |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes  | No  | Default audio interruption group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Volume      |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes  | No  | Default audio interruption group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
 
 **Example**
 
@@ -531,7 +531,7 @@ Enumerates the audio content types.
 | CONTENT_TYPE_MOVIE                 | 3      | Movie.    |
 | CONTENT_TYPE_SONIFICATION          | 4      | Notification tone.  |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | Ringtone.    |
-
+| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | Ultrasonic.<br>This is a system API.|
 ## StreamUsage
 
 Enumerates the audio stream usage.
@@ -1757,7 +1757,7 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 
 | Name    | Type                                 | Mandatory| Description                    |
 | ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.      |
 | active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.          |
 | callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.|
 
@@ -1789,7 +1789,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 
 | Name    | Type                                 | Mandatory| Description              |
 | ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.|
 | active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
 
 **Return value**
@@ -1823,7 +1823,7 @@ Checks whether a device is active. This API uses an asynchronous callback to ret
 
 | Name    | Type                                 | Mandatory| Description                    |
 | ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.      |
 | callback   | AsyncCallback&lt;boolean&gt;          | Yes  | Callback used to return the active state of the device.|
 
 **Example**
@@ -1854,7 +1854,7 @@ Checks whether a device is active. This API uses a promise to return the result.
 
 | Name    | Type                                 | Mandatory| Description              |
 | ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.|
 
 **Return value**
 
@@ -4568,15 +4568,15 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     let writeSize = await new Promise((resolve,reject)=>{
-      this.audioRenderer.write(buf,(err,writeSize)=>{
+      audioRenderer.write(buf,(err,writeSize)=>{
         if(err){
           reject(err)
         }else{
@@ -4621,15 +4621,15 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     try{
-       let writeSize = await this.audioRenderer.write(buf);
+       let writeSize = await audioRenderer.write(buf);
     } catch(err) {
        console.error(`audioRenderer.write err: ${err}`);
     }   
@@ -4969,7 +4969,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
