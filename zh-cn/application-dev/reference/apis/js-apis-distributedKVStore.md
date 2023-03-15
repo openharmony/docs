@@ -4523,6 +4523,8 @@ try {
             return;
         }
         console.log('Succeeded in putting data');
+        // devices由deviceManager调用getTrustedDeviceListSync方法得到
+        // deviceManager模块的接口均为系统接口,仅系统应用可用
         const devices = ['deviceList'];
         const mode = distributedKVStore.SyncMode.PULL_ONLY;
         kvStore.sync(devices, mode, 1000);
@@ -4576,6 +4578,8 @@ try {
             return;
         }
         console.log('Succeeded in putting data');
+        // devices由deviceManager调用getTrustedDeviceListSync方法得到
+        // deviceManager模块的接口均为系统接口,仅系统应用可用
         const devices = ['deviceList'];
         const mode = distributedKVStore.SyncMode.PULL_ONLY;
         const query = new distributedKVStore.Query();
