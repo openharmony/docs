@@ -17,7 +17,7 @@ import systemcapability from '@ohos.systemCapability'
 
 ## systemcapability.querySystemCapabilities
 
-querySystemCapabilities(callback: AsyncCallback<string>): void;
+querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void;
 
 获取系统能力集合的字符串，并调用回调函数。
 
@@ -52,7 +52,7 @@ querySystemCapabilities(): Promise&lt;string&gt;
 
 获取系统能力的集合。
 
-**系统能力：** SystemCapability.Startup.SystemInfo
+**系统能力：** SystemCapability.Developtools.Syscap
 
 **返回值：**
 
@@ -77,6 +77,7 @@ try {
 
 
 > **说明：**
-> - 以上接口所返回的system capability集合形式均为编码后的数字字符串形式。
+>
+> 以上接口所返回的system capability集合形式均为编码后的数字字符串形式。
 
 
