@@ -347,7 +347,7 @@ OpenHarmony支持如下几种系统类型：
 
     随版本编译，debug版本编译时会同步编译acts测试套件
 
-    >![](public_sys-resources/icon-note.gif) **说明：** 
+    >**说明：** 
     >acts测试套件编译中间件为静态库，最终链接到版本镜像中 。
 
 
@@ -480,7 +480,7 @@ OpenHarmony支持如下几种系统类型：
 
     随版本编译，debug版本编译时会同步编译acts测试套件
 
-    >![](public_sys-resources/icon-note.gif) **说明：** 
+    >**说明：** 
     >小型系统acts独立编译成可执行文件（bin格式）， 在编译产物的suites\\acts目录下归档。
 
 

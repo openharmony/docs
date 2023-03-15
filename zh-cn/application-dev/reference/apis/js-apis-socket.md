@@ -1,5 +1,7 @@
 # @ohos.net.socket (Socket连接)
 
+本模块提供利用Socket进行数据传输的能力，支持TCPSocket、UDPSocket、WebSocket和TLSSocket。
+
 > **说明：** 
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -279,7 +281,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 获取UDPSocket状态。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -325,7 +327,7 @@ getState(): Promise\<SocketStateBase\>
 
 获取UDPSocket状态。使用Promise方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -364,7 +366,7 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
 设置UDPSocket连接的其他属性。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -418,7 +420,7 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 设置UDPSocket连接的其他属性。使用Promise方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -500,7 +502,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 
 取消订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -560,7 +562,7 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 取消订阅UDPSocket连接的数据包消息事件或关闭事件。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -624,7 +626,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅UDPSocket连接的error事件。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -829,7 +831,7 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
 连接到指定的IP地址和端口。使用callback方法作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -912,7 +914,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 通过TCPSocket连接发送数据。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -961,7 +963,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 通过TCPSocket连接发送数据。使用Promise方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1085,7 +1087,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 获取对端Socket地址。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1130,7 +1132,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 获取对端Socket地址。使用Promise方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1174,7 +1176,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 获取TCPSocket状态。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind或connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1219,7 +1221,7 @@ getState(): Promise\<SocketStateBase\>
 
 获取TCPSocket状态。使用Promise方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind或connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1263,7 +1265,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 设置TCPSocket连接的其他属性。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind或connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1319,7 +1321,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 设置TCPSocket连接的其他属性，使用Promise方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >bind或connect方法调用成功后，才可调用此方法。
 
 **需要权限**：ohos.permission.INTERNET
@@ -1404,7 +1406,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 取消订阅TCPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -1464,7 +1466,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 取消订阅TCPSocket的连接事件或关闭事件。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -1528,7 +1530,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅TCPSocket连接的error事件。使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
