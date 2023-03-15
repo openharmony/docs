@@ -459,7 +459,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 取消订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -490,7 +490,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -518,7 +518,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -570,7 +570,7 @@ off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>)
 
 取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -621,7 +621,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅WebSocket的Error事件，使用callback方式作为异步方法。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
