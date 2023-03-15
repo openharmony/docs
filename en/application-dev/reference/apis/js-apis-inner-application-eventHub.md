@@ -12,7 +12,7 @@ The **EventHub** module provides APIs to subscribe to, unsubscribe from, and tri
 Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **Ability** instance.
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import Ability from '@ohos.app.ability.UIAbility';
 export default class MainAbility extends Ability {
     func1(){
         console.log('func1 is called');
@@ -41,7 +41,7 @@ Subscribes to an event.
 **Example**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.UIAbility';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -79,7 +79,7 @@ Unsubscribes from an event.
 **Example**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.UIAbility';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -117,7 +117,7 @@ Triggers an event.
 **Example**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.UIAbility';
   
   export default class MainAbility extends Ability {
       onForeground() {

@@ -368,8 +368,8 @@ Continues a mission on a remote device. This API uses an asynchronous callback t
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#continuedeviceinfo) | Yes   | Parameters required for mission continuation.|
-| options | [ContinueCallback](#continuecallback) | Yes   | Callback invoked when the mission continuation is complete.|
+| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -426,8 +426,8 @@ Continues a mission on a remote device. This API uses a promise to return the re
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#continuedeviceinfo) | Yes   | Parameters required for mission continuation.|
-| options | [ContinueCallback](#continuecallback) | Yes   | Callback invoked when the mission continuation is complete.|
+| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
 
 **Return value**
 
@@ -514,30 +514,3 @@ Defines the parameters required for registering a listener.
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
 | deviceId | string | Yes   | Yes   | Device ID.|
-
-## ContinueDeviceInfo
-
-Defines the parameters required for mission continuation.
-
-**Required permissions**: ohos.permission.MANAGE_MISSIONS
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
-
-| Name      | Type  | Readable  | Writable  | Description     |
-| -------- | ------ | ---- | ---- | ------- |
-| srcDeviceId | string | Yes   | Yes   | ID of the source device.|
-| dstDeviceId | string | Yes   | Yes   | ID of the target device.|
-| missionId | number | Yes   | Yes   | Mission ID.|
-| wantParam | {[key: string]: any} | Yes   | Yes   | Extended parameters.|
-
-## ContinueCallback
-
-Defines the callback invoked when the mission continuation is complete.
-
-**Required permissions**: ohos.permission.MANAGE_MISSIONS
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
-
-| Name                   | Type      | Readable  | Writable  | Description                |
-| --------------------- | -------- | ---- | ---- | ------------------ |
-| onContinueDone | function | Yes   | No   | Callback used to notify the user that the mission continuation is complete and return the continuation result.    |

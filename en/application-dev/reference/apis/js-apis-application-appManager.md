@@ -252,49 +252,6 @@ Registers an observer to listen for the state changes of all applications.
   console.log('-------- observerCode: ---------', observerCode);
   ```
 
-## appManager.registerApplicationStateObserver<sup>9+</sup>
-
-registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
-
-Registers an observer to listen for the state changes of a specified application.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | Yes| Numeric code of the observer.|
-| bundleNameList | Array<string> | Yes| **bundleName** array of the application. A maximum of 128 bundle names can be passed.|
-
-**Example**
-    
-  ```ts
-  let applicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
-    },
-    onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------', processData);
-    },
-    onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------', processData);
-    },
-    onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------', processData);
-    }
-  };
-  let bundleNameList = ['bundleName1', 'bundleName2'];
-  const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
-  console.log('-------- observerCode: ---------', observerCode);
-  ```
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
 unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;

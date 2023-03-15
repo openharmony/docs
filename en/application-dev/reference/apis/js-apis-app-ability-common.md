@@ -24,7 +24,6 @@ import common from '@ohos.app.ability.common';
 | Context   | [Context](js-apis-inner-application-context.md)               | Level-2 module **Context**.|
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | Level-2 module **ExtensionContext**.|
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | Level-2 module **FormExtensionContext**.|
-| AreaMode   | [AreaMode](#areamode)               | Enumerated values of **AreaMode**.|
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | Level-2 module **EventHub**.|
 | PermissionRequestResult   | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | Level-2 module **PermissionRequestResult**.|
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | Level-2 module **PacMap**.|
@@ -42,7 +41,6 @@ let baseContext: common.BaseContext;
 let context: common.Context;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
-let areaMode: common.AreaMode;
 let eventHub: common.EventHub;
 let permissionRequestResult: common.PermissionRequestResult;
 let pacMap: common.PacMap;

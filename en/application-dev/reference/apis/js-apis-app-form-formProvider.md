@@ -243,7 +243,8 @@ Obtains the application's widget information that meets a filter criterion on th
 **Example**
 
 ```ts
-import formInfo from '@ohos.application.formInfo';
+import formInfo from '@ohos.app.form.formInfo';
+
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
     moduleName : 'entry'
@@ -291,7 +292,8 @@ Obtains the application's widget information on the device. This API uses a prom
 **Example**
 
 ```ts
-import formInfo from '@ohos.application.formInfo';
+import formInfo from '@ohos.app.form.formInfo';
+
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
     moduleName : 'entry'
