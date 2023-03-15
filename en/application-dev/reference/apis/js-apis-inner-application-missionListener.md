@@ -31,9 +31,13 @@ let listener = {
     onMissionMovedToFront: function (mission) {
         console.log('onMissionMovedToFront mission: ${JSON.stringify(mission)}');
     },
-    onMissionIconUpdated: function (mission, icon) {
-        console.log('onMissionIconUpdated mission: ${JSON.stringify(mission)}');
+    onMissionLabelUpdated: function (mission) {
+        console.log('onMissionLabelUpdated mission: ' + JSON.stringify(mission));
     },
+     onMissionIconUpdated: function (mission, icon) {
+        console.log('onMissionIconUpdated mission: ' + JSON.stringify(mission));
+        console.log('onMissionIconUpdated icon: ' + JSON.stringify(icon));
+     },
     onMissionClosed: function (mission) {
         console.log('onMissionClosed mission: ${JSON.stringify(mission)}');
     }

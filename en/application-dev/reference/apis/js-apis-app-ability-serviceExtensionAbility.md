@@ -106,7 +106,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 ## ServiceExtensionAbility.onConnect
 
-onConnect(want: Want): rpc.RemoteObject;
+onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 
 Called following **onCreate()** when a ServiceExtensionAbility is started by calling **connectAbility()**. A **RemoteObject** object is returned for communication between the server and client.
 
@@ -148,7 +148,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 ## ServiceExtensionAbility.onDisconnect
 
-onDisconnect(want: Want): void;
+onDisconnect(want: Want): void | Promise<void>;
 
 Called when a client is disconnected from this ServiceExtensionAbility.
 
