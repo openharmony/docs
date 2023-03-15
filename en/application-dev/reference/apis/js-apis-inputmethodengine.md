@@ -708,7 +708,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -742,7 +742,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -837,7 +837,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
  **Example**
 
@@ -886,7 +886,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -928,7 +928,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -974,7 +974,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -1013,7 +1013,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -1059,7 +1059,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -1099,7 +1099,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1149,7 +1149,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1192,7 +1192,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1242,7 +1242,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1281,7 +1281,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1326,7 +1326,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1366,7 +1366,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1401,7 +1401,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1435,7 +1435,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
@@ -1479,7 +1479,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
