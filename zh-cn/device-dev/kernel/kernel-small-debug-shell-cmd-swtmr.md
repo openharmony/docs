@@ -13,11 +13,11 @@ swtmr [_ID_]
 
 ## 参数说明
 
-  **表1** 参数说明
+**表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
-| ID | 软件定时器ID号。 | [0,0xFFFFFFFF] | 
+| ID | 软件定时器ID号。 | [0, 0xFFFFFFFF] | 
 
 
 ## 使用指南
@@ -38,8 +38,8 @@ swtmr [_ID_]
 
 ## 输出说明
 
-  **示例1：**查询所有软件定时器相关信息
-  
+**示例1** 查询所有软件定时器相关信息
+
 ```
 OHOS # swtmr
 SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
@@ -59,8 +59,8 @@ SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
 0x00000079  Ticking  NSD      30000    1749    0x406189d8  0x40160e1c
 ```
 
-  **示例2：**查询对应 ID 的软件定时器信息
-  
+**示例2** 查询对应 ID 的软件定时器信息
+
 ```
 OHOS # swtmr 1
 SwTmrID     State    Mode    Interval  Count   Arg         handlerAddr
