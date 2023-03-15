@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。 |
+| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
 
 **示例：**
@@ -61,6 +61,43 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
         Web({ src: $rawfile("index.html"), controller: this.controller })
       }
     }
+  }
+  ```
+
+  加载沙箱路径下的本地资源文件
+
+  1.通过[globalthis](../../application-models/uiability-data-sync-with-ui.md#uiability和page之间使用globalthis)获取沙箱路径。
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  let url = 'file://' + globalThis.filesDir + '/xxx.html'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // 加载沙箱路径文件。
+        Web({ src: url, controller: this.controller })
+      }
+    }
+  }
+  ```
+
+  2.修改MainAbility.ts。
+  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用开发路径](../../application-models/application-context-stage.md#获取应用开发路径)。
+  ```ts
+  // xxx.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import web_webview from '@ohos.web.webview';
+
+  export default class EntryAbility extends UIAbility {
+      onCreate(want, launchParam) {
+          // 通过在globalThis对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+          globalThis.filesDir = this.context.filesDir
+          console.log("Sandbox path is " + globalThis.filesDir)
+      }
   }
   ```
 
@@ -4928,7 +4965,7 @@ setCookie(url: string, value: string): boolean
 
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | 是    | -    | 要设置的cookie所属的url。 |
+| url   | string | 是    | -    | 要设置的cookie所属的url，建议使用完整的url。 |
 | value | string | 是    | -    | cookie的值。         |
 
 **返回值：** 
