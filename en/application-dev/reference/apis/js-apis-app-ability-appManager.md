@@ -459,7 +459,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-let observeId = 0;
+let observerId = 0;
 
 // 1. Register an application state observer.
 let applicationStateObserver = {
@@ -540,7 +540,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-let observeId = 0;
+let observerId = 0;
 
 // 1. Register an application state observer.
 let applicationStateObserver = {
