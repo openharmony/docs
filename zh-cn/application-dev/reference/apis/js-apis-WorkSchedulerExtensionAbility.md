@@ -1,4 +1,4 @@
-# 延迟任务调度回调
+# @ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)
 
 本模块提供延迟任务回调能力。
 
@@ -16,6 +16,14 @@
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
 ```
 
+## 属性
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| context | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
+
 ## WorkSchedulerExtensionAbility.onWorkStart
 
 onWorkStart(work: workScheduler.WorkInfo): void
@@ -28,7 +36,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
 
 | 参数名  | 类型                                       | 必填   | 说明             |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
 
 **示例：** 
 
@@ -52,7 +60,7 @@ onWorkStop(work: workScheduler.WorkInfo): void
 
 | 参数名  | 类型                                       | 必填   | 说明             |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | 是    | 指示要添加到执行队列的工作。 |
 
 
 **示例：** 

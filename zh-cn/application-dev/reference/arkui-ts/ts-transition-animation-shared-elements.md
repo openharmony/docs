@@ -1,29 +1,23 @@
 # 共享元素转场
 
-共享元素转场支持页面间的转场，如当前页面的图片转场至下一页面中。
+设置页面间转场时共享元素的转场动效。 
 
 > **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 属性
 
 
-| 名称               | 参数                                       | 默认值  | 参数描述                                     |
-| ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| sharedTransition | id:&nbsp;string,<br/>options?:&nbsp;Object | -    | 两个页面的组件配置为同一个id，则转场过程中会进行共享元素转场，配置为空字符串时不会有共享元素转场效果。 |
-
-- options参数说明
-  | 参数名称     | 参数类型                      | 默认值    | 必填   | 参数描述                  |
-  | -------- | ------------------------- | ------ | ---- | --------------------- |
-  | duration | number                    | 1000   | 否    | 单位为毫秒，默认动画时长为1000毫秒。  |
-  | curve    | Curve&nbsp;\|&nbsp;Curves | Linear | 否    | 默认曲线为线性，有效值参见Curve说明。 |
-  | delay    | number                    | 0      | 否    | 单位为毫秒，默认不延时播放。        |
+| 名称             | 参数                                                         | 参数描述                                                     |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| sharedTransition | id:&nbsp;string,<br/>{<br/>&nbsp;duration?: number,<br/>&nbsp;curve?: Curve&nbsp;\|&nbsp;string,<br/>&nbsp;delay?: number,<br/>&nbsp;motionPath?: <br/>{<br/>&nbsp;path: string,<br/>&nbsp;form?: number,<br/>&nbsp;to?: number,<br/>&nbsp;rotatable?: boolean<br/>},<br/>zIndex?: number,<br/>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br/>} | 两个页面中id值相同且不为空字符串的组件即为共享元素，在页面转场时可显示共享元素转场动效。<br/>-&nbsp;id：设置组件的id。<br/>-&nbsp;duration：单位为毫秒，默认动画时长为1000毫秒。<br/>-&nbsp;curve：默认曲线为Linear，有效值参见[Curve](ts-animatorproperty.md)说明。<br/>-&nbsp;delay：单位为毫秒，默认不延时播放。<br/>-&nbsp;motionPath：运动路径信息，详细说明请参考[路径动画](ts-motion-path-animation.md)。<br/>-&nbsp;path：设置路径。<br/>-&nbsp;from：设置起始值。<br/>-&nbsp;to：设置终止值。<br/>-&nbsp;rotatable：是否旋转。<br/>-&nbsp;zIndex：设置Z轴。<br/>-&nbsp;type：动画类型。 |
 
 
 ## 示例
 
-示例功能为两个页面，共享元素转场页面图片点击后转场至页面B的图片。
+  示例代码为点击图片跳转页面时，显示共享元素图片的自定义转场动效。 
 
 ```ts
 // xxx.ets
@@ -33,20 +27,14 @@ struct SharedTransitionExample {
   @State active: boolean = false
 
   build() {
-    List() {
-      ListItem() {
-        Row() {
-          Navigator({ target: 'pages/common/Animation/transAnimation/PageB', type: NavigationType.Push }) {
-            Image($r('app.media.ic_health_heart')).width(50).height(50)
-              .sharedTransition('sharedImage1', { duration: 800, curve: Curve.Linear, delay: 100 })
-          }.padding({ left: 10 })
-          .onClick(() => {
-            this.active = true
-          })
-
-          Text('SharedTransition').width(80).height(80).textAlign(TextAlign.Center)
-        }
-      }
+    Column() {
+      Navigator({ target: 'pages/PageB', type: NavigationType.Push }) {
+        Image($r('app.media.ic_health_heart')).width(50).height(50)
+          .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
+      }.padding({ left: 20, top: 20 })
+      .onClick(() => {
+        this.active = true
+      })
     }
   }
 }
@@ -56,14 +44,14 @@ struct SharedTransitionExample {
 // PageB.ets
 @Entry
 @Component
-struct BExample {
-
+struct pageBExample {
   build() {
     Stack() {
-      Image($r('app.media.ic_health_heart')).width(150).height(150).sharedTransition('sharedImage1')
-    }.width('100%').height(400)
+      Image($r('app.media.ic_health_heart')).width(150).height(150)
+        .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
+    }.width('100%').height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001219744195](figures/zh-cn_image_0000001219744195.gif)
+![shared](figures/shared.gif)

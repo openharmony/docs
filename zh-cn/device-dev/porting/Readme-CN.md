@@ -11,7 +11,7 @@
 
 ## 代码准备
 
-目前OpenHarmony已经为各厂家创建了仓库并在openharmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
+目前OpenHarmony已经为各厂家创建了仓库并在OpenHarmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
 
 ```shell
 repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboard.xml --no-repo-verify
@@ -66,3 +66,5 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [小型设备STM32MP1芯片移植案例](porting-stm32mp15xx-on-smallsystem.md)
 - 标准系统芯片移植案例
     - [标准系统方案之瑞芯微RK3568移植案例](porting-dayu200-on_standard-demo.md)
+    - [标准系统方案之瑞芯微RK3566移植案例](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+    - [标准系统方案之扬帆移植案例](porting-yangfan-on_standard-demo.md)

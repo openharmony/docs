@@ -3,6 +3,16 @@
 
 ## **概述**
 
+凭据模版信息。
+
+**Since：**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfFaceAuth](_hdf_face_auth.md) | [HdfPinAuth](_hdf_pin_auth.md)
@@ -13,25 +23,12 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [executorType](#executortype) | 执行器类型，根据执行器支持的算法类型进行分类。 | 
 | [freezingTime](#freezingtime) | 认证方式被冻结的时间。 | 
 | [remainTimes](#remaintimes) | 认证方式距离被冻结的可处理认证请求次数。 | 
 | [extraInfo](#extrainfo) | 其他相关信息，用于支持信息扩展。 | 
-
-
-## **详细描述**
-
-凭据模版信息。
-
-**Since：**
-
-3.2
-
-**Version：**
-
-1.0
 
 
 ## **类成员变量说明**

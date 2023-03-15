@@ -3,7 +3,13 @@
 
 ## **概述**
 
-**所属模块:**
+电池相关信息。
+
+**Since:**
+
+3.1
+
+**相关模块:**
 
 [Battery](battery.md)
 
@@ -13,11 +19,11 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [capacity](#capacity) | 表示电池的电量百分比。 | 
 | [voltage](#voltage) | 表示电池的电压。 | 
-| [temperature](#temperature) | 表示电池的温度 | 
+| [temperature](#temperature) | 表示电池的温度。 | 
 | [healthState](#healthstate) | 表示电池的健康状态。 | 
 | [pluggedType](#pluggedtype) | 表示电池的充电设备类型。 | 
 | [pluggedMaxCurrent](#pluggedmaxcurrent) | 表示电池的最大充电电流。 | 
@@ -30,15 +36,6 @@
 | [remainEnergy](#remainenergy) | 表示电池的剩余容量。 | 
 | [present](#present) | 表示是否支持电池或者电池是否在位。 | 
 | [technology](#technology) | 表示电池的技术型号。 | 
-
-
-## **详细描述**
-
-电池相关信息。
-
-**Since：**
-
-3.1
 
 
 ## **类成员变量说明**
@@ -197,7 +194,7 @@ int BatteryInfo::temperature
 
 **描述：**
 
-表示电池的温度
+表示电池的温度。
 
 
 ### totalEnergy

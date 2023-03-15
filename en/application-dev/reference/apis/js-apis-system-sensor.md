@@ -1,4 +1,4 @@
-# Sensor
+# @system.sensor (Sensor)
 
 The **Sensor** module provides APIs for querying the sensor list, subscribing to or unsubscribing from sensor data, and executing control commands.
 
@@ -68,7 +68,6 @@ sensor.subscribeAccelerometer({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeAccelerometer
@@ -122,7 +121,6 @@ sensor.subscribeCompass({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeCompass
@@ -174,7 +172,6 @@ sensor.subscribeProximity({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeProximity
@@ -226,7 +223,6 @@ sensor.subscribeLight({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeLight
@@ -280,7 +276,6 @@ sensor.subscribeStepCounter({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeStepCounter
@@ -302,7 +297,7 @@ sensor.unsubscribeStepCounter();
 
 ## sensor.subscribeBarometer
 
-subcribeBarometer(Object): void
+subscribeBarometer(Object): void
 
 Subscribes to data changes of the barometer sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -335,7 +330,6 @@ sensor.subscribeBarometer({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 
@@ -391,7 +385,6 @@ sensor.subscribeHeartRate({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 
@@ -446,7 +439,6 @@ sensor.subscribeOnBodyState({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeOnBodyState
@@ -540,7 +532,6 @@ sensor.subscribeDeviceOrientation({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
@@ -602,7 +593,6 @@ sensor.subscribeGyroscope({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeGyroscope<sup>6+</sup>

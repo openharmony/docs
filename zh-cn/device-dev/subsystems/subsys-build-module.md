@@ -1,7 +1,7 @@
 # 模块
 ## 模块配置规则
 
-编译子系统通过模块、部件和产品三层配置来实现编译和打包。模块就是编译子系统的一个目标，包括（动态库、静态库、配置文件、预编译模块等）。模块要定义属于哪个部件，一个模块只能归属于一个部件。Openharmony使用定制化的Gn模板来配置模块规则，Gn语法相关的基础知识请参考[官网手册](https://gn.googlesource.com/gn/+/main/docs/reference.md)。
+编译子系统通过模块、部件和产品三层配置来实现编译和打包。模块就是编译子系统的一个目标，包括（动态库、静态库、配置文件、预编译模块等）。模块要定义属于哪个部件，一个模块只能归属于一个部件。OpenHarmony使用定制化的Gn模板来配置模块规则，Gn语法相关的基础知识请参考[官网手册](https://gn.googlesource.com/gn/+/main/docs/reference.md)。
 
 以下是常用的模块配置规则：
 
@@ -25,7 +25,7 @@ ohos_resources
 
 #其他常用模板
 #配置文件
-ohos_prebuild_etc
+ohos_prebuilt_etc
 
 #sa配置
 ohos_sa_profile
@@ -62,15 +62,22 @@ ohos_shared_library("helloworld") {
 
   part_name = [string]          # 必选，所属部件名称
   output_dir
-  
-  # Sanitizer variables
-  cfi = [boolean]
-  scs = [boolean]
-  scudo = []
-  ubsan = []
-  boundary_sanitize = []
-  integer_overflow_sanitize = []
-  
+
+  # Sanitizer配置，每项都是可选的，默认为false/空
+  sanitize = {
+    # 各个Sanitizer开关
+    cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
+    ...
+
+    debug = [boolean]             # 调测模式
+    blocklist = [string]          # 屏蔽名单路径
+  }
+
   testonly = [boolean]
   license_as_sources = []
   license_file = []             # 后缀名是.txt的文件
@@ -103,15 +110,22 @@ ohos_static_library("helloworld") {
 
   lib_dirs = []
   public_configs = []
-  
-  # Sanitizer variables
-  cfi = [boolean]
-  scs = [boolean]
-  scudo = []
-  ubsan = []
-  boundary_sanitize = []
-  integer_overflow_sanitize = []
-  
+
+  # Sanitizer配置，每项都是可选的，默认为false/空
+  sanitize = {
+    # 各个Sanitizer开关
+    cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
+    ...
+
+    debug = [boolean]             # 调测模式
+    blocklist = [string]          # 屏蔽名单路径
+  }
+
   remove_configs = []
   no_default_deps = []
   license_file = []             # 后缀名是.txt的文件
@@ -135,15 +149,22 @@ ohos_executable("helloworld") {
   ]                                  # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块
   ohos_test = []
   test_output_dir = []
-  
-  # Sanitizer variables
-  cfi = [boolean]
-  scs = [boolean]
-  scudo = []
-  ubsan = []
-  boundary_sanitize = []
-  integer_overflow_sanitize = []
-  
+
+  # Sanitizer配置，每项都是可选的，默认为false/空
+  sanitize = {
+    # 各个Sanitizer开关
+    cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
+    ...
+
+    debug = [boolean]             # 调测模式
+    blocklist = [string]          # 屏蔽名单路径
+  }
+
   testonly = [boolean]
   license_as_sources = []
   license_file = []                  # 后缀名是.txt的文件
@@ -178,15 +199,22 @@ ohos_source_set("helloworld") {
   external_deps = [               # 跨部件模块依赖定义，
   "part_name:module_name",        # 定义格式为 "部件名:模块名称"
   ]                               # 这里依赖的模块必须是依赖的部件声明在inner_kits中的模块
-  
-  # Sanitizer variables
-  cfi = [boolean]
-  scs = [boolean]
-  scudo = []
-  ubsan = []
-  boundary_sanitize = []
-  integer_overflow_sanitize = []
-  
+
+  # Sanitizer配置，每项都是可选的，默认为false/空
+  sanitize = {
+    # 各个Sanitizer开关
+    cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
+    integer_overflow = [boolean]  # 整数溢出检测
+    boundary_sanitize = [boolean] # 边界检测
+    ubsan = [boolean]             # 部分ubsan选项
+    all_ubsan = [boolean]         # 全量ubsan选项
+    ...
+
+    debug = [boolean]             # 调测模式
+    blocklist = [string]          # 屏蔽名单路径
+  }
+
   testonly = [boolean]
   license_as_sources = []
   license_file = []
@@ -198,7 +226,9 @@ ohos_source_set("helloworld") {
 }
 ```
 
-![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：只有sources和part_name是必选，其他都是可选的。
+![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：
+  - 只有sources和part_name是必选，其他都是可选的；
+  - Sanitizer配置详见：[Sanitizer使用说明](subsys-build-reference.md#Sanitizer使用说明)
 
 ### 预编译模板示例
 

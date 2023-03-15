@@ -1,8 +1,8 @@
-# 蜂窝数据
+# @ohos.telephony.data (蜂窝数据)
 
 蜂窝数据提供了移动数据管理能力，包括获取、设置默认移动数据的SIM卡，获取蜂窝数据业务的上下行和分组交换域（PS域）的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
 
->**说明：** 
+>**说明：**
 >
 >本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
@@ -17,8 +17,6 @@ import data from '@ohos.telephony.data';
 getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void 
 
 获取默认移动数据的SIM卡，使用callback方式作为异步方法。 
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -42,8 +40,6 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 
 获取默认移动数据的SIM卡，使用Promise方式作为异步方法。 
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
-
 **系统能力**：SystemCapability.Telephony.CellularData
 
 **返回值：**
@@ -63,13 +59,33 @@ promise.then((data) => {
 });
 ```
 
+## data.getDefaultCellularDataSlotIdSync<sup>9+</sup>
+
+getDefaultCellularDataSlotIdSync(): number
+
+获取默认移动数据的SIM卡
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ------ | -------------------------------------------------- |
+| number | 获取默认移动数据的SIM卡。<br />0：卡槽1。<br />1：卡槽2。 |
+
+**示例：**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
+```
+
 ## data.setDefaultCellularDataSlotId
 
-setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): void 
 
 设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -82,10 +98,23 @@ setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): vo
 | slotId   | number                | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>- -1：清除默认配置。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                                                   |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
 **示例：**
 
 ```js
-data.setDefaultCellularDataSlotId(0,(err, data) => {
+data.setDefaultCellularDataSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -96,7 +125,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 设置默认移动数据的SIM卡，使用Promise方式作为异步方法。 
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -113,6 +142,19 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 | 类型            | 说明                            |
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
 
 **示例：**
 
@@ -235,6 +277,17 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br />true：蜂窝数据业务已启用。<br />false：蜂窝数据业务已禁用。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -258,6 +311,17 @@ isCellularDataEnabled(): Promise\<boolean\>
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回检查蜂窝数据业务是否启用。<br />true：蜂窝数据业务已启用。<br />false：蜂窝数据业务已禁用。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -287,10 +351,21 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 | slotId   | number                   | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。                     |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br />true：蜂窝数据业务已启用漫游。<br />false：蜂窝数据业务已禁用漫游。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-data.isCellularDataRoamingEnabled(0,(err, data) => {
+data.isCellularDataRoamingEnabled(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -317,6 +392,17 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回检查蜂窝数据业务是否启用漫游。<br />true：蜂窝数据业务已启用漫游。<br />false：蜂窝数据业务已禁用漫游。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -334,7 +420,7 @@ enableCellularData(callback: AsyncCallback<void\>): void
 
 启用蜂窝数据服务，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -345,6 +431,17 @@ enableCellularData(callback: AsyncCallback<void\>): void
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -360,7 +457,7 @@ enableCellularData(): Promise<void\>
 
 启用蜂窝数据服务，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -371,6 +468,17 @@ enableCellularData(): Promise<void\>
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -389,7 +497,7 @@ disableCellularData(callback: AsyncCallback<void\>): void
 
 禁用蜂窝数据服务，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -400,6 +508,17 @@ disableCellularData(callback: AsyncCallback<void\>): void
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -415,7 +534,7 @@ disableCellularData(): Promise<void\>
 
 禁用蜂窝数据服务，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -426,6 +545,17 @@ disableCellularData(): Promise<void\>
 | 类型            | 说明                        |
 | --------------- | --------------------------- |
 | Promise\<void\> | 以Promise形式返回禁用结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -444,7 +574,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 启用蜂窝数据漫游，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -456,6 +586,17 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -471,7 +612,7 @@ enableCellularDataRoaming(slotId: number): Promise<void\>
 
 启用蜂窝数据漫游，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -488,6 +629,17 @@ enableCellularDataRoaming(slotId: number): Promise<void\>
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
 | Promise\<void\> | 以Promise形式返回启用结果 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -506,7 +658,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 禁用蜂窝数据漫游，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -518,6 +670,17 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -533,7 +696,7 @@ disableCellularDataRoaming(slotId: number): Promise<void\>
 
 禁用蜂窝数据漫游，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -550,6 +713,17 @@ disableCellularDataRoaming(slotId: number): Promise<void\>
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
 | Promise\<void\> | 以Promise形式返回禁用结果 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 

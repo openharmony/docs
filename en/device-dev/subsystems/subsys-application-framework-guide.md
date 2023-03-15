@@ -534,7 +534,7 @@ When uninstalling an application, you can specify whether to retain application 
     ```
     sem_init(&g_sem, 0, 0);
     const uint32_t WAIT_TIMEOUT = 30;
-    std::string BUNDLE_NAME = "com.huawei.demo"; // Bundle name of the application to be uninstalled
+    std::string BUNDLE_NAME = "com.example.demo"; // Bundle name of the application to be uninstalled
     Uninstall(BUNDLE_NAME.c_str(), &installParam, UninstallCallback);
     struct timespec ts = {};
     clock_gettime(CLOCK_REALTIME, &ts);
@@ -557,7 +557,7 @@ You can use the  **GetBundleInfo**  function provided by  **BundleManager**  to 
 2.  Call  **GetBundleInfo**  to obtain bundle information about a specified application. The  **bundleName**  parameter indicates the pointer to the application bundle name, and the  **flags**  parameter specifies whether the obtained  **BundleInfo**  object can contain  **AbilityInfo**.
 
     ```
-    std::string BUNDLE_NAME = "com.huawei.demo";
+    std::string BUNDLE_NAME = "com.example.demo";
     uint8_t ret = GetBundleInfo(BUNDLE_NAME.c_str(), 1, &bundleInfo); // When flags is set to 1, the obtained BundleInfo object contains AbilityInfo.
     ```
 

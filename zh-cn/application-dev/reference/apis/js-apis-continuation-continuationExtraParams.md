@@ -1,6 +1,6 @@
 # ContinuationExtraParams
 
-本模块提供流转管理入口中设备选择模块所需的过滤参数。
+流转管理入口中设备选择模块所需的过滤参数，可以作为[startContinuationDeviceManager](js-apis-continuation-continuationManager.md#continuationmanagerstartcontinuationdevicemanager9)的入参。
 
 > **说明：**
 > 
@@ -12,10 +12,10 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.DistributedAbilityManager
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceType | Array\<string> | 是 | 是 | 表示设备类型。|
-| targetBundle | string | 是 | 是 | 表示目标包名。 |
+| targetBundle | string | 是 | 是 | 表示目标Bundle名称。 |
 | description | string | 是 | 是 | 表示设备过滤的描述。 |
 | filter | any | 是 | 是 | 表示设备过滤的参数。 |
 | continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | 是 | 是 | 表示协同的模式。 |

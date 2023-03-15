@@ -32,27 +32,27 @@ DeviceProfile主要代码目录结构如下：
 ```
 ├── interfaces
 │   └── innerkits
-│       └── distributeddeviceprofile            // 系统内部接口
+│       └── distributeddeviceprofile            // innerkits接口
 ├── ohos.build
 ├── sa_profile                                  // said声明文件
 │   ├── 6001.xml
 │   └── BUILD.gn
-├── services
-│   └── distributeddeviceprofile
-│       ├── BUILD.gn
-│       ├── include
-│       │   ├── contentsensor                   // CS数据采集头文件
-│       │   ├── dbstorage                       // 数据库操作头文件
-│       │   ├── devicemanager                   // 设备管理头文件
-│       │   └── subscribemanager                // 订阅管理头文件
-│       ├── src
-│       │   ├── contentsensor                   // CS数据采集实现
-│       │   ├── dbstorage                       // 数据库操作实现
-│       │   ├── devicemanager                   // 设备管理实现
-│       │   ├── subscribemanager                // 订阅管理实现
-│       └── test                                // 测试用例
-└── tools
-    └── dp                                      // 辅助测试工具
+└── services
+    └── distributeddeviceprofile
+        ├── BUILD.gn
+        ├── include
+        │   ├── authority                       // 权限校验
+        │   ├── contentsensor                   // CS数据采集头文件
+        │   ├── dbstorage                       // 数据库操作头文件
+        │   ├── devicemanager                   // 设备管理头文件
+        │   └── subscribemanager                // 订阅管理头文件
+        ├── src
+        │   ├── authority                       // 权限校验
+        │   ├── contentsensor                   // CS数据采集实现
+        │   ├── dbstorage                       // 数据库操作实现
+        │   ├── devicemanager                   // 设备管理实现
+        │   └── subscribemanager                // 订阅管理实现
+        └── test                                // 测试用例
 ```
 
 ## 约束<a name="section1718733212019"></a>

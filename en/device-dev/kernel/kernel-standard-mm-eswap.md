@@ -1,4 +1,4 @@
-# Enhanced Swap
+# ESwap
 
 
 ## Basic Concepts
@@ -8,30 +8,33 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 
 ## Configuring zram and ESwap
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> Enable ESwap before zram is enabled. If ESwap is not used, you can enable zram alone. If a device does not have the storage device for swap-out or have the corresponding storage partition created, you can enable zram to reclaim memory using **zswapd**.
+
 ### Enabling ESwap
 1. Enable related configuration items and dependencies.
 
 	To enable ESwap, you must enable the corresponding configuration items and dependencies during kernel compilation. The configuration items related to ESwap are as follows:
 
 	```
-	CONFIG_HYPERHOLD=y
-	CONFIG_HYPERHOLD_DEBUG=y
-	CONFIG_HYPERHOLD_ZSWAPD=y
-	CONFIG_HYPERHOLD_FILE_LRU=y
-	CONFIG_HYPERHOLD_MEMCG=y
-	CONFIG_ZRAM_GROUP=y
-	CONFIG_ZRAM_GROUP_DEBUG=y
-	CONFIG_ZLIST_DEBUG=y
-	CONFIG_ZRAM_GROUP_WRITEBACK=y
+	CONFIG_HYPERHOLD=y                  // Enable Hyperhold
+	CONFIG_HYPERHOLD_DEBUG=y            // Enable Hyperhold debug
+	CONFIG_HYPERHOLD_ZSWAPD=y           // Enable the zswapd thread to reclaim Anon pages in background
+	CONFIG_HYPERHOLD_FILE_LRU=y         // Enable Hyperhold FILE LRU
+	CONFIG_HYPERHOLD_MEMCG=y            // Enable Memcg management in Hyperhold
+	CONFIG_ZRAM_GROUP=y                 // Enable Manage Zram objs with mem_cgroup
+	CONFIG_ZRAM_GROUP_DEBUG=y           // Enable Manage Zram objs with mem_cgroup Debug
+	CONFIG_ZLIST_DEBUG=y                // Enable Debug info for zram group list
+	CONFIG_ZRAM_GROUP_WRITEBACK=y       // Enable write back grouped zram objs to Hyperhold driver
 	```
 
 	Enable the following dependencies:
 
 	```
-	CONFIG_MEMCG=y
-	CONFIG_SWAP=y
-	CONFIG_ZSMALLOC=y
-	CONFIG_ZRAM=y
+	CONFIG_MEMCG=y       // Enable memory controller
+	CONFIG_SWAP=y        // Enable paging of anonymous memory (swap)
+	CONFIG_ZSMALLOC=y    // Enable memory allocator for compressed pages
+	CONFIG_ZRAM=y        // Enable compressed RAM block device support
 	```
 
 2. Create an ESwap device.
@@ -56,11 +59,11 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	By default, ESwap encrypts the data swapped out. If the ESwap device created in step 2 supports inline encryption, you can disable the ESwap software encryption function.
 
 	```Bash
-	// Check whether hardware-based encryption is supported and enabled. If yes, disable software encryption. Otherwise, do not perform this operation.
+	// Check whether hardware-based encryption is supported and enabled. If yes, disable software encryption. Otherwise, do not disable software encryption.
 	echo 0 > /proc/sys/kernel/hyperhold/soft_crypt
 	```
 
-	> ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+	> ![icon-caution.gif](public_sys-resources/icon-caution.gif) **CAUTION**<br>
 	> For security purposes, all swapped content must be encrypted. If the ESwap device created does not support inline encryption or the inline encryption macro is not enabled during compilation, ESwap cannot be enabled after software encryption is disabled.
 
 4. Enable ESwap.
@@ -71,9 +74,6 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	echo enable > /proc/sys/kernel/hyperhold/enable
 	```
 
-
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
-> Enable ESwap before zram is enabled. If ESwap is not used, you can enable zram only. If a device does not have the storage device for swap-out or have the corresponding storage partition created, you can enable zram to reclaim memory using **zswapd**.
 
 ### Enabling zram
 
@@ -88,7 +88,7 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	echo 512M > /sys/block/zram0/disksize
 	```
 
-	> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+	> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 	> The parameters and functions of **/sys/block/zram0/group** are as follows:
 	>
 	> - **disable**: disables the function.
@@ -115,7 +115,7 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	echo force_disable > /proc/sys/kernel/hyperhold/enable
 	```
 
-	> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+	> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 	> The difference of the two commands is as follows:
 	>
 	> - **disable**: If there is no data in the ESwap partition, disable ESwap. Otherwise, changes ESwap to **readonly** mode.
@@ -132,42 +132,46 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 
 ## ESwap APIs
 
-ESwap provides APIs to control swap-in and swap-out policies and record the current status. These APIs are located in the directory to which memcg is mounted, for example, `/dev/memcg/`.
+ESwap provides APIs to control swap-in and swap-out policies and record the current status. These APIs are located in the directory to which memcg is mounted, for example, **/dev/memcg/**.
 
-| Category| API| Description|
-| -------- | -------- | -------- |
-| Control| [avail_buffers](#avail_buffers) | Sets the buffer range.|
-|         | [zswapd_single_memcg_param](#zswapd_single_memcg_param) | Sets memcg configuration.|
-|         | [zram_wm_ratio](#zram_wm_ratio) | Sets the zram swap-out waterline.|
-| Status| [zswapd_pressure_show](#zswapd_pressure_show) | Records the current buffer and refault.|
-|          | [stat](#stat) | Checks the real-time status of ESwap.|
-|          | [zswapd_vmstat_show](#zswapd_vmstat_show) | Records events during the zswapd running.|
+| Category| API| Description| Reference Value|
+| -------- | -------- | -------- | -------- |
+| Control| [avail_buffers](#avail_buffers) | Sets the buffer range.| 300 250 350 200 |
+|         | [zswapd_single_memcg_param](#zswapd_single_memcg_param) | Sets memcg configuration.| 300 40 0 0 |
+|         | [zram_wm_ratio](#zram_wm_ratio) | Sets the zram swap-out waterline.| 0 |
+| Status| [zswapd_pressure_show](#zswapd_pressure_show) | Records the current buffer and refault.| NA |
+|          | [stat](#stat) | Checks the real-time status of ESwap.| NA |
+|          | [zswapd_vmstat_show](#zswapd_vmstat_show) | Records events during the zswapd running.| NA |
 
-> ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+> ![icon-caution.gif](public_sys-resources/icon-caution.gif) **CAUTION**<br>
 > Only **avail_buffers** proactively wakes up zswapd because the buffer waterline is adjusted. Other control APIs do not proactively wake up zswapd, but their configuration takes effect only after zswapd is woken up.
 
-The APIs are described as follows:
 
 ### avail_buffers
 
 The **avail_buffers** API sets the buffer range [min_avail_buffers, high_avail_buffers]. When the current buffer is less than the value of **min_avail_buffers**, zswapd will be woken up to reclaim anonymous pages. The expected amount of memory to reclaim is the difference between the value of **high_avail_buffers** and the current system buffer value. In fact, less memory is reclaimed due to reasons such as reclamation failure. 
+
 The parameters include the following:
-- **avail_buffers** indicates the expected buffer value. 
+
+- **avail_buffers** indicates the expected buffer value.
 - **free_swap_threshold** indicates the threshold of the free capacity of the swap partition. After zswapd is woken up to reclaim memory, press events, such as medium press and critical press, will be recorded based on the current system status and the settings of these two parameters. 
-You can proactively adjust the values to trigger zswapd reclamation. 
-Example:
+
+You can proactively adjust the values to trigger zswapd reclamation.
+
+**Example**:
+
 `echo 1000 950 1050 0 > /dev/memcg/memory.avail_buffers`
 
-Default value:
+**Default value**:
 
 ```
-	avail_buffers: 0
-	min_avail_buffers: 0
-	high_avail_buffers: 0
-	free_swap_threshold: 0
+avail_buffers: 0
+min_avail_buffers: 0
+high_avail_buffers: 0
+free_swap_threshold: 0
 ```
 
-Limit:
+**Limit**:
 
 0<=min_avail_buffers<=avail_buffers<=high_avail_buffers
 
@@ -177,25 +181,29 @@ The values are all integers.
 
 ### zswapd_single_memcg_param
 
-The **zswapd_single_memcg_param** API sets the memcg configuration. The parameters include the following:
+**zswapd_single_memcg_param** sets the memcg configuration. The parameters include the following:
+
 - **score** indicates the current memcg reclamation priority. 
 - **ub_mem2zram_ratio** indicates the memory compression ratio to zram. 
 - **ub_zram2ufs_ratio** indicates the ratio of zram to ESwap. 
 - **refault_threshold** indicates the refault threshold. 
+
 You can modify the parameters to control zram compression and ESwap. 
-Example:
+
+**Example**:
+
 `echo 60 10 50 > memory.zswapd_single_memcg_param`
 
-Default value:
+**Default value**:
 
 ```
-	memcg score: 300
-	memcg ub_mem2zram_ratio: 60
-	memcg ub_zram2ufs_ratio: 10
-	memcg refault_threshold: 50
+memcg score: 300
+memcg ub_mem2zram_ratio: 60
+memcg ub_zram2ufs_ratio: 10
+memcg refault_threshold: 50
 ```
 
-Limit:
+**Limit**:
 
 0<=ub_mem2zram_ratio<=100
 
@@ -207,17 +215,21 @@ The values are all integers.
 
 ### zram_wm_ratio
 
-The **zram_wm_ratio** API sets the zram swap-out waterline. When the size of the compressed anonymous page in the zram partition is greater than the total size of zram multiplied by **zram_wm_ratio**, the page is swapped out to the ESwap partition. The swap is performed after zswapd is woken up by the buffer waterline. The system defaults the value **0** as **37**. You can change the value as required.
-Example:
+**zram_wm_ratio** sets the zram swap-out waterline. When the size of the compressed anonymous page in the zram partition is greater than the total size of zram multiplied by **zram_wm_ratio**, the page is swapped out to the ESwap partition. The swap is performed after zswapd is woken up by the buffer waterline. The system defaults the value **0** as **37**. 
+
+You can change the value as required.
+
+**Example**: 
+
 `echo 30 > /dev/memcg/memory.zram_wm_ratio`
 
-Default value:
+**Default value**:
 
 ```
-	zram_wm_ratio: 0
+zram_wm_ratio: 0
 ```
 
-Limit:
+**Limit**:
 
 0<=zram_wm_ratio<=100
 
@@ -225,7 +237,7 @@ The value is an integer.
 
 ### zswapd_pressure_show
 
-The **zswapd_pressure_show** API records the zswapd status. **buffer_size** indicates the current buffer size of the system, and **recent_refault** indicates the number of refaults occurred.
+**zswapd_pressure_show** records the zswapd status. **buffer_size** indicates the current buffer size of the system, and **recent_refault** indicates the number of refaults occurred.
 
 
 ### stat
@@ -235,12 +247,12 @@ In addition to **memcg.stat**, the **stat** API is added with **Anon**, **File**
 
 ### zswapd_vmstat_show
 
-The **zswapd_vmstat_show** API records events occurred during the zswapd running.
+**zswapd_vmstat_show** records events occurred during the zswapd running.
 
 
 ## Triggering zswapd
 
-You can check the current buffer value by running `cat /dev/memcg/memory.zswapd_pressure_show`. For example, if the current buffer value is 1200, you can adjust the buffer range to wake up zswapd.
+You can run **cat /dev/memcg/memory.zswapd_pressure_show** to check the current buffer value. For example, if the current buffer value is 1200, you can adjust the buffer range to a value greater than 1200 to wake up zswapd.
 
 ```Bash
 echo 1300 1250 1350 0 > /dev/memcg/memory.avail_buffers

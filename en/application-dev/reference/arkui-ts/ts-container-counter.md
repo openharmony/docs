@@ -1,42 +1,38 @@
 # Counter
 
+The **\<Counter>** component provides an operation to increase or decrease the number.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Counter&gt;** component provides an operation to increase or decrease the number.
-
-
-## Required Permissions
-
-None
 
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
 
 Counter()
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 
 ## Events
 
-Except the events listed below, other events, including universal events, are not supported. 
+The universal events and gestures are not supported. Only the following events are supported.
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| onInc(event: () =&gt; void) | Event indicating that the number of monitored objects is increased. | 
-| onDec(event: () =&gt; void) | Event indicating that the number of monitored objects is decreased. | 
+| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CounterExample {

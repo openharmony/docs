@@ -1,24 +1,56 @@
 # Geolocation
 
-Location services provide basic functions such as GNSS positioning, network positioning, geocoding, reverse geocoding, country code and geofencing.
+The **geolocation** module provides a wide array of location services, including GNSS positioning, network positioning, geocoding, reverse geocoding, and geofencing.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md) instead.
+
+## Applying for Permissions
+
+Before using basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user as described below.
+
+The system provides the following location permissions:
+- ohos.permission.LOCATION
+
+- ohos.permission.APPROXIMATELY_LOCATION
+
+- ohos.permission.LOCATION_IN_BACKGROUND
+
+If your application needs to access the device location information, it must first apply for required permissions. Specifically speaking:
+
+API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
+
+API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, or apply for **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
+
+| API Version| Location Permission| Permission Application Result| Location Accuracy|
+| -------- | -------- | -------- | -------- |
+| Earlier than 9| ohos.permission.LOCATION | Successful| Location accurate to meters.|
+| 9 and later| ohos.permission.LOCATION | Failed| No location obtained.|
+| 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Successful| Location accurate to 5 kilometers.|
+| 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Successful| Location accurate to meters.|
+
+If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
+
+You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../../security/accesstoken-guidelines.md).
 
 
 ## Modules to Import
 
-```js
+```ts
 import geolocation from '@ohos.geolocation';
 ```
 
-## geolocation.on('locationChange')
+## geolocation.on('locationChange')<sup>(deprecated)</sup>
 
-on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;) : void
+on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
 Registers a listener for location changes with a location request initiated.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -27,28 +59,33 @@ Registers a listener for location changes with a location request initiated.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
-  | request | LocationRequest | Yes| Location request.|
-  | callback | Callback&lt;[Location](#location)&gt; | Yes| Callback used to return the location change event.|
+  | request |  [LocationRequest](#locationrequestdeprecated) | Yes| Location request.|
+  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the location change event.|
+
 
 
 **Example**
-  
-  ```js
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
   ```
 
 
-## geolocation.off('locationChange')
+## geolocation.off('locationChange')<sup>(deprecated)</sup>
 
-off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void
+off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 Unregisters the listener for location changes with the corresponding location request deleted.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('locationChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationchange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -57,14 +94,15 @@ Unregisters the listener for location changes with the corresponding location re
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
-  | callback | Callback&lt;[Location](#location)&gt; | No| Callback used to return the location change event.|
+  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**
-  
-  ```js
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  var locationChange = (location) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location) => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
@@ -72,13 +110,16 @@ Unregisters the listener for location changes with the corresponding location re
   ```
 
 
-## geolocation.on('locationServiceState')
+## geolocation.on('locationServiceState')<sup>(deprecated)</sup>
 
-on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void
+on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
 Registers a listener for location service status change events.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationEnabledChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationenabledchange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -91,22 +132,26 @@ Registers a listener for location service status change events.
 
 
 **Example**
-  
-  ```js
-  var locationServiceState = (state) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let locationServiceState = (state) => {
       console.log('locationServiceState: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
   ```
 
 
-## geolocation.off('locationServiceState')
+## geolocation.off('locationServiceState')<sup>(deprecated)</sup>
 
-off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;) : void;
+off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
 Unregisters the listener for location service status change events.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('locationEnabledChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationenabledchange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -115,13 +160,14 @@ Unregisters the listener for location service status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
-  | callback | Callback&lt;boolean&gt; | No| Callback used to return the location service status change event.|
+  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**
-  
-  ```js
-  var locationServiceState = (state) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let locationServiceState = (state) => {
       console.log('locationServiceState: state: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
@@ -129,13 +175,17 @@ Unregisters the listener for location service status change events.
   ```
 
 
-## geolocation.on('cachedGnssLocationsReporting')<sup>8+</sup>
+## geolocation.on('cachedGnssLocationsReporting')<sup>(deprecated)</sup>
 
-on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void;
+on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
 Registers a listener for cached GNSS location reports.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('cachedGnssLocationsChange')](js-apis-geoLocationManager.md#geolocationmanageroncachedgnsslocationschange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -144,28 +194,33 @@ Registers a listener for cached GNSS location reports.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
-  | request | CachedGnssLocationsRequest | Yes| Request for reporting cached GNSS location.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback used to return cached GNSS locations.|
+  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequestdeprecated) | Yes| Request for reporting cached GNSS location.|
+  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | Yes| Callback used to return cached GNSS locations.|
 
 
 **Example**
-  
-  ```js
-  var cachedLocationsCb = (locations) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   ```
 
 
-## geolocation.off('cachedGnssLocationsReporting')<sup>8+</sup>
+## geolocation.off('cachedGnssLocationsReporting')<sup>(deprecated)</sup>
 
-off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void;
+off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
 Unregisters the listener for cached GNSS location reports.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('cachedGnssLocationsChange')](js-apis-geoLocationManager.md#geolocationmanageroffcachedgnsslocationschange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -174,28 +229,33 @@ Unregisters the listener for cached GNSS location reports.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
-  | callback | Callback&lt;boolean&gt; | No| Callback used to return cached GNSS locations.|
+  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**
-  
-  ```js
-  var cachedLocationsCb = (locations) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let cachedLocationsCb = (locations) => {
       console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
-  var requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
   geolocation.off('cachedGnssLocationsReporting');
   ```
 
 
-## geolocation.on('gnssStatusChange')<sup>8+</sup>
+## geolocation.on('gnssStatusChange')<sup>(deprecated)</sup>
 
-on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void;
+on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
 
 Registers a listener for GNSS satellite status change events.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('satelliteStatusChange')](js-apis-geoLocationManager.md#geolocationmanageronsatellitestatuschange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -204,26 +264,31 @@ Registers a listener for GNSS satellite status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
-  | callback | Callback&lt;SatelliteStatusInfo&gt; | Yes| Callback used to return GNSS satellite status changes.|
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | Yes| Callback used to return GNSS satellite status changes.|
 
 
 **Example**
-  
-  ```js
-  var gnssStatusCb = (satelliteStatusInfo) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
   ```
 
 
-## geolocation.off('gnssStatusChange')<sup>8+</sup>
+## geolocation.off('gnssStatusChange')<sup>(deprecated)</sup>
 
-off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void;
+off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
 
 Unregisters the listener for GNSS satellite status change events.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('satelliteStatusChange')](js-apis-geoLocationManager.md#geolocationmanageroffsatellitestatuschange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -232,12 +297,13 @@ Unregisters the listener for GNSS satellite status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
-  | callback | Callback&lt;SatelliteStatusInfo&gt; | No| Callback used to return GNSS satellite status changes.|
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Example**
-  
-  ```js
-  var gnssStatusCb = (satelliteStatusInfo) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let gnssStatusCb = (satelliteStatusInfo) => {
       console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
@@ -245,13 +311,17 @@ Unregisters the listener for GNSS satellite status change events.
   ```
 
 
-## geolocation.on('nmeaMessageChange')<sup>8+</sup>
+## geolocation.on('nmeaMessageChange')<sup>(deprecated)</sup>
 
-on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void;
+on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
 Registers a listener for GNSS NMEA message change events.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('nmeaMessage')](js-apis-geoLocationManager.md#geolocationmanageronnmeamessage).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -264,22 +334,27 @@ Registers a listener for GNSS NMEA message change events.
 
 
 **Example**
-  
-  ```js
-  var nmeaCb = (str) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb );
   ```
 
 
-## geolocation.off('nmeaMessageChange')<sup>8+</sup>
+## geolocation.off('nmeaMessageChange')<sup>(deprecated)</sup>
 
-off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void;
+off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
 Unregisters the listener for GNSS NMEA message change events.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('nmeaMessage')](js-apis-geoLocationManager.md#geolocationmanageroffnmeamessage).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -288,13 +363,14 @@ Unregisters the listener for GNSS NMEA message change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
-  | callback | Callback&lt;string&gt; | No| Callback used to return GNSS NMEA message changes.|
+  | callback | Callback&lt;string&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**
-  
-  ```js
-  var nmeaCb = (str) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let nmeaCb = (str) => {
       console.log('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb);
@@ -302,13 +378,17 @@ Unregisters the listener for GNSS NMEA message change events.
   ```
 
 
-## geolocation.on('fenceStatusChange')<sup>8+</sup>
+## geolocation.on('fenceStatusChange')<sup>(deprecated)</sup>
 
-on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
+on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 Registers a listener for status change events of the specified geofence.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('gnssFenceStatusChange')](js-apis-geoLocationManager.md#geolocationmanagerongnssfencestatuschange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
@@ -317,43 +397,46 @@ Registers a listener for status change events of the specified geofence.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
-  | request | GeofenceRequest | Yes| Geofencing request.|
-  | want | WantAgent | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
-
+  | request |  [GeofenceRequest](#geofencerequestdeprecated) | Yes| Geofencing request.|
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
 
 **Example**
-  
-  ```js
+
+  ```ts
   import geolocation from '@ohos.geolocation';
-  import wantAgent from '@ohos.wantAgent';
+  import wantAgent from '@ohos.app.ability.wantAgent';
   
   let wantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
-              action: "action1",
+              abilityName: "EntryAbility",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
 
 
-## geolocation.off('fenceStatusChange')<sup>8+</sup>
+## geolocation.off('fenceStatusChange')<sup>(deprecated)</sup>
 
-off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
+off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 Unregisters the listener for status change events of the specified geofence.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('gnssFenceStatusChange')](js-apis-geoLocationManager.md#geolocationmanageroffgnssfencestatuschange).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
@@ -362,20 +445,20 @@ Unregisters the listener for status change events of the specified geofence.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
-  | request | GeofenceRequest | Yes| Geofencing request.|
-  | want | WantAgent | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
+  | request | [GeofenceRequest](#geofencerequestdeprecated) | Yes| Geofencing request.|
+  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to return geofence (entrance or exit) events.|
 
 **Example**
-  
-  ```js
+
+  ```ts
   import geolocation from '@ohos.geolocation';
-  import wantAgent from '@ohos.wantAgent';
+  import wantAgent from '@ohos.app.ability.wantAgent';
   
   let wantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "EntryAbility",
               action: "action1",
           }
       ],
@@ -385,74 +468,23 @@ Unregisters the listener for status change events of the specified geofence.
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    var requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
     geolocation.off('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
 
 
-## geolocation.on('countryCodeChange')<sup>9+</sup>
+## geolocation.getCurrentLocation<sup>(deprecated)</sup>
 
-on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;) : void;
-
-Subscribe to country code information reporting events.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is "countrycodechange", which means subscribing to the submission of country code information. |
-  | callback | Callback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code information report. |
-
-
-**Example**
-  
-  ```js
-  var callback = (code) => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
-  }
-  geolocation.on('countryCodeChange', callback);
-  ```
-
-
-## geolocation.off('countryCodeChange')<sup>9+</sup>
-
-off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;) : void;
-
-Unsubscribe from the country code to report events.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is "countrycodechange", which means unsubscribing to the submission of country code information. |
-  | callback | Callback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code information report. |
-
-
-**Example**
-  
-  ```js
-  var callback = (code) => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
-  }
-  geolocation.on('countryCodeChange', callback);
-  geolocation.off('countryCodeChange', callback);
-  ```
-
-
-## geolocation.getCurrentLocation
-
-getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;) : void
-
+getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
 Obtains the current location. This API uses an asynchronous callback to return the result. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -460,14 +492,15 @@ Obtains the current location. This API uses an asynchronous callback to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | No| Location request.|
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the current location.|
+  | request | [CurrentLocationRequest](#currentlocationrequestdeprecated) | Yes| Location request.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the current location.|
 
 **Example**
-  
-  ```js
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  var locationChange = (err, location) => {
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  let locationChange = (err, location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -476,18 +509,20 @@ Obtains the current location. This API uses an asynchronous callback to return t
       }
   };
   geolocation.getCurrentLocation(requestInfo, locationChange);
-  geolocation.getCurrentLocation(locationChange);
   ```
 
 
-## geolocation.getCurrentLocation
+## geolocation.getCurrentLocation<sup>(deprecated)</sup>
 
-getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
+getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 
-Obtains the current location. This API uses a promise to return the result. 
+Obtains the current location. This API uses an asynchronous callback to return the result. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -495,32 +530,71 @@ Obtains the current location. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | No| Location request.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the current location.|
+
+**Example**
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let locationChange = (err, location) => {
+      if (err) {
+          console.log('locationChanger: err=' + JSON.stringify(err));
+      }
+      if (location) {
+          console.log('locationChanger: location=' + JSON.stringify(location));
+      }
+  };
+  geolocation.getCurrentLocation(locationChange);
+  ```
+
+
+## geolocation.getCurrentLocation<sup>(deprecated)</sup>
+
+getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
+
+Obtains the current location. This API uses a promise to return the result. 
+
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2).
+
+**Required permissions**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | request | [CurrentLocationRequest](#currentlocationrequestdeprecated) | No| Location request.|
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt; | Promise used to return the current location.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;[Location](#locationdeprecated)&gt; |[Location](#locationdeprecated)|NA| Promise used to return the current location.|
 
 
 **Example**
-  
-  ```js
-  var requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   geolocation.getCurrentLocation(requestInfo).then((result) => {
       console.log('current location: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.getLastLocation
+## geolocation.getLastLocation<sup>(deprecated)</sup>
 
-getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void
+getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 Obtains the previous location. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getLastLocation](js-apis-geoLocationManager.md#geolocationmanagergetlastlocation).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -528,12 +602,13 @@ Obtains the previous location. This API uses an asynchronous callback to return 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the previous location.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the previous location.|
 
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation((err, data) => {
       if (err) {
           console.log('getLastLocation: err=' + JSON.stringify(err));
@@ -545,40 +620,46 @@ Obtains the previous location. This API uses an asynchronous callback to return 
   ```
 
 
-## geolocation.getLastLocation
+## geolocation.getLastLocation<sup>(deprecated)</sup>
 
-getLastLocation() : Promise&lt;Location&gt;
+getLastLocation(): Promise&lt;Location&gt;
 
 Obtains the previous location. This API uses a promise to return the result. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getLastLocation](js-apis-geoLocationManager.md#geolocationmanagergetlastlocation).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt; | Promise used to return the previous location.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;[Location](#locationdeprecated)&gt; | [Location](#locationdeprecated)|NA|Promise used to return the previous location.|
 
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation().then((result) => {
       console.log('getLastLocation: result: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.isLocationEnabled
+## geolocation.isLocationEnabled<sup>(deprecated)</sup>
 
-isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void
-
+isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the location service is enabled. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -589,8 +670,9 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled((err, data) => {
       if (err) {
           console.log('isLocationEnabled: err=' + JSON.stringify(err));
@@ -602,39 +684,45 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
   ```
 
 
-## geolocation.isLocationEnabled
+## geolocation.isLocationEnabled<sup>(deprecated)</sup>
 
-isLocationEnabled() : Promise&lt;boolean&gt;
+isLocationEnabled(): Promise&lt;boolean&gt;
 
 Checks whether the location service is enabled. This API uses a promise to return the result.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; | boolean|NA|Promise used to return the location service status.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled().then((result) => {
-      console.log('promise, isLocationEnabled: ' + result);
+      console.log('promise, isLocationEnabled: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.requestEnableLocation
+## geolocation.requestEnableLocation<sup>(deprecated)</sup>
 
-requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void
-
+requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
 Requests to enable the location service. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API has been discarded since API version 9. It is recommended that a dialog box be displayed in the application to request the user to go to Settings to enable the location function and specify the scenarios in which the location information will be used in the dialog box.
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -645,8 +733,9 @@ Requests to enable the location service. This API uses an asynchronous callback 
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation((err, data) => {
       if (err) {
           console.log('requestEnableLocation: err=' + JSON.stringify(err));
@@ -658,154 +747,45 @@ Requests to enable the location service. This API uses an asynchronous callback 
   ```
 
 
-## geolocation.requestEnableLocation
+## geolocation.requestEnableLocation<sup>(deprecated)</sup>
 
-requestEnableLocation() : Promise&lt;boolean&gt;
+requestEnableLocation(): Promise&lt;boolean&gt;
 
 Requests to enable the location service. This API uses a promise to return the result.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API has been discarded since API version 9. It is recommended that a dialog box be displayed in the application to request the user to go to Settings to enable the location function and specify the scenarios in which the location information will be used in the dialog box.
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; | boolean|NA|Promise used to return the location service status.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation().then((result) => {
       console.log('promise, requestEnableLocation: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.enableLocation
+## geolocation.isGeoServiceAvailable<sup>(deprecated)</sup>
 
-enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
-
-Enables the location service. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.MANAGE_SECURE_SETTINGS
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
-
-**Example**
-  
-  ```js
-  geolocation.enableLocation((err, data) => {
-      if (err) {
-          console.log('enableLocation: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('enableLocation: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.enableLocation
-
-enableLocation() : Promise&lt;boolean&gt;
-
-Enables the location service. This API uses a promise to return the result.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.MANAGE_SECURE_SETTINGS
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
-
-**Example**
-  
-  ```js
-  geolocation.enableLocation().then((result) => {
-      console.log('promise, enableLocation: ' + JSON.stringify(result));
-  });
-  ```
-
-## geolocation.disableLocation
-
-disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
-
-Disables the location service. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.MANAGE_SECURE_SETTINGS
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
-
-**Example**
-  
-  ```js
-  geolocation.disableLocation((err, data) => {
-      if (err) {
-          console.log('disableLocation: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('disableLocation: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.disableLocation
-
-disableLocation() : Promise&lt;boolean&gt;
-
-Disables the location service. This API uses a promise to return the result.
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.MANAGE_SECURE_SETTINGS
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the location service status.|
-
-**Example**
-  
-  ```js
-  geolocation.disableLocation().then((result) => {
-      console.log('promise, disableLocation: ' + JSON.stringify(result));
-  });
-  ```
-
-## geolocation.isGeoServiceAvailable
-
-isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void
+isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the (reverse) geocoding service is available. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.isGeocoderAvailable](js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -816,8 +796,9 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the (reverse) geocoding service status.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable((err, data) => {
       if (err) {
           console.log('isGeoServiceAvailable: err=' + JSON.stringify(err));
@@ -829,38 +810,45 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
   ```
 
 
-## geolocation.isGeoServiceAvailable
+## geolocation.isGeoServiceAvailable<sup>(deprecated)</sup>
 
-isGeoServiceAvailable() : Promise&lt;boolean&gt;
+isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
 Checks whether the (reverse) geocoding service is available. This API uses a promise to return the result.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.isGeocoderAvailable](js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the (reverse) geocoding service status.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean|NA| Promise used to return the (reverse) geocoding service status.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable().then((result) => {
       console.log('promise, isGeoServiceAvailable: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.getAddressesFromLocation
+## geolocation.getAddressesFromLocation<sup>(deprecated)</sup>
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void
+getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-Converts coordinates into geographic description through reverse geocoding. This API uses an asynchronous callback to return the result. 
+Converts coordinates into geographic descriptions through reverse geocoding. This API uses an asynchronous callback to return the result. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -868,13 +856,14 @@ Converts coordinates into geographic description through reverse geocoding. This
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Reverse geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the reverse geocoding result.|
+  | request | [ReverseGeoCodeRequest](#reversegeocoderequestdeprecated) | Yes| Reverse geocoding request.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to return the reverse geocoding result.|
 
 **Example**
-  
-  ```js
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
@@ -886,13 +875,16 @@ Converts coordinates into geographic description through reverse geocoding. This
   ```
 
 
-## geolocation.getAddressesFromLocation
+## geolocation.getAddressesFromLocation<sup>(deprecated)</sup>
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;;
+getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
-Converts coordinates into geographic description through reverse geocoding. This API uses a promise to return the result. 
+Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation-1).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -900,31 +892,35 @@ Converts coordinates into geographic description through reverse geocoding. This
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Reverse geocoding request.|
+  | request | [ReverseGeoCodeRequest](#reversegeocoderequestdeprecated) | Yes| Reverse geocoding request.|
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Promise used to return the reverse geocoding result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|Promise used to return the reverse geocoding result.|
 
 **Example**
-  
-  ```js
-  var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
       console.log('getAddressesFromLocation: ' + JSON.stringify(data));
   });
   ```
 
 
-## geolocation.getAddressesFromLocationName
+## geolocation.getAddressesFromLocationName<sup>(deprecated)</sup>
 
-getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void
+getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-Converts geographic description into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
+Converts geographic descriptions into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -932,13 +928,14 @@ Converts geographic description into coordinates through geocoding. This API use
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [GeoCodeRequest](#geocoderequest) | Yes| Geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the geocoding result.|
+  | request | [GeoCodeRequest](#geocoderequestdeprecated) | Yes| Geocoding request.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to return the geocoding result.|
 
 **Example**
-  
-  ```js
-  var geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
       if (err) {
           console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
@@ -950,13 +947,16 @@ Converts geographic description into coordinates through geocoding. This API use
   ```
 
 
-## geolocation.getAddressesFromLocationName
+## geolocation.getAddressesFromLocationName<sup>(deprecated)</sup>
 
-getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt;
+getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
-Converts geographic description into coordinates through geocoding. This API uses a promise to return the result. 
+Converts geographic descriptions into coordinates through geocoding. This API uses a promise to return the result. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname-1).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -964,31 +964,36 @@ Converts geographic description into coordinates through geocoding. This API use
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | request | [GeoCodeRequest](#geocoderequest) | Yes| Geocoding request.|
+  | request | [GeoCodeRequest](#geocoderequestdeprecated) | Yes| Geocoding request.|
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Callback used to return the geocoding result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|NA|Promise used to return the geocoding result.|
 
 **Example**
-  
-  ```js
-  var geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
       console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
+## geolocation.getCachedGnssLocationsSize<sup>(deprecated)</sup>
 
-getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void;
+getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains the number of cached GNSS locations. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -999,8 +1004,9 @@ Obtains the number of cached GNSS locations.
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of cached GNSS locations. |
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize((err, size) => {
       if (err) {
           console.log('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
@@ -1012,38 +1018,47 @@ Obtains the number of cached GNSS locations.
   ```
 
 
-## geolocation.getCachedGnssLocationsSize<sup>8+</sup>
+## geolocation.getCachedGnssLocationsSize<sup>(deprecated)</sup>
 
-getCachedGnssLocationsSize() : Promise&lt;number&gt;;
+getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 Obtains the number of cached GNSS locations. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize-1).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the number of cached GNSS locations.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;number&gt; | number|NA|Promise used to return the number of cached GNSS locations.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize().then((result) => {
       console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.flushCachedGnssLocations<sup>8+</sup>
+## geolocation.flushCachedGnssLocations<sup>(deprecated)</sup>
 
-flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void;
+flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1054,8 +1069,9 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations((err, result) => {
       if (err) {
           console.log('flushCachedGnssLocations: err=' + JSON.stringify(err));
@@ -1067,38 +1083,47 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
   ```
 
 
-## geolocation.flushCachedGnssLocations<sup>8+</sup>
+## geolocation.flushCachedGnssLocations<sup>(deprecated)</sup>
 
-flushCachedGnssLocations() : Promise&lt;boolean&gt;;
+flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations-1).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the operation result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean|NA| Promise used to return the operation result.|
 
 **Example**
-  
-  ```js
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations().then((result) => {
       console.log('promise, flushCachedGnssLocations: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.sendCommand<sup>8+</sup>
+## geolocation.sendCommand<sup>(deprecated)</sup>
 
-sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : void;
+sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
 
-Sends an extended command to the location subsystem. This API can only be called by system applications.
+Sends an extended command to the location subsystem. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.sendCommand](js-apis-geoLocationManager.md#geolocationmanagersendcommand).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1106,13 +1131,14 @@ Sends an extended command to the location subsystem. This API can only be called
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | command | LocationCommand | Yes| Extended command (string) to be sent.|
+  | command |  [LocationCommand](#locationcommanddeprecated) | Yes| Extended command (string) to be sent.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
 
 **Example**
-  
-  ```js
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
       if (err) {
           console.log('sendCommand: err=' + JSON.stringify(err));
@@ -1124,13 +1150,17 @@ Sends an extended command to the location subsystem. This API can only be called
   ```
 
 
-## geolocation.sendCommand<sup>8+</sup>
+## geolocation.sendCommand<sup>(deprecated)</sup>
 
-sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
+sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
-Sends an extended command to the location subsystem. This API can only be called by system applications.
+Sends an extended command to the location subsystem. 
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.sendCommand](js-apis-geoLocationManager.md#geolocationmanagersendcommand).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1138,710 +1168,332 @@ Sends an extended command to the location subsystem. This API can only be called
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | command | LocationCommand | Yes| Extended command (string) to be sent.|
+  | command | [LocationCommand](#locationcommanddeprecated) | Yes| Extended command (string) to be sent.|
 
 **Return value**
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Callback used to return the operation result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;boolean&gt; |boolean|NA| Callback used to return the operation result.|
 
 **Example**
-  
-  ```js
-  var requestInfo = {'scenario': 0x301, 'command': "command_1"};
+
+  ```ts
+  import geolocation from '@ohos.geolocation';
+  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
       console.log('promise, sendCommand: ' + JSON.stringify(result));
   });
   ```
 
 
-## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
+## ReverseGeoCodeRequest<sup>(deprecated)</sup>
 
-isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;) : void;
+Defines a reverse geocoding request.
 
-Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest).
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**Required permissions**: ohos.permission.LOCATION
 
-**Permission required**: ohos.permission.LOCATION
+**System capability**: SystemCapability.Location.Location.Geocoder
 
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-
-**Example**
-  
-  ```js
-  geolocation.isLocationPrivacyConfirmed(1, (err, result) => {
-      if (err) {
-          console.log('isLocationPrivacyConfirmed: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('isLocationPrivacyConfirmed: result=' + JSON.stringify(result));
-      }
-  });
-  ```
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| latitude | number | Yes| Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
+| longitude | number | Yes| Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
+| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 
 
-## geolocation.isLocationPrivacyConfirmed<sup>8+</sup>
+## GeoCodeRequest<sup>(deprecated)</sup>
 
-isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;;
+Defines a geocoding request.
 
-Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.GeoCodeRequest](js-apis-geoLocationManager.md#geocoderequest).
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**Required permissions**: ohos.permission.LOCATION
 
-**Permission required**: ohos.permission.LOCATION
+**System capability**: SystemCapability.Location.Location.Geocoder
 
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-
-**Example**
-  
-  ```js
-  geolocation.isLocationPrivacyConfirmed(1).then((result) => {
-      console.log('promise, isLocationPrivacyConfirmed: ' + JSON.stringify(result));
-  });
-  ```
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| description | string | Yes| Yes| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
+| maxItems | number | Yes| Yes| Maximum number of location records to be returned. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
+| minLatitude | number | Yes| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**.|
+| minLongitude | number | Yes| Yes| Minimum longitude. The value ranges from **-180** to **180**.|
+| maxLatitude | number | Yes| Yes| Maximum latitude. The value ranges from **-90** to **90**.|
+| maxLongitude | number | Yes| Yes| Maximum longitude. The value ranges from **-180** to **180**.|
 
 
-## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
+## GeoAddress<sup>(deprecated)</sup>
 
-setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean, callback: AsyncCallback&lt;boolean&gt;) : void;
+Defines a geographic location.
 
-Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.GeoAddress](js-apis-geoLocationManager.md#geoaddress).
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**Required permissions**: ohos.permission.LOCATION
 
-**Permission required**: ohos.permission.LOCATION
+**System capability**: SystemCapability.Location.Location.Geocoder
 
-**System capability**: SystemCapability.Location.Location.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
-
-**Example**
-  
-  ```js
-  geolocation.setLocationPrivacyConfirmStatus(1, true, (err, result) => {
-      if (err) {
-          console.log('setLocationPrivacyConfirmStatus: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('setLocationPrivacyConfirmStatus: result=' + JSON.stringify(result));
-      }
-  });
-  ```
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
+| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
+| locale<sup>7+</sup> | string | Yes| No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
+| placeName<sup>7+</sup> | string | Yes| No| Landmark of the location.|
+| countryCode<sup>7+</sup> | string | Yes| No| Country code.|
+| countryName<sup>7+</sup> | string | Yes| No| Country name.|
+| administrativeArea<sup>7+</sup> | string | Yes| No| Administrative region name.|
+| subAdministrativeArea<sup>7+</sup> | string | Yes| No| Sub-administrative region name.|
+| locality<sup>7+</sup> | string | Yes| No| Locality information.|
+| subLocality<sup>7+</sup> | string | Yes| No| Sub-locality information.|
+| roadName<sup>7+</sup> | string | Yes| No| Road name.|
+| subRoadName<sup>7+</sup> | string | Yes| No| Auxiliary road information.|
+| premises<sup>7+</sup> | string | Yes| No| House information.|
+| postalCode<sup>7+</sup> | string | Yes| No| Postal code.|
+| phoneNumber<sup>7+</sup> | string | Yes| No| Phone number.|
+| addressUrl<sup>7+</sup> | string | Yes| No| Website URL.|
+| descriptions<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Additional descriptions.|
+| descriptionsSize<sup>7+</sup> | number | Yes| No| Total number of additional descriptions. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
 
 
-## geolocation.setLocationPrivacyConfirmStatus<sup>8+</sup>
+## LocationRequest<sup>(deprecated)</sup>
 
-setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise&lt;boolean&gt;;
+Defines a location request.
 
-Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationRequest](js-apis-geoLocationManager.md#locationrequest).
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Permission required**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
-  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Callback used to return the operation result.|
-
-**Example**
-  
-  ```js
-  geolocation.setLocationPrivacyConfirmStatus(1, true).then((result) => {
-      console.log('promise, setLocationPrivacyConfirmStatus: ' + JSON.stringify(result));
-  });
-  ```
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
+| timeInterval | number | Yes| Yes| Time interval at which location information is reported, in seconds. The value must be greater than **0**.|
+| distanceInterval | number | Yes| Yes| Distance interval at which location information is reported. The value must be greater than **0**, in meters.|
+| maxAccuracy | number | Yes| Yes| Location accuracy. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The value must be greater than **0**.|
 
 
-## geolocation.getCountryCode<sup>9+</sup>
+## CurrentLocationRequest<sup>(deprecated)</sup>
 
-getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;) : void;
+Defines the current location request.
 
-Query the current country code.
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code. |
-
-**Example**: 
-  
-  ```js
-  geolocation.getCountryCode((err, result) => {
-      if (err) {
-          console.log('getCountryCode: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('getCountryCode: result=' + JSON.stringify(result));
-      }
-  });
-  ```
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
+| maxAccuracy | number | Yes| Yes| Location accuracy, in meters. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The value must be greater than **0**.|
+| timeoutMs | number | Yes| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The value must be greater than or equal to **1000**.|
 
 
-## geolocation.getCountryCode<sup>9+</sup>
+## SatelliteStatusInfo<sup>(deprecated)</sup>
 
-getCountryCode() : Promise&lt;CountryCode&gt;;
+Defines the satellite status information.
 
-Query the current country code.
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.SatelliteStatusInfo](js-apis-geoLocationManager.md#satellitestatusinfo).
 
-**System capability**: SystemCapability.Location.Location.Core
+**Required permissions**: ohos.permission.LOCATION
 
-**Parameters**
+**System capability**: SystemCapability.Location.Location.Gnss
 
-None
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;CountryCode&gt; | return country code. |
-
-**Example**:
-  
-  ```js
-  geolocation.getCountryCode()
-  .then((result) => {
-      console.log('promise, getCountryCode: result=' + JSON.stringify(result));
-  })
-  .catch((error) => {
-      console.log('promise, getCountryCode: error=' + JSON.stringify(error));
-  });
-  ```
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| satellitesNumber | number | Yes| No| Number of satellites. The value must be greater than or equal to **0**.|
+| satelliteIds | Array&lt;number&gt; | Yes| No| Array of satellite IDs. The value must be greater than or equal to **0**.|
+| carrierToNoiseDensitys | Array&lt;number&gt; | Yes| No| Carrier-to-noise density ratio, that is, **cn0**. The value must be greater than **0**.|
+| altitudes | Array&lt;number&gt; | Yes| No| Satellite altitude angle information. The value ranges from **-90** to **90**, in degrees.|
+| azimuths | Array&lt;number&gt; | Yes| No| Azimuth information. The value ranges from **0** to **360**, in degrees.|
+| carrierFrequencies | Array&lt;number&gt; | Yes| No| Carrier frequency. The value must be greater than or equal to **0**, in Hz.|
 
 
-## geolocation.enableLocationMock<sup>9+</sup>
+## CachedGnssLocationsRequest<sup>(deprecated)</sup>
 
-enableLocationMock(scenario?: LocationRequestScenario, callback: AsyncCallback&lt;void&gt;) : void;
+Represents a request for reporting cached GNSS locations.
 
-Enable the position simulation function of a scene, and only one scene can be enabled at the same time.
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CachedGnssLocationsRequest](js-apis-geoLocationManager.md#cachedgnsslocationsrequest).
 
-**System capability**: SystemCapability.Location.Location.Core
+**Required permissions**: ohos.permission.LOCATION
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Location.Location.Gnss
 
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates under what scenario the position simulation function is enabled. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.enableLocationMock(request, (err, result) => {
-      if (err) {
-          console.log('enableLocationMock: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('enableLocationMock: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-## geolocation.enableLocationMock<sup>9+</sup>
-
-enableLocationMock(scenario?: LocationRequestScenario) : Promise&lt;void&gt;;
-
-Enable the position simulation function of a scene, and only one scene can be enabled at the same time.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates which scene's position simulation function is enabled. If this parameter is not carried, it means that the position simulation function of all scenes is enabled. |
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| reportingPeriodSec | number | Yes| Yes| Interval for reporting the cached GNSS locations, in milliseconds. The value must be greater than **0**.|
+| wakeUpCacheQueueFull | boolean | Yes| Yes | **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
 
 
-**Return value**
+## Geofence<sup>(deprecated)</sup>
 
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message.  |
+Defines a GNSS geofence. Currently, only circular geofences are supported.
 
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.enableLocationMock(request)
-  .then((result) => {
-      if (result) {
-        console.log('promise, enableLocationMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, enableLocationMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.Geofence](js-apis-geoLocationManager.md#geofence).
+
+**Required permissions**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geofence
+
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| latitude | number | Yes| Yes|Latitude information. The value ranges from **-90** to **90**.|
+| longitude | number | Yes|Yes| Longitude information. The value ranges from **-180** to **180**.|
+| radius | number | Yes|Yes| Radius of a circular geofence. The value must be greater than **0**, in meters.|
+| expiration | number | Yes|Yes| Expiration period of a geofence, in milliseconds. The value must be greater than **0**.|
 
 
-## geolocation.disableLocationMock<sup>9+</sup>
+## GeofenceRequest<sup>(deprecated)</sup>
 
-disableLocationMock(scenario?: LocationRequestScenario, callback: AsyncCallback&lt;void&gt;) : void;
+Represents a GNSS geofencing request.
 
-To disable the position simulation function.
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.GeofenceRequest](js-apis-geoLocationManager.md#geofencerequest).
+
+**Required permissions**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Location.Location.Geofence
+
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes | Priority of the location information.|
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes | Location scenario.|
+| geofence | [Geofence](#geofencedeprecated)| Yes| Yes | Geofence information.|
+
+
+## LocationCommand<sup>(deprecated)</sup>
+
+Defines an extended command.
+
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationCommand](js-apis-geoLocationManager.md#locationcommand).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates to disable the position simulation function of a scene. If this parameter is not carried, it means to disable the position simulation function of all scenes. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.disableLocationMock(request, (err, result) => {
-      if (err) {
-          console.log('disableLocationMock: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('disableLocationMock: result=' + JSON.stringify(result));
-      }
-  });
-  ```
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| scenario | [LocationRequestScenario](#locationrequestscenariodeprecated)  | Yes| Yes | Location scenario.|
+| command | string | Yes| Yes | Extended command, in the string format.|
 
 
-## geolocation.disableLocationMock<sup>9+</sup>
+## Location<sup>(deprecated)</sup>
 
-disableLocationMock(scenario?: LocationRequestScenario) : Promise&lt;void&gt;;
+Defines a location.
 
-To disable the position simulation function.
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.Location](js-apis-geoLocationManager.md#location).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | scenario | LocationRequestScenario | No | Indicates to disable the position simulation function of a scene. If this parameter is not carried, it means to disable the position simulation function of all scenes. |
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr, otherwise it will return an error message |
-
-**Example**: 
-  
-  ```js
-  var request = {"scenario": 0x0301};
-  geolocation.disableLocationMock(request)
-  .then((result) => {
-      if (result) {
-        console.log('promise, disableLocationMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, disableLocationMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
+| Name| Type| Readable|Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
+| longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
+| altitude<sup>7+</sup> | number | Yes| No| Location altitude, in meters.|
+| accuracy<sup>7+</sup> | number | Yes| No| Location accuracy, in meters.|
+| speed<sup>7+</sup> | number | Yes| No| Speed, in m/s.|
+| timeStamp<sup>7+</sup> | number | Yes| No| Location timestamp in the UTC format.|
+| direction<sup>7+</sup> | number | Yes| No| Direction information. The value ranges from **0** to **360**, in degrees.|
+| timeSinceBoot<sup>7+</sup> | number | Yes| No| Location timestamp since boot.|
+| additions<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Additional description.|
+| additionSize<sup>7+</sup> | number | Yes| No| Number of additional descriptions. The value must be greater than or equal to **0**.|
 
 
-## geolocation.setMockedLocations<sup>9+</sup>
+## LocationPrivacyType<sup>(deprecated)</sup>
 
-setMockedLocations(config: LocationMockConfig, callback: AsyncCallback&lt;void&gt;) : void;
+Defines the privacy statement type.
 
-Set the simulated location information, and then report the simulated location at the time interval carried in the interface.
+> **NOTE**<br>
+> This API is supported since API version 8.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationPrivacyType](js-apis-geoLocationManager.md#locationprivacytype).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| OTHERS | 0 | Other scenarios. Reserved field.|
+| STARTUP | 1 | Privacy statement displayed in the startup wizard.  |
+| CORE_LOCATION | 2 | Privacy statement displayed when enabling the location service.|
 
-**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | LocationMockConfig | Yes | Indicates the configuration parameters of location simulation, including the time interval of simulation location reporting and the array of simulation locations. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var locations = [
-      {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 32.14, "longitude": 122.11, "altitude": 123, "accuracy": 3, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 3000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 33.15, "longitude": 123.11, "altitude": 123, "accuracy": 4, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 4000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
-  ];
-  var config = {"timeInterval": 5, "locations": locations};
-  geolocation.setMockedLocations(config, (err, data) => {
-      if (err) {
-          console.log('setMockedLocations: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('setMockedLocations: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-## geolocation.setMockedLocations<sup>9+</sup>
-
-setMockedLocations(config: LocationMockConfig) : Promise&lt;void&gt;;
-
-Set the simulated location information, and then report the simulated location at the time interval carried in the interface.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | LocationMockConfig | Yes | Indicates the configuration parameters of location simulation, including the time interval of simulation location reporting and the array of simulation locations. |
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message.  |
-
-**Example**: 
-  
-  ```js
-  var locations = [
-      {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 32.14, "longitude": 122.11, "altitude": 123, "accuracy": 3, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 3000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 33.15, "longitude": 123.11, "altitude": 123, "accuracy": 4, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 4000000000, "additionSize": 0, "isFromMock": true},
-      {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
-  ];
-  var config = {"timeInterval": 5, "locations":locations};
-  geolocation.setMockedLocations(config)
-  .then((result) => {
-      if (result) {
-        console.log('promise, setMockedLocations: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, setMockedLocations: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-
-## geolocation.enableReverseGeocodingMock<sup>9+</sup>
-
-enableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;) : void;
-
-Enable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  geolocation.enableReverseGeocodingMock((err, data) => {
-      if (err) {
-          console.log('enableReverseGeocodingMock: err=' + JSON.stringify(err));
-      }
-      if (data) {
-          console.log('enableReverseGeocodingMock: data=' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.enableReverseGeocodingMock<sup>9+</sup>
-
-enableReverseGeocodingMock() : Promise&lt;void&gt;;
-
-Enable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**: 
-
-None
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  geolocation.enableReverseGeocodingMock()
-  .then((result) => {
-      if (result) {
-        console.log('promise, enableReverseGeocodingMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, enableReverseGeocodingMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-## geolocation.disableReverseGeocodingMock<sup>9+</sup>
-
-disableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;) : void;
-
-Disable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**:
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message |
-
-**Example**: 
-  
-  ```js
-  geolocation.disableReverseGeocodingMock((err, result) => {
-      if (err) {
-          console.log('disableReverseGeocodingMock: err=' + JSON.stringify(err));
-      }
-      if (result) {
-          console.log('disableReverseGeocodingMock: result=' + JSON.stringify(result));
-      }
-  });
-  ```
-
-
-## geolocation.disableReverseGeocodingMock<sup>9+</sup>
-
-disableReverseGeocodingMock() : Promise&lt;void&gt;;
-
-Disable reverse geocoding simulation function.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**: 
-
-None
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; |  It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  geolocation.disableReverseGeocodingMock()
-  .then((result) => {
-      if (result) {
-        console.log('promise, disableReverseGeocodingMock: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, disableReverseGeocodingMock: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-## geolocation.setReverseGeocodingMockInfo<sup>9+</sup>
-
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;, callback: AsyncCallback&lt;void&gt;) : void;
-
-Set the configuration information of the reverse geocoding simulation function, including the corresponding relationship between location and place name. If the location information is in the configuration information during the subsequent reverse geocoding query, the corresponding place name will be returned.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | Yes | An array of configuration parameters indicating the inverse geocoding simulation function. The configuration parameters of the inverse geocoding simulation function include a location and a place name. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var mockInfos = [
-      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
-  ];
-  geolocation.setReverseGeocodingMockInfo(mockInfos, (err, data) => {
-      if (err) {
-          console.log('promise, setReverseGeocodingMockInfo, err:' + JSON.stringify(err));
-      } 
-      if (data) {
-          console.log('promise, setReverseGeocodingMockInfo, data:' + JSON.stringify(data));
-      }
-  });
-  ```
-
-
-## geolocation.setReverseGeocodingMockInfo<sup>9+</sup>
-
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;) : Promise&lt;void&gt;;
-
-Set the configuration information of the reverse geocoding simulation function, including the corresponding relationship between location and place name. If the location information is in the configuration information during the subsequent reverse geocoding query, the corresponding place name will be returned.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | Yes | An array of configuration parameters indicating the inverse geocoding simulation function. The configuration parameters of the inverse geocoding simulation function include a location and a place name. |
-
-**Return value**
-
-  | Name| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; |  It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
-
-**Example**: 
-  
-  ```js
-  var mockInfos = [
-      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
-  ];
-  geolocation.setReverseGeocodingMockInfo(mockInfos)
-  .then((result) => {
-      if (result) {
-        console.log('promise, setReverseGeocodingMockInfo: result=' + JSON.stringify(result));
-      }
-  })
-  .catch((error) => {
-      if (error) {
-        console.log('promise, setReverseGeocodingMockInfo: error=' + JSON.stringify(error));
-      }
-  });
-  ```
-
-
-## LocationRequestPriority
+## LocationRequestPriority<sup>(deprecated)</sup>
 
 Sets the priority of the location request.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationRequestPriority](js-apis-geoLocationManager.md#locationrequestpriority).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| UNSET | 0x200 | Priority unspecified.|
-| ACCURACY | 0x201 | Location accuracy.|
-| LOW_POWER | 0x202 | Power efficiency.|
-| FIRST_FIX | 0x203 | Fast location. Use this option if you want to obtain a location as fast as possible.|
+| UNSET | 0x200 | Priority unspecified.<br>If this option is used, [LocationRequestPriority](#locationrequestprioritydeprecated) is invalid.|
+| ACCURACY | 0x201 | Location accuracy preferred.<br>This policy mainly uses the GNSS positioning technology. In an open area, the technology can achieve the meter-level location accuracy, depending on the hardware performance of the device. However, in a shielded environment, the location accuracy may significantly decrease.|
+| LOW_POWER | 0x202 | Power efficiency preferred.<br>This policy mainly uses the base station positioning, WLAN positioning, and Bluetooth positioning technologies to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption when your application does not require high location accuracy or when base stations, visible WLANs, and Bluetooth devices are densely distributed.|
+| FIRST_FIX | 0x203 | Fast location preferred. Use this option if you want to obtain a location as fast as possible.<br>This policy uses the GNSS positioning, base station positioning, WLAN positioning, and Bluetooth positioning technologies simultaneously to obtain the device location in both the indoor and outdoor scenarios. When all positioning technologies provide a location result, the system provides the most accurate location result for your application. It can lead to significant hardware resource consumption and power consumption.|
 
 
-## LocationRequestScenario
+## LocationRequestScenario<sup>(deprecated)</sup>
 
   Sets the scenario of the location request.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationRequestScenario](js-apis-geoLocationManager.md#locationrequestscenario).
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| UNSET | 0x300 | Scenario unspecified.|
-| NAVIGATION | 0x301 | Navigation.|
-| TRAJECTORY_TRACKING | 0x302 | Trajectory tracking.|
-| CAR_HAILING | 0x303 | Ride hailing.|
-| DAILY_LIFE_SERVICE | 0x304 | Daily life services.|
-| NO_POWER | 0x305 | Power efficiency. Your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
+| UNSET | 0x300 | Scenario unspecified.<br>If this option is used, [LocationRequestScenario](#locationrequestscenariodeprecated) is invalid.|
+| NAVIGATION | 0x301 | Navigation scenario.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>In this scenario, GNSS positioning is used to provide location services to ensure the optimal location accuracy of the system.<br>The location result is reported at a minimum interval of 1 second by default.|
+| TRAJECTORY_TRACKING | 0x302 | Trajectory tracking scenario.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications. In this scenario, the GNSS positioning technology is mainly used to ensure the location accuracy.<br>The location result is reported at a minimum interval of 1 second by default.|
+| CAR_HAILING | 0x303 | Ride hailing scenario.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>The location result is reported at a minimum interval of 1 second by default.|
+| DAILY_LIFE_SERVICE | 0x304 | Daily life service scenario.<br>This option is applicable when your application only needs the approximate user location for recommendations and push notifications in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>The location result is reported at a minimum interval of 1 second by default.|
+| NO_POWER | 0x305 | Power efficiency scenario.<br>This option is applicable when your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
 
 
-## GeoLocationErrorCode
+## GeoLocationErrorCode<sup>(deprecated)</sup>
 
 Enumerates error codes of the location service.
 
-**Permission required**: ohos.permission.LOCATION
+> **NOTE**<br>
+> This API is deprecated since API version 9.
+
+**Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| NOT_SUPPORTED<sup>9+</sup> | 100 | Indicates that the interface function is not supported. |
 | INPUT_PARAMS_ERROR<sup>7+</sup> | 101 | Incorrect input parameters.|
 | REVERSE_GEOCODE_ERROR<sup>7+</sup> | 102 | Failed to call the reverse geocoding API.|
 | GEOCODE_ERROR<sup>7+</sup> | 103 | Failed to call the geocoding API.|
@@ -1849,272 +1501,3 @@ Enumerates error codes of the location service.
 | LOCATION_SWITCH_ERROR<sup>7+</sup> | 105 | Failed to change the location service switch.|
 | LAST_KNOWN_LOCATION_ERROR<sup>7+</sup> | 106 | Failed to obtain the previous location.|
 | LOCATION_REQUEST_TIMEOUT_ERROR<sup>7+</sup> | 107 | Failed to obtain the location within the specified time.|
-| QUERY_COUNTRY_CODE_ERROR<sup>9+</sup> | 108 | Indicates that the country code query failed. |
-
-
-## ReverseGeoCodeRequest
-
-Defines a reverse geocoding request.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Geocoder
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| locale | string | No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
-| latitude | number | Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude | number | Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
-| maxItems | number | No| Maximum number of location records to be returned.|
-
-
-## GeoCodeRequest
-
-Defines a geocoding request.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Geocoder
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| locale | string | No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
-| description | number | Yes| Location description, for example, No. xx, xx Road, Pudong New District, Shanghai.|
-| maxItems | number | No| Maximum number of location records to be returned.|
-| minLatitude | number | No| Minimum latitude. This parameter is used with minLongitude, maxLatitude, and maxLongitude to specify the latitude and longitude ranges.|
-| minLongitude | number | No| Minimum longitude.|
-| maxLatitude | number | No| Maximum latitude.|
-| maxLongitude | number | No| Maximum longitude.|
-
-
-## GeoAddress
-
-Defines a geographic location.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Geocoder
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| latitude<sup>7+</sup> | number | No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude<sup>7+</sup> | number | No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
-| locale<sup>7+</sup> | string | No| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
-| placeName<sup>7+</sup> | string | No| Landmark of the location.|
-| countryCode<sup>7+</sup> | string | No| Country code.|
-| countryName<sup>7+</sup> | string | No| Country name.|
-| administrativeArea<sup>7+</sup> | string | No| Administrative region name.|
-| subAdministrativeArea<sup>7+</sup> | string | No| Sub-administrative region name.|
-| locality<sup>7+</sup> | string | No| Locality information. |
-| subLocality<sup>7+</sup> | string | No| Sub-locality information. |
-| roadName<sup>7+</sup> | string | No| Road name.|
-| subRoadName<sup>7+</sup> | string | No| Auxiliary road information.|
-| premises<sup>7+</sup> | string | No| House information.|
-| postalCode<sup>7+</sup> | string | No| Postal code.|
-| phoneNumber<sup>7+</sup> | string | No| Phone number.|
-| addressUrl<sup>7+</sup> | string | No| Website URL.|
-| descriptions<sup>7+</sup> | Array&lt;string&gt; | No| Additional description.|
-| descriptionsSize<sup>7+</sup> | number | No| Total number of additional descriptions.|
-| isFromMock<sup>9+</sup> | Boolean | No | Indicates whether the geographical name information comes from the reverse geocoding simulation function. |
-
-
-## LocationRequest
-
-Defines a location request.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | No| Priority of the location request.|
-| scenario | [LocationRequestScenario](#locationrequestscenario) | Yes| Scenario of the location request.|
-| timeInterval | number | No| Time interval at which location information is reported.|
-| distanceInterval | number | No| Distance interval at which location information is reported.|
-| maxAccuracy | number | No| Location accuracy.|
-
-
-## CurrentLocationRequest
-
-Defines the current location request.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | No| Priority of the location request.|
-| scenario | [LocationRequestScenario](#locationrequestscenario) | No| Scenario of the location request.|
-| maxAccuracy | number | No| Location accuracy, in meters.|
-| timeoutMs | number | No| Timeout duration, in milliseconds. The minimum value is 1000.|
-
-
-## SatelliteStatusInfo<sup>8+</sup>
-
-Defines the satellite status information.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Gnss
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| satellitesNumber | number | Yes| Number of satellites.|
-| satelliteIds | Array&lt;number&gt; | Yes| Array of satellite IDs.|
-| carrierToNoiseDensitys | Array&lt;number&gt; | Yes| Carrier-to-noise density ratio, that is, **cn0**.|
-| altitudes | Array&lt;number&gt; | Yes| Altitude information.|
-| azimuths | Array&lt;number&gt; | Yes| Azimuth information.|
-| carrierFrequencies | Array&lt;number&gt; | Yes| Carrier frequency.|
-
-
-## CachedGnssLocationsRequest<sup>8+</sup>
-
-Represents a request for reporting cached GNSS locations.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Gnss
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| reportingPeriodSec | number | Yes| Interval for reporting the cached GNSS locations, in milliseconds.|
-| wakeUpCacheQueueFull | boolean | Yes| **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
-
-
-## Geofence<sup>8+</sup>
-
-Defines a GNSS geofence. Currently, only circular geofences are supported.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Geofence
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| latitude | number | Yes| Latitude information.|
-| longitude | number | Yes| Longitude information.|
-| radius | number | Yes| Radius of a circular geofence.|
-| expiration | number | Yes| Expiration period of a geofence, in milliseconds.|
-
-
-## GeofenceRequest<sup>8+</sup>
-
-Represents a GNSS geofencing request.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Geofence
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| priority | LocationRequestPriority | Yes| Priority of the location information.|
-| scenario | LocationRequestScenario | Yes| Location scenario.|
-| geofence | Geofence | Yes| Geofence information.|
-
-
-## LocationPrivacyType<sup>8+</sup>
-
-Defines the privacy statement type.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| OTHERS | 0 | Other scenarios.|
-| STARTUP | 1 | Privacy statement displayed in the startup wizard.|
-| CORE_LOCATION | 2 | Privacy statement displayed when enabling the location service.|
-
-
-## LocationCommand<sup>8+</sup>
-
-Defines an extended command.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| scenario | LocationRequestScenario | Yes| Location scenario.|
-| command | string | Yes| Extended command, in the string format.|
-
-
-## Location
-
-Defines a location.
-
-**Permission required**: ohos.permission.LOCATION
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| latitude<sup>7+</sup> | number | Yes| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude.|
-| longitude<sup>7+</sup> | number | Yes| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude .|
-| altitude<sup>7+</sup> | number | Yes| Location altitude, in meters.|
-| accuracy<sup>7+</sup> | number | Yes| Location accuracy, in meters.|
-| speed<sup>7+</sup> | number | Yes| Speed, in m/s.|
-| timeStamp<sup>7+</sup> | number | Yes| Location timestamp in the UTC format.|
-| direction<sup>7+</sup> | number | Yes| Direction information.|
-| timeSinceBoot<sup>7+</sup> | number | Yes| Location timestamp since boot.|
-| additions<sup>7+</sup> | Array&lt;string&gt; | No| Additional information.|
-| additionSize<sup>7+</sup> | number | No| Number of additional descriptions.|
-| isFromMock<sup>9+</sup> | Boolean | No | Indicates whether the location information comes from the location simulation function. |
-
-
-## ReverseGeocodingMockInfo<sup>9+</sup>
-
-The configuration information of the reverse geocoding simulation function includes a location information and a place name information.
-
-**System capability**:SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| location | ReverseGeoCodeRequest | Yes | Indicates longitude and latitude information. |
-| geoAddress | GeoAddress | Yes | Represents a geographic location. |
-
-
-## LocationMockConfig<sup>9+</sup>
-
-The configuration parameters of the location simulation function include the time interval of the simulation position report and the array of simulation locations.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| timeInterval | number | Yes | Indicates the time interval of analog location reporting, in seconds. |
-| locations | Array&lt;Location&gt; | Yes | Represents an array of mocked locations. |
-
-
-## CountryCode<sup>9+</sup>
-
-The country code information structure contains the country code string and the source information of the country code.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| country | string | Yes | Represents the country code string. |
-| type | CountryCodeType | Yes | Indicates the source of country code information. |
-
-
-## CountryCodeType<sup>9+</sup>
-
-Country code source type.
-
-**System capability**: SystemCapability.Location.Location.Core
-
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| COUNTRY_CODE_FROM_LOCALE | 1 | The country code obtained from the language configuration information of the globalization module. |
-| COUNTRY_CODE_FROM_SIM | 2 | The country code obtained from the SIM card. |
-| COUNTRY_CODE_FROM_LOCATION | 3 | Based on the user's location information, the country code is queried through reverse geocoding. |
-| COUNTRY_CODE_FROM_NETWORK | 4 | The country code obtained from the cellular network registration information. |

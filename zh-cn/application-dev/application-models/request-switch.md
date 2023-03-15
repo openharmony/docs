@@ -1,0 +1,7 @@
+# request接口切换
+
+
+  | FA模型接口 | Stage模型接口对应d.ts文件 | Stage模型对应接口 | 
+| -------- | -------- | -------- |
+| [download(config:&nbsp;DownloadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;DownloadTask&gt;):&nbsp;void;](../reference/apis//js-apis-request.md#requestdownload-1)<br/>[download(config:&nbsp;DownloadConfig):&nbsp;Promise&lt;DownloadTask&gt;;](../reference/apis/js-apis-request.md#requestdownload) | \@ohos.request.d.ts | [downloadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;DownloadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;DownloadTask&gt;):&nbsp;void;](../reference/apis/js-apis-request.md#requestdownloadfile9-1)<br/>[downloadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;DownloadConfig):&nbsp;Promise&lt;DownloadTask&gt;;](../reference/apis/js-apis-request.md#requestdownloadfile9) |
+| [upload(config:&nbsp;UploadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;UploadTask&gt;):&nbsp;void;](../reference/apis/js-apis-request.md#requestupload-1)<br/>[upload(config:&nbsp;UploadConfig):&nbsp;Promise&lt;UploadTask&gt;;](../reference/apis/js-apis-request.md#requestupload) | \@ohos.request.d.ts | [uploadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;UploadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;UploadTask&gt;):&nbsp;void;](../reference/apis/js-apis-request.md#requestuploadfile9-1)<br/>[uploadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;UploadConfig):&nbsp;Promise&lt;UploadTask&gt;;](../reference/apis/js-apis-request.md#requestuploadfile9) |

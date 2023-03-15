@@ -11,7 +11,7 @@
 
 - 正值，表示该信号量当前可被获取。
 
-以同步为目的的信号量和以互斥为目的的信号量在使用上有如下不同：
+信号量可用于同步或者互斥。以同步为目的的信号量和以互斥为目的的信号量在使用上有如下不同：
 
 - 用作互斥时，初始信号量计数值不为0，表示可用的共享资源个数。在需要使用共享资源前，先获取信号量，然后使用一个共享资源，使用完毕后释放信号量。这样在共享资源被取完，即信号量计数减至0时，其他需要获取信号量的任务将被阻塞，从而保证了共享资源的互斥访问。另外，当共享资源数为1时，建议使用二值信号量，一种类似于互斥锁的机制。
 
@@ -23,7 +23,7 @@
 
 ### 信号量控制块
 
-  
+
 ```
 /**
  * 信号量控制块数据结构
@@ -40,7 +40,7 @@ typedef struct {
 
 ### 信号量运作原理
 
-信号量初始化，为配置的N个信号量申请内存（N值可以由用户自行配置，通过LOSCFG_BASE_IPC_SEM_LIMIT宏实现），并把所有信号量初始化成未使用，加入到未使用链表中供系统使用。
+信号量初始化，为配置的N个信号量申请内存（N值可以由用户自行配置，通过LOSCFG_BASE_IPC_SEM_LIMIT宏实现，按产品实际需要设定），并把所有信号量初始化成未使用，加入到未使用链表中供系统使用。
 
 信号量创建，从未使用的信号量链表中获取一个信号量，并设定初值。
 
@@ -58,10 +58,10 @@ typedef struct {
 
 ## 接口说明
 
-  | 功能分类 | 接口描述 | 
+| 功能分类 | 接口描述 |
 | -------- | -------- |
-| 创建/删除信号量 | -&nbsp;LOS_SemCreate:创建信号量，返回信号量ID<br/>-&nbsp;LOS_BinarySemCreate:创建二值信号量，其计数值最大为1<br/>-&nbsp;LOS_SemDelete:删除指定的信号量 | 
-| 申请/释放信号量 | -&nbsp;LOS_SemPend:申请指定的信号量，并设置超时时间<br/>-&nbsp;LOS_SemPost:释放指定的信号量 | 
+| 创建/删除信号量 | &nbsp;LOS_SemCreate:创建信号量，返回信号量ID。<br/>&nbsp;LOS_BinarySemCreate:创建二值信号量，其计数值最大为1。<br/>&nbsp;LOS_SemDelete:删除指定的信号量。 |
+| 申请/释放信号量 | &nbsp;LOS_SemPend:申请指定的信号量，并设置超时时间。<br/>&nbsp;LOS_SemPost:释放指定的信号量。 |
 
 
 ## 开发流程
@@ -101,17 +101,11 @@ typedef struct {
 
 示例代码如下：
 
-  
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleSem。
+
+
 ```
 #include "los_sem.h"
-#include "securec.h"
-
-/* 任务ID */
-static UINT32 g_testTaskId01;
-static UINT32 g_testTaskId02;
-
-/* 测试任务优先级 */
-#define TASK_PRIO_TEST  5
 
 /* 信号量结构体id */
 static UINT32 g_semId;
@@ -121,19 +115,17 @@ VOID ExampleSemTask1(VOID)
     UINT32 ret;
 
     printf("ExampleSemTask1 try get sem g_semId, timeout 10 ticks.\n");
-
     /* 定时阻塞模式申请信号量，定时时间为10ticks */
     ret = LOS_SemPend(g_semId, 10);
-
     /* 申请到信号量 */
     if (ret == LOS_OK) {
          LOS_SemPost(g_semId);
          return;
     }
+    
     /* 定时时间到，未申请到信号量 */
     if (ret == LOS_ERRNO_SEM_TIMEOUT) {
         printf("ExampleSemTask1 timeout and try get sem g_semId wait forever.\n");
-
         /*永久阻塞模式申请信号量*/
         ret = LOS_SemPend(g_semId, LOS_WAIT_FOREVER);
         printf("ExampleSemTask1 wait_forever and get sem g_semId.\n");
@@ -151,15 +143,14 @@ VOID ExampleSemTask2(VOID)
 
     /* 永久阻塞模式申请信号量 */
     ret = LOS_SemPend(g_semId, LOS_WAIT_FOREVER);
-
     if (ret == LOS_OK) {
         printf("ExampleSemTask2 get sem g_semId and then delay 20 ticks.\n");
     }
 
     /* 任务休眠20 ticks */
     LOS_TaskDelay(20);
-
     printf("ExampleSemTask2 post sem g_semId.\n");
+
     /* 释放信号量 */
     LOS_SemPost(g_semId);
     return;
@@ -168,8 +159,10 @@ VOID ExampleSemTask2(VOID)
 UINT32 ExampleSem(VOID)
 {
     UINT32 ret;
-    TSK_INIT_PARAM_S task1;
-    TSK_INIT_PARAM_S task2;
+    TSK_INIT_PARAM_S task1 = { 0 };
+    TSK_INIT_PARAM_S task2 = { 0 };
+    UINT32 taskId1;
+    UINT32 taskId2;
 
    /* 创建信号量 */
     LOS_SemCreate(0, &g_semId);
@@ -178,24 +171,22 @@ UINT32 ExampleSem(VOID)
     LOS_TaskLock();
 
     /* 创建任务1 */
-    (VOID)memset_s(&task1, sizeof(TSK_INIT_PARAM_S), 0, sizeof(TSK_INIT_PARAM_S));
     task1.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleSemTask1;
     task1.pcName       = "TestTask1";
     task1.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-    task1.usTaskPrio   = TASK_PRIO_TEST;
-    ret = LOS_TaskCreate(&g_testTaskId01, &task1);
+    task1.usTaskPrio   = 5;
+    ret = LOS_TaskCreate(&taskId1, &task1);
     if (ret != LOS_OK) {
         printf("task1 create failed.\n");
         return LOS_NOK;
     }
 
     /* 创建任务2 */
-    (VOID)memset_s(&task2, sizeof(TSK_INIT_PARAM_S), 0, sizeof(TSK_INIT_PARAM_S));
     task2.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleSemTask2;
     task2.pcName       = "TestTask2";
     task2.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
-    task2.usTaskPrio   = (TASK_PRIO_TEST - 1);
-    ret = LOS_TaskCreate(&g_testTaskId02, &task2);
+    task2.usTaskPrio   = 4;
+    ret = LOS_TaskCreate(&taskId2, &task2);
     if (ret != LOS_OK) {
         printf("task2 create failed.\n");
         return LOS_NOK;
@@ -221,12 +212,11 @@ UINT32 ExampleSem(VOID)
 编译运行得到的结果为：
 
 
-  
+
 ```
 ExampleSemTask2 try get sem g_semId wait forever.
-ExampleSemTask2 get sem g_semId and then delay 20 ticks.
 ExampleSemTask1 try get sem g_semId, timeout 10 ticks.
-
+ExampleSemTask2 get sem g_semId and then delay 20 ticks.
 ExampleSemTask1 timeout and try get sem g_semId wait forever.
 ExampleSemTask2 post sem g_semId.
 ExampleSemTask1 wait_forever and get sem g_semId.

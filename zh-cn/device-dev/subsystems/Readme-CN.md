@@ -5,19 +5,21 @@
     - [构建系统编码规范与最佳实践](subsys-build-gn-coding-style-and-best-practice.md)
     - [编译构建Kconfig可视化配置指导](subsys-build-gn-kconfig-visual-config-guide.md)
     - 编译构建相关操作
-      - [产品配置规则](subsys-build-product.md#产品配置规则)
-      - [子系统配置规则](subsys-build-subsystem.md#子系统配置规则)
-      - [部件配置规则](subsys-build-component.md#部件配置规则)
-      - [模块配置规则](subsys-build-module.md#模块配置规则)
-      - [芯片解决方案配置规则](subsys-build-chip_solution.md#芯片解决方案配置规则)
-      - [特性配置规则](subsys-build-feature.md#特性配置规则)
-      - [系统能力配置规则](subsys-build-syscap.md#如何按需配置部件的系统能力)
-      - [关于deps、external_deps的使用](subsys-build-reference.md#关于deps、external_deps的使用)
-      - [开源软件Notice收集策略说明](subsys-build-reference.md#开源软件notice收集策略说明)
-      - [加快本地编译的一些参数](subsys-build-reference.md#加快本地编译的一些参数)
-      - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)
+      - [产品配置规则](subsys-build-product.md)
+      - [子系统配置规则](subsys-build-subsystem.md)
+      - [部件配置规则](subsys-build-component.md)
+      - [部件编译构建规范](subsys-build-component-building-rules.md)
+      - [模块配置规则](subsys-build-module.md)
+      - [芯片解决方案配置规则](subsys-build-chip_solution.md)
+      - [特性配置规则](subsys-build-feature.md)
+      - [系统能力配置规则](subsys-build-syscap.md)
+      - [关于deps、external_deps的使用](subsys-build-reference.md)
+      - [开源软件Notice收集策略说明](subsys-build-reference.md)
+      - [加快本地编译的一些参数](subsys-build-reference.md)
+      - [查看NinjaTrace](subsys-build-reference.md)
       - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)
+- [ArkCompiler](subsys-arkcompiler-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
 - 图形图像
     - [图形图像概述](subsys-graphics-overview.md)
@@ -35,25 +37,8 @@
         - [音视频开发概述](subsys-multimedia-video-overview.md)
         - [音视频播放开发指导](subsys-multimedia-video-play-guide.md)
         - [音视频录制开发指导](subsys-multimedia-video-record-guide.md)
-- 公共基础
-    - [公共基础库概述](subsys-utils-overview.md)
-    - [公共基础库开发指导](subsys-utils-guide.md)
-    - [公共基础库常见问题](subsys-utils-faqs.md)
-- AI框架
-    - [概述](subsys-aiframework-guide.md)
-    - [搭建环境](subsys-aiframework-envbuild.md)
-    - 技术规范
-        - [代码管理规范](subsys-aiframework-tech-codemanage.md)
-        - [命名规范](subsys-aiframework-tech-name.md)
-        - [接口开发规范](subsys-aiframework-tech-interface.md)
-    - 开发指导
-        - [SDK开发过程](subsys-aiframework-devguide-sdk.md)
-        - [插件的开发过程](subsys-aiframework-devguide-plugin.md)
-        - [配置文件的开发过程](subsys-aiframework-devguide-conf.md)
-    - 开发示例
-        - [唤醒词识别SDK的开发示例](subsys-aiframework-demo-sdk.md)
-        - [唤醒词识别插件的开发示例](subsys-aiframework-demo-plugin.md)
-        - [唤醒词识别配置文件的开发示例](subsys-aiframework-demo-conf.md)
+- [公共基础库开发指导](subsys-utils-guide.md)
+- [AI框架开发指导](subsys-ai-aiframework-devguide.md)
 - 数据管理
     - 关系型数据库
       - [关系型数据库概述](subsys-data-relational-database-overview.md)
@@ -85,6 +70,8 @@
     - [IPC通信鉴权开发指导](subsys-security-communicationverify.md)
     - [设备安全等级管理开发指导](subsys-security-devicesecuritylevel.md)
     - [OpenHarmony通用密钥库系统开发指导](subsys-security-huks-guide.md)
+    - [应用特权配置指导](subsys-app-privilege-config-guide.md)
+    - [预置应用配置指导](subsys-preinstall-app-config-guide.md)
 - 启动恢复
     - [启动恢复子系统概述](subsys-boot-overview.md)
     - init启动引导组件
@@ -94,16 +81,18 @@
       - [系统参数](subsys-boot-init-sysparam.md)
       - [沙盒管理](subsys-boot-init-sandbox.md)
       - [插件](subsys-boot-init-plugin.md)
+      - [组件化启动](subsys-boot-init-sub-unit.md)
+      - [init运行日志规范化](subsys-boot-init-log.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)
     - [参考](subsys-boot-ref.md)
-- [测试用例开发指导](subsys-testguide-test.md)
 - DFX
     - [DFX概述](subsys-dfx-overview.md)
     - [HiLog开发指导](subsys-dfx-hilog-rich.md)
     - [HiLog_Lite开发指导](subsys-dfx-hilog-lite.md)
-    - [HiTrace开发指导](subsys-dfx-hitrace.md)
+    - [HiTraceChain开发指导](subsys-dfx-hitracechain.md)
+    - [HiTraceMeter开发指导](subsys-dfx-hitracemeter.md)
     - [HiCollie开发指导](subsys-dfx-hicollie.md)
     - HiSysEvent开发指导
         - [HiSysEvent概述](subsys-dfx-hisysevent-overview.md)
@@ -118,6 +107,8 @@
     - [Hiview开发指导](subsys-dfx-hiview.md)
 - 调测工具
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
-    - [hdc_std使用指导](subsys-toolchain-hdc-guide.md)
+    - [hdc使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
-- [XTS测试用例开发指导](subsys-xts-guide.md)
+- 电源管理
+    - 显示管理
+        - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)

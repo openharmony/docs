@@ -6,33 +6,34 @@
 >
 > 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。  
 
-
-
-## 权限列表
-
-无
-
 ## 子组件
 
 可以包含单个子组件。
 ## 接口
 
-GridCol(option?: {span?: number | GridColColumnOption, offset?: number | GridColColumnOption, order?: number | GridColColumnOption})
+GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColColumnOption, order?: number | GridColColumnOption})
 
-**参数**：
-| 参数名 |类型|必填|说明
-|-----|-----|-----|----|
-|span| number \| GridColColumnOption |  否  |占用列数。span为0，意味着该元素不参与布局计算，即不会被渲染。<br>默认值：1。|
-|offset|number \| GridColColumnOption|  否  |相对于前一个栅格子组件偏移的列数。<br>默认值：0。|
-|order|number \| GridColColumnOption|   否  |元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br>默认值：0。|
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 占用列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>默认值：1。 |
+| offset | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 相对于前一个栅格子组件偏移的列数。<br/>默认值：0。           |
+| order  | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>默认值：0。 |
+
 ## 属性
-| 名称 |类型|说明
-|-----|-----|----|
-|span| number \| GridColColumnOption |占用列数。span为0，意味着该元素不参与布局计算，即不会被渲染。<br>默认值：1。|
-|offset|number \| GridColColumnOption| 相对于前一个栅格子组件偏移的列数。<br>默认值：0。|
-|order|number \| GridColColumnOption|元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br>默认值：0。|
+
+| 参数名 | 类型                          | 必填 | 说明                                                         |
+| ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| span   | number \| GridColColumnOption | 否   | 占用列数。span为0，意味着该元素不参与布局计算，即不会被渲染。<br/>默认值：1。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| offset | number \| GridColColumnOption | 否   | 相对于前一个栅格子组件偏移的列数。<br/>默认值：0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| order  | number \| GridColColumnOption | 否   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>默认值：0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## GridColColumnOption
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |

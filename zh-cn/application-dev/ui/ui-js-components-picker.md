@@ -11,7 +11,7 @@ picker是滑动选择器组件，类型支持普通选择器、日期选择器�
 <!-- xxx.hml -->
 <div class="container">
   <picker>    picker  </picker>
-<div>
+</div>
 ```
 
 ```css
@@ -144,7 +144,7 @@ picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     multitext:[["a", "b", "c"], ["e", "f", "g"], ["h", "i"]],
@@ -153,10 +153,10 @@ export default {
   },
   multitextonchange(e) {
     this.multitextvalue=e.newValue;
-    prompt.showToast({ message:"Multi-column text changed to:" + e.newValue })
+    promptAction.showToast({ message:"Multi-column text changed to:" + e.newValue })
   },
   multitextoncancel() {
-    prompt.showToast({ message:"multitextoncancel" })
+    promptAction.showToast({ message:"multitextoncancel" })
   },
 }
 ```
@@ -246,7 +246,7 @@ export default {
 
 ```js
 // xxx.js
-import pmt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   data: {
     yorn1:'No',
@@ -281,10 +281,10 @@ export default {
   dateonchange(e) {
     e.month=e.month+1;
     this.datevalue = e.year + "-" + e.month + "-" + e.day;
-    pmt.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day }) 
+    promptAction.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day }) 
   },
   showtoast() {
-    pmt.showToast({
+    promptAction.showToast({
       message: 'Submitted.',
       duration: 2000,
       gravity: 'center'

@@ -65,7 +65,7 @@ setTransform(scaleX: number, skewX: number, skewY: number, scaleY: number, trans
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -96,7 +96,7 @@ closePath(): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -224,7 +224,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -265,7 +265,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -308,7 +308,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -349,7 +349,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 

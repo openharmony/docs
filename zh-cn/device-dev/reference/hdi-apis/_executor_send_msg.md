@@ -3,6 +3,16 @@
 
 ## **概述**
 
+执行器发送的消息。
+
+**Since：**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
@@ -13,22 +23,11 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [executorIndex](#executorindex) | 用户认证框架的执行器索引。 | 
 | [commandId](#commandid) | 消息命令ID。 | 
 | [msg](#msg) | 执行器发送的消息。 | 
-
-
-## **详细描述**
-
-执行器发送的消息。
-
-**Since：**
-
-3.2
-
-**Version：**
 
 
 ## **类成员变量说明**

@@ -88,7 +88,7 @@
       > Hi3518E V300: **device\hisilicon\hispark_aries\sdk_liteos\uboot\out\boot\u-boot-hi3518ev300.bin**
 
 	2. Burn the U-Boot file by following the procedures for burning a U-Boot file over USB.
-       Select the U-Boot files of the corresponding development board for burning by referring to [Burning to Hi3516D V300](../quick-start/quickstart-ide-lite-steps-hi3516-burn.md).
+       Select the U-Boot files of the corresponding development board for burning by referring to [Burning an Image](../quick-start/quickstart-ide-3516-burn.md).
 
 	3. Log in to the serial port after the burning is complete.
 

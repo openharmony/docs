@@ -26,7 +26,8 @@ Your feedback matters. Submit issues and leave as detailed information as possib
 1.  On the Gitee page, click the **Issues** tab. On the displayed page, click **New issue**. Then enter the issue title and issue details.
 2.  Click **New** to submit the issue. The Docs team will confirm the issue.
 
->![](public_sys-resources/icon-note.gif) **Note:**
+>![](public_sys-resources/icon-note.gif) **NOTE**
+>
 >**How can I provide a high-quality issue?**  
 >
 >-   Provide a clear description of the issue, including the missing, outdated, incorrect, or to-be-improved content.

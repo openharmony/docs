@@ -1,6 +1,6 @@
-# **标准系统方案之瑞芯微RK3568移植案例**
+# 标准系统方案之瑞芯微RK3568移植案例
 
-​        本文章是基于瑞芯微RK3568芯片的DAYU200开发板，进行标准系统相关功能的移植，主要包括产品配置添加，内核启动、升级，音频ADM化，Camera，TP，LCD，WIFI，BT，vibrator、sensor、图形显示模块的适配案例总结，以及相关功能的适配。
+​本文章是基于瑞芯微RK3568芯片的DAYU200开发板，进行标准系统相关功能的移植，主要包括产品配置添加，内核启动、升级，音频ADM化，Camera，TP，LCD，WIFI，BT，vibrator、sensor、图形显示模块的适配案例总结，以及相关功能的适配。
 
 ## 产品配置和目录规划
 
@@ -171,7 +171,7 @@ init相关配置请参考[启动子系统的规范要求](https://gitee.com/open
 │       │   └── rk817_codec.h
 │       └── src
 │           ├── rk809_codec_adapter.c
-│           ├── rk809_codec_liunx_driver.c
+│           ├── rk809_codec_linux_driver.c
 │           └── rk809_codec_ops.c
 ├── dai
 │   ├── include
@@ -212,7 +212,7 @@ init相关配置请参考[启动子系统的规范要求](https://gitee.com/open
 
 ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适配需要完成的工作。
 
-<img src="figures/dayu200/dayu200-audio-03.png" alt="dayu200-audio-03.png" style="zoom: 50%;" />
+![dayu200-audio-03.png](figures/dayu200/dayu200-audio-03.png)
 
 结合第1步梳理出来的Audio结构分析，Audio Peripheral Drivers包含Rk809的驱动，Platform Drivers包含DMA驱动和I2S驱动。
 
@@ -292,7 +292,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 ```
 
-根据接入的设备，选择Codec节点还是Accessory节点，配置硬件设备对应的私有属性（包含寄存器首地址，相关contorl寄存器地址）涉及Codec_config.hcs和DAI_config.hcs
+根据接入的设备，选择Codec节点还是Accessory节点，配置硬件设备对应的私有属性（包含寄存器首地址，相关control寄存器地址）涉及Codec_config.hcs和DAI_config.hcs
 
 配置相关介绍见[Audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-peripherals-audio-des.md) hcs配置章节以及ADM框架的audio_parse模块代码。
 
@@ -605,9 +605,9 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 5. 其他ops函数
 
-  - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontorl，便于dispatch contro进行控制
+  - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontrol，便于dispatch contro进行控制
   - Rk809DaiStartup, 读取hcs文件，配置可选设备（codec/accessory）的控制寄存器
-  - Rk809DaiHwParams, 根据HAL下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
+  - Rk809DaiHwParams, 根据hal下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
   - RK809NormalTrigger，根据hal下发的操作命令码，操作对应的寄存器，实现Codec的启动停止、录音和放音的切换等
 
 ##### DAI(i2s)模块
@@ -758,7 +758,7 @@ ops函数相关函数
 3.  Rk3568DmaConfigChannel
 
    ```
-      设置通道配置参数
+      //设置通道配置参数
       // 放音通道参数配置
       slave_config.direction = DMA_MEM_TO_DEV;
       slave_config.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
@@ -770,7 +770,7 @@ ops函数相关函数
       slave_config.src_addr = I2S1_ADDR + I2S_RXDR;
       slave_config.src_maxburst = 8;
    
-      使用Linux DMA原生接口函数完成DMA通道配置
+      //使用Linux DMA原生接口函数完成DMA通道配置
       ret = dmaengine_slave_config(dmaChan, &slave_config);
       if (ret != 0) {
           AUDIO_DEVICE_LOG_ERR("dmaengine_slave_config failed");
@@ -784,8 +784,10 @@ ops函数相关函数
 
 5. Rk3568PcmPointer
 
+第4步完成之后，ADM框架调用Rk3568PcmPointer，循环写cirBuf，计算pointer
+
    ```
-      第4步完成之后，ADM框架调用Rk3568PcmPointer，循环写cirBuf，计算pointer
+     
       dma_chn = dmaRtd->dmaChn[DMA_TX_CHANNEL];
       buf_size = data->renderBufInfo.cirBufSize;
       dmaengine_tx_status(dma_chn, dmaRtd->cookie[DMA_TX_CHANNEL], &dma_state);
@@ -813,7 +815,7 @@ ops函数相关函数
 
 1. 播放一段时间后，停止播放，持续有尖锐的很小的声音
         问题原因：播放停止后，Codec相关器件没有下电
-        解决方案：注册Codec的tirrger函数，当接收到Cmd为Stop时，对Codec进行下电
+        解决方案：注册Codec的trigger函数，当接收到Cmd为Stop时，对Codec进行下电
 
 2. 播放一段时间后，停止播放，然后重新播放没有声音
          问题原因：DMA驱动的PAUSE接口函数,并未停止DMA传输
@@ -1083,7 +1085,7 @@ product.gni中指定了chipset_build_deps camera_device_manager_deps 和 camera_
 
 ####  框架适配介绍
 
-​        <img src="figures/dayu200/dayu200-camera-01.png" alt="img" style="zoom:67%;" />
+        ![dayu200-camera-01.png](figures/dayu200/dayu200-camera-01.png)
 ​      
 
 以V4l2为例，pipeline的连接方式是在HCS配置文件中配置连接，数据源我们称之为SourceNode，主要包括硬件设备的控制、数据流的轮转等。
@@ -1140,7 +1142,7 @@ deviceManager中的controller和驱动适配层直接交互。
  hdi_impl下的“camera_host_config.hcs”为物理/逻辑Camera配置、能力配置，此处的物理/逻辑Camera配置，需要在hal内部使用，逻辑Camera及能力配置需要上报给上层，请按照所适配的芯片产品添加其能力配置。其中所用的能力值为键值对，定义在//drivers/peripheral/camera/hal/hdi_impl/include/camera_host/metadata_enum_map.h中。
 
 ```
-      normal_privew :: pipeline_spec {
+      normal_preview :: pipeline_spec {
       name = "normal_preview";
             v4l2_source :: node_spec {
           name = "v4l2_source#0";
@@ -1188,7 +1190,7 @@ deviceManager中的controller和驱动适配层直接交互。
           id = 0;
                 name = "";
       }
-            priview :: stream_info {
+            preview :: stream_info {
           id = 0;
                 name = "preview";
       }
@@ -1514,7 +1516,7 @@ Camera hal层向下屏蔽了平台及芯片差异，对外（Camera service或�
                                        std::to_string(OHOS_CAMERA_FORMAT_YCRCB_420_SP));
       #endif
 
-foundation/multimedia/camera_standard/services/camera_service/src/hstream_repea t.cpp 文件中如下内容，该文件被编译在libcamera_service.z.so中    
+foundation/multimedia/camera_standard/services/camera_service/src/hstream_repeat.cpp 文件中如下内容，该文件被编译在libcamera_service.z.so中    
 
 ```
 void HStreamRepeat::SetStreamInfo(std::shared_ptr<Camera::StreamInfo> streamInfo)
@@ -1639,7 +1641,7 @@ device/board/hihope/rk3568/camera/src/pipeline_core/BUILD.gn中添加rk_codec_no
                 Yuv420ToRGBA8888(buffer);
             }
 
-由fork_node出来的数据流将会被deliver到rk_codec_node的DeliverBuffer接口中，该接口会根据不同的EncodeTyep去做不同的转换处理。经过转换过的buffers再deliver到下一级node中处理。直到deliver到buffer消费者手中。
+由fork_node出来的数据流将会被deliver到rk_codec_node的DeliverBuffer接口中，该接口会根据不同的EncodeType去做不同的转换处理。经过转换过的buffers再deliver到下一级node中处理。直到deliver到buffer消费者手中。
 
 ####  H264帧时间戳和音频时间戳不同步问题。
 
@@ -1671,7 +1673,7 @@ device/board/hihope/rk3568/camera/src/pipeline_core/BUILD.gn中添加rk_codec_no
                 buf_size = ((MpiEncTestData *)halCtx_)->frame_size;
         
                 ret = hal_mpp_encode(halCtx_, dma_fd, (unsigned char *)buffer->GetVirAddress(), &buf_size);
-                SerchIFps((unsigned char *)buffer->GetVirAddress(), buf_size, buffer);
+                SearchIFps((unsigned char *)buffer->GetVirAddress(), buf_size, buffer);
         
                 buffer->SetEsFrameSize(buf_size);
                 clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -1825,7 +1827,7 @@ struct v4l2_buffer {
 
         static constexpr uint32_t nalBit = 0x1F;
         #define NAL_TYPE(value)             ((value) & nalBit)
-        void RKCodecNode::SerchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr<IBuffer>& buffer)
+        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr<IBuffer>& buffer)
         {
             size_t nalType = 0;
             size_t idx = 0;
@@ -1833,7 +1835,7 @@ struct v4l2_buffer {
             constexpr uint32_t nalTypeValue = 0x05;
         
             if (buffer == nullptr || buf == nullptr) {
-                CAMERA_LOGI("RKCodecNode::SerchIFps paramater == nullptr");
+                CAMERA_LOGI("RKCodecNode::SearchIFps parameter == nullptr");
                 return;
             }
         
@@ -1846,7 +1848,7 @@ struct v4l2_buffer {
                     nalType = NAL_TYPE(buf[idx + ret]);
                     CAMERA_LOGI("ForkNode::ForkBuffers nalu == 0x%{public}x buf == 0x%{public}x \n", nalType, buf[idx + ret]);
 
-每经过一个h264转换过的buffer都会被传入SerchIFps接口中寻找IDR帧。其中findStartCode()接口会对buffer中的内容逐个字节扫描，知道寻找出NALU头来
+每经过一个h264转换过的buffer都会被传入SearchIFps接口中寻找IDR帧。其中findStartCode()接口会对buffer中的内容逐个字节扫描，知道寻找出NALU头来
 
   ```
      int RKCodecNode::findStartCode(unsigned char *data, size_t dataSz)
@@ -1856,7 +1858,7 @@ struct v4l2_buffer {
             constexpr uint32_t dataBit3 = 3;
         
             if (data == nullptr) {
-                CAMERA_LOGI("RKCodecNode::findStartCode paramater == nullptr");
+                CAMERA_LOGI("RKCodecNode::findStartCode parameter == nullptr");
                 return -1;
             }
         
@@ -1881,7 +1883,8 @@ struct v4l2_buffer {
 - InputController：提供input设备的业务控制接口，包括获取器件信息及设备类型、设置电源状态等。
 
 **图 1** INPUT模块HDI接口层框架图
-<img src="figures/dayu200/dayu200-tp-01.png" alt="dayu200-tp-01.png" style="zoom: 67%;" />
+
+![dayu200-tp-01.png](figures/dayu200/dayu200-tp-01.png)
 
 相关目录下源代码目录结构如下所示
 
@@ -1920,7 +1923,7 @@ tp驱动的适配依赖hdf的input模型，hdf的input模型提供了TP，KEY，
 
 从功能的角度看hdf input模块的框架如下：  
 
-<img src="figures/dayu200/dayu200-tp-02.png" alt="tp" style="zoom: 50%;" />
+![dayu200-tp-02.png](figures/dayu200/dayu200-tp-02.png)
 
 因为hdf input模型的高度抽象集成，TP驱动的适配驱动主要涉及器件驱动层的适配。
 
@@ -2135,10 +2138,10 @@ foundation/graphic/graphic/rosen/samples/composer/
   service_control stop render_service
   ```
 
-2. 关闭 fondation进程
+2. 关闭 foundation进程
 
   ```
-  service_control stop fondation
+  service_control stop foundation
   ```
 
 3. 运行hello_composer 测试相关接口
@@ -2147,7 +2150,7 @@ foundation/graphic/graphic/rosen/samples/composer/
    ./hello_composer
    ```
 
-devicetest测试：HDI显示模块提供的测试模块，主要测试HDI接口、显示buffer、驱动等能力，测试时也需要关闭render service和 fondation进程。
+devicetest测试：HDI显示模块提供的测试模块，主要测试HDI接口、显示buffer、驱动等能力，测试时也需要关闭render service和 foundation进程。
 
 代码路径：/drivers/peripheral/display/test/unittest/standard
 
@@ -2275,7 +2278,7 @@ PanelSimpleUnprepare负责灭屏的硬件时序初始化
 
 实例化后使用RegisterPanel接口向display模型注册该panel驱动即可
 
-需要说明的是，dauy200上的这款lcd 使用的时候DRM显示框架
+需要说明的是，dayu200上的这款lcd 使用的是DRM显示框架
 
 ### hcs配置
 
@@ -2292,7 +2295,7 @@ device4 :: deviceNode {
 
 基于HDF框架开发的 背光驱动模型
 
-<img src="figures/dayu200/dayu200-backlight-01.png" style="zoom:80%;" />
+![dayu200-backlight-01.png](figures/dayu200/dayu200-backlight-01.png)
 
 rk3568背光是通过pwm控制占空比实现的，具体使用的是pwm4
 
@@ -2396,7 +2399,7 @@ static struct BacklightOps g_blDevOps = {
 
 其实使用的就是HDF PWM 实现的对接内核pwm的接口
 
-<img src="figures/dayu200/dayu200-backlight-02.png" style="zoom:80%;" />
+![dayu200-backlight-02.png](figures/dayu200/dayu200-backlight-02.png)
 
 在LCD HDF器件驱动注册背光
 
@@ -2491,7 +2494,7 @@ HDF WiFi框架总体框架图
 
 ####  驱动模块初始化流程分析
 
-<img src="figures/dayu200/dayu200-wifi-02.png" alt="dayu200-wifi-02.png" style="zoom: 67%;" />
+![dayu200-wifi-02.png](figures/dayu200/dayu200-wifi-02.png)
 
 Ap6275s 是一款SDIO设备WiFi模组驱动，使用标准Linux的SDIO设备驱动。内核模块初始化入口module_init()调用dhd_wifi_platform_load_sdio()函数进行初始化工作，这里调用wifi_platform_set_power()进行GPIO上电，调用dhd_wlan_set_carddetect()进行探测SDIO设备卡，最后调用sdio_register_driver(&bcmsdh_sdmmc_driver);进行SDIO设备驱动的注册，SDIO总线已经检测到WiFi模块设备 根据设备号和厂商号与该设备驱动匹配, 所以立即回调该驱动的bcmsdh_sdmmc_probe()函数，这里进行WiFi模组芯片的初始化工作，最后创建net_device网络接口wlan0，然后注册到Linux内核协议栈中。
 
@@ -2555,7 +2558,7 @@ HDF WLAN驱动框架由Module、NetDevice、NetBuf、BUS、HAL、Client 和 Mess
 
 代码流程框图如下：
 
-<img src="figures/dayu200/dayu200-wifi-03.png" alt="dayu200-wifi-03.png" style="zoom: 67%;" />
+![dayu200-wifi-03.png](figures/dayu200/dayu200-wifi-03.png)
 
 代码位于device/hihope/rk3568/wifi/bcmdhd_wifi6/hdf_driver_bdh_register.c
 
@@ -2729,17 +2732,17 @@ wpa_supplicant -iwlan0 -c /data/wpa_supplicant.conf & 这样后台启动就可�
 #### STA模式连接成功日志
 
 ```
-WPA: Key negotiation ccompleted with 50:eb:f6:02:8e6:d4 [PTK=CCMP GTK=CCMP]
+WPA: Key negotiation completed with 50:eb:f6:02:8e6:d4 [PTK=CCMP GTK=CCMP]
  06 wlan0: State: GROUP_HANDSHAKEc -> COMPLETED
 wlan0: CTRL-E4VENT-CONNECTED - Connection to 50:eb:f6:02:8e:d4 completed 3[id=0 id_str=]
-WifiWpaReceid eEapol done 
+WifiWpaReceived eEapol done 
 ```
 
 #### AP模式连接成功日志
 
 ```
 wlan0: STA 96:27:b3:95:b7:6e IEEE 802.1X: au:thorizing port
-wlan0: STA 96:27:b3:95:b7:6e WPA: pairwiseb key handshake completed (RSN)
+wlan0: STA 96:27:b3:95:b7:6e WPA: pairwise key handshake completed (RSN)
 WifiWpaReceiveEapol done 
 ```
 
@@ -2747,14 +2750,14 @@ WifiWpaReceiveEapol done
 
 ```
 P2P: cli_channels:
-EAPOL: External notification - portValid=1
-EAPOL: External notifica:tion - EAP success=1
+EAPOL: External notificationtion - portValid=1
+EAPOL: External notification:tion - EAP success=1
 EAPOL: SUPP_PAE entering state AUTHENTIwCATING
 EAPOL: SUPP_BE enterilng state SUCCESS
 EAP: EAP ent_ering state DISABLED
 EAPOL: SUPP_PAE entering state AUTHENTICATED
 EAPOL:n Supplicant port status: Authoorized
-EAPOL: SUPP_BE enteringtstate IDLE
+EAPOL: SUPP_BE entertaining IDLE
 WifiWpaReceiveEapol donepleted - result=SUCCESS
 
 \# ifconfig                                  
@@ -2799,7 +2802,7 @@ p2p-p2p0-0 Link encap:Ethernet HWaddr 12:2c:6b:11:21:e0 Driver bcmsdh_sdmmc
 
 蓝牙整体硬件架构上分为主机（计算机或MCU）和主机控制器（实际蓝牙芯片组）两部分；主机和控制器之间的通信遵循主机控制器接口（HCI），如下所示：
 
-<img src="figures/dayu200/dayu200-bt-01.png" style="zoom: 33%;" />
+![dayu200-bt-01.png](figures/dayu200/dayu200-bt-01.png)
 
 HCI定义了如何交换命令，事件，异步和同步数据包。异步数据包（ACL）用于数据传输，而同步数据包（SCO）用于带有耳机和免提配置文件的语音。
 
@@ -2836,12 +2839,12 @@ foundation/communication/bluetooth/services/bluetooth_standard/hardware/include
 ```c
 typedef struct {
     /**
-     * Set to sizeof(bt_vndor_interface_t)
+     * Set to sizeof(bt_vendor_interface_t)
      */
     size_t size;
     /**
      * Caller will open the interface and pass in the callback routines
-     * to the implemenation of this interface.
+     * to the implementation of this interface.
      */
     int (*init)(const bt_vendor_callbacks_t* p_cb, unsigned char* local_bdaddr);
 
@@ -3073,9 +3076,9 @@ void hw_config_start(void)
 
 3、 关注系统间接口差异
 
-不同系统的接口可能有一些细微差异，需要重点关注；对比安卓和OHOS的接口，vendorlib调用xmit_cb发送HCI命令的函数定义略有差异
+不同系统的接口可能有一些细微差异，需要重点关注；对比其他系统和OHOS的接口，vendorlib调用xmit_cb发送HCI命令的函数定义略有差异
 
-安卓：
+其他系统：
 
 ```c
 /* define callback of the cmd_xmit_cb
@@ -3112,7 +3115,7 @@ packet. */
 typedef uint8_t (*cmd_xmit_callback)(uint16_t opcode, void* p_buf);
 ```
 
-也就是说vendorlib中发送命令后，安卓会直接调用callback通知芯片返回的消息，OHOS则是通过BT_OP_EVENT_CALLBACK操作码（参见bt_opcode_t定义）通知芯片返回的消息；vendorlib需要解析报文中的消息码确认芯片是处理的哪个消息，然后调用对应的处理函数。
+也就是说vendorlib中发送命令后，其他系统会直接调用callback通知芯片返回的消息，OHOS则是通过BT_OP_EVENT_CALLBACK操作码（参见bt_opcode_t定义）通知芯片返回的消息；vendorlib需要解析报文中的消息码确认芯片是处理的哪个消息，然后调用对应的处理函数。
 
 ```c
 void hw_process_event(HC_BT_HDR *p_buf)
@@ -3136,17 +3139,17 @@ void hw_process_event(HC_BT_HDR *p_buf)
             break;
 ```
 
-另外，OHOS返回的是发送消息的字节数，<=0为发送失败，和安卓接口的返回值也不同
+另外，OHOS返回的是发送消息的字节数，<=0为发送失败，和其他系统接口的返回值也不同
 
 4、 snoop日志
 
-安卓系统中记录了HCI交互消息，OHOS同样有记录；OHOS系统生成文件为/data/log/bluetooth/snoop.log，通过wireshark或其它报文分析工具可以看到Host和Controller之间的交互流程，有助于问题分析
+其他系统中记录了HCI交互消息，OHOS同样有记录；OHOS系统生成文件为/data/log/bluetooth/snoop.log，通过wireshark或其它报文分析工具可以看到Host和Controller之间的交互流程，有助于问题分析
 
 ##    Sensor
 
   基于HDF（Hardware Driver Foundation）驱动框架开发的Sensor驱动模型
 
-<img src="figures/dayu200/dayu200-sensor-01.png" style="zoom: 80%;" />
+![dayu200-sensor-01.png](figures/dayu200/dayu200-sensor-01.png)
 
 rk3568 支持accel sensor，整体的驱动框架openharmony 主线已经具备，只需要实现具体的器件驱动即可。
 
@@ -3381,7 +3384,7 @@ Vibrator驱动模型主要包含Vibrator（传感器）相关的HDI接口与实�
 
 **图 1** Vibrator驱动模型图
 
-<img src="figures/dayu200/dayu200-vibrator-01.png" style="zoom:80%;" />
+![dayu200-vibrator-01.png](figures/dayu200/dayu200-vibrator-01.png)
 
 rk3568 支持线性马达，整体的驱动框架openharmony 主线已经具备，只需要实现具体的器件驱动即可。
 

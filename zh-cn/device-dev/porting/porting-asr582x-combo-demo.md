@@ -49,7 +49,7 @@ vendor
 
 ### 单板配置
 
-在关联到的<board>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括cpu、toolchain、kernel、compile flags等。例如：
+在关联到的<board>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括CPU、toolchain、kernel、compile flags等。例如：
 
 ```
 # 内核类型

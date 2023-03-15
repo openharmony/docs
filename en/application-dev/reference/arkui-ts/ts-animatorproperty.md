@@ -1,27 +1,26 @@
 # Property Animator
 
-You can create a property animator to animate the universal attributes of a component.
+You can create a property animator to animate certain universal attributes of a component, including **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**.
 
 > **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-| API                      | Description                                                    |
-| ------------------------------ | ------------------------------------------------------------ |
-| animation(value: AnimateParam) | Applies a property animator to this component to control the transition of the component from one state to another.|
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations: number, playMode?: PlayMode, onFinish?: () => void})
 
-## AnimateParam
+Since API version 9, this API is supported in ArkTS widgets.
 
-- Attributes
+**Parameters**
 
-
-| Name        | Type                                    | Default Value            | Description                     |
-| ---------- | ---------------------------------------- | --------------- | ----------------------- |
-| duration   | number                                   | 1000            | Animation duration, in ms. The default duration is 1000 ms.   |
-| curve      | [Curve](ts-appendix-enums.md#curve)        | Curve.Linear    | Animation curve. The default curve is linear.               |
-| delay      | number                                   | 0               | Delay of animation playback, in ms. By default, the playback is not delayed.         |
-| iterations | number                                   | 1               | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.  |
-| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | PlayMode.Normal | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.|
+| Name        | Type                                      | Mandatory   | Description                                                        |
+| ---------- | ------------------------------------------| ---- | ------------------------------------------------------------ |
+| duration   | number                                    | No   | Animation duration, in ms.<br>Default value: **1000**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The maximum animation duration on an ArkTS widget is 1000 ms. If the set value exceeds the limit, the value **1000** will be used. |
+| tempo      | number                                    | No   | Animation playback speed. A greater value indicates a higher animation playback speed.<br>The value **0** indicates that no animation is applied.<br>Default value: **1**|
+| curve      | string \| [Curve](ts-appendix-enums.md#curve) \| ICurve<sup>9+</sup> | No  | Animation curve.<br>Default value: **Curve.Linear**<br>Since API version 9, this API is supported in ArkTS widgets. |
+| delay      | number                                    | No   | Delay of animation playback, in ms. The value **0** indicates that the playback is not delayed.<br>Default value: **0**  |
+| iterations | number                                    | No   | Number of times that the animation is played. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
+| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | No   | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onFinish   | () => void                                | No   | Callback invoked when the animation playback is complete.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
@@ -31,34 +30,49 @@ You can create a property animator to animate the universal attributes of a comp
 @Entry
 @Component
 struct AttrAnimationExample {
-  @State widthSize: number = 200
+  @State widthSize: number = 250
   @State heightSize: number = 100
+  @State rotateAngle: number = 0
   @State flag: boolean = true
 
   build() {
     Column() {
-      Button('click me')
-        .onClick((event: ClickEvent) => {
+      Button('change width and height')
+        .onClick(() => {
           if (this.flag) {
             this.widthSize = 100
             this.heightSize = 50
           } else {
-            this.widthSize = 200
+            this.widthSize = 250
             this.heightSize = 100
           }
           this.flag = !this.flag
         })
-        .width(this.widthSize).height(this.heightSize).backgroundColor(0x317aff)
+        .margin(30)
+        .width(this.widthSize)
+        .height(this.heightSize)
         .animation({
-          duration: 2000, // Animation duration
-          curve: Curve.EaseOut, // Animation curve
-          delay: 500, // Animation delay
-          iterations: 1, // Number of playback times
-          playMode: PlayMode.Normal // Animation playback mode
-        }) // Animation configuration for the width and height attributes of the <Button> component
-    }.width('100%').margin({ top: 5 })
+          duration: 2000,
+          curve: Curve.EaseOut,
+          iterations: 3,
+          playMode: PlayMode.Normal
+        })
+      Button('change rotate angle')
+        .onClick(() => {
+          this.rotateAngle = 90
+        })
+        .margin(50)
+        .rotate({ angle: this.rotateAngle })
+        .animation({
+          duration: 1200,
+          curve: Curve.Friction,
+          delay: 500,
+          iterations: -1,   // The value -1 indicates that the animation is played for an unlimited number of times.
+          playMode: PlayMode.AlternateReverse
+        })
+    }.width('100%').margin({ top: 20 })
   }
 }
 ```
 
-![en-us_image_0000001212378444](figures/en-us_image_0000001212378444.gif)
+![animation](figures/animation.gif)

@@ -1,6 +1,6 @@
 # CSS语法参考
 
-CSS是描述HML页面结构的样式语言。所有组件均存在系统默认样式，也可在页面CSS样式文件中对组件、页面自定义不同的样式。请参考[通用样式](../reference/arkui-js/js-components-common-styles.md)了解基于JS扩展的类Web开发范式支持的组件样式。
+CSS是描述HML页面结构的样式语言。所有组件均存在系统默认样式，也可在页面CSS样式文件中对组件、页面自定义不同的样式。请参考[通用样式](../reference/arkui-js/js-components-common-styles.md)了解兼容JS的类Web开发范式支持的组件样式。
 
 ## 尺寸单位
 
@@ -100,7 +100,7 @@ div {
   color: #007dff;
 }
 /* 对class="container"的组件下的直接后代text设置样式 */
-.container &gt; text {
+.container > text {
   color: #fa2a2d;
 }
 ```

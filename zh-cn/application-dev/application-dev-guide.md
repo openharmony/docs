@@ -4,9 +4,9 @@
 
 在应用开发的文档中，您可以获取到如下几方面的内容：
 
-### 快速开始
+### 入门
 
-[快速开始](quick-start/start-overview.md)可以帮助开发者了解应用开发的基本方法。
+[入门](quick-start/start-overview.md)可以帮助开发者了解应用开发的基本方法。
 
 这一部分包含了快速构建首个应用的快速入门，以及开发OpenHarmony应用所必备的基础知识。
 
@@ -18,13 +18,13 @@
 
 首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[Ability开发](ability/fa-brief.md)
+- 应用程序的框架：[应用模型](application-models/application-model-composition.md)
 - UI的框架：[UI开发](ui/arkui-overview.md)
 
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
-- [公共事件与通知](notification/notification-brief.md)
+- [通知](notification/notification-overview.md)
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [媒体](media/audio-overview.md)
@@ -35,10 +35,13 @@
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
+- [DFX](dfx/hiappevent-guidelines.md)
 - [国际化](internationalization/international-overview.md)
+- [应用测试](application-test/arkxtest-guidelines.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
 - [Native API的相关指导](napi/napi-guidelines.md)
+- [文件管理](file-management/medialibrary-overview.md)
+- [一次开发，多端部署](key-features/multi-device-app-dev/foreword.md)
 
 
 ### 工具
@@ -48,7 +51,7 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 
 ### 示例教程
 
-我们提供了[Sample工程](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
+我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
 
 ### API参考
 
@@ -62,7 +65,7 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 
 - [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md)
 
-- [接口参考（JS及TS API）](reference/apis/js-apis-DataUriUtils.md)
+- [接口参考（JS及TS API）](reference/apis/js-apis-ability-dataUriUtils.md)
 
 - 接口参考（Native API）
     - [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)

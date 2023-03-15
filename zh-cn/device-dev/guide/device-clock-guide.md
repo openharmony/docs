@@ -1,14 +1,5 @@
 # 时钟应用开发指导<a name="ZH-CN_TOPIC_0000001115417926"></a>
 
--   [概述](#section11522349121115)
--   [开发准备](#section6592121861218)
--   [开发步骤](#section19901741111312)
--   [签名打包](#section10601181101516)
--   [真机运行](#section092721731511)
--   [常见问题](#section1122413460153)
-    -   [hdc\_std连接不到设备](#section1922725151614)
-    -   [hdc\_std运行不了](#section15657547131615)
-
 
 ## 概述<a name="section11522349121115"></a>
 
@@ -259,7 +250,7 @@
 
 ## 真机运行<a name="section092721731511"></a>
 
-应用签名打包后即可安装到开发板。安装应用前需要先完成[DevEco Device Tool的安装配置](https://device.harmonyos.com/cn/docs/ide/user-guides/service_introduction-0000001050166905)，然后将OpenHarmony系统烧录到开发板并运行。编译烧录、运行镜像的基本操作请参考快速入门手册：[标准系统Hi3516快速入门](../quick-start/quickstart-standard-overview.md)。完成镜像运行，系统正常启动后，执行如下步骤安装或卸载应用。
+应用签名打包后即可安装到开发板。安装应用前需要先完成[DevEco Device Tool的安装配置](https://device.harmonyos.com/cn/docs/ide/user-guides/service_introduction-0000001050166905)，然后将OpenHarmony系统烧录到开发板并运行。编译烧录、运行镜像的基本操作请参考快速入门手册：[标准系统Hi3516快速入门](../quick-start/quickstart-appendix-hi3516-ide.md)。完成镜像运行，系统正常启动后，执行如下步骤安装或卸载应用。
 
 1.  从开发者工具代码仓路径中获取hdc客户端。
 

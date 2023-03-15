@@ -1,17 +1,16 @@
-# 有源标签
+# @ohos.connectedTag (有源标签)
 
 本模块提供有源标签的使用，包括初始化有源标签芯片、读取有源标签内容、写入内容到有源标签等。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 ## 导入模块
 
-```
+```js
 import connectedTag from '@ohos.connectedTag';
 ```
-
 
 ## connectedTag.init
 
@@ -23,11 +22,11 @@ init(): boolean
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 返回值：
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:初始化成功，&nbsp;false:初始化失败。 |
+**返回值：**
 
+| **类型** | **说明** |
+| -------- | -------- |
+| boolean | true:初始化成功，&nbsp;false:初始化失败。 |
 
 ## connectedTag.uninit
 
@@ -39,11 +38,11 @@ uninit(): boolean
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 返回值：
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:卸载操作成功，&nbsp;false:卸载操作失败。 |
+**返回值：**
 
+| **类型** | **说明** |
+| -------- | -------- |
+| boolean | true:卸载操作成功，&nbsp;false:卸载操作失败。 |
 
 ## connectedTag.readNdefTag
 
@@ -55,43 +54,53 @@ readNdefTag(): Promise&lt;string&gt;
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 返回值：
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | Promise&lt;string&gt; | 返回读取有源标签内容。 |
+**返回值：**
 
-- 示例
-  ```
-  import connectedTag from '@ohos.connectedTag';
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;string&gt; | 返回读取有源标签内容。 |
 
-  connectedTag.readNdefTag().then(result => {
-      console.log("promise recv ndef response: " + result);
-  });
-  ```
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+connectedTag.readNdefTag().then((data) => {
+    console.log("connectedTag readNdefTag Promise data = " + data);
+}).catch((err)=> {
+    console.log("connectedTag readNdefTag Promise err: " + err);
+});
+```
 
 ## connectedTag.readNdefTag
 
 readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 
-读取有源标签内容，使用callback方式作为异步方法。
+读取有源标签内容，使用AsyncCallback方式作为异步方法。
 
 **需要权限**：ohos.permission.NFC_TAG
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 参数
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 读取有源标签内容回调函数。 |
+**参数：**
 
-- 示例
-  ```
-  import connectedTag from '@ohos.connectedTag';
-  
-  connectedTag.readNdefTag(result => {
-      console.log("callback recv ndef response: " + result);
-  });
-  ```
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;string&gt; | 是 | 读取有源标签内容回调函数。 |
+
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+connectedTag.readNdefTag((err, data)=> {
+    if (err) {
+        console.log("connectedTag readNdefTag AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag readNdefTag AsyncCallback data: " + data);
+    }
+});
+```
 
 ## connectedTag.writeNdefTag
 
@@ -103,61 +112,62 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 参数
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | data | string | 是 | 有源标签内容, 长度最大是1024个字节。 |
+**参数：**
 
-- 返回值：
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 无返回值。 |
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| data | string | 是 | 有源标签内容, 长度最大是1024个字节。 |
 
-- 示例
-  ```
-  import connectedTag from '@ohos.connectedTag';
-  
-  writeNdefTag.write("010203")
-      .then((value) => {
-          // 事件写入正常
-          console.log(`success to write event: ${value}`);
-      }).catch((err) => {
-          // 事件写入异常
-          console.error(`failed to write event because ${err.code}`);
-      });
-  ```
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回值。 |
+
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+var rawData = "010203"; // change it tobe correct.
+connectedTag.writeNdefTag(rawData).then(() => {
+    console.log("connectedTag writeNdefTag Promise success.");
+}).catch((err)=> {
+    console.log("connectedTag writeNdefTag Promise err: " + err);
+});
+```
 
 ## connectedTag.writeNdefTag
 
 writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
-写入内容到有源标签，使用callback方式作为异步方法。
+写入内容到有源标签，使用AsyncCallback方式作为异步方法。
 
 **需要权限**：ohos.permission.NFC_TAG
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 参数
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | data | string | 是 | 有源标签内容, 长度最大是1024个字节。 |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 读取有源标签内容回调函数。 |
+**参数：**
 
-- 示例
-  ```
-  import connectedTag from '@ohos.connectedTag';
-  
-  connectedTag.writeNdefTag("010203", (err, value) => {
-      if (err) {
-          // 事件写入异常
-          console.error(`failed to write event because ${err.code}`);
-          return;
-      }
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| data | string | 是 | 有源标签内容, 长度最大是1024个字节。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 读取有源标签内容回调函数。 |
 
-      // 事件写入正常
-      console.log(`success to write event: ${value}`);
-  });
-  ```
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+var rawData = "010203"; // change it tobe correct.
+connectedTag.writeNdefTag(rawData, (err)=> {
+    if (err) {
+        console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag writeNdefTag AsyncCallback success.");
+    }
+});
+```
 
 ## connectedTag.on('notify')
 
@@ -169,18 +179,12 @@ on(type: "notify", callback: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 参数
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 固定填"notify"字符串 |
-  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
+**参数：**
 
-- 状态改变事件的枚举。
-  | **枚举值** | **说明** |
-  | -------- | -------- |
-  | 0 | NFC离场事件 |
-  | 1 | NFC进场事件 |
-
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"notify"字符串 |
+| callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回值参见[NfcRfType](#nfcrftype)。 |
 
 ## connectedTag.off('notify')
 
@@ -192,28 +196,46 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-- 参数
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 固定填"notify"字符串 |
-  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将“去注册”该事件关联的所有回调函数。 |
+**参数：**
 
-- 示例
-  ```
-  import connectedTag from '@ohos.connectedTag';
-  
-  var NFC_RF_NOTIFY = "notify";
-  
-  var recvNfcRfNotifyFunc = result => {
-      console.info("nfc rf receive state: " + result);
-  }
-  
-  // Register event
-  connectedTag.on(NFC_RF_NOTIFY, recvNfcRfNotifyFunc);
-  
-  // Unregister event
-  connectedTag.off(NFC_RF_NOTIFY, recvNfcRfNotifyFunc);
-  ```
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"notify"字符串 |
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将“去注册”该事件关联的所有回调函数。|
+
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+// Register event
+connectedTag.on("notify", (err, rfState)=> {
+    if (err) {
+        console.log("connectedTag on Callback err: " + err);
+    } else {
+        console.log("connectedTag on Callback rfState: " + rfState);
+    }
+});
+
+var initStatus = connectedTag.init();
+console.log("connectedTag init status: " + initStatus);
+
+// Add nfc connecected tag business oprations here...
+// connectedTag.writeNdefTag(rawData)
+// connectedTag.readNdefTag()
+
+var uninitStatus = connectedTag.uninit();
+console.log("connectedTag uninit status: " + uninitStatus);
+
+// Unregister event
+connectedTag.off("notify", (err, rfState)=> {
+    if (err) {
+        console.log("connectedTag off Callback err: " + err);
+    } else {
+        console.log("connectedTag off Callback rfState: " + rfState);
+    }
+});
+```
 
 ## NfcRfType
 
@@ -221,7 +243,7 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.Communication.ConnectedTag
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | NFC_RF_LEAVE | 0 | NFC离场事件 |
 | NFC_RF_ENTER | 1 | NFC进场事件 |

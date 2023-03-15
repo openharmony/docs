@@ -38,13 +38,7 @@
 
 | 名词 | 介绍 | 
 | -------- | -------- |
-| 子系统 | 是一个逻辑概念，它由一个或多个具体的组件组成。OpenHarmony整体遵从分层设计，从下向上依次为：内核层、系统服务层、框架层和应用层。系统功能按照“系统&nbsp;&gt;&nbsp;子系统&nbsp;&gt;&nbsp;组件”逐级展开，在多设备部署场景下，支持根据实际需求裁剪某些非必要的子系统或组件。 | 
+| 子系统 | 是一个逻辑概念，它由一个或多个具体的部件组成。OpenHarmony整体遵从分层设计，从下向上依次为：内核层、系统服务层、框架层和应用层。系统功能按照“系统&nbsp;&gt;&nbsp;子系统&nbsp;&gt;&nbsp;部件”逐级展开，在多设备部署场景下，支持根据实际需求裁剪某些非必要的子系统或部件。 | 
 | 部件 | 系统最小的可复用、可配置、可裁剪的功能单元。部件具备目录独立可并行开发、可独立编译、可独立测试的特征。 | 
 | hb | OpenHarmony的命令行工具，用来执行编译命令。 | 
-| DP平台 | Devicepartner缩写，即华为智能硬件合作伙伴平台，为生态合作伙伴提供产品开发、认证、发布等一站式服务的平台。 | 
-| IR平台 | Developers&nbsp;IssueReporter缩写，是由华为运营的、面向所有华为开发者用户的产品服务平台。 | 
-| HOBT | HiLink&nbsp;SDK&nbsp;OHOS&nbsp;Basic&nbsp;Test缩写，是HiLink&nbsp;SDK&nbsp;接入&nbsp;OpenHarmony的基础功能测试，检验HiLink&nbsp;SDK依赖的相关接口功能是否完善。 | 
-| Token | 伙伴从[合作伙伴平台](https://devicepartner.huawei.com/cn/)申请的设备身份凭据，每个设备唯一；需要在产线上逐个设备写入，用来标识设备是经过华为授权的。 | 
-| Kit&nbsp;Framework | Kit&nbsp;Framework是Kit的基础框架，包含了OpenHarmony的安全组件，不可裁剪。 | 
-| HiLink&nbsp;SDK | HarmonyOS&nbsp;Connect套件的一个关键组成部分，用于实现设备的联网，以及设备与HarmonyOS&nbsp;Connect云和智慧生活App的互联互通。 | 
 | kv | 键值对(key-value)，描述数据存储的格式。 | 

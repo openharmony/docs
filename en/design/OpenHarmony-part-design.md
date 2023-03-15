@@ -78,7 +78,7 @@ The part name must be in the format of <Domain\>/<Subsystem\>/<Part\>, for examp
 │   └── inner_api       # Internal APIs of parts
 ├── frameworks          # Implementation of the part without independent processes (optional)
 │   ├── native          # C/C++ API implementation (optional)
-│   └── js              #  JS API implementation (optional)
+│   └── js              # JS API implementation (optional)
 │        ├── napi       # Native API implementation (optional)
 │        ├── builtin	# Specific to LiteOS-M (optional)
 │        └── plugin     # Specific to ArkUI (optional)

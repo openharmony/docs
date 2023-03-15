@@ -8,7 +8,7 @@ The **Timer** module provides basic timer capabilities. You can use the APIs of 
 
 ## setTimeout
 
-setTimeout(handler[,delay[,…args]]): number
+setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): number
 
 Sets a timer for the system to call a function after the timer goes off.
 
@@ -18,9 +18,9 @@ Sets a timer for the system to call a function after the timer goes off.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| handler | Function | Yes| Function to be called after the timer goes off.|
+| handler | Function \| string | Yes| Function to be called after the timer goes off.|
 | delay | number | No| Number of milliseconds delayed before the execution. If this parameter is left empty, the default value **0** is used, which means that the execution starts immediately or as soon as possible.|
-| ...args | Array&lt;any&gt; | No| Additional parameters to pass to the handler after the timer goes off.|
+| ...arguments | Array&lt;any&gt; | No| Additional parameters to pass to the handler after the timer goes off.|
 
 **Return value**
 
@@ -71,7 +71,7 @@ Cancels the timer created via **setTimeout()**.
 
 ## setInterval
 
-setInterval(handler[, delay[, ...args]]): number
+setInterval(handler: Function | string, delay: number, ...arguments: any[]): number
 
 Sets a repeating timer for the system to repeatedly call a function at a fixed interval.
 
@@ -81,9 +81,9 @@ Sets a repeating timer for the system to repeatedly call a function at a fixed i
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| handler | Function | Yes| Function to be called repeatedly.|
-| delay | number | No| Number of milliseconds delayed before the execution.|
-| ...args | Array&lt;any&gt; | No| Additional parameters to pass to the handler after the timer goes off.|
+| handler | Function \| string | Yes| Function to be called repeatedly.|
+| delay | number | Yes| Number of milliseconds delayed before the execution.|
+| ...arguments | Array&lt;any&gt; | No| Additional parameters to pass to the handler after the timer goes off.|
 
 **Return value**
 

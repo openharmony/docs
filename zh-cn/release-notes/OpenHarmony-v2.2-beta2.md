@@ -104,9 +104,9 @@ repo forall -c 'git lfs pull'
 
 API变更请参考：
 
-[JS API 差异报告](api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
+[JS API 差异报告](api-diff/v2.2-beta2/js-apidiff-v2.2-beta2.md)
 
-[Native API 差异报告](api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
+[Native API 差异报告](api-diff/v2.2-beta2/native-apidiff-v2.2-beta2.md)
 
 ## 修复缺陷列表
 

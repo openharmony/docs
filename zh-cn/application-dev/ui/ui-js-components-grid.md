@@ -14,7 +14,7 @@
 <div class="container">
   <grid-container id="mygrid" columns="5" gutter="20px" style="background-color: pink;">
     <grid-row style="height:100px;justify-content:space-around;width: 80%;background-color: #f67002;margin-left: 
-      10%;"></grid-row>
+      10%; margin-right: 10%;"></grid-row>
     <grid-row style="height:300px;justify-content:space-around;background-color: #ffcf00;width: 100%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #032cf8;width: 100%;"></grid-row>
   </grid-container>
@@ -28,6 +28,7 @@
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -50,11 +51,11 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
   <grid-container id="mygrid" columns="6" gutter="20px" style="background-color: pink;padding-top: 100px;" 
     onclick="getColumns" onlongpress="getSizeType">
     <grid-row style="height:100px;justify-content:space-around;background-color: #4cedf3;width: 20%;margin-left: 
-      40%;"></grid-row>
+      40%; margin-right: 40%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #4cbff3;width: 50%;margin-left:
-      25%;"></grid-row>
+      25%; margin-right: 25%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #465ff6;width: 80%;margin-left: 
-      10%;"></grid-row>
+      10%; margin-right: 10%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #5011ec;width: 100%;"></grid-row>
   </grid-container>
 </div>
@@ -67,6 +68,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -75,7 +77,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     gutterWidth:'',
@@ -93,13 +95,13 @@ export default {
       this.columns= result;
     }) 
     setTimeout(()=>{              
-      prompt.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
+      promptAction.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
       this.gutterWidth+',getColumns:'+this.columns})
     })
   },
   getSizeType(){
       this.$element('mygrid').getSizeType((result)=>{
-      prompt.showToast({duration:2000,message:'get size type:'+result})
+      promptAction.showToast({duration:2000,message:'get size type:'+result})
     })
   },
 }
@@ -108,9 +110,9 @@ export default {
 ![zh-cn_image_0000001227135613](figures/zh-cn_image_0000001227135613.gif)
 
 
-## 添加grild-col
+## 添加grid-col
 
-创建grid-container组件并添加grid-row，在grid-row组件内添加grild-col组件形成布局。
+创建grid-container组件并添加grid-row，在grid-row组件内添加grid-col组件形成布局。
 
 
 ```html
@@ -154,6 +156,7 @@ export default {
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -203,6 +206,7 @@ text{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
 }
 text{
   color: #0a0aef;

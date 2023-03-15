@@ -204,7 +204,7 @@ OpenHarmony内核使用**musl libc**库以及自研接口，支持部分标准PO
 | \#include&nbsp;&lt;assert.h&gt; | void&nbsp;assert(scalar&nbsp;expression); | 断言为假终止线程 |
 | \#include&nbsp;&lt;pthread.h&gt; | int&nbsp;pthread_cond_destroy(pthread_cond_t&nbsp;\*cond); | 销毁条件变量 |
 | \#include&nbsp;&lt;pthread.h&gt; | int&nbsp;pthread_cond_init(pthread_cond_t&nbsp;\*restrict&nbsp;co<br/>nd,&nbsp;const&nbsp;pthread_condattr_t&nbsp;\*restrict&nbsp;attr); | 初始化条件变量 |
-| \#include&nbsp;&lt;pthread.h&gt; | int&nbsp;pthread_cond_timedwait(pthread_cond_t&nbsp;\*restr<br/>ict&nbsp;cond,&nbsp;pthread_mutex_t&nbsp;\*restrict&nbsp;mutex,&nbsp;const&nbsp;st<br/>ruct&nbsp;timespec&nbsp;\*restrict&nbsp;abstime); | 等待条件 |
+| \#include&nbsp;&lt;pthread.h&gt; | int&nbsp;pthread_cond_timedwait(pthread_cond_t&nbsp;\*restr<br/>ict&nbsp;cond,&nbsp;pthread_mutex_t&nbsp;\*restrict&nbsp;mutex,&nbsp;const&nbsp;struct&nbsp;timespec&nbsp;\*restrict&nbsp;abstime); | 等待条件 |
 | \#include&nbsp;&lt;pthread.h&gt; | int&nbsp;pthread_condattr_init(pthread_condattr_t&nbsp;\*attr); | 初始化条件变量属性对象 |
 | \#include&nbsp;&lt;pthread.h&gt; | int&nbsp;pthread_mutex_unlock(pthread_mutex_t&nbsp;\*mutex); | 解锁互斥锁 |
 | \#include&nbsp;&lt;pthread.h&gt; | int&nbsp;pthread_create(pthread_t&nbsp;\*thread,&nbsp;const&nbsp;pthread_<br/>attr_t&nbsp;\*attr,&nbsp;void&nbsp;\*(\*start_routine)(void&nbsp;\*),&nbsp;void&nbsp;\*arg); | 创建一个新的线程 |
@@ -458,6 +458,8 @@ OpenHarmony内核使用**musl libc**库以及自研接口，支持部分标准PO
 demo功能：
 
 创建一个线程并将父线程中的信息传递给子线程，在子线程中打印传递过来的信息和自身线程id值。
+
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数DemoForTest。
 
 
 ```

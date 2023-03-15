@@ -1,4 +1,4 @@
-# observer
+# @ohos.telephony.observer (observer)
 
 本模块提供订阅管理功能，可以订阅/取消订阅的事件包括：网络状态变化、信号状态变化、通话状态变化、蜂窝数据链路连接状态、蜂窝数据业务的上下行数据流状态、SIM状态变化。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import observer from '@ohos.telephony.observer'
+import observer from '@ohos.telephony.observer';
 ```
 
 ## observer.on('networkStateChange')
@@ -30,10 +30,21 @@ on\(type: \'networkStateChange\', callback: Callback<NetworkState\>\): void;
 | type     | string                                                    | 是   | 网络状态变化事件                                             |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('networkStateChange', data =>{ 
+observer.on('networkStateChange', data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -57,10 +68,21 @@ on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callbac
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('networkStateChange', {slotId: 0}, data =>{ 
+observer.on('networkStateChange', {slotId: 0}, data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -84,6 +106,14 @@ off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 网络状态变化事件                                             |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 否   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -112,10 +142,21 @@ on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>):
 | type     | string                                                       | 是   | 信号状态变化事件                                             |
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('signalInfoChange', data =>{ 
+observer.on('signalInfoChange', data => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -137,10 +178,21 @@ on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('signalInfoChange', {slotId: 0}, data =>{ 
+observer.on('signalInfoChange', {slotId: 0}, data => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -164,6 +216,16 @@ off\(type: \'signalInfoChange\', callback?: Callback<Array<SignalInformation\>\>
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 信号状态变化事件                                             |
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -193,10 +255,20 @@ on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: stri
 | type     | string                                                       | 是   | 通话状态变化事件                                             |
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('callStateChange', value =>{ 
+observer.on('callStateChange', value => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -218,10 +290,20 @@ on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ st
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 回调函数，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('callStateChange', {slotId: 0}, value =>{ 
+observer.on('callStateChange', {slotId: 0}, value => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -245,6 +327,16 @@ off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: str
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 通话状态变化事件                                             |
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 否   | 回调函数，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -274,10 +366,20 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: Data
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('cellularDataConnectionStateChange', value =>{
+observer.on('cellularDataConnectionStateChange', value => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -299,10 +401,20 @@ on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, call
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 是   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('cellularDataConnectionStateChange', {slotId: 0}, value =>{
+observer.on('cellularDataConnectionStateChange', {slotId: 0}, value => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -326,6 +438,16 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: D
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件                                     |
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | 否   | 回调函数，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -355,10 +477,20 @@ on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void;
 | type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态状态事件                       |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 是   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('cellularDataFlowChange', data =>{
+observer.on('cellularDataFlowChange', data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -380,10 +512,20 @@ on\(type: 'cellularDataFlowChange', options: { slotId: number },  callback: Call
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 是   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('cellularDataFlowChange', {slotId: 0}, data =>{
+observer.on('cellularDataFlowChange', {slotId: 0}, data => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 });
 ```
@@ -407,6 +549,16 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据业务的上下行数据流状态事件                           |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 否   | 回调函数，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -436,10 +588,20 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void;
 | type     | string                                                       | 是   | sim状态更改事件                                     |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('simStateChange', data =>{
+observer.on('simStateChange', data => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -461,10 +623,20 @@ on\(type: 'simStateChange', options: { slotId: number }, callback: Callback\<Sim
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-observer.on('simStateChange', {slotId: 0}, data =>{
+observer.on('simStateChange', {slotId: 0}, data => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -488,6 +660,16 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void;
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | sim状态更改事件                                             |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | 否   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -531,9 +713,9 @@ SIM卡类型和状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.StateRegistry。
 
-| 名称            | 类型                  | 说明                                                         |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| type  | [CardType](js-apis-sim.md#cardtype) | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。 |
-| state | [SimState](js-apis-sim.md#simstate) | SIM卡状态，参考sim的[SimState](js-apis-sim.md#simstate)。 |
-| reason<sup>8+</sup>       | [LockReason](#lockreason8) | SIM卡锁类型。 |
+|     名称            |                 类型                | 必填 | 说明                                                      |
+| ------------------- | ----------------------------------- | ---- | --------------------------------------------------------  |
+| type                | [CardType](js-apis-sim.md#cardtype) | 是   | SIM卡类型，参考sim的[CardType](js-apis-sim.md#cardtype)。 |
+| state               | [SimState](js-apis-sim.md#simstate) | 是   | SIM卡状态，参考sim的[SimState](js-apis-sim.md#simstate)。 |
+| reason<sup>8+</sup> | [LockReason](#lockreason8)          | 是   | SIM卡锁类型。                                             |
 

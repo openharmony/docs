@@ -1,8 +1,9 @@
-# WebSocket Connection
+# # @ohos.net.webSocket (WebSocket Connection)
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
->The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
 >
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the [createWebSocket](#websocketcreatewebsocket) API to create a [WebSocket](#websocket) object and then use the [connect](#connect) API to connect to the server. If the connection is successful, the client will receive a callback of the [open](#onopen) event. Then, the client can communicate with the server using the [send](#send) API. When the server sends a message to the client, the client will receive a callback of the [message](#onmessage) event. If the client no longer needs this connection, it can call the [close](#close) API to disconnect from the server. Then, the client will receive a callback of the [close](#onclose) event.
 
@@ -15,7 +16,7 @@ If an error occurs in any of the preceding processes, the client will receive a 
 import webSocket from '@ohos.net.webSocket';
 ```
 
-## Complete Example
+## Examples
 
 ```js
 import webSocket from '@ohos.net.webSocket';
@@ -35,7 +36,7 @@ ws.on('open', (err, value) => {
 });
 ws.on('message', (err, value) => {
     console.log("on message, message:" + value);
-    // When receiving the bye message (the actual message name may differ) from the server, the client proactively disconnects from the server.
+    // When receiving the `bye` message (the actual message name may differ) from the server, the client proactively disconnects from the server.
     if (value === 'bye') {
         ws.close((err, value) => {
             if (!err) {
@@ -47,7 +48,7 @@ ws.on('message', (err, value) => {
     }
 });
 ws.on('close', (err, value) => {
-    console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
+    console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err) => {
     console.log("on error, error:" + JSON.stringify(err));
@@ -69,7 +70,7 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 
 **System capability**: SystemCapability.Communication.NetStack
 
-**Return Value**
+**Return value**
 
 | Type                               | Description                                                        |
 | :---------------------------------- | :----------------------------------------------------------- |
@@ -92,7 +93,7 @@ connect\(url: string, callback: AsyncCallback<boolean\>\): void
 
 Initiates a WebSocket request to establish a WebSocket connection to a given URL. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -103,6 +104,12 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 | url      | string                   | Yes  | URL for establishing a WebSocket connection.|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                  |
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -125,7 +132,7 @@ connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<
 
 Initiates a WebSocket request carrying specified options to establish a WebSocket connection to a given URL. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -137,6 +144,12 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 | options  | WebSocketRequestOptions  | Yes  | Request options. For details, see [WebSocketRequestOptions](#websocketrequestoptions).|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                                             |
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -164,7 +177,7 @@ connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
 
 Initiates a WebSocket request carrying specified options to establish a WebSocket connection to a given URL. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -175,11 +188,18 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 | url     | string                  | Yes  | URL for establishing a WebSocket connection.                           |
 | options | WebSocketRequestOptions | No  | Request options. For details, see [WebSocketRequestOptions](#websocketrequestoptions).|
 
-**Return Value**
+**Return value**
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -201,7 +221,7 @@ send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
 
 Sends data through a WebSocket connection. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -211,6 +231,13 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer <sup>8+</sup> | Yes  | Data to send.|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.  |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -235,7 +262,7 @@ send\(data: string | ArrayBuffer\): Promise<boolean\>
 
 Sends data through a WebSocket connection. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -245,11 +272,18 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 | ------ | ------ | ---- | ------------ |
 | data     | string \| ArrayBuffer <sup>8+</sup> | Yes  | Data to send.|
 
-**Return Value**
+**Return value**
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -273,7 +307,7 @@ close\(callback: AsyncCallback<boolean\>\): void
 
 Closes a WebSocket connection. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -282,6 +316,13 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 | Name  | Type                    | Mandatory| Description      |
 | -------- | ------------------------ | ---- | ---------- |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -304,7 +345,7 @@ close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
 
 Closes a WebSocket connection carrying specified options such as **code** and **reason**. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -314,6 +355,13 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | Yes  | Request options. For details, see [WebSocketCloseOptions](#websocketcloseoptions).|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                                           |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -339,7 +387,7 @@ close\(options?: WebSocketCloseOptions\): Promise<boolean\>
 
 Closes a WebSocket connection carrying specified options such as **code** and **reason**. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -349,11 +397,18 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 | ------- | --------------------- | ---- | ----------------------------------------------------- |
 | options | WebSocketCloseOptions | No  | Request options. For details, see [WebSocketCloseOptions](#websocketcloseoptions).|
 
-**Return Value**
+**Return value**
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
 | Promise\<boolean\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -404,7 +459,7 @@ off\(type: 'open', callback?: AsyncCallback<Object\>\): void
 
 Disables listening for the **open** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>**NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -433,9 +488,9 @@ ws.off('open', callback1);
 
 on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
 
-Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>**NOTE**
 >The data in **AsyncCallback** can be in the format of string\(API 6\) or ArrayBuffer\(API 8\).
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -446,7 +501,6 @@ Enables listening for the **message** events of a WebSocket connection. This API
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | Yes  | Event type.<br />**message**: event indicating that a message has been received from the server.|
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | Yes  | Callback used to return the result.                                  |
-
 
 **Example**
 
@@ -462,9 +516,9 @@ ws.on('message', (err, value) => {
 
 off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
 
-Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>**NOTE**
 >The data in **AsyncCallback** can be in the format of string\(API 6\) or ArrayBuffer\(API 8\).
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -505,7 +559,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('close', (err, value) => {
-	console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
+	console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ```
 
@@ -516,7 +570,7 @@ off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\
 
 Disables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>**NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -527,7 +581,6 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
 | callback | AsyncCallback<{ code: number, reason: string }> | No  | Callback used to return the result.                    |
-
 
 **Example**
 
@@ -552,7 +605,6 @@ Enables listening for the **error** events of a WebSocket connection. This API u
 | type     | string        | Yes  | Event type.<br />**error**: event indicating the WebSocket connection has encountered an error.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                     |
 
-
 **Example**
 
 ```js
@@ -569,7 +621,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 
 Disables listening for the **error** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>**NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -619,8 +671,8 @@ You can customize the result codes sent to the server. The result codes in the f
 
 | Value       | Description              |
 | :-------- | :----------------- |
-| 1000      | Normally closed          |
-| 1001      | Connection closed by the server    |
-| 1002      | Incorrect protocol          |
-| 1003      | Data unable to be processed|
-| 1004~1015 | Reserved            |
+| 1000      | Normally closed.          |
+| 1001      | Connection closed by the server.    |
+| 1002      | Incorrect protocol.          |
+| 1003      | Data unable to be processed.|
+| 1004~1015 | Reserved.            |

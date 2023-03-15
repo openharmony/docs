@@ -3,26 +3,6 @@
 
 ## **概述**
 
-**所属模块:**
-
-[Codec](_codec.md)
-
-
-## **汇总**
-
-
-### Public 属性
-
-  | Public&nbsp;属性 | 描述 | 
-| -------- | -------- |
-| ([GetComponentNum](#getcomponentnum)&nbsp;)() | 获取Codec编解码组件数量。&nbsp;[更多...](#getcomponentnum) | 
-| (&nbsp;[GetComponentCapabilityList](#getcomponentcapabilitylist)&nbsp;)([CodecCompCapability](_codec_comp_capability.md)&nbsp;\*capList,&nbsp;int32_t&nbsp;count) | 获取编解码能力集表。&nbsp;[更多...](#getcomponentcapabilitylist) | 
-| (&nbsp;[CreateComponent](#createcomponent)&nbsp;)(struct&nbsp;[CodecComponentType](_codec_component_type.md)&nbsp;\*\*component,&nbsp;char&nbsp;\*compName,&nbsp;void&nbsp;\*appData,&nbsp;int32_t&nbsp;appDataSize,&nbsp;struct&nbsp;[CodecCallbackType](_codec_callback_type.md)&nbsp;\*callbacks) | 创建Codec组件实例。&nbsp;[更多...](#createcomponent) | 
-| (&nbsp;[DestroyComponent](#destroycomponent))(struct&nbsp;[CodecComponentType](_codec_component_type.md)&nbsp;\*component) | 销毁组件实例。&nbsp;[更多...](#destroycomponent) | 
-
-
-## **详细描述**
-
 Codec组件管理类接口定义。
 
 主要提供以下功能:
@@ -30,6 +10,23 @@ Codec组件管理类接口定义。
 - 获取Codec编解码组件数量以及编解码能力集表。
 
 - 创建/销毁Codec组件。
+
+**相关模块:**
+
+[Codec](codec.md)
+
+
+## **汇总**
+
+
+### Public 属性
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| ([GetComponentNum](#getcomponentnum)&nbsp;)() | 获取Codec编解码组件数量。 | 
+| ([GetComponentCapabilityList](#getcomponentcapabilitylist)&nbsp;)(CodecCompCapability&nbsp;\*capList,&nbsp;int32_t&nbsp;count) | 获取编解码能力集表。 | 
+| ([CreateComponent](#createcomponent)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*\*component,&nbsp;char&nbsp;\*compName,&nbsp;void&nbsp;\*appData,&nbsp;int32_t&nbsp;appDataSize,&nbsp;struct&nbsp;CodecCallbackType&nbsp;\*callbacks) | 创建Codec组件实例。 | 
+| ([DestroyComponent](#destroycomponent)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*component) | 销毁组件实例。 | 
 
 
 ## **类成员变量说明**
@@ -48,7 +45,7 @@ int32_t(* CodecComponentManager::CreateComponent) (struct CodecComponentType **c
 
 根据组件名称创建Codec组件实例。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -58,7 +55,7 @@ int32_t(* CodecComponentManager::CreateComponent) (struct CodecComponentType **c
 | appDataSize | 输入参数，appData字节数。 | 
 | callbacks | 输入参数，回调接口，指向OMX_CALLBACKTYPE结构的指针，详见[CodecCallbackType](_codec_callback_type.md)。 | 
 
-**返回：**
+**返回:**
 
 HDF_SUCCESS 表示创建组件成功。
 
@@ -82,13 +79,13 @@ int32_t(* CodecComponentManager::DestroyComponent) (struct CodecComponentType *c
 
 销毁指定的Codec组件。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | component | 输入参数，需要销毁的Codec组件。 | 
 
-**返回：**
+**返回:**
 
 HDF_SUCCESS 表示销毁组件成功。
 
@@ -112,14 +109,14 @@ int32_t(* CodecComponentManager::GetComponentCapabilityList) (CodecCompCapabilit
 
 用户可通过此接口了解Codec模块提供了哪些编解码能力，对应的能力体现在[CodecCompCapability](_codec_comp_capability.md)结构体。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | capList | 输出参数，返回全部组件的能力集表[CodecCompCapability](_codec_comp_capability.md)。 | 
 | count | 输入参数，编解码组件数量，由[GetComponentNum](#getcomponentnum)获得。 | 
 
-**返回：**
+**返回:**
 
 HDF_SUCCESS 表示获取能力集表成功。
 
@@ -143,6 +140,6 @@ int32_t(* CodecComponentManager::GetComponentNum) ()
 
 通过此接口获取Codec编解码组件数量，用来获取全部编解码能力集。
 
-**返回：**
+**返回:**
 
 Codec编解码组件数量。

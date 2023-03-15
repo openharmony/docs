@@ -1,17 +1,19 @@
-# Web
+# Web Component Development
 
 The **\<Web>** component can be used to display web pages. For details, see [Web](../reference/arkui-ts/ts-basic-components-web.md).
 
 ## Creating a Component
 
-Create a **\<Web>** component in the .ets file under **main/ets/MainAbility/pages**. Then, in the created component, use **src** to specify the web page URI to be referenced, and bind a controller to the component to call the component APIs.
+Create a **\<Web>** component in the .ets file under **main/ets/entryability/pages**. Then, in the created component, use **src** to specify the web page URI to be referenced, and bind a controller to the component to call the component APIs.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'https://www.example.com', controller: this.controller })
@@ -22,15 +24,17 @@ Create a **\<Web>** component in the .ets file under **main/ets/MainAbility/page
 
 ## Setting Styles and Attributes
 
-When using the **\<Web>** component, you need to specify the styles and attributes. The sample code is as follows.
+When using the **\<Web>** component, you must specify the styles and attributes. The sample code is as follows.
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -54,13 +58,15 @@ Add the **onProgressChange** event for the **\<Web>** component, which is trigge
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -93,14 +99,17 @@ Add the **runJavaScript** method to the **onPageEnd** event. The **onPageEnd** e
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
+  @State webResult: string = ''
   fileAccess: boolean = true;
   // Define the controller for the \<Web> component.
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -124,8 +133,23 @@ struct WebComponent {
         })
         .onPageEnd(e => {
           // test() is defined in index.html.
-          this.controller.runJavaScript({ script: 'test()' });
-          console.info('url: ', e.url);
+          try {
+            this.controller.runJavaScript(
+              'test()',
+              (error, result) => {
+                if (error) {
+                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  return;
+                }
+                if (result) {
+                  this.webResult = result
+                  console.info(`The test() return value is: ${result}`)
+                }
+              });
+            console.info('url: ', e.url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
         })
       Text('End')
         .fontSize(20)
@@ -151,26 +175,70 @@ Create an HTML file in **main/resources/rawfile**.
 </script>
 </html>
 ```
+
+## Enabling Web Debugging
+To debug web pages in the **\<Web>** component on a device, connect the device to a PC through the USB port, and then set the **webDebuggingAccess** attribute of the **\<Web>** component to **true** and enable port forwarding on the PC.
+
+The configuration procedure is as follows:
+
+1. Set the **webDebuggingAccess** attribute of the **\<Web>** component to **true**.
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webDebuggingAccess(true) // true means to enable web debugging.
+      }
+    }
+  }
+  ```
+
+2. Enable port forwarding on the PC and add a mapping for TCP port 9222.
+  ```ts
+  hdc fport tcp:9222 tcp:9222
+  ```
+  You can run the following command to view the existing mapping table:
+  ```ts
+  hdc fport ls
+  ```
+When you are done, you can debug a web page as follows: On the target device, open the **\<Web>** component in the application and access the web page to debug; on the PC, use the Chrome browser to access **http://localhost:9222** and start to debug the web page.
+
 ## Scenario Example
 
 In this example, you'll implement a **\<Web>** component where videos can be played dynamically. Embed a video resource into an HTML page, and then use the **\<Web>** component controller to invoke the **onActive** and **onInactive** methods to activate and pause page rendering, respectively. Upon clicking of the **onInactive** button, the **\<Web>** component stops rendering and the video playback pauses. Upon clicking of the **onActive** button, the **\<Web>** component is activated and the video playback resumes.
 
   ```ts
   // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Row() {
         Button('onActive').onClick(() => {
           console.info("Web Component onActive");
-          this.controller.onActive();
+          try {
+            this.controller.onActive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
         Button('onInactive').onClick(() => {
           console.info("Web Component onInactive");
-          this.controller.onInactive();
+          try {
+            this.controller.onInactive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
       }
       Web({ src: $rawfile('index.html'), controller: this.controller })

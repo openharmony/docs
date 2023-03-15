@@ -119,8 +119,8 @@ Use the **repo** tool to download the source code over HTTPS.
 | Full SDK package for the standard system (Windows/Linux)    | 3.2.5.5      | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz.sha256)|
 | Public SDK package for the standard system (macOS)            | 3.2.5.5      | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz.sha256)|
 | Public SDK package for the standard system (Windows/Linux)  | 3.2.5.5      | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz.sha256)|
-| Full SDK package for the standard system (macOS)              | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full.tar.gz.sha256)|
-| Full SDK package for the standard system (Windows/Linux)    | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full.tar.gz.sha256)|
+| Full SDK package for the standard system (macOS)              | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full_20220913.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full_20220913.tar.gz.sha256)|
+| Full SDK package for the standard system (Windows/Linux)    | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full_20220913.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full_20220913.tar.gz.sha256)|
 | Public SDK package for the standard system (macOS)            | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-public.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-public.tar.gz.sha256)|
 | Public SDK package for the standard system (Windows/Linux)  | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-public.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-public.tar.gz.sha256)|
 
@@ -156,7 +156,6 @@ If an application developed using the SDK of an earlier version calls system API
 | USB subsystem| - Broadcast messages are provided for USB service events.<br>- The SELinux security policy is enhanced.<br>The following requirements are involved:<br>I59MYK [New feature] Broadcast messages for USB service events<br>I5AR8N [New specifications] SELinux policy configuration| NA |
 | Kernel subsystem| - Refined memory management is supported.<br>- The adjustment mechanism is added for associated services.<br>The following requirements are involved:<br>I58LOD [New feature] Adjustment mechanism of associated services<br>I54Y5J [New feature] memtrack memory usage and adj query interface by process<br>I56B3Q [New feature] OnMemoryLevel<br>I5B694 [New feature] Refined memory management<br>I59O8H [New feature] Purgeable memory<br>I5CXOK [New feature] Hyperhold for reliability improvement| NA |
 
-
 ### Chip and Development Board Adaptation
 
 For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
@@ -168,31 +167,31 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 | Subsystem| Name| Introduction| Programming Language|
 | -------- | -------- | -------- | -------- |
-| Ability| MissionManager | This sample calls APIs related to the mission manager to lock, unlock, and clear missions, and switch them to the foreground.| eTS |
-| Network management| AirQuality |   This sample implements a simple air quality app using JS. The app displays air quality information using line wrapping and historical data in a bar chart.| eTS |
-| ArkUI | TransitionAnimation | This sample shows how to implement page transition, component transition, and transition of shared elements.| eTS |
-| Application package management| ZipLib | This sample demonstrates the use of **\@ohos.zlib** by constructing the compression and decompression scenarios.| eTS |
-| Engineering capabilities| Npm | This sample shows how npm references third-party JS class libraries (mathjs and dayjs) and local libraries.| eTS |
-| Data management| DistributedMusicPlayer | In this sample, **fileIo** is used to obtain an audio file; **AudioPlayer** is used to play music, pause the playback, and play the next or previous song; **DeviceManager** is used to display the distributed device list and hop music playback across devices.| eTS |
-| ArkUI | PatternLock | This sample shows how to use the **\<PatternLock>** component to implement password setting, verification, and resetting.| eTS |
-| Security| UserAuth | This sample shows how to implement facial authentication.| eTS |
-| Security| Cipher | This sample shows how to use cipher algorithms, including Rivest-Shamir-Adleman (RSA) and Advanced Encryption Standard (AES).| eTS |
-| Graphics| Screen | This sample shows how to use APIs to listen for screen quantity changes, create and destroy virtual screens, and read and display screen attributes.| eTS |
-| ArkUI | Search | This sample shows how to use the **\<Search>** component to implement a search page.| eTS |
-| Device management| USBManager | This sample shows how to use USB device management, including listening for USB device insertion and removal events and display of USB device information.| eTS |
-| Data management| DistributedDataGobang | This sample shows Gobang, a popular game played with black and white stones on a go board, developed using the distributed data management function. | eTS |
-| Multimedia| Image | This sample provides an Image Processing app, using which you can read images from the local device, obtain image information, and rotate images.| eTS |
-| Security| AbilityAccessCtrl | This sample shows how **@ohos.abilityAccessCtrl** works to implement application permission control.| eTS |
-| Network management| WebSocket | This sample shows how to use WebSocket, including the connection and disconnection between the client and the server, and the receiving and sending of client data.| eTS |
-| Connectivity| Bluetooth | Bluetooth is a short-range wireless technology used to implement communication between fixed and mobile devices over low-cost short-distance wireless connections. This sample describes how to discover, pair, and unpair Bluetooth devices.| eTS |
-| Multimedia| GamePuzzle | This puzzle game app is developed based on the **\<Grid>** component. It uses the `Image` and `MediaLibrary` APIs to obtain and crop images.| eTS |
-| Network management| UploadDownload | This sample uses the upload and download APIs to implement file storage.| eTS |
-| Device management| Location | This sample uses the orientation sensor and GPS to obtain the current location information.| eTS |
-| Telephony| Observer | This sample demonstrates how to use observer APIs to subscribe to network status, signal status, call status, cellular data, and SIM card status changes.| eTS |
-| ArkUI | AdaptiveCapabilities | This sample shows multi-device adaptation in eTS, including resource qualifiers, atomic layouts, and responsive layouts.| eTS |
+| Ability| MissionManager | This sample calls APIs related to the mission manager to lock, unlock, and clear missions, and switch them to the foreground.| ArkTS |
+| Network management| AirQuality |   This sample implements a simple air quality app using JS. The app displays air quality information using line wrapping and historical data in a bar chart.| ArkTS |
+| ArkUI | TransitionAnimation | This sample shows how to implement page transition, component transition, and transition of shared elements.| ArkTS |
+| Application package management| ZipLib | This sample demonstrates the use of **\@ohos.zlib** by constructing the compression and decompression scenarios.| ArkTS |
+| Engineering capabilities| Npm | This sample shows how npm references third-party JS class libraries (mathjs and dayjs) and local libraries.| ArkTS |
+| Data management| DistributedMusicPlayer | In this sample, **fileIo** is used to obtain an audio file; **AudioPlayer** is used to play music, pause the playback, and play the next or previous song; **DeviceManager** is used to display the distributed device list and hop music playback across devices.| ArkTS |
+| ArkUI | PatternLock | This sample shows how to use the **\<PatternLock>** component to implement password setting, verification, and resetting.| ArkTS |
+| Security| UserAuth | This sample shows how to implement facial authentication.| ArkTS |
+| Security| Cipher | This sample shows how to use cipher algorithms, including Rivest-Shamir-Adleman (RSA) and Advanced Encryption Standard (AES).| ArkTS |
+| Graphics| Screen | This sample shows how to use APIs to listen for screen quantity changes, create and destroy virtual screens, and read and display screen attributes.| ArkTS |
+| ArkUI | Search | This sample shows how to use the **\<Search>** component to implement a search page.| ArkTS |
+| Device management| USBManager | This sample shows how to use USB device management, including listening for USB device insertion and removal events and display of USB device information.| ArkTS |
+| Data management| DistributedDataGobang | This sample shows Gobang, a popular game played with black and white stones on a go board, developed using the distributed data management function. | ArkTS |
+| Multimedia| Image | This sample provides an Image Processing app, using which you can read images from the local device, obtain image information, and rotate images.| ArkTS |
+| Security| AbilityAccessCtrl | This sample shows how **@ohos.abilityAccessCtrl** works to implement application permission control.| ArkTS |
+| Network management| WebSocket | This sample shows how to use WebSocket, including the connection and disconnection between the client and the server, and the receiving and sending of client data.| ArkTS |
+| Connectivity| Bluetooth | Bluetooth is a short-range wireless technology used to implement communication between fixed and mobile devices over low-cost short-distance wireless connections. This sample describes how to discover, pair, and unpair Bluetooth devices.| ArkTS |
+| Multimedia| GamePuzzle | This puzzle game app is developed based on the **\<Grid>** component. It uses the `Image` and `MediaLibrary` APIs to obtain and crop images.| ArkTS |
+| Network management| UploadDownload | This sample uses the upload and download APIs to implement file storage.| ArkTS |
+| Device management| Location | This sample uses the orientation sensor and GPS to obtain the current location information.| ArkTS |
+| Telephony| Observer | This sample demonstrates how to use observer APIs to subscribe to network status, signal status, call status, cellular data, and SIM card status changes.| ArkTS |
+| ArkUI | AdaptiveCapabilities | This sample shows multi-device adaptation in ArkTS, including resource qualifiers, atomic layouts, and responsive layouts.| ArkTS |
 | ArkUI | JsAdaptiveCapabilities | This sample shows multi-device adaptation in JS, including resource qualifiers, atomic layouts, and responsive layouts.| JS |
 
-For more information, visit [Samples](https://gitee.com/openharmony/app_samples).
+For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).
 
 
 ## Resolved Issues
@@ -203,7 +202,7 @@ For more information, visit [Samples](https://gitee.com/openharmony/app_samples)
 | -------- | -------- |
 | [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | [RK3568] Screen flickering occurs when the secondary window is opened in the immersive primary window.|
 | [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | There is a low probability of device disconnection when hdc_std of API version 9 is used.|
-| [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | [RK3568] [Mandatory] A black screen is displayed when the camera has been recording videos for multiple consecutive times.|
+| [I54D32](https://gitee.com/openharmony/multimedia_camera_framework/issues/I54D32) | [RK3568] [Mandatory] A black screen is displayed when the camera has been recording videos for multiple consecutive times.|
 
 
 ## Known Issues

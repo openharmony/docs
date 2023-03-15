@@ -4,6 +4,10 @@
 
 WebGL helps you process graphics at the frontend, for example, drawing color graphics.
 
+> **NOTE**
+>
+> WebGL can be used only in the JavaScript-compatible web-like development paradigm.
+
 
 ## Available APIs
 
@@ -695,6 +699,7 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
        }
    }
    ```
+
 
 **Figure 2** Effect of clicking the button to draw a color triangle
 

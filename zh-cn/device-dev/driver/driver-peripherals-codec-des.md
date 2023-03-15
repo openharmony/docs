@@ -3,7 +3,7 @@
 ## 概述
 ### 功能简介
 
-OpenHarmony Codec HDI驱动框架基于OpenMax实现了视频硬件编解码驱动，提供Codec基础能力接口给上层媒体服务调用，包括获取组件编解码能力、创建组件、参数设置、数据的轮转和控制、以及销毁组件等功能，实现对视频数据的编解码处理（可以将YUV/RGB等格式的视频数据编码成H264/H265等编码格式，也可以将H264/H265等裸流数据解码成YUV/RGB等格式数据）。本文主要介绍基于HDF驱动框架开发的Codec编解码功能。
+OpenHarmony Codec HDI（Hardware Device Interface）驱动框架基于OpenMax实现了视频硬件编解码驱动，提供Codec基础能力接口给上层媒体服务调用，包括获取组件编解码能力、创建组件、参数设置、数据的轮转和控制、以及销毁组件等功能，实现对视频数据的编解码处理（可以将YUV/RGB等格式的视频数据编码成H264/H265等编码格式，也可以将H264/H265等裸流数据解码成YUV/RGB等格式数据）。本文主要介绍基于HDF（Hardware Driver Foundation）驱动框架开发的Codec编解码功能。
 
 Codec HDI驱动框架基于HDF驱动框架实现。Codec HDI驱动架构组成：
 
@@ -16,7 +16,7 @@ Codec HDI驱动框架基于HDF驱动框架实现。Codec HDI驱动架构组成�
 - Codec HDI Adapter：HDI 实现层，实现了HDI Interface接口，并与OpenMax IL 对接。
 - OpenMax IL Interface：OpenMax IL接口，Codec HDI驱动直接对接OpenMax IL层。
 - Vendor Impl：厂商适配层，各大厂商适配的OpenMax 实现层。
-- Codec HardWare：硬件解码设备。
+- Codec Hardware：硬件解码设备。
 
 ### 基本概念
 在进行开发前，开发者应了解一下基本概念：
@@ -35,7 +35,7 @@ Codec HDI驱动框架基于HDF驱动框架实现。Codec HDI驱动架构组成�
 
 - 码率
 
-    视频的码率是指在单位时间内传输的视频数据数量，一般用kbps作为单位。码率越高，视频就越清晰，反之则画面粗糙而多马赛克。
+    视频的码率是指在单位时间内传输的视频数据数量，一般用kbps作为单位。码率越高，视频就越清晰，反之则画面粗糙而且多马赛克。
 
 - 组件
 
@@ -59,7 +59,7 @@ Codec模块主要完成对视频数据的硬件编解码，将H264等裸流数�
   | 接口名称                                                                                                                                                       | 功能描述                      |
   | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------|
   | int32_t (*CreateComponent)(struct CodecComponentType **component, uint32_t *componentId, char *compName, int64_t appData, struct CodecCallbackType *callbacks) | 创建Codec组件实例             |
-  | int32_t (*DestroyComponent)(uint32_t componentId)                                                                                                              | 销毁组件实例                  |
+  | int32_t (*DestroyComponent)(uint32_t componentId)                                                                                                              | 销毁Codec组件实例                  |
 
 - codec_component _if.h
 
@@ -133,7 +133,7 @@ HDF_INIT(g_codecComponentDriverEntry); // 将Codec HDI的HdfDriverEntry结构体
     }
     ```
 
-- HdfCodecComponentTypeDriverInit：加载HCS中的属性配置。
+- HdfCodecComponentTypeDriverInit：加载HCS（HDF Configuration Source）中的属性配置。
 
     ```c
     int32_t HdfCodecComponentTypeDriverInit(struct HdfDeviceObject *deviceObject)
@@ -172,7 +172,7 @@ HCS配置包括两部分：
 
 HCS配置内容包括：驱动节点、加载顺序、服务名称等。HCS语法可参考[配置管理](driver-hdf-manage.md)。
 
-标准系统配置文件路径（其它系统暂不涉及）：
+以RK3568开发板为例，标准系统配置文件路径（其它系统暂不涉及）：
 vendor/hihope/rk3568/hdf_config/uhdf/
 
 1. device相关配置
@@ -392,22 +392,22 @@ bool CodecHdiDecode::UseBufferOnPort(enum PortIndex portIndex)
     auto err = client_->GetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
     if (err != HDF_SUCCESS) {
         HDF_LOGE("%{public}s failed to GetParameter with OMX_IndexParamPortDefinition : portIndex[%{public}d]",
-                    __func__, portIndex);
+            __func__, portIndex);
         return false;
     }
     bufferSize = param.nBufferSize;
     bufferCount = param.nBufferCountActual;
     bPortEnable = param.bEnabled;
     HDF_LOGI("buffer index [%{public}d], buffer size [%{public}d], "
-                "buffer count [%{public}d], portEnable[%{public}d], err [%{public}d]",
-                portIndex, bufferSize, bufferCount, bPortEnable, err);
+        "buffer count [%{public}d], portEnable[%{public}d], err [%{public}d]",
+        portIndex, bufferSize, bufferCount, bPortEnable, err);
     {
         OMX_PARAM_BUFFERSUPPLIERTYPE param;
         InitParam(param);
         param.nPortIndex = (uint32_t)portIndex;
         auto err = client_->GetParameter(client_, OMX_IndexParamCompBufferSupplier, (int8_t *)&param, sizeof(param));
         HDF_LOGI("param.eBufferSupplier[%{public}d] isSupply [%{public}d], err [%{public}d]", param.eBufferSupplier,
-                    this->isSupply_, err);
+            this->isSupply_, err);
     }
     // 设置端口buffer
     UseBufferOnPort(portIndex, bufferCount, bufferSize);
@@ -536,7 +536,7 @@ while (!this->exit_) {
 client_->SendCommand(client_, OMX_CommandStateSet, OMX_StateIdle, NULL, 0);
 ```
 
-对rk OMX解码时，不支持数据的分帧，所以需要手动分帧，目前简单实现按照起始码0x000001或0x00000001分帧发送到服务端处理。分帧代码如下：
+当在rk开发板上进行解码时，由于其OMX的实现不支持数据的分帧，所以需要手动分帧，目前简单实现按照起始码0x000001或0x00000001分帧发送到服务端处理。分帧代码如下：
 
 ```cpp
 // 文件分帧读取实现
@@ -646,8 +646,7 @@ int32_t OMXCore::onFillBufferDone(struct OmxCodecBuffer* pBuffer)
 int32_t CodecHdiDecode::OnEvent(struct CodecCallbackType *self, enum OMX_EVENTTYPE event, struct EventInfo *info)
 {
     HDF_LOGI("onEvent: appData[0x%{public}p], eEvent [%{public}d], "
-                "nData1[%{public}d]",
-                info->appData, event, info->data1);
+        "nData1[%{public}d]", info->appData, event, info->data1);
     switch (event) {
         case OMX_EventCmdComplete: {
             OMX_COMMANDTYPE cmd = (OMX_COMMANDTYPE)info->data1;
@@ -665,7 +664,7 @@ int32_t CodecHdiDecode::OnEvent(struct CodecCallbackType *self, enum OMX_EVENTTY
 ```
 
 #### 接口去初始化
-组件关闭前，需要将组件状态修改为IDLE，然后开始释放输入输出Buffer，再将组件状态修改为OMX_StateLoaded，最后再调用DestoryComponent去关闭组件。
+组件关闭前，需要将组件状态修改为OMX_StateIdle，然后开始释放输入输出Buffer，再将组件状态修改为OMX_StateLoaded，最后再调用DestoryComponent去关闭组件。
 
 ##### Buffer释放示例
 
@@ -721,7 +720,7 @@ OpenMax不支持分帧。
 
 **解决办法**
 
-上层在调用EmptyThisBuffer时，需要按照一帧一帧传入。
+上层在调用EmptyThisBuffer时，需要按照每次一帧的方式传入。
 
 ## 解码过程中全是绿屏
 

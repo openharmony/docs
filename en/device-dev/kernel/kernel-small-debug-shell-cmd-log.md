@@ -1,71 +1,62 @@
 # log
 
-## Command Function<a name="section128219131856"></a>
+
+## Command Function
 
 This command is used to set and query log configuration.
 
-## Syntax<a name="section3894181710519"></a>
 
-log level \[_levelNum_\]
+## Syntax
 
-## Parameters<a name="section7693122310515"></a>
+log level [_levelNum_]
 
-**Table  1**  Parameter description
 
-<a name="table237mcpsimp"></a>
-<table><thead align="left"><tr id="row243mcpsimp"><th class="cellrowborder" valign="top" width="21%" id="mcps1.2.4.1.1"><p id="p245mcpsimp"><a name="p245mcpsimp"></a><a name="p245mcpsimp"></a><strong id="b3369319192013"><a name="b3369319192013"></a><a name="b3369319192013"></a>Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="52%" id="mcps1.2.4.1.2"><p id="p247mcpsimp"><a name="p247mcpsimp"></a><a name="p247mcpsimp"></a><strong id="b12646112413211"><a name="b12646112413211"></a><a name="b12646112413211"></a>Description</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="27%" id="mcps1.2.4.1.3"><p id="p249mcpsimp"><a name="p249mcpsimp"></a><a name="p249mcpsimp"></a><strong id="b13881153318285"><a name="b13881153318285"></a><a name="b13881153318285"></a>Value Range</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row250mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p252mcpsimp"><a name="p252mcpsimp"></a><a name="p252mcpsimp"></a>levelNum</p>
-</td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p254mcpsimp"><a name="p254mcpsimp"></a><a name="p254mcpsimp"></a>Specifies the level of logs to print.</p>
-</td>
-<td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="p2270121719813"><a name="p2270121719813"></a><a name="p2270121719813"></a>[0,5]</p>
-</td>
-</tr>
-</tbody>
-</table>
 
-## Usage<a name="section1982111281512"></a>
+## Parameters
 
--   This command depends on  **LOSCFG\_SHELL\_LK**. Before using this command, select  **Enable Shell lk**  on  **menuconfig**.
+**Table 1** Parameter description
 
-    **Debug**  ---\>  **Enable a Debug Version**  ---\>  **Enable Shell**  ---\>  **Enable Shell lK**
+| Parameter| Description| Value Range|
+| -------- | -------- | -------- |
+| levelNum | Specifies the level of logs to print.| [0, 5] |
 
--   The  **log level**  command is used to set the log level, which can be any of the following:
 
-    TRACE\_EMG = 0,
+## Usage Guidelines
 
-    TRACE\_COMMON = 1,
+- This command can be used only after **LOSCFG_SHELL_LK** is enabled. Before using this command, set **Enable Shell lk** to **Yes** on **menuconfig**.
+  **Debug** ---&gt; **Enable a Debug Version** ---&gt; **Enable Shell** ---&gt; **Enable Shell lK**
 
-    TRACE\_ERROR = 2,
+- The **log level** command sets the log level, which can be any of the following:
+  TRACE_EMG = 0,
 
-    TRACE\_WARN = 3,
+  TRACE_COMMON = 1,
 
-    TRACE\_INFO = 4,
+  TRACE_ERROR = 2,
 
-    TRACE\_DEBUG = 5
+  TRACE_WARN = 3,
 
-    If the log level specified is not within the value range, a message will be displayed.
+  TRACE_INFO = 4,
 
--   If  **\[levelNum\]**  is not specified, this command queries the current log level. The usage method is also displayed.
--   If the log level is set to  **4**  or  **5**  in the source code of the open-source small system, a large number of logs will be printed.
+  TRACE_DEBUG = 5
 
-## Example<a name="section176301333259"></a>
+  If the log level specified is not within the value range, a message will be displayed.
 
-Run  **log level 3**.
+- If **[levelNum]** is not specified, this command displays the current log level and how to use it.
 
-## Output<a name="section14354765415"></a>
+- If the log level is set to **4** or **5** in the source code of an OpenHarmony small system, a large number of logs will be printed.
 
-Setting the log print level to WARN:
+
+## Example
+
+Run **log level 3**.
+
+
+## Output
+
+The log print level is set to WARN.
+
 
 ```
 OHOS # log level 3
 Set current log level WARN
 ```
-

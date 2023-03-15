@@ -1,4 +1,4 @@
-# 媒体查询
+# @ohos.mediaquery (媒体查询)
 
 提供根据不同媒体类型定义不同的样式。
 
@@ -14,11 +14,6 @@ import mediaquery from '@ohos.mediaquery'
 ```
 
 
-## 权限
-
-无
-
-
 ## mediaquery.matchMediaSync
 
 matchMediaSync(condition: string): MediaQueryListener
@@ -28,19 +23,22 @@ matchMediaSync(condition: string): MediaQueryListener
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
+
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/ui-ts-layout-mediaquery.md#媒体查询条件语法规则)。 |
+| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/ui-ts-layout-mediaquery.md#语法规则)。 |
 
 **返回值：** 
+
 | 类型                 | 说明                     |
 | ------------------ | ---------------------- |
 | MediaQueryListener | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：** 
-  ```js
+
+```js
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-  ```
+```
 
 
 ## MediaQueryListener
@@ -51,10 +49,10 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 
 ### 属性
 
-| 名称      | 参数类型    | 可读   | 可写   | 说明         |
-| ------- | ------- | ---- | ---- | ---------- |
-| matches | boolean | 是    | 否    | 是否符合匹配条件。  |
-| media   | string  | 是    | 否    | 媒体事件的匹配条件。 |
+| 名称    | 类型    | 可读 | 可写 | 说明                 |
+| ------- | ------- | ---- | ---- | -------------------- |
+| matches | boolean | 是   | 否   | 是否符合匹配条件。   |
+| media   | string  | 是   | 否   | 媒体事件的匹配条件。 |
 
 
 ### on
@@ -66,12 +64,14 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
+
 | 参数名      | 类型                               | 必填   | 说明               |
 | -------- | -------------------------------- | ---- | ---------------- |
 | type     | string                           | 是    | 必须填写字符串'change'。 |
 | callback | Callback&lt;MediaQueryResult&gt; | 是    | 向媒体查询注册的回调       |
 
 **示例：** 
+
   详见[off示例](#off)。
 
 
@@ -84,12 +84,14 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-| 参数名      | 类型                               | 必填   | 说明                            |
-| -------- | -------------------------------- | ---- | ----------------------------- |
-| type     | boolean                          | 是    | 必须填写字符串'change'。              |
-| callback | Callback&lt;MediaQueryResult&gt; | 否    | 需要去注册的回调，如果参数缺省则去注册该句柄下所有的回调。 |
+
+| 参数名   | 类型                             | 必填 | 说明                                                       |
+| -------- | -------------------------------- | ---- | ---------------------------------------------------------- |
+| type     | string                           | 是   | 必须填写字符串'change'。                                   |
+| callback | Callback&lt;MediaQueryResult&gt; | 否   | 需要去注册的回调，如果参数缺省则去注册该句柄下所有的回调。 |
 
 **示例：** 
+
   ```js
     import mediaquery from '@ohos.mediaquery'
     
@@ -105,16 +107,19 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
     listener.off('change', onPortrait) // 去注册回调
   ```
 
-
 ## MediaQueryResult
+
+用于执行媒体查询操作。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ### 属性
 
-| 名称      | 参数类型    | 可读   | 可写   | 说明         |
-| ------- | ------- | ---- | ---- | ---------- |
-| matches | boolean | 是    | 否    | 是否符合匹配条件。  |
-| media   | string  | 是    | 否    | 媒体事件的匹配条件。 |
+| 名称    | 类型    | 可读 | 可写 | 说明                 |
+| ------- | ------- | ---- | ---- | -------------------- |
+| matches | boolean | 是   | 否   | 是否符合匹配条件。   |
+| media   | string  | 是   | 否   | 媒体事件的匹配条件。 |
 
 
 ### 示例
@@ -141,7 +146,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this) //bind current js instance
+    let portraitFunc = this.onPortrait.bind(this) // bind current js instance
     this.listener.on('change', portraitFunc)
   }
 

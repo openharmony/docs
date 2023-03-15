@@ -2,7 +2,7 @@
 
 ## 编译环境搭建
 
-首先请搭建OpenHarmony基础环境，步骤请参考轻量和小型系统入门[安装Hi3861开发板环境](../quick-start/quickstart-lite-steps-hi3861-setting.md)。用户态和LiteOS-A的内核态编译均使用llvm编译器编译，安装方法在搭建基础环境中已提供。若选择移植linux内核，请执行如下命令安装gcc-arm-linux-gnueabi交叉编译工具链，用于编译linux内核态镜像：
+首先请搭建OpenHarmony基础环境，相关操作请参考[快速入门环境搭建章节](../quick-start/quickstart-overview.md)。用户态和LiteOS-A的内核态编译均使用llvm编译器编译，安装方法在搭建基础环境中已提供。若选择移植linux内核，请执行如下命令安装gcc-arm-linux-gnueabi交叉编译工具链，用于编译linux内核态镜像：
 
 
 ```

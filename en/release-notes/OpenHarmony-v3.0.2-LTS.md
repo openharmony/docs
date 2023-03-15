@@ -85,7 +85,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | [I4V2DN](https://gitee.com/openharmony/xts_acts/issues/I4V2DN?from=project-issue) | The execution of two test cases times out during the ActsLwipTest module test.|
 | [I4V3KC](https://gitee.com/openharmony/xts_acts/issues/I4V3KC?from=project-issue) | The test case testPublish0010 fails in the Distributed Scheduler.|
 | [I4URGA](https://gitee.com/openharmony/applications_sample_camera/issues/I4URGA?from=project-issue) | A blue screen may appear when users search for WLAN signals on the **Settings** page.|
-| [I4SDCK](https://gitee.com/openharmony/aafwk_aafwk_lite/issues/I4SDCK?from=project-issue) | An empty path or garbled characters are returned when users run **GetSrcPath** or **GetDataPath** on the Hi3516 development board of a small-system device.|
+| I4SDCK | An empty path or garbled characters are returned when users run **GetSrcPath** or **GetDataPath** on the Hi3516 development board of a small-system device.|
 | [I4T6KZ](https://gitee.com/openharmony/communication_dsoftbus/issues/I4T6KZ) | The execution of **SendMessage** and **SendData4Data** fails during the transmission test.|
 | I4UOUS | Plaintext passwords are printed in the logs of the serial port interface on the Hi3516 development board of a small-system device.|
 | [I4OWZO](https://gitee.com/openharmony/third_party_toybox/issues/I4OWZO) | An error message is displayed when the **toybox mv** command is run to move a file in the NFS path.|
@@ -97,7 +97,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | [I4R4D3](https://gitee.com/openharmony/kernel_liteos_m/issues/I4R4D3) | The **detach** attribute is not set for the thread created by **pthread_create**. After the thread proactively exits and **OsGetAllTskInfo** is invoked, the related task name contains garbled characters.|
 | [I4R4A5](https://gitee.com/openharmony/kernel_liteos_m/issues/I4R4A5) | Compute overflow occurs in the implementation of the **pthread_cond_timedwait** interface.|
 | [I4QJT4](https://gitee.com/openharmony/drivers_adapter_khdf_linux/issues/I4QJT4) | The UartRead test case fails.|
-| [I4U1DM](https://gitee.com/openharmony/distributedschedule_samgr_lite/issues/I4U1DM) | No lock is added when the LFQUE_Pop function is invoked by the QUEUE_Popfunction of samgr, causing potential data competition.|
+| I4U1DM | No lock is added when the LFQUE_Pop function is invoked by the QUEUE_Popfunction of samgr, causing potential data competition.|
 
   **Table 4** Issues resolved for the standard system
 
@@ -106,7 +106,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | [I4UJNU](https://gitee.com/openharmony/applications_settings/issues/I4UJNU) | The WLAN password is displayed in plaintext in the hilog when the WLAN is connected.|
 | [I4MSWM](https://gitee.com/openharmony/xts_acts/issues/I4MSWM?from=project-issue) | During the XT test, there is one failed item in the faultloggertest case of the ActsFaultLoggerTest module.|
 | [I4MSVV](https://gitee.com/openharmony/xts_acts/issues/I4MSVV?from=project-issue) | During the XTS test, there are three failed items in the HiCollieCppTest case of the ActsHiCollieCppTest module.|
-| [I4PPXV](https://gitee.com/openharmony/appexecfwk_standard/issues/I4PPXV?from=project-issue) | The application icon is missing after a user opens an application, exits the application, and then returns to the home screen.|
+| I4PPXV | The application icon is missing after a user opens an application, exits the application, and then returns to the home screen.|
 | [I4OF9A](https://gitee.com/openharmony/distributeddatamgr_file/issues/I4OF9A?from=project-issue) | The **text** value read by the **file.readText** interface is unstable.|
 | [I4OWWM](https://gitee.com/openharmony/xts_acts/issues/I4OWWM) | The JSON file corresponding to the WeekPluralNumbertest module is incorrectly configured. When a test case is executed, "required device does not exist" is reported, and the test suite cannot be executed.|
 | [I4OUVQ](https://gitee.com/openharmony/xts_tools/issues/I4OUVQ?from=project-issue) | During repeated pressure tests of XTS JS cases, the system stops responding and the test cannot continue.|

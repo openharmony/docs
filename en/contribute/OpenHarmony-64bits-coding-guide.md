@@ -404,8 +404,8 @@ typedef struct {
 } TreeNodeInfo;
 
 typedef struct {
-    TreeNodeInfo nodeInfo;   /* Tree information data structure of each node */
-    void *userInfo;          /* User information data structure of each node */
+    TreeNodeInfo nodeInfo;   /* Data structure of each node's tree information. */
+    void *userInfo;          /* Data structure of each node's user information. */
 } TreeNode;
 ```
 

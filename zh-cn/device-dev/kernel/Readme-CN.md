@@ -1,8 +1,9 @@
 # kernel
 
 - 内核
-    - 轻量系统内核
-        - [内核概述](kernel-mini-overview.md)
+    - [内核概述](kernel-overview.md)
+    - 轻量系统内核（LiteOS-M）
+        - [轻量系统内核概述](kernel-mini-overview.md)
         - 基础内核
             - [中断管理](kernel-mini-basic-interrupt.md)
             - [任务管理](kernel-mini-basic-task.md)
@@ -12,8 +13,9 @@
                 - [互斥锁](kernel-mini-basic-ipc-mutex.md)
                 - [消息队列](kernel-mini-basic-ipc-queue.md)
                 - [信号量](kernel-mini-basic-ipc-sem.md)
-            - [时间管理](kernel-basic-mini-time.md)
+            - [时间管理](kernel-mini-basic-time.md)
             - [软件定时器](kernel-mini-basic-soft.md)
+            - [双向链表](kernel-mini-basic-list.md)
         - 扩展组件
             - [C++支持](kernel-mini-extend-support.md)
             - [CPU占用率](kernel-mini-extend-cpup.md)
@@ -24,12 +26,12 @@
             - [异常调测](kernel-mini-memory-exception.md)
             - [Trace调测](kernel-mini-memory-trace.md)
             - [LMS调测](kernel-mini-memory-lms.md)
+            - [SHELL](kernel-mini-debug-shell.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
-            - [双向链表](kernel-mini-appx-data-list.md)
             - [标准库支持](kernel-mini-appx-lib.md)
-    - 小型系统内核
-        - [内核概述](kernel-small-overview.md)
+    - 小型系统内核（LiteOS-A）
+        - [小型系统内核概述](kernel-small-overview.md)
         - 内核启动
             - [内核态启动](kernel-small-start-kernel.md)
             - [用户态启动](kernel-small-start-user.md)
@@ -64,6 +66,7 @@
                 - [虚拟文件系统](kernel-small-bundles-fs-virtual.md)
                 - [支持的文件系统](kernel-small-bundles-fs-support.md)
                 - [适配新的文件系统](kernel-small-bundles-fs-new.md)
+                - [Plimitsfs文件系统](kernel-small-plimits.md)
         - 调测与工具
             - Shell
                 - [Shell介绍](kernel-small-debug-shell-overview.md)
@@ -133,7 +136,7 @@
                 - [魔法键使用方法](kernel-small-debug-shell-magickey.md)
                 - [用户态异常信息说明](kernel-small-debug-shell-error.md)
             - [Trace调测](kernel-small-debug-trace.md)
-            - [Perf调测](kernel-mini-memory-perf.md)
+            - [Perf调测](kernel-small-debug-perf.md)
             - [LMS调测](kernel-small-memory-lms.md)
             - [进程调测](kernel-small-debug-process-cpu.md)
             - 内核态内存调测
@@ -149,12 +152,14 @@
                 - [双向链表](kernel-small-apx-dll.md)
                 - [位操作](kernel-small-apx-bitwise.md)
             - [标准库](kernel-small-apx-library.md)
-    - 标准系统内核
-        - [Linux内核概述](kernel-standard-overview.md)
+            - [内核编码规范](kernel-mini-appx-code.md)
+    - 标准系统内核（Linux）
+        - [标准系统内核概述](kernel-standard-overview.md)
         - [OpenHarmony开发板Patch使用指导](kernel-standard-patch.md)
-        - [Linux内核编译与构建指导](kernel-standard-build.md)
+        - [标准系统内核编译与构建指导](kernel-standard-build.md)
         - 内核增强特性
           - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
+          - [NewIP内核协议栈介绍](kernel-standard-newip.md)
           - 任务调度
             - [关联线程组调度](kernel-standard-sched-rtg.md)
             - [CPU轻量级隔离](kernel-standard-sched-cpuisolation.md)

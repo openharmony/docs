@@ -2,7 +2,7 @@
 
 ## 常见编译问题和解决方法
 
-###  编译构建过程中，提示“usr/sbin/ninja: invalid option -- w”
+###  提示“usr/sbin/ninja: invalid option -- w”
 
 - **现象描述：** 编译失败，提示“usr/sbin/ninja: invalid option -- w”。
 
@@ -10,7 +10,7 @@
 
 - **解决办法：** 卸载环境中ninja和gn，按照[获取工具](../../device-dev/get-code/gettools-ide.md)。
 
-### 编译构建过程中，提示“/usr/bin/ld: cannot find -lncurses”
+### 提示“/usr/bin/ld: cannot find -lncurses”
 
 - **现象描述：** 编译失败，提示“/usr/bin/ld: cannot find -lncurses”。
 
@@ -22,7 +22,7 @@
   sudo apt-get install lib32ncurses5-dev
   ```
 
-### 编译构建过程中，提示“line 77: mcopy: command not found”
+### 提示“line 77: mcopy: command not found”
 
 - **现象描述：** 编译失败，提示“line 77: mcopy: command not found”。
 
@@ -34,7 +34,7 @@
   sudo apt-get install dosfstools mtools
   ```
 
-### 编译构建过程中，提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”
+### 提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”
 
 - **现象描述：** 编译失败，提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”。
 
@@ -48,7 +48,7 @@
 
   使用chmod命令修改目录权限为755。
 
-### 编译构建过程中，提示“No module named 'Crypto'”
+### 提示“No module named 'Crypto'”
 
 - **现象描述：** 编译失败，提示“No module named 'Crypto'”。
 
@@ -68,7 +68,7 @@
      sudo pip3 install pycryptodome
      ```
 
-### 编译构建过程中，提示“xx.sh : xx unexpected operator”
+### 提示“xx.sh : xx unexpected operator”
 
 - **现象描述：** 编译失败：“xx.sh [: xx unexpected operator”。
 
@@ -82,7 +82,7 @@
   ```
 
 
-### 编译构建过程中，提示“some services are not authenticated. Listed as follow”
+### 提示“some services are not authenticated. Listed as follow”
 
 - **现象描述：** 编译失败：“some services are not authenticated. Listed as follow”。
 

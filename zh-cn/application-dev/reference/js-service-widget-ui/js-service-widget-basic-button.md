@@ -18,7 +18,7 @@
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | string | - | 否 | 不支持动态修改。如果该属性缺省，展示类胶囊型按钮，不同于胶囊类型，四边圆角可以通过border-radius分别指定，如果需要设置该属性，可选值如下：<br/>-&nbsp;"capsule"：胶囊型按钮，带圆角按钮，有背景色和文本。<br/>-&nbsp;"circle"：圆形按钮，支持放置图标。<br/>-&nbsp;"text"：文本按钮，仅包含文本显示。 |
+| type | string | capsule | 否 | 不支持动态修改。如果该属性缺省，展示类胶囊型按钮，不同于胶囊类型，四边圆角可以通过border-radius分别指定，如果需要设置该属性，可选值如下：<br/>-&nbsp;"capsule"：胶囊型按钮，带圆角按钮，有背景色和文本。<br/>-&nbsp;"circle"：圆形按钮，支持放置图标。<br/>-&nbsp;"text"：文本按钮，仅包含文本显示。 |
 | value | string | - | 否 | button的文本值，circle类型不生效。 |
 | icon | string | - | 否 | button的图标路径，图标格式为jpg，png和svg。 |
 | placement | string | end | 否 | 仅在type属性为缺省时生效，设置图标位于文本的位置，可选值为：<br/>-&nbsp;"start"：图标位于文本起始处。<br/>-&nbsp;"end"：图标位于文本结束处。<br/>-&nbsp;"top"：图标位于文本上方。<br/>-&nbsp;"bottom"：图标位于文本下方。 |

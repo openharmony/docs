@@ -1,8 +1,10 @@
 # Drivers
 
+- [Driver Overview](driver-overview-foundation.md)
 - HDF
   - [HDF Overview](driver-hdf-overview.md)
   - [Driver Development](driver-hdf-development.md)
+  - [Driver Loading](driver-hdf-load.md)
   - [Driver Service Management](driver-hdf-servicemanage.md)
   - [Driver Message Mechanism Management](driver-hdf-message-management.md)
   - [Driver Configuration Management](driver-hdf-manage.md)
@@ -45,10 +47,12 @@
 - Peripheral Driver Usage
   - [Audio](driver-peripherals-audio-des.md)
   - [Camera](driver-peripherals-camera-des.md)
+  - [Codec](driver-peripherals-codec-des.md)
   - [Facial Authentication](driver-peripherals-face_auth-des.md)
   - [Fingerprint Authentication](driver-peripherals-fingerprint_auth-des.md)
   - [LCD](driver-peripherals-lcd-des.md)
   - [Light](driver-peripherals-light-des.md)
+  - [Motion](driver-peripherals-motion-des.md)
   - [PIN Authentication](driver-peripherals-pinauth-des.md)
   - [Sensor](driver-peripherals-sensor-des.md)
   - [Touchscreen](driver-peripherals-touch-des.md)

@@ -32,7 +32,7 @@ The style consistency principle is preferred in the following situations:
 **Example:**`username`,`account`
 
 #### Rule 1.2 Use abbreviations as few as possible, except for common words or professional words. For example, `context` can be shortened to `ctx`, `request` can be shortened to `req`, and `response` can be shortened to `resp`.
- 
+
 **Note:** Complete spelling of words can avoid unnecessary misunderstanding.
 
 **Exceptions:** The variable name of the cyclic condition can be ` i` or ` j` in the cyclic language.
@@ -170,9 +170,9 @@ function render(container, dataSource) {
 
 #### Rule 2.3 The use of braces must comply with the following conventions:
 
-1. If the value in the braces is empty, the value can be abbreviated as `{}` without a newline.
-2. The left braces do not contain a line feed, and the left braces are followed by a line feed.
-3. Line feeds before the right brace. If there is `else` or `catch` after the brace, line feeds are not required. In other cases, line feeds are required.
+1. If the value in the braces is empty, the value can be abbreviated as `{}` without a line feed.
+2. Do not use a line feed before the left brace, and use one after it.
+3. Use a line feed before the right brace, and use one after it as long as it is not followed by `else` or `catch`.
 
 #### Rule 2.4 Implementations of conditional and loop statements must be enclosed in braces, even if there is only one statement.
 
@@ -329,7 +329,7 @@ console.log(`${username}'s birthday is ${birthday}`);
 **Example:**
 
 ```javascript
-let message = 'wolrd';
+let message = 'world';
 console.log(message);
 ```
 
@@ -337,7 +337,7 @@ console.log(message);
 
 #### Rule 3.1 When declaring a variable, use the keyword `var`, `let`, or `const` to prevent the variable from being exposed to the global scope.
 
-**Note:** If the keyword `var`, `let`, or `const` is not used to declare a variable, the variable will be exposed to the global scope, which may overwrite the variable with the same name in the global scope. As a result, the GC cannot effectively reclaim the memory. In addition, when a variable contains sensitive information, exposuring to the global scope may result in information leakage. ** Use `const` instead of `var` for all references; Use `let` instead of `var` if you need a variable reference.** Because the scope of `const` and `let` is smaller, writing code is easier to control. Const ensures that the reference cannot be re-assigned. The pointer referenced by const is immutable, and an error will be reported during re-assignment, avoiding overwriting.
+**Note:** If the keyword `var`, `let`, or `const` is not used to declare a variable, the variable will be exposed to the global scope, which may overwrite the variable with the same name in the global scope. As a result, the GC cannot effectively reclaim the memory. In addition, when a variable contains sensitive information, exposing to the global scope may result in information leakage. ** Use `const` instead of `var` for all references; Use `let` instead of `var` if you need a variable reference.** Because the scope of `const` and `let` is smaller, writing code is easier to control. Const ensures that the reference cannot be re-assigned. The pointer referenced by const is immutable, and an error will be reported during re-assignment, avoiding overwriting.
 
 **Counterexample:**
 

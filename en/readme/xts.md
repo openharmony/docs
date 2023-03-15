@@ -15,15 +15,15 @@ OpenHarmony supports the following system types:
 
 -   Mini system
 
-    A mini system runs on the devices whose memory is greater than or equal to 128 KiB and that are equipped with MCU processors such as ARM Cortex-M and 32-bit RISC-V. This system provides multiple lightweight network protocols and graphics frameworks, and a wide range of read/write components for the IoT bus. Typical products include connection modules, sensors, and wearables for smart home.
+    A mini system runs on the devices whose memory is greater than or equal to 128 KiB and that are equipped with MCU processors such as ARM Cortex-M and 32-bit RISC-V. This system provides multiple lightweight network protocols and graphics frameworks, and a wide range of read/write components for the IoT bus. Typical products include connection modules, sensors, and wearables for smart home. Typical boards include Multi-modalV200Z-R.
 
 -   Small system
 
-    A small system runs on the devices whose memory is greater than or equal to 1 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. Typical products include smart home IP cameras, electronic cat eyes, and routers, and event data recorders \(EDRs\) for smart travel.
+    A small system runs on the devices whose memory is greater than or equal to 1 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. Typical products include smart home IP cameras, electronic cat eyes, and routers, and event data recorders \(EDRs\) for smart travel. Typical boards include Hispark_Taurus.
 
 -   Standard system
 
-    A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
+    A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays. Typical boards include HopeRun DAYU200.
 
 
 ## Directory Structure
@@ -110,88 +110,94 @@ The HCTest framework is used to support test cases developed with the C language
     │ │ └── BUILD.gn
     ```
 
-2.  Write the test case in the **src** directory.
+2. Write the test case in the **src** directory.
 
-    1 Import the test framework header file.
+   1. Import the test framework header file.
 
-    ```
-    #include "hctest.h"
-    ```
+      ```
+      #include "hctest.h"
+      ```
 
-    2. Use the **LITE\_TEST\_SUIT** macro to define names of the subsystem, module, and test suite.
+      
 
-    ```
-    /** 
-    * @brief  Registers a test suite named IntTestSuite.
-    * @param  test Subsystem name
-    * @param  example Module name
-    * @param  IntTestSuite Test suite name
-    */
-    LITE_TEST_SUIT(test, example, IntTestSuite);
-    ```
+   2. Use the **LITE\_TEST\_SUIT** macro to define names of the subsystem, module, and test suite.
 
-    3. Define Setup and TearDown.
+      ```
+      /** 
+      * @brief  Registers a test suite named IntTestSuite.
+      * @param  test Subsystem name
+      * @param  example Module name
+      * @param  IntTestSuite Test suite name
+      */
+      LITE_TEST_SUIT(test, example, IntTestSuite);
+      ```
 
-    Format: Test suite name+Setup, Test suite name+TearDown.
+   3. Define Setup and TearDown.
 
-    The Setup and TearDown functions must exist, but function bodies can be empty.
+      Format: Test suite name+Setup, Test suite name+TearDown.
 
-    4. Use the **LITE\_TEST\_CASE** macro to write the test case.
+      The Setup and TearDown functions must exist, but function bodies can be empty.
 
-    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
+   4. Use the **LITE\_TEST\_CASE** macro to write the test case.
 
-    ```
-    LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
-    {  
-      // Do something 
-    };
-    ```
+      Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
 
-    5. Use the **RUN\_TEST\_SUITE** macro to register the test suite.
+      ```
+      LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
+      {  
+        // Do something 
+      };
+      ```
 
-    ```
-    RUN_TEST_SUITE(IntTestSuite);
-    ```
+      
 
-3.  Create the configuration file \(**BUILD.gn**\) of the test module.
+   5. Use the **RUN\_TEST\_SUITE** macro to register the test suite.
 
-    Create a **BUILD.gn** \(example\) build file in each test module directory. Specify the name of the built static library and its dependent header file and library in the build file. The format is as follows:
+      ```
+      RUN_TEST_SUITE(IntTestSuite);
+      ```
 
-    ```
-    import("//test/xts/tools/lite/build/suite_lite.gni")
-    hctest_suite("ActsDemoTest") {
-        suite_name = "acts"
-        sources = [
-            "src/test_demo.c",
-        ]
-        include_dirs = [ ]
-        cflags = [ "-Wno-error" ]
-    }
-    ```
+      
 
-4.  Add build options to the **BUILD.gn** file in the **acts** directory.
+3. Create the configuration file \(**BUILD.gn**\) of the test module.
 
-    You need to add the test module to the **test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
+   Create a **BUILD.gn** \(example\) build file in each test module directory. Specify the name of the built static library and its dependent header file and library in the build file. The format is as follows:
 
-    ```
-    lite_component("acts") {  
-        ...
-        if(board_name == "liteos_m") {
-            features += [    
-                ...
-                "//xts/acts/subsystem_lite/module_hal:ActsDemoTest"
-            ]    
-        }
-    }
-    ```
+   ```
+   import("//test/xts/tools/lite/build/suite_lite.gni")
+   hctest_suite("ActsDemoTest") {
+       suite_name = "acts"
+       sources = [
+           "src/test_demo.c",
+       ]
+       include_dirs = [ ]
+       cflags = [ "-Wno-error" ]
+   }
+   ```
 
-5.  Run build commands.
+4. Add build options to the **BUILD.gn** file in the **acts** directory.
 
-    Test suites are built along with version build. The ACTS is built together with the debug version.
+   You need to add the test module to the **test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
 
-    >![](public_sys-resources/icon-note.gif) **NOTE**
-    >
-    >The ACTS build middleware is a static library, which will be linked to the image.
+   ```
+   lite_component("acts") {  
+       ...
+       if(board_name == "liteos_m") {
+           features += [    
+               ...
+               "//xts/acts/subsystem_lite/module_hal:ActsDemoTest"
+           ]    
+       }
+   }
+   ```
+
+5. Run build commands.
+
+   Test suites are built along with version build. The ACTS is built together with the debug version.
+
+   >![](public_sys-resources/icon-note.gif) **NOTE**
+   >
+   >The ACTS build middleware is a static library, which will be linked to the image.
 
 
 ### C-based Test Case Execution \(for the Mini System\)
@@ -229,53 +235,59 @@ The HCPPTest framework is enhanced and adapted based on the open-source framewor
     │ │ └── BUILD.gn
     ```
 
-2.  Write the test case in the **src** directory.
+2. Write the test case in the **src** directory.
 
-    1. Import the test framework header file.
+   1. Import the test framework header file.
 
-    The following statement includes **gtest.h**.
+      The following statement includes **gtest.h**.
 
-    ```
-    #include "gtest/gtest.h"
-    ```
+      ```
+      #include "gtest/gtest.h"
+      ```
 
-    2. Define Setup and TearDown.
+      
 
-    ```
-    using namespace std;
-    using namespace testing::ext;
-    class TestSuite: public testing::Test {
-    protected:
-    // Preset action of the test suite, which is executed before the first test case
-    static void SetUpTestCase(void){
-    }
-    // Test suite cleanup action, which is executed after the last test case
-    static void TearDownTestCase(void){
-    }
-    // Preset action of the test case
-    virtual void SetUp()
-    {
-    }
-    // Cleanup action of the test case
-    virtual void TearDown()
-    {
-    }
-    };
-    ```
+   2. Define Setup and TearDown.
 
-    3. Use the **HWTEST** or **HWTEST\_F** macro to write the test case.
+      ```
+      using namespace std;
+      using namespace testing::ext;
+      class TestSuite: public testing::Test {
+      protected:
+      // Preset action of the test suite, which is executed before the first test case
+      static void SetUpTestCase(void){
+      }
+      // Test suite cleanup action, which is executed after the last test case
+      static void TearDownTestCase(void){
+      }
+      // Preset action of the test case
+      virtual void SetUp()
+      {
+      }
+      // Cleanup action of the test case
+      virtual void TearDown()
+      {
+      }
+      };
+      ```
 
-   **HWTEST**: definition of common test cases, including the test suite name, test case name, and case annotation.
+      
 
-   **HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
+   3. Use the **HWTEST** or **HWTEST\_F** macro to write the test case.
 
-    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
+      **HWTEST**: definition of common test cases, including the test suite name, test case name, and case annotation.
 
-    ```
-    HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
-    // Do something
-    }
-    ```
+      **HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
+
+      Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
+
+      ```
+       HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
+       // Do something
+       }
+      ```
+
+       
 
 3.  Create a configuration file \(**BUILD.gn**\) of the test module.
 

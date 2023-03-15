@@ -101,17 +101,17 @@ image{
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   imageComplete(i,e){
-    prompt.showToast({
+    promptAction.showToast({
       message: "image "+i+"'s width"+ e.width+"----image "+i+"'s height"+e.height,
       duration: 3000,
     })
   },
   imageError(i,e){
     setTimeout(()=>{
-      prompt.showToast({
+      promptAction.showToast({
         message: "Failed to load image "+i+".",
         duration: 3000,
       })
@@ -132,7 +132,7 @@ export default {
 <div class="page-container">
   <div class="content">
     <div class="image-container">
-      <image class="testimage" src="{{testuri}}" style="display:{{displaytype}};opacity:{{imageopacity}};" onclick="changedisplaytype" onlongpress="changeopacity"> </image>
+      <image class="testimage" src="{{testuri}}" style="opacity:{{imageopacity}};" onlongpress="changeopacity"> </image>
     </div>
     <div class="text-container">
       <text style="font-size: 37px;font-weight:bold;color:orange;text-align: center;width: 100%;">Touch and hold the image</text>
@@ -177,7 +177,7 @@ export default {
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     testuri: 'common/images/bg-tv.jpg',
@@ -185,7 +185,7 @@ export default {
     timer: null
   },
   changeopacity: function () {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Touch and hold the image.'
     })
     var opval = this.imageopacity * 20

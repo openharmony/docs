@@ -1,4 +1,5 @@
-# Screenshot
+# @ohos.screenshot (Screenshot)
+
 The **Screenshot** module provides APIs for you to set information such as the region to capture and the size of the screen region when capturing a screen.
 
 >  **NOTE**
@@ -36,10 +37,10 @@ Describes the region of the screen to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | Yes  | Left boundary of the screen region to capture.|
-| top    | number | Yes  | Top boundary of the screen region to capture.|
-| width  | number | Yes  | Width of the screen region to capture.|
-| height | number | Yes  | Height of the screen region to capture.|
+| left   | number | Yes  | Left boundary of the screen region to capture, in pixels.|
+| top    | number | Yes  | Top boundary of the screen region to capture, in pixels.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels.|
+| height | number | Yes  | Height of the screen region to capture, in pixels.|
 
 
 ## Size
@@ -50,12 +51,12 @@ Describes the size of the screen region to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes  | Width of the screen region to capture.|
-| height | number | Yes  | Height of the screen region to capture.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels.|
+| height | number | Yes  | Height of the screen region to capture, in pixels.|
 
 ## screenshot.save
 
-save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
+save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
@@ -67,13 +68,13 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
+| options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 **Example**
 
   ```js
-  var screenshotOptions = {
+  let screenshotOptions = {
     "screenRect": {
         "left": 200,
         "top": 100,
@@ -85,14 +86,51 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
     "rotation": 0,
     "displayId": 0
   };
-  screenshot.save(screenshotOptions, (err, pixelMap) => {
-    if (err) {
-        console.log('Failed to save screenshot: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // Release the memory in time after the PixelMap is used.
-  });
+  try {
+    screenshot.save(screenshotOptions, (err, pixelMap) => {
+      if (err) {
+          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      pixelMap.release(); // Release the memory in time after the PixelMap is used.
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
+  ```
+
+## screenshot.save
+
+save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
+
+**Example**
+
+  ```js
+  try {
+    screenshot.save((err, pixelMap) => {
+      if (err) {
+          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      pixelMap.release(); // Release the memory in time after the PixelMap is used.
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
   ```
 
 ## screenshot.save
@@ -120,7 +158,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
 **Example**
 
   ```js
-  var screenshotOptions = {
+  let screenshotOptions = {
   	"screenRect": {
   		"left": 200,
   		"top": 100,
@@ -132,11 +170,15 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
   	"rotation": 0,
   	"displayId": 0
   };
-  let promise = screenshot.save(screenshotOptions);
-  promise.then((pixelMap) => {
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-      pixelMap.release(); // Release the memory in time after the PixelMap is used.
-  }).catch((err) => {
-      console.log('Failed to save screenshot: ' + JSON.stringify(err));
-  });
+  try {
+    let promise = screenshot.save(screenshotOptions);
+    promise.then((pixelMap) => {
+        console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+        pixelMap.release(); // Release the memory in time after the PixelMap is used.
+    }).catch((err) => {
+        console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
   ```

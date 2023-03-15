@@ -6,7 +6,7 @@ The DFX subsystem provides the following functions:
 
 - HiLog: implements the logging function. It is applicable to mini-system devices \(reference memory ≥ 128 KiB\), small-system devices \(reference memory ≥ 1 MiB\), and standard-system devices \(reference memory ≥ 128 MB\).
 
-- HiTrace: implements distributed call chain tracing. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
+- HiTraceChain: implements distributed call chain tracing. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiCollie: implements thread suspension detection. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiSysEvent: implements system event logging. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiChecker: implements defect scanning. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
@@ -35,3 +35,4 @@ Event logging means to collect and log events reported during system running. Th
 **System event**
 
 A system event is an indication of the system status at a given time point during system running. You can use these events to analyze the status change of the system.
+<!--no_check-->

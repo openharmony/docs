@@ -1,27 +1,24 @@
 # Click Control
 
+Click control attributes are used to set whether a component can respond to finger interactions such as click and touch events.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
 
-| **Name** | **Type** | **Default Value** | **Description** |
-| --------  | -------- | -------- | -------- |
-| touchable | boolean  | true     | Whether the current component is touchable. |
+| Name     | Type| Description                   |
+| ----------- | -------- | ------------------------ |
+| touchable   | boolean  | Whether the component can respond to finger interactions such as click and touch events.<br>Default value: **true**|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TouchAbleExample {
@@ -47,6 +44,5 @@ struct TouchAbleExample {
   }
 }
 ```
-
 
 ![en-us_image_0000001257138351](figures/en-us_image_0000001257138351.gif)

@@ -20,6 +20,8 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -58,6 +60,8 @@ Canvas组件设置宽（width）、高（height）、背景色（background-colo
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  width: 100%;
+  height: 100%;
 }
 canvas{
   width: 500px;
@@ -114,12 +118,10 @@ Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataU
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     dataURL:null,
-    antialia: false,
-    porc:'open',
   },
   onShow(){
     let el = this.$refs.canvas1;
@@ -130,7 +132,7 @@ export default {
     let el = this.$refs.canvas1
     let dataUrl = el.toDataURL()
     this.dataURL = dataUrl;
-    prompt.showToast({duration:2000,message:"long press,get dataURL"})
+    promptAction.showToast({duration:2000,message:"long press,get dataURL"})
   }
 }
 ```

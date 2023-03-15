@@ -1,391 +1,513 @@
-# 锁屏管理
+# @ohos.screenLock (锁屏管理)
 
-锁屏管理服务是OpenHarmony中系统服务，为锁屏应用提供注册亮屏、灭屏、开启屏幕、结束休眠、退出动画、请求解锁结果监听，并提供回调结果给锁屏应用。锁屏管理服务向三方应用提供请求解锁、查询锁屏状态、查询是否设置锁屏密码的能力。
+锁屏管理服务是OpenHarmony中的系统服务，为锁屏应用提供注册亮屏、灭屏、开启屏幕、结束休眠、退出动画、请求解锁结果监听，并提供回调结果给锁屏应用。锁屏管理服务向三方应用提供请求解锁、查询锁屏状态、查询是否设置锁屏密码的能力。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
-
 
 ```js
 import screenlock from '@ohos.screenLock';
 ```
 
+## EventType<sup>9+</sup>
 
-## screenlock.isScreenLocked
+定义系统事件类型。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
+
+| 事件类型            | 说明                     |
+| ------------------ | ------------------------ |
+| beginWakeUp        | 表示设备开始唤醒。 |
+| endWakeUp          | 表示设备结束唤醒。 |
+| beginScreenOn      | 表示设备开始亮屏。 |
+| endScreenOn        | 表示设备结束亮屏。 |
+| beginScreenOff     | 表示设备开始灭屏。 |
+| endScreenOff       | 表示设备结束灭屏。 |
+| unlockScreen       | 表示请求屏幕解锁。       |
+| lockScreen         | 表示请求屏幕锁定。       |
+| beginExitAnimation | 表示开始退场动画。       |
+| beginSleep         | 表示设备开始休眠。           |
+| endSleep           | 表示设备结束休眠。           |
+| changeUser         | 表示切换用户。           |
+| screenlockEnabled  | 表示锁屏是否启用。       |
+| serviceRestart     | 表示锁屏服务进行重启。   |
+
+## SystemEvent<sup>9+</sup>
+
+定义系统事件回调参数结构。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
+
+| 名称    | 类型   | 必填 |       说明        |
+| --------- | ------ | ---- | ------------- |
+| eventType   | [EventType](#eventtype9) | 是   | 系统事件类型。 |
+| params | string | 是   | 系统事件参数。 |
+
+## screenlock.isLocked<sup>9+</sup>
+
+isLocked(): boolean
+
+判断屏幕是否锁屏。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**返回值：** 
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| boolean | 返回true表示屏幕已锁屏；返回false表示屏幕未锁屏。 |
+
+**示例：** 
+
+```js
+let isLocked = screenlock.isLocked();
+```
+
+## screenlock.isSecure<sup>9+</sup>
+
+isSecure(): boolean
+
+判断当前设备的屏幕锁定是否安全（安全屏幕锁定意味着解锁屏幕需要密码、图案或其他用户身份识别）。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**返回值：** 
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示当前设备的屏幕锁定安全；返回false表示当前设备的屏幕锁定不安全。 |
+
+**示例：** 
+
+```js
+let isSecure = screenlock.isSecure();
+```
+
+## screenlock.unlock<sup>9+</sup>
+
+unlock(callback: AsyncCallback&lt;boolean&gt;): void
+
+解锁屏幕。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**参数：** 
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | --------------------- | ---- | ------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕解锁成功；返回false表示屏幕解锁失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | The screenlock management service is abnormal.         |
+
+**示例：** 
+
+```js
+screenlock.unlock((err, data) => {      
+    if (err) {
+        console.error(`Failed to unlock the screen, because: ${err.message}`);
+        return;    
+    }
+    console.info(`unlock the screen successfully. result: ${data}`);
+});
+```
+
+## screenlock.unlock<sup>9+</sup>
+
+unlock(): Promise&lt;boolean&gt;
+
+解锁屏幕。使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**返回值：** 
+
+| 类型                | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕解锁成功；返回false表示屏幕解锁失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | The screenlock management service is abnormal.         |
+
+**示例：** 
+
+```js
+screenlock.unlock().then((data) => {
+    console.info(`unlock the screen successfully. result: ${data}`);
+}).catch((err) => {
+    console.error(`Failed to unlock the screen, because: ${err.message}`);
+});
+```
+
+## screenlock.lock<sup>9+</sup>
+
+lock(callback: AsyncCallback&lt;boolean&gt;): void
+
+锁定屏幕。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
+
+**参数：** 
+
+| 参数名   | 类型          | 必填 | 说明                      |
+| -------- | ---------------------- | ---- | ---------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕锁定成功；返回false表示屏幕锁定失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | The screenlock management service is abnormal.         |
+
+**示例：** 
+
+```js
+screenlock.lock((err, data) => {      
+    if (err) {
+        console.error(`Failed to lock the screen, because: ${err.message}`);
+        return;    
+    }
+    console.info(`lock the screen successfully. result: ${data}`);
+});
+```
+
+## screenlock.lock<sup>9+</sup>
+
+lock(): Promise&lt;boolean&gt;
+
+锁定屏幕。使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
+
+**返回值：** 
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕锁定成功；返回false表示屏幕锁定失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | The screenlock management service is abnormal.         |
+
+**示例：** 
+
+```js
+screenlock.lock().then((data) => {
+    console.info(`lock the screen successfully. result: ${data}`);
+}).catch((err) => {
+    console.error(`Failed to lock the screen, because: ${err.message}`);
+});
+```
+
+## screenlock.onSystemEvent<sup>9+</sup>
+
+onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
+
+注册锁屏相关的系统事件，仅系统锁屏应用可调用。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
+
+**参数：** 
+
+| 参数名   | 类型                        | 必填 | 说明               |
+| -------- | ------------------------- | ---- | ----------------- |
+| callback | Callback\<[SystemEvent](#systemevent9)> | 是   | 锁屏相关的系统事件回调函数。 |
+
+**返回值：** 
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| boolean | 返回true表示锁屏相关系统事件注册成功；返回false表示锁屏相关系统事件注册失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | The screenlock management service is abnormal.         |
+
+**示例：** 
+
+```js
+try {
+    let isSuccess = screenlock.onSystemEvent((event) => {
+        console.log(`Register the system event which related to screenlock successfully. eventType: ${event.eventType}`)
+    });
+} catch (err) {
+    console.error(`Failed to register the system event which related to screenlock, because: ${err.message}`)
+}
+```
+
+## screenlock.sendScreenLockEvent<sup>9+</sup>
+
+sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
+
+应用发送事件到锁屏服务。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
+
+**参数：** 
+
+| 参数名    | 类型            | 必填 | 说明                             |
+| --------- | ------------------------ | ---- | -------------------- |
+| event     | String                   | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| parameter | number                   | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
+| callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示发送事件成功；返回false表示发送事件失败。                 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | The screenlock management service is abnormal.         |
+
+**示例：** 
+
+```js
+screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
+    if (err) {
+        console.error(`Failed to send screenlock event, because: ${err.message}`);
+        return;
+    }
+    console.info(`Send screenlock event successfully. result: ${result}`);
+});
+```
+
+## screenlock.sendScreenLockEvent<sup>9+</sup>
+
+sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
+
+应用发送事件到锁屏服务。使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
+
+**参数：** 
+
+| 参数名    | 类型   | 必填 | 说明                                       |
+| --------- | ------ | ---- | --------------------------------------- |
+| event     | String | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| parameter | number | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
+
+**返回值：** 
+
+| 类型               | 说明                                           |
+| ----------------- | ---------------------------------------------- |
+| Promise\<boolean> | Promise对象。返回true表示发送事件成功；返回false表示发送事件失败。 |
+
+**示例：** 
+
+```js
+screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
+    console.info(`Send screenlock event successfully. result: ${result}`);
+}).catch((err) => {
+    console.error(`Failed to send screenlock event, because: ${err.message}`);
+});
+```
+
+## screenlock.isScreenLocked<sup>(deprecated)</sup>
 
 isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断屏幕是否锁屏，使用callback作为异步方法。
+判断屏幕是否锁屏。使用callback异步回调。
 
-**系统能力**: SystemCapability.MiscServices.ScreenLock
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
+
+**系统能力：** SystemCapability.MiscServices.ScreenLock
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回true表示屏幕已锁屏，返回false表示屏幕未锁屏。 | 
+| 参数名   | 类型                         | 必填 | 说明                                                        |
+| -------- | ---------------------------- | ---- | ----------------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕已锁屏；返回false表示屏幕未锁屏。 |
 
 **示例：**
-  
-  ```js
-  screenlock.isScreenLocked((err, data)=>{      
-     if (err) {
-          console.error('isScreenLocked callback error -> ${JSON.stringify(err)}');
-          return;    
-     }
-     console.info('isScreenLocked callback success data -> ${JSON.stringify(data)}');
-  });
-  ```
 
+```js
+screenlock.isScreenLocked((err, data)=>{      
+    if (err) {
+        console.error(`Failed to obtain whether the screen is locked, because: ${err.message}`);
+        return;    
+    }
+    console.info(`Obtain whether the screen is locked successfully. result: ${data}`);
+});
+```
 
-## screenlock.isScreenLocked
+## screenlock.isScreenLocked<sup>(deprecated)</sup>
 
 isScreenLocked(): Promise&lt;boolean&gt;
 
-判断屏幕是否锁屏，使用Promise作为异步方法。
+判断屏幕是否锁屏。使用Promise异步回调。
 
-**系统能力**: SystemCapability.MiscServices.ScreenLock
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
 
-**返回值**：
+**系统能力：** SystemCapability.MiscServices.ScreenLock
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 以Promise形式返回结果。 | 
+**返回值：** 
 
-**示例**：
+| 类型                   | 说明                                         |
+| ---------------------- | ------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕已锁屏；返回false表示屏幕未锁屏。 |
 
-  ```js
-  screenlock.isScreenLocked().then((data) => {
-      console.log('isScreenLocked success: data -> ${JSON.stringify(data)}');
-  }).catch((err) => {
-      console.error('isScreenLocked fail, promise: err -> ${JSON.stringify(err)}');
-  });
-  ```
+**示例：** 
 
+```js
+screenlock.isScreenLocked().then((data) => {
+    console.info(`Obtain whether the screen is locked successfully. result: ${data}`);
+}).catch((err) => {
+    console.error(`Failed to obtain whether the screen is locked, because: ${err.message}`);
+});
+```
 
-## screenlock.isSecureMode
+## screenlock.isSecureMode<sup>(deprecated)</sup>
 
 isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
+判断当前设备的屏幕锁定是否安全（安全屏幕锁定意味着解锁屏幕需要密码、图案或其他用户身份识别）。使用callback异步回调。
 
-判断设备是否处于安全模式下，使用callback作为异步方法。
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
 
+**系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统能力**: SystemCapability.MiscServices.ScreenLock
+**参数：** 
 
+| 参数名   | 类型            | 必填 | 说明                              |
+| -------- | --------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前设备的屏幕锁定安全；返回false表示当前设备的屏幕锁定不安全。 |
 
-**参数**：
+**示例：** 
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示屏幕处于安全模式下，返回false表示屏幕当前不在安全模式下。 | 
+```js
+screenlock.isSecureMode((err, data)=>{
+    if (err) {
+        console.error(`Failed to obtain whether the device is in secure mode, because: ${err.message}`);
+        return;
+    }
+    console.info(`Obtain whether the device is in secure mode successfully. result: ${data}`);
+});
+```
 
-**示例**：
-  
-  ```js
-  screenlock.isSecureMode((err, data)=>{      
-     if (err) {
-          console.error('isSecureMode callback error -> ${JSON.stringify(err)}');
-          return;    
-     }
-     console.info('isSecureMode callback success data -> ${JSON.stringify(err)}');
-  });
-  ```
-
-
-## screenlock.isSecureMode
+## screenlock.isSecureMode<sup>(deprecated)</sup>
 
 isSecureMode(): Promise&lt;boolean&gt;
 
-判断设备是否处于安全模式下，使用Promise作为异步方法。
+判断当前设备的屏幕锁定是否安全（安全屏幕锁定意味着解锁屏幕需要密码、图案或其他用户身份识别）。使用Promise异步回调。
 
-**系统能力**: SystemCapability.MiscServices.ScreenLock
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
 
-**返回值**：
+**系统能力：** SystemCapability.MiscServices.ScreenLock
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 以Promise形式返回结果。 | 
+**返回值：** 
 
-**示例**：
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前设备的屏幕锁定安全；返回false表示当前设备的屏幕锁定不安全。 |
 
-  ```js
-  screenlock.isSecureMode().then((data) => {
-      console.log('isSecureMode success: data->${JSON.stringify(data)}');
-  }).catch((err) => {
-      console.error('isSecureMode fail, promise: err->${JSON.stringify(err)}');
-  });
-  ```
+**示例：** 
 
-
-## screenlock.unlockScreen
+```js
+screenlock.isSecureMode().then((data) => {
+    console.info(`Obtain whether the device is in secure mode successfully. result: ${data}`);
+}).catch((err) => {
+    console.error(`Failed to obtain whether the device is in secure mode, because: ${err.message}`);
+});
+```
+## screenlock.unlockScreen<sup>(deprecated)</sup>
 
 unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
+解锁屏幕。使用callback异步回调。
 
-解锁屏幕，使用callback作为异步方法。
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
 
+**系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统能力**: SystemCapability.MiscServices.ScreenLock
+**参数：** 
 
+| 参数名   | 类型              | 必填 | 说明             |
+| -------- | ------------- | ---- | --------------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。解锁屏幕成功，err为undefined，否则为错误对象。 |
 
-**参数**：
+**示例：** 
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，失败时返回错误信息。 | 
+```js
+screenlock.unlockScreen((err) => {      
+    if (err) {
+        console.error(`Failed to unlock the screen, because: ${err.message}`);
+        return;    
+    }
+    console.info('unlock the screen successfully.');
+});
+```
 
-**示例**：
-  
-  ```js
-  screenlock.unlockScreen((err) => {      
-     if (err) {
-          console.error('unlockScreen callback error -> ${JSON.stringify(err)}');
-          return;    
-     }
-     console.info('unlockScreen callback success');
-  });
-  ```
-
-
-## screenlock.unlockScreen
+## screenlock.unlockScreen<sup>(deprecated)</sup>
 
 unlockScreen(): Promise&lt;void&gt;
 
-解锁屏幕，使用Promise作为异步方法。
+解锁屏幕。使用Promise异步回调。
 
-**系统能力**: SystemCapability.MiscServices.ScreenLock
+> **说明：**
+> 
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
 
-**返回值**：
+**系统能力：** SystemCapability.MiscServices.ScreenLock
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 以Promise形式返回结果。 | 
+**返回值：** 
 
-**示例**：
-  
-  ```js
-  screenlock.unlockScreen().then(() => {
-      console.log('unlockScreen success');
-  }).catch((err) => {
-      console.error('unlockScreen fail, promise: err->${JSON.stringify(err)}');
-  });
-  ```
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**示例：** 
 
-## screenlock.lockScreen<sup>9+</sup>
-
-lockScreen(callback: AsyncCallback&lt;boolean&gt;): void
-
-
-锁定屏幕，使用callback作为异步方法。
-
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，失败时返回错误信息。 | 
-
-**示例**：
-  
-  ```js
-  screenlock.lockScreen((err) => {      
-     if (err) {
-          console.error('lockScreen callback error -> ${JSON.stringify(err)}');
-          return;    
-     }
-     console.info('lockScreen callback success');
-  });
-  ```
-
-## screenlock.lockScreen<sup>9+</sup>
-
-lockScreen(): Promise&lt;boolean&gt;
-
-锁定屏幕，使用Promise作为异步方法。
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**返回值**：
-
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 以Promise形式返回结果。 | 
-
-**示例**：
-  
-  ```js
-  screenlock.lockScreen().then(() => {
-      console.log('lockScreen success');
-  }).catch((err) => {
-      console.error('lockScreen fail, promise: err->${JSON.stringify(err)}');
-  });
-  ```
-
-
-## screenlock.on<sup>9+</sup>
-
-on(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginScreenOff' | 'endScreenOff' | 'unlockScreen' | 'beginExitAnimation', callback: Callback\<void\>): void
-
-注册锁屏状态变化回调。
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。<br/>- type为"beginWakeUp"，表示事件开始时开始唤醒。<br/>- type为"endWakeUp"，表示事件结束时结束唤醒。<br/>- type为"beginScreenOn"，表示事件开始时开始亮屏。<br/>- type为"endScreenOn"，表示事件结束时结束亮屏。<br/>- type为"beginScreenOff"，表示事件开始时开始灭屏。<br/>- type为"endScreenOff"，表示事件结束时结束灭屏。<br/>- type为"unlockScreen"，表示请求解锁。<br/>- type为"beginExitAnimation"，表示动画开始退场。 |
-  | callback | Callback\<void\> | 是 | 事件回调方法。 |
-
-**示例**：
-  
-  ```js
-  screenlock.on('beginWakeUp', () => {
-      console.log('beginWakeUp triggered');
-  });
-  ```
-
-## screenlock.on<sup>9+</sup>
-
-on(type: 'beginSleep' | 'endSleep' | 'changeUser', callback: Callback\<number\>): void
-
-注册锁屏状态变化回调。
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。<br/>- type为"beginSleep"，表示开始休眠。<br/>- type为"endSleep"，表示结束休眠。<br/>- type为"changeUser"，表示切换用户。 |
-  | callback | Callback\<number\> | 是 | 事件回调方法。<br/>返回事件相应的状态。 |
-
-**示例**：
-  
-  ```js
-  screenlock.on('beginSleep', (why) => {
-      console.log('beginSleep triggered:' + why);
-  });
-  ```
-## screenlock.on<sup>9+</sup>
-
-on(type: 'screenlockEnabled', callback: Callback\<boolean\>): void
-
-注册锁屏状态变化回调。
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。<br/>- type为"screenlockEnabled"，表示锁屏是否启用。 |
-  | callback | Callback\<boolean\> | 是 | 注册成功的回调。<br/>回调结果用true/false表示。 |
-
-**示例**：
-  
-  ```js
-  screenlock.on('screenlockEnabled', (isEnabled) => {
-      console.log('screenlockEnabled triggered, result:' + isEnabled);
-  });
-  ```
-
-## screenlock.off<sup>9+</sup>
-
-off(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginScreenOff' | 'endScreenOff' 
-      | 'unlockScreen' | 'beginExitAnimation' | 'screenlockEnabled' | 'beginSleep' | 'endSleep' | 'changeUser', callback: Callback\<void\>): void
-
-取消注册锁屏状态变化回调。
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置事件类型。<br/>- type为"beginWakeUp"，表示事件开始时开始唤醒。<br/>- type为"endWakeUp"，表示事件结束时结束唤醒。<br/>- type为"beginScreenOn"，表示事件开始时开始亮屏。<br/>- type为"endScreenOn"，表示事件结束时结束亮屏。<br/>- type为"beginScreenOff"，表示事件开始时开始灭屏。<br/>- type为"endScreenOff"，表示事件结束时结束灭屏。<br/>- type为"unlockScreen"，表示请求解锁。<br/>- type为"beginExitAnimation"，表示动画开始退场。<br/>- type为"screenlockEnabled"，表示锁屏是否启用。<br/>- type为"beginSleep"，表示开始休眠。<br/>- type为"endSleep"，表示结束休眠。<br/>- type为"changeUser"，表示切换用户。 |
-  | callback | Callback\<void\> | 是 | 注册成功的回调。 |
-
-**示例**：
-  
-  ```js
-  screenlock.off('beginWakeUp', () => {
-      console.log("callback");
-  });
-  ```
-
-## screenlock.sendScreenLockEvent<sup>9+</sup>
-
-sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback\<boolean\>): void
-
-应用发送事件到锁屏服务，异步方法。
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | event | String | 是 | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
-  | parameter | number | 是 | 解锁状态。<br/>- parameter为0，表示解锁成功。<br/>- parameter为1，表示解锁失败。<br/>- parameter为2，表示解锁取消。 |
-  | callback | AsyncCallback\<boolean\> | 是 | 表示执行结果。 |
-
-**示例**：
-  
-  ```js
-  screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
-      console.log('sending result:' + result);
-  });
-  ```
-
-## screenlock.sendScreenLockEvent<sup>9+</sup>
-
-sendScreenLockEvent(event: String, parameter: number): Promise\<boolean\>
-
-应用发送事件到锁屏服务，异步方法。
-
-**系统能力**: SystemCapability.MiscServices.ScreenLock
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | event | String | 是 | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
-  | parameter | number | 是 | 解锁状态。<br/>- parameter为0，表示解锁成功。<br/>- parameter为1，表示解锁失败。<br/>- parameter为2，表示解锁取消。 |
-
-**返回值**：
-
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise\<boolean\> | 以Promise形式返回执行结果。 | 
-
-**示例**：
-  
-  ```js
-  screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
-      console.log('sending result:' + result);
-  });
-  ```
+```js
+screenlock.unlockScreen().then(() => {
+    console.info('unlock the screen successfully.');
+}).catch((err) => {
+    console.error(`Failed to unlock the screen, because: ${err.message}`);
+});
+```

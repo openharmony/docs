@@ -3,6 +3,16 @@
 
 ## **概述**
 
+注册认证凭据参数。
+
+**Since：**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
@@ -13,24 +23,11 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [credentialId](#credentialid) | 认证凭据ID。 | 
 | [oldInfo](#oldinfo) | 旧凭据信息。 | 
 | [rootSecret](#rootsecret) | 保护文件加密密钥的密钥。 | 
-
-
-## **详细描述**
-
-注册认证凭据参数。
-
-**Since：**
-
-3.2
-
-**Version：**
-
-1.0
 
 
 ## **类成员变量说明**
@@ -57,7 +54,7 @@ struct CredentialInfo EnrollParam::oldInfo
 
 **描述：**
 
-旧凭据信息{\@link CredentialInfo}。
+旧凭据信息[CredentialInfo](_credential_info.md)。
 
 
 ### rootSecret

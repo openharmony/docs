@@ -1,7 +1,8 @@
 # web
 The **\<web>** component displays web page content.
->![](../../public_sys-resources/icon-note.gif) **NOTE**
->   This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
+>**NOTE**
+>
+>This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 ohos.permission.INTERNET, required only for accessing online web pages.
@@ -25,6 +26,7 @@ Universal style settings are not supported.
 
 ## Events
 The following events are supported.
+
 | Name| Parameter| Description|
 | -------- |  -------- | -------- |
 | pagestart      | {url: string} | Triggered when web page loading starts.|
@@ -33,12 +35,13 @@ The following events are supported.
 
 ## Methods
 The following methods are supported.
+
 | Name| Parameter| Description|
 | -------- |  -------- | -------- |
 | reload      | - | Reloads a page.|
 
 ## Example
-```
+```html
 <!-- xxx.hml -->
 <div style="height: 500px; width: 500px; flex-direction: column;">
     <button onclick="reloadWeb">click to reload</button>
@@ -46,7 +49,7 @@ The following methods are supported.
 </div>
 ```
 
-```
+```js
 // xxx.js
 export default {
     reloadWeb() {

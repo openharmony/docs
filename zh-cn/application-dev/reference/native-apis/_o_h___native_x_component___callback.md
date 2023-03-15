@@ -1,29 +1,27 @@
 # OH_NativeXComponent_Callback
 
 
-## **Overview**
+## 概述
 
-**Related Modules:**
+注册surface生命周期和触摸事件回调。
+
+**起始版本：**
+
+8
+
+**相关模块：**
 
 [Native XComponent](_o_h___native_x_component.md)
 
-**Description:**
 
-Registers the surface lifecycle and touch event callbacks.
-
-**Since:**
-8
-**Version:**
-1.0
-
-## **Summary**
+## 汇总
 
 
-### Public Attributes
+### 成员变量
 
-  | Public&nbsp;Attribute&nbsp;Name | Description | 
+  | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| [OnSurfaceCreated](_o_h___native_x_component.md#ga8beefd4b2359680a3106b28227e47d00)&nbsp;)([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;void&nbsp;\*window) |  | 
-| [OnSurfaceChanged](_o_h___native_x_component.md#ga7d84244e13477d91cfdade8d9ff8565b)&nbsp;)([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;void&nbsp;\*window) |  | 
-| [OnSurfaceDestroyed](_o_h___native_x_component.md#gad32bd08c749422d807ac87c558af6a44)&nbsp;)([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;void&nbsp;\*window) |  | 
-| [DispatchTouchEvent](_o_h___native_x_component.md#ga3d40ca63aba381a63435f71f679e1f26)&nbsp;)([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;void&nbsp;\*window) |  | 
+| [OnSurfaceCreated](_o_h___native_x_component.md#onsurfacecreated)| 创建surface时调用。 | 
+| [OnSurfaceChanged](_o_h___native_x_component.md#onsurfacechanged)| 当surface改变时调用。 | 
+| [OnSurfaceDestroyed](_o_h___native_x_component.md#onsurfacedestroyed)| 当surface被销毁时调用。 | 
+| [DispatchTouchEvent](_o_h___native_x_component.md#dispatchtouchevent)| 当触摸事件被触发时调用。 | 

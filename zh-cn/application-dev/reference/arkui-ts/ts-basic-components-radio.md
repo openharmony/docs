@@ -1,15 +1,10 @@
 # Radio
 
->  **说明：**
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 单选框，提供相应的用户交互选择项。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -21,25 +16,30 @@
 
 Radio(options: {value: string, group: string})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | string | 是 | - | 当前单选框的值。|
-  | group | string | 是 | - | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。|
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**参数:**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value | string | 是 | 当前单选框的值。|
+| group | string | 是 | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。|
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 | 
-| -------- | -------- | -------- | -------- |
-| checked | boolean | false | 设置单选框的选中状态。 | 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| checked | boolean | 设置单选框的选中状态。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## 事件
 
-| 名称 | 功能描述 | 
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 |
+| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 
 ## 示例

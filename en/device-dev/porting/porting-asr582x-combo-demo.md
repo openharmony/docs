@@ -473,8 +473,6 @@ The compilation option entry of the subsystem is in the `config.json` file of th
 
 The source code of the lwIP component is stored in `//third_party/lwip`. The kernel in OpenHarmony is customized in `//kernel/liteos_m/components/net/lwip-2.1`, including the redefinition of some interfaces and structures.
 
-For details about the porting process, see [lwIP Module Adaptation](porting-chip-board-lwip.md).
-
 In this example, the path for setting lwip in the `config.json` file is as follows:
 
    ```
@@ -674,8 +672,3 @@ After correct configuration, compilation, and burning, the device uses the wifi_
 
 
 The adaptation process of other components is similar to that of other vendors.
-
-## To-do
-
-- Adding BLE support
-- Diversifying Wi-Fi test commands

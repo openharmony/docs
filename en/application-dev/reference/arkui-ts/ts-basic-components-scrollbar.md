@@ -1,15 +1,10 @@
 # ScrollBar
 
->  **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<ScrollBar>** is used together with scrollable components, such as **\<List>**, **\<Grid>**, and **\<Scroll>**.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -21,23 +16,26 @@ This component can contain a single child component.
 
 ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: BarState })
 
-- ScrollBarOptions
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes| - | Scroller, which can be bound to scrollable components.|
-  | direction | ScrollBarDirection | No| ScrollBarDirection.Vertical | Scrollbar direction in which scrollable components scroll.|
-  | state | [BarState](ts-appendix-enums.md#barstate) | No| BarState.Auto | Scrollbar state.|
+**Parameters**
 
-  >  **NOTE**
-  > The **<\ScrollBar>** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
-  > 
-  > This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **\<ScrollBar>** component can be bound to only one scrollable component, and vice versa.
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | Yes| Scroller, which can be bound to scrollable components.|
+| direction | [ScrollBarDirection](#scrollbardirection) | No| Scrollbar direction in which scrollable components scroll.<br>Default value: **ScrollBarDirection.Vertical**|
+| state | [BarState](ts-appendix-enums.md#barstate) | No| Scrollbar state.<br>Default value: **BarState.Auto**|
 
-- ScrollBarDirection enums
-  | Name| Description| 
-  | -------- | -------- |
-  | Vertical | Vertical scrollbar.| 
-  | Horizontal | Horizontal scrollbar.|
+>  **NOTE**
+>
+>  The **\<ScrollBar>** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
+>
+>  This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **\<ScrollBar>** component can be bound to only one scrollable component, and vice versa.
+
+## ScrollBarDirection
+
+| Name| Description|
+| -------- | -------- |
+| Vertical | Vertical scrollbar.|
+| Horizontal | Horizontal scrollbar.|
 
 
 ## Example
@@ -67,7 +65,7 @@ struct ScrollBarExample {
                   .margin({ top: 5 })
               }
             }, item => item)
-          }.margin({ left: 52 })
+          }.margin({ right: 52 })
         }
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)

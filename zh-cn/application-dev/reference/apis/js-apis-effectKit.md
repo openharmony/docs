@@ -1,10 +1,10 @@
-# 图像效果
+# @ohos.effectKit (图像效果)
 
 图像效果提供处理图像的一些基础能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。
 
 该模块提供以下图像效果相关的常用功能：
 
-- [Filter](#filter)：效果链。
+- [Filter](#filter)：效果类，用于添加指定效果到图像源。
 - [Color](#color)：颜色类，用于保存取色的结果。
 - [ColorPicker](#colorpicker)：智能取色器。
 
@@ -27,7 +27,7 @@ createEffect(source: image.PixelMap): Filter
 
 **参数：**
 
-| 名称    | 类型               | 必填 | 说明     |
+| 参数名    | 类型               | 必填 | 说明     |
 | ------- | ----------------- | ---- | -------- |
 | source  | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   | image模块创建的PixelMap实例。   |
 
@@ -40,13 +40,13 @@ createEffect(source: image.PixelMap): Filter
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let headFilter = effectKit.createEffect(pixelMap)
-    })
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let headFilter = effectKit.createEffect(pixelMap);
+})
 ```
 
 ## effectKit.createColorPicker
@@ -59,7 +59,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 **参数：**
 
-| 名称     | 类型         | 必填 | 说明                       |
+| 参数名     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。 |
 
@@ -67,19 +67,19 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promisse\<[ColorPicker](#colorpicker)>  | Promise对象。返回创建的ColorPicker实例。 |
+| Promise\<[ColorPicker](#colorpicker)>  | Promise对象。返回创建的ColorPicker实例。 |
 
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts, (pixelMap) => {
-    effectKit.createColorPicker(pixelMap).then(colorPicker => {
-            console.info("color picker=" + colorPicker);
-    })
-    .catch(ex => console.error(".error=" + ex.toString()))
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap).then(colorPicker => {
+    console.info("color picker=" + colorPicker);
+  }).catch(ex => console.error(".error=" + ex.toString()))
 })
 ```
 
@@ -93,7 +93,7 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 **参数：**
 
-| 名称     | 类型                | 必填 | 说明                       |
+| 参数名     | 类型                | 必填 | 说明                       |
 | -------- | ------------------ | ---- | -------------------------- |
 | source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  |image模块创建的PixelMap实例。  |
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数。返回创建的ColorPicker实例。 |
@@ -101,17 +101,18 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts, (pixelMap) => {
-    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
-        if(error) {
-            console.log('Failed to create color picker.');
-        } else {
-            console.log('Succeeded in creating color picker.');
-        }
-    }) 
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+    }
+  })
 })
 ```
 
@@ -150,8 +151,8 @@ getMainColor(): Promise\<Color>
 
 ```js
 colorPicker.getMainColor().then(color => {
-    console.log('Succeeded in getting main color.')
-    console.info("color[ARGB]=" + color.alpha + "," + color.red + "," + color.green + "," + color.blue);
+    console.log('Succeeded in getting main color.');
+    console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
 }).catch(error => {
     console.log('Failed to get main color.');
 })
@@ -177,6 +178,7 @@ getMainColorSync(): Color
 let color = colorPicker.getMainColorSync();
 console.log('get main color =' + color);
 ```
+![zh-ch_image_Main_Color.png](figures/zh-ch_image_Main_Color.png)
 
 ## Filter
 
@@ -200,23 +202,24 @@ blur(radius: number): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回已添加的图像效果。 |
 
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let radius = 5;
-        let headFilter = effectKit.createEffect(pixelMap)
-        if (headFilter != null) {
-            headFilter.blur(radius)
-        }
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let radius = 5;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.blur(radius);
+  }
+})
 ```
+![zh-ch_image_Add_Blur.png](figures/zh-ch_image_Add_Blur.png)
 
 ### brightness
 
@@ -236,23 +239,24 @@ brightness(bright: number): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回已添加的图像效果。 |
 
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let bright = 0.5;
-        let headFilter = effectKit.createEffect(pixelMap)
-        if (headFilter != null) {
-            headFilter.brightness(bright)
-        }
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let bright = 0.5;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.brightness(bright);
+  }
+})
 ```
+![zh-ch_image_Add_Brightness.png](figures/zh-ch_image_Add_Brightness.png)
 
 ### grayscale
 
@@ -266,26 +270,27 @@ grayscale(): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回已添加的图像效果。 |
 
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let headFilter = effectKit.createEffect(pixelMap)
-        if (headFilter != null) {
-            headFilter.grayscale()
-        }
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.grayscale();
+  }
+})
 ```
+![zh-ch_image_Add_Grayscale.png](figures/zh-ch_image_Add_Grayscale.png)
 
 ### getPixelMap
 
-getPixelMap(): image.PixelMap
+getPixelMap(): [image.PixelMap](js-apis-image.md#pixelmap7)
 
 获取已添加链表效果的源图像的image.PixelMap。
 
@@ -295,16 +300,16 @@ getPixelMap(): image.PixelMap
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [image.PixelMap](js-apis-image.md#pixelmap7) | 已添加链表效果的源图像的image.PixelMap。 |
+| [image.PixelMap](js-apis-image.md#pixelmap7) | 已添加效果的源图像的image.PixelMap。 |
 
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap()
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
+})
 ```

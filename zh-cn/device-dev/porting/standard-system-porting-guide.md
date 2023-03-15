@@ -30,10 +30,10 @@
       {
         "subsystem": "ace",
         "components": [
-          { "component": "ace_engine_lite", "features":[""] }
+          { "component": "ace_engine_lite", "features":[] }
         ]
-      }，
-	    …
+      },
+	...
     ]
 }
 
@@ -47,7 +47,7 @@ version：版本  必填
 
 type：配置的系统级别，包含（small，standard …) 必填
 
-target_cpu ：设备的cpu类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等。） 必填
+target_cpu ：设备的CPU类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等。） 必填
 
 ohos_version：操作系统版本  选填
 
@@ -155,6 +155,7 @@ BUILD.gn是subsystem构建的唯一入口。
    7. 由于应用都需要加载JS的运行环境，涉及大量准备工作，因此appspawn作为应用的孵化器，在接收到foundation里的应用启动请求时，可以直接孵化出应用进程，减少应用启动时间。
 
 2. init。
+
    init启动引导组件配置文件包含了所有需要由init进程启动的系统关键服务的服务名、可执行文件路径、权限和其他信息。每个系统服务各自安装其启动脚本到/system/etc/init目录下。
 
    新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。

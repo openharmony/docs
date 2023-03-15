@@ -1,15 +1,11 @@
 # ImageAnimator
 
-> **NOTE**
+The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played as well as the duration of each image can be configured.
+
+>  **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
-
-
-## Required Permissions
-
-None
 
 
 ## Child Components
@@ -24,26 +20,27 @@ ImageAnimator()
 
 ## Attributes
 
-| Name| Type| Default Value| Mandatory| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| images | Array&lt;ImageFrameInfo&gt; | [] | Yes| Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.|
-| state | [AnimationStatus](ts-appendix-enums.md#animationstatus) | Initial | No| Playback status of the animation. The default status is **Initial**.|
-| duration | number | 1000 | No| Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in **images**, the setting of this attribute is invalid.|
-| reverse | boolean | false | No| Playback sequence. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one.|
-| fixedSize | boolean | true | No| Whether the image size is the same as the component size.<br> **true**: The image size is the same as the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.|
-| preDecode | number | 0 | No| Whether to enable pre-decoding. The default value **0** indicates that pre-decoding is disabled. The value **2** indicates that two images following the currently playing frame will be cached in advance to improve performance.|
-| fillMode | [FillMode](ts-appendix-enums.md#fillmode) | Forwards | No| Status before and after the animation starts. For details about the options, see **FillMode**.|
-| iterations | number | 1 | No| Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.|
+| Name    | Type                 |Description                  |
+| ---------- | ----------------------- |-------- |
+| images     | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt; | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]**<br>**NOTE**<br>Dynamic update is not supported.|
+| state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) |  Playback status of the animation. The default status is **Initial**.<br>Default value: **AnimationStatus.Initial**|
+| duration   | number  | Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in **images**, the setting of this attribute is invalid.<br>Default value: **1000**|
+| reverse    | boolean | Playback sequence. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one.<br>Default value: **false**|
+| fixedSize  | boolean | Whether the image size is the same as the component size.<br> **true**: The image size is the same as the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.<br>Default value: **true**|
+| preDecode<sup>(deprecated)</sup>  | number  | Number of pre-decoded images. The value **2** indicates that two images following the currently playing page will be pre-decoded to improve performance.<br>This API is deprecated since API version 9.<br>Default value: **0**|
+| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | Status before and after the animation starts. For details about the options, see **FillMode**.<br>Default value: **FillMode.Forwards**|
+| iterations | number  | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
 
-- ImageFrameInfo
-  | Name| Type| Default Value| Mandatory| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | src | string \| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| "" | Yes| Image path. The image format can be .svg, .png, or .jpg.|
-  | width | [Length](.../ui/ts-types.md#length-type)| 0 | No| Image width.|
-  | height | [Length](.../ui/ts-types.md#length-type)| 0 | No| Image height.|
-  | top | [Length](.../ui/ts-types.md#length-type)| 0 | No| Vertical coordinate of the image relative to the upper left corner of the component.|
-  | left | [Length](.../ui/ts-types.md#length-type)| 0 | No| Horizontal coordinate of the image relative to the upper left corner of the component.|
-  | duration | number | 0 | No| Playback duration of each image frame, in milliseconds.|
+## ImageFrameInfo
+
+| Name  | Type  | Mandatory| Description|
+| -------- | -------------- | -------- | -------- |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> | Yes   | Image path. The image format can be .svg, .png, or .jpg. Since API version 9, this attribute accepts paths of the [Resource](ts-types.md#resource) type.|
+| width    | number \| string | No | Image width.<br>Default value: **0**         |
+| height   | number \| string | No | Image height.<br>Default value: **0**            |
+| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**   |
+| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**   |
+| duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**              |
 
 
 ## Events
@@ -69,47 +66,27 @@ struct ImageAnimatorExample {
   @State iterations: number = 1
 
   build() {
-    Column({ space:5 }) {
+    Column({ space: 10 }) {
       ImageAnimator()
         .images([
-          { 
-            // The comment folder is at the same level as the pages folder.
-            src: '/comment/bg1.jpg',
-            duration: 500,
-            width: 325,
-            height: 200,
-            top: 0,
-            left: 0
+          {
+            src: $r('app.media.img1')
           },
           {
-            src: '/comment/bg2.jpg',
-            duration: 500,
-            width: 325,
-            height: 200,
-            top: 0,
-            left: 0
+            src: $r('app.media.img2')
           },
           {
-            src: $r('app.media.bg3'),
-            duration: 500,
-            width: 325,
-            height: 200,
-            top: 0,
-            left: 0
+            src: $r('app.media.img3')
           },
           {
-            src: $rawfile('bg4.jpg'),
-            duration: 500,
-            width: 325,
-            height: 200,
-            top: 0,
-            left: 0
+            src: $r('app.media.img4')
           }
         ])
-        .state(this.state).reverse(this.reverse).fixedSize(false).preDecode(2)
-        .fillMode(FillMode.None).iterations(this.iterations).width(325).height(210)
-        .margin({top:100})
-        .onStart(() => { // Triggered when the frame animation playback starts.
+        .duration(2000)
+        .state(this.state).reverse(this.reverse)
+        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .margin({ top: 100 })
+        .onStart(() => {
           console.info('Start')
         })
         .onPause(() => {
@@ -121,35 +98,36 @@ struct ImageAnimatorExample {
         .onCancel(() => {
           console.info('Cancel')
         })
-        .onFinish(() => { // Triggered after the frame animation playback is complete.
-          this.state = AnimationStatus.Stopped
+        .onFinish(() => {
           console.info('Finish')
+          this.state = AnimationStatus.Stopped
         })
       Row() {
         Button('start').width(100).padding(5).onClick(() => {
           this.state = AnimationStatus.Running
-        })
+        }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused
-        })
+          this.state = AnimationStatus.Paused     // Display the image of the current frame.
+        }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped
-        })
+          this.state = AnimationStatus.Stopped    // Display the image of the initial frame.
+        }).margin(5)
       }
+
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
           this.reverse = !this.reverse
-        })
+        }).margin(5)
         Button('once').width(100).padding(5).onClick(() => {
           this.iterations = 1
-        })
-        Button('iteration').width(100).padding(5).onClick(() => {
-          this.iterations = -1
-        })
+        }).margin(5)
+        Button('infinite').width(100).padding(5).onClick(() => {
+          this.iterations = -1 // The animation is played for an unlimited number of times.
+        }).margin(5)
       }
-    }.width('100%').height('100%').backgroundColor(0xF1F3F5)
+    }.width('100%').height('100%')
   }
 }
 ```
 
-![en-us_image_0000001211898470](figures/en-us_image_0000001211898470.gif)
+![imageAnimator](figures/imageAnimator.gif)

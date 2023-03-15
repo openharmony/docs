@@ -47,25 +47,25 @@
 
 ## 属性
 
-| 名称                                       | 类型                                       | 默认值                                      | 描述                                       |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | -                                        | 指定绘制的填充色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
-| [lineWidth](#linewidth)                  | number                                   | -                                        | 设置绘制线条的宽度。                               |
-| [strokeStyle](#strokestyle)              | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | -                                        | 设置描边的颜色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
-| [lineCap](#linecap)                      | string                                   | butt                                     | 指定线端点的样式，可选值为：<br/>-&nbsp;butt：线端点以方形结束。<br/>-&nbsp;round：线端点以圆形结束。<br/>-&nbsp;square：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。 |
-| [lineJoin](#linejoin)                    | string                                   | miter                                    | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;round：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;bevel：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;miter：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
-| [miterLimit](#miterlimit)                | number                                   | 10                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。             |
-| [font](#font)                            | string                                   | "normal&nbsp;normal&nbsp;14px&nbsp;sans-serif" | 设置文本绘制中的字体样式。<br/>语法：ctx.font="font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family"<sup>5+</sup><br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：normal,&nbsp;italic。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：normal,&nbsp;bold,&nbsp;bolder,&nbsp;lighter,&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：sans-serif,&nbsp;serif,&nbsp;monospace。 |
-| [textAlign](#textalign)                  | string                                   | left                                     | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;left：文本左对齐。<br/>-&nbsp;right：文本右对齐。<br/>-&nbsp;center：文本居中对齐。<br/>-&nbsp;start：文本对齐界线开始的地方。<br/>-&nbsp;end：文本对齐界线结束的地方。<br/>ltr布局模式下start和left一致，rtl布局模式下start和right一致·。 |
-| [textBaseline](#textbaseline)            | string                                   | alphabetic                               | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;alphabetic：文本基线是标准的字母基线。<br/>-&nbsp;top：文本基线在文本块的顶部。<br/>-&nbsp;hanging：文本基线是悬挂基线。<br/>-&nbsp;middle：文本基线在文本块的中间。<br/>-&nbsp;ideographic：文字基线是表意字基线；如果字符本身超出了alphabetic&nbsp;基线，那么ideographic基线位置在字符本身的底部。<br/>-&nbsp;bottom：文本基线在文本块的底部。&nbsp;与&nbsp;ideographic&nbsp;基线的区别在于&nbsp;ideographic&nbsp;基线不需要考虑下行字母。 |
-| [globalAlpha](#globalalpha)              | number                                   | -                                        | 设置透明度，0.0为完全透明，1.0为完全不透明。                |
-| [lineDashOffset](#linedashoffset)        | number                                   | 0.0                                      | 设置画布的虚线偏移量，精度为float。                     |
-| [globalCompositeOperation](#globalcompositeoperation) | string                                   | source-over                              | 设置合成操作的方式。类型字段可选值有source-over，source-atop，source-in，source-out，destination-over，destination-atop，destination-in，destination-out，lighter，copy，xor。具体请参考[表 类型字段说明](#globalcompositeoperation)。 |
-| [shadowBlur](#shadowblur)                | number                                   | 0.0                                      | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。            |
-| [shadowColor](#shadowcolor)              | &lt;color&gt;                            | -                                        | 设置绘制阴影时的阴影颜色。                            |
-| [shadowOffsetX](#shadowoffsetx)          | number                                   | -                                        | 设置绘制阴影时和原有对象的水平偏移值。                      |
-| [shadowOffsetY](#shadowoffsety)          | number                                   | -                                        | 设置绘制阴影时和原有对象的垂直偏移值。                      |
-| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean                                  | true                                     | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。  |
+| 名称                                       | 类型                                       | 描述                                       |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| [fillStyle](#fillstyle)                  | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | 指定绘制的填充色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
+| [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。                               |
+| [strokeStyle](#strokestyle)              | &lt;color&gt;&nbsp;\|&nbsp;[CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;CanvasPattern | 设置描边的颜色。<br/>-&nbsp;类型为&lt;color&gt;时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用&nbsp;createLinearGradient()方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用&nbsp;createPattern()方法创建。 |
+| [lineCap](#linecap)                      | string                                   | 指定线端点的样式，可选值为：<br/>-&nbsp;butt：线端点以方形结束。<br/>-&nbsp;round：线端点以圆形结束。<br/>-&nbsp;square：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br>默认值：butt |
+| [lineJoin](#linejoin)                    | string                                   | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;round：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;bevel：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;miter：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br>默认值：miter |
+| [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。<br>默认值：10   |
+| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font="font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family"<sup>5+</sup><br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：normal,&nbsp;italic。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：normal,&nbsp;bold,&nbsp;bolder,&nbsp;lighter,&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：sans-serif,&nbsp;serif,&nbsp;monospace。<br>默认值："normal&nbsp;normal&nbsp;14px&nbsp;sans-serif" |
+| [textAlign](#textalign)                  | string                                   | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;left：文本左对齐。<br/>-&nbsp;right：文本右对齐。<br/>-&nbsp;center：文本居中对齐。<br/>-&nbsp;start：文本对齐界线开始的地方。<br/>-&nbsp;end：文本对齐界线结束的地方。<br/>ltr布局模式下start和left一致，rtl布局模式下start和right一致。<br>默认值：left |
+| [textBaseline](#textbaseline)            | string                                   | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;alphabetic：文本基线是标准的字母基线。<br/>-&nbsp;top：文本基线在文本块的顶部。<br/>-&nbsp;hanging：文本基线是悬挂基线。<br/>-&nbsp;middle：文本基线在文本块的中间。<br/>-&nbsp;ideographic：文字基线是表意字基线；如果字符本身超出了alphabetic&nbsp;基线，那么ideographic基线位置在字符本身的底部。<br/>-&nbsp;bottom：文本基线在文本块的底部。&nbsp;与&nbsp;ideographic&nbsp;基线的区别在于&nbsp;ideographic&nbsp;基线不需要考虑下行字母。<br>默认值： alphabetic |
+| [globalAlpha](#globalalpha)              | number                                   | 设置透明度，0.0为完全透明，1.0为完全不透明。                |
+| [lineDashOffset](#linedashoffset)        | number                                   | 设置画布的虚线偏移量，精度为float。<br>默认值：0.0          |
+| [globalCompositeOperation](#globalcompositeoperation) | string                                   | 设置合成操作的方式。类型字段可选值有source-over，source-atop，source-in，source-out，destination-over，destination-atop，destination-in，destination-out，lighter，copy，xor。具体请参考[表 类型字段说明](#globalcompositeoperation)。<br>默认值：ource-over |
+| [shadowBlur](#shadowblur)                | number                                   | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。<br>默认值：0.0 |
+| [shadowColor](#shadowcolor)              | &lt;color&gt;                            | 设置绘制阴影时的阴影颜色。                            |
+| [shadowOffsetX](#shadowoffsetx)          | number                                   | 设置绘制阴影时和原有对象的水平偏移值。                      |
+| [shadowOffsetY](#shadowoffsety)          | number                                   | 设置绘制阴影时和原有对象的垂直偏移值。                      |
+| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。<br>默认值：true |
 
 
 ### fillStyle
@@ -584,7 +584,7 @@ fillRect(x: number, y: number, width:number, height: number): void
 ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
 ```
 
@@ -620,7 +620,7 @@ clearRect(x: number, y: number, width:number, height: number): void
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -983,7 +983,7 @@ createPattern(image: Image, repetition: string): Object
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 1000px; height: 1000px;"></canvas>
   </div>
   ```
 
@@ -997,7 +997,7 @@ createPattern(image: Image, repetition: string): Object
       img.src = 'common/images/example.jpg';
       var pat = ctx.createPattern(img, 'repeat');
       ctx.fillStyle = pat;
-      ctx.fillRect(0, 0, 20, 20);
+      ctx.fillRect(0, 0, 500, 500);
     }
   }
   ```
@@ -1428,7 +1428,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 setTransform(scaleX: number, skewX: number, skewY: number, scale: number, translateX: number, translateY: number): void
 
-setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
+setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
 **参数：** 
 
@@ -1573,7 +1573,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1581,11 +1581,11 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
   //xxx.js
   export default {
     onShow() {
-      var test = this.$element('drawImage');
+      var test = this.$refs.canvas;
       var ctx = test.getContext('2d');
       var img = new Image();
       img.src = 'common/image/test.jpg';
-      ctx.drawImage(img, 50, 80, 80, 80);
+      ctx.drawImage(img, 0, 0, 200, 200, 10, 10, 200, 200);
     }
   }
   ```
@@ -1681,9 +1681,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
       // Linear gradient: start(50,0) end(300,100)
       var gradient = ctx.createLinearGradient(50,0, 300,100);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);
@@ -1734,9 +1734,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
       // Radial gradient: inner circle(200,200,r:50) outer circle(200,200,r:200)
       var gradient = ctx.createRadialGradient(200,200,50, 200,200,200);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);

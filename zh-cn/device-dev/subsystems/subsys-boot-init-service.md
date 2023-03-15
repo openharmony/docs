@@ -70,7 +70,7 @@
 
   进程启动时，支持在配置文件中配置服务进程的绑核、优先级、MAC信息以及AccessToken信息。
 
-  - init提供修改\*.cfg配置文件，为服务进程提供cpu绑核功能。
+  - init提供修改\*.cfg配置文件，为服务进程提供CPU绑核功能。
   - init提供修改\*.cfg配置文件，为服务进程提供优先级设置。
   - init提供修改\*.cfg配置文件，为服务提供MAC信息设置，即服务的SELinux标签（需要selinux支持）。
   - init提供修改\*.cfg配置文件，为服务提供设置AccessToken, 为系统服务进程设置其分布式Capability能力（仅标准系统以上提供）。
@@ -82,13 +82,26 @@
         "name" : "serviceName",
         "path" : ["/system/bin/serviceName"]
         "importance" : 1,                  // 服务进程提供优先级设置
-        "cpucore" : [0],                   // 服务进程提供cpu绑核功能
+        "cpucore" : [0],                   // 服务进程提供CPU绑核功能
         "critical" : [1, 5, 10],           // 服务提供抑制机制
         "apl" : "normal",                  // 系统服务进程设置其分布式Capability能力
         "d-caps" : ["OHOS_DMS"],           // 系统服务进程设置其分布式Capability能力
         "secon" : "u:r:distributedsche:s0" // 服务的SELinux标签， "u:r:distributedsche:s0"为要设置的SELinux标签信息
     }
     ```
+
+- 添加selinux标签
+
+  服务配置selinux策略，需要通过"secon"为服务添加selinux标签。例如为watchdog_service添加selinux标签，如下:
+
+    ```
+    "services" : [{
+              "name" : "watchdog_service",
+              "secon" : "u:r:watchdog_service:s0"
+    }]
+    ```
+    对应的需要在selinux中定义此标签，定义方法与配置文件参照selinux指导文档
+
 - init FD代持（仅标准系统以上提供）
 
   FD代持是按需启动的一个辅助扩展机制，按需启动进程可以保持退出前的fd状态句柄不丢失。按需启动进程退出前可将fd发送给init代持，再次启动后再从init获取fd。
@@ -125,7 +138,7 @@
    | importance    | 小型系统和标准系统 | <br>标准系统：当前服务优先级<br>小型系统：标记服务重要性 | <br>标准系统中: 服务优先级取值范围 [-20， 19]，超出为无效设置。<br>小型系统中：0 : 不重启系统；非0 : 重启系统 |
    | caps          | 小型系统和标准系统 | 当前服务所需的capability值，根据安全子系统已支持的capability，评估所需的capability，遵循最小权限原则配置。| 类型：数字或者字符串数组，在配置数字时，按linux标准的capability进行配置。字符串时，使用标准定义的宏的名字进行配置。 |
    | critical      | 标准系统 | 为服务提供抑制机制，服务在配置时间 T 内，频繁重启次数超过设置次数 N 重启系统。 | <br>标准系统中： 类型：int[]，如："critical" : [M, N, T]，<br>其中M：使能标志位（0：不使能；1：使能）， N：频繁拉起服务次数， T：时间(单位：秒)。M > 0; N > 0。 <br> 小型系统中 & 标准系统中：类型：int，如："critical" : M，<br>其中 M：使能标志位（0：不使能；1：使能）。 默认拉起服务次数：4次， 时间：20秒 。|
-   | cpucore      | 标准系统 | 服务需要的绑定的cpu核心数 | 类型：int型数组， 如"cpucore" : [N1, N2, ...], N1， N2均为需要绑定的cpu核索引， 如单核设备 cpucore : [0]。 |
+   | cpucore      | 标准系统 | 服务需要的绑定的CPU核心数 | 类型：int型数组， 如"cpucore" : [N1, N2, ...], N1， N2均为需要绑定的cpu核索引， 如单核设备 cpucore : [0]。 |
    | d-caps       | 标准系统 | 服务分布式能力。| 类型：字符串数组， 如 "d-caps" : ["OHOS_DMS"]。 |
    | apl          | 标准系统 | 服务能力特权级别。 | 类型：字符串， 如 "apl" : "system_core"。<br> 目前支持"system_core"（默认值）, "normal", "system_basic"。 |
    | start-mode   | 标准系统 | 服务的启动模式。 | 类型：字符串， 如 "start-mode" : "condition"。<br>目前支持"boot", "normal", "condition"。具体说明参考：[init服务启动控制](#section56901555918)。 |
@@ -162,6 +175,21 @@
    | int ServiceSetReady(const char *serviceName) | 设置服务准备 | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 |
    | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | 定时启动服务 | 返回值：成功返回0，失败返回-1 <br> 参数: <br> serviceName: 服务名 <br> timeout: 超时时间 |
    | int StopServiceTimer(const char *serviceName)  | 停止服务计时器 | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 |
+-  服务控制接口的DAC配置
+
+   服务控制接口配置DAC，需要修改/base/startup/init/services/etc/group文件，在组servicectrl中添加对应的用户id，例如：
+
+   ```java
+   servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr
+   ```
+
+-  服务控制接口的selinux配置
+
+   服务控制接口配置selinux，需要在init.te文件中添加该服务接口所需要的selinux权限，例如为init、samgr、hdf_devmgr等服务配置系统参数写权限：
+
+   ```java
+   allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
+   ```
 
 ### 开发步骤
    此处以要新增一个名为MySystemApp的系统服务为例进行说明，使用如下配置：

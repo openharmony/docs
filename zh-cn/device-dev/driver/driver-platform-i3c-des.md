@@ -35,7 +35,7 @@ I3C接口定义了完成I3C传输的通用方法集合，包括：
 
 ### 运作机制<a name="section4"></a>
 
-在HDF框架中，I3C模块接口适配模式采用统一服务模式，这需要一个设备服务来作为I3C模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如I3C可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。
+在HDF框架中，I3C模块接口适配模式采用统一服务模式，这需要一个设备服务来作为I3C模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如I3C可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现），实现便捷管理和节约资源的目的。
 
  相比于I2C，I3C总线拥有更高的速度、更低的功耗，支持带内中断、从设备热接入以及切换当前主设备，同时向后兼容I2C从设备。一路I3C总线上，可以连接多个设备，这些设备可以是I2C从设备、I3C从设备和I3C次级主设备，但只能同时存在一个主设备，一般为控制器本身。
 
@@ -44,38 +44,41 @@ I3C接口定义了完成I3C传输的通用方法集合，包括：
 
 ### 约束与限制<a name="section5"></a>
 
-I3C模块当前仅支持轻量和小型系统内核（LiteOS）。
+I3C模块当前仅支持轻量和小型系统内核（LiteOS-A），不支持在用户态使用。
 
 ## 使用指导<a name="section6"></a>
 
 ### 场景介绍<a name="section7"></a>
 
 I3C可连接单个或多个I3C、I2C从器件，它主要用于：
-1. 与传感器通信，如陀螺仪、气压计或支持I3C协议的图像传感器等；
-2. 通过软件或硬件协议转换，与其他接口（如 UART 串口等）的设备进行通信。
+
+- 与传感器通信，如陀螺仪、气压计或支持I3C协议的图像传感器等；
+- 通过软件或硬件协议转换，与其他接口（如 UART 串口等）的设备进行通信。
 
 ### 接口说明<a name="section8"></a>
+
+I3C模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/i3c_if.h。
 
 **表 1**  I3C驱动API接口功能介绍
 
 <a name="table1"></a>
 
-| 接口名        | 描述              |
+| 接口名        | 接口描述          |
 | ------------- | ----------------- |
-| I3cOpen       | 打开I3C控制器     |
-| I3cClose      | 关闭I3C控制器     |
-| I3cTransfer   | 自定义传输        |
-| I3cSetConfig  | 配置I3C控制器     |
-| I3cGetConfig  | 获取I3C控制器配置 |
-| I3cRequestIbi | 请求带内中断      |
-| I3cFreeIbi    | 释放带内中断      |
+| DevHandle I3cOpen(int16_t number)       | 打开I3C控制器     |
+| void I3cClose(DevHandle handle)      | 关闭I3C控制器     |
+| int32_t I3cTransfer(DevHandle handle, struct I3cMsg \*msg, int16_t count, enum TransMode mode)   | 自定义传输        |
+| int32_t I3cSetConfig(DevHandle handle, struct I3cConfig \*config)  | 配置I3C控制器     |
+| int32_t I3cGetConfig(DevHandle handle, struct I3cConfig \*config)  | 获取I3C控制器配置 |
+| int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t payload) | 请求带内中断      |
+| int32_t I3cFreeIbi(DevHandle handle, uint16_t addr)    | 释放带内中断      |
 
 >![](../public_sys-resources/icon-note.gif) **说明：**<br>
 >本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 ### 开发步骤<a name="section9"></a>
 
-I3C的使用流程如[图2](#fig2)所示。
+I3C的使用流程如图2所示。
 
 **图 2**  I3C使用流程图<a name="fig2"></a>  
 ![](figures/I3C使用流程图.png "I3C使用流程图")
@@ -111,6 +114,68 @@ if (i3cHandle == NULL) {
 }
 ```
 
+#### 获取I3C控制器配置<a name="section7"></a>
+
+```c
+int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
+```
+
+**表 3**  I3cGetConfig参数和返回值描述
+
+<a name="table3"></a>
+
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | I3C控制器句柄  |
+| config     | I3C控制器配置  |
+| **返回值** | **返回值描述** |
+| 0          | 获取成功       |
+| 负数       | 获取失败       |
+
+获取I3C控制器配置示例：
+
+```c
+struct I3cConfig config;
+
+ret = I3cGetConfig(i3cHandle, &config);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: Get config fail!", __func__);
+    return HDF_FAILURE;
+}
+```
+
+#### 配置I3C控制器<a name="section8"></a>
+
+```c
+int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
+```
+
+**表 4**  I3cSetConfig参数和返回值描述
+
+<a name="table4"></a>
+
+| 参数       | 参数描述       |
+| ---------- | -------------- |
+| handle     | I3C控制器句柄  |
+| config     | I3C控制器配置  |
+| **返回值** | **返回值描述** |
+| 0          | 配置成功       |
+| 负数       | 配置失败       |
+
+配置I3C控制器示例：
+
+```c
+struct I3cConfig config;
+
+config->busMode = I3C_BUS_HDR_MODE;
+config->curMaster = NULL;
+ret = I3cSetConfig(i3cHandle, &config);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: Set config fail!", __func__);
+    return HDF_FAILURE;
+}
+```
+
 #### 进行I3C通信<a name="section6"></a>
 
 消息传输
@@ -118,9 +183,9 @@ if (i3cHandle == NULL) {
 int32_t I3cTransfer(DevHandle handle, struct I3cMsg *msgs, int16_t count, enum TransMode mode);
 ```
 
-**表 3**  I3cTransfer参数和返回值描述
+**表 5**  I3cTransfer参数和返回值描述
 
-<a name="table3"></a>
+<a name="table5"></a>
 
 | 参数       | 参数描述                                     |
 | ---------- | -------------------------------------------- |
@@ -160,68 +225,6 @@ if (ret != 2) {
 >-   本函数不对消息结构体个数做限制，其最大个数度由具体I3C控制器决定。
 >-   本函数不对每个消息结构体中的数据长度做限制，同样由具体I3C控制器决定。
 >-   本函数可能会引起系统休眠，禁止在中断上下文调用。
-
-#### 获取I3C控制器配置<a name="section7"></a>
-
-```c
-int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
-```
-
-**表 4**  I3cGetConfig参数和返回值描述
-
-<a name="table4"></a>
-
-| 参数       | 参数描述       |
-| ---------- | -------------- |
-| handle     | I3C控制器句柄  |
-| config     | I3C控制器配置  |
-| **返回值** | **返回值描述** |
-| 0          | 获取成功       |
-| 负数       | 获取失败       |
-
-获取I3C控制器配置示例：
-
-```c
-struct I3cConfig config;
-
-ret = I3cGetConfig(i3cHandle, &config);
-if (ret != HDF_SUCCESS) {
-    HDF_LOGE("%s: Get config fail!", __func__);
-    return HDF_FAILURE;
-}
-```
-
-#### 配置I3C控制器<a name="section8"></a>
-
-```c
-int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
-```
-
-**表 5**  I3cSetConfig参数和返回值描述
-
-<a name="table5"></a>
-
-| 参数       | 参数描述       |
-| ---------- | -------------- |
-| handle     | I3C控制器句柄  |
-| config     | I3C控制器配置  |
-| **返回值** | **返回值描述** |
-| 0          | 配置成功       |
-| 负数       | 配置失败       |
-
-配置I3C控制器示例：
-
-```c
-struct I3cConfig config;
-
-config->busMode = I3C_BUS_HDR_MODE;
-config->curMaster = NULL;
-ret = I3cSetConfig(i3cHandle, &config);
-if (ret != HDF_SUCCESS) {
-    HDF_LOGE("%s: Set config fail!", __func__);
-    return HDF_FAILURE;
-}
-```
 
 #### 请求IBI（带内中断）<a name="section9"></a>
 
@@ -310,9 +313,9 @@ I3C通信完成之后，需要关闭I3C控制器，关闭函数如下所示：
 void I3cClose(DevHandle handle); 
 ```
 
-**表 4**  I3cClose参数和返回值描述
+**表 8**  I3cClose参数和返回值描述
 
-<a name="table4"></a>
+<a name="table8"></a>
 
 | 参数       | 参数描述       |
 | ---------- | -------------- |
@@ -326,15 +329,13 @@ I3cClose(i3cHandle); /* 关闭I3C控制器 */
 
 ## 使用实例<a name="section10"></a>
 
-本例程以操作开发板上的I3C设备为例，详细展示I3C接口的完整使用流程。
-
-由于Hi3516DV300系列SOC没有I3C控制器，本例拟在Hi3516DV300某开发板上对虚拟驱动进行简单的传输操作，基本硬件信息如下：
+本例程以操作Hi3516DV300开发板上的I3C虚拟设备为例，详细展示I3C接口的完整使用流程，基本硬件信息如下。
 
 -   SOC：hi3516dv300。
 
--   虚拟：I3C地址为0x3f, 寄存器位宽为1字节。
+-   虚拟I3C设备：I3C地址为0x3f, 寄存器位宽为1字节。
 
--   原理图信息：虚拟I3C设备挂接在18号和19号I3C控制器下。
+-   硬件连接：虚拟I3C设备挂接在18号和19号I3C控制器下。
 
 本例程进行简单的I3C传输，测试I3C通路是否正常。
 

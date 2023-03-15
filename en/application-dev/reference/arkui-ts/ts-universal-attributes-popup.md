@@ -1,124 +1,122 @@
 # Popup Control
 
-The popup attribute defines the popup displayed when a component is clicked.
+You can bind a popup to a component, specifying its content, interaction logic, and display status.
 
 >  **NOTE**
 >
 >  This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
+## APIs
 
 
-## Attributes
+| Name          | Type                            | Description                                       |
+| ---------- | ------------------------------------- | --------------------------------------- |
+| bindPopup  | show: boolean,<br>popup: [PopupOptions](#popupoptions) \| [CustomPopupOptions](#custompopupoptions8)<sup>8+</sup> | Binds a popup to the component.<br>**show**: whether to show the popup. The default value is **false**, indicating that the popup is hidden.<br>**popup**: parameters of the popup.|
 
+## PopupOptions
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| bindPopup | show: boolean,<br>popup: PopupOptions \| CustomPopupOptions | - | Settings of the popup bound to the component.<br>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br>**popup**: parameters of the popup.|
+| Name                     | Type                                               | Mandatory   | Description                                         |
+| -------------------------| ------------------------------------------------| -----| ----------------------------------------- |
+| message                      | string                                                | Yes  | Content of the popup message.                                    |
+| placementOnTop               | boolean                                               | No   | Whether to display the popup above the component.<br/>Default value: **false**            |
+| primaryButton                | {<br>value: string,<br>action: () =&gt; void<br>}     | No   | Primary button.<br>**value**: text of the primary button in the popup.<br>**action**: callback for clicking the primary button.|
+| secondaryButton              | {<br>value: string,<br>action: () =&gt; void<br>}     | No   | Secondary button.<br>**value**: text of the secondary button in the popup.<br>**action**: callback for clicking the secondary button.|
+| onStateChange                | (event: { isVisible: boolean }) =&gt; void        | No  | Callback for the popup status change event.<br/>**isVisible**: whether the popup is visible. |
+| arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length)                      | No  | Offset of the popup arrow relative to the popup. <br>When the arrow is at the top or bottom of the popup: The value **0** indicates that the arrow is located on the leftmost, and any other value indicates the distance from the arrow to the leftmost; the arrow is centered by default. <br/>When the arrow is on the left or right side of the popup: The value indicates the distance from the arrow to the top; the arrow is centered by default. <br/>When the popup is displayed on either edge of the screen, it will automatically deviate leftward or rightward to stay within the safe area. When the value is **0**, the arrow always points to the bound component. |
+| showInSubWindow<sup>9+</sup> | boolean                                           | No  | Whether to show the popup in the subwindow. <br/>Default value: **false** |
+| mask<sup>10+</sup>           | boolean \| [ResourceColor](ts-types.md#resourcecolor) | No   | Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 
+## CustomPopupOptions<sup>8+</sup>
 
-- PopupOptions
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | message | string | Yes| - | Content of the popup message.|
-  | placementOnTop | boolean | No| false | Whether to display the popup above the component. The default value is **false**.|
-  | arrowOffset<sup>9+</sup> | Length | No| - | Offset of the popup arrow in the popup window. When above or below the popup, the arrow is offset to the left by default. When on the left or right side of the popup, the arrow is offset to the top by default.|
-  | primaryButton | {<br>value: string,<br>action: () =&gt; void<br>} | No| - | Primary button.<br>**value**: text of the primary button in the popup.<br>**action**: callback for clicking the primary button.|
-  | secondaryButton | {<br>value: string,<br>action: () =&gt; void<br>} | No| - | Secondary button.<br>**value**: text of the secondary button in the popup.<br>**action**: callback for clicking the secondary button.|
-  | onStateChange | (isVisible: boolean) =&gt; void | No| - | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
-
-- CustomPopupOptions<sup>8+</sup>
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | builder | () =&gt; any | Yes| - | Builder of the popup content.|
-  | placement | [Placement](ts-appendix-enums.md#placement8) | No| Placement.Bottom | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.|
-  | arrowOffset<sup>9+</sup> | Length | No| - | Offset of the popup arrow in the popup window. When above or below the popup, the arrow is offset to the left by default. When on the left or right side of the popup, the arrow is offset to the top by default.|
-  | maskColor | [ResourceColor](../../ui/ts-types.md) | No| - | Color of the popup mask.|
-  | popupColor | [ResourceColor](../../ui/ts-types.md) | No| - | Color of the popup.|
-  | enableArrow | boolean | No| true | Whether to display an arrow.<br>Since API version 9, if the location set for the popup arrow is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left** and the popup height is less than the arrow width (32 vp), the arrow will not be displayed.|
-  | autoCancel | boolean | No| true | Whether to automatically close the popup when an operation is performed on the page.|
-  | onStateChange | (isVisible: boolean) =&gt; void | No| - | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
+| Name                      | Type                      | Mandatory    | Description                                                |
+| -------------------------| ------------------------- | ---- | ---------------------------------------------------- |
+| builder                  | [CustomBuilder](ts-types.md#custombuilder8)  | Yes  | Popup builder.                                         |
+| placement                | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.<br>Default value: **Placement.Bottom**    |
+| popupColor               | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the popup.                                              |
+| enableArrow              | boolean                                      | No  | Whether to display an arrow.<br>Since API version 9, if the position set for the popup is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left** but the popup height is less than twice the arrow width (64 vp), the arrow will not be displayed.<br>Default value: **true**|
+| autoCancel               | boolean                                      | No  | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**                       |
+| onStateChange            | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event.<br>**isVisible**: whether the popup is visible. |
+| arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length)                 | No  | Offset of the popup arrow relative to the popup. <br/>When the arrow is at the top or bottom of the popup: The value **0** indicates that the arrow is located on the leftmost, and any other value indicates the distance from the arrow to the leftmost; the arrow is centered by default. <br/>When the arrow is on the left or right side of the popup: The value indicates the distance from the arrow to the top; the arrow is centered by default. <br/>When the popup is displayed on either edge of the screen, it will automatically deviate leftward or rightward to stay within the safe area. When the value is **0**, the arrow always points to the bound component. |
+| showInSubWindow<sup>9+</sup> | boolean                                      | No  | Whether to show the popup in the subwindow.<br/>Default value: **false** |
+| mask<sup>10+</sup> | boolean \| [ResourceColor](ts-types.md#resourcecolor) | No| Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 
 
 ## Example
-
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct PopupExample {
-  @State noHandlePopup: boolean = false
   @State handlePopup: boolean = false
   @State customPopup: boolean = false
 
+  // Popup builder
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image('/resource/ic_public_thumbsup.svg').width(24).height(24).margin({ left: -5 })
+      Image($r("app.media.image")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
-    }.width(100).height(50).backgroundColor(Color.White)
+    }.width(100).height(50).padding(5)
   }
 
   build() {
     Flex({ direction: FlexDirection.Column }) {
-      Button('no handle popup')
+      // PopupOptions for setting the popup
+      Button('PopupOptions')
         .onClick(() => {
-          this.noHandlePopup = !this.noHandlePopup
+          this.handlePopup = !this.handlePopup
         })
-        .bindPopup(this.noHandlePopup, {
-          message: 'content1 content1',
-          placementOnTop: false,
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
+          placementOnTop: true,
+          showInSubWindow:false,
+          primaryButton: {
+            value: 'confirm',
+            action: () => {
+              this.handlePopup = !this.handlePopup
+              console.info('confirm Button click')
+            }
+          },
+          // Secondary button
+          secondaryButton: {
+            value: 'cancel',
+            action: () => {
+              this.handlePopup = !this.handlePopup
+              console.info('cancel Button click')
+            }
+          },
           onStateChange: (e) => {
-            console.info(e.isVisible.toString())
+            console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
-              this.noHandlePopup = false
+              this.handlePopup = false
             }
           }
         })
         .position({ x: 100, y: 50 })
 
-      Button('with handle popup')
-        .onClick(() => {
-          this.handlePopup = !this.handlePopup
-        })
-        .bindPopup(this.handlePopup, {
-          message: 'content2 content2',
-          placementOnTop: true,
-          primaryButton: {
-            value: 'ok',
-            action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('secondaryButton click')
-            }
-          },
-          onStateChange: (e) => {
-            console.info(e.isVisible.toString())
-          }
-        })
-        .position({ x: 100, y: 200 })
 
-      Button('custom popup')
+      // CustomPopupOptions for setting the popup
+      Button('CustomPopupOptions')
         .onClick(() => {
           this.customPopup = !this.customPopup
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
-          placement: Placement.Bottom,
-          maskColor: 0x33000000,
-          popupColor: Color.White,
+          placement: Placement.Top,
+          mask: {color: 0x33000000},
+          popupColor: Color.Yellow,
           enableArrow: true,
+          showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
               this.customPopup = false
             }
           }
         })
-        .position({ x: 100, y: 350 })
+        .position({ x: 80, y: 200 })
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001212058458](figures/en-us_image_0000001212058458.gif)
+![figures/popup.gif](figures/popup.gif)

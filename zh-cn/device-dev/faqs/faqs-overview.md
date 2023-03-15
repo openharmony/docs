@@ -9,24 +9,26 @@
 
 ### 轻量和小型系统
 
-- [hb安装过程中出现乱码、段错误](../faqs/faqs-environment-setup.md)
+- 安装hb
 
-- [hb安装过程中提示"cannot import 'sysconfig' from 'distutils'"](../faqs/faqs-environment-setup.md)
+  - [hb安装过程中出现乱码、段错误](../faqs/faqs-environment-setup.md)
 
-- [hb安装过程中提示"module 'platform' has no attribute 'linux_distribution'"](../faqs/faqs-environment-setup.md)
+  - [hb安装过程中提示"cannot import 'sysconfig' from 'distutils'"](../faqs/faqs-environment-setup.md)
 
-- [hb安装过程中提示"Could not find a version that satisfies the requirement ohos-build"](../faqs/faqs-environment-setup.md)
+  - [hb安装过程中提示"module 'platform' has no attribute 'linux_distribution'"](../faqs/faqs-environment-setup.md)
 
-- [安装python3过程中，提示“configure: error: no acceptable C compiler found in $PATH”](../faqs/faqs-environment-setup.md)
+  - [hb安装过程中提示"Could not find a version that satisfies the requirement ohos-build"](../faqs/faqs-environment-setup.md)
+- 安装python3
 
-- [安装python3过程中，提示“-bash: make: command not found”](../faqs/faqs-environment-setup.md)
+  - [提示“configure: error: no acceptable C compiler found in $PATH”](../faqs/faqs-environment-setup.md)
 
-- [安装python3过程中，提示“zlib not available”](../faqs/faqs-environment-setup.md)
+  - [提示“-bash: make: command not found”](../faqs/faqs-environment-setup.md)
 
-- [编译构建过程中，提示“No module named 'Crypto'”](../faqs/faqs-environment-setup.md)
+  - [提示“zlib not available”](../faqs/faqs-environment-setup.md)
+
+  - [提示“No module named 'Crypto'”](../faqs/faqs-environment-setup.md)
 
 - [安装kconfiglib时，遇到lsb_release错误](../faqs/faqs-environment-setup.md)
-
 - [Linux编译服务器终端输入不识别的命令时提示“ImportError: No module named apt_pkg”](../faqs/faqs-environment-setup.md)
 
 
@@ -35,25 +37,25 @@
 
 ### 轻量和小型系统
 
-- [编译构建过程中，提示“usr/sbin/ninja: invalid option -- w”](../faqs/faqs-building.md)
+- [提示“usr/sbin/ninja: invalid option -- w”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示“/usr/bin/ld: cannot find -lncurses”](../faqs/faqs-building.md)
+- [提示“/usr/bin/ld: cannot find -lncurses”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示“line 77: mcopy: command not found”](../faqs/faqs-building.md)
+- [提示“line 77: mcopy: command not found”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”](../faqs/faqs-building.md)
+- [提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示“No module named 'Crypto'”](../faqs/faqs-building.md)
+- [提示“No module named 'Crypto'”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示“xx.sh : xx unexpected operator”](../faqs/faqs-building.md)
+- [提示“xx.sh : xx unexpected operator”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示“Could not find a version that satisfies the requirement six>=1.9.0”](../faqs/faqs-building.md)
+- [提示“Could not find a version that satisfies the requirement six>=1.9.0”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示找不到“-lgcc”](../faqs/faqs-building.md)
+- [提示找不到“-lgcc”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示找不到“python”](../faqs/faqs-building.md)
+- [提示找不到“python”](../faqs/faqs-building.md)
 
-- [编译构建过程中，提示找不到“python3”](../faqs/faqs-building.md)
+- [提示找不到“python3”](../faqs/faqs-building.md)
 
 
 ## 烧录

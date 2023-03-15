@@ -1,9 +1,10 @@
-# statfs
+# @ohos.statfs (statfs)
 
 该模块提供文件系统相关存储信息的功能，向应用程序提供获取文件系统总字节数、空闲字节数的JS接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块从API version 9开始废弃，建议使用[@ohos.file.statvfs](js-apis-file-statvfs.md)替代。
 
 ## 导入模块
 
@@ -34,10 +35,10 @@ getFreeBytes(path:string):Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getFreeBytes(path).then(function (number){
-      console.info("getFreeBytes promise successfully:"+ number);
-  }).catch(function(err){
-      console.info("getFreeBytes failed with error:"+ err);
+  statfs.getFreeBytes(path).then(function (number) {
+      console.info("getFreeBytes promise successfully:" + number);
+  }).catch(function (err) {
+      console.info("getFreeBytes failed with error:" + err);
   });
   ```
 
@@ -59,11 +60,11 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-   import featureAbility from '@ohos.ability.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
-      statfs.getFreeBytes(path, function(err, number){
-          console.info("getFreeBytes callback successfully:"+ number);
+      statfs.getFreeBytes(path, function (err, number) {
+          console.info("getFreeBytes callback successfully:" + number);
       });
   });
   ```
@@ -78,7 +79,7 @@ getTotalBytes(path: string): Promise&lt;number&gt;
 
 **参数：**
 
-  | 参数 | 类型   | 必填 | 说明                         |
+  | 参数名 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
   | path | string | 是   | 需要查询的文件系统的文件路径 |
 
@@ -92,10 +93,10 @@ getTotalBytes(path: string): Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getTotalBytes(path).then(function (number){
-      console.info("getTotalBytes promise successfully:"+ number);
-  }).catch(function(err){
-      console.info("getTotalBytes failed with error:"+ err);
+  statfs.getTotalBytes(path).then(function (number) {
+      console.info("getTotalBytes promise successfully:" + number);
+  }).catch(function (err) {
+      console.info("getTotalBytes failed with error:" + err);
   });
   ```
 
@@ -120,8 +121,8 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
   import featureAbility from '@ohos.ability.featureAbility';
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
-      statfs.getTotalBytes(path, function(err, number){
-          console.info("getTotalBytes callback successfully:"+ number);
+      statfs.getTotalBytes(path, function(err, number) {
+          console.info("getTotalBytes callback successfully:" + number);
       });
   });
   ```

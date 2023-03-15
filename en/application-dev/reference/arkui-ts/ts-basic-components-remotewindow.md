@@ -6,7 +6,7 @@
 >  
 >  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  This component is a system API.
+>  The APIs provided by this component are system APIs.
 
 ## Child Components
 
@@ -18,12 +18,14 @@ RemoteWindow(target: WindowAnimationTarget)
 
 Creates a **\<RemoteWindow>** through a window animation object.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | target | [WindowAnimationTarget](#windowanimationtarget) | Yes| - | Description of the animation window to control.|
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| target | [WindowAnimationTarget](#windowanimationtarget) | Yes| - | Description of the animation window to control.|
 
 ## WindowAnimationTarget
+
 Implements a target window, which is used to remotely control the animation.
 
 | Name     | Type    | Description|
@@ -31,9 +33,10 @@ Implements a target window, which is used to remotely control the animation.
 | bundleName  | string | Process corresponding to the animation window.|
 | abilityName | string | Ability corresponding to the animation window.|
 | windowBounds | [RRect](#rrect) | Actual size of the animation window.|
-| missionId  | number | Mission ID. |
+| missionId  | number | Mission ID.|
 
 ## RRect
+
 Implements a rounded rectangle.
 
 | Name     | Type    | Description|

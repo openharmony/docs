@@ -147,7 +147,7 @@
 | 事件通知子系统 | - 新增支持工具适配多用户。<br/>- 公共事件和通知基础能力增强。<br/>主要涉及如下需求：<br/>I582V2 【新增规格】支持点对点发送事件​<br/>I582XB 【新增规格】工具适配多用户<br/>I582UL 【增强特性】分布式通知同步增强<br/>I582QQ 【新增规格】通知发送支持设置未读角标<br/>I582XB 【新增规格】工具适配多用户<br/>I582SD 【DFX】【增强特性】通知DFX能力增强<br/>I582ST 【新增规格】支持配置通知清理事件<br/>I582TF 【增强特性】通知渠道信息设置和查询增强<br/>I58418 【新增规格】【事件通知子系统】事件通知子系统的SELinux策略配置<br/>I582Y4 【DFX打点】【事件通知子系统】提供系统事件、SA dump、trace打点 | NA |
 | 分布式硬件子系统 | 新增DeviceManager支持同帐号凭据参数请求和导入等特性。<br/>I5IUUS  【DFX打点】【分布式硬件子系统】提供系统事件、SA dump、trace打点<br/>I5IUVN  【新增特性】支持同帐号凭据参数请求和导入 | NA |
 | 用户IAM子系统 | - 持续增强用户认证的基础能力。<br/>- 新增用户IAM框架，支持指纹录入、认证、识别、删除功能。<br/>I5EPCD 支持完成指定用户的指纹录入【框架】<br/>I5EPCM 支持完成指定用户的指纹认证和指纹识别【框架】<br/>I5EPCU 支持完成指定用户的指纹认证删除【框架】 | NA |
-| 编译构建子系统 | - 对python和gn进行版本升级。<br/>- 新增系统组件拆分独立编译。<br/>- 在模块依赖、编译功能开关及ccache方面极致提升编译性能。<br/>主要涉及如下需求：<br/>I5IZC2 【编译构建子系统】支持系统组件与芯片组件独立构建<br/>I5IZD9 【集成优化】模块依赖优化<br/>I5IZI0 【集成优化】提供编译功能选项开关<br/>I5IZH2 【集成优化】ccache优化 | NA |
+| 编译构建子系统 | - 对python和gn进行版本升级。<br/>- 新增系统组件拆分独立编译。<br/>- 在模块依赖、编译功能开关及ccache方面提升编译性能。<br/>主要涉及如下需求：<br/>I5IZC2 【编译构建子系统】支持系统组件与芯片组件独立构建<br/>I5IZD9 【集成优化】模块依赖优化<br/>I5IZI0 【集成优化】提供编译功能选项开关<br/>I5IZH2 【集成优化】ccache优化 | NA |
 | 多模输入子系统 | - 提供通过JS API访问输入设备信息。<br/>- 新增支持手写笔作为输入设备。<br/>- 新增支持按键自动重复的事件上报。<br/>- 新增支持SELinux。<br/>主要涉及如下需求：<br/>I530UN 【新增特性】窗口多热区分发机制<br/>I530UT 【新增特性】JS API Mock<br/>I530VY 【新增特性】支持通过JS API查看手写笔输入设备基础信息<br/>I530W0 【新增特性】支持通过JS API 查看鼠标输入设备扩展信息<br/>I530WA 【新增特性】支持通过JS API查看触摸板输入设备扩展信息<br/>I530WD 【新增特性】支持通过JS API查看触摸屏输入设备扩展信息<br/>I530WH 【新增特性】支持Linux Input手写笔功能按键输入事件接收并分发<br/>I530WI 【新增特性】支持Linux Input手写笔压感合成<br/>I530WJ 【新增特性】支持Linux Input手写笔倾角<br/>I530WK 【新增特性】支持触摸点压力属性<br/>I530WM 【新增特性】支持触摸点触摸区域属性<br/>I530WO 【新增特性】支持触摸点工具区域属性<br/>I530WP 【新增特性】支持触摸点工具类型属性<br/>I530X8 【新增特性】支持通过配置文件配置按键映射规则<br/>I530XH 【新增特性】支持系统按键通过配置文件配置按键映射规则<br/>I530XJ 【新增特性】支持系统按键自动重复<br/>I530XK 【新增特性】支持键盘类型识别<br/>I530XL 【新增特性】支持按键能力识别<br/>I530XM 【新增特性】支持键盘通过配置文件配置按键映射规则<br/>I530XN 【新增特性】支持键盘按键自动重复<br/>I530XT 【新增特性】支持通过C++ API按照相对坐标调整鼠标位置<br/>I530XX 【新增特性】支持触摸点压力属性<br/>I530XZ 【新增特性】支持触摸点触摸区域属性<br/>I530Y1 【新增特性】支持触摸点工具区域属性<br/>I530Y2 【新增特性】支持触摸点工具类型属性<br/>I530Y7 【新增规格】多模输入子系统支持64位<br/>I530YB 【DFX打点】【多模输入子系统】提供系统事件、SA dump、trace打点<br/>I530YF 【新增规格】【多模输入】【input】SELinux策略配置<br/>I5HMBS 【input部件】键鼠自适应布局适配 | NA |
 | 泛Sensor服务子系统 | - 支持更多类型的传感器上报。<br/>- 支持SELinux。<br/>主要涉及如下需求：<br/>I53SFI 【DFX打点】【泛Sensor服务子系统】提供系统事件、SA dump、trace打点<br/>I537CB 【新增规格】泛Sensor能力持续集成-旋转矢量传感器<br/>I537AN 【新增规格】泛Sensor能力持续集成-重力传感器<br/>I5379T 【新增规格】泛Sensor能力持续集成-地磁传感器<br/>I5379C 【新增规格】泛Sensor能力持续集成-方向传感器<br/>I53784 【新增规格】泛Sensor能力持续集成-环境光传感器<br/>I53SFS 【新增规格】【泛Sensor服务】SELinux策略配置 | NA |
 | 分布式数据管理子系统 | data_share支持多种数据类型。<br/>主要涉及如下需求：<br/>I5EHGF 【DataShare】DataShare支持多种数据储存类型 | NA |
@@ -171,31 +171,31 @@
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 元能力 | MissionManager | 本示例通过调用系统任务管理的能力，对系统任务执行锁定、解锁、清理、切换到前台等操作。 | eTS |
-| 网络管理 | AirQuality | 空气质量（Air quality）的好坏反映了空气污染程度，它是依据空气中污染物浓度的高低来判断的。空气污染是一个复杂的现象，在特定时间和地点空气污染物浓度受到许多因素影响。来自固定和流动污染源的人为污染物排放大小是影响空气质量的最主要因素之一，本示例实现了一个简单空气质量应用，使用折行显示能力显示空气质量信息，使用柱形图展示历史记录。 | eTS |
-| ArkUI | TransitionAnimation | 本示例展示了转场动画的使用，包括页面间转场、组件内转场和共享元素转场。 | eTS |
-| 应用程序包管理 | ZipLib | 本示例通过构建解压，压缩文件场景，向用户展示\@ohos.zlib接口。 | eTS |
-| 工程能力 | Npm | 本示例展示了npm引用第三方js类库和本地库，主要展示了mathjs、dayjs和本地库应用。 | eTS |
-| 数据管理 | DistributedMusicPlayer | 本示例使用fileIo获取指定音频文件，并通过AudioPlayer完成了音乐的播放完成了基本的音乐播放、暂停、上一曲、下一曲功能；并使用DeviceManager完成了分布式设备列表的显示和分布式能力完成了音乐播放状态的跨设备迁移。 | eTS |
-| ArkUI | PatternLock | 本示例展示了图案密码锁组件的使用，实现了密码设置、验证和重置功能。 | eTS |
-| 安全 | UserAuth | 本示例展示了用户认证中人脸识别功能。 | eTS |
-| 安全 | Cipher | 本示例展示了加解密算法，包括RSA加密算法与AES加密算法。 | eTS |
-| 图形图像 | Screen | 本示例监听屏幕数量变化，创建、销毁虚拟屏幕模拟屏幕增减，读取屏幕属性并显示。 | eTS |
-| ArkUI | Search | 本示例展示了Search组件的使用，使用Search组件实现一个搜索界面。 | eTS |
-| 设备管理 | USBManager | 本示例展示了USB设备管理的使用，包括USB设备插拔状态监听和USB设备信息显示。 | eTS |
-| 数据管理 | DistributedDataGobang | 五子棋是一款比较流行的棋类游戏，此游戏使用分布式数据管理功能进行开发完成的。 | eTS |
-| 媒体 | Image | 本示例仿照相册应用，读取本地设备中图片，获取图片信息，可对图片进行旋转操作。 | eTS |
-| 安全 | AbilityAccessCtrl | 本示例通过模拟应用申请权限场景，向用户展示@ohos.abilityAccessCtrl接口。 | eTS |
-| 网络管理 | WebSocket | 本示例展示了WebSocket的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。 | eTS |
-| 通信与连接 | Bluetooth | 蓝牙技术是一种无线数据和语音通信开放的全球规范，它是基于低成本的近距离无线连接，为固定和移动设备建立通信环境的一种特殊的近距离无线技术连接。本示例实现蓝牙设备发现，配对，取消配对功能。 | eTS |
-| 媒体 | GamePuzzle | 拼图Demo是基于Grid组件进行开发，通过image (图片处理)和medialibrary (媒体库管理)接口实现获取图片，以及图片裁剪分割。 | eTS |
-| 网络管理 | UploadDownload | 上传就是将文件从个人终端设备传送至远程服务器，下载是将文件从远程服务器传送至个人终端设备，进而实现文件的存储，该示例使用上传下载的接口实现文件的上传下载。 | eTS |
-| 设备管理 | Location | 本示例使用方向传感器及GPS，实现获取当前位置信息。 | eTS |
-| 电话服务 | Observer | 本示例通过observer接口订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。 | eTS |
-| ArkUI | AdaptiveCapabilities | 此Demo展示在eTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | eTS |
+| 元能力 | MissionManager | 本示例通过调用系统任务管理的能力，对系统任务执行锁定、解锁、清理、切换到前台等操作。 | ArkTS |
+| 网络管理 | AirQuality | 空气质量（Air quality）的好坏反映了空气污染程度，它是依据空气中污染物浓度的高低来判断的。空气污染是一个复杂的现象，在特定时间和地点空气污染物浓度受到许多因素影响。来自固定和流动污染源的人为污染物排放大小是影响空气质量的最主要因素之一，本示例实现了一个简单空气质量应用，使用折行显示能力显示空气质量信息，使用柱形图展示历史记录。 | ArkTS |
+| ArkUI | TransitionAnimation | 本示例展示了转场动画的使用，包括页面间转场、组件内转场和共享元素转场。 | ArkTS |
+| 应用程序包管理 | ZipLib | 本示例通过构建解压，压缩文件场景，向用户展示\@ohos.zlib接口。 | ArkTS |
+| 工程能力 | Npm | 本示例展示了npm引用第三方js类库和本地库，主要展示了mathjs、dayjs和本地库应用。 | ArkTS |
+| 数据管理 | DistributedMusicPlayer | 本示例使用fileIo获取指定音频文件，并通过AudioPlayer完成了音乐的播放完成了基本的音乐播放、暂停、上一曲、下一曲功能；并使用DeviceManager完成了分布式设备列表的显示和分布式能力完成了音乐播放状态的跨设备迁移。 | ArkTS |
+| ArkUI | PatternLock | 本示例展示了图案密码锁组件的使用，实现了密码设置、验证和重置功能。 | ArkTS |
+| 安全 | UserAuth | 本示例展示了用户认证中人脸识别功能。 | ArkTS |
+| 安全 | Cipher | 本示例展示了加解密算法，包括RSA加密算法与AES加密算法。 | ArkTS |
+| 图形图像 | Screen | 本示例监听屏幕数量变化，创建、销毁虚拟屏幕模拟屏幕增减，读取屏幕属性并显示。 | ArkTS |
+| ArkUI | Search | 本示例展示了Search组件的使用，使用Search组件实现一个搜索界面。 | ArkTS |
+| 设备管理 | USBManager | 本示例展示了USB设备管理的使用，包括USB设备插拔状态监听和USB设备信息显示。 | ArkTS |
+| 数据管理 | DistributedDataGobang | 五子棋是一款比较流行的棋类游戏，此游戏使用分布式数据管理功能进行开发完成的。 | ArkTS |
+| 媒体 | Image | 本示例仿照相册应用，读取本地设备中图片，获取图片信息，可对图片进行旋转操作。 | ArkTS |
+| 安全 | AbilityAccessCtrl | 本示例通过模拟应用申请权限场景，向用户展示@ohos.abilityAccessCtrl接口。 | ArkTS |
+| 网络管理 | WebSocket | 本示例展示了WebSocket的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。 | ArkTS |
+| 通信与连接 | Bluetooth | 蓝牙技术是一种无线数据和语音通信开放的全球规范，它是基于低成本的近距离无线连接，为固定和移动设备建立通信环境的一种特殊的近距离无线技术连接。本示例实现蓝牙设备发现，配对，取消配对功能。 | ArkTS |
+| 媒体 | GamePuzzle | 拼图Demo是基于Grid组件进行开发，通过image (图片处理)和medialibrary (媒体库管理)接口实现获取图片，以及图片裁剪分割。 | ArkTS |
+| 网络管理 | UploadDownload | 上传就是将文件从个人终端设备传送至远程服务器，下载是将文件从远程服务器传送至个人终端设备，进而实现文件的存储，该示例使用上传下载的接口实现文件的上传下载。 | ArkTS |
+| 设备管理 | Location | 本示例使用方向传感器及GPS，实现获取当前位置信息。 | ArkTS |
+| 电话服务 | Observer | 本示例通过observer接口订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。 | ArkTS |
+| ArkUI | AdaptiveCapabilities | 此Demo展示在ArkTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | ArkTS |
 | ArkUI | JsAdaptiveCapabilities | 此Demo展示在JS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | JS |
 
-请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
 
 ## 修复缺陷列表
@@ -206,7 +206,7 @@
 | -------- | -------- |
 | [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 |
 | [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | API9 hdc_std连接设备低概率断连 |
-| [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | 【RK3568】【必现】相机连续多次录像出现黑屏 |
+| [I54D32](https://gitee.com/openharmony/multimedia_camera_framework/issues/I54D32) | 【RK3568】【必现】相机连续多次录像出现黑屏 |
 
 
 ## 遗留缺陷列表

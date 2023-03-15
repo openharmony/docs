@@ -1,26 +1,24 @@
 # drawing_color.h
 
 
-## **Overview**
+## 概述
 
-**Related Modules:**
+文件中定义了与颜色相关的功能函数。
+
+**起始版本：**
+
+8
+
+**相关模块：**
 
 [Drawing](_drawing.md)
 
-**Description:**
 
-文件中定义了与颜色相关的功能函数
-
-**Since:**
-8
-**Version:**
-1.0
-
-## **Summary**
+## 汇总
 
 
-### Functions
+### 函数
 
-  | Function | Description | 
+| 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_ColorSetArgb](_drawing.md#ga9137935b970e49ffd813157ebd8bbfb7)&nbsp;(uint32_t&nbsp;alpha,&nbsp;uint32_t&nbsp;red,&nbsp;uint32_t&nbsp;green,&nbsp;uint32_t&nbsp;blue) | uint32_t<br/>函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量 | 
+| [OH_Drawing_ColorSetArgb](_drawing.md#oh_drawing_colorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | 函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量 |

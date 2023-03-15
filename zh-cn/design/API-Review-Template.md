@@ -2,7 +2,7 @@
 
 ## 背景
 
-* API类型：[Public API | Test API| HDI]
+* API类型：[Public API | System API |Test API| HDI]
 * API需求来源：
 * API使用场景：
 * API所属子系统：

@@ -7,8 +7,8 @@ Driver services are objects of capabilities provided by HDF driver devices to ex
 The HDF uses the **policy** field in the configuration file to define policies for a driver to provide services externally. The values this field are as follows:
 
 
-
-```
+  
+```c
 typedef enum {
     /* The driver does not provide services. */
     SERVICE_POLICY_NONE = 0,
@@ -28,7 +28,7 @@ typedef enum {
 
 ## When to Use
 
-The driver service management capability can be used if the driver provides capabilities using APIs.
+You can use the driver service management capability of the HDF when the driver needs to provide capabilities via APIs.
 
 
 ## Available APIs
@@ -37,7 +37,7 @@ The table below describes the APIs for driver service management.
 
   **Table 1** APIs for driver service management
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
 | int32_t (\*Bind)(struct HdfDeviceObject \*deviceObject) | Binds a service API to the HDF. You need to implement the **Bind()** function.|
 | const struct HdfObject \*DevSvcManagerClntGetService(const char \*svcName)| Obtains a driver service.|
@@ -48,9 +48,9 @@ The table below describes the APIs for driver service management.
 
 The development procedure is as follows:
 
-1. Define the services to be published by the driver.
-   
-   ```
+1. Define the service to be published by the driver.
+     
+   ```c
    // Define the driver service structure.
    struct ISampleDriverService {
        struct IDeviceIoService ioService;       // The first member must be of the IDeviceIoService type.
@@ -62,91 +62,87 @@ The development procedure is as follows:
    int32_t SampleDriverServiceA(void)
    {
        // You need to implement the service logic.
-       return 0;
+       return HDF_SUCCESS;
    }
    
    int32_t SampleDriverServiceB(uint32_t inputCode)
    {
        // You need to implement the service logic.
-       return 0;
+       return HDF_SUCCESS;
    }
    ```
 
-2. Bind the driver service to the HDF and implement the **Bind()** function in the **HdfDriverEntry** structure.
+2. Bind the driver service.
    
-   ```
+   Implement the **Bind** pointer function, for example, **SampleDriverBind**, in **HdfDriverEntry** to bind the driver service to the HDF.
+     
+   ```c
    int32_t SampleDriverBind(struct HdfDeviceObject *deviceObject)
    {
        // deviceObject is a pointer to the device object created by the HDF for each driver. The device object holds private device data and service APIs.
        if (deviceObject == NULL) {
            HDF_LOGE("Sample device object is null!");
-           return -1;
+           return HDF_FAILURE;
        }
        static struct ISampleDriverService sampleDriverA = {
            .ServiceA = SampleDriverServiceA,
            .ServiceB = SampleDriverServiceB,
        };
        deviceObject->service = &sampleDriverA.ioService;
-       return 0;
+       return HDF_SUCCESS;
    }
    ```
 
 3. Obtain the driver service.
 
-   The driver service can be obtained by using the API or subscription mechanism provided by the HDF.
+   The driver service can be obtained by using either of the following methods:
 
-   - Using the API
+   - Using the API provided by the HDF
 
-     Use the API provided by the HDF to obtain the driver service if the driver has been loaded.
+     If the service requester clearly knows the time when the driver is loaded, use the API provided by the HDF to obtain the driver service. The following is an example:
 
-     ```
-     ​```
-     const struct ISampleDriverService *sampleService =
-             (const struct ISampleDriverService *)DevSvcManagerClntGetService("sample_driver");
-     if (sampleService == NULL) {
-         return -1;
-     }
-     sampleService->ServiceA();
-     sampleService->ServiceB(5);
-     ​```
-     ```
-
+        
+      ```c
+      const struct ISampleDriverService *sampleService =
+              (const struct ISampleDriverService *)DevSvcManagerClntGetService("sample_driver");
+      if (sampleService == NULL) {
+          return HDF_FAILURE;
+      }
+      sampleService->ServiceA();
+      sampleService->ServiceB(5);
+      ```
    - Using the subscription mechanism
 
-     If the kernel mode is unaware of the time for loading drivers on the same host, use the subscription mechanism provided by the HDF to subscribe to the drivers. After the drivers are loaded, the HDF publishes the driver services to the subscriber. 
+     If the service requester is unaware of the time when the driver (in the same host) is loaded, use the subscription mechanism provided by the HDF to subscribe to the service. After the driver is loaded, the HDF publishes the driver service to the subscriber. The implementation is as follows:
 
-     The implementation is as follows:
-
-     ```
-     // Callback invoked to return the driver services after the subscribed driver is loaded.
-     // object is the pointer to the private data of the subscriber, and service is the pointer to the subscribed service object.
-     int32_t TestDriverSubCallBack(struct HdfDeviceObject *deviceObject, const struct HdfObject *service)
-     {
-         const struct ISampleDriverService *sampleService =
-             (const struct ISampleDriverService *)service;
-         if (sampleService == NULL) {
-             return -1;
-         }
-         sampleService->ServiceA();
-         sampleService->ServiceB(5);
-     }
-     // Implement the subscription process.
-     int32_t TestDriverInit(struct HdfDeviceObject *deviceObject)
-     {
-         if (deviceObject == NULL) {
-             HDF_LOGE("Test driver init failed, deviceObject is null!");
-             return -1;
-         }
-         struct SubscriberCallback callBack;
-         callBack.deviceObject = deviceObject;
-         callBack.OnServiceConnected = TestDriverSubCallBack;
-         int32_t ret = HdfDeviceSubscribeService(deviceObject, "sample_driver", callBack);
-         if (ret != 0) {
-             HDF_LOGE("Test driver subscribe sample driver failed!");
-         }
-         return ret;
-     }
-     ```
-
-     
-
+        
+      ```c
+      // Callback invoked to return the driver service after the subscribed driver is loaded.
+      // object is the pointer to the private data of the subscriber, and service is the pointer to the subscribed service object.
+      int32_t TestDriverSubCallBack(struct HdfDeviceObject *deviceObject, const struct HdfObject *service)
+      {
+          const struct ISampleDriverService *sampleService =
+              (const struct ISampleDriverService *)service;
+          if (sampleService == NULL) {
+              return HDF_FAILURE;
+          }
+          sampleService->ServiceA();
+          sampleService->ServiceB(5);
+      }
+      // Implement the subscription process.
+      int32_t TestDriverInit(struct HdfDeviceObject *deviceObject)
+      {
+          if (deviceObject == NULL) {
+              HDF_LOGE("Test driver init failed, deviceObject is null!");
+              return HDF_FAILURE;
+          }
+          struct SubscriberCallback callBack;
+          callBack.deviceObject = deviceObject;
+          callBack.OnServiceConnected = TestDriverSubCallBack;
+          int32_t ret = HdfDeviceSubscribeService(deviceObject, "sample_driver", callBack);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("Test driver subscribe sample driver failed!");
+          }
+          return ret;
+      }
+      ```

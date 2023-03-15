@@ -25,8 +25,10 @@
   font-size: 50px;
   margin-top: 40px;
   margin-bottom: 20px;
+  font-weight: 700;
 }
 .paragraph-text {
+  width: 95%;
   color: #000000;
   font-size: 35px;
   line-height: 60px;
@@ -38,9 +40,11 @@
 // xxx.js
 export default {
   data: {
-    headTitle: 'Capture the Beauty in This Moment',
+    headTitle: 'Capture the Beauty in Moment',
     paragraphFirst: 'Capture the beauty of light during the transition and fusion of ice and water. At the instant of movement and stillness, softness and rigidity, force and beauty, condensing moving moments.',
     paragraphSecond: 'Reflecting the purity of nature, the innovative design upgrades your visual entertainment and ergonomic comfort. Effortlessly capture what you see and let it speak for what you feel.',
   },
 }
 ```
+
+ ![zh-cn_image_0000001118642600](figures/zh-cn_image_0000001118642600.PNG) 

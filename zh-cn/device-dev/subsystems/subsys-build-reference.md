@@ -62,6 +62,57 @@
 
   ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：部件间依赖要写在external_deps里面，格式为”部件名:模块名"的形式，并且依赖的模块必须是依赖的部件声明在inner_kits中的模块。
 
+## Sanitizer使用说明
+
+在添加模块时，可选地对该模块开启编译器提供的Sanitizer功能，包括整数溢出排错、控制流完整性检查等。配置的每一项都是可选的，如不指定默认为false或者空。Sanitizer配置示例如下所示：
+``` shell
+  ohos_shared_library("example") {
+    sanitize = {
+      cfi = true                             # 开启控制流完整性检测
+      cfi_cross_dso = true                   # 开启跨so调用的控制流完整性检测
+      integer_overflow = true                # 开启整数溢出检测
+      boundary_sanitize = true               # 开启边界检测
+      ubsan = true                           # 开启部分ubsan选项
+      all_ubsan = true                       # 开启全量ubsan选项
+      debug = true                           # 可选，调测模式，默认是不开启
+      blocklist = "./blocklist.txt"          # 可选，屏蔽名单路径
+    }
+    ...
+  }
+```
+
+**支持的Sanitizer类型**
+
+目前支持开启的Sanitizer：
+
+- 整数溢出排错：unsigned_integer_overflow/signed_integer_overflow/integer_overflow(同时包括无符号和有符号整数溢出两种检查)
+- 控制流完整性：cfi、cfi_cross_dso（跨so的cfi检查）
+- 边界检测：boundary_sanitize
+- 部分未定义行为检测：ubsan(bool,integer-divide-by-zero,return,returns-nonnull-attribute,shift-exponent,unreachable,vla-bound等编译选项)
+- 全量未定义行为检测：all_ubsan(全量undefined behavior sanitizer编译选项)
+
+**发布、调测模式**
+
+通过`debug`选项控制使用发布模式还是调测模式，默认为发布模式，使用`debug = true`显式声明开启调测模式。`debug`选项仅对Sanitizer生效，且与模块是否编译为调试版本无关，但在模块发布版本的编译配置中不应带此选项，或显式地将`debug`设置为`false`，使得Sanitizer处于发布模式。
+
+- 调测模式：用于开发时排查问题。该模式下会输出产生错误相关的丰富信息来辅助定位错误，并且在发生错误后并不会直接中断程序运行，而是会恢复程序运行进一步识别后续的错误。
+
+- 发布模式：保护程序不发生错误或被恶意攻击，在产生错误后直接中断程序不会继续执行。
+
+
+**屏蔽名单**
+
+指定该模块中不受Sanitizer选项影响的函数或源程序文件名单，用于避免良性行为被识别为错误、热点函数产生了不合理、不可接受的开销；该名单需谨慎使用。名单示例如下所示：
+```
+[cfi]
+fun:*([Tt]est|TEST)*
+fun: main
+
+[integer]
+src:example/*.cpp
+```
+
+
 ## 开源软件Notice收集策略说明
 
 开源软件Notice是与项目开源相关的文件，收集这些文件的目的是为了符合开源的规范。
@@ -141,3 +192,61 @@ out/rk3568/.ninja_log文件记录了每个模块编译的开始和结束时间(m
   1. 点击静态检查下的“成功”；
 
   2. 点击输出列的“输出”即可在左侧的build_trace列看到build.trace.html文件，单击该文件即可打开。
+
+## 定制打包chip_prod镜像使用说明
+
+### 背景
+
+针对同一个芯片解决方案下的子产品的定制能力，将差异能力放到 chip_prod 分区，因此需要支持对不同子产品生成对应的 chip_prod.img。
+
+### 使用步骤
+1. 产品解决方案配置：<br>
+   产品解决方案配置文件config.json中添加`"chipprod_config_path"`配置选项，即`"chipprod_config_path":"子产品定义文件所在的路径"`。
+   其中子产品定义文件的文件名为`chip_product_list.gni`，文件格式为：`chip_product_list = ["productA", "productB", ...]` 。<br>
+   示例：<br>
+   以MyProduct产品定制chipprod镜像为例，//vendor/产品厂商/MyProduct/config.json配置如下：
+   ```shell
+   {
+        "product_name": "MyProduct",                                 # 产品名称
+        "version": "3.0",                                            # config.json的版本号, 固定"3.0"
+        "chipprod_config_path": "",                                  # 存放chipprod配置文件路径，可选项
+	"subsystems": [
+          {
+            "subsystem": "arkui",                                    # 选择的子系统
+            "components": [
+              {
+                  "component": "ace_engine",
+                  "features":[ "ace_engine_feature_enable_web = true",
+                    "ace_engine_feature_enable_accessibility = true" ] }   
+            ]
+          },
+          {
+           ......
+          }
+         ......
+         更多子系统和部件
+        }
+   }
+   ```
+
+2. 模块编译配置：<br>
+   某个配置文件在不同的子产品中有差异，比如要打包到productA对应的chip_prod.img中，则模块编译需要配置`install_images`和`module_install_dir`。<br>
+   以`ohos_prebuilt_executable`示例：
+   ```shell
+   ohos_prebuilt_executable("moduleXXX"){
+	install_images = [ "chip_prod" ]
+	module_install_dir = "productA/etc/***"     # module_install_dir指定的路径需要以productA开始。
+   }
+   ```
+
+3.编译命令
+```shell
+./build.sh --product-name {product_name} --build-target chip_prod_image
+```
+
+4. 打包结果:<br>
+   如果定义了子产品productA和productB，即`chip_product_list = ["productA", "productB"],`并且有模块安装到了该产品下，则打包后镜像输出路径如下：
+   ```
+   images/productA/chip_prod.img
+   images/productB/chip_prod.img
+   ```

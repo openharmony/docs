@@ -1,8 +1,13 @@
-# Task Management
-- Background Task Management 
-  - [Background Task Management Overview](background-task-overview.md)
-  - [Background Task Management Development](background-task-dev-guide.md)
-- Work Scheduler
-  - [Work Scheduler Overview](work-scheduler-overview.md)
-  - [Work Scheduler Development](work-scheduler-dev-guide.md)
+# Background Task Management
 
+- Background Task
+  - [Background Task Management Overview](background-task-overview.md)
+  - [Transient Task Development](transient-task-dev-guide.md)
+  - [Continuous Task Development](continuous-task-dev-guide.md)
+  - [Work Scheduler Development](work-scheduler-dev-guide.md)
+  - [WorkSchedulerExtensionAbility Development](workscheduler-extensionability.md)
+  - [Efficiency Resource Request Development](efficiency-resources-apply-dev-guide.md)
+
+- Agent-Powered Reminder
+  - [Agent-Powered Reminder Overview](reminder-agent-overview.md)
+  - [Agent-Powered Reminder Development](reminder-agent-development.md)

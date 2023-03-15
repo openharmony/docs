@@ -23,7 +23,7 @@ Vibrator属于控制类小器件，主要包含以下四个模块：Vibrator API
 
 ## 约束与限制
 
-在使用振动器时，开发者需要配置请求振动器的权限ohos.permission.VIBRATE，才能控制振动器振动，权限类型是system_grant。
+在使用振动器时，开发者需要配置请求振动器的权限ohos.permission.VIBRATE，才能控制振动器振动。
 
 
 

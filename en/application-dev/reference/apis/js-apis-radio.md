@@ -1,6 +1,6 @@
-# Radio
+# @ohos.telephony.radio (Network Search)
 
-The radio module provides basic network search management functions. You can obtain the radio access technology (RAT) used in the CS and PS domains, network status, current network selection mode, ISO country code of the registered network, ID of the slot in which the primary card is located, list of signal strengths of the registered network, carrier name, and IMEI, MEID, and unique device ID of the SIM card in the specified slot. Besides, you can check whether the current device supports 5G\(NR\) and whether the radio service is enabled on the primary SIM card.
+The **radio** module provides basic network search management functions. You can obtain the radio access technology (RAT) used in the CS and PS domains, network status, current network selection mode, ISO country code of the registered network, ID of the slot in which the primary card is located, list of signal strengths of the registered network, carrier name, and IMEI, MEID, and unique device ID of the SIM card in the specified slot. Besides, you can check whether the current device supports 5G\(NR\) and whether the radio service is enabled on the primary SIM card.
 
 >**NOTE**
 >
@@ -10,7 +10,7 @@ The radio module provides basic network search management functions. You can obt
 ## Modules to Import
 
 ```
-import radio from '@ohos.telephony.radio'
+import radio from '@ohos.telephony.radio';
 ```
 
 ## radio.getRadioTech
@@ -30,11 +30,22 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
 let slotId = 0;
-radio.getRadioTech(slotId, (err, data) =>{ 
+radio.getRadioTech(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -62,6 +73,17 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | ------------------------------------------------------------ | ----------------------------------------------- |
 | Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -70,7 +92,7 @@ let promise = radio.getRadioTech(slotId);
 promise.then(data => {
     console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getRadioTech fail, err->${JSON.stringify(err)}`);
+    console.log(`getRadioTech failed, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -91,10 +113,21 @@ Obtains the network status. This API uses an asynchronous callback to return the
 | -------- | ---------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-radio.getNetworkState((err, data) =>{
+radio.getNetworkState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -104,7 +137,7 @@ radio.getNetworkState((err, data) =>{
 
 getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
-Obtains the network status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network status. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -116,6 +149,17 @@ Obtains the network status of the SIM card in the specified slot. This API uses 
 | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -131,7 +175,7 @@ radio.getNetworkState(slotId, (err, data) => {
 
 getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
-Obtains the network status of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network status. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -149,6 +193,17 @@ Obtains the network status of the SIM card in the specified slot. This API uses 
 | ---------------------------------------- | --------------------------- |
 | Promise\<[NetworkState](#networkstate)\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -157,7 +212,7 @@ let promise = radio.getNetworkState(slotId);
 promise.then(data => {
     console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -176,6 +231,16 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -207,6 +272,16 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | -------------------------------------------------------- | ------------------------------- |
 | Promise\<[NetworkSelectionMode](#networkselectionmode)\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -215,7 +290,7 @@ let promise = radio.getNetworkSelectionMode(slotId);
 promise.then(data => {
     console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -234,6 +309,16 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -265,6 +350,16 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -273,7 +368,7 @@ let promise = radio.getISOCountryCodeForNetwork(slotId);
 promise.then(data => {
     console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getISOCountryCodeForNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -290,7 +385,17 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -315,6 +420,16 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -322,7 +437,7 @@ let promise = radio.getPrimarySlotId();
 promise.then(data => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -331,7 +446,7 @@ promise.then(data => {
 
 getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInformation\>\>\): void
 
-Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result. 
+Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -341,6 +456,16 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | Yes  | Callback used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -356,7 +481,7 @@ radio.getSignalInformation(slotId, (err, data) => {
 
 getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
-Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result. 
+Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -372,6 +497,16 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | Promise used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -380,16 +515,44 @@ let promise = radio.getSignalInformation(slotId);
 promise.then(data => {
     console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSignalInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
+## radio.isNrSupported<sup>(deprecated)</sup>
 
-## radio.isNrSupported<sup>8+</sup>
+isNrSupported\(\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9) instead.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let result = radio.isNrSupported();
+console.log("Result: "+ result);
+```
+
+## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\) for the SIM card in the specified slot.
+Checks whether the current device supports 5G \(NR\).
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9-1) instead.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -414,6 +577,57 @@ console.log("Result: "+ result);
 ```
 
 
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let result = radio.isNRSupported();
+console.log("Result: "+ result);
+```
+
+
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(slotId: number\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type              | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let slotId = 0;
+let result = radio.isNRSupported(slotId);
+console.log("Result: "+ result);
+```
+
+
 ## radio.isRadioOn<sup>7+</sup>
 
 isRadioOn\(callback: AsyncCallback<boolean\>\): void
@@ -429,6 +643,17 @@ Checks whether the radio service is enabled on the primary SIM card. This API us
 | Name  | Type                    | Mandatory| Description                                                   |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -455,6 +680,17 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                 |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -488,6 +724,17 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -496,7 +743,7 @@ let promise = radio.isRadioOn(slotId);
 promise.then(data => {
     console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`isRadioOn fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isRadioOn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -515,6 +762,16 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is the carrier name, for example, China Mobile.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -546,6 +803,16 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | Promise used t return the result, which is the carrier name, for example, China Mobile.               |
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -554,7 +821,7 @@ let promise = radio.getOperatorName(slotId);
 promise.then(data => {
     console.log(`getOperatorName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOperatorName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -564,7 +831,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 Sets the ID of the slot in which the primary card is located. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -575,7 +842,19 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description                                  |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -593,7 +872,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 Sets the ID of the slot in which the primary card is located. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -611,6 +890,18 @@ This is a system API.
 | --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -619,7 +910,7 @@ let promise = radio.setPrimarySlotId(slotId);
 promise.then(data => {
     console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -629,7 +920,7 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -640,6 +931,17 @@ This is a system API.
 | Name  | Type                   | Mandatory| Description                                      |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -654,9 +956,9 @@ radio.getIMEI((err, data) => {
 
 getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -668,6 +970,17 @@ This is a system API.
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -683,9 +996,9 @@ radio.getIMEI(slotId, (err, data) => {
 
 getIMEI(slotId?: number): Promise<string\>
 
-Obtains the IMEI of the SIM card in a card slot. This API uses a promise to return the result.
+Obtains the IMEI of the SIM card in the specified card slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -703,6 +1016,17 @@ This is a system API.
 | ----------------- | ------------------------------------------ |
 | Promise\<string\> | Promise used to return the result. If the IMEI does not exist, an empty string is returned.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -711,7 +1035,7 @@ let promise = radio.getIMEI(slotId);
 promise.then(data => {
     console.log(`getIMEI success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getIMEI fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getIMEI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -721,7 +1045,7 @@ getMEID(callback: AsyncCallback<string\>): void
 
 Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -732,6 +1056,17 @@ This is a system API.
 | Name  | Type                   | Mandatory| Description      |
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -746,9 +1081,9 @@ radio.getMEID((err, data) => {
 
 getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -760,6 +1095,17 @@ This is a system API.
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -775,9 +1121,9 @@ radio.getMEID(slotId, (err, data) => {
 
 getMEID(slotId?: number): Promise<string\>
 
-Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the MEID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -795,6 +1141,17 @@ This is a system API.
 | ----------------- | --------------------------------------- |
 | Promise\<string\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -803,7 +1160,7 @@ let promise = radio.getMEID(slotId);
 promise.then(data => {
     console.log(`getMEID success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getMEID fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getMEID failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -813,7 +1170,7 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -824,6 +1181,17 @@ This is a system API.
 | Name  | Type                   | Mandatory| Description      |
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -838,9 +1206,9 @@ radio.getUniqueDeviceId((err, data) => {
 
 getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -852,6 +1220,17 @@ This is a system API.
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -867,9 +1246,9 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 getUniqueDeviceId(slotId?: number): Promise<string\>
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the unique device ID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -887,6 +1266,17 @@ This is a system API.
 | ----------------- | --------------------------------------------- |
 | Promise\<string\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -895,7 +1285,7 @@ let promise = radio.getUniqueDeviceId(slotId);
 promise.then(data => {
     console.log(`getUniqueDeviceId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getUniqueDeviceId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getUniqueDeviceId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -905,7 +1295,9 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 Sends a cell location update request. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -914,6 +1306,17 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -929,7 +1332,9 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 Sends a cell location update request for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -939,6 +1344,17 @@ This is a system API.
 | -------- | --------------------- | ---- | ---------- |
 | slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -953,9 +1369,11 @@ radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
 
 sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
-Sends a cell location update request for the SIM card in the specified slot.This API uses a promise to return the result.
+Sends a cell location update request for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -971,6 +1389,17 @@ This is a system API.
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -979,7 +1408,7 @@ let promise = radio.sendUpdateCellLocationRequest(slotId);
 promise.then(data => {
     console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`sendUpdateCellLocationRequest fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -989,9 +1418,9 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 Obtains cell information. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1000,6 +1429,17 @@ This is a system API.
 | Name  | Type                                                        | Mandatory| Description                    |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1016,9 +1456,9 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 
 Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1028,6 +1468,17 @@ This is a system API.
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.              |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1045,9 +1496,9 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 Obtains cell information for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1063,6 +1514,17 @@ This is a system API.
 | ------------------------------------------------------- | ----------------------- |
 | Promise\<Array<[CellInformation](#cellinformation8)\>\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1071,7 +1533,7 @@ let promise = radio.getCellInformation(slotId);
 promise.then(data => {
     console.log(`getCellInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getCellInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCellInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1081,7 +1543,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 Sets the network selection mode. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1094,18 +1556,29 @@ This is a system API.
 | options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | Yes  | Network selection mode.|
 | callback | AsyncCallback\<void\>                                       | Yes  | Callback used to return the result.        |
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
 let networkInformation={
     operatorName: "China Mobile",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1120,7 +1593,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
 Sets the network selection mode. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1138,18 +1611,29 @@ This is a system API.
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
 let networkInformation={
     operatorName: "China Mobile",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1157,7 +1641,7 @@ let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
 promise.then(data => {
     console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1165,9 +1649,9 @@ promise.then(data => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
 
-Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
+Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1178,7 +1662,18 @@ This is a system API.
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.            |
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.          |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1190,11 +1685,11 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number\): Promise<void\>
+getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 
 Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1212,6 +1707,17 @@ This is a system API.
 | ------------------------------------------------------ | ----------------------- |
 | Promise\<[NetworkSearchResult](#networksearchresult)\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1219,7 +1725,7 @@ let promise = radio.getNetworkSearchInformation(0);
 promise.then(data => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkSearchInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1229,7 +1735,7 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
 Obtains the NR option mode. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1238,6 +1744,16 @@ This is a system API.
 | Name  | Type                                           | Mandatory| Description      |
 | -------- | ----------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1254,7 +1770,7 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
 Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1264,6 +1780,16 @@ This is a system API.
 | -------- | ----------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1281,7 +1807,7 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
 Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1297,6 +1823,16 @@ This is a system API.
 | ----------------------------------------- | ----------------------- |
 | Promise\<[NrOptionMode](#nroptionmode8)\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1305,7 +1841,7 @@ let promise = radio.getNrOptionMode(slotId);
 promise.then(data => {
     console.log(`getNrOptionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getNrOptionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNrOptionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1315,7 +1851,7 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 
 Turns on the radio function. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1326,6 +1862,17 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1342,7 +1889,7 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 Turns on the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1354,6 +1901,17 @@ This is a system API.
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1371,7 +1929,7 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 Turns on the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1389,6 +1947,17 @@ This is a system API.
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1397,7 +1966,7 @@ let promise = radio.turnOnRadio(slotId);
 promise.then(data => {
     console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`turnOnRadio fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1407,7 +1976,7 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 
 Turns off the radio function. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1418,6 +1987,17 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1434,7 +2014,7 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 Turns off the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1446,6 +2026,17 @@ This is a system API.
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1463,7 +2054,7 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 Turns off the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1481,6 +2072,17 @@ This is a system API.
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1489,7 +2091,7 @@ let promise = radio.turnOffRadio(slotId);
 promise.then(data => {
     console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`turnOffRadio fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1499,7 +2101,7 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 Sets the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1512,6 +2114,17 @@ This is a system API.
 | slotId      | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | Yes  | Preferred network mode.                      |
 | callback    | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1527,7 +2140,7 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 
 Sets the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1546,6 +2159,17 @@ This is a system API.
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1553,7 +2177,7 @@ let promise = radio.setPreferredNetwork(0, 1);
 promise.then(data => {
     console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1563,7 +2187,7 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 Obtains the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1571,10 +2195,21 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                  |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Name  |                              Type                              | Mandatory| Description                                  |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1586,11 +2221,11 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork(slotId: number): Promise<void\>
+getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 
 Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1608,6 +2243,17 @@ This is a system API.
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1615,7 +2261,7 @@ let promise = radio.getPreferredNetwork(0);
 promise.then(data => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1625,7 +2271,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 
 Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1639,10 +2285,21 @@ This is a system API.
 | imsType  | [ImsServiceType](#imsservicetype9)         | Yes  | IMS service type.                         |
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-radio.getImsRegInfo(0, 1, (err, data) => {
+radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1653,7 +2310,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
 Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1672,14 +2329,25 @@ This is a system API.
 | ------------------------------------- | ----------------------- |
 | Promise\<[ImsRegInfo](#imsreginfo9)\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-let promise = radio.getImsRegInfo(0, 1);
+let promise = radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO);
 promise.then(data => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getImsRegInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1687,9 +2355,9 @@ promise.then(data => {
 
 on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
 
-Enables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1704,11 +2372,22 @@ This is a system API.
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-radio.on('imsRegStateChange', 0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1716,9 +2395,9 @@ radio.on('imsRegStateChange', 0, 1, (err, data) => {
 
 off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
 
-Disables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1733,17 +2412,28 @@ This is a system API.
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-radio.off('imsRegStateChange', 0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
 ## RadioTechnology
 
-Enumerates radio access technologies.
+ Enumerates radio access technologies.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1770,11 +2460,11 @@ Defines the signal strength.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type                       | Description              |
-| ----------- | --------------------------- | ------------------ |
-| signalType  | [NetworkType](#networktype) | Signal strength type.|
-| signalLevel | number                      | Signal strength level.|
-
+|      Name      |           Type             | Mandatory|      Description         |
+| --------------- | --------------------------- | ---- | ------------------ |
+| signalType      | [NetworkType](#networktype) | Yes  | Signal strength type.|
+| signalLevel     | number                      | Yes  | Signal strength level.|
+| dBm<sup>9+</sup>| number                      | Yes  | Signal strength, in dBm.    |
 
 ## NetworkType
 
@@ -1798,17 +2488,17 @@ Defines the network status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type                 | Description                                                        |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| longOperatorName  | string                | Long carrier name of the registered network.|
-| shortOperatorName | string                | Short carrier name of the registered network.|
-| plmnNumeric       | string                | PLMN code of the registered network.|
-| isRoaming         | boolean               | Whether the user is roaming.|
-| regState          | [RegState](#regstate) | Network registration status of the device.|
-| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | RAT of the device.|
-| nsaState          | [NsaState](#nsastate) | NSA network registration status of the device.|
-| isCaActive        | boolean               | CA status.|
-| isEmergency       | boolean               | Whether only emergency calls are allowed.|
+|       Name          |                 Type               | Mandatory|                          Description                               |
+| -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| longOperatorName     | string                              |  Yes | Long carrier name of the registered network.                                    |
+| shortOperatorName    | string                              |  Yes | Short carrier name of the registered network.                                    |
+| plmnNumeric          | string                              |  Yes | PLMN code of the registered network.                                          |
+| isRoaming            | boolean                             |  Yes | Whether the user is roaming.                                          |
+| regState             | [RegState](#regstate)               |  Yes | Network registration status of the device.                                        |
+| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) |  Yes | RAT of the device.                                        |
+| nsaState             | [NsaState](#nsastate)               |  Yes | NSA network registration status of the device.                                     |
+| isCaActive           | boolean                             |  Yes | CA status.                                                  |
+| isEmergency          | boolean                             |  Yes | Whether only emergency calls are allowed.                              |
 
 
 ## RegState
@@ -1819,10 +2509,10 @@ Defines the network status.
 
 | Name                         | Value  | Description                      |
 | ----------------------------- | ---- | -------------------------- |
-| REG_STATE_NO_SERVICE          | 0    | The device cannot use any service.    |
-| REG_STATE_IN_SERVICE          | 1    | The device can use services normally.     |
+| REG_STATE_NO_SERVICE          | 0    | The device cannot use any services, including data, SMS, and call services.    |
+| REG_STATE_IN_SERVICE          | 1    | The device can use services properly, including data, SMS, and call services.    |
 | REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.|
-| REG_STATE_POWER_OFF           | 3    | The cellular radio service is disabled.        |
+| REG_STATE_POWER_OFF           | 3    | The device cannot communicate with the network because the cellular radio service is disabled or the modem is powered off.     |
 
 
 ## NsaState
@@ -1857,7 +2547,7 @@ Enumerates network selection modes.
 
 Enumerates preferred network modes.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1895,133 +2585,133 @@ This is a system API.
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM                 | 38   | NR+LTE+TD-SCDMA+GSM network mode.             |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | NR+LTE+TD-SCDMA+WCDMA network mode.           |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
-| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM+EVDO+CDMA network mode.       |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
 | PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | Maximum value of the preferred network mode.                         |
 
 ## CellInformation<sup>8+</sup>
 
 Defines the cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name             | Type                                                        | Description                                                        |
-| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networktype)                                  | Network type of the cell.                                    |
-| isCamped          | boolean                                                      | Status of the cell.                                        |
-| timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
-| signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
+| Name             |                  Type                  | Mandatory|                           Description                              |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| networkType       | [NetworkType](#networktype)             |  Yes | Network type of the cell.                                    |
+| isCamped          | boolean                                 |  Yes | Cell status.                                        |
+| timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.                                |
+| signalInformation | [SignalInformation](#signalinformation) |  Yes | Signal information.                                                  |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information|
 
 ## CdmaCellInformation<sup>8+</sup>
 
 Defines the CDMA cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type  | Description        |
-| --------- | ------ | ------------ |
-| baseId    | number | Base station ID.    |
-| latitude  | number | Longitude.      |
-| longitude | number | Latitude.      |
-| nid       | number | Network ID.|
-| sid       | number | System ID.|
+| Name     | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| baseId    | number |  Yes | Base station ID.    |
+| latitude  | number |  Yes | Longitude.      |
+| longitude | number |  Yes | Latitude.      |
+| nid       | number |  Yes | Network ID.|
+| sid       | number |  Yes | System ID.|
 
 ## GsmCellInformation<sup>8+</sup>
 
 Defines the GSM cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description                |
-| ------ | ------ | -------------------- |
-| lac    | number | Location area code.        |
-| cellId | number | Cell ID.            |
-| arfcn  | number | Absolute radio frequency channel number.|
-| bsic   | number | Base station ID.        |
-| mcc    | string | Mobile country code.        |
-| mnc    | string | Mobile network code.          |
+| Name  | Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| lac    | number |  Yes | Location area code.        |
+| cellId | number |  Yes | Cell ID.            |
+| arfcn  | number |  Yes | Absolute radio frequency channel number.|
+| bsic   | number |  Yes | Base station ID.        |
+| mcc    | string |  Yes | Mobile country code.        |
+| mnc    | string |  Yes | Mobile network code.          |
 
 ## LteCellInformation<sup>8+</sup>
 
-Defines the LTE cell information.
+LTE cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name         | Type   | Description                   |
-| ------------- | ------- | ----------------------- |
-| cgi           | number  | Cell global identification.         |
-| pci           | number  | Physical cell ID.         |
-| tac           | number  | Tracking area code.         |
-| earfcn        | number  | Absolute radio frequency channel number.   |
-| bandwidth     | number  | Bandwidth.                 |
-| mcc           | string  | Mobile country code.           |
-| mnc           | string  | Mobile network code.             |
-| isSupportEndc | boolean | Support New Radio_Dual Connectivity|
+| Name         | Type   | Mandatory| Description                   |
+| ------------- | ------- | ---- | ----------------------- |
+| cgi           | number  |  Yes | Cell global identification.         |
+| pci           | number  |  Yes | Physical cell ID.         |
+| tac           | number  |  Yes | Tracking area code.         |
+| earfcn        | number  |  Yes | Absolute radio frequency channel number.   |
+| bandwidth     | number  |  Yes | Bandwidth.                 |
+| mcc           | string  |  Yes | Mobile country code.           |
+| mnc           | string  |  Yes | Mobile network code.             |
+| isSupportEndc | boolean |  Yes | Support for New Radio_Dual Connectivity.|
 
 ## NrCellInformation<sup>8+</sup>
 
-Defines the NR cell information.
+Defines the 5G NR cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name   | Type  | Description            |
-| ------- | ------ | ---------------- |
-| nrArfcn | number | 5G frequency number.      |
-| pci     | number | Physical cell ID.  |
-| tac     | number | Tracking area code.  |
-| nci     | number | 5G network cell ID.|
-| mcc     | string | Mobile country code.    |
-| mnc     | string | Mobile network code.      |
+| Name   | Type  | Mandatory| Description            |
+| ------- | ------ | ---- | ---------------- |
+| nrArfcn | number |  Yes | 5G frequency number.      |
+| pci     | number |  Yes | Physical cell ID.  |
+| tac     | number |  Yes | Tracking area code.  |
+| nci     | number |  Yes | 5G network cell ID.|
+| mcc     | string |  Yes | Mobile country code.    |
+| mnc     | string |  Yes | Mobile network code.      |
 
 ## TdscdmaCellInformation<sup>8+</sup>
 
 Defines the TD-SCDMA cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description        |
-| ------ | ------ | ------------ |
-| lac    | number | Location area code.|
-| cellId | number | Cell ID.    |
-| cpid   | number | Cell parameter ID.|
-| uarfcn | number | Absolute radio frequency number.|
-| mcc    | string | Mobile country code.|
-| mnc    | string | Mobile network code.  |
+| Name  | Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  Yes | Location area code.|
+| cellId | number |  Yes | Cell ID.    |
+| cpid   | number |  Yes | Cell parameter ID.|
+| uarfcn | number |  Yes | Absolute radio frequency number.|
+| mcc    | string |  Yes | Mobile country code.|
+| mnc    | string |  Yes | Mobile network code.  |
 
 ## WcdmaCellInformation<sup>8+</sup>
 
 Defines the WCDMA cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description        |
-| ------ | ------ | ------------ |
-| lac    | number | Location area code.|
-| cellId | number | Cell ID.    |
-| psc    | number | Primary scrambling code.    |
-| uarfcn | number | Absolute radio frequency number.|
-| mcc    | string | Mobile country code.|
-| mnc    | string | Mobile network code.  |
+| Name  | Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  Yes | Location area code.|
+| cellId | number |  Yes | Cell ID.    |
+| psc    | number |  Yes | Primary scrambling code.    |
+| uarfcn | number |  Yes | Absolute radio frequency number.|
+| mcc    | string |  Yes | Mobile country code.|
+| mnc    | string |  Yes | Mobile network code.  |
 
 ## NrOptionMode<sup>8+</sup>
 
 Enumerates NR selection modes.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2029,42 +2719,42 @@ This is a system API.
 | -------------------- | ---- | ---------------------------------- |
 | NR_OPTION_UNKNOWN    | 0    | Unknown NR selection mode.                |
 | NR_OPTION_NSA_ONLY   | 1    | NR selection mode in 5G non-standalone networking.        |
-| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G standalone networking.          |
+| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G non-standalone networking.          |
 | NR_OPTION_NSA_AND_SA | 3    | NR selection mode in non-standalone and standalone networking.|
 
 ## NetworkSearchResult
 
 Defines the network search result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name                  | Type                                             | Description          |
-| ---------------------- | ------------------------------------------------- | -------------- |
-| isNetworkSearchSuccess | boolean                                           | Successful network search.|
-| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | Network search result.|
+| Name                  | Type                                             | Mandatory| Description          |
+| ---------------------- | ------------------------------------------------- | ---- | -------------- |
+| isNetworkSearchSuccess | boolean                                           |  Yes | Successful network search.|
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  Yes | Network search result.|
 
 ## NetworkInformation
 
 Defines the network information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type                                     | Description          |
-| --------------- | ----------------------------------------- | -------------- |
-| operatorName    | string                                    | Carrier name.|
-| operatorNumeric | string                                    | Carrier number.  |
-| state           | [NetworkInformation](#networkinformationstate) | Network information status.|
-| radioTech       | string                                    | Radio technology.  |
+| Name           |                         Type                       | Mandatory| Description          |
+| --------------- | --------------------------------------------------- | ---- | -------------- |
+| operatorName    | string                                              |  Yes | Carrier name.|
+| operatorNumeric | string                                              |  Yes | Carrier number.  |
+| state           | [NetworkInformationState](#networkinformationstate) |  Yes | Network information status.|
+| radioTech       | string                                              |  Yes | Radio access technology.  |
 
 ## NetworkInformationState
 
 Enumerates network information states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2079,22 +2769,22 @@ This is a system API.
 
 Defines the network selection mode.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name              | Type                                         | Description                                  |
-| ------------------ | --------------------------------------------- | -------------------------------------- |
-| slotId             | number                                        | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| selectMode         | [NetworkSelectionMode](#networkselectionmode) | Network selection mode.                       |
-| networkInformation | [NetworkInformation](#networkinformation)    | Network information.                           |
-| resumeSelection    | boolean                                       | Whether to resume selection.                            |
+| Name              |                    Type                      | Mandatory|                 Description                  |
+| ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
+| slotId             | number                                        |  Yes | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) |  Yes | Network selection mode.                        |
+| networkInformation | [NetworkInformation](#networkinformation)     |  Yes | Network information.                            |
+| resumeSelection    | boolean                                       |  Yes | Whether to resume selection.                            |
 
 ## ImsRegState<sup>9+</sup>
 
 Enumerates IMS registration states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2107,7 +2797,7 @@ This is a system API.
 
 Enumerates IMS registration technologies.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2122,20 +2812,20 @@ This is a system API.
 
 Defines the IMS registration information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name       | Type                        | Description         |
-| ----------- | ---------------------------- | ------------- |
-| imsRegState | [ImsRegState](#imsregstate9) | IMS registration state.|
-| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS registration technology.|
+| Name       | Type                        | Mandatory| Description         |
+| ----------- | ---------------------------- | ---- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) |  Yes | IMS registration state.|
+| imsRegTech  | [ImsRegTech](#imsregtech9)   |  Yes | IMS registration technology.|
 
 ## ImsServiceType<sup>9+</sup>
 
 Enumerates IMS service types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 

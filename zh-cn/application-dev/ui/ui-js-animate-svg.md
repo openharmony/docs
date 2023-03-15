@@ -65,7 +65,7 @@
 
 ## animateTransform动画
 
-在Svg的子组件[animateMotion](../reference/arkui-js/js-components-svg-animatetransform.md)中，通过attributeName绑定transform属性，type设置动画类型，from设置开始值，to设置结束值。
+在Svg的子组件[animateTransform](../reference/arkui-js/js-components-svg-animatetransform.md)中，通过attributeName绑定transform属性，type设置动画类型，from设置开始值，to设置结束值。
 
 
 ```html

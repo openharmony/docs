@@ -10,23 +10,23 @@
 
   **表1** 源码目录结构
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| double-conversion/cmake/ | CMake组织编译使用到的模板 | 
-| double-conversion/double-conversion/ | 源文件目录 | 
-| double-conversion/msvc/ | - | 
-| double-conversion/test/ | 测试用例源文件 | 
-| double-conversion/.gitignore | - | 
-| double-conversion/AUTHORS | - | 
-| double-conversion/BUILD | - | 
-| double-conversion/CMakeLists.txt | CMake方式顶层编译组织文件 | 
-| double-conversion/COPYING | - | 
-| double-conversion/Changelog | - | 
-| double-conversion/LICENSE | - | 
-| double-conversion/Makefile | - | 
-| double-conversion/README.md | - | 
-| double-conversion/SConstruct | - | 
-| double-conversion/WORKSPACE | - | 
+| double-conversion/cmake/ | CMake组织编译使用到的模板 |
+| double-conversion/double-conversion/ | 源文件目录 |
+| double-conversion/msvc/ | - |
+| double-conversion/test/ | 测试用例源文件 |
+| double-conversion/.gitignore | - |
+| double-conversion/AUTHORS | - |
+| double-conversion/BUILD | - |
+| double-conversion/CMakeLists.txt | CMake方式顶层编译组织文件 |
+| double-conversion/COPYING | - |
+| double-conversion/Changelog | - |
+| double-conversion/LICENSE | - |
+| double-conversion/Makefile | - |
+| double-conversion/README.md | - |
+| double-conversion/SConstruct | - |
+| double-conversion/WORKSPACE | - |
 
 
 ## 移植思路
@@ -76,7 +76,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 2. 执行编译
    linux命令行中进入double-conversion的源文件目录（即标1所示目录），执行下列命令：
 
-     
+   
    ```
    mkdir build && cd build
    cmake .. -DBUILD_TESTING=ON -DOHOS_SYSROOT_PATH="..."
@@ -90,24 +90,24 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      **表2** 编译生成文件目录结构
    
-   | 名称 | 描述 | 
+   | 名称 | 描述 |
    | -------- | -------- |
-   | double-conversion/build/libdouble-conversion.a | 生成的静态库文件 | 
-   | double-conversion/build/test/ | 目录下存放生成的测试用例和相关CMake缓存文件 | 
-   | double-conversion/build/CMakeCache.txt | CMake构建过程中的缓存文件 | 
-   | double-conversion/build/CMakeFiles/ | - | 
-   | double-conversion/build/cmake_install.cmake | - | 
-   | double-conversion/build/CTestTestfile.cmake | - | 
-   | double-conversion/build/DartConfiguration.tcl | - | 
-   | double-conversion/build/generated/ | - | 
-   | double-conversion/build/Makefile | - | 
-   | double-conversion/build/Testing/ | - | 
+   | double-conversion/build/libdouble-conversion.a | 生成的静态库文件 |
+   | double-conversion/build/test/ | 目录下存放生成的测试用例和相关CMake缓存文件 |
+   | double-conversion/build/CMakeCache.txt | CMake构建过程中的缓存文件 |
+   | double-conversion/build/CMakeFiles/ | - |
+   | double-conversion/build/cmake_install.cmake | - |
+   | double-conversion/build/CTestTestfile.cmake | - |
+   | double-conversion/build/DartConfiguration.tcl | - |
+   | double-conversion/build/generated/ | - |
+   | double-conversion/build/Makefile | - |
+   | double-conversion/build/Testing/ | - |
 
 
 ## 测试
 
 1. 搭建OpenHarmony环境
-   以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，参考[开发Hi3516第一个示例程序](../quick-start/quickstart-lite-steps-hi3516-running.md)。
+   以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，相关操作可参考[快速入门小型系统部分](../quick-start/quickstart-overview.md)。
 
    进入系统如下所示：
 
@@ -129,7 +129,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
      ```
 
      上述命令执行结果部分展示：
- 
+
      
      ```
      test-bignum/Assign<
@@ -178,12 +178,12 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      **表3** 添加到工程后的目录结构
    
-   | 名称 | 描述 | 
+   | 名称 | 描述 |
    | -------- | -------- |
-   | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件 | 
-   | OpenHarmony/third_party/double-conversion/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转CMake | 
-   | OpenHarmony/third_party/double-conversion/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等 | 
-   | OpenHarmony/third_party/double-conversion/double-conversion/ | 要移植的三方库目录 | 
+   | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件 |
+   | OpenHarmony/third_party/double-conversion/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转CMake |
+   | OpenHarmony/third_party/double-conversion/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等 |
+   | OpenHarmony/third_party/double-conversion/double-conversion/ | 要移植的三方库目录 |
 
 2. 添加gn到CMake适配文件
    - **新增的BUILD.gn文件实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony平台时只需修改路径即可**。
@@ -289,7 +289,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    执行下列命令
 
-     
+   
    ```
    hb build -T //third_party/double-conversion:double-conversion
    ```

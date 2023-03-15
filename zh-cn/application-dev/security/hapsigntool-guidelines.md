@@ -391,12 +391,12 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    - **现象描述**
 
-     执行命令后提示：`NOT_SUPPORT_ERROR, code: 105. Details: SignAlg params is incorrect, signature algorithms include SHA256withECDSA,SHA384withECDSA`
+     执行命令后提示：`NOT_SUPPORT_ERROR, code: 105. Details: SignAlg params is incorrect, signature algorithms include SHA256withECDSA,SHA384withECDSA`。
 
    - **可能原因**
 
-     签名算法不支持，signAlg参数填写错误
+     签名算法不支持，signAlg参数填写错误。
 
    - **解决办法**
 
-     最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA
+     最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA。

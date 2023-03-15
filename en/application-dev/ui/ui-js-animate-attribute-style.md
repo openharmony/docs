@@ -1,7 +1,7 @@
 # Defining Attribute Style Animations
 
 
-Keyframes is used to scale a component by dynamically setting the width and height of its parent component. Set the scale attribute for child components to scale the child and parent components at the same time. Then, set the opacity attribute to display or hide the child and parent components.
+**Keyframes** is used to scale a component by dynamically setting the width and height of its parent component. Set the scale attribute for child components to scale the child and parent components at the same time. Then, set the opacity attribute to display or hide the child and parent components.
 
 
 ```html
@@ -25,8 +25,10 @@ Keyframes is used to scale a component by dynamically setting the width and heig
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
-.fade{
+.fade {
   width: 30%;
   height: 200px;
   left: 35%;
@@ -34,13 +36,13 @@ Keyframes is used to scale a component by dynamically setting the width and heig
   position: absolute;
   animation: 2s change infinite friction;
 }
-.bigger{
+.bigger {
   width: 20%;
   height: 100px;
   background-color: blue;
   animation: 2s change1 infinite linear-out-slow-in;
 }
-text{
+text {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -60,7 +62,7 @@ text{
   }
 }
 /* Scaling of the parent component */
-@keyframes change1{
+@keyframes change1 {
   0% {
     width: 20%;
     height: 100px;
@@ -69,11 +71,11 @@ text{
     width: 80%;
     height: 200px;
   }
-}  
+}
 /* Text scaling of the child component */
-@keyframes change2{
-  0%{
-   transform: scale(0);
+@keyframes change2 {
+  0% {
+    transform: scale(0);
   }
   100% {
     transform: scale(1.5);
@@ -82,10 +84,10 @@ text{
 ```
 
 
-![en-us_image_0000001267647889](figures/en-us_image_0000001267647889.gif)
+![en-us_image_0000001217168141](figures/en-us_image_0000001217168141.gif)
 
 
 > **NOTE**
-> 1. The values of animation attributes are not sequenced. However, the values of duration and delay are parsed based on the sequence in which they are displayed.
+> - The values of animation attributes are not sequenced. However, the values of duration and delay are parsed based on the sequence in which they are displayed.
 > 
-> 2. The animation-duration attribute must be set. Otherwise, the duration is 0, which means there is no animation effect. When animation-fill-mode is set to forwards, the component directly displays the style of the last frame.
+> - The animation-duration attribute must be set. Otherwise, the duration is 0, which means there is no animation effect. When animation-fill-mode is set to forwards, the component directly displays the style of the last frame.

@@ -1,4 +1,5 @@
-# 屏幕截图
+# @ohos.screenshot (屏幕截图)
+
 本模块提供屏幕截图的能力，截取屏幕时支持设置截取的区域、大小等图像信息。
 
 >  **说明：**
@@ -20,7 +21,7 @@ import screenshot from '@ohos.screenshot';
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 
-| 参数名                 | 类型          | 必填 | 说明                                                         |
+| 名称                 | 类型          | 必填 | 说明                                                         |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect             | [Rect](#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
 | imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
@@ -34,12 +35,12 @@ import screenshot from '@ohos.screenshot';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
+| 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | 是   | 表示截取图像区域的左边界。|
-| top    | number | 是   | 表示截取图像区域的上边界。|
-| width  | number | 是   | 表示截取图像区域的宽度。|
-| height | number | 是   | 表示截取图像区域的高度。|
+| left   | number | 是   | 表示截取图像区域的左边界，单位为像素。 |
+| top    | number | 是   | 表示截取图像区域的上边界，单位为像素。 |
+| width  | number | 是   | 表示截取图像区域的宽度，单位为像素。 |
+| height | number | 是   | 表示截取图像区域的高度，单位为像素。 |
 
 
 ## Size
@@ -48,14 +49,14 @@ import screenshot from '@ohos.screenshot';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
+| 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | 是   | 表示截取图像的宽度。|
-| height | number | 是   | 表示截取图像的高度。|
+| width  | number | 是   | 表示截取图像的宽度，单位为像素。 |
+| height | number | 是   | 表示截取图像的高度，单位为像素。 |
 
 ## screenshot.save
 
-save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
+save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取屏幕截图。
 
@@ -67,13 +68,13 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation， displayId四个参数，可以分别设置这四个参数。 |
+| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
 
 **示例：**
 
   ```js
-  var screenshotOptions = {
+  let screenshotOptions = {
     "screenRect": {
         "left": 200,
         "top": 100,
@@ -85,14 +86,51 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
     "rotation": 0,
     "displayId": 0
   };
-  screenshot.save(screenshotOptions, (err, pixelMap) => {
-    if (err) {
-        console.log('Failed to save screenshot: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
+  try {
+    screenshot.save(screenshotOptions, (err, pixelMap) => {
+      if (err) {
+          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      pixelMap.release(); // PixelMap使用完后及时释放内存
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
+  ```
+
+## screenshot.save
+
+save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+获取屏幕截图。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
+
+**示例：**
+
+  ```js
+  try {
+    screenshot.save((err, pixelMap) => {
+      if (err) {
+          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      pixelMap.release(); // PixelMap使用完后及时释放内存
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
   ```
 
 ## screenshot.save
@@ -120,7 +158,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 **示例：**
 
   ```js
-  var screenshotOptions = {
+  let screenshotOptions = {
   	"screenRect": {
   		"left": 200,
   		"top": 100,
@@ -132,11 +170,15 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
   	"rotation": 0,
   	"displayId": 0
   };
-  let promise = screenshot.save(screenshotOptions);
-  promise.then((pixelMap) => {
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-      pixelMap.release(); // PixelMap使用完后及时释放内存
-  }).catch((err) => {
-      console.log('Failed to save screenshot: ' + JSON.stringify(err));
-  });
+  try {
+    let promise = screenshot.save(screenshotOptions);
+    promise.then((pixelMap) => {
+        console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+        pixelMap.release(); // PixelMap使用完后及时释放内存
+    }).catch((err) => {
+        console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+  };
   ```

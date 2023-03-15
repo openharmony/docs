@@ -23,14 +23,15 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 
 1. 安装Docker，Docker安装请参考[官方指导](https://docs.docker.com/engine/install/)。
 
-2. 获取OpenHarmony源码，请参考[获取源码](https://device.harmonyos.com/cn/docs/documentation/guide/sourcecode-acquire-0000001050769927)。
+2. 获取OpenHarmony源码，请参考[获取源码](sourcecode-acquire.md)。
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
    > HPM Docker环境无需单独获取源码。
 
+3. 请使用具备root权限的用户，或已被授予docker使用权限的用户进行后续操作。
 
 ## 独立Docker环境
 
-OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud.com/swr/?region=cn-south-1#/app/warehouse/warehouseMangeDetail/goldensir/openharmony-docker/openharmony-docker?type=ownImage)上。开发者可以通过该镜像在很大程度上简化编译前的环境配置。下文将介绍具体使用步骤。
+OpenHarmony的Docker镜像托管在HuaweiCloud SWR上。开发者可以通过该镜像在很大程度上简化编译前的环境配置。下文将介绍具体使用步骤。
 
 ### 搭建Docker环境（轻量系统和小型系统）
 

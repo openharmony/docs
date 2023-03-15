@@ -1,4 +1,4 @@
-# Cellular Data
+# @ohos.telephony.data (Cellular Data)
 
 The cellular data module provides basic mobile data management functions. You can obtain and set the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
 
@@ -17,8 +17,6 @@ import data from '@ohos.telephony.data';
 getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void 
 
 Obtains the default slot of the SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
-
-**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Telephony.CellularData
 
@@ -42,8 +40,6 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 
 Obtains the default slot of the SIM card used for mobile data. This API uses a promise to return the result. 
 
-**Required permission**: ohos.permission.GET_NETWORK_INFO
-
 **System capability**: SystemCapability.Telephony.CellularData
 
 **Return value**
@@ -63,13 +59,33 @@ promise.then((data) => {
 });
 ```
 
+## data.getDefaultCellularDataSlotIdSync<sup>9+</sup>
+
+getDefaultCellularDataSlotIdSync(): number
+
+Obtains the default SIM card used for mobile data synchronously.
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type             | Description                                                        |
+| ------ | -------------------------------------------------- |
+| number | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+
+**Example**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
+```
+
 ## data.setDefaultCellularDataSlotId
 
-setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): void 
 
 Sets the default slot of the SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -79,13 +95,26 @@ This is a system API.
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| slotId   | number                | Yes  | SIM card slot ID. <br>**0**: card slot 1<br>**1**: card slot 2<br>**-1**: Clears the default configuration.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
 
 **Example**
 
 ```js
-data.setDefaultCellularDataSlotId(0,(err, data) => {
+data.setDefaultCellularDataSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -96,7 +125,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 Sets the default slot of the SIM card used for mobile data. This API uses a promise to return the result. 
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -106,13 +135,26 @@ This is a system API.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
+| slotId | number | Yes  | SIM card slot ID. <br>**0**: card slot 1<br>**1**: card slot 2<br>**-1**: Clears the default configuration.|
 
 **Return value**
 
-| Type          | Description                           |
-| -------------- | ------------------------------- |
-| Promise<\void\> | Promise used to return the result. |
+| Type           | Description                           |
+| --------------- | ------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
 
 **Example**
 
@@ -176,7 +218,7 @@ promise.then((data) => {
 
 getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
-Obtains the connection status of the PS domain. This API uses an asynchronous callback to return the result.
+Obtains the connection status of the packet switched (PS) domain. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CellularData
 
@@ -233,7 +275,18 @@ Checks whether the cellular data service is enabled. This API uses an asynchrono
 
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The cellular data service is enabled.<br>- **false**: The cellular data service is disabled.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>**true**: The cellular data service is enabled.<br>**false**: The cellular data service is disabled.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -257,7 +310,18 @@ Checks whether the cellular data service is enabled. This API uses a promise to 
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.<br>- **true**: The cellular data service is enabled.<br>- **false**: The cellular data service is disabled.|
+| Promise\<boolean\> | Promise used to return the result.<br>**true**: The cellular data service is enabled.<br>**false**: The cellular data service is disabled.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -274,7 +338,7 @@ promise.then((data) => {
 
 isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>): void
 
-Checks whether the cellular data roaming service is enabled. This API uses an asynchronous callback to return the result.
+Checks whether roaming is enabled for the cellular data service. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -285,12 +349,23 @@ Checks whether the cellular data roaming service is enabled. This API uses an as
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                   | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2                    |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The cellular data roaming service is enabled. <br>- **false**: The cellular data roaming service is disabled. |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
-data.isCellularDataRoamingEnabled(0,(err, data) => {
+data.isCellularDataRoamingEnabled(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -299,7 +374,7 @@ data.isCellularDataRoamingEnabled(0,(err, data) => {
 
 isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 
-Checks whether the cellular data roaming service is enabled. This API uses a promise to return the result.
+Checks whether roaming is enabled for the cellular data service. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -315,7 +390,18 @@ Checks whether the cellular data roaming service is enabled. This API uses a pro
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.<br>- **true**: The cellular data roaming service is enabled.<br>- **false**: The cellular data roaming service is disabled.|
+| Promise\<boolean\> | Promise used to return the result.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -334,7 +420,7 @@ enableCellularData(callback: AsyncCallback<void\>): void
 
 Enables the cellular data service. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -345,6 +431,17 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -360,7 +457,7 @@ enableCellularData(): Promise<void\>
 
 Enables the cellular data service. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -371,6 +468,17 @@ This is a system API.
 | Type           | Description                   |
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -389,7 +497,7 @@ disableCellularData(callback: AsyncCallback<void\>): void
 
 Disables the cellular data service. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -400,6 +508,17 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -415,7 +534,7 @@ disableCellularData(): Promise<void\>
 
 Disables the cellular data service. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -426,6 +545,17 @@ This is a system API.
 | Type           | Description                       |
 | --------------- | --------------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -444,7 +574,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 Enables the cellular data roaming service. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -456,6 +586,17 @@ This is a system API.
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -471,7 +612,7 @@ enableCellularDataRoaming(slotId: number): Promise<void\>
 
 Enables the cellular data roaming service. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -488,6 +629,17 @@ This is a system API.
 | Type           | Description                     |
 | --------------- | ------------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -506,7 +658,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 Disables the cellular data roaming service. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -518,6 +670,17 @@ This is a system API.
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -533,7 +696,7 @@ disableCellularDataRoaming(slotId: number): Promise<void\>
 
 Disables the cellular data roaming service. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -551,6 +714,17 @@ This is a system API.
 | --------------- | ------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -561,7 +735,6 @@ promise.then((data) => {
     console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
-
 
 ## DataFlowType
 
@@ -579,14 +752,14 @@ Defines the cellular data flow type.
 
 ## DataConnectState
 
-Describes the connection status of a cellular data connection.
+Describes the connection status of a cellular data link.
 
 **System capability**: SystemCapability.Telephony.CellularData
 
 | Name                   | Value  | Description                      |
 | ----------------------- | ---- | -------------------------- |
-| DATA_STATE_UNKNOWN      | -1   | The status of the cellular data connection is unknown.    |
-| DATA_STATE_DISCONNECTED | 0    | The cellular data connection is disconnected.   |
-| DATA_STATE_CONNECTING   | 1    | The cellular data connection is being established.|
-| DATA_STATE_CONNECTED    | 2    | The cellular data connection is established.  |
-| DATA_STATE_SUSPENDED    | 3    | The cellular data connection is suspended.  |
+| DATA_STATE_UNKNOWN      | -1   | The status of the cellular data link is unknown.    |
+| DATA_STATE_DISCONNECTED | 0    | The cellular data link is disconnected.    |
+| DATA_STATE_CONNECTING   | 1    | The cellular data link is being connected.|
+| DATA_STATE_CONNECTED    | 2    | The cellular data link is connected.  |
+| DATA_STATE_SUSPENDED    | 3    | The cellular data link is suspended.  |

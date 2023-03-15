@@ -1,9 +1,9 @@
-# 媒体查询
+# @system.mediaquery (媒体查询)
 
 提供根据不同媒体类型定义不同的样式。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.mediaquery`](js-apis-mediaquery.md)。
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -12,7 +12,7 @@
 ## 导入模块
 
 
-```
+```ts
 import mediaquery from '@system.mediaquery';
 ```
 
@@ -39,8 +39,8 @@ matchMedia(condition: string): MediaQueryList
 
 **示例：**
 
-```
-var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
+```ts
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
 ```
 
 ## MediaQueryEvent
@@ -49,7 +49,7 @@ var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 参数类型    | 必填   | 说明    |
+| 名称      | 类型    | 必填   | 说明    |
 | ------- | ------- | ---- | ----- |
 | matches | boolean | 是    | 匹配结果。 |
 
@@ -61,7 +61,7 @@ var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 参数类型    | 必填   | 说明                |
+| 名称      | 类型    | 必填   | 说明                |
 | ------- | ------- | ---- | ----------------- |
 | media   | string  | 否    | 序列化媒体查询条件，该参数为只读。 |
 | matches | boolean | 是    | 匹配结果。             |
@@ -97,7 +97,7 @@ addListener(callback: (event: MediaQueryEvent) => void): void
 
 **示例：**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something
@@ -123,7 +123,7 @@ removeListener(callback: (event: MediaQueryEvent) => void): void
 
 **示例：**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something

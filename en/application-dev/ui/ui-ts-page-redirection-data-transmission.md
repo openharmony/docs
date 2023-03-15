@@ -1,26 +1,24 @@
 # Implementing Page Redirection and Data Transmission
 
-
 This section describes how to implement page redirection and data transmission between pages:
 
 
 1. Page redirection: Click a food item on the food list page to go to the food details page. Click the back button on the food details page to go back to the food list page.
 
-2. Data transmission between pages: After you click a food item, FoodDetail receives data from the previous page and renders the corresponding food details page.
+2. Data transmission between pages: After you click a food item, **FoodDetail** receives data from the previous page and renders the corresponding food details page.
 
 
 ## Page Redirection
 
 The declarative UI paradigm provides two mechanisms for page redirection:
 
-1. Navigator: encapsulates the page routing capability. After the page target is specified, all child components in the page target have the routing capability.
+1. **Navigator**: encapsulates the page routing capability. After the page target is specified, all child components in the page target have the routing capability.
 
-2. Router APIs: called to implement various operations of page routing. You'll need to import router before calling the router APIs.
+2. Router APIs: called to implement various operations of page routing. You'll need to import **router** before calling the router APIs.
 
 The procedure below uses these two mechanisms for redirection between the page list page and food details page.
 
-1. Click FoodListItem. The FoodDetail page is displayed. Create a Navigator component in FoodListItem to enable its child components to have the routing function. The target page is 'pages/FoodDetail'.
-
+1. Click **FoodListItem**. The **FoodDetail** page is displayed. Create a **Navigator** component in **FoodListItem** to enable its child components to have the routing function. The target page is **'pages/FoodDetail'**.
    ```ts
    @Component
    struct FoodListItem {
@@ -49,8 +47,7 @@ The procedure below uses these two mechanisms for redirection between the page l
 
    ![en-us_image_0000001223127744](figures/en-us_image_0000001223127744.gif)
 
-2. Click FoodGridItem. The FoodDetail page is displayed. Import the router module, and then call the push API of this module to push the FoodDetail page to the route stack to implement page redirection.
-
+2. Click **FoodGridItem**. The **FoodDetail** page is displayed. Import the **router** module, and then call the **push** API of this module to push the **FoodDetail** page to the route stack to implement page redirection.
    ```ts
    import router from '@ohos.router'
 
@@ -64,7 +61,7 @@ The procedure below uses these two mechanisms for redirection between the page l
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ url: 'pages/FoodDetail' })
+         router.pushUrl({ url: 'pages/FoodDetail' })
        })
      }
    }
@@ -72,8 +69,7 @@ The procedure below uses these two mechanisms for redirection between the page l
 
    ![en-us_image_0000001267607909](figures/en-us_image_0000001267607909.gif)
 
-3. Add the icon for returning from the FoodDetail page to the food list page. Save the Back.png file to the resources > base > media directory. Create a custom component PageTitle, which contains the back icon and Food Detail text. Call the router.back() API of the router to display the top page of the route stack, that is, the upper-level page.
-
+3. Add the icon for returning from the **FoodDetail** page to the food list page. Save the **Back.png** file to the **resources** > **base** > **media** directory. Create a custom component **PageTitle**, which contains the back icon and Food Detail text. Call the **router.back()** API of the router to display the top page of the route stack, that is, the upper-level page.
    ```ts
    // FoodDetail.ets
    import router from '@ohos.router'
@@ -99,8 +95,7 @@ The procedure below uses these two mechanisms for redirection between the page l
    }
    ```
 
-4. Create the Stack component in the FoodDetail component, including the FoodImageDisplay and PageTitle child components. Set the alignment mode to TopStart.
-
+4. Create the Stack component in the **FoodDetail** component, including the **FoodImageDisplay** and **PageTitle** child components. Set the alignment mode to **TopStart**.
    ```ts
    @Entry
    @Component
@@ -123,10 +118,9 @@ The procedure below uses these two mechanisms for redirection between the page l
 
 ## Data Transmission Between Pages
 
-We have implemented the redirection and going back of the FoodCategoryList and FoodDetail pages. At this point, the tomato details page is displayed no matter which FoodListItem/FoodGridItem is clicked. This is because the data transmission between pages is not yet configured. To configure data transmission between pages, set the routing with parameters as follows:
+We have implemented the redirection and going back of the **FoodCategoryList** and **FoodDetail** pages. At this point, the tomato details page is displayed no matter which **FoodListItem**/**FoodGridItem** is clicked. This is because the data transmission between pages is not yet configured. To configure data transmission between pages, set the routing with parameters as follows:
 
-1. Set the params attribute in the Navigator of the FoodListItem component. The params attribute accepts the key-value object.
-
+1. Set the **params** attribute, which accepts the key-value object, in the **Navigator** of the **FoodListItem** component.
    ```ts
    // FoodList.ets
    @Component
@@ -141,18 +135,16 @@ We have implemented the redirection and going back of the FoodCategoryList and F
    }
    ```
 
-   The router API called by FoodGridItem also has the capability of redirection with parameters. The method of using the router API is similar to that of using the Navigator.
-
+   The router API called by **FoodGridItem** also has supports redirection with parameters. The method of using the router API is similar to that of using the **Navigator**.
 
    ```ts
-   router.push({
+   router.pushUrl({
      url: 'pages/FoodDetail',
      params: { foodData: this.foodItem }
    })
    ```
 
-2. Import the FoodData class to the FoodDetail page and add the foodItem member variable to the FoodDetail component.
-
+2. Import the **FoodData** class to the **FoodDetail** page and add the **foodItem** member variable to the **FoodDetail** component.
    ```ts
    // FoodDetail.ets
    import { FoodData } from '../model/FoodData'
@@ -167,13 +159,12 @@ We have implemented the redirection and going back of the FoodCategoryList and F
    }
    ```
 
-3. Obtain the value of foodData. Call router.getParams().foodData to obtain the data corresponding to foodData carried when the FoodCategoryList page is displayed.
-
+3. Obtain the value of **foodData**. Call **router.getParams()['foodData']** to obtain the data corresponding to **foodData** carried when the **FoodCategoryList** page is displayed.
    ```ts
    @Entry
    @Component
    struct FoodDetail {
-     private foodItem: FoodData = router.getParams().foodData
+     private foodItem: FoodData = router.getParams()['foodData']
 
      build() {
        ......
@@ -181,8 +172,7 @@ We have implemented the redirection and going back of the FoodCategoryList and F
    }
    ```
 
-4. Re-build the components on the FoodDetail page. During building, the food information on the FoodDetail page is all directly declared constants. You need to use the passed FoodData data to assign a new value to the constants. The code is as follows:
-
+4. Re-build the components on the **FoodDetail** page. During building, the food information on the **FoodDetail** page is all directly declared constants. You need to use the passed **FoodData** data to assign a new value to the constants. The sample code is as follows:
    ```ts
    @Component
    struct PageTitle {
@@ -258,7 +248,7 @@ We have implemented the redirection and going back of the FoodCategoryList and F
    @Entry
    @Component
    struct FoodDetail {
-     private foodItem: FoodData = router.getParams().foodData
+     private foodItem: FoodData = router.getParams()['foodData']
 
      build() {
        Column() {

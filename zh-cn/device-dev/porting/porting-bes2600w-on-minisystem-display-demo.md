@@ -867,7 +867,7 @@ static void DSoftBus(void)
 
     extern void InitSoftBusServer(void);
     if (osThreadNew((osThreadFunc_t) InitSoftBusServer, NULL, &attr) == NULL) {
-        printf("Falied to create WifiSTATask!\n");
+        printf("Failed to create WifiSTATask!\n");
     }
 }
 
@@ -1283,6 +1283,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 进行图形子系统适配需要添加`graphic_utils`部件，直接在`config.json`配置即可。
 
 ```
+    {
       "components": [
         {
           "component": "graphic_utils",
@@ -1294,7 +1295,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
           "component": "ui"
         }
       ]
-    }
+    },
 ```
 
 `graphic`配置文件见 `//vendor/bestechnic/display_demo/graphic_config/product_graphic_lite_config.h`。
@@ -1421,7 +1422,7 @@ APP_FEATURE_INIT(AppEntry);
 
 ### XTS用例
 
-`XTS`测试参考资料见[xts参考资料](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-xts-guide.md)，进行`XTS`子系统适配需要添加`xts_acts`/`xts_tools`部件，直接在`config.json`配置即可，配置如下：
+`XTS`测试参考资料见[xts参考资料](../device-test/xts.md)，进行`XTS`子系统适配需要添加`xts_acts`/`xts_tools`部件，直接在`config.json`配置即可，配置如下：
 
     {
       "subsystem": "xts",
@@ -1477,3 +1478,4 @@ APP_FEATURE_INIT(AppEntry);
 - 分布式能力：`dms`、`dm`
 - 分布式音乐播放器样例
 
+porting-bes2600w-on-minisystem-display-demo.md

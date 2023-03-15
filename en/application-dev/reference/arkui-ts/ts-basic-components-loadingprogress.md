@@ -4,34 +4,27 @@ The **\<LoadingProgress>** component is used to create a loading animation.
 
 >  **NOTE**
 >
->  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
 LoadingProgress()
 
-Creates a **LoadingProgress** instance.
+Creates a **\<LoadingProgress>** component.
 
-
+Since API version 9, this API is supported in ArkTS widgets.
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| color | [ResourceColor](../../ui/ts-types.md) | - | Foreground color of the loading progress bar.|
-
-
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
 
@@ -50,4 +43,4 @@ struct LoadingProgressExample {
 }
 ```
 
-![en-us_image_000000111864201](figures/en-us_image_000000111864201.gif)
+![loadProgress](figures/loadProgress.jpeg)

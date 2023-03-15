@@ -40,9 +40,9 @@ group("wifi") {
 
   **表2** wifi_hotspot_config.h
 
-| 文件 | 接口 | 作用 | 
-| -------- | -------- | -------- |
-| wifi_hotspot_config.h | SetBand | 设置该热点的频段。 | 
+| 接口 | 作用 | 
+| -------- | -------- | 
+| SetBand | 设置该热点的频段。 | 
 | GetBand | 获取该热点的频段。 | 
 
   **表3** wifi_hotspot.h
@@ -109,7 +109,7 @@ group("wifi") {
 
 ## 适配实例
 
-1. 在“config.json”中添加iot_hardware子系统。
+1. 在“config.json”中添加communication子系统。
    路径：“vendor/MyVendorCompany/MyProduct/config.json”
 
    修改如下：

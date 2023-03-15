@@ -27,7 +27,7 @@
 
 | 名称                           | 类型      | 默认值          | 必填   | 描述                                       |
 | ---------------------------- | ------- | ------------ | ---- | ---------------------------------------- |
-| object-fit                   | string  | cover        | 否    | 设置图片的缩放类型，不支持svg格式。可选值类型说明请见object-fit 类型说明。 |
+| object-fit                   | string  | cover        | 否    | 设置图片的缩放类型，不支持svg格式。可选值类型说明请见object-fit类型说明。 |
 | match-text-direction         | boolean | false        | 否    | 图片是否跟随文字方向，不支持svg格式。                     |
 | fit-original-size            | boolean | false        | 否    | image组件在未设置宽高的情况下是否适应图源尺寸，该属性为true时object-fit属性不生效，svg类型图源不支持该属性。 |
 | object-position<sup>7+</sup> | string  | 0px&nbsp;0px | 否    | 设置图片在组件内展示的位置。<br/>设置类型有两种：<br/>1.&nbsp;像素，单位px，示例&nbsp;15px&nbsp;15px&nbsp;代表X轴或者Y轴移动的位置<br/>2.&nbsp;字符，可选值：<br/>-&nbsp;left&nbsp;图片显示在组件左侧；<br/>-&nbsp;top&nbsp;图片显示在组件顶部位置；<br/>-&nbsp;right&nbsp;图片显示在组件右侧位置；<br/>-&nbsp;bottom 图片显示在组件底部位置。 |
@@ -54,16 +54,18 @@
 >  1. 如果image组件本身的长宽小于svg中的长宽，svg会被裁切，仅显示左上角部分；
 >
 >  2. 如果image组件本身的长宽大于svg中的长宽，svg会被放置在image组件的左上角，image组件其他部分显示空白。
+>
+>  - 图片设置svg图源时，支持的标签范围有限，目前支持的svg标签包括svg、rect、circle、ellipse、path、line、polyline、polygon、animate、animateMotion、animateTransform。
 
 
 ## 事件
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称             | 参数                                       | 描述                        |
-| -------------- | ---------------------------------------- | ------------------------- |
-| complete(Rich) | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片成功加载时触发该回调，返回成功加载的图源尺寸。 |
-| error(Rich)    | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片加载出现异常时触发该回调，异常时长宽为零。   |
+| 名称       | 参数                                       | 描述                        |
+| -------- | ---------------------------------------- | ------------------------- |
+| complete | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片成功加载时触发该回调，返回成功加载的图源尺寸。 |
+| error    | {<br>&nbsp;width：width，<br>&nbsp;height：height<br>&nbsp;} | 图片加载出现异常时触发该回调，异常时长宽为零。   |
 
 ## 方法
 

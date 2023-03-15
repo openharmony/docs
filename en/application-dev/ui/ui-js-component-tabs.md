@@ -10,20 +10,21 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 
 ```html
 <!-- xxx.hml -->
-<div class="container" >
-  <tabs> <tab-bar>
-      <text>item1</text>
-      <text>item2</text>
-    </tab-bar>
-    <tab-content>
-      <div class="text">
-        <text>content1</text>
-      </div>
-      <div class="text">
-        <text>content2</text>
-      </div>
-    </tab-content>
-  </tabs>
+<div class="container">
+    <tabs>
+        <tab-bar>
+            <text>item1</text>
+            <text>item2</text>
+        </tab-bar>
+        <tab-content class="tabContent">
+            <div class="text">
+                <text>content1</text>
+            </div>
+            <div class="text">
+                <text>content2</text>
+            </div>
+        </tab-content>
+    </tabs>
 </div>
 ```
 
@@ -34,6 +35,10 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+}
+.tabContent{
+  width: 100%;
+  height: 100%;
 }
 .text{
   width: 100%;
@@ -178,10 +183,10 @@ Add the **change** event for the **&lt;tabs&gt;** component to display the index
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   tabChange(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: "Tab index: " + e.index
     })
   }
@@ -268,7 +273,7 @@ background-color:#F1F3F5;
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data() {
     return {

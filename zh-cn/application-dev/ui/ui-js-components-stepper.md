@@ -186,7 +186,7 @@ text{
 }
 ```
 
-![zh-cn_image_0000001234130975](figures/zh-cn_image_0000001234130975.png)
+![zh-cn_image_0000001234130975](figures/zh-cn_image_0000001234130975.PNG)
 
 
 ## 添加事件
@@ -248,7 +248,7 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     index:0,
@@ -261,19 +261,21 @@ export default {
     this.$element('stepperId').setNextButtonStatus({status: 'skip', label: 'SKIP'});
   },
   stepperFinish(){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'All Finished'
     })
   },
   stepperChange(e){
     console.log("stepperChange"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
+      // index表示当前步骤的序号
       message: 'Previous step: '+e.prevIndex+"-------Current step:"+e.index
     })
   },
   stepperNext(e){
     console.log("stepperNext"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
+      // pendingIndex表示将要跳转的序号
       message: 'Current step:'+e.index+"-------Next step:"+e.pendingIndex
     })
     var index = {pendingIndex:e.pendingIndex }
@@ -361,8 +363,8 @@ export default {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
-import router from '@system.router';
+import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 let myset = new Set();
 export default {
   data: {

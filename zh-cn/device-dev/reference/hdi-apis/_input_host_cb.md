@@ -3,9 +3,11 @@
 
 ## **概述**
 
-**所属模块:**
+此结构体定义了热插拔事件上报回调函数并提供给Input服务使用。
 
-[Input](_input.md)
+**相关模块:**
+
+[Input](input.md)
 
 
 ## **汇总**
@@ -13,31 +15,23 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| (&nbsp;[HotPlugCallback](#hotplugcallback)&nbsp;)&nbsp;(const&nbsp;[InputHotPlugEvent](_input_hotplug_event.md)&nbsp;\*event) | 热插拔事件上报的回调函数。&nbsp;[更多...](#hotplugcallback) | 
-
-
-## **详细描述**
-
-此结构体定义了热插拔事件上报回调函数并提供给Input服务使用。
-
-
-## **类成员变量说明**
+| ([HotPlugCallback](#hotplugcallback)&nbsp;)(const&nbsp;[InputHotPlugEvent](_input_hot_plug_event.md)&nbsp;\*event) | 热插拔事件上报的回调函数。 | 
 
 
 ### HotPlugCallback
 
-
+  
 ```
-void (* InputHostCb::HotPlugCallback) (const InputHotPlugEvent* event);
+void(* InputHostCb::HotPlugCallback) (const InputHotPlugEvent *event)
 ```
 
 **描述：**
 
 热插拔事件上报的回调函数。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |

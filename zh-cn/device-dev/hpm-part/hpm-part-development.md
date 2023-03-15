@@ -180,36 +180,36 @@ hpm init
   
 ```
 {
-"name": "@your/dist_name",
-"version": "2.2.0",
-"publishAs": "distribution",
-"description": "describe it",
-"scripts": {
-"config_hb": "hb set -root $DEP_BUNDLE_BASE",
-"dist": "PATH=/root/.local/bin:${DEP_OHOS_gn}:${DEP_OHOS_ninja}/ninja:${DEP_OHOS_llvm}/llvm/bin:${DEP_OHOS_hc_gen}/hc-gen:${PATH} && ./scripts/dist.sh"
-},
-"envs": {
-"debug": false
-},
-"dirs": {
-"scripts": "scripts/*"
-},
-"dependencies": {
-"@ohos/build_lite": "2.2.0",
-"@ohos/gn": "1.1.1",
-"@ohos/llvm": "1.1.1",
-"@ohos/hc_gen": "1.1.0",
-"@ohos/ninja": "1.1.0",
-......
-},
-"ohos": {
-"os": "2.2-Beta",
-"board": "hi3516",
-"kernel": "liteos-a"
-},
-"keywords": [ "hispark", "hi3516"   ],
-"repository": "https://gitee.com/openharmony/your-project",
-"license": "Apache V2"
+  "name": "@your/dist_name",
+  "version": "2.2.0",
+  "publishAs": "distribution",
+  "description": "describe it",
+  "scripts": {
+    "config_hb": "hb set -root $DEP_BUNDLE_BASE",
+    "dist": "PATH=/root/.local/bin:${DEP_OHOS_gn}:${DEP_OHOS_ninja}/ninja:${DEP_OHOS_llvm}/llvm/bin:${DEP_OHOS_hc_gen}/hc-gen:${PATH} && ./scripts/dist.sh"
+  },
+  "envs": {
+    "debug": false
+  },
+  "dirs": {
+    "scripts": "scripts/*"
+  },
+  "dependencies": {
+    "@ohos/build_lite": "2.2.0",
+    "@ohos/gn": "1.1.1",
+    "@ohos/llvm": "1.1.1",
+    "@ohos/hc_gen": "1.1.0",
+    "@ohos/ninja": "1.1.0",
+    ......
+  },
+  "ohos": {
+    "os": "2.2-Beta",
+    "board": "hi3516",
+    "kernel": "liteos-a"
+  },
+  "keywords": ["hispark", "hi3516"],
+  "repository": "https://gitee.com/openharmony/your-project",
+  "license": "Apache V2"
 }
 ```
 
@@ -371,7 +371,7 @@ project
   
 ```
 {
-"dependencies": {
+  "dependencies": {
     "@scope/the_bundle": "^1.0.0"
   }
 }
@@ -382,7 +382,7 @@ project
   
 ```
 {
-"dependencies": {
+  "dependencies": {
     "@scope/the_bundle1": "^1.0.0",
     "@scope/the_bundle2": "^2.0.0",
     "@scope/the_bundle3": "^3.0.0",

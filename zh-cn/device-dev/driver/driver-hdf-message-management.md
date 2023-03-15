@@ -39,19 +39,19 @@
 
 3. 在服务实现过程中，实现服务基类成员IDeviceIoService中的Dispatch方法。
    
-   ```
+   ```c
    // Dispatch是用来处理用户态发下来的消息
-   int32_t SampleDriverDispatch(struct HdfDeviceObject *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
+   int32_t SampleDriverDispatch(struct HdfDeviceIoClient *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
-       HDF_LOGE("sample driver lite A dispatch");
-       return 0;
+       HDF_LOGI("sample driver lite A dispatch");
+       return HDF_SUCCESS;
    }
    int32_t SampleDriverBind(struct HdfDeviceObject *device)
    {
-       HDF_LOGE("test for lite os sample driver A Open!");
+       HDF_LOGI("test for lite os sample driver A Open!");
        if (device == NULL) {
            HDF_LOGE("test for lite os sample driver A Open failed!");
-           return -1;
+           return HDF_FAILURE;
        }
        static struct ISampleDriverService sampleDriverA = {
            .ioService.Dispatch = SampleDriverDispatch,
@@ -59,36 +59,36 @@
            .ServiceB = SampleDriverServiceB,
        };
        device->service = (struct IDeviceIoService *)(&sampleDriverA);
-       return 0;
+       return HDF_SUCCESS;
    }
    ```
 
 4. 驱动定义消息处理函数中的cmd类型。
    
-   ```
+   ```c
    #define SAMPLE_WRITE_READ 1    // 读写操作码1
    ```
 
 5. 用户态获取服务接口并发送消息到驱动。
    
-   ```
+   ```c
    int SendMsg(const char *testMsg)
    {
        if (testMsg == NULL) {
            HDF_LOGE("test msg is null");
-           return -1;
+           return HDF_FAILURE;
        }
        struct HdfIoService *serv = HdfIoServiceBind("sample_driver");
        if (serv == NULL) {
            HDF_LOGE("fail to get service");
-           return -1;
+           return HDF_FAILURE;
        }
-       struct HdfSBuf *data = HdfSBufObtainDefaultSize();
+       struct HdfSBuf *data = HdfSbufObtainDefaultSize();
        if (data == NULL) {
            HDF_LOGE("fail to obtain sbuf data");
-           return -1;
+           return HDF_FAILURE;
        }
-       struct HdfSBuf *reply = HdfSBufObtainDefaultSize();
+       struct HdfSBuf *reply = HdfSbufObtainDefaultSize();
        if (reply == NULL) {
            HDF_LOGE("fail to obtain sbuf reply");
            ret = HDF_DEV_ERR_NO_MEMORY;
@@ -105,8 +105,8 @@
            goto out;
        }
    out:
-       HdfSBufRecycle(data);
-       HdfSBufRecycle(reply);
+       HdfSbufRecycle(data);
+       HdfSbbufRecycle(reply);
        HdfIoServiceRecycle(serv);
        return ret;
    }
@@ -115,31 +115,31 @@
 6. 用户态接收该驱动上报的消息。
    1. 用户态编写驱动上报消息的处理函数。
       
-       ```
+       ```c
        static int OnDevEventReceived(void *priv,  uint32_t id, struct HdfSBuf *data)
        {
            OsalTimespec time;
            OsalGetTime(&time);
-           HDF_LOGE("%s received event at %llu.%llu", (char *)priv, time.sec, time.usec);
+           HDF_LOGI("%{public}s received event at %{public}llu.%{public}llu", (char *)priv, time.sec, time.usec);
        
            const char *string = HdfSbufReadString(data);
            if (string == NULL) {
                HDF_LOGE("fail to read string in event data");
-               return -1;
+               return HDF_FAILURE;
            }
-           HDF_LOGE("%s: dev event received: %d %s",  (char *)priv, id, string);
-           return 0;
+           HDF_LOGI("%{public}s: dev event received: %{public}d %{public}s",  (char *)priv, id, string);
+           return HDF_SUCCESS;
        }
        ```
    2. 用户态注册接收驱动上报消息的操作方法。
       
-       ```
+       ```c
        int RegisterListen()
        {
            struct HdfIoService *serv = HdfIoServiceBind("sample_driver");
            if (serv == NULL) {
                HDF_LOGE("fail to get service");
-               return -1;
+               return HDF_FAILURE;
            }
            static struct HdfDevEventlistener listener = {
                .callBack = OnDevEventReceived,
@@ -147,20 +147,20 @@
            };
            if (HdfDeviceRegisterEventListener(serv, &listener) != 0) {
                HDF_LOGE("fail to register event listener");
-               return -1;
+               return HDF_FAILURE;
            }
            ......
            HdfDeviceUnregisterEventListener(serv, &listener);
            HdfIoServiceRecycle(serv);
-           return 0;
+           return HDF_SUCCESS;
        }
        ```
    3. 驱动上报事件。
       
-       ```
-       int32_t SampleDriverDispatch(struct HdfDeviceObject *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
+       ```c
+       int32_t SampleDriverDispatch(HdfDeviceIoClient *client, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
        {
            ... // process api call here
-           return HdfDeviceSendEvent(deviceObject, cmdCode, data);
+           return HdfDeviceSendEvent(client->device, cmdCode, data);
        }
        ```

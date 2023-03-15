@@ -1,4 +1,4 @@
-# Performance Tracing
+# @ohos.bytrace (Performance Tracing)
 
 > **NOTE**
 > - The APIs of this module are no longer maintained since API version 8. It is recommended that you use the APIs of [hiTraceMeter](js-apis-hitracemeter.md) instead.

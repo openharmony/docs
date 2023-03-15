@@ -7,13 +7,6 @@
 > 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-
-
-## 权限列表
-
-无
-
-
 ## 子组件
 
 可以包含GridCol子组件。
@@ -22,15 +15,20 @@
 ## 接口
 GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
+
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 |gutter|Length \| GutterOption|   否  |栅格布局间距，x代表水平方向。|
 |columns| number \| GridRowColumnOption |  否  |设置布局列数。|
-|breakpoints|BreakPoints|  否  |用于设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
+|breakpoints|BreakPoints|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
 |direction|GridRowDirection|   否  |栅格布局排列方向。|
 
 ## GutterOption
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -40,6 +38,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 ## GridRowColumnOption
 
 栅格在不同宽度设备类型下，栅格列数。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -54,6 +54,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 栅格在不同宽度设备类型下，gutter的大小。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | Length | 否    | 最小宽度类型设备。    |
@@ -65,26 +67,34 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 ## BreakPoints
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array<string> | 否  | 用于设置断点位置的单调递增数组。<br>默认值：["320vp", "520vp", "840vp"]    |
-| reference  | BreakpointsReference | 否    | -    | 竖直gutter option。      |
+| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
+| reference  | BreakpointsReference | 否    | 断点切换参照物。 |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
   // 启用xs、sm、md、lg共4个断点，断点范围值必须单调递增
-  breakpoints: {value: ["320vp", "520vp", "840vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp"]}
   // 启用xs、sm、md、lg、xl共5个断点，断点范围数量不可超过断点可取值数量-1
-  breakpoints: {value: ["320vp", "520vp", "840vp", "1080vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp", "1080vp"]}
 ```
 
 ## BreakpointsReference枚举类型
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 枚举名 | 描述 |
 | -------- | -------- |
 | WindowSize | 以窗口为参照。 |
 | ComponentSize | 以容器为参照。 |
 
 ## GridRowDirection枚举类型
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 枚举名 | 描述 |
 | -------- | -------- |
 | Row | 栅格元素按照行方向排列。 |
@@ -125,13 +135,13 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 onBreakpointChange(callback: (breakpoints: string) => void)
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 说明   |
 | ----- | ------ | ---- | ---------------------------------------- |
 |breakpoints| string |是|断点发生变化时触发回调<br>取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
-
-
 
 ## 示例
 
@@ -142,17 +152,18 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 struct GridRowExample {
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
   @State currentBp: string = 'unknown'
+
   build() {
     Column() {
       GridRow({
         columns: 5,
-        gutter: {x:5, y:10},
-        breakpoints: {value:["400vp", "600vp", "800vp"],
-          reference: BreakpointsReference.WindowSize},
+        gutter: { x: 5, y: 10 },
+        breakpoints: { value: ["400vp", "600vp", "800vp"],
+          reference: BreakpointsReference.WindowSize },
         direction: GridRowDirection.Row
       }) {
-        ForEach(this.bgColors, (color)=>{
-          GridCol({ span: {xs:1, sm:2, md:3, lg:4}}) {
+        ForEach(this.bgColors, (color) => {
+          GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
             Row().width("100%").height("20vp")
           }.borderColor(color).borderWidth(2)
         })
@@ -160,8 +171,8 @@ struct GridRowExample {
       .onBreakpointChange((breakpoint) => {
         this.currentBp = breakpoint
       })
-    }.width('80%').margin({ left: 10,top: 5, bottom:5 }).height(200)
-    .border({color:Color.Blue, width:2})
+    }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
+    .border({ color: '#880606', width: 2 })
   }
 }
 ```

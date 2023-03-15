@@ -27,7 +27,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 | 名称   | 参数类型    | 描述                                                         |
 | ------ | --------------- | ------------------------------------------------------------ |
-| format | string    | 设置显示时间格式。<br/>日期间隔符固定为"/"，时间间隔符为":"。<br/>如yyyyMMdd，yyyy-MM-dd显示为yyyy/MM/dd，<br/>hhmmss显示为hh:mm:ss。 <br/>时间格式只用写一位即可，如"hhmmss"等同于"hms"。<br/>支持的时间格式化字符串：<br/>- YYYY/yyyy：完整年份。<br/>- YY/yy：年份后两位。<br/>- M：月份(若想使用01月则使用MM)。<br/>- d：日期(若想使用01日则使用dd)。<br/>- D：年中日(一年中的第几天)。<br/>- H：24小时制。<br/>- h：12小时制。<br/>- m：分钟。<br/>- s：秒。<br/>- SSS：毫秒。若格式未匹配，则使用默认值。<br/>默认值： 'hms'|
+| format | string    | 设置显示时间格式。<br/>日期间隔符固定为"/"，时间间隔符为":"。<br/>如yyyyMMdd，yyyy-MM-dd显示为yyyy/MM/dd，<br/>hhmmss显示为hh:mm:ss。 <br/>时间格式只用写一位即可，如"hhmmss"等同于"hms"。<br/>支持的时间格式化字符串：<br/>- YYYY/yyyy：完整年份。<br/>- YY/yy：年份后两位。<br/>- M：月份(若想使用01月则使用MM)。<br/>- d：日期(若想使用01日则使用dd)。<br/>- D：年中日(一年中的第几天)。<br/>- H：24小时制。<br/>- h：12小时制。<br/>- m：分钟。<br/>- s：秒。<br/>- SSS：毫秒。<br/>若格式未匹配，则使用默认值。<br/>默认值： 'hms'|
 
 ## 事件
 
@@ -65,9 +65,9 @@ stop()
 @Entry
 @Component
 struct Second {
-  @State accumulateTime: number = 0;
+  @State accumulateTime: number = 0
   // 导入对象
-  controller: TextClockController = new TextClockController();
+  controller: TextClockController = new TextClockController()
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('Current milliseconds is ' + this.accumulateTime)
@@ -76,7 +76,7 @@ struct Second {
       TextClock({ timeZoneOffset: -8, controller: this.controller })
         .format('hms')
         .onDateChange((value: number) => {
-          this.accumulateTime = value;
+          this.accumulateTime = value
         })
         .margin(20)
         .fontSize(30)
@@ -84,12 +84,12 @@ struct Second {
         .margin({ bottom: 10 })
         .onClick(() => {
           // 启动文本时钟
-          this.controller.start();
+          this.controller.start()
         })
       Button("stop TextClock")
         .onClick(() => {
           // 停止文本时钟
-          this.controller.stop();
+          this.controller.stop()
         })
     }
     .width('100%')

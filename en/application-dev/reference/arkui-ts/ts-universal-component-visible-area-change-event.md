@@ -1,20 +1,16 @@
 # Visible Area Change Event
 
-The visible area change event of a component refers to the change in the visual portion of a component on the screen. It can be used to determine whether the component is completely or partially displayed on the screen. It is usually applicable to scenarios such as advertisement exposure tracing.
+The visible area change event of a component refers to the change in the visual portion of the component on the screen. It can be used to determine whether the component is completely or partially displayed on the screen. It is usually applicable to scenarios such as advertisement exposure tracing.
 
 > **NOTE**
 >
-> The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
+>  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Events
 
-| Name| Description|
-| -------- | -------- |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
 | onVisibleAreaChange(ratios: Array\<number>, event: (isVisible: boolean, currentRatio: number) => void) | Called when the visual area of the component changes.<br>- **ratios**: threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>- **isVisible**: indicates whether the ratio of the component's visible area to its total area is greater than the threshold. The value **true** means that the ratio is greater than the threshold, and **false** means that the ratio is less than the threshold.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
 
 
@@ -27,8 +23,8 @@ None
 struct ScrollExample {
   scroller: Scroller = new Scroller()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State testTextStr: string = "test"
-  @State testRowStr: string = "test"
+  @State testTextStr: string = 'test'
+  @State testRowStr: string = 'test'
 
   build() {
     Column() {
@@ -50,22 +46,22 @@ struct ScrollExample {
             .height(200)
             .margin({ top: 50, bottom: 20 })
             .backgroundColor(Color.Green)
-            // Set ratios to [0.0, 1.0] to invoke the callback when the component is fully visible or invisible on screen.
+              // Set ratios to [0.0, 1.0] to invoke the callback when the component is fully visible or invisible on screen.
             .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-              console.info("Test Text isVisible: " + isVisible + ", currentRatio:" + currentRatio)
+              console.info('Test Text isVisible: ' + isVisible + ', currentRatio:' + currentRatio)
               if (isVisible && currentRatio >= 1.0) {
-                console.info("Test Text is fully visible. currentRatio:" + currentRatio)
-                this.testTextStr = "Test Text is fully visible"
+                console.info('Test Text is fully visible. currentRatio:' + currentRatio)
+                this.testTextStr = 'Test Text is fully visible'
               }
 
               if (!isVisible && currentRatio <= 0.0) {
-                console.info("Test Text is completely invisible.")
-                this.testTextStr = "Test Text is completely invisible"
+                console.info('Test Text is completely invisible.')
+                this.testTextStr = 'Test Text is completely invisible'
               }
             })
 
           Row() {
-            Text("Test Row Visible  Change")
+            Text('Test Row Visible  Change')
               .fontSize(20)
               .margin({ bottom: 20 })
 
@@ -73,15 +69,15 @@ struct ScrollExample {
           .height(200)
           .backgroundColor(Color.Yellow)
           .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-            console.info("Test Row isVisible:" + isVisible + ", currentRatio:" + currentRatio)
+            console.info('Test Row isVisible:' + isVisible + ', currentRatio:' + currentRatio)
             if (isVisible && currentRatio >= 1.0) {
-              console.info("Test Row is fully visible.")
-              this.testRowStr = "Test Row is fully visible"
+              console.info('Test Row is fully visible.')
+              this.testRowStr = 'Test Row is fully visible'
             }
 
             if (!isVisible && currentRatio <= 0.0) {
-              console.info("Test Row is is completely invisible.")
-              this.testRowStr = "Test Row is is completely invisible"
+              console.info('Test Row is is completely invisible.')
+              this.testRowStr = 'Test Row is is completely invisible'
             }
           })
 

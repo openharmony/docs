@@ -47,7 +47,7 @@
  }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：lite上旧的部件在build/lite/components目录下对应子系统的json文件中，路径规则为：**{领域}/{子系统}/{部件}**，部件目录树规则如下：
+> **注意**：lite上旧的部件在build/lite/components目录下对应子系统的json文件中，路径规则为：**{领域}/{子系统}/{部件}**，部件目录树规则如下：
 
 ```shell
 component

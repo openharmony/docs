@@ -4,19 +4,14 @@
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | '' | Unique ID you assigned to the component.|
+| Name  | Type    | Description                        |
+| -----| -------- | ----------------------------- |
+| id   | string   | Unique ID you assigned to the component.<br>Default value: **''**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## APIs
@@ -28,27 +23,33 @@ getInspectorByKey(id: string): string
 
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | id | string | Yes| - | ID of the component whose attributes are to be obtained.|
+This API is used only for test purposes.
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | JSON string of the component attribute list.|
+**Parameters**
+
+| Name  | Type     | Mandatory    | Description       |
+| ---- | -------- | ---- | -------------|
+| id   | string   | Yes   | ID of the component whose attributes are to be obtained.|
+
+**Return value**
+
+| Type       | Description            |
+| -------| -------------- |
+| string | JSON string of the component attribute list.|
 
 ### getInspectorTree<sup>9+</sup>
 
-getInspectorTree(): string
+getInspectorTree(): Object
 
 Obtains the component tree and component attributes.
 
-- Return value
+This API is used only for test purposes.
 
-  | Type  | Description                              |
-  | ------ | ---------------------------------- |
-  | string | JSON string of the component tree and component attribute list.|
+**Return value**
+
+| Type    | Description                           |
+| ------ | --------------------------- |
+| Object | JSON object of the component tree and component attribute list.|
 
 ### sendEventByKey<sup>9+</sup>
 
@@ -56,17 +57,21 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 Sends an event to the component with the specified ID.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | id | string | Yes| - | ID of the component to which the event is to be sent.|
-  | action | number | Yes| - | Type of the event to be sent. The options are as follows:<br>- **10**: click event.<br>- **11**: long-click event.|
-  | params | string | Yes| - | Event parameters. If there is no parameter, pass an empty string **""**.|
+This API is used only for test purposes.
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the component with the specified ID is found; returns **false** otherwise.|
+**Parameters**
+
+| Name      | Type     | Mandatory      | Description                        |
+| ------ | -------| ---- | -------------------------- |
+| id     | string | Yes   | ID of the component to which the event is to be sent.                     |
+| action | number | Yes   | Type of the event to be sent. The options are as follows:<br>- **10**: click event.<br>- **11**: long-click event.|
+| params | string | Yes   | Event parameters. If there is no parameter, pass an empty string **""**.           |
+
+**Return value**
+
+| Type         | Description                        |
+| -------- | --------------------------|
+| boolean  | Returns **true** if the component with the specified ID is found; returns **false** otherwise.|
 
 ### sendTouchEvent<sup>9+</sup>
 
@@ -74,17 +79,19 @@ sendTouchEvent(event: TouchObject): boolean
 
 Sends a touch event.
 
-- Parameters
+This API is used only for test purposes.
 
-  | Name | Type       | Mandatory| Default Value| Description                                                        |
-  | ----- | ----------- | ---- | ------ | ------------------------------------------------------------ |
-  | event | TouchObject | Yes  | -      | Location where a touch event is triggered. For details, see [TouchEvent](ts-universal-events-touch.md#touchevent).|
+**Parameters**
 
-- Return value
+| Name     | Type           | Mandatory | Description                                                        |
+| ----- | ----------- | ---- | ------------------------------------------------------------ |
+| event | [TouchObject](ts-universal-events-touch.md#touchobject) | Yes   | Location where a touch event is triggered. For details, see [TouchEvent](ts-universal-events-touch.md#touchevent).|
 
-  | Type   | Description                                       |
-  | ------- | ------------------------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+**Return value**
+
+| Type     | Description                        |
+| ------- | ---------------------------|
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ### sendKeyEvent<sup>9+</sup>
 
@@ -92,17 +99,19 @@ sendKeyEvent(event: KeyEvent): boolean
 
 Sends a key event.
 
-- Parameters
+This API is used only for test purposes.
 
-  | Name | Type    | Mandatory| Default Value| Description                                                        |
-  | ----- | -------- | ---- | ------ | ------------------------------------------------------------ |
-  | event | KeyEvent | Yes  | -      | Key event. For details, see [KeyEvent](ts-universal-events-key.md#keyevent).|
+**Parameters**
 
-- Return value
+| Name   | Type    | Mandatory     | Description                                                        |
+| ----- | -------- | ----  | ------------------------------------------------------------ |
+| event | [KeyEvent](ts-universal-events-key.md#keyevent) | Yes    | Key event. For details, see [KeyEvent](ts-universal-events-key.md#keyevent).|
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+**Return value**
+
+| Type     | Description                          |
+| ------- | ------------------------------|
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ### sendMouseEvent<sup>9+</sup>
 
@@ -110,35 +119,38 @@ sendMouseEvent(event: MouseEvent): boolean
 
 Sends a mouse event.
 
-- Parameters
+This API is used only for test purposes.
 
-  | Name | Type      | Mandatory| Default Value| Description                                                        |
-  | ----- | ---------- | ---- | ------ | ------------------------------------------------------------ |
-  | event | MouseEvent | Yes  | -      | Mouse event. For details, see [MouseEvent](ts-universal-mouse-key.md#mouseevent).|
+**Parameters**
 
-- Return value
+| Name    | Type      | Mandatory      | Description                                    |
+| ----- | ---------- | ----  | --------------------------------------- |
+| event | [MouseEvent](ts-universal-mouse-key.md#mouseevent) | Yes   | Mouse event. For details, see [MouseEvent](ts-universal-mouse-key.md#mouseevent).|
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+**Return value**
+
+| Type     | Description                                |
+| ------- | ---------------------------------- |
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ## Example
 
 ```ts
 // xxx.ets
 class Utils {
-  static rect_left;
-  static rect_top;
-  static rect_right;
-  static rect_bottom;
-  static rect_value;
+  static rect_left
+  static rect_top
+  static rect_right
+  static rect_bottom
+  static rect_value
 
+  // Obtain the coordinates of the rectangular area occupied by the component.
   static getComponentRect(key) {
-    let strJson = getInspectorByKey(key);
-    let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let strJson = getInspectorByKey(key)
+    let obj = JSON.parse(strJson)
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
     this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
     this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
     this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
@@ -169,10 +181,10 @@ struct IdExample {
       }.margin({ top: 20 })
       .onClick(() => {
         console.info(getInspectorByKey("click"))
-        console.info(getInspectorTree())
+        console.info(JSON.stringify(getInspectorTree()))
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
-          sendEventByKey("longClick", 11, "")
+          sendEventByKey("longClick", 11, "") // Send a long-click event to the component whose ID is "longClick".
         }, 2000)
       }).id('click')
 
@@ -184,18 +196,18 @@ struct IdExample {
         console.info('long clicked')
         this.text = "Button 'longClick' is longclicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onTouch')
+          let rect = Utils.getComponentRect('onTouch') // Obtain the coordinates of the rectangular area occupied by the component whose ID is "onTouch".
           let touchPoint: TouchObject = {
             id: 1,
-            x: rect.left + (rect.right - rect.left) / 2,
-            y: rect.top + (rect.bottom - rect.top) / 2,
+            x: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
             type: TouchType.Down,
-            screenX: rect.left + (rect.right - rect.left) / 2,
-            screenY: rect.left + (rect.right - rect.left) / 2,
+            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            screenY: rect.left + (rect.right - rect.left) / 2, // Y coordinate of the component center.
           }
-          sendTouchEvent(touchPoint)
+          sendTouchEvent(touchPoint) // Send a touch event.
           touchPoint.type = TouchType.Up
-          sendTouchEvent(touchPoint)
+          sendTouchEvent(touchPoint) // Send a touch event.
         }, 2000)
       })).id('longClick')
 
@@ -206,14 +218,14 @@ struct IdExample {
         console.info('onTouch is clicked')
         this.text = "Button 'onTouch' is clicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onMouse')
+          let rect = Utils.getComponentRect('onMouse') // Obtain the coordinates of the rectangular area occupied by the component whose ID is "onMouse".
           let mouseEvent: MouseEvent = {
             button: MouseButton.Left,
             action: MouseAction.Press,
-            x: rect.left + (rect.right - rect.left) / 2,
-            y: rect.top + (rect.bottom - rect.top) / 2,
-            screenX: rect.left + (rect.right - rect.left) / 2,
-            screenY: rect.top + (rect.bottom - rect.top) / 2,
+            x: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
+            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
+            screenY: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
             timestamp: 1,
             target: {
               area: {
@@ -229,9 +241,13 @@ struct IdExample {
                 }
               }
             },
-            source: SourceType.Mouse
+            source: SourceType.Mouse,
+            pressure: 1,
+            tiltX: 1,
+            tiltY: 1,
+            sourceTool: SourceTool.Unknown
           }
-          sendMouseEvent(mouseEvent)
+          sendMouseEvent(mouseEvent) // Send a mouse event.
         }, 2000)
       }).id('onTouch')
 
@@ -251,7 +267,7 @@ struct IdExample {
             metaKey: 0,
             timestamp: 0
           }
-          sendKeyEvent(keyEvent)
+          sendKeyEvent(keyEvent) // Send a key event.
         }, 2000)
       }).id('onMouse')
 

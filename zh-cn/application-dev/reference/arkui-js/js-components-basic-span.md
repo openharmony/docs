@@ -12,7 +12,7 @@
 
 ## 子组件
 
-支持子组件&lt;span&gt;。
+无
 
 
 ## 属性
@@ -74,7 +74,7 @@
 }
 .spanTxt{
   color: chartreuse;
-  font-size: 100px;
+  font-size: 80px;
 }
 ```
 

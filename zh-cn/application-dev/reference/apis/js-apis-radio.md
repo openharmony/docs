@@ -1,4 +1,4 @@
-# 网络搜索
+# @ohos.telephony.radio (网络搜索)
 
 网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持5G\(NR\)、判断主卡的Radio是否打开等。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import radio from '@ohos.telephony.radio'
+import radio from '@ohos.telephony.radio';
 ```
 
 ## radio.getRadioTech
@@ -30,11 +30,22 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | 是   | 回调函数。                             |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let slotId = 0;
-radio.getRadioTech(slotId, (err, data) =>{ 
+radio.getRadioTech(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -61,6 +72,17 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 | 类型                                                         | 说明                                            |
 | ------------------------------------------------------------ | ----------------------------------------------- |
 | Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | 以Promise形式返回获取当前接入的CS域和PS域技术。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -91,10 +113,21 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 | -------- | ---------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-radio.getNetworkState((err, data) =>{
+radio.getNetworkState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -116,6 +149,17 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -149,6 +193,17 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 | ---------------------------------------- | --------------------------- |
 | Promise\<[NetworkState](#networkstate)\> | 以Promise形式返回网络状态。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -176,6 +231,16 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -207,6 +272,16 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 | -------------------------------------------------------- | ------------------------------- |
 | Promise\<[NetworkSelectionMode](#networkselectionmode)\> | 以Promise形式返回当前选网模式。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -234,6 +309,16 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -265,6 +350,16 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -292,6 +387,16 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<number\> | 是   | 回调函数 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -314,6 +419,16 @@ getPrimarySlotId\(\): Promise\<number\>
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | 以Promise形式返回获取设备主卡所在卡槽的索引号的结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -341,6 +456,16 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回[SignalInformation](#signalinformation)对象的数组。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -372,6 +497,16 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -384,12 +519,40 @@ promise.then(data => {
 });
 ```
 
+## radio.isNrSupported<sup>(deprecated)</sup>
 
-## radio.isNrSupported<sup>8+</sup>
+isNrSupported\(\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+> **说明：**
+>
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[isNRSupported](#radioisnrsupported9)替代。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------- | -------------------------------- |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let result = radio.isNrSupported();
+console.log("Result: "+ result);
+```
+
+## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(slotId: number\): boolean
 
 判断当前设备是否支持5G\(NR\)。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 9开始废弃。建议使用[isNRSupported](#radioisnrsupported9-1)替代。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -414,6 +577,57 @@ console.log("Result: "+ result);
 ```
 
 
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------- | -------------------------------- |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let result = radio.isNRSupported();
+console.log("Result: "+ result);
+```
+
+
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(slotId: number\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let result = radio.isNRSupported(slotId);
+console.log("Result: "+ result);
+```
+
+
 ## radio.isRadioOn<sup>7+</sup>
 
 isRadioOn\(callback: AsyncCallback<boolean\>\): void
@@ -429,6 +643,17 @@ isRadioOn\(callback: AsyncCallback<boolean\>\): void
 | 参数名   | 类型                     | 必填 | 说明                                                    |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -455,6 +680,17 @@ isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                  |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -488,6 +724,17 @@ isRadioOn\(slotId?: number\): Promise<boolean\>
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回判断Radio是否打开的结果。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -515,6 +762,16 @@ getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 | callback | AsyncCallback\<string\> | 是   | 回调函数，返回运营商名称，例如：中国移动。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -546,6 +803,16 @@ getOperatorName\(slotId: number\): Promise<string\>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回运营商名称，例如：中国移动。                |
 
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -564,7 +831,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 设置主卡所在卡槽的索引号。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -576,6 +843,18 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -593,7 +872,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 设置主卡所在卡槽的索引号。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -610,6 +889,18 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 | 类型            | 说明                            |
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -629,7 +920,7 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -640,6 +931,17 @@ getIMEI(callback: AsyncCallback<string\>): void
 | 参数名   | 类型                    | 必填 | 说明                                       |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -656,7 +958,7 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -668,6 +970,17 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -685,7 +998,7 @@ getIMEI(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的IMEI。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -702,6 +1015,17 @@ getIMEI(slotId?: number): Promise<string\>
 | 类型              | 说明                                       |
 | ----------------- | ------------------------------------------ |
 | Promise\<string\> | 以Promise形式异步返回IMEI；如果IMEI不存在，则返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -721,7 +1045,7 @@ getMEID(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -732,6 +1056,17 @@ getMEID(callback: AsyncCallback<string\>): void
 | 参数名   | 类型                    | 必填 | 说明       |
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -748,7 +1083,7 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -760,6 +1095,17 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -777,7 +1123,7 @@ getMEID(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的MEID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -794,6 +1140,17 @@ getMEID(slotId?: number): Promise<string\>
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的MEID。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -813,7 +1170,7 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -824,6 +1181,17 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 | 参数名   | 类型                    | 必填 | 说明       |
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -840,7 +1208,7 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -852,6 +1220,17 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -869,7 +1248,7 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的唯一设备ID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -886,6 +1265,17 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 | 类型              | 说明                                          |
 | ----------------- | --------------------------------------------- |
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的唯一设备ID。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -905,7 +1295,9 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 发送更新小区位置请求。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -914,6 +1306,17 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -929,7 +1332,9 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 发送更新小区位置请求。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -939,6 +1344,17 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 | -------- | --------------------- | ---- | ---------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -955,7 +1371,9 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 发送更新小区位置请求。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -970,6 +1388,17 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -989,9 +1418,9 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 获取小区信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1000,6 +1429,17 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1016,9 +1456,9 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 
 获取小区信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1028,6 +1468,17 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。               |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1045,9 +1496,9 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 获取小区信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限**：ohos.permission.LOCATION
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1062,6 +1513,17 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 | 类型                                                    | 说明                    |
 | ------------------------------------------------------- | ----------------------- |
 | Promise\<Array<[CellInformation](#cellinformation8)\>\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1081,7 +1543,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 设置网络选择模式。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1094,18 +1556,29 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 | options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | 是   | 网络选择模式选项。 |
 | callback | AsyncCallback\<void\>                                       | 是   | 回调函数。         |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let networkInformation={
     operatorName: "中国移动",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1120,7 +1593,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
 设置网络选择模式。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1138,18 +1611,29 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let networkInformation={
     operatorName: "中国移动",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1167,7 +1651,7 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 
 获取网络搜索信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1180,6 +1664,17 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。           |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -1190,11 +1685,11 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number\): Promise<void\>
+getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 
 获取网络搜索信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1211,6 +1706,17 @@ getNetworkSearchInformation\(slotId: number\): Promise<void\>
 | 类型                                                   | 说明                    |
 | ------------------------------------------------------ | ----------------------- |
 | Promise\<[NetworkSearchResult](#networksearchresult)\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1229,7 +1735,7 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
 获取Nr选项模式 。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1238,6 +1744,16 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 | 参数名   | 类型                                            | 必填 | 说明       |
 | -------- | ----------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1254,7 +1770,7 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
 获取Nr选项模式 。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1264,6 +1780,16 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 | -------- | ----------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1281,7 +1807,7 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
 获取Nr选项模式 。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1296,6 +1822,16 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 | 类型                                      | 说明                    |
 | ----------------------------------------- | ----------------------- |
 | Promise\<[NrOptionMode](#nroptionmode8)\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1315,7 +1851,7 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 
 打开Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1326,6 +1862,17 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1342,7 +1889,7 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 打开Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1354,6 +1901,17 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1371,7 +1929,7 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 打开Radio。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1388,6 +1946,17 @@ turnOnRadio(slotId?: number): Promise<void\>
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1407,7 +1976,7 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 
 关闭Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1418,6 +1987,17 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1434,7 +2014,7 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 关闭Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1446,6 +2026,17 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1463,7 +2054,7 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 关闭Radio。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1480,6 +2071,17 @@ turnOffRadio(slotId?: number): Promise<void\>
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1499,7 +2101,7 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 设置首选网络。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1512,6 +2114,17 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 | slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式。                       |
 | callback    | AsyncCallback\<void\>                          | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1527,7 +2140,7 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 
 设置首选网络。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1545,6 +2158,17 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1563,7 +2187,7 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 获取首选网络。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1571,10 +2195,21 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                   |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1586,11 +2221,11 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork(slotId: number): Promise<void\>
+getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 
 获取首选网络。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1607,6 +2242,17 @@ getPreferredNetwork(slotId: number): Promise<void\>
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -1625,7 +2271,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 
 获取特定IMS服务类型的IMS注册状态信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1639,10 +2285,21 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 | imsType  | [ImsServiceType](#imsservicetype9)         | 是   | IMS服务类型。                          |
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | 是   | 回调函数。                             |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-radio.getImsRegInfo(0, 1, (err, data) => {
+radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1653,7 +2310,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
 获取特定IMS服务类型的IMS注册状态信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1672,10 +2329,21 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 | ------------------------------------- | ----------------------- |
 | Promise\<[ImsRegInfo](#imsreginfo9)\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-let promise = radio.getImsRegInfo(0, 1);
+let promise = radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO);
 promise.then(data => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1689,7 +2357,7 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 
 订阅imsRegStateChange事件，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1704,11 +2372,22 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 | imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 是   | 回调函数。                             |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-radio.on('imsRegStateChange', 0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1718,7 +2397,7 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 
 取消订阅imsRegStateChange事件，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1733,11 +2412,22 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 | imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。                             |
 
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-radio.off('imsRegStateChange', 0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1770,11 +2460,11 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 参数名      | 类型                        | 说明               |
-| ----------- | --------------------------- | ------------------ |
-| signalType  | [NetworkType](#networktype) | 网络信号强度类型。 |
-| signalLevel | number                      | 网络信号强度等级。 |
-
+|      名称       |           类型              | 必填 |      说明          |
+| --------------- | --------------------------- | ---- | ------------------ |
+| signalType      | [NetworkType](#networktype) | 是   | 网络信号强度类型。 |
+| signalLevel     | number                      | 是   | 网络信号强度等级。 |
+| dBm<sup>9+</sup>| number                      | 是   | 网络信号强度。     |
 
 ## NetworkType
 
@@ -1798,17 +2488,17 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称            | 类型                  | 说明                                                         |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| longOperatorName  | string                | 注册网络的长运营商名称。 |
-| shortOperatorName | string                | 注册网络的短运营商名称。 |
-| plmnNumeric       | string                | 注册网络的PLMN码。 |
-| isRoaming         | boolean               | 是否处于漫游状态。 |
-| regState          | [RegState](#regstate) | 设备的网络注册状态。 |
-| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | 设备的无线接入技术。 |
-| nsaState          | [NsaState](#nsastate) | 设备的NSA网络注册状态。 |
-| isCaActive        | boolean               | CA的状态。 |
-| isEmergency       | boolean               | 此设备是否只允许拨打紧急呼叫。 |
+|       名称           |                 类型                | 必填 |                          说明                                |
+| -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| longOperatorName     | string                              |  是  | 注册网络的长运营商名称。                                     |
+| shortOperatorName    | string                              |  是  | 注册网络的短运营商名称。                                     |
+| plmnNumeric          | string                              |  是  | 注册网络的PLMN码。                                           |
+| isRoaming            | boolean                             |  是  | 是否处于漫游状态。                                           |
+| regState             | [RegState](#regstate)               |  是  | 设备的网络注册状态。                                         |
+| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) |  是  | 设备的无线接入技术。                                         |
+| nsaState             | [NsaState](#nsastate)               |  是  | 设备的NSA网络注册状态。                                      |
+| isCaActive           | boolean                             |  是  | CA的状态。                                                   |
+| isEmergency          | boolean                             |  是  | 此设备是否只允许拨打紧急呼叫。                               |
 
 
 ## RegState
@@ -1819,10 +2509,10 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 
 | 名称                          | 值   | 说明                       |
 | ----------------------------- | ---- | -------------------------- |
-| REG_STATE_NO_SERVICE          | 0    | 设备不能使用任何服务。     |
-| REG_STATE_IN_SERVICE          | 1    | 设备可以正常使用业务。     |
+| REG_STATE_NO_SERVICE          | 0    | 设备不能使用任何服务，包括数据业务、短信、通话等。     |
+| REG_STATE_IN_SERVICE          | 1    | 设备可以正常使用服务，包括数据业务、短信、通话等。     |
 | REG_STATE_EMERGENCY_CALL_ONLY | 2    | 设备只能使用紧急呼叫业务。 |
-| REG_STATE_POWER_OFF           | 3    | 蜂窝无线电已关闭。         |
+| REG_STATE_POWER_OFF           | 3    | 蜂窝无线电已关闭，modem下电，无法和网侧进行通信。      |
 
 
 ## NsaState
@@ -1857,7 +2547,7 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 
 首选网络模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -1902,126 +2592,126 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 
 小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称              | 类型                                                         | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networktype)                                  | 获取服务单元的网络类型。                                     |
-| isCamped          | boolean                                                      | 获取服务单元的状态。                                         |
-| timeStamp         | number                                                       | 获取单元格信息时获取时间戳。                                 |
-| signalInformation | [SignalInformation](#signalinformation)                      | 信号信息。                                                   |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
+| 名称              |                  类型                   | 必填 |                           说明                               |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| networkType       | [NetworkType](#networktype)             |  是  | 获取服务单元的网络类型。                                     |
+| isCamped          | boolean                                 |  是  | 获取服务单元的状态。                                         |
+| timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。                                 |
+| signalInformation | [SignalInformation](#signalinformation) |  是  | 信号信息。                                                   |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
 
 ## CdmaCellInformation<sup>8+</sup>
 
 CDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称      | 类型   | 说明         |
-| --------- | ------ | ------------ |
-| baseId    | number | 基站Id。     |
-| latitude  | number | 经度。       |
-| longitude | number | 纬度。       |
-| nid       | number | 网络识别码。 |
-| sid       | number | 系统识别码。 |
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| baseId    | number |  是  | 基站Id。     |
+| latitude  | number |  是  | 经度。       |
+| longitude | number |  是  | 纬度。       |
+| nid       | number |  是  | 网络识别码。 |
+| sid       | number |  是  | 系统识别码。 |
 
 ## GsmCellInformation<sup>8+</sup>
 
 GSM小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称   | 类型   | 说明                 |
-| ------ | ------ | -------------------- |
-| lac    | number | 位置区编号。         |
-| cellId | number | 小区号。             |
-| arfcn  | number | 绝对无线频率信道号。 |
-| bsic   | number | 基站识别号。         |
-| mcc    | string | 移动国家码。         |
-| mnc    | string | 移动网号。           |
+| 名称   | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| lac    | number |  是  | 位置区编号。         |
+| cellId | number |  是  | 小区号。             |
+| arfcn  | number |  是  | 绝对无线频率信道号。 |
+| bsic   | number |  是  | 基站识别号。         |
+| mcc    | string |  是  | 移动国家码。         |
+| mnc    | string |  是  | 移动网号。           |
 
 ## LteCellInformation<sup>8+</sup>
 
 LTE小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称          | 类型    | 说明                    |
-| ------------- | ------- | ----------------------- |
-| cgi           | number  | 小区全球标识。          |
-| pci           | number  | 物理小区识别。          |
-| tac           | number  | 跟踪区域代码。          |
-| earfcn        | number  | 绝对无线频率信道号。    |
-| bandwidth     | number  | 带宽。                  |
-| mcc           | string  | 移动国家码。            |
-| mnc           | string  | 移动网号。              |
-| isSupportEndc | boolean | 是否支持新无线电_双连接 |
+| 名称          | 类型    | 必填 | 说明                    |
+| ------------- | ------- | ---- | ----------------------- |
+| cgi           | number  |  是  | 小区全球标识。          |
+| pci           | number  |  是  | 物理小区识别。          |
+| tac           | number  |  是  | 跟踪区域代码。          |
+| earfcn        | number  |  是  | 绝对无线频率信道号。    |
+| bandwidth     | number  |  是  | 带宽。                  |
+| mcc           | string  |  是  | 移动国家码。            |
+| mnc           | string  |  是  | 移动网号。              |
+| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接 |
 
 ## NrCellInformation<sup>8+</sup>
 
 NR小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称    | 类型   | 说明             |
-| ------- | ------ | ---------------- |
-| nrArfcn | number | 5G频点号。       |
-| pci     | number | 物理小区识别。   |
-| tac     | number | 跟踪区域代码。   |
-| nci     | number | 5G网络小区标识。 |
-| mcc     | string | 移动国家码。     |
-| mnc     | string | 移动网号。       |
+| 名称    | 类型   | 必填 | 说明             |
+| ------- | ------ | ---- | ---------------- |
+| nrArfcn | number |  是  | 5G频点号。       |
+| pci     | number |  是  | 物理小区识别。   |
+| tac     | number |  是  | 跟踪区域代码。   |
+| nci     | number |  是  | 5G网络小区标识。 |
+| mcc     | string |  是  | 移动国家码。     |
+| mnc     | string |  是  | 移动网号。       |
 
 ## TdscdmaCellInformation<sup>8+</sup>
 
 TD-SCDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称   | 类型   | 说明         |
-| ------ | ------ | ------------ |
-| lac    | number | 位置区编号。 |
-| cellId | number | 小区号。     |
-| cpid   | number | 小区参数Id。 |
-| uarfcn | number | 绝对射频号。 |
-| mcc    | string | 移动国家码。 |
-| mnc    | string | 移动网号。   |
+| 名称   | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  是  | 位置区编号。 |
+| cellId | number |  是  | 小区号。     |
+| cpid   | number |  是  | 小区参数Id。 |
+| uarfcn | number |  是  | 绝对射频号。 |
+| mcc    | string |  是  | 移动国家码。 |
+| mnc    | string |  是  | 移动网号。   |
 
 ## WcdmaCellInformation<sup>8+</sup>
 
 WCDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称   | 类型   | 说明         |
-| ------ | ------ | ------------ |
-| lac    | number | 位置区编号。 |
-| cellId | number | 小区号。     |
-| psc    | number | 主扰码。     |
-| uarfcn | number | 绝对射频号。 |
-| mcc    | string | 移动国家码。 |
-| mnc    | string | 移动网号。   |
+| 名称   | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  是  | 位置区编号。 |
+| cellId | number |  是  | 小区号。     |
+| psc    | number |  是  | 主扰码。     |
+| uarfcn | number |  是  | 绝对射频号。 |
+| mcc    | string |  是  | 移动国家码。 |
+| mnc    | string |  是  | 移动网号。   |
 
 ## NrOptionMode<sup>8+</sup>
 
 NR的选择模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -2036,35 +2726,35 @@ NR的选择模式。
 
 网络搜索结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称                   | 类型                                              | 说明           |
-| ---------------------- | ------------------------------------------------- | -------------- |
-| isNetworkSearchSuccess | boolean                                           | 网络搜索成功。 |
-| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | 网络搜索结果。 |
+| 名称                   | 类型                                              | 必填 | 说明           |
+| ---------------------- | ------------------------------------------------- | ---- | -------------- |
+| isNetworkSearchSuccess | boolean                                           |  是  | 网络搜索成功。 |
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  是  | 网络搜索结果。 |
 
 ## NetworkInformation
 
 网络信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称            | 类型                                      | 说明           |
-| --------------- | ----------------------------------------- | -------------- |
-| operatorName    | string                                    | 运营商的名称。 |
-| operatorNumeric | string                                    | 运营商数字。   |
-| state           | [NetworkInformationState](#networkinformationstate) | 网络信息状态。 |
-| radioTech       | string                                    | 无线电技术。   |
+| 名称            |                         类型                        | 必填 | 说明           |
+| --------------- | --------------------------------------------------- | ---- | -------------- |
+| operatorName    | string                                              |  是  | 运营商的名称。 |
+| operatorNumeric | string                                              |  是  | 运营商数字。   |
+| state           | [NetworkInformationState](#networkinformationstate) |  是  | 网络信息状态。 |
+| radioTech       | string                                              |  是  | 无线电技术。   |
 
 ## NetworkInformationState
 
 网络信息状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -2079,22 +2769,22 @@ NR的选择模式。
 
 网络选择模式选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称               | 类型                                          | 说明                                   |
-| ------------------ | --------------------------------------------- | -------------------------------------- |
-| slotId             | number                                        | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| selectMode         | [NetworkSelectionMode](#networkselectionmode) | 网络选择模式。                        |
-| networkInformation | [NetworkInformation](#networkinformation)    | 网络信息。                            |
-| resumeSelection    | boolean                                       | 继续选择。                             |
+| 名称               |                    类型                       | 必填 |                 说明                   |
+| ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
+| slotId             | number                                        |  是  | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) |  是  | 网络选择模式。                         |
+| networkInformation | [NetworkInformation](#networkinformation)     |  是  | 网络信息。                             |
+| resumeSelection    | boolean                                       |  是  | 继续选择。                             |
 
 ## ImsRegState<sup>9+</sup>
 
 IMS注册状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -2107,7 +2797,7 @@ IMS注册状态。
 
 IMS注册技术。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
@@ -2122,20 +2812,20 @@ IMS注册技术。
 
 IMS注册信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称        | 类型                         | 说明          |
-| ----------- | ---------------------------- | ------------- |
-| imsRegState | [ImsRegState](#imsregstate9) | IMS注册状态。 |
-| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS注册技术。 |
+| 名称        | 类型                         | 必填 | 说明          |
+| ----------- | ---------------------------- | ---- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) |  是  | IMS注册状态。 |
+| imsRegTech  | [ImsRegTech](#imsregtech9)   |  是  | IMS注册技术。 |
 
 ## ImsServiceType<sup>9+</sup>
 
 IMS服务类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 

@@ -1,8 +1,9 @@
-# Bluetooth
+# @ohos.bluetooth (Bluetooth)
 
-The Bluetooth module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
+The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -202,7 +203,7 @@ Obtains the connection state of a profile.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
+| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -223,7 +224,7 @@ cancelPairedDevice(deviceId: string): boolean
 
 Cancels a paired remote device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -281,7 +282,7 @@ let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-Obtains the type of the remote Bluetooth device.
+Obtains the class of the remote Bluetooth device.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -297,7 +298,7 @@ Obtains the type of the remote Bluetooth device.
 
 | Type                         | Description      |
 | --------------------------- | -------- |
-| [DeviceClass](#deviceclass) | Type of a remote device obtained.|
+| [DeviceClass](#deviceclass) | Class of the remote device obtained.|
 
 **Example**
 
@@ -515,7 +516,7 @@ Unsubscribes from the Bluetooth device discovery events.
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.  |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback used to report the discovered devices. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback for the **bluetoothDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -578,7 +579,7 @@ Unsubscribes from the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.            |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback used to report the Bluetooth pairing request. The input parameter is the pairing request parameter. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback for the Bluetooth pairing request event. The input parameter is the pairing request parameter. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -599,7 +600,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
-Subscribes to the Bluetooth bond state change events.
+Subscribes to the Bluetooth pairing state change events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -609,8 +610,8 @@ Subscribes to the Bluetooth bond state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth bond state change event.|
-| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | Yes   | Callback invoked to return the bond state. You need to implement this callback.   |
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
+| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
 
 **Return value**
 
@@ -619,7 +620,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the bond state.
+function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the pairing state.
     console.info('pair state = '+ JSON.stringify(data));
 }
 bluetooth.on('bondStateChange', onReceiveEvent);
@@ -630,7 +631,7 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
-Unsubscribes from the Bluetooth bond state change events.
+Unsubscribes from the Bluetooth pairing state change events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -640,8 +641,8 @@ Unsubscribes from the Bluetooth bond state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth bond state change event.    |
-| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | No   | Callback used to report the change of the Bluetooth bond state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.    |
+| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | No   | Callback for the change of the Bluetooth pairing state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -704,7 +705,7 @@ Unsubscribes from the Bluetooth connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.          |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback used to report the Bluetooth connection state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback for the Bluetooth connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -990,7 +991,7 @@ Unsubscribes from the SPP read request events.
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value **sppRead** indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback used to report an SPP read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback for the SPP read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -1248,7 +1249,7 @@ Unsubscribes from the BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.       |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback used to report the discovered devices. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -1280,10 +1281,6 @@ Obtains the connected devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Parameters**
-
-No value is returned.
-
 **Return value**
 
 | Type                 | Description           |
@@ -1293,7 +1290,7 @@ No value is returned.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let retArray = a2dpSrc.getConnectionDevices();
 ```
 
@@ -1322,7 +1319,7 @@ Obtains the connection state of the profile.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1356,7 +1353,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1386,7 +1383,7 @@ Disconnects an A2DP connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1416,7 +1413,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1446,7 +1443,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1475,7 +1472,7 @@ Obtains the playing state of a device.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1510,7 +1507,8 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1540,7 +1538,8 @@ Disconnects the HFP connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1558,7 +1557,7 @@ Subscribes to the HFP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the HFP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
 
 **Return value**
 
@@ -1570,7 +1569,8 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1588,7 +1588,7 @@ Unsubscribes from the HFP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback used to return the HFP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change event.                              |
 
 **Return value**
 
@@ -1600,7 +1600,8 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1617,7 +1618,7 @@ connect(device: string): boolean
 
 Connects to the HidHost service of a device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1638,7 +1639,7 @@ This is a system API.
 **Example**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1649,7 +1650,7 @@ disconnect(device: string): boolean
 
 Disconnects from the HidHost service of a device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1670,7 +1671,7 @@ This is a system API.
 **Example**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 let ret = hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1700,7 +1701,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1718,7 +1719,7 @@ Unsubscribes from the HidHost connection state change events.
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a HidHost connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback used to return the HidHost connection state change event.                                     |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the HidHost connection state change event.                                     |
 
 **Return value**
 
@@ -1730,7 +1731,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1747,7 +1748,7 @@ disconnect(device: string): boolean
 
 Disconnects from the Personal Area Network (PAN) service of a device.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1768,7 +1769,7 @@ This is a system API.
 **Example**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1786,7 +1787,7 @@ Subscribes to the PAN connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a PAN connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the PAN connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the PAN connection state change event.                              |
 
 **Return value**
 
@@ -1798,7 +1799,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1816,7 +1817,7 @@ Unsubscribes from the PAN connection state change events.
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a PAN connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback used to return the PAN connection state change event.                                     |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the PAN connection state change event.                                     |
 
 **Return value**
 
@@ -1828,7 +1829,7 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1840,7 +1841,7 @@ setTethering(enable: boolean): void
 
 Sets tethering.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1861,7 +1862,7 @@ This is a system API.
 **Example**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.setTethering(true);
 ```
 
@@ -1872,7 +1873,7 @@ isTetheringOn(): boolean
 
 Obtains the tethering state.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1885,7 +1886,7 @@ This is a system API.
 **Example**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.isTetheringOn();
 ```
 
@@ -2061,10 +2062,9 @@ Removes a service from this GATT server.
 
 **Return value**
 
-|         |                            |
+| Type     | Description                        |
 | ------- | -------------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -2111,10 +2111,9 @@ Notifies the connected client device when a characteristic value changes.
 
 **Return value**
 
-|         |                          |
+| Type     | Description                      |
 | ------- | ------------------------ |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -2156,10 +2155,9 @@ Sends a response to a read or write request from the GATT client.
 
 **Return value**
 
-|         |                            |
+| Type     | Description                        |
 | ------- | -------------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -2220,7 +2218,7 @@ function ReadCharacteristicReq(CharacteristicReadReq) {
   let characteristicUuid = CharacteristicReadReq.characteristicUuid;
 
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2249,7 +2247,7 @@ Unsubscribes from the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | No   | Callback used to report a characteristic read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | No   | Callback for the characteristic read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -2297,10 +2295,10 @@ function WriteCharacteristicReq(CharacteristicWriteReq) {
   let needRsp = CharacteristicWriteReq.needRsp;
   let value =  new Uint8Array(CharacteristicWriteReq.value);
   let characteristicUuid = CharacteristicWriteReq.characteristicUuid;
-  
+
   cccValue[0] = value[0];
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2329,7 +2327,7 @@ Unsubscribes from the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | No   | Callback used to report a characteristic write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | No   | Callback for the characteristic write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -2377,7 +2375,7 @@ function ReadDescriptorReq(DescriptorReadReq) {
   let descriptorUuid = DescriptorReadReq.descriptorUuid;
 
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2406,7 +2404,7 @@ Unsubscribes from the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | No   | Callback used to report a descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | No   | Callback for the descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -2457,7 +2455,7 @@ function WriteDescriptorReq(DescriptorWriteReq) {
 
   descValue[0] = value[0];
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2486,7 +2484,7 @@ Unsubscribes from the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | No   | Callback used to report a descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | No   | Callback for the descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -2498,6 +2496,7 @@ No value is returned.
 let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
+
 
 ### on('connectStateChange')
 
@@ -2548,7 +2547,7 @@ Unsubscribes from the BLE connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback used to report the BLE connection state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -2693,8 +2692,6 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Parameters**
-
 **Return value**
 
 | Type                                      | Description                         |
@@ -2785,10 +2782,9 @@ Reads the characteristic value of the specific service of the remote BLE device.
 
 **Return value**
 
-|                                          |                            |
+| Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Type | Description |
-| Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | Promise used to return the characteristic value read. |
+| Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | Promise used to return the characteristic value read.|
 
 **Example**
 
@@ -2829,7 +2825,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | Name       | Type                                      | Mandatory  | Description                     |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
 | descriptor | [BLEDescriptor](#bledescriptor)          | Yes   | Descriptor to read.               |
-| callback   | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the descriptor read.|
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback invoked to return the descriptor read.|
 
 **Return value**
 
@@ -2876,10 +2872,9 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 
 **Return value**
 
-|                                          |                            |
+| Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Type | Description |
-| Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | Promise used to return the descriptor read. |
+| Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | Promise used to return the descriptor read.|
 
 **Example**
 
@@ -2990,7 +2985,7 @@ if (retWriteDesc) {
 
 setBLEMtuSize(mtu: number): boolean
 
-Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This method can be used only after a connection is set up by calling [connect](#connect).
+Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3108,7 +3103,7 @@ Unsubscribes from the BLE characteristic change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback used to report the characteristic value. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback for the characteristic value change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -3170,7 +3165,7 @@ Unsubscribes from the BLE connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback used to report the BLE connection state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -3309,7 +3304,7 @@ Enumerates the scan modes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value | Description             |
+| Name                                      | Value | Description             |
 | ---------------------------------------- | ---- | --------------- |
 | SCAN_MODE_NONE                           | 0    | No scan mode.        |
 | SCAN_MODE_CONNECTABLE                    | 1    | Connectable mode.       |
@@ -3324,7 +3319,7 @@ Enumerates the pairing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                | Default Value | Description    |
+| Name                | Value | Description    |
 | ------------------ | ---- | ------ |
 | BOND_STATE_INVALID | 0    | Invalid pairing.|
 | BOND_STATE_BONDING | 1    | Pairing. |
@@ -3350,7 +3345,7 @@ Enumerates the SPP link types.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name        | Default Value | Description           |
+| Name        | Value | Description           |
 | ---------- | ---- | ------------- |
 | SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link type.|
 
@@ -3510,7 +3505,7 @@ Enumerates the profile connection states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                 | Default Value | Description            |
+| Name                 | Value | Description            |
 | ------------------- | ---- | -------------- |
 | STATE_DISCONNECTED  | 0    | Disconnected. |
 | STATE_CONNECTING    | 1    | Connecting.|
@@ -3558,7 +3553,7 @@ Enumerates the scan duty options.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description          |
+| Name                   | Value | Description          |
 | --------------------- | ---- | ------------ |
 | SCAN_MODE_LOW_POWER   | 0    | Low-power mode, which is the default value.|
 | SCAN_MODE_BALANCED    | 1    | Balanced mode.     |
@@ -3571,7 +3566,7 @@ Enumerates the hardware match modes of BLE scan filters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description                                      |
+| Name                   | Value | Description                                      |
 | --------------------- | ---- | ---------------------------------------- |
 | MATCH_MODE_AGGRESSIVE | 1    | Hardware reports the scan result with a lower threshold of signal strength and few number of matches in a duration. This is the default value.|
 | MATCH_MODE_STICKY     | 2    | Hardware reports the scan result with a higher threshold of signal strength and sightings.      |
@@ -3596,7 +3591,7 @@ Enumerates the Bluetooth states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                   | Default Value | Description                |
+| Name                   | Value | Description                |
 | --------------------- | ---- | ------------------ |
 | STATE_OFF             | 0    | Bluetooth is turned off.          |
 | STATE_TURNING_ON      | 1    | Bluetooth is being turned on.         |
@@ -3641,7 +3636,7 @@ Defines the content of a BLE advertisement packet.
 
 | Name              | Type               | Readable  | Writable  | Description                |
 | ---------------- | ------------------- | ---- | ---- | ------------------ |
-| manufactureId    | Array&lt;string&gt; | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG.|
+| manufactureId    | number  | Yes   | Yes   | Manufacturer ID allocated by the Bluetooth SIG.|
 | manufactureValue | ArrayBuffer         | Yes   | Yes   | Manufacturer data.    |
 
 
@@ -3671,13 +3666,13 @@ Defines the pairing request parameters.
 
 ## BondStateParam<sup>8+</sup><a name="BondStateParam"></a>
 
-Defines the bond state parameters.
+Defines the pairing state parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name      | Type  | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId | string      | Yes   | No   | ID of the device.|
+| deviceId | string      | Yes   | No   | ID of the device to pair.|
 | state    | BondState   | Yes   | No   | State of the device.|
 
 
@@ -3713,7 +3708,7 @@ Enumerates the major classes of Bluetooth devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                 | Default Value   | Description        |
+| Name                 | Value   | Description        |
 | ------------------- | ------ | ---------- |
 | MAJOR_MISC          | 0x0000 | Miscellaneous device.   |
 | MAJOR_COMPUTER      | 0x0100 | Computer.  |
@@ -3734,7 +3729,7 @@ Enumerates the major and minor classes of Bluetooth devices.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value   | Description             |
+| Name                                      | Value   | Description             |
 | ---------------------------------------- | ------ | --------------- |
 | COMPUTER_UNCATEGORIZED                   | 0x0100 | Unclassified computer.    |
 | COMPUTER_DESKTOP                         | 0x0104 | Desktop computer.     |
@@ -3830,7 +3825,7 @@ Enumerates the A2DP playing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name               | Default Value   | Description     |
+| Name               | Value   | Description     |
 | ----------------- | ------ | ------- |
 | STATE_NOT_PLAYING | 0x0000 | Not playing. |
 | STATE_PLAYING     | 0x0001 | Playing.|
@@ -3842,9 +3837,9 @@ Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOS
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                              | Default Value   | Description             |
+| Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| PROFILE_A2DP_SOURCE              | 0x0001 | A2DP profile.|
-| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | HFP profile. |
-| PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | Human Interface Device (HID) profile. |
-| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | PAN profile. |
+| PROFILE_A2DP_SOURCE              | 1 | A2DP profile.|
+| PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | HFP profile. |
+| PROFILE_HID_HOST<sup>9+</sup> | 6 | Human Interface Device (HID) profile. |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 7 | PAN profile. |

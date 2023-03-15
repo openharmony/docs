@@ -1,12 +1,12 @@
-# Notification
+# @ohos.notification (Notification)
 
 The **Notification** module provides notification management capabilities, covering notifications, notification slots, notification subscription, notification enabled status, and notification badge status.
-
-Generally, only system applications have the permission to subscribe to and unsubscribe from notifications.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Notification subscription and unsubscription APIs are available only to system applications.
 
 ## Modules to Import
 
@@ -26,18 +26,22 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
-| callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                           |
+| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                       |
 
 **Example**
 
 ```js
 // publish callback
 function publishCallback(err) {
-	console.info("==========================>publishCallback=======================>");
+    if (err.code) {
+        console.error(`publish failed, code is ${err.code}`);
+    } else {
+        console.info("publish success");
+    }
 }
 // NotificationRequest object
-var notificationRequest = {
+let notificationRequest = {
     id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -47,11 +51,9 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
-Notification.publish(notificationRequest, publishCallback)
+};
+Notification.publish(notificationRequest, publishCallback);
 ```
-
-
 
 ## Notification.publish
 
@@ -65,13 +67,13 @@ Publishes a notification. This API uses a promise to return the result.
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
+| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 
 **Example**
 
 ```js
 // NotificationRequest object
-var notificationRequest = {
+let notificationRequest = {
     notificationId: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -81,9 +83,9 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 Notification.publish(notificationRequest).then(() => {
-	console.info("==========================>publishCallback=======================>");
+	console.info("publish success");
 });
 
 ```
@@ -92,7 +94,7 @@ Notification.publish(notificationRequest).then(() => {
 
 publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void\>): void
 
-Publishes a notification. This API uses an asynchronous callback to return the result.
+Publishes a notification to a specified user. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -104,8 +106,8 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
-| userId   | number                                      | Yes  | ID of the user who receives the notification.                          |
+| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| userId   | number                                      | Yes  | User ID.                          |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -113,12 +115,16 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 ```js
 // publish callback
 function publishCallback(err) {
-	console.info("==========================>publishCallback=======================>");
+    if (err.code) {
+        console.error(`publish failed, code is ${err.code}`);
+    } else {
+        console.info("publish success");
+    }
 }
-// ID of the user who receives the notification
-var userId = 1
+// User ID
+let userId = 1;
 // NotificationRequest object
-var notificationRequest = {
+let notificationRequest = {
     id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -128,7 +134,7 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 Notification.publish(notificationRequest, userId, publishCallback);
 ```
 
@@ -136,7 +142,7 @@ Notification.publish(notificationRequest, userId, publishCallback);
 
 publish(request: NotificationRequest, userId: number): Promise\<void\>
 
-Publishes a notification. This API uses a promise to return the result.
+Publishes a notification to a specified user. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -148,13 +154,13 @@ Publishes a notification. This API uses a promise to return the result.
 
 | Name    |  Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
-| userId   | number                                      | Yes  | ID of the user who receives the notification.                          |
+| request  | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| userId   | number                                      | Yes  | User ID.                          |
 
 **Example**
 
 ```js
-var notificationRequest = {
+let notificationRequest = {
     notificationId: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -164,12 +170,12 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
-var userId = 1
+let userId = 1;
 
 Notification.publish(notificationRequest, userId).then(() => {
-	console.info("==========================>publishCallback=======================>");
+	console.info("publish success");
 });
 ```
 
@@ -195,9 +201,13 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 ```js
 // cancel callback
 function cancelCallback(err) {
-	console.info("==========================>cancelCallback=======================>");
+    if (err.code) {
+        console.info("cancel failed " + JSON.stringify(err));
+    } else {
+        console.info("cancel success");
+    }
 }
-Notification.cancel(0, "label", cancelCallback)
+Notification.cancel(0, "label", cancelCallback);
 ```
 
 
@@ -206,7 +216,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 cancel(id: number, label?: string): Promise\<void\>
 
-Cancels a notification with the specified ID and label. This API uses a promise to return the result.
+Cancels a notification with the specified ID and optional label. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -221,7 +231,7 @@ Cancels a notification with the specified ID and label. This API uses a promise 
 
 ```js
 Notification.cancel(0).then(() => {
-	console.info("==========================>cancelCallback=======================>");
+	console.info("cancel success");
 });
 ```
 
@@ -247,9 +257,13 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 ```js
 // cancel callback
 function cancelCallback(err) {
-	console.info("==========================>cancelCallback=======================>");
+    if (err.code) {
+        console.info("cancel failed " + JSON.stringify(err));
+    } else {
+        console.info("cancel success");
+    }
 }
-Notification.cancel(0, cancelCallback)
+Notification.cancel(0, cancelCallback);
 ```
 
 
@@ -273,12 +287,14 @@ Cancels all notifications. This API uses an asynchronous callback to return the 
 ```js
 // cancel callback
 function cancelAllCallback(err) {
-	console.info("==========================>cancelAllCallback=======================>");
+    if (err.code) {
+        console.info("cancelAll failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelAll success");
+    }
 }
-Notification.cancelAll(cancelAllCallback)
+Notification.cancelAll(cancelAllCallback);
 ```
-
-
 
 ## Notification.cancelAll
 
@@ -292,11 +308,9 @@ Cancels all notifications. This API uses a promise to return the result.
 
 ```js
 Notification.cancelAll().then(() => {
-	console.info("==========================>cancelAllCallback=======================>");
+	console.info("cancelAll success");
 });
 ```
-
-
 
 ## Notification.addSlot
 
@@ -322,16 +336,18 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 ```js
 // addSlot callback
 function addSlotCallBack(err) {
-	console.info("==========================>addSlotCallBack=======================>");
+    if (err.code) {
+        console.info("addSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlot success");
+    }
 }
 // NotificationSlot object
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
-Notification.addSlot(notificationSlot, addSlotCallBack)
+};
+Notification.addSlot(notificationSlot, addSlotCallBack);
 ```
-
-
 
 ## Notification.addSlot
 
@@ -355,21 +371,19 @@ Adds a notification slot. This API uses a promise to return the result.
 
 ```js
 // NotificationSlot object
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 Notification.addSlot(notificationSlot).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlot success");
 });
 ```
-
-
 
 ## Notification.addSlot
 
 addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
-Adds a notification slot. This API uses an asynchronous callback to return the result.
+Adds a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -385,18 +399,20 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 ```js
 // addSlot callback
 function addSlotCallBack(err) {
-	console.info("==========================>addSlotCallBack=======================>");
+    if (err.code) {
+        console.info("addSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlot success");
+    }
 }
-Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack)
+Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
 ```
-
-
 
 ## Notification.addSlot
 
 addSlot(type: SlotType): Promise\<void\>
 
-Adds a notification slot. This API uses a promise to return the result.
+Adds a notification slot of a specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -410,17 +426,15 @@ Adds a notification slot. This API uses a promise to return the result.
 
 ```js
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlot success");
 });
 ```
-
-
 
 ## Notification.addSlots
 
 addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): void
 
-Adds multiple notification slots. This API uses an asynchronous callback to return the result.
+Adds an array of notification slots. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -440,26 +454,28 @@ Adds multiple notification slots. This API uses an asynchronous callback to retu
 ```js
 // addSlots callback
 function addSlotsCallBack(err) {
-	console.info("==========================>addSlotsCallBack=======================>");
+    if (err.code) {
+        console.info("addSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("addSlots success");
+    }
 }
 // NotificationSlot object
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 // NotificationSlotArray object
-var notificationSlotArray = new Array();
+let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
-Notification.addSlots(notificationSlotArray, addSlotsCallBack)
+Notification.addSlots(notificationSlotArray, addSlotsCallBack);
 ```
-
-
 
 ## Notification.addSlots
 
 addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
-Adds multiple notification slots. This API uses a promise to return the result.
+Adds an array of notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -477,25 +493,23 @@ Adds multiple notification slots. This API uses a promise to return the result.
 
 ```js
 // NotificationSlot object
-var notificationSlot = {
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 // NotificationSlotArray object
-var notificationSlotArray = new Array();
+let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 Notification.addSlots(notificationSlotArray).then(() => {
-	console.info("==========================>addSlotCallback=======================>");
+	console.info("addSlots success");
 });
 ```
-
-
 
 ## Notification.getSlot
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
-Obtains a notification slot of the specified type. This API uses an asynchronous callback to return the result.
+Obtains a notification slot of a specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -510,20 +524,22 @@ Obtains a notification slot of the specified type. This API uses an asynchronous
 
 ```js
 // getSlot callback
-function getSlotCallback(err,data) {
-	console.info("==========================>getSlotCallback=======================>");
+function getSlotCallback(err, data) {
+    if (err.code) {
+        console.info("getSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlot success");
+    }
 }
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.getSlot(slotType, getSlotCallback)
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+Notification.getSlot(slotType, getSlotCallback);
 ```
-
-
 
 ## Notification.getSlot
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
-Obtains a notification slot of the specified type. This API uses a promise to return the result.
+Obtains a notification slot of a specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -542,13 +558,11 @@ Obtains a notification slot of the specified type. This API uses a promise to re
 **Example**
 
 ```js
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType).then((data) => {
-	console.info("==========================>getSlotCallback=======================>");
+	console.info("getSlot success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.getSlots
 
@@ -568,13 +582,15 @@ Obtains all notification slots. This API uses an asynchronous callback to return
 
 ```js
 // getSlots callback
-function getSlotsCallback(err,data) {
-	console.info("==========================>getSlotsCallback=======================>");
+function getSlotsCallback(err, data) {
+    if (err.code) {
+        console.info("getSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlots success");
+    }
 }
-Notification.getSlots(getSlotsCallback)
+Notification.getSlots(getSlotsCallback);
 ```
-
-
 
 ## Notification.getSlots
 
@@ -594,17 +610,15 @@ Obtains all notification slots of this application. This API uses a promise to r
 
 ```js
 Notification.getSlots().then((data) => {
-	console.info("==========================>getSlotsCallback=======================>");
+	console.info("getSlots success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.removeSlot
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
-Removes a notification slot of the specified type. This API uses an asynchronous callback to return the result.
+Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -620,19 +634,21 @@ Removes a notification slot of the specified type. This API uses an asynchronous
 ```js
 // removeSlot callback
 function removeSlotCallback(err) {
-	console.info("==========================>removeSlotCallback=======================>");
+    if (err.code) {
+        console.info("removeSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("removeSlot success");
+    }
 }
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType,removeSlotCallback)
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+Notification.removeSlot(slotType,removeSlotCallback);
 ```
-
-
 
 ## Notification.removeSlot
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-Removes a notification slot of the specified type. This API uses a promise to return the result.
+Removes a notification slot of a specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -645,13 +661,11 @@ Removes a notification slot of the specified type. This API uses a promise to re
 **Example**
 
 ```js
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType).then(() => {
-	console.info("==========================>removeSlotCallback=======================>");
+	console.info("removeSlot success");
 });
 ```
-
-
 
 ## Notification.removeAllSlots
 
@@ -671,12 +685,14 @@ Removes all notification slots. This API uses an asynchronous callback to return
 
 ```js
 function removeAllCallBack(err) {
-	console.info("================>removeAllCallBack=======================>");
+    if (err.code) {
+        console.info("removeAllSlots failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAllSlots success");
+    }
 }
-Notification.removeAllSlots(removeAllCallBack)
+Notification.removeAllSlots(removeAllCallBack);
 ```
-
-
 
 ## Notification.removeAllSlots
 
@@ -690,11 +706,9 @@ Removes all notification slots. This API uses a promise to return the result.
 
 ```js
 Notification.removeAllSlots().then(() => {
-	console.info("==========================>removeAllCallBack=======================>");
+	console.info("removeAllSlots success");
 });
 ```
-
-
 
 ## Notification.subscribe
 
@@ -713,7 +727,7 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description            |
 | ---------- | ------------------------- | ---- | ---------------- |
 | subscriber | [NotificationSubscriber](#notificationsubscriber)    | Yes  | Notification subscriber.    |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | Yes  | Subscription information.        |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | Yes  | Notification subscription information.|
 | callback   | AsyncCallback\<void\>     | Yes  | Callback used to return the result.|
 
 **Example**
@@ -721,27 +735,29 @@ Subscribes to a notification with the subscription information specified. This A
 ```js
 // subscribe callback
 function subscribeCallback(err) {
-	console.info("==========================>subscribeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
-var info = {
-    bundleNames: ["bundleName1","bundleName2"]
-}
+};
+let info = {
+    bundleNames: ["bundleName1", "bundleName2"]
+};
 Notification.subscribe(subscriber, info, subscribeCallback);
 ```
-
-
 
 ## Notification.subscribe
 
 subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
-Subscribes to a notification with the subscription information specified. This API uses an asynchronous callback to return the result.
+Subscribes to notifications of all applications under this user. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -760,18 +776,20 @@ Subscribes to a notification with the subscription information specified. This A
 
 ```js
 function subscribeCallback(err) {
-	console.info("==========================>subscribeCallback=======================>");
+    if (err.code) {
+        console.info("subscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("subscribe success");
+    }
 }
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+	console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
-}
+};
 Notification.subscribe(subscriber, subscribeCallback);
 ```
-
-
 
 ## Notification.subscribe
 
@@ -790,23 +808,21 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Subscription information.    |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information.  |
 
 **Example**
 
 ```js
 function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+    console.info("Consume callback: " + JSON.stringify(data));
 }
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 Notification.subscribe(subscriber).then(() => {
-	console.info("==========================>subscribeCallback=======================>");
+	console.info("subscribe success");
 });
 ```
-
-
 
 ## Notification.unsubscribe
 
@@ -831,18 +847,20 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 ```js
 function unsubscribeCallback(err) {
-	console.info("==========================>unsubscribeCallback=======================>");
+    if (err.code) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("unsubscribe success");
+    }
 }
-function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+function onDisconnectCallback(data) {
+	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
-    onConsume: onConsumeCallback
-}
+let subscriber = {
+    onDisconnect: onDisconnectCallback
+};
 Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
-
-
 
 ## Notification.unsubscribe
 
@@ -865,24 +883,22 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 **Example**
 
 ```js
-function onConsumeCallback(data) {
-	console.info("==========================>onConsumeCallback=======================>");
+function onDisconnectCallback(data) {
+	console.info("Cancel callback: " + JSON.stringify(data));
 }
-var subscriber = {
-    onConsume: onConsumeCallback
+let subscriber = {
+    onDisconnect: onDisconnectCallback
 };
 Notification.unsubscribe(subscriber).then(() => {
-	console.info("==========================>unsubscribeCallback=======================>");
+	console.info("unsubscribe success");
 });
 ```
-
-
 
 ## Notification.enableNotification
 
 enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-Sets whether to enable notification for a specified bundle. This API uses an asynchronous callback to return the result.
+Sets whether to enable notification for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -894,7 +910,7 @@ Sets whether to enable notification for a specified bundle. This API uses an asy
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information.          |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.       |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -902,21 +918,23 @@ Sets whether to enable notification for a specified bundle. This API uses an asy
 
 ```js
 function enableNotificationCallback(err) {
-	console.info("==========================>enableNotificationCallback=======================>");
+    if (err.code) {
+        console.info("enableNotification failed " + JSON.stringify(err));
+    } else {
+        console.info("enableNotification success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.enableNotification(bundle, false, enableNotificationCallback);
 ```
-
-
 
 ## Notification.enableNotification
 
 enableNotification(bundle: BundleOption, enable: boolean): Promise\<void\>
 
-Sets whether to enable notification for a specified bundle. This API uses a promise to return the result.
+Sets whether to enable notification for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -928,27 +946,25 @@ Sets whether to enable notification for a specified bundle. This API uses a prom
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.enableNotification(bundle, false).then(() => {
-	console.info("==========================>enableNotificationCallback=======================>");
+	console.info("enableNotification success");
 });
 ```
-
-
 
 ## Notification.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-Checks whether notification is enabled for a specified bundle. This API uses an asynchronous callback to return the result.
+Checks whether notification is enabled for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -960,28 +976,30 @@ Checks whether notification is enabled for a specified bundle. This API uses an 
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information.              |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+    if (err.code) {
+        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationEnabled success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
-
-
 
 ## Notification.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
-Checks whether notification is enabled for a specified bundle. This API uses a promise to return the result.
+Checks whether notification is enabled for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -993,26 +1011,24 @@ Checks whether notification is enabled for a specified bundle. This API uses a p
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Type              | Description                                               |
+| ------------------ | --------------------------------------------------- |
 | Promise\<boolean\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isNotificationEnabled(bundle).then((data) => {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.isNotificationEnabled
 
@@ -1036,13 +1052,15 @@ Checks whether notification is enabled for this application. This API uses an as
 
 ```js
 function isNotificationEnabledCallback(err, data) {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+    if (err.code) {
+        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationEnabled success");
+    }
 }
 
 Notification.isNotificationEnabled(isNotificationEnabledCallback);
 ```
-
-
 
 ## Notification.isNotificationEnabled
 
@@ -1060,7 +1078,7 @@ Checks whether notification is enabled for this application. This API uses a pro
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1072,17 +1090,15 @@ Checks whether notification is enabled for this application. This API uses a pro
 
 ```js
 Notification.isNotificationEnabled().then((data) => {
-	console.info("==========================>isNotificationEnabledCallback=======================>");
+	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.displayBadge
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-Sets whether to enable the notification badge for a specified bundle. This API uses an asynchronous callback to return the result.
+Sets whether to enable the notification badge for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1094,7 +1110,7 @@ Sets whether to enable the notification badge for a specified bundle. This API u
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information.          |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1102,21 +1118,23 @@ Sets whether to enable the notification badge for a specified bundle. This API u
 
 ```js
 function displayBadgeCallback(err) {
-	console.info("==========================>displayBadgeCallback=======================>");
+    if (err.code) {
+        console.info("displayBadge failed " + JSON.stringify(err));
+    } else {
+        console.info("displayBadge success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.displayBadge(bundle, false, displayBadgeCallback);
 ```
-
-
 
 ## Notification.displayBadge
 
 displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
-Sets the notification slot for a specified bundle. This API uses a promise to return the result.
+Sets whether to enable the notification badge for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1128,27 +1146,25 @@ Sets the notification slot for a specified bundle. This API uses a promise to re
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.displayBadge(bundle, false).then(() => {
-	console.info("==========================>displayBadgeCallback=======================>");
+	console.info("displayBadge success");
 });
 ```
-
-
 
 ## Notification.isBadgeDisplayed
 
 isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-Checks whether the notification badge is enabled for a specified bundle. This API uses an asynchronous callback to return the result.
+Checks whether the notification badge is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1160,28 +1176,30 @@ Checks whether the notification badge is enabled for a specified bundle. This AP
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information.              |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function isBadgeDisplayedCallback(err, data) {
-	console.info("==========================>isBadgeDisplayedCallback=======================>");
+    if (err.code) {
+        console.info("isBadgeDisplayed failed " + JSON.stringify(err));
+    } else {
+        console.info("isBadgeDisplayed success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
-
-
 
 ## Notification.isBadgeDisplayed
 
 isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
-Checks whether the notification badge is enabled for a specified bundle. This API uses a promise to return the result.
+Checks whether the notification badge is enabled for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1193,7 +1211,7 @@ Checks whether the notification badge is enabled for a specified bundle. This AP
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1204,21 +1222,19 @@ Checks whether the notification badge is enabled for a specified bundle. This AP
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.isBadgeDisplayed(bundle).then((data) => {
-	console.info("==========================>isBadgeDisplayedCallback=======================>");
+	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
-Sets the notification slot for a specified bundle. This API uses an asynchronous callback to return the result.
+Sets the notification slot for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1230,7 +1246,7 @@ Sets the notification slot for a specified bundle. This API uses an asynchronous
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information.          |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
 | slot     | [NotificationSlot](#notificationslot)      | Yes  | Notification slot.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1238,24 +1254,26 @@ Sets the notification slot for a specified bundle. This API uses an asynchronous
 
 ```js
 function setSlotByBundleCallback(err) {
-	console.info("==========================>setSlotByBundleCallback=======================>");
+    if (err.code) {
+        console.info("setSlotByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("setSlotByBundle success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationSlot = {
+};
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
-
-
 
 ## Notification.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
-Sets the notification slot for a specified bundle. This API uses a promise to return the result.
+Sets the notification slot for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1267,30 +1285,28 @@ Sets the notification slot for a specified bundle. This API uses a promise to re
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
-| slot   | [NotificationSlot](#notificationslot) | Yes  | Whether to enable notification.  |
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
+| slot   | [NotificationSlot](#notificationslot) | Yes  | Notification slot.|
 
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationSlot = {
+};
+let notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+};
 Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
-	console.info("==========================>setSlotByBundleCallback=======================>");
+	console.info("setSlotByBundle success");
 });
 ```
-
-
 
 ## Notification.getSlotsByBundle
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
-Obtains the notification slots of a specified bundle. This API uses an asynchronous callback to return the result.
+Obtains the notification slots of a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1302,28 +1318,30 @@ Obtains the notification slots of a specified bundle. This API uses an asynchron
 
 | Name    | Type                                    | Mandatory| Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle information.          |
+| bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle information of the application.          |
 | callback | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function getSlotsByBundleCallback(err, data) {
-	console.info("==========================>getSlotsByBundleCallback=======================>");
+    if (err.code) {
+        console.info("getSlotsByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlotsByBundle success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
-
-
 
 ## Notification.getSlotsByBundle
 
 getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
-Obtains the notification slots of a specified bundle. This API uses a promise to return the result.
+Obtains the notification slots of a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1335,7 +1353,7 @@ Obtains the notification slots of a specified bundle. This API uses a promise to
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1346,21 +1364,19 @@ Obtains the notification slots of a specified bundle. This API uses a promise to
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotsByBundle(bundle).then((data) => {
-	console.info("==========================>getSlotsByBundleCallback=======================>");
+	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.getSlotNumByBundle
 
 getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): void
 
-Obtains the number of notification slots of a specified bundle. This API uses an asynchronous callback to return the result.
+Obtains the number of notification slots of a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1372,28 +1388,30 @@ Obtains the number of notification slots of a specified bundle. This API uses an
 
 | Name    | Type                     | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption)              | Yes  | Bundle information.            |
+| bundle   | [BundleOption](#bundleoption)              | Yes  | Bundle information of the application.            |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function getSlotNumByBundleCallback(err, data) {
-	console.info("==========================>getSlotNumByBundleCallback=======================>");
+    if (err.code) {
+        console.info("getSlotNumByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("getSlotNumByBundle success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
-
-
 
 ## Notification.getSlotNumByBundle
 
 getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
-Obtains the number of notification slots of a specified bundle. This API uses a promise to return the result.
+Obtains the number of notification slots of a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1405,7 +1423,7 @@ Obtains the number of notification slots of a specified bundle. This API uses a 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1416,19 +1434,17 @@ Obtains the number of notification slots of a specified bundle. This API uses a 
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.getSlotNumByBundle(bundle).then((data) => {
-	console.info("==========================>getSlotNumByBundleCallback=======================>");
+	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback\<void\>): void
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
@@ -1441,32 +1457,36 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 **Parameters**
 
 | Name           | Type                               | Mandatory| Description                |
-| --------------- | ----------------------------------- | ---- | -------------------- |
-| bundle          | [BundleOption](#bundleoption)       | Yes  | Bundle information.          |
+| --------------- |   ----------------------------------| ---- | -------------------- |
+| bundle          | [BundleOption](#bundleoption)       | Yes  | Bundle information of the application.          |
 | notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.            |
+| reason          | [RemoveReason](#removereason9)      | Yes  | Indicates the reason for deleting a notification.        |
 | callback        | AsyncCallback\<void\>               | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function removeCallback(err) {
-	console.info("==========================>removeCallback=======================>");
+    if (err.code) {
+        console.info("remove failed " + JSON.stringify(err));
+    } else {
+        console.info("remove success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-Notification.remove(bundle, notificationKey, removeCallback);
+};
+let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason, removeCallback);
 ```
-
-
 
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey): Promise\<void\>
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
 Removes a notification for a specified bundle. This API uses a promise to return the result.
 
@@ -1480,29 +1500,29 @@ Removes a notification for a specified bundle. This API uses a promise to return
 
 | Name           | Type           | Mandatory| Description      |
 | --------------- | --------------- | ---- | ---------- |
-| bundle          | [BundleOption](#bundleoption)    | Yes  | Bundle information.|
+| bundle          | [BundleOption](#bundleoption)    | Yes  | Bundle information of the application.|
 | notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.  |
+| reason          | [RemoveReason](#removereason9) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
 ```js
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationKey = {
+};
+let notificationKey = {
     id: 0,
     label: "label",
-}
-Notification.remove(bundle, notificationKey).then(() => {
-	console.info("==========================>removeCallback=======================>");
+};
+let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason).then(() => {
+	console.info("remove success");
 });
 ```
 
-
-
 ## Notification.remove
 
-remove(hashCode: string, callback: AsyncCallback\<void\>): void
+remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
@@ -1516,26 +1536,29 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID.          |
+| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](#onconsume) callback.|
+| reason   | [RemoveReason](#removereason9) | Yes  | Indicates the reason for deleting a notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
-var hashCode = 'hashCode'
+let hashCode = 'hashCode';
 
 function removeCallback(err) {
-	console.info("==========================>removeCallback=======================>");
+    if (err.code) {
+        console.info("remove failed " + JSON.stringify(err));
+    } else {
+        console.info("remove success");
+    }
 }
-
-Notification.remove(hashCode, removeCallback);
+let reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
+Notification.remove(hashCode, reason, removeCallback);
 ```
-
-
 
 ## Notification.remove
 
-remove(hashCode: string): Promise\<void\>
+remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 Removes a notification for a specified bundle. This API uses a promise to return the result.
 
@@ -1550,24 +1573,23 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | Name    | Type      | Mandatory| Description      |
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | Yes  | Unique notification ID.|
+| reason   | [RemoveReason](#removereason9) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
 ```js
-var hashCode = 'hashCode'
-
-Notification.remove(hashCode).then(() => {
-	console.info("==========================>removeCallback=======================>");
+let hashCode = 'hashCode';
+let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(hashCode, reason).then(() => {
+	console.info("remove success");
 });
 ```
-
-
 
 ## Notification.removeAll
 
 removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
-Removes all notifications for a specified bundle. This API uses an asynchronous callback to return the result.
+Removes all notifications for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1579,22 +1601,24 @@ Removes all notifications for a specified bundle. This API uses an asynchronous 
 
 | Name    | Type                 | Mandatory| Description                        |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information.                  |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 Notification.removeAll(bundle, removeAllCallback);
 ```
-
-
 
 ## Notification.removeAll
 
@@ -1618,19 +1642,21 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
 Notification.removeAll(removeAllCallback);
 ```
 
-
-
 ## Notification.removeAll
 
 removeAll(bundle?: BundleOption): Promise\<void\>
 
-Removes all notifications for a specified user. This API uses a promise to return the result.
+Removes all notifications for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1642,13 +1668,14 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | No  | Bundle information.|
+| bundle | [BundleOption](#bundleoption) | No  | Bundle information of the application.|
 
 **Example**
 
 ```js
+// If no application is specified, notifications of all applications are deleted.
 Notification.removeAll().then(() => {
-	console.info("==========================>removeAllCallback=======================>");
+	console.info("removeAll success");
 });
 ```
 
@@ -1668,18 +1695,21 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| userId | number | Yes  | ID of the user who receives the notification.|
+| userId | number | Yes  | User ID.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
+    if (err.code) {
+        console.info("removeAll failed " + JSON.stringify(err));
+    } else {
+        console.info("removeAll success");
+    }
 }
 
-var userId = 1
-
+let userId = 1;
 Notification.removeAll(userId, removeAllCallback);
 ```
 
@@ -1699,18 +1729,15 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| userId | number | Yes  | ID of the user who receives the notification.|
+| userId | number | Yes  | User ID.|
 
 **Example**
 
 ```js
-function removeAllCallback(err) {
-	console.info("==========================>removeAllCallback=======================>");
-}
-
-var userId = 1
-
-Notification.removeAll(userId, removeAllCallback);
+let userId = 1;
+Notification.removeAll(userId).then(() => {
+	console.info("removeAll success");
+});
 ```
 
 
@@ -1736,13 +1763,15 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 ```js
 function getAllActiveNotificationsCallback(err, data) {
-	console.info("==========================>getAllActiveNotificationsCallback=======================>");
+    if (err.code) {
+        console.info("getAllActiveNotifications failed " + JSON.stringify(err));
+    } else {
+        console.info("getAllActiveNotifications success");
+    }
 }
 
 Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
 ```
-
-
 
 ## Notification.getAllActiveNotifications
 
@@ -1766,17 +1795,15 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 ```js
 Notification.getAllActiveNotifications().then((data) => {
-	console.info("==========================>getAllActiveNotificationsCallback=======================>");
+	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.getActiveNotificationCount
 
 getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
-Obtains the number of active notifications. This API uses an asynchronous callback to return the result.
+Obtains the number of active notifications of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1790,37 +1817,37 @@ Obtains the number of active notifications. This API uses an asynchronous callba
 
 ```js
 function getActiveNotificationCountCallback(err, data) {
-	console.info("==========================>getActiveNotificationCountCallback=======================>");
+    if (err.code) {
+        console.info("getActiveNotificationCount failed " + JSON.stringify(err));
+    } else {
+        console.info("getActiveNotificationCount success");
+    }
 }
 
 Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
 ```
 
-
-
 ## Notification.getActiveNotificationCount
 
 getActiveNotificationCount(): Promise\<number\>
 
-Obtains the number of active notifications. This API uses a promise to return the result.
+Obtains the number of active notifications of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Type             | Description                                       |
+| ----------------- | ------------------------------------------- |
 | Promise\<number\> | Promise used to return the result.|
 
 **Example**
 
 ```js
 Notification.getActiveNotificationCount().then((data) => {
-	console.info("==========================>getActiveNotificationCountCallback=======================>");
+	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.getActiveNotifications
 
@@ -1840,13 +1867,15 @@ Obtains active notifications of this application. This API uses an asynchronous 
 
 ```js
 function getActiveNotificationsCallback(err, data) {
-	console.info("==========================>getActiveNotificationsCallback=======================>");
+    if (err.code) {
+        console.info("getActiveNotifications failed " + JSON.stringify(err));
+    } else {
+        console.info("getActiveNotifications success");
+    }
 }
 
 Notification.getActiveNotifications(getActiveNotificationsCallback);
 ```
-
-
 
 ## Notification.getActiveNotifications
 
@@ -1858,25 +1887,23 @@ Obtains active notifications of this application. This API uses a promise to ret
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Type                                                        | Description                                   |
+| ------------------------------------------------------------ | --------------------------------------- |
 | Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
 
 **Example**
 
 ```js
 Notification.getActiveNotifications().then((data) => {
-	console.info("==========================>getActiveNotificationsCallback=======================>");
+	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.cancelGroup<sup>8+</sup>
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
-Cancels a notification group of this application. This API uses an asynchronous callback to return the result.
+Cancels notifications under a notification group of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1884,28 +1911,30 @@ Cancels a notification group of this application. This API uses an asynchronous 
 
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | Yes  | Name of the notification group.              |
+| groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](#notificationrequest) when the notification is published.|
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function cancelGroupCallback(err) {
-   console.info("==========================>cancelGroupCallback=======================>");
+    if (err.code) {
+        console.info("cancelGroup failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelGroup success");
+    }
 }
 
-var groupName = "GroupName";
+let groupName = "GroupName";
 
 Notification.cancelGroup(groupName, cancelGroupCallback);
 ```
-
-
 
 ## Notification.cancelGroup<sup>8+</sup>
 
 cancelGroup(groupName: string): Promise\<void\>
 
-Cancels a notification group of this application. This API uses a promise to return the result.
+Cancels notifications under a notification group of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1918,19 +1947,17 @@ Cancels a notification group of this application. This API uses a promise to ret
 **Example**
 
 ```js
-var groupName = "GroupName";
+let groupName = "GroupName";
 Notification.cancelGroup(groupName).then(() => {
-	console.info("==========================>cancelGroupPromise=======================>");
+	console.info("cancelGroup success");
 });
 ```
-
-
 
 ## Notification.removeGroupByBundle<sup>8+</sup>
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
-Removes a notification group for a specified bundle. This API uses an asynchronous callback to return the result.
+Removes notifications under a notification group of a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1942,7 +1969,7 @@ Removes a notification group for a specified bundle. This API uses an asynchrono
 
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| bundle    | [BundleOption](#bundleoption)          | Yes  | Bundle information.                  |
+| bundle    | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
 | groupName | string                | Yes  | Name of the notification group.              |
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -1950,22 +1977,24 @@ Removes a notification group for a specified bundle. This API uses an asynchrono
 
 ```js
 function removeGroupByBundleCallback(err) {
-   console.info("==========================>removeGroupByBundleCallback=======================>");
+    if (err.code) {
+        console.info("removeGroupByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("removeGroupByBundle success");
+    }
 }
 
-var bundleOption = {bundle: "Bundle"};
-var groupName = "GroupName";
+let bundleOption = {bundle: "Bundle"};
+let groupName = "GroupName";
 
 Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
-
-
 
 ## Notification.removeGroupByBundle<sup>8+</sup>
 
 removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
-Removes a notification group for a specified bundle. This API uses a promise to return the result.
+Removes notifications under a notification group of a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1977,20 +2006,18 @@ Removes a notification group for a specified bundle. This API uses a promise to 
 
 | Name     | Type        | Mandatory| Description          |
 | --------- | ------------ | ---- | -------------- |
-| bundle    | [BundleOption](#bundleoption) | Yes  | Bundle information.    |
+| bundle    | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
 
 **Example**
 
 ```js
-var bundleOption = {bundle: "Bundle"};
-var groupName = "GroupName";
+let bundleOption = {bundle: "Bundle"};
+let groupName = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
-	console.info("==========================>removeGroupByBundlePromise=======================>");
+	console.info("removeGroupByBundle success");
 });
 ```
-
-
 
 ## Notification.setDoNotDisturbDate<sup>8+</sup>
 
@@ -2015,19 +2042,21 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-   console.info("==========================>setDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("setDoNotDisturbDate success");
+    }
 }
 
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 ```
-
-
 
 ## Notification.setDoNotDisturbDate<sup>8+</sup>
 
@@ -2050,13 +2079,13 @@ Sets the DND time. This API uses a promise to return the result.
 **Example**
 
 ```js
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
-	console.info("==========================>setDoNotDisturbDatePromise=======================>");
+	console.info("setDoNotDisturbDate success");
 });
 ```
 
@@ -2078,28 +2107,29 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | date     | [DoNotDisturbDate](#donotdisturbdate8)      | Yes  | DND time to set.        |
-| userId   | number                | Yes  | User ID.|
+| userId   | number                | Yes  | ID of the user for whom you want to set the DND time.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 function setDoNotDisturbDateCallback(err) {
-   console.info("==========================>setDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("setDoNotDisturbDate success");
+    }
 }
 
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
-var userId = 1
-
+let userId = 1
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
-
-
 
 ## Notification.setDoNotDisturbDate<sup>8+</sup>
 
@@ -2118,21 +2148,21 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 | Name  | Type            | Mandatory| Description          |
 | ------ | ---------------- | ---- | -------------- |
 | date   | [DoNotDisturbDate](#donotdisturbdate8) | Yes  | DND time to set.|
-| userId | number           | Yes  | User ID.|
+| userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
 
 **Example**
 
 ```js
-var doNotDisturbDate = {
+let doNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
-var userId = 1
+let userId = 1;
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
-	console.info("==========================>setDoNotDisturbDatePromise=======================>");
+	console.info("setDoNotDisturbDate success");
 });
 ```
 
@@ -2158,14 +2188,16 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 **Example**
 
 ```js
-function getDoNotDisturbDateCallback(err,data) {
-   console.info("==========================>getDoNotDisturbDateCallback=======================>");
+function getDoNotDisturbDateCallback(err, data) {
+    if (err.code) {
+        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("getDoNotDisturbDate success");
+    }
 }
 
 Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 ```
-
-
 
 ## Notification.getDoNotDisturbDate<sup>8+</sup>
 
@@ -2181,15 +2213,15 @@ Obtains the DND time. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Type                                             | Description                                     |
+| ------------------------------------------------- | ----------------------------------------- |
 | Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
 
 **Example**
 
 ```js
 Notification.getDoNotDisturbDate().then((data) => {
-	console.info("==========================>getDoNotDisturbDatePromise=======================>");
+	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2217,15 +2249,17 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 ```js
 function getDoNotDisturbDateCallback(err,data) {
-   console.info("==========================>getDoNotDisturbDateCallback=======================>");
+    if (err.code) {
+        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+    } else {
+        console.info("getDoNotDisturbDate success");
+    }
 }
 
-var userId = 1
+let userId = 1;
 
 Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
-
-
 
 ## Notification.getDoNotDisturbDate<sup>8+</sup>
 
@@ -2247,17 +2281,17 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Type                                             | Description                                     |
+| ------------------------------------------------- | ----------------------------------------- |
 | Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-var userId = 1
+let userId = 1;
 
 Notification.getDoNotDisturbDate(userId).then((data) => {
-	console.info("==========================>getDoNotDisturbDatePromise=======================>");
+	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
 
@@ -2266,7 +2300,7 @@ Notification.getDoNotDisturbDate(userId).then((data) => {
 
 supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
-Checks whether the DND mode is supported. This API uses an asynchronous callback to return the result.
+Checks whether DND mode is supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2284,19 +2318,21 @@ Checks whether the DND mode is supported. This API uses an asynchronous callback
 
 ```js
 function supportDoNotDisturbModeCallback(err,data) {
-   console.info("==========================>supportDoNotDisturbModeCallback=======================>");
+    if (err.code) {
+        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+    } else {
+        console.info("supportDoNotDisturbMode success");
+    }
 }
 
 Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
 ```
 
-
-
 ## Notification.supportDoNotDisturbMode<sup>8+</sup>
 
 supportDoNotDisturbMode(): Promise\<boolean\>
 
-Checks whether the DND mode is supported. This API uses a promise to return the result.
+Checks whether DND mode is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2314,11 +2350,9 @@ Checks whether the DND mode is supported. This API uses a promise to return the 
 
 ```js
 Notification.supportDoNotDisturbMode().then((data) => {
-	console.info("==========================>supportDoNotDisturbModePromise=======================>");
+	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.isSupportTemplate<sup>8+</sup>
 
@@ -2338,15 +2372,17 @@ Checks whether a specified template exists. This API uses an asynchronous callba
 **Example**
 
 ```javascript
-var templateName = 'process';
+let templateName = 'process';
 function isSupportTemplateCallback(err, data) {
-    console.info("isSupportTemplateCallback");
+    if (err.code) {
+        console.info("isSupportTemplate failed " + JSON.stringify(err));
+    } else {
+        console.info("isSupportTemplate success");
+    }
 }
 
 Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
-
-
 
 ## Notification.isSupportTemplate<sup>8+</sup>
 
@@ -2371,14 +2407,12 @@ Checks whether a specified template exists. This API uses a promise to return th
 **Example**
 
 ```javascript
-var templateName = 'process';
+let templateName = 'process';
 
 Notification.isSupportTemplate(templateName).then((data) => {
-    console.info("isSupportTemplateCallback");
+    console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 });
 ```
-
-
 
 ## Notification.requestEnableNotification<sup>8+</sup>
 
@@ -2397,14 +2431,16 @@ Requests notification to be enabled for this application. This API uses an async
 **Example**
 
 ```javascript
-function requestEnableNotificationCallback() {
-    console.log('------------- requestEnabledNotification --------------');
+function requestEnableNotificationCallback(err) {
+    if (err.code) {
+        console.info("requestEnableNotification failed " + JSON.stringify(err));
+    } else {
+        console.info("requestEnableNotification success");
+    }
 };
 
 Notification.requestEnableNotification(requestEnableNotificationCallback);
 ```
-
-
 
 ## Notification.requestEnableNotification<sup>8+</sup>
 
@@ -2417,10 +2453,9 @@ Requests notification to be enabled for this application. This API uses a promis
 **Example**
 
 ```javascript
-Notification.requestEnableNotification()
-    .then(() => {
-        console.info("requestEnableNotification ");
-	});
+Notification.requestEnableNotification().then(() => {
+    console.info("requestEnableNotification success");
+});
 ```
 
 
@@ -2440,22 +2475,24 @@ Sets whether this device supports distributed notifications. This API uses an as
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.<br>**true**: The device supports distributed notifications.<br>**false**: The device does not support distributed notifications.|
+| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```javascript
-function enabledNotificationCallback() {
-    console.log('----------- enableDistributed ------------');
+function enabledNotificationCallback(err) {
+    if (err.code) {
+        console.info("enableDistributed failed " + JSON.stringify(err));
+    } else {
+        console.info("enableDistributed success");
+    }
 };
 
-var enable = true
+let enable = true;
 
 Notification.enableDistributed(enable, enabledNotificationCallback);
 ```
-
-
 
 ## Notification.enableDistributed<sup>8+</sup>
 
@@ -2473,17 +2510,15 @@ Sets whether this device supports distributed notifications. This API uses a pro
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.<br>**true**: The device supports distributed notifications.<br>**false**: The device does not support distributed notifications.|
+| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.|
 
 **Example**
 
 ```javascript
-var enable = true
-
-Notification.enableDistributed(enable)
-    .then(() => {
-        console.log('-------- enableDistributed ----------');
-    });
+let enable = true;
+Notification.enableDistributed(enable).then(() => {
+    console.info("enableDistributed success");
+});
 ```
 
 
@@ -2491,7 +2526,7 @@ Notification.enableDistributed(enable)
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-Obtains whether this device supports distributed notifications. This API uses an asynchronous callback to return the result.
+Checks whether this device supports distributed notifications. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2504,36 +2539,37 @@ Obtains whether this device supports distributed notifications. This API uses an
 **Example**
 
 ```javascript
-function isDistributedEnabledCallback() {
-    console.log('----------- isDistributedEnabled ------------');
+function isDistributedEnabledCallback(err, data) {
+    if (err.code) {
+        console.info("isDistributedEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isDistributedEnabled success " + JSON.stringify(data));
+    }
 };
 
 Notification.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
-
-
 ## Notification.isDistributedEnabled<sup>8+</sup>
 
 isDistributedEnabled(): Promise\<boolean>
 
-Obtains whether this device supports distributed notifications. This API uses a promise to return the result.
+Checks whether this device supports distributed notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **Return value**
 
-| Type              | Description           |
-| ------------------ | --------------- |
-| Promise\<boolean\> | Promise used to return the result.<br>**true**: The device supports distributed notifications.<br>**false**: The device does not support distributed notifications.|
+| Type              | Description                                         |
+| ------------------ | --------------------------------------------- |
+| Promise\<boolean\> | Promise used to return the result.|
 
 **Example**
 
 ```javascript
-Notification.isDistributedEnabled()
-    .then((data) => {
-        console.log('-------- isDistributedEnabled ----------');
-    });
+Notification.isDistributedEnabled().then((data) => {
+    console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
+});
 ```
 
 
@@ -2541,7 +2577,7 @@ Notification.isDistributedEnabled()
 
 enableDistributedByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-Sets whether an application supports distributed notifications based on the bundle. This API uses an asynchronous callback to return the result.
+Sets whether a specified application supports distributed notifications. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2553,33 +2589,35 @@ Sets whether an application supports distributed notifications based on the bund
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.                    |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                  |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                      |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```javascript
-function enableDistributedByBundleCallback() {
-    console.log('----------- enableDistributedByBundle ------------');
+function enableDistributedByBundleCallback(err) {
+    if (err.code) {
+        console.info("enableDistributedByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("enableDistributedByBundle success");
+    }
 };
 
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-var enable = true
+let enable = true;
 
 Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundleCallback);
 ```
-
-
 
 ## Notification.enableDistributedByBundle<sup>8+</sup>
 
 enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
-Sets whether an application supports distributed notifications based on the bundle. This API uses a promise to return the result.
+Sets whether a specified application supports distributed notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2597,16 +2635,14 @@ Sets whether an application supports distributed notifications based on the bund
 **Example**
 
 ```javascript
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-var enable = true
-
-Notification.enableDistributedByBundle(bundle, enable)
-    .then(() => {
-        console.log('-------- enableDistributedByBundle ----------');
-    });
+let enable = true;
+Notification.enableDistributedByBundle(bundle, enable).then(() => {
+    console.info("enableDistributedByBundle success");
+});
 ```
 
 ## Notification.isDistributedEnabledByBundle<sup>8+</sup>
@@ -2631,24 +2667,26 @@ Obtains whether an application supports distributed notifications based on the b
 **Example**
 
 ```javascript
-function isDistributedEnabledByBundleCallback(data) {
-    console.log('----------- isDistributedEnabledByBundle ------------', data);
+function isDistributedEnabledByBundleCallback(err, data) {
+    if (err.code) {
+        console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
+    }
 };
 
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
 Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
-
-
 
 ## Notification.isDistributedEnabledByBundle<sup>8+</sup>
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
-Obtains whether an application supports distributed notifications based on the bundle. This API uses a promise to return the result.
+Checks whether a specified application supports distributed notifications. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2664,21 +2702,20 @@ Obtains whether an application supports distributed notifications based on the b
 
 **Return value**
 
-| Type              | Description           |
-| ------------------ | --------------- |
-| Promise\<boolean\> | Promise used to return the result.<br>**true**: The device supports distributed notifications.<br>**false**: The device does not support distributed notifications.|
+| Type              | Description                                             |
+| ------------------ | ------------------------------------------------- |
+| Promise\<boolean\> | Promise used to return the result.|
 
 **Example**
 
 ```javascript
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-Notification.isDistributedEnabledByBundle(bundle)
-    .then((data) => {
-        console.log('-------- isDistributedEnabledByBundle ----------', data);
-    });
+Notification.isDistributedEnabledByBundle(bundle).then((data) => {
+    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+});
 ```
 
 
@@ -2703,14 +2740,16 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 **Example**
 
 ```javascript
-function getDeviceRemindTypeCallback(data) {
-    console.log('----------- getDeviceRemindType ------------', data);
+function getDeviceRemindTypeCallback(err,data) {
+    if (err.code) {
+        console.info("getDeviceRemindType failed " + JSON.stringify(err));
+    } else {
+        console.info("getDeviceRemindType success");
+    }
 };
 
 Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
 ```
-
-
 
 ## Notification.getDeviceRemindType<sup>8+</sup>
 
@@ -2733,10 +2772,9 @@ Obtains the notification reminder type. This API uses a promise to return the re
 **Example**
 
 ```javascript
-Notification.getDeviceRemindType()
-    .then((data) => {
-        console.log('-------- getDeviceRemindType ----------', data);
-    });
+Notification.getDeviceRemindType().then((data) => {
+    console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
+});
 ```
 
 
@@ -2754,26 +2792,30 @@ Publishes an agent-powered notification. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name              | Type                                       | Mandatory| Description                                         |
-| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
-| representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
-| userId               | number                                      | Yes  | ID of the user who receives the notification.                           |
-| callback             | AsyncCallback                               | Yes  | Callback used to return the result.                     |
+| Name              | Type                                       | Mandatory| Description                                    |
+| -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
+| request              | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                      |
+| userId               | number                                      | Yes  | User ID.                                |
+| callback             | AsyncCallback                               | Yes  | Callback used to return the result.                |
 
 **Example**
 
 ```js
-// Callback for publishAsBundle
-function publishAsBundleCallback(err) {
-	console.info("==========================>publishAsBundleCallback=======================>");
+// publishAsBundle callback
+function callback(err) {
+    if (err.code) {
+        console.info("publishAsBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("publishAsBundle success");
+    }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo"
-// ID of the user who receives the notification
-let userId = 100
+let representativeBundle = "com.example.demo";
+// User ID
+let userId = 100;
 // NotificationRequest object
-let notificationRequest = {
+let request = {
     id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -2783,9 +2825,9 @@ let notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
-Notification.publishAsBundle(notificationRequest, representativeBundle, userId, publishAsBundleCallback);
+Notification.publishAsBundle(request, representativeBundle, userId, callback);
 ```
 
 ## Notification.publishAsBundle<sup>9+</sup>
@@ -2805,19 +2847,19 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 | Name              | Type                                       | Mandatory| Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
+| request              | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
-| userId               | number                                      | Yes  | ID of the user who receives the notification.                           |
+| userId               | number                                      | Yes  | User ID.                           |
 
 **Example**
 
 ```js
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo"
-// ID of the user who receives the notification
-let userId = 100
+let representativeBundle = "com.example.demo";
+// User ID
+let userId = 100;
 // NotificationRequest object
-var notificationRequest = {
+let request = {
     id: 1,
     content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -2827,10 +2869,10 @@ var notificationRequest = {
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
-Notification.publishAsBundle(notificationRequest, representativeBundle, userId).then(() => {
-	console.info("==========================>publishAsBundleCallback=======================>");
+Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
+	console.info("publishAsBundle success");
 });
 ```
 
@@ -2854,20 +2896,24 @@ Cancels a notification published by the reminder agent. This API uses an asynchr
 | -------------------- | ------------- | ---- | ------------------------ |
 | id                   | number        | Yes  | Notification ID.                |
 | representativeBundle | string        | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.      |
-| userId               | number        | Yes  | ID of the user who receives the notification.      |
+| userId               | number        | Yes  | User ID.      |
 | callback             | AsyncCallback | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
-//cancelAsBundle
+// cancelAsBundle
 function cancelAsBundleCallback(err) {
-	console.info("==========================>cancelAsBundleCallback=======================>");
+    if (err.code) {
+        console.info("cancelAsBundle failed " + JSON.stringify(err));
+    } else {
+        console.info("cancelAsBundle success");
+    }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo"
-// ID of the user who receives the notification
-let userId = 100
+let representativeBundle = "com.example.demo";
+// User ID
+let userId = 100;
 
 Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
@@ -2876,7 +2922,7 @@ Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallb
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
 
-Publishes a notification through the reminder agent. This API uses a promise to return the result.
+Cancels a notification published by the reminder agent. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2892,18 +2938,18 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 | -------------------- | ------ | ---- | ------------------ |
 | id                   | number | Yes  | Notification ID.          |
 | representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
-| userId               | number | Yes  | ID of the user who receives the notification.|
+| userId               | number | Yes  | User ID.|
 
 **Example**
 
 ```js
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo"
-// ID of the user who receives the notification
-let userId = 100
+let representativeBundle = "com.example.demo";
+// User ID
+let userId = 100;
 
 Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
-	console.info("==========================>cancelAsBundleCallback=======================>");
+	console.info("cancelAsBundle success");
 });
 ```
 
@@ -2911,7 +2957,7 @@ Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
-Sets the enabled status for a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+Sets the enabled status of a notification slot type for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2923,7 +2969,7 @@ Sets the enabled status for a notification slot of a specified type. This API us
 
 | Name  | Type                         | Mandatory| Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information.          |
+| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
 | enable   | boolean                       | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
@@ -2931,9 +2977,13 @@ Sets the enabled status for a notification slot of a specified type. This API us
 **Example**
 
 ```js
-//enableNotificationSlot
+// enableNotificationSlot
 function enableSlotCallback(err) {
-    console.log('===================>enableSlotCallback==================>');
+    if (err.code) {
+        console.info("enableNotificationSlot failed " + JSON.stringify(err));
+    } else {
+        console.info("enableNotificationSlot success");
+    }
 };
 
 Notification.enableNotificationSlot(
@@ -2947,7 +2997,7 @@ Notification.enableNotificationSlot(
 
 enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
 
-Sets the enabled status for a notification slot of a specified type. This API uses a promise to return the result.
+Sets the enabled status of a notification slot type for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2959,27 +3009,25 @@ Sets the enabled status for a notification slot of a specified type. This API us
 
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.  |
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
 | enable | boolean                       | Yes  | Whether to enable notification.    |
 
 **Example**
 
 ```js
-//enableNotificationSlot
-Notification.enableNotificationSlot(
-    { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
-    true).then(() => {
-        console.log('====================>enableNotificationSlot====================>');
-    });
+// enableNotificationSlot
+Notification.enableNotificationSlot({ bundle: "ohos.samples.notification", },
+    Notification.SlotType.SOCIAL_COMMUNICATION,true).then(() => {
+    console.info("enableNotificationSlot success");
+});
 ```
 
 ## Notification.isNotificationSlotEnabled <sup>9+</sup>
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
-Obtains the enabled status of the notification slot of a specified type. This API uses an asynchronous callback to return the result.
+Checks whether a specified notification slot type is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2991,16 +3039,20 @@ Obtains the enabled status of the notification slot of a specified type. This AP
 
 | Name  | Type                         | Mandatory| Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information.          |
+| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
 | callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
-//isNotificationSlotEnabled
+// isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
-    console.log('===================>getEnableSlotCallback==================');
+    if (err.code) {
+        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
+    } else {
+        console.info("isNotificationSlotEnabled success");
+    }
 };
 
 Notification.isNotificationSlotEnabled(
@@ -3013,7 +3065,7 @@ Notification.isNotificationSlotEnabled(
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
 
-Obtains the enabled status of the notification slot of a specified type. This API uses a promise to return the result.
+Checks whether a specified notification slot type is enabled for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3025,25 +3077,23 @@ Obtains the enabled status of the notification slot of a specified type. This AP
 
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.  |
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the enabled status of the notification slot of the specified type.|
+| Type              | Description                           |
+| ------------------ | ------------------------------- |
+| Promise\<boolean\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-//isNotificationSlotEnabled
-Notification.isNotificationSlotEnabled(
-    { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION
-    ).then((data) => {
-      console.log('====================>isNotificationSlotEnabled====================>');
-    });
+// isNotificationSlotEnabled
+Notification.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
+    Notification.SlotType.SOCIAL_COMMUNICATION).then((data) => {
+    console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
+});
 ```
 
 
@@ -3051,7 +3101,7 @@ Notification.isNotificationSlotEnabled(
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
-Sets whether to sync notifications to devices where the application is not installed. This API uses an asynchronous callback to return the result.
+Sets whether to enable the notification sync feature for devices where the application is not installed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3064,7 +3114,7 @@ Sets whether to sync notifications to devices where the application is not insta
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| enable | boolean | Yes  | Whether the feature is enabled.<br>**true**: enabled<br>**false**: disabled  |
+| enable | boolean | Yes  | Whether the feature is enabled.  |
 | callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3073,11 +3123,15 @@ Sets whether to sync notifications to devices where the application is not insta
 let userId = 100;
 let enable = true;
 
-function setSyncNotificationEnabledWithoutAppCallback(err) {
-    console.log('setSyncNotificationEnabledWithoutAppCallback');
+function callback(err) {
+    if (err.code) {
+        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
+    } else {
+        console.info("setSyncNotificationEnabledWithoutApp success");
+    }
 }
 
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
+Notification.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
 ```
 
 
@@ -3085,7 +3139,7 @@ Notification.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotific
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
 
-Sets whether to sync notifications to devices where the application is not installed. This API uses a promise to return the result.
+Sets whether to enable the notification sync feature for devices where the application is not installed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3098,7 +3152,7 @@ Sets whether to sync notifications to devices where the application is not insta
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| enable | boolean | Yes  | Whether the feature is enabled.<br>**true**: enabled<br>**false**: disabled  |
+| enable | boolean | Yes  | Whether the feature is enabled.  |
 
 **Return value**
 
@@ -3112,13 +3166,11 @@ Sets whether to sync notifications to devices where the application is not insta
 let userId = 100;
 let enable = true;
 
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable)
-    .then((data) => {
-        console.log('setSyncNotificationEnabledWithoutApp');
-    })
-    .catch((err) => {
-        console.log('setSyncNotificationEnabledWithoutApp, err:', err);
-    });
+Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
+    console.info('setSyncNotificationEnabledWithoutApp success');
+}).catch((err) => {
+    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
+});
 ```
 
 
@@ -3126,7 +3178,7 @@ Notification.setSyncNotificationEnabledWithoutApp(userId, enable)
 
 getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
 
-Obtains whether notifications are synced to devices where the application is not installed. This API uses an asynchronous callback to return the result.
+Obtains whether the notification sync feature is enabled for devices where the application is not installed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3139,18 +3191,18 @@ Obtains whether notifications are synced to devices where the application is not
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.<br>**true**: Notifications are synced to devices where the application is not installed.<br>**false**: Notifications are not synced to devices where the application is not installed.|
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 let userId = 100;
 
-function getSyncNotificationEnabledWithoutAppCallback(data, err) {
+function getSyncNotificationEnabledWithoutAppCallback(err, data) {
     if (err) {
-        console.log('getSyncNotificationEnabledWithoutAppCallback, err' + err);
+        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
     } else {
-        console.log('getSyncNotificationEnabledWithoutAppCallback, data' + data);
+        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
     }
 }
 
@@ -3162,7 +3214,7 @@ Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEna
 
 getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
-Obtains whether notifications are synced to devices where the application is not installed. This API uses a promise to return the result.
+Obtains whether the notification sync feature is enabled for devices where the application is not installed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3178,27 +3230,24 @@ Obtains whether notifications are synced to devices where the application is not
 
 **Return value**
 
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.<br>**true**: Notifications are synced to devices where the application is not installed.<br>**false**: Notifications are not synced to devices where the application is not installed.|
+| Type              | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
+| Promise\<boolean\> | Promise used to return the result.|
 
 **Example**
 
 ```js
 let userId = 100;
-
-Notification.getSyncNotificationEnabledWithoutApp(userId)
-    .then((data) => {
-        console.log('getSyncNotificationEnabledWithoutApp, data:', data);
-    })
-    .catch((err) => {
-        console.log('getSyncNotificationEnabledWithoutApp, err:', err);
-    });
+Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
+    console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
+}).catch((err) => {
+    console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
+});
 ```
 
-
-
 ## NotificationSubscriber
+
+Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](#notificationsubscribe).
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -3216,7 +3265,7 @@ Callback for receiving notifications.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | AsyncCallback\<[SubscribeCallbackData](#subscribecallbackdata)\> | Yes| Notification information returned.|
+| data | [SubscribeCallbackData](#subscribecallbackdata) | Yes| Information about the notification received.|
 
 **Example**
 
@@ -3230,21 +3279,11 @@ function subscribeCallback(err) {
 };
 
 function onConsumeCallback(data) {
-    console.info('===> onConsume in test');
     let req = data.request;
     console.info('===> onConsume callback req.id:' + req.id);
-    let wantAgent = data.wantAgent;
-    wantAgent .getWant(wantAgent)
-        .then((data1) => {
-            console.log('===> getWant success want:' + JSON.stringify(data1));
-        })
-        .catch((err) => {
-            console.error('===> getWant failed because' + JSON.stringify(err));
-        });
-    console.info('===> onConsume callback req.wantAgent:' + JSON.stringify(req.wantAgent));
 };
 
-var subscriber = {
+let subscriber = {
     onConsume: onConsumeCallback
 };
 
@@ -3255,7 +3294,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
-Callback for removing notifications.
+Callback for canceling notifications.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3265,7 +3304,7 @@ Callback for removing notifications.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | AsyncCallback\<[SubscribeCallbackData](#subscribecallbackdata)\> | Yes| Notification information returned.|
+| data | [SubscribeCallbackData](#subscribecallbackdata) | Yes| Information about the notification to cancel.|
 
 **Example**
 
@@ -3279,12 +3318,11 @@ function subscribeCallback(err) {
 };
 
 function onCancelCallback(data) {
-    console.info('===> onCancel in test');
     let req = data.request;
     console.info('===> onCancel callback req.id:' + req.id);
 }
 
-var subscriber = {
+let subscriber = {
     onCancel: onCancelCallback
 };
 
@@ -3305,7 +3343,7 @@ Callback for notification sorting updates.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](#notificationsortingmap) | Yes| Notification information returned.|
+| data | [NotificationSortingMap](#notificationsortingmap) | Yes| Latest notification sorting list.|
 
 **Example**
 
@@ -3318,11 +3356,11 @@ function subscribeCallback(err) {
     }
 };
 
-function onUpdateCallback() {
-    console.info('===> onUpdate in test');
+function onUpdateCallback(map) {
+    console.info('===> onUpdateCallback map:' + JSON.stringify(map));
 }
 
-var subscriber = {
+let subscriber = {
     onUpdate: onUpdateCallback
 };
 
@@ -3354,7 +3392,7 @@ function onConnectCallback() {
     console.info('===> onConnect in test');
 }
 
-var subscriber = {
+let subscriber = {
     onConnect: onConnectCallback
 };
 
@@ -3381,16 +3419,30 @@ function subscribeCallback(err) {
         console.info("subscribeCallback");
     }
 };
+function unsubscribeCallback(err) {
+    if (err.code) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    } else {
+        console.info("unsubscribeCallback");
+    }
+};
 
+function onConnectCallback() {
+    console.info('===> onConnect in test');
+}
 function onDisconnectCallback() {
     console.info('===> onDisconnect in test');
 }
 
-var subscriber = {
+let subscriber = {
+    onConnect: onConnectCallback,
     onDisconnect: onDisconnectCallback
 };
 
+// The onConnect callback is invoked when subscription to the notification is complete.
 Notification.subscribe(subscriber, subscribeCallback);
+// The onDisconnect callback is invoked when unsubscription to the notification is complete.
+Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
 ### onDestroy
@@ -3418,7 +3470,7 @@ function onDestroyCallback() {
     console.info('===> onDestroy in test');
 }
 
-var subscriber = {
+let subscriber = {
     onDestroy: onDestroyCallback
 };
 
@@ -3451,15 +3503,24 @@ function subscribeCallback(err) {
     }
 };
 
-function onDoNotDisturbDateChangeCallback() {
-    console.info('===> onDoNotDisturbDateChange in test');
+function onDoNotDisturbDateChangeCallback(mode) {
+    console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
-var subscriber = {
+let subscriber = {
     onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
-
 Notification.subscribe(subscriber, subscribeCallback);
+
+let doNotDisturbDate = {
+    type: Notification.DoNotDisturbType.TYPE_ONCE,
+    begin: new Date(),
+    end: new Date(2021, 11, 15, 18, 0)
+}
+// Set the onDoNotDisturbDateChange callback for DND time setting updates.
+Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
+	console.info("setDoNotDisturbDate sucess");
+});
 ```
 
 
@@ -3467,7 +3528,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8)) => void
 
-Listens for the notification enable status changes. This API uses an asynchronous callback to return the result.
+Listens for the notification enabled status changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3491,16 +3552,23 @@ function subscribeCallback(err) {
 };
 
 function onEnabledNotificationChangedCallback(callbackData) {
-    console.info("bundle: ", callbackData.bundle);
-    console.info("uid: ", callbackData.uid);
-    console.info("enable: ", callbackData.enable);
+    console.info("bundle: " + callbackData.bundle);
+    console.info("uid: " + callbackData.uid);
+    console.info("enable: " + callbackData.enable);
 };
 
-var subscriber = {
+let subscriber = {
     onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
-
 Notification.subscribe(subscriber, subscribeCallback);
+
+let bundle = {
+    bundle: "bundleName1",
+}
+// Set the onEnabledNotificationChanged callback that is triggered when the notification enabled status changes.
+Notification.enableNotification(bundle, false).then(() => {
+	console.info("enableNotification sucess");
+});
 ```
 
 ## SubscribeCallbackData
@@ -3509,13 +3577,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name           | Readable| Writable| Type                                             | Description    |
-| --------------- | ---- | --- | ------------------------------------------------- | -------- |
-| request         | Yes | No | [NotificationRequest](#notificationrequest)       | Notification content.|
-| sortingMap      | Yes | No | [NotificationSortingMap](#notificationsortingmap) | Notification sorting information.|
-| reason          | Yes | No | number                                            | Reason for deletion.|
-| sound           | Yes | No | string                                            | Sound used for notification.|
-| vibrationValues | Yes | No | Array\<number\>                                   | Vibration used for notification.|
+| Name           | Type                                             | Readable| Writable| Description    |
+| --------------- | ------------------------------------------------- | ---- | --- | -------- |
+| request         | [NotificationRequest](#notificationrequest)       | Yes | No | Notification content.|
+| sortingMap      | [NotificationSortingMap](#notificationsortingmap) | Yes | No | Notification sorting information.|
+| reason          | number                                            | Yes | No | Reason for deletion.|
+| sound           | string                                            | Yes | No | Sound used for notification.|
+| vibrationValues | Array\<number\>                                   | Yes | No | Vibration used for notification.|
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>
@@ -3524,11 +3592,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Readable| Writable| Type   | Description            |
-| ------ | ---- | --- | ------- | ---------------- |
-| bundle | Yes | No | string  | Bundle name of the application.      |
-| uid    | Yes | No | number  | UID of the application.       |
-| enable | Yes | No | boolean | Notification enabled status of the application.|
+| Name  | Type   | Readable| Writable| Description            |
+| ------ | ------- | ---- | --- | ---------------- |
+| bundle | string  | Yes | No | Bundle name of the application.      |
+| uid    | number  | Yes | No | UID of the application.       |
+| enable | boolean | Yes | No | Notification enabled status of the application.|
 
 
 ## DoNotDisturbDate<sup>8+</sup>
@@ -3537,13 +3605,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name | Readable| Writable| Type                                 | Description                    |
-| ----- | ---- | --- | ------------------------------------- | ------------------------ |
-| type  | Yes | No | [DoNotDisturbType](#donotdisturbtype8) | DND time type.|
-| begin | Yes | No | Date                                  | DND start time.|
-| end   | Yes | No | Date                                  | DND end time.|
-
-
+| Name | Type                                  | Readable| Writable| Description                  |
+| ----- | -------------------------------------- | ---- | ---- | ---------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype8) | Yes  | Yes  | DND time type.|
+| begin | Date                                   | Yes  | Yes  | DND start time.|
+| end   | Date                                   | Yes  | Yes  | DND end time.|
 
 ## DoNotDisturbType<sup>8+</sup>
 
@@ -3588,21 +3654,19 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name  | Readable| Writable| Type  | Description  |
-| ------ | ---- | --- | ------ | ------ |
-| bundle | Yes | Yes | string | Bundle name.  |
-| uid    | Yes | Yes | number | User ID.|
-
-
+| Name  | Type  | Readable| Writable| Description  |
+| ------ | ------ |---- | --- |  ------ |
+| bundle | string | Yes | Yes | Bundle information of the application.|
+| uid    | number | Yes | Yes | User ID.|
 
 ## NotificationKey
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name | Readable| Writable| Type  | Description    |
-| ----- | ---- | --- | ------ | -------- |
-| id    | Yes | Yes | number | Notification ID.  |
-| label | Yes | Yes | string | Notification label.|
+| Name | Type  | Readable| Writable| Description    |
+| ----- | ------ | ---- | --- | -------- |
+| id    | number | Yes | Yes | Notification ID.  |
+| label | string | Yes | Yes | Notification label.|
 
 
 ## SlotType
@@ -3620,83 +3684,97 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationActionButton
 
+Describes the button displayed in the notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name     | Readable| Writable| Type                                           | Description                     |
-| --------- | --- | ---- | ----------------------------------------------- | ------------------------- |
-| title     | Yes | Yes | string                                          | Button title.                 |
-| wantAgent | Yes | Yes | WantAgent                                       | **WantAgent** of the button.|
-| extras    | Yes | Yes | { [key: string]: any }                          | Extra information of the button.             |
-| userInput<sup>8+</sup> | Yes | Yes | [NotificationUserInput](#notificationuserinput8) | User input object.         |
+| Name     | Type                                           | Readable| Writable| Description                     |
+| --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
+| title     | string                                          | Yes | Yes | Button title.                 |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | Yes | Yes | **WantAgent** of the button.|
+| extras    | { [key: string]: any }                          | Yes | Yes | Extra information of the button.             |
+| userInput<sup>8+</sup> | [NotificationUserInput](#notificationuserinput8) | Yes | Yes | User input object.         |
 
 
 ## NotificationBasicContent
 
+Describes the normal text notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type  | Description                              |
-| -------------- | ---- | ---- | ------ | ---------------------------------- |
-| title          | Yes  | Yes  | string | Notification title.                        |
-| text           | Yes  | Yes  | string | Notification content.                        |
-| additionalText | Yes  | Yes  | string | Additional information of the notification.|
+| Name          | Type  | Readable| Writable| Description                              |
+| -------------- | ------ | ---- | ---- | ---------------------------------- |
+| title          | string | Yes  | Yes  | Notification title.                        |
+| text           | string | Yes  | Yes  | Notification content.                        |
+| additionalText | string | Yes  | Yes  | Additional information of the notification.|
 
 
 ## NotificationLongTextContent
 
+Describes the long text notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type  | Description                            |
-| -------------- | ---- | --- | ------ | -------------------------------- |
-| title          | Yes | Yes | string | Notification title.                        |
-| text           | Yes | Yes | string | Notification content.                        |
-| additionalText | Yes | Yes | string | Additional information of the notification.|
-| longText       | Yes | Yes | string | Long text of the notification.                    |
-| briefText      | Yes | Yes | string | Brief text of the notification.|
-| expandedTitle  | Yes | Yes | string | Title of the notification in the expanded state.                |
+| Name          | Type  | Readable| Writable| Description                            |
+| -------------- | ------ | ---- | --- | -------------------------------- |
+| title          | string | Yes | Yes | Notification title.                        |
+| text           | string | Yes | Yes | Notification content.                        |
+| additionalText | string | Yes | Yes | Additional information of the notification.|
+| longText       | string | Yes | Yes | Long text of the notification.                    |
+| briefText      | string | Yes | Yes | Brief text of the notification.|
+| expandedTitle  | string | Yes | Yes | Title of the notification in the expanded state.                |
 
 
 ## NotificationMultiLineContent
 
+Describes the multi-line text notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type           | Description                            |
-| -------------- | --- | --- | --------------- | -------------------------------- |
-| title          | Yes | Yes | string          | Notification title.                        |
-| text           | Yes | Yes | string          | Notification content.                        |
-| additionalText | Yes | Yes | string          | Additional information of the notification.|
-| briefText      | Yes | Yes | string          | Brief text of the notification.|
-| longTitle      | Yes | Yes | string          | Title of the notification in the expanded state.                |
-| lines          | Yes | Yes | Array\<string\> | Multi-line text of the notification.                  |
+| Name          | Type           | Readable| Writable| Description                            |
+| -------------- | --------------- | --- | --- | -------------------------------- |
+| title          | string          | Yes | Yes | Notification title.                        |
+| text           | string          | Yes | Yes | Notification content.                        |
+| additionalText | string          | Yes | Yes | Additional information of the notification.|
+| briefText      | string          | Yes | Yes | Brief text of the notification.|
+| longTitle      | string          | Yes | Yes | Title of the notification in the expanded state.                |
+| lines          | Array\<string\> | Yes | Yes | Multi-line text of the notification.                  |
 
 
 ## NotificationPictureContent
 
+Describes the picture-attached notification.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Readable| Writable| Type          | Description                            |
-| -------------- | ---- | --- | -------------- | -------------------------------- |
-| title          | Yes | Yes | string         | Notification title.                        |
-| text           | Yes | Yes | string         | Notification content.                        |
-| additionalText | Yes | Yes | string         | Additional information of the notification.|
-| briefText      | Yes | Yes | string         | Brief text of the notification.|
-| expandedTitle  | Yes | Yes | string         | Title of the notification in the expanded state.                |
-| picture        | Yes | Yes | image.PixelMap | Picture attached to the notification.                  |
+| Name          | Type          | Readable| Writable| Description                            |
+| -------------- | -------------- | ---- | --- | -------------------------------- |
+| title          | string         | Yes | Yes | Notification title.                        |
+| text           | string         | Yes | Yes | Notification content.                        |
+| additionalText | string         | Yes | Yes | Additional information of the notification.|
+| briefText      | string         | Yes | Yes | Brief text of the notification.|
+| expandedTitle  | string         | Yes | Yes | Title of the notification in the expanded state.                |
+| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Picture attached to the notification.                  |
 
 
 ## NotificationContent
 
+Describes the notification content.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name       | Readable| Writable| Type                                                        | Description              |
-| ----------- | ---- | --- | ------------------------------------------------------------ | ------------------ |
-| contentType | Yes | Yes | [ContentType](#contenttype)                                  | Notification content type.      |
-| normal      | Yes | Yes | [NotificationBasicContent](#notificationbasiccontent)        | Normal text.  |
-| longText    | Yes | Yes | [NotificationLongTextContent](#notificationlongtextcontent)  | Long text.|
-| multiLine   | Yes | Yes | [NotificationMultiLineContent](#notificationmultilinecontent) | Multi-line text.  |
-| picture     | Yes | Yes | [NotificationPictureContent](#notificationpicturecontent)    | Picture-attached.  |
+| Name       | Type                                                        | Readable| Writable| Description              |
+| ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
+| contentType | [ContentType](#contenttype)                                  | Yes | Yes | Notification content type.      |
+| normal      | [NotificationBasicContent](#notificationbasiccontent)        | Yes | Yes | Normal text.  |
+| longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | Yes | Yes | Long text.|
+| multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | Yes | Yes | Multi-line text.  |
+| picture     | [NotificationPictureContent](#notificationpicturecontent)    | Yes | Yes | Picture-attached.  |
 
 
 ## NotificationFlagStatus<sup>8+</sup>
+
+Describes the notification flag status.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3711,133 +3789,148 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationFlags<sup>8+</sup>
 
+Enumerates notification flags.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name            | Readable| Writable| Type                   | Description                              |
-| ---------------- | ---- | ---- | ---------------------- | --------------------------------- |
-| soundEnabled     | Yes  | No  | NotificationFlagStatus | Whether to enable the sound alert for the notification.                 |
-| vibrationEnabled | Yes  | No  | NotificationFlagStatus | Whether to enable vibration for the notification.              |
+| Name            | Type                   | Readable| Writable| Description                              |
+| ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
+| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus8) | Yes  | No  | Whether to enable the sound alert for the notification.                 |
+| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus8) | Yes  | No  | Whether to enable vibration for the notification.              |
 
 
 ## NotificationRequest
 
+Describes the notification request.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                 | Readable| Writable| Type                                         | Description                      |
-| --------------------- | ---- | --- | --------------------------------------------- | -------------------------- |
-| content               | Yes | Yes | [NotificationContent](#notificationcontent)   | Notification content.                  |
-| id                    | Yes | Yes | number                                        | Notification ID.                    |
-| slotType              | Yes | Yes | [SlotType](#slottype)                         | Slot type.                  |
-| isOngoing             | Yes | Yes | boolean                                       | Whether the notification is an ongoing notification.            |
-| isUnremovable         | Yes | Yes | boolean                                       | Whether the notification can be removed.                |
-| deliveryTime          | Yes | Yes | number                                        | Time when the notification is sent.              |
-| tapDismissed          | Yes | Yes | boolean                                       | Whether the notification is automatically cleared.          |
-| autoDeletedTime       | Yes | Yes | number                                        | Time when the notification is automatically cleared.            |
-| wantAgent             | Yes | Yes | WantAgent                                     | **WantAgent** instance to which the notification will be redirected after being clicked.       |
-| extraInfo             | Yes | Yes | {[key: string]: any}                          | Extended parameters.                  |
-| color                 | Yes | Yes | number                                        | Background color of the notification.              |
-| colorEnabled          | Yes | Yes | boolean                                       | Whether the notification background color is enabled.      |
-| isAlertOnce           | Yes | Yes | boolean                                       | Whether the notification triggers an alert only once.|
-| isStopwatch           | Yes | Yes | boolean                                       | Whether to display the stopwatch.          |
-| isCountDown           | Yes | Yes | boolean                                       | Whether to display the countdown time.        |
-| isFloatingIcon        | Yes | Yes | boolean                                       | Whether the notification is displayed as a floating icon.        |
-| label                 | Yes | Yes | string                                        | Notification label.                  |
-| badgeIconStyle        | Yes | Yes | number                                        | Notification badge type.              |
-| showDeliveryTime      | Yes | Yes | boolean                                       | Whether to display the time when the notification is delivered.          |
-| actionButtons         | Yes | Yes | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Buttons in the notification. Up to two buttons are allowed.    |
-| smallIcon             | Yes | Yes | PixelMap                                      | Small notification icon.                |
-| largeIcon             | Yes | Yes | PixelMap                                      | Large notification icon.                |
-| creatorBundleName     | Yes | No | string                                        | Name of the bundle that creates the notification.            |
-| creatorUid            | Yes | No | number                                        | UID used for creating the notification.             |
-| creatorPid            | Yes | No | number                                        | PID used for creating the notification.             |
-| creatorUserId<sup>8+</sup>| Yes | No | number                                    | ID of the user who creates the notification.          |
-| hashCode              | Yes | No | string                                        | Unique ID of the notification.              |
-| classification        | Yes | Yes | string                                        | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| groupName<sup>8+</sup>| Yes | Yes | string                                        | Group notification name.                |
-| template<sup>8+</sup> | Yes | Yes | [NotificationTemplate](#notificationtemplate8) | Notification template.                  |
-| isRemoveAllowed<sup>8+</sup> | Yes | No | boolean                                | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| source<sup>8+</sup>   | Yes | No | number                                        | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| distributedOption<sup>8+</sup>   | Yes | Yes | [DistributedOptions](#distributedoptions8)                 | Option of distributed notification.         |
-| deviceId<sup>8+</sup> | Yes | No | string                                        | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
-| notificationFlags<sup>8+</sup> | Yes | No | [NotificationFlags](#notificationflags8)                    | Notification flags.         |
-| removalWantAgent<sup>9+</sup> | Yes | Yes | WantAgent                    | **WantAgent** instance to which the notification will be redirected when it is removed.         |
-| badgeNumber<sup>9+</sup> | Yes | Yes | number                    | Number of notifications displayed on the application icon.         |
-
+| Name                 | Type                                         | Readable| Writable| Description                      |
+| --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
+| content               | [NotificationContent](#notificationcontent)   | Yes | Yes | Notification content.                  |
+| id                    | number                                        | Yes | Yes | Notification ID.                    |
+| slotType              | [SlotType](#slottype)                         | Yes | Yes | Slot type.                  |
+| isOngoing             | boolean                                       | Yes | Yes | Whether the notification is an ongoing notification.            |
+| isUnremovable         | boolean                                       | Yes | Yes | Whether the notification can be removed.                |
+| deliveryTime          | number                                        | Yes | Yes | Time when the notification is sent.              |
+| tapDismissed          | boolean                                       | Yes | Yes | Whether the notification is automatically cleared.          |
+| autoDeletedTime       | number                                        | Yes | Yes | Time when the notification is automatically cleared.            |
+| wantAgent             | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected after being clicked. |
+| extraInfo             | {[key: string]: any}                          | Yes | Yes | Extended parameters.                  |
+| color                 | number                                        | Yes | Yes | Background color of the notification. Not supported currently.|
+| colorEnabled          | boolean                                       | Yes | Yes | Whether the notification background color is enabled. Not supported currently.|
+| isAlertOnce           | boolean                                       | Yes | Yes | Whether the notification triggers an alert only once.|
+| isStopwatch           | boolean                                       | Yes | Yes | Whether to display the stopwatch.          |
+| isCountDown           | boolean                                       | Yes | Yes | Whether to display the countdown time.        |
+| isFloatingIcon        | boolean                                       | Yes | Yes | Whether the notification is displayed as a floating icon in the status bar.        |
+| label                 | string                                        | Yes | Yes | Notification label.                  |
+| badgeIconStyle        | number                                        | Yes | Yes | Notification badge type.              |
+| showDeliveryTime      | boolean                                       | Yes | Yes | Whether to display the time when the notification is delivered.          |
+| actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | Yes | Yes | Buttons in the notification. Up to two buttons are allowed.    |
+| smallIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Small notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
+| largeIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes | Yes | Large notification icon. This field is optional, and the icon size cannot exceed 30 KB.|
+| creatorBundleName     | string                                        | Yes | No | Name of the bundle that creates the notification.            |
+| creatorUid            | number                                        | Yes | No | UID used for creating the notification.             |
+| creatorPid            | number                                        | Yes | No | PID used for creating the notification.             |
+| creatorUserId<sup>8+</sup>| number                                    | Yes | No | ID of the user who creates the notification.          |
+| hashCode              | string                                        | Yes | No | Unique ID of the notification.              |
+| classification        | string                                        | Yes | Yes | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| groupName<sup>8+</sup>| string                                        | Yes | Yes | Notification group name.                |
+| template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | Yes | Yes | Notification template.                  |
+| isRemoveAllowed<sup>8+</sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| source<sup>8+</sup>   | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | Yes | Yes | Distributed notification options.         |
+| deviceId<sup>8+</sup> | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
+| notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | Yes | No | Notification flags.         |
+| removalWantAgent<sup>9+</sup> | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected when it is removed.         |
+| badgeNumber<sup>9+</sup> | number                    | Yes | Yes | Number of notifications displayed on the application icon.         |
 
 ## DistributedOptions<sup>8+</sup>
 
+Describes distributed notifications options.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                  | Readable| Writable| Type           | Description                              |
-| ---------------------- | ---- | ---- | -------------- | ---------------------------------- |
-| isDistributed          | Yes  | Yes  | boolean        | Whether the notification is a distributed notification.                 |
-| supportDisplayDevices  | Yes  | Yes  | Array\<string> | Types of the devices to which the notification can be synchronized.          |
-| supportOperateDevices  | Yes  | Yes  | Array\<string> | Devices on which notification can be enabled.               |
-| remindType             | Yes  | No  | number         | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
+| Name                  | Type           | Readable| Writable| Description                              |
+| ---------------------- | -------------- | ---- | ---- | ---------------------------------- |
+| isDistributed          | boolean        | Yes  | Yes  | Whether the notification is a distributed notification.                 |
+| supportDisplayDevices  | Array\<string> | Yes  | Yes  | List of the devices to which the notification can be synchronized.        |
+| supportOperateDevices  | Array\<string> | Yes  | Yes  | List of the devices on which the notification can be opened.             |
+| remindType             | number         | Yes  | No  | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
 
 
 ## NotificationSlot
 
+Describes the notification slot.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                | Readable| Writable| Type                 | Description                                      |
-| -------------------- | ---- | --- | --------------------- | ------------------------------------------ |
-| type                 | Yes | Yes | [SlotType](#slottype) | Slot type.                                  |
-| level                | Yes | Yes | number                | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
-| desc                 | Yes | Yes | string                | Notification slot description.                          |
-| badgeFlag            | Yes | Yes | boolean               | Whether to display the badge.                              |
-| bypassDnd            | Yes | Yes | boolean               | Whether to bypass the DND mode in the system.              |
-| lockscreenVisibility | Yes | Yes | number                | Mode for displaying the notification on the lock screen.                |
-| vibrationEnabled     | Yes | Yes | boolean               | Whether vibration is supported for the notification.                                |
-| sound                | Yes | Yes | string                | Notification alert tone.                                |
-| lightEnabled         | Yes | Yes | boolean               | Whether the indicator blinks for the notification.                                  |
-| lightColor           | Yes | Yes | number                | Indicator color of the notification.                                |
-| vibrationValues      | Yes | Yes | Array\<number\>       | Vibration mode of the notification.                              |
-| enabled<sup>9+</sup> | Yes | No | boolean               | Enabled status of the notification slot.                     |
+| Name                | Type                 | Readable| Writable| Description                                      |
+| -------------------- | --------------------- | ---- | --- | ------------------------------------------ |
+| type                 | [SlotType](#slottype) | Yes | Yes | Slot type.                                  |
+| level                | number                | Yes | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
+| desc                 | string                | Yes | Yes | Notification slot description.                          |
+| badgeFlag            | boolean               | Yes | Yes | Whether to display the badge.                              |
+| bypassDnd            | boolean               | Yes | Yes | Whether to bypass DND mode in the system.              |
+| lockscreenVisibility | number                | Yes | Yes | Mode for displaying the notification on the lock screen.                |
+| vibrationEnabled     | boolean               | Yes | Yes | Whether vibration is enabled for the notification.                                |
+| sound                | string                | Yes | Yes | Notification alert tone.                                |
+| lightEnabled         | boolean               | Yes | Yes | Whether the indicator blinks for the notification.                                  |
+| lightColor           | number                | Yes | Yes | Indicator color of the notification.                                |
+| vibrationValues      | Array\<number\>       | Yes | Yes | Vibration mode of the notification.                              |
+| enabled<sup>9+</sup> | boolean               | Yes | No | Whether the notification slot is enabled.                     |
 
 
 ## NotificationSorting
 
+Provides sorting information of active notifications.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name    | Readable| Writable| Type                                 | Description        |
-| -------- | ---- | --- | ------------------------------------- | ------------ |
-| slot     | Yes | No | [NotificationSlot](#notificationslot) | Notification slot content.|
-| hashCode | Yes | No | string                                | Unique ID of the notification.|
-| ranking  | Yes | No | number                                | Notification sequence number.|
+| Name    | Type                                 | Readable| Writable| Description        |
+| -------- | ------------------------------------- | ---- | --- | ------------ |
+| slot     | [NotificationSlot](#notificationslot) | Yes | No | Notification slot content.|
+| hashCode | string                                | Yes | No | Unique ID of the notification.|
+| ranking  | number                                | Yes | No | Notification sequence number.|
 
 
 ## NotificationSortingMap
 
+Provides sorting information of active notifications in all subscribed notifications.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name          | Readable| Writable| Type                                                        | Description            |
-| -------------- | ---- | --- | ------------------------------------------------------------ | ---------------- |
-| sortings       | Yes | No | {[key: string]: [NotificationSorting](#notificationsorting)} | Array of notification sorting information.|
-| sortedHashCode | Yes | No | Array\<string\>                                              | Array of unique notification IDs.|
+| Name          | Type                                                        | Readable| Writable| Description            |
+| -------------- | ------------------------------------------------------------ | ---- | --- | ---------------- |
+| sortings       | {[key: string]: [NotificationSorting](#notificationsorting)} | Yes | No | Array of notification sorting information.|
+| sortedHashCode | Array\<string\>                                              | Yes | No | Array of unique notification IDs.|
 
 
 ## NotificationSubscribeInfo
 
+Provides the information about the publisher for notification subscription.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name       | Readable| Writable| Type           | Description                           |
-| ----------- | --- | ---- | --------------- | ------------------------------- |
-| bundleNames | Yes | Yes | Array\<string\> | Bundle names of the applications whose notifications are to be subscribed to.|
-| userId      | Yes | Yes | number          | User whose notifications are to be subscribed to.   |
+| Name       | Type           | Readable| Writable| Description                           |
+| ----------- | --------------- | --- | ---- | ------------------------------- |
+| bundleNames | Array\<string\> | Yes | Yes | Bundle names of the applications whose notifications are to be subscribed to.|
+| userId      | number          | Yes | Yes | User whose notifications are to be subscribed to.   |
 
 
 ## NotificationTemplate<sup>8+</sup>
 
+Describes the notification template.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name| Type              | Readable| Writable| Description      |
+| Name| Type                   | Readable| Writable| Description      |
 | ---- | ---------------------- | ---- | ---- | ---------- |
 | name | string                 | Yes  | Yes  | Template name.|
 | data | {[key:string]: Object} | Yes  | Yes  | Template data.|
@@ -3845,11 +3938,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ## NotificationUserInput<sup>8+</sup>
 
+Provides the notification user input.
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name    | Readable| Writable| Type  | Description                         |
-| -------- | --- | ---- | ------ | ----------------------------- |
-| inputKey | Yes | Yes | string | Key to identify the user input.|
+| Name    | Type  | Readable| Writable| Description                         |
+| -------- | ------ | --- | ---- | ----------------------------- |
+| inputKey | string | Yes | Yes | Key to identify the user input.|
 
 
 ## DeviceRemindType<sup>8+</sup>
@@ -3877,3 +3972,14 @@ Notification.subscribe(subscriber, subscribeCallback);
 | TYPE_NORMAL          | 0   | Normal notification.           |
 | TYPE_CONTINUOUS      | 1   | Continuous notification.           |
 | TYPE_TIMER           | 2   | Timed notification.           |
+
+## RemoveReason<sup>9+</sup>
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+| Name                | Value | Description                 |
+| -------------------- | --- | -------------------- |
+| CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
+| CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |

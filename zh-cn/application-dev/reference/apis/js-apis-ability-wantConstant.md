@@ -1,24 +1,24 @@
-# wantConstant
+# @ohos.ability.wantConstant (wantConstant)
 
 wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.wantConstant](js-apis-app-ability-wantConstant.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
-```
-import wantConstant from '@ohos.ability.wantConstant'
+```ts
+import wantConstant from '@ohos.ability.wantConstant';
 ```
 
 ## wantConstant.Action
 
-want操作的常数。
+want操作的常数。用于表示要执行的通用操作。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称      | 值          | 描述     |
+| 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | 指示返回原点的操作。                                        |
 | ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作                           |
@@ -26,7 +26,7 @@ want操作的常数。
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | 指示启动提供无线网络设置的页面功能的操作，例如，Wi-Fi选项。    |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | 指示启动管理已安装应用程序的页面功能的操作。                  |
 | ACTION_APPLICATION_DETAILS_SETTINGS         | ohos.settings.application.details        | 指示启动显示指定应用程序详细信息的页面功能的操作。             |
-| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 指示启动页面功能以设置闹钟的操做作。                          |
+| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 指示启动页面功能以设置闹钟的操作。                          |
 | ACTION_SHOW_ALARMS                          | ohos.want.action.showAlarms              | 指示启动显示所有警报的页面功能的操作时钟。                     |
 | ACTION_SNOOZE_ALARM                         | ohos.want.action.snoozeAlarm             | 指示启动用于使闹钟睡眠的页面功能的操作。                       |
 | ACTION_DISMISS_ALARM                        | ohos.want.action.dismissAlarm            | 指示启动删除闹钟的页面功能的操作。                             |
@@ -44,21 +44,19 @@ want操作的常数。
 |  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | 指示用行为选择器来展示选择的操作。                             |
 |  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | 指示与行为选择器一起使用时的字符序列对话框标题。                |
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
-|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI                          |
+|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI。对应的value必须是string类型的数组。  |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
-|  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | 指示从应用程序市场众测应用程序的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-
+|   DLP_PARAMS_INDEX<sup>9+</sup>    |ohos.dlp.params.index      |指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 
 ## wantConstant.Entity
 
-want实体的常数。
+want实体的常数。用于表示目标Ability额外的类别信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称      | 值          | 描述     |
+| 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
-| ENTITY_DEFAULT                             | entity.system.default                    | 指示默认实体，如果未指定该实体，则使用该实体。        |
+| ENTITY_DEFAULT                             | entity.system.default                    | 指示默认实体，如果未指定实体，则使用该实体。        |
 | ENTITY_HOME                                | entity.system.home                       | 指示主屏幕实体。                                    |
 | ENTITY_VOICE                               | entity.system.voice                      | 表示语音交互实体。                                  |
 | ENTITY_BROWSABLE                           | entity.system.browsable                  | 指示浏览器类别。                                    |
@@ -67,11 +65,11 @@ want实体的常数。
 
 ## wantConstant.Flags
 
-Flags说明。
+Flags说明。用于表示处理Want的方式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称                                 | 值       | 描述                                                         |
+| 名称                                 | 值       | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                                  |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                  |
@@ -86,6 +84,6 @@ Flags说明。
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。      |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                              |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                              |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](js-apis-ability-featureAbility.md#startability)方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                               |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |

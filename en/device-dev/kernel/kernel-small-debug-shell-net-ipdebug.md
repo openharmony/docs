@@ -1,21 +1,24 @@
 # ipdebug
 
 
-## Command Function<a name="section10191115553720"></a>
+## Command Function
 
-**ipdebug**  is a console command and is used for IPv6 debugging. It can display IPv6 address prefixes, neighbor entries, destination entries, and default route entries.
+**ipdebug** is a console command and is used for IPv6 debugging. It can display IPv6 address prefixes, neighbor entries, destination entries, and default route entries.
 
-## Syntax<a name="section124061758123713"></a>
+
+## Syntax
 
 ipdebug
 
-## Example<a name="section171837113810"></a>
 
-Run the  **ipdebug**  command.
+## Example
 
-## Output<a name="section561416467104"></a>
+Run the **ipdebug** command.
 
-**ipdebug**  command output:
+
+## Output
+
+**ipdebug** command output:
 
 ```
 OHOS # ipdebug
@@ -52,4 +55,3 @@ FE80::4639:C4FF:FE94:5D44 FE80::4639:C4FF:FE94:5D44 pmtu 1500 age 6
 FE80::4639:C4FF:FE94:5D44 invalidation_timer 1784 flags 0
 --------------------------------------------------------------------
 ```
-

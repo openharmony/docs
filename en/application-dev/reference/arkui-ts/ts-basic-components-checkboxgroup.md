@@ -2,13 +2,9 @@
 
 The **\<CheckboxGroup>** component is used to select or deselect all check boxes in a group.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -16,35 +12,53 @@ Not supported
 
 ## APIs
 
-CheckboxGroup( group?: string )
+CheckboxGroup(options?: { group?: string })
 
 Creates a check box group so that you can select or deselect all check boxes in the group at the same time. Check boxes and the check box group that share the group name belong to the same group.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | group | string | No| - | Group name.|
+Since API version 9, this API is supported in ArkTS widgets.
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| group | string | No| Group name.|
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| selectAll | boolean | false | Whether to select all.|
-| selectedColor | Color | - | Color of the selected check box.|
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| selectAll | boolean | Whether to select all.<br>Default value: **false**<br>If **select** is explicitly set for check boxes in the group, the check box settings are prioritized.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected check box.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Events
 
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+
 | Name| Description|
 | -------- | -------- |
-| onChange (callback: (names: Array&lt;string&gt;, status: SelectStatus) => void ) |Triggered when the selection status of the check box group or any check box wherein changes.<br>- **names**: names of all selected check boxes in the group.<br>- **status**: selection status.|
+| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult)) => void ) |Triggered when the selected status of the check box group or any check box wherein changes due to a manual operation.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
-- SelectStatus enums
-  | Name | Description|
-  | ----- | -------------------- |
-  | All   | All check boxes in the group are selected.|
-  | Part  | Some check boxes in the group are selected.|
-  | None  | None of the check boxes in the group are selected.|
+## CheckboxGroupResult
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name    | Type  | Description     |
+| ------ | ------ | ------- |
+| name   | Array&lt;string&gt; | Names of all the selected check boxes in the group.|
+| status | [SelectStatus](#selectstatus) | Selected status.|
+
+## SelectStatus
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name | Description|
+| ----- | -------------------- |
+| All   | All check boxes in the group are selected.|
+| Part  | Some check boxes in the group are selected.|
+| None  | None of the check boxes in the group are selected.|
 
 
 ## Example
@@ -54,51 +68,51 @@ Creates a check box group so that you can select or deselect all check boxes in 
 @Entry
 @Component
 struct CheckboxExample {
-
   build() {
     Scroll() {
       Column() {
+        // Select All button
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
-            .selectedColor(0xed6f21)
+            .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("TextPicker::dialogResult is" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName))
             })
-          Text('select all').fontSize(20)
+          Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }
 
+        // Option 1
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .select(true)
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
             })
-          Text('Checkbox1').fontSize(20)
-        }
+          Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
 
+        // Option 2
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .select(false)
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
-          Text('Checkbox2').fontSize(20)
-        }
+          Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
 
+        // Option 3
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
-            .select(true)
-            .selectedColor(0x39a2db)
+            .selectedColor('#007DFF')
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })
-          Text('Checkbox3').fontSize(20)
-        }
+          Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+        }.margin({ left: 36 })
       }
     }
   }
 }
 ```
-![](figures/checkboxgroup.gif)
+![checkboxgroup](figures/checkboxgroup.gif)

@@ -48,14 +48,14 @@ crw-rw---- 1 system system 247,   7 1970-01-01 00:00 hdf_audio_render           
 hdf_audio_codec_primary_dev0
 
 - dma_service_0 : dma服务
-- dai_service : cpu dai服务
+- dai_service : CPU dai服务
 - codec_service_0 : codec服务（可以是smartPA）
 - dsp_service_0 : dsp 服务（可选项）
 
 hdf_audio_codec_primary_dev11
 
 - dma_service_0 : dma服务
-- dai_service : cpu dai服务
+- dai_service : CPU dai服务
 - codec_service_1 : codec服务（可以是smartPA）
 - dsp_service_0 : dsp服务（可选项）
 
@@ -405,7 +405,7 @@ root {
             serviceName = "hdf_audio_codec_primary_dev11"; // 对外提供的服务名称
             codecName = "codec_service_1"; // codec服务名称
             platformName = "dma_service_0"; // dma服务
-            cpuDaiName = "dai_service"; // cpu dai服务
+            cpuDaiName = "dai_service"; // CPU dai服务
             codecDaiName = "tfa9879_codec_dai"; // codec dai服务
             dspName = "dsp_service_0"; // dsp服务名称
             dspDaiName = "dsp_dai"; // dsp dai

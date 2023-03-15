@@ -1,40 +1,31 @@
 # OH_Drawing_BitmapFormat
 
 
-## **Overview**
-
-**Related Modules:**
-
-[Drawing](_drawing.md)
-
-**Description:**
+## 概述
 
 结构体用于描述位图像素的格式，包括颜色类型和透明度类型
 
-**Since:**
+**起始版本：**
 
 8
 
-**Version:**
+**相关模块：**
 
-1.0
-
-
-## **Summary**
+[Drawing](_drawing.md)
 
 
-### Public Attributes
+## 汇总
 
-  | Public&nbsp;Attribute&nbsp;Name | Description | 
+
+### 成员变量
+
+  | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| colorFormat |  | 
-| alphaFormat |  | 
+| [colorFormat](#colorformat) | 描述位图像素的透明度分量 | 
+| [alphaFormat](#alphaformat) | 描述位图像素的存储格式 | 
 
 
-## **Details**
-
-
-## **Member Data**
+## 结构体成员变量说明
 
 
 ### alphaFormat
@@ -44,7 +35,7 @@
 OH_Drawing_AlphaFormat OH_Drawing_BitmapFormat::alphaFormat
 ```
 
-**Description:**
+**描述：**
 
 描述位图像素的透明度分量
 
@@ -56,6 +47,6 @@ OH_Drawing_AlphaFormat OH_Drawing_BitmapFormat::alphaFormat
 OH_Drawing_ColorFormat OH_Drawing_BitmapFormat::colorFormat
 ```
 
-**Description:**
+**描述：**
 
 描述位图像素的存储格式

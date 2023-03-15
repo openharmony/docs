@@ -1,9 +1,12 @@
-# statfs
+# @ohos.statfs (statfs)
 
-The statfs module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
+The **statfs** module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
 
-> **NOTE**<br>
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+>
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.file.statvfs](js-apis-file-statvfs.md).
 
 ## Modules to Import
 
@@ -18,26 +21,26 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type  | Mandatory| Description                        |
-  | ------ | ------ | ---- | ---------------------------- |
-  | path   | string | Yes  | File path of the file system.|
+| Name| Type  | Mandatory| Description                        |
+| ------ | ------ | ---- | ---------------------------- |
+| path   | string | Yes  | File path of the file system.|
 
-- Return value
+**Return value**
 
-  | Type                 | Description          |
-  | --------------------- | -------------- |
-  | Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
+| Type                 | Description          |
+| --------------------- | -------------- |
+| Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
 
-- Example
+**Example**
 
   ```js
   let path = "/dev";
-  statfs.getFreeBytes(path).then(function (number){
-      console.info("getFreeBytes promise successfully:"+ number);
-  }).catch(function(err){
-      console.info("getFreeBytes failed with error:"+ err);
+  statfs.getFreeBytes(path).then(function (number) {
+      console.info("getFreeBytes promise successfully:" + number);
+  }).catch(function (err) {
+      console.info("getFreeBytes failed with error:" + err);
   });
   ```
 
@@ -49,21 +52,21 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-- **Parameters**
+**Parameters**
 
-  | Name  | Type                       | Mandatory| Description                        |
-  | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
+| Name  | Type                       | Mandatory| Description                        |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| path     | string                      | Yes  | File path of the file system.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
 
-- Example
+**Example**
 
   ```js
-   import featureAbility from '@ohos.ability.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
-      statfs.getFreeBytes(path, function(err, number){
-          console.info("Got free bytes successfully:"+ number);
+      statfs.getFreeBytes(path, function (err, number) {
+          console.info("getFreeBytes callback successfully:" + number);
       });
   });
   ```
@@ -76,26 +79,26 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type  | Mandatory| Description                        |
-  | ---- | ------ | ---- | ---------------------------- |
-  | path | string | Yes  | File path of the file system.|
+| Name| Type  | Mandatory| Description                        |
+| ---- | ------ | ---- | ---------------------------- |
+| path | string | Yes  | File path of the file system.|
 
-- Return value
+**Return value**
 
-  | Type                 | Description        |
-  | --------------------- | ------------ |
-  | Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
+| Type                 | Description        |
+| --------------------- | ------------ |
+| Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
 
-- Example
+**Example**
 
   ```js
   let path = "/dev";
-  statfs.getTotalBytes(path).then(function (number){
-      console.info("getTotalBytes promise successfully:"+ number);
-  }).catch(function(err){
-      console.info("getTotalBytes failed with error:"+ err);
+  statfs.getTotalBytes(path).then(function (number) {
+      console.info("getTotalBytes promise successfully:" + number);
+  }).catch(function (err) {
+      console.info("getTotalBytes failed with error:" + err);
   });
   ```
 
@@ -107,21 +110,21 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-- **Parameters**
+**Parameters**
 
-  | Name  | Type                       | Mandatory| Description                        |
-  | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
+| Name  | Type                       | Mandatory| Description                        |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| path     | string                      | Yes  | File path of the file system.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
 
-- Example
+**Example**
 
   ```js
   import featureAbility from '@ohos.ability.featureAbility';
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
-      statfs.getTotalBytes(path, function(err, number){
-          console.info("Got total bytes successfully:"+ number);
+      statfs.getTotalBytes(path, function(err, number) {
+          console.info("getTotalBytes callback successfully:" + number);
       });
   });
   ```

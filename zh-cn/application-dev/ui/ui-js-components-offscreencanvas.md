@@ -1,6 +1,6 @@
 # OffscreenCanvasRenderingContext2D对象
 
-使用OffscreenCanvas在离屏Canvas画布组件上进行绘制，绘制对象可以是矩形、文本、图片等。具体请参考[OffscreenCanvasRenderingContext2D对象](../reference/arkui-js/js-offscreencanvasrenderingcontext2d.md)。
+使用OffscreenCanvas在离屏Canvas画布组件上进行绘制，绘制对象可以是矩形、文本、图片等。 离屏，即GPU在当前缓冲区以外新开辟的一个缓冲区。 具体请参考[OffscreenCanvasRenderingContext2D对象](../reference/arkui-js/js-offscreencanvasrenderingcontext2d.md)。
 
 以下示例创建了一个OffscreenCanvas画布，再在画布上创建一个getContext2d对象，并设置filter属性改变图片样式。
 
@@ -26,6 +26,8 @@
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -47,7 +49,7 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     el: null,
@@ -68,7 +70,7 @@ export default {
       _this.offCanvas.drawImage(_this.img, 100, 100, 400, 300);
     };
     this.img.onerror = function() {
-      prompt.showToast({message:"error",duration:2000})
+      promptAction.showToast({message:"error",duration:2000})
     };
     var bitmap = this.offscreen.transferToImageBitmap();    this.ctx.transferFromImageBitmap(bitmap);
   },
@@ -106,6 +108,8 @@ export default {
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

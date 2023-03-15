@@ -1,10 +1,10 @@
 # Configuring System Capabilities
-
 The SystemCapability (SysCap) module provides a set of APIs for developers to implement system capabilities.
 ##  Configuring System Capabilities for a Component 
-When adding a component, you need to enable or disable specific system capabilities for it
+When adding a component, you need to enable or disable specific system capabilities for it in the **bundle.json** file in the component directory. 
 
-in the **bundle.json** file in the component directory. The following is an example:
+The following is an example:
+
 ```json
   "component": {
         "name": "wifi",
@@ -27,7 +27,10 @@ In this example, Wi-Fi STA, AP, and HotspotExt are enabled, and P2P and Core are
 ## Configuring System Capabilities for a Product
 When building a product, you may need to enable or disable specific system capabilities for it in **vendor/{company}/{product}/config.json**. If you do not configure system capabilities here, the system capabilities configured for the component will be used.
 
-To configure system capabilities for a product, add the keyword **syscap** to the product **config.json** file and configure the system capabilities. The system capabilities configured for a product take precedence over the system capabilities configured for a component. If a system capability is set to **false** for the component and to **true** for the product, the system capability is enabled. The following is an example:
+To configure system capabilities for a product, add the keyword **syscap** to the product **config.json** file and configure the system capabilities. The system capabilities configured for a product take precedence over the system capabilities configured for a component. If a system capability is set to **false** for the component and to **true** for the product, the system capability is enabled. 
+
+The following is an example:
+
 ```json
 {
       "subsystem": "communication",

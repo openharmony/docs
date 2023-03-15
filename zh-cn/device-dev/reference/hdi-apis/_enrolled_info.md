@@ -3,6 +3,16 @@
 
 ## **概述**
 
+注册信息。
+
+**Since：**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
@@ -13,23 +23,10 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [enrolledId](#enrolledid) | 注册ID，用户注册新的认证凭据时会更新注册ID。 | 
 | [authType](#authtype) | 用户认证凭据类型。 | 
-
-
-## **详细描述**
-
-注册信息。
-
-**Since：**
-
-3.2
-
-**Version：**
-
-1.0
 
 
 ## **类成员变量说明**
@@ -44,7 +41,7 @@ enum AuthType EnrolledInfo::authType
 
 **描述：**
 
-用户认证凭据类型AuthType}。
+用户认证凭据类型[AuthType](_hdf_user_auth.md#authtype)。
 
 
 ### enrolledId

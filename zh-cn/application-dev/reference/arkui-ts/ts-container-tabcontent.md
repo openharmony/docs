@@ -23,92 +23,305 @@ TabContent()
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| tabBar | string&nbsp;\|&nbsp;Resource&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;Resource,<br/>text?:&nbsp;string&nbsp;\|&nbsp;Resource<br/>}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
+| tabBar | string&nbsp;\|&nbsp;Resource&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;Resource,<br/>text?:&nbsp;string&nbsp;\|&nbsp;Resource<br/>}<br/>\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。 |
 
 >  **说明：**
 > - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
 > - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
-> - TabContent组件不支持[触摸热区设置](ts-universal-attributes-touch-target.md)。
+> - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 
+## SubTabBarStyle<sup>9+</sup>
+
+子页签样式。
+
+### constructor<sup>9+</sup>
+
+constructor(content: string | Resource)
+
+SubTabBarStyle的构造函数。
+
+**参数：**
+
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| content | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。 |
+
+## BottomTabBarStyle<sup>9+</sup>
+
+底部页签和侧边页签样式。
+
+### constructor<sup>9+</sup>
+
+constructor(icon: string | Resource, text: string | Resource)
+
+BottomTabBarStyle的构造函数。
+
+**参数：**
+
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| icon | string \| [Resource](ts-types.md#resource) | 是 | 页签内的图片内容。 |
+| text | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。 |
 
 ## 示例
+
+示例1：
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct TabContentExample  {
-  @State fontColor: string = 'rgba(0, 0, 0, 0.4)'
-  @State selectedFontColor: string = 'rgba(10, 30, 255, 1)'
+struct TabContentExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
+
   @Builder TabBuilder(index: number) {
     Column() {
-      Image(this.currentIndex === index ? '/resources/ic_public_contacts_filled_selected.png' : '/resources/ic_public_contacts_filled.png')
-        .width(10)
-        .height(10)
-        .opacity(this.currentIndex === index ? 1 : 0.4)
+      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+        .width(24)
+        .height(24)
+        .margin({ bottom: 4 })
         .objectFit(ImageFit.Contain)
-      Text(`Tab${(index > 2 ? (index - 1) : index) + 1}`)
+      Text(`Tab${index + 1}`)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(10)
-        .margin({top: 2})
-    }
-  }
-
-  @Builder AddBuilder() {
-    Column() {
-      Image(this.currentIndex === 2 ? '/resources/ic_public_add_norm_filled_selected.png' : '/resources/ic_public_add_norm_filled.png')
-        .width(this.currentIndex === 2 ? 26 : 24)
-        .height(this.currentIndex === 2 ? 26 : 24)
-        .opacity(this.currentIndex === 2 ? 1 : 0.4)
-        .objectFit(ImageFit.Contain)
-        .animation({duration: 200})
-    }
+        .fontWeight(500)
+        .lineHeight(14)
+    }.width('100%')
   }
 
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab1').fontSize(32)
-          }
+          Column() {
+            Text('Tab1')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab2').fontSize(32)
-          }
+          Column() {
+            Text('Tab2')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Add').fontSize(32)
-          }
-        }.tabBar(this.AddBuilder())
+          Column() {
+            Text('Tab3')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
+        }.tabBar(this.TabBuilder(2))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab3').fontSize(32)
-          }
+          Column() {
+            Text('Tab4')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
         }.tabBar(this.TabBuilder(3))
-
-        TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab4').fontSize(32)
-          }
-        }.tabBar(this.TabBuilder(4))
       }
       .vertical(false)
-      .barWidth(300).barHeight(56)
+      .barHeight(56)
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width('90%').backgroundColor('rgba(241, 243, 245, 0.95)')
-    }.width('100%').height(200).margin({ top: 5 })
+      .width(360)
+      .height(190)
+      .backgroundColor('#F1F3F5')
+      .margin({ top: 38 })
+    }.width('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001186585726](figures/zh-cn_image_0000001186585726.gif)
+![tabContent](figures/tabContent1.gif)
+
+示例2：
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabContentExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  private controller: TabsController = new TabsController()
+
+  @Builder TabBuilder(index: number) {
+    Column() {
+      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+        .width(24)
+        .height(24)
+        .margin({ bottom: 4 })
+        .objectFit(ImageFit.Contain)
+      Text('Tab')
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(10)
+        .fontWeight(500)
+        .lineHeight(14)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+        TabContent()
+          .tabBar(this.TabBuilder(0))
+        TabContent()
+          .tabBar(this.TabBuilder(1))
+        TabContent()
+          .tabBar(this.TabBuilder(2))
+        TabContent()
+          .tabBar(this.TabBuilder(3))
+      }
+      .vertical(true)
+      .barWidth(96)
+      .barHeight(414)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(96)
+      .height(414)
+      .backgroundColor('#F1F3F5')
+      .margin({ top: 52 })
+    }.width('100%')
+  }
+}
+```
+
+![tabContent](figures/tabContent2.gif)
+
+示例3：
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column({ space: 5 }) {
+      Text("子页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new SubTabBarStyle('Pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new SubTabBarStyle('Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new SubTabBarStyle('Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new SubTabBarStyle('Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text("底部页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text("侧边页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(true).scrollable(true).barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(400)
+    }
+  }
+}
+```
+
+![tabbarStyle](figures/TabBarStyle.jpeg)

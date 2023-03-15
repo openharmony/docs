@@ -14,13 +14,15 @@
 
 ## 接口
 
-Column(value?:{space?: string&nbsp;|&nbsp;number })
+Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
-**参数:**
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素间距。 |
+| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0 |
 
 ## 属性
 
@@ -28,10 +30,8 @@ Column(value?:{space?: string&nbsp;|&nbsp;number })
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：HorizontalAlign.Center |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start |
-
-
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：HorizontalAlign.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 
@@ -42,38 +42,47 @@ Column(value?:{space?: string&nbsp;|&nbsp;number })
 struct ColumnExample {
   build() {
     Column() {
-        Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Column({ space: 5 }) {
-          Column().width('100%').height(30).backgroundColor(0xAFEEEE)
-          Column().width('100%').height(30).backgroundColor(0x00FFFF)
-        }.width('90%').height(100).border({ width: 1 })
+      // 设置子元素垂直方向间距为5
+      Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Column({ space: 5 }) {
+        Column().width('100%').height(30).backgroundColor(0xAFEEEE)
+        Column().width('100%').height(30).backgroundColor(0x00FFFF)
+      }.width('90%').height(100).border({ width: 1 })
 
-        Text('alignItems(Start)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Column() {
-          Column().width('50%').height(30).backgroundColor(0xAFEEEE)
-          Column().width('50%').height(30).backgroundColor(0x00FFFF)
-        }.alignItems(HorizontalAlign.Start).width('90%').border({ width: 1 })
+      // 设置子元素水平方向对齐方式
+      Text('alignItems(Start)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Column() {
+        Column().width('50%').height(30).backgroundColor(0xAFEEEE)
+        Column().width('50%').height(30).backgroundColor(0x00FFFF)
+      }.alignItems(HorizontalAlign.Start).width('90%').border({ width: 1 })
 
-        Text('alignItems(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Column() {
-          Column().width('50%').height(30).backgroundColor(0xAFEEEE)
-          Column().width('50%').height(30).backgroundColor(0x00FFFF)
-        }.alignItems(HorizontalAlign.End).width('90%').border({ width: 1 })
+      Text('alignItems(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Column() {
+        Column().width('50%').height(30).backgroundColor(0xAFEEEE)
+        Column().width('50%').height(30).backgroundColor(0x00FFFF)
+      }.alignItems(HorizontalAlign.End).width('90%').border({ width: 1 })
 
-        Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Column() {
-          Column().width('30%').height(30).backgroundColor(0xAFEEEE)
-          Column().width('30%').height(30).backgroundColor(0x00FFFF)
-        }.height('15%').border({ width: 1 }).justifyContent(FlexAlign.Center)
+      Text('alignItems(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Column() {
+        Column().width('50%').height(30).backgroundColor(0xAFEEEE)
+        Column().width('50%').height(30).backgroundColor(0x00FFFF)
+      }.alignItems(HorizontalAlign.Center).width('90%').border({ width: 1 })
+      
+      // 设置子元素垂直方向的对齐方式
+      Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Column() {
+        Column().width('90%').height(30).backgroundColor(0xAFEEEE)
+        Column().width('90%').height(30).backgroundColor(0x00FFFF)
+      }.height(100).border({ width: 1 }).justifyContent(FlexAlign.Center)
 
-        Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Column() {
-          Column().width('30%').height(30).backgroundColor(0xAFEEEE)
-          Column().width('30%').height(30).backgroundColor(0x00FFFF)
-        }.height('15%').border({ width: 1 }).justifyContent(FlexAlign.End)
+      Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Column() {
+        Column().width('90%').height(30).backgroundColor(0xAFEEEE)
+        Column().width('90%').height(30).backgroundColor(0x00FFFF)
+      }.height(100).border({ width: 1 }).justifyContent(FlexAlign.End)
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![zh-cn_image_0000001219982721](figures/Column.png)
+![column](figures/column.png)

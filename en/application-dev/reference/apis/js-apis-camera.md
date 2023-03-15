@@ -1,8 +1,9 @@
-# Camera Management
+# @ohos.multimedia.camera (Camera Management)
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -12,57 +13,28 @@ import camera from '@ohos.multimedia.camera';
 
 ## camera.getCameraManager
 
-getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): void
+getCameraManager(context: Context): CameraManager
 
-Obtains a **CameraManager** instance. This API uses an asynchronous callback to return the result.
+Obtains a **CameraManager** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                                           | Mandatory| Description                          |
+| Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | Context                                         | Yes  | Application context.                  |
-| callback | AsyncCallback<[CameraManager](#cameramanager)\> | Yes  | Callback used to return the **CameraManager** instance.|
-
-**Example**
-
-```js
-camera.getCameraManager(context, (err, cameraManager) => {
-    if (err) {
-        console.error(`Failed to get the CameraManager instance ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the CameraManager instance');
-});
-```
-
-## camera.getCameraManager
-
-getCameraManager(context: Context): Promise<CameraManager\>
-
-Obtains a **CameraManager** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name   | Type   | Mandatory| Description        |
-| ------- | ------- | ---- | ------------ |
-| context | Context | Yes  | Application context.|
+| context  | [Context](js-apis-inner-app-context.md)      | Yes  | Application context.                  |
 
 **Return value**
 
-| Type                                     | Description                                 |
-| ----------------------------------------- | ----------------------------------- |
-| Promise<[CameraManager](#cameramanager)\> | Promise used to return the **CameraManager** instance.|
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| [CameraManager](#cameramanager)           | **CameraManager** instance obtained.                  |
 
 **Example**
 
 ```js
-camera.getCameraManager(context).then((cameraManager) => {
-    console.log('Promise returned with the CameraManager instance.');
-})
+let cameraManager = camera.getCameraManager(context);
 ```
 
 ## CameraStatus
@@ -71,12 +43,12 @@ Enumerates the camera statuses.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                     | Value  | Description        |
-| ------------------------- | ---- | ------------ |
+| Name                      | Value  | Description           |
+| ------------------------- | ---- | ------------    |
 | CAMERA_STATUS_APPEAR      | 0    | A camera appears.  |
-| CAMERA_STATUS_DISAPPEAR   | 1    | The camera disappears.|
-| CAMERA_STATUS_AVAILABLE   | 2    | The camera is available.  |
-| CAMERA_STATUS_UNAVAILABLE | 3    | The camera is unavailable.|
+| CAMERA_STATUS_DISAPPEAR   | 1    | The camera disappears.    |
+| CAMERA_STATUS_AVAILABLE   | 2    | The camera is available.      |
+| CAMERA_STATUS_UNAVAILABLE | 3    | The camera is unavailable.    |
 
 ## Profile
 
@@ -84,21 +56,21 @@ Defines the camera profile.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type                          | Read only| Description        |
+| Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | Yes | Output format.     |
 | size     | [Size](#size)                 | Yes | Resolution.      |
 
 ## FrameRateRange
 
- Defines the frame rate range.
+Defines the frame rate range.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                      | Type   | Read only| Description                |
-| ------------------------- | ------ | ---- | ------------------- |
-| min                       | number | Yes  | Minimum rate, in fps.     |
-| max                       | number | Yes  | Maximum rate, in fps.     |
+| Name     | Type                          | Mandatory| Description        |
+| -------- | ----------------------------- |---- | ------------- |
+| min      | number                        | Yes | Minimum frame rate.     |
+| max      | number                        | Yes | Maximum frame rate.     |
 
 ## VideoProfile
 
@@ -106,9 +78,9 @@ Defines the video profile.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                      | Type                                     | Read only| Description       |
-| ------------------------- | ----------------------------------------- | --- |------------ |
-| frameRateRanges           | [FrameRateRange](#frameraterange)          | Yes | Frame rate range.      |
+| Name                      | Type                                     | Mandatory| Description       |
+| ------------------------- | ----------------------------------------- | --- |----------- |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | Yes | Frame rate range.  |
 
 ## CameraOutputCapability
 
@@ -116,12 +88,30 @@ Defines the camera output capability.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                          | Type                                              | Read only| Description               |
+| Name                          | Type                                              | Mandatory| Description               |
 | ----------------------------- | -------------------------------------------------- | --- |------------------- |
 | previewProfiles               | Array<[Profile](#profile)\>                        | Yes | Supported preview profiles.   |
 | photoProfiles                 | Array<[Profile](#profile)\>                        | Yes | Supported shooting profiles.   |
 | videoProfiles                 | Array<[VideoProfile](#videoprofile)\>              | Yes | Supported video recording profiles.   |
 | supportedMetadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Supported metadata object types.|
+
+## CameraErrorCode
+
+Enumerates the camera error codes, which are returned when an API call is incorrect or the **on()** API is used to listen for the error status.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value  | Description           |
+| ------------------------- | ---- | ------------    |
+| INVALID_ARGUMENT       | 7400101    | A parameter is missing or the parameter type is incorrect.  |
+| OPERATION_NOT_ALLOWED    | 7400102    | The operation is not allowed.    |
+| SESSION_NOT_CONFIG    | 7400103    | The session is not configured.      |
+| SESSION_NOT_RUNNING  | 7400104    | The session is not running.   |
+| SESSION_CONFIG_LOCKED  | 7400105    | The session configuration is locked.    |
+| DEVICE_SETTING_LOCKED  | 7400106    | The device setting is locked.    |
+| CONFILICT_CAMERA  | 7400107    | The device is already started.    |
+| DEVICE_DISABLED  | 7400108    | The camera is disabled for security reasons.    |
+| SERVICE_FATAL_ERROR  | 7400201    | An error occurs in the camera service.    |
 
 ## CameraManager
 
@@ -129,85 +119,104 @@ Implements camera management. Before calling any API in **CameraManager**, you m
 
 ### getSupportedCameras
 
-getSupportedCameras(callback: AsyncCallback<Array<CameraDevice\>\>): void
+getSupportedCameras(): Array<CameraDevice\>
 
-Obtains supported cameras. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                                                  | Mandatory| Description                            |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback<Array<[CameraDevice](#cameradevice)\>\> | Yes  | Callback used to return the array of supported cameras.|
-
-**Example**
-
-```js
-cameraManager.getSupportedCameras((err, cameras) => {
-    if (err) {
-        console.error(`Failed to get the cameras. ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with an array of supported cameras: ${cameras.length}`);
-})
-```
-
-### getSupportedCameras
-
-getSupportedCameras(): Promise<Array<CameraDevice\>\>
-
-Obtains supported cameras. This API uses a promise to return the result.
+Obtains supported cameras. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type                                            | Description                      |
-| ----------------------------------------------- | ------------------------- |
-| Promise<Array<[CameraDevice](#cameradevice)\>\> | Promise used to return the array of supported cameras.|
-
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Array<[CameraDevice](#cameradevice)>            | An array of supported cameras.                  |
 
 **Example**
 
 ```js
-cameraManager.getSupportedCameras().then((cameraArray) => {
-    console.log(`Promise returned with an array of supported cameras: ${cameraArray.length}`);
-})
+let cameras = cameraManager.getSupportedCameras();
+
 ```
 
 ### getSupportedOutputCapability
 
-getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<CameraOutputCapability\>): void
+getSupportedOutputCapability(cameraDevice:CameraDevice): CameraOutputCapability
 
-Obtains the output capability supported by a camera. This API uses an asynchronous callback to return the result.
+Obtains the output capability supported by a camera. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                                                             | Mandatory| Description                     |
-| -------- | ---------------------------------------------------------------- | -- | -------------------------- |
-| camera   | [CameraDevice](#cameradevice)                                    | Yes| **CameraDevice** object.         |
-| callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | Yes| Callback used to return the output capability.|
+| Name        | Type                                                           | Mandatory| Description                     |
+| ------------ |--------------------------------------------------------------- | -- | -------------------------- |
+| cameraDevice | [CameraDevice](#cameradevice)                              | Yes| Target camera, which is obtained through **getSupportedCameras**.      |
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| [CameraOutputCapability](#cameraoutputcapability)            | Camera output capability obtained.                  |
 
 **Example**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameraDevice, (err, cameras) => {
-    if (err) {
-        console.error(`Failed to get the cameras. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with an array of supported outputCapability');
-})
+let cameraDevice = cameras[0];
+let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
+
 ```
 
-### getSupportedOutputCapability
+### isCameraMuted
 
-getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapability\>
+isCameraMuted(): boolean
 
-Obtains the output capability supported by a camera. This API uses a promise to return the result.
+Checks whether the camera is muted.
+
+Before calling the API, ensure that the camera can be muted. You can use [isCameraMuteSupported](#iscameramutesupported) to check whether the camera can be muted.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                                        |
+| ---------- | -------------------------------------------- |
+| boolean    | Returns **true** if the camera is muted; returns **false** otherwise.|
+
+**Example**
+
+```js
+let ismuted = cameraManager.isCameraMuted();
+```
+
+### isCameraMuteSupported
+
+isCameraMuteSupported(): boolean
+
+Checks whether the camera can be muted.
+
+This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean    | Returns **true** if the camera can be muted; returns **false** otherwise.|
+
+**Example**
+
+```js
+let ismutesuppotred = cameraManager.isCameraMuteSupported();
+```
+
+### muteCamera
+
+muteCamera(mute: boolean): void
+
+Mutes or unmutes the camera.
+
+This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -215,249 +224,20 @@ Obtains the output capability supported by a camera. This API uses a promise to 
 
 | Name     | Type                             | Mandatory | Description       |
 | -------- | --------------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameradevice)     |  Yes | **CameraDevice** object.|
-
-**Return value**
-
-| Type                                                           | Description                         |
-| -------------------------------------------------------------- | ----------------------------- |
-| Promise<[CameraOutputCapability](#cameraoutputcapability)\>    | Promise used to return the output capability.|
-
+| mute     | boolean                           |  Yes |  Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite. |
 
 **Example**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
-    console.log('Promise returned with an array of supported outputCapability');
-})
-```
-
-### getSupportedMetadataObjectType
-
-getSupportedMetadataObjectType(callback: AsyncCallback<Array<MetadataObjectType\>\>): void
-
-Obtains the metadata object types supported by this camera. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                                             | Mandatory| Description                     |
-| -------- | ---------------------------------------------------------------- | -- | -------------------------- |
-| callback | AsyncCallback<Array<[MetadataObjectType](#metadataobject)\>\> | Yes| Callback used to return the metadata object types.|
-
-**Example**
-
-```js
-cameraManager.getSupportedMetadataObjectType((err, metadataobject) => {
-    if (err) {
-        console.error(`Failed to get the supported metadataObjectType. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with an array of supported metadataObjectType.' );
-})
-```
-
-### getSupportedMetadataObjectType
-
-getSupportedMetadataObjectType(camera:CameraDevice): Promise<CameraOutputCapability\>
-
-Obtains the metadata object types supported by this camera. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type                                                           | Description                         |
-| -------------------------------------------------------------- | ----------------------------- |
-| Promise<Array<[MetadataObjectType](#metadataobject)\>\>    | Promise used to return the metadata object types.|
-
-
-**Example**
-
-```js
-cameraManager.getSupportedMetadataObjectType().then((metadataobject) => {
-    console.log('Promise returned with an array of supported metadataObjectType.' );
-})
-```
-
-### isCameraMuted
-
-isCameraMuted(callback: AsyncCallback<boolean\>): void
-
-Checks whether this camera is muted. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                                     | Mandatory| Description                                 |
-| -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<boolean\>                  | Yes  | Callback used to return the result. The value **true** means that the camera is muted, and **false** means the opposite.|
-
-**Example**
-
-```js
-cameraManager.isCameraMuted((err, status) => {
-    if (err) {
-        console.error(`Failed to get the cameraMuted status. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with cameraMuted status');
-})
-```
-
-### isCameraMuted
-
-isCameraMuted(): Promise<boolean\>
-
-Checks whether this camera is muted. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type                                 | Description                                         |
-| ------------------------------------ | --------------------------------------------- |
-| Promise<boolean\>                    | Promise used to return the result. The value **true** means that the camera is muted, and **false** means the opposite. |
-
-
-**Example**
-
-```js
-cameraManager.isCameraMuted().then((status) => {
-    console.log('Promise returned with the status whether camera is muted.');
-})
-```
-
-### isCameraMuteSupported
-
-isCameraMuteSupported(callback: AsyncCallback<boolean\>): void
-
-Checks whether this camera can be muted. This API uses an asynchronous callback to return the result.
-
-This is a system API.
-
-**Required permissions**: ohos.permission.CAMERA
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory| Description                                |
-| -------- | --------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<boolean\>                 |  Yes |  Callback used to return the result. The value **true** means that the camera can be muted, and **false** means the opposite. |
-
-**Example**
-
-```js
-cameraManager.isCameraMuteSupported((err, status) => {
-    if (err) {
-        console.error(`Failed to get the cameraMuteSupported. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the status whether cameraMuteSupported.');
-})
-```
-
-### isCameraMuteSupported
-
-isCameraMuteSupported(): Promise<boolean\>
-
-Checks whether this camera can be muted. This API uses a promise to return the result.
-
-This is a system API.
-
-**Required permissions**: ohos.permission.CAMERA
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type                  | Description                         |
-| --------------------- | ----------------------------- |
-| Promise<boolean\>     | Promise used to return the result. The value **true** means that the camera can be muted, and **false** means the opposite.|
-
-
-**Example**
-
-```js
-cameraManager.isCameraMuteSupported().then((status) => {
-    console.log('Promise returned with the status whether cameraMuteSupported.');
-})
-```
-
-### muteCamera
-
-muteCamera(mute:boolean, callback: AsyncCallback<void\>): void
-
-Mutes this camera. This API uses an asynchronous callback to return the result.
-
-This is a system API.
-
-**Required permissions**: ohos.permission.CAMERA
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory  | Description                                |
-| -------- | ----------------------------------------- | ---- | ------------------------------------ |
-| mute     | boolean                                   |  Yes | Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite.                   |
-| callback | AsyncCallback<void\>                      |  Yes | Callback used to return the result.|
-
-**Example**
-
-```js
-cameraManager.muteCamera(isMuted, (err) => {
-    if (err) {
-        console.error(`Failed to mute the camera. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the muteCamera.');
-})
-```
-
-### muteCamera
-
-muteCamera(mute:boolean): Promise<void\>
-
-Mutes this camera. This API uses a promise to return the result.
-
-This is a system API.
-
-**Required permissions**: ohos.permission.CAMERA
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory| Description           |
-| -------- | ----------------------------------------- | ---- | ------------ |
-| mute     | boolean                                   |  Yes | Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite. |
-
-**Return value**
-
-| Type                               | Description                         |
-| ----------------------------------- | ----------------------------- |
-| Promise<void\>                     | Promise used to return the result.|
-
-
-**Example**
-
-```js 
-cameraManager.muteCamera(isMuted).then(() => {
-    console.log('Promise returned muteCamera.');
-})
+let mute = true;
+cameraManager.muteCamera(mute);
 ```
 
 ### createCameraInput
 
-createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): void
+createCameraInput(camera: CameraDevice): CameraInput
 
-Creates a **CameraInput** instance with the specified **CameraDevice** object. This API uses an asynchronous callback to return the result.
-
-This is a system API.
+Creates a **CameraInput** instance with the specified **CameraDevice** object. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.CAMERA
 
@@ -467,60 +247,32 @@ This is a system API.
 
 | Name    | Type                                        | Mandatory| Description                               |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| camera   | [CameraDevice](#cameradevice)               | Yes  | **CameraDevice** object.                       |
-| callback | AsyncCallback<[CameraInput](#camerainput)\> | Yes  | Callback used to return the **CameraInput** instance.   |
-
-**Example**
-
-```js
-cameraManager.createCameraInput(camera, (err, cameraInput) => {
-    if (err) {
-        console.error(`Failed to create the CameraInput instance. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the CameraInput instance.');
-})
-```
-
-### createCameraInput
-
-createCameraInput(camera: CameraDevice): Promise<CameraInput\>
-
-Creates a **CameraInput** instance with the specified **CameraDevice** object. This API uses a promise to return the result.
-
-This is a system API.
-
-**Required permissions**: ohos.permission.CAMERA
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                          | Mandatory| Description        |
-| -------- | ----------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameradevice) | Yes  | **CameraDevice** object.|
+| cameraDevice   | [CameraDevice](#cameradevice)         | Yes  | Target **CameraDevice** object, which is obtained through **getSupportedCameras**.  |
 
 **Return value**
 
-| Type                                 | Description                                  |
-| ------------------------------------- | ------------------------------------ |
-| Promise<[CameraInput](#camerainput)\> | Promise used to return the **CameraInput** instance.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraInput](#camerainput)    | **CameraInput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraManager.createCameraInput(camera).then((cameraInput) => {
-    console.log('Promise returned with the CameraInput instance');
-})
+let cameraDevice = cameras[0];
+let cameraInput;
+try {
+	cameraInput = cameraManager.createCameraInput(cameraDevice);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### createCameraInput
 
-createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCallback<CameraInput\>): void
+createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
-Creates a **CameraInput** instance with the specified camera position and type. This API uses an asynchronous callback to return the result.
-
-This is a system API.
+Creates a **CameraInput** instance with the specified camera position and type. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.CAMERA
 
@@ -530,60 +282,35 @@ This is a system API.
 
 | Name    | Type                                       | Mandatory| Description                               |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| position | [CameraPosition](#cameraposition)           | Yes  | Camera position.                         |
-| type     | [CameraType](#cameratype)                   | Yes  | Camera type.                         |
-| callback | AsyncCallback<[CameraInput](#camerainput)\> | Yes  | Callback used to return the **CameraInput** instance.   |
-
-**Example**
-
-```js
-cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED, (err, cameraInput) => {
-    if (err) {
-        console.error(`Failed to create the CameraInput instance. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the CameraInput instance');
-})
-```
-
-### createCameraInput
-
-createCameraInput(position: CameraPosition, type:CameraType ): Promise<CameraInput\>
-
-Creates a **CameraInput** instance with the specified camera position and type. This API uses a promise to return the result.
-
-This is a system API.
-
-**Required permissions**: ohos.permission.CAMERA
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                              | Mandatory| Description          |
-| -------- | --------------------------------- | ---- | ------------ |
-| position | [CameraPosition](#cameraposition) | Yes  | Camera position.    |
-| type     | [CameraType](#cameratype)         | Yes  | Camera type.    |
+| position | [CameraPosition](#cameraposition)           | Yes  | Camera position, which is obtained through **getSupportedCameras**. This API obtains a **CameraDevice** object, which contains the camera position information. |
+| type     | [CameraType](#cameratype)                   | Yes  | Camera type, which is obtained through **getSupportedCameras**. This API obtains a **CameraDevice** object, which contains the camera type information. |
 
 **Return value**
 
-| Type                                 | Description                                  |
-| ------------------------------------- | ------------------------------------ |
-| Promise<[CameraInput](#camerainput)\> | Promise used to return the **CameraInput** instance.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraInput](#camerainput)    | **CameraInput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED).then((cameraInput) => {
-    console.log('Promise returned with the CameraInput instance');
-})
+let cameraDevice = cameras[0];
+let position = cameraDevice.cameraPosition;
+let type = cameraDevice.cameraType;
+let cameraInput;
+try {
+    cameraInput = cameraManager.createCameraInput(position, type);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### createPreviewOutput
 
-createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PreviewOutput\>): void
+createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 
-Creates a **PreviewOutput** instance. This API uses an asynchronous callback to return the result.
+Creates a **PreviewOutput** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -591,111 +318,33 @@ Creates a **PreviewOutput** instance. This API uses an asynchronous callback to 
 
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](#profile)                             | Yes  | Supported preview profile.               |
-| surfaceId| string | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)** or **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
-| callback | AsyncCallback<[PreviewOutput](#previewoutput)\>  | Yes  | Callback used to return the **PreviewOutput** instance.|
-
-**Example**
-
-```js
-cameraManager.createPreviewOutput(profile, surfaceId, (err, previewoutput) => {
-    if (err) {
-        console.error(`Failed to gcreate previewOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with previewOutput created.');
-})
-```
-
-### createPreviewOutput
-
-createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\>
-
-Creates a **PreviewOutput** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                             | Mandatory| Description               |
-| -------- | ---------------------------------| ---- | ----------------- |
-| profile  | [Profile](#profile)              | Yes  | Supported preview profile. |
-| surfaceId| string | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)** or **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
+| profile  | [Profile](#profile)                             | Yes  | Supported preview profiles, which are obtained through **getSupportedOutputCapability**.|
+| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](js-apis-image.md#imagereceiver9).|
 
 **Return value**
 
-| Type                                     | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise<[PreviewOutput](#previewoutput)\> | Promise used to return the **PreviewOutput** instance. |
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [PreviewOutput](#previewoutput)    | **PreviewOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraManager.createPreviewOutput(profile, survaceId).then((previewoutput) => {
-    console.log('Promise returned with previewOutput created.');
-})
-```
-
-### createDeferredPreviewOutput
-
-createDeferredPreviewOutput(profile: Profile, callback: AsyncCallback<PreviewOutput\>): void
-
-Creates a **PreviewOutput** instance without a surface ID. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                            | Mandatory| Description                               |
-| -------- | ----------------------------------------------- | ---- | --------------------------------- |
-| profile  | [Profile](#profile)                             | Yes  | Supported preview profile.                 |
-| callback | AsyncCallback<[PreviewOutput](#previewoutput)\> | Yes  | Callback used to return the **PreviewOutput** instance. |
-
-**Example**
-
-```js
-cameraManager.createDeferredPreviewOutput(profile, (err, previewoutput) => {
-    if (err) {
-        console.error(`Failed to create deferredPreviewOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with deferredPreviewOutput created.');
-})
-```
-
-### createDeferredPreviewOutput
-
-createDeferredPreviewOutput(profile: Profile): Promise<PreviewOutput\>
-
-Creates a **PreviewOutput** instance without a surface ID. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                             | Mandatory | Description       |
-| -------- | ---------------------------------| ---- | ---------- |
-| profile  | [Profile](#profile)              | Yes  | Supported preview profile. |
-
-**Return value**
-
-| Type                                      | Description                                    |
-| ----------------------------------------- | --------------------------------------- |
-| Promise<[PreviewOutput](#previewoutput)\>  | Promise used to return the **PreviewOutput** instance.|
-
-**Example**
-
-```js
-cameraManager.createDeferredPreviewOutput(profile).then((previewoutput) => {
-    console.log('Promise returned with DefeerredPreviewOutput created.');
-})
+let profile = cameraOutputCapability.previewProfiles[0];
+let previewOutput;
+try {
+    previewOutput = cameraManager.createPreviewOutput(profile, surfaceId);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### createPhotoOutput
 
-createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PhotoOutput\>): void
+createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 
-Creates a **PhotoOutput** instance. This API uses an asynchronous callback to return the result.
+Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -703,56 +352,33 @@ Creates a **PhotoOutput** instance. This API uses an asynchronous callback to re
 
 | Name    | Type                                        | Mandatory| Description                                 |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | Yes  | Supported shooting profile.                   |
-| surfaceId| string            | Yes  | Surface ID, which is obtained from **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
-| callback | AsyncCallback<[PhotoOutput](#photooutput)\>  | Yes  | Callback used to return the **PhotoOutput** instance.   |
-
-**Example**
-
-```js
-cameraManager.createPhotoOutput(profile, surfaceId, (err, photooutput) => {
-    if (err) {
-        console.error(`Failed to create photoOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with photoOutput created.');
-})
-```
-
-### createPhotoOutput
-
-createPhotoOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\>
-
-Creates a **PhotoOutput** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                              | Mandatory| Description        |
-| -------- | ---------------------------------| ---- | ----------- |
-| profile  | [Profile](#profile)              | Yes  | Supported shooting profile. |
-| surfaceId| string       | Yes  | Surface ID, which is obtained from **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
+| profile  | [Profile](#profile)                         | Yes  | Supported shooting profiles, which are obtained through **getSupportedOutputCapability**.|
+| surfaceId| string            | Yes  | Surface ID, which is obtained from [ImageReceiver](js-apis-image.md#imagereceiver9).|
 
 **Return value**
 
-| Type                                 | Description                                    |
-| ------------------------------------- | -------------------------------------- |
-| Promise<[PhotoOutput](#photooutput)\>  | Promise used to return the **PhotoOutput** instance. |
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [PhotoOutput](#photooutput)   | **PhotoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraManager.createPhotoOutput(profile, surfaceId).then((photooutput) => {
-    console.log('Promise returned with photoOutput created.');
-})
+let profile = cameraOutputCapability.photoProfiles[0];
+let photoOutput;
+try {
+    photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### createVideoOutput
 
-createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallback<VideoOutput\>): void
+createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 
-Creates a **VideoOutput** instance. This API uses an asynchronous callback to return the result.
+Creates a **VideoOutput** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -760,56 +386,33 @@ Creates a **VideoOutput** instance. This API uses an asynchronous callback to re
 
 | Name    | Type                                       | Mandatory| Description                             |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| profile  | [VideoProfile](#videoprofile)               | Yes  | Supported video recording profile.              |
-| surfaceId| string          | Yes  | Surface ID, which is obtained from **[VideoRecorder](js-apis-media.md#videorecorder9)**.|
-| callback | AsyncCallback<[VideoOutput](#videooutput)\>  | Yes  | Callback used to return the **VideoOutput** instance.|
-
-**Example**
-
-```js
-cameraManager.createVideoOutput(profile, surfaceId, (err, videooutput) => {
-    if (err) {
-        console.error(`Failed to create videoOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with an array of supported outputCapability' );
-})
-```
-
-### createVideoOutput
-
-createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput\>
-
-Creates a **VideoOutput** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                             | Mandatory| Description        |
-| -------- | ---------------------------------| ---- | ---------- |
-| profile  | [VideoProfile](#videoprofile)    | Yes  | Supported video recording profile.  |
-| surfaceId| string        | Yes  | Surface ID, which is obtained from **[VideoRecorder](js-apis-media.md#videorecorder9)**.|
+| profile  | [VideoProfile](#videoprofile)               | Yes  | Supported video recording profiles, which are obtained through **getSupportedOutputCapability**.|
+| surfaceId| string          | Yes  | Surface ID, which is obtained from [VideoRecorder](js-apis-media.md#videorecorder9).|
 
 **Return value**
 
-| Type                                 | Description                                    |
-| ------------------------------------- | -------------------------------------- |
-| Promise<[VideoOutput](#videooutput)\>  | Promise used to return the **VideoOutput** instance. |
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [VideoOutput](#videooutput)   | **VideoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraManager.createVideoOutput(profile, surfaceId).then((videooutput) => {
-    console.log('Promise returned with videoOutput created.');
-})
+let profile = cameraOutputCapability.videoProfiles[0];
+let videoOutput;
+try {
+    videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### createMetadataOutput
 
-createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>, callback: AsyncCallback<MetadataOutput\>): void
+createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOutput
 
-Creates a **MetadataOutput** instance. This API uses an asynchronous callback to return the result.
+Creates a **MetadataOutput** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -817,95 +420,51 @@ Creates a **MetadataOutput** instance. This API uses an asynchronous callback to
 
 | Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes  | Supported metadata object types.             |
-| callback             | AsyncCallback<[MetadataOutput](#metadataoutput)\>  | Yes  | Callback used to return the **MetadataOutput** instance.   |
-
-**Example**
-
-```js
-cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) => {
-    if (err) {
-        console.error(`Failed to create metadataOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with metadataOutput created.');
-})
-```
-
-### createMetadataOutput
-
-createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>): Promise<MetadataOutput>
-
-Creates a **MetadataOutput** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name                 | Type                                              | Mandatory| Description           |
-| -------------------- | -------------------------------------------------- | --- | -------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Supported metadata object types.|
+| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
 
 **Return value**
 
-| Type                                       | Description                                      |
-| ------------------------------------------ | ----------------------------------------- |
-| Promise<[MetadataOutput](#metadataoutput)\> |  Promise used to return the **MetadataOutput** instance.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [MetadataOutput](#metadataoutput)   | **MetadataOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraManager.createMetadataOutput(metadataObjectTypes).then((metadataoutput) => {
-    console.log('Promise returned with metadataOutput created.');
-})
+let metadataObjectTypes = cameraOutputCapability.supportedMetadataObjectTypes;
+let metadataOutput;
+try {
+    metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### createCaptureSession
 
-createCaptureSession(callback: AsyncCallback<CaptureSession\>): void
+createCaptureSession(): CaptureSession
 
-Creates a **CaptureSession** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name                 | Type                                     | Mandatory        | Description                         |
-| -------------------- | ----------------------------------------- | ----------- | ---------------------------- |
-| callback             | AsyncCallback<[CaptureSession](#capturesession)\>  | Yes  | Callback used to return the **CaptureSession** instance.|
-
-**Example**
-
-```js
-cameraManager.createCaptureSession((err, capturesession) => {
-    if (err) {
-        console.error(`Failed to create captureSession. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with captureSession created.');
-})
-```
-
-### createCaptureSession
-
-createCaptureSession(): Promise<CaptureSession\>
-
-Creates a **CaptureSession** instance. This API uses a promise to return the result.
+Creates a **CaptureSession** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type                                        | Description                                     |
-| ------------------------------------------- | ---------------------------------------- |
-| Promise<[CaptureSession](#capturesession)\>  | Promise used to return the **CaptureSession** instance.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CaptureSession](#capturesession)   | **CaptureSession** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraManager.createCaptureSession().then((capturesession) => {
-    console.log('Promise returned with captureSession created.');
-})
+let captureSession;
+try {
+    captureSession = cameraManager.createCaptureSession();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### on('cameraStatus')
@@ -918,25 +477,21 @@ Listens for camera status changes. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                                                   | Mandatory| Description      |
-| -------- | ----------------------------------------------------- | ---- | --------- |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'cameraStatus'**, indicating the camera status change event.|
-| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.                |
+| Name    | Type           | Mandatory| Description      |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the corresponding information is returned only when the device is enabled or disabled.|
+| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.|                 |
 
 **Example**
 
 ```js
-cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
-    if (err) {
-        console.error(`Failed to get cameraStatus callback. ${err.message}`);
-        return;
-    }
+cameraManager.on('cameraStatus', (cameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
 })
 ```
 
-### on('cameraMute') 
+### on('cameraMute')
 
 on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 
@@ -944,26 +499,20 @@ Listens for camera mute status changes. This API uses an asynchronous callback t
 
 This is a system API.
 
-**Required permissions**: ohos.permission.CAMERA
-
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory| Description                           |
-| -------- | --------------------------------------- | ---- | ------------------------------- |
-| type     | string                                  | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status change event.|
-| callback | AsyncCallback<boolean\>                 | Yes  | Callback used to return the camera mute status. |
+| Name    | Type            | Mandatory| Description      |
+| -------- | --------------- | ---- | --------- |
+| type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the status is returned when the camera is enabled or disabled.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the mute status. The value **true** means that the camera is enabled, and **false** means that the camera is disabled.              |
 
 **Example**
 
 ```js
-cameraManager.on('cameraMute', (err, status) => {
-    if (err) {
-        console.error(`Failed to get cameraMute callback. ${err.message}`);
-        return;
-    }
-    console.log(`status: ${status}`);
+cameraManager.on('cameraMute', (curMuetd) => {
+    let isMuted = curMuetd;
 })
 ```
 
@@ -973,10 +522,10 @@ Describes the camera status information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name  | Type                           | Description      |
-| ------ | ----------------------------- | ---------- |
-| camera | [CameraDevice](#cameradevice) | Camera object.|
-| status | [CameraStatus](#camerastatus) | Camera status.|
+| Name  | Type                           |     Mandatory    | Description      |
+| ------ | ----------------------------- | -------------- | ---------- |
+| camera | [CameraDevice](#cameradevice) |        Yes      | Camera object.|
+| status | [CameraStatus](#camerastatus) |        Yes       | Camera status.|
 
 ## CameraPosition
 
@@ -998,7 +547,7 @@ Enumerates the camera types.
 
 | Name                    | Value  | Description           |
 | ----------------------- | ---- | -------------- |
-| CAMERA_TYPE_UNSPECIFIED | 0    | Unspecified camera type. |
+| CAMERA_TYPE_DEFAULT     | 0    | Unspecified camera type. |
 | CAMERA_TYPE_WIDE_ANGLE  | 1    | Wide camera.      |
 | CAMERA_TYPE_ULTRA_WIDE  | 2    | Ultra wide camera.    |
 | CAMERA_TYPE_TELEPHOTO   | 3    | Telephoto camera.      |
@@ -1022,26 +571,12 @@ Defines the camera device information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Type                               | Read only| Description       |
+| Name          | Type                               | Mandatory| Description       |
 | -------------- | --------------------------------- | ---- | ---------- |
 | cameraId       | string                            | Yes  | **CameraDevice** object.|
 | cameraPosition | [CameraPosition](#cameraposition) | Yes  | Camera position.   |
 | cameraType     | [CameraType](#cameratype)         | Yes  | Camera type.   |
 | connectionType | [ConnectionType](#connectiontype) | Yes  | Camera connection type.|
-
-**Example**
-
-```js
-async function getCameraInfo("cameraId") {
-    let cameraManager = await camera.getCameraManager(context);
-    let cameras = await cameraManager.getSupportedCameras();
-    let cameraObj = cameras[0];
-    let cameraId = cameraObj.cameraId;
-    let cameraPosition = cameraObj.cameraPosition;
-    let cameraType = cameraObj.cameraType;
-    let connectionType = cameraObj.connectionType;
-}
-```
 
 ## Size
 
@@ -1071,8 +606,9 @@ Enumerates the camera output formats.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                    | Default Value    | Description        |
+| Name                    | Value       | Description        |
 | ----------------------- | --------- | ------------ |
+| CAMERA_FORMAT_RGBA_8888 | 3         | RGB image.            |
 | CAMERA_FORMAT_YUV_420_SP| 1003      | YUV 420 SP image.     |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG image.           |
 
@@ -1092,14 +628,14 @@ Opens this camera. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                 | Mandatory| Description                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 cameraInput.open((err) => {
     if (err) {
-        console.error(`Failed to open the camera. ${err.message}`);
+        console.error(`Failed to open the camera. ${err.code}`);
         return;
     }
     console.log('Callback returned with camera opened.');
@@ -1118,14 +654,16 @@ Opens this camera. This API uses a promise to return the result.
 
 | Type          | Description                     |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 cameraInput.open().then(() => {
     console.log('Promise returned with camera opened.');
-})
+}).catch((err) => {
+    console.error(`Failed to open the camera. ${err.code}`);
+});
 ```
 
 ### close
@@ -1140,14 +678,14 @@ Closes this camera. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 cameraInput.close((err) => {
     if (err) {
-        console.error(`Failed to close the cameras. ${err.message}`);
+        console.error(`Failed to close the cameras. ${err.code}`);
         return;
     }
     console.log('Callback returned with camera closed.');
@@ -1173,60 +711,14 @@ Closes this camera. This API uses a promise to return the result.
 ```js
 cameraInput.close().then(() => {
     console.log('Promise returned with camera closed.');
-})
-```
-
-### release
-
-release\(callback: AsyncCallback<void\>\): void
-
-Releases this camera. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                  | Mandatory| Description                |
-| -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-cameraInput.release((err) => {
-    if (err) {
-        console.error(`Failed to release the CameraInput instance ${err.message}`);
-        return;
-    }
-    console.log('Callback invoked to indicate that the CameraInput instance is released successfully.');
+}).catch((err) => {
+    console.error(`Failed to close the cameras. ${err.code}`);
 });
-```
-
-### release
-
-release(): Promise<void\>
-
-Releases this camera. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type          | Description                     |
-| -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
-
-**Example**
-
-```js
-cameraInput.release().then(() => {
-    console.log('Promise returned to indicate that the CameraInput instance is released successfully.');
-})
 ```
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
+on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<BusinessError\>): void
 
 Listens for **CameraInput** errors. This API uses a callback to return the result.
 
@@ -1234,44 +726,20 @@ Listens for **CameraInput** errors. This API uses a callback to return the resul
 
 **Parameters**
 
-| Name    | Type                            | Mandatory| Description                                         |
-| -------- | -------------------------------- | ---- | ------------------------------------------- |
-| type     | string                           | Yes  | Event type. The value is fixed at **'error'**, indicating the camera input error event.|
-| callback | ErrorCallback<[CameraInputError](#camerainputerror)\> | Yes  | Callback used to return the result.  |
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera. For example, if the device is unavailable or a conflict occurs, the error information is returned.|
+| cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | **CameraDevice** object.|
+| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
 
 **Example**
 
 ```js
-cameraInput.on('error', (cameraInputError) => {
-    console.log(`Camera input error code: ${cameraInputError.code}`);
+let cameraDevice = cameras[0];
+cameraInput.on('error', cameraDevice, (error) => {
+    console.log(`Camera input error code: ${error.code}`);
 })
 ```
-
-## CameraInputErrorCode
-
-Enumerates the error codes used for camera input.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                      | Value  | Description      |
-| ------------------------- | ---- | ---------- |
-| ERROR_UNKNOWN             | -1   | Unknown error.|
-| ERROR_NO_PERMISSION       | 0    | You do not have the required permission.|
-| ERROR_DEVICE_PREEMPTED    | 1    | The camera is preempted.|
-| ERROR_DEVICE_DISCONNECTED | 2    | The camera is disconnected.|
-| ERROR_DEVICE_IN_USE       | 3    | The camera is in use.|
-| ERROR_DRIVER_ERROR        | 4    | Driver error.   |
-
-## CameraInputError
-
-Defines an error object used for **[CameraInput](#camerainput)**.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name| Type                                          | Description                  |
-| ---- | --------------------------------------------- | --------------------- |
-| code | [CameraInputErrorCode](#camerainputerrorcode) | **CameraInput** error code.|
-
 
 ## FlashMode
 
@@ -1294,11 +762,11 @@ Enumerates the exposure modes.
 
 | Name                          | Value  | Description        |
 | ----------------------------- | ---- | ----------- |
-| EXPOSURE_MODE_LOCKED          | 0    | Exposure locked.|
-| EXPOSURE_MODE_AUTO            | 1    | Auto exposure.|
-| EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | Continuous auto exposure.|
+| EXPOSURE_MODE_LOCKED          | 0    | Exposure locked. The metering point cannot be set.|
+| EXPOSURE_MODE_AUTO            | 1    | Auto exposure. The metering point can be set by calling [setMeteringPoint](#setmeteringpoint).|
+| EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | Continuous auto exposure. The metering point cannot be set.|
 
-## FocusMode
+ ## FocusMode
 
 Enumerates the focus modes.
 
@@ -1306,10 +774,10 @@ Enumerates the focus modes.
 
 | Name                       | Value  | Description         |
 | -------------------------- | ---- | ------------ |
-| FOCUS_MODE_MANUAL          | 0    | Manual focus.    |
-| FOCUS_MODE_CONTINUOUS_AUTO | 1    | Continuous auto focus.|
-| FOCUS_MODE_AUTO            | 2    | Auto focus.    |
-| FOCUS_MODE_LOCKED          | 3    | Focus locked.    |
+| FOCUS_MODE_MANUAL          | 0    | Manual focus. The focal length of the camera can be manually set to change the focus position. However, the focal point cannot be set. |
+| FOCUS_MODE_CONTINUOUS_AUTO | 1    | Continuous auto focus. The focal point cannot be set.|
+| FOCUS_MODE_AUTO            | 2    | Auto focus. The focal point can be set by calling [setFocusPoint](#setfocuspoint), and auto focus is performed once based on the focal point. After the auto focus operation is complete (regardless of whether the focus is successful or fails), the focus mode is locked. To enable the camera to initiate another auto focus, the application must call **CONTINUOUS_AUTO** again.   |
+| FOCUS_MODE_LOCKED          | 3    | Focus locked. The focal point cannot be set.    |
 
 ## FocusState
 
@@ -1322,17 +790,6 @@ Enumerates the focus states.
 | FOCUS_STATE_SCAN      | 0    | Focusing. |
 | FOCUS_STATE_FOCUSED   | 1    | Focused. |
 | FOCUS_STATE_UNFOCUSED | 2    | Unfocused.|
-
-## ExposureState
-
-Enumerates the exposure states.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                      | Value  | Description      |
-| ------------------------- | ---- | -------- |
-| EXPOSURE_STATE_SCAN       | 0    | Exposing.  |
-| EXPOSURE_STATE_CONVERGED  | 1    | Exposure converged.|
 
 ## VideoStabilizationMode
 
@@ -1354,56 +811,32 @@ Implements a shooting session, which saves all **[CameraInput](#camerainput)** a
 
 ### beginConfig
 
-beginConfig\(callback: AsyncCallback<void\>\): void
+beginConfig(): void
 
-Starts configuration for this **CaptureSession** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                  | Mandatory| Description                |
-| -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-captureSession.beginConfig((err) => {
-    if (err) {
-        console.error(`Failed to start the configuration. ${err.message}`);
-        return;
-    }
-    console.log('Callback invoked to indicate the begin config success.');
-});
-```
-
-### beginConfig
-
-beginConfig\(\): Promise<void\>
-
-Starts configuration for this **CaptureSession** instance. This API uses a promise to return the result.
+Starts configuration for the session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type           | Description                    |
-| -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
-
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.beginConfig().then(() => {
-    console.log('Promise returned to indicate the begin config success.');
-})
+try {
+    captureSession.beginConfig();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### commitConfig
 
-commitConfig\(callback: AsyncCallback<void\>\): void
+commitConfig(callback: AsyncCallback<void\>): void
 
 Commits the configuration for this **CaptureSession** instance. This API uses an asynchronous callback to return the result.
 
@@ -1413,14 +846,14 @@ Commits the configuration for this **CaptureSession** instance. This API uses an
 
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 captureSession.commitConfig((err) => {
     if (err) {
-        console.error(`Failed to commit the configuration. ${err.message}`);
+        console.log('Failed to commitConfig '+ err.code);
         return;
     }
     console.log('Callback invoked to indicate the commit config success.');
@@ -1429,7 +862,7 @@ captureSession.commitConfig((err) => {
 
 ### commitConfig
 
-commitConfig\(\): Promise<void\>
+commitConfig(): Promise<void\>
 
 Commits the configuration for this **CaptureSession** instance. This API uses a promise to return the result.
 
@@ -1439,103 +872,24 @@ Commits the configuration for this **CaptureSession** instance. This API uses a 
 
 | Type           | Description                     |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 captureSession.commitConfig().then(() => {
     console.log('Promise returned to indicate the commit config success.');
-})
-```
-
-### canAddInput
-
-canAddInput(cameraInput: CameraInput, callback: AsyncCallback<boolean\>): void
-
-Checks whether a **[CameraInput](#camerainput)** instance can be added to this **CaptureSession**. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name       | Type                         | Mandatory| Description                     |
-| ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
-| callback    | AsyncCallback<boolean\>     | Yes  | Callback used to return the result.   |
-
-**Example**
-
-```js
-captureSession.canAddInput(cameraInput, (err, status) => {
-    if (err) {
-        console.error(`Can not add cameraInput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with cameraInput can added.');
-})
-```
-
-### canAddInput
-
-canAddInput(cameraInput: CameraInput): Promise<boolean\>
-
-Checks whether a **[CameraInput](#camerainput)** instance can be added to this **CaptureSession**. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name       | Type                         | Mandatory| Description                     |
-| ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
-
-**Return value**
-
-| Type          | Description                        |
-| -------------- | -------------------------- |
-| Promise<boolean\> | Promise used to return the result.|
-
-**Example**
-
-```js
-captureSession.canAddInput(cameraInput).then(() => {
-    console.log('Promise returned with cameraInput can added.');
-})
-```
-
-### addInput
-
-addInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
-
-Adds a **[CameraInput](#camerainput)** instance to this **CaptureSession**. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name       | Type                         | Mandatory| Description                    |
-| ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
-| callback    | AsyncCallback<void\>        | Yes  | Callback used to return the result.   |
-
-**Example**
-
-```js
-captureSession.addInput(cameraInput, (err) => {
-    if (err) {
-        console.error(`Failed to add the CameraInput instance. ${err.message}`);
-        return;
-    }
-    console.log('Callback invoked to indicate that the CameraInput instance is added.');
+}).catch((err) => {
+    // If the operation fails, error.code is returned and processed.
+    console.log('Failed to commitConfig '+ err.code);
 });
 ```
 
 ### addInput
 
-addInput\(cameraInput: CameraInput\): Promise<void\>
+addInput(cameraInput: CameraInput): void
 
-Adds a **[CameraInput](#camerainput)** instance to this **CaptureSession**. This API uses a promise to return the result.
+Adds a [CameraInput](#camerainput) instance to the session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1547,50 +901,26 @@ Adds a **[CameraInput](#camerainput)** instance to this **CaptureSession**. This
 
 **Return value**
 
-| Type          | Description                     |
-| -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.addInput(cameraInput).then(() => {
-    console.log('Promise used to indicate that the CameraInput instance is added.');
-})
+try {
+    captureSession.addInput(cameraInput);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### removeInput
 
-removeInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
+removeInput(cameraInput: CameraInput): void
 
-Removes a **[CameraInput](#camerainput)** instance from this **CaptureSession**. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name       | Type                         | Mandatory| Description                     |
-| ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to remove.|
-| callback    | AsyncCallback<void\>        | Yes  | Callback used to return the result.   |
-
-**Example**
-
-```js
-captureSession.removeInput(cameraInput, (err) => {
-    if (err) {
-        console.error(`Failed to remove the CameraInput instance. ${err.message}`);
-        return;
-    }
-    console.log('Callback invoked to indicate that the cameraInput instance is removed.');
-});
-```
-
-### removeInput
-
-removeInput\(cameraInput: CameraInput\): Promise<void\>
-
-Removes a **[CameraInput](#camerainput)** instance from this **CaptureSession**. This API uses a promise to return the result.
+Removes a [CameraInput](#camerainput) instance from the session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1602,80 +932,26 @@ Removes a **[CameraInput](#camerainput)** instance from this **CaptureSession**.
 
 **Return value**
 
-| Type           | Description                     |
-| -------------- | ------------------------- |
-| Promise\<void\> | Promise used to return the result.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.removeInput(cameraInput).then(() => {
-    console.log('Promise returned to indicate that the cameraInput instance is removed.');
-})
-```
-
-### canAddOutput
-
-canAddOutput(cameraOutput: CameraOutput, callback: AsyncCallback<boolean\>\): void
-
-Checks whether a **[CameraOutput](#cameraoutput)** instance can be added to this **CaptureSession**. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name          | Type                            | Mandatory| Description                     |
-| ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
-| callback      | AsyncCallback<boolean\>         | Yes  | Callback used to return the result.  |
-
-**Example**
-
-```js
-captureSession.canAddOutput(cameraOutput, (err, status) => {
-    if (err) {
-        console.error(`Can not add cameraOutput. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with cameraOutput can added.');
-})
-```
-
-### canAddOutput
-
-canAddOutput(cameraOutput: CameraOutput): Promise<boolean\>
-
-Checks whether a **[CameraOutput](#cameraoutput)** instance can be added to this **CaptureSession**. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name          | Type                            | Mandatory| Description                     |
-| ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
-
-
-**Return value**
-
-| Type           | Description                       |
-| -------------- | --------------------------- |
-| Promise<boolean\> | Promise used to return the result.|
-
-
-**Example**
-
-```js
-captureSession.canAddOutput(cameraOutput).then(() => {
-    console.log('Promise returned with cameraOutput can added.');
-})
+try {
+    captureSession.removeInput(cameraInput);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### addOutput
 
-addOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
+addOutput(previewOutput: CameraOutput): void
 
-Adds a **[CameraOutput](#cameraoutput)** instance to this **CaptureSession**. This API uses an asynchronous callback to return the result.
+Adds a [CameraOutput](#cameraoutput) instance to the session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1683,54 +959,30 @@ Adds a **[CameraOutput](#cameraoutput)** instance to this **CaptureSession**. Th
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
-| callback      | AsyncCallback<void\>            | Yes  | Callback used to return the result.     |
-
-**Example**
-
-```js
-captureSession.addOutput(cameraOutput, (err) => {
-    if (err) {
-        console.error(`Failed to add output. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with output added.');
-})
-```
-
-### addOutput
-
-addOutput\(cameraOutput: CameraOutput\): Promise<void\>
-
-Adds a **[CameraOutput](#cameraoutput)** instance to this **CaptureSession**. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name          | Type                            | Mandatory| Description                      |
-| ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
+| previewOutput  | [PreviewOutput](#previewoutput)   | Yes  | **PreviewOutput** instance to add.|
 
 **Return value**
 
-| Type           | Description                    |
-| -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.addOutput(cameraOutput).then(() => {
-    console.log('Promise returned with cameraOutput added.');
-})
+try {
+    captureSession.addOutput(previewOutput);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### removeOutput
 
-removeOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
+removeOutput(previewOutput: CameraOutput): void
 
-Removes a **[CameraOutput](#cameraoutput)** instance from this **CaptureSession**. This API uses an asynchronous callback to return the result.
+Removes a [CameraOutput](#cameraoutput) instance from the session.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1738,49 +990,23 @@ Removes a **[CameraOutput](#cameraoutput)** instance from this **CaptureSession*
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to remove.|
-| callback      | AsyncCallback<void\>            | Yes  | Callback used to return the result.     |
-
-**Example**
-
-```js
-captureSession.removeOutput(cameraOutput, (err) => {
-    if (err) {
-        console.error(`Failed to remove the CameraOutput instance. ${err.message}`);
-        return;
-    }
-    console.log('Callback invoked to indicate that the CameraOutput instance is removed.');
-});
-```
-
-### removeOutput
-
-removeOutput(cameraOutput: CameraOutput): Promise<void\>
-
-Removes a **[CameraOutput](#cameraoutput)** instance from this **CaptureSession**. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name          | Type                            | Mandatory| Description                     |
-| ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to remove.|
-
+| previewOutput  | [PreviewOutput](#previewoutput)   | Yes  | **PreviewOutput** instance to remove.|
 
 **Return value**
 
-| Type           | Description                    |
-| -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
-
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.removeOutput(cameraOutput).then(() => {
-    console.log('Promise returned to indicate that the CameraOutput instance is removed.');
-})
+try {
+    captureSession.removeOutput(previewOutput);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### start
@@ -1795,14 +1021,14 @@ Starts this **CaptureSession**. This API uses an asynchronous callback to return
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 captureSession.start((err) => {
     if (err) {
-        console.error(`Failed to start the session ${err.message}`);
+        console.error(`Failed to start the session ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the session start success.');
@@ -1828,7 +1054,9 @@ Starts this **CaptureSession**. This API uses a promise to return the result.
 ```js
 captureSession.start().then(() => {
     console.log('Promise returned to indicate the session start success.');
-})
+}).catch((err) => {
+    console.error(`Failed to start the session ${err.code}`);
+});
 ```
 
 ### stop
@@ -1843,14 +1071,14 @@ Stops this **CaptureSession**. This API uses an asynchronous callback to return 
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 captureSession.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the session ${err.message}`);
+        console.error(`Failed to stop the session ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the session stop success.');
@@ -1869,110 +1097,16 @@ Stops this **CaptureSession**. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 captureSession.stop().then(() => {
     console.log('Promise returned to indicate the session stop success.');
-})
-```
-
-### lockForControl
-
-lockForControl(callback: AsyncCallback<void\>): void
-
-Requests to exclusively control the hardware attributes **[CameraInput](#camerainput)** of the camera device. This API uses an asynchronous callback to return the result. After the exclusive control is complete, you must call **[unlockForControl](#unlockforcontrol)** to release the exclusive control.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                 | Mandatory| Description                |
-| -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-captureSession.lockForControl((err) => {
-    if (err) {
-        console.error(`Failed to lock. ${err.message}`);
-        return;
-    }
-    console.log('Locked.');
-})
-```
-
-### lockForControl
-
-lockForControl(): Promise<void\>
-
-Requests to exclusively control the hardware attributes **[CameraInput](#camerainput)** of the camera device. This API uses a promise to return the result. After the exclusive control is complete, you must call **[unlockForControl](#unlockforcontrol)** to release the exclusive control.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type           | Description                    |
-| -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
-
-**Example**
-
-```js
-captureSession.lockForControl().then(() => {
-    console.log('Locked.');
-})
-```
-
-### unlockForControl
-
-unlockForControl(callback: AsyncCallback<void\>): void
-
-Releases the exclusive control on the device configuration. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                 | Mandatory| Description                |
-| -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-captureSession.unlockForControl((err) => {
-    if (err) {
-        console.error(`Failed to unlock. ${err.message}`);
-        return;
-    }
-    console.log('Unlocked.');
-})
-```
-
-### unlockForControl
-
-unlockForControl(): Promise<void\>
-
-Releases the exclusive control on the device configuration. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type           | Description                    |
-| -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
-
-**Example**
-
-```js
-captureSession.unlockForControl().then(() => {
-    console.log('Unlocked.');
-})
+}).catch((err) => {
+    console.error(`Failed to stop the session ${err.code}`);
+});
 ```
 
 ### release
@@ -1987,14 +1121,14 @@ Releases this **CaptureSession**. This API uses an asynchronous callback to retu
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 captureSession.release((err) => {
     if (err) {
-        console.error(`Failed to release the CaptureSession instance ${err.message}`);
+        console.error(`Failed to release the CaptureSession instance ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate that the CaptureSession instance is released successfully.');
@@ -2013,69 +1147,48 @@ Releases this **CaptureSession**. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 captureSession.release().then(() => {
     console.log('Promise returned to indicate that the CaptureSession instance is released successfully.');
-})
+}).catch((err) => {
+    console.error(`Failed to release the CaptureSession instance ${err.code}`);
+});
 ```
 
 ### hasFlash
 
-hasFlash(callback: AsyncCallback<boolean\>): void
+hasFlash(): boolean
 
 Checks whether the device has flash. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-**Parameters**
-
-| Name     | Type                    | Mandatory| Description                            |
-| -------- | ----------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the flash support status. The value **true** means that the device has flash.|
-
-**Example**
-
-```js
-cameraInput.hasFlash((err, status) => {
-    if (err) {
-        console.error(`Failed to check whether the device has flash light. ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with flash light support status: ${status}`);
-})
-```
-
-### hasFlash
-
-hasFlash(): Promise<boolean\>
-
-Checks whether the device has flash. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
 **Return value**
 
-| Type              | Description                                            |
-| ----------------- | ----------------------------------------------- |
-| Promise<boolean\> | Promise used to return the flash support status. The value **true** means that the device has flash.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean    | Returns **true** if the device has flash; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.hasFlash().then((status) => {
-    console.log(`Promise returned with the flash light support status: ${status}`);
-})
+try {
+    let status = captureSession.hasFlash();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### isFlashModeSupported
 
-isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean\>): void
+isFlashModeSupported(flashMode: FlashMode): boolean
 
-Checks whether a specified flash mode is supported. This API uses an asynchronous callback to return the result.
+Checks whether a flash mode is supported.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2084,53 +1197,29 @@ Checks whether a specified flash mode is supported. This API uses an asynchronou
 | Name      | Type                    | Mandatory| Description                              |
 | --------- | ----------------------- | ---- | --------------------------------- |
 | flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.                    |
-| callback  | AsyncCallback<boolean\> | Yes  | Callback used to return the flash mode support status. The value **true** means that the flash mode is supported, and **false** means the opposite.|
-
-**Example**
-
-```js
-cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, (err, status) => {
-    if (err) {
-        console.error(`Failed to check whether the flash mode is supported. ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with the flash mode support status: ${status}`);
-})
-```
-
-### isFlashModeSupported
-
-isFlashModeSupported(flashMode: FlashMode): Promise<boolean\>
-
-Checks whether a specified flash mode is supported. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name      | Type                   | Mandatory| Description           |
-| --------- | ----------------------- | ---- | ------------- |
-| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.|
 
 **Return value**
 
-| Type              | Description                                                 |
-| ----------------- | ---------------------------------------------------- |
-| Promise<boolean\> | Promise used to return the flash mode support status. The value **true** means that the flash mode is supported, and **false** means the opposite.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean    | Returns **true** if the flash mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO).then((status) => {
-    console.log(`Promise returned with flash mode support status.${status}`);
-})
+try {
+    let status = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setFlashMode
 
-setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void\>): void
+setFlashMode(flashMode: FlashMode): void
 
-Sets the flash mode. This API uses an asynchronous callback to return the result.
+Sets a flash mode for the device.
 
 Before the setting, do the following checks:
 
@@ -2143,134 +1232,55 @@ Before the setting, do the following checks:
 
 | Name      | Type                    | Mandatory| Description                 |
 | --------- | ----------------------- | ---- | --------------------- |
-| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.        |
-| callback  | AsyncCallback<void\>    | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, (err) => {
-    if (err) {
-        console.error(`Failed to set the flash mode  ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the successful execution of setFlashMode.');
-})
-```
-
-### setFlashMode
-
-setFlashMode(flashMode: FlashMode): Promise<void\>
-
-Sets a flash mode. This API uses a promise to return the result.
-
-Before the setting, do the following checks:
-
-1. Use **[hasFlash](#hasflash)** to check whether the device has flash.
-2. Use **[isFlashModeSupported](#isflashmodesupported)** to check whether the device supports the flash mode.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name      | Type                    | Mandatory| Description          |
-| --------- | ----------------------- | ---- | ------------- |
-| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.|
+| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.      |
 
 **Return value**
 
-| Type           | Description                    |
-| -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO).then(() => {
-    console.log('Promise returned with the successful execution of setFlashMode.');
-})
+try {
+    captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getFlashMode
 
-getFlashMode(callback: AsyncCallback<FlashMode\>): void
+getFlashMode(): FlashMode
 
-Obtains the flash mode in use. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                                    | Mandatory| Description                             |
-| -------- | --------------------------------------- | ---- | --------------------------------- |
-| callback | AsyncCallback<[FlashMode](#flashmode)\> | Yes  | Callback used to return the flash mode.|
-
-**Example**
-
-```js
-cameraInput.getFlashMode((err, flashMode) => {
-    if (err) {
-        console.error(`Failed to get the flash mode  ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with current flash mode: ${flashMode}`);
-})
-```
-
-### getFlashMode
-
-getFlashMode(): Promise<FlashMode\>
-
-Obtains the flash mode in use. This API uses a promise to return the result.
+Obtains the flash mode in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type                              | Description                              |
-| --------------------------------- | --------------------------------- |
-| Promise<[FlashMode](#flashmode)\> | Promise used to return the flash mode.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [FlashMode](#flashmode)    | Flash mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getFlashMode().then((flashMode) => {
-    console.log(`Promise returned with current flash mode : ${flashMode}`);
-})
+try {
+    let flashMode = captureSession.getFlashMode();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### isExposureModeSupported
 
-isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean\>): void;
+isExposureModeSupported(aeMode: ExposureMode): boolean;
 
-Checks whether a specified exposure mode is supported. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                          | Mandatory | Description                          |
-| -------- | -------------------------------| ---- | ----------------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | Yes  | Exposure mode.                     |
-| callback | AsyncCallback<boolean\>        | Yes  | Callback used to return the exposure mode support status. The value **true** means that the exposure mode is supported, and **false** means the opposite.|
-
-**Example**
-
-```js
-cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
-    if (err) {
-        console.log(`Failed to check exposure mode supported ${err.message}`);
-        return ;
-    }
-    console.log('Callback returned with the successful excution of isExposureModeSupported');
-})
-```
-
-### isExposureModeSupported
-
-isExposureModeSupported(aeMode: ExposureMode): Promise<boolean\>
-
-Checks whether a specified exposure mode is supported. This API uses a promise to return the result.
+Checks whether an exposure mode is supported.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2282,71 +1292,51 @@ Checks whether a specified exposure mode is supported. This API uses a promise t
 
 **Return value**
 
-| Name              | Description                            |
-| ----------------- |--------------------------------- |
-| Promise<boolean\> | Promise used to return the exposure mode support status. The value **true** means that the exposure mode is supported, and **false** means the opposite.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean    | Returns **true** if the exposure mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
-    console.log(`Promise returned with exposure mode supported : ${isSupported}`);
-})
+try {
+    let isSupported = captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getExposureMode
 
-getExposureMode(callback: AsyncCallback<ExposureMode\>): void
+getExposureMode(): ExposureMode
 
-Obtains the exposure mode in use. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                           | Mandatory| Description                                    |
-| -------- | -------------------------------| ---- | ---------------------------------------- |
-| callback | AsyncCallback<[ExposureMode](#exposuremode)\>   | Yes  | Callback used to return the exposure mode.|
-
-**Example**
-
-```js
-cameraInput.getExposureMode((err, exposureMode) => {
-    if (err) {
-        console.log(`Failed to get the exposure mode ${err.message}`);
-        return ;
-    }
-    console.log(`Callback returned with current exposure mode: ${exposureMode}`);
-})
-```
-
-### getExposureMode
-
-getExposureMode(): Promise<ExposureMode\>
-
-Obtains the exposure mode in use. This API uses a promise to return the result.
+Obtains the exposure mode in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Name                                    | Description                          |
-| --------------------------------------- |------------------------------- |
-| Promise<[ExposureMode](#exposuremode)\> | Promise used to return the exposure mode.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [ExposureMode](#exposuremode)    | Exposure mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getExposureMode().then((exposureMode) => {
-    console.log(`Promise returned with current exposure mode : ${exposureMode}`);
-})
+try {
+    let exposureMode = captureSession.getExposureMode();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setExposureMode
 
-setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void\>): void
+setExposureMode(aeMode: ExposureMode): void
 
-Sets an exposure mode. This API uses an asynchronous callback to return the result.
+Sets an exposure mode for the device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2355,124 +1345,56 @@ Sets an exposure mode. This API uses an asynchronous callback to return the resu
 | Name     | Type                           | Mandatory| Description                   |
 | -------- | -------------------------------| ---- | ----------------------- |
 | aeMode   | [ExposureMode](#exposuremode)  | Yes  | Exposure mode.               |
-| callback | AsyncCallback<void\>           | Yes  | Callback used to return the result.|
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
-    if (err) {
-        console.log(`Failed to set the exposure mode ${err.message}`);
-        return ;
-    }
-    console.log('Callback returned with the successful excution of setExposureMode');
-})
+try {
+    captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
-### setExposureMode
+### getMeteringPoint
 
-setExposureMode(aeMode: ExposureMode): Promise<void\>
+getMeteringPoint(): Point
 
-Sets an exposure mode. This API uses a promise to return the result.
+Obtains the metering point of the device.  
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Name              | Description                       |
-| ----------------- |---------------------------- |
-| Promise<void\>   | Promise used to return the result.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [Point](#point)    | Metering point obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then(() => {
-    console.log('Promise returned with the successful execution of setExposureMode.');
-})
-```
-
-### getMeteringPoint
-
-getMeteringPoint(callback: AsyncCallback<Point\>): void
-
-Obtains the center of the metering area. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                           | Mandatory| Description                      |
-| -------- | -------------------------------| ---- | ------------------------ |
-| callback | AsyncCallback<[Point](#point)\>| Yes  | Callback used to return the center of the metering area.|
-
-**Example**
-
-```js
-cameraInput.getMeteringPoint((err, exposurePoint) => {
-    if (err) {
-        console.log(`Failed to get the current exposure point ${err.message}`);
-        return ;
-    }
-    console.log(`Callback returned with current exposure point: ${exposurePoint}`);
-})
-```
-
-### getMeteringPoint
-
-getMeteringPoint(): Promise<Point\>
-
-Obtains the center of the metering area. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Name                      | Description                         |
-| ------------------------- |----------------------------- |
-| Promise<[Point](#point)\> | Promise used to return the center of the metering area.|
-
-**Example**
-
-```js
-cameraInput.getMeteringPoint().then((exposurePoint) => {
-    console.log(`Promise returned with current exposure point : ${exposurePoint}`);
-})
+try {
+    let exposurePoint = captureSession.getMeteringPoint();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setMeteringPoint
 
-setMeteringPoint(point: Point, callback: AsyncCallback<point\>): void
+setMeteringPoint(point: Point): void
 
-Sets the center of the metering area. This API uses an asynchronous callback to return the result.
+Sets the metering point, which is the center point of the metering rectangle. The metering point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.
 
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name          | Type                           | Mandatory| Description                |
-| ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | Yes  | Exposure point.             |
-| callback      | AsyncCallback<void\>           | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-const Point1 = {x: 1, y: 1};
-
-cameraInput.setMeteringPoint(Point1,(err) => {
-    if (err) {
-        console.log(`Failed to set the exposure point ${err.message}`);
-        return ;
-    }
-    console.log('Callback returned with the successful excution of setMeteringPoint');
-})
-```
-
-### setMeteringPoint
-
-setMeteringPoint(point: Point): Promise<void\>
-
-Sets the center of the metering area. This API uses a promise to return the result.
+The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2484,73 +1406,52 @@ Sets the center of the metering area. This API uses a promise to return the resu
 
 **Return value**
 
-| Name              | Description                    |
-| ----------------- |------------------------ |
-| Promise<void\>   | Promise used to return the center of the metering area.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-const Point2 = {x: 2, y: 2};
-
-cameraInput.setMeteringPoint(Point2).then(() => {
-    console.log('Promise returned with the successful execution of setMeteringPoint');
-})
+const exposurePoint = {x: 1, y: 1};
+try {
+    captureSession.setMeteringPoint(exposurePoint);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getExposureBiasRange
 
-getExposureBiasRange(callback: AsyncCallback<Array<number\>\>): void
+getExposureBiasRange(): Array<number\>
 
-Obtains the exposure compensation values. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                           | Mandatory| Description                          |
-| -------- | -------------------------------| ---- | ----------------------------- |
-| callback | AsyncCallback<Array<number\>\>  | Yes  | Callback used to return the array of compensation values.|
-
-**Example**
-
-```js
-cameraInput.getExposureBiasRange((err, biasRangeArray) => {
-    if (err) {
-        console.log(`Failed to get the array of compenstation range ${err.message}`);
-        return ;
-    }
-    console.log('Callback returned with the array of compenstation range: ' + JSON.stringify(biasRangeArray));
-})
-```
-
-### getExposureBiasRange
-
-getExposureBiasRange(): Promise<Array<number\>\>
-
-Obtains the exposure compensation values. This API uses a promise to return the result.
+Obtains the exposure compensation values of the device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Name              | Description                                  |
-| ----------------- |-------------------------------------- |
-| Promise<Array<number\>\> | Promise used to return the array of compensation values.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| Array<number\>   | An array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
-    console.log(`Promise returned with exposure mode supported : ${isSupported}`);
-})
+try {
+    let biasRangeArray = captureSession.getExposureBiasRange();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setExposureBias
 
-setExposureBias(exposureBias: number, callback: AsyncCallback<void\>): void
+setExposureBias(exposureBias: number): void
 
-Sets an exposure compensation value. This API uses an asynchronous callback to return the result.
+Sets an exposure compensation value (EV).
 
 Before the setting, you are advised to use **[getExposureBiasRange](#getexposurebiasrange)** to obtain the supported values.
 
@@ -2560,104 +1461,50 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 
 | Name    | Type                           | Mandatory| Description                |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | Yes  | Compensation value.           |
-| callback | AsyncCallback<void\>           | Yes  | Callback used to return the result.|
+| exposureBias   | number                   | Yes  | Exposure bias to set, which must be within the range obtained by running **getExposureBiasRange** interface. If the API call fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.setExposureBias(-4,(err) => {
-    if (err) {
-        console.log(`Failed to set the exposure bias ${err.message}`);
-        return ;
-    }
-    console.log('Callback returned with the successful excution of setExposureBias');
-})
-```
-
-### setExposureBias
-
-setExposureBias(exposureBias: number): Promise<void\>
-
-Sets an exposure compensation value. This API uses a promise to return the result.
-
-Before the setting, you are advised to use **[getExposureBiasRange](#getexposurebiasrange)** to obtain the supported values.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name           | Type     | Mandatory| Description       |
-| -------------- | --------- | ---- | --------- |
-| exposureBias   | number    | Yes  | Compensation value. |
-
-**Return value**
-
-| Name              | Description                    |
-| ----------------- |------------------------- |
-| Promise<void\>   | Promise used to return the result.|
-
-**Example**
-
-```js
-cameraInput.setExposureBias(-4).then(() => {
-    console.log('Promise returned with the successful execution of setExposureBias.');
-})
+let exposureBias = biasRangeArray[0];
+try {
+    captureSession.setExposureBias(exposureBias);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getExposureValue
 
-getExposureValue(callback: AsyncCallback<number\>): void
+getExposureValue(): number
 
-Obtains the exposure value in use. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                     | Mandatory| Description                  |
-| -------- | ------------------------| ---- | --------------------- |
-| callback | AsyncCallback<number\>  | Yes  | Callback used to the exposure value.|
-
-**Example**
-
-```js
-cameraInput.getExposureValue((err, exposureValue) => {
-    if (err) {
-        console.log(`Failed to get the exposure value ${err.message}`);
-        return ;
-    }
-    console.log(`Callback returned with the exposure value: ${exposureValue}`);
-})
-```
-
-### getExposureValue
-
-getExposureValue(): Promise<number\>
-
-Obtains the exposure value in use. This API uses a promise to return the result.
+Obtains the exposure value in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Name              | Description                      |
-| ----------------- |-------------------------- |
-| Promise<number\>  | Promise used to the exposure value.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| number    | Exposure value obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getExposureValue().then((exposureValue) => {
-    console.log(`Promise returned with exposure value: ${exposureValude}`);
-})
+try {
+    let exposureValue = captureSession.getExposureValue();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### isFocusModeSupported
 
-isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean\>): void
+isFocusModeSupported(afMode: FocusMode): boolean
 
-Checks whether a specified focus mode is supported. This API uses an asynchronous callback to return the result.
+Checks whether a focus mode is supported.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2666,53 +1513,29 @@ Checks whether a specified focus mode is supported. This API uses an asynchronou
 | Name     | Type                    | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | -------------------------------- |
 | afMode   | [FocusMode](#focusmode) | Yes  | Focus mode.                   |
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the focus mode support status. The value **true** means that the focus mode is supported, and **false** means the opposite.|
-
-**Example**
-
-```js
-cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO, (err, status) => {
-    if (err) {
-        console.error(`Failed to check whether the focus mode is supported. ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with the focus mode support status: ${status}`);
-})
-```
-
-### isFocusModeSupported
-
-isFocusModeSupported(afMode: FocusMode): Promise<boolean\>
-
-Checks whether a specified focus mode is supported. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description          |
-| ------ | ----------------------- | ---- | ------------- |
-| afMode | [FocusMode](#focusmode) | Yes  | Focus mode.|
 
 **Return value**
 
-| Type              | Description                                               |
-| ----------------- | --------------------------------------------------- |
-| Promise<boolean\> | Promise used to return the focus mode support status. The value **true** means that the focus mode is supported, and **false** means the opposite.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean    | Returns **true** if the focus mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO).then((status) => {
-    console.log(`Promise returned with focus mode support status ${status}.`);
-})
+try {
+    let status = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setFocusMode
 
-setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void
+setFocusMode(afMode: FocusMode): void
 
-Sets a focus mode. This API uses an asynchronous callback to return the result.
+Sets a focus mode for the device.
 
 Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to check whether the focus mode is supported.
 
@@ -2723,103 +1546,56 @@ Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to che
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
 | afMode   | [FocusMode](#focusmode) | Yes  | Focus mode.      |
-| callback | AsyncCallback<void\>    | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO, (err) => {
-    if (err) {
-        console.error(`Failed to set the focus mode  ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the successful execution of setFocusMode.');
-})
-```
-
-### setFocusMode
-
-setFocusMode(afMode: FocusMode): Promise<void\>
-
-Sets a focus mode. This API uses a promise to return the result.
-
-Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to check whether the focus mode is supported.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name   | Type                    | Mandatory| Description          |
-| ------ | ----------------------- | ---- | ------------- |
-| afMode | [FocusMode](#focusmode) | Yes  | Focus mode.|
 
 **Return value**
 
-| Type           | Description                    |
-| -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO).then(() => {
-    console.log('Promise returned with the successful execution of setFocusMode.');
-})
+try {
+    captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getFocusMode
 
-getFocusMode(callback: AsyncCallback<FocusMode\>): void
+getFocusMode(): FocusMode
 
-Obtains the focus mode in use. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                                    | Mandatory| Description                            |
-| -------- | --------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback<[FocusMode](#focusmode)\> | Yes  | Callback used to return the focus mode.|
-
-**Example**
-
-```js
-cameraInput.getFocusMode((err, afMode) => {
-    if (err) {
-        console.error(`Failed to get the focus mode  ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with current focus mode: ${afMode}`);
-})
-```
-
-### getFocusMode
-
-getFocusMode(): Promise<FocusMode\>
-
-Obtains the focus mode in use. This API uses a promise to return the result.
+Obtains the focus mode in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type                | Description                            |
-| ------------------- | -------------------------------- |
-| Promise<FocusMode\> | Promise used to return the focus mode.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [FocusMode](#focusmode)   | Focus mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getFocusMode().then((afMode) => {
-    console.log(`Promise returned with current focus mode : ${afMode}`);
-})
+try {
+    let afMode = captureSession.getFocusMode();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setFocusPoint
 
-setFocusPoint(point: Point, callback: AsyncCallback<void\>): void
+setFocusPoint(point: Point): void
 
-Sets a focus point. This API uses an asynchronous callback to return the result.
+Sets the focal point. The focal point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.
+
+The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2827,202 +1603,106 @@ Sets a focus point. This API uses an asynchronous callback to return the result.
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| point    | [Point](#point)         | Yes  | Focus point.               |
-| callback | AsyncCallback<void\>    | Yes  | Callback used to return the result.|
+| Point1    | [Point](#point)         | Yes  | Focal point.               |
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 const Point1 = {x: 1, y: 1};
-
-cameraInput.setFocusPoint(Point1, (err) => {
-    if (err) {
-        console.error(`Failed to set the focus point  ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the successful execution of setFocusPoint.');
-})
-```
-
-### setFocusPoint
-
-setFocusPoint(point: Point): Promise<void\>
-
-Sets a focal point. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                    | Mandatory| Description                |
-| -------- | ----------------------- | ---- | ------------------- |
-| point    | [Point](#point)         | Yes  | Focal point.               |
-
-**Return value**
-
-| Type          | Description                     |
-| -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
-
-**Example**
-
-```js
-const Point2 = {x: 2, y: 2};
-
-cameraInput.setFocusPoint(Point2).then(() => {
-    console.log('Promise returned with the successful execution of setFocusPoint.');
-})
+try {
+    captureSession.setFocusPoint(Point1);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getFocusPoint
 
-getFocusPoint(callback: AsyncCallback<Point\>): void
+getFocusPoint(): Point
 
-Obtains the focal point. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                              | Mandatory| Description                    |
-| -------- | ---------------------------------- | ---- | ----------------------- |
-| callback | AsyncCallback<[Point](#point)\>    | Yes  | Callback used to return the focal point.|
-
-**Example**
-
-```js
-cameraInput.getFocusPoint((err, point) => {
-    if (err) {
-        console.error(`Failed to get the current focus point ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the current focus point: ' + JSON.stringify(point));
-})
-```
-
-### getFocusPoint
-
-getFocusPoint(): Promise<Point\>
-
-Obtains the focal point. This API uses a promise to return the result.
+Obtains the focal point of the device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type            | Description                       |
-| --------------- | --------------------------- |
-| Promise<Point\> | Promise used to return the focal point.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [Point](#point)    | Focal point obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getFocusPoint().then((point) => {
-    console.log('Promise returned with the current focus point: ' + JSON.stringify(point));
-})
+try {
+    let point = captureSession.getFocusPoint();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getFocalLength
 
-getFocalLength(callback: AsyncCallback<number\>): void
+getFocalLength(): number
 
-Obtains the focal length. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                      | Mandatory| Description                    |
-| -------- | ------------------------- | ---- | ----------------------- |
-| callback | AsyncCallback<number\>    | Yes  | Callback used to return the focal length.|
-
-**Example**
-
-```js
-cameraInput.getFocalLength((err, focalLength) => {
-    if (err) {
-        console.error(`Failed to get the current focal length  ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with the current focal length: ${focalLength}`);
-})
-```
-
-### getFocalLength
-
-getFocalLength(): Promise<number\>
-
-Obtains the focal length. This API uses a promise to return the result.
+Obtains the focal length of the device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type             | Description                    |
-| ---------------- | ----------------------- |
-| Promise<number\> | Promise used to return the focal length.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| number    | Focal length obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getFocalLength().then((focalLength) => {
-    console.log(`Promise returned with the current focal length: ${focalLength}`);
-})
+try {
+    let focalLength = captureSession.getFocalLength();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getZoomRatioRange
 
-getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
+getZoomRatioRange(): Array<number\>
 
-Obtains the zoom ratio range. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                           | Mandatory| Description                |
-| -------- | ------------------------------ | ---- | ------------------- |
-| callback | AsyncCallback<Array<number\>\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-cameraInput.getZoomRatioRange((err, zoomRatioRange) => {
-    if (err) {
-        console.error(`Failed to get the zoom ratio range. ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with zoom ratio range: ${zoomRatioRange.length}`);
-})
-```
-
-### getZoomRatioRange
-
-getZoomRatioRange\(\): Promise<Array<number\>\>
-
-Obtains the zoom ratio range. This API uses a promise to return the result.
+Obtains the supported zoom ratio range.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type                     | Description                       |
-| ------------------------ | --------------------------- |
-| Promise<Array<number\>\> | Promise used to return the zoom ratio range.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| Array<number\>   | Callback used to return an array containing the minimum and maximum zoom ratios. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getZoomRatioRange().then((zoomRatioRange) => {
-    console.log(`Promise returned with zoom ratio range: ${zoomRatioRange.length}`);
-})
+try {
+    let zoomRatioRange = captureSession.getZoomRatioRange();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setZoomRatio
 
-setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
+setZoomRatio(zoomRatio: number): void
 
-Sets a zoom ratio. This API uses an asynchronous callback to return the result.
+Sets a zoom ratio, with a maximum precision of two decimal places.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3030,102 +1710,56 @@ Sets a zoom ratio. This API uses an asynchronous callback to return the result.
 
 | Name      | Type                 | Mandatory| Description                |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | Yes  | Zoom ratio.          |
-| callback  | AsyncCallback<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-cameraInput.setZoomRatio(1, (err) => {
-    if (err) {
-        console.error(`Failed to set the zoom ratio value ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the successful execution of setZoomRatio.');
-})
-```
-
-### setZoomRatio
-
-setZoomRatio(zoomRatio: number): Promise<void\>
-
-Sets a zoom ratio. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name      | Type   | Mandatory| Description      |
-| --------- | ------ | ---- | --------- |
-| zoomRatio | number | Yes  | Zoom ratio.|
+| zoomRatio | number               | Yes  | Zoom ratio. You can use **getZoomRatioRange** to obtain the supported values.|
 
 **Return value**
 
-| Type           | Description                    |
-| -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.setZoomRatio(1).then(() => {
-    console.log('Promise returned with the successful execution of setZoomRatio.');
-})
+let zoomRatio = zoomRatioRange[0];
+try {
+    captureSession.setZoomRatio(zoomRatio);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### getZoomRatio
 
-getZoomRatio(callback: AsyncCallback<number\>): void
+getZoomRatio(): number
 
-Obtains the zoom ratio in use. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                  | Mandatory| Description                 |
-| -------- | ---------------------- | ---- | ------------------- |
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-cameraInput.getZoomRatio((err, zoomRatio) => {
-    if (err) {
-        console.error(`Failed to get the zoom ratio ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with current zoom ratio: ${zoomRatio}`);
-})
-```
-
-### getZoomRatio
-
-getZoomRatio(): Promise<number\>
-
-Obtains the zoom ratio in use. This API uses a promise to return the result.
+Obtains the zoom ratio in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type             | Description                    |
-| ---------------- | ----------------------- |
-| Promise<number\> | Promise used to return the zoom ratio.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| number    | Zoom ratio obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-cameraInput.getZoomRatio().then((zoomRatio) => {
-    console.log(`Promise returned with current zoom ratio : ${zoomRatio}`);
-})
+try {
+    let zoomRatio = captureSession.getZoomRatio();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
-### isVideoStablizationModeSupported
+### isVideoStabilizationModeSupported
 
-isVideoStablizationModeSupported(vsMode: VideoStabilizationMode, callback: AsyncCallback<boolean\>): void
+isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
-Checks whether the specified video stabilization mode is supported. This API uses an asynchronous callback to return the result.
+Checks whether the specified video stabilization mode is supported. 
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3134,122 +1768,54 @@ Checks whether the specified video stabilization mode is supported. This API use
 | Name     | Type                                             | Mandatory| Description                            |
 | -------- | ------------------------------------------------- | ---- | ------------------------------ |
 | vsMode   | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.                   |
-| callback | AsyncCallback<boolean\>                           | Yes  | Callback used to return whether the video stabilization mode is supported. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. |
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean    | Returns **true** if the video stabilization mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.isVideoStablizationModeSupported(camera.VideoStabilizationMode.OFF, (err, isSupported) => {
-    if (err) {
-        console.error(`Failed to check whether video stabilization mode supported. ${err.message}`);
-        return;
-    }
-    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported: ${status}`);
-})
+try {
+    let isSupported = captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.OFF);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
-### isVideoStablizationModeSupported
+### getActiveVideoStabilizationMode
 
-isVideoStablizationModeSupported(vsMode: VideoStabilizationMode): Promise<boolean\>
+getActiveVideoStabilizationMode(): VideoStabilizationMode
 
-Checks whether the specified video stabilization mode is supported. This API uses a promise to return the result.
+Obtains the video stabilization mode in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type              | Description                                          |
-| ----------------- | --------------------------------------------- |
-| Promise<boolean\> | Promise used to return whether the video stabilization mode is supported. The value **true** means that the video stabilization mode is supported, and **false** means the opposite.|
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| VideoStabilizationMode    | Video stabilization mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.isVideoStablizationModeSupported(camera.VideoStabilizationMode.OFF).then((isSupported) => {
-    console.log(`Promise returned with video stabilization mode supported: ${isSupported}`);
-})
-```
-
-### getActiveVideoStabilizationMode
-
-getActiveVideoStabilizationMode(callback: AsyncCallback<VideoStabilizationMode\>): void
-
-Obtains the video stabilization mode in use. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                                      | Mandatory| Description                           |
-| -------- | ----------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<VideoStabilizationMode\>    | Yes  | Callback used to return the video stabilization mode. |
-
-**Example**
-
-```js
-captureSession.getActiveVideoStabilizationMode((err, vsMode) => {
-    if (err) {
-        console.error(`Failed to get active video stabilization mode ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the successful execution of getActiveVideoStabilizationMode.');
-})
-```
-
-### getActiveVideoStabilizationMode
-
-getActiveVideoStabilizationMode(): Promise<VideoStabilizationMode\>
-
-Obtains the video stabilization mode in use. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type                             | Description                                             |
-| -------------------------------- | ------------------------------------------------- |
-| Promise<VideoStabilizationMode\> | Promise used to return the video stabilization mode. |
-
-**Example**
-
-```js
-captureSession.getActiveVideoStabilizationMode().then((vsMode) => {
-    console.log(`Promise returned with the current video stabilization mode: ${vsMode}`);
-})
+try {
+    let vsMode = captureSession.getActiveVideoStabilizationMode();
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### setVideoStabilizationMode
 
-setVideoStabilizationMode(mode: VideoStabilizationMode, callback: AsyncCallback<void\>): void
+setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
-Sets a video stabilization mode. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                                             | Mandatory| Description                   |
-| -------- | ------------------------------------------------- | ---- | --------------------- |
-| mode     | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.  |
-| callback | AsyncCallback<void\>                              | Yes  | Callback used to return the result.    |
-
-**Example**
-
-```js
-captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF, (err) => {
-    if (err) {
-        console.error(`Failed to set the video stabilization mode ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the successful execution of setVideoStabilizationMode.');
-})
-```
-
-### setVideoStabilizationMode
-
-setVideoStabilizationMode(mode: VideoStabilizationMode): Promise<void\>
-
-Sets a video stabilization mode. This API uses a promise to return the result.
+Sets a video stabilization mode for the device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3261,16 +1827,19 @@ Sets a video stabilization mode. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                                              |
-| -------------- | ------------------------------------------------- |
-| Promise<void\>| Promise used to return the result. |
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
-captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF).then(() => {
-    console.log('Promise returned with the successful execution of setVideoStabilizationMode.');
-})
+try {
+    captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF);
+} catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    console.log(error.code);
+}
 ```
 
 ### on('focusStateChange')
@@ -3285,43 +1854,20 @@ Listens for focus state changes. This API uses an asynchronous callback to retur
 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**, indicating the focus state change event.|
+| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
 | callback | AsyncCallback<[FocusState](#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**
 
 ```js
-cameraInput.on('focusStateChange', (focusState) => {
+captureSession.on('focusStateChange', (focusState) => {
     console.log(`Focus state  : ${focusState}`);
-})
-```
-
-### on('exposureStateChange')
-
-on(type: 'exposureStateChange', callback: AsyncCallback<ExposureState\>): void
-
-Listens for exposure state changes. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                     | Mandatory| Description                                            |
-| -------- | ----------------------------------------- | ---- | ---------------------------------------------- |
-| type     | string                             | Yes  |   Event type. The value is fixed at **'exposureStateChange'**, indicating the exposure state change event.|
-| callback | AsyncCallback<[ExposureState](#exposurestate)\> | Yes  |  Callback used to return the exposure state change.                |
-
-**Example**
-
-```js
-cameraInput.on('exposureStateChange', (exposureState) => {
-    console.log(`Exposuer state  : ${exposureState}`);
 })
 ```
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<CaptureSessionError\>): void
+on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 Listens for **CaptureSession** errors. This API uses a callback to return the errors.
 
@@ -3331,149 +1877,24 @@ Listens for **CaptureSession** errors. This API uses a callback to return the er
 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**, indicating the capture session error event.|
-| callback | ErrorCallback<[CaptureSessionError](#capturesessionerror)\> | Yes  | Callback used to return the error information.       |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as **beginConfig()**, **commitConfig()**, and **addInput**.|
+| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
 
 **Example**
 
 ```js
-captureSession.on('error', (captureSessionError) => {
-    console.log(`Capture session error code: ${captureSessionError.code}`);
+captureSession.on('error', (error) => {
+    console.log(`Capture session error code: ${error.code}`);
 })
 ```
-
-## CaptureSessionErrorCode
-
-Enumerates the error codes used in a **CaptureSession**.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                          | Value  | Description     |
-| ----------------------------- | ---- | -------- |
-| ERROR_UNKNOWN                 | -1   | Unknown error.|
-| ERROR_INSUFFICIENT_RESOURCES  | 0    | Insufficient resources.|
-| ERROR_TIMEOUT                 | 1    | Timeout.|
-
-## CaptureSessionError
-
-Defines a **CaptureSession** error.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name| Type                                       | Description                      |
-| ---- | ------------------------------------------- | -------------------------- |
-| code | [CaptureSessionError](#capturesessionerror) | **CaptureSession** error code.|
 
 ## CameraOutput
 
 Implements output information used in a **[CaptureSession](#capturesession)**. It is the base class of **output**.
 
-### release
-
-release(callback: AsyncCallback<void\>): void
-
-Releases output resources. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                 | Mandatory| Description                |
-| -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-previewOutput.release((err) => {
-    if (err) {
-        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
-        return;
-    }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
-});
-```
-
-### release
-
-release(): Promise<void\>
-
-Releases output resources. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type           | Description                    |
-| -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
-
-**Example**
-
-```js
-previewOutput.release().then(() => {
-    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
-})
-```
-
 ## PreviewOutput
 
 Implements preview output. It inherits **[CameraOutput](#cameraoutput)**.
-
-### addDeferredSurface
-
-addDeferredSurface(surfaceId: string, callback: AsyncCallback<void\>): void
-
-Adds a surface after a **PreviewOutput** instance is created. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                  | Mandatory| Description                                                                 |
-| -------- | -------------------- | ---- | -------------------------------------------------------------------- |
-| surfaceId| string     | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                                                 |
-
-**Example**
-
-```js
-previewOutput.addDeferredSurface('surfaceId', (err) => {
-    if (err) {
-        console.error(`Failed to add deferredSurface. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with deferredSurface added.');
-})
-```
-
-### addDeferredSurface
-
-addDeferredSurface(surfaceId: string): Promise<void\>
-
-Adds a surface after a **PreviewOutput** instance is created. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type        | Mandatory| Description                                                                           |
-| -------- | -----------| ---- | ------------------------------------------------------------------------------ |
-| surfaceId| string     | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
-
-**Return value**
-
-| Type           | Description                    |
-| -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
-
-**Example**
-
-```js
-previewOutput.addDeferredSurface('surfaceId').then(() => {
-    console.log('Promise returned with deferredSurface added.');
-})
-```
 
 ### start
 
@@ -3487,14 +1908,14 @@ Starts to output preview streams. This API uses an asynchronous callback to retu
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 previewOutput.start((err) => {
     if (err) {
-        console.error(`Failed to start the previewOutput. ${err.message}`);
+        console.error(`Failed to start the previewOutput. ${err.code}`);
         return;
     }
     console.log('Callback returned with previewOutput started.');
@@ -3513,14 +1934,16 @@ Starts to output preview streams. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 previewOutput.start().then(() => {
     console.log('Promise returned with previewOutput started.');
-})
+}).catch((err) => {
+    console.log('Failed to previewOutput start '+ err.code);
+});
 ```
 
 ### stop
@@ -3542,10 +1965,10 @@ Stops outputting preview streams. This API uses an asynchronous callback to retu
 ```js
 previewOutput.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the previewOutput. ${err.message}`);
+        console.error(`Failed to stop the previewOutput. ${err.code}`);
         return;
     }
-    console.log('Callback returned with previewOutput stoped.');
+    console.log('Callback returned with previewOutput stopped.');
 })
 ```
 
@@ -3567,8 +1990,60 @@ Stops outputting preview streams. This API uses a promise to return the result.
 
 ```js
 previewOutput.stop().then(() => {
-    console.log('Callback returned with previewOutput stoped.');
-})
+    console.log('Callback returned with previewOutput stopped.');
+}).catch((err) => {
+    console.log('Failed to previewOutput stop '+ err.code);
+});
+```
+
+### release
+
+release(callback: AsyncCallback<void\>): void
+
+Releases output resources. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Example**
+
+```js
+previewOutput.release((err) => {
+    if (err) {
+        console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+        return;
+    }
+    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+});
+```
+
+### release
+
+release(): Promise<void\>
+
+Releases output resources. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Example**
+
+```js
+previewOutput.release().then(() => {
+    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+}).catch((err) => {
+    console.log('Failed to previewOutput release '+ err.code);
+});
 ```
 
 ### on('frameStart')
@@ -3583,8 +2058,8 @@ Listens for preview frame start events. This API uses an asynchronous callback t
 
 | Name     | Type                 | Mandatory| Description                                    |
 | -------- | -------------------- | ---- | --------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**, indicating the preview frame start event.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                    |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure for the first time.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The preview starts as long as this event is returned.                    |
 
 **Example**
 
@@ -3606,8 +2081,8 @@ Listens for preview frame end events. This API uses an asynchronous callback to 
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**, indicating the preview frame end event.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                 |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the last frame of preview ends.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The preview ends as long as this event is returned.                |
 
 **Example**
 
@@ -3619,7 +2094,7 @@ previewOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<PreviewOutputError\>): void
+on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 Listens for **PreviewOutput** errors. This API uses a callback to return the errors.
 
@@ -3627,10 +2102,10 @@ Listens for **PreviewOutput** errors. This API uses a callback to return the err
 
 **Parameters**
 
-| Name    | Type                                                              | Mandatory| Description                      |
-| -------- | ----------------------------------------------------------------- | ---- | ------------------------ |
-| type     | string                                               | Yes  | Event type. The value is fixed at **'error'**, indicating the preview output error event.|
-| callback | ErrorCallback<[PreviewOutputErrorCode](#previewoutputerrorcode)\> | Yes  | Callback used to return the error information. |
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a preview-related API such as **start()** or **release()**.|
+| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
 **Example**
 
@@ -3639,26 +2114,6 @@ previewOutput.on('error', (previewOutputError) => {
     console.log(`Preview output error code: ${previewOutputError.code}`);
 })
 ```
-
-## PreviewOutputErrorCode
-
-Enumerates the error codes used for preview output.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name         | Value  | Description      |
-| ------------- | ---- | -------- |
-| ERROR_UNKNOWN | -1   | Unknown error.|
-
-## PreviewOutputError
-
-Defines the preview output error.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name| Type                                             | Description                  |
-| ---- | ------------------------------------------------- | ---------------------- |
-| code | [PreviewOutputErrorCode](#previewoutputerrorcode) | **PreviewOutput** error code.|
 
 ## ImageRotation
 
@@ -3704,64 +2159,16 @@ Defines the settings for photo capture.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type                           | Mandatory | Default Value            | Description             |
-| -------- | ------------------------------- | ---- | ----------------- | -----------------|
-| quality  | [QualityLevel](#qualitylevel)   | No  | QUALITY_LEVEL_HIGH| Photo quality.        |
-| rotation | [ImageRotation](#imagerotation) | No  | ROTATION_0        | Rotation angle of the photo.     |
-| location | [Location](#location)           | No  | (0,0,0)           | Geolocation information of the photo.  |
-| mirror   | boolean                         | No  | false             |Whether mirroring is enabled. By default, mirroring is disabled.|
+| Name     | Type                           | Mandatory | Description             |
+| -------- | ------------------------------- | ---- | -----------------|
+| quality  | [QualityLevel](#qualitylevel)   | No  | Photo quality.        |
+| rotation | [ImageRotation](#imagerotation) | No  | Rotation angle of the photo.     |
+| location | [Location](#location)           | No  | Geolocation information of the photo.  |
+| mirror   | boolean                         | No  |Whether mirroring is enabled. By default, mirroring is disabled.|
 
 ## PhotoOutput
 
-Implements output information used in a **CaptureSession**.
-
-### getDefaultCaptureSetting
-
-getDefaultCaptureSetting(callback: AsyncCallback<PhotoCaptureSetting\>): void
-
-Obtains the default shooting parameters. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                                        | Mandatory| Description                 |
-| -------- | ----------------------------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback<[PhotoCaptureSetting](#photocapturesetting)\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-photoOutput.getDefaultCaptureSetting((err, photocapturesetting) => {
-    if (err) {
-        console.error(`Failed to get the defaultCaptureSetting. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with an array of defaultCaptureSetting.');
-})
-```
-
-### getDefaultCaptureSetting
-
-getDefaultCaptureSetting(): Promise<PhotoCaptureSetting\>
-
-Obtains the default shooting parameters. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type                                                  | Description                    |
-| ----------------------------------------------------- | ----------------------- |
-| Promise<[PhotoCaptureSetting](#photocapturesetting)\> | Promise used to return the result.|
-
-**Example**
-
-```js
-photoOutput.getDefaultCaptureSetting().then((photocapturesetting) => {
-    console.log('Callback returned with an array of defaultCaptureSetting.');
-})
-```
+Implements output information used in a shooting session. This class inherits from [CameraOutput](#cameraoutput).
 
 ### capture
 
@@ -3775,17 +2182,41 @@ Captures a photo with the default shooting parameters. This API uses an asynchro
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 photoOutput.capture((err) => {
     if (err) {
-        console.error(`Failed to capture the photo ${err.message}`);
+        console.error(`Failed to capture the photo ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the photo capture request success.');
+});
+```
+
+### capture
+
+capture(): Promise<void\>
+
+Captures a photo with the default shooting parameters. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ------------------------ |
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Example**
+
+```js
+photoOutput.capture().then(() => {
+    console.log('Promise returned to indicate that photo capture request success.');
+}).catch((err) => {
+    console.log('Failed to photoOutput capture '+ err.code);
 });
 ```
 
@@ -3802,18 +2233,25 @@ Captures a photo with the specified shooting parameters. This API uses an asynch
 | Name     | Type                                        | Mandatory| Description                 |
 | -------- | ------------------------------------------- | ---- | -------------------- |
 | setting  | [PhotoCaptureSetting](#photocapturesetting) | Yes  | Shooting settings.            |
-| callback | AsyncCallback<void\>                        | Yes  | Callback used to return the result. |
+| callback | AsyncCallback<void\>                        | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
 
 **Example**
 
 ```js
-let settings:PhotoCaptureSetting = {
-    quality = 1,
-    rotation = 0
+let captureLocation = {
+  latitude: 0,
+  longitude: 0,
+  altitude: 0,
+}
+let settings = {
+  quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+  rotation: camera.ImageRotation.ROTATION_0,
+  location: captureLocation,
+  mirror: false
 }
 photoOutput.capture(settings, (err) => {
     if (err) {
-        console.error(`Failed to capture the photo ${err.message}`);
+        console.error(`Failed to capture the photo ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the photo capture request success.');
@@ -3838,63 +2276,87 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 
 **Example**
 
 ```js
-photoOutput.capture().then(() => {
+photoOutput.capture(settings).then(() => {
     console.log('Promise returned to indicate that photo capture request success.');
-})
+}).catch((err) => {
+    console.log('Failed to photoOutput capture '+ err.code);
+});
 ```
 
 ### isMirrorSupported
 
-isMirrorSupported(callback: AsyncCallback<boolean\>): void
+isMirrorSupported(): boolean
 
-Checks whether mirroring is supported. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name     | Type                                             | Mandatory| Description                        |
-| -------- | ------------------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<boolean\>                           | Yes  | Callback used to return the mirroring support status. The value **true** means that mirroring is supported, and **false** means the opposite. |
-
-**Example**
-
-```js
-captureSession.isMirrorSupported((err, isSupported) => {
-    if (err) {
-        console.error(`Failed to check mirror is supported ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the successful execution of isMirrorSupported.');
-})
-```
-
-### isMirrorSupported
-
-isMirrorSupported(): Promise<boolean\>
-
-Checks whether mirroring is supported. This API uses a promise to return the result.
+Checks whether mirroring is supported.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type              | Description                                       |
-| ----------------- | ------------------------------------------- |
-| Promise<boolean\> | Promise used to return the mirroring support status. The value **true** means that mirroring is supported, and **false** means the opposite. |
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| boolean | Returns **true** if mirroring is supported; returns **false** otherwise.|
 
 **Example**
 
 ```js
-captureSession.isMirrorSupported().then((isSupported) => {
-    console.log(`Promise returned with mirror supported: ${isSupported}`);
-})
+let isSupported = photoOutput.isMirrorSupported();
+```
+
+### release
+
+release(callback: AsyncCallback<void\>): void
+
+Releases output resources. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Example**
+
+```js
+photoOutput.release((err) => {
+    if (err) {
+        console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+        return;
+    }
+    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+});
+```
+
+### release
+
+release(): Promise<void\>
+
+Releases output resources. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Example**
+
+```js
+photoOutput.release().then(() => {
+    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+}).catch((err) => {
+    console.log('Failed to photoOutput release '+ err.code);
+});
 ```
 
 ### on('captureStart')
@@ -3909,13 +2371,13 @@ Listens for shooting start events. This API uses an asynchronous callback to ret
 
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**, indicating the shooting start event.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure each time a photo is taken.|
 | callback | AsyncCallback<number\> | Yes  | Callback used to return the capture ID.           |
 
 **Example**
 
 ```js
-photoOutput.on('captureStart', (err, captureId) => {
+photoOutput.on('captureStart', (captureId) => {
     console.log(`photo capture stated, captureId : ${captureId}`);
 })
 ```
@@ -3930,15 +2392,15 @@ Listens for frame shutter events. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                                  | Mandatory| Description                                 |
-| -------- | ----------------------------------------------------- | --- | ------------------------------------ |
-| type     | string                                           | Yes  | Event type. The value is fixed at **'frameShutter'**, indicating the frame shutter event.|
-| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result.            |
+| Name    | Type     | Mandatory| Description                                 |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a **photoOutput** instance is created.|
+| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result. A new photographing request can be delivered as long as this event is returned.            |
 
 **Example**
 
 ```js
-photoOutput.on('frameShutter', (err, frameShutterInfo) => {
+photoOutput.on('frameShutter', (frameShutterInfo) => {
     console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
     console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
 })
@@ -3954,15 +2416,15 @@ Listens for shooting end events. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                                      |
-| -------- | ------------------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                            | Yes  | Event type. The value is fixed at **'captureEnd'**, indicating the shooting end event.|
+| Name    | Type          | Mandatory| Description                                      |
+| -------- | --------------- | ---- | ---------------------------------------- |
+| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
 | callback | AsyncCallback<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                 |
 
 **Example**
 
 ```js
-photoOutput.on('captureEnd', (err, captureEndInfo) => {
+photoOutput.on('captureEnd', (captureEndInfo) => {
     console.log(`photo capture end, captureId : ${captureEndInfo.captureId}`);
     console.log(`frameCount : ${captureEndInfo.frameCount}`);
 })
@@ -3970,7 +2432,7 @@ photoOutput.on('captureEnd', (err, captureEndInfo) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<PhotoOutputError\>): void
+on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 Listens for **PhotoOutput** errors. This API uses a callback to return the errors.
 
@@ -3978,16 +2440,16 @@ Listens for **PhotoOutput** errors. This API uses a callback to return the error
 
 **Parameters**
 
-| Name    | Type                                                   | Mandatory| Description                                |
-| -------- | ----------------------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'error'**, indicating the photo output error event.|
-| callback | ErrorCallback<[PhotoOutputError](#photooutputerror)\> | Yes  | Callback used to return the error information.            |
+| Name    | Type        | Mandatory| Description                                |
+| -------- | ------------- | ---- | ----------------------------------- |
+| type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photographing-related API.|
+| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
 
 **Example**
 
 ```js
-photoOutput.on('error', (err, photoOutputError) => {
-    console.log(`Photo output error code: ${photoOutputError.code}`);
+photoOutput.on('error', (error) => {
+    console.log(`Photo output error code: ${error.code}`);
 })
 ```
 
@@ -4013,32 +2475,9 @@ Defines the capture end information.
 | captureId  | number | Yes  | ID of this capture action.|
 | frameCount | number | Yes  | Number of frames captured.   |
 
-## PhotoOutputErrorCode
-
-Enumerates the error codes used for photo output.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                          | Value  | Description            |
-| ----------------------------- | ---- | --------------- |
-| ERROR_UNKNOWN                 | -1   | Unknown error.       |
-| ERROR_DRIVER_ERROR            | 0    | The driver or hardware is faulty.|
-| ERROR_INSUFFICIENT_RESOURCES  | 1    | Insufficient resources.       |
-| ERROR_TIMEOUT                 | 2    | Timeout.          |
-
-## PhotoOutputError
-
-Defines a photo output error.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name| Type                                 | Description                   |
-| ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | **PhotoOutput** error code.|
-
 ## VideoOutput
 
-Implements output information used in a video recording session.
+Implements output information used in a video recording session. This class inherits from [CameraOutput](#cameraoutput).
 
 ### start
 
@@ -4052,14 +2491,14 @@ Starts video recording. This API uses an asynchronous callback to return the res
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 videoOutput.start((err) => {
     if (err) {
-        console.error(`Failed to start the video output ${err.message}`);
+        console.error(`Failed to start the video output ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the video output start success.');
@@ -4078,7 +2517,7 @@ Starts video recording. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 
 **Example**
@@ -4086,7 +2525,9 @@ Starts video recording. This API uses a promise to return the result.
 ```js
 videoOutput.start().then(() => {
     console.log('Promise returned to indicate that start method execution success.');
-})
+}).catch((err) => {
+    console.log('Failed to videoOutput start '+ err.code);
+});
 ```
 
 ### stop
@@ -4108,7 +2549,7 @@ Stops video recording. This API uses an asynchronous callback to return the resu
 ```js
 videoOutput.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the video output ${err.message}`);
+        console.error(`Failed to stop the video output ${err.code}`);
         return;
     }
     console.log('Callback invoked to indicate the video output stop success.');
@@ -4134,8 +2575,60 @@ Stops video recording. This API uses a promise to return the result.
 ```js
 videoOutput.stop().then(() => {
     console.log('Promise returned to indicate that stop method execution success.');
-})
-``` 
+}).catch((err) => {
+    console.log('Failed to videoOutput stop '+ err.code);
+});
+```
+
+### release
+
+release(callback: AsyncCallback<void\>): void
+
+Releases output resources. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Example**
+
+```js
+videoOutput.release((err) => {
+    if (err) {
+        console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+        return;
+    }
+    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+});
+```
+
+### release
+
+release(): Promise<void\>
+
+Releases output resources. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Example**
+
+```js
+videoOutput.release().then(() => {
+    console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
+}).catch((err) => {
+    console.log('Failed to videoOutput release '+ err.code);
+});
+```
 
 ### on('frameStart')
 
@@ -4149,8 +2642,8 @@ Listens for video recording start events. This API uses an asynchronous callback
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ----------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **frameStart**, indicating the video recording start event.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                      |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **videoOutput** instance is created. The event is triggered and the corresponding information is returned when the bottom layer starts exposure for the first time.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.  The recording starts as long as this event is returned.                    |
 
 **Example**
 
@@ -4172,8 +2665,8 @@ Listens for video recording stop events. This API uses an asynchronous callback 
 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ------------------------------------------ |
-| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**, indicating the video recording stop event.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                      |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and returned when the last frame of recording is complete.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The recording ends as long as this event is returned.                     |
 
 **Example**
 
@@ -4185,7 +2678,7 @@ videoOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<VideoOutputError\>): void
+on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 Listens for errors that occur during video recording. This API uses a callback to return the result.
 
@@ -4193,214 +2686,18 @@ Listens for errors that occur during video recording. This API uses a callback t
 
 **Parameters**
 
-| Name    | Type                                              | Mandatory| Description                                   |
-| -------- | ------------------------------------------------ | ---- | -------------------------------------- |
-| type     | string                                           | Yes  | Event type. The value is fixed at **'error'**, indicating the video output error event.|
-| callback | Callback<[VideoOutputError](#videooutputerror)\> | Yes  | Callback used to return the error information.                |
+| Name    | Type      | Mandatory| Description                                   |
+| -------- | ----------- | ---- | -------------------------------------- |
+| type     | string      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a recording-related API such as **start()** and **release()**.|
+| callback | Callback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
 
 **Example**
 
 ```js
-videoOutput.on('error', (VideoOutputError) => {
-    console.log(`Video output error code: ${VideoOutputError.code}`);
+videoOutput.on('error', (error) => {
+    console.log(`Video output error code: ${error.code}`);
 })
 ```
-
-## VideoOutputErrorCode
-
-Enumerates the error codes used for video recording.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                  | Value  | Description         |
-| --------------------- | ---- | ------------ |
-| ERROR_UNKNOWN         | -1   | Unknown error.    |
-| ERROR_DRIVER_ERROR    | 0    | The driver or hardware is faulty.|
-
-## VideoOutputError
-
-Defines a video output error.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name| Type                                 | Description                   |
-| ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | **VideoOutput** error code.|
-
-## MetadataObjectType
-
-Enumerates metadata streams.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                      | Value  | Description             |
-| ------------------------- | ---- | ----------------- |
-| FACE_DETECTION            | 0    | Metadata object type.|
-
-## Rect
-
-Defines a rectangle.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name     | Type  | Description                |
-| -------- | ------ | -------------------- |
-| topLeftX | number | X-axis coordinate of the upper left corner of the rectangle.  |
-| topLeftY | number | Y-axis coordinate of the upper left corner of the rectangle.  |
-| width    | number | Width of the rectangle.             |
-| height   | number | Height of the rectangle.             |
-
-## MetadataObject
-
-Implements camera metadata, which is the data source of **[CameraInput](#camerainput)**.
-
-### getType
-
-getType(callback: AsyncCallback<MetadataObjectType\>): void
-
-Obtains the metadata object type. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                                      | Mandatory| Description                 |
-| -------- | --------------------------------------------------------- | --- | -------------------- |
-| callback | AsyncCallback<[MetadataObjectType](#metadataobjecttype)\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-metadataObject.getType((err, metadataObjectType) => {
-    if (err) {
-        console.error(`Failed to get type. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with an array of metadataObjectType.');
-})
-```
-
-### getType
-
-getType(): Promise<MetadataObjectType\>
-
-Obtains the metadata object type. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type                                                | Description                       |
-| --------------------------------------------------- | --------------------------- |
-| Promise<[MetadataObjectType](#metadataobjecttype)\> | Promise used to return the result.|
-
-**Example**
-
-```js
-metadataObject.getType().then((metadataObjectType) => {
-    console.log('Callback returned with an array of metadataObjectType.');
-})
-```
-
-### getTimestamp
-
-getTimestamp(callback: AsyncCallback<number\>): void
-
-Obtains the metadata timestamp. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                                        | Mandatory| Description                    |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<number\>                                      | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-metadataObject.getTimestamp((err) => {
-    if (err) {
-        console.error(`Failed to get timestamp. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with timestamp getted.');
-})
-```
-
-### getTimestamp
-
-getTimestamp(): Promise<number\>
-
-Obtains the metadata timestamp. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type              | Description                       |
-| ----------------  | --------------------------- |
-| Promise<number)\> | Promise used to return the result.|
-
-**Example**
-
-```js
-metadataObject.getTimestamp().then(() => {
-    console.log('Callback returned with timestamp getted.');
-})
-```
-
-### getBoundingBox
-
-getBoundingBox(callback: AsyncCallback<Rect\>): void
-
-Obtains the bounding box of metadata. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Parameters**
-
-| Name    | Type                                                        | Mandatory| Description                    |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[Rect](#rect)\>                               | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-metadataObject.getBoundingBox((err, rect) => {
-    if (err) {
-        console.error(`Failed to get boundingBox. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with boundingBox getted.');
-})
-```
-
-### getBoundingBox
-
-getBoundingBox(): Promise<Rect\>
-
-Obtains the bounding box of metadata. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type                   | Description                       |
-| ----------------------  | --------------------------- |
-| Promise<[Rect](#rect)\> | Promise used to return the result.|
-
-**Example**
-
-```js
-metadataObject.getBoundingBox().then((rect) => {
-    console.log('Callback returned with boundingBox getted.');
-})
-```
-
-## MetadataFaceObject
-
-Implements the face object of metadata. It inherits [MetadataObject](#metadataobject).
 
 ## MetadataOutput
 
@@ -4417,15 +2714,15 @@ Starts to output metadata. This API uses an asynchronous callback to return the 
 **Parameters**
 
 | Name    | Type                                                        | Mandatory| Description                |
-| -------- | ----------------------------------------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>                                       | Yes  | Callback used to return the result.|
+| -------- | -------------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\>       | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 metadataOutput.start((err) => {
     if (err) {
-        console.error(`Failed to start metadataOutput. ${err.message}`);
+        console.error(`Failed to start metadataOutput. ${err.code}`);
         return;
     }
     console.log('Callback returned with metadataOutput started.');
@@ -4444,14 +2741,16 @@ Starts to output metadata. This API uses a promise to return the result.
 
 | Type                    | Description                    |
 | ----------------------  | ------------------------ |
-| Promise<void\>         | Promise used to return the result.|
+| Promise<void\>         | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Example**
 
 ```js
 metadataOutput.start().then(() => {
     console.log('Callback returned with metadataOutput started.');
-})
+}).catch((err) => {
+    console.log('Failed to metadataOutput start '+ err.code);
+});
 ```
 
 ### stop
@@ -4473,10 +2772,10 @@ Stops outputting metadata. This API uses an asynchronous callback to return the 
 ```js
 metadataOutput.stop((err) => {
     if (err) {
-        console.error(`Failed to stop the metadataOutput. ${err.message}`);
+        console.error(`Failed to stop the metadataOutput. ${err.code}`);
         return;
     }
-    console.log('Callback returned with metadataOutput stoped.');
+    console.log('Callback returned with metadataOutput stopped.');
 })
 ```
 
@@ -4498,8 +2797,10 @@ Stops outputting metadata. This API uses a promise to return the result.
 
 ```js
 metadataOutput.stop().then(() => {
-    console.log('Callback returned with metadataOutput stoped.');
-})
+    console.log('Callback returned with metadataOutput stopped.');
+}).catch((err) => {
+    console.log('Failed to metadataOutput stop '+ err.code);
+});
 ```
 
 ### on('metadataObjectsAvailable')
@@ -4512,22 +2813,22 @@ Listens for metadata objects. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory| Description                                 |
-| -------- | -----------------------------------------------    - | ---- | ------------------------------------ |
-| type     | string                            | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**, that is, the metadata object.|
-| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the error information.              |
+| Name     | Type        | Mandatory| Description                                 |
+| -------- | -------------- | ---- | ------------------------------------ |
+| type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding metadata is returned when valid metadata is detected.|
+| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the metadata.|
 
 **Example**
 
 ```js
-metadataOutput.on('metadataObjectsAvailable', (metadataObject) => {
-    console.log(`metadata output error code: ${metadataObject.code}`);
+metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+    console.log(`metadata output metadataObjectsAvailable`);
 })
 ```
 
 ### on('error')
 
-on(tuype: 'error', callback: ErrorCallback<MetadataOutputError\>): void
+on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 
 Listens for metadata errors. This API uses an asynchronous callback to return the result.
 
@@ -4535,10 +2836,10 @@ Listens for metadata errors. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name    | Type                                              | Mandatory| Description                                    |
-| -------- | ------------------------------------------------ | ---- | --------------------------------------- |
-| type     | string                                           | Yes  | Event type. The value is fixed at **'error'**, that is, the metadata error.|
-| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | Yes  | Callback used to return the error information.           |
+| Name    | Type        | Mandatory| Description                                    |
+| -------- | ------------- | ---- | --------------------------------------- |
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a metadata-related API such as **start()** and **release()**.|
+| callback | Callback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
 
 **Example**
 
@@ -4548,23 +2849,35 @@ metadataOutput.on('error', (metadataOutputError) => {
 })
 ```
 
-## MetadataOutputErrorCode
+## MetadataObjectType
 
-Enumerates the codes used for metadata output errors.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                            | Value  | Description     |
-| ------------------------------- | ---- | -------- |
-| ERROR_UNKNOWN                   | -1   | Unknown error.|
-| ERROR_INSUFFICIENT_RESOURCES    | 0    | Insufficient resources.|
-
-## MetadataOutputError
-
-Defines a metadata output error.
+Enumerates the metadata object types.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name| Type                                 | Description                   |
-| ---- | ------------------------------------- | ----------------------- |
-| code | [MetadataOutputErrorCode](#metadataoutputerrorcode) | **MetadataOutput** error code.|
+| Name                      | Value  | Description             |
+| ------------------------- | ---- | ----------------- |
+| FACE_DETECTION            | 0    | Face detection. The detection point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.<br> The coordinate system is based on the horizontal device direction with the device's charging port on the right.<br> If the layout of a preview screen of an application is based on the vertical direction with the charging port on the lower side,<br> the layout width and height are {w, h} and the return point is {x, y}, then the coordinate point after conversion is {1-y, x}.|
+
+## Rect
+
+Defines a rectangle.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name     | Type  |      Mandatory    |           Description                |
+| -------- | ------ | --------------- | -------------------- |
+| topLeftX | number |        Yes         | X-axis coordinate of the upper left corner of the rectangle.  |
+| topLeftY | number |         Yes         | Y-axis coordinate of the upper left corner of the rectangle.  |
+| width    | number |         Yes        | Width of the rectangle.             |
+| height   | number |         Yes          |Height of the rectangle.             |
+
+## MetadataObject
+
+Implements camera metadata, which is the data source of [CameraInput](#camerainput). The metadata is obtained through metadataOutput.on('metadataObjectsAvailable').
+
+| Name     | Type                           | Mandatory | Description             |
+| -------- | ------------------------------- | ---- | -----------------|
+| type  | [MetadataObjectType](#metadataobjecttype)   | No  | Metadata data type. Only face recognition is supported.|
+| timestamp | number | No  | Current timestamp, in milliseconds.|
+| boundingBox | [Rect](#rect)           | No  | Metadata rectangle.|

@@ -213,7 +213,7 @@ switch{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     backstar: '',
@@ -249,7 +249,7 @@ export default {
     this.rate = e.progress
   },
   showrating(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '当前评分' + e.rating
     })
   }

@@ -123,11 +123,12 @@
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     direction: 'column',
-    list: []
+    list: [],
+    listAdd: []
   },
   onInit() {
     this.list = []
@@ -156,12 +157,12 @@ export default {
     this.$element('mylist').expandGroup()
   },
   collapse(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Close ' + e.groupid
     })
   },
   expand(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Open ' + e.groupid
     })
   }

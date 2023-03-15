@@ -1,15 +1,10 @@
 # Divider
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 提供分隔器组件，分隔不同内容块/内容元素。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -21,15 +16,18 @@
 
 Divider()
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| vertical | boolean | false | 使用水平分割线还是垂直分割线。false：水平分割线；true：垂直分割线。 |
-| color | [ResourceColor](../../ui/ts-types.md) | - | 分割线颜色。 |
-| strokeWidth | [Length](../../ui/ts-types.md) | 1 | 分割线宽度。 |
-| lineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 分割线的端点样式。 |
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称      | 参数类型         | 描述        |
+| ----------- | ---------- | ------------------ |
+| vertical    | boolean | 使用水平分割线还是垂直分割线。false：水平分割线；true：垂直分割线。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | 分割线颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| strokeWidth | number&nbsp;\|&nbsp;string | 分割线宽度。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 分割线的端点样式。<br/>默认值：LineCapStyle.Butt<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
@@ -45,26 +43,61 @@ Divider()
 @Component
 struct DividerExample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Column() {
+      // 使用横向分割线场景
       Text('Horizontal divider').fontSize(9).fontColor(0xCCCCCC)
-      Row().width('100%').height(40).backgroundColor(0xF1F3F5)
-      Divider()
-      Row().width('100%').height(40).backgroundColor(0xF1F3F5)
+      List() {
+        ForEach([1, 2, 3], (item) => {
+          ListItem() {
+            Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
+          }.width(244).height(48)
+        }, item => item.toString())
+      }.padding({ left: 24, bottom: 8 })
 
+      Divider().strokeWidth(8).color('#F1F3F5')
+      List() {
+        ForEach([4, 5], (item) => {
+          ListItem() {
+            Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
+          }.width(244).height(48)
+        }, item => item.toString())
+      }.padding({ left: 24, top: 8 })
+
+      // 使用纵向分割线场景
       Text('Vertical divider').fontSize(9).fontColor(0xCCCCCC)
-      Flex({ alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
-        Text('bravery')
-        Divider().vertical(true).margin(20).height(15)
-        Text('effort')
-        Divider().vertical(true).margin(20).height(15)
-        Text('upward')
-      }.width(250)
-
-      Text('Custom Styles').fontSize(9).fontColor(0xCCCCCC)
-      Row().width('100%').height(40).backgroundColor(0xF1F3F5)
-      Divider().vertical(false).strokeWidth(5).color(0x2788D9).lineCap(LineCapStyle.Round)
-      Row().width('100%').height(40).backgroundColor(0xF1F3F5)
-    }.width('100%').height(350).padding({ left: 35, right: 35, top: 35 })
+      Column() {
+        Column() {
+          Row().width(288).height(64).backgroundColor('#30C9F0').opacity(0.3)
+          Row() {
+            Button('Button')
+              .width(136)
+              .height(22)
+              .fontSize(16)
+              .fontColor('#007DFF')
+              .fontWeight(500)
+              .backgroundColor(Color.Transparent)
+            Divider().vertical(true).height(22).color('#182431').opacity(0.6).margin({ left: 8, right: 8 })
+            Button('Button')
+              .width(136)
+              .height(22)
+              .fontSize(16)
+              .fontColor('#007DFF')
+              .fontWeight(500)
+              .backgroundColor(Color.Transparent)
+          }.margin({ top: 17 })
+        }
+        .width(336)
+        .height(152)
+        .backgroundColor('#FFFFFF')
+        .borderRadius(24)
+        .padding(24)
+      }
+      .width('100%')
+      .height(168)
+      .backgroundColor('#F1F3F5')
+      .justifyContent(FlexAlign.Center)
+      .margin({ top: 8 })
+    }.width('100%').padding({ top: 24 })
   }
 }
 ```

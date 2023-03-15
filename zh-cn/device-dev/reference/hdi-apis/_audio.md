@@ -1,12 +1,27 @@
 # Audio
 
 
+## **概述**
+
+Audio模块接口定义。
+
+音频接口涉及自定义类型、驱动加载接口、驱动适配器接口、音频播放（Render）接口、音频录音（Capture）接口等。
+
+**Since**:
+
+1.0
+
+**Version**:
+
+1.0
+
+
 ## **汇总**
 
 
 ### 文件
 
-  | 文件 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [audio_adapter.h](audio__adapter_8h.md) | Audio适配器的接口定义文件 | 
 | [audio_attribute.h](audio__attribute_8h.md) | Audio属性的接口定义文件 | 
@@ -21,71 +36,71 @@
 
 ### 类
 
-  | 类 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [AudioAdapter](_audio_adapter.md) | AudioAdapter音频适配器接口&nbsp;[更多...](_audio_adapter.md) | 
-| [AudioAttribute](_audio_attribute.md) | AudioAttribute音频属性接口&nbsp;[更多...](_audio_attribute.md) | 
-| [AudioCapture](_audio_capture.md) | AudioCapture音频录音接口&nbsp;[更多...](_audio_capture.md) | 
-| [AudioControl](_audio_control.md) | AudioControl音频控制接口&nbsp;[更多...](_audio_control.md) | 
-| [AudioManager](_audio_manager.md) | AudioManager音频适配器管理接口&nbsp;[更多...](_audio_manager.md) | 
-| [AudioRender](_audio_render.md) | AudioRender音频播放接口&nbsp;[更多...](_audio_render.md) | 
-| [AudioScene](_audio_scene.md) | AudioScene音频场景接口&nbsp;[更多...](_audio_scene.md) | 
-| [AudioPort](_audio_port.md) | 音频端口&nbsp;[更多...](_audio_port.md) | 
-| [AudioAdapterDescriptor](_audio_adapter_descriptor.md) | 音频适配器描述符&nbsp;[更多...](_audio_adapter_descriptor.md) | 
-| [AudioDeviceDescriptor](_audio_device_descriptor.md) | 音频设备描述符&nbsp;[更多...](_audio_device_descriptor.md) | 
-| [AudioSceneDescriptor](_audio_scene_descriptor.md) | 音频场景描述符&nbsp;[更多...](_audio_scene_descriptor.md) | 
-| [AudioSceneDescriptor::SceneDesc](union_audio_scene_descriptor_1_1_scene_desc.md) | 音频场景描述&nbsp;[更多...](union_audio_scene_descriptor_1_1_scene_desc.md) | 
-| [AudioSampleAttributes](_audio_sample_attributes.md) | 音频采样属性&nbsp;[更多...](_audio_sample_attributes.md) | 
-| [AudioTimeStamp](_audio_time_stamp.md) | 音频时间戳&nbsp;[更多...](_audio_time_stamp.md) | 
-| [AudioSubPortCapability](_audio_sub_port_capability.md) | 音频子端口的支持能力&nbsp;[更多...](_audio_sub_port_capability.md) | 
-| [AudioPortCapability](_audio_port_capability.md) | 音频端口的支持能力&nbsp;[更多...](_audio_port_capability.md) | 
-| [AudioMmapBufferDescripter](_audio_mmap_buffer_descripter.md) | mmap缓冲区描述符&nbsp;[更多...](_audio_mmap_buffer_descripter.md) | 
-| [AudioDevExtInfo](_audio_dev_ext_info.md) | 音频设备拓展信息&nbsp;[更多...](_audio_dev_ext_info.md) | 
-| [AudioMixExtInfo](_audio_mix_ext_info.md) | 音轨拓展信息&nbsp;[更多...](_audio_mix_ext_info.md) | 
-| [AudioSessionExtInfo](_audio_session_ext_info.md) | 会话拓展信息&nbsp;[更多...](_audio_session_ext_info.md) | 
-| [AudioRouteNode](_audio_route_node.md) | 音频路由节点&nbsp;[更多...](_audio_route_node.md) | 
-| [AudioRoute](_audio_route.md) | 音频路由信息&nbsp;[更多...](_audio_route.md) | 
-| [AudioVolume](_audio_volume.md) | AudioVolume音频音量接口&nbsp;[更多...](_audio_volume.md) | 
+| [AudioAdapter](_audio_adapter.md) | AudioAdapter音频适配器接口 | 
+| [AudioAttribute](_audio_attribute.md) | AudioAttribute音频属性接口 | 
+| [AudioCapture](_audio_capture.md) | AudioCapture音频录音接口 | 
+| [AudioControl](_audio_control.md) | AudioControl音频控制接口 | 
+| [AudioManager](_audio_manager.md) | AudioManager音频适配器管理接口 | 
+| [AudioRender](_audio_render.md) | AudioRender音频播放接口 | 
+| [AudioScene](_audio_scene.md) | AudioScene音频场景接口 | 
+| [AudioPort](_audio_port.md) | 音频端口 | 
+| [AudioAdapterDescriptor](_audio_adapter_descriptor.md) | 音频适配器描述符 | 
+| [AudioDeviceDescriptor](_audio_device_descriptor.md) | 音频设备描述符 | 
+| [AudioSceneDescriptor](_audio_scene_descriptor.md) | 音频场景描述符 | 
+| [AudioSceneDescriptor::SceneDesc](union_audio_scene_descriptor_1_1_scene_desc.md) | 音频场景描述 | 
+| [AudioSampleAttributes](_audio_sample_attributes.md) | 音频采样属性 | 
+| [AudioTimeStamp](_audio_time_stamp.md) | 音频时间戳 | 
+| [AudioSubPortCapability](_audio_sub_port_capability.md) | 音频子端口的支持能力 | 
+| [AudioPortCapability](_audio_port_capability.md) | 音频端口的支持能力 | 
+| [AudioMmapBufferDescriptor](_audio_mmap_buffer_descriptor.md) | mmap缓冲区描述符 | 
+| [AudioDevExtInfo](_audio_dev_ext_info.md) | 音频设备拓展信息 | 
+| [AudioMixExtInfo](_audio_mix_ext_info.md) | 音轨拓展信息 | 
+| [AudioSessionExtInfo](_audio_session_ext_info.md) | 会话拓展信息 | 
+| [AudioRouteNode](_audio_route_node.md) | 音频路由节点 | 
+| [AudioRoute](_audio_route.md) | 音频路由信息 | 
+| [AudioVolume](_audio_volume.md) | AudioVolume音频音量接口 | 
 
 
 ### 类型定义
 
-  | 类型定义 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | AudioHandle | 音频句柄 | 
-| ([RenderCallback](#rendercallback))&nbsp;(enum&nbsp;[AudioCallbackType](#audiocallbacktype),&nbsp;void&nbsp;\*reserved,&nbsp;void&nbsp;\*cookie) | 回调函数指针&nbsp;[更多...](#rendercallback) | 
+| ([RenderCallback](#rendercallback))&nbsp;(enum&nbsp;AudioCallbackType,&nbsp;void&nbsp;\*reserved,&nbsp;void&nbsp;\*cookie) | 回调函数指针 | 
 
 
 ### 枚举
 
-  | 枚举 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [AudioPortDirection](#audioportdirection)&nbsp;{&nbsp;PORT_OUT&nbsp;=&nbsp;0x1u,&nbsp;PORT_IN&nbsp;=&nbsp;0x2u,&nbsp;PORT_OUT_IN&nbsp;=&nbsp;0x3u&nbsp;} | 音频端口的类型&nbsp;[更多...](#audioportdirection) | 
-| [AudioPortPin](#audioportpin)&nbsp;{&nbsp;&nbsp;&nbsp;PIN_NONE&nbsp;=&nbsp;0x0u,&nbsp;PIN_OUT_SPEAKER&nbsp;=&nbsp;0x1u,&nbsp;PIN_OUT_HEADSET&nbsp;=&nbsp;0x2u,&nbsp;PIN_OUT_LINEOUT&nbsp;=&nbsp;0x4u,&nbsp;&nbsp;&nbsp;PIN_OUT_HDMI&nbsp;=&nbsp;0x8u,&nbsp;PIN_OUT_USB&nbsp;=&nbsp;0x10u,&nbsp;PIN_OUT_USB_EXT&nbsp;=&nbsp;0x20u,&nbsp;PIN_IN_MIC&nbsp;=&nbsp;0x8000001u,&nbsp;&nbsp;&nbsp;PIN_IN_HS_MIC&nbsp;=&nbsp;0x8000002u,&nbsp;PIN_IN_LINEIN&nbsp;=&nbsp;0x8000004u,&nbsp;PIN_IN_USB_EXT&nbsp;=&nbsp;0x8000008u&nbsp;} | 音频适配器端口的PIN脚&nbsp;[更多...](#audioportpin) | 
-| [AudioCategory](#audiocategory)&nbsp;{&nbsp;AUDIO_IN_MEDIA&nbsp;=&nbsp;0,&nbsp;AUDIO_IN_COMMUNICATION,&nbsp;AUDIO_IN_RINGTONE,&nbsp;AUDIO_IN_CALL&nbsp;} | 音频类型（category）&nbsp;[更多...](#audiocategory) | 
-| [AudioFormat](#audioformat)&nbsp;{&nbsp;&nbsp;&nbsp;AUDIO_FORMAT_PCM_8_BIT&nbsp;=&nbsp;0x1u,&nbsp;AUDIO_FORMAT_PCM_16_BIT&nbsp;=&nbsp;0x2u,&nbsp;AUDIO_FORMAT_PCM_24_BIT&nbsp;=&nbsp;0x3u,&nbsp;AUDIO_FORMAT_PCM_32_BIT&nbsp;=&nbsp;0x4u,&nbsp;&nbsp;&nbsp;AUDIO_FORMAT_AAC_MAIN&nbsp;=&nbsp;0x1000001u,&nbsp;AUDIO_FORMAT_AAC_LC&nbsp;=&nbsp;0x1000002u,&nbsp;AUDIO_FORMAT_AAC_LD&nbsp;=&nbsp;0x1000003u,&nbsp;AUDIO_FORMAT_AAC_ELD&nbsp;=&nbsp;0x1000004u,&nbsp;&nbsp;&nbsp;AUDIO_FORMAT_AAC_HE_V1&nbsp;=&nbsp;0x1000005u,&nbsp;AUDIO_FORMAT_AAC_HE_V2&nbsp;=&nbsp;0x1000006u,&nbsp;AUDIO_FORMAT_G711A&nbsp;=&nbsp;0x2000001u,&nbsp;AUDIO_FORMAT_G711U&nbsp;=&nbsp;0x2000002u,&nbsp;&nbsp;&nbsp;AUDIO_FORMAT_G726&nbsp;=&nbsp;0x2000003u&nbsp;} | 音频格式&nbsp;[更多...](#audioformat) | 
-| [AudioChannelMask](#audiochannelmask)&nbsp;{&nbsp;AUDIO_CHANNEL_FRONT_LEFT&nbsp;=&nbsp;0x1,&nbsp;AUDIO_CHANNEL_FRONT_RIGHT&nbsp;=&nbsp;0x2,&nbsp;AUDIO_CHANNEL_MONO&nbsp;=&nbsp;0x1u,&nbsp;AUDIO_CHANNEL_STEREO&nbsp;=&nbsp;0x3u&nbsp;} | 音频通道掩码（mask）&nbsp;[更多...](#audiochannelmask) | 
-| [AudioSampleRatesMask](#audiosampleratesmask)&nbsp;{&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_RATE_MASK_8000&nbsp;=&nbsp;0x1u,&nbsp;AUDIO_SAMPLE_RATE_MASK_12000&nbsp;=&nbsp;0x2u,&nbsp;AUDIO_SAMPLE_RATE_MASK_11025&nbsp;=&nbsp;0x4u,&nbsp;AUDIO_SAMPLE_RATE_MASK_16000&nbsp;=&nbsp;0x8u,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_RATE_MASK_22050&nbsp;=&nbsp;0x10u,&nbsp;AUDIO_SAMPLE_RATE_MASK_24000&nbsp;=&nbsp;0x20u,&nbsp;AUDIO_SAMPLE_RATE_MASK_32000&nbsp;=&nbsp;0x40u,&nbsp;AUDIO_SAMPLE_RATE_MASK_44100&nbsp;=&nbsp;0x80u,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_RATE_MASK_48000&nbsp;=&nbsp;0x100u,&nbsp;AUDIO_SAMPLE_RATE_MASK_64000&nbsp;=&nbsp;0x200u,&nbsp;AUDIO_SAMPLE_RATE_MASK_96000&nbsp;=&nbsp;0x400u,&nbsp;AUDIO_SAMPLE_RATE_MASK_INVALID&nbsp;=&nbsp;0xFFFFFFFFu&nbsp;} | 音频采样频率MASK&nbsp;[更多...](#audiosampleratesmask) | 
-| [AudioPortPassthroughMode](#audioportpassthroughmode)&nbsp;{&nbsp;PORT_PASSTHROUGH_LPCM&nbsp;=&nbsp;0x1,&nbsp;PORT_PASSTHROUGH_RAW&nbsp;=&nbsp;0x2,&nbsp;PORT_PASSTHROUGH_HBR2LBR&nbsp;=&nbsp;0x4,&nbsp;PORT_PASSTHROUGH_AUTO&nbsp;=&nbsp;0x8&nbsp;} | 音频端口的数据透传模式&nbsp;[更多...](#audioportpassthroughmode) | 
-| [AudioSampleFormat](#audiosampleformat)&nbsp;{&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S8,&nbsp;AUDIO_SAMPLE_FORMAT_S8P,&nbsp;AUDIO_SAMPLE_FORMAT_U8,&nbsp;AUDIO_SAMPLE_FORMAT_U8P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S16,&nbsp;AUDIO_SAMPLE_FORMAT_S16P,&nbsp;AUDIO_SAMPLE_FORMAT_U16,&nbsp;AUDIO_SAMPLE_FORMAT_U16P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S24,&nbsp;AUDIO_SAMPLE_FORMAT_S24P,&nbsp;AUDIO_SAMPLE_FORMAT_U24,&nbsp;AUDIO_SAMPLE_FORMAT_U24P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S32,&nbsp;AUDIO_SAMPLE_FORMAT_S32P,&nbsp;AUDIO_SAMPLE_FORMAT_U32,&nbsp;AUDIO_SAMPLE_FORMAT_U32P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S64,&nbsp;AUDIO_SAMPLE_FORMAT_S64P,&nbsp;AUDIO_SAMPLE_FORMAT_U64,&nbsp;AUDIO_SAMPLE_FORMAT_U64P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_F32,&nbsp;AUDIO_SAMPLE_FORMAT_F32P,&nbsp;AUDIO_SAMPLE_FORMAT_F64,&nbsp;AUDIO_SAMPLE_FORMAT_F64P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FMT_U8,&nbsp;AUDIO_SAMPLE_FMT_S16,&nbsp;AUDIO_SAMPLE_FMT_S32,&nbsp;AUDIO_SAMPLE_FMT_FLOAT,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FMT_DOUBLE,&nbsp;AUDIO_SAMPLE_FMT_U8P,&nbsp;AUDIO_SAMPLE_FMT_S16P,&nbsp;AUDIO_SAMPLE_FMT_S32P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FMT_FLOATP,&nbsp;AUDIO_SAMPLE_FMT_DOUBLEP,&nbsp;AUDIO_SAMPLE_FMT_INVALID&nbsp;} | 原始音频样本格式&nbsp;[更多...](#audiosampleformat) | 
-| [AudioChannelMode](#audiochannelmode)&nbsp;{&nbsp;&nbsp;&nbsp;AUDIO_CHANNEL_NORMAL&nbsp;=&nbsp;0,&nbsp;AUDIO_CHANNEL_BOTH_LEFT,&nbsp;AUDIO_CHANNEL_BOTH_RIGHT,&nbsp;AUDIO_CHANNEL_EXCHANGE,&nbsp;&nbsp;&nbsp;AUDIO_CHANNEL_MIX,&nbsp;AUDIO_CHANNEL_LEFT_MUTE,&nbsp;AUDIO_CHANNEL_RIGHT_MUTE,&nbsp;AUDIO_CHANNEL_BOTH_MUTE&nbsp;} | 音频播放的通道模式&nbsp;[更多...](#audiochannelmode) | 
-| [AudioDrainNotifyType](#audiodrainnotifytype)&nbsp;{&nbsp;AUDIO_DRAIN_NORMAL_MODE,&nbsp;AUDIO_DRAIN_EARLY_MODE&nbsp;} | DrainBuffer函数结束类型&nbsp;[更多...](#audiodrainnotifytype) | 
-| [AudioCallbackType](#audiocallbacktype)&nbsp;{&nbsp;&nbsp;&nbsp;AUDIO_NONBLOCK_WRITE_COMPELETED,&nbsp;AUDIO_DRAIN_COMPELETED,&nbsp;AUDIO_FLUSH_COMPLETED,&nbsp;AUDIO_RENDER_FULL,&nbsp;&nbsp;&nbsp;AUDIO_ERROR_OCCUR&nbsp;} | 回调函数通知事件类型&nbsp;[更多...](#audiocallbacktype) | 
-| [AudioPortRole](#audioportrole)&nbsp;{&nbsp;AUDIO_PORT_UNASSIGNED_ROLE&nbsp;=&nbsp;0,&nbsp;AUDIO_PORT_SOURCE_ROLE&nbsp;=&nbsp;1,&nbsp;AUDIO_PORT_SINK_ROLE&nbsp;=&nbsp;2&nbsp;} | 音频端口角色&nbsp;[更多...](#audioportrole) | 
-| [AudioPortType](#audioporttype)&nbsp;{&nbsp;AUDIO_PORT_UNASSIGNED_TYPE&nbsp;=&nbsp;0,&nbsp;AUDIO_PORT_DEVICE_TYPE&nbsp;=&nbsp;1,&nbsp;AUDIO_PORT_MIX_TYPE&nbsp;=&nbsp;2,&nbsp;AUDIO_PORT_SESSION_TYPE&nbsp;=&nbsp;3&nbsp;} | 音频端口类型&nbsp;[更多...](#audioporttype) | 
-| [AudioSessionType](#audiosessiontype)&nbsp;{&nbsp;AUDIO_OUTPUT_STAGE_SESSION&nbsp;=&nbsp;0,&nbsp;AUDIO_OUTPUT_MIX_SESSION,&nbsp;AUDIO_ALLOCATE_SESSION,&nbsp;AUDIO_INVALID_SESSION&nbsp;} | 端口会话类型&nbsp;[更多...](#audiosessiontype) | 
+| [AudioPortDirection](#audioportdirection)&nbsp;{&nbsp;PORT_OUT&nbsp;=&nbsp;0x1u,&nbsp;PORT_IN&nbsp;=&nbsp;0x2u,&nbsp;PORT_OUT_IN&nbsp;=&nbsp;0x3u&nbsp;} | 音频端口的类型 | 
+| [AudioPortPin](#audioportpin)&nbsp;{&nbsp;PIN_NONE&nbsp;=&nbsp;0x0u,&nbsp;PIN_OUT_SPEAKER&nbsp;=&nbsp;0x1u,&nbsp;PIN_OUT_HEADSET&nbsp;=&nbsp;0x2u,&nbsp;PIN_OUT_LINEOUT&nbsp;=&nbsp;0x4u,&nbsp;&nbsp;&nbsp;PIN_OUT_HDMI&nbsp;=&nbsp;0x8u,&nbsp;PIN_OUT_USB&nbsp;=&nbsp;0x10u,&nbsp;PIN_OUT_USB_EXT&nbsp;=&nbsp;0x20u,&nbsp;PIN_IN_MIC&nbsp;=&nbsp;0x8000001u,&nbsp;&nbsp;&nbsp;PIN_IN_HS_MIC&nbsp;=&nbsp;0x8000002u,&nbsp;PIN_IN_LINEIN&nbsp;=&nbsp;0x8000004u,&nbsp;PIN_IN_USB_EXT&nbsp;=&nbsp;0x8000008u&nbsp;} | 音频适配器端口的PIN脚 | 
+| [AudioCategory](#audiocategory)&nbsp;{&nbsp;AUDIO_IN_MEDIA&nbsp;=&nbsp;0,&nbsp;AUDIO_IN_COMMUNICATION,&nbsp;AUDIO_IN_RINGTONE,&nbsp;AUDIO_IN_CALL&nbsp;} | 音频类型（category） | 
+| [AudioFormat](#audioformat){&nbsp;AUDIO_FORMAT_PCM_8_BIT&nbsp;=&nbsp;0x1u,&nbsp;AUDIO_FORMAT_PCM_16_BIT&nbsp;=&nbsp;0x2u,&nbsp;AUDIO_FORMAT_PCM_24_BIT&nbsp;=&nbsp;0x3u,&nbsp;AUDIO_FORMAT_PCM_32_BIT&nbsp;=&nbsp;0x4u,&nbsp;&nbsp;&nbsp;AUDIO_FORMAT_AAC_MAIN&nbsp;=&nbsp;0x1000001u,&nbsp;AUDIO_FORMAT_AAC_LC&nbsp;=&nbsp;0x1000002u,&nbsp;AUDIO_FORMAT_AAC_LD&nbsp;=&nbsp;0x1000003u,&nbsp;AUDIO_FORMAT_AAC_ELD&nbsp;=&nbsp;0x1000004u,&nbsp;&nbsp;&nbsp;AUDIO_FORMAT_AAC_HE_V1&nbsp;=&nbsp;0x1000005u,&nbsp;AUDIO_FORMAT_AAC_HE_V2&nbsp;=&nbsp;0x1000006u,&nbsp;AUDIO_FORMAT_G711A&nbsp;=&nbsp;0x2000001u,&nbsp;AUDIO_FORMAT_G711U&nbsp;=&nbsp;0x2000002u,&nbsp;&nbsp;&nbsp;AUDIO_FORMAT_G726&nbsp;=&nbsp;0x2000003u&nbsp;} | 音频格式 | 
+| [AudioChannelMask](#audiochannelmask){&nbsp;AUDIO_CHANNEL_FRONT_LEFT&nbsp;=&nbsp;0x1,&nbsp;AUDIO_CHANNEL_FRONT_RIGHT&nbsp;=&nbsp;0x2,&nbsp;AUDIO_CHANNEL_MONO&nbsp;=&nbsp;0x1u,&nbsp;AUDIO_CHANNEL_STEREO&nbsp;=&nbsp;0x3u&nbsp;} | 音频通道掩码（mask） | 
+| [AudioSampleRatesMask](#audiosampleratesmask){&nbsp;AUDIO_SAMPLE_RATE_MASK_8000&nbsp;=&nbsp;0x1u,&nbsp;AUDIO_SAMPLE_RATE_MASK_12000&nbsp;=&nbsp;0x2u,&nbsp;AUDIO_SAMPLE_RATE_MASK_11025&nbsp;=&nbsp;0x4u,&nbsp;AUDIO_SAMPLE_RATE_MASK_16000&nbsp;=&nbsp;0x8u,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_RATE_MASK_22050&nbsp;=&nbsp;0x10u,&nbsp;AUDIO_SAMPLE_RATE_MASK_24000&nbsp;=&nbsp;0x20u,&nbsp;AUDIO_SAMPLE_RATE_MASK_32000&nbsp;=&nbsp;0x40u,&nbsp;AUDIO_SAMPLE_RATE_MASK_44100&nbsp;=&nbsp;0x80u,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_RATE_MASK_48000&nbsp;=&nbsp;0x100u,&nbsp;AUDIO_SAMPLE_RATE_MASK_64000&nbsp;=&nbsp;0x200u,&nbsp;AUDIO_SAMPLE_RATE_MASK_96000&nbsp;=&nbsp;0x400u,&nbsp;AUDIO_SAMPLE_RATE_MASK_INVALID&nbsp;=&nbsp;0xFFFFFFFFu&nbsp;} | 音频采样频率MASK | 
+| [AudioPortPassthroughMode](#audioportpassthroughmode){&nbsp;PORT_PASSTHROUGH_LPCM&nbsp;=&nbsp;0x1,&nbsp;PORT_PASSTHROUGH_RAW&nbsp;=&nbsp;0x2,&nbsp;PORT_PASSTHROUGH_HBR2LBR&nbsp;=&nbsp;0x4,&nbsp;PORT_PASSTHROUGH_AUTO&nbsp;=&nbsp;0x8&nbsp;} | 音频端口的数据透传模式 | 
+| [AudioSampleFormat](#audiosampleformat){&nbsp;AUDIO_SAMPLE_FORMAT_S8,&nbsp;AUDIO_SAMPLE_FORMAT_S8P,&nbsp;AUDIO_SAMPLE_FORMAT_U8,&nbsp;AUDIO_SAMPLE_FORMAT_U8P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S16,&nbsp;AUDIO_SAMPLE_FORMAT_S16P,&nbsp;AUDIO_SAMPLE_FORMAT_U16,&nbsp;AUDIO_SAMPLE_FORMAT_U16P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S24,&nbsp;AUDIO_SAMPLE_FORMAT_S24P,&nbsp;AUDIO_SAMPLE_FORMAT_U24,&nbsp;AUDIO_SAMPLE_FORMAT_U24P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S32,&nbsp;AUDIO_SAMPLE_FORMAT_S32P,&nbsp;AUDIO_SAMPLE_FORMAT_U32,&nbsp;AUDIO_SAMPLE_FORMAT_U32P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_S64,&nbsp;AUDIO_SAMPLE_FORMAT_S64P,&nbsp;AUDIO_SAMPLE_FORMAT_U64,&nbsp;AUDIO_SAMPLE_FORMAT_U64P,&nbsp;&nbsp;&nbsp;AUDIO_SAMPLE_FORMAT_F32,&nbsp;AUDIO_SAMPLE_FORMAT_F32P,&nbsp;AUDIO_SAMPLE_FORMAT_F64,&nbsp;AUDIO_SAMPLE_FORMAT_F64P&nbsp;} | 原始音频样本格式 | 
+| [AudioChannelMode](#audiochannelmode){&nbsp;&nbsp;AUDIO_CHANNEL_NORMAL&nbsp;=&nbsp;0,&nbsp;AUDIO_CHANNEL_BOTH_LEFT,&nbsp;AUDIO_CHANNEL_BOTH_RIGHT,&nbsp;AUDIO_CHANNEL_EXCHANGE,&nbsp;&nbsp;&nbsp;AUDIO_CHANNEL_MIX,&nbsp;AUDIO_CHANNEL_LEFT_MUTE,&nbsp;AUDIO_CHANNEL_RIGHT_MUTE,&nbsp;AUDIO_CHANNEL_BOTH_MUTE&nbsp;} | 音频播放的通道模式 | 
+| [AudioDrainNotifyType](#audiodrainnotifytype){&nbsp;AUDIO_DRAIN_NORMAL_MODE,&nbsp;AUDIO_DRAIN_EARLY_MODE&nbsp;} | DrainBuffer函数结束类型 | 
+| [AudioCallbackType](#audiocallbacktype){&nbsp;AUDIO_NONBLOCK_WRITE_COMPLETED,&nbsp;AUDIO_DRAIN_COMPLETED,&nbsp;AUDIO_FLUSH_COMPLETED,&nbsp;AUDIO_RENDER_FULL,&nbsp;&nbsp;&nbsp;AUDIO_ERROR_OCCUR&nbsp;} | 回调函数通知事件类型 | 
+| [AudioPortRole](#audioportrole){&nbsp;AUDIO_PORT_UNASSIGNED_ROLE&nbsp;=&nbsp;0,&nbsp;AUDIO_PORT_SOURCE_ROLE&nbsp;=&nbsp;1,&nbsp;AUDIO_PORT_SINK_ROLE&nbsp;=&nbsp;2&nbsp;} | 音频端口角色 | 
+| [AudioPortType](#audioporttype){&nbsp;AUDIO_PORT_UNASSIGNED_TYPE&nbsp;=&nbsp;0,&nbsp;AUDIO_PORT_DEVICE_TYPE&nbsp;=&nbsp;1,&nbsp;AUDIO_PORT_MIX_TYPE&nbsp;=&nbsp;2,&nbsp;AUDIO_PORT_SESSION_TYPE&nbsp;=&nbsp;3&nbsp;} | 音频端口类型. | 
+| [AudioSessionType](#audiosessiontype){&nbsp;AUDIO_OUTPUT_STAGE_SESSION&nbsp;=&nbsp;0,&nbsp;AUDIO_OUTPUT_MIX_SESSION,&nbsp;AUDIO_ALLOCATE_SESSION,&nbsp;AUDIO_INVALID_SESSION&nbsp;} | 端口会话类型 | 
 
 
 ### 函数
 
-  | 函数 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [GetAudioManagerFuncs](#getaudiomanagerfuncs)&nbsp;(void) | 获取音频适配器管理接口的操作函数列表，详情参考[AudioManager](_audio_manager.md)[更多...](#getaudiomanagerfuncs) | 
+| [GetAudioManagerFuncs](#getaudiomanagerfuncs)(void) | 获取音频适配器管理接口的操作函数列表，详情参考[AudioManager](_audio_manager.md)。 | 
 
 
 ### 变量
 
-  | 变量 | 描述 | 
+  | 变量&nbsp;名称 | 描述 | 
 | -------- | -------- |
 | [AudioPort::dir](#dir) | 音频端口的类型。 | 
 | [AudioPort::portId](#portid-14) | 音频端口的ID。 | 
@@ -130,11 +145,11 @@
 | [AudioPortCapability::subPorts](#subports) | 支持的子端口列表。 | 
 | [AudioPortCapability::supportSampleFormatNum](#supportsampleformatnum) | 支持的音频样本格式数量。 | 
 | [AudioPortCapability::supportSampleFormats](#supportsampleformats) | 支持的音频样本格式。 | 
-| [AudioMmapBufferDescripter::memoryAddress](#memoryaddress) | 指向mmap缓冲区的指针。 | 
-| [AudioMmapBufferDescripter::memoryFd](#memoryfd) | mmap缓冲区的文件描述符。 | 
-| [AudioMmapBufferDescripter::totalBufferFrames](#totalbufferframes) | 缓冲区总大小，单位：帧。 | 
-| [AudioMmapBufferDescripter::transferFrameSize](#transferframesize) | 传输大小，单位：帧。 | 
-| [AudioMmapBufferDescripter::isShareable](#isshareable) | mmap缓冲区是否可以在进程间共享。 | 
+| [AudioMmapBufferDescriptor::memoryAddress](#memoryaddress) | 指向mmap缓冲区的指针。 | 
+| [AudioMmapBufferDescriptor::memoryFd](#memoryfd) | mmap缓冲区的文件描述符。 | 
+| [AudioMmapBufferDescriptor::totalBufferFrames](#totalbufferframes) | 缓冲区总大小，单位：帧。 | 
+| [AudioMmapBufferDescriptor::transferFrameSize](#transferframesize) | 传输大小，单位：帧。 | 
+| [AudioMmapBufferDescriptor::isShareable](#isshareable) | mmap缓冲区是否可以在进程间共享。 | 
 | [AudioDevExtInfo::moduleId](#moduleid-12) | 音频流绑定的模块ID。 | 
 | [AudioDevExtInfo::type](#type-23) | 音频端口上的PIN脚（输出、输入）。 | 
 | [AudioDevExtInfo::desc](#desc-55) | 地址描述。 | 
@@ -153,21 +168,6 @@
 | [AudioRoute::sinks](#sinks) | 接受端列表。 | 
 
 
-## **详细描述**
-
-Audio模块接口定义。
-
-音频接口涉及自定义类型、驱动加载接口、驱动适配器接口、音频播放（render）接口、音频录音（capture）接口等。
-
-**Since：**
-
-1.0
-
-**Version：**
-
-1.0
-
-
 ## **类型定义说明**
 
 
@@ -178,11 +178,11 @@ Audio模块接口定义。
 typedef int32_t(* RenderCallback) (enum AudioCallbackType, void *reserved, void *cookie)
 ```
 
-**描述：**
+**描述:**
 
 回调函数指针。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
@@ -190,13 +190,13 @@ typedef int32_t(* RenderCallback) (enum AudioCallbackType, void *reserved, void 
 | reserved | 保留字段 | 
 | cookie | 用于传递数据 | 
 
-**返回：**
+**返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
-**参见：**
+**参见:**
 
-RegCallback
+[RegCallback](_audio_render.md#regcallback)
 
 
 ## **枚举类型说明**
@@ -209,14 +209,14 @@ RegCallback
 enum AudioCallbackType
 ```
 
-**描述：**
+**描述:**
 
 回调函数通知事件类型。
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIO_NONBLOCK_WRITE_COMPELETED | 非阻塞式写完成 | 
-| AUDIO_DRAIN_COMPELETED | DrainBuffer完成 | 
+| AUDIO_NONBLOCK_WRITE_COMPLETED | 非阻塞式写完成 | 
+| AUDIO_DRAIN_COMPLETED | DrainBuffer完成 | 
 | AUDIO_FLUSH_COMPLETED | Flush完成 | 
 | AUDIO_RENDER_FULL | Render缓冲区已满 | 
 | AUDIO_ERROR_OCCUR | 发生了错误 | 
@@ -229,7 +229,7 @@ enum AudioCallbackType
 enum AudioCategory
 ```
 
-**描述：**
+**描述:**
 
 音频类型（category）。
 
@@ -248,7 +248,7 @@ enum AudioCategory
 enum AudioChannelMask
 ```
 
-**描述：**
+**描述:**
 
 音频通道掩码（mask）。
 
@@ -269,12 +269,13 @@ enum AudioChannelMask
 enum AudioChannelMode
 ```
 
-**描述：**
+**描述:**
 
 音频播放的通道模式。
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
-> 下面的模式是针对双通道立体声的音频播放而设置，其他不支持。
+**注意:**
+
+下面的模式是针对双通道立体声的音频播放而设置，其他不支持。
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -295,7 +296,7 @@ enum AudioChannelMode
 enum AudioDrainNotifyType
 ```
 
-**描述：**
+**描述:**
 
 DrainBuffer函数结束类型。
 
@@ -312,7 +313,7 @@ DrainBuffer函数结束类型。
 enum AudioFormat
 ```
 
-**描述：**
+**描述:**
 
 音频格式。
 
@@ -340,15 +341,15 @@ enum AudioFormat
 enum AudioPortDirection
 ```
 
-**描述：**
+**描述:**
 
 音频端口的类型。
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| PORT_OUT | 音频输出端口。 | 
-| PORT_IN | 音频输入端口。 | 
-| PORT_OUT_IN | 音频输出/入端口，同时支持输出和输入能力（OUT&nbsp;\|&nbsp;IN）。 | 
+| PORT_OUT | 音频输出端口 | 
+| PORT_IN | 音频输入端口 | 
+| PORT_OUT_IN | 音频输出/入端口,&nbsp;同时支持输出和输入能力（OUT&nbsp;\|&nbsp;IN） | 
 
 
 ### AudioPortPassthroughMode
@@ -358,7 +359,7 @@ enum AudioPortDirection
 enum AudioPortPassthroughMode
 ```
 
-**描述：**
+**描述:**
 
 音频端口的数据透传模式。
 
@@ -377,7 +378,7 @@ enum AudioPortPassthroughMode
 enum AudioPortPin
 ```
 
-**描述：**
+**描述:**
 
 音频适配器端口的PIN脚。
 
@@ -403,7 +404,7 @@ enum AudioPortPin
 enum AudioPortRole
 ```
 
-**描述：**
+**描述:**
 
 音频端口角色。
 
@@ -421,7 +422,7 @@ enum AudioPortRole
 enum AudioPortType
 ```
 
-**描述：**
+**描述:**
 
 音频端口类型。
 
@@ -440,7 +441,7 @@ enum AudioPortType
 enum AudioSampleFormat
 ```
 
-**描述：**
+**描述:**
 
 原始音频样本格式。
 
@@ -470,17 +471,6 @@ enum AudioSampleFormat
 | AUDIO_SAMPLE_FORMAT_F32P | 64bit位宽浮点型非交织样本 | 
 | AUDIO_SAMPLE_FORMAT_F64 | 64bit位宽双精度浮点型交织样本 | 
 | AUDIO_SAMPLE_FORMAT_F64P | 64bit位宽双精度浮点型非交织样本 | 
-| AUDIO_SAMPLE_FMT_U8 | 无符号8位整型，打包格式 | 
-| AUDIO_SAMPLE_FMT_S16 | 带符号16位整型，打包格式 | 
-| AUDIO_SAMPLE_FMT_S32 | 带符号32位整型，打包格式 | 
-| AUDIO_SAMPLE_FMT_FLOAT | 浮点型，打包格式 | 
-| AUDIO_SAMPLE_FMT_DOUBLE | 双精度浮点型，打包格式 | 
-| AUDIO_SAMPLE_FMT_U8P | 无符号8位整型，平面格式 | 
-| AUDIO_SAMPLE_FMT_S16P | 带符号16位整型，平面格式 | 
-| AUDIO_SAMPLE_FMT_S32P | 带符号32位整型，平面格式 | 
-| AUDIO_SAMPLE_FMT_FLOATP | 浮点型，平面格式 | 
-| AUDIO_SAMPLE_FMT_DOUBLEP | 双精度浮点型，平面格式 | 
-| AUDIO_SAMPLE_FMT_INVALID | 无效采样格式 | 
 
 
 ### AudioSampleRatesMask
@@ -490,7 +480,7 @@ enum AudioSampleFormat
 enum AudioSampleRatesMask
 ```
 
-**描述：**
+**描述:**
 
 音频采样频率MASK。
 
@@ -517,7 +507,7 @@ enum AudioSampleRatesMask
 enum AudioSessionType
 ```
 
-**描述：**
+**描述:**
 
 端口会话类型。
 
@@ -539,11 +529,11 @@ enum AudioSessionType
 struct AudioManager* GetAudioManagerFuncs (void )
 ```
 
-**描述：**
+**描述:**
 
 获取音频适配器管理接口的操作函数列表，详情参考[AudioManager](_audio_manager.md)。
 
-**返回：**
+**返回:**
 
 成功返回一个音频适配器管理接口的对象，失败返回NULL。
 
@@ -558,9 +548,9 @@ struct AudioManager* GetAudioManagerFuncs (void )
 const char* AudioAdapterDescriptor::adapterName
 ```
 
-**描述：**
+**描述:**
 
-音频适配器的名称。
+音频适配器的名称
 
 
 ### channelCount [1/2]
@@ -570,7 +560,7 @@ const char* AudioAdapterDescriptor::adapterName
 uint32_t AudioSampleAttributes::channelCount
 ```
 
-**描述：**
+**描述:**
 
 音频通道数目，如单通道（mono）为1、立体声（stereo）为2。
 
@@ -582,9 +572,9 @@ uint32_t AudioSampleAttributes::channelCount
 unsigned int AudioPortCapability::channelCount
 ```
 
-**描述：**
+**描述:**
 
-支持的最大声道总数。
+支持的最大声道总数
 
 
 ### channelMasks
@@ -594,7 +584,7 @@ unsigned int AudioPortCapability::channelCount
 enum AudioChannelMask AudioPortCapability::channelMasks
 ```
 
-**描述：**
+**描述:**
 
 设备的声道布局掩码（mask），详情参考[AudioChannelMask](#audiochannelmask)。
 
@@ -606,9 +596,9 @@ enum AudioChannelMask AudioPortCapability::channelMasks
 const char* AudioDeviceDescriptor::desc
 ```
 
-**描述：**
+**描述:**
 
-以字符串命名的音频设备。
+以字符串命名的音频设备
 
 
 ### desc [2/5]
@@ -618,9 +608,9 @@ const char* AudioDeviceDescriptor::desc
 struct AudioDeviceDescriptor AudioSceneDescriptor::desc
 ```
 
-**描述：**
+**描述:**
 
-音频设备描述符。
+音频设备描述符
 
 
 ### desc [3/5]
@@ -630,9 +620,9 @@ struct AudioDeviceDescriptor AudioSceneDescriptor::desc
 const char* AudioSceneDescriptor::SceneDesc::desc
 ```
 
-**描述：**
+**描述:**
 
-以字符串命名的音频场景。
+以字符串命名的音频场景
 
 
 ### desc [4/5]
@@ -642,9 +632,9 @@ const char* AudioSceneDescriptor::SceneDesc::desc
 const char* AudioSubPortCapability::desc
 ```
 
-**描述：**
+**描述:**
 
-以字符串命名的子端口。
+以字符串命名的子端口
 
 
 ### desc [5/5]
@@ -654,9 +644,21 @@ const char* AudioSubPortCapability::desc
 const char* AudioDevExtInfo::desc
 ```
 
-**描述：**
+**描述:**
 
-地址描述。
+地址描述
+
+
+### device
+
+  
+```
+struct AudioDevExtInfo AudioRouteNode::ext::device
+```
+
+**描述:**
+
+设备特定信息。
 
 
 ### deviceId
@@ -666,7 +668,7 @@ const char* AudioDevExtInfo::desc
 unsigned int AudioPortCapability::deviceId
 ```
 
-**描述：**
+**描述:**
 
 绑定（bind）设备ID，唯一的设备识别符。
 
@@ -678,7 +680,7 @@ unsigned int AudioPortCapability::deviceId
 unsigned int AudioPortCapability::deviceType
 ```
 
-**描述：**
+**描述:**
 
 设备输出、输入类型。
 
@@ -690,7 +692,7 @@ unsigned int AudioPortCapability::deviceType
 enum AudioPortDirection AudioPort::dir
 ```
 
-**描述：**
+**描述:**
 
 音频端口的类型，详情参考[AudioPortDirection](#audioportdirection)。
 
@@ -702,7 +704,7 @@ enum AudioPortDirection AudioPort::dir
 enum AudioFormat AudioSampleAttributes::format
 ```
 
-**描述：**
+**描述:**
 
 音频数据格式，详情参考[AudioFormat](#audioformat)。
 
@@ -714,9 +716,9 @@ enum AudioFormat AudioSampleAttributes::format
 unsigned int AudioPortCapability::formatNum
 ```
 
-**描述：**
+**描述:**
 
-支持的音频格式数目。
+支持的音频格式数目
 
 
 ### formats
@@ -726,7 +728,7 @@ unsigned int AudioPortCapability::formatNum
 enum AudioFormat* AudioPortCapability::formats
 ```
 
-**描述：**
+**描述:**
 
 支持的音频格式，详情参考[AudioFormat](#audioformat)。
 
@@ -738,9 +740,9 @@ enum AudioFormat* AudioPortCapability::formats
 uint32_t AudioSampleAttributes::frameSize
 ```
 
-**描述：**
+**描述:**
 
-音频数据的帧大小。
+音频数据的帧大小
 
 
 ### hardwareMode
@@ -750,9 +752,9 @@ uint32_t AudioSampleAttributes::frameSize
 bool AudioPortCapability::hardwareMode
 ```
 
-**描述：**
+**描述:**
 
-是否支持设备绑定处理。
+是否支持设备绑定处理
 
 
 ### id
@@ -762,9 +764,9 @@ bool AudioPortCapability::hardwareMode
 unsigned int AudioSceneDescriptor::SceneDesc::id
 ```
 
-**描述：**
+**描述:**
 
-音频场景的ID。
+音频场景的ID
 
 
 ### interleaved
@@ -774,9 +776,9 @@ unsigned int AudioSceneDescriptor::SceneDesc::id
 bool AudioSampleAttributes::interleaved
 ```
 
-**描述：**
+**描述:**
 
-音频数据交织的标记。
+音频数据交织的标记
 
 
 ### isBigEndian
@@ -786,21 +788,21 @@ bool AudioSampleAttributes::interleaved
 bool AudioSampleAttributes::isBigEndian
 ```
 
-**描述：**
+**描述:**
 
-音频数据的大端标志。
+音频数据的大端标志
 
 
 ### isShareable
 
   
 ```
-int32_t AudioMmapBufferDescripter::isShareable
+int32_t AudioMmapBufferDescriptor::isShareable
 ```
 
-**描述：**
+**描述:**
 
-mmap缓冲区是否可以在进程间共享。
+mmap缓冲区是否可以在进程间共享
 
 
 ### isSignedData
@@ -810,7 +812,7 @@ mmap缓冲区是否可以在进程间共享。
 bool AudioSampleAttributes::isSignedData
 ```
 
-**描述：**
+**描述:**
 
 音频数据的有符号或无符号标志
 
@@ -822,7 +824,7 @@ bool AudioSampleAttributes::isSignedData
 enum AudioPortPassthroughMode AudioSubPortCapability::mask
 ```
 
-**描述：**
+**描述:**
 
 数据透传模式，详情参考[AudioPortPassthroughMode](#audioportpassthroughmode)。
 
@@ -831,24 +833,36 @@ enum AudioPortPassthroughMode AudioSubPortCapability::mask
 
   
 ```
-void* AudioMmapBufferDescripter::memoryAddress
+void* AudioMmapBufferDescriptor::memoryAddress
 ```
 
-**描述：**
+**描述:**
 
-指向mmap缓冲区的指针。
+指向mmap缓冲区的指针
 
 
 ### memoryFd
 
   
 ```
-int32_t AudioMmapBufferDescripter::memoryFd
+int32_t AudioMmapBufferDescriptor::memoryFd
 ```
 
-**描述：**
+**描述:**
 
-mmap缓冲区的文件描述符。
+mmap缓冲区的文件描述符
+
+
+### mix
+
+  
+```
+struct AudioMixExtInfo AudioRouteNode::ext::mix
+```
+
+**描述:**
+
+音轨特定信息。
 
 
 ### moduleId [1/2]
@@ -858,9 +872,9 @@ mmap缓冲区的文件描述符。
 int32_t AudioDevExtInfo::moduleId
 ```
 
-**描述：**
+**描述:**
 
-音频流绑定的模块ID。
+音频流绑定的模块ID
 
 
 ### moduleId [2/2]
@@ -870,9 +884,9 @@ int32_t AudioDevExtInfo::moduleId
 int32_t AudioMixExtInfo::moduleId
 ```
 
-**描述：**
+**描述:**
 
-流所属模块标识符。
+流所属模块标识符
 
 
 ### period
@@ -882,9 +896,9 @@ int32_t AudioMixExtInfo::moduleId
 uint32_t AudioSampleAttributes::period
 ```
 
-**描述：**
+**描述:**
 
-音频采样周期。
+音频采样周期
 
 
 ### pins
@@ -894,7 +908,7 @@ uint32_t AudioSampleAttributes::period
 enum AudioPortPin AudioDeviceDescriptor::pins
 ```
 
-**描述：**
+**描述:**
 
 音频端口上的PIN脚（输出、输入），详情参考[AudioPortPin](#audioportpin)。
 
@@ -906,9 +920,9 @@ enum AudioPortPin AudioDeviceDescriptor::pins
 unsigned int AudioPort::portId
 ```
 
-**描述：**
+**描述:**
 
-音频端口的ID。
+音频端口的ID
 
 
 ### portId [2/4]
@@ -918,9 +932,9 @@ unsigned int AudioPort::portId
 unsigned int AudioDeviceDescriptor::portId
 ```
 
-**描述：**
+**描述:**
 
-音频端口ID。
+音频端口ID
 
 
 ### portId [3/4]
@@ -930,9 +944,9 @@ unsigned int AudioDeviceDescriptor::portId
 unsigned int AudioSubPortCapability::portId
 ```
 
-**描述：**
+**描述:**
 
-子端口ID。
+子端口ID
 
 
 ### portId [4/4]
@@ -942,9 +956,9 @@ unsigned int AudioSubPortCapability::portId
 int32_t AudioRouteNode::portId
 ```
 
-**描述：**
+**描述:**
 
-音频端口ID。
+音频端口ID
 
 
 ### portName
@@ -954,9 +968,9 @@ int32_t AudioRouteNode::portId
 const char* AudioPort::portName
 ```
 
-**描述：**
+**描述:**
 
-音频端口的名称。
+音频端口的名称
 
 
 ### portNum
@@ -966,9 +980,9 @@ const char* AudioPort::portName
 unsigned int AudioAdapterDescriptor::portNum
 ```
 
-**描述：**
+**描述:**
 
-一个音频适配器支持的端口数目。
+一个音频适配器支持的端口数目
 
 
 ### ports
@@ -978,9 +992,9 @@ unsigned int AudioAdapterDescriptor::portNum
 struct AudioPort* AudioAdapterDescriptor::ports
 ```
 
-**描述：**
+**描述:**
 
-一个音频适配器支持的端口列表。
+一个音频适配器支持的端口列表
 
 
 ### role
@@ -990,9 +1004,9 @@ struct AudioPort* AudioAdapterDescriptor::ports
 enum AudioPortRole AudioRouteNode::role
 ```
 
-**描述：**
+**描述:**
 
-指定端口角色为sink或source。
+指定端口角色为sink或source
 
 
 ### sampleRate
@@ -1002,9 +1016,9 @@ enum AudioPortRole AudioRouteNode::role
 unsigned int AudioSampleAttributes::sampleRate
 ```
 
-**描述：**
+**描述:**
 
-音频采样频率。
+音频采样频率
 
 
 ### sampleRateMasks
@@ -1014,9 +1028,9 @@ unsigned int AudioSampleAttributes::sampleRate
 unsigned int AudioPortCapability::sampleRateMasks
 ```
 
-**描述：**
+**描述:**
 
-支持的音频采样频率（8k、16k、32k、48k）。
+支持的音频采样频率（8k、16k、32k、48k）
 
 
 ### scene
@@ -1026,9 +1040,21 @@ unsigned int AudioPortCapability::sampleRateMasks
 union AudioSceneDescriptor::SceneDesc AudioSceneDescriptor::scene
 ```
 
-**描述：**
+**描述:**
 
-音频场景的名称。
+音频场景的名称
+
+
+### session
+
+  
+```
+struct AudioSessionExtInfo AudioRouteNode::ext::session
+```
+
+**描述:**
+
+会话特定信息。
 
 
 ### sessionType
@@ -1038,9 +1064,9 @@ union AudioSceneDescriptor::SceneDesc AudioSceneDescriptor::scene
 enum AudioSessionType AudioSessionExtInfo::sessionType
 ```
 
-**描述：**
+**描述:**
 
-音频会话类型。
+音频会话类型
 
 
 ### silenceThreshold
@@ -1050,9 +1076,9 @@ enum AudioSessionType AudioSessionExtInfo::sessionType
 uint32_t AudioSampleAttributes::silenceThreshold
 ```
 
-**描述：**
+**描述:**
 
-音频捕获缓冲区阈值。
+音频捕获缓冲区阈值
 
 
 ### sinks
@@ -1062,9 +1088,9 @@ uint32_t AudioSampleAttributes::silenceThreshold
 const struct AudioRouteNode* AudioRoute::sinks
 ```
 
-**描述：**
+**描述:**
 
-接受端列表。
+接受端列表
 
 
 ### sinksNum
@@ -1074,9 +1100,9 @@ const struct AudioRouteNode* AudioRoute::sinks
 uint32_t AudioRoute::sinksNum
 ```
 
-**描述：**
+**描述:**
 
-接受端节点数量。
+接受端节点数量
 
 
 ### sources
@@ -1086,9 +1112,9 @@ uint32_t AudioRoute::sinksNum
 const struct AudioRouteNode* AudioRoute::sources
 ```
 
-**描述：**
+**描述:**
 
-发送端列表。
+发送端列表
 
 
 ### sourcesNum
@@ -1098,9 +1124,9 @@ const struct AudioRouteNode* AudioRoute::sources
 uint32_t AudioRoute::sourcesNum
 ```
 
-**描述：**
+**描述:**
 
-发送端节点数量。
+发送端节点数量
 
 
 ### startThreshold
@@ -1110,9 +1136,9 @@ uint32_t AudioRoute::sourcesNum
 uint32_t AudioSampleAttributes::startThreshold
 ```
 
-**描述：**
+**描述:**
 
-音频渲染开始阈值。
+音频渲染开始阈值
 
 
 ### stopThreshold
@@ -1122,9 +1148,9 @@ uint32_t AudioSampleAttributes::startThreshold
 uint32_t AudioSampleAttributes::stopThreshold
 ```
 
-**描述：**
+**描述:**
 
-音频渲染停止阈值。
+音频渲染停止阈值
 
 
 ### streamId [1/2]
@@ -1134,9 +1160,9 @@ uint32_t AudioSampleAttributes::stopThreshold
 int32_t AudioSampleAttributes::streamId
 ```
 
-**描述：**
+**描述:**
 
-渲染或捕获的音频标识符。
+渲染或捕获的音频标识符
 
 
 ### streamId [2/2]
@@ -1146,9 +1172,9 @@ int32_t AudioSampleAttributes::streamId
 int32_t AudioMixExtInfo::streamId
 ```
 
-**描述：**
+**描述:**
 
-由调用者传递的Render或Capture标识符。
+由调用者传递的Render或Capture标识符
 
 
 ### subPorts
@@ -1158,9 +1184,9 @@ int32_t AudioMixExtInfo::streamId
 struct AudioSubPortCapability* AudioPortCapability::subPorts
 ```
 
-**描述：**
+**描述:**
 
-支持的子端口列表。
+支持的子端口列表
 
 
 ### subPortsNum
@@ -1170,9 +1196,9 @@ struct AudioSubPortCapability* AudioPortCapability::subPorts
 unsigned int AudioPortCapability::subPortsNum
 ```
 
-**描述：**
+**描述:**
 
-支持的子端口数目（仅用于输出设备）。
+支持的子端口数目（仅用于输出设备）
 
 
 ### supportSampleFormatNum
@@ -1182,9 +1208,9 @@ unsigned int AudioPortCapability::subPortsNum
 uint32_t AudioPortCapability::supportSampleFormatNum
 ```
 
-**描述：**
+**描述:**
 
-支持的音频样本格式数量。
+支持的音频样本格式数量
 
 
 ### supportSampleFormats
@@ -1194,19 +1220,19 @@ uint32_t AudioPortCapability::supportSampleFormatNum
 enum AudioSampleFormat* AudioPortCapability::supportSampleFormats
 ```
 
-**描述：**
+**描述:**
 
-支持的音频样本格式，详请参考[AudioSampleFormat](_codec.md#audiosampleformat)。
+支持的音频样本格式，详请参考[AudioSampleFormat](#audiosampleformat)。
 
 
 ### totalBufferFrames
 
   
 ```
-int32_t AudioMmapBufferDescripter::totalBufferFrames
+int32_t AudioMmapBufferDescriptor::totalBufferFrames
 ```
 
-**描述：**
+**描述:**
 
 缓冲区总大小，单位：帧。
 
@@ -1215,10 +1241,10 @@ int32_t AudioMmapBufferDescripter::totalBufferFrames
 
   
 ```
-int32_t AudioMmapBufferDescripter::transferFrameSize
+int32_t AudioMmapBufferDescriptor::transferFrameSize
 ```
 
-**描述：**
+**描述:**
 
 传输大小，单位：帧。
 
@@ -1230,7 +1256,7 @@ int32_t AudioMmapBufferDescripter::transferFrameSize
 int64_t AudioTimeStamp::tvNSec
 ```
 
-**描述：**
+**描述:**
 
 tvNSec时间，单位：纳秒。
 
@@ -1242,7 +1268,7 @@ tvNSec时间，单位：纳秒。
 int64_t AudioTimeStamp::tvSec
 ```
 
-**描述：**
+**描述:**
 
 tvSec时间，单位：秒。
 
@@ -1254,7 +1280,7 @@ tvSec时间，单位：秒。
 enum AudioCategory AudioSampleAttributes::type
 ```
 
-**描述：**
+**描述:**
 
 音频类型，详情参考[AudioCategory](#audiocategory)。
 
@@ -1266,7 +1292,7 @@ enum AudioCategory AudioSampleAttributes::type
 enum AudioPortPin AudioDevExtInfo::type
 ```
 
-**描述：**
+**描述:**
 
 音频端口上的PIN脚（输出、输入），详情参考[AudioPortPin](#audioportpin)。
 
@@ -1278,42 +1304,6 @@ enum AudioPortPin AudioDevExtInfo::type
 enum AudioPortType AudioRouteNode::type
 ```
 
-**描述：**
+**描述:**
 
-指定端口类型。
-
-
-### device
-
-  
-```
- struct AudioDevExtInfo AudioRouteNode::device
-```
-
-**描述：**
-
-设备特定信息。
-
-
-### mix
-
-  
-```
- struct AudioMixExtInfo AudioRouteNode::mix
-```
-
-**描述：**
-
-音轨特定信息。
-
-
-### session
-
-  
-```
- struct AudioSessionExtInfo AudioRouteNode::session
-```
-
-**描述：**
-
-会话特定信息。
+指定端口类型为device, mix等。
