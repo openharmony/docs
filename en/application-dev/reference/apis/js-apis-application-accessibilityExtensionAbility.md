@@ -42,22 +42,22 @@ Enumerates gesture types.
 
 | Name           | Description          |
 | ------------- | ------------ |
-| left          | Left gesture.    |
-| leftThenRight | Left-then-right gesture.|
-| leftThenUp    | Left-then-up gesture.|
-| leftThenDown  | Left-then-down gesture.|
-| right         | Right gesture.    |
-| rightThenLeft | Right-then-left gesture.|
-| rightThenUp   | Right-then-up gesture.|
-| rightThenDown | Right-then-down gesture.|
-| up            | Up gesture.    |
-| upThenLeft    | Up-then-left gesture.|
-| upThenRight   | Up-then-right gesture.|
-| upThenDown    | Up-then-down gesture.|
-| down          | Down gesture.    |
-| downThenLeft  | Down-then-left gesture.|
-| downThenRight | Down-then-right gesture.|
-| downThenUp    | Down-then-up gesture.|
+| left          | Left gesture. String type. |
+| leftThenRight | Left-then-right gesture. String type. |
+| leftThenUp    | Left-then-up gesture. String type. |
+| leftThenDown  | Left-then-down gesture. String type. |
+| right         | Right gesture. String type. |
+| rightThenLeft | Right-then-left gesture. String type. |
+| rightThenUp   | Right-then-up gesture. String type. |
+| rightThenDown | Right-then-down gesture. String type. |
+| up            | Up gesture. String type. |
+| upThenLeft    | Up-then-left gesture. String type. |
+| upThenRight   | Up-then-right gesture. String type. |
+| upThenDown    | Up-then-down gesture. String type. |
+| down          | Down gesture. String type. |
+| downThenLeft  | Down-then-left gesture. String type. |
+| downThenRight | Down-then-right gesture. String type. |
+| downThenUp    | Down-then-up gesture. String type. |
 
 ## PageUpdateType
 
@@ -67,8 +67,8 @@ Enumerates the page update types.
 
 | Name               | Description       |
 | ----------------- | --------- |
-| pageContentUpdate | Update of the page content.|
-| pageStateUpdate   | Update of the page status.|
+| pageContentUpdate | Update of the page content. String type. |
+| pageStateUpdate   | Update of the page status. String type. |
 
 ## TouchGuideType
 
@@ -78,8 +78,8 @@ Enumerates the touch guide event types.
 
 | Name        | Description          |
 | ---------- | ------------ |
-| touchBegin | Start of touch in touch guide mode.|
-| touchEnd   | End of touch in touch guide mode.|
+| touchBegin | Start of touch in touch guide mode. String type. |
+| touchEnd   | End of touch in touch guide mode. String type. |
 
 ## AccessibilityExtensionAbility.onConnect
 
