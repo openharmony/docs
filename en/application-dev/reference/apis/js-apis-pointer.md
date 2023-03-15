@@ -2,7 +2,8 @@
 
 The **pointer** module provides APIs related to pointer attribute management.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -237,6 +238,8 @@ Obtains the mouse movement speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Name                   | Description                 |
@@ -263,8 +266,6 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name      | Type                                      | Mandatory  | Description            |
@@ -277,21 +278,23 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.getPointerStyle(windowId, (error, style) => {
-        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-      });
-    } catch (error) {
-      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.getPointerStyle(windowId, (error, style) => {
+      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+    });
+  } catch (error) {
+    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 
@@ -320,21 +323,23 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.getPointerStyle(windowId).then((style) => {
-        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-      });
-    } catch (error) {
-      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.getPointerStyle(windowId).then((style) => {
+      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+    });
+  } catch (error) {
+    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 
@@ -359,21 +364,23 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
-        console.log(`Set pointer style success`);
-      });
-    } catch (error) {
-      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
+      console.log(`Set pointer style success`);
+    });
+  } catch (error) {
+    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 ## pointer.setPointerStyle<sup>9+</sup>
@@ -397,21 +404,23 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-        console.log(`Set pointer style success`);
-      });
-    } catch (error) {
-      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
+      console.log(`Set pointer style success`);
+    });
+  } catch (error) {
+    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 ## PointerStyle<sup>9+</sup>
@@ -444,8 +453,8 @@ Enumerates mouse pointer styles.
 | HAND_POINTING                    | 19   | Hand-shaped pointer  |![Hand_Poniting.png](./figures/Hand_Pointing.png)|
 | HELP                             | 20   | Help   |![Help.png](./figures/Help.png)|
 | MOVE                             | 21   | Move    |![Move.png](./figures/Move.png)|
-| RESIZE_LEFT_RIGHT                | 22   | Left-and-right resizing|![Resize_Left_Right.png](./figures/Resize_Left_Right.png)|
-| RESIZE_UP_DOWN                   | 23   | Up-and-down resizing|![Resize_Up_Down.png](./figures/Resize_Up_Down.png)|
+| RESIZE_LEFT_RIGHT                | 22   | Left and right resizing|![Resize_Left_Right.png](./figures/Resize_Left_Right.png)|
+| RESIZE_UP_DOWN                   | 23   | Up and down resizing|![Resize_Up_Down.png](./figures/Resize_Up_Down.png)|
 | SCREENSHOT_CHOOSE                | 24   | Screenshot crosshair|![Screenshot_Cross.png](./figures/Screenshot_Cross.png)|
 | SCREENSHOT_CURSOR                | 25   | Screenshot cursor    |![Screenshot_Cursor.png](./figures/Screenshot_Cursor.png)|
 | TEXT_CURSOR                      | 26   | Text cursor  |![Text_Cursor.png](./figures/Text_Cursor.png)|

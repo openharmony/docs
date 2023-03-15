@@ -1,9 +1,8 @@
 # @system.fetch (Data Request)
 
 > **NOTE**
->
 > - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.net.http`](js-apis-http.md) instead.
->
+> 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,7 +14,7 @@ import fetch from '@system.fetch';
 ```
 
 
-## fetch.fetch
+## fetch.fetch<sup>3+</sup>
 
 fetch(Object): void
 
@@ -31,9 +30,9 @@ Obtains data through a network.
 | header | Object | No| Request header.|
 | method | string | No| Request method. The default value is **GET**. The value can be **OPTIONS**, **GET**, **HEAD**, **POST**, **PUT**, **DELETE **or **TRACE**.|
 | responseType | string | No| Response type. The return type can be text or JSON. By default, the return type is determined based on **Content-Type** in the header returned by the server. For details, see return values in the **success** callback.|
-| success | Function | No| Called when the data is obtained successfully. The return value is [FetchResponse](#fetchresponse). |
-| fail | Function | No| Called when the data failed to be obtained.|
-| complete | Function | No| Called when the execution is complete.|
+| success | Function | No| Called when the API call is successful. The return value is defined by [FetchResponse](#fetchresponse).|
+| fail | Function | No| Called when API call has failed.|
+| complete | Function | No| Called when the API call is complete.|
 
 **Table 1** Mapping between data and Content-Type
 
@@ -46,11 +45,11 @@ Obtains data through a network.
 
 ## FetchResponse
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| code | number | Server status code.|
-| data | string \| Object | The data type is determined by **responseType**. For details, see the mapping between **responseType** and **data** in **success** callback.|
-| headers | Object | All headers in the response from the server.|
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| code | number | Yes| No| Server status code.|
+| data | string \| Object | Yes| No| The type of the returned data is determined by **responseType**. For details, see the mapping between **responseType** and **data** in **success** callback.|
+| headers | Object | Yes| No| All headers in the response from the server.|
 
 **Table 2** Mapping between responseType and data in success callback
 
@@ -85,8 +84,8 @@ export default {
 ```
 
 
-> **NOTE**<br/>
-> HTTPS is supported by default. To support HTTP, you need to add **"network"** to the **config.json** file, and set the attribute **"cleartextTraffic"** to **true**. That is:
+> **NOTE**
+>   HTTPS is supported by default. To support HTTP, you need to add **"network"** to the **config.json** file, and set the attribute **"cleartextTraffic"** to **true**. That is:
 >   
 > ```
 > {
