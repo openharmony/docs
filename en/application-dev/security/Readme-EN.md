@@ -2,8 +2,8 @@
 
 - Access Control  
   - [Access Control (Permission) Overview](accesstoken-overview.md)
-  - [Permission Application Guide](accesstoken-guidelines.md)
-  - [API Access Permission Verification](permission-verify-guidelines.md)
+  - [Applying for Permissions](accesstoken-guidelines.md)
+  - [Verifying API Access Permissions](permission-verify-guidelines.md)
   - [Application Permission List](permission-list.md)
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
