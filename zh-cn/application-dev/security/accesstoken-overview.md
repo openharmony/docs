@@ -153,7 +153,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 - 权限申请
 
-   开发者需要在配置文件中[声明目标权限](accesstoken-guidelines.md#权限申请声明)。
+   开发者需要在配置文件中[声明目标权限](accesstoken-guidelines.md#配置文件权限声明)。
 
 - 权限授权
 
