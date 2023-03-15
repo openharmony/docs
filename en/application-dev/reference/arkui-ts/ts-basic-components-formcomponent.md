@@ -42,7 +42,7 @@ Creates a **FormComponent** instance to display the provided widget.
 
 | Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
-| id        | number                          | Yes  | Widget ID. Set this parameter to **0** for a new widget.                                          |
+| id        | number                          | Yes  | Widget ID. Set this parameter to **0** for a new widget.                                              |
 | name      | string                          | Yes  | Widget name.                                                             |
 | bundle    | string                          | Yes  | Bundle name of the widget.                                                         |
 | ability   | string                          | Yes  | Ability name of the widget.                                                  |
@@ -63,7 +63,7 @@ Creates a **FormComponent** instance to display the provided widget.
 ## Attributes
 | Name       | Type                                                                                             | Mandatory| Description                                                                   |
 | ----------- | ----------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------------------------------- |
-| size        | {<br>width?:&nbsp;[Length](ts-types.md#length),<br>height?:&nbsp;[Length](ts-types.md#length)<br>} | Yes  | Size of the widget.                                                         |
+| size        | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} | Yes  | Size of the widget.                                                         |
 | moduleName  | string                                                                                                | Yes  | Module name of the widget.                                                         |
 | dimension   | [FormDimension](#formdimension)                                                                       | No  | Dimensions of the widget. The widgets in the 2 x 2, 4 x 4, and 4 x 2 dimensions are supported.<br>Default value: **Dimension_2_2**|
 | allowUpdate | boolean                                                                                               | No  | Whether to allow the widget to update.<br>Default value: **true**                                  |
@@ -75,10 +75,10 @@ Creates a **FormComponent** instance to display the provided widget.
 
 | Name                                                                                                               | Description                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| onAcquired(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)                          | Triggered when a widget is obtained. This API returns the ID of the obtained widget.                                                                               |
-| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | Triggered when an error occurs during component loading.<br>**errcode**: error code.<br>**msg**: error information.                                        |
-| onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)                                                      | Triggered when routing occurs for the widget. This API returns information in [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#event-binding).|
-| onUninstall(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)                         | Triggered when a widget is uninstalled. This API returns the ID of the uninstalled widget.                                                                               |
+| onAcquired(callback: (info: { id: number }) =&gt; void)                          | Triggered when a widget is obtained. This API returns the ID of the obtained widget.                                                                               |
+| onError(callback: (info: { errcode: number, msg: string }) =&gt; void) | Triggered when an error occurs during component loading.<br>**errcode**: error code.<br>**msg**: error information.                                        |
+| onRouter(callback: (info: any) =&gt; void)                                                      | Triggered when routing occurs for the widget. This API returns information in [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#event-binding).|
+| onUninstall(callback: (info: { id: number }) =&gt; void)                         | Triggered when a widget is uninstalled. This API returns the ID of the uninstalled widget.                                                                               |
 
 
 ## Example
@@ -108,7 +108,7 @@ struct CardExample {
         .visibility(Visibility.Visible)
         .onAcquired((form)=>{
           console.log(`form info : ${JSON.stringify(form)}`);
-          this.fomId = form.id;
+          this.formId = form.id;
         })
         .onError((err)=>{
           console.log(`fail to add form, err: ${JSON.stringify(err)}`);

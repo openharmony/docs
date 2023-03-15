@@ -362,7 +362,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **Example**
@@ -597,7 +597,7 @@ export default {
 // detail page
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()[data1]);
+    console.info('showData1:' + router.getParams()['data1']);
   }
 }
 ```
