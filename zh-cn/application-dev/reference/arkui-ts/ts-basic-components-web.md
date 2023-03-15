@@ -3590,6 +3590,8 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 confirm(authUri : string): void
 
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
 通知Web组件使用指定的凭据(从证书管理模块获得)。
 
 **参数：**
