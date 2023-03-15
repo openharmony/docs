@@ -1,6 +1,6 @@
 # SystemCapability List
 
-SystemCapability (SysCap in short) refers to a standalone feature in the operating system.
+SysCap, short for System Capability, refers to a standalone feature in the OpenHarmony system.
 
 Before using an API for development, you are advised to familiarize yourself with [SysCap](syscap.md), and then consult the following tables to see whether the SysCap set required for the API is supported by the target device type.
 
@@ -437,7 +437,7 @@ Basic media capabilities
 
 ## SystemCapability.Multimedia.Media.AudioPlayer
 
-Media audio player capability
+Audio player capability
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -461,7 +461,7 @@ Media video player capability
 
 ## SystemCapability.Multimedia.Media.VideoRecorder
 
-Media video recorder capability
+Video recorder capability
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1125,7 +1125,7 @@ Environment-related interfaces
 
 ## SystemCapability.FileManagement.File.DistributedFile
 
-Distributed file extension interfaces
+Distributed file extension
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1253,7 +1253,7 @@ Basic capabilities of cross-process data sharing
 
 ## SystemCapability.DistributedDataManager.DataShare.Consumer
 
-Data conumser of cross-process data sharing
+Data consumer of cross-process data sharing
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1285,7 +1285,7 @@ Core basic functional modules for component runtime, including application initi
 
 ## SystemCapability.Ability.AbilityRuntime.FAModel
 
-Feature ability (FA) model
+Feature Ability (FA) model
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1394,3 +1394,267 @@ VAID management service
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | Yes    |
+
+## SystemCapability.Security.CertificateManager
+
+Certificate management
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No   | Yes  | Yes  | Yes    | No        | No    |
+
+## SystemCapability.Security.CryptoFramework
+
+Cryptographic framework – basic encryption and decryption capabilities
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.Core
+
+Core services of bundle management, including bundle information query, bundle installation, and bundle uninstallation
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+Installation-free features provided by the bundle manager
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.Resource
+
+Icon and label acquisition provided by the bundle manager
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.DefaultApp
+
+Default application management feature provided by the bundle manager
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.Launcher
+
+Query feature provided by the bundle manager for Launcher
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.SandboxApp
+
+Sandbox application features provided by the bundle manager
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.QuickFix
+
+Quick fix provided by the bundle manager
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.AppControl
+
+Application control features provided by the bundle manager
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Graphic.Graphic2D.ColorManager.Core
+
+Wide color gamut management
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | No  | Yes    | No          | No    |
+
+## SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+Efficiency resource application
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Multimedia.Media.AVPlayer
+
+Audio and video player capability
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Multimedia.Media.AVRecorder
+
+Audio and video recorder capability
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Security.Cert
+
+Cryptographic framework – certificate capability
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Security.DataLossPrevention
+
+Data leakage prevention
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | No  | No    | No          | No    |
+
+## SystemCapability.Communication.NFC.Tag
+
+NFC tag service
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| No     | No    | No    | No  | No  | No    | No          | No    |
+
+## SystemCapability.Communication.NFC.CardEmulation
+
+NFC card emulation service
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| No     | No    | No    | No  | No  | No    | No          | No    |
+
+## SystemCapability.Multimedia.Image.ImageCreator
+
+Image creation capability
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Developtools.Syscap
+
+System capability encoding and decoding
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | No    |
+
+## SystemCapability.Communication.NetManager.Ethernet
+
+Ethernet connectivity
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| No     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Communication.NetManager.NetSharing
+
+Network sharing
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | No  | Yes    | No          | No    |
+
+## SystemCapability.Communication.NetManager.MDNS
+
+mDNS service
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Communication.NetManager.Vpn
+
+VPN
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | No  | Yes    | No          | No    |
+
+## SystemCapability.XTS.DeviceAttest
+
+Device attestation
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.XTS.DeviceAttestLite
+
+Lightweight device attestation
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| No     | Yes    | No    | No  | No  | No    | Yes          | Yes    |
+
+## SystemCapability.FileManagement.UserFileManager.Core
+
+Basic capabilities of public user file management
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.FileManagement.UserFileManager.DistributedCore
+
+Distributed capabilities of public user file management
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.DistributedDataManager.UDMF.Core
+
+Distributed data management – core capabilities of the Unified Data Management Framework (UDMF)
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.BundleManager.BundleFramework.Overlay
+
+Overlay feature provided by the bundle manager
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Cloud.Push
+
+Push management service
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | Yes          | No    |
+
+## SystemCapability.Multimedia.SystemSound.Core
+
+System sound management, covering ringtones, notifications, alarms, and more
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Ability.AbilityRuntime.QuickFix
+
+Quick fix
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
