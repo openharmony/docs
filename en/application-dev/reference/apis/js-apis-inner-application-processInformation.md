@@ -14,7 +14,11 @@ The process information is obtained by calling [getRunningProcessInformation](js
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getRunningProcessInformation((error, data) => { 
-    console.log('error: ${error.code}, data: ${JSON.stringify(data)}');
+    if (error && error.code !== 0) {
+        console.error('getRunningProcessInformation fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getRunningProcessInformation success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -28,5 +32,3 @@ appManager.getRunningProcessInformation((error, data) => {
 | uid | number | Yes| No| User ID.|
 | processName | string | Yes| No| Process name.|
 | bundleNames | Array&lt;string&gt; | Yes| No| Names of all running bundles in the process.|
-
- <!--no_check--> 

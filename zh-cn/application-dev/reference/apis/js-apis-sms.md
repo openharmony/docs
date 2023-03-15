@@ -164,7 +164,7 @@ setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 
 设置发送短信的默认SIM卡槽ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -204,7 +204,7 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 设置发送短信的默认SIM卡槽ID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -251,7 +251,7 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 设置短信服务中心（SMSC）地址。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
@@ -293,7 +293,7 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 设置短信服务中心（SMSC）地址。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
@@ -343,7 +343,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取短信服务中心（SMSC）地址。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 
@@ -383,7 +383,7 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 获取短信服务中心（SMSC）地址。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 
@@ -449,7 +449,7 @@ splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
 
 将长短信拆分为多个片段。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
@@ -489,7 +489,7 @@ splitMessage(content: string): Promise<Array<string\>>
 
 将长短信拆分为多个片段。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
@@ -536,7 +536,7 @@ addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
 添加SIM卡消息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -581,7 +581,7 @@ addSimMessage(options: SimMessageOptions): Promise<void\>
 
 添加SIM卡消息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -633,7 +633,7 @@ delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>):
 
 删除SIM卡消息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -675,7 +675,7 @@ delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 
 删除SIM卡信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -724,7 +724,7 @@ updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\
 
 更新SIM卡消息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -770,7 +770,7 @@ updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
 更新SIM卡消息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -823,7 +823,7 @@ getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\
 
 获取所有SIM卡消息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS
 
@@ -863,7 +863,7 @@ getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
 获取所有SIM卡消息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS
 
@@ -910,7 +910,7 @@ setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
 设置小区广播配置。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS
 
@@ -956,7 +956,7 @@ setCBConfig(options: CBConfigOptions): Promise<void\>
 
 设置小区广播配置。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.RECEIVE_SMS
 
@@ -1009,7 +1009,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 
 获取短信段信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1048,7 +1048,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 
 获取短信段信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1094,7 +1094,7 @@ isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1131,7 +1131,7 @@ isImsSmsSupported(slotId: number): Promise<boolean\>
 
 如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1175,7 +1175,7 @@ getImsShortMessageFormat(callback: AsyncCallback<string\>): void
 
 获取IMS上支持的SMS格式。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1211,7 +1211,7 @@ getImsShortMessageFormat(): Promise<string\>
 
 获取IMS上支持的SMS格式。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1249,7 +1249,7 @@ decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsI
 
 彩信解码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1286,7 +1286,7 @@ decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
 
 彩信解码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1330,7 +1330,7 @@ encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
 彩信编码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1375,7 +1375,7 @@ encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
 彩信编码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -1515,7 +1515,7 @@ promise.then(data => {
 
 彩信信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1529,7 +1529,7 @@ promise.then(data => {
 
 彩信发送请求。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1555,7 +1555,7 @@ promise.then(data => {
 
 彩信发送配置。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1570,7 +1570,7 @@ promise.then(data => {
 
 彩信通知索引。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1591,7 +1591,7 @@ promise.then(data => {
 
 彩信确认索引。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1605,7 +1605,7 @@ promise.then(data => {
 
 彩信检索配置。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1630,7 +1630,7 @@ promise.then(data => {
 
 彩信读取原始索引。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1647,7 +1647,7 @@ promise.then(data => {
 
 彩信读取记录索引。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1664,7 +1664,7 @@ promise.then(data => {
 
 彩信附件。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1685,7 +1685,7 @@ promise.then(data => {
 
 彩信地址。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1698,7 +1698,7 @@ promise.then(data => {
 
 消息类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1718,7 +1718,7 @@ promise.then(data => {
 
 彩信优先级类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1732,7 +1732,7 @@ promise.then(data => {
 
 彩信版本类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1747,7 +1747,7 @@ promise.then(data => {
 
 彩信字符集。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1772,7 +1772,7 @@ promise.then(data => {
 
 处理类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1786,7 +1786,7 @@ promise.then(data => {
 
 报告类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1799,7 +1799,7 @@ promise.then(data => {
 
 小区广播配置选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1815,7 +1815,7 @@ promise.then(data => {
 
 SIM卡消息状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1831,7 +1831,7 @@ SIM卡消息状态。
 
 设备网络制式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1844,7 +1844,7 @@ SIM卡消息状态。
 
 短信编码方案。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1859,7 +1859,7 @@ SIM卡消息状态。
 
 SIM卡消息选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1874,7 +1874,7 @@ SIM卡消息选项。
 
 更新SIM卡消息选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1890,7 +1890,7 @@ SIM卡消息选项。
 
 SIM卡短消息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1904,7 +1904,7 @@ SIM卡短消息。
 
 彩信发送标识。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1920,7 +1920,7 @@ SIM卡短消息。
 
 彩信回复标志。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1935,7 +1935,7 @@ SIM卡短消息。
 
 短信段信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 

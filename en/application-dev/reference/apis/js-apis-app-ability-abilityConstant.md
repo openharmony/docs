@@ -35,8 +35,8 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.|
-| START_ABILITY          | 1    | The ability is started by calling [startAbility](js-apis-ability-context.md#abilitycontextstartability).|
-| CALL | 2    | The ability is started by calling [startAbilityByCall](js-apis-ability-context.md#abilitycontextstartabilitybycall).|
+| START_ABILITY          | 1    | The ability is started by calling [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).|
+| CALL | 2    | The ability is started by calling [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall).|
 | CONTINUATION           | 3    | The ability is started by means of cross-device migration.|
 | APP_RECOVERY           | 4    | The ability is automatically started when the application is restored from a fault.|
 
@@ -135,7 +135,7 @@ let option = {
 this.context.startAbility(want, option).then(()={
     console.log('Succeed to start ability.');
 }).catch((error)=>{
-    console.log('Failed to start ability with error: ${JSON.stringify(error)}');
+    console.error('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
 

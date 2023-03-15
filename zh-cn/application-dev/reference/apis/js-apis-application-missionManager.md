@@ -92,7 +92,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
   let listenerid = missionManager.registerMissionListener(listener);
 
   missionManager.unregisterMissionListener(listenerid, (error) => {
-      console.log('unregisterMissionListener');
+      console.error('unregisterMissionListener fail, error: ${error}');
   });
 ```
 
@@ -136,8 +136,8 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
   console.log('registerMissionListener');
   let listenerid = missionManager.registerMissionListener(listener);
 
-  missionManager.unregisterMissionListener(listenerid).catch(function (err) {
-      console.log(err);
+  missionManager.unregisterMissionListener(listenerid).catch(function (error) {
+      console.error('unregisterMissionListener fail, error: ${error}');
   });
 ```
 
@@ -170,7 +170,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   let allMissions=missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
       missionManager.getMissionInfo('', allMissions[0].missionId, (error, mission) => {
         if (error.code) {
-          console.log('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
         }
 
@@ -214,8 +214,8 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  let mission = missionManager.getMissionInfo('', 10).catch(function (err){
-      console.log(err);
+  let mission = missionManager.getMissionInfo('', 10).catch(function (error){
+      console.error('getMissionInfo fail, error: ${error}');
   });
   ```
 
@@ -247,7 +247,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
       }
       console.log('size = ${missions.length}');
@@ -286,8 +286,8 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
   ```ts
   import missionManager from '@ohos.application.missionManager';
 
-  let allMissions = missionManager.getMissionInfos('', 10).catch(function (err){
-      console.log(err);
+  let allMissions = missionManager.getMissionInfos('', 10).catch(function (error){
+      console.error('getMissionInfos fail, error: ${error}');
   });
   ```
 
@@ -319,7 +319,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -328,7 +328,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
     missionManager.getMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.log('getMissionSnapShot failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionSnapShot failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
       }
       console.log('bundleName = ${snapshot.ability.bundleName}');
@@ -370,105 +370,17 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
   let allMissions;
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
-    }).catch(function(err){console.log(err);});
+    }).catch(function(error) {
+        console.error('getMissionInfos fail, error: ${error}');
+    });
     console.log('size = ${allMissions.length}');
     console.log('missions = ${JSON.stringify(allMissions)}');
     let id = allMissions[0].missionId;
 
-    let snapshot = missionManager.getMissionSnapShot('', id).catch(function (err){
-        console.log(err);
+    let snapshot = missionManager.getMissionSnapShot('', id).catch(function (error){
+        console.error('getMissionSnapShot fail, error: ${error}');
     });
   ```
-
-## missionManager.getLowResolutionMissionSnapShot<sup>9+</sup>
-
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void;
-
-获取任务低分辨率快照。
-
-**需要权限**：ohos.permission.MANAGE_MISSIONS
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
-  | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
-
-**示例：**
-
-  ```ts
-  import missionManager from '@ohos.application.missionManager';
-
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
-        return;
-    }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
-    let id = missions[0].missionId;
-
-    missionManager.getLowResolutionMissionSnapShot('', id, (error, snapshot) => {
-      if (error.code) {
-          console.log('getLowResolutionMissionSnapShot failed, error.code: ${JSON.stringify(error.code)}
-            'error.message: ${JSON.stringify(error.message)}');
-          return;
-      }
-  	  console.log('bundleName = ${snapshot.ability.bundleName}');
-    });
-  });
-  ```
-
-
-## missionManager.getLowResolutionMissionSnapShot<sup>9+</sup>
-
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>;
-
-获取任务低分辨率快照。
-
-**需要权限**：ohos.permission.MANAGE_MISSIONS
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
-  | missionId | number | 是 | 任务ID。 |
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | 任务快照信息。 |
-
-**示例：**
-
-  ```ts
-  import missionManager from '@ohos.application.missionManager';
-
-  let allMissions;
-  missionManager.getMissionInfos('',10).then(function(res){
-    allMissions=res;
-    }).catch(function(err){console.log(err);});
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
-    let id = allMissions[0].missionId;
-
-    let snapshot = missionManager.getLowResolutionMissionSnapShot('', id).catch(function (err){
-        console.log(err);
-    });
-  ```
-
 
 ## missionManager.lockMission
 
@@ -496,8 +408,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}
-            'error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -542,13 +453,15 @@ lockMission(missionId: number): Promise&lt;void&gt;;
   let allMissions;
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
-  }).catch(function(err){console.log(err);});
+  }).catch(function(error) {
+      console.error('getMissionInfos fail, error: ${error}');
+  });
   console.log('size = ${allMissions.length}');
   console.log('missions = ${JSON.stringify(allMissions)}');
   let id = allMissions[0].missionId;
 
-  missionManager.lockMission(id).catch(function (err){
-      console.log(err);
+  missionManager.lockMission(id).catch(function (error){
+      console.error('lockMission fail, error: ${error}');
   });
   ```
 
@@ -579,7 +492,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -625,16 +538,18 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
   let allMissions;
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
-  }).catch(function(err){console.log(err);});
+  }).catch(function(error) {
+      console.error('getMissionInfos fail, error: ${error}');
+  });
   console.log('size = ${allMissions.length}');
   console.log('missions = ${JSON.stringify(allMissions)}');
   let id = allMissions[0].missionId;
 
-  missionManager.lockMission(id).catch(function (err){
-      console.log(err);
+  missionManager.lockMission(id).catch(function (error){
+      console.error('lockMission fail, error: ${error}');
   });
-  missionManager.unlockMission(id).catch(function (err){
-      console.log(err);
+  missionManager.unlockMission(id).catch(function (error){
+      console.error('unlockMission fail, error: ${error}');
   });
   ```
 
@@ -665,7 +580,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -711,13 +626,15 @@ clearMission(missionId: number): Promise&lt;void&gt;;
   let allMissions;
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
-  }).catch(function(err){console.log(err);});
+  }).catch(function(error) {
+      console.error('getMissionInfos fail, error: ${error}');
+  });
   console.log('size = ${allMissions.length}');
   console.log('missions = ${JSON.stringify(allMissions)}');
   let id = allMissions[0].missionId;
 
-  missionManager.clearMission(id).catch(function (err){
-    console.log(err);
+  missionManager.clearMission(id).catch(function (error){
+    console.error('clearMission fail, error: ${error}');
   });
   ```
 
@@ -767,8 +684,8 @@ clearAllMissions(): Promise&lt;void&gt;;
 
   ```ts
   import missionManager from '@ohos.application.missionManager';
-  missionManager.clearAllMissions().catch(function (err){
-    console.log(err);
+  missionManager.clearAllMissions().catch(function (error){
+      console.error('clearAllMissions fail, error: ${error}');
   });
   ```
 
@@ -799,7 +716,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -840,7 +757,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.log('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -887,12 +804,14 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   let allMissions;
   missionManager.getMissionInfos('',10).then(function(res){
     allMissions=res;
-  }).catch(function(err){console.log(err);});
+  }).catch(function(error) {
+      console.error('getMissionInfos fail, error: ${error}');
+  });
   console.log('size = ${allMissions.length}');
   console.log('missions = ${JSON.stringify(allMissions)}');
   let id = allMissions[0].missionId;
 
-  missionManager.moveMissionToFront(id).catch(function (err){
-    console.log(err);
+  missionManager.moveMissionToFront(id).catch(function (error){
+    console.error('moveMissionToFront fail, error: ${error}');
   });
   ```

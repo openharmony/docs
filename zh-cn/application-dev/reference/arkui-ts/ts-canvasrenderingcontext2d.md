@@ -683,7 +683,7 @@ fillRect(x: number, y: number, w: number, h: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.fillRect(0,30,100,100)
+            this.context.fillRect(30,30,100,100)
          })
         }
       .width('100%')
@@ -1922,6 +1922,8 @@ setTransform(transform?: Matrix2D): void
 
 以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。该接口为空接口。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 
 ### translate
 
@@ -1976,6 +1978,8 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh:
 drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number):void
 
 进行图像绘制。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -2352,6 +2356,8 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 toDataURL(type?: string, quality?: number): string
 
 生成一个包含图片展示的URL。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 

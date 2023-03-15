@@ -1,6 +1,6 @@
 # Web
 
-提供具有网页显示能力的Web组件。
+提供具有网页显示能力的Web组件，[@ohos.web.webview](../apis/js-apis-webview.md)提供web控制能力。
 
 > **说明：**
 >
@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。 |
+| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
 
 **示例：**
@@ -78,9 +78,46 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     build() {
       Column() {
         //通过resource协议加载本地资源文件
-        Web({ src: "resource://rawfile/index.html"), controller: this.controller })
+        Web({ src: "resource://rawfile/index.html", controller: this.controller })
       }
     }
+  }
+  ```
+
+  加载沙箱路径下的本地资源文件
+
+  1.通过[globalthis](../../application-models/uiability-data-sync-with-ui.md#uiability和page之间使用globalthis)获取沙箱路径。
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  let url = 'file://' + globalThis.filesDir + '/xxx.html'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // 加载沙箱路径文件。
+        Web({ src: url, controller: this.controller })
+      }
+    }
+  }
+  ```
+
+  2.修改MainAbility.ts。
+  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用开发路径](../../application-models/application-context-stage.md#获取应用开发路径)。
+  ```ts
+  // xxx.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import web_webview from '@ohos.web.webview';
+
+  export default class EntryAbility extends UIAbility {
+      onCreate(want, launchParam) {
+          // 通过在globalThis对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+          globalThis.filesDir = this.context.filesDir
+          console.log("Sandbox path is " + globalThis.filesDir)
+      }
   }
   ```
 
@@ -2259,7 +2296,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
   **示例：**
   ```ts
-  // xxx.ets
+  // xxx.ets API9
   import web_webview from '@ohos.web.webview'
   @Entry
   @Component
@@ -2292,6 +2329,106 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
             return true
           })
       }
+    }
+  }
+  ```
+
+  ```ts
+  // xxx.ets API10
+  import web_webview from '@ohos.web.webview'
+  import bundle from '@ohos.bundle'
+
+  let uri = "";
+
+  export default class CertManagerService {
+    private static sInstance: CertManagerService;
+    private authUri = "";
+
+    public static getInstance(): CertManagerService {
+      if (CertManagerService.sInstance == null) {
+        CertManagerService.sInstance = new CertManagerService();
+      }
+      return CertManagerService.sInstance;
+    }
+
+    async grantAppPm(callback) {
+      let message = '';
+      //注：com.example.myapplication需要写实际应用名称
+      let bundleInfo = await bundle.getBundleInfo("com.example.myapplication", bundle.BundleFlag.GET_BUNDLE_DEFAULT)
+      let clientAppUid = bundleInfo.uid
+      let appUid = clientAppUid.toString()
+
+      //注：globalThis.AbilityContext需要在MainAbility.ts文件的onCreate函数里添加globalThis.AbilityContext = this.context
+      await globalThis.AbilityContext.startAbilityForResult(
+        {
+          bundleName: "com.ohos.certmanager",
+          abilityName: "MainAbility",
+          uri: "requestAuthorize",
+          parameters: {
+            appUid: appUid, //传入申请应用的appUid
+          }
+        })
+        .then((data) => {
+          if (!data.resultCode) {
+            this.authUri = data.want.parameters.authUri; //授权成功后获取返回的authUri
+          }
+        })
+      message += "after grantAppPm authUri: " + this.authUri;
+      uri = this.authUri;
+      callback(message)
+    }
+  }
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    @State message: string = 'Hello World' //message主要是调试观察使用
+    certManager = CertManagerService.getInstance();
+
+    build() {
+      Row() {
+        Column() {
+          Row() {
+            //第一步：需要先进行授权，获取到uri
+            Button('GrantApp')
+              .onClick(() => {
+                this.certManager.grantAppPm((data) => {
+                  this.message = data;
+                });
+              })
+            //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+            Button("ClientCertAuth")
+              .onClick(() => {
+                this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+              })
+          }
+
+          Web({ src: 'https://www.example1.com', controller: this.controller })
+            .fileAccess(true)
+            .javaScriptAccess(true)
+            .domStorageAccess(true)
+            .onlineImageAccess(true)
+
+          .onClientAuthenticationRequest((event) => {
+            AlertDialog.show({
+              title: 'ClientAuth',
+              message: 'Text',
+              confirm: {
+                value: 'Confirm',
+                action: () => {
+                  event.handler.confirm(uri);
+                }
+              },
+              cancel: () => {
+                event.handler.cancel();
+              }
+            })
+          })
+        }
+      }
+      .width('100%')
+      .height('100%')
     }
   }
   ```
@@ -2861,6 +2998,84 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
   }
   ```
 
+### onAudioStateChanged<sup>10+</sup>
+
+onAudioStateChanged(callback: (event: { playing: boolean }) => void)
+
+设置网页上的音频播放状态发生改变时的回调函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                       | 参数描述                            |
+| ------- | ---------------------------------------------- | ----------------------------------- |
+| playing | boolean | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State playing: boolean = false
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onAudioStateChanged(event => {
+            this.playing = event.playing
+            console.debug('onAudioStateChanged playing: ' + this.playing)
+          })
+      }
+    }
+  }
+  ```
+
+### onLoadIntercept<sup>10+</sup>
+
+onLoadIntercept(callback: (event?: { request: WebResourceRequest }) => boolean)
+
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+
+**参数：**
+
+| 参数名  | 参数类型                                     | 参数描述      |
+| ------- | ---------------------------------------- | --------- |
+| request | [Webresourcerequest](#webresourcerequest) | url请求的相关信息。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onUrlLoadIntercept((event) => {
+            console.log('url:' + event.request.getRequestUrl())
+            console.log('isMainFrame:' + event.request.isMainFrame())
+            console.log('isRedirect:' + event.request.isRedirect())
+            console.log('isRequestGesture:' + event.request.isRequestGesture())
+            return true
+          })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -3370,6 +3585,20 @@ confirm(priKeyFile : string, certChainFile : string): void
 | ------------- | ------ | ---- | ------------------ |
 | priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
 | certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
+
+### confirm<sup>10+</sup>
+
+confirm(authUri : string): void
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+通知Web组件使用指定的凭据(从证书管理模块获得)。
+
+**参数：**
+
+| 参数名   | 参数类型  | 必填  | 参数描述  |
+| ------- | ------ | ----  | ------------- |
+| authUri | string | 是    | 凭据的关键值。  |
 
 ### cancel<sup>9+</sup>
 
@@ -4540,7 +4769,7 @@ setCookie(url: string, value: string): boolean
 
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | 是    | -    | 要设置的cookie所属的url。 |
+| url   | string | 是    | -    | 要设置的cookie所属的url，建议使用完整的url。 |
 | value | string | 是    | -    | cookie的值。         |
 
 **返回值：**

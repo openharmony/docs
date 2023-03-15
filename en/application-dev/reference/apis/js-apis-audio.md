@@ -75,7 +75,7 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -130,7 +130,7 @@ Creates an **AudioRenderer** instance. This API uses a promise to return the res
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -349,7 +349,10 @@ Enumerates the audio stream types.
 | VOICE_CALL<sup>8+</sup>      | 0      | Audio stream for voice calls.|
 | RINGTONE                     | 2      | Audio stream for ringtones.    |
 | MEDIA                        | 3      | Audio stream for media purpose.    |
+| ALARM<sup>10+</sup>          | 4      | Audio stream for alarming.    |
+| ACCESSIBILITY<sup>10+</sup>  | 5      | Audio stream for accessibility.  |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | Audio stream for voice assistant.|
+| ULTRASONIC<sup>10+</sup>     | 10     | Audio stream for ultrasonic.<br>This is a system API.|
 | ALL<sup>9+</sup>             | 100    | All public audio streams.<br>This is a system API.|
 
 ## InterruptRequestResultType<sup>9+</sup>
@@ -457,7 +460,7 @@ Enumerates the audio sample formats.
 | SAMPLE_FORMAT_S16LE                | 1      | Signed 16-bit integer, little endian.|
 | SAMPLE_FORMAT_S24LE                | 2      | Signed 24-bit integer, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
 | SAMPLE_FORMAT_S32LE                | 3      | Signed 32-bit integer, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
-| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | Signed 32-bit integer, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
+| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | Signed 32-bit floating point number, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
 
 ## AudioErrors<sup>9+</sup>
 
@@ -529,9 +532,9 @@ Enumerates the audio content types.
 | CONTENT_TYPE_SPEECH                | 1      | Speech.    |
 | CONTENT_TYPE_MUSIC                 | 2      | Music.    |
 | CONTENT_TYPE_MOVIE                 | 3      | Movie.    |
-| CONTENT_TYPE_SONIFICATION          | 4      | Sonification content.|
+| CONTENT_TYPE_SONIFICATION          | 4      | Notification tone.  |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | Ringtone.    |
-
+| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | Ultrasonic.<br>This is a system API.|
 ## StreamUsage
 
 Enumerates the audio stream usage.
@@ -544,7 +547,10 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_MEDIA                        | 1      | Used for media.    |
 | STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Used for voice communication.|
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Used for voice assistant.|
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Used for alarming.    |
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Used for notification.|
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | Used for accessibility.  |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | System tone (such as screen lock or keypad tone).<br>This is a system API.|
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -1757,7 +1763,7 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 
 | Name    | Type                                 | Mandatory| Description                    |
 | ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.      |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
 | active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.          |
 | callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.|
 
@@ -1789,7 +1795,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 
 | Name    | Type                                 | Mandatory| Description              |
 | ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.|
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
 | active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
 
 **Return value**
@@ -1823,7 +1829,7 @@ Checks whether a device is active. This API uses an asynchronous callback to ret
 
 | Name    | Type                                 | Mandatory| Description                    |
 | ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.      |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
 | callback   | AsyncCallback&lt;boolean&gt;          | Yes  | Callback used to return the active state of the device.|
 
 **Example**
@@ -1854,7 +1860,7 @@ Checks whether a device is active. This API uses a promise to return the result.
 
 | Name    | Type                                 | Mandatory| Description              |
 | ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Audio device type.|
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
 
 **Return value**
 
@@ -4054,7 +4060,7 @@ Describes an audio device.
 | ----------------------------- | ------------------------- | -------- | -------- | ------------------------------------------------------------ |
 | deviceRole                    | [DeviceRole](#devicerole) | Yes      | No       | Device role.                                                 |
 | deviceType                    | [DeviceType](#devicetype) | Yes      | No       | Device type.                                                 |
-| id<sup>9+</sup>               | number                    | Yes      | No       | Device ID.                                                   |
+| id<sup>9+</sup>               | number                    | Yes      | No       | Device ID, which is unique.                                  |
 | name<sup>9+</sup>             | string                    | Yes      | No       | Device name.                                                 |
 | address<sup>9+</sup>          | string                    | Yes      | No       | Device address.                                              |
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;       | Yes      | No       | Supported sampling rates.                                    |
@@ -4577,16 +4583,27 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf, (err, writtenbytes) => {
-  if (writtenbytes < 0) {
-    console.error('write failed.');
-  } else {
-    console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-});
+let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * this.bufferSize,
+      length: this.bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    let writeSize = await new Promise((resolve,reject)=>{
+      this.audioRenderer.write(buf,(err,writeSize)=>{
+        if(err){
+          reject(err)
+        }else{
+          resolve(writeSize)
+        }
+      })
+    })	  
+}
+
 
 ```
 
@@ -4621,18 +4638,22 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf).then((writtenbytes) => {
-  if (writtenbytes < 0) {
-      console.error('write failed.');
-  } else {
-      console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-}).catch((err) => {
-    console.error(`ERROR: ${err}`);
-});
+let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * this.bufferSize,
+      length: this.bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    try{
+       let writeSize = await this.audioRenderer.write(buf);
+    } catch(err) {
+       console.error(`audioRenderer.write err: ${err}`);
+    }   
+}
 
 ```
 

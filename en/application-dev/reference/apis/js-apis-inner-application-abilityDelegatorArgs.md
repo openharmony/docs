@@ -28,5 +28,5 @@ Describes the ability delegator arguments.
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-var args = AbilityDelegatorRegistry.getArguments();
+let args = AbilityDelegatorRegistry.getArguments();
 ```

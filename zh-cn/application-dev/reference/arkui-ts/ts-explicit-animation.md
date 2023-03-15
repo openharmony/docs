@@ -6,8 +6,9 @@
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 animateTo(value: AnimateParam, event: () => void): void
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数             | 类型        |       是否必填     |        描述        |
 | ---------------- | ------------ | -------------------- | -------------------- |
@@ -18,13 +19,13 @@ animateTo(value: AnimateParam, event: () => void): void
 
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| duration | number | 动画持续时间，单位为毫秒。<br/>默认值：1000 |
+| duration | number | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒，若超出则固定为1000毫秒。 |
 | tempo | number | 动画的播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。<br/>默认值：1.0 |
-| curve | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)&nbsp;\|&nbsp;string | 动画曲线。<br/>默认值：Curve.Linear |
+| curve | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)&nbsp;\|&nbsp;string | 动画曲线。<br/>默认值：Curve.Linear<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | delay | number | 单位为ms(毫秒)，默认不延时播放。<br/>默认值：0 |
 | iterations | number | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
-| playMode | [PlayMode](ts-appendix-enums.md#playmode) | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal |
-| onFinish   | ()&nbsp;=&gt;&nbsp;void   | 动效播放完成回调。 |
+| playMode | [PlayMode](ts-appendix-enums.md#playmode) | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onFinish   | ()&nbsp;=&gt;&nbsp;void   | 动效播放完成回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

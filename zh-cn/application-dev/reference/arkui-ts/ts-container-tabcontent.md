@@ -29,6 +29,7 @@ TabContent()
 >  **说明：**
 > - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
 > - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
+> - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 
 ## SubTabBarStyle<sup>9+</sup>
 

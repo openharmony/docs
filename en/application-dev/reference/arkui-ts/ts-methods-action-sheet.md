@@ -23,7 +23,7 @@ Defines and shows the action sheet.
 | autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**|
 | confirm    | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
 | cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
-| alignment  | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
+| alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
 | offset     | {<br>dx: Length,<br>dy: Length<br>} | No     | Offset of the dialog box relative to the alignment position.<br>Default value: {<br>dx: 0,<br>dy: 0<br>} |
 | sheets     | Array&lt;SheetInfo&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
 

@@ -18,9 +18,11 @@
 import featureAbility from '@ohos.ability.featureAbility';
 
 let context = featureAbility.getContext();
-context.getProcessInfo((err, data) => {
-    if (err.code !== 0) {
-        console.info('getProcessInfo err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getProcessInfo((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getProcessInfo fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getProcessInfo success, data: ${JSON.stringify(data)}');
         let pid = data.pid;
         let processName = data.processName;
     }

@@ -33,7 +33,7 @@
 
   distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
       if (error && error.code) {
-          console.log('continueMission failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('continueMission failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
       console.log('continueMission finished');
   });

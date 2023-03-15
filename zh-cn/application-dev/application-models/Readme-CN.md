@@ -19,7 +19,9 @@
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [DataShareExtensionAbility（仅对系统应用开放）](datashareextensionability.md)
       - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
-      - [StaticSubscriberExtensionAbility](static-subscriber-extension-ability.md)
+      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
+      - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility](windowextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
@@ -40,9 +42,12 @@
     - [进程模型](process-model-stage.md)
     - 公共事件
       - [公共事件简介](common-event-overview.md)
-      - [公共事件订阅](common-event-subscription.md)
+      - 公共事件订阅
+        - [公共事件订阅概述](common-event-subscription-overview.md)
+        - [动态订阅公共事件](common-event-subscription.md)
+        - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
+        - [取消动态订阅公共事件](common-event-unsubscription.md)
       - [公共事件发布](common-event-publish.md)
-      - [公共事件取消订阅](common-event-unsubscription.md)
     - [后台服务](background-services.md)
   - 线程间通信
     - [线程模型](thread-model-stage.md)
@@ -52,7 +57,7 @@
     - [任务管理场景介绍](mission-management-overview.md)
     - [任务管理与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
-    - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot)
+    - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   - [Stage模型应用配置文件](config-file-stage.md)
 - FA模型开发指导
   - [FA模型开发概述](fa-model-development-overview.md)

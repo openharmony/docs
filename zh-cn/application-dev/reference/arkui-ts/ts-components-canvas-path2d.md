@@ -14,6 +14,8 @@ addPath(path: path2D, transform?:Matrix2D): void
 
 将另一个路径添加到当前的路径对象中。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
@@ -61,6 +63,8 @@ closePath(): void
 
 将路径的当前点移回到路径的起点，当前点到起点间画一条直线。如果形状已经闭合或只有一个点，则此功能不执行任何操作。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **示例：**
 
   ```ts
@@ -100,6 +104,8 @@ closePath(): void
 moveTo(x: number, y: number): void
 
 将路径的当前坐标点移动到目标点，移动过程中不绘制线条。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -148,6 +154,8 @@ lineTo(x: number, y: number): void
 
 从当前点绘制一条直线到目标点。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
@@ -195,6 +203,8 @@ lineTo(x: number, y: number): void
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
 创建三次贝赛尔曲线的路径。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -245,6 +255,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 
 创建二次贝赛尔曲线的路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
@@ -291,6 +303,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 绘制弧线路径。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -340,6 +354,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 依据圆弧经过的点和圆弧半径创建圆弧路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
@@ -386,6 +402,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 在规定的矩形区域绘制一个椭圆。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -436,6 +454,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 rect(x: number, y: number, w: number, h: number): void
 
 创建矩形路径。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 

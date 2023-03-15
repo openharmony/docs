@@ -46,13 +46,6 @@ want操作的常数。用于表示要执行的通用操作。
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
 |  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示发送数据时与目标关联的数据流的URI。对应的value必须是string类型的数组。  |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
-|  ACTION_APP_ACCOUNT_AUTH <sup>9+</sup>     | account.appAccount.action.auth     | 指示提供auth服务的操作。                                      |
-|  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | 指示从应用程序市场众测应用程序的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | 指示沙盒标志的参数的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|   DLP_PARAMS_BUNDLE_NAME<sup>9+</sup>    |ohos.dlp.params.bundleName  |指示DLP Bundle名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|   DLP_PARAMS_MODULE_NAME<sup>9+</sup>    |ohos.dlp.params.moduleName      |指示DLP模块名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-|   DLP_PARAMS_ABILITY_NAME<sup>9+</sup>    |ohos.dlp.params.abilityName      |指示DLP能力名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |   DLP_PARAMS_INDEX<sup>9+</sup>    |ohos.dlp.params.index      |指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 
 ## wantConstant.Entity
@@ -91,6 +84,6 @@ Flags说明。用于表示处理Want的方式。
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。      |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                              |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                              |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](js-apis-ability-featureAbility.md#startability)方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 指示在历史任务堆栈上创建任务的操作。                               |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 指示如果启动能力的现有实例已位于任务堆栈的顶部，则将重用该实例。否则，将创建一个新的能力实例。 |

@@ -158,7 +158,7 @@ Now start build, and check whether the kernel image is generated as expected.
 
    When porting a new chip platform, you need to add the **/vendor/etc/init/init.{hardware}.cfg** file that contains the platform-level initialization configuration. This file is used to implement platform-level initialization, for example, installing the ko driver and configuring information on the related **/proc** nodes.
 
-   The code of the init process is stored in the **//base/startup/init_lite** directory. This process is the first process in the system and does not depend on other processes.
+   The code of the init process is stored in the **//base/startup/init** directory. This process is the first process in the system and does not depend on other processes.
 
    For details about how to develop the initialization configuration file, see [Startup](../subsystems/subsys-boot-overview.md).
 

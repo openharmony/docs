@@ -16,6 +16,8 @@ Not supported
 
 Slider(options?: {value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -30,6 +32,8 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 ## SliderStyle
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name| Description|
 | -------- | -------- |
 | OutSet | The slider is on the slider track.|
@@ -42,12 +46,12 @@ Except touch target attributes, the universal attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the slider.|
-| trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.|
-| showSteps | boolean | Whether to display the current step.<br>Default value: **false**|
-| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**|
-| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.|
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Events
@@ -56,9 +60,11 @@ In addition to the **OnAppear** and **OnDisAppear** universal events, the follow
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider slides.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: dragging state.|
+| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider slides.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: dragging state.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## SliderChangeMode
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |

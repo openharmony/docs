@@ -51,7 +51,7 @@ this.context.destroy((err) => {
 
 ## InputMethodExtensionContext.destroy
 
-destroy(): Promise<void&gt;
+destroy(): Promise\<void>;
 
 Terminates this ability. This API uses a promise to return the result.
 
@@ -61,13 +61,13 @@ Terminates this ability. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise<void&gt; | Promise that returns no value.|
+| Promise\<void>; | Promise that returns no value.|
 
 **Example**
 
 ```js
 this.context.destroy().then(() => {
-    console.log('Succeed in destroying context.');
+    console.log('Succeeded in destroying context.');
 }).catch((error) => {
     console.log('Failed to destroy context: ' + JSON.stringify(error));
 });

@@ -11,8 +11,6 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
 ## AbilityDelegator
@@ -38,7 +36,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
+    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
 let monitor = {
@@ -47,8 +45,8 @@ let monitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info('addAbilityMonitor callback');
+abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+    console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -122,8 +120,8 @@ let monitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
-    console.info('removeAbilityMonitor callback');
+abilityDelegator.removeAbilityMonitor(monitor, (error : any) => {
+    console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -197,8 +195,12 @@ let monitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
-    console.info('waitAbilityMonitor callback');
+abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
+    if (error && error.code !== 0) {
+        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -234,8 +236,12 @@ let monitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) => {
-    console.info('waitAbilityMonitor callback');
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : any, data : any) => {
+    if (error && error.code !== 0) {
+        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -484,8 +490,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : any, data : any) => {
-        console.info('doAbilityForeground callback');
+    abilityDelegator.doAbilityForeground(ability, (err : any) => {
+        console.info("doAbilityForeground callback");
     });
 });
 ```
@@ -520,8 +526,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability).then((data : any) => {
-        console.info('doAbilityForeground promise');
+    abilityDelegator.doAbilityForeground(ability).then(() => {
+        console.info("doAbilityForeground promise");
     });
 });
 ```
@@ -551,8 +557,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : any, data : any) => {
-        console.info('doAbilityBackground callback');
+    abilityDelegator.doAbilityBackground(ability, (err : any) => {
+        console.info("doAbilityBackground callback");
     });
 });
 ```
@@ -587,8 +593,8 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability).then((data : any) => {
-        console.info('doAbilityBackground promise');
+    abilityDelegator.doAbilityBackground(ability).then(() => {
+        console.info("doAbilityBackground promise");
     });
 });
 ```

@@ -1,12 +1,12 @@
-# Native Api Symbols That May Invoke Failed Because of Permission Control
+# Native API Symbols That May Fail to Be Invoked Due to Permission Control
 
-| Symbols | Possiable Reason |
+| Symbol| Possible Cause|
 | --- | --- |
-| mlockall | usr namespace isolation or lack of CAP_IPC_LOCK privilege |
-| swapon | usr namespace isolation |
-| swapoff | usr namespace isolation |
-| stime | usr namespace isolation or lack of CAP_SYS_TIME privilege |
-| settimeofday | usr namespace isolation or lack of CAP_SYS_TIME privilege |
-| adjtime | usr namespace isolation or lack of CAP_SYS_TIME privilege |
-| clock_settime | usr namespace isolation or lack of CAP_SYS_TIME privilege |
-| klogctl | usr namespace isolation or lack of CAP_SYS_ADMIN/CAP_SYSLOG privilege |
+| mlockall | User namespace isolation or lack of the CAP_IPC_LOCK privilege.|
+| swapon | User namespace isolation. |
+| swapoff | User namespace isolation. |
+| stime | User namespace isolation or lack of the CAP_SYS_TIME privilege.|
+| settimeofday | User namespace isolation or lack of the CAP_SYS_TIME privilege.|
+| adjtime | User namespace isolation or lack of the CAP_SYS_TIME privilege.|
+| clock_settime | User namespace isolation or lack of the CAP_SYS_TIME privilege.|
+| klogctl | User namespace isolation or lack of the CAP_SYS_ADMIN/CAP_SYSLOG privilege.|

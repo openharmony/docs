@@ -5,7 +5,7 @@
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > The APIs provided by this module are system APIs.
 >
 > The APIs of this module can be used only in the stage model.
@@ -22,7 +22,7 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 | Name     | Type| Readable| Writable| Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [ExtensionContext](js-apis-inner-application-extensionContext.md)   | Yes  | No  | Context of an Extension ability.     |
+| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)   | Yes  | No  | Context of an Extension ability.     |
 
 ## WindowExtensionAbility.onConnect
 
@@ -44,7 +44,7 @@ Called when this Window Extension ability is connected to an ability for the fir
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
   onConnect(want) {
-    console.info('WindowExtAbility onConnect ' + want.abilityName);
+    console.info('WindowExtAbility onConnect, abilityName: ${want.abilityName}');
   }
 
 }
@@ -71,7 +71,7 @@ Called when this Window Extension ability is disconnected from all connected abi
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
   onDisconnect(want) {
-    console.info('WindowExtAbility onDisconnect ' + want.abilityName);
+    console.info('WindowExtAbility onDisconnect, abilityName: ${want.abilityName}');
   }
 
 }
@@ -100,10 +100,10 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window) {
     window.loadContent('WindowExtAbility/pages/index1').then(() => {
       window.getProperties().then((pro) => {
-        console.log('WindowExtension ' + JSON.stringify(pro));
-      })
+        console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+      });
       window.show();
-    })
+    });
   }
 
 }

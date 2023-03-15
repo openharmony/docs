@@ -2,7 +2,7 @@
 
 ## cl.bundlemanager.1 API9的ApplicationInfo结构体字段变更，新增systemApp字段，删除entryDir字段。
 
-API9的ApplicationInfo结构体[[bundleManager/applicationInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/applicationInfo.d.ts)]字段变更，新增systemApp字段，删除entryDir字段。
+API9的ApplicationInfo结构体[bundleManager/applicationInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts)字段变更，新增systemApp字段，删除entryDir字段。
 
 **变更影响**<br>
 对原有使用API version 9之前的应用无影响，使用API version 9的应用需要适配新模块和新接口。
@@ -19,7 +19,7 @@ ApplicationInfo结构体发生变化的字段内容如下表所示。
 
 ## cl.bundlemanager.2 API9的HapModuleInfo结构体字段变更，删除moduleSourceDir字段。
 
-API9的HapModuleInfo结构体[[bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts)]字段变更，删除moduleSourceDir字段。
+API9的HapModuleInfo结构体[bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts)字段变更，删除moduleSourceDir字段。
 
 **变更影响**<br>
 对原有使用API version 9之前的应用无影响，使用API version 9的应用需要适配新模块和新接口。

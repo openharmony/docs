@@ -305,7 +305,7 @@ let hashSet = new HashSet();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
 hashSet.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

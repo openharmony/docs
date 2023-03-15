@@ -33,7 +33,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 ## bundleMonitor.on
 
-on(type: BundleChangedEvent, callback: callback\<BundleChangedInfo>): void;
+on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 注册监听应用的安装，卸载，更新。
 
@@ -66,7 +66,7 @@ try {
 
 ## bundleMonitor.off
 
-off(type: BundleChangedEvent, callback?: callback\<BundleChangedInfo>): void;
+off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 注销监听应用的安装，卸载，更新。
 

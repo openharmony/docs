@@ -1,6 +1,10 @@
 # Common Event Manager
 
-The Common Event Manager provides the common event debugging and testing capabilities that enable you to print common event information and publish common events. With this tool, you can send commands (started with **cem**) in the hdc shell to perform various system operations, such as printing all common event subscribers, sent common events, and recipients, as well as publishing common events.
+The Common Event Manager enables you to print common event information and publish common events. It provides the common event debugging and testing capabilities, for example, printing all public event subscribers, sent public events, and recipients, and simulating public event release.
+
+> **NOTE**
+>
+> Before using this tool, you must obtain the [hdc tool](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) and run the hdc shell command.
 
 ## Commands
 

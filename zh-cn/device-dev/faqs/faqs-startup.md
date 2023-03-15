@@ -161,7 +161,7 @@ OpenHarmony-3.0-LTS
 **解决办法**
 
 1. 内核不支持， 不需要配置caps。
-2. 内核支持，cfg文件中caps配置不正确，导致在init中解析的时候，解析失败，参考base/startup/init_lite/services/init/init_capability.c中，capStrCapNum数据结构的定义，正确配置caps。
+2. 内核支持，cfg文件中caps配置不正确，导致在init中解析的时候，解析失败，参考base/startup/init/services/init/init_capability.c中，capStrCapNum数据结构的定义，正确配置caps。
 
 ### 打开沙盒功能
 
@@ -175,7 +175,7 @@ OpenHarmony-3.0-LTS
 
 **解决方法**
 
-在base/startup/init_lite/services/etc/param/ohos.para中配置const.sandbox=enable。具体参考[沙盒指导](../subsystems/subsys-boot-init-sandbox.md)
+在base/startup/init/services/etc/param/ohos.para中配置const.sandbox=enable。具体参考[沙盒指导](../subsystems/subsys-boot-init-sandbox.md)
 
 ### 查看服务中沙盒的挂载状态
 

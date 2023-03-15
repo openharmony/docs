@@ -33,18 +33,21 @@ export default class EntryAbility extends UIAbility {
                 console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
                 let language = config.language;
                 let colorMode = config.colorMode;
+            },
+            onMemoryLevel(level){
+                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
             }
         };
 
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.registerEnvironmentCallback(envCallback);
+        applicationContext.on('environment',envCallback);
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {
-                console.error('failed to load the content, error: + ${JSON.stringify(err)}');
+                console.error('failed to load the content, error: ${JSON.stringify(err)}');
                 return;
             }
-            console.info('Succeeded in loading the content, data: + ${JSON.stringify(data)}');
+            console.info('Succeeded in loading the content, data: ${JSON.stringify(data)}');
         });
     }
 }

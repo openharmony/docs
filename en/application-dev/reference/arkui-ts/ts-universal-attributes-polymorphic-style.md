@@ -11,9 +11,11 @@ You can set state-specific styles for components.
 
 | Style| Type| Description|
 | -------- | -------- | -------- |
-| stateStyles | StateStyles | Styles of the component for different states.|
+| stateStyles | StateStyles | Styles of the component for different states.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## StateStyles
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

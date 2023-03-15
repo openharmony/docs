@@ -2,9 +2,21 @@
 
 An **ImageBitmap** object stores pixel data rendered on a canvas.
 
-> **NOTE**
-> 
-> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
+## APIs
+
+ImageBitmap(src: string)
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description                                                    |
+| ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
+| src    | string   | Yes  | -      | Image source.<br>**NOTE**<br>ArkTS widgets do not support the **http://**, **datashare://**, or **file://data/storage** path prefixes.|
 
 
 
@@ -12,8 +24,8 @@ An **ImageBitmap** object stores pixel data rendered on a canvas.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| width | number | Pixel width of the **ImageBitmap** object.|
-| height | number | Pixel height of the **ImageBitmap** object.|
+| width | number | Pixel width of the **ImageBitmap** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| height | number | Pixel height of the **ImageBitmap** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 
@@ -54,3 +66,5 @@ An **ImageBitmap** object stores pixel data rendered on a canvas.
 close()
 
 Releases all graphics resources associated with this **ImageBitmap** object. This API is a void API.
+
+Since API version 9, this API is supported in ArkTS widgets.

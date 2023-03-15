@@ -109,3 +109,6 @@
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
     - [hdc使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
+- 电源管理
+    - 显示管理
+        - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)

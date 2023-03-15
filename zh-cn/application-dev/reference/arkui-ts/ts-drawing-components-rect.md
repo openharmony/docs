@@ -17,6 +17,8 @@
 Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
   {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -34,20 +36,20 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 | 名称 | 类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| radiusWidth | string&nbsp;\|&nbsp;number | 0 | 圆角的宽度，仅设置宽时宽高一致。 |
-| radiusHeight | string&nbsp;\|&nbsp;number | 0 | 圆角的高度，仅设置高时宽高一致。 |
-| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 0 | 圆角半径大小。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。 |
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 |
-| strokeWidth | Length | 1 | 设置边框宽度。 |
-| antiAlias | boolean | true | 是否开启抗锯齿效果。 |
+| radiusWidth | string&nbsp;\|&nbsp;number | 0 | 圆角的宽度，仅设置宽时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| radiusHeight | string&nbsp;\|&nbsp;number | 0 | 圆角的高度，仅设置高时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 0 | 圆角半径大小。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeWidth | Length | 1 | 设置边框宽度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 
 ## 示例
@@ -66,7 +68,6 @@ struct RectExample {
         // 绘制90% * 50矩形
         Rect({ width: '90%', height: 50 })
           .fill(Color.Pink)
-          .stroke(Color.Transparent)
         // 绘制90% * 50的矩形框
         Rect()
           .width('90%')
@@ -81,7 +82,6 @@ struct RectExample {
           .radiusHeight(20)
           .radiusWidth(40)
           .fill(Color.Pink)
-          .stroke(Color.Transparent)
         // 绘制90% * 80的矩形, 圆角宽高为20
         Rect({ width: '90%', height: 80 })
           .radius(20)
@@ -92,7 +92,6 @@ struct RectExample {
       Rect({ width: '90%', height: 80 })
         .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
         .fill(Color.Pink)
-        .stroke(Color.Transparent)
     }.width('100%').margin({ top: 5 })
   }
 }

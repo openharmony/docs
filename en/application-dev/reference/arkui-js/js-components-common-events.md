@@ -99,6 +99,8 @@ Different from private events, universal events can be bound to most components.
 
 When a component triggers an event, the event callback receives an event object by default. You can obtain the corresponding information through the event object.
 
+
+
 | Attribute                  | Type    | Description                                      |
 | -------------------- | ------ | ---------------------------------------- |
 | dataSet<sup>6+</sup> | Object | Custom attribute set defined through [data-*](../arkui-js/js-components-common-attributes.md).|
@@ -241,32 +243,38 @@ Sets a custom drag image.
 **Example**
 
 ```js
-createPixelMap() {
-	let color = new ArrayBuffer(4*96*96);
-	var buffer = new Uint8Array(color);
-	for (var i = 0; i < buffer.length; i++) {
-		buffer[i] = (i + 1) % 255;
-	}
-	let opts = {
-		alphaType:0,
-		editable:true,
-		pixelFormat:4,
-		scaleMode:1,
-		size:{height:96,width:96}
-	}
-	const promise = image.createPixelMap(color,opts);
-	promise.then((data)=> {
-		console.error('-create pixmap has info message:' + JSON.stringify(data));
-		this.pixelMap = data;
-		this.pixelMapReader = data;
-	})
-},
+import image from '@ohos.multimedia.image';
 
-onInit() {
-	this.createPixelMap
-},
+export default {
+    createPixelMap() {
+        let color = new ArrayBuffer(4 * 96 * 96);
+        var buffer = new Uint8Array(color);
+        for (var i = 0; i < buffer.length; i++) {
+            buffer[i] = (i + 1) % 255;
+        }
+        let opts = {
+            alphaType: 0,
+            editable: true,
+            pixelFormat: 4,
+            scaleMode: 1,
+            size: {
+                height: 96, width: 96
+            }
+        }
+        const promise = image.createPixelMap(color, opts);
+        promise.then((data) => {
+            console.error('-create pixmap has info message:' + JSON.stringify(data));
+            this.pixelMap = data;
+            this.pixelMapReader = data;
+        })
+    },
 
-dragStart(e) {
-	e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
+    onInit() {
+        this.createPixelMap
+    },
+
+    dragStart(e) {
+        e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
+    }
 }
 ```

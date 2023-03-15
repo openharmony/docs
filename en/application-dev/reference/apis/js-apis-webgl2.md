@@ -9,11 +9,13 @@ This module provides WebGL APIs that correspond to the OpenGL ES 3.0 feature set
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > WebGL2 complies with the OpenGL protocol and does not support multi-thread calling.
+>
+> This module can be used only in the JavaScript-compatible web-like development paradigm.
 
 
 ## Invoking Method
 
-Create a **<canvas\>** component in the HML file. The following is an example:
+Create a **\<canvas>** component in the HML file. The following is an example:
 
 
 ```html
@@ -24,7 +26,7 @@ Create a **<canvas\>** component in the HML file. The following is an example:
 </div>
 ```
 
-Obtain the **<canvas\>** component instance in the JS file. The following is an example:
+Obtain the **\<canvas>** component instance in the JS file. The following is an example:
 
 
 ```js

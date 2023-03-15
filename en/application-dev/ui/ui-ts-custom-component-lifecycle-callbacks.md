@@ -15,11 +15,15 @@ aboutToAppear?(): void
 
 Invoked after a new instance of the custom component is created and before its **build** function is executed. You can change state variables in the **aboutToAppear** function. The change will take effect when you execute the **build** function next time.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void
 
 Invoked before the destructor of the custom component is consumed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Example 1:**
 
@@ -122,6 +126,8 @@ onLayout?(children: Array\<LayoutChild\>, constraint: ConstraintSizeOptions): vo
 
 Invoked when the custom component lays out its child components. Through this callback the component receives its child component layout information and size constraint from the framework. The state variable cannot be changed in the **onLayout** function.
 
+This API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name    | Type                                                                            | Description                  |
@@ -135,6 +141,8 @@ onMeasure?(children: Array\<LayoutChild\>, constraint: ConstraintSizeOptions): v
 
 Invoked when the custom component needs to determine its size. Through this callback the component receives its child component layout information and size constraint from the framework. The state variable cannot be changed in the onMeasure function.
 
+This API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name    | Type                                                                            | Description                  |
@@ -145,6 +153,8 @@ Invoked when the custom component needs to determine its size. Through this call
 ## LayoutChild<sup>9+</sup>
 
 Provides the child component layout information.
+
+This API is supported in ArkTS widgets.
 
 | Name      | Type                                                                                                   | Description                                  |
 | ---------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------- |
@@ -160,6 +170,8 @@ Provides the child component layout information.
 
 Provides the border information of the child component.
 
+This API is supported in ArkTS widgets.
+
 | Name       | Type                                                  | Description                                          |
 | ----------- | ---------------------------------------------------------- | ---------------------------------------------- |
 | borderWidth | [EdgeWidths](../reference/arkui-ts/ts-types.md#edgewidths) | Edge widths in different directions of the child component.|
@@ -169,6 +181,8 @@ Provides the border information of the child component.
 ## LayoutInfo<sup>9+</sup>
 
 Provides the layout information of the child component.
+
+This API is supported in ArkTS widgets.
 
 | Name      | Type                                                                        | Description            |
 | ---------- | -------------------------------------------------------------------------------- | ---------------- |

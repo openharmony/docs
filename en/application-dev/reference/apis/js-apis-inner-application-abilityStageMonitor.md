@@ -14,12 +14,16 @@ The **AbilityStageMonitor** module provides conditions for matching **AbilitySta
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 let monitor = {
-    moduleName: "feature_as1",
-    srcEntrance: "./ets/Application/MyAbilityStage.ts",
+    moduleName: 'feature_as1',
+    srcEntrance: './ets/Application/MyAbilityStage.ts',
 };
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
-    console.info("stageMonitor waitAbilityStageMonitor, abilityStage = " + JSON.stringify(data));
+    if (error && error.code !== 0) {
+        console.error('waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('waitAbilityStageMonitor success, data: ${JSON.stringify(data)}');
+    }
 });
 ```

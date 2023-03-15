@@ -1,4 +1,4 @@
-# @ohos.account.appAccount (App Account Management) 
+# @ohos.account.appAccount (App Account Management)
 
 The **appAccount** module provides APIs for adding, deleting, modifying, and querying app account information, and supports inter-app authentication and distributed data synchronization.
 
@@ -198,18 +198,23 @@ Creates an app account implicitly based on the specified account owner. This API
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
     console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
   try {  
@@ -252,18 +257,23 @@ Creates an app account implicitly based on the specified account owner and optio
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
     console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
   let options = {
@@ -1346,7 +1356,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, authResult) {
     console.log("resultCode: "  + code);
@@ -1354,10 +1364,17 @@ Authenticates an app account. This API uses an asynchronous callback to return t
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
-        console.log("startAbility err: " + JSON.stringify(err));
-    });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
   try {
@@ -1402,7 +1419,7 @@ Authenticates an app account with customized options. This API uses an asynchron
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, authResult) {
     console.log("resultCode: "  + code);
@@ -1410,10 +1427,17 @@ Authenticates an app account with customized options. This API uses an asynchron
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
-        console.log("startAbility err: " + JSON.stringify(err));
-    });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
   let options = {
@@ -1661,7 +1685,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | name     | string | Yes   | Name of the target app account.    |
 | owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string | Yes   | Authentication type.       |
-| token    | string | Yes   | Token to delete.|
+| token    | string | Yes   | Authorization token to delete.|
 
 **Return value**
 
@@ -2706,7 +2730,7 @@ Adds an app account. This API uses an asynchronous callback to return the result
 
 | Name     | Type                       | Mandatory  | Description                  |
 | -------- | ------------------------- | ---- | -------------------- |
-| name     | string                    | Yes   | Name of the target app account.         |
+| name     | string                    | Yes   | Name of the app account to add.         |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -2724,6 +2748,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-1).
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -2750,8 +2775,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
-> **NOTE**
->  
+> **NOTE**<br> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-2).
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -2803,7 +2827,7 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
@@ -2811,10 +2835,17 @@ Adds an app account implicitly based on the specified owner. This API uses an as
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err)=>{
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
   appAccountManager.addAccountImplicitly("com.example.accountjsdemo", "getSocialData", {}, {
@@ -2839,7 +2870,7 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 
 | Name     | Type                       | Mandatory  | Description              |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes   | Name of the target app account.     |
+| name     | string                    | Yes   | Name of the app account to delete.     |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -2866,7 +2897,7 @@ Deletes an app account. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| name | string | Yes   | Name of the target app account.|
+| name | string | Yes   | Name of the app account to delete.|
 
 **Return value**
 
@@ -3751,18 +3782,23 @@ Authenticates an app account with customized options. This API uses an asynchron
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
       console.log("resultCode: "  + code);
       console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-      let abilityStartSetting = {want: request};
-      featureAbility.startAbility(abilityStartSetting, (err)=>{
-          console.log("startAbility err: " + JSON.stringify(err));
-      });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
   appAccountManager.authenticate("LiSi", "com.example.accountjsdemo", "getSocialData", {}, {
@@ -4521,9 +4557,12 @@ Enumerates the constants.
 | KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | Required labels.   |
 | KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | Return value of the Boolean type.   |
 
-## ResultCode<sup>8+</sup>
+## ResultCode<sup>(deprecated)</sup>
 
 Enumerates the result codes.
+
+> **NOTE**<br>
+> This enum is supported since API version 8 and deprecated since API version 9. Error codes are used from API version 9. For details, see [Account Management Error Codes](../errorcodes/errorcode-account.md).
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -4760,7 +4799,7 @@ Creates an app account implicitly based on the specified account owner. This API
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | Yes   | Options for implicitly creating the account.     |
+| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | Yes   | Options for implicitly creating an account.     |
 | callback         | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the result.|
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
@@ -4871,9 +4910,9 @@ Checks the account labels. This API uses an asynchronous callback to return the 
 | labels    | Array&lt;string&gt;          | Yes   | Labels to check.                  |
 | callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback invoked to return the check result.|
 
-### isAccountRemovable<sup>9+</sup>
+### checkAccountRemovable<sup>9+</sup>
 
-isAccountRemovable(name: string, callback: AuthCallback): void;
+checkAccountRemovable(name: string, callback: AuthCallback): void;
 
 Checks whether an app account can be deleted. This API uses an asynchronous callback to return the result.
 
@@ -4931,7 +4970,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
   
-    isAccountRemovable(name, callback) {
+    checkAccountRemovable(name, callback) {
       var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }

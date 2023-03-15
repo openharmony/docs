@@ -49,7 +49,7 @@ Called when a ServiceExtensionAbility is created to initialize the service logic
   ```ts
   class ServiceExt extends ServiceExtension {
     onCreate(want) {
-      console.log('onCreate, want:' + want.abilityName);
+      console.log('onCreate, want: ${want.abilityName}');
     }
   }
   ```
@@ -80,7 +80,7 @@ Called when this ServiceExtensionAbility is destroyed to clear resources.
 
 onRequest(want: Want, startId: number): void;
 
-Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()**. The value of **startId** is incremented for each ability that is started.
+Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ability that is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -98,7 +98,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
   ```ts
   class ServiceExt extends ServiceExtension {
     onRequest(want, startId) {
-      console.log('onRequest, want:' + want.abilityName);
+      console.log('onRequest, want: ${want.abilityName}');
     }
   }
   ```
@@ -129,7 +129,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 **Example**
 
   ```ts
-  import rpc from '@ohos.rpc'
+  import rpc from '@ohos.rpc';
   class StubTest extends rpc.RemoteObject{
       constructor(des) {
           super(des);
@@ -139,8 +139,8 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
   }
   class ServiceExt extends ServiceExtension {
     onConnect(want) {
-      console.log('onConnect , want:' + want.abilityName);
-      return new StubTest("test");
+      console.log('onConnect , want: ${want.abilityName}');
+      return new StubTest('test');
     }
   }
   ```
@@ -167,7 +167,7 @@ Called when a client is disconnected from this ServiceExtensionAbility.
   ```ts
   class ServiceExt extends ServiceExtension {
     onDisconnect(want) {
-      console.log('onDisconnect, want:' + want.abilityName);
+      console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
   ```
@@ -193,7 +193,7 @@ Called when a new client attempts to connect to this ServiceExtensionAbility aft
   ```ts
   class ServiceExt extends ServiceExtension {
     onReconnect(want) {
-      console.log('onReconnect, want:' + want.abilityName);
+      console.log('onReconnect, want: ${want.abilityName}');
     }
   }
   ```
@@ -219,7 +219,7 @@ Called when the configuration of this ServiceExtensionAbility is updated.
   ```ts
   class ServiceExt extends ServiceExtension {
       onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
+          console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
       }
   }
   ```
@@ -245,8 +245,8 @@ Dumps the client information.
   ```ts
   class ServiceExt extends ServiceExtension {
       onDump(params) {
-          console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          console.log('dump, params: ${JSON.stringify(params)}');
+          return ['params'];
       }
   }
   ```
