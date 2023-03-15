@@ -372,7 +372,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](#onconsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](#notificationrequest)对象中的hashCode。 |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](#onconsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
