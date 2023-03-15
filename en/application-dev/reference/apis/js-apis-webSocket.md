@@ -459,7 +459,7 @@ off\(type: 'open', callback?: AsyncCallback<Object\>\): void
 
 Disables listening for the **open** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE:**
+>**NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -490,7 +490,7 @@ on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
 
 Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
 
->**NOTE:**
+>**NOTE**
 >The data in **AsyncCallback** can be in the format of string\(API 6\) or ArrayBuffer\(API 8\).
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -518,7 +518,7 @@ off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
 
 Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
 
->**NOTE:**
+>**NOTE**
 >The data in **AsyncCallback** can be in the format of string\(API 6\) or ArrayBuffer\(API 8\).
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -570,7 +570,7 @@ off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\
 
 Disables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE:**
+>**NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -621,7 +621,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 
 Disables listening for the **error** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
->**NOTE:**
+>**NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
