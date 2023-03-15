@@ -347,7 +347,7 @@ var subscribeInfo = {
 
 //订阅公共事件回调
 function SubscribeCallBack(err, data) {
-    if (err.code) {
+    if (err) {
         console.error("subscribe failed " + JSON.stringify(err));
     } else {
         console.info("subscribe ");
@@ -447,7 +447,6 @@ try {
 } catch (err) {
     console.info("unsubscribe failed " + JSON.stringify(err));
 }
-<<<<<<< HEAD
 ```
 
 ## CommonEventSubscriber
@@ -473,7 +472,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果代码回调
 function getCodeCallback(err, Code) {
-    if (err.code) {
+    if (err) {
         console.error("getCode failed " + JSON.stringify(err));
     } else {
         console.info("getCode " + JSON.stringify(Code));
@@ -530,7 +529,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码回调
 function setCodeCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("setCode failed " + JSON.stringify(err));
     } else {
         console.info("setCode");
@@ -592,7 +591,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //获取有序公共事件的结果数据回调
 function getDataCallback(err, Data) {
-    if (err.code) {
+    if (err) {
         console.error("getData failed " + JSON.stringify(err));
     } else {
         console.info("getData " + JSON.stringify(Data));
@@ -649,7 +648,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果数据回调
 function setDataCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("setData failed " + JSON.stringify(err));
     } else {
         console.info("setData");
@@ -713,7 +712,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //设置有序公共事件的结果代码和结果数据回调
 function setCodeDataCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("setCodeAndData failed " + JSON.stringify(err));
     } else {
         console.info("setCodeDataCallback");
@@ -778,7 +777,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为有序事件的回调
 function isOrderedCallback(err, isOrdered) {
-    if (err.code) {
+    if (err) {
         console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
@@ -838,7 +837,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //获取当前公共事件是否为粘性事件的回调
 function isStickyCallback(err, isSticky) {
-    if (err.code) {
+    if (err) {
         console.error("isStickyCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
@@ -896,7 +895,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //取消当前有序公共事件的回调
 function abortCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("abortCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("abortCommonEvent");
@@ -952,7 +951,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //清除当前公共事件取消状态的回调
 function clearAbortCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("clearAbortCommonEvent");
@@ -1008,7 +1007,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //获取当前有序公共事件是否取消的回调
 function getAbortCallback(err, AbortCommonEvent) {
-    if (err.code) {
+    if (err) {
         console.error("getAbortCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("AbortCommonEvent " + AbortCommonEvent)
@@ -1064,7 +1063,7 @@ var subscriber;	//创建成功的订阅者对象
 
 //获取订阅者信息回调
 function getSubscribeInfoCallback(err, SubscribeInfo) {
-    if (err.code) {
+    if (err) {
         console.error("getSubscribeInfo failed " + JSON.stringify(err));
     } else {
         console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
@@ -1120,7 +1119,7 @@ var subscriber; //创建成功的订阅者对象
 
 //结束当前有序公共事件的回调
 function finishCommonEventCallback(err) {
-  if (err.code) {
+  if (err) {
     console.error("finishCommonEvent failed " + JSON.stringify(err));
 } else {
     console.info("FinishCommonEvent");
@@ -1193,6 +1192,3 @@ subscriber.finishCommonEvent().then(() => {
 | publisherDeviceId   | string         | 是  | 否  | 表示设备ID，该值必须是同一ohos网络上的现有设备ID。             |
 | userId              | number         | 是  | 否  | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
 | priority            | number         | 是  | 否  | 表示订阅者的优先级。值的范围是-100到1000。                     |
-=======
-```
->>>>>>> a6c9265cd... common event docs fix
