@@ -705,7 +705,7 @@ observer.off('simStateChange');
 
 SIM卡锁类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.StateRegistry。
+**系统能力**：SystemCapability.Telephony.StateRegistry
 
 | 名称        | 值   | 说明              |
 | ----------- | ---- | ----------------- |
@@ -728,7 +728,7 @@ SIM卡锁类型。
 
 SIM卡类型和状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.StateRegistry。
+**系统能力**：SystemCapability.Telephony.StateRegistry
 
 |     名称            |                 类型                | 必填 | 说明                                                      |
 | ------------------- | ----------------------------------- | ---- | --------------------------------------------------------  |
