@@ -1,4 +1,4 @@
-# Permission Verification Guide
+# Verifying API Access Permissions
 
 ## When to Use
 
