@@ -99,7 +99,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明                         |
+| 参数名   | 类型                     | 必填 | 说明                         |
 | -------- | ------------------------ | ---- | ---------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                   |
@@ -138,7 +138,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明                                                    |
+| 参数名   | 类型                     | 必填 | 说明                                                    |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。                            |
 | options  | WebSocketRequestOptions  | 是   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
@@ -183,7 +183,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **参数：**
 
-| 名称  | 类型                    | 必填 | 说明                                                    |
+| 参数名  | 类型                    | 必填 | 说明                                                    |
 | ------- | ----------------------- | ---- | ------------------------------------------------------- |
 | url     | string                  | 是   | 建立WebSocket连接的URL地址。                            |
 | options | WebSocketRequestOptions | 否   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
@@ -227,7 +227,7 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明         |
+| 参数名   | 类型                     | 必填 | 说明         |
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。   |
@@ -268,7 +268,7 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 说明         |
+| 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
 
@@ -313,7 +313,7 @@ close(callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明       |
+| 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。 |
 
@@ -351,7 +351,7 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明                                                  |
+| 参数名   | 类型                     | 必填 | 说明                                                  |
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | 是   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                            |
@@ -393,7 +393,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **参数：**
 
-| 名称  | 类型                  | 必填 | 说明                                                  |
+| 参数名  | 类型                  | 必填 | 说明                                                  |
 | ------- | --------------------- | ---- | ----------------------------------------------------- |
 | options | WebSocketCloseOptions | 否   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
 
@@ -437,7 +437,7 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 **参数：**
 
-| 名称   | 类型                    | 必填 | 说明                          |
+| 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 是   | 回调函数。                    |
@@ -466,7 +466,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 **参数：**
 
-| 名称   | 类型                    | 必填 | 说明                          |
+| 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 否   | 回调函数。                    |
@@ -497,7 +497,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 **参数：**
 
-| 名称   | 类型                    | 必填 | 说明                                         |
+| 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
@@ -526,7 +526,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 **参数：**
 
-| 名称   | 类型                                                | 必填 | 说明                                         |
+| 参数名   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
 | type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
@@ -549,7 +549,7 @@ on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): 
 
 **参数：**
 
-| 名称   | 类型                                            | 必填 | 说明                           |
+| 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<{ code: number, reason: string }\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
@@ -577,7 +577,7 @@ off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>)
 
 **参数：**
 
-| 名称   | 类型                                            | 必填 | 说明                           |
+| 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<{ code: number, reason: string }\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
@@ -600,7 +600,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **参数：**
 
-| 名称   | 类型          | 必填 | 说明                            |
+| 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。                      |
@@ -628,7 +628,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **参数：**
 
-| 名称   | 类型          | 必填 | 说明                            |
+| 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                      |
@@ -647,7 +647,7 @@ ws.off('error');
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 名称 | 类型   | 必填 | 说明                                                         |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
 
@@ -658,7 +658,7 @@ ws.off('error');
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 名称 | 类型   | 必填 | 说明                                                         |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | code   | number | 否   | 错误码，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为1000。 |
 | reason | string | 否   | 原因值，关闭WebSocket连接时的可选参数，可根据实际情况来填。默认值为空字符串（""）。 |
