@@ -73,7 +73,7 @@ onCreate(want, launchParam) {
     try {
         tagInfo = tag.getTagInfo(want);
     } catch (error) {
-        console.log("tag.getTagInfo catched error: " + error);
+        console.log("tag.getTagInfo caught error: " + error);
     }
     if (tagInfo == null || tagInfo == undefined) {
         console.log("no TagInfo to be created, ignore it.");
@@ -100,7 +100,7 @@ onCreate(want, launchParam) {
         try {
             nfcA = tag.getNfcATag(taginfo);
         } catch (error) {
-            console.log("tag.getNfcATag catched error: " + error);
+            console.log("tag.getNfcATag caught error: " + error);
         }
         // Other code to read or write this tag.
     }
@@ -111,7 +111,7 @@ onCreate(want, launchParam) {
         try {
             isoDep = tag.getIsoDep(taginfo);
         } catch (error) {
-            console.log("tag.getIsoDep catched error: " + error);
+            console.log("tag.getIsoDep caught error: " + error);
         }
         // Other code to read or write this tag.
     }
@@ -126,9 +126,16 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcA](#taggetnfca9).
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
@@ -136,15 +143,50 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 | -------- | -------- |
 | [NfcATag](js-apis-nfctech.md#nfcatag) | **NfcATag** object obtained.|
 
+## tag.getNfcA<sup>9+</sup>
+
+getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
+
+Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**|
+| -------- | -------- |
+| [NfcATag](js-apis-nfctech.md#nfcatag) | **NfcATag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcBTag
 
 getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcB](#taggetnfcb9).
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
@@ -152,15 +194,50 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 | -------- | ---------------- |
 | [NfcBTag](js-apis-nfctech.md#nfcbtag)  | **NfcBTag** object obtained.|
 
+## tag.getNfcB<sup>9+</sup>
+
+getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
+
+Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**        |
+| -------- | ---------------- |
+| [NfcBTag](js-apis-nfctech.md#nfcbtag)  | **NfcBTag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcFTag
 
 getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-F technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcF](#taggetnfcf9).
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
@@ -168,21 +245,84 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 | -------- | ---------------- |
 | [NfcFTag](js-apis-nfctech.md#nfcftag)  | **NfcFTag** object obtained.|
 
+## tag.getNfcF<sup>9+</sup>
+
+getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
+
+Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-F technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**        |
+| -------- | ---------------- |
+| [NfcFTag](js-apis-nfctech.md#nfcftag)  | **NfcFTag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcVTag
 
 getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-V technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcV](#taggetnfcv9).
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
 | **Type**| **Description**        |
 | -------- | ---------------- |
 | [NfcVTag](js-apis-nfctech.md#nfcvtag)  | **NfcVTag** object obtained.|
+
+## tag.getNfcV<sup>9+</sup>
+
+getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
+
+Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-V technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**        |
+| -------- | ---------------- |
+| [NfcVTag](js-apis-nfctech.md#nfcvtag)  | **NfcVTag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getIsoDep<sup>9+</sup>
 

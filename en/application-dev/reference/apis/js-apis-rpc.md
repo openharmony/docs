@@ -5653,7 +5653,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
           return this;
       }
   }
-  let remoteObject = new TestAbility().asObject();
+  let remoteObject = new TestAbility("testObject").asObject();
   ```
 
 **Example**
@@ -8263,13 +8263,13 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
+  console.log("RpcServer: descriptor is: " + descriptor);
   try {
       let descriptor = testRemoteObject.getDescriptor();
   } catch(error) {
       console.info("rpc get local interface fail, errorCode " + error.code);
       console.info("rpc get local interface fail, errorMessage " + error.message);
   }
-  console.log("RpcServer: descriptor is: " + descriptor);
   ```
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
@@ -8344,8 +8344,8 @@ Binds an interface descriptor to an **IRemoteBroker** object.
           try {
               this.modifyLocalInterface(this, descriptor);
           } catch(error) {
-              console.info(rpc attach local interface fail, errorCode " + error.code);
-              console.info(rpc attach local interface fail, errorMessage " + error.message);
+              console.info(" rpc attach local interface fail, errorCode " + error.code);
+              console.info(" rpc attach local interface fail, errorMessage " + error.message);
           }
       }
       registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {

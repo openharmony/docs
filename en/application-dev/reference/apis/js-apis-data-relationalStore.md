@@ -8,7 +8,7 @@ The **relationalStore** module provides the following functions:
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
 - [Resultset](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
 
-> **NOTE**<br/>
+> **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -30,7 +30,7 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                                          | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                                        | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
 | config   | [StoreConfig](#storeconfig)               | Yes  | Configuration of the RDB store.                               |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback invoked to return the RDB store obtained.                  |
 
@@ -108,7 +108,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Name | Type                            | Mandatory| Description                                                        |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 
 **Return value**
@@ -188,7 +188,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
 
@@ -249,7 +249,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
 | name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
@@ -362,6 +362,8 @@ Defines the database synchronization mode.
 ## SubscribeType
 
 Defines the subscription type.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2430,9 +2432,9 @@ Synchronizes data between devices. This API uses a promise to return the result.
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(['12345678abcde']);
 let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-promise.then((resultSet) =>{
+promise.then((result) =>{
   console.info(`Sync done.`);
-  for (let i = 0; i < resultSet.length; i++) {
+  for (let i = 0; i < result.length; i++) {
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
 }).catch((err) => {
@@ -2511,10 +2513,12 @@ Provides APIs to access the result set obtained by querying the RDB store. A res
 Obtain the **resultSet** object first.
 
 ```js
+let resultSet = null;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
+promise.then((result) => {
+  resultSet = result;
   console.info(`resultSet columnNames: ${resultSet.columnNames}`);
   console.info(`resultSet columnCount: ${resultSet.columnCount}`);
 });
@@ -2685,7 +2689,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  resultSet.(5);
+  resultSet.goToRow(5);
   resultSet.close();
 }).catch((err) => {
   console.error(`query failed, err: ${err}`);

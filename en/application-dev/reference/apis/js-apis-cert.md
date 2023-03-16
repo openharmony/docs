@@ -104,6 +104,11 @@ Creates an **X509Cert** instance. This API uses an asynchronous callback to retu
 | inStream | [EncodingBlob](#encodingblob) | Yes  | X.509 certificate serialization data.        |
 | callback | AsyncCallback\<X509Cert>      | Yes  | Callback invoked to return the result. **X509Cert** instance created.|
 
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | Memory error. |
 
 **Example**
 
@@ -146,6 +151,12 @@ Creates an **X509Cert** instance. This API uses a promise to return the result.
 | ------- | ---------------- |
 | Promise\<X509Cert> | **X509Cert** instance created.|
 
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | Memory error. |
+
 **Example**
 
 ```js
@@ -184,6 +195,11 @@ Verifies the certificate signature. This API uses an asynchronous callback to re
 | key      | cryptoFramework.PubKey     | Yes  | Public key used for signature verification.                                          |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 19030001 | Crypto operation error.      |
 
 **Example**
 
@@ -235,6 +251,12 @@ Verifies the certificate signature. This API uses a promise to return the result
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 19030001 | Crypto operation error.      |
+
 **Example**
 
 ```js
@@ -275,6 +297,13 @@ Obtains the serialized X.509 certificate data. This API uses an asynchronous cal
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the result. Promise used to return the serialized X.509 certificate data obtained.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -318,6 +347,14 @@ Obtains the serialized X.509 certificate data. This API uses a promise to return
 | --------------------------------------- | ---------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized X.509 certificate data obtained.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
+
 **Example**
 
 ```js
@@ -355,6 +392,13 @@ Obtains the public key of this X.509 certificate. This API uses an asynchronous 
 | Type  | Description            |
 | ------ | ---------------- |
 | cryptoFramework.PubKey | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -397,6 +441,15 @@ Checks the validity period of this X.509 certificate. This API uses an asynchron
 | Name  | Type           | Mandatory| Description       |
 | -------- | -------------- | ---- | ---------- |
 | date     | string         | Yes  | Date in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The date must end with **Z**, which indicates the UTC.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19030001 | Crypto operation error.|
+| 19030003 | The certificate has not taken effect.                                     |
+| 19030004 | The certificate has expired.|
 
 **Example**
 
@@ -513,6 +566,14 @@ Obtains the X.509 certificate issuer.
 | --------------------- | ---------------------- |
 | [DataBlob](#datablob) | X.509 certificate issuer obtained.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
+
 **Example**
 
 ```js
@@ -548,6 +609,14 @@ Obtains the subject of this X.509 certificate.
 | Type                 | Description                |
 | --------------------- | -------------------- |
 | [DataBlob](#datablob) | Subject name obtained.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -585,6 +654,14 @@ Obtains the start time of this X.509 certificate.
 | ------ | ------------------------------------------------------------ |
 | string | Start time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
+
 **Example**
 
 ```js
@@ -620,6 +697,14 @@ Obtains the expiration time of this X.509 certificate.
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | string | Expiration time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -657,6 +742,14 @@ Obtains the signature data of this X.509 certificate.
 | --------------------- | -------------------- |
 | [DataBlob](#datablob) | Signature data obtained.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
+
 **Example**
 
 ```js
@@ -692,6 +785,14 @@ Obtains the signing algorithm of this X.509 certificate.
 | Type  | Description                    |
 | ------ | ------------------------ |
 | string | X.509 certificate signing algorithm obtained.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -729,6 +830,14 @@ Obtains the object identifier (OID) of the X.509 certificate signing algorithm. 
 | ------ | --------------------------------- |
 | string | OID obtained.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
+
 **Example**
 
 ```js
@@ -764,6 +873,14 @@ Obtains the signing algorithm parameters of this X.509 certificate.
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
 | [DataBlob](#datablob) | X.509 certificate signing algorithm parameters obtained.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -801,6 +918,13 @@ Obtains the key usage of this X.509 certificate.
 | --------------------- | -------------------- |
 | [DataBlob](#datablob) | Key usage of the X.509 certificate obtained.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                    |
+| 19030001 | Crypto operation error.|
+
 **Example**
 
 ```js
@@ -836,6 +960,14 @@ Obtains the usage of the extended key of this X.509 certificate.
 | Type                   | Description                    |
 | ----------------------- | ------------------------ |
 | [DataArray](#dataarray) | Usage of the extended key obtained.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -909,6 +1041,14 @@ Obtains the Subject Alternative Names (SANs) of this X.509 certificate.
 | ----------------------- | ------------------------ |
 | [DataArray](#dataarray) | SANs obtained.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
+
 **Example**
 
 ```js
@@ -944,6 +1084,14 @@ Obtains the Issuer Alternative Names (IANs) of this X.509 certificate.
 | Type                   | Description                      |
 | ----------------------- | -------------------------- |
 | [DataArray](#dataarray) | IANs obtained.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.|
 
 **Example**
 
@@ -982,6 +1130,11 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 | inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized certificate revocation list (CRL) data.    |
 | callback | AsyncCallback\<X509Crl>       | Yes  | Callback invoked to return the result. Promise used to return the **X509Crl** instance created.|
 
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | Memory error. |
 
 **Example**
 
@@ -1023,6 +1176,12 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 | Type             | Description                |
 | ----------------- | -------------------- |
 | Promise\<X509Crl> | Promise used to return the **X509Crl** instance created.|
+
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 19020001 | Memory error. |
 
 **Example**
 
@@ -1145,6 +1304,13 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback\<EncodingBlob> | Yes  | Callback invoked to return the serialized X.509 CRL data obtained.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1188,6 +1354,14 @@ Obtains the serialized X.509 CRL data. This API uses a promise to return the res
 | ---------------------- | -------------------------------- |
 | Promise\<EncodingBlob> | Promise used to return the serialized X.509 CRL data obtained.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1227,6 +1401,11 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 | key      | cryptoFramework.PubKey | Yes  | Public key used for signature verification.                                      |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1278,6 +1457,12 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1356,6 +1541,14 @@ Obtains the issuer of the X.509 CRL.
 | --------------------- | ------------------------------ |
 | [DataBlob](#datablob) | Issuer of the X.509 CRL obtained.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1392,6 +1585,14 @@ Obtains the date when the X.509 CRL was last updated.
 | ------ | ------------------------------------ |
 | string | Last update date of the X.509 CRL.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1427,6 +1628,14 @@ Obtains the date when the CRL will be updated the next time.
 | Type  | Description                                |
 | ------ | ------------------------------------ |
 | string | Next update date obtained.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1469,6 +1678,13 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 | Type                  | Description                  |
 | ---------------------- | --------------------- |
 | X509CrlEntry | Promise used to return the revoked X.509 certificate obtained.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1518,6 +1734,13 @@ Obtains the revoked X.509 certificate based on the specified certificate. This A
 | ------------ | -------------------- |
 | X509CrlEntry | Promise used to return the revoked X.509 certificate obtained.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1560,6 +1783,12 @@ Obtains all the revoked X.509 certificates. This API uses an asynchronous callba
 | -------- | ----------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback<Array\<X509CrlEntry>> | Yes  | Callback invoked to return the result. Promise used to return a list of revoked X.509 certificates.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1603,6 +1832,13 @@ Obtains all the revoked X.509 certificates. This API uses a promise to return th
 | ----------------------------- | ---------------------- |
 | Promise<Array\<X509CrlEntry>> | Promise used to return a list of revoked X.509 certificates.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1640,6 +1876,14 @@ Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL. This
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
 | [DataBlob](#datablob) | Promise used to return the **tbsCertList** information obtained.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1681,6 +1925,14 @@ Obtains the signature data of the X.509 CRL.
 | --------------------- | ------------------------------ |
 | [DataBlob](#datablob) | Signature data of the X.509 CRL obtained.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1716,6 +1968,14 @@ Obtains the signing algorithm of the X.509 CRL.
 | Type  | Description                            |
 | ------ | -------------------------------- |
 | string | Signing algorithm obtained.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1753,6 +2013,14 @@ Obtains the OID of the X.509 CRL signing algorithm. OIDs are allocated by the In
 | ------ | --------------------------------------------- |
 | string | OID of the X.509 CRL signing algorithm obtained.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1788,6 +2056,14 @@ Obtains the parameters of the X.509 CRL signing algorithm.
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
 | [DataBlob](#datablob) | Algorithm parameters obtained.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -1831,6 +2107,14 @@ Creates a **CertChainValidator** object.
 | ------------------ | -------------------- |
 | CertChainValidator | **CertChainValidator** object created.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
+
 **Example**
 
 ```js
@@ -1846,7 +2130,7 @@ Provides APIs for certificate chain validator operations.
 
 ### Attributes
 
-**System capability**: SystemCapability.Security.CryptoFramework
+**System capability**: SystemCapability.Security.Cert
 
 | Name   | Type  | Readable| Writable| Description                        |
 | ------- | ------ | ---- | ---- | -------------------------- |
@@ -1858,7 +2142,7 @@ Provides APIs for certificate chain validator operations.
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 Validates the X.509 certificate chain. This API uses an asynchronous callback to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/cert-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](./../security/cert-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1869,6 +2153,19 @@ The certificate chain validator does not verify the certificate validity period 
 | certChain | [CertChainData](#certchaindata) | Yes  | Serialized X.509 certificate chain data.                                    |
 | callback  | AsyncCallback\<void>            | Yes  | Callback invoked to return the result. If **error** is **null**, the X.509 certificate chain is valid. If **error** is not **null**, the X.509 certificate chain is not valid.|
 
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.                           |
+| 19030002 | The certificate signature verification failed.   |
+| 19030003 | The certificate has not taken effect.             |
+| 19030004 | The certificate has expired.                      |
+| 19030005 | Failed to obtain the certificate issuer.          |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for digital signature.     |
 
 **Example**
 
@@ -1900,7 +2197,7 @@ validator.validate(certChainData, function (error, data) {
 validate(certChain : CertChainData) : Promise\<void>
 
 Validates the X.509 certificate chain. This API uses a promise to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/cert-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](./../security/cert-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1915,6 +2212,20 @@ The certificate chain validator does not verify the certificate validity period 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 19020001 | Memory error.                                     |
+| 19020002 | Runtime error.                                    |
+| 19030001 | Crypto operation error.                           |
+| 19030002 | The certificate signature verification failed.   |
+| 19030003 | The certificate has not taken effect.             |
+| 19030004 | The certificate has expired.                      |
+| 19030005 | Failed to obtain the certificate issuer.          |
+| 19030006 | The key cannot be used for signing a certificate. |
+| 19030007 | The key cannot be used for digital signature.     |
 
 **Example**
 
@@ -1980,6 +2291,13 @@ Obtains the serialized data of this revoked certificate. This API uses an asynch
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the result. Promise used to return the serialized data of the revoked certificate obtained.|
 
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -2010,6 +2328,14 @@ Obtains the serialized data of this revoked certificate. This API uses a promise
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized data of the revoked certificate obtained.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
@@ -2063,6 +2389,13 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 | --------------------- | ----------------------- |
 | [DataBlob](#datablob) | Promise used to return the issuer of the revoked certificate obtained.|
 
+**Error codes**
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 19020001 | Memory error.  |
+| 19020002 | Runtime error. |
+
 **Example**
 
 ```js
@@ -2090,6 +2423,14 @@ Obtains the date when the certificate was revoked. This API uses an asynchronous
 | Type  | Description               |
 | ------ | ------------------ |
 | string | Promise used to return the certificate revocation date obtained.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 19020001 | Memory error.           |
+| 19020002 | Runtime error.          |
+| 19030001 | Crypto operation error. |
 
 **Example**
 
