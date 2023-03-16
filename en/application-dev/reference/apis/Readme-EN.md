@@ -18,13 +18,6 @@
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (DataShare Extension Ability)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
-  - Stage Model (To Be Deprecated Soon)
-    - [@ohos.application.AbilityConstant (AbilityConstant)](js-apis-application-abilityConstant.md)
-    - [@ohos.application.AbilityStage (AbilityStage)](js-apis-application-abilityStage.md)
-    - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
-    - [@ohos.application.FormExtension (FormExtension)](js-apis-application-formExtension.md)
-    - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-application-serviceExtensionAbility.md)
-    - [@ohos.application.StartOptions (StartOptions)](js-apis-application-startOptions.md)
   - FA Model
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility)](js-apis-ability-featureAbility.md)
@@ -36,6 +29,8 @@
     - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
     - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationConstant.md)
+    - [@ohos.app.ability.dataUriUtils (DataUriUtils)](js-apis-app-ability-dataUriUtils.md)
+    - [@ohos.app.ability.dialogRequest (dialogRequest)](js-apis-app-ability-dialogRequest.md)
     - [@ohos.app.ability.errorManager (ErrorManager)](js-apis-app-ability-errorManager.md)
     - [@ohos.app.ability.missionManager (missionManager)](js-apis-app-ability-missionManager.md)
     - [@ohos.app.ability.quickFixManager (quickFixManager)](js-apis-app-ability-quickFixManager.md)
@@ -119,14 +114,30 @@
 
 - Common Event and Notification
   - [@ohos.commonEventManager (Common Event) (Recommended)](js-apis-commonEventManager.md)
+  - [commonEvent-definitions (Common Event Definitions) (Recommended)](commonEventManager-definitions.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notificationManager (NotificationManager) (Recommended)](js-apis-notificationManager.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe) (Recommended)](js-apis-notificationSubscribe.md)
   - [@ohos.commonEvent (Common Event) (To Be Deprecated Soon)](js-apis-commonEvent.md)
+  - [commonEvent-definitions (Common Event Definitions) (To Be Deprecated Soon)](commonEvent-definitions.md)
   - [@ohos.notification (Notification) (To Be Deprecated Soon)](js-apis-notification.md)
   - application
     - [EventHub](js-apis-inner-application-eventHub.md)
-- Bundle Management 
+  - commonEvent
+    - [CommonEventData](js-apis-inner-commonEvent-commonEventData.md)
+    - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
+    - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
+    - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+  - notification
+    - [NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)
+    - [NotificationCommonDef](js-apis-inner-notification-notificationCommonDef.md)
+    - [NotificationContent](js-apis-inner-notification-notificationContent.md)
+    - [NotificationFlags](js-apis-inner-notification-notificationFlags.md)
+    - [NotificationRequest](js-apis-inner-notification-notificationRequest.md)
+    - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
+    - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
+    - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
+- Bundle Management
   - [@ohos.bundle.appControl (appControl)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager)](js-apis-bundleManager.md)
   - [@ohos.bundle.bundleMonitor (bundleMonitor)](js-apis-bundleMonitor.md)
@@ -155,8 +166,10 @@
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
   - [@ohos.matrix4 (Matrix Transformation)](js-apis-matrix4.md)
   - [@ohos.mediaquery (Media Query)](js-apis-mediaquery.md)
+  - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
+  - [@ohos.measure (Text Measurement)](js-apis-measure.md)
 - Graphics 
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -220,7 +233,6 @@
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
-  - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
 
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
@@ -280,7 +292,7 @@
   - [console (Log)](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
   - application
-    - [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)
+    - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
 - Device Management
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (Battery Statistics)](js-apis-batteryStatistics.md)
@@ -377,6 +389,7 @@
   - [@system.fetch (Data Request)](js-apis-system-fetch.md)
   - [@system.file (File Storage)](js-apis-system-file.md)
   - [@system.geolocation (Geographic Location)](js-apis-system-location.md)
+  - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
   - [@system.mediaquery (Media Query)](js-apis-system-mediaquery.md)
   - [@system.network (Network State)](js-apis-system-network.md)
   - [@system.notification (Notification)](js-apis-system-notification.md)
