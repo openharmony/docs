@@ -1349,6 +1349,7 @@ let want = {
 };
 let options = {
   onConnect(elementName, remote) {
+    closeRemote = remote;
     console.info('onConnect...')
   },
   onDisconnect(elementName) {
@@ -1415,6 +1416,7 @@ let want = {
 let accountId = 100;
 let options = {
   onConnect(elementName, remote) {
+    closeRemote = remote;
     console.info('onConnect...')
   },
   onDisconnect(elementName) {
@@ -1438,7 +1440,7 @@ try {
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
-断开与ServiceExtensionAbility的连接（promise形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1471,6 +1473,7 @@ let connection = 1;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    closeRemote = null;
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1480,6 +1483,7 @@ try {
     console.info('disconnectServiceExtensionAbility succeed');
   });
 } catch (err) {
+  closeRemote = null;
   // 处理入参错误异常
   console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -1489,7 +1493,7 @@ try {
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-断开与ServiceExtensionAbility的连接（callback形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1517,6 +1521,7 @@ let connection = 1;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    closeRemote = null;
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1526,6 +1531,7 @@ try {
     console.info('disconnectServiceExtensionAbility succeed');
   });
 } catch (err) {
+  closeRemote = null;
   // 处理入参错误异常
   console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
