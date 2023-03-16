@@ -840,7 +840,7 @@ For details about the following error codes, see [Location Error Codes](../error
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
