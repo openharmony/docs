@@ -1479,7 +1479,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 后台网络策略。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
@@ -1492,7 +1492,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 计量网络策略。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 类型                                | 说明                                                         |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
@@ -1511,7 +1511,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 限制动作。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | ----- | ------------ |
@@ -1523,7 +1523,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 计量网络规则。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | ----- | ------------ |
@@ -1538,7 +1538,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 提醒类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | - | ------- |
@@ -1549,7 +1549,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 应用对应的网络策略。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | ----- | ------------ |
