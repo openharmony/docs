@@ -38,7 +38,7 @@
     .padding(10)
     .backgroundColor(0xAFEEEE)
     ```
-    ![zh-cn_image_0000001218579606](figures/zh-cn_image_0000001218579606.PNG)
+    ![zh-cn_image_0000001218579606](figures/zh-cn_image_0000001218579606.png)
 
 - FlexDirection.RowReverse：主轴为水平方向，子组件从终点端沿着FlexDirection. Row相反的方向开始排布。
 
@@ -54,7 +54,7 @@
     .backgroundColor(0xAFEEEE)
     ```
 
-    ![zh-cn_image_0000001218739566](figures/zh-cn_image_0000001218739566.PNG)
+    ![zh-cn_image_0000001218739566](figures/zh-cn_image_0000001218739566.png)
 
 - FlexDirection.Column：主轴为垂直方向，子组件从起始端沿着垂直方向开始排布。
 
@@ -70,7 +70,7 @@
     .backgroundColor(0xAFEEEE)
     ```
 
-    ![zh-cn_image_0000001263019457](figures/zh-cn_image_0000001263019457.PNG)
+    ![zh-cn_image_0000001263019457](figures/zh-cn_image_0000001263019457.png)
 
 - FlexDirection.ColumnReverse：主轴为垂直方向，子组件从终点端沿着FlexDirection. Column相反的方向开始排布。
 
@@ -86,7 +86,7 @@
     .backgroundColor(0xAFEEEE)
     ```
 
-    ![zh-cn_image_0000001263339459](figures/zh-cn_image_0000001263339459.PNG)
+    ![zh-cn_image_0000001263339459](figures/zh-cn_image_0000001263339459.png)
 
 ### 弹性布局换行
 
@@ -105,7 +105,7 @@
     .backgroundColor(0xAFEEEE)
     ```
     
-    ![zh-cn_image_0000001263139409](figures/zh-cn_image_0000001263139409.PNG)
+    ![zh-cn_image_0000001263139409](figures/zh-cn_image_0000001263139409.png)
 
 - FlexWrap. Wrap：换行，每一行子组件按照主轴方向排列。
 
@@ -120,7 +120,7 @@
     .backgroundColor(0xAFEEEE)
     ```
     
-    ![zh-cn_image_0000001218419614](figures/zh-cn_image_0000001218419614.PNG)
+    ![zh-cn_image_0000001218419614](figures/zh-cn_image_0000001218419614.png)
 
 - FlexWrap. WrapReverse：换行，每一行子组件按照主轴反方向排列。
 
@@ -135,7 +135,7 @@
     .backgroundColor(0xAFEEEE)
     ```
     
-    ![zh-cn_image_0000001263259399](figures/zh-cn_image_0000001263259399.PNG)
+    ![zh-cn_image_0000001263259399](figures/zh-cn_image_0000001263259399.png)
 
 ### 弹性布局对齐方式
 
