@@ -67,7 +67,8 @@ Sets a security label for a file in asynchronous mode. This API uses a promise t
 **Example**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0").then(() => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0").then(() => {
       console.info("setSecurityLabel successfully");
   }).catch((err) => {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -93,7 +94,8 @@ Sets a security label for a file in asynchronous mode. This API uses an asynchro
 **Example**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0", (err) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0", (err) => {
     if (err) {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -120,7 +122,8 @@ Sets a security label for a file in synchronous mode.
 **Example**
 
 ```js
-securityLabel.setSecurityLabelSync(path, "s0");
+let filePath = pathDir + '/test.txt';
+securityLabel.setSecurityLabelSync(filePath, "s0");
 ```
 
 ## securityLabel.getSecurityLabel
@@ -146,7 +149,8 @@ Obtains the security label of a file in asynchronous mode. This API uses a promi
 **Example**
 
   ```js
-  securityLabel.getSecurityLabel(path).then((type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath).then((type) => {
       console.log("getSecurityLabel successfully, Label: " + type);
   }).catch((err) => {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -171,7 +175,8 @@ Obtains the security label of a file in asynchronous mode. This API uses a callb
 **Example**
 
   ```js
-  securityLabel.getSecurityLabel(path, (err, type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath, (err, type) => {
     if (err) {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -202,6 +207,7 @@ Obtains the security label of a file in synchronous mode.
 **Example**
 
 ```js
-let type = securityLabel.getSecurityLabelSync(path);
+let filePath = pathDir + '/test.txt';
+let type = securityLabel.getSecurityLabelSync(filePath);
 console.log("getSecurityLabel successfully, Label: " + type);
 ```

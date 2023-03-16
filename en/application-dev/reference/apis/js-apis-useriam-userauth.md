@@ -22,8 +22,8 @@ Defines the authentication result.
 | ------------ | ---------- | ---- | -------------------- |
 | result        | number | Yes  | Authentication result.      |
 | token        | Uint8Array | No  | Token that has passed the user identity authentication.|
-| remainAttempts  | number     | No  | Number of remaining authentication times allowed.|
-| lockoutDuration | number     | No  | Time for which the authentication operation is frozen.|
+| remainAttempts  | number     | No  | Number of remaining authentication attempts.|
+| lockoutDuration | number     | No  | Lock duration of the authentication operation, in milliseconds.|
 
 ## TipInfo<sup>9+</sup>
 
