@@ -2661,7 +2661,7 @@ try {
 ## sensor.getAngleVariation<sup>9+</sup>
 
  getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains the angle change between two rotation matrices. This API uses an asynchronous callback to return the result.
 
@@ -2717,7 +2717,7 @@ try {
 
 ## sensor.getAngleVariation<sup>9+</sup>
 
-getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 Obtains the angle change between two rotation matrices. This API uses a promise to return the result.
 
@@ -2777,7 +2777,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void
+getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains the rotation matrix from a rotation vector. This API uses an asynchronous callback to return the result.
 
@@ -2819,7 +2819,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup>
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;> 
+getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 Obtains the rotation matrix from a rotation vector. This API uses a promise to return the result.
 
@@ -2866,7 +2866,7 @@ try {
 ## sensor.transformRotationMatrix<sup>9+</sup> 
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Transforms a rotation vector based on the coordinate system. This API uses an asynchronous callback to return the result.
 
@@ -2913,7 +2913,7 @@ try {
 
 ## sensor.transformRotationMatrix<sup>9+</sup>
 
-transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise<Array&lt;number&gt;> 
+transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
 Transforms a rotation vector based on the coordinate system. This API uses a promise to return the result.
 
@@ -2964,7 +2964,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup> 
 
-getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 Obtains the quaternion from a rotation vector. This API uses an asynchronous callback to return the result.
 
@@ -3006,7 +3006,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup>
 
-getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the quaternion from a rotation vector. This API uses a promise to return the result.
 
@@ -3052,7 +3052,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 Obtains the device direction based on the rotation matrix. This API uses an asynchronous callback to return the result.
 
@@ -3101,7 +3101,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the device direction based on the rotation matrix. This API uses a promise to return the result.
 
@@ -3193,7 +3193,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
 Obtains the rotation matrix based on a gravity vector and geomagnetic vector. This API uses a promise to return the result.
 
@@ -3239,7 +3239,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
-getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 Obtains information about all sensors on the device. This API uses an asynchronous callback to return the result.
 
@@ -3249,7 +3249,7 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 
 | Name  | Type                                          | Mandatory| Description            |
 | -------- | ---------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | Yes  | Callback used to return the sensor list.|
+| callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Callback used to return the sensor list.|
 
 **Error code**
 
@@ -3279,7 +3279,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
- getSensorList(): Promise< Array&lt;Sensor&gt;>
+ getSensorList(): Promise&lt;Array&lt;Sensor&gt;&gt;
 
 Obtains information about all sensors on the device. This API uses a promise to return the result.
 
@@ -3289,7 +3289,7 @@ Obtains information about all sensors on the device. This API uses a promise to 
 
 | Name | Type                                    | Mandatory| Description            |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | Yes  | Promise used to return the sensor list.|
+| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Promise used to return the sensor list.|
 
 **Error code**
 
@@ -3830,18 +3830,6 @@ Describes the geographical location.
 | latitude  | number | Yes  | Yes  | Latitude.    |
 | longitude | number | Yes  | Yes  | Longitude.    |
 | altitude  | number | Yes  | Yes  | Altitude.|
-
-## LocationOptions
-
-Describes the geographical location.
-
-**System capability**: SystemCapability.Sensors.Sensor
-
-| Name      | Type   | Readable | Writable | Description |
-| --------- | ------ | -------- | -------- | ----------- |
-| latitude  | number | Yes      | Yes      | Latitude.   |
-| longitude | number | Yes      | Yes      | Longitude.  |
-| altitude  | number | Yes      | Yes      | Altitude.   |
 
 ## sensor.on<sup>(deprecated)</sup>
 
