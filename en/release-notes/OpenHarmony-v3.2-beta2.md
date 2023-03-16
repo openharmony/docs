@@ -167,28 +167,28 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 | Subsystem| Name| Introduction| Programming Language|
 | -------- | -------- | -------- | -------- |
-| Ability| MissionManager | This sample calls APIs related to the mission manager to lock, unlock, and clear missions, and switch them to the foreground.| eTS |
-| Network management| AirQuality |   This sample implements a simple air quality app using JS. The app displays air quality information using line wrapping and historical data in a bar chart.| eTS |
-| ArkUI | TransitionAnimation | This sample shows how to implement page transition, component transition, and transition of shared elements.| eTS |
-| Application package management| ZipLib | This sample demonstrates the use of **\@ohos.zlib** by constructing the compression and decompression scenarios.| eTS |
-| Engineering capabilities| Npm | This sample shows how npm references third-party JS class libraries (mathjs and dayjs) and local libraries.| eTS |
-| Data management| DistributedMusicPlayer | In this sample, **fileIo** is used to obtain an audio file; **AudioPlayer** is used to play music, pause the playback, and play the next or previous song; **DeviceManager** is used to display the distributed device list and hop music playback across devices.| eTS |
-| ArkUI | PatternLock | This sample shows how to use the **\<PatternLock>** component to implement password setting, verification, and resetting.| eTS |
-| Security| UserAuth | This sample shows how to implement facial authentication.| eTS |
-| Security| Cipher | This sample shows how to use cipher algorithms, including Rivest-Shamir-Adleman (RSA) and Advanced Encryption Standard (AES).| eTS |
-| Graphics| Screen | This sample shows how to use APIs to listen for screen quantity changes, create and destroy virtual screens, and read and display screen attributes.| eTS |
-| ArkUI | Search | This sample shows how to use the **\<Search>** component to implement a search page.| eTS |
-| Device management| USBManager | This sample shows how to use USB device management, including listening for USB device insertion and removal events and display of USB device information.| eTS |
-| Data management| DistributedDataGobang | This sample shows Gobang, a popular game played with black and white stones on a go board, developed using the distributed data management function. | eTS |
-| Multimedia| Image | This sample provides an Image Processing app, using which you can read images from the local device, obtain image information, and rotate images.| eTS |
-| Security| AbilityAccessCtrl | This sample shows how **@ohos.abilityAccessCtrl** works to implement application permission control.| eTS |
-| Network management| WebSocket | This sample shows how to use WebSocket, including the connection and disconnection between the client and the server, and the receiving and sending of client data.| eTS |
-| Connectivity| Bluetooth | Bluetooth is a short-range wireless technology used to implement communication between fixed and mobile devices over low-cost short-distance wireless connections. This sample describes how to discover, pair, and unpair Bluetooth devices.| eTS |
-| Multimedia| GamePuzzle | This puzzle game app is developed based on the **\<Grid>** component. It uses the `Image` and `MediaLibrary` APIs to obtain and crop images.| eTS |
-| Network management| UploadDownload | This sample uses the upload and download APIs to implement file storage.| eTS |
-| Device management| Location | This sample uses the orientation sensor and GPS to obtain the current location information.| eTS |
-| Telephony| Observer | This sample demonstrates how to use observer APIs to subscribe to network status, signal status, call status, cellular data, and SIM card status changes.| eTS |
-| ArkUI | AdaptiveCapabilities | This sample shows multi-device adaptation in eTS, including resource qualifiers, atomic layouts, and responsive layouts.| eTS |
+| Ability| MissionManager | This sample calls APIs related to the mission manager to lock, unlock, and clear missions, and switch them to the foreground.| ArkTS |
+| Network management| AirQuality |   This sample implements a simple air quality app using JS. The app displays air quality information using line wrapping and historical data in a bar chart.| ArkTS |
+| ArkUI | TransitionAnimation | This sample shows how to implement page transition, component transition, and transition of shared elements.| ArkTS |
+| Application package management| ZipLib | This sample demonstrates the use of **\@ohos.zlib** by constructing the compression and decompression scenarios.| ArkTS |
+| Engineering capabilities| Npm | This sample shows how npm references third-party JS class libraries (mathjs and dayjs) and local libraries.| ArkTS |
+| Data management| DistributedMusicPlayer | In this sample, **fileIo** is used to obtain an audio file; **AudioPlayer** is used to play music, pause the playback, and play the next or previous song; **DeviceManager** is used to display the distributed device list and hop music playback across devices.| ArkTS |
+| ArkUI | PatternLock | This sample shows how to use the **\<PatternLock>** component to implement password setting, verification, and resetting.| ArkTS |
+| Security| UserAuth | This sample shows how to implement facial authentication.| ArkTS |
+| Security| Cipher | This sample shows how to use cipher algorithms, including Rivest-Shamir-Adleman (RSA) and Advanced Encryption Standard (AES).| ArkTS |
+| Graphics| Screen | This sample shows how to use APIs to listen for screen quantity changes, create and destroy virtual screens, and read and display screen attributes.| ArkTS |
+| ArkUI | Search | This sample shows how to use the **\<Search>** component to implement a search page.| ArkTS |
+| Device management| USBManager | This sample shows how to use USB device management, including listening for USB device insertion and removal events and display of USB device information.| ArkTS |
+| Data management| DistributedDataGobang | This sample shows Gobang, a popular game played with black and white stones on a go board, developed using the distributed data management function. | ArkTS |
+| Multimedia| Image | This sample provides an Image Processing app, using which you can read images from the local device, obtain image information, and rotate images.| ArkTS |
+| Security| AbilityAccessCtrl | This sample shows how **@ohos.abilityAccessCtrl** works to implement application permission control.| ArkTS |
+| Network management| WebSocket | This sample shows how to use WebSocket, including the connection and disconnection between the client and the server, and the receiving and sending of client data.| ArkTS |
+| Connectivity| Bluetooth | Bluetooth is a short-range wireless technology used to implement communication between fixed and mobile devices over low-cost short-distance wireless connections. This sample describes how to discover, pair, and unpair Bluetooth devices.| ArkTS |
+| Multimedia| GamePuzzle | This puzzle game app is developed based on the **\<Grid>** component. It uses the `Image` and `MediaLibrary` APIs to obtain and crop images.| ArkTS |
+| Network management| UploadDownload | This sample uses the upload and download APIs to implement file storage.| ArkTS |
+| Device management| Location | This sample uses the orientation sensor and GPS to obtain the current location information.| ArkTS |
+| Telephony| Observer | This sample demonstrates how to use observer APIs to subscribe to network status, signal status, call status, cellular data, and SIM card status changes.| ArkTS |
+| ArkUI | AdaptiveCapabilities | This sample shows multi-device adaptation in ArkTS, including resource qualifiers, atomic layouts, and responsive layouts.| ArkTS |
 | ArkUI | JsAdaptiveCapabilities | This sample shows multi-device adaptation in JS, including resource qualifiers, atomic layouts, and responsive layouts.| JS |
 
 For more information, visit [Samples](https://gitee.com/openharmony/app_samples).
