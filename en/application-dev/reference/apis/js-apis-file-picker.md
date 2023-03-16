@@ -1,4 +1,4 @@
-# @ohos.file.picker (File Picker)
+# @ohos.file.picker (Picker)
 
 > **NOTE**
 >
@@ -41,7 +41,7 @@ Selects one or more images or videos in a **photoPicker** page. This API uses a 
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| [PhotoSelectResult](#photoselectresult) | Promise used to return information about the images or videos selected.|
+| Promise&lt;[PhotoSelectResult](#photoselectresult)&gt; | Promise used to return information about the images or videos selected.|
 
 **Example**
 
@@ -151,7 +151,7 @@ Saves one or more images or videos in a **photoPicker** page. This API uses a pr
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the files saved.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the files saved.|
 
 **Example**
 
@@ -271,7 +271,7 @@ Selects one or more documents in a **documentPicker** page. This API uses a prom
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the documents selected.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the documents selected.|
 
 **Example**
 
@@ -378,7 +378,7 @@ Saves one or more documents in a **documentPicker** page. This API uses a promis
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the documents saved.|
+| Promise&lt;Array&lt;string&gt;&gt;  | Promise used to return the URIs of the documents saved.|
 
 **Example**
 
@@ -498,7 +498,7 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| &lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the audio files selected.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the audio files selected.|
 
 **Example**
 
@@ -604,7 +604,7 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 
 | Type                           | Description   |
 | ----------------------------- | ---- |
-| &lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the audio files saved.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the audio files saved.|
 
 **Example**
 
@@ -726,7 +726,7 @@ Defines information about the images or videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.| 
 
 ## PhotoSaveOptions
 
