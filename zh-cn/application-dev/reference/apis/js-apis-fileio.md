@@ -30,7 +30,7 @@ export default class EntryAbility extends UIAbility {
 }
  ```
 
- Stage模型context的具体获取方法参见[Stage模型](js-apis-inner-application-uiabilitycontext.md)。
+ Stage模型context的具体获取方法参见[Stage模型](js-apis-inner-application-uiAbilityContext.md)。
 
 **FA模型**
 
