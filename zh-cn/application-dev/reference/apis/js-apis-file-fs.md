@@ -1716,7 +1716,7 @@ listFileSync(path: string, options?: {
   ```
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number): Promise<void>;
+moveFile(src: string, dest: string, mode?: number): Promise\<void>;
 
 移动文件，使用Promise异步回调。
 
@@ -1744,7 +1744,7 @@ moveFile(src: string, dest: string, mode?: number): Promise<void>;
 
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>): void;
+moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void;
 
 移动文件，使用Callback异步回调。
 
@@ -2666,7 +2666,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 
 ### lock
 
-lock(exclusive?: boolean): Promise<void>;
+lock(exclusive?: boolean): Promise\<void>;
 
 文件阻塞式施加共享锁或独占锁，使用Promise异步回调。
 
@@ -2697,7 +2697,7 @@ lock(exclusive?: boolean): Promise<void>;
 
 ### lock
 
-lock(exclusive?: boolean, callback: AsyncCallback<void>): void;
+lock(exclusive?: boolean, callback: AsyncCallback\<void>): void;
 
 文件阻塞式施加共享锁或独占锁，使Callback异步回调。
 
