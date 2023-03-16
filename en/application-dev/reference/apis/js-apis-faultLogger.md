@@ -148,7 +148,7 @@ For details about the error codes, see [FaultLogger Error Codes](../errorcodes/e
 
 | ID| Error Message|
 | --- | --- |
-| 10600001 | The service is not running or broken |
+| 10600001 | The service is not started or is faulty |
 
 **Example**
 
@@ -205,7 +205,7 @@ For details about the error codes, see [FaultLogger Error Codes](../errorcodes/e
 
 | ID| Error Message|
 | --- | --- |
-| 10600001 | The service is not running or broken |
+| 10600001 | The service is not started or is faulty |
 
 **Example**
 
