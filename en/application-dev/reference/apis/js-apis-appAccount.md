@@ -1100,8 +1100,6 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 Obtains information about all accessible app accounts. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
-
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
@@ -1138,8 +1136,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 Obtains information about all accessible app accounts. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
-
 **System capability**: SystemCapability.Account.AppAccount
 
 **Return value**
@@ -1173,8 +1169,6 @@ Obtains information about all accessible app accounts. This API uses a promise t
 getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1214,7 +1208,6 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses a promise to return the result.
-**Required permissions**: ohos.permission.GET_ALL_APP_ACCOUNTS
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1292,7 +1285,7 @@ Subscribes to account information changes of apps.
 
 ### off('accountChange')<sup>9+</sup>
 
-off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 Unsubscribes from account information changes.
 
@@ -1303,7 +1296,7 @@ Unsubscribes from account information changes.
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | Yes   | Event type to unsubscribe from. The value is **'accountChange'**.   |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | No   | Callback to unregister.|
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
@@ -2782,7 +2775,8 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
-> **NOTE**<br> 
+> **NOTE**
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-2).
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -3730,7 +3724,7 @@ Subscribes to account information changes of apps.
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 Unsubscribes from account information changes.
 
@@ -3745,7 +3739,7 @@ Unsubscribes from account information changes.
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | Yes   | Event type to unsubscribe from. The value is **'change'**, which indicates the account change event.    |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | No   | Callback to unregister.|
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister.|
 
 **Example**
 

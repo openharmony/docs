@@ -326,9 +326,9 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -376,9 +376,9 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -475,23 +475,19 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this OS account has been verified. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
 **System capability**: SystemCapability.Account.OsAccount
 
 **Parameters**
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If true is returned, the current account has been verified. If false is returned, the current account has not been verified.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
 
 **Example**
 
@@ -531,9 +527,9 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
@@ -555,7 +551,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 ### checkOsAccountVerified<sup>9+</sup>
 
-checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
+checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account has been verified. This API uses a promise to return the result.
 
@@ -567,7 +563,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | No  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
+| localId | number | Yes  | ID of the target OS account.|
 
 **Return value**
 
@@ -579,9 +575,9 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
@@ -991,7 +987,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
@@ -1028,7 +1024,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
@@ -1064,8 +1060,8 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 | ID| Error Message        |
 | -------- | --------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid.    |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid.    |
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
@@ -1108,8 +1104,8 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
@@ -1148,8 +1144,8 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainInfo. |
 
 **Example**
 
@@ -1195,8 +1191,8 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainInfo. |
 
 **Example**
 
@@ -1474,7 +1470,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
@@ -1511,7 +1507,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
@@ -2233,9 +2229,9 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 
 | ID| Error Message              |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid serialNumber. |
+| 12300003 | the account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2276,9 +2272,9 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 | ID| Error Message              |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid serialNumber. |
+| 12300003 | the account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2315,9 +2311,9 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2358,9 +2354,9 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2394,7 +2390,7 @@ Subscribes to the OS account activation states, including the states of the acco
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates an event reported when the OS account activation is complete, and **activating** indicates an event reported when OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
 | callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the OS account being activated or activated.   |
 
@@ -2483,8 +2479,8 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **Example**
 
@@ -2526,8 +2522,8 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **Example**
 
@@ -2644,9 +2640,9 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid name or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
@@ -2691,9 +2687,9 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid name or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
@@ -4328,6 +4324,122 @@ Unregisters this PIN inputer.
   pinAuth.unregisterInputer();
   ```
 
+## DomainPlugin<sup>9+</sup>
+
+Provides APIs for domain account authentication.
+
+**System API**: This is a system API.
+
+### auth<sup>9+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+Authenticates a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| credential   | Uint8Array  | Yes  | Credentials of the domain account.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    }
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin);
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.DOMAIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, {
+      onResult: (resultCode, authResult) => {
+          console.log('auth resultCode = ' + resultCode);
+          console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+## DomainAccountManager <sup>9+</sup>
+Provides APIs for domain account management.
+
+### registerPlugin<sup>9+</sup>
+
+static registerPlugin(plugin: DomainPlugin): void
+
+Registers a domain plug-in.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| plugin   | [DomainPlugin](#domainplugin9)  | Yes | Domain plug-in to register.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300201 | the domain plugin has been registered. |
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {}
+  }
+  try {
+    account_osAccount.DomainAccountManager.registerPlugin(plugin);
+    console.log('registerPlugin success.');
+  } catch(err) {
+    console.log("registerPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### unregisterPlugin<sup>9+</sup>
+
+static unregisterPlugin(): void
+
+Unregisters this domain plug-in.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Example**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.unregisterPlugin();
+    console.log('unregisterPlugin success.');
+  } catch(err) {
+    console.log("unregisterPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
 ## UserIdentityManager<sup>8+</sup>
 
 Provides APIs for user identity management (IDM).
@@ -4821,7 +4933,7 @@ Provides callbacks for PIN operations.
 
 ### onSetData<sup>8+</sup>
 
-onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 **System API**: This is a system API.
 
@@ -4833,7 +4945,7 @@ Called to set data in a PIN operation.
 
 | Name     | Type                                    | Mandatory| Description                                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
+| authSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
 | data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
 
 **Example**
@@ -4841,11 +4953,11 @@ Called to set data in a PIN operation.
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -4859,7 +4971,7 @@ Provides callbacks for the PIN input box.
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 
 Called to obtain data.
 
@@ -4878,11 +4990,11 @@ Called to obtain data.
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
   let inputer = {
-    onGetData: (pinSubType, callback) => {
-        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
-          callback.onSetData(pinSubType, passwordNumber);
+    onGetData: (authSubType, callback) => {
+        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(authSubType, passwordNumber);
         } else {
-          callback.onSetData(pinSubType, password);
+          callback.onSetData(authSubType, password);
         }
     }
   };
@@ -5158,6 +5270,7 @@ Enumerates the authentication credential types.
 | ----- | ----- | ---------------- |
 | PIN   | 1     | PIN authentication.|
 | FACE  | 2     | Facial authentication.|
+| DOMAIN<sup>9+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5174,6 +5287,7 @@ Enumerates the authentication credential subtypes.
 | PIN_MIXED  | 10002 | Custom mixed credentials.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
+| DOMAIN_MIXED<sup>9+</sup>    | 10240001 | Mixed domain authentication credentials.  |
 
 ## AuthTrustLevel<sup>8+</sup>
 
