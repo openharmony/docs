@@ -1,1975 +1,2677 @@
-# @ohos.telephony.sms (短信服务)
+# @ohos.net.socket (Socket连接)
 
-短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址，以及检查当前设备是否具备短信发送和接收能力等。
+本模块提供利用Socket进行数据传输的能力，支持TCPSocket、UDPSocket、WebSocket和TLSSocket。
 
->**说明：** 
+> **说明：** 
 >
->本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
 ```js
-import sms from '@ohos.telephony.sms';
+import socket from '@ohos.net.socket';
 ```
 
-## sms.createMessage
+## socket.constructUDPSocketInstance
 
-createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
+constructUDPSocketInstance(): UDPSocket
 
-根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用callback异步回调。
+创建一个UDPSocket对象。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名        | 类型                                               | 必填 | 说明                                                         |
-| ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
-| specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
-| callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | 是   | 回调函数。                                                   |
-
-**示例：**
-
-```js
-const specification = '3gpp';
-// 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-const pdu = [0x08, 0x91];
-sms.createMessage(pdu, specification, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## sms.createMessage
-
-createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
-
-根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用Promise异步回调。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名        | 类型                | 必填 | 说明                                                         |
-| ------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| pdu           | Array&lt;number&gt; | 是   | 协议数据单元，从收到的信息中获取。                           |
-| specification | string              | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型                                         | 说明                              |
-| -------------------------------------------- | --------------------------------- |
-| Promise&lt;[ShortMessage](#shortmessage)&gt; | 以Promise形式返回创建的短信实例。 |
+| 类型                               | 说明                    |
+| :--------------------------------- | :---------------------- |
+| [UDPSocket](#udpsocket) | 返回一个UDPSocket对象。 |
+
 
 **示例：**
 
 ```js
-const specification = '3gpp';
-// 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-const pdu = [0x08, 0x91];
-let promise = sms.createMessage(pdu, specification);
-promise.then(data => {
-    console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
+let udp = socket.constructUDPSocketInstance();
+```
+
+
+## UDPSocket
+
+UDPSocket连接。在调用UDPSocket的方法前，需要先通过[socket.constructUDPSocketInstance](#socketconstructudpsocketinstance)创建UDPSocket对象。
+
+### bind
+
+bind(address: NetAddress, callback: AsyncCallback\<void\>): void
+
+绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                                                   |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| callback | AsyncCallback\<void\>              | 是   | 回调函数。                                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+	console.log('bind fail');
+	return;
+  }
+  console.log('bind success');
+})
+```
+
+
+### bind
+
+bind(address: NetAddress): Promise\<void\>
+
+绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                               | 必填 | 说明                                                   |
+| ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :----------------------------------------- |
+| Promise\<void\> | 以Promise形式异步返回UDPSocket绑定的结果。 |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+let promise = udp.bind({address: '192.168.xx.xxx', port: 8080, family: 1});
+promise .then(() => {
+  console.log('bind success');
 }).catch(err => {
-    console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
+  console.log('bind fail');
 });
 ```
 
-## sms.sendMessage
 
-sendMessage(options: SendMessageOptions): void
+### send
 
-发送短信。
+send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
-**需要权限**：ohos.permission.SEND_MESSAGES
+通过UDPSocket连接发送数据。使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
+| callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.send({
+  data:'Hello, server!',
+  address: {
+	address:'192.168.xx.xxx',
+	port:xxxx,
+	family:1
+  }
+}, err=> {
+	if (err) {
+	  console.log('send fail');
+	  return;
+	}
+	console.log('send success');
+})
+```
+
+
+### send
+
+send(options: UDPSendOptions): Promise\<void\>
+
+通过UDPSocket连接发送数据。使用Promise方式作为异步方法。
+
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                                         |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**返回值：**
+
+| 类型            | 说明                                           |
+| :-------------- | :--------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回UDPSocket连接发送数据的结果。 |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+let promise = udp.send({
+  data:'Hello, server!',
+  address: {
+	address:'192.168.xx.xxx',
+	port:xxxx,
+	family:1
+  }
+});
+promise.then(() => {
+  console.log('send success');
+}).catch(err => {
+  console.log('send fail');
+});
+```
+
+
+### close
+
+close(callback: AsyncCallback\<void\>): void
+
+关闭UDPSocket连接。使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.close(err => {
+  if (err) {
+	console.log('close fail');
+	return;
+  }
+  console.log('close success');
+})
+```
+
+
+### close
+
+close(): Promise\<void\>
+
+关闭UDPSocket连接。使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :----------------------------------------- |
+| Promise\<void\> | 以Promise形式返回关闭UDPSocket连接的结果。 |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+let promise = udp.close();
+promise.then(() => {
+  console.log('close success');
+}).catch(err => {
+  console.log('close fail');
+});
+```
+
+
+### getState
+
+getState(callback: AsyncCallback\<SocketStateBase\>): void
+
+获取UDPSocket状态。使用callback方式作为异步方法。
+
+>**说明：** 
+>bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                   | 必填 | 说明       |
+| -------- | ------------------------------------------------------ | ---- | ---------- |
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+	console.log('bind fail');
+	return;
+  }
+  console.log('bind success');
+  udp.getState((err, data) => {
+	if (err) {
+	  console.log('getState fail');
+	  return;
+	}
+	console.log('getState success:' + JSON.stringify(data));
+  })
+})
+```
+
+
+### getState
+
+getState(): Promise\<SocketStateBase\>
+
+获取UDPSocket状态。使用Promise方式作为异步方法。
+
+>**说明：** 
+>bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                             | 说明                                       |
+| :----------------------------------------------- | :----------------------------------------- |
+| Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取UDPSocket状态的结果。 |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+	console.log('bind fail');
+	return;
+  }
+  console.log('bind success');
+  let promise = udp.getState();
+  promise.then(data => {
+	console.log('getState success:' + JSON.stringify(data));
+  }).catch(err => {
+	console.log('getState fail');
+  });
+})
+```
+
+
+### setExtraOptions
+
+setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
+
+设置UDPSocket连接的其他属性。使用callback方式作为异步方法。
+
+>**说明：** 
+>bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [UDPExtraOptions](#udpextraoptions) | 是   | UDPSocket连接的其他属性，参考[UDPExtraOptions](#udpextraoptions)。 |
+| callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1}, err=> {
+  if (err) {
+	console.log('bind fail');
+	return;
+  }
+  console.log('bind success');
+  udp.setExtraOptions({
+	receiveBufferSize:1000,
+	sendBufferSize:1000,
+	reuseAddress:false,
+	socketTimeout:6000,
+	broadcast:true
+  }, err=> {
+	if (err) {
+	  console.log('setExtraOptions fail');
+	  return;
+	}
+	console.log('setExtraOptions success');
+  })
+})
+```
+
+
+### setExtraOptions
+
+setExtraOptions(options: UDPExtraOptions): Promise\<void\>
+
+设置UDPSocket连接的其他属性。使用Promise方式作为异步方法。
+
+>**说明：** 
+>bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                                         |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [UDPExtraOptions](#udpextraoptions) | 是   | UDPSocket连接的其他属性，参考[UDPExtraOptions](#udpextraoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+| :-------------- | :--------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回设置UDPSocket连接的其他属性的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+let promise = udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1});
+promise.then(() => {
+  console.log('bind success');
+  let promise1 = udp.setExtraOptions({
+	receiveBufferSize:1000,
+	sendBufferSize:1000,
+	reuseAddress:false,
+	socketTimeout:6000,
+	broadcast:true
+  });
+  promise1.then(() => {
+	console.log('setExtraOptions success');
+  }).catch(err => {
+	console.log('setExtraOptions fail');
+  });
+}).catch(err => {
+  console.log('bind fail');
+});
+```
+
+
+### on('message')
+
+on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。                                |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.on('message', value => {
+	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+});
+```
+
+
+### off('message')
+
+off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+取消订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+>**说明：** 
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+let callback = value =>{
+	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+}
+udp.on('message', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+udp.off('message', callback);
+udp.off('message');
+```
+
+
+### on('listening' | 'close')
+
+on(type: 'listening' | 'close', callback: Callback\<void\>): void
+
+订阅UDPSocket连接的数据包消息事件或关闭事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | 是   | 订阅的事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.on('listening', () => {
+	console.log("on listening success");
+});
+udp.on('close', () => {
+	console.log("on close success" );
+});
+```
+
+
+### off('listening' | 'close')
+
+off(type: 'listening' | 'close', callback?: Callback\<void\>): void
+
+取消订阅UDPSocket连接的数据包消息事件或关闭事件。使用callback方式作为异步方法。
+
+>**说明：** 
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | 是   | 订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+let callback1 = () =>{
+	console.log("on listening, success");
+}
+udp.on('listening', callback1);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+udp.off('listening', callback1);
+udp.off('listening');
+let callback2 = () =>{
+	console.log("on close, success");
+}
+udp.on('close', callback2);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+udp.off('close', callback2);
+udp.off('close');
+```
+
+
+### on('error')
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅UDPSocket连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+udp.on('error', err => {
+	console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+
+### off('error')
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅UDPSocket连接的error事件。使用callback方式作为异步方法。
+
+>**说明：** 
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**示例：**
+
+```js
+let udp = socket.constructUDPSocketInstance();
+let callback = err =>{
+	console.log("on error, err:" + JSON.stringify(err));
+}
+udp.on('error', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+udp.off('error', callback);
+udp.off('error');
+```
+
+
+## NetAddress
+
+目标地址信息。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| address | string | 是   | 本地绑定的ip地址。                                           |
+| port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
+| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。 |
+
+## UDPSendOptions
+
+UDPSocket发送参数。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称  | 类型                               | 必填 | 说明           |
+| ------- | ---------------------------------- | ---- | -------------- |
+| data    | string \| ArrayBuffer<sup>7+</sup>                          | 是   | 发送的数据。   |
+| address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
+
+## UDPExtraOptions
+
+UDPSocket连接的其他属性。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称            | 类型    | 必填 | 说明                             |
+| ----------------- | ------- | ---- | -------------------------------- |
+| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。  |
+| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。   |
+| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。   |
+| reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
+| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。 |
+
+## SocketStateBase
+
+Socket的状态信息。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称      | 类型    | 必填 | 说明       |
+| ----------- | ------- | ---- | ---------- |
+| isBound     | boolean | 是   | 是否绑定。 |
+| isClose     | boolean | 是   | 是否关闭。 |
+| isConnected | boolean | 是   | 是否连接。 |
+
+## SocketRemoteInfo
+
+Socket的连接信息。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| address | string | 是   | 本地绑定的ip地址。                                           |
+| family  | string | 是   | 网络协议类型，可选类型：<br />- IPv4<br />- IPv6<br />默认为IPv4。 |
+| port    | number | 是   | 端口号，范围0~65535。                                        |
+| size    | number | 是   | 服务器响应信息的字节长度。                                   |
+
+## UDP 错误码说明
+
+UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
+
+错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+
+## socket.constructTCPSocketInstance
+
+constructTCPSocketInstance(): TCPSocket
+
+创建一个TCPSocket对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+  | 类型                               | 说明                    |
+  | :--------------------------------- | :---------------------- |
+  | [TCPSocket](#tcpsocket) | 返回一个TCPSocket对象。 |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+```
+
+
+## TCPSocket
+
+TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance)创建TCPSocket对象。
+
+### bind
+
+bind(address: NetAddress, callback: AsyncCallback\<void\>): void
+
+绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方法作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                                                   |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| callback | AsyncCallback\<void\>              | 是   | 回调函数。                                             |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+	console.log('bind fail');
+	return;
+  }
+  console.log('bind success');
+})
+```
+
+
+### bind
+
+bind(address: NetAddress): Promise\<void\>
+
+绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方法作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                               | 必填 | 说明                                                   |
+| ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                     |
+| :-------------- | :------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回TCPSocket绑定本机的IP地址和端口的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+promise.then(() => {
+  console.log('bind success');
+}).catch(err => {
+  console.log('bind fail');
+});
+```
+
+
+### connect
+
+connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
+
+连接到指定的IP地址和端口。使用callback方法作为异步方法。
+
+>**说明：** 
+>bind方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPConnectOptions](#tcpconnectoptions) | 是   | TCPSocket连接的参数，参考[TCPConnectOptions](#tcpconnectoptions)。 |
+| callback | AsyncCallback\<void\>                    | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000}, err => {
+  if (err) {
+	console.log('connect fail');
+	return;
+  }
+  console.log('connect success');
+})
+```
+
+
+### connect
+
+connect(options: TCPConnectOptions): Promise\<void\>
+
+连接到指定的IP地址和端口。使用promise方法作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                                         |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [TCPConnectOptions](#tcpconnectoptions) | 是   | TCPSocket连接的参数，参考[TCPConnectOptions](#tcpconnectoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                       |
+| :-------------- | :--------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回TCPSocket连接到指定的IP地址和端口的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise.then(() => {
+  console.log('connect success')
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### send
+
+send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
+
+通过TCPSocket连接发送数据。使用callback方式作为异步方法。
+
+>**说明：** 
+>connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocket发送请求的参数，参考[TCPSendOptions](#tcpsendoptions)。 |
+| callback | AsyncCallback\<void\>                   | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise.then(() => {
+  console.log('connect success');
+  tcp.send({
+	data:'Hello, server!'
+  },err => {
+	if (err) {
+	  console.log('send fail');
+	  return;
+	}
+	console.log('send success');
+  })
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### send
+
+send(options: TCPSendOptions): Promise\<void\>
+
+通过TCPSocket连接发送数据。使用Promise方式作为异步方法。
+
+>**说明：** 
+>connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocket发送请求的参数，参考[TCPSendOptions](#tcpsendoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                               |
+| :-------------- | :------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回通过TCPSocket连接发送数据的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise1.then(() => {
+  console.log('connect success');
+  let promise2 = tcp.send({
+	data:'Hello, server!'
+  });
+  promise2.then(() => {
+	console.log('send success');
+  }).catch(err => {
+	console.log('send fail');
+  });
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### close
+
+close(callback: AsyncCallback\<void\>): void
+
+关闭TCPSocket连接。使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+tcp.close(err => {
+  if (err) {
+	console.log('close fail');
+	return;
+  }
+  console.log('close success');
+})
+```
+
+
+### close
+
+close(): Promise\<void\>
+
+关闭TCPSocket连接。使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :----------------------------------------- |
+| Promise\<void\> | 以Promise形式返回关闭TCPSocket连接的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.close();
+promise.then(() => {
+  console.log('close success');
+}).catch(err => {
+  console.log('close fail');
+});
+```
+
+
+### getRemoteAddress
+
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
+
+获取对端Socket地址。使用callback方式作为异步方法。
+
+>**说明：** 
+>connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明       |
+| -------- | ------------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback<[NetAddress](#netaddress)> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise.then(() => {
+  console.log('connect success');
+  tcp.getRemoteAddress((err, data) => {
+	if (err) {
+	  console.log('getRemoteAddressfail');
+	  return;
+	}
+	console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
+  })
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### getRemoteAddress
+
+getRemoteAddress(): Promise\<NetAddress\>
+
+获取对端Socket地址。使用Promise方式作为异步方法。
+
+>**说明：** 
+>connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                        | 说明                                        |
+| :------------------------------------------ | :------------------------------------------ |
+| Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise1.then(() => {
+  console.log('connect success');
+  let promise2 = tcp.getRemoteAddress();
+  promise2.then(() => {
+	console.log('getRemoteAddress success');
+  }).catch(err => {
+	console.log('getRemoteAddressfail');
+  });
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### getState
+
+getState(callback: AsyncCallback\<SocketStateBase\>): void
+
+获取TCPSocket状态。使用callback方式作为异步方法。
+
+>**说明：** 
+>bind或connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                   | 必填 | 说明       |
+| -------- | ------------------------------------------------------ | ---- | ---------- |
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise.then(() => {
+  console.log('connect success');
+  tcp.getState((err, data) => {
+	if (err) {
+	  console.log('getState fail');
+	  return;
+	}
+	console.log('getState success:' + JSON.stringify(data));
+  });
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### getState
+
+getState(): Promise\<SocketStateBase\>
+
+获取TCPSocket状态。使用Promise方式作为异步方法。
+
+>**说明：** 
+>bind或connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                             | 说明                                       |
+| :----------------------------------------------- | :----------------------------------------- |
+| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise.then(() => {
+  console.log('connect success');
+  let promise1 = tcp.getState();
+  promise1.then(() => {
+	console.log('getState success');
+  }).catch(err => {
+	console.log('getState fail');
+  });
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### setExtraOptions
+
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
+
+设置TCPSocket连接的其他属性。使用callback方式作为异步方法。
+
+>**说明：** 
+>bind或connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                                                         |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
+| callback | AsyncCallback\<void\>                     | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise.then(() => {
+  console.log('connect success');
+  tcp.setExtraOptions({
+	keepAlive: true,
+	OOBInline: true,
+	TCPNoDelay: true,
+	socketLinger: { on:true, linger:10 },
+	receiveBufferSize: 1000,
+	sendBufferSize: 1000,
+	reuseAddress: true,
+	socketTimeout: 3000,
+  },err => {
+	if (err) {
+	  console.log('setExtraOptions fail');
+	  return;
+	}
+	console.log('setExtraOptions success');
+  });
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### setExtraOptions
+
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
+
+设置TCPSocket连接的其他属性，使用Promise方式作为异步方法。
+
+>**说明：** 
+>bind或connect方法调用成功后，才可调用此方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [SendMessageOptions](#sendmessageoptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#sendmessageoptions)。 |
+| options | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                 |
+| :-------------- | :--------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **示例：**
 
 ```js
-let sendCallback = function (err, data) {    
-    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+let tcp = socket.constructTCPSocketInstance();
+let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
+promise.then(() => {
+  console.log('connect success');
+  let promise1 = tcp.setExtraOptions({
+	keepAlive: true,
+	OOBInline: true,
+	TCPNoDelay: true,
+	socketLinger: { on:true, linger:10 },
+	receiveBufferSize: 1000,
+	sendBufferSize: 1000,
+	reuseAddress: true,
+	socketTimeout: 3000,
+  });
+  promise1.then(() => {
+	console.log('setExtraOptions success');
+  }).catch(err => {
+	console.log('setExtraOptions fail');
+  });
+}).catch(err => {
+  console.log('connect fail');
+});
+```
+
+
+### on('message')
+
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+订阅TCPSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+tcp.on('message', value => {
+	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo)
+});
+```
+
+
+### off('message')
+
+off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+取消订阅TCPSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+>**说明：** 
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let callback = value =>{
+	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 }
-let deliveryCallback = function (err, data) {    
-    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+tcp.on('message', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tcp.off('message', callback);
+tcp.off('message');
+```
+
+
+### on('connect' | 'close')
+
+on(type: 'connect' | 'close', callback: Callback\<void\>): void
+
+订阅TCPSocket的连接事件或关闭事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+tcp.on('connect', () => {
+	console.log("on connect success")
+});
+tcp.on('close', data => {
+	console.log("on close success")
+});
+```
+
+
+### off('connect' | 'close')
+
+off(type: 'connect' | 'close', callback?: Callback\<void\>): void
+
+取消订阅TCPSocket的连接事件或关闭事件。使用callback方式作为异步方法。
+
+>**说明：** 
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let tcp = socket.constructTCPSocketInstance();
+let callback1 = () =>{
+	console.log("on connect success");
 }
-let slotId = 0;
-let content = '短信内容';
-let destinationHost = '+861xxxxxxxxxx';
-let serviceCenter = '+861xxxxxxxxxx';
-let destinationPort = 1000;
-let options = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-sms.sendMessage(options);
+tcp.on('connect', callback1);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tcp.off('connect', callback1);
+tcp.off('connect');
+let callback2 = () =>{
+	console.log("on close success");
+}
+tcp.on('close', callback2);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tcp.off('close', callback2);
+tcp.off('close');
 ```
 
 
-## sms.getDefaultSmsSlotId<sup>7+</sup>
+### on('error')
 
-getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
+on(type: 'error', callback: ErrorCallback): void
 
-获取发送短信的默认SIM卡槽ID。使用callback异步回调。
+订阅TCPSocket连接的error事件。使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                     |
-| -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
 
 **示例：**
 
 ```js
-sms.getDefaultSmsSlotId((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let tcp = socket.constructTCPSocketInstance();
+tcp.on('error', err => {
+	console.log("on error, err:" + JSON.stringify(err))
 });
 ```
 
 
-## sms.getDefaultSmsSlotId<sup>7+</sup>
+### off('error')
 
-getDefaultSmsSlotId\(\): Promise&lt;number&gt;
+off(type: 'error', callback?: ErrorCallback): void
 
-获取发送短信的默认SIM卡槽ID。使用Promise异步回调。
+取消订阅TCPSocket连接的error事件。使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+>**说明：** 
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
-**返回值：**
+**系统能力**：SystemCapability.Communication.NetStack
 
-| 类型            | 说明                                                         |
-| --------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
 
 **示例：**
 
 ```js
-let promise = sms.getDefaultSmsSlotId();
-promise.then(data => {
-    console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
+let tcp = socket.constructTCPSocketInstance();
+let callback = err =>{
+	console.log("on error, err:" + JSON.stringify(err));
+}
+tcp.on('error', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tcp.off('error', callback);
+tcp.off('error');
+```
+
+
+## TCPConnectOptions
+
+TCPSocket连接的参数。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称  | 类型                               | 必填 | 说明                       |
+| ------- | ---------------------------------- | ---- | -------------------------- |
+| address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
+| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
+
+## TCPSendOptions
+
+TCPSocket发送请求的参数。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| data     | string\| ArrayBuffer<sup>7+</sup>  | 是   | 发送的数据。                                                 |
+| encoding | string | 否   | 字符编码(UTF-8，UTF-16BE，UTF-16LE，UTF-16，US-AECII，ISO-8859-1)，默认为UTF-8。 |
+
+## TCPExtraOptions
+
+TCPSocket连接的其他属性。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称            | 类型    | 必填 | 说明                                                         |
+| ----------------- | ------- | ---- | ------------------------------------------------------------ |
+| keepAlive         | boolean | 否   | 是否保持连接。默认为false。                                  |
+| OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
+| TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
+| socketLinger      | Object  | 是   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
+| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。                               |
+| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。                               |
+| reuseAddress      | boolean | 否   | 是否重用地址。默认为false。                                  |
+| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。                             |
+
+## TCP 错误码说明
+
+TCP 其余错误码映射形式为：2301000 + Linux内核错误码。
+
+错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+
+## socket.constructTLSSocketInstance<sup>9+</sup>
+
+constructTLSSocketInstance(): TLSSocket
+
+创建并返回一个TLSSocket对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值:**
+
+| 类型                               | 说明                    |
+| :--------------------------------- | :---------------------- |
+| [TLSSocket](#tlssocket9) | 返回一个TLSSocket对象。 |
+
+**示例：**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+```
+
+## TLSSocket<sup>9+</sup>
+
+TLSSocket连接。在调用TLSSocket的方法前，需要先通过[socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9)创建TLSSocket对象。
+
+### bind<sup>9+</sup>
+
+bind(address: NetAddress, callback: AsyncCallback\<void\>): void
+
+绑定IP地址和端口。使用callback方法作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                                                   |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address  | [NetAddress](#netaddress) | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| callback | AsyncCallback\<void\>              | 是   | 回调函数。成功返回TLSSocket绑定本机的IP地址和端口的结果。 失败返回错误码，错误信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2303198 | Address already in use. |
+| 2300002 | System internal error.  |
+
+**示例：**
+
+```js
+tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+```
+
+### bind<sup>9+</sup>
+
+bind(address: NetAddress): Promise\<void\>
+
+绑定IP地址和端口。使用Promise方法作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                               | 必填 | 说明                                                   |
+| ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address | [NetAddress](#netaddress)          | 是   | 目标地址信息，参考[NetAddress](#netaddress)。 |
+
+**返回值：**
+
+| 类型            | 说明                                                     |
+| :-------------- | :------------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回TLSSocket绑定本机的IP地址和端口的结果。失败返回错误码，错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2303198 | Address already in use. |
+| 2300002 | System internal error.  |
+
+**示例：**
+
+```js
+let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+promise.then(() => {
+  console.log('bind success');
 }).catch(err => {
-    console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
+  console.log('bind fail');
 });
 ```
 
-## sms.setDefaultSmsSlotId<sup>7+</sup>
+### getState<sup>9+</sup>
 
-setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
+getState(callback: AsyncCallback\<SocketStateBase\>): void
 
-设置发送短信的默认SIM卡槽ID。使用callback异步回调。
+在TLSSocket的bind成功之后，获取TLSSocket状态。使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SET_TELEPHONY_STATE
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                    | 是   | SIM卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
+| 参数名   | 类型                                                   | 必填 | 说明       |
+| -------- | ------------------------------------------------------ | ---- | ---------- |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。成功返回TLSSocket状态，失败返回错误码,错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303188 | Socket operation on non-socket.|
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-sms.setDefaultSmsSlotId(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+tls.getState((err, data) => {
+  if (err) {
+    console.log('getState fail');
+    return;
+  }
+  console.log('getState success:' + JSON.stringify(data));
 });
 ```
 
+### getState<sup>9+</sup>
 
-## sms.setDefaultSmsSlotId<sup>7+</sup>
+getState(): Promise\<SocketStateBase\>
 
-setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
+在TLSSocket的bind成功之后，获取TLSSocket状态。使用Promise方式作为异步方法。
 
-设置发送短信的默认SIM卡槽ID。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SET_TELEPHONY_STATE
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | 是   | SIM卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型            | 说明                            |
-| --------------- | ------------------------------- |
-| Promise\<void\> | 以Promise形式异步返回设置结果。 |
+| 类型                                             | 说明                                       |
+| :----------------------------------------------- | :----------------------------------------- |
+| Promise\<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TLSSocket状态的结果。失败返回错误码，错误信息。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303188 | Socket operation on non-socket.|
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let promise = sms.setDefaultSmsSlotId(0);
-promise.then(data => {
-    console.log(`setDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
+tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let promise = tls.getState();
+promise.then(() => {
+  console.log('getState success');
 }).catch(err => {
-    console.error(`setDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
+  console.log('getState fail');
 });
 ```
 
-## sms.setSmscAddr<sup>7+</sup>
+### setExtraOptions<sup>9+</sup>
 
-setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\): void
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
-设置短信服务中心（SMSC）地址。使用callback异步回调。
+在TLSSocket的bind成功之后，设置TCPSocket连接的其他属性。使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                      |
-| -------- | ------------------------- | ---- | ----------------------------------------- |
-| slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| smscAddr | string                    | 是   | 短信服务中心地址。                        |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
+| 参数名   | 类型                                      | 必填 | 说明                                                         |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
+| callback | AsyncCallback\<void\>                     | 是   | 回调函数。成功返回设置TCPSocket连接的其他属性的结果，失败返回错误码，错误信息。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 401     | Parameter error.               |
+| 2303188 | Socket operation on non-socket.|
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-let smscAddr = '+861xxxxxxxxxx';
-sms.setSmscAddr(slotId, smscAddr, (err,data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+
+tls.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on:true, linger:10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+},err => {
+  if (err) {
+    console.log('setExtraOptions fail');
+    return;
+  }
+  console.log('setExtraOptions success');
 });
 ```
 
+### setExtraOptions<sup>9+</sup>
 
-## sms.setSmscAddr<sup>7+</sup>
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
+在TLSSocket的bind成功之后，设置TCPSocket连接的其他属性，使用Promise方式作为异步方法。
 
-设置短信服务中心（SMSC）地址。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                                      |
-| -------- | ------ | ---- | ----------------------------------------- |
-| slotId   | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| smscAddr | string | 是   | 短信服务中心地址。                        |
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocket连接的其他属性，参考[TCPExtraOptions](#tcpextraoptions)。 |
 
 **返回值：**
 
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回设置结果。 |
+| 类型            | 说明                                                 |
+| :-------------- | :--------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+| 2303188 | Socket operation on non-socket.|
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-let smscAddr = '+861xxxxxxxxxx';
-let promise = sms.setSmscAddr(slotId, smscAddr);
-promise.then(data => {
-    console.log(`setSmscAddr success, promise: data->${JSON.stringify(data)}`);
+tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let promise = tls.setExtraOptions({
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: { on:true, linger:10 },
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
+});
+promise.then(() => {
+  console.log('setExtraOptions success');
 }).catch(err => {
-    console.error(`setSmscAddr failed, promise: err->${JSON.stringify(err)}`);
+  console.log('setExtraOptions fail');
 });
 ```
 
+### connect<sup>9+</sup>
 
-## sms.getSmscAddr<sup>7+</sup>
+connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
+在TLSSocket上bind成功之后，进行通信连接，并创建和初始化TLS会话，实现建立连接过程，启动与服务器的TLS/SSL握手，实现数据传输功能，使用callback方式作为异步方法。
 
-获取短信服务中心（SMSC）地址。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                      |
-| -------- | --------------------------- | ---- | ----------------------------------------- |
-| slotId   | number                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                                |
+| 参数名   | 类型                                   | 必填 | 说明 |
+| -------- | ---------------------------------------| ----| --------------- |
+| options  | [TLSConnectOptions](#tlsconnectoptions9) | 是   | TLSSocket连接所需要的参数。|
+| callback | AsyncCallback\<void>                  | 是   | 回调函数，成功无返回，失败返回错误码，错误信息。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error.                             |
+| 2303104 | Interrupted system call.                     |
+| 2303109 | Bad file number.                             |
+| 2303111 | Resource temporarily unavailable try again.  |
+| 2303188 | Socket operation on non-socket.              |
+| 2303191 | Protocol wrong type for socket.              |
+| 2303198 | Address already in use.                      |
+| 2303199 | Cannot assign requested address.             |
+| 2303210 | Connection timed out.                        |
+| 2303501 | SSL is null.                                 |
+| 2303502 | Error in tls reading.                        |
+| 2303503 | Error in tls writing                         |
+| 2303505 | Error occurred in the tls system call.       |
+| 2303506 | Error clearing tls connection.               |
+| 2300002 | System internal error.                       |
 
 **示例：**
 
 ```js
-let slotId = 0;
-sms.getSmscAddr(slotId, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
-```
-
-
-## sms.getSmscAddr<sup>7+</sup>
-
-getSmscAddr\(slotId: number\): Promise<string\>
-
-获取短信服务中心（SMSC）地址。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                      |
-| ------ | ------ | ---- | ----------------------------------------- |
-| slotId | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-
-**返回值：**
-
-| 类型                  | 说明                                          |
-| --------------------- | --------------------------------------------- |
-| Promise&lt;string&gt; | 以Promise形式返回获取短信服务中心地址的结果。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let slotId = 0;
-let promise = sms.getSmscAddr(slotId);
-promise.then(data => {
-    console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`getSmscAddr failed, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## sms.hasSmsCapability<sup>7+</sup>
-
-hasSmsCapability(): boolean
-
-检查当前设备是否具备短信发送和接收能力，该方法是同步方法。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**返回值：**
-
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
-
-```js
-let result = sms.hasSmsCapability(); 
-console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
-```
-
-## sms.splitMessage<sup>8+</sup>
-
-splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
-
-将长短信拆分为多个片段。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名   | 类型                          | 必填 | 说明                          |
-| -------- | ----------------------------- | ---- | ----------------------------- |
-| content  | string                        | 是   | 指示短消息内容，不能为null。 |
-| callback | AsyncCallback<Array<string\>> | 是   | 回调函数。                    |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let content = "long message";
-sms.splitMessage(content, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## sms.splitMessage<sup>8+</sup>
-
-splitMessage(content: string): Promise<Array<string\>>
-
-将长短信拆分为多个片段。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明                         |
-| ------- | ------ | ---- | ---------------------------- |
-| content | string | 是   | 指示短消息内容，不能为null。 |
-
-**返回值：**
-
-| 类型                    | 说明                                |
-| ----------------------- | ----------------------------------- |
-| Promise<Array<string\>> | 以Promise形式返回多个片段的的结果。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let content = "long message";
-let promise = sms.splitMessage(content);
-promise.then(data => {
-    console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## sms.addSimMessage<sup>7+</sup>
-
-addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
-
-添加SIM卡消息。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名   | 类型                                     | 必填 | 说明            |
-| -------- | ---------------------------------------- | ---- | --------------- |
-| options  | [SimMessageOptions](#simmessageoptions7) | 是   | SIM卡消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。      |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let simMessageOptions = {
-    slotId: 0,
-    smsc: "test",
-    pdu: "xxxxxx",
-    status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
 };
-sms.addSimMessage(simMessageOptions, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tlsTwoWay.connect(options, (err, data) => {
+  console.error("connect callback error"+err);
+  console.log(JSON.stringify(data));
 });
-```
 
-
-## sms.addSimMessage<sup>7+</sup>
-
-addSimMessage(options: SimMessageOptions): Promise<void\>
-
-添加SIM卡消息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名  | 类型                                     | 必填 | 说明            |
-| ------- | ---------------------------------------- | ---- | --------------- |
-| options | [SimMessageOptions](#simmessageoptions7) | 是   | SIM卡消息选项。 |
-
-**返回值：**
-
-| 类型                | 说明                          |
-| ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回添加的结果。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let simMessageOptions = {
-    slotId: 0,
-    smsc: "test",
-    pdu: "xxxxxx",
-    status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
+let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+  tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let oneWayOptions = {
+  address: {
+    address: "192.168.xxx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx","xxxx"],
+    cipherSuite: "AES256-SHA256",
+  },
 };
-let promise = sms.addSimMessage(simMessageOptions);
-promise.then(data => {
-    console.log(`addSimMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`addSimMessage failed, promise: err->${JSON.stringify(err)}`);
+tlsOneWay.connect(oneWayOptions, (err, data) => {
+  console.error("connect callback error"+err);
+  console.log(JSON.stringify(data));
 });
 ```
 
-## sms.delSimMessage<sup>7+</sup>
+### connect<sup>9+</sup>
 
-delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>): void
+connect(options: TLSConnectOptions): Promise\<void\>
 
-删除SIM卡消息。使用callback异步回调。
+在TLSSocket上bind成功之后，进行通信连接，并创建和初始化TLS会话，实现建立连接过程，启动与服务器的TLS/SSL握手，实现数据传输功能，该连接包括两种认证方式，单向认证与双向认证，使用Promise方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                      |
-| -------- | ------------------------- | ---- | ----------------------------------------- |
-| slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| msgIndex | number                    | 是   | 消息索引。                                  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let slotId = 0;
-let msgIndex = 1;
-sms.delSimMessage(slotId, msgIndex, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## sms.delSimMessage<sup>7+</sup>
-
-delSimMessage(slotId: number, msgIndex: number): Promise<void\>
-
-删除SIM卡信息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                      |
-| -------- | ------ | ---- | ----------------------------------------- |
-| slotId   | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| msgIndex | number | 是   | 消息索引。                                  |
+| 参数名   | 类型                                   | 必填 | 说明 |
+| -------- | --------------------------------------| ----| --------------- |
+| options  | [TLSConnectOptions](#tlsconnectoptions9) | 是   | 连接所需要的参数。|
 
 **返回值：**
 
-| 类型                | 说明                          |
-| ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回删除的结果。 |
+| 类型                                        | 说明                          |
+| ------------------------------------------- | ----------------------------- |
+| Promise\<void\>                              | 以Promise形式返回，成功无返回，失败返回错误码，错误信息。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error.                             |
+| 2303104 | Interrupted system call.                     |
+| 2303109 | Bad file number.                             |
+| 2303111 | Resource temporarily unavailable try again.  |
+| 2303188 | Socket operation on non-socket.              |
+| 2303191 | Protocol wrong type for socket.              |
+| 2303198 | Address already in use.                      |
+| 2303199 | Cannot assign requested address.             |
+| 2303210 | Connection timed out.                        |
+| 2303501 | SSL is null.                                 |
+| 2303502 | Error in tls reading.                        |
+| 2303503 | Error in tls writing                         |
+| 2303505 | Error occurred in the tls system call.       |
+| 2303506 | Error clearing tls connection.               |
+| 2300002 | System internal error.                       |
 
 **示例：**
 
 ```js
-let slotId = 0;
-let msgIndex = 1;
-let promise = sms.delSimMessage(slotId, msgIndex);
-promise.then(data => {
-    console.log(`delSimMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`delSimMessage failed, promise: err->${JSON.stringify(err)}`);
+let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
-```
-
-## sms.updateSimMessage<sup>7+</sup>
-
-updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\>): void
-
-更新SIM卡消息。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名   | 类型                                                 | 必填 | 说明                |
-| -------- | ---------------------------------------------------- | ---- | ------------------- |
-| options  | [UpdateSimMessageOptions](#updatesimmessageoptions7) | 是   | 更新SIM卡消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                            | 是   | 回调函数。          |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let updateSimMessageOptions = {
-    slotId: 0,
-    msgIndex: 1,
-    newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
-    pdu: "xxxxxxx",
-    smsc: "test"
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
 };
-sms.updateSimMessage(updateSimMessageOptions, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tlsTwoWay.connect(options).then(data => {
+  console.log(JSON.stringify(data));
+}).catch(err => {
+  console.error(err);
 });
-```
 
-
-## sms.updateSimMessage<sup>7+</sup>
-
-updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
-
-更新SIM卡消息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名  | 类型                                                 | 必填 | 说明                |
-| ------- | ---------------------------------------------------- | ---- | ------------------- |
-| options | [UpdateSimMessageOptions](#updatesimmessageoptions7) | 是   | 更新SIM卡消息选项。 |
-
-**返回值：**
-
-| 类型                | 说明                          |
-| ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回更新的结果。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-let updateSimMessageOptions = {
-    slotId: 0,
-    msgIndex: 1,
-    newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
-    pdu: "xxxxxxx",
-    smsc: "test"
+let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let oneWayOptions = {
+  address: {
+    address: "192.168.xxx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx","xxxx"],
+    cipherSuite: "AES256-SHA256",
+  },
 };
-let promise = sms.updateSimMessage(updateSimMessageOptions);
-promise.then(data => {
-    console.log(`updateSimMessage success, promise: data->${JSON.stringify(data)}`);
+tlsOneWay.connect(oneWayOptions).then(data => {
+  console.log(JSON.stringify(data));
 }).catch(err => {
-    console.error(`updateSimMessage failed, promise: err->${JSON.stringify(err)}`);
+  console.error(err);
 });
 ```
 
-## sms.getAllSimMessages<sup>7+</sup>
+### getRemoteAddress<sup>9+</sup>
 
-getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\>>): void
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
-获取所有SIM卡消息。使用callback异步回调。
+在TLSSocket通信连接成功之后，获取对端Socket地址。使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                                                        | 必填 | 说明                                      |
-| -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
-| slotId   | number                                                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | 是   | 回调函数。                                |
+| 参数名   | 类型                                              | 必填 | 说明       |
+| -------- | ------------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 2303188 | Socket operation on non-socket.|
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-sms.getAllSimMessages(slotId, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.getRemoteAddress((err, data) => {
+  if (err) {
+    console.log('getRemoteAddress fail');
+    return;
+  }
+  console.log('getRemoteAddress success:' + JSON.stringify(data));
 });
 ```
 
+### getRemoteAddress<sup>9+</sup>
 
-## sms.getAllSimMessages<sup>7+</sup>
+getRemoteAddress(): Promise\<NetAddress\>
 
-getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
+在TLSSocket通信连接成功之后，获取对端Socket地址。使用Promise方式作为异步方法。
 
-获取所有SIM卡消息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                      |
-| ------ | ------ | ---- | ----------------------------------------- |
-| slotId | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型                                                    | 说明                               |
-| ------------------------------------------------------- | ---------------------------------- |
-| PromiseArray<[SimShortMessage](#simshortmessage7)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
+| 类型                                        | 说明                                        |
+| :------------------------------------------ | :------------------------------------------ |
+| Promise\<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303188 | Socket operation on non-socket.|
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-let promise = sms.getAllSimMessages(slotId);
-promise.then(data => {
-    console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
+let promise = tls.getRemoteAddress();
+promise.then(() => {
+  console.log('getRemoteAddress success');
 }).catch(err => {
-    console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
+  console.log('getRemoteAddress fail');
 });
 ```
 
-## sms.setCBConfig<sup>7+</sup>
+### getCertificate<sup>9+</sup>
 
-setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
+getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
-设置小区广播配置。使用callback异步回调。
+在TLSSocket通信连接成功之后，获取本地的数字证书，该接口只适用于双向认证时，使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明         |
-| -------- | ------------------------------------ | ---- | ------------ |
-| options  | [CBConfigOptions](#cbconfigoptions7) | 是   | 小区广播配置选项。 |
-| callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。   |
+| 参数名   | 类型                                   | 必填 | 说明 |
+| -------- | ----------------------------------------| ---- | ---------------|
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>    | 是   | 回调函数，成功返回本地的证书，失败返回错误码，错误信息。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2303504 | Error looking up x509.         |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let cbConfigOptions = {
-    slotId: 0,
-    enable: true,
-    startMessageId: 100,
-    endMessageId: 200,
-    ranType: sms.RanType.TYPE_GSM
-};
-sms.setCBConfig(cbConfigOptions, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.getCertificate((err, data) => {
+  if (err) {
+    console.log("getCertificate callback error = " + err);
+  } else {
+    console.log("getCertificate callback = " + data);
+  }
 });
 ```
 
+### getCertificate<sup>9+</sup>
 
-## sms.setCBConfig<sup>7+</sup>
+getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
-setCBConfig(options: CBConfigOptions): Promise<void\>
+在TLSSocket通信连接之后，获取本地的数字证书，该接口只适用于双向认证时，使用Promise方式作为异步方法。
 
-设置小区广播配置。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.RECEIVE_SMS
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名  | 类型                                 | 必填 | 说明         |
-| ------- | ------------------------------------ | ---- | ------------ |
-| options | [CBConfigOptions](#cbconfigoptions7) | 是   | 小区广播配置选项。 |
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型                | 说明                          |
-| ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回设置的结果。 |
+| 类型            | 说明                  |
+| -------------- | -------------------- |
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | 以Promise形式返回本地的数字证书的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2303504 | Error looking up x509.         |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let cbConfigOptions = {
-    slotId: 0,
-    enable: true,
-    startMessageId: 100,
-    endMessageId: 200,
-    ranType: sms.RanType.TYPE_GSM
-};
-let promise = sms.setCBConfig(cbConfigOptions);
-promise.then(data => {
-    console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
+tls.getCertificate().then(data => {
+  console.log(data);
 }).catch(err => {
-    console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
+  console.error(err);
 });
 ```
 
-## sms.getSmsSegmentsInfo<sup>8+</sup>
+### getRemoteCertificate<sup>9+</sup>
 
-getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo\>): void
+getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
-获取短信段信息。使用callback异步回调。
+在TLSSocket通信连接成功之后，获取服务端的数字证书，使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名    | 类型                                                         | 必填 | 说明                                      |
-| --------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| message   | string                                                       | 是   | 消息。                                      |
-| force7bit | boolean                                                      | 是   | 是否使用7 bit编码。                          |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数。                                  |
+| 参数名    | 类型                                    | 必填  | 说明           |
+| -------- | ----------------------------------------| ---- | ---------------|
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>  | 是   | 回调函数，返回服务端的证书。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.getRemoteCertificate((err, data) => {
+  if (err) {
+    console.log("getRemoteCertificate callback error = " + err);
+  } else {
+    console.log("getRemoteCertificate callback = " + data);
+  }
 });
 ```
 
+### getRemoteCertificate<sup>9+</sup>
 
-## sms.getSmsSegmentsInfo<sup>8+</sup>
+getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
-getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo\>
+在TLSSocket通信连接成功之后，获取服务端的数字证书，使用Promise方式作为异步方法。
 
-获取短信段信息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名    | 类型    | 必填 | 说明                                      |
-| --------- | ------- | ---- | ----------------------------------------- |
-| slotId    | number  | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| message   | string  | 是   | 消息。                                      |
-| force7bit | boolean | 是   | 是否使用7 bit编码。                          |
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型                                                    | 说明                          |
-| ------------------------------------------------------- | ----------------------------- |
-| Promise&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 以Promise形式返回短信段信息。 |
+| 类型            | 说明                  |
+| -------------- | -------------------- |
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | 以Promise形式返回服务端的数字证书的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
-promise.then(data => {
-    console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
+tls.getRemoteCertificate().then(data => {
+  console.log(data);
 }).catch(err => {
-    console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
+  console.error(err);
 });
 ```
 
-## sms.isImsSmsSupported<sup>8+</sup>
+### getProtocol<sup>9+</sup>
 
-isImsSmsSupported(slotId: number, callback: AsyncCallback<boolean\>): void
+getProtocol(callback: AsyncCallback\<string\>): void
 
-如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用callback异步回调。
+在TLSSocket通信连接成功之后，获取通信的协议版本，使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 说明       |
-| -------- | ---------------------------- | ---- | ---------- |
-| slotId   | number                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                                       | 必填 | 说明           |
+| -------- | ----------------------------------------| ---- | ---------------|
+| callback | AsyncCallback\<string\>                  | 是   | 回调函数，返回通信的协议。失败返回错误码，错误信息。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 2303501 | SSL is null.                   |
+| 2303505 | Error occurred in the tls system call. |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-sms.isImsSmsSupported(slotId, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.getProtocol((err, data) => {
+  if (err) {
+    console.log("getProtocol callback error = " + err);
+  } else {
+    console.log("getProtocol callback = " + data);
+  }
 });
 ```
 
+### getProtocol<sup>9+</sup>
 
-## sms.isImsSmsSupported<sup>8+</sup>
+getProtocol():Promise\<string\>
 
-isImsSmsSupported(slotId: number): Promise<boolean\>
+在TLSSocket通信连接成功之后，获取通信的协议版本，使用Promise方式作为异步方法。
 
-如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名 | 类型   | 必填  | 说明                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型                   | 说明                    |
-| ---------------------- | ----------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式返回结果。 |
+| 类型            | 说明                  |
+| -------------- | -------------------- |
+| Promise\<string\> | 以Promise形式返回通信的协议。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2303505 | Error occurred in the tls system call. |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let slotId = 0;
-let promise = sms.isImsSmsSupported(slotId);
-promise.then(data => {
-    console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
+tls.getProtocol().then(data => {
+  console.log(data);
 }).catch(err => {
-    console.error(`isImsSmsSupported failed, promise: err->${JSON.stringify(err)}`);
+  console.error(err);
 });
 ```
 
-## sms.getImsShortMessageFormat<sup>8+</sup>
+### getCipherSuite<sup>9+</sup>
 
-getImsShortMessageFormat(callback: AsyncCallback<string\>): void
+getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
-获取IMS上支持的SMS格式。使用callback异步回调。
+在TLSSocket通信连接成功之后，获取通信双方协商后的加密套件，使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明       |
-| -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                                     | 必填 | 说明 |
+| -------- | ----------------------------------------| ---- | ---------------|
+| callback | AsyncCallback\<Array\<string\>\>          | 是   | 回调函数，返回通信双方支持的加密套件。 失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2303502 | Error in tls reading.          |
+| 2303505 | Error occurred in the tls system call. |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-sms.getImsShortMessageFormat((err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.getCipherSuite((err, data) => {
+  if (err) {
+    console.log("getCipherSuite callback error = " + err);
+  } else {
+    console.log("getCipherSuite callback = " + data);
+  }
 });
 ```
 
+### getCipherSuite<sup>9+</sup>
 
-## sms.getImsShortMessageFormat<sup>8+</sup>
+getCipherSuite(): Promise\<Array\<string\>\>
 
-getImsShortMessageFormat(): Promise<string\>
+在TLSSocket通信连接成功之后，获取通信双方协商后的加密套件，使用Promise方式作为异步方法。
 
-获取IMS上支持的SMS格式。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型                  | 说明                       |
-| --------------------- | -------------------------- |
-| Promise&lt;string&gt; | 以Promise形式返回SMS格式。 |
+| 类型                    | 说明                  |
+| ---------------------- | --------------------- |
+| Promise\<Array\<string\>\> | 以Promise形式返回通信双方支持的加密套件。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2303502 | Error in tls reading.          |
+| 2303505 | Error occurred in the tls system call. |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let promise = sms.getImsShortMessageFormat();
-promise.then(data => {
-    console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
+tls.getCipherSuite().then(data => {
+  console.log('getCipherSuite success:' + JSON.stringify(data));
 }).catch(err => {
-    console.error(`getImsShortMessageFormat failed, promise: err->${JSON.stringify(err)}`);
+  console.error(err);
 });
 ```
 
-## sms.decodeMms<sup>8+</sup>
+### getSignatureAlgorithms<sup>9+</sup>
 
-decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsInformation\>): void
+getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
-彩信解码。使用callback异步回调。
+在TLSSocket通信连接成功之后，获取通信双方协商后签名算法，该接口只适配双向认证模式下，使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名          | 类型                                                    | 必填 | 说明           |
-| --------------- | ------------------------------------------------------- | ---- | -------------- |
-| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名。 |
-| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 回调函数。     |
+| 参数名   | 类型                                   | 必填 | 说明            |
+| -------- | -------------------------------------| ---- | ---------------|
+| callback | AsyncCallback\<Array\<string\>\>         | 是   | 回调函数，返回双方支持的签名算法。  |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let mmsFilePathName = "filename";
-sms.decodeMms(mmsFilePathName, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.getSignatureAlgorithms((err, data) => {
+  if (err) {
+    console.log("getSignatureAlgorithms callback error = " + err);
+  } else {
+    console.log("getSignatureAlgorithms callback = " + data);
+  }
 });
 ```
 
+### getSignatureAlgorithms<sup>9+</sup>
 
-## sms.decodeMms<sup>8+</sup>
+getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
-decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
+在TLSSocket通信连接成功之后，获取通信双方协商后的签名算法，该接口只适配双向认证模式下，使用Promise方式作为异步方法。
 
-彩信解码。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-**参数：**
-
-| 参数名          | 类型                    | 必填 | 说明           |
-| --------------- | ----------------------- | ---- | -------------- |
-| mmsFilePathName | string \|Array<number\> | 是   | 彩信文件路径名 |
+**系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
 
-| 类型                                                      | 说明                        |
-| --------------------------------------------------------- | --------------------------- |
-| Promise&lt;&lt;[MmsInformation](#mmsinformation8)&gt;&gt; | 以Promise形式返回彩信信息。 |
+| 类型                    | 说明                  |
+| ---------------------- | -------------------- |
+| Promise\<Array\<string\>\> | 以Promise形式返回获取到的双方支持的签名算法。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 2303501 | SSL is null.                   |
+| 2300002 | System internal error.         |
 
 **示例：**
 
 ```js
-let mmsFilePathName = "filename";
-let promise = sms.decodeMms(mmsFilePathName);
-promise.then(data => {
-    console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
+tls.getSignatureAlgorithms().then(data => {
+  console.log("getSignatureAlgorithms success" + data);
 }).catch(err => {
-    console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
+  console.error(err);
 });
 ```
 
-## sms.encodeMms<sup>8+</sup>
+### send<sup>9+</sup>
 
-encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
+send(data: string, callback: AsyncCallback\<void\>): void
 
-彩信编码。使用callback异步回调。
+在TLSSocket通信连接成功之后，向服务端发送消息，使用callback方式作为异步方法。
 
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明       |
-| -------- | ----------------------------------- | ---- | ---------- |
-| mms      | [MmsInformation](#mmsinformation8)  | 是   | 彩信信息。 |
-| callback | AsyncCallback&lt;Array<number\>&gt; | 是   | 回调函数。 |
+| 参数名    | 类型                          | 必填 | 说明            |
+| -------- | -----------------------------| ---- | ---------------|
+|   data   | string                       | 是   | 发送的数据内容。   |
+| callback | AsyncCallback\<void\>         | 是   | 回调函数,返回TLSSocket发送数据的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error.                             |
+| 2303501 | SSL is null.                                 |
+| 2303503 | Error in tls writing                         |
+| 2303505 | Error occurred in the tls system call.       |
+| 2303506 | Error clearing tls connection.               |
+| 2300002 | System internal error.                       |
 
 **示例：**
 
 ```js
-let mmsAcknowledgeInd = {
-    transactionId: "100",
-    version: sms.MmsVersionType.MMS_VERSION_1_0,
-    reportAllowed: sms.ReportType.MMS_YES
-};
-let mmsInformation = {
-    messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
-    mmsType: mmsAcknowledgeInd
-};
-sms.encodeMms(mmsInformation, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+tls.send("xxxx", (err) => {
+  if (err) {
+    console.log("send callback error = " + err);
+  } else {
+    console.log("send success");
+  }
 });
 ```
 
+### send<sup>9+</sup>
 
-## sms.encodeMms<sup>8+</sup>
+send(data: string): Promise\<void\>
 
-encodeMms(mms: MmsInformation): Promise<Array<number\>>
+在TLSSocket通信连接成功之后，向服务端发送消息，使用Promise方式作为异步方法。
 
-彩信编码。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 参数名 | 类型                               | 必填 | 说明       |
-| ------ | ---------------------------------- | ---- | ---------- |
-| mms    | [MmsInformation](#mmsinformation8) | 是   | 彩信信息。 |
+| 参数名    | 类型                          | 必填 | 说明            |
+| -------- | -----------------------------| ---- | ---------------|
+|   data   | string                       | 是   | 发送的数据内容。   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error.                             |
+| 2303501 | SSL is null.                                 |
+| 2303503 | Error in tls writing                         |
+| 2303505 | Error occurred in the tls system call.       |
+| 2303506 | Error clearing tls connection.               |
+| 2300002 | System internal error.                       |
 
 **返回值：**
 
-| 类型                          | 说明                                |
-| ----------------------------- | ----------------------------------- |
-| Promise&lt;Array<number\>&gt; | 以Promise形式返回彩信编码后的结果。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 类型           | 说明                  |
+| -------------- | -------------------- |
+| Promise\<void\> | 以Promise形式返回,返回TLSSocket发送数据的结果。失败返回错误码，错误信息。 |
 
 **示例：**
 
 ```js
-let mmsAcknowledgeInd = {
-    transactionId: "100",
-    version: sms.MmsVersionType.MMS_VERSION_1_0,
-    reportAllowed: sms.ReportType.MMS_YES
-};
-let mmsInformation = {
-    messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
-    mmsType: mmsAcknowledgeInd
-};
-let promise = sms.encodeMms(mmsInformation);
-promise.then(data => {
-    console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
+tls.send("xxxx").then(() =>{
+  console.log("send success");
 }).catch(err => {
-    console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
+  console.error(err);
 });
 ```
 
-## ShortMessage
+### close<sup>9+</sup>
 
-短信实例。
+close(callback: AsyncCallback\<void\>): void
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+在TLSSocket通信连接成功之后，断开连接，使用callback方式作为异步方法。
 
-|         名称             |                  类型                   | 必填 | 说明                                                         |
-| ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 |  是  | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：设备根据发送SMS消息的短消息中心进行回复。  |
-| isReplaceMessage         | boolean                                 |  是  | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 “3GPP TS 23.040 9.2.3.9”。 |
-| isSmsStatusReportMessage | boolean                                 |  是  | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。|
-| messageClass             | [ShortMessageClass](#shortmessageclass) |  是  | 短信类型。                                                   |
-| pdu                      | Array&lt;number&gt;                     |  是  | SMS消息中的协议数据单元 （PDU）。                            |
-| protocolId               | number                                  |  是  | 发送短信时使用的协议标识。                                   |
-| scAddress                | string                                  |  是  | 短消息服务中心（SMSC）地址。                                 |
-| scTimestamp              | number                                  |  是  | SMSC时间戳。                                                 |
-| status                   | number                                  |  是  | SMS-STATUS-REPORT消息中的短信状态指示短信服务中心（SMSC）发送的短信状态。 |
-| visibleMessageBody       | string                                  |  是  | 短信正文。                                                   |
-| visibleRawAddress        | string                                  |  是  | 发送者地址。                                                 |
+**系统能力**：SystemCapability.Communication.NetStack
 
+**参数：**
 
-## ShortMessageClass
+| 参数名    | 类型                          | 必填 | 说明            |
+| -------- | -----------------------------| ---- | ---------------|
+| callback | AsyncCallback\<void\>         | 是   | 回调函数,成功返回TLSSocket关闭连接的结果。 失败返回错误码，错误信息。 |
 
-短信类型。
+**错误码：**
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 2303501 | SSL is null.                                 |
+| 2303505 | Error occurred in the tls system call.       |
+| 2303506 | Error clearing tls connection.               |
+| 2300002 | System internal error.                       |
 
-| 名称             | 值   | 说明                                     |
-| ---------------- | ---- | ---------------------------------------- |
-| UNKNOWN          | 0    | 未知类型。                               |
-| INSTANT_MESSAGE  | 1    | 即时消息，收到后立即显示。               |
-| OPTIONAL_MESSAGE | 2    | 存储在设备或SIM卡上的短信。              |
-| SIM_MESSAGE      | 3    | 包含SIM卡信息的短信，需要存储在SIM卡中。 |
-| FORWARD_MESSAGE  | 4    | 要转发到另一台设备的短信。               |
+**示例：**
 
+```js
+tls.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+});
+```
 
-## SendMessageOptions
+### close<sup>9+</sup>
 
-发送短信的参数和回调。根据SendMessageOptions中的可选参数content的值判断短信类型。
+close(): Promise\<void\>
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+在TLSSocket通信连接成功之后，断开连接，使用Promise方式作为异步方法。
 
-|       名称       | 类型                                                         | 必填 | 说明                                                         |
-| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| slotId           | number                                                       | 是   | 用于发送短信的SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2      |
-| destinationHost  | string                                                       | 是   | 短信的发送地址。                                             |
-| content          | string \| Array&lt;number&gt;                                | 是   | 如果内容是字符串，则这是一条文本短信。如果内容是字节数组，则这是一条数据短信。 |
-| serviceCenter    | string                                                       | 否   | 短信中心地址。默认使用SIM卡中的短信中心地址。                |
-| destinationPort  | number                                                       | 否   | 如果发送数据消息，destinationPort 是必需的。否则是可选的。   |
-| sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; | 否   | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。 |
-| deliveryCallback | AsyncCallback&lt;[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)&gt; | 否   | 短信送达结果回调，返回短信递送报告，参考[IDeliveryShortMessageCallback](#ideliveryshortmessagecallback)。 |
+**系统能力**：SystemCapability.Communication.NetStack
 
+**返回值：**
 
-## ISendShortMessageCallback
+| 类型           | 说明                  |
+| -------------- | -------------------- |
+| Promise\<void\> | 以Promise形式返回,返回TLSSocket关闭连接的结果。失败返回错误码，错误信息。 |
 
-回调实例。返回短信发送结果、存储已发送短信的URI和是否为长短信的最后一部分。
+**错误码：**
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 2303501 | SSL is null.                                 |
+| 2303505 | Error occurred in the tls system call.       |
+| 2303506 | Error clearing tls connection.               |
+| 2300002 | System internal error.                       |
 
-|   名称     | 类型                            | 必填 |                                               说明                                         |
-| ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | 否   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
-| result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                                                             |
-| url        | string                          | 是   | 存储发送短信的URI。                                                                        |
+**示例：**
 
+```js
+tls.close().then(() =>{
+  console.log("close success");
+}).catch(err => {
+  console.error(err);
+});
+```
 
-## IDeliveryShortMessageCallback
+## TLSConnectOptions<sup>9+</sup>
 
-回调实例，返回短信送达报告。
+TLS连接的操作。
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+**系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型                | 必填 | 说明           |
-| ---- | ------------------- | ---- | -------------- |
-| pdu  | Array&lt;number&gt; | 是   | 短信送达报告。 |
+| 名称          | 类型                                     | 必填 | 说明            |
+| -------------- | ------------------------------------- | ---  |-------------- |
+| address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
+| secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
+| ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议。      |
 
+## TLSSecureOptions<sup>9+</sup>
 
-## SendSmsResult
+TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参数。当本地证书cert和私钥key不为空时，开启双向验证模式。cert和key其中一项为空时，开启单向验证模式。
 
-短信发送结果。
+**系统能力**：SystemCapability.Communication.NetStack
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+| 名称                 | 类型                                                    | 必填 | 说明                                |
+| --------------------- | ------------------------------------------------------ | --- |----------------------------------- |
+| ca                    | string \| Array\<string\>                               | 是 | 服务端的ca证书，用于认证校验服务端的数字证书。|
+| cert                  | string                                                  | 否 | 本地客户端的数字证书。                 |
+| key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
+| password                | string                                                  | 否 | 读取私钥的密码。                      |
+| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | 否 | TLS的协议版本。                  |
+| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。          |
+| signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法。               |
+| cipherSuite           | string                                                 | 否 | 通信过程中的加密套件。               |
 
-| 名称                                 | 值   | 说明                                                   |
-| ------------------------------------ | ---- | ------------------------------------------------------ |
-| SEND_SMS_SUCCESS                     | 0    | 发送短信成功。                                         |
-| SEND_SMS_FAILURE_UNKNOWN             | 1    | 发送短信失败，原因未知。                               |
-| SEND_SMS_FAILURE_RADIO_OFF           | 2    | 发送短信失败，原因为调制解调器关机。                   |
-| SEND_SMS_FAILURE_SERVICE_UNAVAILABLE | 3    | 发送短信失败，原因为网络不可用、不支持发送或接收短信。 |
+## Protocol<sup>9+</sup>
 
-## MmsInformation<sup>8+</sup>
+TLS通信的协议版本。
 
-彩信信息。
+**系统能力**：SystemCapability.Communication.NetStack
 
-**系统接口：** 此接口为系统接口。
+| 名称      |    值    | 说明                |
+| --------- | --------- |------------------ |
+| TLSv12    | "TLSv1.2" | 使用TLSv1.2协议通信。 |
+| TLSv13    | "TLSv1.3" | 使用TLSv1.3协议通信。 |
 
-**系统能力**：SystemCapability.Telephony.SmsMms
+## X509CertRawData<sup>9+</sup>
 
-|     名称    | 类型                                                         | 必填 |    说明    |
-| ----------- | ------------------------------------------------------------ | ---- | ---------- |
-| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型。 |
-| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | PDU头类型 |
-| attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | 否   | 附件      |
-
-## MmsSendReq<sup>8+</sup>
-
-彩信发送请求。
+存储证书的数据。
 
-**系统接口：** 此接口为系统接口。
+**系统能力**：SystemCapability.Communication.NetStack
 
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|       名称       | 类型                                 | 必填 | 说明         |
-| ---------------- | ------------------------------------ | ---- | ------------ |
-| from             | [MmsAddress](#mmsaddress8)           | 是   | 彩信来源     |
-| transactionId    | string                               | 是   | 事务ID       |
-| contentType      | string                               | 是   | 内容类型     |
-| version          | [MmsVersionType](#mmsversiontype8)   | 是   | 版本         |
-| to               | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 发送至       |
-| date             | number                               | 否   | 日期         |
-| cc               | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 抄送         |
-| bcc              | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 暗抄送       |
-| subject          | string                               | 否   | 主题         |
-| messageClass     | number                               | 否   | 消息类       |
-| expiry           | number                               | 否   | 到期         |
-| priority         | [MmsPriorityType](#mmsprioritytype8) | 否   | 优先         |
-| senderVisibility | number                               | 否   | 发件人可见性 |
-| deliveryReport   | number                               | 否   | 交付报告     |
-| readReport       | number                               | 否   | 阅读报告     |
-
-## MmsSendConf<sup>8+</sup>
-
-彩信发送配置。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|     名称      | 类型                               | 必填 | 说明     |
-| ------------- | ---------------------------------- | ---- | -------- |
-| responseState | number                             | 是   | 响应状态 |
-| transactionId | string                             | 是   | 事务ID   |
-| version       | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
-| messageId     | string                             | 否   | 消息ID   |
-
-## MmsNotificationInd<sup>8+</sup>
-
-彩信通知索引。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|      名称       | 类型                               | 必填 | 说明     |
-| --------------- | ---------------------------------- | ---- | -------- |
-| transactionId   | string                             | 是   | 事务ID   |
-| messageClass    | number                             | 是   | 消息类   |
-| messageSize     | number                             | 是   | 消息大小 |
-| expiry          | number                             | 是   | 到期     |
-| contentLocation | string                             | 是   | 内容位置 |
-| version         | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
-| from            | [MmsAddress](#mmsaddress8)         | 否   | 来源     |
-| subject         | string                             | 否   | 主题     |
-| deliveryReport  | number                             | 否   | 状态报告 |
-| contentClass    | number                             | 否   | 内容类   |
-
-## MmsAcknowledgeInd<sup>8+</sup>
-
-彩信确认索引。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|      名称     | 类型                               | 必填 | 说明     |
-| ------------- | ---------------------------------- | ---- | -------- |
-| transactionId | string                             | 是   | 事务ID   |
-| version       | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
-| reportAllowed | [ReportType](#reporttype8)         | 否   | 允许报告 |
-
-## MmsRetrieveConf<sup>8+</sup>
-
-彩信检索配置。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|      名称      | 类型                                 | 必填 | 说明     |
-| -------------- | ------------------------------------ | ---- | -------- |
-| transactionId  | string                               | 是   | 事务ID   |
-| messageId      | string                               | 是   | 消息ID   |
-| date           | number                               | 是   | 日期     |
-| contentType    | string                               | 是   | 内容类型 |
-| to             | Array<[MmsAddress](#mmsaddress8)\>   | 是   | 发送至   |
-| version        | [MmsVersionType](#mmsversiontype8)   | 是   | 版本     |
-| from           | [MmsAddress](#mmsaddress8)           | 否   | 来源     |
-| cc             | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 抄送     |
-| subject        | string                               | 否   | 主题     |
-| priority       | [MmsPriorityType](#mmsprioritytype8) | 否   | 优先级   |
-| deliveryReport | number                               | 否   | 状态报告 |
-| readReport     | number                               | 否   | 阅读报告 |
-| retrieveStatus | number                               | 否   | 检索状态 |
-| retrieveText   | string                               | 否   | 检索文本 |
-
-## MmsReadOrigInd<sup>8+</sup>
-
-彩信读取原始索引。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|    名称    | 类型                               | 必填 | 说明     |
-| ---------- | ---------------------------------- | ---- | -------- |
-| version    | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
-| messageId  | string                             | 是   | 消息ID   |
-| to         | Array<[MmsAddress](#mmsaddress8)\> | 是   | 发送至   |
-| from       | [MmsAddress](#mmsaddress8)         | 是   | 来源     |
-| date       | number                             | 是   | 日期     |
-| readStatus | number                             | 是   | 阅读状态 |
-
-## MmsReadRecInd<sup>8+</sup>
-
-彩信读取记录索引。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|    名称    | 类型                               | 必填 | 说明     |
-| ---------- | ---------------------------------- | ---- | -------- |
-| version    | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
-| messageId  | string                             | 是   | 消息ID   |
-| to         | Array<[MmsAddress](#mmsaddress8)\> | 是   | 发送至   |
-| from       | [MmsAddress](#mmsaddress8)         | 是   | 来源     |
-| readStatus | number                             | 是   | 阅读状态 |
-| date       | number                             | 否   | 日期     |
-
-## MmsAttachment<sup>8+</sup>
-
-彩信附件。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|          名称           | 类型                                 | 必填 | 说明               |
-| ----------------------- | ------------------------------------ | ---- | ------------------ |
-| contentId               | string                               | 是   | 内容ID             |
-| contentLocation         | string                               | 是   | 内容位置           |
-| contentDisposition      | [DispositionType](#dispositiontype8) | 是   | 内容处理           |
-| contentTransferEncoding | string                               | 是   | 内容传输编码       |
-| contentType             | string                               | 是   | 内容类型           |
-| isSmil                  | boolean                              | 是   | 同步多媒体集成语言 |
-| path                    | string                               | 否   | 路径               |
-| inBuff                  | Array<number\>                       | 否   | 缓冲区中           |
-| fileName                | string                               | 否   | 文件名             |
-| charset                 | [MmsCharSets](#mmscharsets8)         | 否   | 字符集             |
-
-## MmsAddress<sup>8+</sup>
-
-彩信地址。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|   名称  | 类型                         | 必填 | 说明   |
-| ------- | ---------------------------- | ---- | ------ |
-| address | string                       | 是   | 地址   |
-| charset | [MmsCharSets](#mmscharsets8) | 是   | 字符集 |
-
-## MessageType<sup>8+</sup>
-
-消息类型。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|          名称             | 值   | 说明                 |
-| ------------------------- | ---- | -------------------- |
-| TYPE_MMS_SEND_REQ         | 128  | 彩信发送请求类型     |
-| TYPE_MMS_SEND_CONF        | 129  | 彩信发送配置类型     |
-| TYPE_MMS_NOTIFICATION_IND | 130  | 彩信通知索引类型     |
-| TYPE_MMS_RESP_IND         | 131  | 彩信回复索引类型     |
-| TYPE_MMS_RETRIEVE_CONF    | 132  | 彩信检索配置类型     |
-| TYPE_MMS_ACKNOWLEDGE_IND  | 133  | 彩信确认索引类型     |
-| TYPE_MMS_DELIVERY_IND     | 134  | 彩信传送索引类型     |
-| TYPE_MMS_READ_REC_IND     | 135  | 彩信读取接收索引类型 |
-| TYPE_MMS_READ_ORIG_IND    | 136  | 彩信读取原始索引类型 |
-
-## MmsPriorityType<sup>8+</sup>
-
-彩信优先级类型。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|    名称    | 值   | 说明           |
-| ---------- | ---- | -------------- |
-| MMS_LOW    | 128  | 彩信优先级低   |
-| MMS_NORMAL | 129  | 彩信优先级正常 |
-| MMS_HIGH   | 130  | 彩信优先级高   |
-
-## MmsVersionType<sup>8+</sup>
-
-彩信版本类型。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|      名称       | 值   | 说明        |
-| --------------- | ---- | ----------- |
-| MMS_VERSION_1_0 | 0x10 | 彩信版本1_0 |
-| MMS_VERSION_1_1 | 0x11 | 彩信版本1_1 |
-| MMS_VERSION_1_2 | 0x12 | 彩信版本1_2 |
-| MMS_VERSION_1_3 | 0x13 | 彩信版本1_3 |
-
-## MmsCharSets<sup>8+</sup>
-
-彩信字符集。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|      名称       | 值     | 说明                |
-| --------------- | ------ | ------------------- |
-| BIG5            | 0X07EA | BIG5格式            |
-| ISO_10646_UCS_2 | 0X03E8 | ISO_10646_UCS_2格式 |
-| ISO_8859_1      | 0X04   | ISO_8859_1格式      |
-| ISO_8859_2      | 0X05   | ISO_8859_2格式      |
-| ISO_8859_3      | 0X06   | ISO_8859_3格式      |
-| ISO_8859_4      | 0X07   | ISO_8859_4格式      |
-| ISO_8859_5      | 0X08   | ISO_8859_5格式      |
-| ISO_8859_6      | 0X09   | ISO_8859_6格式      |
-| ISO_8859_7      | 0X0A   | ISO_8859_7格式      |
-| ISO_8859_8      | 0X0B   | ISO_8859_8格式      |
-| ISO_8859_9      | 0X0C   | ISO_8859_9格式      |
-| SHIFT_JIS       | 0X11   | SHIFT_JIS格式       |
-| US_ASCII        | 0X03   | US_ASCII格式        |
-| UTF_8           | 0X6A   | UTF_8格式           |
-
-## DispositionType<sup>8+</sup>
-
-处理类型。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|    名称    | 值   | 说明     |
-| ---------- | ---- | -------- |
-| FROM_DATA  | 0    | 数据来源 |
-| ATTACHMENT | 1    | 附件     |
-| INLINE     | 2    | 内联     |
-
-## ReportType<sup>8+</sup>
-
-报告类型。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|  名称   | 值   | 说明 |
-| ------- | ---- | ---- |
-| MMS_YES | 128  | YES  |
-| MMS_NO  | 129  | NO   |
-
-## CBConfigOptions<sup>7+</sup>
-
-小区广播配置选项。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|      名称      | 类型                 | 必填 | 说明         |
-| -------------- | -------------------- | ---- | ------------ |
-| slotId         | number               | 是   | 卡槽ID       |
-| enable         | boolean              | 是   | 可行         |
-| startMessageId | number               | 是   | 消息起始ID   |
-| endMessageId   | number               | 是   | 消息结束ID   |
-| ranType        | [RanType](#rantype7) | 是   | 设备网络制式 |
-
-## SimMessageStatus<sup>7+</sup>
-
-SIM卡消息状态。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|           名称            | 值   | 说明                        |
-| ------------------------- | ---- | --------------------------- |
-| SIM_MESSAGE_STATUS_FREE   | 0    | SIM卡上的状态可用空间       |
-| SIM_MESSAGE_STATUS_READ   | 1    | 消息已读状态                |
-| SIM_MESSAGE_STATUS_UNREAD | 3    | 消息未读状态                |
-| SIM_MESSAGE_STATUS_SENT   | 5    | 存储发送消息（仅适用于SMS） |
-| SIM_MESSAGE_STATUS_UNSENT | 7    | 储未发送消息（仅适用于SMS） |
-
-## RanType<sup>7+</sup>
-
-设备网络制式。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|   名称    | 值   | 说明 |
-| --------- | ---- | ---- |
-| TYPE_GSM  | 1    | GSM  |
-| TYPE_CDMA | 2    | CMDA |
-
-## SmsEncodingScheme<sup>8+</sup>
-
-短信编码方案。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|         名称         | 值   | 说明         |
-| -------------------- | ---- | ------------ |
-| SMS_ENCODING_UNKNOWN | 0    | 未知短信编码 |
-| SMS_ENCODING_7BIT    | 1    | 7位短信编码  |
-| SMS_ENCODING_8BIT    | 2    | 8位短信编码  |
-| SMS_ENCODING_16BIT   | 3    | 16位短信编码 |
-
-## SimMessageOptions<sup>7+</sup>
-
-SIM卡消息选项。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|  名称  | 类型                                   | 必填 | 说明           |
-| ------ | -------------------------------------- | ---- | -------------- |
-| slotId | number                                 | 是   | 卡槽ID         |
-| smsc   | string                                 | 是   | 短消息业务中心 |
-| pdu    | string                                 | 是   | 协议数据单元   |
-| status | [SimMessageStatus](#simmessagestatus7) | 是   | 状态           |
-
-## UpdateSimMessageOptions<sup>7+</sup>
-
-更新SIM卡消息选项。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|   名称    | 类型                                   | 必填 | 说明           |
-| --------- | -------------------------------------- | ---- | -------------- |
-| slotId    | number                                 | 是   | 卡槽ID         |
-| msgIndex  | number                                 | 是   | 消息索引       |
-| newStatus | [SimMessageStatus](#simmessagestatus7) | 是   | 新状态         |
-| pdu       | string                                 | 是   | 协议数据单元   |
-| smsc      | string                                 | 是   | 短消息业务中心 |
-
-## SimShortMessage<sup>7+</sup>
-
-SIM卡短消息。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|       名称       | 类型                                   | 必填 | 说明          |
-| ---------------- | -------------------------------------- | ---- | ------------- |
-| shortMessage     | [ShortMessage](#shortmessage)          | 是   | 短消息        |
-| simMessageStatus | [SimMessageStatus](#simmessagestatus7) | 是   | SIM卡消息状态 |
-| indexOnSim       | number                                 | 是   | SIM卡索引     |
-
-## MmsDeliveryInd<sup>8+</sup>
-
-彩信发送标识。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|    名称   | 类型                               | 必填 | 说明   |
-| --------- | ---------------------------------- | ---- | ------ |
-| messageId | string                             | 是   | 消息ID |
-| date      | number                             | 是   | 日期   |
-| to        | Array<[MmsAddress](#mmsaddress8)\> | 是   | 发送至 |
-| status    | number                             | 是   | 状态   |
-| version   | [MmsVersionType](#mmsversiontype8) | 是   | 版本   |
-
-## MmsRespInd<sup>8+</sup>
-
-彩信回复标志。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|     名称      | 类型                               | 必填 | 说明     |
-| ------------- | ---------------------------------- | ---- | -------- |
-| transactionId | string                             | 是   | 事件ID   |
-| status        | number                             | 是   | 状态     |
-| version       | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
-| reportAllowed | [ReportType](#reporttype8)         | 否   | 允许报告 |
-
-## SmsSegmentsInfo<sup>8+</sup>
-
-短信段信息。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Telephony.SmsMms
-
-|        名称          | 类型                                     | 必填 | 说明         |
-| -------------------- | ---------------------------------------- | ---- | ------------ |
-| splitCount           | number                                   | 是   | 拆分计数     |
-| encodeCount          | number                                   | 是   | 编码计数     |
-| encodeCountRemaining | number                                   | 是   | 剩余编码计数 |
-| scheme               | [SmsEncodingScheme](#smsencodingscheme8) | 是   | 短信编码方案 |
+| 类型                                                                   | 说明                   |
+| --------------------------------------------------------------------- | --------------------- |
+|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | 存储证书的数据和编码格式 |
