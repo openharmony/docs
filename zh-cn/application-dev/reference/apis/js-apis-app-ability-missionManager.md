@@ -169,7 +169,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md))&gt; | 是 | 执行结果回调函数，返回任务信息。 |
+  | callback | AsyncCallback&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md)&gt; | 是 | 执行结果回调函数，返回任务信息。 |
 
 **示例：**
 
