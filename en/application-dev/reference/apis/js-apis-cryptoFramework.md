@@ -51,7 +51,7 @@ For details about the supported specifications, see [HMAC Algorithm Specificatio
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications). |
+| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications).|
 
 **Return value**
 
@@ -483,7 +483,7 @@ For details about the supported specifications, see [MD Algorithm Specifications
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications). |
+| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications).|
 
 **Return value**
 
@@ -1852,7 +1852,7 @@ Updates the data to encrypt or decrypt by segment. This API uses a promise to re
 
 | Type                           | Description                                            |
 | ------------------------------- | ------------------------------------------------ |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data). |
+| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data).|
 
 **Error codes**
 
@@ -2266,6 +2266,8 @@ Signs the data. This API uses a promise to return the result.
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
