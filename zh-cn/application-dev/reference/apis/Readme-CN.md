@@ -217,7 +217,6 @@
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
-  - [@system.cipher (加密算法)](js-apis-system-cipher.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
 
@@ -246,7 +245,6 @@
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
-  - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -404,6 +402,7 @@
   - [@ohos.fileio (文件管理)](js-apis-fileio.md)
   - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
   - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
+  - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
@@ -415,6 +414,7 @@
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
   - [@system.brightness (屏幕亮度)](js-apis-system-brightness.md)
+  - [@system.cipher (加密算法)](js-apis-system-cipher.md)
   - [@system.configuration (应用配置)](js-apis-system-configuration.md)
   - [@system.device (设备信息)](js-apis-system-device.md)
   - [@system.fetch (数据请求)](js-apis-system-fetch.md)

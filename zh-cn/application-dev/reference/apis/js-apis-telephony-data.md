@@ -740,7 +740,7 @@ promise.then((data) => {
 
 描述蜂窝数据流类型。 
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
+**系统能力**：SystemCapability.Telephony.CellularData
 
 | 名称                   | 值   | 说明                                       |
 | ---------------------- | ---- | ------------------------------------------ |
@@ -754,7 +754,7 @@ promise.then((data) => {
 
 描述蜂窝数据链路连接状态。 
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
+**系统能力**：SystemCapability.Telephony.CellularData
 
 | 名称                    | 值   | 说明                       |
 | ----------------------- | ---- | -------------------------- |

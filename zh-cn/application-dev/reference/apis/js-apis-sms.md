@@ -1425,7 +1425,7 @@ promise.then(data => {
 
 短信实例。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |         名称             |                  类型                   | 必填 | 说明                                                         |
 | ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -1446,7 +1446,7 @@ promise.then(data => {
 
 短信类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 | 名称             | 值   | 说明                                     |
 | ---------------- | ---- | ---------------------------------------- |
@@ -1461,7 +1461,7 @@ promise.then(data => {
 
 发送短信的参数和回调。根据SendMessageOptions中的可选参数content的值判断短信类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |       名称       | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -1478,7 +1478,7 @@ promise.then(data => {
 
 回调实例。返回短信发送结果、存储已发送短信的URI和是否为长短信的最后一部分。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |   名称     | 类型                            | 必填 |                                               说明                                         |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
@@ -1491,7 +1491,7 @@ promise.then(data => {
 
 回调实例，返回短信送达报告。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 | 名称 | 类型                | 必填 | 说明           |
 | ---- | ------------------- | ---- | -------------- |
@@ -1502,7 +1502,7 @@ promise.then(data => {
 
 短信发送结果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 | 名称                                 | 值   | 说明                                                   |
 | ------------------------------------ | ---- | ------------------------------------------------------ |
@@ -1517,7 +1517,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |     名称    | 类型                                                         | 必填 |    说明    |
 | ----------- | ------------------------------------------------------------ | ---- | ---------- |
@@ -1531,7 +1531,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |       名称       | 类型                                 | 必填 | 说明         |
 | ---------------- | ------------------------------------ | ---- | ------------ |
@@ -1557,7 +1557,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |     名称      | 类型                               | 必填 | 说明     |
 | ------------- | ---------------------------------- | ---- | -------- |
@@ -1572,7 +1572,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |      名称       | 类型                               | 必填 | 说明     |
 | --------------- | ---------------------------------- | ---- | -------- |
@@ -1593,7 +1593,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |      名称     | 类型                               | 必填 | 说明     |
 | ------------- | ---------------------------------- | ---- | -------- |
@@ -1607,7 +1607,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |      名称      | 类型                                 | 必填 | 说明     |
 | -------------- | ------------------------------------ | ---- | -------- |
@@ -1632,7 +1632,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |    名称    | 类型                               | 必填 | 说明     |
 | ---------- | ---------------------------------- | ---- | -------- |
@@ -1649,7 +1649,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |    名称    | 类型                               | 必填 | 说明     |
 | ---------- | ---------------------------------- | ---- | -------- |
@@ -1666,7 +1666,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |          名称           | 类型                                 | 必填 | 说明               |
 | ----------------------- | ------------------------------------ | ---- | ------------------ |
@@ -1687,7 +1687,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |   名称  | 类型                         | 必填 | 说明   |
 | ------- | ---------------------------- | ---- | ------ |
@@ -1700,7 +1700,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |          名称             | 值   | 说明                 |
 | ------------------------- | ---- | -------------------- |
@@ -1720,7 +1720,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |    名称    | 值   | 说明           |
 | ---------- | ---- | -------------- |
@@ -1734,7 +1734,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |      名称       | 值   | 说明        |
 | --------------- | ---- | ----------- |
@@ -1749,7 +1749,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |      名称       | 值     | 说明                |
 | --------------- | ------ | ------------------- |
@@ -1774,7 +1774,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |    名称    | 值   | 说明     |
 | ---------- | ---- | -------- |
@@ -1788,7 +1788,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |  名称   | 值   | 说明 |
 | ------- | ---- | ---- |
@@ -1801,7 +1801,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |      名称      | 类型                 | 必填 | 说明         |
 | -------------- | -------------------- | ---- | ------------ |
@@ -1817,7 +1817,7 @@ SIM卡消息状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |           名称            | 值   | 说明                        |
 | ------------------------- | ---- | --------------------------- |
@@ -1833,7 +1833,7 @@ SIM卡消息状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |   名称    | 值   | 说明 |
 | --------- | ---- | ---- |
@@ -1846,7 +1846,7 @@ SIM卡消息状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |         名称         | 值   | 说明         |
 | -------------------- | ---- | ------------ |
@@ -1861,7 +1861,7 @@ SIM卡消息选项。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |  名称  | 类型                                   | 必填 | 说明           |
 | ------ | -------------------------------------- | ---- | -------------- |
@@ -1876,7 +1876,7 @@ SIM卡消息选项。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |   名称    | 类型                                   | 必填 | 说明           |
 | --------- | -------------------------------------- | ---- | -------------- |
@@ -1892,7 +1892,7 @@ SIM卡短消息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |       名称       | 类型                                   | 必填 | 说明          |
 | ---------------- | -------------------------------------- | ---- | ------------- |
@@ -1906,7 +1906,7 @@ SIM卡短消息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |    名称   | 类型                               | 必填 | 说明   |
 | --------- | ---------------------------------- | ---- | ------ |
@@ -1922,7 +1922,7 @@ SIM卡短消息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |     名称      | 类型                               | 必填 | 说明     |
 | ------------- | ---------------------------------- | ---- | -------- |
@@ -1937,7 +1937,7 @@ SIM卡短消息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+**系统能力**：SystemCapability.Telephony.SmsMms
 
 |        名称          | 类型                                     | 必填 | 说明         |
 | -------------------- | ---------------------------------------- | ---- | ------------ |

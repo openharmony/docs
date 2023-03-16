@@ -2435,7 +2435,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 无线接入技术。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                      | 值   | 说明                                                         |
 | ------------------------- | ---- | ------------------------------------------------------------ |
@@ -2458,7 +2458,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络信号强度信息对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |      名称       |           类型              | 必填 |      说明          |
 | --------------- | --------------------------- | ---- | ------------------ |
@@ -2470,7 +2470,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                 | 值   | 说明                                                         |
 | -------------------- | ---- | ------------------------------------------------------------ |
@@ -2486,7 +2486,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络注册状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |       名称           |                 类型                | 必填 |                          说明                                |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
@@ -2505,7 +2505,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络注册状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                          | 值   | 说明                       |
 | ----------------------------- | ---- | -------------------------- |
@@ -2519,7 +2519,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 非独立组网状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                       | 值   | 说明                                                       |
 | -------------------------- | ---- | ---------------------------------------------------------- |
@@ -2535,7 +2535,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 选网模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                        | 值   | 说明           |
 | --------------------------- | ---- | -------------- |
@@ -2549,7 +2549,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                                                      | 值   | 说明                                          |
 | --------------------------------------------------------- | ---- | --------------------------------------------- |
@@ -2594,7 +2594,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称              |                  类型                   | 必填 |                           说明                               |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -2610,7 +2610,7 @@ CDMA小区信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
@@ -2626,7 +2626,7 @@ GSM小区信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -2643,7 +2643,7 @@ LTE小区信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称          | 类型    | 必填 | 说明                    |
 | ------------- | ------- | ---- | ----------------------- |
@@ -2662,7 +2662,7 @@ NR小区信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称    | 类型   | 必填 | 说明             |
 | ------- | ------ | ---- | ---------------- |
@@ -2679,7 +2679,7 @@ TD-SCDMA小区信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
@@ -2696,7 +2696,7 @@ WCDMA小区信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
@@ -2713,7 +2713,7 @@ NR的选择模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                 | 值   | 说明                               |
 | -------------------- | ---- | ---------------------------------- |
@@ -2728,7 +2728,7 @@ NR的选择模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                   | 类型                                              | 必填 | 说明           |
 | ---------------------- | ------------------------------------------------- | ---- | -------------- |
@@ -2741,7 +2741,7 @@ NR的选择模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称            |                         类型                        | 必填 | 说明           |
 | --------------- | --------------------------------------------------- | ---- | -------------- |
@@ -2756,7 +2756,7 @@ NR的选择模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称              | 值   | 说明             |
 | ----------------- | ---- | ---------------- |
@@ -2771,7 +2771,7 @@ NR的选择模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称               |                    类型                       | 必填 |                 说明                   |
 | ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
@@ -2786,7 +2786,7 @@ IMS注册状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称             | 值   | 说明     |
 | ---------------- | ---- | -------- |
@@ -2799,7 +2799,7 @@ IMS注册技术。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                    | 值   | 说明            |
 | ----------------------- | ---- | --------------- |
@@ -2814,7 +2814,7 @@ IMS注册信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称        | 类型                         | 必填 | 说明          |
 | ----------- | ---------------------------- | ---- | ------------- |
@@ -2827,7 +2827,7 @@ IMS服务类型。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |
