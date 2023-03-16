@@ -141,7 +141,7 @@ struct FlexExample2 {
 }
 ```
 
-![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.PNG)
+![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.png)
 
 ```ts
 // xxx.ets
