@@ -72,9 +72,9 @@ import AbilityStage from '@ohos.app.ability.AbilityStage';
 export default class MyAbilityStage extends AbilityStage {
     onCreate() {
         appRecovery.enableAppRecovery(
-            appRecovery.RestartFlag::ALWAYS_RESTART,
-            appRecovery.SaveOccasionFlag::SAVE_WHEN_ERROR,
-            appRecovery.SaveModeFlag::SAVE_WITH_FILE
+            appRecovery.RestartFlag.ALWAYS_RESTART,
+            appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR,
+            appRecovery.SaveModeFlag.SAVE_WITH_FILE
         );
     }
 }

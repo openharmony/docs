@@ -43,20 +43,63 @@ Registers a listener to observe the mission status.
 **Example**
 
 ```ts
-  let listener = {
-      onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
-      onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
-      onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
-      onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
-      onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
-      onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');}
-  };
-  console.log('registerMissionListener');
-  try {
-    let listenerid = missionManager.on('mission', listener);
-  } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
-  }
+import missionManager from '@ohos.app.ability.missionManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let listener = {
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
+};
+
+let listenerId = -1;
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log('[Demo] EntryAbility onCreate');
+        globalThis.abilityWant = want;
+        globalThis.context = this.context;
+    }
+
+    onDestroy() {
+        try {
+            if (listenerId !== -1) {
+                missionManager.off('mission', listenerId).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        } catch (paramError) {
+            console.error('error: ${paramError.code}, ${paramError.message}');
+        }
+        console.log('[Demo] EntryAbility onDestroy');
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log('[Demo] EntryAbility onWindowStageCreate');
+        try {
+            listenerId = missionManager.on('mission', listener);
+        } catch (paramError) {
+            console.error('error: ${paramError.code}, ${paramError.message}');
+        }
+
+        windowStage.loadContent('pages/index', (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+        });
+
+        if (globalThis.flag) {
+            return;
+        }
+    }
+};
 ```
 
 
@@ -82,24 +125,63 @@ Deregisters a mission status listener.
 **Example**
 
 ```ts
-  let listener = {
-      onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
-      onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
-      onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
-      onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
-      onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
-      onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');}
-  };
-  console.log('registerMissionListener');
-  try {
-    let listenerid = missionManager.registerMissionListener(listener);
+import missionManager from '@ohos.app.ability.missionManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-    missionManager.unregisterMissionListener(listenerid, (error) => {
-      console.log('unregisterMissionListener');
-    });
-  } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
-  }
+let listener = {
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
+};
+
+let listenerId = -1;
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log('[Demo] EntryAbility onCreate');
+        globalThis.abilityWant = want;
+        globalThis.context = this.context;
+    }
+
+    onDestroy() {
+        try {
+            if (listenerId !== -1) {
+                missionManager.off('mission', listenerId, (err) => {
+                    console.log(err);
+                });
+            }
+        } catch (paramError) {
+            console.error('error: ${paramError.code}, ${paramError.message}');
+        }
+        console.log('[Demo] EntryAbility onDestroy');
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log('[Demo] EntryAbility onWindowStageCreate');
+        try {
+            listenerId = missionManager.on('mission', listener);
+        } catch (paramError) {
+            console.error('error: ${paramError.code}, ${paramError.message}');
+        }
+
+        windowStage.loadContent('pages/index', (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+        });
+
+        if (globalThis.flag) {
+            return;
+        }
+    }
+};
 ```
 
 
@@ -130,24 +212,63 @@ Deregisters a mission status listener. This API uses a promise to return the res
 **Example**
 
 ```ts
-  let listener = {
-      onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
-      onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
-      onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
-      onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
-      onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
-      onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');}
-  };
-  console.log('registerMissionListener');
-  try {
-  let listenerid = missionManager.registerMissionListener(listener);
+import missionManager from '@ohos.app.ability.missionManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-    missionManager.unregisterMissionListener(listenerid).catch(function (err) {
-      console.log(err);
-    });
-  } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
-  }
+let listener = {
+    onMissionCreated: function (mission) {console.log('--------onMissionCreated-------');},
+    onMissionDestroyed: function (mission) {console.log('--------onMissionDestroyed-------');},
+    onMissionSnapshotChanged: function (mission) {console.log('--------onMissionSnapshotChanged-------');},
+    onMissionMovedToFront: function (mission) {console.log('--------onMissionMovedToFront-------');},
+    onMissionIconUpdated: function (mission, icon) {console.log('--------onMissionIconUpdated-------');},
+    onMissionClosed: function (mission) {console.log('--------onMissionClosed-------');},
+    onMissionLabelUpdated: function (mission) {console.log('--------onMissionLabelUpdated-------');}
+};
+
+let listenerId = -1;
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log('[Demo] EntryAbility onCreate');
+        globalThis.abilityWant = want;
+        globalThis.context = this.context;
+    }
+
+    onDestroy() {
+        try {
+            if (listenerId !== -1) {
+                missionManager.off('mission', listenerId).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        } catch (paramError) {
+            console.error('error: ${paramError.code}, ${paramError.message}');
+        }
+        console.log('[Demo] EntryAbility onDestroy');
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log('[Demo] EntryAbility onWindowStageCreate');
+        try {
+            listenerId = missionManager.on('mission', listener);
+        } catch (paramError) {
+            console.error('error: ${paramError.code}, ${paramError.message}');
+        }
+
+        windowStage.loadContent('pages/index', (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+        });
+
+        if (globalThis.flag) {
+            return;
+        }
+    }
+};
 ```
 
 

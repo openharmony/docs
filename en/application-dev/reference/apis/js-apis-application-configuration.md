@@ -18,7 +18,7 @@ For details about the fields, see the **ohos.application.Configuration.d.ts** fi
 **Example**
     
   ```ts
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window'
 
 export default class MainAbility extends Ability {
@@ -34,11 +34,14 @@ export default class MainAbility extends Ability {
                 console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
                 let language = config.language;
                 let colorMode = config.colorMode;
+            },
+            onMemoryLevel(level){
+                console.log('onMemoryLevel level: ${JSON.stringify(level)}');
             }
         };
 
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.registerEnvironmentCallback(envCallback);
+        applicationContext.on('environment',envCallback);
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {

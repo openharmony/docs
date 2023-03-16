@@ -35,7 +35,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 Called when the system memory level changes.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
@@ -47,11 +47,11 @@ Called when the system memory level changes.
     
 
   ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let callbackId;
 
-export default class MyAbility extends Ability {
+export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();

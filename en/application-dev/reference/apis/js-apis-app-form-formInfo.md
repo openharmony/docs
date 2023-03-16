@@ -31,7 +31,6 @@ Describes widget information.
 | isDefault    | boolean      | Yes   | No    | Whether the widget is the default one.                             |
 | updateEnabled  | boolean               | Yes   | No    | Whether the widget is updatable.                   |
 | formVisibleNotify  | boolean        | Yes   | No    | Whether to send a notification when the widget is visible.           |
-| relatedBundleName | string               | Yes   | No    | Name of the associated bundle to which the widget belongs.          |
 | scheduledUpdateTime        | string               | Yes   | No    | Time when the widget was updated.    |
 | formConfigAbility | string               | Yes   | No    | Configuration ability of the widget, that is, the ability corresponding to the option in the selection box displayed when the widget is long pressed.  |
 | updateDuration        | number       | Yes   | No    | Update period of the widget.|

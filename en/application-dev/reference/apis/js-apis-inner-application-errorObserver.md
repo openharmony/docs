@@ -19,12 +19,12 @@ Called when an unhandled exception occurs in the JS runtime.
 **Example**
 
 ```ts
-import errorManager from '@ohos.application.errorManager';
+import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ' + JSON.stringify(errorMsg));
     }
 };
-errorManager.registerErrorObserver(observer);
+errorManager.on('error',observer);
 ```

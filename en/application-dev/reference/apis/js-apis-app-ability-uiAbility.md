@@ -125,7 +125,7 @@ Called when the **WindowStage** is restored during the migration of this ability
 
 ## Ability.onDestroy
 
-onDestroy(): void;
+onDestroy(): void | Promise&lt;void&gt;;
 
 Called when this ability is destroyed to clear resources.
 
@@ -182,7 +182,7 @@ Called when this ability is switched from the foreground to the background.
 
 ## Ability.onContinue
 
-onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
+onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
 
 Called to save data during the ability migration preparation process.
 
@@ -204,7 +204,7 @@ Called to save data during the ability migration preparation process.
     
   ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  class MyUIAbility extends UIAbility {
+  class MyUIAbility extends Ability {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams['myData'] = 'my1234567';
@@ -232,7 +232,7 @@ Called when a new Want is passed in and this ability is started again.
 **Example**
     
   ```ts
-   class MyUIAbility extends UIAbility {
+   class MyUIAbility extends Ability {
       onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
           console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
@@ -268,7 +268,7 @@ Dumps client information.
 
 ## Ability.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
 
 Called when the framework automatically saves the ability state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this ability.
 
@@ -292,7 +292,7 @@ Called when the framework automatically saves the ability state in the case of a
   ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-class MyUIAbility extends UIAbility {
+class MyUIAbility extends Ability {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
         wantParam['myData'] = 'my1234567';
@@ -309,7 +309,7 @@ Implements sending of sequenceable data to the target ability when the CallerAbi
 
 ## Caller.call
 
-call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 Sends sequenceable data to the target ability.
 
@@ -320,7 +320,7 @@ Sends sequenceable data to the target ability.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
 
 **Return value**
 
@@ -339,8 +339,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
-  class MyMessageAble{ // 自定义的Sequenceable数据结构
+  class MyMessageAble{ // Custom sequenceable data structure.
     name:''
     str:''
     num: 1
@@ -372,7 +371,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       }).then((obj) => {
         caller = obj;
         let msg = new MyMessageAble('msg', 'world'); // See the definition of Sequenceable.
-
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -392,7 +390,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageParcel&gt;;
 
 Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability.
 
@@ -403,7 +401,7 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
 
 **Return value**
 
@@ -422,7 +420,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
     name:''
     str:''
@@ -494,7 +491,6 @@ Releases the caller interface of the target ability.
 **Example**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -520,7 +516,7 @@ Releases the caller interface of the target ability.
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallBack): void;
+ onRelease(callback: OnReleaseCallback): void;
 
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
@@ -530,12 +526,11 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Example**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -574,7 +569,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -587,7 +582,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let caller;
   export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
@@ -626,7 +620,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -639,7 +633,7 @@ For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
     
   ```ts
   let caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainUIAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -690,7 +684,7 @@ For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
     
   ```ts
   let caller;
-  export default class MainUIAbility extends UIAbility {
+  export default class MainUIAbility extends Ability {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -746,7 +740,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:''
       str:''
@@ -814,7 +807,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
   let method = 'call_Function';
   export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
@@ -841,10 +833,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Sequenceable;
+(indata: rpc.MessageParcel): rpc.Parcelable;
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | Name| Readable| Writable| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | Yes| No| [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Prototype of the listener function registered by the callee.|
+| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | Yes| No| [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | Prototype of the listener function registered by the callee.|
