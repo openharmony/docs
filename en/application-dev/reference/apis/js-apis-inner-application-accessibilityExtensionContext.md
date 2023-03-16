@@ -1,4 +1,4 @@
-# AccessibilityExtensionContext
+# AccessibilityExtensionContext (Accessibility Extension Context)
 
 The **AccessibilityExtensionContext** module, inherited from **ExtensionContext**, provides context for **Accessibility Extension** abilities.
 
