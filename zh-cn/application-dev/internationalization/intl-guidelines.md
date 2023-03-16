@@ -181,7 +181,7 @@
    let numberFormat = new Intl.NumberFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md#NumberOptions9)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions9)。
    
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
