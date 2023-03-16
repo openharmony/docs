@@ -325,7 +325,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | 参数名            | 类型            | 必填 | 说明       |
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | 是   | 指定应用的包信息。 |
-| notificationKey | [NotificationKey]((js-apis-notification.md#notificationkey)) | 是   | 通知键值。   |
+| notificationKey | [NotificationKey](js-apis-notification.md#notificationkey) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **错误码：**
@@ -459,7 +459,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                         |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption))          | 是   | 指定应用的包信息。                   |
+| bundle   | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)         | 是   | 指定应用的包信息。                   |
 | callback | AsyncCallback\<void\> | 是   | 删除指定应用的所有通知回调函数。 |
 
 **错误码：**
@@ -547,7 +547,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption)) | 否   | 指定应用的包信息。 |
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否   | 指定应用的包信息。 |
 
 **错误码：**
 

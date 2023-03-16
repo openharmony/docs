@@ -1973,7 +1973,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | 是 | 权限列表。 |
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
 
@@ -2004,7 +2004,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例：**
 
