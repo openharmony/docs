@@ -39,7 +39,7 @@
 
 - 故障查询指的是[faultLogger](../reference/apis/js-apis-faultLogger.md)通过其查询接口获取当前的故障信息。
 
-下图中并没有标记[faultLogger](../reference/apis/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis/js-apis-application-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis/js-apis-faultLogger.md)查询上次的故障信息。
+下图中并没有标记[faultLogger](../reference/apis/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis/js-apis-faultLogger.md)查询上次的故障信息。
 ![故障处理流程示意](./figures/20221106203527.png)
 这里建议应用开发者使用[errorManager](../reference/apis/js-apis-app-ability-errorManager.md)对应用的异常进行处理，处理完成后开发者可以选择调用状态保存接口并主动重启应用。
 如果开发者没有注册[ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md)也没有使能自动恢复，则按照系统的默认逻辑执行进程退出。用户可以选择从启动器再次打开应用。

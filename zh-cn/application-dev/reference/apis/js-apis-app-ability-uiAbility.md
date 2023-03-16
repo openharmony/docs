@@ -277,7 +277,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Objec
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
 | wantParam | {[key:&nbsp;string]:&nbsp;any} | 是 | want相关参数。 |
 
 **返回值：**
@@ -724,7 +724,7 @@ on(method: string, callback: CalleeCallback): void;
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 与客户端约定的通知消息字符串。 | 
   | callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
- 
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
