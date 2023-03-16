@@ -58,4 +58,4 @@ struct TextStyleExample {
 }
 ```
 
-![textstyle](figures/textstyle.PNG)
+![textstyle](figures/textstyle.png)
