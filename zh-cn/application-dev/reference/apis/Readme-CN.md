@@ -213,7 +213,6 @@
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
-  - [@system.cipher (加密算法)](js-apis-system-cipher.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
 
@@ -404,6 +403,7 @@
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
   - [@system.brightness (屏幕亮度)](js-apis-system-brightness.md)
+  - [@system.cipher (加密算法)](js-apis-system-cipher.md)
   - [@system.configuration (应用配置)](js-apis-system-configuration.md)
   - [@system.device (设备信息)](js-apis-system-device.md)
   - [@system.fetch (数据请求)](js-apis-system-fetch.md)
