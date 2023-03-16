@@ -3755,6 +3755,9 @@ try {
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+> **说明：** 
+>
+> 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -3771,8 +3774,42 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+let devManager;
 let kvStore;
-kvStore.sync(['deviceIds'], distributedData.SyncMode.PULL_ONLY, 1000);
+const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
+// create deviceManager
+deviceManager.createDeviceManager('bundleName', (err, value) => {
+  if (!err) {
+    devManager = value;
+    let deviceIds = [];
+    if (devManager != null) {
+      var devices = devManager.getTrustedDeviceListSync();
+      for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+      }
+    }
+    try {
+      kvStore.on('syncComplete', function (data) {
+        console.log('Sync dataChange');
+      });
+      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
+        if (err != undefined) {
+          console.error(`Fail to sync.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.log('Succeeded in putting data');
+        const devices = ['deviceList'];
+        const mode = distributedKVStore.SyncMode.PULL_ONLY;
+        kvStore.sync(devices, mode, 1000);
+      });
+    } catch (e) {
+      console.error(`Fail to sync.code is ${e.code},message is ${e.message}`);
+    }
+  }
+});
 ```
 
 ### on('dataChange')<sup>8+</sup>
