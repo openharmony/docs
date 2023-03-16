@@ -29,6 +29,18 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
        }
    }
    ```
+   
+4. Set **srcEntry** in the [module.json5 file](../quick-start/module-configuration-file.md) to the code path of the module.
+   ```json
+   {
+     "module": {
+       "name": "entry",
+       "type": "entry",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+       // ...
+     }
+   }
+   ```
 
 
 [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
@@ -41,6 +53,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 - **onConfigurationUpdated()** event callback: triggered when the global system configuration changes. The global system configuration, such as the system language and theme, are defined in the [Configuration](../reference/apis/js-apis-app-ability-configuration.md) class before project configuration.
 
 - **onMemoryLevel()** event callback: triggered when the system adjusts the memory.
+  
 
 When an application is switched to the background, it is cached in the background. This adversely affects the overall system performance. When system resources are insufficient, the system reclaims memory from applications in multiple ways. For example, the system may stop applications to release memory for executing key tasks. To further maintain the balance of the system memory and prevent the system from stopping application processes, you can subscribe to the system memory changes in the **onMemoryLevel()** lifecycle callback of AbilityStage to release unnecessary resources.
 
@@ -54,4 +67,3 @@ When an application is switched to the background, it is cached in the backgroun
       }
   }
   ```
-

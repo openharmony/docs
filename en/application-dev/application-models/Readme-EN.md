@@ -21,6 +21,7 @@
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
       - [StaticSubscriberExtensionAbility](static-subscriber-extension-ability.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [WindowExtensionAbility](windowextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
@@ -36,6 +37,7 @@
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
       - [Cross-Device Migration (System Applications Only)](hop-cross-device-migration.md)
       - [Multi-device Collaboration (System Applications Only)](hop-multi-device-collaboration.md)
+    - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
   - IPC
     - [Process Model](process-model-stage.md)
     - Common Events
@@ -52,6 +54,7 @@
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission Management and Launch Type](mission-management-launch-type.md)
     - [Page Stack and MissionList](page-mission-stack.md)
+    - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   - [Application Configuration File](config-file-stage.md)
 - FA Model Development
   - [FA Model Development Overview](fa-model-development-overview.md)
