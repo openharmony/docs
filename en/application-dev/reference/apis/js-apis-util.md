@@ -27,7 +27,7 @@ Prints the input content in a formatted string.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | format | string | Yes| Format of the string to print.|
-| ...args | Object[] | No| Data to format.|
+| ...args | Object[] | No| Values to format. The formatted values will replace the wildcard in the string. If this parameter is not set, the first parameter is returned by default.|
 
 **Return value**
 | Type| Description|
@@ -88,14 +88,14 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 **Example**
   ```js
-  async function promiseFn() {
-      return Promise.reject('value');
-  }
-  var cb = util.callbackWrapper(promiseFn);
-  cb((err, ret) => {
-      console.log(err);
-      console.log(ret);
-  })
+async function fn() {
+   return 'hello world';
+}
+let cb = util.callbackWrapper(fn);
+cb(1, (err, ret) => {
+   if (err) throw err;
+   console.log(ret);
+});
   ```
 
 
