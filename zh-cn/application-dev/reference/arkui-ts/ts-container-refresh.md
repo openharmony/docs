@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  当设置自定义组件时，自定义组件的高度限制在64_vp之内
 
 ## 子组件
 
@@ -12,7 +14,7 @@
 
 ## 接口
 
-Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , friction?: number | string \}\)
+Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , friction?: number | string, builder?: custombuilder\}\)
 
 **参数：**
 
@@ -21,6 +23,7 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , fr
 | refreshing | boolean | 是 | 当前组件是否正在刷新。<br/>该参数支持[$$](../../quick-start/arkts-restrictions-and-extensions.md#变量的双向绑定)双向绑定变量。 |
 | offset | string&nbsp;\|&nbsp;number | 否 | 刷新组件静止时距离父组件顶部的距离。<br/>默认值：16，单位vp |
 | friction | number&nbsp;\|&nbsp;string | 否 | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
+| builder | custombuilder | 否 | 下拉时，自定义刷新样式的组件 |
 
 
 
