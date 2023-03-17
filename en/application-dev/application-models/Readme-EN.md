@@ -19,6 +19,7 @@
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [DataShareExtensionAbility (System Applications Only)](datashareextensionability.md)
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want
