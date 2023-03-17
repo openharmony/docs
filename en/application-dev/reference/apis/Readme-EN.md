@@ -225,7 +225,7 @@
   - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
   - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
-  - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)
+  - [@ohos.file.picker (Picker)](js-apis-file-picker.md)
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
