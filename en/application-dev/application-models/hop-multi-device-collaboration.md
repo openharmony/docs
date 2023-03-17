@@ -1,4 +1,4 @@
-# Multi-device Collaboration (System Applications Only)
+# Multi-device Collaboration (for System Applications Only)
 
 
 ## When to Use
@@ -317,7 +317,7 @@ A system application can connect to a service on another device by calling [conn
 
 ## Using Cross-Device Ability Call
 
-The basic principle of cross-device ability call is the same as that of intra-device ability call. For details, see [Using Ability Call to Implement UIAbility Interaction (System Applications Only)](uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction-system-applications-only).
+The basic principle of cross-device ability call is the same as that of intra-device ability call. For details, see [Using Ability Call to Implement UIAbility Interaction (for System Applications Only)](uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction-for-system-applications-only).
 
 The following describes how to implement multi-device collaboration through cross-device ability call.
 

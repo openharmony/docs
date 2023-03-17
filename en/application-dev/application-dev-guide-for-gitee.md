@@ -24,15 +24,15 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
-- [Common Event and Notification](notification/Readme-EN.md)
+- [Notification](notification/Readme-EN.md)
 - [Window Manager](windowmanager/Readme-EN.md)
 - [WebGL](webgl/Readme-EN.md)
 - [Media](media/Readme-EN.md)
 - [Security](security/Readme-EN.md)
 - [Connectivity](connectivity/Readme-EN.md)
-- [Telephony](telephony/Readme-EN.md)
+- [Telephony Service](telephony/Readme-EN.md)
 - [Data Management](database/Readme-EN.md)
-- [Task Management](task-management/Readme-EN.md)
+- [Background Task Management](task-management/Readme-EN.md)
 - [Device Management](device/Readme-EN.md)
 - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
 - [DFX](dfx/Readme-EN.md)
@@ -40,6 +40,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Application Test](application-test/Readme-EN.md)
 - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/Readme-EN.md)
+- [File Management](file-management/medialibrary-overview.md)
 
 ### Tools
 
@@ -48,7 +49,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ### Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/monthly_20221018/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
 
 ### API References
 
