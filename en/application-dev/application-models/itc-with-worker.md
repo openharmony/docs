@@ -18,7 +18,7 @@ To develop the Worker mode, perform the following steps:
      }
    ```
 
-2. Create the **worker.js** file based on the configuration in **build-profile.json5**.
+2. Create the **worker.ts** file based on the configuration in **build-profile.json5**.
 
    ```ts
    import worker from '@ohos.worker';
@@ -58,7 +58,7 @@ To develop the Worker mode, perform the following steps:
       ```ts
       import worker from '@ohos.worker';
 
-      let wk = new worker.ThreadWorker("../workers/worker.js");
+      let wk = new worker.ThreadWorker("../workers/worker.ts");
 
       // Send a message to the worker thread.
       wk.postMessage("message from main thread.")
@@ -74,6 +74,6 @@ To develop the Worker mode, perform the following steps:
 
 > **NOTE**
 > 
-> - If the relative path of **worker.ts** configured in **build-profile.json5** is **./src/main/ets/workers/worker.ts**, pass in the path **entry/ets/workers/worker.ts** when creating a worker thread in the stage model, and pass in the path **../workers/worker.js** when creating a worker thread in the FA model.
+> - If the relative path of **worker.ts** configured in **build-profile.json5** is **./src/main/ets/workers/worker.ts**, pass in the path **entry/ets/workers/worker.ts** when creating a worker thread in the stage model, and pass in the path **../workers/worker.ts** when creating a worker thread in the FA model.
 > 
 > - For details about the data types supported between the main thread and worker thread, see [Sequenceable Data Types](../reference/apis/js-apis-worker.md#sequenceable-data-types).
