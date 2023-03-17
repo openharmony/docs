@@ -86,8 +86,8 @@ For details about the error codes, see [Event Error Codes](../errorcodes/errorco
 ```ts
 // Attributes of a common event.
 let options = {
-	code: 0,			 // Initial code of the common event.
-	data: "initial data",// Initial data of the common event.
+	code: 0,			 // Result code of the common event.
+	data: "initial data",// Result data of the common event.
 	isOrdered: true	 // The common event is an ordered one.
 }
 
@@ -186,8 +186,8 @@ For details about the error codes, see [Event Error Codes](../errorcodes/errorco
 ```ts
 // Attributes of a common event.
 let options = {
-	code: 0,			 // Initial code of the common event.
-	data: "initial data",// Initial data of the common event.
+	code: 0,			 // Result code of the common event.
+	data: "initial data",// Result data of the common event.
 }
 
 // Callback for common event publication.
@@ -224,7 +224,7 @@ Creates a subscriber. This API uses an asynchronous callback to return the resul
 
 | Name         | Type                                                        | Mandatory| Description                      |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)         | Yes  | Subscriber information.            |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | Yes  | Subscriber information.            |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -270,7 +270,7 @@ Creates a subscriber. This API uses a promise to return the result.
 
 | Name         | Type                                                 | Mandatory| Description          |
 | ------------- | ----------------------------------------------------- | ---- | -------------- |
-| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)  | Yes  | Subscriber information.|
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | Yes  | Subscriber information.|
 
 **Return value**
 | Type                                                     | Description            |
@@ -327,7 +327,7 @@ let subscribeInfo = {
 
 // Callback for common event subscription.
 function SubscribeCB(err, data) {
-    if (err.code) {
+    if (err) {
         console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe ");
