@@ -5,6 +5,7 @@
   - [HTTP Data Request](http-request.md)
   - [WebSocket Connection](websocket-connection.md)
   - [Socket Connection](socket-connection.md)
+  - [Network Sharing](net-sharing.md)
 - IPC & RPC
   - [IPC & RPC Overview](ipc-rpc-overview.md)
   - [IPC & RPC Development](ipc-rpc-development-guideline.md)

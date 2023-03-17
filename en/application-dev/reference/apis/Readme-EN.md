@@ -198,7 +198,7 @@
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
   - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
 
-- Background Tasks
+- Background Task
   - [@ohos.distributedMissionManager (Distributed Mission Management)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (Reminder Agent Management)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager.md)
@@ -214,7 +214,6 @@
   - [@ohos.security.huks (HUKS)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (Facial Authentication)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)
-  - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
 
@@ -257,6 +256,7 @@
   - [@ohos.net.connection (Network Connection Management)](js-apis-net-connection.md)
   - [@ohos.net.ethernet (Ethernet Connection Management)](js-apis-net-ethernet.md)
   - [@ohos.net.http (Data Request)](js-apis-http.md)
+  - [@ohos.net.policy (Network Policy Management)](js-apis-net-policy.md)
   - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
@@ -392,6 +392,7 @@
   - [@ohos.fileio (File Management)](js-apis-fileio.md)
   - [@ohos.geolocation (Geolocation)](js-apis-geolocation.md)
   - [@ohos.hiAppEvent (Application Event Logging)](js-apis-hiappevent.md)
+  - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
   - [@ohos.prompt (Prompt)](js-apis-prompt.md)
   - [@ohos.reminderAgent (Reminder Agent)](js-apis-reminderAgent.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
@@ -403,12 +404,12 @@
   - [@system.battery (Battery Information)](js-apis-system-battery.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)
   - [@system.brightness (Screen Brightness)](js-apis-system-brightness.md)
+  - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
   - [@system.configuration (Application Configuration)](js-apis-system-configuration.md)
   - [@system.device (Device Information)](js-apis-system-device.md)
   - [@system.fetch (Data Request)](js-apis-system-fetch.md)
   - [@system.file (File Storage)](js-apis-system-file.md)
   - [@system.geolocation (Geographic Location)](js-apis-system-location.md)
-  - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
   - [@system.mediaquery (Media Query)](js-apis-system-mediaquery.md)
   - [@system.network (Network State)](js-apis-system-network.md)
   - [@system.notification (Notification)](js-apis-system-notification.md)

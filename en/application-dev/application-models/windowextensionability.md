@@ -14,7 +14,7 @@ the context is [WindowExtensionContext](../reference/apis/js-apis-inner-applicat
 >
 
 
-## Setting an Embedded Ability (System Applications Only)
+## Setting an Embedded Ability (for System Applications Only)
 
 The **WindowExtensionAbility** class provides **onConnect()**, **onDisconnect()**, and **onWindowReady()** lifecycle callbacks, which can be overridden.
 
@@ -78,7 +78,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
    ```
 
 
-## Starting an Embedded Ability (System Applications Only)
+## Starting an Embedded Ability (for System Applications Only)
 
 System applications can load the created WindowExtensionAbility through the AbilityComponent.
 
