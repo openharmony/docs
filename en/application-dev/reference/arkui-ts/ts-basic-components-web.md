@@ -28,7 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | Name       | Type                                    | Mandatory  | Description   |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource.|
+| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
@@ -67,15 +67,52 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+  Example of loading local resource files in the sandbox:
+  1. Use[globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
+     ```ts
+     // xxx.ets
+     import web_webview from '@ohos.web.webview'
+     let url = 'file://' + globalThis.filesDir + '/xxx.html'
+
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: web_webview.WebviewController = new web_webview.WebviewController()
+       build() {
+         Column() {
+           // Load the files in the sandbox.
+           Web({ src: url, controller: this.controller })
+         }
+       }
+     }
+     ```
+
+  2. Modify the **MainAbility.ts** file.
+  
+     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining the Application Development Path](../../application-models/application-context-stage.md#obtaining-the-application-development-path).
+     ```ts
+     // xxx.ts
+     import UIAbility from '@ohos.app.ability.UIAbility';
+     import web_webview from '@ohos.web.webview';
+
+     export default class EntryAbility extends UIAbility {
+         onCreate(want, launchParam) {
+             // Bind filesDir to the globalThis object to implement data synchronization between the UIAbility component and the UI.
+             globalThis.filesDir = this.context.filesDir
+             console.log("Sandbox path is " + globalThis.filesDir)
+         }
+     }
+     ```
+
+     ```html
+     <!-- index.html -->
+     <!DOCTYPE html>
+     <html>
+         <body>
+             <p>Hello World</p>
+         </body>
+     </html>
+     ```
 
 ## Attributes
 
@@ -4476,7 +4513,7 @@ This API is deprecated since API version 9. You are advised to use [setCookie<su
 
 | Name  | Type  | Mandatory  | Default Value | Description             |
 | ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | Yes   | -    | URL of the cookie to set.|
+| url   | string | Yes   | -    | URL of the cookie to set. A complete URL is recommended.|
 | value | string | Yes   | -    | Value of the cookie to set.        |
 
 **Return value**

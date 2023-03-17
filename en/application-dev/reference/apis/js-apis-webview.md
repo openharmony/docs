@@ -486,7 +486,7 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+  updataContent: string = '<body><div><image src=file:///data/storage/el1/bundle/entry/resources/rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
 
   build() {
     Column() {
@@ -3208,7 +3208,7 @@ Obtains the cookie value corresponding to the specified URL.
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie value to obtain.|
+| url    | string | Yes  | URL of the cookie value to obtain. A complete URL is recommended.|
 
 **Return value**
 
@@ -3264,7 +3264,7 @@ Sets a cookie value for the specified URL.
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set.|
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 
 **Error codes**
@@ -4793,4 +4793,3 @@ Defines a custom URL scheme.
 | schemeName     | string    | Yes  | Yes  | Name of the custom URL scheme. The value can contain a maximum of 32 characters and include only lowercase letters, digits, periods (.), plus signs (+), and hyphens (-).       |
 | isSupportCORS  | boolean   | Yes  | Yes  | Whether to support cross-origin resource sharing (CORS).   |
 | isSupportFetch | boolean   | Yes  | Yes  | Whether to support fetch requests.          |
-
