@@ -2,7 +2,7 @@
 
 程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -531,7 +531,9 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 校验应用是否授予权限。使用Promise异步回调。
 
-> **说明：** 建议使用[checkAccessToken](#checkaccesstoken9)替代。
+> **说明：** 
+> 
+> 建议使用[checkAccessToken](#checkaccesstoken9)替代。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -658,7 +660,9 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 校验应用是否授予权限。使用Promise异步回调。
 
-> **说明：** 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
+> **说明：**
+> 
+> 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
 
 **系统能力：** SystemCapability.Security.AccessToken
 

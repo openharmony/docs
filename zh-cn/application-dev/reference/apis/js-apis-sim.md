@@ -3865,7 +3865,7 @@ try {
 
 SIM卡状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                  | 值   | 说明                                                       |
 | --------------------- | ---- | ---------------------------------------------------------- |
@@ -3880,7 +3880,7 @@ SIM卡状态。
 
 卡类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称 | 值 | 说明 |
 | ----- | ----- | ----- |
@@ -3901,7 +3901,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     | 值   | 说明        |
 | -------- | ---- | ----------- |
@@ -3914,7 +3914,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
@@ -3927,7 +3927,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称         | 值   | 说明                                            |
 | ------------ | ---- | ----------------------------------------------- |
@@ -3948,7 +3948,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称            | 类型   | 必填 | 说明                  |
 | --------------- | ------ | ---- | --------------------- |
@@ -3961,7 +3961,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     |           类型           | 必填 |   说明   |
 | -------- | ------------------------ | ---- | -------- |
@@ -3975,7 +3975,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     |               类型               | 必填 |      说明     |
 | -------- | -------------------------------- | ---- | ------------- |
@@ -3988,7 +3988,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称       | 类型    | 必填 | 说明             |
 | ---------- | ------- | ---- | ---------------- |
@@ -4006,7 +4006,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称  | 类型   | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
@@ -4019,7 +4019,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称         | 类型   | 必填 |    说明    |
 | ------------ | ------ | ---- | ---------- |
@@ -4034,7 +4034,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称            | 值   | 说明       |
 | --------------- | ---- | ---------- |
@@ -4047,7 +4047,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |                             名称                        |                             值                         |         说明         |
 | ------------------------------------------------------- | ------------------------------------------------------ | -------------------- |
