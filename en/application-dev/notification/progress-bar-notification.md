@@ -3,7 +3,7 @@
 
 The progress notification is a commonly used notification type, mainly used to display the progress of an ongoing operation, such as file downloading. When publishing a progress notification through the notification subsystem, you can use the readily available template by specifying the related attributes, such as the template name and template data.
 
-In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#notificationtemplate), which can only be of the progress type, **data** indicates custom template data.
+In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
 
 
 ## Available APIs
@@ -20,13 +20,13 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
 2. Import the module.
    
    ```ts
-   import notificationManager from '@ohos.notificationManager';
+   import NotificationManager from '@ohos.notificationManager';
    ```
 
 3. Check whether a specific template is supported. In this example, the template of the **downloadTemplate** type is checked.
    
    ```ts
-   notificationManager.isSupportTemplate('downloadTemplate').then((data) => {
+   NotificationManager.isSupportTemplate('downloadTemplate').then((data) => {
      console.info(`[ANS] isSupportTemplate success`);
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
      // ...
@@ -44,7 +44,7 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
    let notificationRequest = {
      id: 1,
      content: {
-       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'test_title',
          text: 'test_text',
@@ -59,7 +59,7 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
    }
    
    // Publish the notification.
-   notificationManager.publish(notificationRequest, (err) => {
+   NotificationManager.publish(notificationRequest, (err) => {
      if (err) {
        console.error(`[ANS] failed to publish, error[${err}]`);
        return;
