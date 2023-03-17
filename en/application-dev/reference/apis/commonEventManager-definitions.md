@@ -59,7 +59,7 @@ Indicates that the device screen is on and the device is in interactive state.
 - Required subscriber permissions: none
 
 
-## COMMON_EVENT_THERMAL_LEVEL_CHANGED<sup>8+<sup>
+## COMMON_EVENT_THERMAL_LEVEL_CHANGED<sup>8+</sup>
 Indicates that the device's thermal level has changed.
 - Value: **usual.event.THERMAL_LEVEL_CHANGED**
 - Required subscriber permissions: none
@@ -658,6 +658,10 @@ Indicates that the system starts charging the battery.
 - Value: **usual.event.CHARGING**
 - Required subscriber permissions: none
 
+## COMMON_EVENT_CHARGE_TYPE_CHANGED
+Indicates that the system charging type has changed. This event is available only for system applications.
+- Value: **usual.event.CHARGE_TYPE_CHANGED**
+- Required subscriber permissions: none
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
 (Reserved, not supported yet) Indicates that the system idle mode has changed.
@@ -845,31 +849,31 @@ Indicates that a USB device has been detached from the device functioning as a U
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
-## COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>
+## COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup>
 Indicates that an external storage device was removed.
 - Value: **usual.event.data.VOLUME_REMOVED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
-## COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>
+## COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup>
 Indicates that an external storage device was unmounted.
 - Value: **usual.event.data.VOLUME_UNMOUNTED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
-## COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>
+## COMMON_EVENT_VOLUME_MOUNTED<sup>9+</sup>
 Indicates that an external storage device was mounted.
 - Value: **usual.event.data.VOLUME_MOUNTED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
-## COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>
+## COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+</sup>
 Indicates that an external storage device was removed without being unmounted.
 - Value: **usual.event.data.VOLUME_BAD_REMOVAL**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
-## COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>
+## COMMON_EVENT_VOLUME_EJECT<sup>9+</sup>
 Indicates that an external storage device was ejected (at the software level).
 - Value: usual.event.data.VOLUME_EJECT
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
@@ -905,23 +909,23 @@ Indicates that the screen has been split.
 - Required subscriber permissions: ohos.permission.RECEIVER_SPLIT_SCREEN
 
 
-## COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>
+## COMMON_EVENT_SLOT_CHANGE<sup>9+</sup>
 Indicates that the notification slot has been updated.
 - Value: **usual.event.SLOT_CHANGE**
 - Required subscriber permissions: ohos.permission.NOTIFICATION_CONTROLLER
 
 
-## COMMON_EVENT_SPN_INFO_CHANGED<sup>9+<sup>
+## COMMON_EVENT_SPN_INFO_CHANGED<sup>9+</sup>
 Indicates that the SPN displayed has been updated.
 - Value: **usual.event.SPN_INFO_CHANGED**
 - Required subscriber permissions: none
 
 
-## COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+<sup>
+## COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+</sup>
 Indicates the result of applying a quick fix to the application.
 - Value: **usual.event.QUICK_FIX_APPLY_RESULT**
 - Required subscriber permissions: none
-## COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+<sup>
+## COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+</sup>
 Indicates that the HTTP proxy configuration has changed.
 - Value: **usual.event.HTTP_PROXY_CHANGE**
 - Required subscriber permissions: none
