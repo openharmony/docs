@@ -325,7 +325,7 @@ Removes a notification for a specified application. This API uses a promise to r
 | Name           | Type           | Mandatory| Description      |
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | Yes  | Bundle information of the application.|
-| notificationKey | [NotificationKey]((js-apis-notification.md#notificationkey)) | Yes  | Notification key.  |
+| notificationKey | [NotificationKey](js-apis-notification.md#notificationkey)) | Yes  | Notification key.  |
 | reason          | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 
 **Error codes**
@@ -459,7 +459,7 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 | Name    | Type                 | Mandatory| Description                        |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption))          | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption))          | Yes  | Bundle information of the application.                  |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -547,7 +547,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption)) | No  | Bundle information of the application.|
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)) | No  | Bundle information of the application.|
 
 **Error codes**
 
