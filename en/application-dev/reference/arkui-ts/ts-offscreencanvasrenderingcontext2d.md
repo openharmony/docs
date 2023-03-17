@@ -2412,6 +2412,8 @@ toDataURL(type?: string, quality?: number): string
 
 Generates a URL containing image display information.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name    | Type  | Mandatory  | Description                                      |
