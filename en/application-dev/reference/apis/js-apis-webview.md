@@ -3626,7 +3626,7 @@ Obtains the cookie value corresponding to the specified URL.
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie value to obtain.|
+| url    | string | Yes  | URL of the cookie value to obtain. A complete URL is recommended.|
 
 **Return value**
 
@@ -3682,7 +3682,7 @@ Sets a cookie value for the specified URL.
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set.|
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 
 **Error codes**

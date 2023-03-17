@@ -28,7 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | Name       | Type                                    | Mandatory  | Description   |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol.|
+| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
@@ -85,15 +85,53 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+  Example of loading local resource files in the sandbox:
+
+  1. Use[globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
+     ```ts
+     // xxx.ets
+     import web_webview from '@ohos.web.webview'
+     let url = 'file://' + globalThis.filesDir + '/xxx.html'
+
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: web_webview.WebviewController = new web_webview.WebviewController()
+       build() {
+         Column() {
+           // Load the files in the sandbox.
+           Web({ src: url, controller: this.controller })
+         }
+       }
+     }
+     ```
+
+  2. Modify the **MainAbility.ts** file.
+  
+     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining the Application Development Path](../../application-models/application-context-stage.md#obtaining-the-application-development-path).
+     ```ts
+     // xxx.ts
+     import UIAbility from '@ohos.app.ability.UIAbility';
+     import web_webview from '@ohos.web.webview';
+
+     export default class EntryAbility extends UIAbility {
+         onCreate(want, launchParam) {
+             // Bind filesDir to the globalThis object to implement data synchronization between the UIAbility component and the UI.
+             globalThis.filesDir = this.context.filesDir
+             console.log("Sandbox path is " + globalThis.filesDir)
+         }
+     }
+     ```
+
+     ```html
+     <!-- index.html -->
+     <!DOCTYPE html>
+     <html>
+         <body>
+             <p>Hello World</p>
+         </body>
+     </html>
+     ```
 
 ## Attributes
 
@@ -2996,6 +3034,50 @@ Registers a callback for audio playback status changes on the web page.
   }
   ```
 
+### onLoadIntercept<sup>10+</sup>
+
+onLoadIntercept(callback: (event?: { request: WebResourceRequest }) => boolean)
+
+Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+
+**Parameters**
+
+| Name | Type                                    | Description     |
+| ------- | ---------------------------------------- | --------- |
+| request | [Webresourcerequest](#webresourcerequest) | Information about the URL request.|
+
+**Return value**
+
+| Type     | Description                      |
+| ------- | ------------------------ |
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onUrlLoadIntercept((event) => {
+            console.log('url:' + event.request.getRequestUrl())
+            console.log('isMainFrame:' + event.request.isMainFrame())
+            console.log('isRedirect:' + event.request.isRedirect())
+            console.log('isRequestGesture:' + event.request.isRequestGesture())
+            return true
+          })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
@@ -3509,6 +3591,8 @@ Uses the specified private key and client certificate chain.
 ### confirm<sup>10+</sup>
 
 confirm(authUri : string): void
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
 
 Instructs the **\<Web>** component to use the specified credentials (obtained from the certificate management module).
 
@@ -4687,7 +4771,7 @@ This API is deprecated since API version 9. You are advised to use [setCookie<su
 
 | Name  | Type  | Mandatory  | Default Value | Description             |
 | ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | Yes   | -    | URL of the cookie to set.|
+| url   | string | Yes   | -    | URL of the cookie to set. A complete URL is recommended.|
 | value | string | Yes   | -    | Value of the cookie to set.        |
 
 **Return value**
