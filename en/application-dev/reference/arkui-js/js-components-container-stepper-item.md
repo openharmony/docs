@@ -1,9 +1,10 @@
 # stepper-item
 
-The **\<stepper-item>** component displays a step in the step navigator. This component is the child component of **\<stepper>**.
-
 >  **NOTE**
 > This component is supported since API version 5. Updates will be marked with a superscript to indicate their earliest API version.
+
+The **\<stepper-item>** component displays a step in the step navigator. This component is the child component of **\<stepper>**.
+
 
 ## Required Permissions
 
