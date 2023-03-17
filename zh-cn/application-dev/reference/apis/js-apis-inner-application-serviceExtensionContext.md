@@ -17,7 +17,7 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包�
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
   let context;
-  let closeRemote; // 断开连接时需要释放
+  let commRemote; // 断开连接时需要释放
   class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // 获取ServiceExtensionContext
@@ -1095,7 +1095,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
   };
   let options = {
     onConnect(elementName, remote) { 
-      closeRemote = remote;
+      commRemote = remote;
       console.log('----------- onConnect -----------'); 
     },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
@@ -1159,7 +1159,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
   let accountId = 100;
   let options = {
     onConnect(elementName, remote) { 
-      closeRemote = remote;
+      commRemote = remote;
       console.log('----------- onConnect -----------');
     },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
@@ -1211,7 +1211,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
-      closeRemote = null;
+      commRemote = null;
       if (error.code) {
         // 处理业务逻辑错误
         console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
@@ -1221,7 +1221,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
       console.log('disconnectServiceExtensionAbility succeed');
     });
   } catch (paramError) {
-    closeRemote = null;
+    commRemote = null;
     // 处理入参错误异常
     console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
@@ -1269,17 +1269,17 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
   try {
     this.context.disconnectServiceExtensionAbility(connection)
       .then((data) => {
-        closeRemote = null;
+        commRemote = null;
         // 执行正常业务
         console.log('disconnectServiceExtensionAbility succeed');
       })
       .catch((error) => {
-        closeRemote = null;
+        commRemote = null;
         // 处理业务逻辑错误
         console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
-    closeRemote = null;
+    commRemote = null;
     // 处理入参错误异常
     console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }

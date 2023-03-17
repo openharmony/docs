@@ -1349,7 +1349,7 @@ let want = {
 };
 let options = {
   onConnect(elementName, remote) {
-    closeRemote = remote;
+    commRemote = remote;
     console.info('onConnect...')
   },
   onDisconnect(elementName) {
@@ -1416,7 +1416,7 @@ let want = {
 let accountId = 100;
 let options = {
   onConnect(elementName, remote) {
-    closeRemote = remote;
+    commRemote = remote;
     console.info('onConnect...')
   },
   onDisconnect(elementName) {
@@ -1473,7 +1473,7 @@ let connection = 1;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
-    closeRemote = null;
+    commRemote = null;
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1483,7 +1483,7 @@ try {
     console.info('disconnectServiceExtensionAbility succeed');
   });
 } catch (err) {
-  closeRemote = null;
+  commRemote = null;
   // 处理入参错误异常
   console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -1521,7 +1521,7 @@ let connection = 1;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
-    closeRemote = null;
+    commRemote = null;
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1531,7 +1531,7 @@ try {
     console.info('disconnectServiceExtensionAbility succeed');
   });
 } catch (err) {
-  closeRemote = null;
+  commRemote = null;
   // 处理入参错误异常
   console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
