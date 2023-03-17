@@ -1973,7 +1973,7 @@ Requests permissions from the user by displaying a dialog box. This API uses an 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| Permissions to request.|
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -2004,7 +2004,7 @@ Requests permissions from the user by displaying a dialog box. This API uses a p
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)&gt; | Promise used to return the result.|
+| Promise&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | Promise used to return the result.|
 
 **Example**
 

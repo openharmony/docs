@@ -24,7 +24,7 @@ Obtains the Want in a **WantAgent** object. This API uses an asynchronous callba
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| agent     | [WantAgent](js-apis-inner-wantAgent-wantAgent.md)              | Yes  | **WantAgent** object.          |
+| agent     | [WantAgent](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | **WantAgent** object.          |
 | callback | AsyncCallback\<Want\> | Yes  | Callback used to return the Want.|
 
 **Example**
@@ -95,7 +95,7 @@ Obtains the Want in a **WantAgent** object. This API uses a promise to return th
 
 | Name| Type         | Mandatory| Description         |
 | ---- | ------------- | ---- | ------------- |
-| agent | [WantAgent](js-apis-inner-wantAgent-wantAgent.md) | Yes  | **WantAgent** object.|
+| agent | [WantAgent](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | **WantAgent** object.|
 
 **Return value**
 

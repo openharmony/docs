@@ -1,6 +1,6 @@
 # ErrorObserver
 
-The **ErrorObserver** module defines an observer to listen for application errors. It can be used as an input parameter in [registerErrorObserver](js-apis-application-errorManager.md#errormanagerregistererrorobserver) to listen for errors that occur in the current application.
+The **ErrorObserver** module defines an observer to listen for application errors. It can be used as an input parameter in [errorManager.on](js-apis-app-ability-errorManager.md#errormanageron) to listen for errors that occur in the current application.
 
 ## onUnhandledException
 
