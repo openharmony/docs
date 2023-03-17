@@ -31,6 +31,15 @@ getCameraManager(context: Context): CameraManager
 | ----------------------------------------------- | ---------------------------- |
 | [CameraManager](#cameramanager)           | 相机管理器。                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+| 7400201                |  Camera service fatal error.                                  |
+
 **示例：**
 
 ```js
@@ -255,6 +264,14 @@ createCameraInput(camera: CameraDevice): CameraInput
 | ---------- | ----------------------------- |
 | [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **示例：**
 
 ```js
@@ -290,6 +307,14 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
 
 **示例：**
 
@@ -327,6 +352,14 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 | ---------- | ----------------------------- |
 | [PreviewOutput](#previewoutput)    | PreviewOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **示例：**
 
 ```js
@@ -360,6 +393,14 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [PhotoOutput](#photooutput)   | PhotoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
 
 **示例：**
 
@@ -395,6 +436,14 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | ---------- | ----------------------------- |
 | [VideoOutput](#videooutput)   | VideoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **示例：**
 
 ```js
@@ -428,6 +477,14 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOu
 | ---------- | ----------------------------- |
 | [MetadataOutput](#metadataoutput)   | MetadataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **示例：**
 
 ```js
@@ -454,6 +511,14 @@ createCaptureSession(): CaptureSession
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [CaptureSession](#capturesession)   | CaptureSession实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -630,6 +695,16 @@ open\(callback: AsyncCallback<void\>\): void
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400107                |  Can not use camera cause of conflict.               |
+| 7400108                |  Camera disabled cause of security reason.                                  |
+| 7400201                |  Camera service fatal error.                                  |
+
 **示例：**
 
 ```js
@@ -656,6 +731,16 @@ open(): Promise<void\>
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400107                |  Can not use camera cause of conflict.               |
+| 7400108                |  Camera disabled cause of security reason.                                  |
+| 7400201                |  Camera service fatal error.                                  |
+
 **示例：**
 
 ```js
@@ -679,6 +764,14 @@ close\(callback: AsyncCallback<void\>\): void
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                                  |
 
 **示例：**
 
@@ -705,6 +798,14 @@ close(): Promise<void\>
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                                  |
 
 **示例：**
 
@@ -823,6 +924,14 @@ beginConfig(): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400105                |  Session config locked.               |
+
 **示例：**
 
 ```js
@@ -847,6 +956,15 @@ commitConfig(callback: AsyncCallback<void\>): void
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400102                |  Operation not allow.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -873,6 +991,15 @@ commitConfig(): Promise<void\>
 | 类型            | 说明                      |
 | -------------- | ------------------------ |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400102                |  Operation not allow.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -905,6 +1032,15 @@ addInput(cameraInput: CameraInput): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **示例：**
 
 ```js
@@ -935,6 +1071,15 @@ removeInput(cameraInput: CameraInput): void
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
 
 **示例：**
 
@@ -967,6 +1112,15 @@ addOutput(previewOutput: CameraOutput): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **示例：**
 
 ```js
@@ -998,6 +1152,15 @@ removeOutput(previewOutput: CameraOutput): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **示例：**
 
 ```js
@@ -1022,6 +1185,15 @@ start\(callback: AsyncCallback<void\>\): void
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1049,6 +1221,15 @@ start\(\): Promise<void\>
 | -------------- | ------------------------ |
 | Promise<void\> | 使用Promise的方式获取结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -1072,6 +1253,14 @@ stop\(callback: AsyncCallback<void\>\): void
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1099,6 +1288,14 @@ stop(): Promise<void\>
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -1122,6 +1319,14 @@ release\(callback: AsyncCallback<void\>\): void
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1149,6 +1354,14 @@ release(): Promise<void\>
 | -------------- | ------------------------ |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -1172,6 +1385,14 @@ hasFlash(): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示设备支持闪光灯。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1203,6 +1424,14 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示支持该闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1240,6 +1469,14 @@ setFlashMode(flashMode: FlashMode): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1264,6 +1501,14 @@ getFlashMode(): FlashMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [FlashMode](#flashmode)    | 获取当前设备的闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1296,6 +1541,14 @@ isExposureModeSupported(aeMode: ExposureMode): boolean;
 | ---------- | ----------------------------- |
 | boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1320,6 +1573,14 @@ getExposureMode(): ExposureMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [ExposureMode](#exposuremode)    | 获取当前曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1352,6 +1613,14 @@ setExposureMode(aeMode: ExposureMode): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1376,6 +1645,14 @@ getMeteringPoint(): Point
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [Point](#point)    | 获取当前曝光点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1408,6 +1685,14 @@ setMeteringPoint(point: Point): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1433,6 +1718,14 @@ getExposureBiasRange(): Array<number\>
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | Array<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1461,6 +1754,14 @@ setExposureBias(exposureBias: number): void
 | -------- | -------------------------------| ---- | ------------------- |
 | exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1486,6 +1787,14 @@ getExposureValue(): number
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | number    | 获取曝光值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1517,6 +1826,14 @@ isFocusModeSupported(afMode: FocusMode): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示支持该焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1551,6 +1868,14 @@ setFocusMode(afMode: FocusMode): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1575,6 +1900,14 @@ getFocusMode(): FocusMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [FocusMode](#focusmode)   | 获取当前设备的焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1607,6 +1940,14 @@ setFocusPoint(point: Point): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1633,6 +1974,14 @@ getFocusPoint(): Point
 | ---------- | ----------------------------- |
 | [Point](#point)    | 用于获取当前焦点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1658,6 +2007,14 @@ getFocalLength(): number
 | ---------- | ----------------------------- |
 | number    | 用于获取当前焦距。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1682,6 +2039,14 @@ getZoomRatioRange(): Array<number\>
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | Array<number\>   | 用于获取可变焦距比范围，返回的数组包括其最小值和最大值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1714,6 +2079,14 @@ setZoomRatio(zoomRatio: number): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1739,6 +2112,14 @@ getZoomRatio(): number
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | number    | 获取当前的变焦比结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1771,6 +2152,14 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 | ---------- | ----------------------------- |
 | boolean    | 返回视频防抖模式是否支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1795,6 +2184,14 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | VideoStabilizationMode    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1826,6 +2223,14 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1906,6 +2311,14 @@ start(callback: AsyncCallback<void\>): void
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1931,6 +2344,14 @@ start(): Promise<void\>
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)|
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -2006,6 +2427,14 @@ release(callback: AsyncCallback<void\>): void
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -2031,6 +2460,14 @@ release(): Promise<void\>
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2180,6 +2617,15 @@ capture(callback: AsyncCallback<void\>): void
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -2206,6 +2652,15 @@ capture(): Promise<void\>
 | -------------- | ------------------------ |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -2230,6 +2685,16 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 | -------- | ------------------------------------------- | ---- | -------------------- |
 | setting  | [PhotoCaptureSetting](#photocapturesetting) | 是   | 拍照设置。             |
 | callback | AsyncCallback<void\>                        | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2274,6 +2739,15 @@ capture(setting?: PhotoCaptureSetting): Promise<void\>
 | -------------- | ------------------------ |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2319,6 +2793,14 @@ release(callback: AsyncCallback<void\>): void
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -2344,6 +2826,14 @@ release(): Promise<void\>
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2489,6 +2979,15 @@ start(callback: AsyncCallback<void\>): void
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -2515,6 +3014,14 @@ start(): Promise<void\>
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2590,6 +3097,14 @@ release(callback: AsyncCallback<void\>): void
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -2615,6 +3130,14 @@ release(): Promise<void\>
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
 | Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2713,6 +3236,15 @@ start(callback: AsyncCallback<void\>): void
 | -------- | -------------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
 **示例：**
 
 ```js
@@ -2738,6 +3270,15 @@ start(): Promise<void\>
 | 类型                     | 说明                     |
 | ----------------------  | ------------------------ |
 | Promise<void\>          | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
