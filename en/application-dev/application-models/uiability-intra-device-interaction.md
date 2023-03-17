@@ -50,7 +50,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import Window from '@ohos.window';
    
    export default class FuncAbility extends UIAbility {
        onCreate(want, launchParam) {
@@ -65,7 +65,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 3. To stop the **UIAbility** instance after the FuncAbility service is complete, call **terminateSelf()** in FuncAbility.
    
    ```ts
-   // context is the ability context of the UIAbility instance to stop.
+   // context is the ability-level context of the UIAbility instance to stop.
    this.context.terminateSelf((err) => {
        // ...
    });
@@ -111,7 +111,7 @@ When starting FuncAbility from EntryAbility, you want the result to be returned 
            },
        },
    }
-   // context is the ability context of the callee UIAbility.
+   // context is the ability-level context of the callee UIAbility.
    this.context.terminateSelfWithResult(abilityResult, (err) => {
        // ...
    });
@@ -196,13 +196,13 @@ This section describes how to start the UIAbility of another application through
    ```
 
    The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select.
-   
-   ![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)   
+
+   ![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)
    
 3. To stop the **UIAbility** instance after the document application is used, call **terminateSelf()**.
    
    ```ts
-   // context is the ability context of the UIAbility instance to stop.
+   // context is the ability-level context of the UIAbility instance to stop.
    this.context.terminateSelf((err) => {
        // ...
    });
@@ -274,7 +274,7 @@ If you want to obtain the return result when using implicit Want to start the UI
            },
        },
    }
-   // context is the ability context of the callee UIAbility.
+   // context is the ability-level context of the callee UIAbility.
    this.context.terminateSelfWithResult(abilityResult, (err) => {
        // ...
    });
@@ -412,7 +412,6 @@ In summary, when a UIAbility instance of application A has been created and the 
    ```
 
 > **NOTE**
->
 > When the [launch type of the callee UIAbility](uiability-launch-type.md) is set to **standard**, a new instance is created each time the callee UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
 
 
@@ -432,7 +431,7 @@ Ability call is usually used in the following scenarios:
 
 - Starting the callee ability in the background
 
-**Table 1** Terms used in the ability call
+  **Table 1** Terms used in the ability call
 
 | **Term**| Description|
 | -------- | -------- |
@@ -443,9 +442,9 @@ Ability call is usually used in the following scenarios:
 
 The following figure shows the ability call process.
 
-**Figure 1** Ability call process 
+  Figure 1 Ability call process
 
-![call](figures/call.png)
+  ![call](figures/call.png)  
 
 - The caller ability uses **startAbilityByCall** to obtain a caller object and uses **call()** of the caller object to send data to the callee ability.
 
@@ -463,15 +462,15 @@ The following figure shows the ability call process.
 
 The following table describes the main APIs used for the ability call. For details, see [AbilityContext](../reference/apis/js-apis-app-ability-uiAbility.md#caller).
 
-**Table 2** Ability call APIs
+  **Table 2** Ability call APIs
 
 | API| Description|
 | -------- | -------- |
 | startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstartabilitybycall).|
 | on(method: string, callback: CalleeCallBack): void | Callback invoked when the callee ability registers a method.|
 | off(method: string): void | Callback invoked when the callee ability deregisters a method.|
-| call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt; | Sends agreed sequenceable data to the callee ability.|
-| callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt; | Sends agreed sequenceable data to the callee ability and obtains the agreed sequenceable data returned by the callee ability.|
+| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;void&gt; | Sends agreed parcelable data to the callee ability.|
+| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;rpc.MessageSequence&gt; | Sends agreed parcelable data to the callee ability and obtains the agreed parcelable data returned by the callee ability.|
 | release(): void | Releases the caller object.|
 | on(type: "release", callback: OnReleaseCallback): void | Callback invoked when the caller object is released.|
 
@@ -487,16 +486,15 @@ The implementation of using the ability call for UIAbility interaction involves 
 For the callee ability, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
 
 1. Configure the ability launch type.
-   
    Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
 
-| JSON Field| Description|
-| -------- | -------- |
-| "launchType" | Ability launch type. Set this parameter to **singleton**.|
+   | JSON Field| Description|
+   | -------- | -------- |
+   | "launchType" | Ability launch type. Set this parameter to **singleton**.|
 
-An example of the ability configuration is as follows:
+   An example of the ability configuration is as follows:
 
-
+   
    ```json
    "abilities":[{
      "name": ".CalleeAbility",
@@ -510,18 +508,17 @@ An example of the ability configuration is as follows:
    ```
 
 2. Import the **UIAbility** module.
-
+   
    ```ts
    import Ability from '@ohos.app.ability.UIAbility';
    ```
 
-3. Define the agreed sequenceable data.
-
+3. Define the agreed parcelable data.
    The data formats sent and received by the caller and callee abilities must be consistent. In the following example, the data formats are number and string.
 
-
+   
    ```ts
-   export default class MySequenceable {
+   export default class MyParcelable {
        num: number = 0
        str: string = ""
    
@@ -530,25 +527,24 @@ An example of the ability configuration is as follows:
            this.str = string
        }
    
-       marshalling(messageParcel) {
-           messageParcel.writeInt(this.num)
-           messageParcel.writeString(this.str)
+       marshalling(messageSequence) {
+           messageSequence.writeInt(this.num)
+           messageSequence.writeString(this.str)
            return true
        }
    
-       unmarshalling(messageParcel) {
-           this.num = messageParcel.readInt()
-           this.str = messageParcel.readString()
+       unmarshalling(messageSequence) {
+           this.num = messageSequence.readInt()
+           this.str = messageSequence.readString()
            return true
        }
    }
    ```
 
 4. Implement **Callee.on** and **Callee.off**.
+   The time to register a listener for the callee ability depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
 
-   The time to register a listener for the callee ability depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-
-
+   
    ```ts
    const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
@@ -556,14 +552,14 @@ An example of the ability configuration is as follows:
    function sendMsgCallback(data) {
        console.info('CalleeSortFunc called');
    
-       // Obtain the sequenceable data sent by the caller ability.
-       let receivedData = new MySequenceable(0, '');
-       data.readSequenceable(receivedData);
+       // Obtain the parcelable data sent by the caller ability.
+       let receivedData = new MyParcelable(0, '');
+       data.readParcelable(receivedData);
        console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
    
        // Process the data.
-       // Return the sequenceable data result to the caller ability.
-       return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+       // Return the parcelable data result to the caller ability.
+       return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
    }
    
    export default class CalleeAbility extends Ability {
@@ -595,10 +591,9 @@ An example of the ability configuration is as follows:
    ```
 
 2. Obtain the caller interface.
-   
    The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
 
-
+   
    ```ts
    // Register the onRelease() listener of the caller ability.
    private regOnRelease(caller) {

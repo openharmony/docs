@@ -1632,7 +1632,7 @@ For details about the supported specifications, see [Encryption and Decryption S
 
 | Name        | Type  | Mandatory| Description                                                        |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details, see **Algorithm String** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and- decryption-specifications). |
+| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details, see **Algorithm String** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications). |
 
 > **NOTE**
 > - In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed. <br>You need to understand the differences between different block cipher modes and set parameter correctly. For example, padding is required for ECB and CBC. Otherwise, the plaintext length must be an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
@@ -2174,7 +2174,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 Updates the data to be signed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2200,7 +2200,7 @@ update(data : DataBlob) : Promise\<void>;
 Updates the data to be signed. This API uses a promise to return the result.
 
 > **NOTE**<br>
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2467,7 +2467,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 Updates the data for signature verification. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2493,7 +2493,7 @@ update(data : DataBlob) : Promise\<void>;
 Updates the data for signature verification. This API uses a promise to return the result.
 
 > **NOTE**
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 

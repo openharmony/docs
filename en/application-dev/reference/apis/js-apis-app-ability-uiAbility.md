@@ -1,10 +1,9 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-The **Ability** module manages the ability lifecycle and context, such as creating and destroying an ability, and dumping client information.
+UIAbility is an application component that has the UI. The **UIAbility** module provides lifecycle callback such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
 
-This module provides the following common ability-related functions:
-- [Caller](#caller): implements sending of sequenceable data to the target ability when an ability (caller ability) invokes the target ability (callee ability).
-- [Callee](#callee): implements callbacks for registration and deregistration of caller notifications.
+- [Caller](#caller): an object returned by [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall). The CallerAbility (caller) uses this object to communicate with the CalleeAbility (callee).
+- [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
 
 > **NOTE**
 > 
@@ -23,12 +22,12 @@ import Ability from '@ohos.app.ability.UIAbility';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | Yes| No| Context of the ability.|
-| launchWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters for starting the ability.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters used when the ability was started last time.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | Yes| No| Context of the UIAbility.|
+| launchWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters for starting the UIAbility.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | Yes| No| Parameters used when the UIAbility was started last time.|
 | callee | [Callee](#callee) | Yes| No| Object that invokes the stub service.|
 
-## Ability.onCreate
+## UIAbility.onCreate
 
 onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
 
@@ -40,7 +39,7 @@ Called to initialize the service logic when an ability is created.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this ability, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this UIAbility, including the ability name and bundle name.|
 | param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the ability, and the reason for the last abnormal exit.|
 
 **Example**
@@ -54,11 +53,11 @@ Called to initialize the service logic when an ability is created.
   ```
 
 
-## Ability.onWindowStageCreate
+## UIAbility.onWindowStageCreate
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
-Called when a **WindowStage** is created for this ability.
+Called when a **WindowStage** is created for this UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -79,11 +78,11 @@ Called when a **WindowStage** is created for this ability.
   ```
 
 
-## Ability.onWindowStageDestroy
+## UIAbility.onWindowStageDestroy
 
 onWindowStageDestroy(): void
 
-Called when the **WindowStage** is destroyed for this ability.
+Called when the **WindowStage** is destroyed for this UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -98,11 +97,11 @@ Called when the **WindowStage** is destroyed for this ability.
   ```
 
 
-## Ability.onWindowStageRestore
+## UIAbility.onWindowStageRestore
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
-Called when the **WindowStage** is restored during the migration of this ability, which is a multi-instance ability.
+Called when the **WindowStage** is restored during the migration of this UIAbility, which is a multi-instance ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -123,7 +122,7 @@ Called when the **WindowStage** is restored during the migration of this ability
   ```
 
 
-## Ability.onDestroy
+## UIAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;;
 
@@ -142,7 +141,7 @@ Called when this ability is destroyed to clear resources.
   ```
 
 
-## Ability.onForeground
+## UIAbility.onForeground
 
 onForeground(): void;
 
@@ -161,7 +160,7 @@ Called when this ability is switched from the background to the foreground.
   ```
 
 
-## Ability.onBackground
+## UIAbility.onBackground
 
 onBackground(): void;
 
@@ -180,7 +179,7 @@ Called when this ability is switched from the foreground to the background.
   ```
 
 
-## Ability.onContinue
+## UIAbility.onContinue
 
 onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
 
@@ -214,11 +213,11 @@ Called to save data during the ability migration preparation process.
   ```
 
 
-## Ability.onNewWant
+## UIAbility.onNewWant
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
-Called when a new Want is passed in and this ability is started again.
+Called when a new Want is passed in and this UIAbility is started again.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -227,7 +226,7 @@ Called when a new Want is passed in and this ability is started again.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information, such as the ability name and bundle name.|
-| launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the ability startup and the last abnormal exit.|
+| launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the UIAbility startup and the last abnormal exit.|
 
 **Example**
     
@@ -240,7 +239,7 @@ Called when a new Want is passed in and this ability is started again.
    }
   ```
 
-## Ability.onDump
+## UIAbility.onDump
 
 onDump(params: Array\<string>): Array\<string>;
 
@@ -266,11 +265,11 @@ Dumps client information.
   ```
 
 
-## Ability.onSaveState
+## UIAbility.onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
 
-Called when the framework automatically saves the ability state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this ability.
+Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -278,7 +277,7 @@ Called when the framework automatically saves the ability state in the case of a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the ability state.|
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the UIAbility state.|
 | wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes| **want** parameter.|
 
 **Return value**
@@ -305,22 +304,22 @@ class MyUIAbility extends Ability {
 
 ## Caller
 
-Implements sending of sequenceable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
+Implements sending of parcelable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
 
 ## Caller.call
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
-Sends sequenceable data to the target ability.
+Sends parcelable data to the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the parcelable data.| 
+  | data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
@@ -333,13 +332,12 @@ Sends sequenceable data to the target ability.
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
   ```ts
-  class MyMessageAble{ // Custom sequenceable data structure.
+  class MyMessageAble{ // Custom parcelable data structure.
     name:''
     str:''
     num: 1
@@ -347,15 +345,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
@@ -370,7 +368,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble('msg', 'world'); // See the definition of Sequenceable.
+        let msg = new MyMessageAble('msg', 'world'); // See the definition of Parcelable.
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -390,31 +388,30 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
 
-Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability.
+Sends parcelable data to the target ability and obtains the parcelable data returned by the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the parcelable data.| 
+  | data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)&gt; | Promise used to return the sequenceable data from the target ability.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the parcelable data from the target ability.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
@@ -428,15 +425,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
@@ -456,7 +453,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
           .then((data) => {
             console.log('Caller callWithResult() called');
             let retmsg = new MyMessageAble(0, '');
-            data.readSequenceable(retmsg);
+            data.readParcelable(retmsg);
           })
           .catch((callErr) => {
             console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
@@ -477,7 +474,7 @@ release(): void;
 
 Releases the caller interface of the target ability.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
 
 **Error codes**
 
@@ -576,7 +573,6 @@ Registers a callback that is invoked when the stub on the target ability is disc
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
@@ -627,7 +623,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -678,7 +674,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -724,17 +720,16 @@ Registers a caller notification callback, which is invoked when the target abili
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities.|
-| callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated) type. The callback must return at least one empty [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) object. Otherwise, the function execution fails.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | method | string | Yes| Notification message string negotiated between the two abilities.| 
+  | callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) type. The callback must return at least one empty [rpc.Parcelable](js-apis-rpc.md#parcelable9) object. Otherwise, the function execution fails.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
@@ -748,15 +743,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         this.name = name;
         this.str = str;
       }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
           console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
           return true;
       }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
           console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
           return true;
       }
@@ -765,7 +760,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble('test', '');
-      pdata.readSequenceable(msg);
+      pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
   }
   export default class MainAbility extends Ability {
@@ -787,7 +782,7 @@ off(method: string): void;
 
 Deregisters a caller notification callback, which is invoked when the target ability registers a function.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
 
 **Parameters**
 
@@ -800,7 +795,6 @@ Deregisters a caller notification callback, which is invoked when the target abi
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 
@@ -833,10 +827,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Parcelable;
+(indata: rpc.MessageSequence): rpc.Parcelable;
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | Name| Readable| Writable| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | Yes| No| [rpc.Parcelable](js-apis-rpc.md#parcelabledeprecated) | Prototype of the listener function registered by the callee.|
+| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | Yes| No| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Prototype of the listener function registered by the callee.|
