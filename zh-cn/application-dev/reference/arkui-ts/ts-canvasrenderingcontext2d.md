@@ -77,7 +77,7 @@ struct FillStyleExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.context.fillStyle = '#0000ff'
-          this.context.fillRect(20, 160, 150, 100)
+          this.context.fillRect(20, 20, 150, 100)
         })
     }
     .width('100%')
@@ -1653,35 +1653,35 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct Clip {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          let region = new Path2D()
-          region.moveTo(30, 90)
-          region.lineTo(110, 20)
-          region.lineTo(240, 130)
-          region.lineTo(60, 130)
-          region.lineTo(190, 20)
-          region.lineTo(270, 90)
-          region.closePath()
-          this.context.clip(region,"evenodd")
-          this.context.fillStyle = "rgb(0,255,0)"
-          this.context.fillRect(0, 0, this.context.width, this.context.height)
-        })
+  @Entry
+  @Component
+  struct Clip {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let region = new Path2D()
+            region.moveTo(30, 90)
+            region.lineTo(110, 20)
+            region.lineTo(240, 130)
+            region.lineTo(60, 130)
+            region.lineTo(190, 20)
+            region.lineTo(270, 90)
+            region.closePath()
+            this.context.clip(region,"evenodd")
+            this.context.fillStyle = "rgb(0,255,0)"
+            this.context.fillRect(0, 0, this.context.width, this.context.height)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
   ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
@@ -2104,29 +2104,29 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct GetImageData {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+  @Entry
+  @Component
+  struct GetImageData {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.drawImage(this.img,0,0,130,130)
-          var imagedata = this.context.getImageData(50,50,130,130)
-          this.context.putImageData(imagedata,150,150)
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.drawImage(this.img,0,0,130,130)
+            var imagedata = this.context.getImageData(50,50,130,130)
+            this.context.putImageData(imagedata,150,150)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
   ![zh-cn_image_000000127777780](figures/zh-cn_image_000000127777780.png)
@@ -2248,40 +2248,40 @@ getLineDash(): number[]
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct CanvasGetLineDash {
-  @State message: string = 'Hello World'
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  @Entry
+  @Component
+  struct CanvasGetLineDash {
+    @State message: string = 'Hello World'
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
-            console.error('before getlinedash clicked')
-            let res = this.context.getLineDash()
-            console.error(JSON.stringify(res))
-          })
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() => {
-            this.context.arc(100, 75, 50, 0, 6.28)
-            this.context.setLineDash([10,20])
-            this.context.stroke()
-            let res = this.context.getLineDash()
-          })
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+            .onClick(()=>{
+              console.error('before getlinedash clicked')
+              let res = this.context.getLineDash()
+              console.error(JSON.stringify(res))
+            })
+          Canvas(this.context)
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#ffff00')
+            .onReady(() => {
+              this.context.arc(100, 75, 50, 0, 6.28)
+              this.context.setLineDash([10,20])
+              this.context.stroke()
+              let res = this.context.getLineDash()
+            })
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
-}
   ```
 ![zh-cn_image_000000127777778](figures/zh-cn_image_000000127777778.png) 
 
@@ -2376,26 +2376,26 @@ toDataURL(type?: string, quality?: number): string
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct ToDataURL {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  @Entry
+  @Component
+  struct ToDataURL {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          var dataURL = this.context.toDataURL()
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            var dataURL = this.context.toDataURL()
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
 
@@ -2512,7 +2512,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
-            this.context.fillRect(0, 0, 500, 500)
+            this.context.fillRect(0, 0, 400, 400)
           })
       }
       .width('100%')
@@ -2563,7 +2563,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
-            this.context.fillRect(0, 0, 500, 500)
+            this.context.fillRect(0, 0, 440, 440)
           })
       }
       .width('100%')
