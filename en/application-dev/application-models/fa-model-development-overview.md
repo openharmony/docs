@@ -12,4 +12,4 @@ During application development based on the Feature Ability (FA) model, the foll
 | Inter-process communication (IPC)| Learn the process model and common IPC modes of the FA model.| [Common Events](common-event-fa.md)<br>[Background Services](rpc.md) |
 | Inter-thread communication| Learn the thread model and common inter-thread communication modes of the FA model.| [Inter-Thread Communication](itc-fa-overview.md)|
 | Mission management| Learn the basic concepts and typical scenarios of mission management in the FA model.| [Mission Management](mission-management-fa.md)|
-| Application configuration file| Learn the requirements for developing application configuration files in the FA model.| [Application Configuration File](config-file-fa.md) |
+| Application configuration file| Learn the requirements for developing application configuration files in the FA model.| [Application Configuration File](../quick-start/application-configuration-file-overview-fa.md) |

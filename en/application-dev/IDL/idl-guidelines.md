@@ -158,7 +158,7 @@ Go to the local installation path, choose **toolchains > 3.x.x.x** (the folder n
 
 > **NOTE**: Use the SDK of the latest version. The use of an earlier version may cause errors in some statements.
 
-If the executable file does not exist, download the SDK package from the mirror as instructed in the [Release Notes](../../release-notes). The following uses the [3.2 Beta3](../../release-notes/OpenHarmony-v3.2-beta3.md#acquiring-source-code-from-mirrors) as an example.
+If the executable file does not exist, download the SDK package from the mirror as instructed in the [Release Notes](../../release-notes). The following uses the [3.2 Beta5]((../../release-notes/OpenHarmony-v3.2-beta5.md#acquiring-source-code-from-mirrors) as an example.
 
 For details about how to replace the SDK package, see [Guide to Switching to Full SDK](../quick-start/full-sdk-switch-guide.md).
 

@@ -365,7 +365,7 @@ featureAbility.terminateSelfWithResult(
 });
 ```
 
-## featureAbility.hasWindowFocus<sup>7+<sup>
+## featureAbility.hasWindowFocus<sup>7+</sup>
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
@@ -388,7 +388,7 @@ featureAbility.hasWindowFocus((err, data) => {
 });
 ```
 
-## featureAbility.hasWindowFocus<sup>7+<sup>
+## featureAbility.hasWindowFocus<sup>7+</sup>
 
 hasWindowFocus(): Promise\<boolean>
 
@@ -812,6 +812,6 @@ Enumerates the flags that specify how the Want will be handled.
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                              |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                      |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                      |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object in the **startAbility** API passed to [ohos.app.Context](js-apis-ability-context.md) and must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the [Want](js-apis-application-want.md) object under [parameter](js-apis-inner-ability-startAbilityParameter.md) in the [startAbility](#featureabilitystartability) API passed to the **FeatureAbility** module and must be used together with **flag_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on an existing mission stack.                      |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

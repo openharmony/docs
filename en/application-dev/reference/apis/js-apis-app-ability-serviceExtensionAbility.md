@@ -1,6 +1,6 @@
 # @ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)
 
-The **ServiceExtensionAbility** module provides APIs for ServiceExtensionAbilities.
+The **ServiceExtensionAbility** module provides lifecycle callbacks when a ServiceExtensionAbility (background service) is created, destroyed, connected, or disconnected.
 
 > **NOTE**
 > 
@@ -150,7 +150,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 onDisconnect(want: Want): void | Promise<void>;
 
-Called when this ServiceExtensionAbility is disconnected.
+Called when a client is disconnected from this ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -176,7 +176,7 @@ Called when this ServiceExtensionAbility is disconnected.
 
 onReconnect(want: Want): void;
 
-Called when this ServiceExtensionAbility is reconnected.
+Called when a new client attempts to connect to this ServiceExtensionAbility after all previous clients are disconnected. This capability is reserved.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

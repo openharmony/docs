@@ -1,6 +1,6 @@
 # @ohos.app.form.FormExtensionAbility (FormExtensionAbility)
 
-The **FormExtensionAbility** module provides APIs related to FormExtensionAbilities.
+The **FormExtensionAbility** module provides lifecycle callbacks invoked when a widget is created, destroyed, or updated.
 
 > **NOTE**
 >
@@ -19,7 +19,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 | Name   | Type                                                        | Readable| Writable| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from **ExtensionContext**.|
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md).|
 
 ## onAddForm
 
@@ -33,7 +33,7 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-want.md) | Yes  | Want information related to the ExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| want   | [Want](js-apis-application-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
@@ -145,7 +145,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         console.error('Operation updateForm failed. Cause: ' + error);});
     }
   }
-}
+};
 ```
 
 ## onFormEvent
