@@ -4,7 +4,7 @@
 
 **Error Message**
 
-Want action is null
+The action field in the want parameter is null.
 
 **Description**
 
@@ -22,7 +22,7 @@ Make sure the **Action** attribute in the **want** object is not null.
 
 **Error Message**
 
-sandbox application can not send common event
+A sandbox application cannot send common events.
 
 **Description**
 
@@ -40,7 +40,7 @@ Check whether the application used to send a common event is a sandbox applicati
 
 **Error Message**
 
-common event send frequency too high
+Too many common events are send in a short period of time.
 
 **Description**
 
@@ -58,7 +58,7 @@ Do not send common events too frequently.
 
 **Error Message**
 
-not System services or System app
+A third-party application cannot send system common events.
 
 **Description**
 
@@ -76,7 +76,7 @@ Make sure the application to send system common events is a system application o
 
 **Error Message**
 
-subscriber can not found
+The subscriber is not found.
 
 **Description**
 
@@ -94,7 +94,7 @@ Check whether the subscription has already been canceled. If the subscription ha
 
 **Error Message**
 
-userId is invalid
+Invalid userId.
 
 **Description**
 
@@ -107,11 +107,12 @@ The user ID is different from the system user ID, or the application is not a sy
 **Solution**
 1. Make sure the current user ID is the same as the system user ID.
 2. Make sure the application is a system application or system service.
+
 ##  1500007 Failed to Send a Request Through IPC
 
 **Error Message**
 
-message send error
+Failed to send the message.
 
 **Description**
 
@@ -129,7 +130,7 @@ Do not set up connections frequently. Try again later.
 
 **Error Message**
 
-CEMS error
+Failed to read the data.
 
 **Description**
 
@@ -147,7 +148,7 @@ Try again later.
 
 **Error Message**
 
-system error
+System error.
 
 **Description**
 
