@@ -645,7 +645,7 @@ ws.off('error');
 
 建立WebSocket连接时，可选参数的类型和说明。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -656,7 +656,7 @@ ws.off('error');
 
 关闭WebSocket连接时，可选参数的类型和说明。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -667,7 +667,7 @@ ws.off('error');
 
 发送给服务端的错误码可以自行定义，下面的列表仅供参考。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 值        | 说明               |
 | :-------- | :----------------- |

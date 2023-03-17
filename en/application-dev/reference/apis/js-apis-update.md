@@ -8,8 +8,10 @@ There are two types of updates: SD card update and over the air (OTA) update.
 - The OTA update depends on the server deployed by the device manufacturer for managing update packages. The OTA server IP address is passed by the caller. The request interface is fixed and developed by the device manufacturer.
 
 > **NOTE**
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are system APIs.
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -2034,7 +2036,7 @@ Enumerates update states.
 | WAITING_INSTALL  | 30   | Waiting for installation. |
 | UPDATING         | 31   | Updating. |
 | WAITING_APPLY    | 40   | Waiting for applying the update. |
-| APPLYING         | 21   | Applying the update. |
+| APPLYING         | 41   | Applying the update. |
 | UPGRADE_SUCCESS  | 50   | Update succeeded.|
 | UPGRADE_FAIL     | 51   | Update failed.|
 
@@ -2056,7 +2058,7 @@ Enumerates event IDs.
 
 | Name                    | Value       | Description    |
 | ---------------------- | ---------- | ------ |
-| EVENT_TASK_BASE        | 0x01000000 | Task event.  |
+| EVENT_TASK_BASE        | EventClassify.TASK | Task event.  |
 | EVENT_TASK_RECEIVE     | 0x01000001 | Task received.  |
 | EVENT_TASK_CANCEL      | 0x01000010 | Task cancelled.  |
 | EVENT_DOWNLOAD_WAIT    | 0x01000011 | Waiting for download.   |

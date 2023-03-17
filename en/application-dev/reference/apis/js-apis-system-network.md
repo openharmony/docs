@@ -1,8 +1,8 @@
-# Network State
+# @system.network (Network State)
 
-> **NOTE**<br>
-> - The APIs of this module are no longer maintained since API version 7. It is recommended that you use [`@ohos.telephony.observer`](js-apis-observer.md) instead.
-> 
+> **NOTE**
+> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.telephony.observer`](js-apis-observer.md).
+>
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -31,17 +31,17 @@ Obtains the network type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called when the execution is successful. The return value is [FetchResponse](#fetchresponse). |
-| fail | Function | No | Called when the operation fails. |
-| complete | Function | No | Called when the execution is complete. |
+| success | Function | No| Called when the API call is successful. The return value is defined by [NetworkResponse](#networkresponse).|
+| fail | Function | No| Called when API call has failed.|
+| complete | Function | No| Called when the API call is complete.|
 
-One of the following error codes will be returned if the operation fails.
+One of the following error codes will be returned if the API call has failed.
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 602 | The current permission is not declared. |
+| 602 | The current permission is not declared.|
 
 **Example**
 
@@ -71,17 +71,17 @@ Listens to the network connection state. If this method is called multiple times
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called when the network connection state changes. The return value is [FetchResponse](#fetchresponse). |
-| fail | Function | No | Called when the multimedia volume fails to be obtained. |
+| success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse).|
+| fail | Function | No| Called when API call has failed.|
 
-One of the following error codes will be returned if the listening fails.
+One of the following error codes will be returned if the API call has failed.
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 602 | The current permission is not declared. |
-| 200 | The subscription fails. |
+| 602 | The current permission is not declared.|
+| 200 | Subscription failed.|
 
 **Example**
 
@@ -122,7 +122,9 @@ export default {
 
 ## NetworkResponse
 
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| metered | boolean | Whether the billing is based on the data volume. |
-| type | string | Network type. The value can be **2G**, **3G**, **4G**, **5G**, **WiFi**, or **none**. |
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| metered | boolean | No|Whether to charge by traffic.|
+| type | string | Yes|Network type. The value can be **2G**, **3G**, **4G**, **5G**, **WiFi**, or **none**.|

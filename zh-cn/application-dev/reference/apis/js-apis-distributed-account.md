@@ -43,7 +43,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **参数：**
 
@@ -79,7 +79,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **返回值：**
 
@@ -118,7 +118,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **参数：**
 
@@ -148,7 +148,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **返回值：**
 
@@ -175,7 +175,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
 **参数：**
 
@@ -213,7 +213,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
 **参数：**
 
@@ -260,7 +260,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **参数：**
 
@@ -286,9 +286,10 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 > **说明：** 
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1)。
+
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **参数：**
 
