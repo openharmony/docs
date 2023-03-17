@@ -35,4 +35,3 @@ Event logging means to collect and log events reported during system running. Th
 **System event**
 
 A system event is an indication of the system status at a given time point during system running. You can use these events to analyze the status change of the system.
-<!--no_check-->

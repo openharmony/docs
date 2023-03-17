@@ -431,7 +431,7 @@ Ability call is usually used in the following scenarios:
 
 - Starting the callee ability in the background
 
-  **Table 1** Terms used in the ability call
+**Table 1** Terms used in the ability call
 
 | **Term**| Description|
 | -------- | -------- |

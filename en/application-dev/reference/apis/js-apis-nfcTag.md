@@ -871,4 +871,4 @@ Enumerates the MIFARE Ultralight tag types.
 | TYPE_UNKNOWN  | 0 |  Unknown type.|
 | TYPE_ULTRALIGHT   | 1 |  MIFARE Ultralight.|
 | TYPE_ULTRALIGHT_C    | 2 |  MIFARE Ultralight C.|
-<!--no_check-->
+

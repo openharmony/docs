@@ -208,4 +208,4 @@ For more information, visit [Samples](https://gitee.com/openharmony/applications
 | I6BRTS | Invoking the **rdb::executeSql** interface may cause memory leakage.| Memory leakage occurs when the **rdb::executeSql** interface is repeatedly called during initialization. This interface is called only during application initialization, and therefore the impact of memory leakage is controllable.| 2023-02-10|
 | I6AZ4T | Memory leakage exists for applications with the **\<textInput>** component.| Memory leakage occurs when the **\<textInput>** component is repeatedly called at a high frequency. The root cause is that the memory is not reclaimed during the calling of the third-party library flutter. We will first check whether the problem is caused by the open-source flutter component.| 2023-02-10|
 
-<!--no_check-->
+

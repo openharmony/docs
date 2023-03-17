@@ -231,4 +231,3 @@ If the verification rules are not met, an error is reported during compilation.
 
 N/A
 
-<!--no_check-->
