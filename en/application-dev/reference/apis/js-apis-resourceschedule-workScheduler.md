@@ -346,6 +346,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
 
 **Example**
 
@@ -391,6 +392,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
 
 **Example**
 
