@@ -30,7 +30,7 @@ Swiper(controller?: SwiperController)
 | 名称                          | 参数类型                               | 描述                                       |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
 | index                       | number                                   | 设置当前在容器中显示的子组件的索引值。<br/>默认值：0                     |
-| autoPlay                    | boolean                                  | 子组件是否自动播放，自动播放状态下，导航点不可操作。<br/>默认值：false    |
+| autoPlay                    | boolean                                  | 子组件是否自动播放。<br/>默认值：false    |
 | interval                    | number                                   | 使用自动播放时播放的时间间隔，单位为毫秒。<br/>默认值：3000                    |
 | indicator                   | boolean                                  | 是否启用导航点指示器。<br/>默认值：true                              |
 | loop                        | boolean                                  | 是否开启循环。<br>设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。<br/>默认值：true |
