@@ -137,6 +137,7 @@
     - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
     - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
     - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
+
 - Bundle Management
   - [@ohos.bundle.appControl (appControl)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager)](js-apis-bundleManager.md)
@@ -171,6 +172,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.measure (Text Measurement)](js-apis-measure.md)
+
 - Graphics 
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -261,7 +263,7 @@
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity
-  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (Bluetooth)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
@@ -304,6 +306,7 @@
   - [Timer](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
+
 - Device Management
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (Battery Statistics)](js-apis-batteryStatistics.md)
@@ -376,6 +379,7 @@
 
 - APIs No Longer Maintained
   - [@ohos.backgroundTaskManager (Background Task Management)](js-apis-backgroundTaskManager.md)
+  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
   - [@ohos.bundle (Bundle)](js-apis-Bundle.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState (Device Usage Statistics)](js-apis-deviceUsageStatistics.md)
