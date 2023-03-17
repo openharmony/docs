@@ -19,8 +19,9 @@ Since API version 9, the stage model allows an application to obtain a **Resourc
 For details about how to reference context in the stage model, see [Context in the Stage Model](../..//application-models/application-context-stage.md).
 
 ```ts
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let resourceManager = context.resourceManager;

@@ -67,7 +67,7 @@ Creates a **Locale** object.
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | Yes   | A string containing locale information, including the language, optional script, and region. For details about the international standards and combination modes for the language, script, and country or region, see [intl Development](../../internationalization/intl-guidelines.md#setting-locale-information).|
-| options<sup>9+</sup> | [LocaleOptions](#localeoptions6) | No   | Options for creating the **Locale** object.                |
+| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | No   | Options for creating the **Locale** object.                |
 
 **Example**
   ```js
@@ -159,7 +159,7 @@ Minimizes information of the **Locale** object. If the script and locale informa
   ```
 
 
-## LocaleOptions<sup>6+</sup>
+## LocaleOptions<sup>9+</sup>
 
 Represents the locale options.
 
@@ -206,7 +206,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions6) | No   | Options for creating a **DateTimeFormat** object.             |
+| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | No   | Options for creating a **DateTimeFormat** object.             |
 
 **Example**
   ```js
@@ -298,7 +298,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 
 | Type                                  | Description                           |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions6) | Formatting options for **DateTimeFormat** objects.|
+| [DateTimeOptions](#datetimeoptions9) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
   ```js
@@ -310,7 +310,7 @@ Obtains the formatting options for **DateTimeFormat** object.
   ```
 
 
-## DateTimeOptions<sup>6+</sup>
+## DateTimeOptions<sup>9+</sup>
 
 Provides the options for the **DateTimeFormat** object.
 
@@ -370,7 +370,7 @@ Creates a **NumberFormat** object for the specified locale.
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [NumberOptions](#numberoptions6) | No   | Options for creating a **NumberFormat** object.               |
+| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | No   | Options for creating a **NumberFormat** object.               |
 
 **Example**
   ```js
@@ -420,7 +420,7 @@ Obtains the options of the **NumberFormat** object.
 
 | Type                              | Description                         |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions6) | Formatting options for **NumberFormat** objects.|
+| [NumberOptions](#numberoptions9) | Formatting options for **NumberFormat** objects.|
 
 
 **Example**
@@ -433,7 +433,7 @@ Obtains the options of the **NumberFormat** object.
   ```
 
 
-## NumberOptions<sup>6+</sup>
+## NumberOptions<sup>9+</sup>
 
 Defines the device capability.
 
@@ -493,7 +493,7 @@ Creates a **Collator** object.
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [CollatorOptions](#collatoroptions8) | No   | Options for creating a **Collator** object.                |
+| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | No   | Options for creating a **Collator** object.                |
 
 **Example**
   ```js
@@ -544,7 +544,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 
 | Type                                  | Description               |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions8) | Properties of the **Collator** object.|
+| [CollatorOptions](#collatoroptions9) | Properties of the **Collator** object.|
 
 **Example**
   ```js
@@ -556,7 +556,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
   ```
 
 
-## CollatorOptions<sup>8+</sup>
+## CollatorOptions<sup>9+</sup>
 
 Represents the properties of a **Collator** object.
 
@@ -604,7 +604,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 | Name                 | Type                                      | Mandatory  | Description                          |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions8) | No   | Options for creating a **PluralRules** object.               |
+| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | No   | Options for creating a **PluralRules** object.               |
 
 **Example**
   ```js
@@ -647,7 +647,7 @@ Obtains a string that represents the singular-plural type of the specified numbe
   ```
 
 
-## PluralRulesOptions<sup>8+</sup>
+## PluralRulesOptions<sup>9+</sup>
 
 Represents the properties of a **PluralRules** object.
 
@@ -695,7 +695,7 @@ Creates a **RelativeTimeFormat** object.
 | Name                 | Type                                      | Mandatory  | Description                          |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | No   | Options for creating a **RelativeTimeFormat** object.           |
+| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | No   | Options for creating a **RelativeTimeFormat** object.           |
 
 **Example**
   ```js
@@ -787,7 +787,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>8+</sup>
+## RelativeTimeFormatInputOptions<sup>9+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
 
