@@ -1,11 +1,12 @@
 # polygon
 
-The **\<polygon>** component is used to draw a polygon.
-
 
 >  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
+The **\<polygon>** component is used to draw a polygon.
+
 
 ## Required Permissions
 
@@ -19,7 +20,7 @@ The following are supported: [\<animate>](js-components-svg-animate.md), [\<anim
 
 ## Attributes
 
-The [universal attributes](../arkui-js/js-components-svg-common-attributes.md) and the attributes listed below are supported.
+The [universal attributes](js-components-svg-common-attributes.md) and the attributes listed below are supported.
 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |

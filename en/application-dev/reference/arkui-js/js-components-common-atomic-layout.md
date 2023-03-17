@@ -1,11 +1,10 @@
 # Atomic Layout
 
-The atomic layout implements adaptive layout for screens of different sizes and types. Designers can use the atomic layout to define adaptive rules for elements on UIs of different forms. Developers can use the atomic layout to implement the adaptive UI features matching the design effect for a variety of screens.
-
 >  **NOTE**
 >
 >  This component is supported since API version 5. Updates will be marked with a superscript to indicate their earliest API version.
 
+The atomic layout implements adaptive layout for screens of different sizes and types. Designers can use the atomic layout to define adaptive rules for elements on UIs of different forms. Developers can use the atomic layout to implement the adaptive UI features matching the design effect for a variety of screens.
 
 ## Hiding Components
 
