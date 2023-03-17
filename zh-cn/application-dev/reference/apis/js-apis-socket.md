@@ -656,7 +656,7 @@ udp.off('error');
 
 目标地址信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
@@ -668,7 +668,7 @@ udp.off('error');
 
 UDPSocket发送参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称  | 类型                               | 必填 | 说明           |
 | ------- | ---------------------------------- | ---- | -------------- |
@@ -679,7 +679,7 @@ UDPSocket发送参数。
 
 UDPSocket连接的其他属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
@@ -693,7 +693,7 @@ UDPSocket连接的其他属性。
 
 Socket的状态信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称      | 类型    | 必填 | 说明       |
 | ----------- | ------- | ---- | ---------- |
@@ -705,7 +705,7 @@ Socket的状态信息。
 
 Socket的连接信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1560,7 +1560,7 @@ tcp.off('error');
 
 TCPSocket连接的参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称  | 类型                               | 必填 | 说明                       |
 | ------- | ---------------------------------- | ---- | -------------------------- |
@@ -1571,7 +1571,7 @@ TCPSocket连接的参数。
 
 TCPSocket发送请求的参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1582,7 +1582,7 @@ TCPSocket发送请求的参数。
 
 TCPSocket连接的其他属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称            | 类型    | 必填 | 说明                                                         |
 | ----------------- | ------- | ---- | ------------------------------------------------------------ |

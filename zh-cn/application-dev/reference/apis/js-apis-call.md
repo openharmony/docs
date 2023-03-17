@@ -3858,7 +3858,7 @@ promise.then(data => {
 
 拨打电话的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |        名称              | 类型                               | 必填 | 说明                                                                                             |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
@@ -3872,7 +3872,7 @@ promise.then(data => {
 
 拨打电话的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |        名称              | 类型                               | 必填 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
@@ -3885,7 +3885,7 @@ promise.then(data => {
 
 通话状态码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称               | 值   | 说明                                                         |
 | ------------------ | ---- | ------------------------------------------------------------ |
@@ -3898,7 +3898,7 @@ promise.then(data => {
 
 判断是否是紧急电话号码的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |  名称  | 类型   | 必填 | 说明                                           |
 | ------ | ------ | ---- | ---------------------------------------------- |
@@ -3908,7 +3908,7 @@ promise.then(data => {
 
 格式化号码的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |    名称     | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
@@ -3920,7 +3920,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                   | 值   | 说明               |
 | ---------------------- | ---- | ------------------ |
@@ -3936,7 +3936,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                 | 值   | 说明         |
 | -------------------- | ---- | ------------ |
@@ -3952,7 +3952,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                                          | 值   | 说明                       |
 | --------------------------------------------- | ---- | -------------------------- |
@@ -3971,7 +3971,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |          名称            | 类型                                                 | 必填 | 说明             |
 | ------------------------ | ---------------------------------------------------- | ---- | ---------------- |
@@ -3989,7 +3989,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ------------ |
@@ -4004,7 +4004,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                       | 值   | 说明         |
 | -------------------------- | ---- | ------------ |
@@ -4019,7 +4019,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |      名称       | 类型                                     | 必填 | 说明           |
 | --------------- | ---------------------------------------- | ---- | -------------- |
@@ -4040,7 +4040,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                         | 值   | 说明           |
 | ---------------------------- | ---- | -------------- |
@@ -4055,7 +4055,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称          | 值   | 说明         |
 | ------------- | ---- | ------------ |
@@ -4070,7 +4070,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称       | 值   | 说明     |
 | ---------- | ---- | -------- |
@@ -4083,7 +4083,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                      | 值   | 说明           |
 | ------------------------- | ---- | -------------- |
@@ -4103,7 +4103,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |   名称   | 类型                                         | 必填 | 说明         |
 | -------- | -------------------------------------------- | ---- | ------------ |
@@ -4117,7 +4117,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                          | 值   | 说明         |
 | ----------------------------- | ---- | ------------ |
@@ -4130,7 +4130,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |   名称  | 类型                                       | 必填 | 说明           |
 | ------- | ------------------------------------------ | ---- | -------------- |
@@ -4142,7 +4142,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                     | 值   | 说明            |
 | ------------------------ | ---- | --------------- |
@@ -4155,7 +4155,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称            | 值   | 说明         |
 | --------------- | ---- | ------------ |
@@ -4169,7 +4169,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                 | 值   | 说明             |
 | -------------------- | ---- | ---------------- |
@@ -4183,7 +4183,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |     名称       | 类型   | 必填 | 说明     |
 | -------------- | ------ | ---- | -------- |
@@ -4195,7 +4195,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |          名称            |                 类型               | 必填 |       说明       |
 | ------------------------ | ---------------------------------- | ---- | ---------------- |
@@ -4212,7 +4212,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                 | 值   | 说明         |
 | -------------------- | ---- | ------------ |
@@ -4225,7 +4225,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                | 值   | 说明     |
 | ------------------- | ---- | -------- |
@@ -4238,7 +4238,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称             | 值   | 说明     |
 | ---------------- | ---- | -------- |
@@ -4251,7 +4251,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称    |                    类型                    | 必填 | 说明            |
 | ------- | ------------------------------------------ | ---- | --------------- |
@@ -4264,7 +4264,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |                              名称                            | 值   |                  说明                   |
 | ------------------------------------------------------------ | ---- | --------------------------------------- |
@@ -4354,7 +4354,7 @@ MMI码结果。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称    | 类型                             | 必填 | 说明            |
 | ------- | -------------------------------- | ---- | --------------- |
@@ -4367,7 +4367,7 @@ MMI码结果。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称             | 值   | 说明          |
 | ---------------- | ---- | ------------- |
@@ -4380,7 +4380,7 @@ MMI码结果。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称             | 类型   | 必填 | 说明     |
 | ---------------- | ------ | ---- | -------- |

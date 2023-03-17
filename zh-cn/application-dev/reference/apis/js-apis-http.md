@@ -799,7 +799,7 @@ httpRequest.off('dataProgress');
 
 发起请求可选参数的类型和取值范围。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -818,7 +818,7 @@ httpRequest.off('dataProgress');
 
 HTTP 请求方法。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称    | 值      | 说明                |
 | :------ | ------- | :------------------ |
@@ -835,7 +835,7 @@ HTTP 请求方法。
 
 发起请求返回的响应码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称              | 值   | 说明                                                         |
 | ----------------- | ---- | ------------------------------------------------------------ |
@@ -879,7 +879,7 @@ HTTP 请求方法。
 
 request方法回调函数的返回值类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |

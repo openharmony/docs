@@ -122,7 +122,9 @@ try {
 
 addRule(rule: bigint): void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hichecker.addCheckRule](#hicheckeraddcheckrule9)替代。
+> **说明：**
+>
+> 从 API Version 9 开始废弃，建议使用[hichecker.addCheckRule](#hicheckeraddcheckrule9)替代。
 
 添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
 
@@ -149,7 +151,9 @@ hichecker.addRule(
 
 removeRule(rule: bigint): void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hichecker.removeCheckRule](#hicheckerremovecheckrule9)替代。
+> **说明：**
+>
+> 从 API Version 9 开始废弃，建议使用[hichecker.removeCheckRule](#hicheckerremovecheckrule9)替代。
 
 删除一条或多条规则，删除的规则后续将不再生效。
 
@@ -200,7 +204,9 @@ hichecker.getRule();   // return 1n;
 
 contains(rule: bigint): boolean
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hichecker.containsCheckRule](#hicheckercontainscheckrule9)替代。
+> **说明：**
+>
+> 从 API Version 9 开始废弃，建议使用[hichecker.containsCheckRule](#hicheckercontainscheckrule9)替代。
 
 当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
 

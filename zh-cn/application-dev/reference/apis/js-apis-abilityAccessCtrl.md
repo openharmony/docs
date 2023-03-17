@@ -531,7 +531,9 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 校验应用是否授予权限。使用Promise异步回调。
 
-> **说明：** 建议使用[checkAccessToken](#checkaccesstoken9)替代。
+> **说明：**
+>
+> 建议使用[checkAccessToken](#checkaccesstoken9)替代。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -658,7 +660,9 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 校验应用是否授予权限。使用Promise异步回调。
 
-> **说明：** 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
+> **说明：**
+>
+> 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
 
 **系统能力：** SystemCapability.Security.AccessToken
 

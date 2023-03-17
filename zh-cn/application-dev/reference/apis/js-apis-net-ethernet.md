@@ -392,7 +392,7 @@ ethernet.getAllActiveIfaces().then((data) => {
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Ethernet。
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 | 名称          | 类型                    | 必填 | 说明                                                         |
 | ------------ | ----------------------- | ---|------------------------------------------------------------ |
@@ -409,7 +409,7 @@ ethernet.getAllActiveIfaces().then((data) => {
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Ethernet。
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 | 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |

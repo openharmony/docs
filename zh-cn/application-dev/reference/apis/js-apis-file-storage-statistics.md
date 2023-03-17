@@ -22,9 +22,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -59,9 +57,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -90,9 +86,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -128,9 +122,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -159,9 +151,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -196,9 +186,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -263,11 +251,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 ## BundleStats<sup>9+</sup>
 
-### 属性
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 | 名称      | 类型   | 可读 | 可写 | 说明           |
 | --------- | ------ | --- | ---- | -------------- |
@@ -286,9 +270,7 @@ getTotalSize(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
@@ -313,9 +295,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -332,7 +312,6 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
   });
   ```
 
-
 ## storageStatistics.getFreeSize<sup>9+</sup>
 
 getFreeSize(): Promise&lt;number&gt;
@@ -343,9 +322,7 @@ getFreeSize(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
@@ -360,7 +337,6 @@ getFreeSize(): Promise&lt;number&gt;
   console.info("getFreeSize successfully:"+ JSON.stringify(number));
   ```
 
-
 ## storageStatistics.getFreeSize<sup>9+</sup>
 
 getFreeSize(callback: AsyncCallback&lt;number&gt;): void
@@ -371,9 +347,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -400,9 +374,7 @@ getSystemSize(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
@@ -430,9 +402,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -459,9 +429,7 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
@@ -489,9 +457,7 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -515,9 +481,7 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -552,9 +516,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-该接口为系统接口。
-
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -573,15 +535,11 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
   });
   ```
 
-
 ## StorageStats<sup>9+</sup>
 
-### 属性
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-
-该接口为系统接口。
+**系统接口：** 该接口为系统接口。
 
 | 名称      | 类型   | 可读  | 可写  | 说明           |
 | --------- | ------ | ---- | ----- | -------------- |
