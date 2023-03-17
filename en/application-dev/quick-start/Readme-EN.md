@@ -18,6 +18,10 @@
       - [Multi-HAP Usage Rules](multi-hap-rules.md)
       - [Multi-HAP Operation Mechanism and Data Communication Modes](multi-hap-principles.md)
     - [Application Installation and Uninstallation Process](application-package-install-uninstall.md)
+    - [Application Package Update Process](application-package-update.md)
+    - Quick Fix
+      - [Quick Fix Overview](quickfix-principles.md)
+      - [CLI-based Quick Fix Development](quickfix-debug.md)
   - Application Configuration Files in Stage Model
     - [Application Configuration File Overview (Stage Model)](application-configuration-file-overview-stage.md)
     - [app.json5 Configuration File](app-configuration-file.md)
