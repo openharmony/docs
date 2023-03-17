@@ -1,7 +1,7 @@
 # @system.bluetooth (Bluetooth)
 
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.bluetooth`](js-apis-bluetooth.md).
 >
@@ -19,11 +19,10 @@ import bluetooth from '@system.bluetooth';
 
 Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes system resources. Call [bluetooth.stopBLEScan](#bluetoothstopblescanobject) to stop the scan after a BLE device is detected and connected.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
-
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
 **Parameters**
+
 **Table 1** StartBLEScanOptions
 
 | Name| Type| Mandatory| Description|
@@ -42,7 +41,7 @@ Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes sys
       console.log('call bluetooth.startBLEScan success.');
     },
     fail(code, data) {
-      console.log('call bluetooth.startBLEScan failed, code: ${code}, data: ${data}.');
+      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     },
     complete() {
       console.log('call bluetooth.startBLEScan complete.');
@@ -55,11 +54,10 @@ Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes sys
 
 Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLEScan(OBJECT)](#bluetoothstartblescanobject) in pairs.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
-
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
 **Parameters**
+
 **Table 2** StopBLEScanOptions
 
 | Name| Type| Mandatory| Description|
@@ -76,7 +74,7 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
       console.log('call bluetooth.stopBLEScan success.');
     },
     fail(data, code) {
-      console.log('call bluethooth.stopBLEScan fail, code: ${code}, data: ${data}.');
+      console.log('call bluethooth.stopBLEScan fail, code:' + code + ', data:' + data);
     },
     complete() {
       console.log('call bluethooth.stopBLEScan complete.');
@@ -88,8 +86,6 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
 ## bluetooth.subscribeBLEFound(OBJECT)
 
 Subscribes to the newly detected BLE device. If this API is called multiple times, the last call takes effect.
-
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
@@ -122,10 +118,10 @@ Subscribes to the newly detected BLE device. If this API is called multiple time
   ```
   bluetooth.subscribeBLEFound({
     success(data) {
-      console.log('Called bluetooth.subscribeBLEFound successsully, data: ${data}.');
+      console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
     },
     fail(data, code) {
-      console.log('Failed to call bluetooth.startBLEScan, data: ${data}, code: ${code}.');
+      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     }
   });
   ```
@@ -134,8 +130,6 @@ Subscribes to the newly detected BLE device. If this API is called multiple time
 ## bluetooth.unsubscribeBLEFound()
 
 Unsubscribes from the newly detected devices.
-
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
