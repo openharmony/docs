@@ -50,7 +50,7 @@
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
-  - [Wi-Fi Error Codes](errorcode-wifi.md)
+  - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
 - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
