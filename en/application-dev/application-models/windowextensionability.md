@@ -90,23 +90,23 @@ System applications can load the created WindowExtensionAbility through the Abil
 
 3. Set the width and height. The sample code is as follows:
 
-```ts
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World'
-
-  build() {
-    Row() {
-      Column() {
-        AbilityComponent({ abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"})
-          .width(500)
-          .height(500)
-      }
-      .width('100%')
-    }
-    .height('100%')
-    .backgroundColor(0x64BB5c)
-  }
-}
-```
+   ```ts
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World'
+   
+     build() {
+       Row() {
+         Column() {
+           AbilityComponent({ abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"})
+             .width(500)
+             .height(500)
+         }
+         .width('100%')
+       }
+       .height('100%')
+       .backgroundColor(0x64BB5c)
+     }
+   }
+   ```

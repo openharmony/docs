@@ -159,4 +159,4 @@ The following steps are used as an example.
    
    4. Return to the home screen and open file A again. UIAbility instance 2 is started.
 
- <!--no_check--> 
+ 

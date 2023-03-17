@@ -488,4 +488,4 @@ The development process of the Neural Network Runtime consists of three phases: 
 
 The following sample is provided to help you understand how to connect a third-party AI inference framework to the Neural Network Runtime:
 - [Development Guide for Connecting TensorFlow Lite to NNRt Delegate](https://gitee.com/openharmony/neural_network_runtime/tree/master/example/deep_learning_framework)
-<!--no_check-->
+

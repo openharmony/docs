@@ -6,7 +6,7 @@ There are three types of threads in the FA model:
 
 - Main thread
   
-Manages other threads.
+  Manages other threads.
   
 - Ability thread
   - One ability thread for each ability.
@@ -16,7 +16,7 @@ Manages other threads.
   - Receives messages sent by the worker thread.
 
 - Worker thread
-  
+
   Performs time-consuming operations
 
 

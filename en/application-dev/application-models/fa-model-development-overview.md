@@ -3,8 +3,7 @@
 
 During application development based on the Feature Ability (FA) model, the following tasks are involved in the application model.
 
-
-  **Table 1** FA model development process
+**Table 1** FA model development process
 
 | Task| Introduction| Guide|
 | -------- | -------- | -------- |
