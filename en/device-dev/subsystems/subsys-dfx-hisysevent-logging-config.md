@@ -6,18 +6,18 @@
 
 ### Function Introduction
 
-If HiSysEvent logging is required for a component, you need to define a YAML file and [configure the YAML file path](#configuring-the-yaml-file-path) in the **bundle.json** file. During compilation, the OpenHarmony compilation framework will use the Python compilation script to parse and verify all the YAML files configured in the **bundle.json** file. On completion, the compilation framework will summarize the configuration information in the YAML files and convert the information into a JSON file named **hisysevent.def**. After that, the compilation framework will put the JSON file to a specified path as the basis for the system to determine whether to log system events.
+If HiSysEvent logging is required for a component, you need to define a YAML file and [configure the YAML file path](#verifying-the-yaml-file) in the **bundle.json** file. During compilation, the OpenHarmony compilation framework will use the Python compilation script to parse and verify all the YAML files configured in the **bundle.json** file. On completion, the compilation framework will summarize the configuration information in the YAML files and convert the information into a JSON file named **hisysevent.def**. After that, the compilation framework will put the JSON file to a specified path as the basis for the system to determine whether to log system events.
 
 
 ### Basic Concepts
 
 Understanding the following concepts would be helpful for you in configuring HiSysEvent logging.
 
-- Event domain<br>Represents the domain to which an event belongs. It is specified by the **domain** field in the YAML file. For details, see [domain](#example) in the example YAML file.
+- Event domain<br>Represents the domain to which an event belongs. It is specified by the **domain** field in the YAML file. For details, see [domain](#writing-a-yaml-file) in the example YAML file.
 
-- Event name<br>Indicates the events in an event domain. For details, see [EVENT\_NAMEA/EVENT\_NAMEB](#example) in the example YAML file.
+- Event name<br>Indicates the events in an event domain. For details, see [EVENT\_NAMEA/EVENT\_NAMEB](#writing-a-yaml-file) in the example YAML file.
 
-- Parameter<br>Defines the key values in an event name. For details, see [__BASE/NAME1/NAME2](#example) in the example YAML file.
+- Parameter<br>Defines the key values in an event name. For details, see [__BASE/NAME1/NAME2](#writing-a-yaml-file) in the example YAML file.
 
 
 ### Constraints
@@ -47,11 +47,12 @@ Constraints on the event domain, event name, and parameter
   | arrsize | Length of the parameter of the array type. This field is optional.<br>Value:<br>1-100|
   | desc | Parameter description. This field is mandatory.<br>Rule:<br>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (_).|
 
+## How to Develop
 
-## Writing a YAML File
+### Writing a YAML File
 
 
-### Writing Rules
+**Writing Rules**
 
 - Event domain naming rules:
   - The name must start with a letter and can contain only uppercase letters, digits, and underscores (&#95;).
@@ -68,7 +69,7 @@ Constraints on the event domain, event name, and parameter
   - The number of parameters in an event domain cannot exceed 128.
 
 
-### Example
+**Example**
 
 - In the example YAML file, the event domain name is **MODULEA**. The event domain contains two events named **EVENT_NAMEA** and **EVENT_NAMEB**.
 
@@ -96,10 +97,10 @@ Constraints on the event domain, event name, and parameter
   ```
 
 
-## Verifying the YAML File
+### Verifying the YAML File
 
 
-### Configuring the YAML File Path
+**Configuring the YAML File Path**
 
 In the **bundle.json** file, use the **hisysevent_config** attribute to specify the YAML file path.
 
@@ -150,7 +151,7 @@ In the **bundle.json** file, use the **hisysevent_config** attribute to specify 
 > The YAML file can be placed in any directory of the component project as needed. You only need to specify the path in the **bundle.json** file.
 
 
-### Compiling YAML Files
+**Compiling YAML Files**
 
 - Perform full compilation.
   - During full compilation of the system, the configurations in the YAML files of all components are summarized. After the compilation is complete, the **hisysevent.def** file will be generated in the specified directory.
