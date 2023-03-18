@@ -132,10 +132,10 @@ dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 参数名      | 类型                        | 必填 | 说明                                    |
-| ----------- |---------------------------| ---- | --------------------------------------- |
-| phoneNumber | string                    | 是   | 电话号码。                              |
-| callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回跳转拨号界面的结果。 |
+| 参数名      | 类型                        | 必填 | 说明                      |
+| ----------- |---------------------------| ---- |-------------------------|
+| phoneNumber | string                    | 是   | 电话号码。                   |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回拨打电话的结果。 |
 
 **错误码：**
 
@@ -175,7 +175,7 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 | ----------- |--------------------------------------| ---- | ------------------------------------ |
 | phoneNumber | string                               | 是   | 电话号码。                           |
 | options     | [DialCallOptions](#dialcalloptions9) | 是   | 通话参数，携带呼叫的其他配置信息。 |
-| callback    | AsyncCallback&lt;void&gt;            | 是   | 以callback形式异步返回跳转拨号界面的结果。 |
+| callback    | AsyncCallback&lt;void&gt;            | 是   | 以callback形式异步返回拨打电话的结果。 |
 
 **错误码：**
 
@@ -225,7 +225,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 
 | 类型                | 说明                              |
 | ------------------- | --------------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回拨号的结果。 |
+| Promise&lt;void&gt; | 以Promise形式异步返回拨打电话的结果。 |
 
 **错误码：**
 
