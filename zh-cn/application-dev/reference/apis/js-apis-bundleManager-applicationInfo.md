@@ -31,3 +31,4 @@
 | appDistributionType       | string                                                       | 是   | 否   | 应用程序签名证书的分发类型，分为：app_gallery、enterprise、os_integration和crowdtesting。    |
 | appProvisionType          | string                                                       | 是   | 否   | 应用程序签名证书文件的类型，分为debug和release两种类型。           |
 | systemApp          | boolean                                                       | 是   | 否   | 标识应用是否为系统应用。           |
+| bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP(普通应用)或者ATOMIC_SERVICE(原子化服务)。                                |
