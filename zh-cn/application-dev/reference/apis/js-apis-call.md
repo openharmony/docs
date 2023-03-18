@@ -221,6 +221,12 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 | phoneNumber | string                              | 是   | 电话号码。                             |
 | options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，携带呼叫的其他配置信息。 |
 
+**返回值：**
+
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回拨号的结果。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息                                     |
