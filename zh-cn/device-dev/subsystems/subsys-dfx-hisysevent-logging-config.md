@@ -6,18 +6,18 @@
 
 ### 功能简介
 
-组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.json文件中[配置yaml文件的路径](subsys-dfx-hisysevent-logging-config.md#配置yaml文件路径)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.json文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
+组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.json文件中[配置yaml文件的路径](subsys-dfx-hisysevent-logging-config.md#验证yaml文件)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.json文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
 
 
 ### 基本概念
 
 在配置HiSysEvent打点之前，开发者应了解以下基本概念：
 
-- 事件领域 用于标识事件所属的领域，在yaml文件中以domain为键值指定，可参考yaml文件样例中的[domain](subsys-dfx-hisysevent-logging-config.md#编写样例)。
+- 事件领域 用于标识事件所属的领域，在yaml文件中以domain为键值指定，可参考yaml文件样例中的[domain](subsys-dfx-hisysevent-logging-config.md#编写yaml文件)。
 
-- 事件名称 用于指定事件领域包含的所有事件，可参考yaml文件样例中的[EVENT_NAMEA/EVENT_NAMEB](subsys-dfx-hisysevent-logging-config.md#编写样例)。
+- 事件名称 用于指定事件领域包含的所有事件，可参考yaml文件样例中的[EVENT_NAMEA/EVENT_NAMEB](subsys-dfx-hisysevent-logging-config.md#编写yaml文件)。
 
-- 参数 用于定义某个事件名称包含的所有键值，可参考yaml文件样例中的[__BASE/NAME1/NAME2](subsys-dfx-hisysevent-logging-config.md#编写样例)。
+- 参数 用于定义某个事件名称包含的所有键值，可参考yaml文件样例中的[__BASE/NAME1/NAME2](subsys-dfx-hisysevent-logging-config.md#编写yaml文件)。
 
 
 ### 约束与限制
@@ -47,10 +47,13 @@
   | desc | 字段作用：必选字段，用来对该参数进行描述。<br/>定义规则：<br/>-&nbsp;至少包含3个字符，最多包含128个字符，字符范围[a-zA-Z0-9&nbsp;_] |
 
 
-## 编写yaml文件
+## 开发步骤
 
 
-### 编写规则
+### 编写yaml文件
+
+
+**编写规则**
 
 - 事件领域命名规则：
   - 字母开头，且只能由大写字母/数字/下划线组成；
@@ -67,7 +70,7 @@
   - 单个事件名称内包含的参数的个数不能超过128个。
 
 
-### 编写样例
+**编写样例**
 
 - yaml文件样例指定的事件领域名称为MODULEA，该事件领域包含两个事件，名称分别是EVENT_NAMEA和EVENT_NAMEB。
 
@@ -95,10 +98,10 @@
   ```
 
 
-## 验证yaml文件
+### 验证yaml文件
 
 
-### 配置yaml文件路径
+**配置yaml文件路径**
 
 在bundle.json文件中通过hisysevent_config属性完成yaml文件的路径指定：
 
@@ -149,7 +152,7 @@
 > yaml文件可根据实际需求置于组件工程的任意目录下，只要在bundle.json文件指定即可。
 
 
-### 编译yaml文件
+**编译yaml文件**
 
 - 全量编译：
   - 全量编译整个系统，会将所有组件配置的yaml文件中的配置进行汇总，正常完成系统编译后，指定目录下就会生成hisysevent.def文件。
