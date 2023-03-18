@@ -256,7 +256,7 @@ on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
 | type     | string                                                    | 是   | 小区信息变化事件                                                   |
-| callback | Callback\<[CellInformation](js-apis-radio.md#CellInformation)\> | 是   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#CellInformation) |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#cellinformation8) |
 
 **错误码：**
 
@@ -296,7 +296,7 @@ on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<Ce
 | ------ |--------------------------------------------------| ---- |------------------------------------------------------------|
 | type     | string                                           | 是   | 小区变化事件                                                     |
 | slotId | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                              |
-| callback | Callback\<[CellInformation](js-apis-radio.md#CellInformation)\> | 是   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#CellInformation) |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#cellinformation8) |
 
 **错误码：**
 
@@ -335,7 +335,7 @@ off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 网络状态变化事件                                             |
-| callback | Callback\<[CellInformation](js-apis-radio.md#CellInformation)\> | 否   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#CellInformation) |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 否   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#cellinformation8) |
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
