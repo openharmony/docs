@@ -95,30 +95,39 @@ contributer定义是长期活跃在社区的参与者。其社区行为符合上
 - 获得当前committer提名
 - 获得当前2/3的选举票
 
-### Maintainer 权利
+### Committer 权利
 
-- openEuler社区合规SIG maintainer身份席位
-- 合规SIG相关项目的选举、投票和提出议案的权利
-- 负责批准PR是否可以合入
-- 合规SIG 所有事务决策（除maintainer换届选举投票）都由maintainer共同投票决定，事务决策投票按照半数以上原则
-- 指定遗留问题跟踪人
-- 指导reviewer和其他贡献者
-- 识别社区长期贡献者并对其maintainer候选人提名
-- maintainer换届选举时，由现有maintain讨论决策增选maintainer人数，并共同参与公开投票
+- OpenHarmony社区合规SIG Committer身份席位
+- 合规SIG Leader的选举和被选举权、合规SIG Committer的提名和投票权
+- 例行开源合规评审的评审和投票权
+- 合规SIG 所有关键决策的投票权，一人一票，决策投票按照半数以上原则
 
-### Maintainer 义务
+
+### Committer 义务
 
 合规SIG按照[maintainer成员列表](https://gitee.com/openeuler/community/tree/master/sig/sig-compliance#maintainer%E5%88%97%E8%A1%A8) 的顺序进行轮值，轮值周期为当前主持合规SIG例会的时间到下一次召开合规SIG例会的时间，在轮值期间，主要负责这一段时间合规SIG的活动、运营工作等，并做好交接工作。maintainer成员的义务主要有：
 
 - 参与合规SIG的双周例会次数不低于70%，例会时间冲突应委托他人参与
-- 轮值主持双周例会
+- 合规相关PR检视
 
 
-### 退出maintainers
+## Co-Chair
 
-Maintainer可以根据本人的自愿放弃请求或者在项目中无法有效履行maintainer职责而被移除权限。如果其决定退出maintainer队伍，轮值maintainer将建立PR将其从 OWNERS 文件中删除。 若maintainer未有效履行职责，在maintainer换届选举时，由轮值maintainer发起讨论，其他maintainer共同讨论决定是否移除maintainer候选人资格；若待讨论的maintainer恰好是轮值maintainer，则轮值maintainer由列表的下一位主持。
+### Co-Chair的权利与义务
 
+合规SIG按照[Co-Chari成员列表]() 的顺序进行轮值，轮值周期为一个自然月，在轮值期间，主要负责这一段时间合规SIG的例会主持、运营工作等，并做好交接工作。
 
+## SIG 专项Owner
+
+### SIG专项Owner的权利与义务
+
+专项Owner作为开源合规重点的工作的负责人，主导确定本专项工作的目标、工作内容、计划，及时在合规SIG例会进行专项进展通报。
+
+## 能力组 Leader
+
+### 能力组 Leader的权利与义务
+
+能力组 Leader负责本能力领域的能力建设和能力积累，协同本能力领域内的成员，共同建设本能力域的相关知识和实践。
 
 ## 章程修改
 
