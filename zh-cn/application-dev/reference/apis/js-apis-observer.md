@@ -239,6 +239,125 @@ observer.off('signalInfoChange', callback);
 observer.off('signalInfoChange');
 ```
 
+## observer.on('cellInfoChange')<sup>8+</sup>
+
+on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
+
+订阅小区信息变化事件，使用callback方式作为异步方法。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
+| type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。                                                   |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+observer.on('cellInfoChange', data => {
+    console.log("on cellInfoChange, data:" + JSON.stringify(data));
+});
+```
+
+
+## observer.on('cellInfoChange')<sup>8+</sup>
+
+on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<CellInformation\>\): void;
+
+订阅指定卡槽位的小区信息变化事件，使用callback方式作为异步方法。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明                                                         |
+| ------ |--------------------------------------------------| ---- |------------------------------------------------------------|
+| type     | string                                           | 是   | 小区信息变化事件，固定为'cellInfoChange'。                                                   |
+| slotId | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                              |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
+
+**错误码：**
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+observer.on('cellInfoChange', {slotId: 0}, data => {
+    console.log("on cellInfoChange, data:" + JSON.stringify(data));
+});
+```
+
+
+## observer.off('cellInfoChange')<sup>8+</sup>
+
+off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
+
+取消订阅小区信息变化事件，使用callback方式作为异步方法。
+
+>**说明：**
+>
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。                                            |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 否   | 回调函数。|
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let callback = data => {
+    console.log("on cellInfoChange, data:" + JSON.stringify(data));
+}
+observer.on('cellInfoChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+observer.off('cellInfoChange', callback);
+observer.off('cellInfoChange');
+```
 
 ## observer.on('callStateChange')
 
