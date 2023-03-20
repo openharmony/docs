@@ -391,26 +391,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "imSubType.id",
-      label: "",
-      name: "imSubType.name",
-      mode: "",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }, (err,result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
         if (err !== undefined) {
             console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
@@ -462,26 +445,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: imSubType.id,
-      label: "",
-      name: imSubType.name,
-      mode: "",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
