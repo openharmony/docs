@@ -20,14 +20,14 @@
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
   - [Display Error Codes](errorcode-display.md)
   - [Window Error Codes](errorcode-window.md)
-- Media
+- Multimedia
   - [Audio Error Codes](errorcode-audio.md)
   - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
-- Resource Management
+- Resource Manager
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
-- Resource Scheduling
+- Background Task
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
@@ -87,9 +87,9 @@
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
   - [Update Error Codes](errorcode-update.md)
-- Customization Management
+- Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Utils
+- Language Base Class Library
   - [Utils Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

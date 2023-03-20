@@ -18,9 +18,9 @@ Each type of ExtensionAbility has its own context. ServiceExtensionAbility has [
 This topic describes how to use ServiceExtensionAbility in the following scenarios:
 
 
-- [Implementing a Background Service (System Applications Only)](#implementing-a-background-service-system-applications-only)
+- [Implementing a Background Service (for System Applications Only)](#implementing-a-background-service-for-system-applications-only)
 
-- [Starting a Background Service (System Applications Only)](#starting-a-background-service-system-applications-only)
+- [Starting a Background Service (for System Applications Only)](#starting-a-background-service-for-system-applications-only)
 
 - [Connecting to a Background Service](#connecting-to-a-background-service)
 
@@ -33,7 +33,7 @@ This topic describes how to use ServiceExtensionAbility in the following scenari
 > - Third-party applications can connect to ServiceExtensionAbility provided by the system only when they gain focus in the foreground.
 
 
-## Implementing a Background Service (System Applications Only)
+## Implementing a Background Service (for System Applications Only)
 
 [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) provides the callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestory()**. Override them as required. The following figure shows the lifecycle of ServiceExtensionAbility.
 
@@ -164,7 +164,7 @@ To implement a background service, manually create a ServiceExtensionAbility com
    ```
 
 
-## Starting a Background Service (System Applications Only)
+## Starting a Background Service (for System Applications Only)
 
 A system application uses the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest) callback is invoked, and the **Want** object passed by the caller is received through the callback. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service can still run. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability) to stop the background service.
 
