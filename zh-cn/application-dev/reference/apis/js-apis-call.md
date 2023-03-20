@@ -135,7 +135,7 @@ dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
 | 参数名      | 类型                         | 必填 | 说明                                    |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
 | phoneNumber | string                       | 是   | 电话号码。                              |
-| callback    | AsyncCallback&lt;void&gt;    | 是   | 回调函数。                              |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 以callback形式异步返回拨打电话的结果。  |
 
 **错误码：**
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
@@ -176,7 +176,7 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 | ----------- | ----------------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                              | 是   | 电话号码。                           |
 | options     | [DialCallOptions](#dialcalloptions9)| 是   | 通话参数，携带呼叫的其他配置信息。    |
-| callback    | AsyncCallback&lt;void&gt;           | 是   | 回调函数。                           |
+| callback    | AsyncCallback&lt;void&gt;           | 是   | 以callback形式异步返回拨打电话的结果                           |
 
 **错误码：**
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
@@ -218,10 +218,10 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 
 **参数：**
 
-| 参数名      |                 类型                | 必填 |                说明                    |
-| ----------- | ----------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                              | 是   | 电话号码。                             |
-| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，选择为语音通话还是视频通话。 |
+| 参数名      |                 类型                | 必填 | 说明                |
+| ----------- | ----------------------------------- | ---- |-------------------|
+| phoneNumber | string                              | 是   | 电话号码。             |
+| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，携带呼叫的其他配置信息。 |
 
 **返回值：**
 
@@ -245,12 +245,20 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 
 ```js
 let promise = call.dialCall("138xxxxxxxx", {
-    extras: false
+    call.dialCall('138xxxxxxxx');
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
 });
 promise.then(data => {
     console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
+    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
+} catch (error) {
 }).catch(err => {
+    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
     console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
+}
 });
 ```
 
