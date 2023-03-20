@@ -239,7 +239,7 @@ observer.off('signalInfoChange', callback);
 observer.off('signalInfoChange');
 ```
 
-## observer.on('cellInfoChange')
+## observer.on('cellInfoChange')<sup>9+</sup>
 
 on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
 
@@ -255,8 +255,8 @@ on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
-| type     | string                                                    | 是   | 小区信息变化事件                                                   |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#cellinformation8) |
+| type     | string                                                    | 是   | cellInfoChange                                                   |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
 
 **错误码：**
 
@@ -278,7 +278,7 @@ observer.on('cellInfoChange', data => {
 ```
 
 
-## observer.on('cellInfoChange')
+## observer.on('cellInfoChange')<sup>9+</sup>
 
 on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<CellInformation\>\): void;
 
@@ -294,9 +294,9 @@ on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<Ce
 
 | 参数名 | 类型                                               | 必填 | 说明                                                         |
 | ------ |--------------------------------------------------| ---- |------------------------------------------------------------|
-| type     | string                                           | 是   | 小区变化事件                                                     |
+| type     | string                                           | 是   | cellInfoChange                                                     |
 | slotId | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                              |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#cellinformation8) |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
 
 **错误码：**
 
@@ -318,7 +318,7 @@ observer.on('cellInfoChange', {slotId: 0}, data => {
 ```
 
 
-## observer.off('cellInfoChange')
+## observer.off('cellInfoChange')<sup>9+</sup>
 
 off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
 
@@ -328,14 +328,16 @@ off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
 >
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
 **参数：**
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | 是   | 网络状态变化事件                                             |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 否   | 回调函数。参考radio的[CellInformation](js-apis-radio.md#cellinformation8) |
+| type     | string                                                    | 是   | cellInfoChange                                            |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 否   | 回调函数。|
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
