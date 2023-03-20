@@ -164,7 +164,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
       FinishTrace(label);   // func1Trace的结束点
    
       StartAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的开始点   
-      FinishAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace2的结束点
+      FinishAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的结束点
    
       return 0;
    } 
@@ -234,7 +234,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
    }
    ```
 
-3. 将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行依次执行如下命令：
+3. 将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下，在shell中执行依次执行如下命令：
    
    ```shell
    hitrace --trace_begin ohos
@@ -287,46 +287,46 @@ HiTraceMeter提供了可执行的二进制程序hitrace，设备刷openharmony�
 以下是常用hitrace命令示例，供开发者参考：
 
 - 查询支持的label。
-
-```
-
+  
+  ```
+  
   hitrace -l
-
-```
-
-或者
-
-```
-
+  
+  ```
+  
+  或者
+  
+  ```
+  
   hitrace --list_categories
-
-```
+  
+  ```
 
 - 设置4M缓存，抓取10秒，抓取label为ability的trace信息。
-
-```
-
+  
+  ```
+  
   hitrace -b 4096 -t 10 --overwrite ability > /data/log/mytrace.ftrace
-
-```
+  
+  ```
 
 - 设置trace的输出时钟为mono。
-
-```
-
+  
+  ```
+  
   hitrace --trace_clock mono  -b 4096 -t 10 --overwrite ability > /data/log/mytrace.ftrace
-
-```
+  
+  ```
 
 - 抓取trace后进行压缩。
-
-```
-
+  
+  ```
+  
   hitrace -z  -b 4096 -t 10 --overwrite ability > /data/log/mytrace.ftrace
-
-```
-
-
+  
+  ```
+  
+  
 
 # 常见问题
 
@@ -336,16 +336,18 @@ HiTraceMeter提供了可执行的二进制程序hitrace，设备刷openharmony�
 
 执行hitrace命令抓数据不全或者没抓到数据。
 
+#### 根因分析
+
+参数-t 时间设置过小或者-b缓冲区buffer设置过小导致数据丢失。
+
 #### 解决方法
 
-参数-t 时间设置过小或者-b缓冲区buffer设置过小导致数据丢失，可设置-t 60，-b 204800扩大抓trace时间和缓冲区buffer解决。
+可设置-t 60，-b 204800扩大抓trace时间和缓冲区buffer解决。
 
 
 
 # 参考
 
-更多关于HiTraceMeter的详细内容请参考：[hiviewdfx_hitrace: A Lightweight Distributed Tracing | 轻量级的分布式调用链跟踪 (gitee.com)](https://gitee.com/openharmony/hiviewdfx_hitrace) 。
+更多关于HiTraceMeter的详细内容请参考：[轻量级的分布式调用链跟踪](https://gitee.com/openharmony/hiviewdfx_hitrace) 。
 
-```
 
-```
