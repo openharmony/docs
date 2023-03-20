@@ -210,6 +210,20 @@ Failed to install the HAP since the version of the HAP to install is too early.
 **处理步骤**<br/>
 确认新安装的应用版本号是否不低于已安装的同应用版本号。
 
+## 17700018 安装失败，依赖的模块不存在
+
+**错误信息**<br/>
+Failed to install because the dependent module does not exist.
+
+**错误描述**<br/>
+安装hap或者hsp时，依赖的模块不存在。
+
+**可能原因**<br/>
+依赖的模块没有安装。
+
+**处理步骤**<br/>
+先安装依赖的模块。
+
 ## 17700020 预置应用无法卸载
 
 **错误信息**<br/>
