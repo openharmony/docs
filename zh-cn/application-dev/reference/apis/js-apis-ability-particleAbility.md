@@ -47,7 +47,7 @@ particleAbility.startAbility(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -98,7 +98,7 @@ particleAbility.startAbility(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
