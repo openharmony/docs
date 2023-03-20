@@ -34,7 +34,7 @@ There are two roles in **DataShare**:
 - Data provider: adds, deletes, modifies, and queries data, opens files, and shares data.
 - Data consumer: accesses the data provided by the provider using **DataShareHelper**.
 
-### Data Provider Application Development (Only for System Applications)
+### Data Provider Application Development (for System Applications Only)
 
 [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
 

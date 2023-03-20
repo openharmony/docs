@@ -19,14 +19,14 @@
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
   - [Display Error Codes](errorcode-display.md)
   - [Window Error Codes](errorcode-window.md)
-- Media
+- Multimedia
   - [Audio Error Codes](errorcode-audio.md)
   - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
-- Resource Management
+- Resource Manager
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
-- Resource Scheduling
+- Background Task
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
@@ -50,7 +50,6 @@
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
-  - [Wi-Fi Error Codes](errorcode-wifi.md)
 - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
@@ -59,7 +58,6 @@
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   - [Pasteboard Error Codes](errorcode-pasteboard.md)
-  - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Time and Time Zone Service Error Codes](errorcode-time.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
@@ -78,9 +76,9 @@
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
   - [Update Error Codes](errorcode-update.md)
-- Customization Management
+- Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Utils
+-  Language Base Class Library 
   - [Utils Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

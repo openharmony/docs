@@ -24,13 +24,13 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
-- [Common Event and Notification](notification/notification-overview.md)
+- [Notification](notification/notification-overview.md)
 - [Window Manager](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/audio-overview.md)
 - [Security](security/userauth-overview.md)
 - [Connectivity](connectivity/ipc-rpc-overview.md)
-- [Telephony](telephony/telephony-overview.md)
+- [Telephony Service](telephony/telephony-overview.md)
 - [Data Management](database/database-mdds-overview.md)
 - [Task Management](task-management/background-task-overview.md)
 - [Device](device/usb-overview.md)
@@ -40,6 +40,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Application Test](application-test/arkxtest-guidelines.md)
 - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
+- [File Management](file-management/medialibrary-overview.md)
 
 ### Tools
 
