@@ -112,7 +112,7 @@ Curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
 springCurve(velocity: number, mass: number, stiffness: number, damping: number)：ICurve
 
 
-构造弹簧曲线对象。
+构造弹簧曲线对象，曲线形状由弹簧参数决定，动画时长受animate、animateTo中的duration参数控制。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -199,6 +199,39 @@ responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDurat
 ```ts
 import Curves from '@ohos.curves'
 Curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
+```
+
+
+##  Curves.interpolatingSpringCurve<sup>10+</sup>
+
+interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number)：ICurve
+
+
+构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受animate、animateTo中的duration参数控制。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名       | 类型     | 必填   | 说明    |
+| --------- | ------ | ---- | ----- |
+| velocity  | number | 是    | 初始速度。是由外部因素对弹性动效产生的影响参数，其目的是保证对象从之前的运动状态平滑的过渡到弹性动效，且该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。 |
+| mass      | number | 是    | 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。 |
+| stiffness | number | 是    | 刚度。是物体抵抗施加的力而形变的程度。在弹性系统中，刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度就越快。 |
+| damping   | number | 是    | 阻尼。是一个纯数，无真实的物理意义，用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。 |
+
+
+**返回值：**
+
+| 类型                           | 说明             |
+| ---------------------------------- | ---------------- |
+|  [ICurve](#icurve)| 曲线的插值对象。 |
+
+
+**示例：**
+
+```ts
+import Curves from '@ohos.curves'
+Curves.interpolatingSpring(100, 1, 228, 30) // 创建一个时长由弹簧参数决定的弹簧插值曲线
 ```
 
 
