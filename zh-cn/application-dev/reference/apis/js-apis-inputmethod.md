@@ -398,12 +398,13 @@ let inputMethodProperty = {
     id: im.methodId,
     extra: {}
 }
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "ServiceExtAbility",
+      id: "imSubType.id",
       label: "",
-      name: "com.example.kikakeyboard",
-      mode: "upper",
+      name: "imSubType.name",
+      mode: "",
       locale: "",
       language: "",
       icon: "",
@@ -468,12 +469,13 @@ let inputMethodProperty = {
     id: im.methodId,
     extra: {}
 }
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: im.methodId,
+      id: imSubType.id,
       label: "",
-      name: im.packageName,
-      mode: "upper",
+      name: imSubType.name,
+      mode: "",
       locale: "",
       language: "",
       icon: "",
