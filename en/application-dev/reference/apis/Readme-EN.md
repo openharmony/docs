@@ -186,14 +186,14 @@
     - [WebGL](js-apis-webgl.md)
     - [WebGL2](js-apis-webgl2.md)
 
-- Media
+- Multimedia
   - [@ohos.multimedia.audio (Audio Management)](js-apis-audio.md)
   - [@ohos.multimedia.avsession (AVSession Management)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md)
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
 
-- Resource Management
+- Resource Manager
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
   - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
@@ -271,8 +271,8 @@
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
   - [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN Extension)](js-apis-wifiManagerExt.md)
-  - [@ohos.wifi (To Be Deprecated)](js-apis-wifi.md)
-  - [@ohos.wifiext (To Be Deprecated)](js-apis-wifiext.md)
+  - [@ohos.wifi (To Be Deprecated Soon)](js-apis-wifi.md)
+  - [@ohos.wifiext (To Be Deprecated Soon)](js-apis-wifiext.md)
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
@@ -342,7 +342,7 @@
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
 
-- Custom Management
+- Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)

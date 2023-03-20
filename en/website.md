@@ -45,7 +45,7 @@
         - [Power management subsystem](release-notes/api-diff/v3.2-beta3/js-apidiff-battery.md)
         - [Bundle management framework](release-notes/api-diff/v3.2-beta3/js-apidiff-bundle.md)
         - [Communication subsystem](release-notes/api-diff/v3.2-beta3/js-apidiff-communicate.md)
-        - [Utils subsystem](release-notes/api-diff/v3.2-beta3/js-apidiff-compiler-and-runtime.md)
+        - [Compiler and runtime subsystem](release-notes/api-diff/v3.2-beta3/js-apidiff-compiler-and-runtime.md)
         - [DFX subsystem](release-notes/api-diff/v3.2-beta3/js-apidiff-dfx.md)
         - [Distributed data management subsystem](release-notes/api-diff/v3.2-beta3/js-apidiff-distributed-data.md)
         - [Distributed hardware subsystem](release-notes/api-diff/v3.2-beta3/js-apidiff-distributed-hardware.md)
@@ -74,7 +74,7 @@
         - [ArkUI development framework](release-notes/api-diff/v3.2-beta2/js-apidiff-arkui.md)
         - [Bundle management framework](release-notes/api-diff/v3.2-beta2/js-apidiff-bundle.md)
         - [Communication subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-communicate.md)
-        - [Utils subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-compiler-and-runtime.md)
+        - [Compiler and runtime subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-compiler-and-runtime.md)
         - [DFX subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-dfx.md)
         - [Distributed data management subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-distributed-data.md)
         - [Common event and notification subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-event-and-notification.md)
@@ -95,7 +95,7 @@
         - [User IAM subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-user-authentication.md)
         - [Web subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-web.md)
         - [Window manager subsystem](release-notes/api-diff/v3.2-beta2/js-apidiff-window.md)
-      - ChangeLog
+      - Changelog
         - [Updates (OpenHarmony 3.2 Beta1 -> OpenHarmony 3.2 Beta2)](release-notes/changelogs/v3.2-beta2/changelog-v3.2-beta2.md)
         - [Adaptation Guide for the Application Sandbox](release-notes/changelogs/v3.2-beta2/application-sandbox-adaptation-guide.md)  
     - OpenHarmony 3.2 Beta1
@@ -128,7 +128,7 @@
         - [Power management subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-battery.md)
         - [Bundle management subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-bundle.md)
         - [Communication subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-communicate.md)
-        - [Multi-language Runtime subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-compiler-and-runtime.md)
+        - [Compiler and Runtime subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-compiler-and-runtime.md)
         - [DFX subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-dfx.md)
         - [Distributed data management subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-distributed-data.md)
         - [Distributed hardware subsystem](release-notes/api-diff/v3.1-Release/js-apidiff-distributed-hardware.md)

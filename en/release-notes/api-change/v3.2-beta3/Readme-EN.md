@@ -10,7 +10,7 @@ This directory records the API changes in OpenHarmony 3.2 Beta3 over OpenHarmony
   - [Power management subsystem](js-apidiff-battery.md)
   - [Bundle management framework](js-apidiff-bundle.md)
   - [Communication subsystem](js-apidiff-communicate.md)
-  - [Utils subsystem](js-apidiff-compiler-and-runtime.md)
+  - [Compiler and runtime subsystem](js-apidiff-compiler-and-runtime.md)
   - [DFX subsystem](js-apidiff-dfx.md)
   - [Distributed data management subsystem](js-apidiff-distributed-data.md)
   - [Distributed hardware subsystem](js-apidiff-distributed-hardware.md)

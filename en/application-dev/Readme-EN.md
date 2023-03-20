@@ -49,7 +49,7 @@
 - Development
   - [Application Models](application-models/Readme-EN.md)
   - [UI Development](ui/Readme-EN.md)
-  - [Common Event and Notification](notification/Readme-EN.md)
+  - [Notification](notification/Readme-EN.md)
   - [Window Manager](windowmanager/Readme-EN.md)
   - [WebGL](webgl/Readme-EN.md)
   - [Media](media/Readme-EN.md)
@@ -57,7 +57,7 @@
   - [Connectivity](connectivity/Readme-EN.md)
   - [Data Management](database/Readme-EN.md)
   - [File Management](file-management/Readme-EN.md)
-  - [Telephony](telephony/Readme-EN.md)
+  - [Telephony Service](telephony/Readme-EN.md)
   - [Task Management](task-management/Readme-EN.md)
   - [Device Management](device/Readme-EN.md)
   - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
