@@ -23,7 +23,7 @@ fetch(Object): void
 **系统能力：** SystemCapability.Communication.NetStack 
 
 **参数：**
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
 | data | string \| Object | 否 | 请求的参数，可选类型是字符串或者json对象。详见表 data与Content-Type关系。 |
