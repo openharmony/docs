@@ -2879,7 +2879,7 @@ getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCall
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string                                                       | 是   | 表示应用程序的bundleName。                                   |
 | moduleName | string                                                       | 是   | 表示被查询的module的name。                                   |
-| callback   | AsyncCallback\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)> | 是   | 回调函数，当获取成功时，err为null，data为获取的指定共享包信息。 |
+| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获取的指定共享包信息。 |
 
 **错误码：**
 
@@ -2934,7 +2934,7 @@ function getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<A
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)> | Promise对象，返回指定的共享包信息。 |
+| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Promise对象，返回指定的共享包信息。 |
 
 **错误码：**
 
