@@ -1,4 +1,4 @@
-# Notification Subscription (Open Only to System Applications)
+# Notification Subscription (for System Applications Only)
 
 
 To receive notifications, an application must subscribe to notifications first. The notification subsystem provides two types of subscription APIs, allowing applications to subscribe to notifications from all applications or notifications from a specific application.

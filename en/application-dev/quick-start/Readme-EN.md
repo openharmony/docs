@@ -10,7 +10,6 @@
     - Application Package Structure
       - [Application Package Structure in Stage Model](application-package-structure-stage.md)
       - [Application Package Structure in FA Model](application-package-structure-fa.md)
-      - [HAR File Structure](har-structure.md)
     - Multi-HAP Mechanism
       - [Multi-HAP Design Objectives](multi-hap-objective.md)
       - [Multi-HAP Build View](multi-hap-build-view.md)

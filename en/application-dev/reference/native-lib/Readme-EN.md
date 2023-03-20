@@ -1,5 +1,4 @@
 # Standard Libraries Supported by Native APIs
-
 - [Node_API](third_party_napi/napi.md)
 - [libuv](third_party_libuv/libuv.md)
 - [Native Standard Libraries Supported by Openharmony](third_party_libc/musl.md)

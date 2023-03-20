@@ -43,7 +43,7 @@ The **observer** module provides the functions of subscribing to and unsubscribi
 
 ## How to Develop
 
-### Making a Call by Using the **dial** API (Only for System Applications)
+### Making a Call by Using the **dial** API (for System Applications Only)
 
 1. Declare the required permission: **ohos.permission.PLACE_CALL**.
 This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).

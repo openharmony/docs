@@ -15,11 +15,11 @@ This topic describes the UIAbility interaction modes in the following scenarios.
 
 - [Starting UIAbility of Another Application and Obtaining the Return Result](#starting-uiability-of-another-application-and-obtaining-the-return-result)
 
-- [Starting UIAbility with Window Mode Specified (System Applications Only)](#starting-uiability-with-window-mode-specified-system-applications-only)
+- [Starting UIAbility with Window Mode Specified (for System Applications Only)](#starting-uiability-with-window-mode-specified-for-system-applications-only)
 
 - [Starting a Specified Page of UIAbility](#starting-a-specified-page-of-uiability)
 
-- [Using Ability Call to Implement UIAbility Interaction (System Applications Only)](#using-ability-call-to-implement-uiability-interaction-system-applications-only)
+- [Using Ability Call to Implement UIAbility Interaction (for System Applications Only)](#using-ability-call-to-implement-uiability-interaction-for-system-applications-only)
 
 
 ## Starting UIAbility in the Same Application
@@ -308,7 +308,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    })
    ```
 
-## Starting UIAbility with Window Mode Specified (System Applications Only)
+## Starting UIAbility with Window Mode Specified (for System Applications Only)
 
 By specifying the window mode when starting the UIAbility of an application, the application can be displayed in different window modes, which can be full-screen, floating window, or split-screen.
 
@@ -472,7 +472,7 @@ In summary, when a UIAbility instance of application A has been created and the 
 > When the [launch type of the callee UIAbility](uiability-launch-type.md) is set to **standard**, a new instance is created each time the callee UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
 
 
-## Using Ability Call to Implement UIAbility Interaction (System Applications Only)
+## Using Ability Call to Implement UIAbility Interaction (for System Applications Only)
 
 Ability call is an extension of the UIAbility capability. It enables the UIAbility to be invoked by and communicate with external systems. The UIAbility invoked can be either started in the foreground or created and run in the background. You can use the ability call to implement data sharing between two UIAbility instances (caller ability and callee ability) through IPC.
 
