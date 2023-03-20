@@ -1,7 +1,7 @@
 # Notification
 
 - [Notification Overview](notification-overview.md)
-- [Notification Subscription (Open Only to System Applications)](notification-subscription.md)
+- [Notification Subscription (for System Applications Only)](notification-subscription.md)
 - [Enabling Notification](notification-enable.md)
 - Publishing a Notification
   - [Publishing a Basic Notification](text-notification.md)

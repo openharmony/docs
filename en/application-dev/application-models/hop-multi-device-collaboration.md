@@ -1,4 +1,4 @@
-# Multi-device Collaboration (System Applications Only)
+# Multi-device Collaboration (for System Applications Only)
 
 
 ## When to Use

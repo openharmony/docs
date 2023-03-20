@@ -1,6 +1,6 @@
-# JS API Changes of the Utils Subsystem
+# JS API Changes of the Compiler and Runtime Subsystem
 
-The table below lists the APIs changes of the Utils subsystem in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
+The table below lists the APIs changes of the compiler and runtime subsystem in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
 
 ## API Changes
 
