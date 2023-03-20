@@ -347,7 +347,7 @@ var subscribeInfo = {
 
 // Callback for common event subscription.
 function SubscribeCallBack(err, data) {
-    if (err.code) {
+    if (err) {
         console.error("subscribe failed " + JSON.stringify(err));
     } else {
         console.info("subscribe ");
@@ -472,7 +472,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for result code obtaining of an ordered common event.
 function getCodeCallback(err, Code) {
-    if (err.code) {
+    if (err) {
         console.error("getCode failed " + JSON.stringify(err));
     } else {
         console.info("getCode " + JSON.stringify(Code));
@@ -529,7 +529,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for result code setting of an ordered common event.
 function setCodeCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("setCode failed " + JSON.stringify(err));
     } else {
         console.info("setCode");
@@ -591,7 +591,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data obtaining of an ordered common event.
 function getDataCallback(err, Data) {
-    if (err.code) {
+    if (err) {
         console.error("getData failed " + JSON.stringify(err));
     } else {
         console.info("getData " + JSON.stringify(Data));
@@ -648,7 +648,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for result data setting of an ordered common event
 function setDataCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("setData failed " + JSON.stringify(err));
     } else {
         console.info("setData");
@@ -712,7 +712,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for result code and result data setting of an ordered common event.
 function setCodeDataCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("setCodeAndData failed " + JSON.stringify(err));
     } else {
         console.info("setCodeDataCallback");
@@ -777,7 +777,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for checking whether the current common event is an ordered one.
 function isOrderedCallback(err, isOrdered) {
-    if (err.code) {
+    if (err) {
         console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
@@ -837,7 +837,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for checking whether the current common event is a sticky one.
 function isStickyCallback(err, isSticky) {
-    if (err.code) {
+    if (err) {
         console.error("isStickyCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
@@ -895,7 +895,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for common event aborting.
 function abortCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("abortCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("abortCommonEvent");
@@ -951,7 +951,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for clearing the aborted state of the current common event.
 function clearAbortCallback(err) {
-    if (err.code) {
+    if (err) {
         console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("clearAbortCommonEvent");
@@ -1007,7 +1007,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for checking whether the current common event is in the aborted state.
 function getAbortCallback(err, AbortCommonEvent) {
-    if (err.code) {
+    if (err) {
         console.error("getAbortCommonEvent failed " + JSON.stringify(err));
     } else {
         console.info("AbortCommonEvent " + AbortCommonEvent)
@@ -1063,7 +1063,7 @@ var subscriber;	// Subscriber object successfully created.
 
 // Callback for subscriber information obtaining.
 function getSubscribeInfoCallback(err, SubscribeInfo) {
-    if (err.code) {
+    if (err) {
         console.error("getSubscribeInfo failed " + JSON.stringify(err));
     } else {
         console.info("SubscribeInfo " + JSON.stringify(SubscribeInfo));
@@ -1119,7 +1119,7 @@ var subscriber; // Subscriber object successfully created.
 
 // Callback for ordered common event finishing.
 function finishCommonEventCallback(err) {
-  if (err.code) {
+  if (err) {
     console.error("finishCommonEvent failed " + JSON.stringify(err));
 } else {
     console.info("FinishCommonEvent");
