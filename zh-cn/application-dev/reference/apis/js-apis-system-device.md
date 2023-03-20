@@ -16,7 +16,7 @@ import device from '@system.device';
 
 ## device.getInfo
 
-getInfo(Object): void
+getInfo(options?: GetDeviceOptions): void
 
 获取当前设备的信息。
 
@@ -29,13 +29,27 @@ getInfo(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
-| complete | Function | 否 | 接口调用结束的回调函数。 |
+| options | [GetDeviceOptions](#getdeviceoptions) | 否 | 定义设备信息获取的参数选项。 |
 
-success返回值：
+## GetDeviceOptions
 
-| 参数名 | 类型 | 说明 |
+定义设备信息获取的参数选项。
+
+**系统能力： ** SystemCapability.Startup.SystemInfo
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| success | (data：DeviceResponse）=> void | 否 | 接口调用成功的回调函数。 data为成功返回的设备信息，具体参考[DeviceResponse]。|
+| fail | (data：any,code:number）=> void | 否 | 接口调用失败的回调函数。 code为失败返回的错误码。<br>code:200，表示返回结果中存在无法获得的信息。|
+| complete | （）=> void | 否 | 接口调用结束的回调函数。 |
+
+## DeviceResponse
+
+设备信息。
+
+##系统能力：** SystemCapability.Startup.SystemInfo
+
+| 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
 | brand | string | 品牌。 |
 | manufacturer | string | 生产商。 |
@@ -51,11 +65,6 @@ success返回值：
 | releaseType<sup>4+</sup> | string | 版本发布类型，值为类型+版本号，如Beta1。<br/>类型可能值有：<br/>-&nbsp;Canary：同一apiVersion下，canary版本之间保持API兼容，beta版本不对canary版本兼容。<br/>-&nbsp;Beta：同一apiVersion下，beta版本之间保持API兼容，release版本不对beta版本兼容。<br/>-&nbsp;Release：release版本会保持5个API版本兼容。 |
 | deviceType<sup>4+</sup> | string | 设备类型。 |
 
-fail返回错误代码：
-
-| 错误码 | 说明 |
-| -------- | -------- |
-| 200 | 返回结果中存在无法获得的信息。 |
 
 **示例：**
 
