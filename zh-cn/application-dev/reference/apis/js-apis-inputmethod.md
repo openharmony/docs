@@ -256,9 +256,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -317,9 +317,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -400,9 +400,9 @@ let inputMethodProperty = {
 }
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -470,9 +470,9 @@ let inputMethodProperty = {
 }
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: im.packageName,
-      label: im.methodId,
-      name: "",
+      id: im.methodId,
+      label: "",
+      name: im.packageName,
       mode: "upper",
       locale: "",
       language: "",
