@@ -54,9 +54,9 @@
     //具体参数需要根据音频文件格式进行适配
     SLDataFormat_PCM format_pcm = {
         SL_DATAFORMAT_PCM,
-        OHOS::AudioStandard::AudioChannel::MONO,
-        OHOS::AudioStandard::AudioSamplingRate::SAMPLE_RATE_44100,
-        OHOS::AudioStandard::AudioSampleFormat::SAMPLE_S16LE,
+        1，    //单声道，等同于OHOS::AudioStandard::AudioChannel::MONO
+        44100，//采样率，等同于OHOS::AudioStandard::AudioSamplingRate::SAMPLE_RATE_44100
+        1，    //音频采样格式，OHOS::AudioStandard::AudioSampleFormat::SAMPLE_S16LE,
         0,
         0,
         0
