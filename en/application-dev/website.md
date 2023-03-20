@@ -90,8 +90,8 @@
           - [Introduction to Common Events](application-models/common-event-overview.md)
           - Common Event Subscription
              - [Common Event Subscription Overview](application-models/common-event-subscription-overview.md)
-             - [Subscribing to Dynamic Common Events](application-models/common-event-subscription.md)
-             - [Subscribing to Static Common Events (for System Applications Only)](application-models/common-event-static-subscription.md)
+             - [Subscribing to Common Events in Dynamic Mode](application-models/common-event-subscription.md)
+             - [Subscribing to Common Events in Static Mode (for System Applications Only)](application-models/common-event-static-subscription.md)
              - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
         - [Background Services](application-models/background-services.md)
@@ -309,10 +309,10 @@
       - [Audio Routing and Device Management Development](media/audio-routing-manager.md)
       - [AVPlayer Development (Recommended)](media/avplayer-playback.md)
       - [AVRecorder Development (Recommended)](media/avrecorder.md)
-      - [Audio Playback Development (To Be Deprecated)](media/audio-playback.md)
-      - [Audio Recording Development (To Be Deprecated)](media/audio-recorder.md)
-      - [Video Playback Development (To Be Deprecated)](media/video-playback.md)
-      - [Video Recording Development (To Be Deprecated)](media/video-recorder.md)
+      - [Audio Playback Development (To Be Deprecated Soon)](media/audio-playback.md)
+      - [Audio Recording Development (To Be Deprecated Soon)](media/audio-recorder.md)
+      - [Video Playback Development (To Be Deprecated Soon)](media/video-playback.md)
+      - [Video Recording Development (To Be Deprecated Soon)](media/video-recorder.md)
     - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - [AVSession Development](media/avsession-guidelines.md)
@@ -947,17 +947,17 @@
       - webgl
         - [WebGL](reference/apis/js-apis-webgl.md)
         - [WebGL2](reference/apis/js-apis-webgl2.md)
-    - Media
+    - Multimedia
       - [@ohos.multimedia.audio (Audio Management)](reference/apis/js-apis-audio.md)
       - [@ohos.multimedia.avsession (AVSession Management)](reference/apis/js-apis-avsession.md)
       - [@ohos.multimedia.camera (Camera Management)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (Image Processing)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (Media)](reference/apis/js-apis-media.md)
-    - Resource Management
+    - Resource Manager
       - [@ohos.i18n (Internationalization)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (Internationalization)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (Resource Manager)](reference/apis/js-apis-resource-manager.md)
-    - Resource Scheduling
+    - Background Task
       - [@ohos.distributedMissionManager (Distributed Mission Management)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (Reminder Agent Management)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
@@ -1025,8 +1025,8 @@
       - [@ohos.rpc (RPC)](reference/apis/js-apis-rpc.md)
       - [@ohos.wifiManager (WLAN)](reference/apis/js-apis-wifiManager.md)
       - [@ohos.wifiManagerExt (WLAN Extension)](reference/apis/js-apis-wifiManagerExt.md)
-      - [@ohos.wifi (To Be Deprecated)](reference/apis/js-apis-wifi.md)
-      - [@ohos.wifiext (To Be Deprecated)](reference/apis/js-apis-wifiext.md)
+      - [@ohos.wifi (To Be Deprecated Soon)](reference/apis/js-apis-wifi.md)
+      - [@ohos.wifiext (To Be Deprecated Soon)](reference/apis/js-apis-wifiext.md)
       - tag
         - [nfctech (Standard NFC Technologies)](reference/apis/js-apis-nfctech.md)
         - [tagSession (Standard NFC Tag Session)](reference/apis/js-apis-tagSession.md)
@@ -1092,7 +1092,7 @@
       - [@ohos.account.appAccount (App Account Management)](reference/apis/js-apis-appAccount.md)
       - [@ohos.account.distributedAccount (Distributed Account Management)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (OS Account Management)](reference/apis/js-apis-osAccount.md)
-    - Custom Management
+    - Customization
       - [@ohos.configPolicy (Configuration Policy)](reference/apis/js-apis-configPolicy.md)
       - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
       - [@ohos.enterprise.adminManager (Enterprise Device Management)](reference/apis/js-apis-enterprise-adminManager.md)
@@ -1201,14 +1201,14 @@
       - [colorSpaceManager Error Codes](reference/errorcodes/errorcode-colorspace-manager.md)
       - [Display Error Codes](reference/errorcodes/errorcode-display.md)
       - [Window Error Codes](reference/errorcodes/errorcode-window.md)
-    - Media
+    - Multimedia
       - [Audio Error Codes](reference/errorcodes/errorcode-audio.md)
       - [Media Error Codes](reference/errorcodes/errorcode-media.md)
       - [AVSession Management Error Codes](reference/errorcodes/errorcode-avsession.md)
-    - Resource Management
+    - Resource Manager
       - [I18N Error Codes](reference/errorcodes/errorcode-i18n.md)
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
-    - Resource Scheduling
+    - Background Task
       - [backgroundTaskManager Error Codes](reference/errorcodes/errorcode-backgroundTaskMgr.md)
       - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager Error Codes](reference/errorcodes/errorcode-reminderAgentManager.md)
@@ -1267,7 +1267,7 @@
       - [System Parameter Error Codes](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB Error Codes](reference/errorcodes/errorcode-usb.md)
       - [Update Error Codes](reference/errorcodes/errorcode-update.md)
-    - Customization Management
+    - Customization
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Language Base Class Library
       - [Utils Error Codes](reference/errorcodes/errorcode-utils.md)
