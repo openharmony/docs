@@ -54,7 +54,7 @@
     //具体参数需要根据音频文件格式进行适配
     SLDataFormat_PCM format_pcm = {
         SL_DATAFORMAT_PCM, //输入的音频格式
-        SL_SPEAKER_FRONT_LEFT,//前左声道
+        1,//单声道
         SL_SAMPLINGRATE_44_1,//采样率，44100HZ
         SL_PCMSAMPLEFORMAT_FIXED_16，//音频采样格式,小尾数，带符号的16位整数
         0,
