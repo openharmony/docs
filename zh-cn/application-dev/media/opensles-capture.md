@@ -53,10 +53,10 @@
 
     //具体参数需要根据音频文件格式进行适配
     SLDataFormat_PCM format_pcm = {
-        SL_DATAFORMAT_PCM,
-        1，    //单声道，等同于OHOS::AudioStandard::AudioChannel::MONO
-        44100，//采样率，等同于OHOS::AudioStandard::AudioSamplingRate::SAMPLE_RATE_44100
-        1，    //音频采样格式，OHOS::AudioStandard::AudioSampleFormat::SAMPLE_S16LE,
+        SL_DATAFORMAT_PCM, //输入的音频格式
+        SL_SPEAKER_FRONT_LEFT,//前左声道
+        SL_SAMPLINGRATE_44_1,//采样率，44100HZ
+        SL_PCMSAMPLEFORMAT_FIXED_16，//音频采样格式,小尾数，带符号的16位整数
         0,
         0,
         0
