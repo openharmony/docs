@@ -2,7 +2,8 @@
 
 The **pointer** module provides APIs related to pointer attribute management.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -237,6 +238,8 @@ Obtains the mouse movement speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Name                   | Description                 |
@@ -263,8 +266,6 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name      | Type                                      | Mandatory  | Description            |
@@ -277,21 +278,23 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getWindowProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.getPointerStyle(windowId, (error, style) => {
-        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-      });
-    } catch (error) {
-      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.getPointerStyle(windowId, (error, style) => {
+      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+    });
+  } catch (error) {
+    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 
@@ -320,21 +323,23 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getWindowProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.getPointerStyle(windowId).then((style) => {
-        console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-      });
-    } catch (error) {
-      console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.getPointerStyle(windowId).then((style) => {
+      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+    });
+  } catch (error) {
+    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 
@@ -359,21 +364,23 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getWindowProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
-        console.log(`Set pointer style success`);
-      });
-    } catch (error) {
-      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
+      console.log(`Set pointer style success`);
+    });
+  } catch (error) {
+    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 ## pointer.setPointerStyle<sup>9+</sup>
@@ -397,21 +404,23 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 ```js
 import window from '@ohos.window';
 
-window.getTopWindow((error, win) => {
-  win.getWindowProperties((error, properties) => {
-    let windowId = properties.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-        console.log(`Set pointer style success`);
-      });
-    } catch (error) {
-      console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-    }
-  });
+window.getLastWindow(this.context, (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
+      console.log(`Set pointer style success`);
+    });
+  } catch (error) {
+    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 });
 ```
 ## PointerStyle<sup>9+</sup>
