@@ -35,9 +35,7 @@ When developing an application, you may need to configure certain tags to identi
   
     On the stage model, you can configure an entry icon and label for each application component. The entry icon and label are displayed on the home screen.
 
-    The entry icon is configured by specifying **icon** under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For example, if you want to display the icon of the UIAbility component on the home screen, add **entity.system.home** to **entities** and **action.system.home** to **actions** under **skills**. If this field is configured for multiple UIAbility components of an application, multiple icons are displayed on the home screen, corresponding to their respective UIAbility component.
-    
-  The entry label is configured by specifying **label** under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For example, if you want to display the icon of the UIAbility component on the home screen, add **entity.system.home** to **entities** and **action.system.home** to **actions** under **skills**. If this field is configured for multiple UIAbility components of an application, multiple labels are displayed on the home screen, corresponding to their respective UIAbility component.
+    The entry icon is configured by specifying **icon** under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For example, if you want to display the icon of the UIAbility component on the home screen, add **entity.system.home** to **entities** and **ohos.want.action.home** to **actions** under **skills**. If this field is configured for multiple UIAbility components of an application, multiple icons are displayed on the home screen, corresponding to their respective UIAbility component.
   
   ```json
   {
@@ -54,7 +52,7 @@ When developing an application, you may need to configure certain tags to identi
                 "entity.system.home"
               ],
               "actions": [
-                "action.system.home"
+                "ohos.want.action.home"
               ]
             }
           ],
@@ -63,7 +61,6 @@ When developing an application, you may need to configure certain tags to identi
     }
   }
   ```
-  
 - **Configuring application version declaration**
   
   To declare the application version, configure the **versionCode** and **versionName** fields in the [app.json5 file](../quick-start/app-configuration-file.md) in the **AppScope** directory of the project. **versionCode** specifies the version number of the application. The value is a 32-bit non-negative integer. It is used only to determine whether a version is later than another version. A larger value indicates a later version. **versionName** provides the text description of the version number.
