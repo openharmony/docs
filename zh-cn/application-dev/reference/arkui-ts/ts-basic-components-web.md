@@ -534,6 +534,7 @@ mediaPlayGestureAccess(access: boolean)
 multiWindowAccess(multiWindow: boolean)
 
 设置是否开启多窗口权限，默认不开启。
+使能多窗口权限时，需要实现onWindowNew事件，示例代码参考[onWindowNew事件](#onwindownew9)。
 
 **参数：**
 
@@ -554,7 +555,7 @@ multiWindowAccess(multiWindow: boolean)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
+        .multiWindowAccess(false)
       }
     }
   }
@@ -1261,19 +1262,50 @@ allowWindowOpenMethod(flag: boolean)
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State access: boolean = true
-    @State multiWindow: boolean = true
-    @State flag: boolean = true
+    dialogController: CustomDialogController = null
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .javaScriptAccess(this.access)
-          .multiWindowAccess(this.multiWindow)
-          .allowWindowOpenMethod(this.flag)
+          .javaScriptAccess(true)
+          //需要使能multiWindowAccess
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            //将新窗口对应WebviewController返回给Web内核。
+            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -2719,7 +2751,9 @@ onFullScreenExit(callback: () => void)
 
 onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
 
-通知用户新建窗口请求。
+使能multiWindowAccess情况下，通知用户新建窗口请求。
+若不调用event.handler.setWebController接口，会造成render进程阻塞。
+如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
 
 **参数：**
 
@@ -2735,19 +2769,51 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  
+  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    dialogController: CustomDialogController = null
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
-        .onWindowNew((event) => {
-          console.log("onWindowNew...")
-          var popController: web_webview.WebviewController = new web_webview.WebviewController()
-          event.handler.setWebController(popController)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          //需要使能multiWindowAccess
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            //将新窗口对应WebviewController返回给Web内核。
+            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -3174,13 +3240,13 @@ exitFullScreen(): void
 
 setWebController(controller: WebviewController): void
 
-设置WebviewController对象。
+设置WebviewController对象，如果不需要打开新窗口请设置为null。
 
 **参数：**
 
 | 参数名        | 参数类型          | 必填   | 默认值  | 参数描述                      |
 | ---------- | ------------- | ---- | ---- | ------------------------- |
-| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的的WebviewController对象。 |
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
 
