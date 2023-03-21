@@ -394,6 +394,11 @@ extensionAbilities示例：
 
 该标签标识应用运行时需向系统申请的权限集合。
 
+> **说明：**
+>
+> - 在requestPermissions标签中配置的权限项将在应用级别生效，即该权限适用于整个应用程序。
+> - 如果应用需要订阅自己发布的事件，而且应用在extensionAbilities标签中的permissions字段中设置了访问该应用所需要的权限，那么应用也需要在requestPermissions标签中注册相关权限才能收到该事件。
+
   **表8** **requestPermissions标签说明**
 
 | 属性 | 含义 | 类型 | 取值范围 | 默认值 |
