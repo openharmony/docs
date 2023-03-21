@@ -342,6 +342,8 @@ struct WebComponent {
 }
 ```
 
+加载本地网页，加载本地资源文件有两种方式。
+1.$rawfile方式。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
@@ -367,6 +369,8 @@ struct WebComponent {
   }
 }
 ```
+
+2.加载沙箱路径下的本地资源文件，可以参考[web](../arkui-ts/ts-basic-components-web.md#web)加载沙箱路径的示例代码。
 
 ```html
 <!-- xxx.html -->
