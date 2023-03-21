@@ -53,6 +53,7 @@
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [Combined Gestures](ts-combined-gestures.md)
 - Basic Components
+  - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
   - [Button](ts-basic-components-button.md)
   - [Checkbox](ts-basic-components-checkbox.md)
@@ -99,7 +100,6 @@
   - [XComponent](ts-basic-components-xcomponent.md)
 - Container Components
   - [AbilityComponent](ts-container-ability-component.md)
-  - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)
