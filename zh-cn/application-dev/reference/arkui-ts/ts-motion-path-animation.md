@@ -25,7 +25,7 @@ struct MotionPathExample {
 
   build() {
     Column() {
-      Button('click me')
+      Button('click me').margin(50)
         // 执行动画：从起点移动到(300,200)，再到(300,500)，再到终点
         .motionPath({ path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y', from: 0.0, to: 1.0, rotatable: true })
         .onClick(() => {
