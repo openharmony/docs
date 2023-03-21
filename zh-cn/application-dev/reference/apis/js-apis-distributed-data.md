@@ -3797,16 +3797,16 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
       });
       kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
         if (err != undefined) {
-          console.error(`Fail to sync.code is ${err.code},message is ${err.message}`);
+          console.log("put err: " + JSON.stringify(err));
           return;
         }
         console.log('Succeeded in putting data');
         const devices = ['deviceList'];
-        const mode = distributedKVStore.SyncMode.PULL_ONLY;
+        const mode = distributedData.SyncMode.PULL_ONLY;
         kvStore.sync(devices, mode, 1000);
       });
     } catch (e) {
-      console.error(`Fail to sync.code is ${e.code},message is ${e.message}`);
+      console.log('Sync e' + e);
     }
   }
 });
@@ -5193,22 +5193,42 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+let devManager;
 let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
-try {
-    kvStore.on('syncComplete', function (data) {
+// create deviceManager
+deviceManager.createDeviceManager('bundleName', (err, value) => {
+  if (!err) {
+    devManager = value;
+    let deviceIds = [];
+    if (devManager != null) {
+      var devices = devManager.getTrustedDeviceListSync();
+      for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+      }
+    }
+    try {
+      kvStore.on('syncComplete', function (data) {
         console.log('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
-        console.log('Sync put success');
+      });
+      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
+        if (err != undefined) {
+          console.log("put err: " + JSON.stringify(err));
+          return;
+        }
+        console.log('Succeeded in putting data');
         const devices = ['deviceList'];
         const mode = distributedData.SyncMode.PULL_ONLY;
-        kvStore.sync(devices, mode);
-    });
-}catch(e) {
-    console.log('Sync e' + e);
-}
+        kvStore.sync(devices, mode, 1000);
+      });
+    } catch (e) {
+      console.log('Sync e' + e);
+    }
+  }
+});
 ```
 
 ### on('dataChange')<sup>8+</sup>
