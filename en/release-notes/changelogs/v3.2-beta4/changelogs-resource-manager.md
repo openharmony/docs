@@ -30,7 +30,7 @@ For applications developed based on earlier versions, relevant JavaScript multi-
 The following describes how to change **getMedia** to **getMediaContent** in callback mode. The promise mode is similar. You only need to change the function name, add the error code and error information, and keep other information unchanged. The code snippet is as follows:
 
 - Before the change: **getMedia(resource: Resource, callback: AsyncCallback<Uint8Array>): void;**
-```ts
+ ```ts
 let resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
