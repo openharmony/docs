@@ -3741,7 +3741,7 @@ Subscribes to playlist item changes.
 | Name  | Type                                                  | Mandatory| Description                                                                        |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
 | type     | string                                                | Yes  | Event type. The event **'queueItemsChange'** is reported when one or more items in the playlist changes.|
-| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void  | Yes  | Callback used for subscription. **items** in the callback indicates the names of the items that change, and **args** indicates the parameters carried in the event.                           |
+| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void  | Yes  | Callback used for subscription. The **items** parameter in the callback indicates the changed items in the playlist.                           |
 
 **Error codes**
 
@@ -3775,7 +3775,7 @@ Subscribes to playlist name changes.
 | Name  | Type                    | Mandatory| Description                                                                            |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------- |
 | type     | string                  | Yes  | Event type. The event **'queueTitleChange'** is reported when the playlist name changes.|
-| callback | (title: string) => void | Yes  | Callback used for subscription. **items** in the callback indicates the name of the playlist that changes, and **args** indicates the parameters carried in the event.                               |
+| callback | (title: string) => void | Yes  | Callback used for subscription. The **title** parameter in the callback indicates the changed playlist name.                               |
 
 **Error codes**
 
