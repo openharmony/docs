@@ -32,9 +32,9 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称        | 类型    | 描述                                         |      |
-| ----------- | ------- | -------------------------------------------- | ---- |
-| closeEffect | boolean | 关闭数据占比图表旋转动效。<br/>默认值：false |      |
+| 名称        | 类型    | 描述                                         |
+| ----------- | ------- | -------------------------------------------- |
+| closeEffect | boolean | 关闭数据占比图表旋转动效。<br/>默认值：false |
 
 
 
