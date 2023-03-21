@@ -1,5 +1,9 @@
 # AVSession Overview
 
+> **NOTE**
+>
+> All APIs of the **AVSession** module are system APIs and can be called only by system applications.
+
 ## Overview
 
   AVSession, short for audio and video session, is also known as media session.
@@ -49,4 +53,4 @@ The **AVSession** module provides two classes: **AVSession** and **AVSessionCont
 - AVSession can transmit media playback information and control commands. It does not display information or execute control commands.
 - Do not develop Media Controller for common applications. For common audio and video applications running on OpenHarmony, the default control end is Media Controller, which is a system application. You do not need to carry out additional development for Media Controller.
 - If you want to develop your own system running OpenHarmony, you can develop your own Media Controller.
-- For better background management of audio and video applications, the **AVSession** module enforces background control for third-party applications. Only third-party applications that have accessed AVSession can play audio in the background. Otherwise, the system forcibly pauses the playback when a third-party application switches to the background.
+- For better background management of audio and video applications, the **AVSession** module enforces background control for applications. Only applications that have accessed AVSession can play audio in the background. Otherwise, the system forcibly pauses the playback when an application switches to the background.
