@@ -36,7 +36,7 @@ QRCode(value: string)
 
 ## 事件
 
-通用事件仅支持[点击事件](ts-universal-events-click.md)。
+通用事件支持[点击事件](ts-universal-events-click.md)、[触摸事件](ts-universal-events-touch.md)、[挂载卸载事件](ts-universal-events-show-hide.md)。
 
 
 ## 示例
