@@ -30,39 +30,37 @@ For applications developed based on earlier versions, relevant JavaScript multi-
 The following describes how to change **getMedia** to **getMediaContent** in callback mode. The promise mode is similar. You only need to change the function name, add the error code and error information, and keep other information unchanged. The code snippet is as follows:
 
 - Before the change: **getMedia(resource: Resource, callback: AsyncCallback<Uint8Array>): void;**
+ ```ts
+let resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.media.test').id
+};
+this.context.resourceManager.getMedia(resource, (error, value) => {
+    if (error != null) {
+      console.log("error is " + error);
+    } else {
+      let media = value;
+    }
+});
+```
 
-  ```ts
-  let resource = {
-      bundleName: "com.example.myapplication",
-      moduleName: "entry",
-      id: $r('app.media.test').id
-  };
-  this.context.resourceManager.getMedia(resource, (error, value) => {
+- After the change: **getMediaContent(resource: Resource, callback: AsyncCallback<Uint8Array>): void;**
+```ts
+let resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.media.test').id
+};
+try {
+  this.context.resourceManager.getMediaContent(resource, (error, value) => {
       if (error != null) {
         console.log("error is " + error);
       } else {
         let media = value;
       }
   });
-  ```
-
-- After the change: **getMediaContent(resource: Resource, callback: AsyncCallback<Uint8Array>): void;**
-
-  ```ts
-  let resource = {
-      bundleName: "com.example.myapplication",
-      moduleName: "entry",
-      id: $r('app.media.test').id
-  };
-  try {
-    this.context.resourceManager.getMediaContent(resource, (error, value) => {
-        if (error != null) {
-          console.log("error is " + error);
-        } else {
-          let media = value;
-        }
-    });
-  } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
-  }
-  ```
+} catch (error) {
+  console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+}
+```

@@ -600,7 +600,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let buf = new ArrayBuffer(4096);
   fs.read(file.fd, buf).then((readLen) => {
       console.info("read file data succeed");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
   }).catch((err) => {
       console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
@@ -635,7 +635,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read file data succeed");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
     }
   });
@@ -2273,7 +2273,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   let buf = new ArrayBuffer(4096);
   ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
     console.info("read data succeed");
-    console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+    console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
   }).catch((err) => {
       console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2307,7 +2307,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read data succeed");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+      console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
     }
   });
   ```

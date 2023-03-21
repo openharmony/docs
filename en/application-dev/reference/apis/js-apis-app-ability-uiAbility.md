@@ -3,6 +3,7 @@
 The **Ability** module manages the ability lifecycle and context, such as creating and destroying an ability, and dumping client information.
 
 This module provides the following common ability-related functions:
+
 - [Caller](#caller): implements sending of sequenceable data to the target ability when an ability (caller ability) invokes the target ability (callee ability).
 - [Callee](#callee): implements callbacks for registration and deregistration of caller notifications.
 
@@ -68,8 +69,8 @@ Called when a **WindowStage** is created for this ability.
 | -------- | -------- | -------- | -------- |
 | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.|
 
-**Example**
-    
+**Example**    
+
   ```ts
   class myAbility extends Ability {
       onWindowStageCreate(windowStage) {
@@ -87,8 +88,8 @@ Called when the **WindowStage** is destroyed for this ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
+
   ```ts
   class myAbility extends Ability {
       onWindowStageDestroy() {
@@ -112,8 +113,8 @@ Called when the **WindowStage** is restored during the migration of this ability
 | -------- | -------- | -------- | -------- |
 | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** information.|
 
-**Example**
-    
+**Example**    
+
   ```ts
   class myAbility extends Ability {
       onWindowStageRestore(windowStage) {
@@ -131,8 +132,8 @@ Called when this ability is destroyed to clear resources.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
+
   ```ts
   class myAbility extends Ability {
       onDestroy() {
@@ -150,8 +151,7 @@ Called when this ability is switched from the background to the foreground.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
   ```ts
   class myAbility extends Ability {
       onForeground() {
@@ -169,8 +169,8 @@ Called when this ability is switched from the foreground to the background.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
+
   ```ts
   class myAbility extends Ability {
       onBackground() {
@@ -200,8 +200,8 @@ Called to save data during the ability migration preparation process.
 | -------- | -------- |
 | [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | Continuation result.|
 
-**Example**
-    
+**Example**    
+
   ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   class MyUIAbility extends UIAbility {
@@ -229,8 +229,8 @@ Called when a new Want is passed in and this ability is started again.
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information, such as the ability name and bundle name.|
 | launchParams | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the ability startup and the last abnormal exit.|
 
-**Example**
-    
+**Example**    
+
   ```ts
    class MyUIAbility extends UIAbility {
       onNewWant(want, launchParams) {
@@ -254,8 +254,8 @@ Dumps client information.
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | Yes| Parameters in the form of a command.|
 
-**Example**
-    
+**Example**    
+
   ```ts
   class myAbility extends Ability {
       onDump(params) {
@@ -278,7 +278,7 @@ Called when the framework automatically saves the ability state in the case of a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reason | [AbilityConstant.StateType](js-apis-application-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the ability state.|
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the ability state.|
 | wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes| **want** parameter.|
 
 **Return value**
@@ -305,13 +305,13 @@ class MyUIAbility extends UIAbility {
 
 ## Caller
 
-Implements sending of sequenceable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
+Implements sending of parcelable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
 
 ## Caller.call
 
 call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
-Sends sequenceable data to the target ability.
+Sends parcelable data to the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -319,8 +319,8 @@ Sends sequenceable data to the target ability.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
@@ -333,14 +333,13 @@ Sends sequenceable data to the target ability.
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
-**Example**
-    
+**Example**    
+
   ```ts
   import Ability from '@ohos.app.ability.UIAbility';
-  class MyMessageAble{ // 自定义的Sequenceable数据结构
+  class MyMessageAble{ // Custom parcelable data structure.
     name:''
     str:''
     num: 1
@@ -348,15 +347,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
@@ -371,8 +370,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble('msg', 'world'); // See the definition of Sequenceable.
-
+        let msg = new MyMessageAble('msg', 'world'); // See the definition of Parcelable.
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -392,9 +390,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
 
-Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability.
+Sends parcelable data to the target ability and obtains the parcelable data returned by the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -402,21 +400,20 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)&gt; | Promise used to return the sequenceable data from the target ability.|
+| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the parcelable data from the target ability.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
@@ -431,15 +428,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
       return true;
     }
@@ -459,7 +456,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
           .then((data) => {
             console.log('Caller callWithResult() called');
             let retmsg = new MyMessageAble(0, '');
-            data.readSequenceable(retmsg);
+            data.readParcelable(retmsg);
           })
           .catch((callErr) => {
             console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
@@ -480,7 +477,7 @@ release(): void;
 
 Releases the caller interface of the target ability.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.UIAbility.UIAbilityRuntime.UIAbilityCore
 
 **Error codes**
 
@@ -491,8 +488,8 @@ Releases the caller interface of the target ability.
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal Error. |
 
-**Example**
-    
+**Example**    
+
   ```ts
   import Ability from '@ohos.app.ability.UIAbility';
   let caller;
@@ -532,8 +529,8 @@ Registers a callback that is invoked when the stub on the target ability is disc
 | -------- | -------- | -------- | -------- |
 | callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
 
-**Example**
-    
+**Example**    
+
   ```ts
   import Ability from '@ohos.application.Ability';
   let caller;
@@ -581,11 +578,10 @@ Registers a callback that is invoked when the stub on the target ability is disc
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
-**Example**
-    
+**Example**    
+
   ```ts
   import Ability from '@ohos.app.ability.UIAbility';
   let caller;
@@ -633,10 +629,10 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
-**Example**
-    
+**Example**    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -684,10 +680,10 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
-**Example**
-    
+**Example**    
+
   ```ts
   let caller;
   export default class MainUIAbility extends UIAbility {
@@ -733,14 +729,13 @@ Registers a caller notification callback, which is invoked when the target abili
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | method | string | Yes| Notification message string negotiated between the two abilities.|
-| callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated) type. The callback must return at least one empty [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) object. Otherwise, the function execution fails.|
+| callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) type. The callback must return at least one empty [rpc.Parcelable](js-apis-rpc.md#parcelable9) object. Otherwise, the function execution fails.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
@@ -755,15 +750,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         this.name = name;
         this.str = str;
       }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
           console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
           return true;
       }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
           console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
           return true;
       }
@@ -772,7 +767,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ' + pdata);
       let msg = new MyMessageAble('test', '');
-      pdata.readSequenceable(msg);
+      pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
   }
   export default class MainAbility extends Ability {
@@ -807,12 +802,10 @@ Deregisters a caller notification callback, which is invoked when the target abi
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
+**Example**    
 
-**Example**
-    
   ```ts
   import Ability from '@ohos.app.ability.UIAbility';
   let method = 'call_Function';
@@ -841,10 +834,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Sequenceable;
+(indata: rpc.MessageSequence): rpc.Parcelable;
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | Name| Readable| Writable| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)) | Yes| No| [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Prototype of the listener function registered by the callee.|
+| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | Yes| No| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Prototype of the listener function registered by the callee.|
