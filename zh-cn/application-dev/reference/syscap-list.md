@@ -172,14 +172,6 @@ WebGL2.0 标准api
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.Communication.NetManager.Extension
-
-网络管理扩展服务
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
-
 ## SystemCapability.Communication.NetStack
 
 基础网络协议栈能力
@@ -315,14 +307,6 @@ GNSS硬件相关能力
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.MultimodalInput.Input.RemoteInputDevice
-
-分布式输入设备管理
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
-
 ## SystemCapability.MultimodalInput.Input.InputMonitor
 
 输入事件监听者
@@ -342,14 +326,6 @@ GNSS硬件相关能力
 ## SystemCapability.MultimodalInput.Input.InputSimulator
 
 输入事件模拟者
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
-
-## SystemCapability.MultimodalInput.Input.InputFilter
-
-输入事件过滤器
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1347,7 +1323,7 @@ FA模型
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 否     | 否           | 否     |
 
-## SystemCapability.Applictaions.settings.Core
+## SystemCapability.Applications.settings.Core
 
 设置API
 
@@ -1658,3 +1634,36 @@ VPN
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.MultimodalInput.Input.Pointer
+
+Pointer输入增强能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Communication.SecureElement
+
+安全单元芯片访问能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 否      | 否     | 否     | 否   | 否   | 否     | 否           | 否     |
+
+## SystemCapability.Msdp.DeviceStatus.Stationarty
+
+设备状态感知
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Base
+
+通用类型
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
+
