@@ -29,6 +29,18 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
        }
    }
    ```
+   
+4. Set **srcEntrance** in the [module.json5 file](../quick-start/module-configuration-file.md) to the code path of the module.
+   ```json
+   {
+     "module": {
+       "name": "entry",
+       "type": "entry",
+       "srcEntrance": "./ets/myabilitystage/MyAbilityStage.ts",
+       // ...
+     }
+   }
+   ```
 
 
 [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
@@ -54,4 +66,3 @@ When an application is switched to the background, it is cached in the backgroun
       }
   }
   ```
-
