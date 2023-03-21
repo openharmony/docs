@@ -24,7 +24,7 @@ Obtain a **Preferences** instance for data operations. A **Preferences** instanc
 
 **Table 1** API for obtaining a **Preferences** instance
 
-| Bundle Name           | API                                                      | Description                                                        |
+| Package                 | API                                                      | Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | getPreferences(context: Context, name: string): Promise\<Preferences> | Obtains a **Preferences** instance.|
 
@@ -75,7 +75,7 @@ You can use the following APIs to delete a **Preferences** instance or data file
 
 **Table 6** APIs for deleting **Preferences**
 
-| Bundle Name           | API                                                      | Description                                                        |
+| Package                 | API                                                      | Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | deletePreferences(context: Context, name: string): Promise\<void> | Deletes a **Preferences** instance from the memory and its files from the device.|
 | ohos.data.preferences | removePreferencesFromCache(context: Context, name: string): Promise\<void> | Removes a **Preferences** instance from the memory to release memory.   |
@@ -198,6 +198,6 @@ You can use the following APIs to delete a **Preferences** instance or data file
    proDelete.then(() => {
         console.info("Deleted data successfully.");
    }).catch((err) => {
-        console.info("Failed to delete data. Cause: " + err);
+       console.info("Failed to delete data. Cause: " + err);
    })
    ```
