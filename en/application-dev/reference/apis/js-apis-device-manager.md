@@ -96,7 +96,7 @@ Enumerates the device types.
 | CAR          | 0x83 | Car.   |
 | UNKNOWN_TYPE | 0    | Unknown device type.|
 
-## AuthForm
+## AuthForm<sup>10+</sup>
 
 Enumerates the device authentication types.
 
@@ -262,8 +262,6 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 Obtains all trusted devices synchronously.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
@@ -295,8 +293,6 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
 
 Obtains all trusted devices. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -336,8 +332,6 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 Obtains all trusted devices. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
@@ -370,8 +364,6 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 Obtains local device information synchronously.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
@@ -403,8 +395,6 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains local device information. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -444,8 +434,6 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 Obtains local device information. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Return value**
@@ -477,8 +465,6 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 Starts to discover peripheral devices.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -523,8 +509,6 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 Starts to discover peripheral devices and filters discovered devices.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -580,8 +564,6 @@ stopDeviceDiscovery(subscribeId: number): void
 
 Stops device discovery.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -615,8 +597,6 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 Publishes device information for discovery purposes.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -659,8 +639,6 @@ unPublishDeviceDiscovery(publishId: number): void
 
 Stops publishing device information.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -694,8 +672,6 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 Authenticates a device.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -757,8 +733,6 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 Deauthenticates a device.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -797,8 +771,6 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
 Verifies authentication information.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -844,8 +816,6 @@ setUserOperation(operateAction: number, params: string): void;
 
 Sets a user operation.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -879,8 +849,6 @@ Sets a user operation.
 requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
 
 Obtains the registration information of the credential.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -916,8 +884,6 @@ Obtains the registration information of the credential.
 importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 Imports credential information.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -970,8 +936,6 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 Deletes credential information.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1008,8 +972,6 @@ on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 Subscribes to UI status changes.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1040,8 +1002,6 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 Unsubscribes from UI status changes.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1066,8 +1026,6 @@ Unsubscribes from UI status changes.
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 Subscribes to changes in the device state.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1096,8 +1054,6 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 Unsubscribes from changes in the device state.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1124,8 +1080,6 @@ Unsubscribes from changes in the device state.
 on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 Subscribes to device discovery events.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1154,8 +1108,6 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 Unsubscribes from device discovery events.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1182,8 +1134,6 @@ Unsubscribes from device discovery events.
 on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 Subscribes to device discovery failures.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1212,8 +1162,6 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 Unsubscribes from device discovery failures.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1240,8 +1188,6 @@ Unsubscribes from device discovery failures.
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
 Subscribes to device information publication success events.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1271,8 +1217,6 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 Unsubscribes from device information publication success events.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1299,8 +1243,6 @@ Unsubscribes from device information publication success events.
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 Subscribes to device information publication failures.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -1329,8 +1271,6 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 Unsubscribes from device information publication failures.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1358,8 +1298,6 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 Subscribes to dead events of the **DeviceManager** service.
 
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -1386,8 +1324,6 @@ Subscribes to dead events of the **DeviceManager** service.
 off(type: 'serviceDie', callback?: () =&gt; void): void
 
 Unsubscribes from dead events of the **DeviceManager** service.
-
-**Required permissions**: ohos.permission.ACCESS_SERVICE_DM (available only to system applications)
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
