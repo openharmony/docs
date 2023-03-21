@@ -65,7 +65,7 @@ Constraints on the event domain, event name, and parameter
 
 - Parameter naming rules:
   - The name must start with a letter and can contain only uppercase letters, digits, and underscores (&#95;).
-  - The name contains 1 to 32 characters.
+  - The name contains 1 to 48 characters.
   - The number of parameters in an event domain cannot exceed 128.
 
 
