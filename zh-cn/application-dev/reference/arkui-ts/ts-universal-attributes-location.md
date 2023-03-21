@@ -41,6 +41,7 @@ struct PositionExample1 {
 
         Text('Bottom end')
           .align(Alignment.BottomEnd)
+          .textAlign(TextAlign.End)
           .height(50)
           .width('90%')
           .fontSize(16)
