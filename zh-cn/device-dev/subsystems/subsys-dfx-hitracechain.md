@@ -51,58 +51,90 @@ HiTraceChain实现在C层，主要原理是在一次业务调用流程中，利�
 |  | **C++** | **C** |
 | -------- | -------- | -------- |
 | **类** | **函数** | **函数** |
-| HiTraceChain | HiTraceId&nbsp;Begin(const&nbsp;std::string&amp;&nbsp;name,&nbsp;int&nbsp;flags) | HiTraceIdStruct&nbsp;HiTraceChainBegin(const&nbsp;char\*&nbsp;name,&nbsp;int&nbsp;flags) |
-|  | void&nbsp;End(const&nbsp;HiTraceId&amp;&nbsp;id) | void&nbsp;HiTraceChainEnd(const&nbsp;HiTraceIdStruct\*&nbsp;pId) |
-|  | HiTraceId&nbsp;GetId(); | HiTraceIdStruct&nbsp;HiTraceChainGetId() |
-|  | void&nbsp;SetId(const&nbsp;HiTraceId&amp;&nbsp;id) | void&nbsp;HiTraceChainSetId(const&nbsp;HiTraceIdStruct\*&nbsp;pId) |
-|  | void&nbsp;ClearId() | void&nbsp;HiTraceChainClearId() |
-|  | HiTraceId&nbsp;CreateSpan() | HiTraceIdStruct&nbsp;HiTraceChainCreateSpan() |
-|  | void&nbsp;Tracepoint(HiTraceTracepointType&nbsp;type,&nbsp;const&nbsp;HiTraceId&amp;&nbsp;id,&nbsp;const&nbsp;char\*&nbsp;fmt,&nbsp;...) | void&nbsp;HiTraceChainTracepoint(HiTraceTracepointType&nbsp;type,&nbsp;const&nbsp;HiTraceIdStruct_&nbsp;pId,&nbsp;const&nbsp;char_&nbsp;fmt,&nbsp;...) |
-|  | void&nbsp;Tracepoint(HiTraceCommunicationMode&nbsp;mode,&nbsp;HiTraceTracepointType&nbsp;type,&nbsp;const&nbsp;HiTraceId&amp;&nbsp;id,&nbsp;const&nbsp;char\*&nbsp;fmt,&nbsp;...) | void&nbsp;HiTraceChainTracepointEx(HiTraceCommunicationMode&nbsp;mode,&nbsp;HiTraceTracepointType&nbsp;type,&nbsp;const&nbsp;HiTraceIdStruct_&nbsp;pId,&nbsp;const&nbsp;char_&nbsp;fmt,&nbsp;...) |
-| HiTraceId | HiTraceId(); | void&nbsp;HiTraceChainInitId(HiTraceIdStruct\*&nbsp;pId) |
-|  | HiTraceId(const&nbsp;uint8_t\*&nbsp;pIdArray,&nbsp;int&nbsp;len) | HiTraceIdStruct&nbsp;HiTraceChainBytesToId(const&nbsp;uint8_t\*&nbsp;pIdArray,&nbsp;int&nbsp;len) |
-|  | bool&nbsp;IsValid() | int&nbsp;HiTraceChainIsValid(const&nbsp;HiTraceIdStruct\*&nbsp;pId) |
-|  | bool&nbsp;IsFlagEnabled(HiTraceFlag&nbsp;flag) | int&nbsp;HiTraceChainIsFlagEnabled(const&nbsp;HiTraceIdStruct\*&nbsp;pId,&nbsp;HiTraceFlag&nbsp;flag) |
-|  | void&nbsp;EnableFlag(HiTraceFlag&nbsp;flag) | void&nbsp;HiTraceChainEnableFlag(HiTraceIdStruct\*&nbsp;pId,&nbsp;HiTraceFlag&nbsp;flag) |
-|  | int&nbsp;GetFlags() | int&nbsp;HiTraceChainGetFlags(const&nbsp;HiTraceIdStruct\*&nbsp;pId) |
-|  | void&nbsp;SetFlags(int&nbsp;flags) | void&nbsp;HiTraceChainSetFlags(HiTraceIdStruct\*&nbsp;pId,&nbsp;int&nbsp;flags) |
-|  | uint64_t&nbsp;GetChainId() | uint64_t&nbsp;HiTraceChainGetChainId(const&nbsp;HiTraceIdStruct\*&nbsp;pId) |
-|  | void&nbsp;SetChainId(uint64_t&nbsp;chainId) | void&nbsp;HiTraceChainSetChainId(HiTraceIdStruct\*&nbsp;pId,&nbsp;uint64_t&nbsp;chainId) |
-|  | uint64_t&nbsp;GetSpanId() | uint64_t&nbsp;HiTraceChainGetSpanId(const&nbsp;HiTraceIdStruct\*&nbsp;pId) |
-|  | void&nbsp;SetSpanId(uint64_t&nbsp;spanId) | void&nbsp;HiTraceChainSetSpanId(HiTraceIdStruct\*&nbsp;pId,&nbsp;uint64_t&nbsp;spanId) |
-|  | uint64_t&nbsp;GetParentSpanId() | uint64_t&nbsp;HiTraceChainGetParentSpanId(const&nbsp;HiTraceIdStruct\*&nbsp;pId) |
-|  | void&nbsp;SetParentSpanId(uint64_t&nbsp;parentSpanId) | void&nbsp;HiTraceChainSetParentSpanId(HiTraceIdStruct\*&nbsp;pId,&nbsp;uint64_t&nbsp;parentSpanId) |
-|  | int&nbsp;ToBytes(uint8_t\*&nbsp;pIdArray,&nbsp;int&nbsp;len) | int&nbsp;HiTraceChainIdToBytes(const&nbsp;HiTraceIdStruct_&nbsp;pId,&nbsp;uint8_t_&nbsp;pIdArray,&nbsp;int&nbsp;len) |
+| HiTraceChain | HiTraceId Begin(const std::string&amp; name, int flags) | HiTraceIdStruct HiTraceChainBegin(const char* name, int flags) |
+|  | void End(const HiTraceId&amp; id) | void HiTraceChainEnd(const HiTraceIdStruct* pId) |
+|  | HiTraceId GetId(); | HiTraceIdStruct HiTraceChainGetId() |
+|  | void SetId(const HiTraceId&amp; id) | void HiTraceChainSetId(const HiTraceIdStruct* pId) |
+|  | void ClearId() | void HiTraceChainClearId() |
+|  | HiTraceId CreateSpan() | HiTraceIdStruct HiTraceChainCreateSpan() |
+|  | void Tracepoint(HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...) | void HiTraceChainTracepoint(HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...) |
+|  | void Tracepoint(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...) | void HiTraceChainTracepointEx(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...) |
+| HiTraceId | HiTraceId(); | void HiTraceChainInitId(HiTraceIdStruct* pId) |
+|  | HiTraceId(const uint8_t* pIdArray, int len) | HiTraceIdStruct HiTraceChainBytesToId(const uint8_t* pIdArray, int len) |
+|  | bool IsValid() | int HiTraceChainIsValid(const HiTraceIdStruct* pId) |
+|  | bool IsFlagEnabled(HiTraceFlag flag) | int HiTraceChainIsFlagEnabled(const HiTraceIdStruct* pId, HiTraceFlag flag) |
+|  | void EnableFlag(HiTraceFlag flag) | void HiTraceChainEnableFlag(HiTraceIdStruct* pId, HiTraceFlag flag) |
+|  | int GetFlags() | int HiTraceChainGetFlags(const HiTraceIdStruct* pId) |
+|  | void SetFlags(int flags) | void HiTraceChainSetFlags(HiTraceIdStruct* pId, int flags) |
+|  | uint64_t GetChainId() | uint64_t HiTraceChainGetChainId(const HiTraceIdStruct* pId) |
+|  | void SetChainId(uint64_t chainId) | void HiTraceChainSetChainId(HiTraceIdStruct* pId, uint64_t chainId) |
+|  | uint64_t GetSpanId() | uint64_t HiTraceChainGetSpanId(const HiTraceIdStruct* pId) |
+|  | void SetSpanId(uint64_t spanId) | void HiTraceChainSetSpanId(HiTraceIdStruct* pId, uint64_t spanId) |
+|  | uint64_t GetParentSpanId() | uint64_t HiTraceChainGetParentSpanId(const HiTraceIdStruct* pId) |
+|  | void SetParentSpanId(uint64_t parentSpanId) | void HiTraceChainSetParentSpanId(HiTraceIdStruct* pId, uint64_t parentSpanId) |
+|  | int ToBytes(uint8_t* pIdArray, int len) | int HiTraceChainIdToBytes(const HiTraceIdStruct_ pId, uint8_t* pIdArray, int len) |
 
 
 ### 接口功能参数
 
-  **表2** C++接口说明函数参数和功能
+  **表2** 跟踪标志组合类型枚举
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| HITRACE_FLAG_DEFAULT           | 0      | 缺省标志。       |
+| HITRACE_FLAG_INCLUDE_ASYNC | 1      | 异步调用标志。启动跟踪时，缺省只跟踪同步调用。设置该标志，同时跟踪同步、异步调用。   |
+| HITRACE_FLAG_DONOT_CREATE_SPAN | 1 << 1 | 无分支标志。启动跟踪时，在同步、异步调用时缺省自动创建分支信息。设置该标志，指示不创建分支。     |
+| HITRACE_FLAG_TP_INFO           | 1 << 2 | 埋点标志。启动跟踪式时，缺省不进行埋点。调试场景下设置该标志，在同步、异步调用的收发侧自动埋点，输出埋点信息和时间戳。收发埋点按照client、server分为client send（CS）、server receive（SR）、server send（SS）、client receive（CR）四类信息。一次同步调用输出CS/SR/SS/CR，一次异步调用输出CS/SR/SS三个埋点信息。       |
+| HITRACE_FLAG_NO_BE_INFO        | 1 << 3 | 无起始结束标志。启动跟踪时，缺省打印启动及结束跟踪信息。设置该标志，指示不打印启动及结束跟踪信息。 |
+| HITRACE_FLAG_DONOT_ENABLE_LOG       | 1 << 4 | 日志关联标志。设置该标志，指示隐藏日志中的跟踪信息。  |
+| HITRACE_FLAG_FAULT_TRIGGER   | 1 << 5 | 故障触发标志。预置标志，暂时没有作用。  |
+| HITRACE_FLAG_D2D_TP_INFO       | 1 << 6 | 设备间埋点标志。TP_INFO的一个子集，设置该标志，只进行设备间的调用埋点。 |
+
+  **表3** 跟踪埋点类型枚举
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| HITRACE_TP_CS       | 0 | 客户端发送类型，标识client侧的发送埋点。        |
+| HITRACE_TP_CR       | 1 | 客户端接收类型，标识client侧的接收埋点。        |
+| HITRACE_TP_SS       | 2 | 服务端发送类型，标识server侧的发送埋点。        |
+| HITRACE_TP_SR       | 3 | 服务端接收类型，标识server侧的接收埋点。        |
+| HITRACE_TP_GENERAL  | 4 | 一般类型，标识CS、CR、SS、SR四种场景之外的埋点。|
+
+  **表4** 跟踪通信类型枚举
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| HITRACE_CM_DEFAULT  | 0 | 缺省通信类型    |
+| HITRACE_CM_THREAD   | 1 | 线程间通信类型  |
+| HITRACE_CM_PROCESS  | 2 | 进程间通信类型  |
+| HITRACE_CM_DEVICE   | 3 | 设备间通信类型  |
+
+  **表5** C++接口说明函数参数和功能
 
 | **类** | **方法** | **描述** |
 | -------- | -------- | -------- |
-| HiTraceChain | HiTraceId&nbsp;Begin(const&nbsp;std::string&amp;&nbsp;name,&nbsp;int&nbsp;flags) | 功能：启动HiTraceChain跟踪、生成HiTraceId对象并设置到当前线程TLS中。<br/>输入参数：<br/>-&nbsp;name：业务流程名称。<br/>-&nbsp;flags：跟踪指示位，可以组合使用，具体含义为：<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_INCLUDE_ASYNC：同时跟踪同步调用和异步调用，缺省只跟踪同步调用。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_DONOT_CREATE_SPAN：不创建子分支，缺省创建子分支。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_TP_INFO：输出tracepoint信息，缺省不输出。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_NO_BE_INFO：不输出起始、结束信息，缺省输出。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_DONOT_ENABLE_LOG：不与日志关联输出，缺省关联。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_FAULT_TRIGGER：故障触发的跟踪，缺省为正常启动的。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_D2D_TP_INFO：输出设备间tracepoint信息，缺省不输出。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_FLAG_DEFAULT:&nbsp;缺省标志。<br/>-&nbsp;输出参数：无<br/>-&nbsp;返回值：启动跟踪超过返回有效HiTraceId对象，否则返回无效对象。<br/>注意：嵌套启动跟踪时，内层启动调用返回无效对象。 |
-|  | void&nbsp;End(const&nbsp;HiTraceId&amp;&nbsp;id) | 功能：根据Begin返回的HiTraceId停止HiTraceChain跟踪；清除当前线程TLS中HiTraceId内容。<br/>输入参数：<br/>-&nbsp;id：HiTraceId对象。<br/>输出参数：无。<br/>返回值：无。 |
-|  | HiTraceId&nbsp;GetId(); | 功能：从当前线程TLS中获取HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前线程上下文的HiTraceId对象。 |
-|  | void&nbsp;SetId(const&nbsp;HiTraceId&amp;&nbsp;id) | 功能：设置HiTraceId对象内容到当前线程TLS中。<br/>输入参数：<br/>-&nbsp;id：HiTraceId对象。<br/>输出参数：无。<br/>返回值：无。 |
-|  | void&nbsp;ClearId() | 功能：清除当前线程TLS中的HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：无。 |
-|  | HiTraceId&nbsp;CreateSpan() | 接口功能：获取当前HiTraceId对象中的分支ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前分支ID。 |
-|  | void&nbsp;Tracepoint(HiTraceTracepointType&nbsp;type,&nbsp;const&nbsp;HiTraceId&amp;&nbsp;id,&nbsp;const&nbsp;char\*&nbsp;fmt,&nbsp;...) | 功能：根据埋点信息类型输出HiTraceChain埋点信息，包括时间戳、子分支HiTraceId对象信息。<br/>输入参数：<br/>-&nbsp;type：埋点信息类型，具体为<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_CS：Client&nbsp;Send，同步/异步通信客户端发送信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_SR：Server&nbsp;Receive，&nbsp;同步/异步通信服务端接收信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_SS：Server&nbsp;Send，同步通信服务端发送响应信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_CR：Client&nbsp;Receive，同步通信客户端接收响应信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_GENERAL：普通输出信息。<br/>-&nbsp;id：当前子分支id。<br/>-&nbsp;fmt：格式化变参描述字符串。<br/>-&nbsp;args：变参。<br/>输出参数：无。<br/>返回值：无。 |
-|  | void&nbsp;Tracepoint(HiTraceCommunicationMode&nbsp;mode,&nbsp;HiTraceTracepointType&nbsp;type,&nbsp;const&nbsp;HiTraceId&amp;&nbsp;id,&nbsp;const&nbsp;char\*&nbsp;fmt,&nbsp;...) | 功能：根据通信模式、埋点信息类型输出HiTraceChain埋点信息，包括时间戳、子分支HiTraceId对象信息。<br/>输入参数：<br/>-&nbsp;mode：通信模式，具体为<br/>&nbsp;&nbsp;-&nbsp;HITRACE_CM_DEFAULT：未指定通信模式。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_CM_THREAD：线程间通信。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_CM_PROCESS：进程间通信。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_CM_DEVICE：设备间通信。<br/>-&nbsp;type：埋点信息类型，具体为<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_CS：Client&nbsp;Send，同步/异步通信客户端发送信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_SR：Server&nbsp;Receive，&nbsp;同步/异步通信服务端接收信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_SS：Server&nbsp;Send，同步通信服务端发送响应信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_CR：Client&nbsp;Receive，同步通信客户端接收响应信息。<br/>&nbsp;&nbsp;-&nbsp;HITRACE_TP_GENERAL：普通输出信息。<br/>-&nbsp;id：当前子分支id。<br/>-&nbsp;fmt：格式化变参描述字符串。<br/>-&nbsp;args：变参。<br/>输出参数：无。<br/>返回值：无。 |
+| HiTraceChain | HiTraceId Begin(const std::string&amp; name, int flags) | 功能：启动HiTraceChain跟踪、生成HiTraceId对象并设置到当前线程TLS中。<br/>输入参数：<br/>- name：业务流程名称。<br/>- flags：跟踪指示位，可以组合使用，具体说明请参考**表2** 跟踪标志组合类型枚举。<br/>- 输出参数：无<br/>- 返回值：启动跟踪超过返回有效HiTraceId对象，否则返回无效对象。<br/>注意：嵌套启动跟踪时，内层启动调用返回无效对象。 |
+|  | void End(const HiTraceId&amp; id) | 功能：根据Begin返回的HiTraceId停止HiTraceChain跟踪；清除当前线程TLS中HiTraceId内容。<br/>输入参数：<br/>- id：HiTraceId对象。<br/>输出参数：无。<br/>返回值：无。 |
+|  | HiTraceId GetId(); | 功能：从当前线程TLS中获取HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前线程上下文的HiTraceId对象。 |
+|  | void SetId(const HiTraceId&amp; id) | 功能：设置HiTraceId对象内容到当前线程TLS中。<br/>输入参数：<br/>- id：HiTraceId对象。<br/>输出参数：无。<br/>返回值：无。 |
+|  | void ClearId() | 功能：清除当前线程TLS中的HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：无。 |
+|  | HiTraceId CreateSpan() | 接口功能：获取当前HiTraceId对象中的分支ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前分支ID。 |
+|  | void Tracepoint(HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...) | 功能：根据埋点信息类型输出HiTraceChain埋点信息，包括时间戳、子分支HiTraceId对象信息。<br/>输入参数：<br/>- type：埋点信息类型，具体说明请参考**表3** 跟踪埋点类型枚举。<br/>- id：当前子分支id。<br/>- fmt：格式化变参描述字符串。<br/>- args：变参。<br/>输出参数：无。<br/>返回值：无。 |
+|  | void Tracepoint(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...) | 功能：根据通信模式、埋点信息类型输出HiTraceChain埋点信息，包括时间戳、子分支HiTraceId对象信息。<br/>输入参数：<br/>- mode：通信模式，具体说明请参考**表4** 跟踪通信类型枚举。<br/>- type：埋点信息类型，具体说明请参考**表3** 跟踪埋点类型枚举。<br/>- id：当前子分支id。<br/>- fmt：格式化变参描述字符串。<br/>- args：变参。<br/>输出参数：无。<br/>返回值：无。 |
 | HiTraceId | HiTraceId(); | 功能：缺省构造函数，生成无效HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：无。 |
-|  | HiTraceId(const&nbsp;uint8_t\*&nbsp;pIdArray,&nbsp;int&nbsp;len) | 功能：构造函数，根据字节数组创建跟踪HiTraceId对象。<br/>输入参数：<br/>-&nbsp;pIdArray：字节数组指针。<br/>-&nbsp;len：字节数组长度。<br/>输出参数：无。<br/>返回值：无。 |
-|  | bool&nbsp;IsValid() | 功能：HiTraceId对象是否有效。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：true&nbsp;有效；false&nbsp;无效。 |
-|  | bool&nbsp;IsFlagEnabled(HiTraceFlag&nbsp;flag) | 功能：HiTraceId对象的某标志是否置位。<br/>输入参数：<br/>-&nbsp;flag：跟踪指示位，具体含义见Begin函数中的定义。<br/>输出参数：无。<br/>返回值：true&nbsp;该标志置位；false&nbsp;该标志未置位。 |
-|  | void&nbsp;EnableFlag(HiTraceFlag&nbsp;flag) | 功能：设置某跟踪标志位到HiTraceId对象中。<br/>输入参数：<br/>-&nbsp;flag：跟踪指示位，具体含义见Begin函数中的定义。<br/>输出参数：无。<br/>返回值：无。 |
-|  | int&nbsp;GetFlags() | 功能：获取HiTraceId对象中设置的标志位。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：跟踪指示位组合，具体含义见Begin函数中的定义。 |
-|  | void&nbsp;SetFlags(int&nbsp;flags) | 功能：设置跟踪标志位到HiTraceId对象中。<br/>输入参数：<br/>-&nbsp;flags：跟踪指示位组合，具体含义见Begin函数中的定义。<br/>输出参数：无。<br/>返回值：无。 |
-|  | uint64_t&nbsp;GetChainId() | 功能：获取跟踪链ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：跟踪链ID。 |
-|  | void&nbsp;SetChainId(uint64_t&nbsp;chainId) | 功能：设置跟踪链ID到HiTraceId对象中。<br/>输入参数：<br/>-&nbsp;chainId：跟踪链ID。<br/>输出参数：无。<br/>返回值：无。 |
-|  | uint64_t&nbsp;GetSpanId() | 接口功能：获取当前HiTraceId对象中的分支ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前分支ID。 |
-|  | void&nbsp;SetSpanId(uint64_t&nbsp;spanId) | 功能：设置分支ID到HiTraceId对象中。<br/>输入参数：<br/>-&nbsp;spanId：分支ID。<br/>输出参数：无。<br/>返回值：无。 |
-|  | uint64_t&nbsp;GetParentSpanId() | 功能：获取当前HiTraceId对象中的父分支ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：父分支ID。 |
-|  | void&nbsp;SetParentSpanId(uint64_t&nbsp;parentSpanId) | 功能：设置父分支ID到HiTraceId对象中。<br/>输入参数：<br/>-&nbsp;parentSpanId：父分支ID。<br/>输出参数：无。<br/>返回值：无。 |
-|  | int&nbsp;ToBytes(uint8_t\*&nbsp;pIdArray,&nbsp;int&nbsp;len) | 功能：将HiTraceId对象转换为字节数组，便于缓存或者通信传递。<br/>输入参数：<br/>-&nbsp;pIdArray：字节数组指针，数组长度至少为HITRACE_ID_LEN。<br/>-&nbsp;len:&nbsp;字节数组长度<br/>输出参数：<br/>-&nbsp;pIdArray：字节数组指针，对象有效时存储转换后的对象数据。<br/>返回值：0&nbsp;转换失败；&nbsp;&amp;gt;0&nbsp;有效对象转换数组长度。 |
+|  | HiTraceId(const uint8_t* pIdArray, int len) | 功能：构造函数，根据字节数组创建跟踪HiTraceId对象。<br/>输入参数：<br/>- pIdArray：字节数组指针。<br/>- len：字节数组长度。<br/>输出参数：无。<br/>返回值：无。 |
+|  | bool IsValid() | 功能：HiTraceId对象是否有效。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：true 有效；false 无效。 |
+|  | bool IsFlagEnabled(HiTraceFlag flag) | 功能：HiTraceId对象的某标志是否置位。<br/>输入参数：<br/>- flag：跟踪指示位，具体含义见Begin函数中的定义。<br/>输出参数：无。<br/>返回值：true 该标志置位；false 该标志未置位。 |
+|  | void EnableFlag(HiTraceFlag flag) | 功能：设置某跟踪标志位到HiTraceId对象中。<br/>输入参数：<br/>- flag：跟踪指示位，具体含义见Begin函数中的定义。<br/>输出参数：无。<br/>返回值：无。 |
+|  | int GetFlags() | 功能：获取HiTraceId对象中设置的标志位。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：跟踪指示位组合，具体含义见Begin函数中的定义。 |
+|  | void SetFlags(int flags) | 功能：设置跟踪标志位到HiTraceId对象中。<br/>输入参数：<br/>- flags：跟踪指示位组合，具体含义见Begin函数中的定义。<br/>输出参数：无。<br/>返回值：无。 |
+|  | uint64_t GetChainId() | 功能：获取跟踪链ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：跟踪链ID。 |
+|  | void SetChainId(uint64_t chainId) | 功能：设置跟踪链ID到HiTraceId对象中。<br/>输入参数：<br/>- chainId：跟踪链ID。<br/>输出参数：无。<br/>返回值：无。 |
+|  | uint64_t GetSpanId() | 接口功能：获取当前HiTraceId对象中的分支ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前分支ID。 |
+|  | void SetSpanId(uint64_t spanId) | 功能：设置分支ID到HiTraceId对象中。<br/>输入参数：<br/>- spanId：分支ID。<br/>输出参数：无。<br/>返回值：无。 |
+|  | uint64_t GetParentSpanId() | 功能：获取当前HiTraceId对象中的父分支ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：父分支ID。 |
+|  | void SetParentSpanId(uint64_t parentSpanId) | 功能：设置父分支ID到HiTraceId对象中。<br/>输入参数：<br/>- parentSpanId：父分支ID。<br/>输出参数：无。<br/>返回值：无。 |
+|  | int ToBytes(uint8_t* pIdArray, int len) | 功能：将HiTraceId对象转换为字节数组，便于缓存或者通信传递。<br/>输入参数：<br/>- pIdArray：字节数组指针，数组长度至少为HITRACE_ID_LEN。<br/>- len: 字节数组长度<br/>输出参数：<br/>- pIdArray：字节数组指针，对象有效时存储转换后的对象数据。<br/>返回值：0 转换失败； &amp;gt;0 有效对象转换数组长度。 |
 
 
 ## 通信调用处理
