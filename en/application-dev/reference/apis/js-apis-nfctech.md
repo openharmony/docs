@@ -26,8 +26,6 @@ getSak(): number
 
 Obtains the SAK value of this NFC-A tag.
 
-**Required permissions**: ohos.permission.NFC_TAG
-
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
@@ -51,8 +49,6 @@ console.log("nfcA sak: " + sak);
 getAtqa(): number[]
 
 Obtains the ATQA value of this NFC-A tag.
-
-**Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -86,8 +82,6 @@ getRespAppData(): number[]
 
 Obtains the application data of this NFC-B tag.
 
-**Required permissions**: ohos.permission.NFC_TAG
-
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
@@ -111,8 +105,6 @@ console.log("nfcB respAppData: " + respAppData);
 getRespProtocol(): number[]
 
 Obtains the protocol information of this NFC-B tag.
-
-**Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -146,8 +138,6 @@ getSystemCode(): number[]
 
 Obtains the system code from this NFC-F tag.
 
-**Required permissions**: ohos.permission.NFC_TAG
-
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
@@ -171,8 +161,6 @@ console.log("nfcF systemCode: " + systemCode);
 getPmm(): number[]
 
 Obtains the PMm (consisting of the IC code and manufacturer parameters) information from this NFC-F tag.
-
-**Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -206,8 +194,6 @@ getResponseFlags(): number
 
 Obtains the response flags from this NFC-V tag.
 
-**Required permissions**: ohos.permission.NFC_TAG
-
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
@@ -231,8 +217,6 @@ console.log("nfcV responseFlags: " + responseFlags);
 getDsfId(): number
 
 Obtains the data storage format identifier (DSFID) from this NFC-V tag.
-
-**Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
