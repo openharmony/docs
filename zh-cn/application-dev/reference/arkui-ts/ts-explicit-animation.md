@@ -41,7 +41,7 @@ struct AnimateToExample {
 
   build() {
     Column() {
-      Button('change width and height')
+      Button('change size')
         .width(this.widthSize)
         .height(this.heightSize)
         .margin(30)
@@ -56,8 +56,8 @@ struct AnimateToExample {
                 console.info('play end')
               }
             }, () => {
-              this.widthSize = 100
-              this.heightSize = 50
+              this.widthSize = 150
+              this.heightSize = 60
             })
           } else {
             animateTo({}, () => {
@@ -76,7 +76,7 @@ struct AnimateToExample {
             curve: Curve.Friction,
             delay: 500,
             iterations: -1, // 设置-1表示动画无限循环
-            playMode: PlayMode.AlternateReverse,
+            playMode: PlayMode.Alternate,
             onFinish: () => {
               console.info('play end')
             }
@@ -89,10 +89,4 @@ struct AnimateToExample {
 }
 ```
 
-示意图：
-
-![animation](figures/animation.PNG)
-
-点击第一个按钮播放改变按钮大小的动画，点击第二个按钮播放按钮顺时针旋转90度的动画。
-
-![animation1](figures/animation1.PNG)
+![animation1](figures/animation1.gif)
