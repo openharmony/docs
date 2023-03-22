@@ -1,5 +1,9 @@
 # AVSession Development
 
+> **NOTE**
+>
+> All APIs of the **AVSession** module are system APIs and can be called only by system applications.
+
 ## Development for the Session Access End
 
 ### Basic Concepts
@@ -50,7 +54,7 @@ avSession.createAVSession(context, "AudioAppSample", 'audio').then((session) => 
 
 3. Set the session information, including:
 - Session metadata. In addition to the current media asset ID (mandatory), you can set the title, album, author, duration, and previous/next media asset ID. For details about the session metadata, see **AVMetadata** in the API document.
-- Launcher ability, which is implemented by calling an API of **WantAgent**. Generally, **WantAgent** is used to encapsulate want information. For more information, see [wantAgent](../reference/apis/js-apis-wantAgent.md).
+- Launcher ability, which is implemented by calling an API of [WantAgent](../reference/apis/js-apis-wantAgent.md). Generally, **WantAgent** is used to encapsulate want information.
 - Playback state information.
 ```js
 // Set the session metadata.
