@@ -2,23 +2,27 @@
 
 ## 如何获取设备的dpi值
 
-适用于：OpenHarmony SDK 3.2.2.5版本，API9 Stage模型
+适用于：OpenHarmony 3.2 Beta5，API9 Stage模型
 
-导入\@ohos.display包，通过getDefaultDisplay方法获取。
+**问题现象**
 
-示例：
+获取设备的dpi信息。
 
+**解决措施**
+
+导入@ohos.display包，通过getDefaultDisplaySync方法获取。
+
+**示例代码**
   
 ```
 import display from '@ohos.display'; 
-display.getDefaultDisplay((err, data) => { 
-  if (err.code) { 
-    console.error('Test Failed to obtain the default display object. Code: ' + JSON.stringify(err)); 
-    return; 
-  } 
-  console.info('Test Succeeded in obtaining the default display object. Data:' + JSON.stringify(data)); 
-  console.info('Test densityDPI:' + JSON.stringify(data.densityDPI)); 
-});
+let displayClass = null;
+try {
+    displayClass = display.getDefaultDisplaySync();
+ console.info('Test densityDPI:' + JSON.stringify(data.densityDPI)); 
+} catch (exception) {
+    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+} 
 ```
 
 ## 如何获取当前运行设备类型
