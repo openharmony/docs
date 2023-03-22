@@ -34,7 +34,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | type                     | [InputType](#inputtype枚举说明)     | 设置输入框类型。<br/>默认值：InputType.Normal        |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | 设置placeholder文本颜色。|
 | placeholderFont          | [Font](ts-types.md#font) | 设置placeholder文本样式。 |
-| enterKeyType             | [EnterKeyType](#enterkeytype枚举说明) | 设置输入法回车键类型，目前OpenHarmony输入法仅支持默认类型显示。<br/>默认值：EnterKeyType.Done |
+| enterKeyType             | [EnterKeyType](#enterkeytype枚举说明) | 设置输入法回车键类型，目前仅支持默认类型显示。<br/>默认值：EnterKeyType.Done |
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
@@ -48,7 +48,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 >  **说明：**
 >
->  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 16 vp,<br>&nbsp;left: 8 vp<br> }
+>  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }
 
 ## EnterKeyType枚举说明
 
@@ -65,8 +65,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                 | 描述            |
 | ------------------ | ------------- |
 | Normal   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| Password | 密码输入模式。       |
-| Email    | 邮箱地址输入模式。 |
+| Password | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。 |
+| Email    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
 | Number   | 纯数字输入模式。      |
 | PhoneNumber<sup>9+</sup> | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
 
@@ -83,10 +83,10 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。<br/>value：输入的文本内容。 |
+| onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。<br/>value：输入的文本内容。<br/>触发该事件的条件：<br/>1、键盘输入。<br/>2、粘贴、剪切。<br/>3、键盘快捷键Ctrl+v。 |
 | onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调，返回值为当前输入法回车键的类型。<br/>enterKeyType：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。 |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 输入状态变化时，触发该回调。从API 8开始，建议使用onEditChange。 |
-| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。isEditing为true表示正在输入。    |
+| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。 |
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 |
 | onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。<br/>value：剪切的文本内容。 |
 | onPaste(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>value：粘贴的文本内容。 |
