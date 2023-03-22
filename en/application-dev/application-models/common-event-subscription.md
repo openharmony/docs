@@ -1,14 +1,14 @@
-# Subscribing to Common Events
+# Subscribing to Common Events in Dynamic Mode
 
 
 ## When to Use
 
-You can create a subscriber object to subscribe to a common event so as to obtain the parameters passed in the event. Certain system common events [require specific permissions](../security/accesstoken-guidelines.md) to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEventManager.md#support).
+In dynamic subscription mode, an application subscribes to a common event when it is running. If the subscribed event is published during the running period, the subscriber application will receive the event, together with the parameters passed in the event. For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption. Certain system common events [require specific permissions](../security/accesstoken-guidelines.md) to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEventManager.md#support).
 
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../reference/apis/js-apis-commonEventManager.md#commoneventmanagersubscribe).
+For details about the APIs, see [API Reference](../reference/apis/js-apis-commonEvent.md#commoneventcreatesubscriber).
 
 | API| Description|
 | -------- | -------- |
@@ -19,10 +19,10 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
 
 ## How to Develop
 
-1. Import the **commonEventManager** module.
+1. Import the **commonEvent** module.
    
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
+   import commonEvent from '@ohos.commonEventManager';
    ```
 
 2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo).
@@ -40,7 +40,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    
    ```ts
    // Callback for subscriber creation.
-   commonEventManager.createSubscriber(subscribeInfo, (err, data) => {
+   commonEvent.createSubscriber(subscribeInfo, (err, data) => {
        if (err) {
            console.error(`[CommonEvent] CreateSubscriberCallBack err=${JSON.stringify(err)}`);
        } else {
@@ -56,7 +56,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    ```ts
    // Callback for common event subscription.
    if (subscriber !== null) {
-       commonEventManager.subscribe(subscriber, (err, data) => {
+       commonEvent.subscribe(subscriber, (err, data) => {
            if (err) {
                console.error(`[CommonEvent] SubscribeCallBack err=${JSON.stringify(err)}`);
            } else {
