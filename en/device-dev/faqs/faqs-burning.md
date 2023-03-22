@@ -71,7 +71,7 @@
 
 1.  Obtain the U-Boot file.
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >![](../public_sys-resources/icon-notice.gif) **NOTICE** 
     >The U-Boot file of the two boards can be obtained from the following paths, respectively.
     >Hi3516D V300:  **device\\hisilicon\\hispark\_taurus\\sdk\_liteos\\uboot\\out\\boot\\u-boot-hi3516dv300.bin**
     >Hi3518E V300:  **device\\hisilicon\\hispark\_aries\\sdk\_liteos\\uboot\\out\\boot\\u-boot-hi3518ev300.bin**
@@ -86,7 +86,7 @@
     ![](figures/serial-port-displayed-after-the-u-boot-is-burnt.png "serial-port-displayed-after-the-u-boot-is-burnt")
 
 
-### What should I do when Windows-based PC failed to be connected to the board?<a name="section1215410450215"></a>
+### What should I do when the Windows computer failed to be connected to the board?<a name="section1215410450215"></a>
 
 -   **Symptom**
 
@@ -97,7 +97,7 @@
 
 -   **Possible Causes**
 
-    The board is disconnected from the Windows-based PC.
+    The board is disconnected from the Windows computer.
 
     Windows Firewall does not allow Visual Studio Code to access the network.
 
@@ -120,4 +120,28 @@
 
     ![](figures/hi3516-allowing-the-visual-studio-code-application-to-access-the-network.png)
 
+### The Development Board Failed to Be Identified by the Burning Tool
 
+- **Symptom**
+
+  During image burning, the burning tool displays a message indicating that no device is found.
+
+- **Possible Causes**
+
+  The cable between the Windows computer and the development board is not connected. (The cable required varies. In this example, the USB cable is used.) 
+
+  The driver corresponding to the cable between the Windows computer and the development board is not installed.
+
+- **Solution**
+
+  1. Make sure the cable between the Windows computer and the development board is connected.
+
+  2. Open Device Manager in Windows.
+
+  3. Open the Universal Serial Bus controllers list.
+
+  4. Check whether the USB device driver has been installed. If an alarm is displayed, the driver has not been installed.
+
+  5. Depending on the Windows environment, install the desired USB device driver, such as FT23R USB UART Driver. Then try again.
+
+  6. If any other issue occurs, consult the relevant FAQ entry.
