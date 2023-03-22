@@ -41,7 +41,6 @@
   - [AI框架](subsystems/subsys-ai-aiframework-devguide.md) 	
   - [数据管理](subsystems/subsys-data-relational-database-overview.md)
   - [Sensor服务](subsystems/subsys-sensor-overview.md)
-  - [USB服务](subsystems/subsys-usbservice-overview.md)
   - [用户程序框架](subsystems/subsys-application-framework-overview.md)
   - [OTA升级](subsystems/subsys-ota-guide.md)
   - [电话服务](subsystems/subsys-tel-overview.md)
