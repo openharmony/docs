@@ -31,8 +31,8 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
 | searchButton            | string                                           | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。         |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。                           |
-| placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式。                           |
-| textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式。                               |
+| placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
+| textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。<br/>默认值：TextAlign.Start    |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。                             |
 

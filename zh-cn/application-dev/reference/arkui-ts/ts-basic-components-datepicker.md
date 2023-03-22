@@ -1,6 +1,6 @@
 # DatePicker
 
-选择日期的滑动选择器组件
+日期选择器组件，用于根据指定日期范围创建日期滑动选择器。
 
 >  **说明：**
 >
@@ -25,8 +25,9 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 | end      | Date | 否  |   指定选择器的结束日期。<br/>默认值：Date('2100-12-31') |
 | selected | Date | 否  | 设置选中项的日期。<br/>默认值：当前系统日期  |
 
-
 ## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称    | 参数类型        | 描述            |
 | ------| -------------- | -------- |
@@ -34,6 +35,8 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 
 
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |

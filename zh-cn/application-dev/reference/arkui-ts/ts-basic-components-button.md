@@ -23,7 +23,7 @@
 | 参数名         | 参数类型       | 必填        | 参数描述                              |
 | ----------- | ---------- | ------| --------------------------------- |
 | type        | ButtonType | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
-| stateEffect | boolean    | 否    |  按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
+| stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
 
 
 **方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
@@ -36,11 +36,12 @@
 
 | 参数名     | 参数类型                                | 必填   | 参数描述          |
 | ------- | ----------------------------------- | ---- | ------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。       |
+| label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
 | options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见方法1参数说明。 |
 
-
 ## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
@@ -65,6 +66,7 @@
 >  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md)为透明色。
 
 
+支持[通用事件](ts-universal-events-click.md)。
 ## 示例
 
 ```ts

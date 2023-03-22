@@ -39,7 +39,7 @@ Radio(options: {value: string, group: string})
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -&nbsp;isChecked为true时，表示从未选中变为选中。<br> -&nbsp;isChecked为false时，表示从选中变为未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例
