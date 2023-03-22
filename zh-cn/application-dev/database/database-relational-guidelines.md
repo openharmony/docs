@@ -294,7 +294,7 @@
     const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
     let insertPromise = store.insert("test", valueBucket);
     ```
-   
+
     ```js
     //使用事务插入数据
     try {
@@ -338,20 +338,20 @@
 
 4. 设置分布式同步表。
 
-    (1) 权限配置文件中增加以下配置。    
+   (1) 权限配置文件中增加以下配置。    
 
-    ```json
-    "requestPermissions": 
-    {
-      "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-    }
-    ```
+   ```json
+   "requestPermissions": 
+   {
+     "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+   }
+   ```
 
-    (2) 获取应用权限。
+   (2) 获取应用权限。
 
-    (3) 数据库调用接口设置分布式同步列表。
+   (3) 数据库调用接口设置分布式同步列表。
 
-    (4) 判断是否设置成功。
+   (4) 判断是否设置成功。
 
    示例代码如下：
 
@@ -393,7 +393,7 @@
     ```
 
 6. 分布式数据订阅。
-  
+
     (1) 调用分布式数据订阅接口，注册数据库的观察者。
 
     (2) 当分布式数据库中的数据发生更改时，将调用回调。
@@ -415,14 +415,14 @@
     ```
 
 7. 跨设备查询。
-   
-    (1) 根据本地表名获取指定远程设备的分布式表名。
 
-    (2) 调用结果集接口，返回查询结果。
+   (1) 根据本地表名获取指定远程设备的分布式表名。
 
-    示例代码如下：
+   (2) 调用结果集接口，返回查询结果。
 
-    ```js
+   示例代码如下：
+
+   ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager'
     
    let deviceIds = [];
@@ -442,13 +442,13 @@
    let tableName = store.obtainDistributedTableName(deviceIds[0], "test");
    let resultSet = store.querySql("SELECT * FROM " + tableName);
    ```
-   
+
 8. 远程查询。
-   
+
    (1) 构造用于查询分布式表的谓词对象，指定组网内的远程分布式表名和设备。
-   
+
    (2) 调用结果集接口，返回查询结果。
-   
+
    示例代码如下：
 
    ```js
@@ -482,7 +482,7 @@
       console.error(`Backup failed, err: ${err}`);
     })
    ```
-   
+
    (2) 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
 
    示例代码如下：
