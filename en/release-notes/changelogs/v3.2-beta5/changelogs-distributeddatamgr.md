@@ -1,7 +1,5 @@
 # Distributed Data Management Subsystem JS API Changelog
 
-Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.1(Mr) has the following API changes in the distributed data management subsystem:
-
 ## cl.distributeddatamgr.1 API Change
 Changed the APIs in **kv_store** of the distributed data management subsystem:
 
