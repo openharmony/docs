@@ -151,7 +151,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 | createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认创建。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | encrypt         | boolean                         | 否   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | backup          | boolean                         | 否   | 设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| autoSync        | boolean                         | 否   | 设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
+| autoSync        | boolean                         | 否   | 设置数据库文件是否自动同步。默认为false,即手动同步；设置为ture时，表示自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
 | kvStoreType     | [KVStoreType](#kvstoretype)     | 否   | 设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | securityLevel   | [SecurityLevel](#securitylevel) | 是   |设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | schema          | [Schema](#schema)               | 否   | 设置定义存储在数据库中的值，默认不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
@@ -4540,9 +4540,8 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
           return;
         }
         console.log('Succeeded in putting data');
-        const devices = ['deviceList'];
         const mode = distributedKVStore.SyncMode.PULL_ONLY;
-        kvStore.sync(devices, mode, 1000);
+        kvStore.sync(deviceIds, mode, 1000);
       });
     } catch (e) {
       console.error(`Fail to sync.code is ${e.code},message is ${e.message}`);
@@ -4612,12 +4611,11 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
           return;
         }
         console.log('Succeeded in putting data');
-        const devices = ['deviceList'];
         const mode = distributedKVStore.SyncMode.PULL_ONLY;
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, mode, 1000);
+        kvStore.sync(deviceIds, query, mode, 1000);
       });
     } catch (e) {
       console.error(`Fail to sync.code is ${e.code},message is ${e.message}`);
