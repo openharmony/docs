@@ -2010,6 +2010,10 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
@@ -2044,6 +2048,10 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 根据指定条件查询远程设备数据库中的数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **参数：**
 
@@ -2499,7 +2507,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | device   | string                      | 是   | 远程设备 。                                                  |
-| table    | string                      | 是   | 本地表名。                                                   |
+| table    | string                      | 是   | 远程设备的本地表名。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例：**
@@ -2526,10 +2534,10 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明       |
-| ------ | ------ | ---- | ---------- |
-| device | string | 是   | 远程设备。 |
-| table  | string | 是   | 本地表名。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| device | string | 是   | 远程设备。           |
+| table  | string | 是   | 远程设备的本地表名。 |
 
 **返回值**：
 
