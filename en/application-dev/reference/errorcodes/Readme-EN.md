@@ -10,6 +10,7 @@
   - [zlib Error Codes](errorcode-zlib.md)
 - Common Event and Notification
   - [Event Error Codes](errorcode-CommonEventService.md)
+  - [Notification Error Codes](errorcode-notification.md)
   - [DistributedNotificationService Error Codes](errorcode-DistributedNotificationService.md)
 - UI Page
   - [Animator Error Codes](errorcode-animator.md)
@@ -19,20 +20,20 @@
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
   - [Display Error Codes](errorcode-display.md)
   - [Window Error Codes](errorcode-window.md)
-- Media
+- Multimedia
   - [Audio Error Codes](errorcode-audio.md)
   - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
-- Resource Management
+- Resource Manager
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
-- Resource Scheduling
+- Background Task
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
 - Security
-  - [Ability Access Control Error Codes](errorcode-access-token.md)
+  - [Application Access Control Error Codes](errorcode-access-token.md)
   - [HUKS Error Codes](errorcode-huks.md)
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
   - [Certificate Error Codes](errorcode-cert.md)
@@ -45,12 +46,20 @@
   - [Preferences Error Codes](errorcode-preferences.md)
 - File Management
   - [File Management Error Codes](errorcode-filemanagement.md)
+- Telephony Service
+  - [Telephony Error Codes](errorcode-telephony.md)
 - Network Management
   - [Upload and Download Error Codes](errorcode-request.md)
+  - [HTTP Error Codes](errorcode-net-http.md)
+  - [Socket Error Codes](errorcode-net-socket.md)
+  - [Network Connection Management Error Codes](errorcode-net-connection.md)
+  - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
+  - [Network Sharing Error Codes](errorcode-net-sharing.md)
+  - [Policy Management Error Codes](errorcode-net-policy.md)
 - Connectivity
+  - [Wi-Fi Error Codes](errorcode-wifi.md)
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
-  - [Wi-Fi Error Codes](errorcode-wifi.md)
 - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
@@ -78,9 +87,9 @@
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
   - [Update Error Codes](errorcode-update.md)
-- Customization Management
+- Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Utils
+- Language Base Class Library
   - [Utils Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

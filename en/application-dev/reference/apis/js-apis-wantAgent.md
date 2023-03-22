@@ -12,6 +12,145 @@ The **WantAgent** module provides APIs for creating and comparing **WantAgent** 
 import WantAgent from '@ohos.wantAgent';
 ```
 
+## WantAgent.getWant
+
+getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
+
+Obtains the Want in a **WantAgent** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                      | Mandatory| Description                   |
+| -------- | -------------------------- | ---- | ----------------------- |
+| agent     | [WantAgent](js-apis-wantAgent.md)              | Yes  | **WantAgent** object.          |
+| callback | AsyncCallback\<Want\> | Yes  | Callback used to return the Want.|
+
+**Example**
+
+```ts
+import WantAgent from '@ohos.wantAgent';
+
+
+// WantAgent object
+let wantAgent;
+
+// getWantAgent callback
+function getWantAgentCallback(err, data) {
+	console.info('==========================>getWantAgentCallback=======================>');
+    if (err.code == 0) {
+    	wantAgent = data;
+    } else {
+        console.error('getWantAgent failed, error: ' + JSON.stringify(err));
+        return;
+    }
+
+    // getWant callback
+    function getWantCallback(err, data) {
+        console.info('==========================>getWantCallback=======================>');
+    }
+    WantAgent.getWant(wantAgent, getWantCallback);
+}
+// WantAgentInfo object
+let wantAgentInfo = {
+    wants: [
+        {
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
+                mykey4: [false, true, false],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: WantAgent.OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+};
+
+WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+```
+
+## WantAgent.getWant
+
+getWant(agent: WantAgent): Promise\<Want\>
+
+Obtains the Want in a **WantAgent** object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description         |
+| ---- | ------------- | ---- | ------------- |
+| agent | [WantAgent](js-apis-wantAgent.md) | Yes  | **WantAgent** object.|
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<Want\> | Promise used to return the Want.|
+
+**Example**
+
+```ts
+import WantAgent from '@ohos.wantAgent';
+
+
+// WantAgent object
+let wantAgent;
+
+// WantAgentInfo object
+let wantAgentInfo = {
+    wants: [
+        {
+            deviceId: 'deviceId',
+            bundleName: 'com.neu.setResultOnAbilityResultTest1',
+            abilityName: 'com.example.test.EntryAbility',
+            action: 'action1',
+            entities: ['entity1'],
+            type: 'MIMETYPE',
+            uri: 'key={true,true,false}',
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
+                mykey4: [false, true, false],
+                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: WantAgent.OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info('==========================>getWantAgentCallback=======================>');
+    wantAgent = data;
+    if (wantAgent) {        
+        WantAgent.getWant(wantAgent).then((data) => {
+            console.info('==========================>getWantCallback=======================>');
+        });
+    }
+});
+```
+
 ## WantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
@@ -783,135 +922,6 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 
 WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 	console.info('==========================>equalCallback=======================>');
-});
-```
-
-## WantAgent.getOperationType<sup>9+</sup>
-
-getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
-
-Obtains the operation type of a **WantAgent** object. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-| Name      | Type                    | Mandatory| Description                                   |
-| ---------- | ------------------------ | ---- | --------------------------------------- |
-| agent      | WantAgent                | Yes  | Target **WantAgent** object.                          |
-| callback   | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
-
-**Example**
-
-```ts
-import WantAgent from '@ohos.wantAgent';
-
-// WantAgent object
-let wantAgent;
-
-// WantAgentInfo object
-let wantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info('==========================>getWantAgentCallback=======================>');
-    wantAgent = data;
-    if (data) {
-        WantAgent.getOperationType(wantAgent, (OperationType) => {
-            console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
-        })
-    }
-});
-```
-
-## WantAgent.getOperationType<sup>9+</sup>
-
-getOperationType(agent: WantAgent): Promise\<number>;
-
-Obtains the operation type of a **WantAgent** object. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-| Name      | Type     | Mandatory| Description         |
-| ---------- | --------- | ---- | ------------- |
-| agent      | WantAgent | Yes  | Target **WantAgent** object.|
-
-**Return value**
-
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number> | Promise used to return the operation type.|
-
-**Example**
-
-```ts
-import WantAgent from '@ohos.wantAgent';
-
-// WantAgent object
-let wantAgent;
-
-// WantAgentInfo object
-let wantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.neu.setResultOnAbilityResultTest1',
-            abilityName: 'com.example.test.EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        }
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}
-
-WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-	console.info('==========================>getWantAgentCallback=======================>');
-    wantAgent = data;
-    WantAgent.getOperationType(wantAgent).then((OperationType) => {
-        console.log('getOperationType success, OperationType: ' + OperationType);
-    }).catch((err) => {
-        console.log('getOperationType fail, err: ' + err);
-    })
 });
 ```
 

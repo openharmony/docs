@@ -11,7 +11,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam, showInSubWindow?: boolean})
 
 
 **Parameters**
@@ -26,8 +26,9 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | customStyle            | boolean                                  | No                   | Whether to use a custom style for the dialog box.<br>Default value: **false**, which means that the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.          |
 | gridCount<sup>8+</sup> | number                                   | No                   | Number of [grid columns](../../ui/ui-ts-layout-grid-container-new.md) occupied by the dialog box.<br>The default value is 4, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
 | maskColor<sup>10+</sup>     | [ResourceColor](ts-types.md#resourcecolor)  | No  | Custom mask color.<br>Default value: **0x33000000**                                                                                                 |
-| openAnimation<sup>10+</sup> | [AnimateParam](ts-explicit-animation.md#animateparam)     | No  | Parameters for defining the open animation of the dialog box.     |
+| openAnimation<sup>10+</sup> | [AnimateParam](ts-explicit-animation.md#animateparam)     | No  | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>If **iterations** is set to an odd number and **playMode** is set to **Reverse**, the dialog box will not be displayed when the animation ends.     |
 | closeAniamtion<sup>10+</sup>| [AnimateParam](ts-explicit-animation.md#animateparam)     | No  | Parameters for defining the close animation of the dialog box.     |
+| showInSubWindow<sup>10+</sup>| boolean     | No  | Whether to display a dialog box in a subwindow.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.     |
 
 ## CustomDialogController
 
@@ -108,6 +109,11 @@ struct CustomDialogUser {
     customStyle: false
   })
 
+  aboutToDisappear() {
+    delete this.dialogController,
+    this.dialogController = undefined
+  }
+
   onCancel() {
     console.info('Callback when the first button is clicked')
   }
@@ -124,7 +130,9 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          this.dialogController.open()
+          if (this.dialogController != undefined) {
+            this.dialogController.open()
+          }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }

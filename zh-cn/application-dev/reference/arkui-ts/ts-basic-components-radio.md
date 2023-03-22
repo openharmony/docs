@@ -16,6 +16,8 @@
 
 Radio(options: {value: string, group: string})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -29,7 +31,7 @@ Radio(options: {value: string, group: string})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| checked | boolean | 设置单选框的选中状态。<br/>默认值：false |
+| checked | boolean | 设置单选框的选中状态。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## 事件
 
@@ -37,7 +39,7 @@ Radio(options: {value: string, group: string})
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 |
+| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 
 ## 示例

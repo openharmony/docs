@@ -597,7 +597,7 @@ struct GridRowSample6 {
 **示例7：**
 
 
-通过order属性，控制GridCol的顺序。在sm和md断点下，按照至6的顺序排列显示；在lg断点下，按照6至1的顺序排列显示。
+通过order属性，控制GridCol的顺序。在sm和md断点下，按照1至6的顺序排列显示；在lg断点下，按照6至1的顺序排列显示。
 
 
   | sm | md | lg | 

@@ -727,7 +727,7 @@ fillRect(x: number, y: number, w: number, h: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.fillRect(0,30,100,100)
+            this.offContext.fillRect(30,30,100,100)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
          })
@@ -2410,6 +2410,8 @@ struct OffscreenCanvasGetLineDash {
 toDataURL(type?: string, quality?: number): string
 
 生成一个包含图片展示的URL。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 

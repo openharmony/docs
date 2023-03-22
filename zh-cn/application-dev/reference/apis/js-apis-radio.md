@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import radio from '@ohos.telephony.radio'
+import radio from '@ohos.telephony.radio';
 ```
 
 ## radio.getRadioTech
@@ -45,7 +45,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 ```js
 let slotId = 0;
-radio.getRadioTech(slotId, (err, data) =>{ 
+radio.getRadioTech(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -127,7 +127,7 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 **示例：**
 
 ```js
-radio.getNetworkState((err, data) =>{
+radio.getNetworkState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -831,7 +831,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 设置主卡所在卡槽的索引号。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -872,7 +872,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 设置主卡所在卡槽的索引号。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -920,7 +920,7 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -958,7 +958,7 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -998,7 +998,7 @@ getIMEI(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的IMEI。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1045,7 +1045,7 @@ getMEID(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1083,7 +1083,7 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1123,7 +1123,7 @@ getMEID(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的MEID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1170,7 +1170,7 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1208,7 +1208,7 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1248,7 +1248,7 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的唯一设备ID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1295,7 +1295,7 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 发送更新小区位置请求。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1332,7 +1332,7 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 发送更新小区位置请求。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1371,7 +1371,7 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 发送更新小区位置请求。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1418,7 +1418,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 获取小区信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1456,7 +1456,7 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 
 获取小区信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1496,7 +1496,7 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 获取小区信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1543,7 +1543,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 设置网络选择模式。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1593,7 +1593,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
 设置网络选择模式。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1651,7 +1651,7 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 
 获取网络搜索信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1689,7 +1689,7 @@ getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 
 获取网络搜索信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1735,7 +1735,7 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
 获取Nr选项模式 。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1770,7 +1770,7 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
 获取Nr选项模式 。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1807,7 +1807,7 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
 获取Nr选项模式 。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1851,7 +1851,7 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 
 打开Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1889,7 +1889,7 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 打开Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1929,7 +1929,7 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 打开Radio。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1976,7 +1976,7 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 
 关闭Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2014,7 +2014,7 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 关闭Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2054,7 +2054,7 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 关闭Radio。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2101,7 +2101,7 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 设置首选网络。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2140,7 +2140,7 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 
 设置首选网络。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2187,7 +2187,7 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 获取首选网络。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2225,7 +2225,7 @@ getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 
 获取首选网络。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2271,7 +2271,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 
 获取特定IMS服务类型的IMS注册状态信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2310,7 +2310,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
 获取特定IMS服务类型的IMS注册状态信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2357,7 +2357,7 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 
 订阅imsRegStateChange事件，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2397,7 +2397,7 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 
 取消订阅imsRegStateChange事件，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2435,7 +2435,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 无线接入技术。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                      | 值   | 说明                                                         |
 | ------------------------- | ---- | ------------------------------------------------------------ |
@@ -2458,7 +2458,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络信号强度信息对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |      名称       |           类型              | 必填 |      说明          |
 | --------------- | --------------------------- | ---- | ------------------ |
@@ -2470,7 +2470,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                 | 值   | 说明                                                         |
 | -------------------- | ---- | ------------------------------------------------------------ |
@@ -2486,7 +2486,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络注册状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |       名称           |                 类型                | 必填 |                          说明                                |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
@@ -2505,7 +2505,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络注册状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                          | 值   | 说明                       |
 | ----------------------------- | ---- | -------------------------- |
@@ -2519,7 +2519,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 非独立组网状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                       | 值   | 说明                                                       |
 | -------------------------- | ---- | ---------------------------------------------------------- |
@@ -2535,7 +2535,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 选网模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                        | 值   | 说明           |
 | --------------------------- | ---- | -------------- |
@@ -2547,9 +2547,9 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 首选网络模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                                                      | 值   | 说明                                          |
 | --------------------------------------------------------- | ---- | --------------------------------------------- |
@@ -2592,9 +2592,9 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称              |                  类型                   | 必填 |                           说明                               |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -2608,9 +2608,9 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 CDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
@@ -2624,9 +2624,9 @@ CDMA小区信息。
 
 GSM小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -2641,9 +2641,9 @@ GSM小区信息。
 
 LTE小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称          | 类型    | 必填 | 说明                    |
 | ------------- | ------- | ---- | ----------------------- |
@@ -2660,9 +2660,9 @@ LTE小区信息。
 
 NR小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称    | 类型   | 必填 | 说明             |
 | ------- | ------ | ---- | ---------------- |
@@ -2677,9 +2677,9 @@ NR小区信息。
 
 TD-SCDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
@@ -2694,9 +2694,9 @@ TD-SCDMA小区信息。
 
 WCDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
@@ -2711,9 +2711,9 @@ WCDMA小区信息。
 
 NR的选择模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                 | 值   | 说明                               |
 | -------------------- | ---- | ---------------------------------- |
@@ -2726,9 +2726,9 @@ NR的选择模式。
 
 网络搜索结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                   | 类型                                              | 必填 | 说明           |
 | ---------------------- | ------------------------------------------------- | ---- | -------------- |
@@ -2739,9 +2739,9 @@ NR的选择模式。
 
 网络信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称            |                         类型                        | 必填 | 说明           |
 | --------------- | --------------------------------------------------- | ---- | -------------- |
@@ -2754,9 +2754,9 @@ NR的选择模式。
 
 网络信息状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称              | 值   | 说明             |
 | ----------------- | ---- | ---------------- |
@@ -2769,9 +2769,9 @@ NR的选择模式。
 
 网络选择模式选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称               |                    类型                       | 必填 |                 说明                   |
 | ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
@@ -2784,9 +2784,9 @@ NR的选择模式。
 
 IMS注册状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称             | 值   | 说明     |
 | ---------------- | ---- | -------- |
@@ -2797,9 +2797,9 @@ IMS注册状态。
 
 IMS注册技术。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                    | 值   | 说明            |
 | ----------------------- | ---- | --------------- |
@@ -2812,9 +2812,9 @@ IMS注册技术。
 
 IMS注册信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称        | 类型                         | 必填 | 说明          |
 | ----------- | ---------------------------- | ---- | ------------- |
@@ -2825,9 +2825,9 @@ IMS注册信息。
 
 IMS服务类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |

@@ -16,6 +16,8 @@
 
 **方法1：** Button(options?: {type?: ButtonType, stateEffect?: boolean})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名         | 参数类型       | 必填        | 参数描述                              |
@@ -27,6 +29,8 @@
 **方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
   使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -40,10 +44,13 @@
 
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
-| type        | ButtonType  |  设置Button样式。<br/>默认值：ButtonType.Capsule                       |
-| stateEffect | boolean     |  按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
+| type        | ButtonType  | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| stateEffect | boolean     | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## ButtonType枚举说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称      | 描述                 |
 | ------- | ------------------ |
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
@@ -51,8 +58,8 @@
 | Normal  | 普通按钮（默认不带圆角）。      |
 
 >  **说明：**
->  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md)设置（不支持通过border接口设置圆角），且只支持设置一个相同的圆角。
->  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为高度的一半。
+>  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md)设置（不支持通过border接口设置圆角），且只支持设置参数为[Length](ts-types.md#length)的圆角。
+>  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为宽、高中较小值的一半。
 >  - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。
 >  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。
 

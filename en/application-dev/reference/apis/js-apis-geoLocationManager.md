@@ -782,12 +782,12 @@ For details about the following error codes, see [Location Error Codes](../error
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -840,7 +840,7 @@ For details about the following error codes, see [Location Error Codes](../error
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,

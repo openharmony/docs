@@ -34,7 +34,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | 名称       | 说明      |
 | -------- | ------- |
 | up       | 表示向上查询。 |
-| down     | 表示向上查询。 |
+| down     | 表示向下查询。 |
 | left     | 表示向左查询。 |
 | right    | 表示向右查询。 |
 | forward  | 表示向前查询。 |
@@ -131,7 +131,7 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 let targetNames = ['com.ohos.xyz'];
 try {
     axContext.setTargetBundleName(targetNames, (err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
             return;
         }
@@ -214,7 +214,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 let focusElement;
 try {
     axContext.getFocusElement((err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to get focus element, because ${JSON.stringify(err)}');
             return;
         }
@@ -248,7 +248,7 @@ let focusElement;
 let isAccessibilityFocus = true;
 try {
     axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
-    if (err) {
+    if (err && err.code) {
         console.error('failed to get focus element, because ${JSON.stringify(err)}');
         return;
     }
@@ -331,7 +331,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 let rootElement;
 try {
     axContext.getWindowRootElement((err, data) => {
-    if (err) {
+    if (err && err.code) {
         console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
         return;
     }
@@ -373,7 +373,7 @@ let rootElement;
 let windowId = 10;
 try {
     axContext.getWindowRootElement(windowId, (err, data) => {
-    if (err) {
+    if (err && err.code) {
         console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
         return;
     }
@@ -457,7 +457,7 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 let windows;
 try {
     axContext.getWindows((err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to get windows, because ${JSON.stringify(err)}');
             return;
         }
@@ -499,7 +499,7 @@ let windows;
 let displayId = 10;
 try {
     axContext.getWindows(displayId, (err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to get windows, because ${JSON.stringify(err)}');
             return;
         }
@@ -594,7 +594,7 @@ try {
         gesturePath.points.push(gesturePoint);
     }
     axContext.injectGesture(gesturePath, (err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to inject gesture, because ${JSON.stringify(err)}');
             return;
         }
@@ -818,7 +818,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 | 参数名         | 类型                                     | 必填   | 说明             |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | 是    | 表示属性的名称。     |
+| actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
 | parameters | object | 否    | 表示执行操作时所需要的参数。     |
 
 **返回值：**
@@ -861,7 +861,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 | 参数名         | 类型                                     | 必填   | 说明             |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | 是    | 表示属性的名称。     |
+| actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。|
 
 **错误码：**
@@ -900,7 +900,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 | 参数名         | 类型                                     | 必填   | 说明             |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | 是    | 表示属性的名称。     |
+| actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 |
 | parameters | object | 是    | 表示执行操作时所需要的参数。     |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。|
 

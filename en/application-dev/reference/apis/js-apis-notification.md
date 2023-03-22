@@ -853,8 +853,8 @@ function unsubscribeCallback(err) {
         console.info("unsubscribe success");
     }
 }
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
+function onDisconnectCallback() {
+	console.info("subscribe disconnect");
 }
 let subscriber = {
     onDisconnect: onDisconnectCallback
@@ -883,8 +883,8 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 **Example**
 
 ```js
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
+function onDisconnectCallback() {
+	console.info("subscribe disconnect");
 }
 let subscriber = {
     onDisconnect: onDisconnectCallback

@@ -21,7 +21,7 @@ The **module** tag contains the HAP configuration.
 | reqPermissions | Permissions that the application requests from the system when it is running.| Object array| Yes (initial value: left empty)|
 | colorMode | Color mode of the application. The options are as follows:<br>- **dark**: Resources applicable for the dark mode are used.<br>- **light**: Resources applicable for the light mode are used.<br>- **auto**: Resources are used based on the color mode of the system.| String| Yes (initial value: **auto**)|
 | distroFilter | Distribution rules of the application. This attribute defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover three factors: API version, screen shape, and screen resolution. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these three factors.| Object| Yes (initial value: left empty) Set this attribute when an application has multiple entry modules.|
-|commonEvents | Information about the common event static subscriber, which must contain the subscriber name, required permissions, and list of the subscribed common events. When a subscribed event is sent, the static subscriber is started. Unlike the common dynamic subscriber, the static subscriber does not need to actively call the common event subscription API in the service code, and may not be started when the common event is released. In constrast, the dynamic subscriber actively calls the common event subscription API and therefore requires the application to stay active.| Object array| Yes (initial value: left empty)|
+|commonEvents | Information about the common event static subscriber, which must contain the subscriber name, required permissions, and list of the common events subscribed to. When a subscribed event is sent, the static subscriber is started. Unlike the dynamic subscriber, the static subscriber does not need to proactively call the common event subscription API in the service code, and may not be running when the common event is published.| Object array| Yes (initial value: left empty)|
 | entryTheme | Keyword of an OpenHarmony internal theme. Set it to the resource index of the name.| String| Yes (initial value: left empty)|
 |testRunner | Test runner configuration.| Object| Yes (initial value: left empty)|
 
@@ -190,12 +190,73 @@ Example of the metadata attribute:
 
 ## Internal Structure of the abilities Attribute
 
+**By default, application icons cannot be hidden from the home screen in OpenHarmony.**
+
+The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system creates a default icon for the application and displays it on the home screen.<br>
+Touching this icon will direct the user to the application details screen in **Settings**.
+To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+
+
+**Setting the application icon to be displayed on the home screen**:<br>Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. In addition, make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
+```
+{
+  "module":{
+
+    ...
+
+    "abilities": [{
+      "icon": "$media:icon",
+      "label": "Login",
+      "skills": [{
+        "actions": ["ohos.want.action.home"],
+        "entities": ["entity.system.home"],
+        "uris": []
+      }]
+    }],
+
+    ...
+
+  }
+}
+```
+
+**Querying an application icon:**
+* The HAP file contains Page ability configuration.
+  * The application icon is set under **abilities** in the **config.json** file.
+    * The application does not have the privilege to hide its icon from the home screen.
+      * The returned home screen icon is the icon configured for the ability.
+      * The returned home screen label is the label configured for the ability. If no label is configured, the bundle name is returned.
+      * The returned component name is the component name of the ability.
+      * When the user touches the home screen icon, the home screen of the ability is displayed.
+    * The application has the privilege to hide its icon from the home screen.
+      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
+  * The application icon is not set under **abilities** in the **config.json** file.
+    * The application does not have the privilege to hide its icon from the home screen.
+      * The returned home screen icon is the default icon.
+      *The returned home screen label is the bundle name of the application.
+      * The returned component name is the component name displayed on the application details screen (this component is built in the system).
+      * Touching the home screen icon will direct the user to the application details screen.
+    * The application has the privilege to hide its icon from the home screen.
+      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
+* The HAP file does not contain Page ability configuration.
+  * The application does not have the privilege to hide its icon from the home screen.
+    * The returned home screen icon is the default icon.
+    *The returned home screen label is the bundle name of the application.
+    * The returned component name is the component name displayed on the application details screen (this component is built in the system).
+    * Touching the home screen icon will direct the user to the application details screen.
+  * The application has the privilege to hide its icon from the home screen.
+    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
+
+> **NOTE**
+> 
+> The icon and label displayed on the application details page may be different from those displayed on the home screen. For non-Page abilities, they are the entry icon and label set under **abilities**, if any.
+
 **Table 8** Internal structure of the abilities attribute
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | process | Name of the process running the application or ability. If the **process** attribute is configured in the **deviceConfig** tag, all abilities of the application run in this process. You can set the **process** attribute for a specific ability in the **abilities** attribute, so that the ability can run in the particular process. If this attribute is set to the name of the process running other applications, all these applications can run in the same process, provided they have the same unified user ID and the same signature. The value can contain a maximum of 31 bytes.| String| Yes (initial value: left empty)|
-| name | Ability name. The value can be a reverse domain name, in the format of "*bundleName*.*className*", for example, **"com.example.myapplication.EntryAbility"**. Alternatively, the value can start with a period (.) followed by the class name, for example, **".EntryAbility"**.<br>The ability name must be unique in an application. Note: If you use DevEco Studio to create the project, an ability named **EntryAbility** will be created by default, and its configuration will be saved to the **config.json** file. The value of this attribute can be customized if you use other IDEs. The value can contain a maximum of 127 bytes.| String| No|
+| name | Ability name. The value can be a reverse domain name, in the format of "*bundleName*.*className*", for example, **"com.example.myapplication.EntryAbility"**. Alternatively, the value can start with a period (.) followed by the class name, for example, **".EntryAbility"**.<br>The ability name must be unique in an application. Note: If you use DevEco Studio to create the project, an ability named **EntryAbility** will be created by default, and its configuration will be saved to the **config.json** file. If you use other IDEs, the value of this attribute can be customized. The value can contain a maximum of 127 bytes.| String| No|
 | description | Description of the ability. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | icon | Index to the ability icon file. Example value: **$media:ability_icon**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the icon of the ability is also used as the icon of the application. If multiple abilities address this condition, the icon of the first candidate ability is used as the application icon.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels.| String| Yes (initial value: left empty)|
 | label | Ability name displayed to users. The value can be a name string or a resource index to names in multiple languages. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the label of the ability is also used as the label of the application. If multiple abilities address this condition, the label of the first candidate ability is used as the application label.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels. The value can be a reference to a string defined in a resource file or a string enclosed in brackets ({}). The value can contain a maximum of 255 characters.| String| Yes (initial value: left empty)|
@@ -212,13 +273,13 @@ Example of the metadata attribute:
 | grantPermission | Whether permissions can be granted for any data in the ability.| Boolean| Yes (initial value: left empty)|
 | readPermission | Permission required for reading data in the ability. This attribute applies only to the ability using the Data template. The value is a string with a maximum of 255 bytes. This attribute applies only to the default, tablet, smart TV, head unit, and wearable device types.| String| Yes (initial value: left empty)|
 | writePermission | Permission required for writing data to the ability. This attribute applies only to the ability using the Data template. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
-| configChanges | System configurations that the ability concerns. Upon any changes on the concerned configurations, the **onConfigurationUpdated** callback will be invoked to notify the ability. The options are as follows:<br>**mcc**: indicates that the mobile country code (MCC) of the IMSI is changed. Typical scenario: A SIM card is detected, and the MCC is updated.<br>**mnc**: indicates that the mobile network code (MNC) of the IMSI is changed. Typical scenario: A SIM card is detected, and the MNC is updated.<br>**locale**: indicates that the locale is changed. Typical scenario: The user selectes a new language for the text display of the device.<br>**layout**: indicates that the screen layout is changed. Typical scenario: Currently, different display forms are all in the active state.<br>**fontSize**: indicates that font size is changed. Typical scenario: A new global font size is set.<br>**orientation**: indicates that the screen orientation is changed. Typical scenario: The user rotates the device.<br>**density**: indicates that the display density is changed. Typical scenario: The user may specify different display ratios, or different display forms are active at the same time.<br>**size**: indicates that the size of the display window is changed.<br>**smallestSize**: indicates that the length of the shorter side of the display window is changed.<br>**colorMode**: indicates that the color mode is changed.| String array| Yes (initial value: left empty)|
+| configChanges | System configurations that the ability concerns. Upon any changes on the concerned configurations, the **onConfigurationUpdated** callback will be invoked to notify the ability. The options are as follows:<br>**mcc**: indicates that the mobile country code (MCC) of the IMSI is changed. Typical scenario: A SIM card is detected, and the MCC is updated.<br>**mnc**: indicates that the mobile network code (MNC) of the IMSI is changed. Typical scenario: A SIM card is detected, and the MNC is updated.<br>**locale**: indicates that the locale is changed. Typical scenario: The user selects a new language for the text display of the device.<br>**layout**: indicates that the screen layout is changed. Typical scenario: Currently, different display forms are all in the active state.<br>**fontSize**: indicates that font size is changed. Typical scenario: A new global font size is set.<br>**orientation**: indicates that the screen orientation is changed. Typical scenario: The user rotates the device.<br>**density**: indicates that the display density is changed. Typical scenario: The user may specify different display ratios, or different display forms are active at the same time.<br>**size**: indicates that the size of the display window is changed.<br>**smallestSize**: indicates that the length of the shorter side of the display window is changed.<br>**colorMode**: indicates that the color mode is changed.| String array| Yes (initial value: left empty)|
 | mission | Task stack of the ability. This attribute applies only to the ability using the Page template. By default, all abilities in an application belong to the same task stack.| String| Yes (initial value: bundle name of the application)|
 | targetAbility | Target ability that this ability alias points to. This attribute applies only to the ability using the Page template. If the **targetAbility** attribute is set, only **name**, **icon**, **label**, **visible**, **permissions**, and **skills** take effect in the current ability (ability alias). Other attributes use the values of the **targetAbility** attribute. The target ability must belong to the same application as the alias and must be declared in **config.json** ahead of the alias.| String| Yes (initial value: left empty, indicating that the current ability is not an alias)|
 | formsEnabled | Whether the ability can provide widgets. This attribute applies only to the ability using the Page template.<br>**true**: This ability can provide widgets.<br>**false**: This ability cannot provide widgets.| Boolean| Yes (initial value: **false**)|
 | forms | Information about the widgets used by the ability. This attribute is valid only when **formsEnabled** is set to **true**.| Object array| Yes (initial value: left empty)|
 | srcLanguage | Programming language of the ability, which you can specify when creating the project.| String| Yes (initial value: **"js"**)|
-| srcPath | JS code path corresponding to the ability. The value can contain maximum of 127 bytes.| String| No|
+| srcPath | JS code path corresponding to the ability. The value can contain a maximum of 127 bytes.| String| No|
 | uriPermission | Application data that the ability can access. This attribute consists of the **mode** and **path** sub-attributes. This attribute is valid only for the capability of the type provider.| Object| Yes (initial value: left empty)|
 | startWindowIcon | Index to the icon file of the ability startup page. This attribute applies only to the ability using the Page template. Example: **$media:icon**.| String| Yes (initial value: left empty)|
 | startWindowBackground | Index to the background color resource file of the ability startup page. This attribute applies only to the ability using the Page template. Example: **$color:red**.| String| Yes (initial value: left empty)|
@@ -351,9 +412,42 @@ Example of the **skills** attribute structure:
 ]
 ```
 
-## reqPermissions Attributes
+**Enhanced implicit query**
 
-**Table 12** reqPermissions attributes
+URI-level prefix matching is supported.
+
+When only **scheme** or a combination of **scheme** and **host** or **scheme**, **host**, and **port** are configured in the configuration file, the configuration is successful if a URI prefixed with the configuration file is passed in.
+
+  * The query enhancement involves the following APIs:<br>
+    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
+    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
+    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
+    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>;
+  * Configuration requirements<br>
+    abilities -> skills -> uris object<br>
+    Configuration 1: only **scheme = 'http'**
+    Configuration 2: only **(scheme = 'http') + (host = 'www.example.com')**
+    Configuration 3: only **(scheme = 'http') + (host = 'www.example.com') + (port = '8080')**
+  * Prefix match<br>
+    If the value of **uri** under [want](../application-models/want-overview.md) is obtained by calling the **queryAbilityInfo** API:<br>
+    1. uri = 'https://': No matches<br>
+    2. uri = 'http://': Matches configuration 1<br>
+    3. uri = 'https://www.example.com': No matches<br>
+    4. uri = 'https://www.exa.com': No matches<br>
+    5. uri = 'http://www.exa.com': Matches configuration 1<br>
+    6. uri = 'http://www.example.com': Matches configuration 1 and configuration 2<br>
+    7. uri = 'https://www.example.com:8080': No matches<br>
+    8. uri = 'http://www.exampleaa.com:8080': Matches configuration 1<br>
+    9. uri = 'http://www.example.com:9180': Matches configuration 1 and configuration 2<br>
+    10. uri = 'http://www.example.com:8080': Matches configuration 1, configuration 2, and configuration 3<br>
+    11. uri = 'https://www.example.com:9180/query/student/name' : No matches<br>
+    12. uri = 'http://www.exampleap.com:8080/query/student/name': Matches configuration 1<br>
+    13. uri = 'http://www.example.com:9180/query/student/name': Matches configuration 1 and configuration 2<br>
+    14. uri = 'http://www.example.com:8080/query/student/name': Matches configuration 1, configuration 2, and configuration 3<br>
+
+## Internal Structure of the reqPermissions Attribute
+
+**Table 12** Internal structure of the reqPermissions attribute
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -687,7 +781,7 @@ Example of the **commonEvents** attribute structure:
 | -------- | -------- | -------- | -------- |
 | name | Name of a permission. The value can contain a maximum of 255 bytes.| String| No|
 | grantMode | Permission grant mode. The options are as follows:<br>- **system_grant**: The permission is automatically granted by the system after the application is installed.<br>- **user_grant**: The permission is dynamically requested when needed and must be granted by the user.| String| Yes (initial value: **"system_grant"**)|
-| availableLevel | Permission type. The options are as follows:<br>- **system_core**: system core permission.<br>- **system_basic**: basic system permission.<br>- **normal**: normal permission, which can be requsted by all applications.| String| Yes (initial value: **"normal"**)|
+| availableLevel | Permission type. The options are as follows:<br>- **system_core**: system core permission.<br>- **system_basic**: basic system permission.<br>- **normal**: normal permission, which can be requested by all applications.| String| Yes (initial value: **"normal"**)|
 | provisionEnable | Whether the permission can be requested in provision mode, including high-level permissions. The value **true** means that the permission can be requested in provision mode.| Boolean| Yes (initial value: **true**)|
 | distributedSceneEnabled | Whether the permission can be used in distributed scenarios.| Boolean| Yes (initial value: **false**)|
 | label | Brief description of the permission. The value is a resource index to the description.| String| Yes (initial value: left empty)|

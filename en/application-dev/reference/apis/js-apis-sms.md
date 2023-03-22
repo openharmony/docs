@@ -16,7 +16,7 @@ import sms from '@ohos.telephony.sms';
 
 createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
-Creates an SMS message instance based on the protocol data unit (PDU) and the specified SMS protocol. This API uses an asynchronous callback to return the result.
+Creates an SMS instance based on the protocol data unit (PDU) and specified SMS protocol. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -44,7 +44,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
 
-Creates an SMS message instance based on the PDU and the specified SMS protocol. This API uses a promise to return the result.
+Creates an SMS instance based on the PDU and specified SMS protocol. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -81,7 +81,7 @@ sendMessage(options: SendMessageOptions): void
 
 Sends an SMS message.
 
-**Required permission**: ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -114,7 +114,7 @@ sms.sendMessage(options);
 
 getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
-Obtains the default slot of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
+Obtains the default slot ID of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -122,7 +122,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 | Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
@@ -137,7 +137,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 
 getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
-Obtains the default slot of the SIM card used to send SMS messages. This API uses a promise to return the result.
+Obtains the default slot ID of the SIM card used to send SMS messages. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -162,11 +162,11 @@ promise.then(data => {
 
 setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 
-Sets the default slot of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
+Sets the default slot ID of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+**Required permissions**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -174,8 +174,20 @@ Sets the default slot of the SIM card used to send SMS messages. This API uses a
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
+| slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -190,11 +202,11 @@ sms.setDefaultSmsSlotId(0, (err, data) => {
 
 setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
-Sets the default slot of the SIM card used to send SMS messages. This API uses a promise to return the result.
+Sets the default slot ID of the SIM card used to send SMS messages. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+**Required permissions**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -202,13 +214,25 @@ Sets the default slot of the SIM card used to send SMS messages. This API uses a
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
 
 **Return value**
 
-| Type          | Description                           |
-| -------------- | ------------------------------- |
-| Promise\<void\> | Promise used to return the result. |
+| Type           | Description                           |
+| --------------- | ------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -229,7 +253,7 @@ Sets the short message service center (SMSC) address. This API uses an asynchron
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
+**Required permissions**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -240,6 +264,17 @@ Sets the short message service center (SMSC) address. This API uses an asynchron
 | slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | smscAddr | string                    | Yes  | SMSC address.                       |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -260,7 +295,7 @@ Sets the SMSC address. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
+**Required permissions**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -276,6 +311,17 @@ Sets the SMSC address. This API uses a promise to return the result.
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -299,7 +345,7 @@ Obtains the SMSC address. This API uses an asynchronous callback to return the r
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
+**Required permissions**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -309,6 +355,17 @@ Obtains the SMSC address. This API uses an asynchronous callback to return the r
 | -------- | --------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                      | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                               |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -328,7 +385,7 @@ Obtains the SMSC address. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
+**Required permissions**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -343,6 +400,17 @@ Obtains the SMSC address. This API uses a promise to return the result.
 | Type                 | Description                                         |
 | --------------------- | --------------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -360,7 +428,7 @@ promise.then(data => {
 
 hasSmsCapability(): boolean
 
-Checks whether the current device can send and receive SMS messages. This API returns the result synchronously.
+Checks whether the current device can send and receive SMS messages. This API works in synchronous mode.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -383,7 +451,7 @@ Splits an SMS message into multiple segments. This API uses an asynchronous call
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -393,6 +461,17 @@ Splits an SMS message into multiple segments. This API uses an asynchronous call
 | -------- | ----------------------------- | ---- | ----------------------------- |
 | content  | string                        | Yes  | SMS message content. The value cannot be null.|
 | callback | AsyncCallback<Array<string\>> | Yes  | Callback used to return the result.                   |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -412,7 +491,7 @@ Splits an SMS message into multiple segments. This API uses a promise to return 
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -427,6 +506,17 @@ Splits an SMS message into multiple segments. This API uses a promise to return 
 | Type                   | Description                               |
 | ----------------------- | ----------------------------------- |
 | Promise<Array<string\>> | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -448,7 +538,7 @@ Adds a SIM message. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.RECEIVE_SMS and ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -458,6 +548,17 @@ Adds a SIM message. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------------- | ---- | --------------- |
 | options  | [SimMessageOptions](#simmessageoptions7) | Yes  | SIM message options.|
 | callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.     |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -482,7 +583,7 @@ Adds a SIM message. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.RECEIVE_SMS and ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -497,6 +598,17 @@ Adds a SIM message. This API uses a promise to return the result.
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
 | Promise&lt;void&gt; |  Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -523,7 +635,7 @@ Deletes a SIM message. This API uses an asynchronous callback to return the resu
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.RECEIVE_SMS and ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -534,6 +646,17 @@ Deletes a SIM message. This API uses an asynchronous callback to return the resu
 | slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | msgIndex | number                    | Yes  | Message index.                                 |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -554,7 +677,7 @@ Deletes a SIM message. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.RECEIVE_SMS and ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -570,6 +693,17 @@ Deletes a SIM message. This API uses a promise to return the result.
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
 | Promise&lt;void&gt; |  Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -592,7 +726,7 @@ Updates a SIM message. This API uses an asynchronous callback to return the resu
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.RECEIVE_SMS and ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -602,6 +736,17 @@ Updates a SIM message. This API uses an asynchronous callback to return the resu
 | -------- | ---------------------------------------------------- | ---- | ------------------- |
 | options  | [UpdateSimMessageOptions](#updatesimmessageoptions7) | Yes  | SIM message updating options.|
 | callback | AsyncCallback&lt;void&gt;                            | Yes  | Callback used to return the result.         |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -627,7 +772,7 @@ Updates a SIM message. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.RECEIVE_SMS and ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -642,6 +787,17 @@ Updates a SIM message. This API uses a promise to return the result.
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -669,7 +825,7 @@ Obtains all SIM card messages. This API uses an asynchronous callback to return 
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS
+**Required permissions**: ohos.permission.RECEIVE_SMS
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -679,6 +835,17 @@ Obtains all SIM card messages. This API uses an asynchronous callback to return 
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                                                      | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | Yes  | Callback used to return the result.                               |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -698,7 +865,7 @@ Obtains all SIM card messages. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS
+**Required permissions**: ohos.permission.RECEIVE_SMS
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -713,6 +880,17 @@ Obtains all SIM card messages. This API uses a promise to return the result.
 | Type                                                   | Description                              |
 | ------------------------------------------------------- | ---------------------------------- |
 | PromiseArray<[SimShortMessage](#simshortmessage7)\>&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -734,7 +912,7 @@ Sets the cell broadcast configuration. This API uses an asynchronous callback to
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS
+**Required permissions**: ohos.permission.RECEIVE_SMS
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -744,6 +922,17 @@ Sets the cell broadcast configuration. This API uses an asynchronous callback to
 | -------- | ------------------------------------ | ---- | ------------ |
 | options  | [CBConfigOptions](#cbconfigoptions7) | Yes  | Cell broadcast configuration options.|
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback used to return the result.  |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -769,7 +958,7 @@ Sets the cell broadcast configuration. This API uses a promise to return the res
 
 **System API**: This is a system API.
 
-**Required permission**: ohos.permission.RECEIVE_SMS
+**Required permissions**: ohos.permission.RECEIVE_SMS
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -784,6 +973,17 @@ Sets the cell broadcast configuration. This API uses a promise to return the res
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -820,7 +1020,17 @@ Obtains SMS message segment information. This API uses an asynchronous callback 
 | slotId    | number                                                       | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | message   | string                                                       | Yes  | SMS message.                                     |
 | force7bit | boolean                                                      | Yes  | Whether to use 7-bit coding.                         |
-| callback  | | Yes  | Callback used to return the result.                                 |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Yes  | Callback used to return the result.                                 |
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -847,14 +1057,24 @@ Obtains SMS message segment information. This API uses a promise to return the r
 | Name   | Type   | Mandatory| Description                                     |
 | --------- | ------- | ---- | ----------------------------------------- |
 | slotId    | number  | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
-| message   | string  | Yes  | Message                                     |
+| message   | string  | Yes  | SMS message.                                     |
 | force7bit | boolean | Yes  | Whether to use 7-bit coding.                         |
 
 **Return value**
 
 | Type                                                   | Description                         |
 | ------------------------------------------------------- | ----------------------------- |
-| | Promise used to return the result.|
+| Promise&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -885,6 +1105,16 @@ Checks whether SMS is supported on IMS. This API uses an asynchronous callback t
 | slotId   | number                       | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -899,7 +1129,7 @@ sms.isImsSmsSupported(slotId, (err, data) => {
 
 isImsSmsSupported(slotId: number): Promise<boolean\>
 
-Checks whether SMS is supported on IMS. This API uses a promise to return the result.
+This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -916,6 +1146,16 @@ Checks whether SMS is supported on IMS. This API uses a promise to return the re
 | Type                  | Description                   |
 | ---------------------- | ----------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -945,6 +1185,17 @@ Obtains the SMS format supported by the IMS. This API uses an asynchronous callb
 | -------- | --------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -969,6 +1220,17 @@ Obtains the SMS format supported by the IMS. This API uses a promise to return t
 | Type                 | Description                      |
 | --------------------- | -------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result. |
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -997,6 +1259,16 @@ Decodes MMS messages. This API uses an asynchronous callback to return the resul
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
 | mmsFilePathName | string \|Array<number\>                                 | Yes  | MMS message file path.|
 | callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | Yes  | Callback used to return the result.    |
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1030,6 +1302,16 @@ Decodes MMS messages. This API uses a promise to return the result.
 | --------------------------------------------------------- | --------------------------- |
 | Promise&lt;&lt;[MmsInformation](#mmsinformation8)&gt;&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1046,7 +1328,7 @@ promise.then(data => {
 
 encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
-Encodes MMS messages. This API uses an asynchronous callback to return the result.
+MMS message code. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1058,6 +1340,16 @@ Encodes MMS messages. This API uses an asynchronous callback to return the resul
 | -------- | ----------------------------------- | ---- | ---------- |
 | mms      | [MmsInformation](#mmsinformation8)  | Yes  | MMS message information.|
 | callback | AsyncCallback&lt;Array<number\>&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1081,7 +1373,7 @@ sms.encodeMms(mmsInformation, (err, data) => {
 
 encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
-Encodes MMS messages. This API uses a promise to return the result.
+MMS message code. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1098,6 +1390,16 @@ Encodes MMS messages. This API uses a promise to return the result.
 | Type                         | Description                               |
 | ----------------------------- | ----------------------------------- |
 | Promise&lt;Array<number\>&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1125,19 +1427,19 @@ Defines an SMS message instance.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name     | Type    | Mandatory | Description |
-| -------- | ------- | --------- | ----------- |
-| hasReplyPath             | boolean                                 | Yes |Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: The device returns a response based on the SMSC that sends the SMS message.|
-| isReplaceMessage         | boolean                                 | Yes |Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
-| isSmsStatusReportMessage | boolean                                 | Yes |Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
-| messageClass             | [ShortMessageClass](#shortmessageclass) | Yes | SMS message type.                                                  |
-| pdu                      | Array&lt;number&gt;                     | Yes | PDU in the SMS message.                           |
-| protocolId               | number                                  | Yes | Protocol identifier used for delivering the SMS message.            |
-| scAddress                | string                                  | Yes | SMSC address.                                |
-| scTimestamp              | number                                  | Yes | SMSC timestamp.                                                |
-| status                   | number                                  | Yes | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
-| visibleMessageBody       | string                                  | Yes | SMS message body.                                                  |
-| visibleRawAddress        | string                                  | Yes | Sender address.                                                |
+|         Name            |                  Type                  | Mandatory| Description                                                        |
+| ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| hasReplyPath             | boolean                                 |  Yes | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>TP-Reply-Path: The device returns a response based on the SMSC that sends the SMS message. |
+| isReplaceMessage         | boolean                                 |  Yes | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
+| isSmsStatusReportMessage | boolean                                 |  Yes | Whether the received SMS message is an SMS delivery report. The default value is **false**.<br>SMS delivery report: a message sent from the SMSC to show the current status of the SMS message you delivered.|
+| messageClass             | [ShortMessageClass](#shortmessageclass) |  Yes | Enumerates SMS message types.                                                  |
+| pdu                      | Array&lt;number&gt;                     |  Yes | PDU in the SMS message.                           |
+| protocolId               | number                                  |  Yes | Protocol identifier used for delivering the SMS message.                                  |
+| scAddress                | string                                  |  Yes | SMSC address.                                |
+| scTimestamp              | number                                  |  Yes | SMSC timestamp.                                                |
+| status                   | number                                  |  Yes | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
+| visibleMessageBody       | string                                  |  Yes | SMS message body.                                                  |
+| visibleRawAddress        | string                                  |  Yes | Sender address.                                                |
 
 
 ## ShortMessageClass
@@ -1161,7 +1463,7 @@ Provides the options (including callbacks) for sending an SMS message. For examp
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name          | Type                                                        | Mandatory| Description                                                        |
+|       Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId           | number                                                       | Yes  | Slot ID of the SIM card used for sending SMS messages. <br>- **0**: card slot 1<br>- **1**: card slot 2     |
 | destinationHost  | string                                                       | Yes  | Destination address of the SMS message.                                            |
@@ -1178,22 +1480,22 @@ Provides the callback for the SMS message sending result. It consists of three p
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name    | Type                           | Mandatory| Description                                                        |
-| ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+|   Name    | Type                           | Mandatory|                                               Description                                        |
+| ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
 | isLastPart | boolean                         | No  | Whether this SMS message is the last part of a long SMS message. The value **true** indicates that this SMS message is the last part of a long SMS message, and value **false** indicates the opposite. The default value is **false**.|
-| result     | [SendSmsResult](#sendsmsresult) | Yes  | SMS message sending result.                                              |
-| url        | string                          | Yes  | URI for storing the sent SMS message.                                         |
+| result     | [SendSmsResult](#sendsmsresult) | Yes  | SMS message sending result.                                                                            |
+| url        | string                          | Yes  | URI for storing the sent SMS message.                                                                       |
 
 
 ## IDeliveryShortMessageCallback
 
-Provides the callback for  the SMS message delivery report.
+Provides the callback for the SMS message delivery report.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
 | Name| Type               | Mandatory| Description          |
-| ------ | ------------------- | ---- | -------------- |
-| pdu    | Array&lt;number&gt; | Yes  | SMS message delivery report.|
+| ---- | ------------------- | ---- | -------------- |
+| pdu  | Array&lt;number&gt; | Yes  | SMS message delivery report.|
 
 
 ## SendSmsResult
@@ -1209,7 +1511,6 @@ Enumerates SMS message sending results.
 | SEND_SMS_FAILURE_RADIO_OFF           | 2    | Failed to send the SMS message because the modem is shut down.                  |
 | SEND_SMS_FAILURE_SERVICE_UNAVAILABLE | 3    | Failed to send the SMS message because the network is unavailable or SMS message sending or receiving is not supported.|
 
-
 ## MmsInformation<sup>8+</sup>
 
 Defines the MMS message information.
@@ -1218,10 +1519,10 @@ Defines the MMS message information.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name     | Type                                                        | Mandatory| Description     |
-| ----------- | ------------------------------------------------------------ | ---- | --------- |
-| messageType | [MessageType](#messagetype8)                                 | Yes  | Message type. |
-| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8)| Yes  | PDU header type.|
+|     Name   | Type                                                        | Mandatory|    Description   |
+| ----------- | ------------------------------------------------------------ | ---- | ---------- |
+| messageType | [MessageType](#messagetype8)                                 | Yes  | Message type.|
+| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | Yes  | PDU header type.|
 | attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | No  | Attachment.     |
 
 ## MmsSendReq<sup>8+</sup>
@@ -1232,13 +1533,13 @@ Defines an MMS message sending request.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name          | Type                                | Mandatory| Description        |
+|       Name      | Type                                | Mandatory| Description        |
 | ---------------- | ------------------------------------ | ---- | ------------ |
 | from             | [MmsAddress](#mmsaddress8)           | Yes  | MMS message source.    |
 | transactionId    | string                               | Yes  | Transaction ID.      |
 | contentType      | string                               | Yes  | Content type.    |
 | version          | [MmsVersionType](#mmsversiontype8)   | Yes  | Version.        |
-| to               | Array<[MmsAddress](#mmsaddress8)\>   | No  | Address to which the message is sent.      |
+| to               | Array<[MmsAddress](#mmsaddress8)\>   | No  | Destination address.      |
 | date             | number                               | No  | Date.        |
 | cc               | Array<[MmsAddress](#mmsaddress8)\>   | No  | Carbon copy.        |
 | bcc              | Array<[MmsAddress](#mmsaddress8)\>   | No  | Blind carbon copy.      |
@@ -1258,7 +1559,7 @@ Defines the MMS message sending configuration.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name       | Type                              | Mandatory| Description    |
+|     Name     | Type                              | Mandatory| Description    |
 | ------------- | ---------------------------------- | ---- | -------- |
 | responseState | number                             | Yes  | Response status.|
 | transactionId | string                             | Yes  | Transaction ID.  |
@@ -1273,7 +1574,7 @@ Defines an MMS notification index.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name         | Type                              | Mandatory| Description    |
+|      Name      | Type                              | Mandatory| Description    |
 | --------------- | ---------------------------------- | ---- | -------- |
 | transactionId   | string                             | Yes  | Transaction ID.  |
 | messageClass    | number                             | Yes  | Message class.  |
@@ -1281,7 +1582,7 @@ Defines an MMS notification index.
 | expiry          | number                             | Yes  | Expiration.    |
 | contentLocation | string                             | Yes  | Content location.|
 | version         | [MmsVersionType](#mmsversiontype8) | Yes  | Version.    |
-| from            | [MmsAddress](#mmsaddress8)         | No  | Source.    |
+| from            | [MmsAddress](#mmsaddress8)         | No  | Source address.    |
 | subject         | string                             | No  | Subject.    |
 | deliveryReport  | number                             | No  | Status report.|
 | contentClass    | number                             | No  | Content class.  |
@@ -1294,7 +1595,7 @@ Defines an MMS confirmation index.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name       | Type                              | Mandatory| Description    |
+|      Name    | Type                              | Mandatory| Description    |
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | Yes  | Transaction ID.  |
 | version       | [MmsVersionType](#mmsversiontype8) | Yes  | Version.    |
@@ -1308,15 +1609,15 @@ Defines the MMS message retrieval configuration.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name        | Type                                | Mandatory| Description    |
+|      Name     | Type                                | Mandatory| Description    |
 | -------------- | ------------------------------------ | ---- | -------- |
 | transactionId  | string                               | Yes  | Transaction ID.  |
 | messageId      | string                               | Yes  | Message ID.  |
 | date           | number                               | Yes  | Date.    |
 | contentType    | string                               | Yes  | Content type.|
-| to             | Array<[MmsAddress](#mmsaddress8)\>   | Yes  | Address to which the message is sent.  |
-| version        | [MmsVersionType](#mmsversiontype8)   | Yes  | Version    |
-| from           | [MmsAddress](#mmsaddress8)           | No  | Source.    |
+| to             | Array<[MmsAddress](#mmsaddress8)\>   | Yes  | Destination address.  |
+| version        | [MmsVersionType](#mmsversiontype8)   | Yes  | Version.    |
+| from           | [MmsAddress](#mmsaddress8)           | No  | Source address.    |
 | cc             | Array<[MmsAddress](#mmsaddress8)\>   | No  | Carbon copy.    |
 | subject        | string                               | No  | Subject.    |
 | priority       | [MmsPriorityType](#mmsprioritytype8) | No  | Priority.  |
@@ -1333,15 +1634,14 @@ Defines the original MMS message reading index.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name    | Type                              | Mandatory| Description    |
+|    Name   | Type                              | Mandatory| Description    |
 | ---------- | ---------------------------------- | ---- | -------- |
 | version    | [MmsVersionType](#mmsversiontype8) | Yes  | Version.    |
 | messageId  | string                             | Yes  | Message ID.  |
-| to         | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Address to which the message is sent.  |
-| from       | [MmsAddress](#mmsaddress8)         | Yes  | Source.    |
+| to         | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Destination address.  |
+| from       | [MmsAddress](#mmsaddress8)         | Yes  | Source address.    |
 | date       | number                             | Yes  | Date.    |
 | readStatus | number                             | Yes  | Read status.|
-
 
 ## MmsReadRecInd<sup>8+</sup>
 
@@ -1351,15 +1651,14 @@ Defines the MMS message reading index.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name    | Type                              | Mandatory| Description    |
+|    Name   | Type                              | Mandatory| Description    |
 | ---------- | ---------------------------------- | ---- | -------- |
-| version    | [MmsVersionType](#mmsversiontype8) | Yes  | Version    |
+| version    | [MmsVersionType](#mmsversiontype8) | Yes  | Version.    |
 | messageId  | string                             | Yes  | Message ID.  |
-| to         | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Destination.  |
-| from       | [MmsAddress](#mmsaddress8)         | Yes  | Source.    |
-| readStatus | number                             | Yes  | Read state.|
+| to         | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Destination address.  |
+| from       | [MmsAddress](#mmsaddress8)         | Yes  | Source address.    |
+| readStatus | number                             | Yes  | Read status.|
 | date       | number                             | No  | Date.    |
-
 
 ## MmsAttachment<sup>8+</sup>
 
@@ -1369,7 +1668,7 @@ Defines the attachment of an MMS message.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name                 | Type                                | Mandatory| Description              |
+|          Name          | Type                                | Mandatory| Description              |
 | ----------------------- | ------------------------------------ | ---- | ------------------ |
 | contentId               | string                               | Yes  | Content ID.            |
 | contentLocation         | string                               | Yes  | Content location.          |
@@ -1378,7 +1677,7 @@ Defines the attachment of an MMS message.
 | contentType             | string                               | Yes  | Content type.          |
 | isSmil                  | boolean                              | Yes  | Whether the synchronized multimedia integration language is used.|
 | path                    | string                               | No  | Path.              |
-| inBuff                  | Array<number\>                       | No  | In the buffer          |
+| inBuff                  | Array<number\>                       | No  | Whether the message is in the buffer.          |
 | fileName                | string                               | No  | File name.            |
 | charset                 | [MmsCharSets](#mmscharsets8)         | No  | Character set.            |
 
@@ -1390,20 +1689,20 @@ Defines an MMSC address.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name | Type                        | Mandatory| Description  |
+|   Name | Type                        | Mandatory| Description  |
 | ------- | ---------------------------- | ---- | ------ |
-| address | string                       | Yes  | MMSC address.  |
+| address | string                       | Yes  | Network address.  |
 | charset | [MmsCharSets](#mmscharsets8) | Yes  | Character set.|
 
 ## MessageType<sup>8+</sup>
 
-Enumerates message types.
+Message type.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name                   | Value  | Description                |
+|          Name            | Value  | Description                |
 | ------------------------- | ---- | -------------------- |
 | TYPE_MMS_SEND_REQ         | 128  | MMS message sending request.    |
 | TYPE_MMS_SEND_CONF        | 129  | MMS message sending configuration.    |
@@ -1423,7 +1722,7 @@ Enumerates MMS message priorities.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name    | Value  | Description          |
+|    Name   | Value  | Description          |
 | ---------- | ---- | -------------- |
 | MMS_LOW    | 128  | Low priority.  |
 | MMS_NORMAL | 129  | Normal priority.|
@@ -1437,7 +1736,7 @@ Enumerates MMS versions.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name         | Value  | Description       |
+|      Name      | Value  | Description       |
 | --------------- | ---- | ----------- |
 | MMS_VERSION_1_0 | 0x10 | MMS version 1_0.|
 | MMS_VERSION_1_1 | 0x11 | MMS version 1_1.|
@@ -1452,7 +1751,7 @@ Enumerates MMS character sets.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name         | Value    | Description               |
+|      Name      | Value    | Description               |
 | --------------- | ------ | ------------------- |
 | BIG5            | 0X07EA | BIG5 format.           |
 | ISO_10646_UCS_2 | 0X03E8 | ISO_10646_UCS_2 format.|
@@ -1477,7 +1776,7 @@ Enumerates disposition types.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name    | Value  | Description    |
+|    Name   | Value  | Description    |
 | ---------- | ---- | -------- |
 | FROM_DATA  | 0    | Data source.|
 | ATTACHMENT | 1    | Attachment.    |
@@ -1491,7 +1790,7 @@ Enumerates report types.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name | Value  | Description|
+|  Name  | Value  | Description|
 | ------- | ---- | ---- |
 | MMS_YES | 128  | YES  |
 | MMS_NO  | 129  | NO   |
@@ -1504,7 +1803,7 @@ Defines the cell broadcast configuration options.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name        | Type                | Mandatory| Description        |
+|      Name     | Type                | Mandatory| Description        |
 | -------------- | -------------------- | ---- | ------------ |
 | slotId         | number               | Yes  | Card slot ID.      |
 | enable         | boolean              | Yes  | Whether to enable cell broadcast.        |
@@ -1520,7 +1819,7 @@ Defines the SIM message status.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name                   | Value  | Description                       |
+|           Name           | Value  | Description                       |
 | ------------------------- | ---- | --------------------------- |
 | SIM_MESSAGE_STATUS_FREE   | 0    | Free state.      |
 | SIM_MESSAGE_STATUS_READ   | 1    | Read state.               |
@@ -1530,13 +1829,13 @@ Defines the SIM message status.
 
 ## RanType<sup>7+</sup>
 
-Enumerates RAN types.
+RAN type.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name   | Value  | Description|
+|   Name   | Value  | Description|
 | --------- | ---- | ---- |
 | TYPE_GSM  | 1    | GSM  |
 | TYPE_CDMA | 2    | CMDA |
@@ -1549,7 +1848,7 @@ Enumerates SMS encoding schemes.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name              | Value  | Description        |
+|         Name        | Value  | Description        |
 | -------------------- | ---- | ------------ |
 | SMS_ENCODING_UNKNOWN | 0    | Unknown code.|
 | SMS_ENCODING_7BIT    | 1    | 7-digit code. |
@@ -1564,12 +1863,12 @@ Defines the SIM message options.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name| Type                                  | Mandatory| Description          |
+|  Name | Type                                  | Mandatory| Description          |
 | ------ | -------------------------------------- | ---- | -------------- |
 | slotId | number                                 | Yes  | Card slot ID.        |
 | smsc   | string                                 | Yes  | Short message service center.|
 | pdu    | string                                 | Yes  | Protocol data unit.  |
-| status | [SimMessageStatus](#simmessagestatus7) | Yes  | Message status.          |
+| status | [SimMessageStatus](#simmessagestatus7) | Yes  | Status.          |
 
 ## UpdateSimMessageOptions<sup>7+</sup>
 
@@ -1579,7 +1878,7 @@ Defines the updating SIM message options.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name   | Type                                  | Mandatory| Description          |
+|   Name   | Type                                  | Mandatory| Description          |
 | --------- | -------------------------------------- | ---- | -------------- |
 | slotId    | number                                 | Yes  | Card slot ID.        |
 | msgIndex  | number                                 | Yes  | Message index.      |
@@ -1595,7 +1894,7 @@ Defines a SIM message.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name          | Type                                  | Mandatory| Description         |
+|       Name      | Type                                  | Mandatory| Description         |
 | ---------------- | -------------------------------------- | ---- | ------------- |
 | shortMessage     | [ShortMessage](#shortmessage)          | Yes  | SMS message.       |
 | simMessageStatus | [SimMessageStatus](#simmessagestatus7) | Yes  | SIM message status.|
@@ -1609,12 +1908,12 @@ Defines an MMS message delivery index.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name   | Type                              | Mandatory| Description  |
+|    Name  | Type                              | Mandatory| Description  |
 | --------- | ---------------------------------- | ---- | ------ |
 | messageId | string                             | Yes  | Message ID.|
 | date      | number                             | Yes  | Date.  |
-| to        | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Address to which the message is sent.|
-| status    | number                             | Yes  | Status.  |
+| to        | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Destination address.|
+| status    | number                             | Yes  | Status  |
 | version   | [MmsVersionType](#mmsversiontype8) | Yes  | Version.  |
 
 ## MmsRespInd<sup>8+</sup>
@@ -1625,10 +1924,10 @@ Defines an MMS response index.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name       | Type                              | Mandatory| Description    |
+|     Name     | Type                              | Mandatory| Description    |
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | Yes  | Event ID.  |
-| status        | number                             | Yes  | Status.    |
+| status        | number                             | Yes  | Status    |
 | version       | [MmsVersionType](#mmsversiontype8) | Yes  | Version.    |
 | reportAllowed | [ReportType](#reporttype8)         | No  | Report allowed.|
 
@@ -1640,7 +1939,7 @@ Defines the SMS message segment information.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-| Name              | Type                                    | Mandatory| Description        |
+|        Name         | Type                                    | Mandatory| Description        |
 | -------------------- | ---------------------------------------- | ---- | ------------ |
 | splitCount           | number                                   | Yes  | Split count.    |
 | encodeCount          | number                                   | Yes  | Encoding count.    |

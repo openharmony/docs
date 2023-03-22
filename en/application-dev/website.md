@@ -12,7 +12,6 @@
       - Application Package Structure
         - [Application Package Structure in Stage Model](quick-start/application-package-structure-stage.md)
         - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
-        - [HAR File Structure](quick-start/har-structure.md)
       - Multi-HAP Mechanism
         - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
         - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
@@ -60,8 +59,11 @@
         - ExtensionAbility Component
           - [ExtensionAbility Component Overview](application-models/extensionability-overview.md)
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
-          - [DataShareExtensionAbility](application-models/datashareextensionability.md)
+          - [DataShareExtensionAbility (for System Applications Only)](application-models/datashareextensionability.md)
           - [FormExtensionAbility (Widget)](application-models/widget-development-stage.md)
+          - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
+          - [InputMethodExtensionAbility](application-models/inputmethodextentionability.md)
+          - [WindowExtensionAbility](application-models/windowextensionability.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
         - Want
@@ -74,8 +76,8 @@
         - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
         - Inter-Device Application Component Interaction (Continuation) 
           - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
-          - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
-          - [Multi-device Collaboration](application-models/hop-multi-device-collaboration.md)
+          - [Cross-Device Migration (for System Applications Only)](application-models/hop-cross-device-migration.md)
+          - [Multi-device Collaboration (for System Applications Only)](application-models/hop-multi-device-collaboration.md)
       - IPC
         - [Process Model](application-models/process-model-stage.md)
         - Common Events
@@ -104,7 +106,7 @@
           - [Creating a PageAbility](application-models/create-pageability.md)
           - [Starting a Local PageAbility](application-models/start-local-pageability.md)
           - [Stopping a PageAbility](application-models/stop-pageability.md)
-          - [Starting a Remote PageAbility](application-models/start-remote-pageability.md)
+          - [Starting a Remote PageAbility (for System Applications Only)](application-models/start-remote-pageability.md)
           - [Starting a Specified Page](application-models/start-page.md)
           - [Window Properties](application-models/window-properties.md)
           - [Requesting Permissions](application-models/request-permissions.md)
@@ -270,7 +272,7 @@
       - [Custom Components](ui/ui-js-custom-components.md)
   - Notification
     - [Notification Overview](notification/notification-overview.md)
-    - [Notification Subscription (Open Only to System Applications)](notification/notification-subscription.md)
+    - [Notification Subscription (for System Applications Only)](notification/notification-subscription.md)
     - [Enabling Notification](notification/notification-enable.md)
     - Publishing a Notification
       - [Publishing a Basic Notification](notification/text-notification.md)
@@ -297,10 +299,10 @@
       - [Audio Routing and Device Management Development](media/audio-routing-manager.md)
       - [AVPlayer Development (Recommended)](media/avplayer-playback.md)
       - [AVRecorder Development (Recommended)](media/avrecorder.md)
-      - [Audio Playback Development](media/audio-playback.md)
-      - [Audio Recording Development](media/audio-recorder.md)
-      - [Video Playback Development](media/video-playback.md)
-      - [Video Recording Development](media/video-recorder.md)
+      - [Audio Playback Development (To Be Deprecated Soon)](media/audio-playback.md)
+      - [Audio Recording Development (To Be Deprecated Soon)](media/audio-recorder.md)
+      - [Video Playback Development (To Be Deprecated Soon)](media/video-playback.md)
+      - [Video Recording Development (To Be Deprecated Soon)](media/video-recorder.md)
     - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - [AVSession Development](media/avsession-guidelines.md)
@@ -337,11 +339,15 @@
       - [HTTP Data Request](connectivity/http-request.md)
       - [WebSocket Connection](connectivity/websocket-connection.md)
       - [Socket Connection](connectivity/socket-connection.md)
+      - [Network Policy Management](connectivity/net-policy-management.md)
+      - [Network Sharing](connectivity/net-sharing.md)
+      - [Ethernet Connection](connectivity/net-ethernet.md)
+      - [Network Connection Management](connectivity/net-connection-manager.md)
     - IPC & RPC
       - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
       - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
       - [Subscribing to State Changes of a Remote Object](connectivity/subscribe-remote-state.md)
-  - Telephony
+  - Telephony Service
     - [Telephony Service Overview](telephony/telephony-overview.md)
     - [Call Service Development](telephony/telephony-call.md)
     - [SMS Service Development](telephony/telephony-sms.md)
@@ -370,8 +376,8 @@
     - File Access Framework
       - [File Access Framework Overview](file-management/file-access-framework-overview.md)
     - [FilePicker Guide](file-management/filepicker-guidelines.md)
-  - Task Management
-    - Background Task Management
+  - Background Task Management
+    - Background Task
       - [Background Task Management Overview](task-management/background-task-overview.md)
       - [Transient Task Development](task-management/transient-task-dev-guide.md)
       - [Continuous Task Development](task-management/continuous-task-dev-guide.md)
@@ -381,7 +387,7 @@
     - Agent-Powered Reminder
       - [Agent-Powered Reminder Overview](task-management/reminder-agent-overview.md)
       - [Agent-Powered Reminder Development](task-management/reminder-agent-development.md)
-  - Device
+  - Device Management
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
       - [USB Service Development](device/usb-guidelines.md)
@@ -399,6 +405,8 @@
     - Update Service
       - [Sample Server Overview](device/sample-server-overview.md)
       - [Sample Server Development](device/sample-server-guidelines.md)
+    - Stationary
+      - [Stationary Development](device/stationary-guidelines.md)
   - Device Usage Statistics
     - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
     - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
@@ -508,6 +516,9 @@
       - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
       - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
       - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
+      - [Menu](reference/arkui-ts/ts-basic-components-menu.md)
+      - [MenuItem](reference/arkui-ts/ts-basic-components-menuitem.md)
+      - [MenuItemGroup](reference/arkui-ts/ts-basic-components-menuitemgroup.md)
       - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
       - [NavRouter](reference/arkui-ts/ts-basic-components-navrouter.md)
       - [NavDestination](reference/arkui-ts/ts-basic-components-navdestination.md)
@@ -868,6 +879,20 @@
       - [@ohos.notification (Notification) (To Be Deprecated Soon)](reference/apis/js-apis-notification.md)
       - application
         - [EventHub](reference/apis/js-apis-inner-application-eventHub.md)
+      - commonEvent
+        - [CommonEventData](reference/apis/js-apis-inner-commonEvent-commonEventData.md)
+        - [CommonEventPublishData](reference/apis/js-apis-inner-commonEvent-commonEventPublishData.md)
+        - [CommonEventSubscriber](reference/apis/js-apis-inner-commonEvent-commonEventSubscriber.md)
+        - [CommonEventSubscribeInfo](reference/apis/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+      - notification
+        - [NotificationActionButton](reference/apis/js-apis-inner-notification-notificationActionButton.md)
+        - [NotificationCommonDef](reference/apis/js-apis-inner-notification-notificationCommonDef.md)
+        - [NotificationContent](reference/apis/js-apis-inner-notification-notificationContent.md)
+        - [NotificationFlags](reference/apis/js-apis-inner-notification-notificationFlags.md)
+        - [NotificationRequest](reference/apis/js-apis-inner-notification-notificationRequest.md)
+        - [NotificationSlot](reference/apis/js-apis-inner-notification-notificationSlot.md)
+        - [NotificationTemplate](reference/apis/js-apis-inner-notification-notificationTemplate.md)
+        - [NotificationUserInput](reference/apis/js-apis-inner-notification-notificationUserInput.md)
     - Bundle Management
       - [@ohos.bundle.appControl(appControl)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager)](reference/apis/js-apis-bundleManager.md)
@@ -882,6 +907,7 @@
         - [abilityInfo](reference/apis/js-apis-bundleManager-abilityInfo.md)
         - [applicationInfo](reference/apis/js-apis-bundleManager-applicationInfo.md)
         - [bundleInfo](reference/apis/js-apis-bundleManager-bundleInfo.md)
+        - [BundlePackInfo](reference/apis/js-apis-bundleManager-BundlePackInfo.md)
         - [dispatchInfo](reference/apis/js-apis-bundleManager-dispatchInfo.md)
         - [elementName](reference/apis/js-apis-bundleManager-elementName.md)
         - [extensionAbilityInfo](reference/apis/js-apis-bundleManager-extensionAbilityInfo.md)
@@ -910,17 +936,17 @@
       - webgl
         - [WebGL](reference/apis/js-apis-webgl.md)
         - [WebGL2](reference/apis/js-apis-webgl2.md)
-    - Media
+    - Multimedia
       - [@ohos.multimedia.audio (Audio Management)](reference/apis/js-apis-audio.md)
       - [@ohos.multimedia.avsession (AVSession Management)](reference/apis/js-apis-avsession.md)
       - [@ohos.multimedia.camera (Camera Management)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (Image Processing)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (Media)](reference/apis/js-apis-media.md)
-    - Resource Management
+    - Resource Manager
       - [@ohos.i18n (Internationalization)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (Internationalization)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (Resource Manager)](reference/apis/js-apis-resource-manager.md)
-    - Resource Scheduling
+    - Background Task
       - [@ohos.distributedMissionManager (Distributed Mission Management)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (Reminder Agent Management)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
@@ -987,8 +1013,8 @@
       - [@ohos.rpc (RPC)](reference/apis/js-apis-rpc.md)
       - [@ohos.wifiManager (WLAN)](reference/apis/js-apis-wifiManager.md)
       - [@ohos.wifiManagerExt (WLAN Extension)](reference/apis/js-apis-wifiManagerExt.md)
-      - [@ohos.wifi (To Be Deprecated)](reference/apis/js-apis-wifi.md)
-      - [@ohos.wifiext (To Be Deprecated)](reference/apis/js-apis-wifiext.md)
+      - [@ohos.wifi (To Be Deprecated Soon)](reference/apis/js-apis-wifi.md)
+      - [@ohos.wifiext (To Be Deprecated Soon)](reference/apis/js-apis-wifiext.md)
       - tag
         - [nfctech (Standard NFC Technologies)](reference/apis/js-apis-nfctech.md)
         - [tagSession (Standard NFC Tag Session)](reference/apis/js-apis-tagSession.md)
@@ -1054,7 +1080,7 @@
       - [@ohos.account.appAccount (App Account Management)](reference/apis/js-apis-appAccount.md)
       - [@ohos.account.distributedAccount (Distributed Account Management)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (OS Account Management)](reference/apis/js-apis-osAccount.md)
-    - Custom Management
+    - Customization
       - [@ohos.configPolicy (Configuration Policy)](reference/apis/js-apis-configPolicy.md)
       - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
       - [@ohos.enterprise.adminManager (Enterprise Device Management)](reference/apis/js-apis-enterprise-adminManager.md)
@@ -1161,15 +1187,16 @@
       - [colorSpaceManager Error Codes](reference/errorcodes/errorcode-colorspace-manager.md)
       - [Display Error Codes](reference/errorcodes/errorcode-display.md)
       - [Window Error Codes](reference/errorcodes/errorcode-window.md)
-    - Media
+    - Multimedia
       - [Audio Error Codes](reference/errorcodes/errorcode-audio.md)
       - [Media Error Codes](reference/errorcodes/errorcode-media.md)
       - [AVSession Management Error Codes](reference/errorcodes/errorcode-avsession.md)
-    - Resource Management
+    - Resource Manager
       - [I18N Error Codes](reference/errorcodes/errorcode-i18n.md)
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
-    - Resource Scheduling
+    - Background Task
       - [backgroundTaskManager Error Codes](reference/errorcodes/errorcode-backgroundTaskMgr.md)
+      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager Error Codes](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler Error Codes](reference/errorcodes/errorcode-workScheduler.md)
     - Security
@@ -1186,6 +1213,8 @@
       - [Preferences Error Codes](reference/errorcodes/errorcode-preferences.md)
     - File Management
       - [File Management Error Codes](reference/errorcodes/errorcode-filemanagement.md)
+    - Telephony Service
+      - [Telephony Error Codes](reference/errorcodes/errorcode-telephony.md)
     - Network Management
       - [Upload and Download Error Codes](reference/errorcodes/errorcode-request.md)
     - Connectivity
@@ -1217,8 +1246,7 @@
       - [System Parameter Error Codes](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB Error Codes](reference/errorcodes/errorcode-usb.md)
       - [Update Error Codes](reference/errorcodes/errorcode-update.md)
-      - [DeviceUsageStatistics Error Codes](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
-    - Customization Management
+    - Customization
       - [Enterprise Device Management Error Codes](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - Language Base Class Library
       - [Utils Error Codes](reference/errorcodes/errorcode-utils.md)

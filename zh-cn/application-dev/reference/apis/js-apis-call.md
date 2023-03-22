@@ -14,11 +14,15 @@
 import call from '@ohos.telephony.call';
 ```
 
-## call.dial
+## call.dial<sup>(deprecated)</sup>
 
 dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 拨打电话。使用callback异步回调。
+
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -40,11 +44,15 @@ call.dial("138xxxxxxxx", (err, data) => {
 ```
 
 
-## call.dial
+## call.dial<sup>(deprecated)</sup>
 
 dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
 
 拨打电话，可设置通话参数。使用callback异步回调。
+
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -69,11 +77,15 @@ call.dial("138xxxxxxxx", {
 ```
 
 
-## call.dial
+## call.dial<sup>(deprecated)</sup>
 
 dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 拨打电话，可设置通话参数。使用Promise异步回调。
+
+>**说明：** 
+>
+>从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -120,10 +132,10 @@ dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 参数名      | 类型                         | 必填 | 说明                                    |
-| ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | 是   | 电话号码。                              |
-| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true为成功，false为失败。 |
+| 参数名      | 类型                        | 必填 | 说明                      |
+| ----------- |---------------------------| ---- |-------------------------|
+| phoneNumber | string                    | 是   | 电话号码。                   |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回拨打电话的结果。 |
 
 **错误码：**
 
@@ -159,11 +171,11 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 
 **参数：**
 
-| 参数名      |                    类型             | 必填 | 说明                                 |
-| ----------- | ----------------------------------- | ---- | ------------------------------------ |
-| phoneNumber | string                              | 是   | 电话号码。                           |
-| options     | [DialCallOptions](#dialcalloptions9)| 是   | 通话参数，携带呼叫的其他配置信息。 |
-| callback    | AsyncCallback&lt;boolean&gt;        | 是   | 回调函数，返回true为成功，false为失败。 |
+| 参数名      | 类型                                   | 必填 | 说明                                 |
+| ----------- |--------------------------------------| ---- | ------------------------------------ |
+| phoneNumber | string                               | 是   | 电话号码。                           |
+| options     | [DialCallOptions](#dialcalloptions9) | 是   | 通话参数，携带呼叫的其他配置信息。 |
+| callback    | AsyncCallback&lt;void&gt;            | 是   | 以callback形式异步返回拨打电话的结果。 |
 
 **错误码：**
 
@@ -207,7 +219,13 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 | 参数名      |                 类型                | 必填 |                说明                    |
 | ----------- | ----------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                              | 是   | 电话号码。                             |
-| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，选择为语音通话还是视频通话。 |
+| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，携带呼叫的其他配置信息。 |
+
+**返回值：**
+
+| 类型                | 说明                              |
+| ------------------- | --------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回拨打电话的结果。 |
 
 **错误码：**
 
@@ -223,12 +241,17 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 **示例：**
 
 ```js
-try {
-    call.dialCall('138xxxxxxxx');
+let promise = call.dialCall("138xxxxxxxx", {
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+});
+promise.then(data => {
     console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
-}
+}).catch(err => {
+    console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 
@@ -815,9 +838,9 @@ promise.then(data => {
 ```
 
 
-## call.answer<sup>7+</sup>
+## call.answerCall<sup>9+</sup>
 
-answer\(callId: number, callback: AsyncCallback<void\>\): void
+answerCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 接听来电。使用callback异步回调。
 
@@ -848,15 +871,15 @@ answer\(callId: number, callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-call.answer(1, (err, data) => {
+call.answerCall(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.answer<sup>7+</sup>
+## call.answerCall<sup>9+</sup>
 
-answer(callId?: number\): Promise<void\>
+answerCall(callId?: number\): Promise<void\>
 
 接听来电。使用Promise异步回调。
 
@@ -892,18 +915,56 @@ answer(callId?: number\): Promise<void\>
 **示例：**
 
 ```js
-let promise = call.answer(1);
+let promise = call.answerCall(1);
 promise.then(data => {
-    console.log(`answer success, promise: data->${JSON.stringify(data)}`);
+    console.log(`answerCall success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`answer fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`answerCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## call.hangup<sup>7+</sup>
+## call.answerCall<sup>9+</sup>
 
-hangup\(callId: number, callback: AsyncCallback<void\>\): void
+answerCall\(callback: AsyncCallback<void\>\): void
+
+接听来电。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.ANSWER_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+call.answerCall((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.hangUpCall<sup>9+</sup>
+
+hangUpCall\(callId: number, callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
 
@@ -934,53 +995,15 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-call.hangup(1, (err, data) => {
+call.hangUpCall(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.answer<sup>9+</sup>
+## call.hangUpCall<sup>9+</sup>
 
-answer\(callback: AsyncCallback<void\>\): void
-
-接听来电。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.ANSWER_CALL
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```js
-call.answer((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.hangup<sup>7+</sup>
-
-hangup\(callId?: number\): Promise<void\>
+hangUpCall\(callId?: number\): Promise<void\>
 
 挂断电话。使用Promise异步回调。
 
@@ -1016,18 +1039,18 @@ hangup\(callId?: number\): Promise<void\>
 **示例：**
 
 ```js
-let promise = call.hangup(1);
+let promise = call.hangUpCall(1);
 promise.then(data => {
-    console.log(`hangup success, promise: data->${JSON.stringify(data)}`);
+    console.log(`hangUpCall success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`hangup fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`hangUpCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## call.hangup<sup>9+</sup>
+## call.hangUpCall<sup>9+</sup>
 
-hangup\(callback: AsyncCallback<void\>\): void
+hangUpCall\(callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
 
@@ -1058,15 +1081,15 @@ hangup\(callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-call.hangup((err, data) => {
+call.hangUpCall((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.reject<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
-reject(callId: number, callback: AsyncCallback\<void>): void
+rejectCall(callId: number, callback: AsyncCallback\<void>): void
 
 拒绝来电。使用callback异步回调。
 
@@ -1098,15 +1121,15 @@ reject(callId: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-call.reject(1, (err, data) => {
+call.rejectCall(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.reject<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
-reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
+rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
@@ -1141,15 +1164,15 @@ reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<v
 let rejectMessageOptions={
     messageContent: "拦截陌生号码"
 }
-call.reject(1, rejectMessageOptions, (err, data) => {
+call.rejectCall(1, rejectMessageOptions, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.reject<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
-reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
+rejectCall(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
 拒绝来电。使用Promise异步回调。
 
@@ -1198,9 +1221,9 @@ promise.then(data => {
 ```
 
 
-## call.reject<sup>9+</sup>
+## call.rejectCall<sup>9+</sup>
 
-reject\(callback: AsyncCallback<void\>\): void
+rejectCall\(callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
@@ -1230,15 +1253,15 @@ reject\(callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-call.reject((err, data) => {
+call.rejectCall((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## call.reject<sup>9+</sup>
+## call.rejectCall<sup>9+</sup>
 
-reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
+rejectCall\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
@@ -1272,7 +1295,7 @@ reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 let rejectMessageOptions={
     messageContent: "拦截陌生号码"
 }
-call.reject(rejectMessageOptions, (err, data) => {
+call.rejectCall(rejectMessageOptions, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3844,7 +3867,7 @@ promise.then(data => {
 
 拨打电话的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |        名称              | 类型                               | 必填 | 说明                                                                                             |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
@@ -3858,7 +3881,7 @@ promise.then(data => {
 
 拨打电话的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |        名称              | 类型                               | 必填 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
@@ -3871,7 +3894,7 @@ promise.then(data => {
 
 通话状态码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称               | 值   | 说明                                                         |
 | ------------------ | ---- | ------------------------------------------------------------ |
@@ -3884,7 +3907,7 @@ promise.then(data => {
 
 判断是否是紧急电话号码的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |  名称  | 类型   | 必填 | 说明                                           |
 | ------ | ------ | ---- | ---------------------------------------------- |
@@ -3894,7 +3917,7 @@ promise.then(data => {
 
 格式化号码的可选参数。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |    名称     | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
@@ -3906,7 +3929,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                   | 值   | 说明               |
 | ---------------------- | ---- | ------------------ |
@@ -3922,7 +3945,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                 | 值   | 说明         |
 | -------------------- | ---- | ------------ |
@@ -3938,7 +3961,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                                          | 值   | 说明                       |
 | --------------------------------------------- | ---- | -------------------------- |
@@ -3957,7 +3980,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |          名称            | 类型                                                 | 必填 | 说明             |
 | ------------------------ | ---------------------------------------------------- | ---- | ---------------- |
@@ -3975,7 +3998,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ------------ |
@@ -3990,7 +4013,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                       | 值   | 说明         |
 | -------------------------- | ---- | ------------ |
@@ -4005,7 +4028,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |      名称       | 类型                                     | 必填 | 说明           |
 | --------------- | ---------------------------------------- | ---- | -------------- |
@@ -4026,7 +4049,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                         | 值   | 说明           |
 | ---------------------------- | ---- | -------------- |
@@ -4041,7 +4064,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称          | 值   | 说明         |
 | ------------- | ---- | ------------ |
@@ -4056,7 +4079,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称       | 值   | 说明     |
 | ---------- | ---- | -------- |
@@ -4069,7 +4092,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                      | 值   | 说明           |
 | ------------------------- | ---- | -------------- |
@@ -4089,7 +4112,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |   名称   | 类型                                         | 必填 | 说明         |
 | -------- | -------------------------------------------- | ---- | ------------ |
@@ -4103,7 +4126,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                          | 值   | 说明         |
 | ----------------------------- | ---- | ------------ |
@@ -4116,7 +4139,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |   名称  | 类型                                       | 必填 | 说明           |
 | ------- | ------------------------------------------ | ---- | -------------- |
@@ -4128,7 +4151,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                     | 值   | 说明            |
 | ------------------------ | ---- | --------------- |
@@ -4141,7 +4164,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称            | 值   | 说明         |
 | --------------- | ---- | ------------ |
@@ -4155,7 +4178,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                 | 值   | 说明             |
 | -------------------- | ---- | ---------------- |
@@ -4169,7 +4192,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |     名称       | 类型   | 必填 | 说明     |
 | -------------- | ------ | ---- | -------- |
@@ -4181,7 +4204,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |          名称            |                 类型               | 必填 |       说明       |
 | ------------------------ | ---------------------------------- | ---- | ---------------- |
@@ -4198,7 +4221,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                 | 值   | 说明         |
 | -------------------- | ---- | ------------ |
@@ -4211,7 +4234,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称                | 值   | 说明     |
 | ------------------- | ---- | -------- |
@@ -4224,7 +4247,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称             | 值   | 说明     |
 | ---------------- | ---- | -------- |
@@ -4237,7 +4260,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称    |                    类型                    | 必填 | 说明            |
 | ------- | ------------------------------------------ | ---- | --------------- |
@@ -4250,7 +4273,7 @@ IP多媒体系统调用模式。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 |                              名称                            | 值   |                  说明                   |
 | ------------------------------------------------------------ | ---- | --------------------------------------- |
@@ -4340,7 +4363,7 @@ MMI码结果。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称    | 类型                             | 必填 | 说明            |
 | ------- | -------------------------------- | ---- | --------------- |
@@ -4353,7 +4376,7 @@ MMI码结果。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称             | 值   | 说明          |
 | ---------------- | ---- | ------------- |
@@ -4366,7 +4389,7 @@ MMI码结果。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
+**系统能力**：SystemCapability.Telephony.CallManager
 
 | 名称             | 类型   | 必填 | 说明     |
 | ---------------- | ------ | ---- | -------- |

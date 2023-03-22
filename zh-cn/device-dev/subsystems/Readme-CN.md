@@ -50,10 +50,6 @@
     - [Sensor服务概述](subsys-sensor-overview.md)
     - [Sensor服务使用指导](subsys-sensor-guide.md)
     - [Sensor服务使用实例](subsys-sensor-demo.md)
-- USB服务
-    - [USB服务概述](subsys-usbservice-overview.md)
-    - [USB服务使用指导](subsys-usbservice-guide.md)
-    - [USB服务使用实例](subsys-usbservice-demo.md)
 - 用户程序框架
     - [概述](subsys-application-framework-overview.md)
     - [搭建环境](subsys-application-framework-envbuild.md)
@@ -109,3 +105,6 @@
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
     - [hdc使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
+- 电源管理
+    - 显示管理
+        - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)

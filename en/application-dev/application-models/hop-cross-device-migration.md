@@ -1,9 +1,9 @@
-# Cross-Device Migration
+# Cross-Device Migration (for System Applications Only)]
 
 
 ## When to Use
 
-Cross-device migration is available only for system applications. The main task is to migrate the current task (including the page control status) of an application to the target device so that the task can continue on it. Cross-device migration supports the following functionalities:
+The main task of cross-device migration is to migrate the current task (including the page control status) of an application to the target device so that the task can continue on it. Cross-device migration supports the following functionalities:
 
 - Storage and restoration of custom data
 

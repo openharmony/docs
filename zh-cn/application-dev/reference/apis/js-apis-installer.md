@@ -118,6 +118,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
+| 17700036 | Failed to install because without allow app shared bundle permission. |
 
 **示例：**
 
@@ -175,7 +176,6 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | -------- | ------------------------------------------------------------ |
 | 17700004 | The specified user ID is not found.                          |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
-| 17700101 | The system service is excepted.                              |
 
 **示例：**
 
@@ -191,6 +191,119 @@ let installParam = {
 try {
     installer.getBundleInstaller().then(data => {
         data.uninstall(bundleName, installParam, err => {
+            if (err) {
+                console.error('uninstall failed:' + err.message);
+            } else {
+                console.info('uninstall successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+## BundleInstaller.uninstall<sup>10+</sup>
+
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void ;
+
+以异步方法卸载一个共享包，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口，三方应用不支持调用
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                                                     |
+| -------------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| uninstallParam | [UninstallParam](#uninstallparam10) | 是   | 共享包卸载需指定的参数信息。                             |
+| callback       | AsyncCallback&lt;void&gt;           | 是   | 回调函数，卸载应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700038 | The specified shared bundle does not exist.                  |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let uninstallParam = {
+    bundleName : "com.ohos.demo",
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(uninstallParam, err => {
+            if (err) {
+                console.error('uninstall failed:' + err.message);
+            } else {
+                console.info('uninstall successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+## BundleInstaller.uninstall<sup>10+</sup>
+
+uninstall(uninstallParam: UninstallParam) : Promise\<void>;
+
+以异步方法卸载一个共享包，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口，三方应用不支持调用
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| uninstallParam | [UninstallParam](#uninstallparam10) | 是   | 共享包卸载需指定的参数信息。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700038 | The specified shared bundle does not exist.                  |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let uninstallParam = {
+    bundleName : "com.ohos.demo",
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(uninstallParam, err => {
             if (err) {
                 console.error('uninstall failed:' + err.message);
             } else {
@@ -284,8 +397,22 @@ try {
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | 是                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#queryosaccountlocalidfromprocess9)获取当前进程所在用户。 |
+| userId                         | number                         | 是                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
 | installFlag                    | number                         | 是                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
 | isKeepData                     | boolean                        | 是                       | 卸载时是否保留数据目录。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 是 | 哈希值参数。         |
 | crowdtestDeadline| number                         | 是                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
+| sharedBundleDirPaths | Array\<String> | 否 |共享包文件所在路径。 |
+
+## UninstallParam<sup>10+</sup>
+
+共享包卸载需指定的参数信息。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口，三方应用不支持调用
+
+| 名称        | 类型   | 必填 | 说明                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | 是   | 共享包包名。                                                 |
+| versionCode | number | 否   | 指示共享包的版本号。如果不填写versionCode，则卸载所有同版本共享包。 |

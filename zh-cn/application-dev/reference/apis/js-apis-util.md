@@ -110,7 +110,7 @@ async function fn() {
    return 'hello world';
 }
 let cb = util.callbackWrapper(fn);
-cb((err, ret) => {
+cb(1, (err, ret) => {
    if (err) throw err;
    console.log(ret);
 });

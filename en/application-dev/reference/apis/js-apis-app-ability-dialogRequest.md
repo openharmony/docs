@@ -127,6 +127,7 @@ Obtains the request callback from Want.
 ## RequestInfo
 
 Defines the request information, which is used as an input parameter for binding the modal dialog box.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**

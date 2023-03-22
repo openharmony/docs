@@ -470,6 +470,7 @@ struct Item {
       NavDestination() {
         Details({imageSrc: this.imageSrc})
       }.title(this.label)
+      .backgroundColor('#FFFFFF')
     }
   }
 }
@@ -491,7 +492,7 @@ struct NavigationSample {
     .backgroundColor('#F1F3F5')
     .height('100%')
     .width('100%')
-    .navBarWidth('40%')
+    .navBarWidth(360)
     .hideToolBar(true)
     .title('Sample')
   }

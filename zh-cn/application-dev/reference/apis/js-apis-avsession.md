@@ -26,6 +26,8 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型                            | 必填 | 说明                           |
@@ -43,7 +45,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -74,6 +76,8 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
@@ -84,7 +88,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | callback | AsyncCallback<[AVSession](#avsession)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -128,7 +132,7 @@ getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 | Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise对象。返回所有会话描述的只读对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -155,7 +159,7 @@ getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDesc
 
 获取所有会话的相关描述。结果通过callback异步回调方式返回。
 
-**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Manager
 
@@ -168,7 +172,7 @@ getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDesc
 | callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | 是   | 回调函数。返回所有会话描述的只读对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -186,6 +190,99 @@ avSession.getAllSessionDescriptors(function (err, descriptors) {
             console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
             console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
             console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+        }
+    }
+});
+```
+
+## avSession.getHistoricalSessionDescriptors<sup>10+</sup>
+
+getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
+
+获取所有会话的相关描述。结果通过Promise异步回调方式返回。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                             |
+| -------- | ------ | ---- | -----------------------------------------------------------------|
+| maxSize  | number | 否   | 指定获取描述符数量的最大值，可选范围是0-10，不填则取默认值，默认值为3。|
+
+**返回值：**
+
+| 类型                                                                        | 说明                                   |
+| --------------------------------------------------------------------------- | -------------------------------------- |
+| Promise\<Array\<Readonly\<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | Promise对象。返回所有会话描述的只读对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
+avSession.getHistoricalSessionDescriptors().then((descriptors) => {
+    console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
+    if(descriptors.length > 0 ){
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
+    }
+}).catch((err) => {
+    console.info(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## avSession.getHistoricalSessionDescriptors<sup>10+</sup>
+
+getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void
+
+获取所有会话的相关描述。结果通过callback异步回调方式返回。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                                            | 必填 | 说明                                                             |
+| -------- | ------------------------------------------------------------------------------ | ---- | -----------------------------------------------------------------|
+| maxSize  | number                                                                         | 是   | 指定获取描述符数量的最大值，可选范围是0-10，不填则取默认值，默认值为3。|
+| callback | AsyncCallback<Array<Readonly<[AVSessionDescriptor](#avsessiondescriptor)\>\>\> | 是   | 回调函数。返回所有会话描述的只读对象。                              |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  |Session service exception. |
+
+**示例：**
+
+```js
+avSession.getHistoricalSessionDescriptors(1, function (err, descriptors) {
+    if (err) {
+        console.info(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
+        if(descriptors.length > 0 ){
+            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
+            console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
         }
     }
 });
@@ -216,7 +313,7 @@ createController(sessionId: string): Promise\<AVSessionController>
 | Promise<[AVSessionController](#avsessioncontroller)\> | Promise对象。返回会话控制器实例，可查看会话ID，<br>并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -268,7 +365,7 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 | callback  | AsyncCallback<[AVSessionController](#avsessioncontroller)\> | 是   | 回调函数。返回会话控制器实例，可查看会话ID，<br>并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -330,7 +427,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | Promise<void\> | Promise对象。当投播成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -382,7 +479,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | callback     | AsyncCallback<void\>                       | 是   | 回调函数。当投播成功，err为undefined，否则返回错误对象。                        |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -433,7 +530,7 @@ on(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback: (ses
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。                               |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -481,7 +578,7 @@ off(type: 'sessionCreate' | 'sessionDestroy' | 'topSessionChange', callback?: (s
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为会话相关描述，为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                               |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -503,6 +600,8 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
@@ -511,7 +610,7 @@ on(type: 'sessionServiceDie', callback: () => void): void
 | callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -533,6 +632,8 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名    | 类型                    | 必填  |      说明                                               |
@@ -541,7 +642,7 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 | callback | callback: () => void   | 否    | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的服务死亡监听。            |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -578,7 +679,7 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 | Promise<void\> | Promise对象。当事件发送成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -620,7 +721,7 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\>                                         | 是   | 回调函数。当事件发送成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -667,7 +768,7 @@ sendSystemControlCommand(command: AVControlCommand): Promise\<void>
 | Promise<void\> | Promise对象。当命令发送成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -721,7 +822,7 @@ sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<voi
 | callback | AsyncCallback<void\>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -765,6 +866,8 @@ avSession.sendSystemControlCommand(avcommand, function (err) {
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 
 | 名称      | 类型   | 可读 | 可写 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
@@ -784,6 +887,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型                      | 必填 | 说明         |
@@ -797,7 +902,7 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 | Promise<void\> | Promise对象。当元数据设置成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -838,6 +943,8 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                  |
@@ -846,7 +953,7 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\>      | 是   | 回调函数。当元数据设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -889,6 +996,8 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型                                | 必填 | 说明                                           |
@@ -902,7 +1011,7 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 | Promise<void\> | Promise对象。当播放状态设置成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -935,6 +1044,8 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                | 必填 | 说明                                           |
@@ -943,7 +1054,7 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\>                | 是   | 回调函数。当播放状态设置成功，err为undefined，否则返回错误对象。          |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -970,6 +1081,216 @@ session.setAVPlaybackState(PlaybackState, function (err) {
 });
 ```
 
+### setAVQueueItems<sup>10+</sup>
+
+setAVQueueItems(items: Array\<AVQueueItem>): Promise<void\>
+
+设置媒体播放列表。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名  | 类型                                 | 必填 | 说明                               |
+| ------ | ------------------------------------ | ---- | ---------------------------------- |
+| items  | Array<[AVQueueItem](#avqueueitem10)\> | 是   | 播放列表单项的队列，用以表示播放列表。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise<void\> | Promise对象。当播放列表设置成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let queueItemDescription_1 = {
+    mediaId: '001',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon: PIXELMAP_OBJECT,
+    iconUri: 'http://www.icon.uri.com',
+    extras: {'extras':'any'}
+};
+let queueItem_1 = {
+    itemId: 1,
+    description: queueItemDescription_1
+};
+let queueItemDescription_2 = {
+    mediaId: '002',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon: PIXELMAP_OBJECT,
+    iconUri: 'http://www.icon.uri.com',
+    extras: {'extras':'any'}
+};
+let queueItem_2 = {
+    itemId: 2,
+    description: queueItemDescription_2
+};
+let queueItemsArray = [queueItem_1, queueItem_2];
+session.setAVQueueItems(queueItemsArray).then(() => {
+    console.info('SetAVQueueItems successfully');
+}).catch((err) => {
+    console.info(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### setAVQueueItems<sup>10+</sup>
+
+setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback<void\>): void
+
+设置媒体播放列表。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ----------------------------------------------------------- |
+| items    | Array<[AVQueueItem](#avqueueitem10)\> | 是   | 播放列表单项的队列，用以表示播放列表。                          |
+| callback | AsyncCallback<void\>                 | 是   | 回调函数。当播放状态设置成功，err为undefined，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let queueItemDescription_1 = {
+    mediaId: '001',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon: PIXELMAP_OBJECT,
+    iconUri: 'http://www.icon.uri.com',
+    extras: {'extras':'any'}
+};
+let queueItem_1 = {
+    itemId: 1,
+    description: queueItemDescription_1
+};
+let queueItemDescription_2 = {
+    mediaId: '002',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    icon: PIXELMAP_OBJECT,
+    iconUri: 'http://www.icon.uri.com',
+    extras: {'extras':'any'}
+};
+let queueItem_2 = {
+    itemId: 2,
+    description: queueItemDescription_2
+};
+let queueItemsArray = [queueItem_1, queueItem_2];
+session.setAVQueueItems(queueItemsArray, function (err) {
+    if (err) {
+        console.info(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info('SetAVQueueItems successfully');
+    }
+});
+```
+
+### setAVQueueTitle<sup>10+</sup>
+
+setAVQueueTitle(title: string): Promise\<void>
+
+设置媒体播放列表名称。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| title  | string | 是   | 播放列表的名称。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise<void\> | Promise对象。当播放列表设置成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let queueTitle = 'QUEUE_TITLE';
+session.setAVQueueTitle(queueTitle).then(() => {
+    console.info('SetAVQueueTitle successfully');
+}).catch((err) => {
+    console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### setAVQueueTitle<sup>10+</sup>
+
+setAVQueueTitle(title: string, callback: AsyncCallback\<void\>): void
+
+设置媒体播放列表名称。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ----------------------------------------------------------- |
+| title    | string                | 是   | 播放列表名称字段。                          |
+| callback | AsyncCallback<void\>  | 是   | 回调函数。当播放状态设置成功，err为undefined，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let queueTitle = 'QUEUE_TITLE';
+session.setAVQueueTitle(queueTitle, function (err) {
+    if (err) {
+        console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info('SetAVQueueTitle successfully');
+    }
+});
+```
+
 ### setLaunchAbility
 
 setLaunchAbility(ability: WantAgent): Promise\<void>
@@ -977,6 +1298,8 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 设置一个WantAgent用于拉起会话的Ability。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -991,7 +1314,7 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 | Promise<void\> | Promise对象。当Ability设置成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1048,6 +1371,8 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
@@ -1056,7 +1381,7 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\>                          | 是   | 回调函数。当Ability设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1107,9 +1432,9 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
 });
 ```
 
-### setSessionEvent<sup>10+</sup>
+### dispatchSessionEvent<sup>10+</sup>
 
-setSessionEvent(event: string, args: {[key: string]: any}): Promise\<void>
+dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<void>
 
 媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过Promise异步回调方式返回。
 
@@ -1131,7 +1456,7 @@ setSessionEvent(event: string, args: {[key: string]: any}): Promise\<void>
 | Promise<void\> | Promise对象。当事件设置成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1145,14 +1470,14 @@ let eventName = "dynamic_lyric";
 let args = {
     lyric : "This is lyric"
 }
-await session.setSessionEvent(eventName, args).catch((err) => {
-    console.info(`SetSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+await session.dispatchSessionEvent(eventName, args).catch((err) => {
+    console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 })
 ```
 
-### setSessionEvent<sup>10+</sup>
+### dispatchSessionEvent<sup>10+</sup>
 
-setSessionEvent(event: string, args: {[key: string]: any}, callback: AsyncCallback<void>): void
+dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback<void>): void
 
 媒体提供方设置一个会话内自定义事件，包括事件名和键值对形式的事件内容, 结果通过callback异步回调方式返回。
 
@@ -1169,7 +1494,7 @@ setSessionEvent(event: string, args: {[key: string]: any}, callback: AsyncCallba
 | callback | AsyncCallback<void\>                          | 是   | 回调函数。当会话事件设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1183,9 +1508,9 @@ let eventName = "dynamic_lyric";
 let args = {
     lyric : "This is lyric"
 }
-await session.setSessionEvent(eventName, args, (err) => {
+await session.dispatchSessionEvent(eventName, args, (err) => {
     if(err) {
-        console.info(`SetSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     }
 })
 ```
@@ -1198,6 +1523,8 @@ getController(): Promise\<AVSessionController>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                                 | 说明                          |
@@ -1205,7 +1532,7 @@ getController(): Promise\<AVSessionController>
 | Promise<[AVSessionController](#avsessioncontroller)> | Promise对象。返回会话控制器。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1232,6 +1559,8 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                        | 必填 | 说明                       |
@@ -1239,7 +1568,7 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 | callback | AsyncCallback<[AVSessionController](#avsessioncontroller)\> | 是   | 回调函数。返回会话控制器。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1268,6 +1597,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                           | 说明                              |
@@ -1275,7 +1606,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 | Promise<[OutputDeviceInfo](#outputdeviceinfo)> | Promise对象。返回播放设备信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1300,6 +1631,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                           |
@@ -1307,7 +1640,7 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 | callback | AsyncCallback<[OutputDeviceInfo](#outputdeviceinfo)\> | 是   | 回调函数，返回播放设备信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1334,6 +1667,8 @@ activate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1341,7 +1676,7 @@ activate(): Promise\<void>
 | Promise<void\> | Promise对象。当会话激活成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1366,6 +1701,8 @@ activate(callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明       |
@@ -1373,7 +1710,7 @@ activate(callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\> | 是   | 回调函数。当会话激活成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1400,6 +1737,8 @@ deactivate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1407,7 +1746,7 @@ deactivate(): Promise\<void>
 | Promise<void\> | Promise对象。当禁用会话成功，无返回结果，否则返回错误对象。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1434,6 +1773,8 @@ deactivate(callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明       |
@@ -1441,7 +1782,7 @@ deactivate(callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\> | 是   | 回调函数。当禁用会话成功，err为undefined，否则返回错误对象。|
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1468,6 +1809,8 @@ destroy(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1475,7 +1818,7 @@ destroy(): Promise\<void>
 | Promise<void\> | Promise对象。当会话销毁成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1498,8 +1841,9 @@ destroy(callback: AsyncCallback\<void>): void
 
 销毁当前会话，使当前会话完全失效。结果通过callback异步回调方式返回。
 
-
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1508,7 +1852,7 @@ destroy(callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\> | 是   | 回调函数。当会话销毁成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1535,6 +1879,8 @@ on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind',
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
@@ -1543,7 +1889,7 @@ on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind',
 | callback | callback: () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。                                        |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1584,6 +1930,8 @@ on(type: 'seek', callback: (time: number) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
@@ -1592,7 +1940,7 @@ on(type: 'seek', callback: (time: number) => void): void
 | callback | (time: number) => void | 是   | 回调函数。参数time是时间节点，单位为毫秒。                   |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1615,6 +1963,8 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
@@ -1623,7 +1973,7 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 | callback | (speed: number) => void | 是   | 回调函数。参数speed是播放倍速。                              |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1646,6 +1996,8 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名    | 类型                                   | 必填 | 说明  |
@@ -1654,7 +2006,7 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 | callback | (mode: [LoopMode](#loopmode)) => void | 是   | 回调函数。参数mode是循环模式。                               |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1677,6 +2029,8 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
@@ -1685,7 +2039,7 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 | callback | (assetId: string) => void | 是   | 回调函数。参数assetId是媒体ID。                              |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1700,6 +2054,39 @@ session.on('toggleFavorite', (assetId) => {
 });
 ```
 
+### on('skipToQueueItem')<sup>10+</sup>
+
+on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
+
+设置播放列表其中某项被选中的监听事件，session端可以选择对这个单项歌曲进行播放。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                                                      |
+| -------- | ------------------------ | ---- | ---------------------------------------------------------------------------------------- |
+| type     | string                   | 是   | 事件回调类型，支持事件`'skipToQueueItem'`：当播放列表选中单项的命令被发送到会话时，触发该事件。 |
+| callback | (itemId: number) => void | 是   | 回调函数。参数itemId是选中的播放列表项的ID。                                                |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+session.on('skipToQueueItem', (itemId) => {
+    console.info(`on skipToQueueItem id : ${itemId}`);
+});
+```
+
 ### on('handleKeyEvent')
 
 on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
@@ -1707,6 +2094,8 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 设置按键事件的监听
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1716,7 +2105,7 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 | callback | (event: [KeyEvent](js-apis-keyevent.md)) => void | 是   | 回调函数。参数event是按键事件。                              |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1739,6 +2128,8 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -1747,7 +2138,7 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | 是   | 回调函数。参数device是设备相关信息。                         |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1762,6 +2153,39 @@ session.on('outputDeviceChange', (device) => {
 });
 ```
 
+### on('commonCommand')<sup>10+</sup>
+
+on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Object}) => void): void
+
+设置自定义控制命令变化的监听器。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'commonCommand'`：当自定义控制命令变化时，触发该事件。 |
+| callback | (commonCommand: string, args: {[key:string]: Object}) => void         | 是   | 回调函数，commonCommand为变化的自定义控制命令名，args为自定义控制命令的参数。          |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+
+```js
+session.on('commonCommand', (commonCommand, args) => {
+    console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
+});
+```
+
 ### off('play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind')
 
 off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind', callback?: () => void): void
@@ -1769,6 +2193,8 @@ off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward
 取消会话相关事件监听，关闭后，不再进行相关事件回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1778,7 +2204,7 @@ off(type: 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward
 | callback | callback: () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1805,6 +2231,8 @@ off(type: 'seek', callback?: (time: number) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                                          |
@@ -1813,7 +2241,7 @@ off(type: 'seek', callback?: (time: number) => void): void
 | callback | (time: number) => void | 否   | 回调函数，参数time是时间节点，单位为毫秒。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。        |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1834,6 +2262,8 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                           |
@@ -1842,7 +2272,7 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 | callback | (speed: number) => void | 否   | 回调函数，参数speed是播放倍速。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1863,6 +2293,8 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明     |
@@ -1871,7 +2303,7 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 | callback | (mode: [LoopMode](#loopmode)) => void | 否   | 回调函数，参数mode是循环模式。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1892,6 +2324,8 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
@@ -1900,7 +2334,7 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 | callback | (assetId: string) => void | 否   | 回调函数，参数assetId是媒体ID。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                               |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1913,6 +2347,37 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 session.off('toggleFavorite');
 ```
 
+### off('skipToQueueItem')<sup>10+</sup>
+
+off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
+
+取消监听播放列表单项选中的事件
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                                                                                                                        |
+| -------- | ------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                   | 是   | 关闭对应的监听事件，支持关闭事件`'skipToQueueItem'`。                                                                                                          |
+| callback | (itemId: number) => void | 否   | 回调函数，参数itemId是播放列表单项ID。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+session.off('skipToQueueItem');
+```
+
 ### off('handleKeyEvent')
 
 off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
@@ -1920,6 +2385,8 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 取消监听按键事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1929,7 +2396,7 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 | callback | (event: [KeyEvent](js-apis-keyevent.md)) => void | 否   | 回调函数，参数event是按键事件。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                              |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1950,6 +2417,8 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                      |
@@ -1958,7 +2427,7 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | 否   | 回调函数，参数device是设备相关信息。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                        |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1969,6 +2438,37 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 
 ```js
 session.off('outputDeviceChange');
+```
+
+
+### off('commonCommand')<sup>10+</sup>
+
+off(type: 'commonCommand', callback?: (commonCommand: string, args: {[key:string]: Object}) => void): void
+
+取消监听自定义控制命令的变化。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'commonCommand'`。    |
+| callback | (commonCommand: string, args: {[key:string]: Object}) => void         | 否   | 回调函数，参数commonCommand是变化的自定义控制命令名，args为自定义控制命令的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对commonCommand事件的监听。                      |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
+session.off('commonCommand');
 ```
 
 
@@ -2005,6 +2505,8 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                          | 说明                        |
@@ -2012,7 +2514,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 | Promise<[AVPlaybackState](#avplaybackstate)\> | Promise对象。返回播放状态对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2037,6 +2539,8 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                | 必填 | 说明                         |
@@ -2044,7 +2548,7 @@ getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void
 | callback | AsyncCallback<[AVPlaybackState](#avplaybackstate)\> | 是   | 回调函数，返回当前播放状态对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2063,6 +2567,225 @@ controller.getAVPlaybackState(function (err, playbackState) {
 });
 ```
 
+### getAVQueueItems<sup>10+</sup>
+
+getAVQueueItems(): Promise\<Array\<AVQueueItem>>
+
+获取当前会话播放列表相关信息。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型                                          | 说明                           |
+| --------------------------------------------- | ----------------------------- |
+| Promise<Array<[AVQueueItem](#avqueueitem10)\>\> | Promise对象。返回播放列表队列。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```js
+controller.getAVQueueItems().then((items) => {
+    console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
+}).catch((err) => {
+    console.info(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getAVQueueItems<sup>10+</sup>
+
+getAVQueueItems(callback: AsyncCallback\<Array\<AVQueueItem>>): void
+
+获取当前播放列表相关信息。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------- |
+| callback | AsyncCallback<Array<[AVQueueItem](#avqueueitem10)\>\> | 是   | 回调函数，返回播放列表队列。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```js
+controller.getAVQueueItems(function (err, items) {
+    if (err) {
+        console.info(`GetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
+    }
+});
+```
+
+### getAVQueueTitle<sup>10+</sup>
+
+getAVQueueTitle(): Promise\<string>
+
+获取当前会话播放列表的名称。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型             | 说明                           |
+| ---------------- | ----------------------------- |
+| Promise<string\> | Promise对象。返回播放列表名称。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```js
+controller.getAVQueueTitle().then((title) => {
+    console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
+}).catch((err) => {
+    console.info(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getAVQueueTitle<sup>10+</sup>
+
+getAVQueueTitle(callback: AsyncCallback\<string>): void
+
+获取当前播放列表的名称。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback<string\> | 是   | 回调函数，返回播放列表名称。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```js
+controller.getAVQueueTitle(function (err, title) {
+    if (err) {
+        console.info(`GetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
+    }
+});
+```
+
+### skipToQueueItem<sup>10+</sup>
+
+skipToQueueItem(itemId: number): Promise\<void>
+
+设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                                        |
+| ------ | ------- | ---- | ------------------------------------------- |
+| itemId | number  | 是   | 播放列表单项的ID值，用以表示选中的播放列表单项。 |
+
+**返回值：**
+
+| 类型           | 说明                                                             |
+| -------------- | --------------------------------------------------------------- |
+| Promise<void\> | Promise对象。当播放列表单项ID设置成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let queueItemId = 0;
+controller.skipToQueueItem(queueItemId).then(() => {
+    console.info('SkipToQueueItem successfully');
+}).catch((err) => {
+    console.info(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### skipToQueueItem<sup>10+</sup>
+
+skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
+
+设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                        |
+| -------- | --------------------- | ---- | ----------------------------------------------------------- |
+| itemId   | number                | 是   | 播放列表单项的ID值，用以表示选中的播放列表单项。                |
+| callback | AsyncCallback<void\>  | 是   | 回调函数。当播放状态设置成功，err为undefined，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let queueItemId = 0;
+controller.skipToQueueItem(queueItemId, function (err) {
+    if (err) {
+        console.info(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info('SkipToQueueItem successfully');
+    }
+});
+```
+
 ### getAVMetadata
 
 getAVMetadata(): Promise\<AVMetadata>
@@ -2071,6 +2794,8 @@ getAVMetadata(): Promise\<AVMetadata>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                | 说明                          |
@@ -2078,7 +2803,7 @@ getAVMetadata(): Promise\<AVMetadata>
 | Promise<[AVMetadata](#avmetadata)\> | Promise对象，返回会话元数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2103,6 +2828,8 @@ getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
@@ -2110,7 +2837,7 @@ getAVMetadata(callback: AsyncCallback\<AVMetadata>): void
 | callback | AsyncCallback<[AVMetadata](#avmetadata)\> | 是   | 回调函数，返回会话元数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2137,6 +2864,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                            | 说明                              |
@@ -2144,7 +2873,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 | Promise<[OutputDeviceInfo](#outputdeviceinfo)\> | Promise对象，返回播放设备信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2168,6 +2897,8 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                           |
@@ -2175,7 +2906,7 @@ getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void
 | callback | AsyncCallback<[OutputDeviceInfo](#outputdeviceinfo)\> | 是   | 回调函数，返回播放设备信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2202,6 +2933,8 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明       |
@@ -2209,7 +2942,7 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 | event  | [KeyEvent](js-apis-keyevent.md) | 是   | 按键事件。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2246,6 +2979,8 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明       |
@@ -2254,7 +2989,7 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\>                                         | 是   | 回调函数。当事件发送成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2287,6 +3022,8 @@ getLaunchAbility(): Promise\<WantAgent>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                                    | 说明                                                         |
@@ -2294,7 +3031,7 @@ getLaunchAbility(): Promise\<WantAgent>
 | Promise<[WantAgent](js-apis-app-ability-wantAgent.md)\> | Promise对象，返回在[setLaunchAbility](#setlaunchability)保存的对象，包括应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2322,6 +3059,8 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -2329,7 +3068,7 @@ getLaunchAbility(callback: AsyncCallback\<WantAgent>): void
 | callback | AsyncCallback<[WantAgent](js-apis-app-ability-wantAgent.md)\> | 是   | 回调函数。返回在[setLaunchAbility](#setlaunchability)保存的对象，包括应用的相关属性信息，如bundleName，abilityName，deviceId等。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2359,6 +3098,8 @@ getRealPlaybackPositionSync(): number
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型   | 说明               |
@@ -2366,7 +3107,7 @@ getRealPlaybackPositionSync(): number
 | number | 时间节点，毫秒数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2387,6 +3128,8 @@ isActive(): Promise\<boolean>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型              | 说明                                                         |
@@ -2394,7 +3137,7 @@ isActive(): Promise\<boolean>
 | Promise<boolean\> | Promise对象，返回会话是否为激活状态，true表示被激活，false表示禁用。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2420,6 +3163,8 @@ isActive(callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
@@ -2427,7 +3172,7 @@ isActive(callback: AsyncCallback\<boolean>): void
 | callback | AsyncCallback<boolean\> | 是   | 回调函数，返回会话是否为激活状态，true表示被激活，false表示禁用。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2455,6 +3200,8 @@ destroy(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -2462,7 +3209,7 @@ destroy(): Promise\<void>
 | Promise<void\> | Promise对象。当控制器销毁成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2487,6 +3234,8 @@ destroy(callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明       |
@@ -2494,7 +3243,7 @@ destroy(callback: AsyncCallback\<void>): void
 | callback | AsyncCallback<void\> | 是   | 回调函数。当控制器销毁成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2521,6 +3270,8 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **返回值：**
 
 | 类型                                                         | 说明                              |
@@ -2528,7 +3279,7 @@ getValidCommands(): Promise\<Array\<AVControlCommandType>>
 | Promise<Array<[AVControlCommandType](#avcontrolcommandtype)\>\> | Promise对象。返回有效命令的集合。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2554,6 +3305,8 @@ getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                           |
@@ -2561,7 +3314,7 @@ getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void
 | callback | AsyncCallback\<Array\<[AVControlCommandType](#avcontrolcommandtype)\>\> | 是   | 回调函数，返回有效命令的集合。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2589,6 +3342,8 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -2602,7 +3357,7 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 | Promise<void\> | Promise对象。当命令发送成功，无返回结果，否则返回错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2642,6 +3397,8 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
@@ -2650,7 +3407,7 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 | callback | AsyncCallback<void\>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
@@ -2684,6 +3441,93 @@ controller.sendControlCommand(avCommand, function (err) {
 });
 ```
 
+### sendCommonCommand<sup>10+</sup>
+
+sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void>
+
+通过会话控制器发送自定义控制命令到其对应的会话。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                                  | 必填 | 说明                           |
+| ------- | ------------------------------------- | ---- | ------------------------------ |
+| command | string | 是   | 需要设置的自定义控制命令的名称 |
+| args | {[key: string]: any} | 是   | 需要传递的控制命令键值对 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise<void\> | Promise对象。当命令发送成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+| 6600106  | The session is not activated. |
+| 6600107  | Too many commands or events. |
+
+**示例：**
+
+```js
+let commandName = "my_command";
+let args = {
+    command : "This is my command"
+}
+await controller.sendCommonCommand(commandName, args).catch((err) => {
+    console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+})
+```
+
+### sendCommonCommand<sup>10+</sup>
+
+sendCommonCommand(command: string, args: {[key: string]: Object}, callback: AsyncCallback\<void>): void
+
+通过会话控制器发送自定义命令到其对应的会话。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名    | 类型                                  | 必填 | 说明                           |
+| ------- | ------------------------------------- | ---- | ------------------------------ |
+| command | string | 是   | 需要设置的自定义控制命令的名称 |
+| args | {[key: string]: any} | 是   | 需要传递的控制命令键值对 |
+| callback | AsyncCallback<void\>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------- |
+| 6600101  | Session service exception.                |
+| 6600102  | The session does not exist.     |
+| 6600103  | The session controller does not exist.   |
+| 6600105  | Invalid session command.           |
+| 6600106  | The session is not activated.                |
+| 6600107  | Too many commands or events.      |
+
+**示例：**
+
+```js
+let commandName = "my_command";
+let args = {
+    command : "This is my command"
+}
+controller.sendCommonCommand(commandName, args, (err) => {
+    if(err) {
+        console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+    }
+})
+```
+
 ### on('metadataChange')
 
 on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (data: AVMetadata) => void)
@@ -2691,6 +3535,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 设置元数据变化的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2701,7 +3547,7 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 | callback | (data: [AVMetadata](#avmetadata)) => void                    | 是   | 回调函数，参数data是变化后的元数据。                         |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
@@ -2729,6 +3575,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -2738,7 +3586,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 | callback | (state: [AVPlaybackState](#avplaybackstate)) => void         | 是   | 回调函数，参数state是变化后的播放状态。                      |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
@@ -2758,9 +3606,9 @@ controller.on('playbackStateChange', playbackFilter, (playbackState) => {
 });
 ```
 
-### on('sessionEventChange')<sup>10+</sup>
+### on('sessionEvent')<sup>10+</sup>
 
-on(type: 'sessionEventChange', callback: (sessionEvent: string, args: {[key:string]: any}) => void): void
+on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
 
 媒体控制器设置会话自定义事件变化的监听器。
 
@@ -2772,11 +3620,11 @@ on(type: 'sessionEventChange', callback: (sessionEvent: string, args: {[key:stri
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 事件回调类型，支持事件`'sessionEventChange'`：当会话事件变化时，触发该事件。 |
-| callback | (sessionEvent: string, args: {[key:string]: any}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'sessionEvent'`：当会话事件变化时，触发该事件。 |
+| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
@@ -2786,8 +3634,74 @@ on(type: 'sessionEventChange', callback: (sessionEvent: string, args: {[key:stri
 **示例：**
 
 ```js
-controller.on('sessionEventChange', (sessionEvent, args) => {
-    console.info(`OnSessionEventChange, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+controller.on('sessionEvent', (sessionEvent, args) => {
+    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+});
+```
+
+### on('queueItemsChange')<sup>10+</sup>
+
+on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
+
+媒体控制器设置会话自定义播放列表变化的监听器。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                   | 必填 | 说明                                                                         |
+| -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| type     | string                                                | 是   | 事件回调类型，支持事件`'queueItemsChange'`：当session修改播放列表时，触发该事件。 |
+| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void  | 是   | 回调函数，items为变化的播放列表。                            |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+
+```js
+controller.on('queueItemsChange', (items) => {
+    console.info(`OnQueueItemsChange, items length is ${items.length}`);
+});
+```
+
+### on('queueTitleChange')<sup>10+</sup>
+
+on(type: 'queueTitleChange', callback: (title: string) => void): void
+
+媒体控制器设置会话自定义播放列表的名称变化的监听器。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                                             |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------- |
+| type     | string                  | 是   | 事件回调类型，支持事件`'queueTitleChange'`：当session修改播放列表名称时，触发该事件。 |
+| callback | (title: string) => void | 是   | 回调函数，title为变化的播放列表名称。                                |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+
+```js
+controller.on('queueTitleChange', (title) => {
+    console.info(`queueTitleChange, title is ${title}`);
 });
 ```
 
@@ -2799,6 +3713,8 @@ on(type: 'sessionDestroy', callback: () => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型       | 必填 | 说明                                                         |
@@ -2807,7 +3723,7 @@ on(type: 'sessionDestroy', callback: () => void)
 | callback | () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。                  |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
@@ -2830,6 +3746,8 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
@@ -2838,7 +3756,7 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 | callback | (isActive: boolean) => void | 是   | 回调函数。参数isActive表示会话是否被激活。true表示被激活，false表示禁用。                   |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------- |
@@ -2861,6 +3779,8 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -2869,7 +3789,7 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 | callback | (commands: Array<[AVControlCommandType](#avcontrolcommandtype)\>) => void | 是   | 回调函数。参数commands是有效命令的集合。                     |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
@@ -2893,6 +3813,8 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -2901,7 +3823,7 @@ on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): vo
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | 是   | 回调函数，参数device是设备相关信息。                         |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------- |
@@ -2924,6 +3846,8 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                               | 必填 | 说明                                                    |
@@ -2932,7 +3856,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 | callback | (data: [AVMetadata](#avmetadata)) => void        | 否   | 回调函数，参数data是变化后的元数据。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                         |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
@@ -2952,6 +3876,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -2960,7 +3886,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 | callback | (state: [AVPlaybackState](#avplaybackstate)) => void         | 否   | 回调函数，参数state是变化后的播放状态。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                      |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
@@ -2972,11 +3898,11 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 controller.off('playbackStateChange');
 ```
 
-### off('sessionEventChange')<sup>10+</sup>
+### off('sessionEvent')<sup>10+</sup>
 
-off(type: 'sessionEventChange', callback?: (sessionEvent: string, args: {[key:string]: any}) => void): void
+off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Obejct}) => void): void
 
-控制器取消监听播放状态变化的事件。
+控制器取消监听会话事件的变化通知。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2986,11 +3912,11 @@ off(type: 'sessionEventChange', callback?: (sessionEvent: string, args: {[key:st
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'sessionEventChange'`。    |
-| callback | (sessionEvent: string, args: {[key:string]: any}) => void         | 否   | 回调函数，参数sessionEvent是变化的事件名，args为事件的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对sessionEventChange事件的监听。                      |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'sessionEvent'`。    |
+| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | 否   | 回调函数，参数sessionEvent是变化的事件名，args为事件的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对sessionEvent事件的监听。                      |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
@@ -2999,7 +3925,67 @@ off(type: 'sessionEventChange', callback?: (sessionEvent: string, args: {[key:st
 **示例：**
 
 ```js
-controller.off('sessionEventChange');
+controller.off('sessionEvent');
+```
+
+### off('queueItemsChange')<sup>10+</sup>
+
+off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
+
+控制器取消监听播放列表变化的事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名    | 类型                                                 | 必填 | 说明                                                                                                |
+| -------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------- |
+| type     | string                                               | 是   | 取消对应的监听事件，支持事件`'queueItemsChange'`。                                                     |
+| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void | 否   | 回调函数，参数items是变化的播放列表。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
+controller.off('queueItemsChange');
+```
+
+### off('queueTitleChange')<sup>10+</sup>
+
+off(type: 'queueTitleChange', callback?: (title: string) => void): void
+
+控制器取消监听播放列表名称变化的事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                                                                    |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
+| type     | string                  | 是   | 取消对应的监听事件，支持事件`'queueTitleChange'`。                                                         |
+| callback | (title: string) => void | 否   | 回调函数，参数items是变化的播放列表名称。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```js
+controller.off('queueTitleChange');
 ```
 
 ### off('sessionDestroy')
@@ -3010,6 +3996,8 @@ off(type: 'sessionDestroy', callback?: () => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型       | 必填 | 说明                                                      |
@@ -3018,7 +4006,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 | callback | () => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                                               |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
@@ -3038,6 +4026,8 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                        | 必填 | 说明                                                      |
@@ -3046,7 +4036,7 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 | callback | (isActive: boolean) => void | 否   | 回调函数。参数isActive表示会话是否被激活。true表示被激活，false表示禁用。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                   |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
@@ -3066,6 +4056,8 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                        |
@@ -3074,7 +4066,7 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 | callback | (commands: Array<[AVControlCommandType](#avcontrolcommandtype)\>) => void | 否   | 回调函数。参数commands是有效命令的集合。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。          |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
@@ -3094,6 +4086,8 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                      |
@@ -3102,7 +4096,7 @@ off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): 
 | callback | (device: [OutputDeviceInfo](#outputdeviceinfo)) => void | 否   | 回调函数，参数device是设备相关信息。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                         |
 
 **错误码：**
-以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](../errorcodes/errorcode-avsession.md)。
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
 
 | 错误码ID  | 错误信息          |
 | -------- | ---------------- |
@@ -3135,6 +4129,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口。
+
 | 名称  | 类型   | 说明 |
 | ----- | ------ | ---- |
 | audio | string | 音频 |
@@ -3164,6 +4160,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称           | 类型   | 说明         |
 | -------------- | ------ | ------------ |
 | play           | string | 播放         |
@@ -3184,6 +4182,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVControlCommandType](#avcontrolcommandtype)     | 是   | 命令           |
@@ -3194,6 +4194,8 @@ controller.off('outputDeviceChange');
 媒体元数据的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
@@ -3213,11 +4215,41 @@ controller.off('outputDeviceChange');
 | previousAssetId | string                  | 否   | 上一首媒体ID。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
 
+## AVMediaDescription<sup>10+</sup>
+
+播放列表媒体元数据的相关属性。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+| 名称         | 类型                    | 必填  | 说明                     |
+| ------------ | ----------------------- | ---- | ----------------------- |
+| mediaId      | string                  | 是   | 播放列表媒体ID。          |
+| title        | string                  | 否   | 播放列表媒体标题。        |
+| subtitle     | string                  | 否   | 播放列表媒体子标题。      |
+| description  | string                  | 否   | 播放列表媒体描述的文本。   |
+| icon         | image.PixelMap          | 否   | 播放列表媒体图片像素数据。 |
+| iconUri      | string                  | 否   | 播放列表媒体图片路径地址。 |
+| extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
+| mediaUri     | string                  | 否   | 播放列表媒体URI。         |
+
+## AVQueueItem<sup>10+</sup>
+
+播放列表中单项的相关属性。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+| 名称         | 类型                                        | 必填 | 说明                        |
+| ------------ | ------------------------------------------ | ---- | --------------------------- |
+| itemId       | number                                     | 是   | 播放列表中单项的ID。          |
+| description  | [AVMediaDescription](#avmediadescription10)  | 是   | 播放列表中单项的媒体元数据。   |
+
 ## AVPlaybackState
 
 媒体播放状态的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
@@ -3234,6 +4266,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称        | 类型   | 必填 | 说明               |
 | ----------- | ------ | ---- | ------------------ |
 | elapsedTime | number | 是   | 已用时间，单位毫秒（ms）。 |
@@ -3244,6 +4278,8 @@ controller.off('outputDeviceChange');
 播放设备的相关信息。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -3256,6 +4292,8 @@ controller.off('outputDeviceChange');
 表示媒体播放状态的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -3274,6 +4312,8 @@ controller.off('outputDeviceChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 | 名称               | 值   | 说明     |
 | ------------------ | ---- | -------- |
 | LOOP_MODE_SEQUENCE | 0    | 顺序播放 |
@@ -3286,6 +4326,8 @@ controller.off('outputDeviceChange');
 会话发生错误时的错误码。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 | 名称                           | 值      | 说明                             |
 | ------------------------------ | ------- | ------------------------------- |

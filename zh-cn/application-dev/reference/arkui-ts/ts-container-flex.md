@@ -6,6 +6,7 @@
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - Flex组件在渲染时存在二次布局过程，因此在对性能有严格要求的场景下建议使用[Column](ts-container-column.md)、[Row](ts-container-row.md)代替。
+> - Flex组件主轴默认不设置时撑满父容器，[Column](ts-container-column.md)、[Row](ts-container-row.md)组件主轴不设置时默认是跟随子节点大小。
 
 
 ## 子组件
@@ -18,6 +19,8 @@
 Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
 
 标准Flex布局容器。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数:**
 
@@ -139,7 +142,7 @@ struct FlexExample2 {
 }
 ```
 
-![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.PNG)
+![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.png)
 
 ```ts
 // xxx.ets

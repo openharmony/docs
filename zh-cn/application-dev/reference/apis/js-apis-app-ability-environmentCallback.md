@@ -35,7 +35,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 注册系统环境变化的监听后，在系统内存变化时触发回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 
@@ -55,7 +55,7 @@ export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();
-        let EnvironmentCallback  =  {
+        let environmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             }
@@ -67,7 +67,7 @@ export default class MyAbility extends UIAbility {
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
         // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
+        callbackId = applicationContext.registerEnvironmentCallback(environmentCallback);
         console.log('registerEnvironmentCallback number: ${JSON.stringify(callbackId)}');
     }
     onDestroy() {

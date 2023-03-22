@@ -31,6 +31,10 @@ RichText(content:string)
 | onStart(callback: () => void)    | 加载网页时触发。   |
 | onComplete(callback: () => void) | 网页加载结束时触发。 |
 
+## 属性
+
+只支持[通用属性](ts-universal-attributes-size.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
+
 ## 支持标签
 
 | 名称 | 描述 | 示例 |
@@ -46,7 +50,7 @@ RichText(content:string)
 | \<u>\</u> | 定义与常规文本风格不同的文本，像拼写错误的单词或者汉语中的专有名词，应尽量避免使用\<u>为文本加下划线，用户会把它混淆为一个超链接。 | \<p>\<u>这是带有下划线的段落\</u>\</p> |
 | \<style>\</style> | 定义HTML文档的样式信息。 | \<style>h1{color:red;}p{color:blue;}\</style> |
 | style | 属性规定元素的行内样式，写在标签内部，在使用的时候需用引号来进行区分，并以; 间隔样式，style='width: 500px;height: 500px;border: 1px soild;margin: 0 auto;'。 | \<h1 style='color:blue;text-align:center'>这是一个标题\</h1>\<p style='color:green'>这是一个段落。\</p> |
-| \<script>\</script> | 用于定义客户端文本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
+| \<script>\</script> | 用于定义客户端脚本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
 
 ## 示例
 
@@ -78,6 +82,29 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
+        .width(500)
+        .height(400)
+        .backgroundColor(0XBDDB69)
+      RichText('layoutWeight(1)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92D6CC)
+        .layoutWeight(1)
+      RichText('layoutWeight(2)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92C48D)
+        .layoutWeight(2)
     }
   }
 }

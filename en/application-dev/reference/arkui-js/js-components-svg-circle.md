@@ -1,11 +1,11 @@
 # circle
 
-The **\<circle>** component is used to draw circles.
 
 >  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+The **\<circle>** component is used to draw circles.
 
 ## Required Permissions
 

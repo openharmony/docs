@@ -948,8 +948,18 @@ Creates an **ImageSource** instance based on the URI.
 **Example**
 
 ```js
-let context = featureAbility.getContext();
-let path = context.getCacheDir() + "test.jpg";
+// Stage model
+const context = getContext(this);
+const path = context.getCacheDir() + "/test.jpg";
+const imageSourceApi = image.createImageSource(path);
+```
+
+```js
+// FA model
+import featureAbility from '@ohos.ability.featureAbility';
+
+const context = featureAbility.getContext();
+const path = context.getCacheDir() + "/test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
@@ -1479,8 +1489,8 @@ Creates a **PixelMap** object based on the default parameters. This API uses an 
 
 ```js
 imageSourceApi.createPixelMap((err, pixelmap) => {
-                    console.info('Succeeded in creating pixelmap object.');
-                })
+    console.info('Succeeded in creating pixelmap object.');
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1513,6 +1523,177 @@ let decodingOptions = {
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
     console.log('Succeeded in creating pixelmap object.');
 })
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
+
+Creates an array of **PixelMap** objects based on image decoding parameters. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | No  | Image decoding parameters.                |
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of **PixeMap** objects.|
+
+**Example**
+
+```js
+let decodeOpts = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: RGBA_8888,
+    index: 0,
+};
+let pixelmaplist = await imageSourceApi.createPixelMapList(decodeOpts);
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
+
+Creates an array of **PixelMap** objects based on the default parameters. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name    | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+
+**Example**
+
+```js
+imageSourceApi.createPixelMap( pixelmaplist => {
+    console.info('Succeeded in creating pixelmaplist object.');
+})
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void;
+
+Creates an array of **PixelMap** objects based on image decoding parameters. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                              |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| options | [DecodingOptions](#decodingoptions7) | Yes| Image decoding parameters.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+
+**Example**
+
+```js
+let decodeOpts = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: RGBA_8888,
+    index: 0,
+};
+imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
+    console.log('Succeeded in creating pixelmaplist object.');
+})
+```
+
+### getDelayTime<sup>10+</sup>
+
+getDelayTime(callback: AsyncCallback<Array\<number>>): void;
+
+Obtains an array of delay times. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                              |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback<Array\<number>> | Yes  | Callback used to return an array of delay times.|
+
+**Example**
+
+```js
+imageSourceApi.getDelayTime( delayTimes => {
+    console.log('Succeeded in getting delay time.');
+});
+```
+
+### getDelayTime<sup>10+</sup>
+
+getDelayTime(): Promise<Array\<number>>;
+
+Obtains an array of delay times. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise<Array\<number>> | Promise used to return an array of delay times.|
+
+**Example**
+
+```js
+let delayTimes = await imageSourceApi.getDelayTime();
+```
+
+### getFrameCount<sup>10+</sup>
+
+getFrameCount(callback: AsyncCallback<number>): void;
+
+Obtains the number of frames. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                              |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the number of frames.|
+
+**Example**
+
+```js
+imageSourceApi.getFrameCount( frameCount => {
+    console.log('Succeeded in getting frame count.');
+});
+```
+
+### getFrameCount<sup>10+</sup>
+
+getFrameCount(): Promise\<number>;
+
+Obtains the number of frames. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<number> | Promise used to return the number of frames.|
+
+**Example**
+
+```js
+let frameCount = await imageSourceApi.getFrameCount();
 ```
 
 ### release

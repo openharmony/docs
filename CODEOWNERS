@@ -435,6 +435,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-bluetooth.md @cheng_guohong 
 zh-cn/application-dev/reference/apis/js-apis-system-brightness.md @aqxyjay @zengyawen @aqxyjay @alien0208
 zh-cn/application-dev/reference/apis/js-apis-system-cipher.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-system-configuration.md @Buda-Liu @ningningW @budda-wang @tomatodevboy
+zh-cn/application-dev/reference/apis/js-apis-system-date-time.md @feng-aiwen @ningningW @illybyy @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-system-device.md @mupceet @zengyawen @handyohos @nan-xiansen
 zh-cn/application-dev/reference/apis/js-apis-system-fetch.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-system-file.md @panqinxu @zengyawen @bubble_mao @jinhaihw
@@ -520,7 +521,7 @@ zh-cn/application-dev/reference/apis/js-apis-bundleManager.md @shuaytao @RayShih
 zh-cn/application-dev/reference/apis/js-apis-bundleMonitor.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md @jayleehw @RayShih @li-weifeng2 @currydavids
-zh-cn/application-dev/reference/apis/js-apis-configPolicy.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-configPolicy.md @liuzuming @ningningW @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-cooperate.md @yuanxinying @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-cert.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
@@ -528,8 +529,13 @@ zh-cn/application-dev/reference/apis/js-apis-curve.md @huaweimaxuchu @HelloCreas
 zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-distributedBundle.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-distributedKVStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md @Buda-Liu @ningningW @budda-wang @yangqing3
-zh-cn/application-dev/reference/apis/js-apis-enterprise-dateTimeManager.md @Buda-Liu @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-enterprise-accountManager.md @liuzuming @ningningW @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md @liuzuming @ningningW @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-enterprise-dateTimeManager.md @liuzuming @ningningW @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-enterprise-deviceControl.md @liuzuming @ningningW @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-enterprise-deviceInfo.md @liuzuming @ningningW @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-enterprise-networkManager.md @liuzuming @ningningW @yangqing3
+zh-cn/application-dev/reference/apis/js-apis-enterprise-wifiManager.md @liuzuming @ningningW @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-fileAccess.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-fileExtensionInfo.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @shuaytao @RayShih @wangzhen107 @inter515

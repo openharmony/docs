@@ -1801,7 +1801,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络具体能力。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
@@ -1815,7 +1815,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称         | 值   | 说明        |
 | --------------- | ---- | ----------- |
@@ -1839,7 +1839,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 提供承载数据网络能力的实例。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称                     | 类型                                | 必填  | 说明                                                         |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
@@ -1850,7 +1850,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络的能力集。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
@@ -1863,7 +1863,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络连接信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称           | 类型                               | 必填 |  说明             |
 | ------------- | ---------------------------------- | ----|---------------- |
@@ -1878,7 +1878,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络路由信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称           | 类型                        | 必填 |说明             |
 | -------------- | --------------------------- | --- |---------------- |
@@ -1892,7 +1892,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络链路信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称        | 类型                      | 必填 |说明                 |
 | ------------ | ----------------------- |---- |-------------------- |
@@ -1903,7 +1903,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 网络地址。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称    | 类型   | 必填 | 说明                           |
 | ------- | ------ | -- |------------------------------ |

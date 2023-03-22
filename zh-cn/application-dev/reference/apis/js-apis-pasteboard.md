@@ -606,7 +606,7 @@ let opt = {
   scaleMode: 1
 };
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    let pasteData = pasteboard.createData(MIMETYPE_PIXELMAP, pixelMap);
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_PIXELMAP, pixelMap);
     let PixelMap = pasteData.getPrimaryPixelMap();
 });
 ```
@@ -782,7 +782,7 @@ getRecord(index: number): PasteDataRecord
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900001 | The index is out of range. |
+| 12900001 | The index is out of the record. |
 
 **示例：**
 
@@ -880,7 +880,7 @@ removeRecord(index: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900001 | The index is out of range. |
+| 12900001 | The index is out of the record. |
 
 **示例：**
 
@@ -910,7 +910,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900001 | The index is out of range. |
+| 12900001 | The index is out of the record. |
 
 **示例：**
 

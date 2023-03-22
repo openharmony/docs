@@ -1666,7 +1666,7 @@ Lists all files in a directory. This API uses an asynchronous callback to return
   });
   ```
 
-## listFileSync
+## fs.listFileSync
 
 listFileSync(path: string, options?: {
     recursion?: boolean;
@@ -1716,7 +1716,7 @@ Lists all files in a directory synchronously. This API supports recursive listin
     console.info("filename: %s", filenames[i]);
   }
   ```
-## moveFile
+## fs.moveFile
 
 moveFile(src: string, dest: string, mode?: number): Promise<void>;
 
@@ -1742,7 +1742,7 @@ Moves a file. This API uses a promise to return the result.
   });
   ```
 
-## moveFile
+## fs.moveFile
 
 moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>): void;
 
@@ -1771,7 +1771,7 @@ Moves a file. This API uses an asynchronous callback to return the result.
   });
   ```
 
-## moveFileSync
+## fs.moveFileSync
 
 moveFile(src: string, dest: string, mode?: number): void;
 
@@ -2064,6 +2064,78 @@ Synchronously opens a stream based on the file descriptor.
   let ss = fs.fdopenStreamSync(file.fd, "r+");
   fs.closeSync(file);
   ```
+
+## fs.createWatcher<sup>10+</sup>
+
+createWatcher(path: string, events: number, listener: WatchEventListener): Watcher
+
+Creates a **Watcher** object to observe file or directory changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| path   | string | Yes   | Path of the file or directory to observe in the application sandbox.                            |
+| events | number | Yes   | Events to observe. Multiple events can be separated|by a bitwise OR operator (&#124;).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: Metadata is changed.<br>- **0x8: IN_CLOSE_WRITE**: The file opened for writing is closed.<br>- **0x10: IN_CLOSE_NOWRITE**: The file or directory not opened for writing is closed.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted form the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+| listener   | WatchEventListener | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
+
+**Return value**
+
+| Type               | Description       |
+| ------------------ | --------- |
+| [Watcher](#watcher10) | **Watcher** object created.|
+
+**Example**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent) => {
+    if (watchEvent.event == 0x2) {
+      console.info(watchEvent.fileName + 'was modified');
+    } else if (watchEvent.event == 0x10) {
+      console.info(watchEvent.fileName + 'was closed');
+    }
+  });
+  watcher.start();
+  fs.writeSync(file.fd, 'test');
+  fs.closeSync(file);
+  watcher.stop();
+  ```
+
+## WatchEventListener<sup>10+</sup>
+
+(event: WatchEvent): void
+
+Called when an observed event occurs.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| event   | WatchEvent | Yes   | Event for the callback to invoke.                            |
+
+## WatchEvent<sup>10+</sup>
+
+Defines the event to observe.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name  | Type  | Readable  | Writable  | Description     |
+| ---- | ------ | ---- | ---- | ------- |
+| fileName | string | Yes   | No   | Name of the file for which the event occurs.|
+| event | number | Yes   | No   | Events to observe. For details, see **events** in [createWatcher](#fscreatewatcher10).|
+| cookie | number | Yes   | No   | Cookie bound with the event. Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
 
 ## Stat
 
@@ -2684,6 +2756,48 @@ Unlocks this file synchronously.
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
+  ```
+
+## Watcher<sup>10+</sup>
+
+Provides APIs for file or directory listening. Before using the APIs of **Watcher** , call **createWatcher()** to create a **Watcher** object.
+
+### start<sup>10+</sup>
+
+start(): void
+
+Starts file or directory listening.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Example**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
+  ```
+
+### stop<sup>10+</sup>
+
+stop(): void
+
+Stops file or directory listening.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Example**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
   ```
 
 ## OpenMode

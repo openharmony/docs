@@ -161,4 +161,4 @@ Describes the data passed in the event.
 
 | Name| Type          | Readable| Writable| Description          |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | Yes  | Yes  | Data carried by the event. The data type can be String, Integer, or Boolean.|
+| data | [key: string]: any | Yes  | Yes  | Data carried by the event. The value can be a string, integer, or Boolean, wherein a string contains a maximum of 10240 bytes. |

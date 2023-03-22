@@ -40,7 +40,7 @@ Enumerates the window types.
 | TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | Dock bar on the home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_POINTER<sup>9+</sup> | 14      | Mouse.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
-| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | Floating camera window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Required permissions**: ohos.permission.SYSTEM_FLOAT_WINDOW|
+| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | Floating camera window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_DIALOG<sup>9+</sup>  | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_SCREENSHOT<sup>9+</sup>  | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 
@@ -4671,6 +4671,100 @@ try {
 
 ```
 
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
+
+Adds or deletes the watermark flag for this window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory | Description                                                  |
+| ------ | ------- | --------- | ------------------------------------------------------------ |
+| enable | boolean | Yes       | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag. |
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300008 | The operation is on invalid display.          |
+
+**Example**
+
+```js
+try {
+    let enable = true;
+    let promise = windowClass.setWaterMarkFlag(enable);
+    promise.then(()=> {
+        console.info('Succeeded in setting water mark flag of window.');
+    }).catch((err)=>{
+        console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Adds or deletes the watermark flag for this window. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| enable   | boolean                   | Yes       | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300008 | The operation is on invalid display.          |
+
+**Example**
+
+```js
+try {
+    let enable = true;
+    windowClass.setWaterMarkFlag(enable, (err) => {
+        if (err.code) {
+            console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting water mark flag of window.');
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -7212,6 +7306,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
     );
     console.info('complete transition end');
 };
+
 ```
 
 ### animationForHidden<sup>9+</sup>

@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-提供web控制能力。
+@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供具有网页显示能力。
 
 > **说明：**
 >
@@ -245,7 +245,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setHttpDns
+### setHttpDns<sup>10+</sup>
 
 static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
@@ -3572,7 +3572,7 @@ struct Index {
 }
 ```
 
-### setAudioMuted
+### setAudioMuted<sup>10+</sup>
 
 setAudioMuted(mute: boolean): void
 
@@ -3585,6 +3585,14 @@ setAudioMuted(mute: boolean): void
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | -------------------------------------- |
 | mute | boolean | 是   | 表示是否将网页设置为静音状态，true表示设置为静音状态，false表示取消静音状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3626,7 +3634,7 @@ static getCookie(url: string): string
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要获取的cookie所属的url。 |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
 
 **返回值：**
 
@@ -3682,7 +3690,7 @@ static setCookie(url: string, value: string): void
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要设置的cookie所属的url。 |
+| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
 | value  | string | 是   | 要设置的cookie的值。      |
 
 **错误码：**
@@ -5212,7 +5220,7 @@ struct WebComponent {
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
 
-## SecureDnsMode
+## SecureDnsMode<sup>10+</sup>
 
 Web組件使用HTTPDNS的模式。
 
@@ -5221,5 +5229,5 @@ Web組件使用HTTPDNS的模式。
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
 | Off           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
-| Automatic     | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至built-in DNS及系统DNS。|
+| Auto          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
 | SecureOnly    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|

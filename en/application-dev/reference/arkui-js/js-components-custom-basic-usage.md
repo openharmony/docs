@@ -3,7 +3,7 @@
 Custom components are existing components encapsulated based on service requirements. A custom component can be invoked multiple times in a project to improve the code readability. You can import a custom component to the host page through **element** as shown in the following code snippet:
 
 ```html
-<element name='comp' src='../../common/component/comp.hml'></element>
+<element name='comp' src='../common/component/comp.hml'></element>
 <div>
   <comp prop1='xxxx' @child1="bindParentVmMethod"></comp>
 </div>
@@ -12,8 +12,8 @@ Custom components are existing components encapsulated based on service requirem
 The following is an example of using a custom component with **if-else**, which displays **comp1** when **showComp1** is set to **true** and displays **comp2** otherwise.
 
 ```html
-<element name='comp1' src='../../common/component/comp1/comp1.hml'></element>
-<element name='comp2' src='../../common/component/comp2/comp2.hml'></element>
+<element name='comp1' src='../common/component/comp1/comp1.hml'></element>
+<element name='comp2' src='../common/component/comp2/comp2.hml'></element>
 <div>
   <comp1 if="{{showComp1}}" prop1='xxxx' @child1="bindParentVmMethodOne"></comp1>
   <comp2 else prop1='xxxx' @child1="bindParentVmMethodTwo"></comp2>
@@ -76,7 +76,7 @@ The following example describes how to import **comp** to the parent component:
 
 ```html
 <!-- xxx.hml --> 
-<element name='comp' src='../../common/component/comp.hml'></element>  
+<element name='comp' src='../common/component/comp.hml'></element>  
 <div class="container">  
   <comp @event-type1="textClicked"></comp>  
 </div>
@@ -125,7 +125,7 @@ In the following example, the child component passes the **text** parameter to t
 
 ```html
 <!-- xxx.hml -->
-<element name='comp' src='../../common/comp/comp.hml'></element>
+<element name='comp' src='../common/comp/comp.hml'></element>
 <div class="container">  
    <text>Parent component: {{text}}</text> 
    <comp @event-type1="textClicked"></comp>  

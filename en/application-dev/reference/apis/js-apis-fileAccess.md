@@ -1,11 +1,12 @@
 # @ohos.file.fileAccess (User File Access and Management)
 
-The **fileAccess** module is a framework for accessing and operating user files based on the Extension ability mechanism. This module interacts with diverse file management services, such as the media library and external storage management service, and provides a set of file access and management APIs for system applications. The media library service allows access to user files on local devices and distributed devices. The external storage management service allows access to the user files stored on devices such as shared disks, USB flash drives, and SD cards.
+The **fileAccess** module is a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with diverse file management services, such as the media library and external storage management service, and provides a set of file access and management APIs for system applications. The media library service allows access to user files on local devices and distributed devices. The external storage management service allows access to the user files stored on devices such as shared disks, USB flash drives, and SD cards.
 
 >**NOTE**
 >
 >- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The APIs provided by this module are system APIs and cannot be called by third-party applications. Currently, the APIs can be called only by **FilePicker** and **Files**.
+>- The APIs provided by this module are system APIs and cannot be called by third-party applications. Currently, the APIs can be called only by **picker** and **fs**.
+>- The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
@@ -25,9 +26,9 @@ Obtains information about all wants with **extension** set to **fileAccess** in 
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | Promise&lt;Array&lt;Want&gt;&gt; | Promise used to return the **want** information obtained.|
+| Type| Description|
+| --- | -- |
+| Promise&lt;Array&lt;Want&gt;&gt; | Promise used to return the **want** information obtained.|
 
 **Example**
 
@@ -55,9 +56,9 @@ Obtains information about all wants with **extension** set to **fileAccess** in 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;Array&lt;Want&gt;&gt; | Yes| Promise used to return the **want** information obtained.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| callback | AsyncCallback&lt;Array&lt;Want&gt;&gt; | Yes| Promise used to return the **want** information obtained.|
 
 **Example**
 
@@ -89,23 +90,23 @@ Synchronously creates a **Helper** object to connect to the specified wants. The
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | context | Context | Yes| Context of the ability.|
-  | wants | Array&lt;Want&gt; | Yes| Wants to connect.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| context | Context | Yes| Context of the ability.|
+| wants | Array&lt;Want&gt; | Yes| Wants to connect.|
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileAccessHelper | **Helper** object created.|
+| Type| Description|
+| --- | -- |
+| FileAccessHelper | **Helper** object created.|
 
 **Example**
 
   ```js
   createFileAccessHelper() {
     let fileAccessHelper = null;
-    / / Obtain wantInfos by using getFileAccessAbilityInfo().
+    // Obtain wantInfos by using getFileAccessAbilityInfo().
     // Create a helper object to interact with the media library service only.
     let wantInfos = [
       {
@@ -136,15 +137,15 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | context | Context | Yes| Context of the ability.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| context | Context | Yes| Context of the ability.|
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileAccessHelper | **Helper** object created.|
+| Type| Description|
+| --- | -- |
+| FileAccessHelper | **Helper** object created.|
 
 **Example**
 
@@ -175,9 +176,9 @@ Obtains information about the device root nodes of the file management service t
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | Promise&lt;RootIterator&gt; | Promise used to return the **RootIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| Promise&lt;RootIterator&gt; | Promise used to return the **RootIterator** object obtained.|
 
 **Example**
 
@@ -219,9 +220,9 @@ The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;RootIterator&gt; | Yes| Promise used to return the **RootIterator** object obtained.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| callback | AsyncCallback&lt;RootIterator&gt; | Yes| Promise used to return the **RootIterator** object obtained.|
 
 **Example**
 
@@ -262,16 +263,16 @@ Synchronously obtains the **FileIterator** object of the first-level files (dire
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -313,15 +314,15 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -363,15 +364,15 @@ Synchronously obtains the **FileIterator** object of the next-level files (direc
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -413,16 +414,16 @@ Recursively obtains the **FileIterator** object of the files matching the condit
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | -- | -- |
-  | filter | Filter | No| **Filter** object. |
+| Name| Type| Mandatory| Description|
+| --- | --- | -- | -- |
+| filter | Filter | No| **Filter** object. |
 
 
 **Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | FileIterator | **FileIterator** object obtained.|
+| Type| Description|
+| --- | -- |
+| FileIterator | **FileIterator** object obtained.|
 
 **Example**
 
@@ -464,10 +465,10 @@ Creates a file in a directory. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the parent directory for the file to create.|
-  | displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the parent directory for the file to create.|
+| displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
 
 **Return value**
 
@@ -509,11 +510,11 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the parent directory for the file to create.|
-  | displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file created.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the parent directory for the file to create.|
+| displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file created.|
 
 **Example**
 
@@ -541,7 +542,7 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
-Creates a directory in a directory. This API uses a promise to return the result.
+Creates a directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -549,10 +550,10 @@ Creates a directory in a directory. This API uses a promise to return the result
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | parentUri | string | Yes| URI of the parent directory for the directory to create.|
-  | displayName | string | Yes| Name of the directory to create.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| parentUri | string | Yes| URI of the parent directory for the directory to create.|
+| displayName | string | Yes| Name of the directory to create.|
 
 **Return value**
 
@@ -586,7 +587,7 @@ Creates a directory in a directory. This API uses a promise to return the result
 
 mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
 
-Creates a directory in a directory. This API uses an asynchronous callback to return the result.
+Creates a directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -594,11 +595,11 @@ Creates a directory in a directory. This API uses an asynchronous callback to re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | parentUri | string | Yes| URI of the parent directory for the directory to create.|
-  | displayName | string | Yes| Name of the directory to create.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the directory created.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| parentUri | string | Yes| URI of the parent directory for the directory to create.|
+| displayName | string | Yes| Name of the directory to create.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the directory created.|
 
 **Example**
 
@@ -634,10 +635,10 @@ Opens a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file to open.|
-  | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file to open.|
+| flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
 
 **Return value**
 
@@ -672,11 +673,11 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file to open.|
-  | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the file descriptor of the file opened.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file to open.|
+| flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the file descriptor of the file opened.|
 
 **Example**
 
@@ -711,9 +712,9 @@ Deletes a file or directory. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or directory to delete.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or directory to delete.|
 
 **Return value**
 
@@ -750,10 +751,10 @@ Deletes a file or directory. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or directory to delete.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the result.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or directory to delete.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the result.|
 
 **Example**
 
@@ -788,10 +789,10 @@ Moves a file or directory. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFile | string | Yes| URI of the file or directory to move.|
-  | destFile | string | Yes| URI of the directory, to which the file or directory will be moved.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFile | string | Yes| URI of the file or directory to move.|
+| destFile | string | Yes| URI of the directory, to which the file or directory will be moved.|
 
 **Return value**
 
@@ -828,11 +829,11 @@ Moves a file or directory. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFile | string | Yes| URI of the file or directory to move.|
-  | destFile | string | Yes| URI of the directory, to which the file or directory will be moved.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file or directory in the destination directory.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFile | string | Yes| URI of the file or directory to move.|
+| destFile | string | Yes| URI of the directory, to which the file or directory will be moved.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file or directory in the destination directory.|
 
 **Example**
 
@@ -868,10 +869,10 @@ Renames a file or directory. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or directory to rename.|
-  | displayName | string | Yes| New name of the file or directory, which can contain the file name extension.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or directory to rename.|
+| displayName | string | Yes| New name of the file or directory, which can contain the file name extension.|
 
 **Return value**
 
@@ -907,11 +908,11 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or directory to rename.|
-  | displayName | string | Yes| New name of the file or directory, which can contain the file name extension.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the renamed file or directory.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or directory to rename.|
+| displayName | string | Yes| New name of the file or directory, which can contain the file name extension.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the renamed file or directory.|
 
 **Example**
 
@@ -946,9 +947,9 @@ Checks whether a file or directory exists. This API uses a promise to return the
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFileUri | string | Yes| URI of the file or directory.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFileUri | string | Yes| URI of the file or directory.|
 
 **Return value**
 
@@ -987,10 +988,10 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | sourceFileUri | string | Yes| URI of the file or directory.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Promise used to return the result.|
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| sourceFileUri | string | Yes| URI of the file or directory.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Promise used to return the result.|
 
 **Example**
 
@@ -1015,6 +1016,241 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
     console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
+
+## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+
+getFileInfoFromUri(uri: string) : Promise<FileInfo>;
+
+Obtains a [FileInfo](#fileinfo) object based on the specified URI. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of the file or directory.|
+
+**Return value**
+
+| Type| Description|
+| --- | -- |
+| [FileInfo](#fileinfo) | Promise used to return the **FileInfo** object obtained.|
+
+**Example**
+
+  ```js
+  // The media library URI is used as an example.
+  // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let sourceUri = "datashare:///media/file/6";
+  try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
+  } catch (error) {
+    console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+
+getFileInfoFromUri(uri: string, callback: AsyncCallback<FileInfo>) : void;
+
+Obtains a [FileInfo](#fileinfo) object based on the specified URI. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| uri | string | Yes| URI of a file or directory.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the **FileInfo** object obtained.|
+
+**Example**
+
+  ```js
+  // The media library URI is used as an example.
+  // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
+  // You can use the URI obtained.
+  let sourceUri = "datashare:///media/file/6";
+  try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    fileAccessHelper.getFileInfoFromUri(sourceUri, function (err, fileInfo) {
+      if (err) {
+        console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
+    });
+  } catch (error) {
+    console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+
+## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+
+getFileInfoFromRelativePath(relativePath: string) : Promise<FileInfo>;
+
+Obtains a [FileInfo](#fileinfo) object based on the specified relative path. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| relativePath | string | Yes| Relative path of a file or directory.|
+
+**Return value**
+
+| Type| Description|
+| --- | -- |
+| [FileInfo](#fileinfo) | Promise used to return the **FileInfo** object obtained.|
+
+**Example**
+
+  ```js
+  // The relative path of the media library is used as an example.
+  // In the sample code, relativePath indicates the download directory, which is the relativePath in fileInfo.
+  // You can use the relativePath obtained.
+  let relativePath = "Download/";
+  try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(relativePath);
+  } catch (error) {
+    console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+
+getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback<FileInfo>) : void;
+
+Obtains a [FileInfo](#fileinfo) object based on the specified relative path. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| relativePath | string | Yes| Relative path of a file or directory.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the **FileInfo** object obtained.|
+
+**Example**
+
+  ```js
+  // The relative path of the media library is used as an example.
+  // In the sample code, relativePath indicates the download directory, which is the relativePath in fileInfo.
+  // You can use the relativePath obtained.
+  let relativePath = "Download/";
+  try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    fileAccessHelper.getFileInfoFromRelativePath(relativePath, function (err, fileInfo) {
+      if (err) {
+        console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
+    });
+  } catch (error) {
+    console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getThumbnail<sup>10+</sup>
+
+getThumbnail(uri: string, size: image.Size) : Promise&lt;image.PixelMap&gt;
+
+Obtains the **Pixelmap** object of a media file based on the specified URI and size. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description       |
+| ------ | ----------------------------------- | ---- | ----------- |
+| uri    | string                              | Yes  | URI of the media file.|
+| size   | [image.Size](js-apis-image.md#size) | Yes  | Size of the thumbnail. |
+
+**Return value**
+
+| Type                         | Description              |
+| :---------------------------- | :----------------- |
+| Promise&lt;image.PixelMap&gt; | Promise used to return the **Pixelmap** object obtained.|
+
+**Example**
+
+```js
+// The media library URI is used as an example.
+// In the sample code, targetUri indicates a media file (image, audio, or video) in the Download directory. The URI is the URI in fileInfo.
+// You can use the URI obtained.
+let targetUri = "datashare:///media/image/100";
+let size = { width: 128, height: 128 };
+try {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let pixelMap = await fileAccessHelper.getThumbnail(targetUri, size);
+  let imageInfo = await pixelMap.getImageInfo();    
+  console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
+  console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
+} catch (error) {
+  console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
+};
+```
+
+## FileAccessHelper.getThumbnail<sup>10+</sup>
+
+ getThumbnail(uri: string, size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;) : void
+
+Obtains the **Pixelmap** object of a media file based on the specified URI and size. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name  | Type                               | Mandatory| Description              |
+| -------- | ----------------------------------- | ---- | ------------------ |
+| uri      | string                              | Yes  | URI of the media file.       |
+| size     | [image.Size](js-apis-image.md#size) | Yes  | Size of the thumbnail.        |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes  | Callback invoked to return the **Pixelmap** object obtained.|
+
+**Example**
+
+```js
+// The media library URI is used as an example.
+// In the sample code, targetUri indicates a media file (image, audio, or video) in the Download directory. The URI is the URI in fileInfo.
+// You can use the URI obtained.
+let targetUri = "datashare:///media/image/100";
+let size = { width: 128, height: 128 };
+try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    fileAccessHelper.getThumbnail(targetUri, size, async(err, pixelMap) => {
+        if (err) {
+            console.error("Failed to getThumbnail in async, errCode:" + err.code + ", errMessage:" + err.message);
+            return;
+        }
+        let imageInfo = await pixelMap.getImageInfo();
+        console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
+        console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
+    });
+} catch (error) {
+    console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
+};
+```
 
 ## RootIterator.next
 
@@ -1062,6 +1298,7 @@ Represents the root attribute information and interface capabilities of a device
 | ------ | ------ | -------- | ------ | -------- |
 | deviceType | number | Yes| No|Device type.|
 | uri | string | Yes| No| Root directory URI of the device.|
+| relativePath<sup>10+</sup> | string | Yes| No| Relative path of the root directory.|
 | displayName | string | Yes| No| Device name.|
 | deviceFlags | number | Yes| No| Capabilities supported by the device.|
 
@@ -1078,6 +1315,7 @@ Represents the file or directory attribute information and interface capabilitie
 | Name| Type  | Readable| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | Yes| No| URI of the file or directory.|
+| relativePath<sup>10+</sup> | string | Yes| No| Relative path of a file or directory.|
 | fileName | string | Yes| No| Name of a file or directory.|
 | mode | number | Yes| No| Permissions on the file or directory.|
 | size | number | Yes| No|  Size of the file or directory.|

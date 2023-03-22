@@ -12,9 +12,9 @@ An **ImageData** object stores pixel data rendered on a canvas.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| width | number | Actual width of the rectangle on the canvas, in pixels.|
-| height | number | Actual height of the rectangle on the canvas, in pixels.|
-| data | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.|
+| width | number | Actual width of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| height | number | Actual height of the rectangle on the canvas, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| data | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 >  **NOTE**
 > 

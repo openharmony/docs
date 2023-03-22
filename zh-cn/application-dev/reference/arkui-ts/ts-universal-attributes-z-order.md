@@ -12,7 +12,7 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| zIndex | number | 同一容器中兄弟组件显示层级关系。zIndex值越大，显示层级越高，即zIndex值大的组件会覆盖在zIndex值小的组件上方。 |
+| zIndex | number | 同一容器中兄弟组件显示层级关系。zIndex值越大，显示层级越高，即zIndex值大的组件会覆盖在zIndex值小的组件上方。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

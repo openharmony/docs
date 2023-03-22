@@ -411,7 +411,7 @@ Registers a listener for status change events of the specified geofence.
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,

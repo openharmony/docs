@@ -15,9 +15,11 @@ This topic describes the UIAbility interaction modes in the following scenarios.
 
 - [Starting UIAbility of Another Application and Obtaining the Return Result](#starting-uiability-of-another-application-and-obtaining-the-return-result)
 
+- [Starting UIAbility with Window Mode Specified (for System Applications Only)](#starting-uiability-with-window-mode-specified-for-system-applications-only)
+
 - [Starting a Specified Page of UIAbility](#starting-a-specified-page-of-uiability)
 
-- [Using Ability Call to Implement UIAbility Interaction](#using-ability-call-to-implement-uiability-interaction)
+- [Using Ability Call to Implement UIAbility Interaction (for System Applications Only)](#using-ability-call-to-implement-uiability-interaction-for-system-applications-only)
 
 
 ## Starting UIAbility in the Same Application
@@ -202,8 +204,7 @@ This section describes how to start the UIAbility of another application through
    ```
 
    The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select.
-
-   ![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)
+   ![](figures/uiability-intra-device-interaction.png)
    
 3. To stop the **UIAbility** instance after the document application is used, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
    
@@ -307,6 +308,55 @@ If you want to obtain the return result when using implicit Want to start the UI
    })
    ```
 
+## Starting UIAbility with Window Mode Specified (for System Applications Only)
+
+By specifying the window mode when starting the UIAbility of an application, the application can be displayed in different window modes, which can be full-screen, floating window, or split-screen.
+
+In full-screen mode, an application occupies the entire screen after being started. Users cannot view other windows or applications. This mode is suitable for an application that requires users to focus on a specific task or UI.
+
+In floating window mode, an application is displayed on the screen as a floating window after being started. Users can easily switch to other windows or applications. The mode is suitable for an application that requires users to process multiple tasks at the same time.
+
+In split-screen mode, two applications occupy the entire screen, with one on the left or in the upper part of the screen and the other on the right or in the lower part. This mode helps users improve multi-task processing efficiency.
+
+The window mode is specified by the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter of [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+
+> **NOTE**
+>
+> 1. If the **windowMode** field is not specified, the UIAbility is started in the default window mode.
+> 2. To ensure that the application can be displayed in the required window mode, check the **supportWindowMode** field in the [abilities tag](../quick-start/module-configuration-file.md#abilities) in the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility and make sure the specified window mode is supported.
+
+The following uses the floating window mode as an example to describe how to start the FuncAbility from the EntryAbility page.
+
+1. Add the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter in [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+2. Set the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**, indicating that the UIAbility will be displayed in a floating window.
+
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let wantInfo = {
+  deviceId: '', // An empty deviceId indicates the local device.
+  bundleName: 'com.example.myapplication',
+  abilityName: 'FuncAbility',
+  moduleName: 'module1', // moduleName is optional.
+  parameters: {// Custom information.
+    info: 'From the Index page of EntryAbility',
+  },
+}
+let options = {
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+}
+// context is the ability-level context of the initiator UIAbility.
+this.context.startAbility(wantInfo, options).then(() => {
+  // ...
+}).catch((err) => {
+  // ...
+})
+```
+
+The display effect is shown below.  
+![](figures/start-uiability-floating-window.png)
 
 ## Starting a Specified Page of UIAbility
 
@@ -422,9 +472,9 @@ In summary, when a UIAbility instance of application A has been created and the 
 > When the [launch type of the callee UIAbility](uiability-launch-type.md) is set to **standard**, a new instance is created each time the callee UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
 
 
-## Using Ability Call to Implement UIAbility Interaction
+## Using Ability Call to Implement UIAbility Interaction (for System Applications Only)
 
-This feature applies only to system applications. Ability call is an extension of the UIAbility capability. It enables the UIAbility to be invoked by and communicate with external systems. The UIAbility invoked can be either started in the foreground or created and run in the background. You can use the ability call to implement data sharing between two UIAbility instances (caller ability and callee ability) through IPC.
+Ability call is an extension of the UIAbility capability. It enables the UIAbility to be invoked by and communicate with external systems. The UIAbility invoked can be either started in the foreground or created and run in the background. You can use the ability call to implement data sharing between two UIAbility instances (caller ability and callee ability) through IPC.
 
 The core API used for the ability call is **startAbilityByCall**, which differs from **startAbility** in the following ways:
 
@@ -449,9 +499,9 @@ Ability call is usually used in the following scenarios:
 
 The following figure shows the ability call process.
 
-Figure 1 Ability call process
+  Figure 1 Ability call process
 
-![call](figures/call.png)
+  ![call](figures/call.png)  
 
 - The caller ability uses **startAbilityByCall** to obtain a caller object and uses **call()** of the caller object to send data to the callee ability.
 
@@ -476,8 +526,8 @@ The following table describes the main APIs used for the ability call. For detai
 | startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstartabilitybycall).|
 | on(method: string, callback: CalleeCallBack): void | Callback invoked when the callee ability registers a method.|
 | off(method: string): void | Callback invoked when the callee ability deregisters a method.|
-| call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt; | Sends agreed sequenceable data to the callee ability.|
-| callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt; | Sends agreed sequenceable data to the callee ability and obtains the agreed sequenceable data returned by the callee ability.|
+| call(method: string, data: rpc.Parcelable): Promise&lt;void&gt; | Sends agreed parcelable data to the callee ability.|
+| callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt; | Sends agreed parcelable data to the callee ability and obtains the agreed parcelable data returned by the callee ability.|
 | release(): void | Releases the caller object.|
 | on(type: "release", callback: OnReleaseCallback): void | Callback invoked when the caller object is released.|
 
@@ -495,37 +545,39 @@ For the callee ability, implement the callback to receive data and the methods t
 1. Configure the ability launch type.
    
    Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
-
+   
    | JSON Field| Description|
    | -------- | -------- |
    | "launchType" | Ability launch type. Set this parameter to **singleton**.|
-
+   
    An example of the ability configuration is as follows:
-
-      ```json
-      "abilities":[{
-        "name": ".CalleeAbility",
-        "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
-        "launchType": "singleton",
-        "description": "$string:CalleeAbility_desc",
-        "icon": "$media:icon",
-        "label": "$string:CalleeAbility_label",
-        "visible": true
-      }]
-      ```
-
+   
+   
+   ```json
+   "abilities":[{
+     "name": ".CalleeAbility",
+     "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+     "launchType": "singleton",
+     "description": "$string:CalleeAbility_desc",
+     "icon": "$media:icon",
+     "label": "$string:CalleeAbility_label",
+     "visible": true
+   }]
+   ```
+   
 2. Import the **UIAbility** module.
 
    ```ts
    import Ability from '@ohos.app.ability.UIAbility';
    ```
 
-3. Define the agreed sequenceable data.
+3. Define the agreed parcelable data.
 
    The data formats sent and received by the caller and callee abilities must be consistent. In the following example, the data formats are number and string.
-
+   
+   
    ```ts
-   export default class MySequenceable {
+   export default class MyParcelable {
        num: number = 0
        str: string = ""
    
@@ -534,15 +586,15 @@ For the callee ability, implement the callback to receive data and the methods t
            this.str = string
        }
    
-       marshalling(messageParcel) {
-           messageParcel.writeInt(this.num)
-           messageParcel.writeString(this.str)
+       marshalling(messageSequence) {
+           messageSequence.writeInt(this.num)
+           messageSequence.writeString(this.str)
            return true
        }
    
-       unmarshalling(messageParcel) {
-           this.num = messageParcel.readInt()
-           this.str = messageParcel.readString()
+       unmarshalling(messageSequence) {
+           this.num = messageSequence.readInt()
+           this.str = messageSequence.readString()
            return true
        }
    }
@@ -550,8 +602,7 @@ For the callee ability, implement the callback to receive data and the methods t
 
 4. Implement **Callee.on** and **Callee.off**.
 
-   The time to register a listener for the callee ability depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-
+   The time to register a listener for the callee ability depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
    ```ts
    const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
@@ -559,14 +610,14 @@ For the callee ability, implement the callback to receive data and the methods t
    function sendMsgCallback(data) {
        console.info('CalleeSortFunc called');
    
-       // Obtain the sequenceable data sent by the caller ability.
-       let receivedData = new MySequenceable(0, '');
-       data.readSequenceable(receivedData);
+       // Obtain the parcelable data sent by the caller ability.
+       let receivedData = new MyParcelable(0, '');
+       data.readParcelable(receivedData);
        console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
    
        // Process the data.
-       // Return the sequenceable data result to the caller ability.
-       return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+       // Return the parcelable data result to the caller ability.
+       return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
    }
    
    export default class CalleeAbility extends Ability {
@@ -588,7 +639,6 @@ For the callee ability, implement the callback to receive data and the methods t
    }
    ```
 
-
 ### Accessing the Callee Ability
 
 1. Import the **UIAbility** module.
@@ -598,9 +648,9 @@ For the callee ability, implement the callback to receive data and the methods t
    ```
 
 2. Obtain the caller interface.
-   
-   The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
 
+   The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
+   
    ```ts
    // Register the onRelease() listener of the caller ability.
    private regOnRelease(caller) {

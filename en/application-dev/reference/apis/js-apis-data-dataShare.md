@@ -1,14 +1,15 @@
-# @ohos.data.dataShare (DataShare)
+# @ohos.data.dataShare (Data Sharing)
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs provided by this module are system APIs.
+>
+> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -55,7 +56,7 @@ Observe the following when using this API:
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-application-context.md#context)        | Yes  | Context of an application.                                          |
+| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of an application.                                          |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
@@ -105,7 +106,7 @@ Observe the following when using this API:
 
 | Name | Type                                         | Mandatory| Description                          |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
-| context | [Context](js-apis-application-context.md#context) | Yes  | Context of an application.            |
+| context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of an application.            |
 | uri     | string                                            | Yes  | URI of the server application to connect.|
 
 **Return value**
@@ -187,18 +188,19 @@ Unsubscribes from the changes of the specified data. This API uses an asynchrono
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event type to unsubscribe from. The value is **dataChange**, which indicates data change events.|
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | No  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback for the data change event. If this parameter is left empty, all notification events of the URI are unsubscribed from.|
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-function offCallback() {
-    console.info("**** Observer off callback ****");
+function callback() {
+    console.info("**** Observer callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.off("dataChange", uri, offCallback);
+dataShareHelper.on("dataChange", uri, callback);
+dataShareHelper.off("dataChange", uri, callback);
 ```
 
 ### insert

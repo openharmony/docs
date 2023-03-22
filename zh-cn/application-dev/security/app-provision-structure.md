@@ -62,7 +62,7 @@ HarmonyAppProvision文件示例：
 
 ### bundle-info对象内部结构
 
-**说明：** HarmonyAppProvision文件中的bundle-info对象中bundle-name需要和所签名应用的包名bundleName（config.js/module.json5）保持一致。为了防止同一个HarmonyAppProvision配置文件任意用于不同应用的签名，在应用安装过程中，系统会校验HAP签名信息的bundleName与HAP的配置文件中的bundleName是否一致，如果不一致，HAP无法安装。
+**说明：** HarmonyAppProvision文件中的bundle-info对象中bundle-name需要和所签名应用的包名bundleName（config.json/module.json5）保持一致。为了防止同一个HarmonyAppProvision配置文件任意用于不同应用的签名，在应用安装过程中，系统会校验HAP签名信息的bundleName与HAP的配置文件中的bundleName是否一致，如果不一致，HAP无法安装。
 
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
 | ------------------------ | ------------------------------- | ------- | -------- | --------- |

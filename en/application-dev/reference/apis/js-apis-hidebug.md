@@ -297,7 +297,7 @@ import hidebug from '@ohos.hidebug'
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
-  ...
+  // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
   console.info(error.code)
@@ -326,7 +326,7 @@ import hidebug from '@ohos.hidebug'
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
-  ...
+  // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
   console.info(error.code)

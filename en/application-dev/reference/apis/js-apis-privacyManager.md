@@ -3,8 +3,9 @@
 The **privacyManager** module provides APIs for privacy management, such as management of permission usage records.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are system APIs.
+>
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -45,7 +46,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -95,7 +96,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -266,7 +267,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -314,7 +315,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -369,7 +370,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -417,7 +418,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
 | 12100003 | The specified permission does not exist or it is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -445,7 +446,7 @@ try {
 
 ## privacyManager.on
 
-on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
+on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
 Subscribes to the permission usage status changes of the specified permissions.
 
@@ -458,7 +459,7 @@ Subscribes to the permission usage status changes of the specified permissions.
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionNameList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left empty, the usage changes of all permissions are observed.          |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left empty, the usage changes of all permissions are observed.          |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | Yes| Callback invoked to return a change in the permission usage.|
 
 **Error codes**
@@ -467,7 +468,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -478,9 +479,9 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList = [];
+let permissionList = [];
 try {
-    privacyManager.on('activeStateChange', permissionNameList, (data) => {
+    privacyManager.on('activeStateChange', permissionList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
     });
 } catch(err) {
@@ -490,7 +491,7 @@ try {
 
 ## privacyManager.off
 
-off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
+off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
 Unsubscribes from the permission usage status changes of the specified permissions.
 
@@ -503,7 +504,7 @@ Unsubscribes from the permission usage status changes of the specified permissio
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionNameList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left blank, the usage changes of all permissions are unsubscribed from. The value must be the same as that specified in **on()**.|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left blank, the usage changes of all permissions are unsubscribed from. The value must be the same as that specified in **on()**.|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | No| Callback for the permission usage change event.|
 
 **Error codes**
@@ -513,7 +514,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 | ID| Error Message|
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The permissionName in list is all invalid or the list size is larger than 1024. |
-| 12100004 | The interface is not used with |
+| 12100004 | The API is not used together with "on()". |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -522,9 +523,9 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList = [];
+let permissionList = [];
 try {
-    privacyManager.off('activeStateChange', permissionNameList);
+    privacyManager.off('activeStateChange', permissionList);
 }catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }

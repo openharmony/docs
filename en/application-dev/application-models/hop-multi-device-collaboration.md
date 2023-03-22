@@ -1,9 +1,9 @@
-# Multi-device Collaboration
+# Multi-device Collaboration (for System Applications Only)
 
 
 ## When to Use
 
-Multi-device coordination is available only for system applications. It involves the following scenarios:
+Multi-device coordination involves the following scenarios:
 
 - [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned)
 
@@ -305,7 +305,7 @@ A system application can connect to a service on another device by calling [conn
 
 ## Using Cross-Device Ability Call
 
-The basic principle of cross-device ability call is the same as that of intra-device ability call. For details, see [Using Ability Call to Implement UIAbility Interaction](uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction).
+The basic principle of cross-device ability call is the same as that of intra-device ability call. For details, see [Using Ability Call to Implement UIAbility Interaction (for System Applications Only)](uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction-for-system-applications-only).
 
 The following describes how to implement multi-device collaboration through cross-device ability call.
 
@@ -319,10 +319,10 @@ The following describes how to implement multi-device collaboration through cros
 | startAbilityByCall(want: Want): Promise&lt;Caller&gt;; | Starts a UIAbility in the foreground or background and obtains the caller object for communicating with the UIAbility.|
 | on(method: string, callback: CalleeCallBack): void | Callback invoked when the callee ability registers a method.|
 | off(method: string): void | Callback invoked when the callee ability deregisters a method.|
-| call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt; | Sends agreed sequenceable data to the callee ability.|
-| callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt; | Sends agreed sequenceable data to the callee ability and obtains the agreed sequenceable data returned by the callee ability.|
+| call(method: string, data: rpc.Parcelable): Promise&lt;void&gt; | Sends agreed parcelable data to the callee ability.|
+| callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;| Sends agreed parcelable data to the callee ability and obtains the agreed parcelable data returned by the callee ability.|
 | release(): void | Releases the caller object.|
-| on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | Callback invoked when the caller object is released.|
+| on(type: "release", callback: OnReleaseCallback): void | Callback invoked when the caller object is released.|
 
 
 ### How to Develop
@@ -348,16 +348,15 @@ The following describes how to implement multi-device collaboration through cros
    For the callee ability, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
 
    1. Configure the launch type of the UIAbility.
+       Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
 
-      Set **launchType** of the callee ability to **singleton** in the **module.json5** file.
+       | JSON Field| Description|
+       | -------- | -------- |
+       | "launchType"| Ability launch type. Set this parameter to **singleton**.|
 
-      | JSON Field| Description|
-      | -------- | -------- |
-   | "launchType"| Ability launch type. Set this parameter to **singleton**.|
+       An example of the UIAbility configuration is as follows:
 
-      An example of the UIAbility configuration is as follows:
-
-      
+       
        ```json
        "abilities":[{
            "name": ".CalleeAbility",
@@ -369,19 +368,18 @@ The following describes how to implement multi-device collaboration through cros
            "visible": true
        }]
        ```
-
    2. Import the **UIAbility** module.
       
        ```ts
        import Ability from '@ohos.app.ability.UIAbility';
        ```
-   
-   3. Define the agreed sequenceable data.
-      
-      The data formats sent and received by the caller and callee abilities must be consistent. In the following example, the data formats are number and string.
-      
+   3. Define the agreed parcelable data.
+
+       The data formats sent and received by the caller and callee abilities must be consistent. In the following example, the data formats are number and string.
+
+       
        ```ts
-       export default class MySequenceable {
+       export default class MyParcelable {
            num: number = 0;
            str: string = "";
        
@@ -390,71 +388,69 @@ The following describes how to implement multi-device collaboration through cros
                this.str = string;
            }
        
-           marshalling(messageParcel) {
-               messageParcel.writeInt(this.num);
-               messageParcel.writeString(this.str);
+           marshalling(messageSequence) {
+               messageSequence.writeInt(this.num);
+               messageSequence.writeString(this.str);
                return true;
            }
        
-           unmarshalling(messageParcel) {
-               this.num = messageParcel.readInt();
-               this.str = messageParcel.readString();
+           unmarshalling(messageSequence) {
+               this.num = messageSequence.readInt();
+               this.str = messageSequence.readString();
                return true;
            }
        }
        ```
-
    4. Implement **Callee.on** and **Callee.off**.
-   
-         In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the ability and deregistered in **onDestroy()**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
-   
-         ```ts
-         const TAG: string = '[CalleeAbility]';
-         const MSG_SEND_METHOD: string = 'CallSendMsg';
+
+         In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the ability and deregistered in **onDestroy()**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
          
-         function sendMsgCallback(data) {
-             console.info('CalleeSortFunc called');
-         
-             // Obtain the sequenceable data sent by the caller ability.
-             let receivedData = new MySequenceable(0, '');
-             data.readSequenceable(receivedData);
-             console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
-         
-             // Process the data.
-             // Return the sequenceable data result to the caller ability.
-             return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
-         }
-         
-         export default class CalleeAbility extends Ability {
-             onCreate(want, launchParam) {
-                 try {
-                     this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-                 } catch (error) {
-                     console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
-                 }
-             }
-         
-             onDestroy() {
-                 try {
-                  this.callee.off(MSG_SEND_METHOD);
-                 } catch (error) {
-                     console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
-                 }
-             }
-         }
-         ```
-   
+       ```ts
+       const TAG: string = '[CalleeAbility]';
+       const MSG_SEND_METHOD: string = 'CallSendMsg';
+       
+       function sendMsgCallback(data) {
+           console.info('CalleeSortFunc called');
+       
+           // Obtain the parcelable data sent by the caller ability.
+           let receivedData = new MyParcelable(0, '');
+           data.readParcelable(receivedData);
+           console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+       
+           // Process the data.
+           // Return the parcelable data result to the caller ability.
+           return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+       }
+       
+       export default class CalleeAbility extends Ability {
+           onCreate(want, launchParam) {
+               try {
+                   this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+               } catch (error) {
+                   console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
+               }
+           }
+       
+           onDestroy() {
+               try {
+                   this.callee.off(MSG_SEND_METHOD);
+               } catch (error) {
+                   console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
+               }
+           }
+       }
+       ```
+
 4. Obtain the caller object and access the callee ability.
    1. Import the **UIAbility** module.
       
        ```ts
        import Ability from '@ohos.app.ability.UIAbility';
        ```
-       
    2. Obtain the caller object.
-      
+
        The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the ability, uses **startAbilityByCall** to start the callee ability, obtain the caller object, and register the **onRelease** listener of the caller ability. You need to implement processing based on service requirements.
-       
+
        
        ```ts
        async onButtonGetRemoteCaller() {
@@ -483,14 +479,14 @@ The following describes how to implement multi-device collaboration through cros
 
        For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned).
 
-5. Sends agreed sequenceable data to the callee ability.
-   1. The sequenceable data can be sent to the callee ability with or without a return value. The method and sequenceable data must be consistent with those of the callee ability. The following example describes how to send data to the callee ability.
+5. Sends agreed parcelable data to the callee ability.
+   1. The parcelable data can be sent to the callee ability with or without a return value. The method and parcelable data must be consistent with those of the callee ability. The following example describes how to send data to the callee ability.
       
        ```ts
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        async onButtonCall() {
            try {
-               let msg = new MySequenceable(1, 'origin_Msg');
+               let msg = new MyParcelable(1, 'origin_Msg');
                await this.caller.call(MSG_SEND_METHOD, msg);
            } catch (error) {
                console.info(`caller call failed with ${error}`);
@@ -505,12 +501,12 @@ The following describes how to implement multi-device collaboration through cros
        backMsg: string = '';
        async onButtonCallWithResult(originMsg, backMsg) {
            try {
-               let msg = new MySequenceable(1, originMsg);
+               let msg = new MyParcelable(1, originMsg);
                const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
                console.info('caller callWithResult succeed');
        
-               let result = new MySequenceable(0, '');
-               data.readSequenceable(result);
+               let result = new MyParcelable(0, '');
+               data.readParcelable(result);
                backMsg(result.str);
                console.info(`caller result is [${result.num}, ${result.str}]`);
            } catch (error) {
@@ -521,8 +517,8 @@ The following describes how to implement multi-device collaboration through cros
 
 6. Release the caller object.
 
-   When the caller object is no longer required, use **release()** to release it.
-
+     When the caller object is no longer required, use **release()** to release it.
+     
    ```ts
    releaseCall() {
        try {

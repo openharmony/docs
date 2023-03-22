@@ -18,6 +18,8 @@ This component supports only one child component.
 
 Creates a badge.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Default Value| Description|
@@ -31,6 +33,8 @@ Creates a badge.
 
 Creates a badge based on the given string.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Default Value| Description|
@@ -41,6 +45,8 @@ Creates a badge based on the given string.
 
 ## BadgePosition
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name| Description|
 | -------- | -------- |
 | RightTop | The badge is displayed in the upper right corner of the parent component.|
@@ -48,6 +54,8 @@ Creates a badge based on the given string.
 | Left | The badge is vertically centered on the left of the parent component.|
 
 ## BadgeStyle
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name      | Type                                      | Mandatory| Default Value     | Description                                       |
 | ---------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------- |

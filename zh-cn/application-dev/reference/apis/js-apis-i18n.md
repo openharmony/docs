@@ -1059,7 +1059,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。  |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | 否    | 电话号码格式化对象的相关选项。  |
 
 **示例：** 
   ```js
@@ -1149,7 +1149,7 @@ getLocationName(number: string, locale: string): string
   ```
 
 
-## PhoneNumberFormatOptions<sup>8+</sup>
+## PhoneNumberFormatOptions<sup>9+</sup>
 
 表示电话号码格式化对象可设置的属性。
 
@@ -1194,7 +1194,7 @@ getInstance(locale?:string): IndexUtil
 
 **示例：** 
   ```js
-  let indexUtil= I18n.getInstance("zh-CN");
+  let indexUtil = I18n.getInstance("zh-CN");
   ```
 
 
@@ -1267,7 +1267,7 @@ getIndex(text: string): string
 
 **示例：** 
   ```js
-  let indexUtil= I18n.getInstance("zh-CN");
+  let indexUtil = I18n.getInstance("zh-CN");
   let index = indexUtil.getIndex("hi");  // index = "H"
   ```
 
@@ -1382,7 +1382,7 @@ first(): number
 
 **示例：** 
   ```js
-  let iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let firstPos = iterator.first(); // firstPos = 0
   ```

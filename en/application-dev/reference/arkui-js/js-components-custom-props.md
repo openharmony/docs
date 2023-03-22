@@ -21,7 +21,7 @@ export default {
 
 ```html
 <!-- xxx.hml -->
-<element name='comp' src='../../common/component/comp/comp.hml'></element>
+<element name='comp' src='../common/component/comp/comp.hml'></element>
 <div class="container"> 
    <comp comp-prop="{{title}}"></comp> 
 </div>
@@ -57,7 +57,7 @@ In this example, a **\<text>** component is added to display the title. The titl
 
 ```html
 <!-- xxx.hml -->
-<element name='comp' src='../../common/component/comp/comp.hml'></element>
+<element name='comp' src='../common/component/comp/comp.hml'></element>
 <div class="container"> 
    <comp title="Custom component"></comp>
 </div>

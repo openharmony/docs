@@ -1,6 +1,7 @@
 # picker-view
 
 >  **NOTE**
+>
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **\<picker-view>** component provides the view that shows an embedded scrollable selector on the screen.

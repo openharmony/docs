@@ -124,7 +124,7 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 
 ## UIAbility.onDestroy
 
-onDestroy(): void;
+onDestroy(): void | Promise&lt;void&gt;;
 
 Called when this UIAbility is destroyed to clear resources.
 
@@ -181,7 +181,7 @@ Called when this UIAbility is switched from the foreground to the background.
 
 ## UIAbility.onContinue
 
-onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
+onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
 
 Called to save data during the ability migration preparation process.
 
@@ -267,7 +267,7 @@ Dumps client information.
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
 
 Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
 
@@ -308,7 +308,7 @@ Implements sending of sequenceable data to the target ability when the CallerAbi
 
 ## Caller.call
 
-call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 Sends sequenceable data to the target ability.
 
@@ -319,7 +319,7 @@ Sends sequenceable data to the target ability.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
@@ -338,7 +338,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
   ```ts
-  class MyMessageAble{ // Custom sequenceable data structure.
+  class MyMessageAble{ // Custom parcelable data structure.
     name:''
     str:''
     num: 1
@@ -346,15 +346,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
       return true;
     }
@@ -369,7 +369,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble('msg', 'world'); // See the definition of Sequenceable.
+        let msg = new MyMessageAble('msg', 'world'); // See the definition of Parcelable.
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
@@ -387,7 +387,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
 
 Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability.
 
@@ -398,13 +398,13 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Yes| Sequenceable data. You need to customize the data.|
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)&gt; | Promise used to return the sequenceable data from the target ability.|
+| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the sequenceable data from the target ability.|
 
 **Error codes**
 
@@ -425,15 +425,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
       console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
       console.log('MyMessageAble unmarshalling num[${this.num] str[${this.str}]');
       return true;
     }
@@ -453,7 +453,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
           .then((data) => {
             console.log('Caller callWithResult() called');
             let retmsg = new MyMessageAble(0, '');
-            data.readSequenceable(retmsg);
+            data.readParcelable(retmsg);
           })
           .catch((callErr) => {
             console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
@@ -509,7 +509,7 @@ Releases the caller interface of the target ability.
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallBack): void;
+ onRelease(callback: OnReleaseCallback): void;
 
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
@@ -519,7 +519,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Example**
     
@@ -560,7 +560,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -609,7 +609,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
-| callback | [OnReleaseCallBack](#onreleasecallback) | Yes| Callback used to return the result.|
+| callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -712,7 +712,7 @@ Registers a caller notification callback, which is invoked when the target abili
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | method | string | Yes| Notification message string negotiated between the two abilities.|
-| callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated) type. The callback must return at least one empty [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) object. Otherwise, the function execution fails.|
+| callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) type. The callback must return at least one empty [rpc.Parcelable](js-apis-rpc.md#parcelable9) object. Otherwise, the function execution fails.|
 
 **Error codes**
 
@@ -733,15 +733,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         this.name = name;
         this.str = str;
       }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
           console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
           return true;
       }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
           console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
           return true;
       }
@@ -750,7 +750,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   function funcCallBack(pdata) {
       console.log('Callee funcCallBack is called ${pdata}');
       let msg = new MyMessageAble('test', '');
-      pdata.readSequenceable(msg);
+      pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
   }
   export default class MainUIAbility extends UIAbility {
@@ -816,10 +816,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Sequenceable;
+(indata: rpc.MessageSequence): rpc.Parcelable;
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | Name| Readable| Writable| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)) | Yes| No| [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | Prototype of the listener function registered by the callee.|
+| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | Yes| No| [rpc.Parcelable](js-apis-rpc.md#parcelable9) | Prototype of the listener function registered by the callee.|

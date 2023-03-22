@@ -16,24 +16,6 @@ import request from '@ohos.request';
 
 
 ## 限制与约束
-
-在开发FA模型下的应用程序时, 默认支持https，如果要支持http，需要在config.json里增加network标签，属性标识 "cleartextTraffic": true。即：
-
-```js
-var config = {
-  "deviceConfig": {
-    "default": {
-      "network": {
-        "cleartextTraffic": true
-      }
-      //...
-    }
-  }
-}
-```
-
-在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
-
 下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
 
 上传目前仅支持HTTP请求，不支持HTTPS。

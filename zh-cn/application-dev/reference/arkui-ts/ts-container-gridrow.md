@@ -15,6 +15,8 @@
 ## 接口
 GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 |类型|必填|说明|
@@ -26,6 +28,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 ## GutterOption
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | x  | Length \| GridRowSizeOption | 否   | 水平gutter option。    |
@@ -34,6 +38,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 ## GridRowColumnOption
 
 栅格在不同宽度设备类型下，栅格列数。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -48,6 +54,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 栅格在不同宽度设备类型下，gutter的大小。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | Length | 否    | 最小宽度类型设备。    |
@@ -58,6 +66,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 | xxl | Length | 否    | 超大宽度类型设备。    |
 
 ## BreakPoints
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -73,12 +83,18 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 ```
 
 ## BreakpointsReference枚举类型
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 枚举名 | 描述 |
 | -------- | -------- |
 | WindowSize | 以窗口为参照。 |
 | ComponentSize | 以容器为参照。 |
 
 ## GridRowDirection枚举类型
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 枚举名 | 描述 |
 | -------- | -------- |
 | Row | 栅格元素按照行方向排列。 |
@@ -118,6 +134,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 ### onBreakpointChange
 
 onBreakpointChange(callback: (breakpoints: string) => void)
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
