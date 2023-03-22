@@ -253,7 +253,7 @@
 ```
 
 
-## cl.wallpaper.2  getIdSync、getFileSync、isChangeAllowed、isUserChangeAllowed、on、off接口废弃变更
+## cl.wallpaper.2  getIdSync、getFileSync、isChangeAllowed、isUserChangeAllowed、on、off、RgbaColor接口废弃变更
 从API9开始，废弃此接口。
 
 开发者需要根据以下说明对应用进行适配。
@@ -271,6 +271,12 @@
     function isUserChangeAllowed(): boolean;
     function on(type: 'colorChange', callback: (colors: Array<RgbaColor>, wallpaperType: WallpaperType) => void): void;
     function off(type: 'colorChange', callback?: (colors: Array<RgbaColor>, wallpaperType: WallpaperType) => void): void;
+    interface RgbaColor {
+        red: number;
+        green: number;
+        blue: number;
+        alpha: number;
+        }
 ```
 
 - 变更前：
@@ -282,6 +288,12 @@
     function isUserChangeAllowed(): boolean;
     function on(type: 'colorChange', callback: (colors: Array<RgbaColor>, wallpaperType: WallpaperType) => void): void;
     function off(type: 'colorChange', callback?: (colors: Array<RgbaColor>, wallpaperType: WallpaperType) => void): void;
+    interface RgbaColor {
+        red: number;
+        green: number;
+        blue: number;
+        alpha: number;
+        }
 ```
 
 - 变更后：删除接口，停止对外开放。
