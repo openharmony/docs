@@ -31,6 +31,15 @@ Obtains a **CameraManager** instance. This API returns the result synchronously.
 | ----------------------------------------------- | ---------------------------- |
 | [CameraManager](#cameramanager)           | **CameraManager** instance obtained.                  |
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+| 7400201                |  Camera service fatal error.                                  |
+
 **Example**
 
 ```js
@@ -255,6 +264,14 @@ Creates a **CameraInput** instance with the specified **CameraDevice** object. T
 | ---------- | ----------------------------- |
 | [CameraInput](#camerainput)    | **CameraInput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **Example**
 
 ```js
@@ -290,6 +307,14 @@ Creates a **CameraInput** instance with the specified camera position and type. 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [CameraInput](#camerainput)    | **CameraInput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
 
 **Example**
 
@@ -327,6 +352,14 @@ Creates a **PreviewOutput** instance. This API returns the result synchronously.
 | ---------- | ----------------------------- |
 | [PreviewOutput](#previewoutput)    | **PreviewOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **Example**
 
 ```js
@@ -360,6 +393,14 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [PhotoOutput](#photooutput)   | **PhotoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
 
 **Example**
 
@@ -395,6 +436,14 @@ Creates a **VideoOutput** instance. This API returns the result synchronously.
 | ---------- | ----------------------------- |
 | [VideoOutput](#videooutput)   | **VideoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **Example**
 
 ```js
@@ -428,6 +477,14 @@ Creates a **MetadataOutput** instance. This API returns the result synchronously
 | ---------- | ----------------------------- |
 | [MetadataOutput](#metadataoutput)   | **MetadataOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **Example**
 
 ```js
@@ -454,6 +511,14 @@ Creates a **CaptureSession** instance. This API returns the result synchronously
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [CaptureSession](#capturesession)   | **CaptureSession** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.               |
 
 **Example**
 
@@ -630,6 +695,16 @@ Opens this camera. This API uses an asynchronous callback to return the result.
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400107                |  Can not use camera cause of conflict.               |
+| 7400108                |  Camera disabled cause of security reason.                                  |
+| 7400201                |  Camera service fatal error.                                  |
+
 **Example**
 
 ```js
@@ -656,6 +731,16 @@ Opens this camera. This API uses a promise to return the result.
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400107                |  Can not use camera cause of conflict.               |
+| 7400108                |  Camera disabled cause of security reason.                                  |
+| 7400201                |  Camera service fatal error.                                  |
+
 **Example**
 
 ```js
@@ -679,6 +764,14 @@ Closes this camera. This API uses an asynchronous callback to return the result.
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                                  |
 
 **Example**
 
@@ -705,6 +798,14 @@ Closes this camera. This API uses a promise to return the result.
 | Type          | Description                     |
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                                  |
 
 **Example**
 
@@ -823,6 +924,14 @@ Starts configuration for the session.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400105                |  Session config locked.               |
+
 **Example**
 
 ```js
@@ -847,6 +956,15 @@ Commits the configuration for this **CaptureSession** instance. This API uses an
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400102                |  Operation not allow.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -873,6 +991,15 @@ Commits the configuration for this **CaptureSession** instance. This API uses a 
 | Type           | Description                     |
 | -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400102                |  Operation not allow.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -905,6 +1032,15 @@ Adds a [CameraInput](#camerainput) instance to the session.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **Example**
 
 ```js
@@ -935,6 +1071,15 @@ Removes a [CameraInput](#camerainput) instance from the session.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
 
 **Example**
 
@@ -967,6 +1112,15 @@ Adds a [CameraOutput](#cameraoutput) instance to the session.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **Example**
 
 ```js
@@ -998,6 +1152,15 @@ Removes a [CameraOutput](#cameraoutput) instance from the session.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **Example**
 
 ```js
@@ -1022,6 +1185,15 @@ Starts this **CaptureSession**. This API uses an asynchronous callback to return
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -1049,6 +1221,15 @@ Starts this **CaptureSession**. This API uses a promise to return the result.
 | -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -1072,6 +1253,14 @@ Stops this **CaptureSession**. This API uses an asynchronous callback to return 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -1099,6 +1288,14 @@ Stops this **CaptureSession**. This API uses a promise to return the result.
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -1122,6 +1319,14 @@ Releases this **CaptureSession**. This API uses an asynchronous callback to retu
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -1149,6 +1354,14 @@ Releases this **CaptureSession**. This API uses a promise to return the result.
 | -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -1172,6 +1385,14 @@ Checks whether the device has flash. This API uses an asynchronous callback to r
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | boolean    | Returns **true** if the device has flash; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1203,6 +1424,14 @@ Checks whether a flash mode is supported.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | boolean    | Returns **true** if the flash mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1240,6 +1469,14 @@ Before the setting, do the following checks:
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1264,6 +1501,14 @@ Obtains the flash mode in use.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [FlashMode](#flashmode)    | Flash mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1296,6 +1541,14 @@ Checks whether an exposure mode is supported.
 | ---------- | ----------------------------- |
 | boolean    | Returns **true** if the exposure mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1320,6 +1573,14 @@ Obtains the exposure mode in use.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [ExposureMode](#exposuremode)    | Exposure mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1352,6 +1613,14 @@ Sets an exposure mode for the device.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1376,6 +1645,14 @@ Obtains the metering point of the device.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [Point](#point)    | Metering point obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1408,6 +1685,14 @@ Sets the metering point, which is the center point of the metering rectangle.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1433,6 +1718,14 @@ Obtains the exposure compensation values of the device.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | Array<number\>   | An array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1461,6 +1754,14 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 | -------- | -------------------------------| ---- | ------------------- |
 | exposureBias   | number                   | Yes  | Exposure bias to set, which must be within the range obtained by running **getExposureBiasRange** interface. If the API call fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1486,6 +1787,14 @@ Obtains the exposure value in use.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | number    | Exposure value obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1517,6 +1826,14 @@ Checks whether a focus mode is supported.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | boolean    | Returns **true** if the focus mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1551,6 +1868,14 @@ Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to che
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1575,6 +1900,14 @@ Obtains the focus mode in use.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [FocusMode](#focusmode)   | Focus mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1607,6 +1940,14 @@ Sets the focal point.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1633,6 +1974,14 @@ Obtains the focal point of the device.
 | ---------- | ----------------------------- |
 | [Point](#point)    | Focal point obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1658,6 +2007,14 @@ Obtains the focal length of the device.
 | ---------- | ----------------------------- |
 | number    | Focal length obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1682,6 +2039,14 @@ Obtains the supported zoom ratio range.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | Array<number\>   | Callback used to return an array containing the minimum and maximum zoom ratios. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1714,6 +2079,14 @@ Sets a zoom ratio.
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1739,6 +2112,14 @@ Obtains the zoom ratio in use.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | number    | Zoom ratio obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1771,6 +2152,14 @@ Checks whether the specified video stabilization mode is supported.
 | ---------- | ----------------------------- |
 | boolean    | Returns **true** if the video stabilization mode is supported; returns **false** otherwise. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1795,6 +2184,14 @@ Obtains the video stabilization mode in use.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | VideoStabilizationMode    | Video stabilization mode obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1826,6 +2223,14 @@ Sets a video stabilization mode for the device.
 | Type       | Description                         |
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -1906,6 +2311,14 @@ Starts to output preview streams. This API uses an asynchronous callback to retu
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **Example**
 
 ```js
@@ -1931,6 +2344,14 @@ Starts to output preview streams. This API uses a promise to return the result.
 | Type           | Description                    |
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **Example**
 
@@ -2006,6 +2427,14 @@ Releases output resources. This API uses an asynchronous callback to return the 
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -2031,6 +2460,14 @@ Releases output resources. This API uses a promise to return the result.
 | Type           | Description                    |
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -2180,6 +2617,15 @@ Captures a photo with the default shooting parameters. This API uses an asynchro
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -2206,6 +2652,15 @@ Captures a photo with the default shooting parameters. This API uses a promise t
 | -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -2230,6 +2685,16 @@ Captures a photo with the specified shooting parameters. This API uses an asynch
 | -------- | ------------------------------------------- | ---- | -------------------- |
 | setting  | [PhotoCaptureSetting](#photocapturesetting) | Yes  | Shooting settings.            |
 | callback | AsyncCallback<void\>                        | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -2274,6 +2739,15 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 | -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -2319,6 +2793,14 @@ Releases output resources. This API uses an asynchronous callback to return the 
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -2344,6 +2826,14 @@ Releases output resources. This API uses a promise to return the result.
 | Type           | Description                    |
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -2489,6 +2979,15 @@ Starts video recording. This API uses an asynchronous callback to return the res
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -2515,6 +3014,14 @@ Starts video recording. This API uses a promise to return the result.
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -2590,6 +3097,14 @@ Releases output resources. This API uses an asynchronous callback to return the 
 | -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -2615,6 +3130,14 @@ Releases output resources. This API uses a promise to return the result.
 | Type           | Description                    |
 | -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
@@ -2713,6 +3236,15 @@ Starts to output metadata. This API uses an asynchronous callback to return the 
 | -------- | -------------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\>       | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
 **Example**
 
 ```js
@@ -2738,6 +3270,15 @@ Starts to output metadata. This API uses a promise to return the result.
 | Type                    | Description                    |
 | ----------------------  | ------------------------ |
 | Promise<void\>         | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
