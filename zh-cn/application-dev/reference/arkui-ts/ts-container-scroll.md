@@ -53,7 +53,7 @@ Scroll(scroller?: Scroller)
 
 ## Scroller
 
-可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar上。
+可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar、Grid、WaterFlow上。
 
 
 ### 导入对象
@@ -74,8 +74,8 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 | 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | Length                                                       | 是   | 水平滑动偏移。                                               |
-| yOffset   | Length                                                       | 是   | 竖直滑动偏移。                                               |
+| xOffset   | number | string                                              | 是   | 水平滑动偏移。                                               |
+| yOffset   | number | string                                              | 是   | 竖直滑动偏移。                                               |
 | animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-appendix-enums.md#curve)<br/>} | 否   | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。 |
 
 
@@ -84,7 +84,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 scrollEdge(value: Edge): void
 
 
-滚动到容器边缘。
+滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
 
 **参数：**
 
@@ -131,7 +131,7 @@ scrollToIndex(value: number): void
 
 >  **说明：**
 >
->  仅支持Grid、list组件。
+>  仅支持Grid、List组件。
 
 **参数：**
 
@@ -150,7 +150,7 @@ scrollBy(dx: Length, dy: Length): void
 
 >  **说明：**
 >
->  仅支持Scroll组件。
+>  仅支持Scroll、ScrollBar、Grid、List组件。
 
 **参数：**
 
