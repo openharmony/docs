@@ -1,9 +1,13 @@
-#   事件错误码
+# 事件错误码
+
+> **说明：**
+>
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
 
 ## 1500001 want中Action为空
 
 **错误信息**
-> The action field in the want parameter is null.
+The action field in the want parameter is null.
 
 **错误描述**
 发送事件的want中的Action属性为空时系统会产生此错误码。
@@ -17,7 +21,7 @@
 ##  1500002 沙箱引用无法发送公共事件
 
 **错误信息**
-> A sandbox application cannot send common events.
+A sandbox application cannot send common events.
 
 **错误描述**
 沙箱引用无法发送公共事件。
@@ -31,7 +35,7 @@
 ##  1500003 事件发送频率过高
 
 **错误信息**
-> Too many common events are send in a short period of time.
+Too many common events are send in a short period of time.
 
 **错误描述**
 应用发送事件过于频繁。
@@ -45,7 +49,7 @@
 ##  1500004 无法发送系统公共事件
 
 **错误信息**
-> A third-party application cannot send system common events.
+A third-party application cannot send system common events.
 
 **错误描述**
 当前应用无法发送系统公共事件。
@@ -59,7 +63,7 @@
 ##  1500005 未找到订阅者
 
 **错误信息**
-> The subscriber is not found.
+The subscriber is not found.
 
 **错误描述**
 找不到订阅者。
@@ -73,7 +77,7 @@
 ##  1500006 无效userId
 
 **错误信息**
-> Invalid userId.
+Invalid userId.
 
 **错误描述**
 无效的userId。
@@ -87,7 +91,7 @@
 ##  1500007 IPC请求发送失败
 
 **错误信息**
-> Failed to send the message.
+Failed to send the message.
 
 **错误描述**
 IPC发送请求失败。
@@ -101,7 +105,7 @@ IPC发送请求失败。
 ##  1500008 读取数据失败
 
 **错误信息**
-> Failed to read the data.
+Failed to read the data.
 
 **错误描述**
 服务端发生错误。
@@ -115,7 +119,7 @@ IPC发送请求失败。
 ##  1500009 系统错误
 
 **错误信息**
-> System error.
+System error.
 
 **错误描述**
 处理业务时系统发生异常，如获取系统当前时间失败。

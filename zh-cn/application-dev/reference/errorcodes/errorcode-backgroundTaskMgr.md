@@ -1,5 +1,9 @@
 # backgroundTaskManager错误码
 
+> **说明：**
+>
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
+
 ## 9800001 内存操作失败
 
 **错误信息**
