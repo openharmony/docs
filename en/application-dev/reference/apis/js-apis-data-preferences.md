@@ -38,8 +38,8 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                                |
-| name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
+| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
+| name     | string                                           | Yes  | Name of the **Preferences** instance.|
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
 
 **Example**
@@ -213,6 +213,7 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
@@ -288,6 +289,7 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try{
@@ -348,6 +350,7 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
