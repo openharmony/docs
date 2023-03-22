@@ -10,9 +10,16 @@ The SDK of API version 8 provided in DevEco Studio is a public SDK. If your proj
 >
 > The screenshots in this document are for reference only.
 
-## Downloading the Full SDK
-
-Manually download the system-specific full SDK package from the mirror. For details, see [Release Notes](../../release-notes/OpenHarmony-v3.2-beta2.md).
+## Obtaining the Full SDK
+- OpenHarmony 3.2 Beta2-Beta4
+  
+  Manually download the system-specific full SDK package from the mirror. For details, see [Release Notes](../../release-notes/OpenHarmony-v3.2-beta4.md).
+  
+- OpenHarmony 3.2 Beta5 or later
+  
+  Since OpenHarmony 3.2 Beta5, the full SDK is not provided with the version. You can obtain the full SDK by compiling the source code as instructed in [Full SDK Compilation Guide](full-sdk-compile-guide.md).
+  
+  When you have the full SDK, switch to it by following the instructions below.
 
 ## Checking the Local SDK Location
 
